@@ -1,0 +1,5 @@
+caluma:
+  form-builder:
+    form:
+      name: "Name"
+      empty: "No forms found"

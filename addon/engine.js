@@ -5,9 +5,14 @@ import config from "./config/environment";
 
 const { modulePrefix } = config;
 
+/* eslint-disable ember/avoid-leaking-state-in-ember-objects */
 const Eng = Engine.extend({
   modulePrefix,
-  Resolver
+  Resolver,
+
+  dependencies: {
+    services: ["apollo"]
+  }
 });
 
 loadInitializers(Eng, modulePrefix);

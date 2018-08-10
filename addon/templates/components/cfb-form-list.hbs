@@ -1,0 +1,34 @@
+<table class="uk-table uk-table-striped uk-table-hover">
+  <thead>
+    <tr>
+      <th>{{t 'caluma.form-builder.form.name'}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#if @data.isRunning}}
+      <tr>
+        <td class="uk-text-center">
+          {{uk-spinner ratio=2}}
+        </td>
+      </tr>
+    {{else}}
+      {{#each @data.lastSuccessful.value as |form|}}
+        {{#if hasBlock}}
+          {{yield}}
+        {{else}}
+          <tr class="cfb-pointer" role="link" {{action @on-edit form.node.id}}>
+            <td>
+              {{form.node.name}}
+            </td>
+          </tr>
+        {{/if}}
+      {{else}}
+        <tr>
+          <td class="uk-text-center">
+            {{t 'caluma.form-builder.form.empty'}}
+          </td>
+        </tr>
+      {{/each}}
+    {{/if}}
+  </tbody>
+</table>
