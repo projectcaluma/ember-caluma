@@ -14,22 +14,23 @@ import layout from "../templates/components/cfb-form-list";
  * {{!-- With block style --}}
  * {{#cfb-form-list data=someTask as |table|}}
  *   {{#table.thead}}
- *     <th>Name</th>
+ *     <tr>
+ *       <th>Key</th>
+ *     </tr>
  *   {{/table.thead}}
  *
  *   {{#table.body as |row|}}
- *     <tr>
- *       <td>{{row.name}}</td>
+ *     <tr {{action 'someAction' on='click'}}>
+ *       <td>{{row.key}}</td>
  *     </tr>
  *   {{/table.body}}
- *   <tr>
- *
- *   </tr>
  * {{#cfb}}
  * ```
  */
 export default Component.extend({
   layout,
+
+  tagName: "table",
 
   classNames: ["uk-table", "uk-table-striped", "uk-table-hover"]
 });

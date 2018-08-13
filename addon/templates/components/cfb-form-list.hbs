@@ -1,34 +1,45 @@
-<table class="uk-table uk-table-striped uk-table-hover">
-  <thead>
+{{#if hasBlock}}
+  {{yield (hash
+    head = (component 'cfb-form-list/head')
+    body = (component 'cfb-form-list/body' rows=@data.lastSuccessful.value loading=@data.isRunning)
+  )}}
+{{else}}
+  {{#cfb-form-list/head}}
     <tr>
       <th>{{t 'caluma.form-builder.form.name'}}</th>
     </tr>
-  </thead>
-  <tbody>
-    {{#if @data.isRunning}}
+  {{/cfb-form-list/head}}
+
+  {{#cfb-form-list/body rows=@data.lastSuccessful.value loading=@data.isRunning as |row|}}
+    <tr class="cfb-pointer" role="link" {{action (optional @on-edit-form) row.node.id}}>
+      <td>
+        {{row.node.name}}
+      </td>
+    </tr>
+  {{/cfb-form-list/body}}
+{{/if}}
+
+{{!--
+  {{#if @data.isRunning}}
+    <tr>
+      <td class="uk-text-center">
+        {{uk-spinner ratio=2}}
+      </td>
+    </tr>
+  {{else}}
+    {{#each @data.lastSuccessful.value as |form|}}
+      {{#if hasBlock}}
+        {{yield}}
+      {{else}}
+      {{/if}}
+    {{else}}
       <tr>
         <td class="uk-text-center">
-          {{uk-spinner ratio=2}}
+          {{t 'caluma.form-builder.form.empty'}}
         </td>
       </tr>
-    {{else}}
-      {{#each @data.lastSuccessful.value as |form|}}
-        {{#if hasBlock}}
-          {{yield}}
-        {{else}}
-          <tr class="cfb-pointer" role="link" {{action @on-edit form.node.id}}>
-            <td>
-              {{form.node.name}}
-            </td>
-          </tr>
-        {{/if}}
-      {{else}}
-        <tr>
-          <td class="uk-text-center">
-            {{t 'caluma.form-builder.form.empty'}}
-          </td>
-        </tr>
-      {{/each}}
-    {{/if}}
-  </tbody>
-</table>
+    {{/each}}
+  {{/if}}
+</tbody>
+
+--}}
