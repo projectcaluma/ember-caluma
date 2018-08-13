@@ -1,5 +1,22 @@
 import Component from "@ember/component";
 import layout from "../templates/components/cfb-form-list";
+import { task } from "ember-concurrency";
+import gql from "graphql-tag";
+import { ComponentQueryManager } from "ember-apollo-client";
+
+const query = gql`
+  query Forms {
+    allForms {
+      edges {
+        node {
+          id
+          name
+          slug
+        }
+      }
+    }
+  }
+`;
 
 /**
  * This component displays a list of forms. It can either be used blockless,
@@ -9,10 +26,10 @@ import layout from "../templates/components/cfb-form-list";
  * ```handlebars
  * {{!-- Blockless --}}
  *
- * {{cfb-form-list data=someTask on-edit-form=(action 'someAction')}}
+ * {{cfb-form-list on-edit-form=(action 'someAction')}}
  *
  * {{!-- With block style --}}
- * {{#cfb-form-list data=someTask as |table|}}
+ * {{#cfb-form-list as |table|}}
  *   {{#table.thead}}
  *     <tr>
  *       <th>Key</th>
@@ -27,10 +44,17 @@ import layout from "../templates/components/cfb-form-list";
  * {{#cfb}}
  * ```
  */
-export default Component.extend({
+export default Component.extend(ComponentQueryManager, {
   layout,
 
   tagName: "table",
 
-  classNames: ["uk-table", "uk-table-striped", "uk-table-hover"]
+  classNames: ["uk-table", "uk-table-striped", "uk-table-hover"],
+
+  data: task(function*() {
+    return yield this.get("apollo").watchQuery(
+      { query, variables: {} },
+      "allForms.edges"
+    );
+  }).on("didInsertElement")
 });
