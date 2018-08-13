@@ -18,28 +18,3 @@
     </tr>
   {{/cfb-form-list/body}}
 {{/if}}
-
-{{!--
-  {{#if @data.isRunning}}
-    <tr>
-      <td class="uk-text-center">
-        {{uk-spinner ratio=2}}
-      </td>
-    </tr>
-  {{else}}
-    {{#each @data.lastSuccessful.value as |form|}}
-      {{#if hasBlock}}
-        {{yield}}
-      {{else}}
-      {{/if}}
-    {{else}}
-      <tr>
-        <td class="uk-text-center">
-          {{t 'caluma.form-builder.form.empty'}}
-        </td>
-      </tr>
-    {{/each}}
-  {{/if}}
-</tbody>
-
---}}
