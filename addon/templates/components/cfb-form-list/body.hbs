@@ -1,11 +1,11 @@
-{{#if @loading}}
+{{#if loading}}
   <tr>
     <td class="uk-text-center">
       {{uk-spinner ratio=2}}
     </td>
   </tr>
 {{else}}
-  {{#each @rows as |row|}}
+  {{#each rows as |row|}}
     {{yield row}}
   {{else}}
     <tr>

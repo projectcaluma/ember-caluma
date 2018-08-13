@@ -21,11 +21,11 @@ export default Controller.extend({
   apollo: service(),
 
   setup() {
-    this.data.perform();
+    this.get("data").perform();
   },
 
   data: task(function*() {
-    return yield this.apollo.watchQuery(
+    return yield this.get("apollo").watchQuery(
       { query, variables: {} },
       "allForms.edges"
     );

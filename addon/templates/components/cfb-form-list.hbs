@@ -1,7 +1,7 @@
 {{#if hasBlock}}
   {{yield (hash
     head = (component 'cfb-form-list/head')
-    body = (component 'cfb-form-list/body' rows=@data.lastSuccessful.value loading=@data.isRunning)
+    body = (component 'cfb-form-list/body' rows=data.lastSuccessful.value loading=data.isRunning)
   )}}
 {{else}}
   {{#cfb-form-list/head}}
@@ -10,8 +10,8 @@
     </tr>
   {{/cfb-form-list/head}}
 
-  {{#cfb-form-list/body rows=@data.lastSuccessful.value loading=@data.isRunning as |row|}}
-    <tr class="cfb-pointer" role="link" {{action (optional @on-edit-form) row.node.id}}>
+  {{#cfb-form-list/body rows=data.lastSuccessful.value loading=data.isRunning as |row|}}
+    <tr class="cfb-pointer" role="link" {{action (optional on-edit-form) row.node.id}}>
       <td>
         {{row.node.name}}
       </td>
