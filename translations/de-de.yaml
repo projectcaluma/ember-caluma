@@ -1,5 +1,12 @@
 caluma:
   form-builder:
+    global:
+      save: "Speichern"
+      delete: "Löschen"
+      back: "Zurück"
+
     form:
       name: "Name"
+      slug: "Slug"
+      description: "Beschreibung"
       empty: "Keine Formulare gefunden"

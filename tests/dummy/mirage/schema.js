@@ -8,7 +8,6 @@ type Form implements Node {
 }
 
 type FormConnection {
-  # pageInfo: PageInfo!
   edges: [FormEdge]!
 }
 
@@ -21,11 +20,30 @@ interface Node {
   id: ID!
 }
 
-type PageInfo {
-  hasNextPage: Boolean!
-  hasPreviousPage: Boolean!
-  startCursor: String
-  endCursor: String
+input UpdateFormInput {
+  formId: ID!
+  name: String
+  description: String
+  clientMutationId: String!
+}
+
+input DeleteFormInput {
+  formId: ID!
+  clientMutationId: String!
+}
+
+type UpdateFormPayload {
+  form: Form
+  clientMutationId: String!
+}
+
+type DeleteFormPayload {
+  clientMutationId: String!
+}
+
+type Mutation {
+  updateForm(input: UpdateFormInput!): UpdateFormPayload
+  deleteForm(input: DeleteFormInput!): DeleteFormPayload
 }
 
 type Query {

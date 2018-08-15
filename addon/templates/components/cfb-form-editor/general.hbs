@@ -1,0 +1,60 @@
+{{#if data.isRunning}}
+  <div class="uk-flex uk-flex-center uk-flex-middle uk-height-small">
+    {{uk-spinner ratio=2}}
+  </div>
+{{else}}
+  {{#with data.lastSuccessful.value as |model|}}
+    {{#validated-form
+      model=(changeset model validations)
+      on-submit=(perform submit)
+    as |f|}}
+      {{#f.input name='name' as |i|}}
+        <label class="uk-form-label uk-text-bold">{{t 'caluma.form-builder.form.name'}}</label>
+        <input
+          type="text"
+          class="uk-input"
+          value={{i.value}}
+          onblur={{i.setDirty}}
+          oninput={{action i.update value='target.value'}}
+        >
+      {{/f.input}}
+
+      {{#f.input name='slug' as |i|}}
+        <label class="uk-form-label uk-text-bold">{{t 'caluma.form-builder.form.slug'}}</label>
+        <input
+          type="text"
+          class="uk-input"
+          maxlength="50"
+          disabled={{f.model.id}}
+          value={{i.value}}
+          onblur={{i.setDirty}}
+          oninput={{action i.update value='target.value'}}
+        >
+      {{/f.input}}
+
+      {{#f.input name='description' as |i|}}
+        <label class="uk-form-label uk-text-bold">{{t 'caluma.form-builder.form.description'}}</label>
+        <textarea
+          class="uk-textarea"
+          rows="5"
+          value={{i.value}}
+          onblur={{i.setDirty}}
+          oninput={{action i.update value='target.value'}}
+        ></textarea>
+      {{/f.input}}
+
+      <div class="uk-text-right">
+        {{uk-button
+          disabled=(or delete.isRunning f.loading)
+          loading=delete.isRunning
+          label=(t 'caluma.form-builder.global.delete')
+          on-click=(perform delete f.model)
+        }}
+
+        {{#f.submit disabled=(or f.loading f.model.isInvalid)}}
+          {{#if f.loading}}{{uk-spinner}}{{else}}{{t 'caluma.form-builder.global.save'}}{{/if}}
+        {{/f.submit}}
+      </div>
+    {{/validated-form}}
+  {{/with}}
+{{/if}}
