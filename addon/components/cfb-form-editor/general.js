@@ -103,7 +103,7 @@ export default Component.extend(ComponentQueryManager, {
           }
         }
       },
-      "createForm.form"
+      "updateForm.form"
     );
   }),
 

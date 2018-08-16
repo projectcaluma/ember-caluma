@@ -43,26 +43,58 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
     assert.dom("input[name=name] + span").hasText("Name can't be blank");
   });
 
-  test("it can edit a form", async function(assert) {
-    assert.expect(2);
+  test("it can create a form", async function(assert) {
+    assert.expect(6);
 
-    const { id } = this.server.create("form", {
+    this.set("afterSubmit", form => {
+      assert.ok(form);
+      assert.equal(form.slug, "form-slug");
+      assert.step("after-submit");
+    });
+
+    await render(
+      hbs`{{cfb-form-editor/general on-after-submit=(action afterSubmit)}}`
+    );
+
+    assert.dom("input[name=slug]").isNotDisabled();
+
+    await fillIn("input[name=name]", "Test Name ##1 12");
+    await fillIn("textarea[name=description]", "Test Description");
+
+    assert.dom("input[name=slug]").hasValue("test-name-1-12");
+
+    await fillIn("input[name=slug]", "form-slug");
+
+    await click("form button[type=submit]");
+
+    assert.verifySteps(["after-submit"]);
+  });
+
+  test("it can edit a form", async function(assert) {
+    assert.expect(4);
+
+    this.server.create("form", {
       name: "Test Name",
       slug: "test-slug",
       description: "Test Description"
     });
 
-    await render(hbs`{{cfb-form-editor/general slug='test-slug'}}`);
+    this.set("afterSubmit", form => {
+      assert.ok(form);
+      assert.equal(form.name, "Test Name 1");
+      assert.step("after-submit");
+    });
+
+    await render(
+      hbs`{{cfb-form-editor/general slug='test-slug' on-after-submit=(action afterSubmit)}}`
+    );
 
     await fillIn("input[name=name]", "Test Name 1");
     await fillIn("textarea[name=description]", "Test Description 1");
 
     await click("form button[type=submit]");
 
-    const form = this.server.schema.forms.find(id);
-
-    assert.equal(form.name, "Test Name 1");
-    assert.equal(form.description, "Test Description 1");
+    assert.verifySteps(["after-submit"]);
   });
 
   test("it can delete a form", async function(assert) {
