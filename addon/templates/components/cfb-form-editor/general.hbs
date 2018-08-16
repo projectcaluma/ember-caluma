@@ -11,12 +11,11 @@
       {{#f.input name='name' as |i|}}
         <label class="uk-form-label uk-text-bold">{{t 'caluma.form-builder.form.name'}}</label>
         <input
-          type="text"
-          name="name"
-          class="uk-input"
+          name={{i.name}}
+          class="uk-input {{i.class}}"
           value={{i.value}}
           onblur={{i.setDirty}}
-          oninput={{action i.update value='target.value'}}
+          oninput={{action (queue i.update (action 'inputName' f.model)) value='target.value'}}
         >
       {{/f.input}}
 
@@ -24,8 +23,8 @@
         <label class="uk-form-label uk-text-bold">{{t 'caluma.form-builder.form.slug'}}</label>
         <input
           type="text"
-          name="slug"
-          class="uk-input"
+          name={{i.name}}
+          class="uk-input {{i.class}}"
           maxlength="50"
           disabled={{f.model.id}}
           value={{i.value}}
@@ -37,8 +36,8 @@
       {{#f.input name='description' as |i|}}
         <label class="uk-form-label uk-text-bold">{{t 'caluma.form-builder.form.description'}}</label>
         <textarea
-          name="description"
-          class="uk-textarea"
+          name={{i.name}}
+          class="uk-textarea {{i.class}}"
           rows="5"
           value={{i.value}}
           onblur={{i.setDirty}}
@@ -47,12 +46,14 @@
       {{/f.input}}
 
       <div class="uk-text-right">
-        {{uk-button
-          disabled=(or delete.isRunning f.loading)
-          loading=delete.isRunning
-          label=(t 'caluma.form-builder.global.delete')
-          on-click=(perform delete f.model)
-        }}
+        {{#if f.model.id}}
+          {{uk-button
+            disabled=(or delete.isRunning f.loading)
+            loading=delete.isRunning
+            label=(t 'caluma.form-builder.global.delete')
+            on-click=(perform delete f.model)
+          }}
+        {{/if}}
 
         {{#f.submit disabled=(or f.loading f.model.isInvalid)}}
           {{#if f.loading}}{{uk-spinner}}{{else}}{{t 'caluma.form-builder.global.save'}}{{/if}}

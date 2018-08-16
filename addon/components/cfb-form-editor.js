@@ -20,6 +20,10 @@ export default Component.extend(ComponentQueryManager, {
   layout,
 
   data: task(function*() {
+    if (!this.get("slug")) {
+      return null;
+    }
+
     return yield this.get("apollo").watchQuery(
       {
         query,

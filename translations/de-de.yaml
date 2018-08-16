@@ -9,4 +9,7 @@ caluma:
       name: "Name"
       slug: "Slug"
       description: "Beschreibung"
+
+      all: "Alle Formulare"
+      new: "Neues Formular"
       empty: "Keine Formulare gefunden"

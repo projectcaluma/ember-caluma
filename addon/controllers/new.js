@@ -2,11 +2,11 @@ import Controller from "@ember/controller";
 
 export default Controller.extend({
   actions: {
-    newForm() {
-      this.transitionToRoute("new");
-    },
-    editForm({ slug }) {
+    afterSubmit({ slug }) {
       this.transitionToRoute("edit", slug);
+    },
+    back() {
+      this.transitionToRoute("index");
     }
   }
 });

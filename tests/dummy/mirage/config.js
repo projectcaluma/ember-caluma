@@ -110,6 +110,18 @@ export default function() {
               form: serialize(form.toJSON(), "Form"),
               clientMutationId
             };
+          },
+          CreateFormPayload: (root, { input }) => {
+            let { clientMutationId } = input;
+
+            delete input.clientMutationId;
+
+            let form = forms.create(input);
+
+            return {
+              form: serialize(form.toJSON(), "Form"),
+              clientMutationId
+            };
           }
         }),
         preserveResolvers: false
