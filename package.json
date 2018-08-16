@@ -1,18 +1,18 @@
 {
   "name": "ember-caluma-form-builder",
   "version": "0.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "The form builder for Caluma",
   "keywords": [
     "ember-addon",
     "ember-engine"
   ],
   "license": "MIT",
   "author": "",
+  "repository": "github:projectcaluma/ember-caluma-form-builder",
   "directories": {
     "doc": "doc",
     "test": "tests"
   },
-  "repository": "",
   "scripts": {
     "build": "ember build",
     "lint:js": "eslint .",
@@ -68,6 +68,5 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config"
-  },
-  "homepage": "https://projectcaluma.github.io/ember-caluma-form-builder"
+  }
 }
