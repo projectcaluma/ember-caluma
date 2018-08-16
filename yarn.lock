@@ -3150,12 +3150,6 @@ ember-concurrency@^0.8.19:
     ember-cli-babel "^6.8.2"
     ember-maybe-import-regenerator "^0.1.5"
 
-ember-controller-lifecycle@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/ember-controller-lifecycle/-/ember-controller-lifecycle-1.0.0.tgz#0a7b7411851666837ac7af7d6c8c294f47ad3544"
-  dependencies:
-    ember-cli-babel "^6.6.0"
-
 ember-deep-set@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/ember-deep-set/-/ember-deep-set-0.1.4.tgz#a9989969498d89685be155b72109b037af4d5645"

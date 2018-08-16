@@ -20,15 +20,8 @@ interface Node {
   id: ID!
 }
 
-input CreateFormInput {
-  name: String!
+input SaveFormInput {
   slug: String!
-  description: String
-  clientMutationId: String!
-}
-
-input UpdateFormInput {
-  formId: ID!
   name: String
   description: String
   clientMutationId: String!
@@ -39,12 +32,7 @@ input DeleteFormInput {
   clientMutationId: String!
 }
 
-type CreateFormPayload {
-  form: Form
-  clientMutationId: String!
-}
-
-type UpdateFormPayload {
+type SaveFormPayload {
   form: Form
   clientMutationId: String!
 }
@@ -54,8 +42,7 @@ type DeleteFormPayload {
 }
 
 type Mutation {
-  createForm(input: CreateFormInput!): CreateFormPayload
-  updateForm(input: UpdateFormInput!): UpdateFormPayload
+  saveForm(input: SaveFormInput!): SaveFormPayload
   deleteForm(input: DeleteFormInput!): DeleteFormPayload
 }
 

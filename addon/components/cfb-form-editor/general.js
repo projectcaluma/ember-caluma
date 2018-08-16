@@ -43,19 +43,11 @@ export default Component.extend(ComponentQueryManager, {
   }).on("init"),
 
   submit: task(function*(changeset) {
-    let form = yield this.get(this.get("slug") ? "update" : "create").perform(
-      changeset
-    );
-
-    this.getWithDefault("on-after-submit", () => {})(form);
-  }),
-
-  create: task(function*(changeset) {
-    return yield this.get("apollo").mutate(
+    let form = yield this.get("apollo").mutate(
       {
         mutation: gql`
-          mutation CreateForm($input: CreateFormInput!) {
-            createForm(input: $input) {
+          mutation SaveForm($input: SaveFormInput!) {
+            saveForm(input: $input) {
               form {
                 id
                 name
@@ -75,36 +67,10 @@ export default Component.extend(ComponentQueryManager, {
           }
         }
       },
-      "createForm.form"
+      "saveForm.form"
     );
-  }),
 
-  update: task(function*(changeset) {
-    return yield this.get("apollo").mutate(
-      {
-        mutation: gql`
-          mutation UpdateForm($input: UpdateFormInput!) {
-            updateForm(input: $input) {
-              form {
-                id
-                name
-                description
-              }
-              clientMutationId
-            }
-          }
-        `,
-        variables: {
-          input: {
-            formId: changeset.get("id"),
-            name: changeset.get("name"),
-            description: changeset.get("description"),
-            clientMutationId: v4()
-          }
-        }
-      },
-      "updateForm.form"
-    );
+    this.getWithDefault("on-after-submit", () => {})(form);
   }),
 
   delete: task(function*(changeset) {
