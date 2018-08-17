@@ -13,3 +13,17 @@ caluma:
       all: "Alle Formulare"
       new: "Neues Formular"
       empty: "Keine Formulare gefunden"
+
+    notification:
+      form:
+        save:
+          success: "Ihr Formular wurde erfolgreich gespeichert!"
+          error: "Hoppla, beim Speichern des Formulars ist etwas schief gelaufen..."
+
+        create:
+          success: "Ihr Formular wurde erfolgreich erstellt!"
+          error: "Hoppla, beim Erstellen des Formulars ist etwas schief gelaufen..."
+
+        delete:
+          success: "Ihr Formular wurde erfolgreich gelöscht!"
+          error: "Hoppla, beim Löschen des Formulars ist etwas schief gelaufen..."

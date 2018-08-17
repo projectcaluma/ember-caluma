@@ -32,5 +32,7 @@ export default Component.extend(ComponentQueryManager, {
       },
       "node"
     );
-  }).on("init")
+  })
+    .restartable()
+    .on("init")
 });

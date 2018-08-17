@@ -56,5 +56,7 @@ export default Component.extend(ComponentQueryManager, {
       },
       "allForms.edges"
     );
-  }).on("init")
+  })
+    .restartable()
+    .on("init")
 });

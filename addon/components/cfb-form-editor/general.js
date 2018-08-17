@@ -1,4 +1,5 @@
 import Component from "@ember/component";
+import { inject as service } from "@ember/service";
 import layout from "../../templates/components/cfb-form-editor/general";
 import { task } from "ember-concurrency";
 import gql from "graphql-tag";
@@ -9,8 +10,10 @@ import slug from "slug";
 
 export default Component.extend(ComponentQueryManager, {
   layout,
-
   validations,
+
+  notification: service(),
+  intl: service(),
 
   data: task(function*() {
     if (!this.get("slug")) {
@@ -40,62 +43,92 @@ export default Component.extend(ComponentQueryManager, {
       },
       "node"
     );
-  }).on("init"),
+  })
+    .restartable()
+    .on("init"),
 
   submit: task(function*(changeset) {
-    let form = yield this.get("apollo").mutate(
-      {
-        mutation: gql`
-          mutation SaveForm($input: SaveFormInput!) {
-            saveForm(input: $input) {
-              form {
-                id
-                name
-                slug
-                description
+    try {
+      let form = yield this.get("apollo").mutate(
+        {
+          mutation: gql`
+            mutation SaveForm($input: SaveFormInput!) {
+              saveForm(input: $input) {
+                form {
+                  id
+                  name
+                  slug
+                  description
+                }
+                clientMutationId
               }
+            }
+          `,
+          variables: {
+            input: {
+              name: changeset.get("name"),
+              slug: changeset.get("slug"),
+              description: changeset.get("description"),
+              clientMutationId: v4()
+            }
+          }
+        },
+        "saveForm.form"
+      );
+
+      this.get("notification").success(
+        this.get("intl").t(
+          `caluma.form-builder.notification.form.${
+            this.get("slug") ? "save" : "create"
+          }.success`
+        )
+      );
+
+      this.getWithDefault("on-after-submit", () => {})(form);
+    } catch (e) {
+      this.get("notification").danger(
+        `caluma.form-builder.notification.form.${
+          this.get("slug") ? "save" : "create"
+        }.error`
+      );
+    }
+  }).drop(),
+
+  delete: task(function*(changeset) {
+    try {
+      if (!this.get("slug")) {
+        return;
+      }
+
+      yield this.get("apollo").mutate({
+        mutation: gql`
+          mutation DeleteForm($input: DeleteFormInput!) {
+            deleteForm(input: $input) {
               clientMutationId
             }
           }
         `,
         variables: {
           input: {
-            name: changeset.get("name"),
-            slug: changeset.get("slug"),
-            description: changeset.get("description"),
+            formId: changeset.get("id"),
             clientMutationId: v4()
           }
         }
-      },
-      "saveForm.form"
-    );
+      });
 
-    this.getWithDefault("on-after-submit", () => {})(form);
-  }),
+      this.get("notification").success(
+        this.get("intl").t(
+          "caluma.form-builder.notification.form.delete.success"
+        )
+      );
 
-  delete: task(function*(changeset) {
-    if (!this.get("slug")) {
-      return;
+      this.getWithDefault("on-after-delete", () => {})();
+    } catch (e) {
+      this.get("notification").danger(
+        this.get("intl").t("caluma.form-builder.notification.form.delete.error")
+      );
     }
-
-    yield this.get("apollo").mutate({
-      mutation: gql`
-        mutation DeleteForm($input: DeleteFormInput!) {
-          deleteForm(input: $input) {
-            clientMutationId
-          }
-        }
-      `,
-      variables: {
-        input: {
-          formId: changeset.get("id"),
-          clientMutationId: v4()
-        }
-      }
-    });
-
-    this.getWithDefault("on-after-delete", () => {})();
-  }),
+  }).drop(),
 
   actions: {
     inputName(changeset, value) {

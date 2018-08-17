@@ -13,3 +13,17 @@ caluma:
       all: "All forms"
       new: "New form"
       empty: "No forms found"
+
+    notification:
+      form:
+        save:
+          success: "Your form was successfully saved!"
+          error: "Ooops, something went wrong while saving the form..."
+
+        create:
+          success: "Your form was successfully created!"
+          error: "Ooops, something went wrong while creating the form..."
+
+        delete:
+          success: "Your form was successfully deleted!"
+          error: "Ooops, something went wrong while deleting the form..."
