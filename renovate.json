@@ -1,5 +1,11 @@
 {
   "extends": [
     "config:base"
+  ],
+  "packageRules": [
+    {
+      "packageNames": ["eslint-plugin-prettier"],
+      "matchCurrentVersion": "2.6.0"
+    }
   ]
 }
