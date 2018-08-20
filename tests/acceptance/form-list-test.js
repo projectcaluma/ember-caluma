@@ -14,6 +14,6 @@ module("Acceptance | form list", function(hooks) {
 
     await visit("/");
 
-    assert.dom("table > tbody > tr").exists({ count: 5 });
+    assert.dom("[data-test-form-list-item]").exists({ count: 5 });
   });
 });

@@ -81,7 +81,7 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
 
     await fillIn("input[name=slug]", "form-slug");
 
-    await click("form button[type=submit]");
+    await click("[data-test-submit]");
 
     assert.verifySteps(["after-submit"]);
   });
@@ -108,7 +108,7 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
     await fillIn("input[name=name]", "Test Name 1");
     await fillIn("textarea[name=description]", "Test Description 1");
 
-    await click("form button[type=submit]");
+    await click("[data-test-submit]");
 
     assert.verifySteps(["after-submit"]);
   });
@@ -128,7 +128,7 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
       hbs`{{cfb-form-editor/general slug='test-slug' on-after-delete=(action afterDelete)}}`
     );
 
-    await click("form button[type=button]");
+    await click("[data-test-delete]");
 
     const form = this.server.schema.forms.find(id);
 
@@ -157,14 +157,14 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
       () => generateErrorObjForGraph("deleteForm"),
       200
     );
-    await click("form button[type=button]");
+    await click("[data-test-delete]");
 
     this.server.post(
       "/graphql",
       () => generateErrorObjForGraph("saveForm"),
       200
     );
-    await click("form button[type=submit]");
+    await click("[data-test-submit]");
 
     assert.verifySteps([]);
   });

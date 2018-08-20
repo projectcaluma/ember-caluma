@@ -3,28 +3,25 @@
     {{t 'caluma.form-builder.form.all'}}
   </span>
   <span>
-    {{uk-button label=(t 'caluma.form-builder.form.new') on-click=(action (optional on-new-form))}}
+    {{uk-button data-test-new-form label=(t 'caluma.form-builder.form.new') on-click=(action (optional on-new-form))}}
   </span>
 </h1>
-<table class="uk-table uk-table-striped uk-table-hover">
-  {{#if hasBlock}}
-    {{yield (hash
-      head = (component 'cfb-form-list/head')
-      body = (component 'cfb-form-list/body' rows=data.lastSuccessful.value loading=data.isRunning)
-    )}}
-  {{else}}
-    {{#cfb-form-list/head}}
-      <tr>
-        <th>{{t 'caluma.form-builder.form.name'}}</th>
-      </tr>
-    {{/cfb-form-list/head}}
 
-    {{#cfb-form-list/body rows=data.lastSuccessful.value loading=data.isRunning as |row|}}
-      <tr class="cfb-pointer" role="link" {{action (optional on-edit-form) row.node}}>
-        <td>
-          {{row.node.name}}
-        </td>
-      </tr>
-    {{/cfb-form-list/body}}
+{{#if data.isRunning}}
+  <div class="uk-height-small uk-flex uk-flex-center uk-flex-middle">
+    {{uk-spinner ratio=2}}
+  </div>
+{{else}}
+  {{#if data.lastSuccessful.value.length}}
+    {{#animated-container data-test-form-list tagName='ul' class='uk-list uk-list-divider uk-list-large'}}
+      {{#animated-each data.lastSuccessful.value use=transition duration=500 key='node.id' as |item|}}
+        {{cfb-form-list/item data-test-form-list-item=item.node.slug item=item.node on-edit-form=on-edit-form}}
+      {{/animated-each}}
+    {{/animated-container}}
+  {{else}}
+    <div data-test-form-list-empty class="uk-padding-large uk-padding-remove-horizontal uk-text-center">
+      {{uk-icon 'search' ratio=10}}
+      <p class="uk-text-muted">{{t 'caluma.form-builder.form.empty'}}</p>
+    </div>
   {{/if}}
-</table>
+{{/if}}

@@ -1,9 +1,7 @@
-{{#if data.isRunning}}
-  <div class="uk-flex uk-flex-center uk-flex-middle uk-height-small">
-    {{uk-spinner ratio=2}}
-  </div>
-{{else}}
-  <h1 class="uk-heading-divider uk-flex uk-flex-between">
+<h1 class="uk-heading-divider uk-flex uk-flex-between">
+  {{#if data.isRunning}}
+    {{cfb-loading-dots}}
+  {{else}}
     <span>
       {{#if data.lastSuccessful.value}}
         {{data.lastSuccessful.value.name}}
@@ -12,15 +10,15 @@
       {{/if}}
     </span>
     <span>
-      {{uk-button label=(t 'caluma.form-builder.global.back') on-click=(action (optional on-back))}}
+      {{uk-button data-test-back label=(t 'caluma.form-builder.global.back') on-click=(action (optional on-back))}}
     </span>
-  </h1>
+  {{/if}}
+</h1>
 
-  <div uk-grid class="uk-grid-divider uk-child-width-1-2">
-    <div>
-      {{yield}}
-    </div>
-
-    <div></div>
+<div uk-grid class="uk-grid-divider uk-child-width-1-2">
+  <div>
+    {{yield}}
   </div>
-{{/if}}
+
+  <div></div>
+</div>

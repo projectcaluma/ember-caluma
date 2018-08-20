@@ -4,6 +4,7 @@ caluma:
       save: "Save"
       delete: "Delete"
       back: "Back"
+      loading: "Loading"
 
     form:
       name: "Name"
@@ -12,7 +13,7 @@ caluma:
 
       all: "All forms"
       new: "New form"
-      empty: "No forms found"
+      empty: "We did not found any forms. Click the button in the top right corner to create a new form right now!"
 
     notification:
       form:

@@ -87,9 +87,11 @@ export default Component.extend(ComponentQueryManager, {
       this.getWithDefault("on-after-submit", () => {})(form);
     } catch (e) {
       this.get("notification").danger(
-        `caluma.form-builder.notification.form.${
-          this.get("slug") ? "save" : "create"
-        }.error`
+        this.get("intl").t(
+          `caluma.form-builder.notification.form.${
+            this.get("slug") ? "save" : "create"
+          }.error`
+        )
       );
     }
   }).drop(),

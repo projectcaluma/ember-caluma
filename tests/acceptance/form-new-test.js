@@ -14,9 +14,9 @@ module("Acceptance | form edit", function(hooks) {
 
     await visit("/");
 
-    assert.dom("table > tbody > tr").exists({ count: 2 });
+    assert.dom("[data-test-form-list-item]").exists({ count: 2 });
 
-    await click("h1 button");
+    await click("[data-test-new-form]");
 
     assert.equal(currentURL(), "/new");
 
@@ -24,7 +24,7 @@ module("Acceptance | form edit", function(hooks) {
     await fillIn("input[name=slug]", "testy-test-test");
     await fillIn("textarea[name=description]", "Some Random Description");
 
-    await click("form button[type=submit]");
+    await click("[data-test-submit]");
 
     assert.equal(currentURL(), "/testy-test-test");
   });

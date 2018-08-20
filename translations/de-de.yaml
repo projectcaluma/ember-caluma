@@ -4,6 +4,7 @@ caluma:
       save: "Speichern"
       delete: "Löschen"
       back: "Zurück"
+      loading: "Laden"
 
     form:
       name: "Name"
@@ -12,7 +13,7 @@ caluma:
 
       all: "Alle Formulare"
       new: "Neues Formular"
-      empty: "Keine Formulare gefunden"
+      empty: "Wir haben keine Formulare gefunden. Klicken Sie den Knopf im der rechten oberen Ecke um ein Formular zu Erstellen!"
 
     notification:
       form:

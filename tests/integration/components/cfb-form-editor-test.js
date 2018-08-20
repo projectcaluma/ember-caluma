@@ -43,7 +43,7 @@ module("Integration | Component | cfb-form-editor", function(hooks) {
       hbs`{{cfb-form-editor slug='test-slug' on-back=(action back)}}`
     );
 
-    await click("h1 > span > button");
+    await click("[data-test-back]");
 
     assert.verifySteps(["back"]);
   });
