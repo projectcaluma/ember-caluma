@@ -15,6 +15,12 @@ export default Component.extend(ComponentQueryManager, {
   notification: service(),
   intl: service(),
 
+  init() {
+    this._super(...arguments);
+
+    this.get("data").perform();
+  },
+
   data: task(function*() {
     if (!this.get("slug")) {
       return {
@@ -43,9 +49,7 @@ export default Component.extend(ComponentQueryManager, {
       },
       "node"
     );
-  })
-    .restartable()
-    .on("init"),
+  }).restartable(),
 
   submit: task(function*(changeset) {
     try {

@@ -30,6 +30,12 @@ export default Component.extend(ComponentQueryManager, {
     yield keptSprites.forEach(move);
   },
 
+  init() {
+    this._super(...arguments);
+
+    this.get("data").perform();
+  },
+
   data: task(function*() {
     return yield this.get("apollo").watchQuery(
       {
@@ -39,7 +45,5 @@ export default Component.extend(ComponentQueryManager, {
       },
       "allForms.edges"
     );
-  })
-    .restartable()
-    .on("init")
+  }).restartable()
 });
