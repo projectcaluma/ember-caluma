@@ -19,6 +19,12 @@ const query = gql`
 export default Component.extend(ComponentQueryManager, {
   layout,
 
+  init() {
+    this._super(...arguments);
+
+    this.get("data").perform();
+  },
+
   data: task(function*() {
     if (!this.get("slug")) {
       return null;
@@ -32,7 +38,5 @@ export default Component.extend(ComponentQueryManager, {
       },
       "node"
     );
-  })
-    .restartable()
-    .on("init")
+  }).restartable()
 });
