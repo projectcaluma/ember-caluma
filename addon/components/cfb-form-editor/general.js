@@ -5,6 +5,7 @@ import gql from "graphql-tag";
 import { ComponentQueryManager } from "ember-apollo-client";
 import validations from "../../validations/form";
 import v4 from "uuid/v4";
+import slug from "slug";
 
 export default Component.extend(ComponentQueryManager, {
   layout,
@@ -12,6 +13,14 @@ export default Component.extend(ComponentQueryManager, {
   validations,
 
   data: task(function*() {
+    if (!this.get("slug")) {
+      return {
+        name: "",
+        slug: "",
+        description: ""
+      };
+    }
+
     return yield this.get("apollo").watchQuery(
       {
         query: gql`
@@ -34,34 +43,41 @@ export default Component.extend(ComponentQueryManager, {
   }).on("init"),
 
   submit: task(function*(changeset) {
-    yield this.get("apollo").mutate({
-      mutation: gql`
-        mutation UpdateForm($input: UpdateFormInput!) {
-          updateForm(input: $input) {
-            form {
-              id
-              name
-              slug
-              description
+    let form = yield this.get("apollo").mutate(
+      {
+        mutation: gql`
+          mutation SaveForm($input: SaveFormInput!) {
+            saveForm(input: $input) {
+              form {
+                id
+                name
+                slug
+                description
+              }
+              clientMutationId
             }
-            clientMutationId
+          }
+        `,
+        variables: {
+          input: {
+            name: changeset.get("name"),
+            slug: changeset.get("slug"),
+            description: changeset.get("description"),
+            clientMutationId: v4()
           }
         }
-      `,
-      variables: {
-        input: {
-          formId: changeset.get("id"),
-          name: changeset.get("name"),
-          description: changeset.get("description"),
-          clientMutationId: v4()
-        }
-      }
-    });
+      },
+      "saveForm.form"
+    );
 
-    this.getWithDefault("on-after-submit", () => {})();
+    this.getWithDefault("on-after-submit", () => {})(form);
   }),
 
   delete: task(function*(changeset) {
+    if (!this.get("slug")) {
+      return;
+    }
+
     yield this.get("apollo").mutate({
       mutation: gql`
         mutation DeleteForm($input: DeleteFormInput!) {
@@ -79,5 +95,18 @@ export default Component.extend(ComponentQueryManager, {
     });
 
     this.getWithDefault("on-after-delete", () => {})();
-  })
+  }),
+
+  actions: {
+    inputName(changeset, value) {
+      if (!this.get("slug")) {
+        changeset.set(
+          "slug",
+          slug(value)
+            .toLowerCase()
+            .substr(0, 50)
+        );
+      }
+    }
+  }
 });

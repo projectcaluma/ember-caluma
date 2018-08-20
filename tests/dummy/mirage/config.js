@@ -97,12 +97,12 @@ export default function() {
 
             return { formId, clientMutationId };
           },
-          UpdateFormPayload: (root, { input }) => {
-            let { clientMutationId, formId } = input;
-            let form = forms.findBy(deserialize({ id: formId }));
+          SaveFormPayload: (root, { input }) => {
+            let { clientMutationId, slug } = input;
 
             delete input.clientMutationId;
-            delete input.formId;
+
+            let form = forms.findBy({ slug }) || forms.create(input);
 
             form.update(input);
 

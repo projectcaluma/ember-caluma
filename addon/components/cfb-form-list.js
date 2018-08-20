@@ -47,10 +47,6 @@ const query = gql`
 export default Component.extend(ComponentQueryManager, {
   layout,
 
-  tagName: "table",
-
-  classNames: ["uk-table", "uk-table-striped", "uk-table-hover"],
-
   data: task(function*() {
     return yield this.get("apollo").watchQuery(
       {
@@ -60,5 +56,5 @@ export default Component.extend(ComponentQueryManager, {
       },
       "allForms.edges"
     );
-  }).on("didInsertElement")
+  }).on("init")
 });

@@ -44,6 +44,18 @@ module("Integration | Component | cfb-form-list", function(hooks) {
     assert.verifySteps(["edit-form"]);
   });
 
+  test("it can trigger adding a new form", async function(assert) {
+    assert.expect(2);
+
+    this.set("on-new-form", () => assert.step("new-form"));
+
+    await render(hbs`{{cfb-form-list on-new-form=(action on-new-form)}}`);
+
+    await click("h1 button");
+
+    assert.verifySteps(["new-form"]);
+  });
+
   test("it renders block style", async function(assert) {
     assert.expect(3);
 
