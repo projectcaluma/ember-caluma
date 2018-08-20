@@ -1,1 +1,8 @@
-{{#if hasBlock}}{{yield}}{{else}}{{t 'caluma.form-builder.global.loading'}}{{/if}}{{#each (range 0 count) as |i|}}<span style="--cfb-loading-dots-delay: {{i}};">.</span>{{/each}}
+{{~#if hasBlock~}}
+  {{~yield~}}
+{{~else~}}
+  {{~t 'caluma.form-builder.global.loading'~}}
+{{~/if~}}
+{{~#each (range 0 count) as |i|~}}
+  <span style="--cfb-loading-dots-delay: {{i}};">.</span>
+{{~/each~}}
