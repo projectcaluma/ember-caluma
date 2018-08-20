@@ -38,6 +38,8 @@ module.exports = function(environment) {
     // Testem prefers this...
     ENV.locationType = "none";
 
+    ENV["ember-uikit"] = { notification: { timeout: 0 } };
+
     // keep test console output quieter
     ENV.APP.LOG_ACTIVE_GENERATION = false;
     ENV.APP.LOG_VIEW_LOOKUPS = false;

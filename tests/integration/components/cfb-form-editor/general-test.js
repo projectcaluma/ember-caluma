@@ -4,6 +4,22 @@ import { render, click, fillIn, blur } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 import setupMirage from "ember-cli-mirage/test-support/setup-mirage";
 
+const generateErrorObjForGraph = name => ({
+  data: { [name]: null },
+  errors: [
+    {
+      message: "Test Error",
+      locations: [
+        {
+          line: 1,
+          column: 1
+        }
+      ],
+      path: name
+    }
+  ]
+});
+
 module("Integration | Component | cfb-form-editor/general", function(hooks) {
   setupRenderingTest(hooks);
   setupMirage(hooks);
@@ -118,5 +134,38 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
 
     assert.notOk(form);
     assert.verifySteps(["after-delete"]);
+  });
+
+  test("it can handle errors", async function(assert) {
+    assert.expect(1);
+
+    this.server.create("form", { slug: "test-form" });
+
+    this.set("afterDelete", () => assert.step("after-delete"));
+    this.set("afterSubmit", () => assert.step("after-submit"));
+
+    await render(
+      hbs`{{cfb-form-editor/general
+        slug='test-form'
+        on-after-delete=(action afterDelete)
+        on-after-submit=(action afterSubmit)
+      }}`
+    );
+
+    this.server.post(
+      "/graphql",
+      () => generateErrorObjForGraph("deleteForm"),
+      200
+    );
+    await click("form button[type=button]");
+
+    this.server.post(
+      "/graphql",
+      () => generateErrorObjForGraph("saveForm"),
+      200
+    );
+    await click("form button[type=submit]");
+
+    assert.verifySteps([]);
   });
 });
