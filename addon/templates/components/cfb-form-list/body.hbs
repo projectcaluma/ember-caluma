@@ -5,7 +5,7 @@
     </td>
   </tr>
 {{else}}
-  {{#each rows as |row|}}
+  {{#each rows key='node.id' as |row|}}
     {{yield row}}
   {{else}}
     <tr>

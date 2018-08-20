@@ -1,0 +1,22 @@
+{{#if data.isRunning}}
+  <div class="uk-flex uk-flex-center uk-flex-middle uk-height-small">
+    {{uk-spinner ratio=2}}
+  </div>
+{{else}}
+  <h1 class="uk-heading-divider uk-flex uk-flex-between">
+    <span>
+      {{data.lastSuccessful.value.name}}
+    </span>
+    <span>
+      {{uk-button label=(t 'caluma.form-builder.global.back') on-click=(action (optional on-back))}}
+    </span>
+  </h1>
+
+  <div uk-grid class="uk-grid-divider uk-child-width-1-2">
+    <div>
+      {{yield}}
+    </div>
+
+    <div></div>
+  </div>
+{{/if}}

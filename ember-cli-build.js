@@ -1,18 +1,23 @@
 "use strict";
 
 const EmberAddon = require("ember-cli/lib/broccoli/ember-addon");
+const funnel = require("broccoli-funnel");
 
 module.exports = function(defaults) {
-  let app = new EmberAddon(defaults, {
-    // Add options here
+  let app = new EmberAddon(defaults, {});
+
+  app.import("node_modules/typeface-oxygen/index.css");
+  app.import("node_modules/typeface-oxygen-mono/index.css");
+
+  let oxygen = funnel("node_modules/typeface-oxygen/files", {
+    include: ["*.woff", "*.woff2"],
+    destDir: "/assets/files/"
   });
 
-  /*
-    This build file specifies the options for the dummy test app of this
-    addon, located in `/tests/dummy`
-    This build file does *not* influence how the addon or the app using it
-    behave. You most likely want to be modifying `./index.js` or app's build file
-  */
+  let oxygenMono = funnel("node_modules/typeface-oxygen-mono/files", {
+    include: ["*.woff", "*.woff2"],
+    destDir: "/assets/files/"
+  });
 
-  return app.toTree();
+  return app.toTree([oxygen, oxygenMono]);
 };

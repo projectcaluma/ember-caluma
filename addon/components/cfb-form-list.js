@@ -53,7 +53,11 @@ export default Component.extend(ComponentQueryManager, {
 
   data: task(function*() {
     return yield this.get("apollo").watchQuery(
-      { query, variables: {} },
+      {
+        query,
+        variables: {},
+        fetchPolicy: "cache-and-network"
+      },
       "allForms.edges"
     );
   }).on("didInsertElement")

@@ -11,7 +11,7 @@
   {{/cfb-form-list/head}}
 
   {{#cfb-form-list/body rows=data.lastSuccessful.value loading=data.isRunning as |row|}}
-    <tr class="cfb-pointer" role="link" {{action (optional on-edit-form) row.node.id}}>
+    <tr class="cfb-pointer" role="link" {{action (optional on-edit-form) row.node}}>
       <td>
         {{row.node.name}}
       </td>
