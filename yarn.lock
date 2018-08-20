@@ -2740,7 +2740,7 @@ elliptic@^6.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.0"
 
-ember-animated@^0.3.1:
+ember-animated@0.3.1:
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/ember-animated/-/ember-animated-0.3.1.tgz#030486f5448db8a9d784c54527b73ab7b37001d5"
   dependencies:
@@ -3154,7 +3154,7 @@ ember-cli@3.3.0:
     watch-detector "^0.1.0"
     yam "^0.0.24"
 
-ember-component-css@^0.6.4:
+ember-component-css@0.6.4:
   version "0.6.4"
   resolved "https://registry.yarnpkg.com/ember-component-css/-/ember-component-css-0.6.4.tgz#147ad1cf586ed5d2e5707d5406676273eea5897a"
   dependencies:
@@ -3442,7 +3442,7 @@ ember-source@3.3.1:
     jquery "^3.3.1"
     resolve "^1.6.0"
 
-ember-test-selectors@^1.0.0:
+ember-test-selectors@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/ember-test-selectors/-/ember-test-selectors-1.0.0.tgz#a2f8cd86f4fb4c320004a2bf0e4c450d41668a21"
   dependencies:

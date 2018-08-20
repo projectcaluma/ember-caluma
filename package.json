@@ -21,7 +21,7 @@
     "test:all": "ember try:each"
   },
   "dependencies": {
-    "ember-animated": "^0.3.1",
+    "ember-animated": "0.3.1",
     "ember-apollo-client": "1.0.5",
     "ember-auto-import": "1.2.10",
     "ember-changeset": "1.5.0-beta.2",
@@ -29,12 +29,12 @@
     "ember-cli-babel": "6.16.0",
     "ember-cli-htmlbars": "3.0.0",
     "ember-cli-sass": "7.1.7",
-    "ember-component-css": "^0.6.4",
+    "ember-component-css": "0.6.4",
     "ember-composable-helpers": "2.1.0",
     "ember-concurrency": "0.8.19",
     "ember-fetch": "5.1.1",
     "ember-intl": "3.1.1",
-    "ember-test-selectors": "^1.0.0",
+    "ember-test-selectors": "1.0.0",
     "ember-uikit": "0.6.0",
     "ember-validated-form": "1.4.2",
     "slug": "0.9.1",
