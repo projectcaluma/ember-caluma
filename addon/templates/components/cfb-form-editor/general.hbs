@@ -48,6 +48,7 @@
       <div class="uk-text-right">
         {{#if f.model.id}}
           {{uk-button
+            data-test-delete
             disabled=(or delete.isRunning f.loading)
             loading=delete.isRunning
             label=(t 'caluma.form-builder.global.delete')
@@ -55,7 +56,7 @@
           }}
         {{/if}}
 
-        {{#f.submit disabled=(or f.loading f.model.isInvalid)}}
+        {{#f.submit data-test-submit disabled=(or f.loading f.model.isInvalid)}}
           {{#if f.loading}}{{uk-spinner}}{{else}}{{t 'caluma.form-builder.global.save'}}{{/if}}
         {{/f.submit}}
       </div>

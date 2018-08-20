@@ -14,38 +14,37 @@ module("Acceptance | form edit", function(hooks) {
 
     await visit("/");
 
-    assert.dom("table > tbody > tr").exists({ count: 1 });
+    assert.dom("[data-test-form-list-item]").exists({ count: 1 });
 
-    await click("table > tbody > tr");
+    await click("[data-test-form-list-item=test-form] [data-test-edit-form]");
 
     assert.equal(currentURL(), "/test-form");
 
     await fillIn("input[name=name]", "Some Random Name");
     await fillIn("textarea[name=description]", "Some Random Description");
 
-    await click("form button[type=submit]");
+    await click("[data-test-submit]");
 
     assert.equal(currentURL(), "/test-form");
   });
 
   test("can delete a form", async function(assert) {
-    assert.expect(5);
+    assert.expect(4);
 
     this.server.create("form", { slug: "test-form" });
 
     await visit("/");
 
-    assert.dom("table > tbody > tr").exists({ count: 1 });
+    assert.dom("[data-test-form-list-item]").exists({ count: 1 });
 
-    await click("table > tbody > tr:first-of-type");
+    await click("[data-test-form-list-item=test-form] [data-test-edit-form]");
 
     assert.equal(currentURL(), "/test-form");
 
-    await click("form button[type=button]");
+    await click("[data-test-delete]");
 
     assert.equal(currentURL(), "/");
 
-    assert.dom("table > tbody > tr").exists({ count: 1 });
-    assert.dom("table > tbody > tr > td").hasText("No forms found");
+    assert.dom("[data-test-form-list-item=test-form]").doesNotExist();
   });
 });
