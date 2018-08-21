@@ -1,5 +1,5 @@
 import { Factory, faker } from "ember-cli-mirage";
-import slug from "slug";
+import slugify from "slugify";
 
 export default Factory.extend({
   name: i => `Form #${i + 1}`,
@@ -7,6 +7,6 @@ export default Factory.extend({
   meta: JSON.stringify({}),
 
   slug() {
-    return slug(this.name.toLowerCase());
+    return slugify(this.name, { lower: true });
   }
 });
