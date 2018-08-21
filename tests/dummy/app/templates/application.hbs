@@ -1,3 +1,7 @@
-<div class="uk-padding">
-  {{outlet}}
-</div>
+{{#docs-header as |header|}}
+  {{#header.link 'demo.form-builder'}}
+    Demo
+  {{/header.link}}
+{{/docs-header}}
+
+{{outlet}}
