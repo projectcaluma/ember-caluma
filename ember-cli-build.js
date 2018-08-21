@@ -4,7 +4,9 @@ const EmberAddon = require("ember-cli/lib/broccoli/ember-addon");
 const funnel = require("broccoli-funnel");
 
 module.exports = function(defaults) {
-  let app = new EmberAddon(defaults, {});
+  let app = new EmberAddon(defaults, {
+    snippetPaths: ["tests/dummy/app/snippets"]
+  });
 
   app.import("node_modules/typeface-oxygen/index.css");
   app.import("node_modules/typeface-oxygen-mono/index.css");

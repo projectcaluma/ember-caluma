@@ -12,20 +12,30 @@ module("Acceptance | form edit", function(hooks) {
 
     this.server.create("form", { slug: "test-form" });
 
-    await visit("/");
+    await visit("/demo/form-builder");
 
-    assert.dom("[data-test-form-list-item]").exists({ count: 1 });
+    assert
+      .dom("[data-test-demo-content] [data-test-form-list-item]")
+      .exists({ count: 1 });
 
-    await click("[data-test-form-list-item=test-form] [data-test-edit-form]");
+    await click(
+      "[data-test-demo-content] [data-test-form-list-item=test-form] [data-test-edit-form]"
+    );
 
-    assert.equal(currentURL(), "/test-form");
+    assert.equal(currentURL(), "/demo/form-builder/test-form");
 
-    await fillIn("input[name=name]", "Some Random Name");
-    await fillIn("textarea[name=description]", "Some Random Description");
+    await fillIn(
+      "[data-test-demo-content] input[name=name]",
+      "Some Random Name"
+    );
+    await fillIn(
+      "[data-test-demo-content] textarea[name=description]",
+      "Some Random Description"
+    );
 
-    await click("[data-test-submit]");
+    await click("[data-test-demo-content] [data-test-submit]");
 
-    assert.equal(currentURL(), "/test-form");
+    assert.equal(currentURL(), "/demo/form-builder/test-form");
   });
 
   test("can delete a form", async function(assert) {
@@ -33,18 +43,24 @@ module("Acceptance | form edit", function(hooks) {
 
     this.server.create("form", { slug: "test-form" });
 
-    await visit("/");
+    await visit("/demo/form-builder");
 
-    assert.dom("[data-test-form-list-item]").exists({ count: 1 });
+    assert
+      .dom("[data-test-demo-content] [data-test-form-list-item]")
+      .exists({ count: 1 });
 
-    await click("[data-test-form-list-item=test-form] [data-test-edit-form]");
+    await click(
+      "[data-test-demo-content] [data-test-form-list-item=test-form] [data-test-edit-form]"
+    );
 
-    assert.equal(currentURL(), "/test-form");
+    assert.equal(currentURL(), "/demo/form-builder/test-form");
 
-    await click("[data-test-delete]");
+    await click("[data-test-demo-content] [data-test-delete]");
 
-    assert.equal(currentURL(), "/");
+    assert.equal(currentURL(), "/demo/form-builder");
 
-    assert.dom("[data-test-form-list-item=test-form]").doesNotExist();
+    assert
+      .dom("[data-test-demo-content] [data-test-form-list-item=test-form]")
+      .doesNotExist();
   });
 });

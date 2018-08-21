@@ -1,13 +1,22 @@
-import EmberRouter from "@ember/routing/router";
+import AddonDocsRouter, { docsRoute } from "ember-cli-addon-docs/router";
 import config from "./config/environment";
 
-const Router = EmberRouter.extend({
+const Router = AddonDocsRouter.extend({
   location: config.locationType,
   rootURL: config.rootURL
 });
 
 Router.map(function() {
-  this.mount("ember-caluma-form-builder", { path: "/" });
+  docsRoute(this, function() {
+    this.route("usage");
+  });
+
+  this.route("demo", function() {
+    this.mount("ember-caluma-form-builder", {
+      path: "/form-builder",
+      as: "form-builder"
+    });
+  });
 });
 
 export default Router;

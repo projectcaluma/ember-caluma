@@ -119,4 +119,6 @@ export default function() {
     },
     200
   );
+
+  this.passthrough();
 }
