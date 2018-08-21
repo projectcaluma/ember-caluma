@@ -7,6 +7,7 @@ import { ComponentQueryManager } from "ember-apollo-client";
 import validations from "../../validations/form";
 import v4 from "uuid/v4";
 import slugify from "slugify";
+import { optional } from "ember-composable-helpers/helpers/optional";
 
 export default Component.extend(ComponentQueryManager, {
   layout,
@@ -88,7 +89,7 @@ export default Component.extend(ComponentQueryManager, {
         )
       );
 
-      this.getWithDefault("on-after-submit", () => {})(form);
+      optional([this.get("on-after-submit")])(form);
     } catch (e) {
       this.get("notification").danger(
         this.get("intl").t(
@@ -102,10 +103,6 @@ export default Component.extend(ComponentQueryManager, {
 
   delete: task(function*(changeset) {
     try {
-      if (!this.get("slug")) {
-        return;
-      }
-
       yield this.get("apollo").mutate({
         mutation: gql`
           mutation DeleteForm($input: DeleteFormInput!) {
@@ -128,7 +125,7 @@ export default Component.extend(ComponentQueryManager, {
         )
       );
 
-      this.getWithDefault("on-after-delete", () => {})();
+      optional([this.get("on-after-delete")])();
     } catch (e) {
       this.get("notification").danger(
         this.get("intl").t("caluma.form-builder.notification.form.delete.error")

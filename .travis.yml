@@ -17,6 +17,7 @@ env:
   global:
     # See https://git.io/vdao3 for details.
     - JOBS=1
+    - COVERAGE=true
   matrix:
     # we recommend new addons test the current and previous LTS
     # as well as latest stable release (bonus points to beta/canary)
@@ -45,6 +46,9 @@ script:
   # Usually, it's ok to finish the test scenario without reverting
   #  to the addon's original dependency state, skipping "cleanup".
   - yarn ember try:one $EMBER_TRY_SCENARIO --skip-cleanup
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
 
 jobs:
   include:

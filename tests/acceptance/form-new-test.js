@@ -3,7 +3,7 @@ import { visit, currentURL, click, fillIn } from "@ember/test-helpers";
 import { setupApplicationTest } from "ember-qunit";
 import setupMirage from "ember-cli-mirage/test-support/setup-mirage";
 
-module("Acceptance | form edit", function(hooks) {
+module("Acceptance | form new", function(hooks) {
   setupApplicationTest(hooks);
   setupMirage(hooks);
 
@@ -38,5 +38,15 @@ module("Acceptance | form edit", function(hooks) {
     await click("[data-test-demo-content] [data-test-submit]");
 
     assert.equal(currentURL(), "/demo/form-builder/testy-test-test");
+  });
+
+  test("can go back to list", async function(assert) {
+    assert.expect(1);
+
+    await visit("/demo/form-builder/new");
+
+    await click("[data-test-back]");
+
+    assert.equal(currentURL(), "/demo/form-builder");
   });
 });

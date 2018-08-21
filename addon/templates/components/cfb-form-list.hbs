@@ -13,11 +13,11 @@
   </div>
 {{else}}
   {{#if data.lastSuccessful.value.length}}
-    {{#animated-container data-test-form-list tagName='ul' class='uk-list uk-list-divider uk-list-large'}}
-      {{#animated-each data.lastSuccessful.value use=transition duration=500 key='node.id' as |item|}}
+    <ul data-test-form-list class="uk-list uk-list-divider uk-list-large">
+      {{#each data.lastSuccessful.value key='node.id' as |item|}}
         {{cfb-form-list/item data-test-form-list-item=item.node.slug item=item.node on-edit-form=on-edit-form}}
-      {{/animated-each}}
-    {{/animated-container}}
+      {{/each}}
+    </ul>
   {{else}}
     <div data-test-form-list-empty class="uk-padding-large uk-padding-remove-horizontal uk-text-center">
       {{uk-icon 'search' ratio=10}}
