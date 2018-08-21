@@ -6,7 +6,7 @@ import gql from "graphql-tag";
 import { ComponentQueryManager } from "ember-apollo-client";
 import validations from "../../validations/form";
 import v4 from "uuid/v4";
-import slug from "slug";
+import slugify from "slugify";
 import { optional } from "ember-composable-helpers/helpers/optional";
 
 export default Component.extend(ComponentQueryManager, {
@@ -136,12 +136,7 @@ export default Component.extend(ComponentQueryManager, {
   actions: {
     inputName(changeset, value) {
       if (!this.get("slug")) {
-        changeset.set(
-          "slug",
-          slug(value)
-            .toLowerCase()
-            .substr(0, 50)
-        );
+        changeset.set("slug", slugify(value, { lower: true }).substr(0, 50));
       }
     }
   }
