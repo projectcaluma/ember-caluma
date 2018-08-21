@@ -4,6 +4,7 @@ import { MockList } from "graphql-tools";
 import { classify } from "@ember/string";
 import { singularize } from "ember-inflector";
 import rawSchema from "./schema";
+import config from "../config/environment";
 
 const serialize = (obj, className) => {
   let { id = null, slug = null } = obj;
@@ -44,7 +45,7 @@ export default function() {
   this.timing = 400; // delay for each request, automatically set to 0 during testing
 
   this.post(
-    "/graphql",
+    config.apollo.apiURL,
     ({ db, forms }, request) => {
       const classes = db._collections.map(({ name }) => ({
         cls: classify(singularize(name)),
