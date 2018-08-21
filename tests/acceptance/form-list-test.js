@@ -12,8 +12,10 @@ module("Acceptance | form list", function(hooks) {
 
     this.server.createList("form", 5);
 
-    await visit("/");
+    await visit("/demo/form-builder");
 
-    assert.dom("[data-test-form-list-item]").exists({ count: 5 });
+    assert
+      .dom("[data-test-demo-content] [data-test-form-list-item]")
+      .exists({ count: 5 });
   });
 });

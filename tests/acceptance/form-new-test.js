@@ -12,20 +12,31 @@ module("Acceptance | form edit", function(hooks) {
 
     this.server.createList("form", 2);
 
-    await visit("/");
+    await visit("/demo/form-builder/");
 
-    assert.dom("[data-test-form-list-item]").exists({ count: 2 });
+    assert
+      .dom("[data-test-demo-content] [data-test-form-list-item]")
+      .exists({ count: 2 });
 
-    await click("[data-test-new-form]");
+    await click("[data-test-demo-content] [data-test-new-form]");
 
-    assert.equal(currentURL(), "/new");
+    assert.equal(currentURL(), "/demo/form-builder/new");
 
-    await fillIn("input[name=name]", "Some Random Name");
-    await fillIn("input[name=slug]", "testy-test-test");
-    await fillIn("textarea[name=description]", "Some Random Description");
+    await fillIn(
+      "[data-test-demo-content] input[name=name]",
+      "Some Random Name"
+    );
+    await fillIn(
+      "[data-test-demo-content] input[name=slug]",
+      "testy-test-test"
+    );
+    await fillIn(
+      "[data-test-demo-content] textarea[name=description]",
+      "Some Random Description"
+    );
 
-    await click("[data-test-submit]");
+    await click("[data-test-demo-content] [data-test-submit]");
 
-    assert.equal(currentURL(), "/testy-test-test");
+    assert.equal(currentURL(), "/demo/form-builder/testy-test-test");
   });
 });
