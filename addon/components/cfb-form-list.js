@@ -3,8 +3,6 @@ import layout from "../templates/components/cfb-form-list";
 import { task } from "ember-concurrency";
 import gql from "graphql-tag";
 import { ComponentQueryManager } from "ember-apollo-client";
-import move from "ember-animated/motions/move";
-import { fadeOut, fadeIn } from "ember-animated/motions/opacity";
 
 const query = gql`
   query Forms {
@@ -23,12 +21,6 @@ const query = gql`
 
 export default Component.extend(ComponentQueryManager, {
   layout,
-
-  *transition({ keptSprites, removedSprites, insertedSprites }) {
-    yield removedSprites.forEach(fadeOut);
-    yield insertedSprites.forEach(fadeIn);
-    yield keptSprites.forEach(move);
-  },
 
   init() {
     this._super(...arguments);

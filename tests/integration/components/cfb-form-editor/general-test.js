@@ -144,6 +144,7 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
     this.set("afterDelete", () => assert.step("after-delete"));
     this.set("afterSubmit", () => assert.step("after-submit"));
 
+    // edit form
     await render(
       hbs`{{cfb-form-editor/general
         slug='test-form'
@@ -158,6 +159,19 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
       200
     );
     await click("[data-test-delete]");
+
+    this.server.post(
+      "/graphql",
+      () => generateErrorObjForGraph("saveForm"),
+      200
+    );
+    await click("[data-test-submit]");
+
+    // new form
+    await render(
+      hbs`{{cfb-form-editor/general slug=null on-after-submit=(action afterSubmit)}}`
+    );
+    await fillIn("input[name=name]", "Test");
 
     this.server.post(
       "/graphql",
