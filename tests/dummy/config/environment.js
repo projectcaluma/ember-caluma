@@ -5,7 +5,8 @@ module.exports = function(environment) {
     modulePrefix: "dummy",
     environment,
     rootURL: "/",
-    locationType: "auto",
+    locationType: "router-scroll",
+    historySupportMiddleware: true,
     apollo: {
       apiURL: "/graphql"
     },
@@ -49,7 +50,12 @@ module.exports = function(environment) {
   }
 
   if (environment === "production") {
-    // here you can enable a production-specific feature
+    ENV.rootURL = "ADDON_DOCS_ROOT_URL";
+
+    ENV["ember-cli-mirage"] = { enabled: true };
+
+    ENV.apollo.apiURL =
+      "https://projectcaluma.github.io/ember-caluma-form-builder/graphql";
   }
 
   return ENV;
