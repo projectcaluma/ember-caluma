@@ -81,6 +81,12 @@ export default Component.extend(ComponentQueryManager, {
         "saveForm.form"
       );
 
+      // Temporary fix for handling "errors":
+      // https://github.com/projectcaluma/caluma/issues/18
+      if (!form) {
+        throw new Error();
+      }
+
       this.get("notification").success(
         this.get("intl").t(
           `caluma.form-builder.notification.form.${
@@ -113,7 +119,7 @@ export default Component.extend(ComponentQueryManager, {
         `,
         variables: {
           input: {
-            formId: changeset.get("id"),
+            id: changeset.get("id"),
             clientMutationId: v4()
           }
         }

@@ -28,7 +28,7 @@ input SaveFormInput {
 }
 
 input DeleteFormInput {
-  formId: ID!
+  id: ID!
   clientMutationId: String!
 }
 
@@ -38,6 +38,7 @@ type SaveFormPayload {
 }
 
 type DeleteFormPayload {
+  form: Form
   clientMutationId: String!
 }
 
