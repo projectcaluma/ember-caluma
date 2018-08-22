@@ -5,14 +5,32 @@ type Form implements Node {
   name: String!
   description: String
   meta: String
+  questions: QuestionConnection
+}
+
+type Question implements Node {
+  id: ID!
+  slug: String!
+  label: String!
+  type: String!
+  meta: String
 }
 
 type FormConnection {
   edges: [FormEdge]!
 }
 
+type QuestionConnection {
+  edges: [QuestionEdge]!
+}
+
 type FormEdge {
   node: Form
+  cursor: String!
+}
+
+type QuestionEdge {
+  node: Question
   cursor: String!
 }
 

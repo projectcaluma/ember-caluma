@@ -5,12 +5,21 @@ import gql from "graphql-tag";
 import { ComponentQueryManager } from "ember-apollo-client";
 
 const query = gql`
-  query FormName($id: ID!) {
+  query Form($id: ID!) {
     node(id: $id) {
       ... on Form {
         id
         name
-        slug
+        questions {
+          edges {
+            node {
+              id
+              slug
+              label
+              type
+            }
+          }
+        }
       }
     }
   }
