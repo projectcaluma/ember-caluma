@@ -1,6 +1,7 @@
 # ember-caluma-form-builder
 
 [![Build Status](https://travis-ci.com/projectcaluma/ember-caluma-form-builder.svg?branch=master)](https://travis-ci.com/projectcaluma/ember-caluma-form-builder)
+[![Codecov](https://codecov.io/gh/projectcaluma/ember-caluma-form-builder/branch/master/graph/badge.svg)](https://codecov.io/gh/projectcaluma/ember-caluma-form-builder)
 [![Code Style: Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
