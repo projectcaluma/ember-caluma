@@ -4,5 +4,5 @@
   {{~t 'caluma.form-builder.global.loading'~}}
 {{~/if~}}
 {{~#each (range 0 count) as |i|~}}
-  <span style="--cfb-loading-dots-delay: {{i}};">.</span>
+  <span style={{html-safe (concat '--cfb-loading-dots-delay: ' i ';')}}>.</span>
 {{~/each~}}
