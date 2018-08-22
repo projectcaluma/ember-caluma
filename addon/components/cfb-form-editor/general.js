@@ -83,6 +83,7 @@ export default Component.extend(ComponentQueryManager, {
 
       // Temporary fix for handling "errors":
       // https://github.com/projectcaluma/caluma/issues/18
+      /* istanbul ignore next */
       if (!form) {
         throw new Error();
       }
