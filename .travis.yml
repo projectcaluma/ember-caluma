@@ -48,7 +48,7 @@ script:
   - yarn ember try:one $EMBER_TRY_SCENARIO --skip-cleanup
 
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - bash <(curl -s https://codecov.io/bash) -f coverage/lcov.info
 
 jobs:
   include:
