@@ -88,15 +88,12 @@ export default function() {
       addMockFunctionsToSchema({
         schema,
         mocks: Object.assign(mocks, {
-          DeleteFormPayload: (
-            root,
-            { input: { clientMutationId, formId } }
-          ) => {
-            let form = forms.findBy(deserialize({ id: formId }));
+          DeleteFormPayload: (root, { input: { clientMutationId, id } }) => {
+            let form = forms.findBy(deserialize({ id }));
 
             form.destroy();
 
-            return { formId, clientMutationId };
+            return { form, clientMutationId };
           },
           SaveFormPayload: (root, { input }) => {
             let { clientMutationId, slug } = input;
