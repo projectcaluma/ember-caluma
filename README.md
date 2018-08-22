@@ -2,6 +2,8 @@
 
 [![Build Status](https://travis-ci.com/projectcaluma/ember-caluma-form-builder.svg?branch=master)](https://travis-ci.com/projectcaluma/ember-caluma-form-builder)
 [![Codecov](https://codecov.io/gh/projectcaluma/ember-caluma-form-builder/branch/master/graph/badge.svg)](https://codecov.io/gh/projectcaluma/ember-caluma-form-builder)
+[![dependencies Status](https://david-dm.org/projectcaluma/ember-caluma-form-builder/status.svg)](https://david-dm.org/projectcaluma/ember-caluma-form-builder)
+[![devDependencies Status](https://david-dm.org/projectcaluma/ember-caluma-form-builder/dev-status.svg)](https://david-dm.org/projectcaluma/ember-caluma-form-builder?type=dev)
 [![Code Style: Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
