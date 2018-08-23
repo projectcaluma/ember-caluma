@@ -1,7 +1,7 @@
 import { addMockFunctionsToSchema, makeExecutableSchema } from "graphql-tools";
 import { graphql } from "graphql";
 import { MockList } from "graphql-tools";
-import { classify } from "@ember/string";
+import { classify, camelize } from "@ember/string";
 import { singularize } from "ember-inflector";
 import rawSchema from "./schema";
 import config from "../config/environment";
@@ -46,7 +46,9 @@ export default function() {
 
   this.post(
     config.apollo.apiURL,
-    ({ db, forms }, request) => {
+    (srv, request) => {
+      const { db } = srv;
+
       const classes = db._collections.map(({ name }) => ({
         cls: classify(singularize(name)),
         collection: name
@@ -75,6 +77,36 @@ export default function() {
             ];
 
             return serialize(record, cls);
+          },
+          [`Save${cls}Payload`]: (root, { input }) => {
+            let { clientMutationId, slug } = input;
+
+            delete input.clientMutationId;
+
+            let model = srv[collection];
+            let obj = model.findBy({ slug }) || model.create(input);
+
+            obj.update(input);
+
+            return {
+              [camelize(cls)]: serialize(obj.toJSON(), cls),
+              clientMutationId
+            };
+          },
+          [`Archive${cls}Payload`]: (
+            root,
+            { input: { clientMutationId, id } }
+          ) => {
+            let model = srv[collection];
+
+            let obj = model.findBy(deserialize({ id }));
+
+            obj.update({ isArchived: true });
+
+            return {
+              [camelize(cls)]: serialize(obj.toJSON(), cls),
+              clientMutationId
+            };
           }
         });
       }, {});
@@ -83,33 +115,13 @@ export default function() {
         typeDefs: rawSchema,
         resolverValidationOptions: { requireResolversForResolveType: false }
       });
+
       let { query, variables } = JSON.parse(request.requestBody);
 
       addMockFunctionsToSchema({
         schema,
         mocks: Object.assign(mocks, {
-          Node: (_, { id }) => ({ __typename: atob(id).split(":")[0] }),
-          DeleteFormPayload: (root, { input: { clientMutationId, id } }) => {
-            let form = forms.findBy(deserialize({ id }));
-
-            form.destroy();
-
-            return { form, clientMutationId };
-          },
-          SaveFormPayload: (root, { input }) => {
-            let { clientMutationId, slug } = input;
-
-            delete input.clientMutationId;
-
-            let form = forms.findBy({ slug }) || forms.create(input);
-
-            form.update(input);
-
-            return {
-              form: serialize(form.toJSON(), "Form"),
-              clientMutationId
-            };
-          }
+          Node: (_, { id }) => ({ __typename: atob(id).split(":")[0] })
         }),
         preserveResolvers: false
       });

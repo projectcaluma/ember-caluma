@@ -48,11 +48,11 @@
       <div class="uk-text-right">
         {{#if f.model.id}}
           {{uk-button
-            data-test-delete
-            disabled=(or delete.isRunning f.loading)
-            loading=delete.isRunning
-            label=(t 'caluma.form-builder.global.delete')
-            on-click=(perform delete f.model)
+            data-test-archive
+            disabled=(or archive.isRunning f.loading)
+            loading=archive.isRunning
+            label=(t 'caluma.form-builder.global.archive')
+            on-click=(perform archive f.model)
           }}
         {{/if}}
 

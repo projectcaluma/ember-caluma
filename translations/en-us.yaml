@@ -2,7 +2,7 @@ caluma:
   form-builder:
     global:
       save: "Save"
-      delete: "Delete"
+      archive: "Archive"
       back: "Back"
       loading: "Loading"
 
@@ -25,6 +25,6 @@ caluma:
           success: "Your form was successfully created!"
           error: "Ooops, something went wrong while creating the form..."
 
-        delete:
-          success: "Your form was successfully deleted!"
-          error: "Ooops, something went wrong while deleting the form..."
+        archive:
+          success: "Your form was successfully archived!"
+          error: "Ooops, something went wrong while archiving the form..."

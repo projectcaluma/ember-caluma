@@ -3,4 +3,5 @@ fragment FormInfo on Form {
   name
   slug
   description
+  isArchived
 }
