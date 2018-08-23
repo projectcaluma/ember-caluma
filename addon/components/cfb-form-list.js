@@ -1,23 +1,8 @@
 import Component from "@ember/component";
 import layout from "../templates/components/cfb-form-list";
 import { task } from "ember-concurrency";
-import gql from "graphql-tag";
 import { ComponentQueryManager } from "ember-apollo-client";
-
-const query = gql`
-  query Forms {
-    allForms {
-      edges {
-        node {
-          id
-          name
-          description
-          slug
-        }
-      }
-    }
-  }
-`;
+import formListQuery from "ember-caluma-form-builder/gql/queries/form-list";
 
 export default Component.extend(ComponentQueryManager, {
   layout,
@@ -31,7 +16,7 @@ export default Component.extend(ComponentQueryManager, {
   data: task(function*() {
     return yield this.get("apollo").watchQuery(
       {
-        query,
+        query: formListQuery,
         variables: {},
         fetchPolicy: "cache-and-network"
       },

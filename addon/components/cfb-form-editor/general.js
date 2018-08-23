@@ -2,12 +2,15 @@ import Component from "@ember/component";
 import { inject as service } from "@ember/service";
 import layout from "../../templates/components/cfb-form-editor/general";
 import { task } from "ember-concurrency";
-import gql from "graphql-tag";
 import { ComponentQueryManager } from "ember-apollo-client";
 import validations from "../../validations/form";
 import v4 from "uuid/v4";
 import slugify from "slugify";
 import { optional } from "ember-composable-helpers/helpers/optional";
+
+import formEditorGeneralQuery from "ember-caluma-form-builder/gql/queries/form-editor-general";
+import saveFormMutation from "ember-caluma-form-builder/gql/mutations/save-form";
+import deleteFormMutation from "ember-caluma-form-builder/gql/mutations/delete-form";
 
 export default Component.extend(ComponentQueryManager, {
   layout,
@@ -33,18 +36,7 @@ export default Component.extend(ComponentQueryManager, {
 
     return yield this.get("apollo").watchQuery(
       {
-        query: gql`
-          query FormGeneral($id: ID!) {
-            node(id: $id) {
-              ... on Form {
-                id
-                name
-                slug
-                description
-              }
-            }
-          }
-        `,
+        query: formEditorGeneralQuery,
         variables: { id: btoa(`Form:${this.get("slug")}`) },
         fetchPolicy: "cache-and-network"
       },
@@ -56,19 +48,7 @@ export default Component.extend(ComponentQueryManager, {
     try {
       let form = yield this.get("apollo").mutate(
         {
-          mutation: gql`
-            mutation SaveForm($input: SaveFormInput!) {
-              saveForm(input: $input) {
-                form {
-                  id
-                  name
-                  slug
-                  description
-                }
-                clientMutationId
-              }
-            }
-          `,
+          mutation: saveFormMutation,
           variables: {
             input: {
               name: changeset.get("name"),
@@ -111,13 +91,7 @@ export default Component.extend(ComponentQueryManager, {
   delete: task(function*(changeset) {
     try {
       yield this.get("apollo").mutate({
-        mutation: gql`
-          mutation DeleteForm($input: DeleteFormInput!) {
-            deleteForm(input: $input) {
-              clientMutationId
-            }
-          }
-        `,
+        mutation: deleteFormMutation,
         variables: {
           input: {
             id: changeset.get("id"),

@@ -1,29 +1,8 @@
 import Component from "@ember/component";
 import layout from "../templates/components/cfb-form-editor";
 import { task } from "ember-concurrency";
-import gql from "graphql-tag";
 import { ComponentQueryManager } from "ember-apollo-client";
-
-const query = gql`
-  query Form($id: ID!) {
-    node(id: $id) {
-      ... on Form {
-        id
-        name
-        questions {
-          edges {
-            node {
-              id
-              slug
-              label
-              type
-            }
-          }
-        }
-      }
-    }
-  }
-`;
+import formEditorQuery from "ember-caluma-form-builder/gql/queries/form-editor";
 
 export default Component.extend(ComponentQueryManager, {
   layout,
@@ -41,7 +20,7 @@ export default Component.extend(ComponentQueryManager, {
 
     return yield this.get("apollo").watchQuery(
       {
-        query,
+        query: formEditorQuery,
         variables: { id: btoa(`Form:${this.get("slug")}`) },
         fetchPolicy: "cache-and-network"
       },
