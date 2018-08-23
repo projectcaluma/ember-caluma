@@ -88,6 +88,7 @@ export default function() {
       addMockFunctionsToSchema({
         schema,
         mocks: Object.assign(mocks, {
+          Node: (_, { id }) => ({ __typename: atob(id).split(":")[0] }),
           DeleteFormPayload: (root, { input: { clientMutationId, id } }) => {
             let form = forms.findBy(deserialize({ id }));
 

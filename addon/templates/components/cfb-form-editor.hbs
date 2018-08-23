@@ -15,10 +15,18 @@
   {{/if}}
 </h1>
 
-<div uk-grid class="uk-grid-divider uk-child-width-1-2">
+<div uk-grid class="uk-grid-divider uk-child-width-1-1 uk-child-width-1-2@m">
   <div>
     {{yield}}
   </div>
 
-  <div></div>
+  <div>
+    {{#if data.isRunning}}
+      <div class="uk-flex uk-flex-center uk-flex-middle uk-height-small">
+        {{uk-spinner ratio=2}}
+      </div>
+    {{else}}
+      {{cfb-form-editor/question-list data-test-question-list questions=data.lastSuccessful.value.questions.edges}}
+    {{/if}}
+  </div>
 </div>
