@@ -1,0 +1,18 @@
+query FormEditor($id: ID!) {
+  node(id: $id) {
+    ... on Form {
+      id
+      name
+      questions {
+        edges {
+          node {
+            id
+            slug
+            label
+            type
+          }
+        }
+      }
+    }
+  }
+}

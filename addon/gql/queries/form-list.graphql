@@ -1,0 +1,11 @@
+#import "ember-caluma-form-builder/gql/fragments/form-info"
+
+query FormList {
+  allForms {
+    edges {
+      node {
+        ...FormInfo
+      }
+    }
+  }
+}

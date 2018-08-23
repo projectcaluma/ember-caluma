@@ -1,0 +1,7 @@
+#import "ember-caluma-form-builder/gql/fragments/form-info"
+
+query FormEditorGeneral($id: ID!) {
+  node(id: $id) {
+    ...FormInfo
+  }
+}
