@@ -10,7 +10,7 @@ import { optional } from "ember-composable-helpers/helpers/optional";
 
 import formEditorGeneralQuery from "ember-caluma-form-builder/gql/queries/form-editor-general";
 import saveFormMutation from "ember-caluma-form-builder/gql/mutations/save-form";
-import deleteFormMutation from "ember-caluma-form-builder/gql/mutations/delete-form";
+import archiveFormMutation from "ember-caluma-form-builder/gql/mutations/archive-form";
 
 export default Component.extend(ComponentQueryManager, {
   layout,
@@ -46,7 +46,7 @@ export default Component.extend(ComponentQueryManager, {
 
   submit: task(function*(changeset) {
     try {
-      let form = yield this.get("apollo").mutate(
+      const form = yield this.get("apollo").mutate(
         {
           mutation: saveFormMutation,
           variables: {
@@ -88,28 +88,33 @@ export default Component.extend(ComponentQueryManager, {
     }
   }).drop(),
 
-  delete: task(function*(changeset) {
+  archive: task(function*(changeset) {
     try {
-      yield this.get("apollo").mutate({
-        mutation: deleteFormMutation,
-        variables: {
-          input: {
-            id: changeset.get("id"),
-            clientMutationId: v4()
+      const form = yield this.get("apollo").mutate(
+        {
+          mutation: archiveFormMutation,
+          variables: {
+            input: {
+              id: btoa(`Form:${changeset.get("slug")}`),
+              clientMutationId: v4()
+            }
           }
-        }
-      });
+        },
+        "archiveForm.form"
+      );
 
       this.get("notification").success(
         this.get("intl").t(
-          "caluma.form-builder.notification.form.delete.success"
+          "caluma.form-builder.notification.form.archive.success"
         )
       );
 
-      optional([this.get("on-after-delete")])();
+      optional([this.get("on-after-archive")])(form);
     } catch (e) {
       this.get("notification").danger(
-        this.get("intl").t("caluma.form-builder.notification.form.delete.error")
+        this.get("intl").t(
+          "caluma.form-builder.notification.form.archive.error"
+        )
       );
     }
   }).drop(),

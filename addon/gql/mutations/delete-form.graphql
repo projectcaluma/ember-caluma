@@ -1,5 +1,0 @@
-mutation DeleteForm($input: DeleteFormInput!) {
-  deleteForm(input: $input) {
-    clientMutationId
-  }
-}

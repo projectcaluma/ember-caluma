@@ -113,7 +113,7 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
     assert.verifySteps(["after-submit"]);
   });
 
-  test("it can delete a form", async function(assert) {
+  test("it can archive a form", async function(assert) {
     assert.expect(3);
 
     const { id } = this.server.create("form", {
@@ -122,18 +122,16 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
       description: "Test Description"
     });
 
-    this.set("afterDelete", () => assert.step("after-delete"));
+    this.set("afterArchive", () => assert.step("after-archive"));
 
     await render(
-      hbs`{{cfb-form-editor/general slug='test-slug' on-after-delete=(action afterDelete)}}`
+      hbs`{{cfb-form-editor/general slug='test-slug' on-after-archive=(action afterArchive)}}`
     );
 
-    await click("[data-test-delete]");
+    await click("[data-test-archive]");
 
-    const form = this.server.schema.forms.find(id);
-
-    assert.notOk(form);
-    assert.verifySteps(["after-delete"]);
+    assert.ok(this.server.schema.forms.find(id).isArchived);
+    assert.verifySteps(["after-archive"]);
   });
 
   test("it can handle errors", async function(assert) {
@@ -141,30 +139,24 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
 
     this.server.create("form", { slug: "test-form" });
 
-    this.set("afterDelete", () => assert.step("after-delete"));
+    this.set("afterArchive", () => assert.step("after-archive"));
     this.set("afterSubmit", () => assert.step("after-submit"));
 
     // edit form
     await render(
       hbs`{{cfb-form-editor/general
         slug='test-form'
-        on-after-delete=(action afterDelete)
+        on-after-archive=(action afterArchive)
         on-after-submit=(action afterSubmit)
       }}`
     );
 
     this.server.post(
       "/graphql",
-      () => generateErrorObjForGraph("deleteForm"),
-      200
-    );
-    await click("[data-test-delete]");
-
-    this.server.post(
-      "/graphql",
       () => generateErrorObjForGraph("saveForm"),
       200
     );
+    await click("[data-test-archive]");
     await click("[data-test-submit]");
 
     // new form
@@ -172,12 +164,6 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
       hbs`{{cfb-form-editor/general slug=null on-after-submit=(action afterSubmit)}}`
     );
     await fillIn("input[name=name]", "Test");
-
-    this.server.post(
-      "/graphql",
-      () => generateErrorObjForGraph("saveForm"),
-      200
-    );
     await click("[data-test-submit]");
 
     assert.verifySteps([]);

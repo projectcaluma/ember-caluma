@@ -4,6 +4,7 @@ type Form implements Node {
   slug: String!
   name: String!
   description: String
+  isArchived: Boolean
   meta: String
   questions: QuestionConnection
 }
@@ -45,29 +46,29 @@ input SaveFormInput {
   clientMutationId: String!
 }
 
-input DeleteFormInput {
-  id: ID!
-  clientMutationId: String!
-}
-
 type SaveFormPayload {
   form: Form
   clientMutationId: String!
 }
 
-type DeleteFormPayload {
+input ArchiveFormInput {
+  id: ID!
+  clientMutationId: String!
+}
+
+type ArchiveFormPayload {
   form: Form
   clientMutationId: String!
 }
 
 type Mutation {
   saveForm(input: SaveFormInput!): SaveFormPayload
-  deleteForm(input: DeleteFormInput!): DeleteFormPayload
+  archiveForm(input: ArchiveFormInput!): ArchiveFormPayload
 }
 
 type Query {
   node(id: ID!): Node
-  allForms(before: String, after: String, first: Int, last: Int, id: ID, slug: String): FormConnection
+  allForms(isArchived: Boolean): FormConnection
 }
 `;
 

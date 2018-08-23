@@ -38,7 +38,7 @@ module("Acceptance | form edit", function(hooks) {
     assert.equal(currentURL(), "/demo/form-builder/test-form");
   });
 
-  test("can delete a form", async function(assert) {
+  test("can archive a form", async function(assert) {
     assert.expect(4);
 
     this.server.create("form", { slug: "test-form" });
@@ -55,7 +55,7 @@ module("Acceptance | form edit", function(hooks) {
 
     assert.equal(currentURL(), "/demo/form-builder/test-form");
 
-    await click("[data-test-demo-content] [data-test-delete]");
+    await click("[data-test-demo-content] [data-test-archive]");
 
     assert.equal(currentURL(), "/demo/form-builder");
 

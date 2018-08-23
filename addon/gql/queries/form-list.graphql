@@ -1,7 +1,7 @@
 #import "ember-caluma-form-builder/gql/fragments/form-info"
 
 query FormList {
-  allForms {
+  allForms(isArchived: false) {
     edges {
       node {
         ...FormInfo
