@@ -1,3 +1,7 @@
 {{#each questions as |item|}}
-  {{cfb-form-editor/question-list/item data-test-question-list-item question=item.node}}
+  {{cfb-form-editor/question-list/item
+    data-test-question-list-item=item.node.slug
+    question=item.node
+    on-edit-question=on-edit-question
+  }}
 {{/each}}

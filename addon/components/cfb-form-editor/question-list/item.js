@@ -3,5 +3,6 @@ import layout from "../../../templates/components/cfb-form-editor/question-list/
 
 export default Component.extend({
   layout,
-  tagName: "li"
+  tagName: "li",
+  classNames: ["uk-position-relative", "cfb-form-editor__question-list__item"]
 });

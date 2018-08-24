@@ -19,7 +19,7 @@ export default Component.extend(ComponentQueryManager, {
   notification: service(),
   intl: service(),
 
-  init() {
+  didReceiveAttrs() {
     this._super(...arguments);
 
     this.get("data").perform();

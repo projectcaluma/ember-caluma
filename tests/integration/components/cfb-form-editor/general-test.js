@@ -3,22 +3,7 @@ import { setupRenderingTest } from "ember-qunit";
 import { render, click, fillIn, blur } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 import setupMirage from "ember-cli-mirage/test-support/setup-mirage";
-
-const generateErrorObjForGraph = name => ({
-  data: { [name]: null },
-  errors: [
-    {
-      message: "Test Error",
-      locations: [
-        {
-          line: 1,
-          column: 1
-        }
-      ],
-      path: name
-    }
-  ]
-});
+import graphqlError from "dummy/tests/helpers/graphql-error";
 
 module("Integration | Component | cfb-form-editor/general", function(hooks) {
   setupRenderingTest(hooks);
@@ -151,11 +136,7 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
       }}`
     );
 
-    this.server.post(
-      "/graphql",
-      () => generateErrorObjForGraph("saveForm"),
-      200
-    );
+    this.server.post("/graphql", () => graphqlError("saveForm"), 200);
     await click("[data-test-archive]");
     await click("[data-test-submit]");
 

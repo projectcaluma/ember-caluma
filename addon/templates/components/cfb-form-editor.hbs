@@ -26,7 +26,11 @@
         {{uk-spinner ratio=2}}
       </div>
     {{else}}
-      {{cfb-form-editor/question-list data-test-question-list questions=data.lastSuccessful.value.questions.edges}}
+      {{cfb-form-editor/question-list
+        data-test-question-list
+        questions=data.lastSuccessful.value.questions.edges
+        on-edit-question=on-edit-question
+      }}
     {{/if}}
   </div>
 </div>
