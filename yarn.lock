@@ -1807,7 +1807,7 @@ broccoli-rollup@^1.2.0:
     symlink-or-copy "^1.1.8"
     walk-sync "^0.3.1"
 
-broccoli-rollup@^2.0.0:
+broccoli-rollup@^2.0.0, broccoli-rollup@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/broccoli-rollup/-/broccoli-rollup-2.1.1.tgz#0b77dc4b7560a53e998ea85f3b56772612d4988d"
   dependencies:
@@ -3982,18 +3982,21 @@ ember-fetch-adapter@^0.4.2:
   dependencies:
     ember-cli-babel "^6.12.0"
 
-ember-fetch@5.1.1:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/ember-fetch/-/ember-fetch-5.1.1.tgz#a7c791e85c4db46e315088287db1c73818ac9754"
+ember-fetch@5.1.2:
+  version "5.1.2"
+  resolved "https://registry.yarnpkg.com/ember-fetch/-/ember-fetch-5.1.2.tgz#084b206d285e1ee19ee2260262c0635eeed4e52a"
   dependencies:
     "@xg-wang/whatwg-fetch" "^3.0.0"
     abortcontroller-polyfill "^1.1.9"
+    babel-preset-env "^1.7.0"
     broccoli-concat "^3.2.2"
     broccoli-merge-trees "^3.0.0"
+    broccoli-rollup "^2.1.1"
     broccoli-stew "^2.0.0"
     broccoli-templater "^2.0.1"
     ember-cli-babel "^6.8.2"
     node-fetch "^2.0.0-alpha.9"
+    rollup-plugin-babel "^3.0.7"
 
 ember-fetch@^4.0.2:
   version "4.0.2"
@@ -4684,6 +4687,10 @@ esrecurse@^4.1.0:
 estraverse@^4.0.0, estraverse@^4.1.0, estraverse@^4.1.1, estraverse@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/estraverse/-/estraverse-4.2.0.tgz#0dee3fed31fcd469618ce7342099fc1afa0bdb13"
+
+estree-walker@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/estree-walker/-/estree-walker-0.2.1.tgz#bdafe8095383d8414d5dc2ecf4c9173b6db9412e"
 
 estree-walker@^0.5.2:
   version "0.5.2"
@@ -9050,6 +9057,19 @@ ripemd160@^2.0.0, ripemd160@^2.0.1:
   dependencies:
     hash-base "^3.0.0"
     inherits "^2.0.1"
+
+rollup-plugin-babel@^3.0.7:
+  version "3.0.7"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-babel/-/rollup-plugin-babel-3.0.7.tgz#5b13611f1ab8922497e9d15197ae5d8a23fe3b1e"
+  dependencies:
+    rollup-pluginutils "^1.5.0"
+
+rollup-pluginutils@^1.5.0:
+  version "1.5.2"
+  resolved "https://registry.yarnpkg.com/rollup-pluginutils/-/rollup-pluginutils-1.5.2.tgz#1e156e778f94b7255bfa1b3d0178be8f5c552408"
+  dependencies:
+    estree-walker "^0.2.1"
+    minimatch "^3.0.2"
 
 rollup-pluginutils@^2.0.1:
   version "2.3.1"
