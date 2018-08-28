@@ -24,7 +24,7 @@
   "dependencies": {
     "ember-apollo-client": "1.0.5",
     "ember-auto-import": "1.2.13",
-    "ember-changeset": "1.5.0-beta.2",
+    "ember-changeset": "1.5.0-beta.3",
     "ember-changeset-validations": "1.2.12",
     "ember-cli-babel": "6.16.0",
     "ember-cli-htmlbars": "3.0.0",
