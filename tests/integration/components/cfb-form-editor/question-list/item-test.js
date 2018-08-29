@@ -14,11 +14,11 @@ module("Integration | Component | cfb-form-editor/question-list/item", function(
     this.set("question", {
       slug: "test-question",
       label: "Test Question?",
-      type: "text"
+      type: "TEXT"
     });
 
     await render(hbs`{{cfb-form-editor/question-list/item question=question}}`);
 
-    assert.dom("li").hasText("test-question Test Question? text");
+    assert.dom("li").hasText("test-question Test Question? Text");
   });
 });

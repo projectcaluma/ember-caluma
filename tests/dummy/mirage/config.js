@@ -121,7 +121,34 @@ export default function() {
       addMockFunctionsToSchema({
         schema,
         mocks: Object.assign(mocks, {
-          Node: (_, { id }) => ({ __typename: atob(id).split(":")[0] })
+          Node: (_, { id }) => ({ __typename: atob(id).split(":")[0] }),
+          ReorderFormQuestionsPayload: (
+            root,
+            { input: { formId, questionIds, clientMutationId } }
+          ) => {
+            const form = srv.forms.findBy(deserialize({ id: formId }));
+            const questions = questionIds.map(id =>
+              srv.questions.findBy(deserialize({ id }))
+            );
+
+            form.update({ questionIds: questions.map(({ id }) => id) });
+
+            return {
+              form: Object.assign(serialize(form.toJSON(), "Form"), {
+                questions: {
+                  edges: () =>
+                    new MockList(questions.length, () => ({
+                      node: (r, v, _, meta) =>
+                        serialize(
+                          questions[meta.path.prev.key].toJSON(),
+                          "Question"
+                        )
+                    }))
+                }
+              }),
+              clientMutationId
+            };
+          }
         }),
         preserveResolvers: false
       });
@@ -130,6 +157,10 @@ export default function() {
     },
     200
   );
+
+  if (!config.environment === "production") {
+    this.get("/versions.json", {}, 200);
+  }
 
   this.passthrough();
 }

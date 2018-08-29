@@ -1,13 +1,13 @@
-<span class="uk-position-center-right">
-  <button data-test-edit-question type="button" uk-icon="pencil" class="uk-icon-button" {{action (optional on-edit-question) question}}></button>
-</span>
+<div class="uk-flex uk-flex-middle">
+  <span class="uk-width-auto uk-margin-small-right">
+    <i data-test-sort-handle uk-icon="menu" class="uk-sortable-handle"></i>
+  </span>
 
-<span class="uk-flex uk-flex-middle">
-  <span class="uk-width-auto uk-margin-small-right uk-text-bold">
+  <span data-test-edit-question class="uk-width-auto uk-margin-small-right uk-text-bold uk-link" {{action (optional on-edit-question) question}}>
     {{question.slug}}
   </span>
 
   <span class="uk-width-expand uk-margin-small-right uk-text-small uk-text-muted uk-text-truncate">{{question.label}}</span>
 
-  {{uk-badge label=question.type class='uk-width-auto'}}
-</span>
+  {{uk-badge label=(t (concat 'caluma.form-builder.question.types.' question.type)) class='uk-width-auto'}}
+</div>

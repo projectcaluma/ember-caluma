@@ -15,6 +15,7 @@ type Question implements Node {
   label: String!
   type: String!
   meta: String
+  forms: FormConnection
 }
 
 type FormConnection {
@@ -68,8 +69,20 @@ input ArchiveFormInput {
   clientMutationId: String!
 }
 
+input ReorderFormQuestionsInput {
+  formId: ID!
+  questionIds: [ID]!
+  clientMutationId: String!
+}
+
 type ArchiveFormPayload {
   form: Form
+  clientMutationId: String!
+}
+
+type ReorderFormQuestionsPayload {
+  form: Form
+  questions: QuestionConnection
   clientMutationId: String!
 }
 
@@ -77,6 +90,7 @@ type Mutation {
   saveForm(input: SaveFormInput!): SaveFormPayload
   saveQuestion(input: SaveQuestionInput!): SaveQuestionPayload
   archiveForm(input: ArchiveFormInput!): ArchiveFormPayload
+  reorderFormQuestions(input: ReorderFormQuestionsInput!): ReorderFormQuestionsPayload
 }
 
 type Query {
