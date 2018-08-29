@@ -3297,11 +3297,11 @@ ember-auto-import@^1.0.0, ember-auto-import@^1.2.10:
     walk-sync "^0.3.2"
     webpack "^4.12.0"
 
-ember-changeset-validations@1.2.12:
-  version "1.2.12"
-  resolved "https://registry.yarnpkg.com/ember-changeset-validations/-/ember-changeset-validations-1.2.12.tgz#6adb10c33b280ab19bf77fb7d9d27c03084d31aa"
+ember-changeset-validations@1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/ember-changeset-validations/-/ember-changeset-validations-1.3.0.tgz#43793f498e5469e87ed6609be78a1421468269d5"
   dependencies:
-    ember-changeset "1.5.0-beta.1"
+    ember-changeset "1.5.0"
     ember-cli-babel "^6.6.0"
     ember-cli-htmlbars "^1.1.1"
     ember-get-config "^0.2.4"
@@ -3310,13 +3310,6 @@ ember-changeset-validations@1.2.12:
 ember-changeset@1.5.0:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/ember-changeset/-/ember-changeset-1.5.0.tgz#730d0ca3ac7a54a471322d159c77e734d0f42751"
-  dependencies:
-    ember-cli-babel "^6.8.2"
-    ember-deep-set "^0.1.4"
-
-ember-changeset@1.5.0-beta.1:
-  version "1.5.0-beta.1"
-  resolved "https://registry.yarnpkg.com/ember-changeset/-/ember-changeset-1.5.0-beta.1.tgz#c15c86d6caa0285f6958611cc2a8b85faa038f9b"
   dependencies:
     ember-cli-babel "^6.8.2"
     ember-deep-set "^0.1.4"
