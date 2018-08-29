@@ -14,7 +14,7 @@ module("Acceptance | question edit", function(hooks) {
     this.server.create("question", {
       label: "Test Question?",
       slug: "test-question",
-      type: "text"
+      type: "TEXT"
     });
 
     await visit("/demo/form-builder/test-form");
@@ -30,7 +30,7 @@ module("Acceptance | question edit", function(hooks) {
     assert.equal(currentURL(), "/demo/form-builder/test-form/test-question");
 
     await fillIn("[data-test-demo-content] [name=label]", "Test Question 1?");
-    await fillIn("[data-test-demo-content] [name=type]", "number");
+    await fillIn("[data-test-demo-content] [name=type]", "NUMBER");
 
     await click("[data-test-demo-content] [data-test-submit]");
 

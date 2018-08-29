@@ -6,11 +6,11 @@ import {
 import validateSlug from "ember-caluma-form-builder/validators/slug";
 
 export const POSSIBLE_TYPES = [
-  "number",
-  "checkbox",
-  "radio",
-  "text",
-  "textarea"
+  "NUMBER",
+  "CHECKBOX",
+  "RADIO",
+  "TEXT",
+  "TEXTAREA"
 ];
 
 export default {

@@ -24,11 +24,11 @@ caluma:
       minor-info: "Updating a question must never change the meaning to preserve data consistency."
 
       types:
-        number: "Number"
-        checkbox: "Checkbox"
-        radio: "Radio"
-        text: "Text"
-        textarea: "Textarea"
+        NUMBER: "Number"
+        CHECKBOX: "Checkbox"
+        RADIO: "Radio"
+        TEXT: "Text"
+        TEXTAREA: "Textarea"
 
     notification:
       form:

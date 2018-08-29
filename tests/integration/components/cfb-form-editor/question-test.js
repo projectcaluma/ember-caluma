@@ -15,7 +15,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     this.server.create("question", {
       label: "Test Label",
       slug: "test-slug",
-      type: "text"
+      type: "TEXT"
     });
 
     await render(hbs`{{cfb-form-editor/question slug='test-slug'}}`);
@@ -23,7 +23,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     assert.dom("[name=label]").hasValue("Test Label");
     assert.dom("[name=slug]").hasValue("test-slug");
     assert.dom("[name=slug]").isDisabled();
-    assert.dom("[name=type]").hasValue("text");
+    assert.dom("[name=type]").hasValue("TEXT");
   });
 
   test("it validates", async function(assert) {
@@ -32,7 +32,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     this.server.create("question", {
       label: "Test Label",
       slug: "test-slug",
-      type: "text"
+      type: "TEXT"
     });
 
     await render(hbs`{{cfb-form-editor/question slug='test-slug'}}`);
@@ -50,13 +50,13 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     this.server.create("question", {
       label: "Test Label",
       slug: "test-slug",
-      type: "text"
+      type: "TEXT"
     });
 
     this.set("afterSubmit", question => {
       assert.ok(question);
       assert.equal(question.label, "Test Label 1");
-      assert.equal(question.type, "number");
+      assert.equal(question.type, "NUMBER");
       assert.step("after-submit");
     });
 
@@ -65,7 +65,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     );
 
     await fillIn("[name=label]", "Test Label 1");
-    await fillIn("[name=type]", "number");
+    await fillIn("[name=type]", "NUMBER");
 
     await click("[data-test-submit]");
 

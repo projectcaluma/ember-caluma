@@ -24,11 +24,11 @@ caluma:
       minor-info: "Das Anpassen einer Frage darf niemals die Bedeutung der Frage verändern, um die Daten konsistent zu halten."
 
       types:
-        number: "Nummer"
-        checkbox: "Checkbox"
-        radio: "Radio"
-        text: "Text"
-        textarea: "Textbereich"
+        NUMBER: "Nummer"
+        CHECKBOX: "Checkbox"
+        RADIO: "Radio"
+        TEXT: "Text"
+        TEXTAREA: "Textbereich"
 
     notification:
       form:
