@@ -17,9 +17,10 @@ engine in `app/app.js`:
 
 {{docs-snippet name='usage/app.js'}}
 
-Also, since our form builder needs a bit of a custom apollo service create a
-new service `app/services/apollo.js` and extend the apollo service with the
-provided mixin:
+Also, since our form builder needs to customize the apollo service in order to
+support [fragments on unions and interfaces](https://www.apollographql.com/docs/react/advanced/fragments.html#fragment-matcher),
+create a new service `app/services/apollo.js` and extend the apollo service
+with the provided mixin:
 
 {{docs-snippet name='usage/apollo.js'}}
 

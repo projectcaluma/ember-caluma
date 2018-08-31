@@ -9,29 +9,9 @@
 
 The form builder for [Caluma](https://projectcaluma.github.io) - a collaborative form editing service.
 
-## Installation
+## Documentation
 
-```bash
-$ ember install ember-caluma-form-builder
-```
-
-## Usage
-
-### Simple
-
-`ember-caluma-form-builder` is a routable [ember engine](http://ember-engines.com). To include it in your application just mount it in your `app/router.js`:
-
-```javascript
-// app/router.js
-
-Router.map(function() {
-  this.mount("ember-caluma-form-builder", { path: "/form-builder" });
-});
-```
-
-### Advanced
-
-[TODO]
+You can find the interactive documentation [here](https://projectcaluma.github.io/ember-caluma-form-builder).
 
 ## Contributing
 
