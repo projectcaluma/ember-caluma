@@ -2,9 +2,11 @@
 
 const EmberAddon = require("ember-cli/lib/broccoli/ember-addon");
 const funnel = require("broccoli-funnel");
+const sass = require("sass");
 
 module.exports = function(defaults) {
   let app = new EmberAddon(defaults, {
+    sassOptions: { implementation: sass },
     snippetPaths: ["tests/dummy/app/snippets"]
   });
 
