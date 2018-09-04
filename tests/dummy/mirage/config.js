@@ -68,8 +68,8 @@ export default function() {
             };
           },
           [cls]: (root, vars, _, { path: { prev } }) => {
-            if (root && root.form && root.form) {
-              return root.form;
+            if (root && root[camelize(cls)]) {
+              return root[camelize(cls)];
             }
 
             let record = db[collection].where(deserialize(vars))[

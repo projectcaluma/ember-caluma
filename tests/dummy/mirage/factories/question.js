@@ -1,6 +1,6 @@
 import { Factory, faker } from "ember-cli-mirage";
 
-const TYPES = ["text", "textarea", "number", "checkbox", "radio"];
+const TYPES = ["TEXT", "TEXTAREA", "NUMBER", "CHECKBOX", "RADIO"];
 
 export default Factory.extend({
   slug: i => `question-${i + 1}`,

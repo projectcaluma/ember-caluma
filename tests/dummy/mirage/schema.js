@@ -51,6 +51,18 @@ type SaveFormPayload {
   clientMutationId: String!
 }
 
+input SaveQuestionInput {
+  slug: String!
+  label: String
+  type: String
+  clientMutationId: String!
+}
+
+type SaveQuestionPayload {
+  question: Question
+  clientMutationId: String!
+}
+
 input ArchiveFormInput {
   id: ID!
   clientMutationId: String!
@@ -63,6 +75,7 @@ type ArchiveFormPayload {
 
 type Mutation {
   saveForm(input: SaveFormInput!): SaveFormPayload
+  saveQuestion(input: SaveQuestionInput!): SaveQuestionPayload
   archiveForm(input: ArchiveFormInput!): ArchiveFormPayload
 }
 

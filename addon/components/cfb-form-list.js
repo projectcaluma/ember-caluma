@@ -7,7 +7,7 @@ import formListQuery from "ember-caluma-form-builder/gql/queries/form-list";
 export default Component.extend(ComponentQueryManager, {
   layout,
 
-  init() {
+  didReceiveAttrs() {
     this._super(...arguments);
 
     this.get("data").perform();

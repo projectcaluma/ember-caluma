@@ -15,6 +15,21 @@ caluma:
       new: "Neues Formular"
       empty: "Wir haben keine Formulare gefunden. Klicken Sie den Knopf im der rechten oberen Ecke um ein Formular zu Erstellen!"
 
+    question:
+      label: "Label"
+      slug: "Slug"
+      type: "Typ"
+
+      minor-info-title: "Wichtig!"
+      minor-info: "Das Anpassen einer Frage darf niemals die Bedeutung der Frage verändern, um die Daten konsistent zu halten."
+
+      types:
+        NUMBER: "Nummer"
+        CHECKBOX: "Checkbox"
+        RADIO: "Radio"
+        TEXT: "Text"
+        TEXTAREA: "Textbereich"
+
     notification:
       form:
         save:
@@ -28,3 +43,8 @@ caluma:
         archive:
           success: "Ihr Formular wurde erfolgreich archiviert!"
           error: "Hoppla, beim Archivieren des Formulars ist etwas schief gelaufen..."
+
+      question:
+        save:
+          success: "Ihre Frage wurde erfolgreich gespeichert!"
+          error: "Hoppla, beim Speichern der Frage ist etwas schief gelaufen..."

@@ -1,0 +1,71 @@
+{{#if data.isRunning}}
+  <div class="uk-flex uk-flex-center uk-flex-middle uk-height-small">
+    {{uk-spinner ratio=2}}
+  </div>
+{{else}}
+  {{#with data.lastSuccessful.value as |model|}}
+    {{#validated-form
+      model=(changeset model validations)
+      on-submit=(perform submit)
+    as |f|}}
+      <div class="uk-alert-warning" uk-alert>
+        <a class="uk-alert-close" uk-close></a>
+        <div uk-grid class="uk-grid-small">
+          <div class="uk-width-auto uk-flex uk-flex-middle">
+          {{uk-icon 'warning' ratio=1.2}}
+          </div>
+          <div class="uk-width-expand">
+            <strong>{{t 'caluma.form-builder.question.minor-info-title'}}</strong>
+            {{t 'caluma.form-builder.question.minor-info'}}
+          </div>
+        </div>
+      </div>
+
+      {{#f.input name='label' as |i|}}
+        <label class="uk-form-label uk-text-bold">{{t 'caluma.form-builder.question.label'}}</label>
+        <input
+          name={{i.name}}
+          class="uk-input {{i.class}}"
+          value={{i.value}}
+          onblur={{i.setDirty}}
+          oninput={{action i.update value='target.value'}}
+        >
+      {{/f.input}}
+
+      {{#f.input name='slug' as |i|}}
+        <label class="uk-form-label uk-text-bold">{{t 'caluma.form-builder.question.slug'}}</label>
+        <input
+          type="text"
+          name={{i.name}}
+          class="uk-input {{i.class}}"
+          maxlength="50"
+          disabled={{f.model.id}}
+          value={{i.value}}
+          onblur={{i.setDirty}}
+          oninput={{action i.update value='target.value'}}
+        >
+      {{/f.input}}
+
+      {{#f.input name='type' as |i|}}
+        <label class="uk-form-label uk-text-bold">{{t 'caluma.form-builder.question.type'}}</label>
+        <select
+          name={{i.name}}
+          class="uk-select"
+          onblur={{i.setDirty}}
+          onchange={{action i.update value='target.value'}}
+        >
+          <option disabled></option>
+          {{#each possibleTypes as |type|}}
+            <option value={{type}} selected={{eq type i.value}}>{{t (concat 'caluma.form-builder.question.types.' type)}}</option>
+          {{/each}}
+        </select>
+      {{/f.input}}
+
+      <div class="uk-text-right">
+        {{#f.submit data-test-submit disabled=(or f.loading f.model.isInvalid)}}
+          {{#if f.loading}}{{uk-spinner}}{{else}}{{t 'caluma.form-builder.global.save'}}{{/if}}
+        {{/f.submit}}
+      </div>
+    {{/validated-form}}
+  {{/with}}
+{{/if}}

@@ -7,7 +7,7 @@ import formEditorQuery from "ember-caluma-form-builder/gql/queries/form-editor";
 export default Component.extend(ComponentQueryManager, {
   layout,
 
-  init() {
+  didReceiveAttrs() {
     this._super(...arguments);
 
     this.get("data").perform();

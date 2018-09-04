@@ -15,6 +15,21 @@ caluma:
       new: "New form"
       empty: "We did not found any forms. Click the button in the top right corner to create a new form right now!"
 
+    question:
+      label: "Label"
+      slug: "Slug"
+      type: "Type"
+
+      minor-info-title: "Important!"
+      minor-info: "Updating a question must never change the meaning to preserve data consistency."
+
+      types:
+        NUMBER: "Number"
+        CHECKBOX: "Checkbox"
+        RADIO: "Radio"
+        TEXT: "Text"
+        TEXTAREA: "Textarea"
+
     notification:
       form:
         save:
@@ -28,3 +43,8 @@ caluma:
         archive:
           success: "Your form was successfully archived!"
           error: "Ooops, something went wrong while archiving the form..."
+
+      question:
+        save:
+          success: "Your question was successfully saved!"
+          error: "Ooops, something went wrong while saving the question..."
