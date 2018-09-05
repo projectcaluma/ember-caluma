@@ -5073,9 +5073,9 @@ ember-try@^0.2.23:
     rsvp "^3.0.17"
     semver "^5.1.0"
 
-ember-uikit@0.7.0:
-  version "0.7.0"
-  resolved "https://registry.yarnpkg.com/ember-uikit/-/ember-uikit-0.7.0.tgz#4dc76d68077d1f372a5e368fe847f1466dd2c2db"
+ember-uikit@0.7.1:
+  version "0.7.1"
+  resolved "https://registry.yarnpkg.com/ember-uikit/-/ember-uikit-0.7.1.tgz#bb782d55634f3435dea0281681b14f4cb95a2c44"
   dependencies:
     broccoli-funnel "^2.0.1"
     broccoli-merge-trees "^3.0.0"
