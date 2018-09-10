@@ -149,4 +149,14 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
 
     assert.verifySteps([]);
   });
+
+  test("it can handle 404 errors", async function(assert) {
+    assert.expect(1);
+
+    this.server.post("/graphql", () => ({ data: { node: null } }));
+
+    await render(hbs`{{cfb-form-editor/general slug='test-slug'}}`);
+
+    assert.dom("p").hasText("No form with slug 'test-slug' found");
+  });
 });

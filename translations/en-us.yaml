@@ -6,6 +6,11 @@ caluma:
       back: "Back"
       loading: "Loading"
 
+      not-found:
+        title: "Looks like you're lost"
+        subtitle: "The page you are looking for does not exist!"
+        home: "Go to home"
+
     form:
       name: "Name"
       slug: "Slug"
@@ -14,6 +19,8 @@ caluma:
       all: "All forms"
       new: "New form"
       empty: "We did not found any forms. Click the button in the top right corner to create a new form right now!"
+
+      not-found: "No form with slug '{slug}' found"
 
     question:
       label: "Label"
@@ -29,6 +36,8 @@ caluma:
         RADIO: "Radio"
         TEXT: "Text"
         TEXTAREA: "Textarea"
+
+      not-found: "No question with slug '{slug}' found"
 
     notification:
       form:

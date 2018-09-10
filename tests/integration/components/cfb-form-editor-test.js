@@ -110,4 +110,14 @@ module("Integration | Component | cfb-form-editor", function(hooks) {
 
     assert.ok(true);
   });
+
+  test("it can handle 404 errors", async function(assert) {
+    assert.expect(1);
+
+    this.server.post("/graphql", () => ({ data: { node: null } }));
+
+    await render(hbs`{{cfb-form-editor slug='test-slug'}}`);
+
+    assert.dom("h1").hasText("404");
+  });
 });
