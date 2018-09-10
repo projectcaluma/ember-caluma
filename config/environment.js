@@ -6,13 +6,7 @@ module.exports = function(environment) {
     environment,
 
     "ember-validated-form": {
-      css: {
-        submit: "uk-button uk-button-primary",
-        group: "uk-margin",
-        help: "uk-text-danger uk-text-small",
-        error: "uk-form-danger",
-        valid: "uk-form-success"
-      }
+      theme: "uikit"
     }
   };
 

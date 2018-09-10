@@ -40,7 +40,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     await fillIn("[name=label]", "");
     await blur("[name=label]");
 
-    assert.dom("[data-test-submit]").isDisabled();
+    assert.dom("button[type=submit]").isDisabled();
     assert.dom("[name=label] + span").hasText("Label can't be blank");
   });
 
@@ -67,7 +67,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     await fillIn("[name=label]", "Test Label 1");
     await fillIn("[name=type]", "NUMBER");
 
-    await click("[data-test-submit]");
+    await click("button[type=submit]");
 
     assert.verifySteps(["after-submit"]);
   });
@@ -88,7 +88,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     );
 
     this.server.post("/graphql", () => graphqlError("saveQuestion"), 200);
-    await click("[data-test-submit]");
+    await click("button[type=submit]");
 
     assert.verifySteps([]);
   });

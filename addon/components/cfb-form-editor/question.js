@@ -4,10 +4,11 @@ import layout from "../../templates/components/cfb-form-editor/question";
 import { task } from "ember-concurrency";
 import { ComponentQueryManager } from "ember-apollo-client";
 import validations, {
-  POSSIBLE_TYPES as possibleTypes
+  POSSIBLE_TYPES
 } from "ember-caluma-form-builder/validations/question";
 import v4 from "uuid/v4";
 import { optional } from "ember-composable-helpers/helpers/optional";
+import { computed } from "@ember/object";
 
 import formEditorQuestionQuery from "ember-caluma-form-builder/gql/queries/form-editor-question";
 import saveQuestionMutation from "ember-caluma-form-builder/gql/mutations/save-question";
@@ -15,10 +16,16 @@ import saveQuestionMutation from "ember-caluma-form-builder/gql/mutations/save-q
 export default Component.extend(ComponentQueryManager, {
   layout,
   validations,
-  possibleTypes,
 
   notification: service(),
   intl: service(),
+
+  possibleTypes: computed(function() {
+    return POSSIBLE_TYPES.map(value => ({
+      value,
+      label: this.intl.t(`caluma.form-builder.question.types.${value}`)
+    }));
+  }),
 
   didReceiveAttrs() {
     this._super(...arguments);

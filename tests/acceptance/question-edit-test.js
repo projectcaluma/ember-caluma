@@ -32,7 +32,7 @@ module("Acceptance | question edit", function(hooks) {
     await fillIn("[data-test-demo-content] [name=label]", "Test Question 1?");
     await fillIn("[data-test-demo-content] [name=type]", "NUMBER");
 
-    await click("[data-test-demo-content] [data-test-submit]");
+    await click("[data-test-demo-content] button[type=submit]");
 
     assert.equal(currentURL(), "/demo/form-builder/test-form");
   });

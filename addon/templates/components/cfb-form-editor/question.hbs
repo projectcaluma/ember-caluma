@@ -21,50 +21,33 @@
         </div>
       </div>
 
-      {{#f.input name='label' as |i|}}
-        <label class="uk-form-label uk-text-bold">{{t 'caluma.form-builder.question.label'}}</label>
-        <input
-          name={{i.name}}
-          class="uk-input {{i.class}}"
-          value={{i.value}}
-          onblur={{i.setDirty}}
-          oninput={{action i.update value='target.value'}}
-        >
-      {{/f.input}}
+      {{f.input
+        type='text'
+        label=(t 'caluma.form-builder.question.label')
+        name='label'
+      }}
 
-      {{#f.input name='slug' as |i|}}
-        <label class="uk-form-label uk-text-bold">{{t 'caluma.form-builder.question.slug'}}</label>
-        <input
-          type="text"
-          name={{i.name}}
-          class="uk-input {{i.class}}"
-          maxlength="50"
-          disabled={{f.model.id}}
-          value={{i.value}}
-          onblur={{i.setDirty}}
-          oninput={{action i.update value='target.value'}}
-        >
-      {{/f.input}}
+      {{f.input
+        type='text'
+        label=(t 'caluma.form-builder.question.slug')
+        name='slug'
+        disabled=f.model.id
+      }}
 
-      {{#f.input name='type' as |i|}}
-        <label class="uk-form-label uk-text-bold">{{t 'caluma.form-builder.question.type'}}</label>
-        <select
-          name={{i.name}}
-          class="uk-select"
-          onblur={{i.setDirty}}
-          onchange={{action i.update value='target.value'}}
-        >
-          <option disabled></option>
-          {{#each possibleTypes as |type|}}
-            <option value={{type}} selected={{eq type i.value}}>{{t (concat 'caluma.form-builder.question.types.' type)}}</option>
-          {{/each}}
-        </select>
-      {{/f.input}}
+      {{f.input
+        type='select'
+        options=possibleTypes
+        optionLabelPath='label'
+        optionTargetPath='value'
+        label=(t 'caluma.form-builder.question.type')
+        name='type'
+      }}
 
       <div class="uk-text-right">
-        {{#f.submit data-test-submit disabled=(or f.loading f.model.isInvalid)}}
-          {{#if f.loading}}{{uk-spinner}}{{else}}{{t 'caluma.form-builder.global.save'}}{{/if}}
-        {{/f.submit}}
+        {{f.submit
+          disabled=(or f.loading f.model.isInvalid)
+          label=(t 'caluma.form-builder.global.save')
+        }}
       </div>
     {{/validated-form}}
   {{/with}}

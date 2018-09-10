@@ -33,7 +33,7 @@ module("Acceptance | form edit", function(hooks) {
       "Some Random Description"
     );
 
-    await click("[data-test-demo-content] [data-test-submit]");
+    await click("[data-test-demo-content] button[type=submit]");
 
     assert.equal(currentURL(), "/demo/form-builder/test-form");
   });

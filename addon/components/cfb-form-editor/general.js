@@ -113,7 +113,9 @@ export default Component.extend(ComponentQueryManager, {
   }).drop(),
 
   actions: {
-    inputName(changeset, value) {
+    inputName(value, changeset) {
+      changeset.set("name", value);
+
       if (!this.get("slug")) {
         changeset.set("slug", slugify(value, { lower: true }).substr(0, 50));
       }

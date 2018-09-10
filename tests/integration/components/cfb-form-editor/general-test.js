@@ -66,7 +66,7 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
 
     await fillIn("input[name=slug]", "form-slug");
 
-    await click("[data-test-submit]");
+    await click("button[type=submit]");
 
     assert.verifySteps(["after-submit"]);
   });
@@ -93,7 +93,7 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
     await fillIn("input[name=name]", "Test Name 1");
     await fillIn("textarea[name=description]", "Test Description 1");
 
-    await click("[data-test-submit]");
+    await click("button[type=submit]");
 
     assert.verifySteps(["after-submit"]);
   });
@@ -138,14 +138,14 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
 
     this.server.post("/graphql", () => graphqlError("saveForm"), 200);
     await click("[data-test-archive]");
-    await click("[data-test-submit]");
+    await click("button[type=submit]");
 
     // new form
     await render(
       hbs`{{cfb-form-editor/general slug=null on-after-submit=(action afterSubmit)}}`
     );
     await fillIn("input[name=name]", "Test");
-    await click("[data-test-submit]");
+    await click("button[type=submit]");
 
     assert.verifySteps([]);
   });
