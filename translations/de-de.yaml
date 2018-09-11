@@ -44,6 +44,10 @@ caluma:
           success: "Ihr Formular wurde erfolgreich archiviert!"
           error: "Hoppla, beim Archivieren des Formulars ist etwas schief gelaufen..."
 
+        reorder:
+          success: "Ihre Fragen wurde erfolgreich sortiert!"
+          error: "Hoppla, beim Sortieren der Fragen ist etwas schief gelaufen..."
+
       question:
         save:
           success: "Ihre Frage wurde erfolgreich gespeichert!"

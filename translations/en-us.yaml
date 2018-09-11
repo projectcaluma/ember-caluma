@@ -44,6 +44,10 @@ caluma:
           success: "Your form was successfully archived!"
           error: "Ooops, something went wrong while archiving the form..."
 
+        reorder:
+          success: "Your questions were successfully reordered!"
+          error: "Ooops, something went wrong while reordering the questions..."
+
       question:
         save:
           success: "Your question was successfully saved!"
