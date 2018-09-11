@@ -8,42 +8,27 @@
       model=(changeset model validations)
       on-submit=(perform submit)
     as |f|}}
-      {{#f.input name='name' as |i|}}
-        <label class="uk-form-label uk-text-bold">{{t 'caluma.form-builder.form.name'}}</label>
-        <input
-          name={{i.name}}
-          class="uk-input {{i.class}}"
-          value={{i.value}}
-          onblur={{i.setDirty}}
-          oninput={{action (queue i.update (action 'inputName' f.model)) value='target.value'}}
-        >
-      {{/f.input}}
 
-      {{#f.input name='slug' as |i|}}
-        <label class="uk-form-label uk-text-bold">{{t 'caluma.form-builder.form.slug'}}</label>
-        <input
-          type="text"
-          name={{i.name}}
-          class="uk-input {{i.class}}"
-          maxlength="50"
-          disabled={{f.model.id}}
-          value={{i.value}}
-          onblur={{i.setDirty}}
-          oninput={{action i.update value='target.value'}}
-        >
-      {{/f.input}}
+      {{f.input
+        type='text'
+        label=(t 'caluma.form-builder.form.name')
+        name='name'
+        on-update=(action 'inputName')
+      }}
 
-      {{#f.input name='description' as |i|}}
-        <label class="uk-form-label uk-text-bold">{{t 'caluma.form-builder.form.description'}}</label>
-        <textarea
-          name={{i.name}}
-          class="uk-textarea {{i.class}}"
-          rows="5"
-          value={{i.value}}
-          onblur={{i.setDirty}}
-          oninput={{action i.update value='target.value'}}
-        ></textarea>
-      {{/f.input}}
+      {{f.input
+        type='text'
+        label=(t 'caluma.form-builder.form.slug')
+        name='slug'
+        disabled=f.model.id
+      }}
+
+      {{f.input
+        type='textarea'
+        label=(t 'caluma.form-builder.form.description')
+        name='description'
+        rows=4
+      }}
 
       <div class="uk-text-right">
         {{#if f.model.id}}
@@ -56,9 +41,10 @@
           }}
         {{/if}}
 
-        {{#f.submit data-test-submit disabled=(or f.loading f.model.isInvalid)}}
-          {{#if f.loading}}{{uk-spinner}}{{else}}{{t 'caluma.form-builder.global.save'}}{{/if}}
-        {{/f.submit}}
+        {{f.submit
+          disabled=(or f.loading f.model.isInvalid)
+          label=(t 'caluma.form-builder.global.save')
+        }}
       </div>
     {{/validated-form}}
   {{/with}}
