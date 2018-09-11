@@ -19,6 +19,7 @@ caluma:
       label: "Label"
       slug: "Slug"
       type: "Typ"
+      isRequired: "Erforderlich"
 
       minor-info-title: "Wichtig!"
       minor-info: "Das Anpassen einer Frage darf niemals die Bedeutung der Frage verändern, um die Daten konsistent zu halten."

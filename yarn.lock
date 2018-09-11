@@ -7345,6 +7345,10 @@ jest-docblock@^21.0.0:
   version "21.2.0"
   resolved "https://registry.yarnpkg.com/jest-docblock/-/jest-docblock-21.2.0.tgz#51529c3b30d5fd159da60c27ceedc195faf8d414"
 
+jexl@1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/jexl/-/jexl-1.1.4.tgz#35cf86f881ea219d1e215c7a41e2e747ce6ee8a6"
+
 joi@^12.0.0:
   version "12.0.0"
   resolved "https://registry.yarnpkg.com/joi/-/joi-12.0.0.tgz#46f55e68f4d9628f01bbb695902c8b307ad8d33a"

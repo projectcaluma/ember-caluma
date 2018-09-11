@@ -3,4 +3,6 @@ fragment QuestionInfo on Question {
   slug
   label
   type
+  isRequired
+  isHidden
 }
