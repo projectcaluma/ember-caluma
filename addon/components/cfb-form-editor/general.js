@@ -5,7 +5,7 @@ import { task } from "ember-concurrency";
 import { ComponentQueryManager } from "ember-apollo-client";
 import validations from "../../validations/form";
 import v4 from "uuid/v4";
-import slugify from "slugify";
+import slugify from "ember-caluma-form-builder/utils/slugify";
 import { optional } from "ember-composable-helpers/helpers/optional";
 
 import formEditorGeneralQuery from "ember-caluma-form-builder/gql/queries/form-editor-general";
@@ -117,7 +117,7 @@ export default Component.extend(ComponentQueryManager, {
       changeset.set("name", value);
 
       if (!this.get("slug")) {
-        changeset.set("slug", slugify(value, { lower: true }).substr(0, 50));
+        changeset.set("slug", slugify(value));
       }
     }
   }
