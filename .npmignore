@@ -13,6 +13,7 @@
 .travis.yml
 bower.json
 ember-cli-build.js
+fetch-fragment-types.js
 testem.js
 yarn.lock
 

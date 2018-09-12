@@ -56,7 +56,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     this.set("afterSubmit", question => {
       assert.ok(question);
       assert.equal(question.label, "Test Label 1");
-      assert.equal(question.type, "NUMBER");
+      assert.equal(question.type, "INTEGER");
       assert.step("after-submit");
     });
 
@@ -65,7 +65,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     );
 
     await fillIn("[name=label]", "Test Label 1");
-    await fillIn("[name=type]", "NUMBER");
+    await fillIn("[name=type]", "INTEGER");
 
     await click("button[type=submit]");
 

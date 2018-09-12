@@ -10,8 +10,8 @@ module("Integration | Component | cfb-form-editor/question-list", function(
 
   test("it renders", async function(assert) {
     this.set("questions", [
-      { node: { slug: "question-1", label: "Question 1?", type: "text" } },
-      { node: { slug: "question-2", label: "Question 2?", type: "number" } }
+      { node: { slug: "question-1", label: "Question 1?", type: "TEXT" } },
+      { node: { slug: "question-2", label: "Question 2?", type: "INTEGER" } }
     ]);
 
     await render(hbs`{{cfb-form-editor/question-list questions=questions}}`);

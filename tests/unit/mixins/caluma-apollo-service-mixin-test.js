@@ -5,10 +5,11 @@ import {
   InMemoryCache,
   IntrospectionFragmentMatcher
 } from "apollo-cache-inmemory";
+import introspectionQueryResultData from "ember-caluma-form-builder/-private/fragment-types";
 
 module("Unit | Mixin | caluma-apollo-service-mixin", function() {
   test("it works", function(assert) {
-    assert.expect(3);
+    assert.expect(4);
 
     let CalumaApolloServiceMixinObject = EmberObject.extend(
       CalumaApolloServiceMixinMixin
@@ -21,9 +22,19 @@ module("Unit | Mixin | caluma-apollo-service-mixin", function() {
       subject.get("cache.config.fragmentMatcher") instanceof
         IntrospectionFragmentMatcher
     );
+
     assert.deepEqual(
       subject.get("cache.config.fragmentMatcher.possibleTypesMap.Node"),
-      ["Form", "Question"]
+      introspectionQueryResultData.__schema.types
+        .find(({ name }) => name === "Node")
+        .possibleTypes.map(({ name }) => name)
+    );
+
+    assert.deepEqual(
+      subject.get("cache.config.fragmentMatcher.possibleTypesMap.Answer"),
+      introspectionQueryResultData.__schema.types
+        .find(({ name }) => name === "Answer")
+        .possibleTypes.map(({ name }) => name)
     );
   });
 });

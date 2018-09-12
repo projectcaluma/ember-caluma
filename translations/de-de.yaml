@@ -32,7 +32,8 @@ caluma:
       minor-info: "Das Anpassen einer Frage darf niemals die Bedeutung der Frage verändern, um die Daten konsistent zu halten."
 
       types:
-        NUMBER: "Nummer"
+        INTEGER: "Ganze Zahl"
+        FLOAT: "Gleitkommazahl"
         CHECKBOX: "Checkbox"
         RADIO: "Radio"
         TEXT: "Text"

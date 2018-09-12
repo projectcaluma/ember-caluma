@@ -19,7 +19,9 @@
     "start": "ember serve",
     "start-proxy": "ember serve --proxy http://localhost:8000",
     "test": "ember test",
-    "test:all": "ember try:each"
+    "test:all": "ember try:each",
+    "get-schema": "graphql get-schema -e http://localhost:8000/graphql -o tests/dummy/mirage/schema.graphql",
+    "fetch-fragment-types": "node fetch-fragment-types.js"
   },
   "dependencies": {
     "ember-apollo-client": "1.0.5",
@@ -75,7 +77,9 @@
     "eslint-plugin-ember": "5.2.0",
     "eslint-plugin-node": "7.0.1",
     "eslint-plugin-prettier": "2.6.0",
+    "graphql-cli": "2.16.7",
     "loader.js": "4.7.0",
+    "node-fetch": "2.2.0",
     "prettier": "1.14.2",
     "qunit-dom": "0.8.0",
     "typeface-oxygen": "0.0.54",
