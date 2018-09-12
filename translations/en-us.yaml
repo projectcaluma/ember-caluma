@@ -32,7 +32,8 @@ caluma:
       minor-info: "Updating a question must never change the meaning to preserve data consistency."
 
       types:
-        NUMBER: "Number"
+        INTEGER: "Integer"
+        FLOAT: "Float"
         CHECKBOX: "Checkbox"
         RADIO: "Radio"
         TEXT: "Text"

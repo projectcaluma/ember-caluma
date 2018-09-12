@@ -39,6 +39,14 @@ const deserialize = obj => {
   );
 };
 
+const getPaginationAndFiltersFromVars = ({
+  before,
+  after,
+  first,
+  last,
+  ...filters
+}) => ({ pagination: { before, after, first, last }, filters });
+
 export default function() {
   this.urlPrefix = ""; // make this `http://localhost:8080`, for example, if your API is on a different server
   this.namespace = ""; // make this `/api`, for example, if your API is namespaced
@@ -57,7 +65,9 @@ export default function() {
       const mocks = classes.reduce((mocks, { cls, collection }) => {
         return Object.assign(mocks, {
           [`${cls}Connection`]: (root, vars) => {
-            let records = db[collection].where(deserialize(vars));
+            const { filters } = getPaginationAndFiltersFromVars(vars);
+
+            let records = db[collection].where(deserialize(filters));
 
             return {
               edges: () =>
@@ -68,11 +78,13 @@ export default function() {
             };
           },
           [cls]: (root, vars, _, { path: { prev } }) => {
+            const { filters } = getPaginationAndFiltersFromVars(vars);
+
             if (root && root[camelize(cls)]) {
               return root[camelize(cls)];
             }
 
-            let record = db[collection].where(deserialize(vars))[
+            let record = db[collection].where(deserialize(filters))[
               (prev && prev.key) || 0
             ];
 
@@ -113,6 +125,9 @@ export default function() {
 
       let schema = makeExecutableSchema({
         typeDefs: rawSchema,
+        resolvers: {
+          QuestionType: { __serialize: v => v }
+        },
         resolverValidationOptions: { requireResolversForResolveType: false }
       });
 
