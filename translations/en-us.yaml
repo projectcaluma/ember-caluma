@@ -19,6 +19,7 @@ caluma:
       label: "Label"
       slug: "Slug"
       type: "Type"
+      isRequired: "Required"
 
       minor-info-title: "Important!"
       minor-info: "Updating a question must never change the meaning to preserve data consistency."

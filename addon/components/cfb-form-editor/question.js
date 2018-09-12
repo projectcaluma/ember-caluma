@@ -54,6 +54,8 @@ export default Component.extend(ComponentQueryManager, {
               label: changeset.get("label"),
               slug: changeset.get("slug"),
               type: changeset.get("type"),
+              isRequired: changeset.get("isRequired"),
+              isHidden: "false", // TODO: this must be configurable
               clientMutationId: v4()
             }
           }

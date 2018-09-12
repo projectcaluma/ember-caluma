@@ -14,6 +14,8 @@ type Question implements Node {
   slug: String!
   label: String!
   type: String!
+  isRequired: String!
+  isHidden: String!
   meta: String
   forms: FormConnection
 }
@@ -56,6 +58,8 @@ input SaveQuestionInput {
   slug: String!
   label: String
   type: String
+  isRequired: String!
+  isHidden: String!
   clientMutationId: String!
 }
 
