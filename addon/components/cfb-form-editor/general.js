@@ -28,20 +28,19 @@ export default Component.extend(ComponentQueryManager, {
   data: task(function*() {
     if (!this.get("slug")) {
       return {
-        name: "",
-        slug: "",
-        description: ""
+        node: {
+          name: "",
+          slug: "",
+          description: ""
+        }
       };
     }
 
-    return yield this.get("apollo").watchQuery(
-      {
-        query: formEditorGeneralQuery,
-        variables: { id: btoa(`Form:${this.get("slug")}`) },
-        fetchPolicy: "cache-and-network"
-      },
-      "node"
-    );
+    return yield this.get("apollo").watchQuery({
+      query: formEditorGeneralQuery,
+      variables: { id: btoa(`Form:${this.get("slug")}`) },
+      fetchPolicy: "cache-and-network"
+    });
   }).restartable(),
 
   submit: task(function*(changeset) {

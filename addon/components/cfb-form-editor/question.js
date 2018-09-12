@@ -34,14 +34,11 @@ export default Component.extend(ComponentQueryManager, {
   },
 
   data: task(function*() {
-    return yield this.get("apollo").watchQuery(
-      {
-        query: formEditorQuestionQuery,
-        variables: { id: btoa(`Question:${this.get("slug")}`) },
-        fetchPolicy: "cache-and-network"
-      },
-      "node"
-    );
+    return yield this.get("apollo").watchQuery({
+      query: formEditorQuestionQuery,
+      variables: { id: btoa(`Question:${this.get("slug")}`) },
+      fetchPolicy: "cache-and-network"
+    });
   }).restartable(),
 
   submit: task(function*(changeset) {

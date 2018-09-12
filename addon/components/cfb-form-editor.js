@@ -30,14 +30,11 @@ export default Component.extend(ComponentQueryManager, {
       return null;
     }
 
-    return yield this.get("apollo").watchQuery(
-      {
-        query: formEditorQuery,
-        variables: { id: this.get("formId") },
-        fetchPolicy: "cache-and-network"
-      },
-      "node"
-    );
+    return yield this.get("apollo").watchQuery({
+      query: formEditorQuery,
+      variables: { id: this.get("formId") },
+      fetchPolicy: "cache-and-network"
+    });
   }).restartable(),
 
   reorderQuestions: task(function*(slugs) {
