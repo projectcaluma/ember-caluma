@@ -39,12 +39,69 @@
           {{uk-spinner ratio=2}}
         </div>
       {{else}}
-        {{cfb-form-editor/question-list
-          data-test-question-list
-          questions=data.lastSuccessful.value.node.questions.edges
-          on-edit-question=on-edit-question
-          on-reorder-questions=(perform reorderQuestions)
-        }}
+        {{#liquid-if add use='fade'}}
+          <form class="uk-search uk-search-default uk-width-1-1">
+            <span class="uk-search-icon-flip" uk-search-icon></span>
+            <input
+              class="uk-search-input"
+              type="search"
+              placeholder="{{t 'caluma.form-builder.global.search'}}..."
+              value={{_term}}
+              oninput={{action (queue (action (mut _term)) (action (perform search))) value='target.value'}}
+            >
+          </form>
+          <ul class="uk-list">
+            {{#if search.isRunning}}
+              <li class="uk-text-center">{{uk-spinner ratio=1.5}}</li>
+            {{else}}
+              {{#each search.lastSuccessful.value as |question|}}
+                {{cfb-form-editor/question-list/item
+                  data-test-add-question-list-item=question.node.slug
+                  sortable=false
+                  question=question.node
+                  on-edit-question=(perform addQuestion)
+                }}
+              {{/each}}
+            {{/if}}
+            <li class="uk-text-small uk-text-muted">
+              {{t 'caluma.form-builder.question.search'}}
+              <a href="#" data-test-new-question {{action (queue (action (optional on-new-question)) (action (mut add) false))}}>{{t 'caluma.form-builder.question.create'}}</a>
+            </li>
+          </ul>
+        {{else}}
+          {{#if data.lastSuccessful.value.node.questions.edges}}
+            {{cfb-form-editor/question-list
+              data-test-question-list
+              questions=data.lastSuccessful.value.node.questions.edges
+              on-edit-question=on-edit-question
+              on-reorder-questions=(perform reorderQuestions)
+            }}
+          {{else}}
+            <div data-test-question-list-empty class="uk-text-center">
+              <p class="uk-text-muted">{{t 'caluma.form-builder.question.empty'}}</p>
+            </div>
+          {{/if}}
+        {{/liquid-if}}
+        <div class="uk-text-center">
+          {{#if add}}
+            <button
+              type="button"
+              class="uk-icon-button"
+              uk-icon="close"
+              title={{t 'caluma.form-builder.global.cancel'}}
+              {{action (mut add) false}}
+            ></button>
+          {{else}}
+            <button
+              data-test-add-question
+              type="button"
+              class="uk-icon-button"
+              uk-icon="plus"
+              title={{t 'caluma.form-builder.question.add'}}
+              {{action (mut add) true}}
+            ></button>
+          {{/if}}
+        </div>
       {{/if}}
     </div>
   </div>

@@ -5,6 +5,8 @@ caluma:
       archive: "Archive"
       back: "Back"
       loading: "Loading"
+      cancel: "Cancel"
+      search: "Search"
 
       not-found:
         title: "Looks like you're lost"
@@ -30,6 +32,12 @@ caluma:
 
       minor-info-title: "Important!"
       minor-info: "Updating a question must never change the meaning to preserve data consistency."
+
+      add: "Add a new or existing question"
+      search: "Search for a question label or slug,"
+      create: "or create a new question"
+
+      empty: "You have not yet added a question. Press the button below to do so!"
 
       types:
         INTEGER: "Integer"
@@ -58,6 +66,10 @@ caluma:
         reorder:
           success: "Your questions were successfully reordered!"
           error: "Ooops, something went wrong while reordering the questions..."
+
+        add-question:
+          success: "The question was successfully added to your form!"
+          error: "Ooops, something went wrong while adding the question to your form..."
 
       question:
         save:

@@ -1,3 +1,9 @@
-{{#cfb-form-editor slug=model on-back=(action 'back') on-edit-question=(action 'editQuestion')}}
+{{#cfb-form-editor
+  slug=model
+  on-back=(action 'back')
+  on-new-question=(action 'newQuestion')
+  on-edit-question=(action 'editQuestion' value='slug')
+  on-after-add-question=(action 'editQuestion')
+}}
   {{outlet}}
 {{/cfb-form-editor}}

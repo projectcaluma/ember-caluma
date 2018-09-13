@@ -1,7 +1,9 @@
 <div class="uk-flex uk-flex-middle">
-  <span class="uk-width-auto uk-margin-small-right">
-    <i data-test-sort-handle uk-icon="menu" class="uk-sortable-handle"></i>
-  </span>
+  {{#if sortable}}
+    <span class="uk-width-auto uk-margin-small-right">
+      <i data-test-sort-handle uk-icon="menu" class="uk-sortable-handle"></i>
+    </span>
+  {{/if}}
 
   <span data-test-edit-question class="uk-width-auto uk-margin-small-right uk-text-bold uk-link" {{action (optional on-edit-question) question}}>
     {{question.slug}}

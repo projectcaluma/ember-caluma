@@ -1,0 +1,12 @@
+#import "ember-caluma-form-builder/gql/fragments/question-info"
+
+#TODO: add search argument when https://github.com/projectcaluma/caluma/issues/46 is implemented
+query SearchQuestion {
+  allQuestions(first: 10) {
+    edges {
+      node {
+        ...QuestionInfo
+      }
+    }
+  }
+}
