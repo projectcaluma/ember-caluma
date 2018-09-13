@@ -10,11 +10,12 @@ module("Acceptance | question edit", function(hooks) {
   test("can edit question", async function(assert) {
     assert.expect(3);
 
-    this.server.create("form", { slug: "test-form" });
+    const { id } = this.server.create("form", { slug: "test-form" });
     this.server.create("question", {
       label: "Test Question?",
       slug: "test-question",
-      type: "TEXT"
+      type: "TEXT",
+      formIds: [id]
     });
 
     await visit("/demo/form-builder/test-form");
@@ -27,7 +28,10 @@ module("Acceptance | question edit", function(hooks) {
       "[data-test-demo-content] [data-test-question-list-item=test-question] [data-test-edit-question]"
     );
 
-    assert.equal(currentURL(), "/demo/form-builder/test-form/test-question");
+    assert.equal(
+      currentURL(),
+      "/demo/form-builder/test-form/questions/test-question"
+    );
 
     await fillIn("[data-test-demo-content] [name=label]", "Test Question 1?");
     await fillIn("[data-test-demo-content] [name=type]", "INTEGER");

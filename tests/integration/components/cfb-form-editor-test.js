@@ -56,7 +56,10 @@ module("Integration | Component | cfb-form-editor", function(hooks) {
   test("it can reorder questions", async function(assert) {
     assert.expect(2);
 
-    const question = this.server.create("question", { slug: "test" });
+    const question = this.server.create("question", {
+      slug: "test",
+      formIds: [this.form.id]
+    });
 
     this.form.questionIds = [...this.form.questionIds, question.id];
 

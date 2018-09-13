@@ -12,6 +12,7 @@ import { computed } from "@ember/object";
 
 import formEditorQuestionQuery from "ember-caluma-form-builder/gql/queries/form-editor-question";
 import saveQuestionMutation from "ember-caluma-form-builder/gql/mutations/save-question";
+import addFormQuestionMutation from "ember-caluma-form-builder/gql/mutations/add-form-question";
 
 export default Component.extend(ComponentQueryManager, {
   layout,
@@ -19,6 +20,10 @@ export default Component.extend(ComponentQueryManager, {
 
   notification: service(),
   intl: service(),
+
+  formId: computed("formSlug", function() {
+    return this.get("formSlug") && btoa(`Form:${this.get("formSlug")}`);
+  }),
 
   possibleTypes: computed(function() {
     return POSSIBLE_TYPES.map(value => ({
@@ -34,6 +39,18 @@ export default Component.extend(ComponentQueryManager, {
   },
 
   data: task(function*() {
+    if (!this.get("slug")) {
+      return {
+        node: {
+          label: "",
+          slug: "",
+          type: "TEXT",
+          isRequired: "false",
+          isHidden: "false"
+        }
+      };
+    }
+
     return yield this.get("apollo").watchQuery({
       query: formEditorQuestionQuery,
       variables: { id: btoa(`Question:${this.get("slug")}`) },
@@ -59,6 +76,20 @@ export default Component.extend(ComponentQueryManager, {
         },
         "saveQuestion.question"
       );
+
+      if (!this.get("slug") && this.get("formId")) {
+        // This is a new question which must be added to the form after creating it
+        yield this.get("apollo").mutate({
+          mutation: addFormQuestionMutation,
+          variables: {
+            input: {
+              questionId: btoa(`Question:${question.slug}`),
+              formId: this.get("formId"),
+              clientMutationId: v4()
+            }
+          }
+        });
+      }
 
       this.get("notification").success(
         this.get("intl").t(

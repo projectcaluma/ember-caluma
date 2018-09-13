@@ -69,6 +69,12 @@ export default function() {
 
             let records = db[collection].where(deserialize(filters));
 
+            const relKey = `${camelize(cls)}Ids`;
+            if (root && Object(root).hasOwnProperty(relKey)) {
+              const ids = root[relKey];
+              records = records.filter(({ id }) => (ids || []).includes(id));
+            }
+
             return {
               edges: () =>
                 new MockList(records.length, () => ({
@@ -80,7 +86,8 @@ export default function() {
           [cls]: (root, vars, _, { path: { prev } }) => {
             const { filters } = getPaginationAndFiltersFromVars(vars);
 
-            if (root && root[camelize(cls)]) {
+            const propKey = camelize(cls);
+            if (root && Object(root).hasOwnProperty(propKey)) {
               return root[camelize(cls)];
             }
 
@@ -161,6 +168,22 @@ export default function() {
                     }))
                 }
               }),
+              clientMutationId
+            };
+          },
+          AddFormQuestionPayload: (
+            root,
+            { input: { formId, questionId, clientMutationId } }
+          ) => {
+            const form = srv.forms.findBy(deserialize({ id: formId }));
+            const question = srv.questions.findBy(
+              deserialize({ id: questionId })
+            );
+
+            form.update({ questionIds: [...form.questionIds, question.id] });
+
+            return {
+              form: Object.assign(serialize(form.toJSON(), "Form")),
               clientMutationId
             };
           }

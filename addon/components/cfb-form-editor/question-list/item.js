@@ -7,6 +7,7 @@ export default Component.extend({
   layout,
   tagName: "li",
 
+  sortable: true,
   slug: reads("question.slug"),
 
   didInsertElement() {
