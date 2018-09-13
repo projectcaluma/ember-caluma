@@ -11,5 +11,10 @@
 
   <span class="uk-width-expand uk-margin-small-right uk-text-small uk-text-muted uk-text-truncate">{{question.label}}</span>
 
-  {{uk-badge label=(t (concat 'caluma.form-builder.question.types.' question.type)) class='uk-width-auto'}}
+  <span class="uk-position-relative uk-width-auto">
+    {{uk-badge label=(t (concat 'caluma.form-builder.question.types.' question.type))}}
+    {{#if required}}
+      <span title={{t 'caluma.form-builder.question.isRequired'}} class="uk-position-top-right cfb-form-editor__question-list__item__required"></span>
+    {{/if}}
+  </span>
 </div>

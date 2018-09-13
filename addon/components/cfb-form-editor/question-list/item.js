@@ -2,6 +2,9 @@ import Component from "@ember/component";
 import layout from "../../../templates/components/cfb-form-editor/question-list/item";
 import { optional } from "ember-composable-helpers/helpers/optional";
 import { reads } from "@ember/object/computed";
+import { task } from "ember-concurrency";
+import jexl from "jexl";
+import { computed } from "@ember/object";
 
 export default Component.extend({
   layout,
@@ -9,6 +12,16 @@ export default Component.extend({
 
   sortable: true,
   slug: reads("question.slug"),
+
+  required: reads("_required.lastSuccessful.value"),
+  _required: computed("question.isRequired", function() {
+    const tsk = this.get("_requiredTask");
+    tsk.perform();
+    return tsk;
+  }),
+  _requiredTask: task(function*() {
+    return yield jexl.eval(this.get("question.isRequired"));
+  }),
 
   didInsertElement() {
     this._super(...arguments);
