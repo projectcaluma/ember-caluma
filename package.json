@@ -20,7 +20,7 @@
     "start-proxy": "ember serve --proxy http://localhost:8000",
     "test": "ember test",
     "test:all": "ember try:each",
-    "get-schema": "graphql get-schema -e http://localhost:8000/graphql -o tests/dummy/mirage/schema.graphql",
+    "get-schema": "graphql get-schema -e http://localhost:8000/graphql -o tests/dummy/mirage/graphql/schema.graphql",
     "fetch-fragment-types": "node fetch-fragment-types.js"
   },
   "dependencies": {
@@ -28,7 +28,7 @@
     "ember-auto-import": "1.2.13",
     "ember-changeset": "1.5.0",
     "ember-changeset-validations": "1.3.0",
-    "ember-cli-babel": "7.1.0",
+    "ember-cli-babel": "6.17.0",
     "ember-cli-htmlbars": "3.0.0",
     "ember-cli-sass": "9.0.0",
     "ember-cli-string-helpers": "1.9.0",
@@ -46,6 +46,9 @@
     "uuid": "3.3.2"
   },
   "devDependencies": {
+    "babel-eslint": "9.0.0",
+    "babel-plugin-transform-decorators-legacy": "1.3.5",
+    "babel-plugin-transform-object-rest-spread": "6.26.0",
     "broccoli-asset-rev": "3.0.0",
     "broccoli-funnel": "2.0.1",
     "ember-cli": "3.3.0",
