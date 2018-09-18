@@ -20,8 +20,8 @@
     "start-proxy": "ember serve --proxy http://localhost:8000",
     "test": "ember test",
     "test:all": "ember try:each",
-    "get-schema": "graphql get-schema -e http://localhost:8000/graphql -o tests/dummy/mirage/graphql/schema.graphql",
-    "fetch-fragment-types": "node fetch-fragment-types.js"
+    "get-schema": "graphql get-schema -e http://localhost:8000/graphql -o tests/dummy/mirage/graphql/schema.graphql && prettier --write tests/dummy/mirage/graphql/schema.graphql",
+    "fetch-fragment-types": "node fetch-fragment-types.js && prettier --write addon/-private/fragment-types.js"
   },
   "dependencies": {
     "ember-apollo-client": "1.1.0",

@@ -8,5 +8,6 @@ export default Factory.extend({
   type: () => faker.list.random(...TYPES),
   isRequired: () => faker.random.boolean().toString(),
   isHidden: "false",
+  isArchived: false,
   meta: JSON.stringify({})
 });

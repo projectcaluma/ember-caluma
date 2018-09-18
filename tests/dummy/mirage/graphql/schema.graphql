@@ -1,5 +1,5 @@
 # source: http://localhost:8000/graphql
-# timestamp: Mon Sep 17 2018 09:40:07 GMT+0200 (CEST)
+# timestamp: Mon Sep 17 2018 16:49:19 GMT+0200 (CEST)
 
 input AddFormQuestionInput {
   form: ID!
@@ -7,7 +7,9 @@ input AddFormQuestionInput {
   clientMutationId: String
 }
 
-"""Add question at the end of form."""
+"""
+Add question at the end of form.
+"""
 type AddFormQuestionPayload {
   form: Form
   clientMutationId: String
@@ -37,10 +39,14 @@ type AnswerConnection {
 }
 
 type AnswerEdge {
-  """The item at the end of the edge"""
+  """
+  The item at the end of the edge
+  """
   node: Answer
 
-  """A cursor for use in pagination"""
+  """
+  A cursor for use in pagination
+  """
   cursor: String!
 }
 
@@ -96,9 +102,16 @@ type Document implements Node {
   modified: DateTime!
   form: Form!
   meta: JSONString!
-  answers(before: String, after: String, first: Int, last: Int): AnswerConnection
+  answers(
+    before: String
+    after: String
+    first: Int
+    last: Int
+  ): AnswerConnection
 
-  """The ID of the object."""
+  """
+  The ID of the object.
+  """
   id: ID!
 }
 
@@ -108,15 +121,21 @@ type DocumentConnection {
 }
 
 type DocumentEdge {
-  """The item at the end of the edge"""
+  """
+  The item at the end of the edge
+  """
   node: Document
 
-  """A cursor for use in pagination"""
+  """
+  A cursor for use in pagination
+  """
   cursor: String!
 }
 
 type FloatAnswer implements Answer & Node {
-  """The ID of the object."""
+  """
+  The ID of the object.
+  """
   id: ID!
   question: Question!
   meta: JSONString
@@ -125,9 +144,11 @@ type FloatAnswer implements Answer & Node {
 
 type Flow implements Node {
   taskSpecification: TaskSpecification!
-  next: String!
+  next: FlowJexl
 
-  """The ID of the object."""
+  """
+  The ID of the object.
+  """
   id: ID!
 }
 
@@ -137,10 +158,14 @@ type FlowConnection {
 }
 
 type FlowEdge {
-  """The item at the end of the edge"""
+  """
+  The item at the end of the edge
+  """
   node: Flow
 
-  """A cursor for use in pagination"""
+  """
+  A cursor for use in pagination
+  """
   cursor: String!
 }
 
@@ -158,9 +183,24 @@ type Form implements Node {
   meta: JSONString!
   isPublished: Boolean!
   isArchived: Boolean!
-  questions(before: String, after: String, first: Int, last: Int, slug: String, label: String, type: String, isRequired: String, isHidden: String, isArchived: Boolean, search: String): QuestionConnection
+  questions(
+    before: String
+    after: String
+    first: Int
+    last: Int
+    slug: String
+    label: String
+    type: String
+    isRequired: String
+    isHidden: String
+    isArchived: Boolean
+    excludeForms: [ID]
+    search: String
+  ): QuestionConnection
 
-  """The ID of the object."""
+  """
+  The ID of the object.
+  """
   id: ID!
 }
 
@@ -170,26 +210,36 @@ type FormConnection {
 }
 
 type FormEdge {
-  """The item at the end of the edge"""
+  """
+  The item at the end of the edge
+  """
   node: Form
 
-  """A cursor for use in pagination"""
+  """
+  A cursor for use in pagination
+  """
   cursor: String!
 }
 
 type IntegerAnswer implements Answer & Node {
-  """The ID of the object."""
+  """
+  The ID of the object.
+  """
   id: ID!
   question: Question!
   meta: JSONString
   value: Int!
 }
 
-"""JSON String"""
+"""
+JSON String
+"""
 scalar JSONString
 
 type ListAnswer implements Answer & Node {
-  """The ID of the object."""
+  """
+  The ID of the object.
+  """
   id: ID!
   question: Question!
   meta: JSONString
@@ -197,46 +247,84 @@ type ListAnswer implements Answer & Node {
 }
 
 type Mutation {
-  saveWorkflowSpecification(input: SaveWorkflowSpecificationInput!): SaveWorkflowSpecificationPayload
-  setWorkflowSpecificationStart(input: SetWorkflowSpecificationStartInput!): SetWorkflowSpecificationStartPayload
-  publishWorkflowSpecification(input: PublishWorkflowSpecificationInput!): PublishWorkflowSpecificationPayload
-  archiveWorkflowSpecification(input: ArchiveWorkflowSpecificationInput!): ArchiveWorkflowSpecificationPayload
-  addWorkflowSpecificationFlow(input: AddWorkflowSpecificationFlowInput!): AddWorkflowSpecificationFlowPayload
-  removeWorkflowSpecificationFlow(input: RemoveWorkflowSpecificationFlowInput!): RemoveWorkflowSpecificationFlowPayload
-  saveTaskSpecification(input: SaveTaskSpecificationInput!): SaveTaskSpecificationPayload
-  archiveTaskSpecification(input: ArchiveTaskSpecificationInput!): ArchiveTaskSpecificationPayload
+  saveWorkflowSpecification(
+    input: SaveWorkflowSpecificationInput!
+  ): SaveWorkflowSpecificationPayload
+  setWorkflowSpecificationStart(
+    input: SetWorkflowSpecificationStartInput!
+  ): SetWorkflowSpecificationStartPayload
+  publishWorkflowSpecification(
+    input: PublishWorkflowSpecificationInput!
+  ): PublishWorkflowSpecificationPayload
+  archiveWorkflowSpecification(
+    input: ArchiveWorkflowSpecificationInput!
+  ): ArchiveWorkflowSpecificationPayload
+  addWorkflowSpecificationFlow(
+    input: AddWorkflowSpecificationFlowInput!
+  ): AddWorkflowSpecificationFlowPayload
+  removeWorkflowSpecificationFlow(
+    input: RemoveWorkflowSpecificationFlowInput!
+  ): RemoveWorkflowSpecificationFlowPayload
+  saveTaskSpecification(
+    input: SaveTaskSpecificationInput!
+  ): SaveTaskSpecificationPayload
+  archiveTaskSpecification(
+    input: ArchiveTaskSpecificationInput!
+  ): ArchiveTaskSpecificationPayload
   saveDocument(input: SaveDocumentInput!): SaveDocumentPayload
-  saveDocumentStringAnswer(input: SaveDocumentStringAnswerInput!): SaveDocumentStringAnswerPayload
-  saveDocumentIntegerAnswer(input: SaveDocumentIntegerAnswerInput!): SaveDocumentIntegerAnswerPayload
-  saveDocumentFloatAnswer(input: SaveDocumentFloatAnswerInput!): SaveDocumentFloatAnswerPayload
-  saveDocumentListAnswer(input: SaveDocumentListAnswerInput!): SaveDocumentListAnswerPayload
+  saveDocumentStringAnswer(
+    input: SaveDocumentStringAnswerInput!
+  ): SaveDocumentStringAnswerPayload
+  saveDocumentIntegerAnswer(
+    input: SaveDocumentIntegerAnswerInput!
+  ): SaveDocumentIntegerAnswerPayload
+  saveDocumentFloatAnswer(
+    input: SaveDocumentFloatAnswerInput!
+  ): SaveDocumentFloatAnswerPayload
+  saveDocumentListAnswer(
+    input: SaveDocumentListAnswerInput!
+  ): SaveDocumentListAnswerPayload
   saveForm(input: SaveFormInput!): SaveFormPayload
   archiveForm(input: ArchiveFormInput!): ArchiveFormPayload
   publishForm(input: PublishFormInput!): PublishFormPayload
   addFormQuestion(input: AddFormQuestionInput!): AddFormQuestionPayload
   removeFormQuestion(input: RemoveFormQuestionInput!): RemoveFormQuestionPayload
-  reorderFormQuestions(input: ReorderFormQuestionsInput!): ReorderFormQuestionsPayload
+  reorderFormQuestions(
+    input: ReorderFormQuestionsInput!
+  ): ReorderFormQuestionsPayload
   saveQuestion(input: SaveQuestionInput!): SaveQuestionPayload
   archiveQuestion(input: ArchiveQuestionInput!): ArchiveQuestionPayload
 }
 
-"""An object with an ID"""
+"""
+An object with an ID
+"""
 interface Node {
-  """The ID of the object."""
+  """
+  The ID of the object.
+  """
   id: ID!
 }
 
 type PageInfo {
-  """When paginating forwards, are there more items?"""
+  """
+  When paginating forwards, are there more items?
+  """
   hasNextPage: Boolean!
 
-  """When paginating backwards, are there more items?"""
+  """
+  When paginating backwards, are there more items?
+  """
   hasPreviousPage: Boolean!
 
-  """When paginating backwards, the cursor to continue."""
+  """
+  When paginating backwards, the cursor to continue.
+  """
   startCursor: String
 
-  """When paginating forwards, the cursor to continue."""
+  """
+  When paginating forwards, the cursor to continue.
+  """
   endCursor: String
 }
 
@@ -261,13 +349,68 @@ type PublishWorkflowSpecificationPayload {
 }
 
 type Query {
-  allWorkflowSpecifications(before: String, after: String, first: Int, last: Int, slug: String, name: String, description: String, isPublished: Boolean, isArchived: Boolean, search: String): WorkflowSpecificationConnection
-  allTaskSpecifications(before: String, after: String, first: Int, last: Int, slug: String, name: String, description: String, type: String, isArchived: Boolean, search: String): TaskSpecificationConnection
-  allDocuments(before: String, after: String, first: Int, last: Int, form: ID, search: String): DocumentConnection
-  allForms(before: String, after: String, first: Int, last: Int, slug: String, name: String, description: String, isPublished: Boolean, isArchived: Boolean, search: String): FormConnection
-  allQuestions(before: String, after: String, first: Int, last: Int, slug: String, label: String, type: String, isRequired: String, isHidden: String, isArchived: Boolean, search: String): QuestionConnection
+  allWorkflowSpecifications(
+    before: String
+    after: String
+    first: Int
+    last: Int
+    slug: String
+    name: String
+    description: String
+    isPublished: Boolean
+    isArchived: Boolean
+    search: String
+  ): WorkflowSpecificationConnection
+  allTaskSpecifications(
+    before: String
+    after: String
+    first: Int
+    last: Int
+    slug: String
+    name: String
+    description: String
+    type: String
+    isArchived: Boolean
+    search: String
+  ): TaskSpecificationConnection
+  allDocuments(
+    before: String
+    after: String
+    first: Int
+    last: Int
+    form: ID
+    search: String
+  ): DocumentConnection
+  allForms(
+    before: String
+    after: String
+    first: Int
+    last: Int
+    slug: String
+    name: String
+    description: String
+    isPublished: Boolean
+    isArchived: Boolean
+    search: String
+  ): FormConnection
+  allQuestions(
+    before: String
+    after: String
+    first: Int
+    last: Int
+    slug: String
+    label: String
+    type: String
+    isRequired: String
+    isHidden: String
+    isArchived: Boolean
+    excludeForms: [ID]
+    search: String
+  ): QuestionConnection
 
-  """The ID of the object"""
+  """
+  The ID of the object
+  """
   node(id: ID!): Node
 }
 
@@ -282,9 +425,22 @@ type Question implements Node {
   isArchived: Boolean!
   configuration: JSONString!
   meta: JSONString!
-  forms(before: String, after: String, first: Int, last: Int, slug: String, name: String, description: String, isPublished: Boolean, isArchived: Boolean, search: String): FormConnection
+  forms(
+    before: String
+    after: String
+    first: Int
+    last: Int
+    slug: String
+    name: String
+    description: String
+    isPublished: Boolean
+    isArchived: Boolean
+    search: String
+  ): FormConnection
 
-  """The ID of the object."""
+  """
+  The ID of the object.
+  """
   id: ID!
 }
 
@@ -294,31 +450,49 @@ type QuestionConnection {
 }
 
 type QuestionEdge {
-  """The item at the end of the edge"""
+  """
+  The item at the end of the edge
+  """
   node: Question
 
-  """A cursor for use in pagination"""
+  """
+  A cursor for use in pagination
+  """
   cursor: String!
 }
 
-"""An enumeration."""
+"""
+An enumeration.
+"""
 enum QuestionType {
-  """checkbox"""
+  """
+  checkbox
+  """
   CHECKBOX
 
-  """integer"""
+  """
+  integer
+  """
   INTEGER
 
-  """float"""
+  """
+  float
+  """
   FLOAT
 
-  """radio"""
+  """
+  radio
+  """
   RADIO
 
-  """textarea"""
+  """
+  textarea
+  """
   TEXTAREA
 
-  """text"""
+  """
+  text
+  """
   TEXT
 }
 
@@ -328,7 +502,9 @@ input RemoveFormQuestionInput {
   clientMutationId: String
 }
 
-"""Add question at the end of form."""
+"""
+Add question at the end of form.
+"""
 type RemoveFormQuestionPayload {
   form: Form
   clientMutationId: String
@@ -486,7 +662,9 @@ type SetWorkflowSpecificationStartPayload {
 }
 
 type StringAnswer implements Answer & Node {
-  """The ID of the object."""
+  """
+  The ID of the object.
+  """
   id: ID!
   question: Question!
   meta: JSONString
@@ -503,7 +681,9 @@ type TaskSpecification implements Node {
   meta: JSONString!
   isArchived: Boolean!
 
-  """The ID of the object."""
+  """
+  The ID of the object.
+  """
   id: ID!
 }
 
@@ -513,16 +693,24 @@ type TaskSpecificationConnection {
 }
 
 type TaskSpecificationEdge {
-  """The item at the end of the edge"""
+  """
+  The item at the end of the edge
+  """
   node: TaskSpecification
 
-  """A cursor for use in pagination"""
+  """
+  A cursor for use in pagination
+  """
   cursor: String!
 }
 
-"""An enumeration."""
+"""
+An enumeration.
+"""
 enum TaskSpecificationType {
-  """Task which can only be marked as completed."""
+  """
+  Task which can only be marked as completed.
+  """
   SIMPLE
 }
 
@@ -537,9 +725,17 @@ type WorkflowSpecification implements Node {
   isArchived: Boolean!
   start: TaskSpecification
 
-  """The ID of the object."""
+  """
+  The ID of the object.
+  """
   id: ID!
-  flows(before: String, after: String, first: Int, last: Int, taskSpecification: ID): FlowConnection
+  flows(
+    before: String
+    after: String
+    first: Int
+    last: Int
+    taskSpecification: ID
+  ): FlowConnection
 }
 
 type WorkflowSpecificationConnection {
@@ -548,9 +744,13 @@ type WorkflowSpecificationConnection {
 }
 
 type WorkflowSpecificationEdge {
-  """The item at the end of the edge"""
+  """
+  The item at the end of the edge
+  """
   node: WorkflowSpecification
 
-  """A cursor for use in pagination"""
+  """
+  A cursor for use in pagination
+  """
   cursor: String!
 }

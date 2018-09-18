@@ -86,7 +86,8 @@ export default Component.extend(ComponentQueryManager, {
               question: btoa(`Question:${question.slug}`),
               form: this.get("formId"),
               clientMutationId: v4()
-            }
+            },
+            search: ""
           }
         });
       }
