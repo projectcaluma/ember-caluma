@@ -83,8 +83,8 @@ export default Component.extend(ComponentQueryManager, {
           mutation: addFormQuestionMutation,
           variables: {
             input: {
-              questionId: btoa(`Question:${question.slug}`),
-              formId: this.get("formId"),
+              question: btoa(`Question:${question.slug}`),
+              form: this.get("formId"),
               clientMutationId: v4()
             }
           }

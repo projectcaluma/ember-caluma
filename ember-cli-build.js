@@ -7,7 +7,12 @@ const sass = require("sass");
 module.exports = function(defaults) {
   let app = new EmberAddon(defaults, {
     sassOptions: { implementation: sass },
-    snippetPaths: ["tests/dummy/app/snippets"]
+    snippetPaths: ["tests/dummy/app/snippets"],
+    babel: {
+      // Use babel 7 plugins with ember-cli-babel 7.x as soon as
+      // https://github.com/ef4/ember-auto-import/issues/119 is resolved
+      plugins: ["transform-decorators-legacy", "transform-object-rest-spread"]
+    }
   });
 
   app.import("node_modules/typeface-oxygen/index.css");

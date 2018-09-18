@@ -44,14 +44,14 @@ export default Component.extend(ComponentQueryManager, {
 
   reorderQuestions: task(function*(slugs) {
     try {
-      let questionIds = slugs.map(slug => btoa(`Question:${slug}`));
+      let questions = slugs.map(slug => btoa(`Question:${slug}`));
 
       yield this.get("apollo").mutate({
         mutation: reorderFormQuestionsMutation,
         variables: {
           input: {
-            formId: this.get("formId"),
-            questionIds,
+            form: this.get("formId"),
+            questions,
             clientMutationId: v4()
           }
         }
@@ -91,8 +91,8 @@ export default Component.extend(ComponentQueryManager, {
         mutation: addFormQuestionMutation,
         variables: {
           input: {
-            questionId: btoa(`Question:${slug}`),
-            formId: this.get("formId"),
+            question: btoa(`Question:${slug}`),
+            form: this.get("formId"),
             clientMutationId: v4()
           }
         }
