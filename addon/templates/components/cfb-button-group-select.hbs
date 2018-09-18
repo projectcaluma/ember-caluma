@@ -1,0 +1,18 @@
+{{component labelComponent}}
+
+<div class="uk-form-controls">
+  <div class="uk-button-group uk-width-1-1 uk-flex uk-child-width-expand">
+    {{#each options as |option|}}
+      <button
+        data-test-type={{get option optionTargetPath}}
+        class="uk-button uk-button-small uk-button-{{if (eq value (get option optionTargetPath)) 'primary' 'default'}}"
+        {{action update (get option optionTargetPath)}}
+      >
+        {{get option optionLabelPath}}
+      </button>
+    {{/each}}
+  </div>
+</div>
+
+{{component hintComponent}}
+{{component errorComponent}}

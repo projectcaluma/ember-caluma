@@ -23,7 +23,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     assert.dom("[name=label]").hasValue("Test Label");
     assert.dom("[name=slug]").hasValue("test-slug");
     assert.dom("[name=slug]").isDisabled();
-    assert.dom("[name=type]").hasValue("TEXT");
+    assert.dom("button[data-test-type=TEXT]").hasClass("uk-button-primary");
   });
 
   test("it validates", async function(assert) {
@@ -65,7 +65,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     );
 
     await fillIn("[name=label]", "Test Label 1");
-    await fillIn("[name=type]", "INTEGER");
+    await click("button[data-test-type=INTEGER]");
 
     await click("button[type=submit]");
 
@@ -88,6 +88,8 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     );
 
     this.server.post("/graphql", () => graphqlError("saveQuestion"), 200);
+    // We need to add a change to enable the submit button
+    await fillIn("input[name=label]", "Test");
     await click("button[type=submit]");
 
     assert.verifySteps([]);

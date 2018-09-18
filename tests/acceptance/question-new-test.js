@@ -25,7 +25,7 @@ module("Acceptance | question new", function(hooks) {
 
     await fillIn("[data-test-demo-content] [name=label]", "Test Question 1?");
     await fillIn("[data-test-demo-content] [name=slug]", "testy-test-test");
-    await fillIn("[data-test-demo-content] [name=type]", "INTEGER");
+    await click("[data-test-demo-content] button[data-test-type=INTEGER]");
 
     await click("[data-test-demo-content] button[type=submit]");
 
