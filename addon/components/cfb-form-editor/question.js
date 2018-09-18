@@ -9,6 +9,7 @@ import validations, {
 import v4 from "uuid/v4";
 import { optional } from "ember-composable-helpers/helpers/optional";
 import { computed } from "@ember/object";
+import slugify from "ember-caluma-form-builder/utils/slugify";
 
 import formEditorQuestionQuery from "ember-caluma-form-builder/gql/queries/form-editor-question";
 import saveQuestionMutation from "ember-caluma-form-builder/gql/mutations/save-question";
@@ -106,5 +107,15 @@ export default Component.extend(ComponentQueryManager, {
         )
       );
     }
-  }).drop()
+  }).drop(),
+
+  actions: {
+    inputLabel(value, changeset) {
+      changeset.set("label", value);
+
+      if (!this.get("slug")) {
+        changeset.set("slug", slugify(value));
+      }
+    }
+  }
 });
