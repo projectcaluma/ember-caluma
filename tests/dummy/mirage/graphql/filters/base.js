@@ -1,10 +1,16 @@
 export default class {
+  constructor(type, collection, db) {
+    this.type = type;
+    this.collection = collection;
+    this.db = db;
+  }
+
   _getFilterFns(filters) {
     return Object.entries(filters).map(([name, value]) => {
       const fn = this[name];
 
       return typeof fn === "function"
-        ? records => fn(records, value)
+        ? records => fn.call(this, records, value)
         : records => records;
     });
   }

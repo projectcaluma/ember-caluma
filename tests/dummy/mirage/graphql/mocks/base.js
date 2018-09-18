@@ -8,8 +8,8 @@ export default class {
     this.collection = collection;
     this.db = db;
 
-    this.filter = new Filter(type);
-    this.serializer = new Serializer(type);
+    this.filter = new Filter(...arguments);
+    this.serializer = new Serializer(...arguments);
   }
 
   getHandlers() {

@@ -5,6 +5,10 @@ caluma:
       archive: "Archivieren"
       back: "Zurück"
       loading: "Laden"
+      cancel: "Abbrechen"
+      search: "Suchen"
+
+      empty-search: "Keine Resultate gefunden. Passen Sie Ihre Suche an um bessere Resultate zu erhalten."
 
       not-found:
         title: "Du siehst verloren aus"
@@ -30,6 +34,13 @@ caluma:
 
       minor-info-title: "Wichtig!"
       minor-info: "Das Anpassen einer Frage darf niemals die Bedeutung der Frage verändern, um die Daten konsistent zu halten."
+
+      remove: "Frage entfernen"
+      add: "Neue oder existierende Frage hinzufügen"
+      search: "Nach einer Frage (Label oder Slug) suchen,"
+      create: "oder eine neue Frage erstellen"
+
+      empty: "Sie haben noch keine Fragen hinzugefügt. Drücken Sie den obenstehenden Knopf um dies zu tun!"
 
       types:
         INTEGER: "Ganze Zahl"
@@ -58,6 +69,14 @@ caluma:
         reorder:
           success: "Ihre Fragen wurde erfolgreich sortiert!"
           error: "Hoppla, beim Sortieren der Fragen ist etwas schief gelaufen..."
+
+        add-question:
+          success: "Die Frage wurde erfolgreich zu Ihrem Formular hinzugefügt!"
+          error: "Hoppla, beim Hinzufügen der Frage ist etwas schief gelaufen..."
+
+        remove-question:
+          success: "Die Frage wurde erfolgreich von Ihrem Formular entfernt!"
+          error: "Hoppla, beim Entfernen der Frage ist etwas schief gelaufen..."
 
       question:
         save:

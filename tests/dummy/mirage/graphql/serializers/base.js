@@ -5,23 +5,29 @@ export default class {
   serialize(deserialized) {
     const { slug = null, ...obj } = deserialized || {};
 
-    return slug
-      ? {
-          ...obj,
-          slug,
-          id: slugToId(slug, this.type)
-        }
-      : obj;
+    return (
+      deserialized &&
+      (slug
+        ? {
+            ...obj,
+            slug,
+            id: slugToId(slug, this.type)
+          }
+        : obj)
+    );
   }
 
   deserialize(serialized) {
     const { id = null, ...obj } = serialized || {};
 
-    return id
-      ? {
-          slug: idToSlug(id),
-          ...obj
-        }
-      : obj;
+    return (
+      serialized &&
+      (id
+        ? {
+            slug: idToSlug(id),
+            ...obj
+          }
+        : obj)
+    );
   }
 }

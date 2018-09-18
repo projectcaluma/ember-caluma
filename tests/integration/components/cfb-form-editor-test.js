@@ -1,9 +1,8 @@
 import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
-import { render, click, find, triggerEvent } from "@ember/test-helpers";
+import { render, click } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 import setupMirage from "ember-cli-mirage/test-support/setup-mirage";
-import graphqlError from "dummy/tests/helpers/graphql-error";
 
 module("Integration | Component | cfb-form-editor", function(hooks) {
   setupRenderingTest(hooks);
@@ -51,67 +50,6 @@ module("Integration | Component | cfb-form-editor", function(hooks) {
     await click("[data-test-back]");
 
     assert.verifySteps(["back"]);
-  });
-
-  test("it can reorder questions", async function(assert) {
-    assert.expect(2);
-
-    const question = this.server.create("question", {
-      slug: "test",
-      formIds: [this.form.id]
-    });
-
-    this.form.questionIds = [...this.form.questionIds, question.id];
-
-    await render(hbs`{{cfb-form-editor slug='test-slug'}}`);
-
-    assert.dom("[data-test-question-list-item=test]:last-child").exists();
-
-    let list = await find("[data-test-question-list]");
-    let item = await find("[data-test-question-list-item=test]");
-
-    // create a new array of children in which the chosen item is first instead of last
-    let children = [
-      item,
-      ...[...list.children].filter(
-        c => c.dataset.testQuestionListItem !== "test"
-      )
-    ];
-
-    await triggerEvent(list, "moved", {
-      detail: [
-        {
-          $el: {
-            children
-          }
-        }
-      ]
-    });
-
-    assert.dom("[data-test-question-list-item=test]:first-child").exists();
-  });
-
-  test("it can handle errors", async function(assert) {
-    assert.expect(1);
-
-    await render(hbs`{{cfb-form-editor slug='test-slug'}}`);
-
-    this.server.post(
-      "/graphql",
-      () => graphqlError("reorderFormQuestions"),
-      200
-    );
-    await triggerEvent("[data-test-question-list]", "moved", {
-      detail: [
-        {
-          $el: {
-            children: []
-          }
-        }
-      ]
-    });
-
-    assert.ok(true);
   });
 
   test("it can handle 404 errors", async function(assert) {

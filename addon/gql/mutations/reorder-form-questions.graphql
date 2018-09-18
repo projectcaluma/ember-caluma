@@ -1,11 +1,14 @@
 #import "ember-caluma-form-builder/gql/fragments/form-info"
 #import "ember-caluma-form-builder/gql/fragments/question-info"
 
-mutation ReorderFormQuestions($input: ReorderFormQuestionsInput!) {
+mutation ReorderFormQuestions(
+  $input: ReorderFormQuestionsInput!
+  $search: String
+) {
   reorderFormQuestions(input: $input) {
     form {
       ...FormInfo
-      questions {
+      questions(search: $search, isArchived: false) {
         edges {
           node {
             ...QuestionInfo

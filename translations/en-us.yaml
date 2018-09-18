@@ -8,6 +8,8 @@ caluma:
       cancel: "Cancel"
       search: "Search"
 
+      empty-search: "No results found. Adjust your search to get better results."
+
       not-found:
         title: "Looks like you're lost"
         subtitle: "The page you are looking for does not exist!"
@@ -33,11 +35,12 @@ caluma:
       minor-info-title: "Important!"
       minor-info: "Updating a question must never change the meaning to preserve data consistency."
 
+      remove: "Remove a question"
       add: "Add a new or existing question"
       search: "Search for a question label or slug,"
       create: "or create a new question"
 
-      empty: "You have not yet added a question. Press the button below to do so!"
+      empty: "You have not yet added a question. Press the plus button above to do so!"
 
       types:
         INTEGER: "Integer"
@@ -70,6 +73,10 @@ caluma:
         add-question:
           success: "The question was successfully added to your form!"
           error: "Ooops, something went wrong while adding the question to your form..."
+
+        remove-question:
+          success: "The question was successfully removed from your form!"
+          error: "Ooops, something went wrong while removing the question from your form..."
 
       question:
         save:

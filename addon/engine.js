@@ -11,7 +11,7 @@ const Eng = Engine.extend({
   Resolver,
 
   dependencies: {
-    services: ["apollo", "notification"]
+    services: ["apollo", "notification", "router"]
   }
 });
 

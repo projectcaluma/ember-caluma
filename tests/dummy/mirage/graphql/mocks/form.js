@@ -67,7 +67,7 @@ export default class extends BaseMock {
   handleAddFormQuestion(
     root,
     {
-      input: { form: formId, questions: questionId, clientMutationId }
+      input: { form: formId, question: questionId, clientMutationId }
     }
   ) {
     const form = this.filter.find(
@@ -80,12 +80,69 @@ export default class extends BaseMock {
       questionSerializer.deserialize({ id: questionId })
     );
 
+    this.db.questions.update(question.id, {
+      formIds: [...(question.formIds || []), form.id]
+    });
+
     const res = this.collection.update(form.id, {
       questionIds: [...(form.questionIds || []), question.id]
     });
 
+    const questions = res.questionIds.map(id => this.db.questions.find(id));
+
     return {
-      form: this.serializer.serialize(res),
+      form: {
+        ...this.serializer.serialize(res),
+        questions: {
+          edges: () =>
+            new MockList(questions.length, () => ({
+              node: (r, v, _, meta) =>
+                questionSerializer.serialize(questions[meta.path.prev.key])
+            }))
+        }
+      },
+      clientMutationId
+    };
+  }
+
+  @register("RemoveFormQuestionPayload")
+  handleRemoveFormQuestion(
+    root,
+    {
+      input: { form: formId, question: questionId, clientMutationId }
+    }
+  ) {
+    const form = this.filter.find(
+      this.collection,
+      this.serializer.deserialize({ id: formId })
+    );
+
+    const question = questionFilter.find(
+      this.db.questions,
+      questionSerializer.deserialize({ id: questionId })
+    );
+
+    this.db.questions.update(question.id, {
+      formIds: (question.formIds || []).filter(id => id !== form.id)
+    });
+
+    const res = this.collection.update(form.id, {
+      questionIds: (form.questionIds || []).filter(id => id !== question.id)
+    });
+
+    const questions = res.questionIds.map(id => this.db.questions.find(id));
+
+    return {
+      form: {
+        ...this.serializer.serialize(res),
+        questions: {
+          edges: () =>
+            new MockList(questions.length, () => ({
+              node: (r, v, _, meta) =>
+                questionSerializer.serialize(questions[meta.path.prev.key])
+            }))
+        }
+      },
       clientMutationId
     };
   }

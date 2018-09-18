@@ -23,14 +23,16 @@ module("Acceptance | question add", function(hooks) {
     await fillIn("[data-test-demo-content] input[type=search]", "test");
     await click(`
       [data-test-demo-content]
-      [data-test-add-question-list-item=test-question]
-      [data-test-edit-question]
+      [data-test-question-list-item=test-question]
+      [data-test-add-item]
     `);
 
     assert.equal(
       currentURL(),
       "/demo/form-builder/test-form/questions/test-question"
     );
+
+    await click("[data-test-demo-content] [data-test-cancel]");
 
     assert
       .dom(
