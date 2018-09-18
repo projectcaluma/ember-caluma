@@ -102,4 +102,14 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
 
     assert.dom("p").hasText("No question with slug 'test-slug' found");
   });
+
+  test("it suggests a slug", async function(assert) {
+    assert.expect(1);
+
+    await render(hbs`{{cfb-form-editor/question slug=null}}`);
+
+    await fillIn("input[name=label]", "Test Label 123");
+
+    assert.dom("input[name=slug]").hasValue("test-label-123");
+  });
 });
