@@ -84,7 +84,7 @@
     "graphql-cli": "2.16.7",
     "loader.js": "4.7.0",
     "node-fetch": "2.2.0",
-    "prettier": "1.14.2",
+    "prettier": "1.14.3",
     "qunit-dom": "0.8.0",
     "typeface-oxygen": "0.0.54",
     "typeface-oxygen-mono": "0.0.54"
