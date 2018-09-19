@@ -5161,9 +5161,9 @@ ember-inflector@^2.0.0:
   dependencies:
     ember-cli-babel "^6.0.0"
 
-ember-intl@3.2.5:
-  version "3.2.5"
-  resolved "https://registry.yarnpkg.com/ember-intl/-/ember-intl-3.2.5.tgz#e10ed2e6c01346b5c350faf850cb7fc1c8857a5d"
+ember-intl@3.2.6:
+  version "3.2.6"
+  resolved "https://registry.yarnpkg.com/ember-intl/-/ember-intl-3.2.6.tgz#f07cfd2e78993c21a846bb08c87452be47148f22"
   dependencies:
     broccoli-caching-writer "^3.0.3"
     broccoli-cldr-data "^1.1.2"
