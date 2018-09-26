@@ -29,8 +29,9 @@
         optionLabelPath='label'
         optionTargetPath='value'
         label=(t 'caluma.form-builder.question.type')
-        hint=(if slug (t 'caluma.form-builder.question.type-disabled'))
+        hint=(t 'caluma.form-builder.question.type-disabled')
         name='__typename'
+        required=true
         disabled=slug
       }}
 
@@ -38,6 +39,7 @@
         type='text'
         label=(t 'caluma.form-builder.question.label')
         name='label'
+        required=true
         on-update=(action 'updateLabel')
       }}
 
@@ -47,6 +49,7 @@
             type='text'
             label=(t 'caluma.form-builder.question.slug')
             name='slug'
+            required=true
             disabled=slug
             on-update=(action 'updateSlug')
           }}
@@ -56,6 +59,7 @@
           {{f.input
             name='isRequired'
             label=(t 'caluma.form-builder.question.isRequired')
+            required=true
             renderComponent=(component 'cfb-jexl-boolean-toggle-switch' size='small')
             class='uk-flex uk-flex-between uk-flex-column'
           }}

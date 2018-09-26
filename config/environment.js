@@ -6,7 +6,10 @@ module.exports = function(environment) {
     environment,
 
     "ember-validated-form": {
-      theme: "uikit"
+      theme: "uikit",
+      defaults: {
+        label: "cfb-label"
+      }
     }
   };
 

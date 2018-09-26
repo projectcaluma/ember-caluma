@@ -13,6 +13,7 @@
         type='text'
         label=(t 'caluma.form-builder.form.name')
         name='name'
+        required=true
         on-update=(action 'updateName')
       }}
 
@@ -20,6 +21,7 @@
         type='text'
         label=(t 'caluma.form-builder.form.slug')
         name='slug'
+        required=true
         disabled=slug
         on-update=(action 'updateSlug')
       }}

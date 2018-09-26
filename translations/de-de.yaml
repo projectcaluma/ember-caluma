@@ -6,6 +6,7 @@ caluma:
       loading: "Laden"
       cancel: "Abbrechen"
       search: "Suchen"
+      optional: "Optional"
 
       empty-search: "Keine Resultate gefunden. Passen Sie Ihre Suche an um bessere Resultate zu erhalten."
 
