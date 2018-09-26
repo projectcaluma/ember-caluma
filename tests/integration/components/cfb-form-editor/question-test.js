@@ -10,7 +10,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
   setupMirage(hooks);
 
   test("it renders", async function(assert) {
-    assert.expect(4);
+    assert.expect(3);
 
     this.server.create("question", {
       label: "Test Label",
@@ -23,7 +23,6 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     assert.dom("[name=label]").hasValue("Test Label");
     assert.dom("[name=slug]").hasValue("test-slug");
     assert.dom("[name=slug]").isDisabled();
-    assert.dom("button[data-test-type=TEXT]").hasClass("uk-button-primary");
   });
 
   test("it validates", async function(assert) {
@@ -45,7 +44,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
   });
 
   test("it can edit a question", async function(assert) {
-    assert.expect(5);
+    assert.expect(4);
 
     this.server.create("question", {
       label: "Test Label",
@@ -56,7 +55,6 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     this.set("afterSubmit", question => {
       assert.ok(question);
       assert.equal(question.label, "Test Label 1");
-      assert.equal(question.type, "INTEGER");
       assert.step("after-submit");
     });
 
@@ -65,7 +63,6 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     );
 
     await fillIn("[name=label]", "Test Label 1");
-    await click("button[data-test-type=INTEGER]");
 
     await click("button[type=submit]");
 

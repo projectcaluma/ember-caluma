@@ -1,0 +1,10 @@
+#import "ember-caluma-form-builder/gql/fragments/question-info"
+
+mutation SaveRadioQuestion($input: SaveRadioQuestionInput!) {
+  saveRadioQuestion(input: $input) {
+    question {
+      ...QuestionInfo
+    }
+    clientMutationId
+  }
+}

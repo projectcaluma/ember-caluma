@@ -1,0 +1,10 @@
+#import "ember-caluma-form-builder/gql/fragments/question-info"
+
+mutation SaveCheckboxQuestion($input: SaveCheckboxQuestionInput!) {
+  saveCheckboxQuestion(input: $input) {
+    question {
+      ...QuestionInfo
+    }
+    clientMutationId
+  }
+}

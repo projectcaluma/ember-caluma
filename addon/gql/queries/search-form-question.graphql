@@ -1,13 +1,15 @@
 #import "ember-caluma-form-builder/gql/fragments/question-info"
 
-query SearchFormQuestion($id: ID!, $search: String) {
-  node(id: $id) {
-    ... on Form {
-      id
-      questions(search: $search, isArchived: false) {
-        edges {
-          node {
-            ...QuestionInfo
+query SearchFormQuestion($slug: String!, $search: String) {
+  allForms(slug: $slug) {
+    edges {
+      node {
+        slug
+        questions(search: $search, isArchived: false) {
+          edges {
+            node {
+              ...QuestionInfo
+            }
           }
         }
       }

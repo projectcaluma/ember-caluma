@@ -1,7 +1,7 @@
 #import "ember-caluma-form-builder/gql/fragments/question-info"
 
-mutation SaveQuestion($input: SaveQuestionInput!) {
-  saveQuestion(input: $input) {
+mutation SaveTextareaQuestion($input: SaveTextareaQuestionInput!) {
+  saveTextareaQuestion(input: $input) {
     question {
       ...QuestionInfo
     }

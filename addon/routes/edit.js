@@ -9,22 +9,25 @@ import { reads } from "@ember/object/computed";
 export default Route.extend(NavigationRouteMixin, RouteQueryManager, {
   intl: service(),
 
-  title: reads("fetchName.lastSuccessful.value.node.name"),
+  title: reads("fetchName.lastSuccessful.value.firstObject.node.name"),
   fetchName: task(function*(slug) {
-    return yield this.get("apollo").watchQuery({
-      query: gql`
-        query FormName($id: ID!) {
-          node(id: $id) {
-            ... on Form {
-              name
+    return yield this.get("apollo").watchQuery(
+      {
+        query: gql`
+          query FormName($slug: String!) {
+            allForms(slug: $slug) {
+              edges {
+                node {
+                  name
+                }
+              }
             }
           }
-        }
-      `,
-      variables: {
-        id: btoa(`Form:${slug}`)
-      }
-    });
+        `,
+        variables: { slug }
+      },
+      "allForms.edges"
+    );
   }),
 
   beforeModel() {

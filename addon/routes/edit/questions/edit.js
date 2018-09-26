@@ -9,22 +9,25 @@ import { reads } from "@ember/object/computed";
 export default Route.extend(NavigationRouteMixin, RouteQueryManager, {
   intl: service(),
 
-  title: reads("fetchLabel.lastSuccessful.value.node.label"),
+  title: reads("fetchLabel.lastSuccessful.value.firstObject.node.label"),
   fetchLabel: task(function*(slug) {
-    return yield this.get("apollo").watchQuery({
-      query: gql`
-        query QuestionLabel($id: ID!) {
-          node(id: $id) {
-            ... on Question {
-              label
+    return yield this.get("apollo").watchQuery(
+      {
+        query: gql`
+          query QuestionLabel($slug: String!) {
+            allQuestions(slug: $slug) {
+              edges {
+                node {
+                  label
+                }
+              }
             }
           }
-        }
-      `,
-      variables: {
-        id: btoa(`Question:${slug}`)
-      }
-    });
+        `,
+        variables: { slug }
+      },
+      "allQuestions.edges"
+    );
   }),
 
   beforeModel() {

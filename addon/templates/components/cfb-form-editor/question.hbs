@@ -3,7 +3,7 @@
     {{uk-spinner ratio=2}}
   </div>
 {{else}}
-  {{#with data.lastSuccessful.value.node as |model|}}
+  {{#with data.lastSuccessful.value.firstObject.node as |model|}}
     {{#validated-form
       model=(changeset model validations)
       on-submit=(perform submit)
@@ -29,7 +29,9 @@
         optionLabelPath='label'
         optionTargetPath='value'
         label=(t 'caluma.form-builder.question.type')
-        name='type'
+        hint=(if slug (t 'caluma.form-builder.question.type-disabled'))
+        name='__typename'
+        disabled=slug
       }}
 
       {{f.input
@@ -45,7 +47,7 @@
             type='text'
             label=(t 'caluma.form-builder.question.slug')
             name='slug'
-            disabled=f.model.id
+            disabled=slug
           }}
         </div>
 

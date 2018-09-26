@@ -1,8 +1,6 @@
 fragment QuestionInfo on Question {
-  id
   slug
   label
-  type
   isRequired
   isHidden
 }

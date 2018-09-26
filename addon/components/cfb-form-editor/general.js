@@ -11,6 +11,7 @@ import { optional } from "ember-composable-helpers/helpers/optional";
 import formEditorGeneralQuery from "ember-caluma-form-builder/gql/queries/form-editor-general";
 import saveFormMutation from "ember-caluma-form-builder/gql/mutations/save-form";
 import archiveFormMutation from "ember-caluma-form-builder/gql/mutations/archive-form";
+import { A } from "@ember/array";
 
 export default Component.extend(ComponentQueryManager, {
   layout,
@@ -27,20 +28,25 @@ export default Component.extend(ComponentQueryManager, {
 
   data: task(function*() {
     if (!this.get("slug")) {
-      return {
-        node: {
-          name: "",
-          slug: "",
-          description: ""
+      return A([
+        {
+          node: {
+            name: "",
+            slug: "",
+            description: ""
+          }
         }
-      };
+      ]);
     }
 
-    return yield this.get("apollo").watchQuery({
-      query: formEditorGeneralQuery,
-      variables: { id: btoa(`Form:${this.get("slug")}`) },
-      fetchPolicy: "cache-and-network"
-    });
+    return yield this.get("apollo").watchQuery(
+      {
+        query: formEditorGeneralQuery,
+        variables: { slug: this.get("slug") },
+        fetchPolicy: "cache-and-network"
+      },
+      "allForms.edges"
+    );
   }).restartable(),
 
   submit: task(function*(changeset) {
@@ -87,7 +93,7 @@ export default Component.extend(ComponentQueryManager, {
           mutation: archiveFormMutation,
           variables: {
             input: {
-              id: btoa(`Form:${changeset.get("slug")}`),
+              id: changeset.get("slug"),
               clientMutationId: v4()
             }
           }

@@ -1,0 +1,10 @@
+#import "ember-caluma-form-builder/gql/fragments/question-info"
+
+mutation SaveFloatQuestion($input: SaveFloatQuestionInput!) {
+  saveFloatQuestion(input: $input) {
+    question {
+      ...QuestionInfo
+    }
+    clientMutationId
+  }
+}

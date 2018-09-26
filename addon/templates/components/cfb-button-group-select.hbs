@@ -5,7 +5,7 @@
     {{#each options as |option|}}
       <button
         data-test-type={{get option optionTargetPath}}
-        class="uk-button uk-button-small uk-button-{{if (eq value (get option optionTargetPath)) 'primary' 'default'}}"
+        class="uk-button uk-button-small uk-button-{{if (eq value (get option optionTargetPath)) 'primary' 'default'}} {{if disabled 'uk-disabled'}}"
         {{action update (get option optionTargetPath)}}
       >
         {{get option optionLabelPath}}

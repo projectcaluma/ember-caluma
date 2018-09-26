@@ -14,8 +14,8 @@ module("Integration | Component | cfb-form-editor/question-list/item", function(
     this.set("question", {
       slug: "test-question",
       label: "Test Question?",
-      type: "TEXT",
-      isRequired: "true"
+      isRequired: "true",
+      __typename: "TextQuestion"
     });
 
     this.set("mode", "reorder");

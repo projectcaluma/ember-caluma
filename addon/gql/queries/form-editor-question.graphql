@@ -1,7 +1,11 @@
 #import "ember-caluma-form-builder/gql/fragments/question-info"
 
-query FormEditorQuestion($id: ID!) {
-  node(id: $id) {
-    ...QuestionInfo
+query FormEditorQuestion($slug: String!) {
+  allQuestions(slug: $slug) {
+    edges {
+      node {
+        ...QuestionInfo
+      }
+    }
   }
 }
