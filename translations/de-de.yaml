@@ -84,3 +84,10 @@ caluma:
         save:
           success: "Ihre Frage wurde erfolgreich gespeichert!"
           error: "Hoppla, beim Speichern der Frage ist etwas schief gelaufen..."
+
+    validations:
+      form:
+        slug: "Ein Formular mit diesem Slug existiert bereits"
+
+      question:
+        slug: "Eine Frage mit diesem Slug existiert bereits"

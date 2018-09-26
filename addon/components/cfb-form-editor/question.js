@@ -1,14 +1,16 @@
 import Component from "@ember/component";
 import { inject as service } from "@ember/service";
 import layout from "../../templates/components/cfb-form-editor/question";
-import { task } from "ember-concurrency";
+import { task, timeout } from "ember-concurrency";
 import { ComponentQueryManager } from "ember-apollo-client";
 import validations from "ember-caluma-form-builder/validations/question";
 import v4 from "uuid/v4";
 import { optional } from "ember-composable-helpers/helpers/optional";
 import { computed } from "@ember/object";
 import slugify from "ember-caluma-form-builder/utils/slugify";
+import { A } from "@ember/array";
 
+import checkQuestionSlugQuery from "ember-caluma-form-builder/gql/queries/check-question-slug";
 import formEditorQuestionQuery from "ember-caluma-form-builder/gql/queries/form-editor-question";
 import addFormQuestionMutation from "ember-caluma-form-builder/gql/mutations/add-form-question";
 
@@ -18,7 +20,6 @@ import saveIntegerQuestionMutation from "ember-caluma-form-builder/gql/mutations
 import saveFloatQuestionMutation from "ember-caluma-form-builder/gql/mutations/save-float-question";
 import saveCheckboxQuestionMutation from "ember-caluma-form-builder/gql/mutations/save-checkbox-question";
 import saveRadioQuestionMutation from "ember-caluma-form-builder/gql/mutations/save-radio-question";
-import { A } from "@ember/array";
 
 export const TYPES = {
   TextQuestion: saveTextQuestionMutation,
@@ -123,13 +124,40 @@ export default Component.extend(ComponentQueryManager, {
     }
   }).drop(),
 
+  validateSlug: task(function*(slug, changeset) {
+    yield timeout(500);
+
+    const res = yield this.get("apollo").query(
+      {
+        query: checkQuestionSlugQuery,
+        variables: { slug }
+      },
+      "allQuestions.edges"
+    );
+
+    if (res && res.length) {
+      changeset.pushErrors(
+        "slug",
+        this.get("intl").t("caluma.form-builder.validations.question.slug")
+      );
+    }
+  }).restartable(),
+
   actions: {
-    inputLabel(value, changeset) {
+    updateLabel(value, changeset) {
       changeset.set("label", value);
 
       if (!this.get("slug")) {
-        changeset.set("slug", slugify(value));
+        const slug = slugify(value);
+        changeset.set("slug", slug);
+        this.get("validateSlug").perform(slug, changeset);
       }
+    },
+
+    updateSlug(value, changeset) {
+      changeset.set("slug", value);
+
+      this.get("validateSlug").perform(value, changeset);
     }
   }
 });

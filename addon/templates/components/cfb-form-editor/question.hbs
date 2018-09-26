@@ -38,7 +38,7 @@
         type='text'
         label=(t 'caluma.form-builder.question.label')
         name='label'
-        on-update=(action 'inputLabel')
+        on-update=(action 'updateLabel')
       }}
 
       <div uk-grid class="uk-grid-small uk-margin">
@@ -48,6 +48,7 @@
             label=(t 'caluma.form-builder.question.slug')
             name='slug'
             disabled=slug
+            on-update=(action 'updateSlug')
           }}
         </div>
 

@@ -1,6 +1,6 @@
 import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
-import { render, fillIn, blur, click } from "@ember/test-helpers";
+import { render, fillIn, blur, click, settled } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 import setupMirage from "ember-cli-mirage/test-support/setup-mirage";
 import graphqlError from "dummy/tests/helpers/graphql-error";
@@ -110,5 +110,37 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     await fillIn("input[name=label]", "Test Label 123");
 
     assert.dom("input[name=slug]").hasValue("test-label-123");
+  });
+
+  test("it validates the slug", async function(assert) {
+    assert.expect(3);
+
+    this.server.create("question", { slug: "test-slug" });
+    this.server.create("question", { slug: "other-test-slug" });
+
+    await render(hbs`{{cfb-form-editor/question slug=null}}`);
+
+    await fillIn("input[name=slug]", "test-slug");
+    await blur("input[name=slug]");
+    await settled();
+
+    assert
+      .dom("input[name=slug] + span")
+      .hasText("A question with this slug already exists");
+
+    await fillIn("input[name=slug]", "valid-slug");
+    await blur("input[name=slug]");
+    await settled();
+
+    assert.dom("input[name=slug] + span").doesNotExist();
+
+    await fillIn("input[name=label]", "Other Test Slug");
+    await blur("input[name=label]");
+    await blur("input[name=slug]");
+    await settled();
+
+    assert
+      .dom("input[name=slug] + span")
+      .hasText("A question with this slug already exists");
   });
 });

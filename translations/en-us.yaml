@@ -84,3 +84,10 @@ caluma:
         save:
           success: "Your question was successfully saved!"
           error: "Ooops, something went wrong while saving the question..."
+
+    validations:
+      form:
+        slug: "A form with this slug already exists"
+
+      question:
+        slug: "A question with this slug already exists"
