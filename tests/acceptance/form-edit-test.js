@@ -63,16 +63,4 @@ module("Acceptance | form edit", function(hooks) {
       .dom("[data-test-demo-content] [data-test-form-list-item=test-form]")
       .doesNotExist();
   });
-
-  test("can go back to list", async function(assert) {
-    assert.expect(1);
-
-    this.server.create("form", { slug: "test-form" });
-
-    await visit("/demo/form-builder/test-form");
-
-    await click("[data-test-back]");
-
-    assert.equal(currentURL(), "/demo/form-builder");
-  });
 });

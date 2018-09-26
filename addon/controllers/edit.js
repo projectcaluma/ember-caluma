@@ -5,9 +5,6 @@ export default Controller.extend({
   router: service(),
 
   actions: {
-    back() {
-      this.transitionToRoute("index");
-    },
     createQuestion() {
       this.transitionToRoute("edit.questions.new");
     },

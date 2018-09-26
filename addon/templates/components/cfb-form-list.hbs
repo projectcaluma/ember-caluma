@@ -1,11 +1,6 @@
-<h1 class="uk-heading-divider uk-flex uk-flex-between">
-  <span>
-    {{t 'caluma.form-builder.form.all'}}
-  </span>
-  <span>
-    {{uk-button data-test-new-form label=(t 'caluma.form-builder.form.new') on-click=(action (optional on-new-form))}}
-  </span>
-</h1>
+<div class="uk-text-right">
+  <button data-test-new-form class="uk-button uk-button-default" {{action (optional on-new-form)}}>{{t 'caluma.form-builder.form.new'}}</button>
+</div>
 
 {{#if data.isRunning}}
   <div class="uk-height-small uk-flex uk-flex-center uk-flex-middle">

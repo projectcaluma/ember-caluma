@@ -1,7 +1,0 @@
-query FormEditor($id: ID!) {
-  node(id: $id) {
-    ... on Form {
-      name
-    }
-  }
-}

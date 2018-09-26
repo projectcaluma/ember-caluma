@@ -3,7 +3,6 @@ caluma:
     global:
       save: "Save"
       archive: "Archive"
-      back: "Back"
       loading: "Loading"
       cancel: "Cancel"
       search: "Search"
@@ -31,6 +30,8 @@ caluma:
       slug: "Slug"
       type: "Type"
       isRequired: "Required"
+
+      new: "New question"
 
       minor-info-title: "Important!"
       minor-info: "Updating a question must never change the meaning to preserve data consistency."

@@ -1,33 +1,4 @@
-{{#if (and slug data.lastSuccessful (not data.lastSuccessful.value.node))}}
-  <div uk-grid class="uk-margin-top">
-    <div class="uk-width-1-1 uk-width-1-4@m uk-flex uk-flex-center uk-flex-middle">
-      {{uk-icon 'bolt' ratio=10}}
-    </div>
-    <div class="uk-width-1-1 uk-width-3-4@m">
-      <h1 class="uk-heading-hero uk-text-primary">404</h1>
-      <p class="uk-text-large uk-text-uppercase">{{t 'caluma.form-builder.global.not-found.title'}}</p>
-      <p class="uk-text-muted">{{t 'caluma.form-builder.global.not-found.subtitle'}}</p>
-      {{link-to (t 'caluma.form-builder.global.not-found.home') 'index' }}
-    </div>
-  </div>
-{{else}}
-  <h1 class="uk-heading-divider uk-flex uk-flex-between">
-    {{#if data.isRunning}}
-      {{cfb-loading-dots}}
-    {{else}}
-      <span>
-        {{#if data.lastSuccessful.value.node}}
-          {{data.lastSuccessful.value.node.name}}
-        {{else}}
-          {{t 'caluma.form-builder.form.new'}}
-        {{/if}}
-      </span>
-      <span>
-        {{uk-button data-test-back label=(t 'caluma.form-builder.global.back') on-click=(action (optional on-back))}}
-      </span>
-    {{/if}}
-  </h1>
-
+{{#if slug}}
   <div uk-grid class="uk-grid-divider uk-child-width-1-1 uk-child-width-1-2@m">
     <div>
       {{yield}}
@@ -49,4 +20,6 @@
       {{/if}}
     </div>
   </div>
+{{else}}
+  {{yield}}
 {{/if}}

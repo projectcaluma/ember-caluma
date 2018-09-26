@@ -1,6 +1,6 @@
 import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
-import { render, click } from "@ember/test-helpers";
+import { render } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 import setupMirage from "ember-cli-mirage/test-support/setup-mirage";
 
@@ -17,11 +17,10 @@ module("Integration | Component | cfb-form-editor", function(hooks) {
   });
 
   test("it renders blockless", async function(assert) {
-    assert.expect(2);
+    assert.expect(1);
 
     await render(hbs`{{cfb-form-editor slug='test-slug'}}`);
 
-    assert.dom("h1 > span").hasText("Test Name");
     assert.dom("[data-test-question-list-item]").exists({ count: 5 });
   });
 
@@ -36,29 +35,5 @@ module("Integration | Component | cfb-form-editor", function(hooks) {
 
     assert.dom("[uk-grid] > div:first-of-type").hasText("Content!");
     assert.dom("[data-test-question-list]").exists();
-  });
-
-  test("it can trigger a back action", async function(assert) {
-    assert.expect(2);
-
-    this.set("back", () => assert.step("back"));
-
-    await render(
-      hbs`{{cfb-form-editor slug='test-slug' on-back=(action back)}}`
-    );
-
-    await click("[data-test-back]");
-
-    assert.verifySteps(["back"]);
-  });
-
-  test("it can handle 404 errors", async function(assert) {
-    assert.expect(1);
-
-    this.server.post("/graphql", () => ({ data: { node: null } }));
-
-    await render(hbs`{{cfb-form-editor slug='test-slug'}}`);
-
-    assert.dom("h1").hasText("404");
   });
 });

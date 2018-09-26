@@ -3,7 +3,6 @@ caluma:
     global:
       save: "Speichern"
       archive: "Archivieren"
-      back: "Zurück"
       loading: "Laden"
       cancel: "Abbrechen"
       search: "Suchen"
@@ -31,6 +30,8 @@ caluma:
       slug: "Slug"
       type: "Typ"
       isRequired: "Erforderlich"
+
+      new: "Neue Frage"
 
       minor-info-title: "Wichtig!"
       minor-info: "Das Anpassen einer Frage darf niemals die Bedeutung der Frage verändern, um die Daten konsistent zu halten."

@@ -39,14 +39,4 @@ module("Acceptance | form new", function(hooks) {
 
     assert.equal(currentURL(), "/demo/form-builder/testy-test-test");
   });
-
-  test("can go back to list", async function(assert) {
-    assert.expect(1);
-
-    await visit("/demo/form-builder/new");
-
-    await click("[data-test-back]");
-
-    assert.equal(currentURL(), "/demo/form-builder");
-  });
 });
