@@ -3,17 +3,31 @@ import { inject as service } from "@ember/service";
 import layout from "../../templates/components/cfb-form-editor/question";
 import { task } from "ember-concurrency";
 import { ComponentQueryManager } from "ember-apollo-client";
-import validations, {
-  POSSIBLE_TYPES
-} from "ember-caluma-form-builder/validations/question";
+import validations from "ember-caluma-form-builder/validations/question";
 import v4 from "uuid/v4";
 import { optional } from "ember-composable-helpers/helpers/optional";
 import { computed } from "@ember/object";
 import slugify from "ember-caluma-form-builder/utils/slugify";
 
 import formEditorQuestionQuery from "ember-caluma-form-builder/gql/queries/form-editor-question";
-import saveQuestionMutation from "ember-caluma-form-builder/gql/mutations/save-question";
 import addFormQuestionMutation from "ember-caluma-form-builder/gql/mutations/add-form-question";
+
+import saveTextQuestionMutation from "ember-caluma-form-builder/gql/mutations/save-text-question";
+import saveTextareaQuestionMutation from "ember-caluma-form-builder/gql/mutations/save-textarea-question";
+import saveIntegerQuestionMutation from "ember-caluma-form-builder/gql/mutations/save-integer-question";
+import saveFloatQuestionMutation from "ember-caluma-form-builder/gql/mutations/save-float-question";
+import saveCheckboxQuestionMutation from "ember-caluma-form-builder/gql/mutations/save-checkbox-question";
+import saveRadioQuestionMutation from "ember-caluma-form-builder/gql/mutations/save-radio-question";
+import { A } from "@ember/array";
+
+export const TYPES = {
+  TextQuestion: saveTextQuestionMutation,
+  TextareaQuestion: saveTextareaQuestionMutation,
+  IntegerQuestion: saveIntegerQuestionMutation,
+  FloatQuestion: saveFloatQuestionMutation,
+  CheckboxQuestion: saveCheckboxQuestionMutation,
+  RadioQuestion: saveRadioQuestionMutation
+};
 
 export default Component.extend(ComponentQueryManager, {
   layout,
@@ -22,12 +36,8 @@ export default Component.extend(ComponentQueryManager, {
   notification: service(),
   intl: service(),
 
-  formId: computed("formSlug", function() {
-    return this.get("formSlug") && btoa(`Form:${this.get("formSlug")}`);
-  }),
-
   possibleTypes: computed(function() {
-    return POSSIBLE_TYPES.map(value => ({
+    return Object.keys(TYPES).map(value => ({
       value,
       label: this.intl.t(`caluma.form-builder.question.types.${value}`)
     }));
@@ -41,51 +51,55 @@ export default Component.extend(ComponentQueryManager, {
 
   data: task(function*() {
     if (!this.get("slug")) {
-      return {
-        node: {
-          label: "",
-          slug: "",
-          type: "TEXT",
-          isRequired: "false",
-          isHidden: "false"
+      return A([
+        {
+          node: {
+            label: "",
+            slug: "",
+            isRequired: "false",
+            isHidden: "false",
+            __typename: Object.keys(TYPES)[0]
+          }
         }
-      };
+      ]);
     }
 
-    return yield this.get("apollo").watchQuery({
-      query: formEditorQuestionQuery,
-      variables: { id: btoa(`Question:${this.get("slug")}`) },
-      fetchPolicy: "cache-and-network"
-    });
+    return yield this.get("apollo").watchQuery(
+      {
+        query: formEditorQuestionQuery,
+        variables: { slug: this.get("slug") },
+        fetchPolicy: "cache-and-network"
+      },
+      "allQuestions.edges"
+    );
   }).restartable(),
 
   submit: task(function*(changeset) {
     try {
       const question = yield this.get("apollo").mutate(
         {
-          mutation: saveQuestionMutation,
+          mutation: TYPES[changeset.get("__typename")],
           variables: {
             input: {
               label: changeset.get("label"),
               slug: changeset.get("slug"),
-              type: changeset.get("type"),
               isRequired: changeset.get("isRequired"),
               isHidden: "false", // TODO: this must be configurable
               clientMutationId: v4()
             }
           }
         },
-        "saveQuestion.question"
+        `save${changeset.get("__typename")}.question`
       );
 
-      if (!this.get("slug") && this.get("formId")) {
+      if (!this.get("slug")) {
         // This is a new question which must be added to the form after creating it
         yield this.get("apollo").mutate({
           mutation: addFormQuestionMutation,
           variables: {
             input: {
-              question: btoa(`Question:${question.slug}`),
-              form: this.get("formId"),
+              question: question.slug,
+              form: this.get("form"),
               clientMutationId: v4()
             },
             search: ""

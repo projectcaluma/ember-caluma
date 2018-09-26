@@ -30,6 +30,7 @@ caluma:
       slug: "Slug"
       type: "Type"
       isRequired: "Required"
+      type-disabled: "Once created, the type can't be changed to prevent corrupt data."
 
       new: "New question"
 
@@ -44,12 +45,12 @@ caluma:
       empty: "You have not yet added a question. Press the plus button above to do so!"
 
       types:
-        INTEGER: "Integer"
-        FLOAT: "Float"
-        CHECKBOX: "Checkbox"
-        RADIO: "Radio"
-        TEXT: "Text"
-        TEXTAREA: "Textarea"
+        IntegerQuestion: "Integer"
+        FloatQuestion: "Float"
+        CheckboxQuestion: "Checkbox"
+        RadioQuestion: "Radio"
+        TextQuestion: "Text"
+        TextareaQuestion: "Textarea"
 
       not-found: "No question with slug '{slug}' found"
 

@@ -1,5 +1,4 @@
 fragment FormInfo on Form {
-  id
   name
   slug
   description

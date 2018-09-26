@@ -34,7 +34,6 @@ module("Acceptance | question edit", function(hooks) {
     );
 
     await fillIn("[data-test-demo-content] [name=label]", "Test Question 1?");
-    await click("[data-test-demo-content] button[data-test-type=INTEGER]");
 
     await click("[data-test-demo-content] button[type=submit]");
 

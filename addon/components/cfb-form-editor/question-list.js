@@ -45,16 +45,14 @@ export default Component.extend(ComponentQueryManager, {
     );
   },
 
-  formId: computed("form", function() {
-    return btoa(`Form:${this.get("form")}`);
-  }),
-
   questions: computed(
-    "data.lastSuccessful.value.{allQuestions.edges.[],node.questions.edges.[]}",
+    "data.lastSuccessful.value.{[],firstObject.questions.edges.[]}",
     function() {
       return this.get("mode") === "add"
-        ? this.get("data.lastSuccessful.value.allQuestions.edges")
-        : this.get("data.lastSuccessful.value.node.questions.edges");
+        ? this.get("data.lastSuccessful.value")
+        : this.get(
+            "data.lastSuccessful.value.firstObject.node.questions.edges"
+          );
     }
   ),
 
@@ -67,36 +65,40 @@ export default Component.extend(ComponentQueryManager, {
     }
 
     if (mode === "add") {
-      return yield this.get("apollo").watchQuery({
-        query: searchQuestionQuery,
-        variables: {
-          search,
-          excludeForms: [this.get("formId")]
+      return yield this.get("apollo").watchQuery(
+        {
+          query: searchQuestionQuery,
+          variables: {
+            search,
+            excludeForms: [this.get("form")]
+          },
+          fetchPolicy: "cache-and-network"
         },
-        fetchPolicy: "cache-and-network"
-      });
+        "allQuestions.edges"
+      );
     }
 
-    return yield this.get("apollo").watchQuery({
-      query: searchFormQuestionQuery,
-      variables: {
-        search,
-        id: this.get("formId")
+    return yield this.get("apollo").watchQuery(
+      {
+        query: searchFormQuestionQuery,
+        variables: {
+          search,
+          slug: this.get("form")
+        },
+        fetchPolicy: "cache-and-network"
       },
-      fetchPolicy: "cache-and-network"
-    });
+      "allForms.edges"
+    );
   }).restartable(),
 
   reorderQuestions: task(function*(slugs) {
     try {
-      let questions = slugs.map(slug => btoa(`Question:${slug}`));
-
       yield this.get("apollo").mutate({
         mutation: reorderFormQuestionsMutation,
         variables: {
           input: {
-            form: this.get("formId"),
-            questions,
+            form: this.get("form"),
+            questions: slugs,
             clientMutationId: v4()
           },
           search: ""
@@ -123,8 +125,8 @@ export default Component.extend(ComponentQueryManager, {
         mutation: addFormQuestionMutation,
         variables: {
           input: {
-            question: btoa(`Question:${question.slug}`),
-            form: this.get("formId"),
+            question: question.slug,
+            form: this.get("form"),
             clientMutationId: v4()
           },
           search: this.get("search")
@@ -155,8 +157,8 @@ export default Component.extend(ComponentQueryManager, {
         mutation: removeFormQuestionMutation,
         variables: {
           input: {
-            question: btoa(`Question:${question.slug}`),
-            form: this.get("formId"),
+            question: question.slug,
+            form: this.get("form"),
             clientMutationId: v4()
           },
           search: this.get("search")

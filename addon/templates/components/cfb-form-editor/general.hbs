@@ -3,7 +3,7 @@
     {{uk-spinner ratio=2}}
   </div>
 {{else}}
-  {{#with data.lastSuccessful.value.node as |model|}}
+  {{#with data.lastSuccessful.value.firstObject.node as |model|}}
     {{#validated-form
       model=(changeset model validations)
       on-submit=(perform submit)
@@ -20,7 +20,7 @@
         type='text'
         label=(t 'caluma.form-builder.form.slug')
         name='slug'
-        disabled=f.model.id
+        disabled=slug
       }}
 
       {{f.input
@@ -31,7 +31,7 @@
       }}
 
       <div class="uk-text-right">
-        {{#if f.model.id}}
+        {{#if slug}}
           {{uk-button
             data-test-archive
             disabled=(or archive.isRunning f.loading)
