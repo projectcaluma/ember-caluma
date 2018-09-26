@@ -4915,13 +4915,13 @@ ember-lodash@^4.17.3:
     ember-cli-babel "^6.10.0"
     lodash-es "^4.17.4"
 
-ember-math-helpers@2.6.0:
-  version "2.6.0"
-  resolved "https://registry.yarnpkg.com/ember-math-helpers/-/ember-math-helpers-2.6.0.tgz#e1d22bd841fe5ea7de00f990a49b3178cf8ab23b"
+ember-math-helpers@2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/ember-math-helpers/-/ember-math-helpers-2.7.0.tgz#50971918c48142c03b2501a96fe6cf36d61f053c"
   dependencies:
     broccoli-funnel "^2.0.0"
-    ember-cli-babel "^6.6.0"
-    ember-cli-htmlbars "^2.0.1"
+    ember-cli-babel "^6.16.0"
+    ember-cli-htmlbars "^3.0.0"
 
 ember-maybe-import-regenerator@0.1.6, ember-maybe-import-regenerator@^0.1.5, ember-maybe-import-regenerator@^0.1.6:
   version "0.1.6"
