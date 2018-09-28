@@ -3,12 +3,12 @@ import { inject as service } from "@ember/service";
 import layout from "../../templates/components/cfb-form-editor/question";
 import { task, timeout } from "ember-concurrency";
 import { ComponentQueryManager } from "ember-apollo-client";
-import validations from "ember-caluma-form-builder/validations/question";
 import v4 from "uuid/v4";
 import { optional } from "ember-composable-helpers/helpers/optional";
 import { computed } from "@ember/object";
-import slugify from "ember-caluma-form-builder/utils/slugify";
+import slugify from "ember-caluma-utils/utils/slugify";
 import { A } from "@ember/array";
+import validations from "ember-caluma-form-builder/validations/question";
 
 import checkQuestionSlugQuery from "ember-caluma-form-builder/gql/queries/check-question-slug";
 import formEditorQuestionQuery from "ember-caluma-form-builder/gql/queries/form-editor-question";
@@ -57,8 +57,14 @@ export default Component.extend(ComponentQueryManager, {
           node: {
             label: "",
             slug: "",
+            description: "",
             isRequired: "false",
             isHidden: "false",
+            integerMinValue: null,
+            integerMaxValue: null,
+            floatMinValue: null,
+            floatMaxValue: null,
+            maxLength: null,
             __typename: Object.keys(TYPES)[0]
           }
         }
@@ -75,19 +81,51 @@ export default Component.extend(ComponentQueryManager, {
     );
   }).restartable(),
 
+  _getIntegerQuestionInput(changeset) {
+    return {
+      minValue: parseInt(changeset.get("integerMinValue")),
+      maxValue: parseInt(changeset.get("integerMaxValue"))
+    };
+  },
+
+  _getFloatQuestionInput(changeset) {
+    return {
+      minValue: parseFloat(changeset.get("floatMinValue")),
+      maxValue: parseFloat(changeset.get("floatMaxValue"))
+    };
+  },
+
+  _getTextQuestionInput(changeset) {
+    return {
+      maxLength: parseInt(changeset.get("maxLength"))
+    };
+  },
+
+  _getTextareaQuestionInput(changeset) {
+    return {
+      maxLength: parseInt(changeset.get("maxLength"))
+    };
+  },
+
   submit: task(function*(changeset) {
     try {
       const question = yield this.get("apollo").mutate(
         {
           mutation: TYPES[changeset.get("__typename")],
           variables: {
-            input: {
-              label: changeset.get("label"),
-              slug: changeset.get("slug"),
-              isRequired: changeset.get("isRequired"),
-              isHidden: "false", // TODO: this must be configurable
-              clientMutationId: v4()
-            }
+            input: Object.assign(
+              {
+                label: changeset.get("label"),
+                slug: changeset.get("slug"),
+                isRequired: changeset.get("isRequired"),
+                isHidden: "false", // TODO: this must be configurable
+                clientMutationId: v4()
+              },
+              this.getWithDefault(
+                `_get${changeset.get("__typename")}Input`,
+                () => ({})
+              )(changeset)
+            )
           }
         },
         `save${changeset.get("__typename")}.question`

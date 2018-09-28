@@ -66,6 +66,54 @@
         </div>
       </div>
 
+      {{#if (contains f.model.__typename (array 'TextQuestion' 'TextareaQuestion'))}}
+        {{f.input
+          type='number'
+          name='maxLength'
+          label=(t 'caluma.form-builder.question.max-length')
+        }}
+      {{/if}}
+
+      {{#if (eq f.model.__typename 'FloatQuestion')}}
+        <div uk-grid class="uk-grid-small uk-child-width-1-2 uk-margin">
+          <div>
+            {{f.input
+              type='number'
+              name='floatMinValue'
+              label=(t 'caluma.form-builder.question.min-value')
+            }}
+          </div>
+
+          <div>
+            {{f.input
+              type='number'
+              name='floatMaxValue'
+              label=(t 'caluma.form-builder.question.max-value')
+            }}
+          </div>
+        </div>
+      {{/if}}
+
+      {{#if (eq f.model.__typename 'IntegerQuestion')}}
+        <div uk-grid class="uk-grid-small uk-child-width-1-2 uk-margin">
+          <div>
+            {{f.input
+              type='number'
+              name='integerMinValue'
+              label=(t 'caluma.form-builder.question.min-value')
+            }}
+          </div>
+
+          <div>
+            {{f.input
+              type='number'
+              name='integerMaxValue'
+              label=(t 'caluma.form-builder.question.max-value')
+            }}
+          </div>
+        </div>
+      {{/if}}
+
       <div class="uk-text-right">
         {{f.submit
           disabled=(or f.loading f.model.isInvalid f.model.isPristine)

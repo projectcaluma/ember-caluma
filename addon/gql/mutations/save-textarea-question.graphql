@@ -4,6 +4,9 @@ mutation SaveTextareaQuestion($input: SaveTextareaQuestionInput!) {
   saveTextareaQuestion(input: $input) {
     question {
       ...QuestionInfo
+      ... on TextareaQuestion {
+        maxLength
+      }
     }
     clientMutationId
   }

@@ -112,6 +112,174 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     assert.dom("input[name=slug]").hasValue("test-label-123");
   });
 
+  test("it can create a text question", async function(assert) {
+    assert.expect(6);
+
+    this.server.create("form", { slug: "test-form" });
+
+    this.set("afterSubmit", question => {
+      assert.equal(question.__typename, "TextQuestion");
+      assert.equal(question.label, "Label");
+      assert.equal(question.slug, "slug");
+      assert.equal(question.maxLength, 20);
+
+      assert.step("after-submit");
+    });
+
+    await render(
+      hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
+    );
+
+    await click("[data-test-type=TextQuestion]");
+    await fillIn("[name=label]", "Label");
+    await fillIn("[name=slug]", "slug");
+    await fillIn("[name=maxLength]", 20);
+
+    await click("button[type=submit]");
+
+    assert.verifySteps(["after-submit"]);
+  });
+
+  test("it can create a textarea question", async function(assert) {
+    assert.expect(6);
+
+    this.server.create("form", { slug: "test-form" });
+
+    this.set("afterSubmit", question => {
+      assert.equal(question.__typename, "TextareaQuestion");
+      assert.equal(question.label, "Label");
+      assert.equal(question.slug, "slug");
+      assert.equal(question.maxLength, 20);
+
+      assert.step("after-submit");
+    });
+
+    await render(
+      hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
+    );
+
+    await click("[data-test-type=TextareaQuestion]");
+    await fillIn("[name=label]", "Label");
+    await fillIn("[name=slug]", "slug");
+    await fillIn("[name=maxLength]", 20);
+
+    await click("button[type=submit]");
+
+    assert.verifySteps(["after-submit"]);
+  });
+
+  test("it can create an integer question", async function(assert) {
+    assert.expect(7);
+
+    this.server.create("form", { slug: "test-form" });
+
+    this.set("afterSubmit", question => {
+      assert.equal(question.__typename, "IntegerQuestion");
+      assert.equal(question.label, "Label");
+      assert.equal(question.slug, "slug");
+      assert.equal(question.integerMinValue, -20);
+      assert.equal(question.integerMaxValue, 20);
+
+      assert.step("after-submit");
+    });
+
+    await render(
+      hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
+    );
+
+    await click("[data-test-type=IntegerQuestion]");
+    await fillIn("[name=label]", "Label");
+    await fillIn("[name=slug]", "slug");
+    await fillIn("[name=integerMinValue]", -20);
+    await fillIn("[name=integerMaxValue]", 20);
+
+    await click("button[type=submit]");
+
+    assert.verifySteps(["after-submit"]);
+  });
+
+  test("it can create a float question", async function(assert) {
+    assert.expect(7);
+
+    this.server.create("form", { slug: "test-form" });
+
+    this.set("afterSubmit", question => {
+      assert.equal(question.__typename, "FloatQuestion");
+      assert.equal(question.label, "Label");
+      assert.equal(question.slug, "slug");
+      assert.equal(question.floatMinValue, -20);
+      assert.equal(question.floatMaxValue, 20);
+
+      assert.step("after-submit");
+    });
+
+    await render(
+      hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
+    );
+
+    await click("[data-test-type=FloatQuestion]");
+    await fillIn("[name=label]", "Label");
+    await fillIn("[name=slug]", "slug");
+    await fillIn("[name=floatMinValue]", -20);
+    await fillIn("[name=floatMaxValue]", 20);
+
+    await click("button[type=submit]");
+
+    assert.verifySteps(["after-submit"]);
+  });
+
+  test("it can create a checkbox question", async function(assert) {
+    assert.expect(5);
+
+    this.server.create("form", { slug: "test-form" });
+
+    this.set("afterSubmit", question => {
+      assert.equal(question.__typename, "CheckboxQuestion");
+      assert.equal(question.label, "Label");
+      assert.equal(question.slug, "slug");
+
+      assert.step("after-submit");
+    });
+
+    await render(
+      hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
+    );
+
+    await click("[data-test-type=CheckboxQuestion]");
+    await fillIn("[name=label]", "Label");
+    await fillIn("[name=slug]", "slug");
+
+    await click("button[type=submit]");
+
+    assert.verifySteps(["after-submit"]);
+  });
+
+  test("it can create a radio question", async function(assert) {
+    assert.expect(5);
+
+    this.server.create("form", { slug: "test-form" });
+
+    this.set("afterSubmit", question => {
+      assert.equal(question.__typename, "RadioQuestion");
+      assert.equal(question.label, "Label");
+      assert.equal(question.slug, "slug");
+
+      assert.step("after-submit");
+    });
+
+    await render(
+      hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
+    );
+
+    await click("[data-test-type=RadioQuestion]");
+    await fillIn("[name=label]", "Label");
+    await fillIn("[name=slug]", "slug");
+
+    await click("button[type=submit]");
+
+    assert.verifySteps(["after-submit"]);
+  });
+
   test("it validates the slug", async function(assert) {
     assert.expect(3);
 

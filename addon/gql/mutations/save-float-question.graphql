@@ -4,6 +4,10 @@ mutation SaveFloatQuestion($input: SaveFloatQuestionInput!) {
   saveFloatQuestion(input: $input) {
     question {
       ...QuestionInfo
+      ... on FloatQuestion {
+        floatMinValue: minValue
+        floatMaxValue: maxValue
+      }
     }
     clientMutationId
   }

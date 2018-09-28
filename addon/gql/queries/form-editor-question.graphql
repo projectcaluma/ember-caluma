@@ -5,6 +5,20 @@ query FormEditorQuestion($slug: String!) {
     edges {
       node {
         ...QuestionInfo
+        ... on IntegerQuestion {
+          integerMaxValue: maxValue
+          integerMinValue: minValue
+        }
+        ... on FloatQuestion {
+          floatMaxValue: maxValue
+          floatMinValue: minValue
+        }
+        ... on TextQuestion {
+          maxLength
+        }
+        ... on TextareaQuestion {
+          maxLength
+        }
       }
     }
   }
