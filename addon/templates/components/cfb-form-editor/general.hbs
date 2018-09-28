@@ -13,7 +13,7 @@
         type='text'
         label=(t 'caluma.form-builder.form.name')
         name='name'
-        on-update=(action 'inputName')
+        on-update=(action 'updateName')
       }}
 
       {{f.input
@@ -21,6 +21,7 @@
         label=(t 'caluma.form-builder.form.slug')
         name='slug'
         disabled=slug
+        on-update=(action 'updateSlug')
       }}
 
       {{f.input

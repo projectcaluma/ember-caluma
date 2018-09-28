@@ -1,17 +1,18 @@
 import Component from "@ember/component";
 import { inject as service } from "@ember/service";
 import layout from "../../templates/components/cfb-form-editor/general";
-import { task } from "ember-concurrency";
+import { task, timeout } from "ember-concurrency";
 import { ComponentQueryManager } from "ember-apollo-client";
 import validations from "../../validations/form";
 import v4 from "uuid/v4";
 import slugify from "ember-caluma-form-builder/utils/slugify";
 import { optional } from "ember-composable-helpers/helpers/optional";
+import { A } from "@ember/array";
 
+import checkFormSlugQuery from "ember-caluma-form-builder/gql/queries/check-form-slug";
 import formEditorGeneralQuery from "ember-caluma-form-builder/gql/queries/form-editor-general";
 import saveFormMutation from "ember-caluma-form-builder/gql/mutations/save-form";
 import archiveFormMutation from "ember-caluma-form-builder/gql/mutations/archive-form";
-import { A } from "@ember/array";
 
 export default Component.extend(ComponentQueryManager, {
   layout,
@@ -117,13 +118,40 @@ export default Component.extend(ComponentQueryManager, {
     }
   }).drop(),
 
+  validateSlug: task(function*(slug, changeset) {
+    yield timeout(500);
+
+    const res = yield this.get("apollo").query(
+      {
+        query: checkFormSlugQuery,
+        variables: { slug }
+      },
+      "allForms.edges"
+    );
+
+    if (res && res.length) {
+      changeset.pushErrors(
+        "slug",
+        this.get("intl").t("caluma.form-builder.validations.form.slug")
+      );
+    }
+  }).restartable(),
+
   actions: {
-    inputName(value, changeset) {
+    updateName(value, changeset) {
       changeset.set("name", value);
 
       if (!this.get("slug")) {
-        changeset.set("slug", slugify(value));
+        const slug = slugify(value);
+        changeset.set("slug", slug);
+        this.get("validateSlug").perform(slug, changeset);
       }
+    },
+
+    updateSlug(value, changeset) {
+      changeset.set("slug", value);
+
+      this.get("validateSlug").perform(value, changeset);
     }
   }
 });

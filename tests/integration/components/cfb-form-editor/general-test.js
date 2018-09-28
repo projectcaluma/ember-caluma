@@ -1,6 +1,6 @@
 import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
-import { render, click, fillIn, blur } from "@ember/test-helpers";
+import { render, click, fillIn, blur, settled } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 import setupMirage from "ember-cli-mirage/test-support/setup-mirage";
 import graphqlError from "dummy/tests/helpers/graphql-error";
@@ -136,15 +136,28 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
       }}`
     );
 
-    this.server.post("/graphql", () => graphqlError("saveForm"), 200);
+    this.server.post("/graphql", () => graphqlError("archiveForm"), 200);
     await click("[data-test-archive]");
+
+    this.server.post("/graphql", () => graphqlError("saveForm"), 200);
     await click("button[type=submit]");
 
     // new form
     await render(
       hbs`{{cfb-form-editor/general slug=null on-after-submit=(action afterSubmit)}}`
     );
-    await fillIn("input[name=name]", "Test");
+    this.server.logging = true;
+
+    // Slug validation must be valid
+    this.server.post(
+      "/graphql",
+      { data: { allForms: { edges: [], __typename: "FormConnection" } } },
+      200
+    );
+    this.server.logging = false;
+    await fillIn("input[name=name]", "test");
+
+    this.server.post("/graphql", () => graphqlError("saveForm"), 200);
     await click("button[type=submit]");
 
     assert.verifySteps([]);
@@ -158,5 +171,37 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
     await render(hbs`{{cfb-form-editor/general slug='test-slug'}}`);
 
     assert.dom("p").hasText("No form with slug 'test-slug' found");
+  });
+
+  test("it validates the slug", async function(assert) {
+    assert.expect(3);
+
+    this.server.create("form", { slug: "test-slug" });
+    this.server.create("form", { slug: "other-test-slug" });
+
+    await render(hbs`{{cfb-form-editor/general slug=null}}`);
+
+    await fillIn("input[name=slug]", "test-slug");
+    await blur("input[name=slug]");
+    await settled();
+
+    assert
+      .dom("input[name=slug] + span")
+      .hasText("A form with this slug already exists");
+
+    await fillIn("input[name=slug]", "valid-slug");
+    await blur("input[name=slug]");
+    await settled();
+
+    assert.dom("input[name=slug] + span").doesNotExist();
+
+    await fillIn("input[name=name]", "Other Test Slug");
+    await blur("input[name=name]");
+    await blur("input[name=slug]");
+    await settled();
+
+    assert
+      .dom("input[name=slug] + span")
+      .hasText("A form with this slug already exists");
   });
 });
