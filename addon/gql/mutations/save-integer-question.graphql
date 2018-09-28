@@ -4,6 +4,10 @@ mutation SaveIntegerQuestion($input: SaveIntegerQuestionInput!) {
   saveIntegerQuestion(input: $input) {
     question {
       ...QuestionInfo
+      ... on IntegerQuestion {
+        integerMinValue: minValue
+        integerMaxValue: maxValue
+      }
     }
     clientMutationId
   }

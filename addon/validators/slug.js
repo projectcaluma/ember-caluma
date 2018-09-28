@@ -3,14 +3,13 @@ import {
   validateLength,
   validateFormat
 } from "ember-changeset-validations/validators";
+import and from "ember-caluma-utils/utils/and";
 
-const validateSlug = () => (...args) =>
-  [
+const validateSlug = () =>
+  and(
     validatePresence(true),
     validateLength({ max: 50 }),
     validateFormat({ regex: /^[a-z0-9-]+$/ })
-  ]
-    .map(fn => fn(...args))
-    .find(res => res !== true) || true;
+  );
 
 export default validateSlug;

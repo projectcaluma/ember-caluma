@@ -33,6 +33,13 @@ caluma:
       isRequired: "Erforderlich"
       type-disabled: "Sobald die Frage erstellt ist kann der Typ nicht mehr geändert werden um korrupte Daten zu verhindern."
 
+      general: "Allgemein"
+      options: "Optionen"
+
+      min-value: "Minimaler Wert"
+      max-value: "Maximaler Wert"
+      max-length: "Maximale Länge"
+
       new: "Neue Frage"
 
       minor-info-title: "Wichtig!"

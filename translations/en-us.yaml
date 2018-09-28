@@ -33,6 +33,13 @@ caluma:
       isRequired: "Required"
       type-disabled: "Once created, the type can't be changed to prevent corrupt data."
 
+      general: "General"
+      options: "Options"
+
+      min-value: "Minimum value"
+      max-value: "Maximum value"
+      max-length: "Maximum length"
+
       new: "New question"
 
       minor-info-title: "Important!"
