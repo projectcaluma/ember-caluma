@@ -39,7 +39,7 @@
     "ember-test-selectors": "1.0.0",
     "ember-uikit": "0.7.1",
     "ember-validated-form": "2.0.0-alpha.2",
-    "graphql-tag": "2.9.2",
+    "graphql-tag": "2.10.0",
     "jexl": "1.1.4",
     "liquid-fire": "0.29.5",
     "sass": "1.14.1",
