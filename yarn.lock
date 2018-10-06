@@ -5604,10 +5604,10 @@ ember-lodash@^4.17.3:
     ember-cli-babel "^6.10.0"
     lodash-es "^4.17.4"
 
-ember-math-helpers@2.7.0:
-  version "2.7.0"
-  resolved "https://registry.yarnpkg.com/ember-math-helpers/-/ember-math-helpers-2.7.0.tgz#50971918c48142c03b2501a96fe6cf36d61f053c"
-  integrity sha512-5M5YIgDjna8cLlbUwZnuRMm7oFczKe8H60UDd6yLJyRFcZ7fPVr2fwRHU0edK4cSHE7rOj65sG1BVrNzMotJyw==
+ember-math-helpers@2.7.1:
+  version "2.7.1"
+  resolved "https://registry.yarnpkg.com/ember-math-helpers/-/ember-math-helpers-2.7.1.tgz#19c1e676d74e6166a57c4d0b52b72cdf10263a49"
+  integrity sha512-FKXP9Ammi1e29cN3W1aDOCUfh4P2vZIQBkuTr3+4IMPl1SbHpOjszmMUpK3B4R4fjGy1xnDR/Wvvao8iIwA6YQ==
   dependencies:
     broccoli-funnel "^2.0.0"
     ember-cli-babel "^6.16.0"
