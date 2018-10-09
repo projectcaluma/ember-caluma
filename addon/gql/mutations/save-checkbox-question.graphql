@@ -4,6 +4,16 @@ mutation SaveCheckboxQuestion($input: SaveCheckboxQuestionInput!) {
   saveCheckboxQuestion(input: $input) {
     question {
       ...QuestionInfo
+      ... on CheckboxQuestion {
+        options {
+          edges {
+            node {
+              label
+              slug
+            }
+          }
+        }
+      }
     }
     clientMutationId
   }

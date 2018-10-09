@@ -4,14 +4,10 @@
   </div>
 {{else}}
   {{#with data.lastSuccessful.value.firstObject.node as |model|}}
-    {{! template-lint-disable attribute-indentation }}
-    {{! see https://github.com/ember-template-lint/ember-template-lint/issues/509 }}
     {{#validated-form
       model=(changeset model validations)
       on-submit=(perform submit)
     as |f|}}
-      {{! template-lint-enable attribute-indentation }}
-
       {{#if (and f.model.isDirty slug)}}
         <div class="uk-alert-warning uk-animation-fade" uk-alert>
           <a class="uk-alert-close" uk-close></a>
@@ -116,6 +112,15 @@
             }}
           </div>
         </div>
+      {{/if}}
+
+      {{#if (contains f.model.__typename (array "CheckboxQuestion" "RadioQuestion"))}}
+        {{f.input
+          name="options"
+          label=(t "caluma.form-builder.question.options")
+          required=true
+          renderComponent=(component "cfb-form-editor/question/options")
+        }}
       {{/if}}
 
       <div class="uk-text-right">

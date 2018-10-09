@@ -25,7 +25,7 @@
   "dependencies": {
     "ember-apollo-client": "2.0.0-beta.1",
     "ember-auto-import": "1.2.13",
-    "ember-caluma-utils": "projectcaluma/ember-caluma-utils#99c6e05ef13f9607c34f8c12f998246a291b06d8",
+    "ember-caluma-utils": "projectcaluma/ember-caluma-utils#master",
     "ember-changeset": "1.5.0",
     "ember-changeset-validations": "1.3.1",
     "ember-cli-babel": "6.17.2",

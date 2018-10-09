@@ -1,0 +1,8 @@
+mutation SaveOption($input: SaveOptionInput!) {
+  saveOption(input: $input) {
+    option {
+      label
+      slug
+    }
+  }
+}

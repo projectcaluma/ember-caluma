@@ -9,6 +9,7 @@ import {
 import validateSlug from "ember-caluma-form-builder/validators/slug";
 import validateType from "ember-caluma-form-builder/validators/type";
 import validateGtLt from "../validators/gt-lt";
+import validateOptions from "../validators/options";
 
 export default {
   label: and(validatePresence(true), validateLength({ max: 255 })),
@@ -49,6 +50,14 @@ export default {
       validateType("TextQuestion", false),
       validateType("TextareaQuestion", false)
     ),
-    and(validateNumber({ gt: 0, allowBlank: true }))
+    validateNumber({ gt: 0, allowBlank: true })
+  ),
+
+  options: or(
+    and(
+      validateType("CheckboxQuestion", false),
+      validateType("RadioQuestion", false)
+    ),
+    and(validateOptions(), validateLength({ min: 1 }))
   )
 };
