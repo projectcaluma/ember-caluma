@@ -95,7 +95,9 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
   test("it can handle 404 errors", async function(assert) {
     assert.expect(1);
 
-    this.server.post("/graphql", () => ({ data: { node: null } }));
+    this.server.post("/graphql", () => ({
+      data: { allQuestions: { edges: [], __typename: "QuestionEdges" } }
+    }));
 
     await render(hbs`{{cfb-form-editor/question slug='test-slug'}}`);
 

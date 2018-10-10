@@ -1,5 +1,11 @@
 <div class="uk-text-right">
-  <button data-test-new-form class="uk-button uk-button-default" {{action (optional on-new-form)}}>{{t 'caluma.form-builder.form.new'}}</button>
+  <button
+    data-test-new-form
+    class="uk-button uk-button-default"
+    {{action (optional on-new-form)}}
+  >
+    {{t "caluma.form-builder.form.new"}}
+  </button>
 </div>
 
 {{#if data.isRunning}}
@@ -9,14 +15,21 @@
 {{else}}
   {{#if data.lastSuccessful.value.length}}
     <ul data-test-form-list class="uk-list uk-list-divider uk-list-large">
-      {{#each data.lastSuccessful.value key='node.id' as |item|}}
-        {{cfb-form-list/item data-test-form-list-item=item.node.slug item=item.node on-edit-form=on-edit-form}}
+      {{#each data.lastSuccessful.value key="node.id" as |item|}}
+        {{cfb-form-list/item
+          data-test-form-list-item=item.node.slug
+          item=item.node
+          on-edit-form=on-edit-form
+        }}
       {{/each}}
     </ul>
   {{else}}
-    <div data-test-form-list-empty class="uk-padding-large uk-padding-remove-horizontal uk-text-center">
-      {{uk-icon 'search' ratio=10}}
-      <p class="uk-text-muted">{{t 'caluma.form-builder.form.empty'}}</p>
+    <div
+      data-test-form-list-empty
+      class="uk-padding-large uk-padding-remove-horizontal uk-text-center"
+    >
+      {{uk-icon "search" ratio=10}}
+      <p class="uk-text-muted">{{t "caluma.form-builder.form.empty"}}</p>
     </div>
   {{/if}}
 {{/if}}

@@ -4,111 +4,115 @@
   </div>
 {{else}}
   {{#with data.lastSuccessful.value.firstObject.node as |model|}}
+    {{! template-lint-disable attribute-indentation }}
+    {{! see https://github.com/ember-template-lint/ember-template-lint/issues/509 }}
     {{#validated-form
       model=(changeset model validations)
       on-submit=(perform submit)
     as |f|}}
+      {{! template-lint-enable attribute-indentation }}
+
       {{#if (and f.model.isDirty slug)}}
         <div class="uk-alert-warning uk-animation-fade" uk-alert>
           <a class="uk-alert-close" uk-close></a>
           <div uk-grid class="uk-grid-small">
             <div class="uk-width-auto uk-flex uk-flex-middle">
-            {{uk-icon 'warning' ratio=1.2}}
+              {{uk-icon "warning" ratio=1.2}}
             </div>
             <div class="uk-width-expand">
-              <strong>{{t 'caluma.form-builder.question.minor-info-title'}}</strong>
-              {{t 'caluma.form-builder.question.minor-info'}}
+              <strong>{{t "caluma.form-builder.question.minor-info-title"}}</strong>
+              {{t "caluma.form-builder.question.minor-info"}}
             </div>
           </div>
         </div>
       {{/if}}
 
       {{f.input
-        renderComponent=(component 'cfb-button-group-select')
+        renderComponent=(component "cfb-button-group-select")
         options=possibleTypes
-        optionLabelPath='label'
-        optionTargetPath='value'
-        label=(t 'caluma.form-builder.question.type')
-        hint=(t 'caluma.form-builder.question.type-disabled')
-        name='__typename'
+        optionLabelPath="label"
+        optionTargetPath="value"
+        label=(t "caluma.form-builder.question.type")
+        hint=(t "caluma.form-builder.question.type-disabled")
+        name="__typename"
         required=true
         disabled=slug
       }}
 
       {{f.input
-        type='text'
-        label=(t 'caluma.form-builder.question.label')
-        name='label'
+        type="text"
+        label=(t "caluma.form-builder.question.label")
+        name="label"
         required=true
-        on-update=(action 'updateLabel')
+        on-update=(action "updateLabel")
       }}
 
       <div uk-grid class="uk-grid-small uk-margin">
         <div class="uk-width-expand">
           {{f.input
-            type='text'
-            label=(t 'caluma.form-builder.question.slug')
-            name='slug'
+            type="text"
+            label=(t "caluma.form-builder.question.slug")
+            name="slug"
             required=true
             disabled=slug
-            on-update=(action 'updateSlug')
+            on-update=(action "updateSlug")
           }}
         </div>
 
         <div class="uk-width-auto uk-flex">
           {{f.input
-            name='isRequired'
-            label=(t 'caluma.form-builder.question.isRequired')
+            name="isRequired"
+            label=(t "caluma.form-builder.question.isRequired")
             required=true
-            renderComponent=(component 'cfb-jexl-boolean-toggle-switch' size='small')
-            class='uk-flex uk-flex-between uk-flex-column'
+            renderComponent=(component "cfb-jexl-boolean-toggle-switch" size="small")
+            class="uk-flex uk-flex-between uk-flex-column"
           }}
         </div>
       </div>
 
-      {{#if (contains f.model.__typename (array 'TextQuestion' 'TextareaQuestion'))}}
+      {{#if (contains f.model.__typename (array "TextQuestion" "TextareaQuestion"))}}
         {{f.input
-          type='number'
-          name='maxLength'
-          label=(t 'caluma.form-builder.question.max-length')
+          type="number"
+          name="maxLength"
+          label=(t "caluma.form-builder.question.max-length")
         }}
       {{/if}}
 
-      {{#if (eq f.model.__typename 'FloatQuestion')}}
+      {{#if (eq f.model.__typename "FloatQuestion")}}
         <div uk-grid class="uk-grid-small uk-child-width-1-2 uk-margin">
           <div>
             {{f.input
-              type='number'
-              name='floatMinValue'
-              label=(t 'caluma.form-builder.question.min-value')
+              type="number"
+              name="floatMinValue"
+              label=(t "caluma.form-builder.question.min-value")
             }}
           </div>
 
           <div>
             {{f.input
-              type='number'
-              name='floatMaxValue'
-              label=(t 'caluma.form-builder.question.max-value')
+              type="number"
+              name="floatMaxValue"
+              label=(t "caluma.form-builder.question.max-value")
             }}
           </div>
         </div>
       {{/if}}
 
-      {{#if (eq f.model.__typename 'IntegerQuestion')}}
+      {{#if (eq f.model.__typename "IntegerQuestion")}}
         <div uk-grid class="uk-grid-small uk-child-width-1-2 uk-margin">
           <div>
             {{f.input
-              type='number'
-              name='integerMinValue'
-              label=(t 'caluma.form-builder.question.min-value')
+              type="number"
+              name="integerMinValue"
+              label=(t "caluma.form-builder.question.min-value")
             }}
           </div>
 
           <div>
             {{f.input
-              type='number'
-              name='integerMaxValue'
-              label=(t 'caluma.form-builder.question.max-value')
+              type="number"
+              name="integerMaxValue"
+              label=(t "caluma.form-builder.question.max-value")
             }}
           </div>
         </div>
@@ -117,14 +121,16 @@
       <div class="uk-text-right">
         {{f.submit
           disabled=(or f.loading f.model.isInvalid f.model.isPristine)
-          label=(t 'caluma.form-builder.global.save')
+          label=(t "caluma.form-builder.global.save")
         }}
       </div>
     {{/validated-form}}
   {{^}}
-    <div class="uk-text-center uk-text-muted uk-padding uk-padding-remove-horizontal">
-      {{uk-icon 'bolt' ratio=5}}
-      <p>{{t 'caluma.form-builder.question.not-found' slug=slug}}</p>
+    <div
+      class="uk-text-center uk-text-muted uk-padding uk-padding-remove-horizontal"
+    >
+      {{uk-icon "bolt" ratio=5}}
+      <p>{{t "caluma.form-builder.question.not-found" slug=slug}}</p>
     </div>
   {{/with}}
 {{/if}}

@@ -166,7 +166,9 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
   test("it can handle 404 errors", async function(assert) {
     assert.expect(1);
 
-    this.server.post("/graphql", () => ({ data: { node: null } }));
+    this.server.post("/graphql", () => ({
+      data: { allForms: { edges: [], __typename: "FormEdges" } }
+    }));
 
     await render(hbs`{{cfb-form-editor/general slug='test-slug'}}`);
 

@@ -1,3 +1,7 @@
+dummy:
+  demo: "Demo"
+  usage: "Anwendung"
+
 caluma:
   form-builder:
     global:
