@@ -18,18 +18,38 @@ env:
     # See https://git.io/vdao3 for details.
     - JOBS=1
     - COVERAGE=true
-  matrix:
-    # we recommend new addons test the current and previous LTS
-    # as well as latest stable release (bonus points to beta/canary)
-    - EMBER_TRY_SCENARIO=ember-release
-    - EMBER_TRY_SCENARIO=ember-beta
-    - EMBER_TRY_SCENARIO=ember-canary
-    - EMBER_TRY_SCENARIO=ember-default
 
-matrix:
-  fast_finish: true
+jobs:
+  fail_fast: true
   allow_failures:
     - env: EMBER_TRY_SCENARIO=ember-canary
+
+  include:
+    # runs linting and tests with current locked deps
+
+    - stage: "Tests"
+      name: "Tests"
+      install:
+        - yarn install --non-interactive
+      script:
+        - yarn lint:hbs
+        - yarn lint:js
+        - yarn test
+
+    - name: "Floating Dependencies"
+      script:
+        - yarn test
+
+    # we recommend new addons test the current and previous LTS
+    # as well as latest stable release (bonus points to beta/canary)
+    - stage: "Additional Tests"
+      env: EMBER_TRY_SCENARIO=ember-release
+    - env: EMBER_TRY_SCENARIO=ember-beta
+    - env: EMBER_TRY_SCENARIO=ember-canary
+
+    - stage: "Deploy"
+      if: (branch = master or tag is present) and type = push
+      script: yarn ember deploy production
 
 before_install:
   - curl -o- -L https://yarnpkg.com/install.sh | bash
@@ -39,16 +59,7 @@ install:
   - yarn install --no-lockfile --non-interactive
 
 script:
-  - yarn lint:js
-  # Usually, it's ok to finish the test scenario without reverting
-  #  to the addon's original dependency state, skipping "cleanup".
-  - yarn ember try:one $EMBER_TRY_SCENARIO --skip-cleanup
+  - yarn ember try:one $EMBER_TRY_SCENARIO
 
 after_success:
   - bash <(curl -s https://codecov.io/bash) -f coverage/lcov.info
-
-jobs:
-  include:
-    - stage: deploy
-      if: (branch = master or tag is present) and type = push
-      script: yarn ember deploy production

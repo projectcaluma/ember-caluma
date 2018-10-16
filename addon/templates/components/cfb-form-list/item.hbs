@@ -1,5 +1,16 @@
-<span class="uk-width-auto uk-text-bold uk-margin-small-right">{{item.name}}</span>
-<span class="uk-width-expand uk-text-muted uk-text-small uk-text-truncate">{{item.description}}</span>
+<span class="uk-width-auto uk-text-bold uk-margin-small-right">
+  {{item.name}}
+</span>
+<span class="uk-width-expand uk-text-muted uk-text-small uk-text-truncate">
+  {{item.description}}
+</span>
 <span class="uk-width-auto uk-margin-small-left">
-  <button data-test-edit-form type="button" uk-icon="pencil" class="uk-icon-button" {{action (optional on-edit-form) item}}></button>
+  <button
+    data-test-edit-form
+    type="button"
+    uk-icon="pencil"
+    class="uk-icon-button"
+    {{action (optional on-edit-form) item}}
+  >
+  </button>
 </span>

@@ -4,32 +4,35 @@
   </div>
 {{else}}
   {{#with data.lastSuccessful.value.firstObject.node as |model|}}
+    {{! template-lint-disable attribute-indentation }}
+    {{! see https://github.com/ember-template-lint/ember-template-lint/issues/509 }}
     {{#validated-form
       model=(changeset model validations)
       on-submit=(perform submit)
     as |f|}}
+      {{! template-lint-enable attribute-indentation }}
 
       {{f.input
-        type='text'
-        label=(t 'caluma.form-builder.form.name')
-        name='name'
+        type="text"
+        label=(t "caluma.form-builder.form.name")
+        name="name"
         required=true
-        on-update=(action 'updateName')
+        on-update=(action "updateName")
       }}
 
       {{f.input
-        type='text'
-        label=(t 'caluma.form-builder.form.slug')
-        name='slug'
+        type="text"
+        label=(t "caluma.form-builder.form.slug")
+        name="slug"
         required=true
         disabled=slug
-        on-update=(action 'updateSlug')
+        on-update=(action "updateSlug")
       }}
 
       {{f.input
-        type='textarea'
-        label=(t 'caluma.form-builder.form.description')
-        name='description'
+        type="textarea"
+        label=(t "caluma.form-builder.form.description")
+        name="description"
         rows=4
       }}
 
@@ -39,21 +42,23 @@
             data-test-archive
             disabled=(or archive.isRunning f.loading)
             loading=archive.isRunning
-            label=(t 'caluma.form-builder.global.archive')
+            label=(t "caluma.form-builder.global.archive")
             on-click=(perform archive f.model)
           }}
         {{/if}}
 
         {{f.submit
           disabled=(or f.loading f.model.isInvalid)
-          label=(t 'caluma.form-builder.global.save')
+          label=(t "caluma.form-builder.global.save")
         }}
       </div>
     {{/validated-form}}
   {{^}}
-    <div class="uk-text-center uk-text-muted uk-padding uk-padding-remove-horizontal">
-      {{uk-icon 'bolt' ratio=5}}
-      <p>{{t 'caluma.form-builder.form.not-found' slug=slug}}</p>
+    <div
+      class="uk-text-center uk-text-muted uk-padding uk-padding-remove-horizontal"
+    >
+      {{uk-icon "bolt" ratio=5}}
+      <p>{{t "caluma.form-builder.form.not-found" slug=slug}}</p>
     </div>
   {{/with}}
 {{/if}}
