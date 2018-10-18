@@ -43,7 +43,7 @@
     "graphql-tag": "2.10.0",
     "jexl": "1.1.4",
     "liquid-fire": "0.29.5",
-    "sass": "1.14.2",
+    "sass": "1.14.3",
     "uuid": "3.3.2"
   },
   "devDependencies": {
