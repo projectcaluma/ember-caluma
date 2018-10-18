@@ -5,15 +5,17 @@ import { task, timeout } from "ember-concurrency";
 import { ComponentQueryManager } from "ember-apollo-client";
 import v4 from "uuid/v4";
 import { optional } from "ember-composable-helpers/helpers/optional";
-import { computed } from "@ember/object";
+import { computed, getWithDefault } from "@ember/object";
 import slugify from "ember-caluma-utils/utils/slugify";
 import { A } from "@ember/array";
 import validations from "ember-caluma-form-builder/validations/question";
+import { all } from "rsvp";
 
 import checkQuestionSlugQuery from "ember-caluma-form-builder/gql/queries/check-question-slug";
 import formEditorQuestionQuery from "ember-caluma-form-builder/gql/queries/form-editor-question";
 import addFormQuestionMutation from "ember-caluma-form-builder/gql/mutations/add-form-question";
 
+import saveOptionMutation from "ember-caluma-form-builder/gql/mutations/save-option";
 import saveTextQuestionMutation from "ember-caluma-form-builder/gql/mutations/save-text-question";
 import saveTextareaQuestionMutation from "ember-caluma-form-builder/gql/mutations/save-textarea-question";
 import saveIntegerQuestionMutation from "ember-caluma-form-builder/gql/mutations/save-integer-question";
@@ -65,6 +67,7 @@ export default Component.extend(ComponentQueryManager, {
             floatMinValue: null,
             floatMaxValue: null,
             maxLength: null,
+            options: [],
             __typename: Object.keys(TYPES)[0]
           }
         }
@@ -107,8 +110,37 @@ export default Component.extend(ComponentQueryManager, {
     };
   },
 
+  _getCheckboxQuestionInput(changeset) {
+    return {
+      options: changeset.get("options.edges").map(({ node: { slug } }) => slug)
+    };
+  },
+
+  _getRadioQuestionInput(changeset) {
+    return {
+      options: changeset.get("options.edges").map(({ node: { slug } }) => slug)
+    };
+  },
+
+  saveOptions: task(function*(changeset) {
+    yield all(
+      getWithDefault(changeset, "options.edges", []).map(
+        async ({ node: option }) => {
+          let { label, slug } = option;
+
+          await this.get("apollo").mutate({
+            mutation: saveOptionMutation,
+            variables: { input: { label, slug } }
+          });
+        }
+      )
+    );
+  }),
+
   submit: task(function*(changeset) {
     try {
+      yield this.saveOptions.perform(changeset);
+
       const question = yield this.get("apollo").mutate(
         {
           mutation: TYPES[changeset.get("__typename")],
@@ -121,10 +153,7 @@ export default Component.extend(ComponentQueryManager, {
                 isHidden: "false", // TODO: this must be configurable
                 clientMutationId: v4()
               },
-              this.getWithDefault(
-                `_get${changeset.get("__typename")}Input`,
-                () => ({})
-              )(changeset)
+              this[`_get${changeset.get("__typename")}Input`](changeset)
             )
           }
         },

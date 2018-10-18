@@ -4,14 +4,10 @@
   </div>
 {{else}}
   {{#with data.lastSuccessful.value.firstObject.node as |model|}}
-    {{! template-lint-disable attribute-indentation }}
-    {{! see https://github.com/ember-template-lint/ember-template-lint/issues/509 }}
     {{#validated-form
       model=(changeset model validations)
       on-submit=(perform submit)
     as |f|}}
-      {{! template-lint-enable attribute-indentation }}
-
       {{f.input
         type="text"
         label=(t "caluma.form-builder.form.name")

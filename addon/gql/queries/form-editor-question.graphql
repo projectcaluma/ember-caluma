@@ -19,6 +19,26 @@ query FormEditorQuestion($slug: String!) {
         ... on TextareaQuestion {
           maxLength
         }
+        ... on CheckboxQuestion {
+          options {
+            edges {
+              node {
+                label
+                slug
+              }
+            }
+          }
+        }
+        ... on RadioQuestion {
+          options {
+            edges {
+              node {
+                label
+                slug
+              }
+            }
+          }
+        }
       }
     }
   }

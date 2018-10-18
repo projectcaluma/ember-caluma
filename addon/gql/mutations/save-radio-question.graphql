@@ -4,6 +4,16 @@ mutation SaveRadioQuestion($input: SaveRadioQuestionInput!) {
   saveRadioQuestion(input: $input) {
     question {
       ...QuestionInfo
+      ... on RadioQuestion {
+        options {
+          edges {
+            node {
+              label
+              slug
+            }
+          }
+        }
+      }
     }
     clientMutationId
   }
