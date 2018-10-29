@@ -10,6 +10,7 @@ import slugify from "ember-caluma-utils/utils/slugify";
 import { A } from "@ember/array";
 import validations from "ember-caluma-form-builder/validations/question";
 import { all } from "rsvp";
+import { getOwner } from "@ember/application";
 
 import checkQuestionSlugQuery from "ember-caluma-form-builder/gql/queries/check-question-slug";
 import formEditorQuestionQuery from "ember-caluma-form-builder/gql/queries/form-editor-question";
@@ -192,7 +193,13 @@ export default Component.extend(ComponentQueryManager, {
   }).drop(),
 
   validateSlug: task(function*(slug, changeset) {
-    yield timeout(500);
+    /* istanbul ignore next */
+    if (
+      getOwner(this).resolveRegistration("config:environment").environment !==
+      "test"
+    ) {
+      yield timeout(500);
+    }
 
     const res = yield this.get("apollo").query(
       {
