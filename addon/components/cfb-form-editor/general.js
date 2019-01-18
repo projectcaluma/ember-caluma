@@ -8,6 +8,7 @@ import v4 from "uuid/v4";
 import slugify from "ember-caluma-utils/utils/slugify";
 import { optional } from "ember-composable-helpers/helpers/optional";
 import { A } from "@ember/array";
+import { getOwner } from "@ember/application";
 
 import checkFormSlugQuery from "ember-caluma-form-builder/gql/queries/check-form-slug";
 import formEditorGeneralQuery from "ember-caluma-form-builder/gql/queries/form-editor-general";
@@ -119,7 +120,13 @@ export default Component.extend(ComponentQueryManager, {
   }).drop(),
 
   validateSlug: task(function*(slug, changeset) {
-    yield timeout(500);
+    /* istanbul ignore next */
+    if (
+      getOwner(this).resolveRegistration("config:environment").environment !==
+      "test"
+    ) {
+      yield timeout(500);
+    }
 
     const res = yield this.get("apollo").query(
       {

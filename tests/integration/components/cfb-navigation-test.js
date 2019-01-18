@@ -1,6 +1,6 @@
 import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
-import { render, click } from "@ember/test-helpers";
+import { render, click, settled } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 
 module("Integration | Component | cfb-navigation", function(hooks) {
@@ -55,6 +55,8 @@ module("Integration | Component | cfb-navigation", function(hooks) {
     await click("li:last-child > a");
 
     this.nav.pushEntry(4, { title: "index", link: ["application", 4] });
+
+    await settled();
 
     router.set("transitionTo", (routeName, ...args) => {
       assert.equal(routeName, "mount");
