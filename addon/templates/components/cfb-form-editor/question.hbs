@@ -114,7 +114,7 @@
         </div>
       {{/if}}
 
-      {{#if (contains f.model.__typename (array "CheckboxQuestion" "RadioQuestion"))}}
+      {{#if (contains f.model.__typename (array "MultipleChoiceQuestion" "ChoiceQuestion"))}}
         {{f.input
           name="options"
           label=(t "caluma.form-builder.question.options")

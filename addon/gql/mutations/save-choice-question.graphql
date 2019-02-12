@@ -1,10 +1,10 @@
 #import "ember-caluma-form-builder/gql/fragments/question-info"
 
-mutation SaveRadioQuestion($input: SaveRadioQuestionInput!) {
-  saveRadioQuestion(input: $input) {
+mutation SaveChoiceQuestion($input: SaveChoiceQuestionInput!) {
+  saveChoiceQuestion(input: $input) {
     question {
       ...QuestionInfo
-      ... on RadioQuestion {
+      ... on ChoiceQuestion {
         options {
           edges {
             node {

@@ -98,27 +98,6 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
     assert.verifySteps(["after-submit"]);
   });
 
-  test("it can archive a form", async function(assert) {
-    assert.expect(3);
-
-    const { id } = this.server.create("form", {
-      name: "Test Name",
-      slug: "test-slug",
-      description: "Test Description"
-    });
-
-    this.set("afterArchive", () => assert.step("after-archive"));
-
-    await render(
-      hbs`{{cfb-form-editor/general slug='test-slug' on-after-archive=(action afterArchive)}}`
-    );
-
-    await click("[data-test-archive]");
-
-    assert.ok(this.server.schema.forms.find(id).isArchived);
-    assert.verifySteps(["after-archive"]);
-  });
-
   test("it can handle errors", async function(assert) {
     assert.expect(1);
 

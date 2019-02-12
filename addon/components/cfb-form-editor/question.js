@@ -21,16 +21,16 @@ import saveTextQuestionMutation from "ember-caluma-form-builder/gql/mutations/sa
 import saveTextareaQuestionMutation from "ember-caluma-form-builder/gql/mutations/save-textarea-question";
 import saveIntegerQuestionMutation from "ember-caluma-form-builder/gql/mutations/save-integer-question";
 import saveFloatQuestionMutation from "ember-caluma-form-builder/gql/mutations/save-float-question";
-import saveCheckboxQuestionMutation from "ember-caluma-form-builder/gql/mutations/save-checkbox-question";
-import saveRadioQuestionMutation from "ember-caluma-form-builder/gql/mutations/save-radio-question";
+import saveMultipleChoiceQuestionMutation from "ember-caluma-form-builder/gql/mutations/save-multiple-choice-question";
+import saveChoiceQuestionMutation from "ember-caluma-form-builder/gql/mutations/save-choice-question";
 
 export const TYPES = {
   TextQuestion: saveTextQuestionMutation,
   TextareaQuestion: saveTextareaQuestionMutation,
   IntegerQuestion: saveIntegerQuestionMutation,
   FloatQuestion: saveFloatQuestionMutation,
-  CheckboxQuestion: saveCheckboxQuestionMutation,
-  RadioQuestion: saveRadioQuestionMutation
+  MultipleChoiceQuestion: saveMultipleChoiceQuestionMutation,
+  ChoiceQuestion: saveChoiceQuestionMutation
 };
 
 export default Component.extend(ComponentQueryManager, {
@@ -111,13 +111,13 @@ export default Component.extend(ComponentQueryManager, {
     };
   },
 
-  _getCheckboxQuestionInput(changeset) {
+  _getMultipleChoiceQuestionInput(changeset) {
     return {
       options: changeset.get("options.edges").map(({ node: { slug } }) => slug)
     };
   },
 
-  _getRadioQuestionInput(changeset) {
+  _getChoiceQuestionInput(changeset) {
     return {
       options: changeset.get("options.edges").map(({ node: { slug } }) => slug)
     };

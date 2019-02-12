@@ -55,8 +55,8 @@ export default {
 
   options: or(
     and(
-      validateType("CheckboxQuestion", false),
-      validateType("RadioQuestion", false)
+      validateType("MultipleChoiceQuestion", false),
+      validateType("ChoiceQuestion", false)
     ),
     and(validateOptions(), validateLength({ min: 1 }))
   )

@@ -59,8 +59,8 @@ caluma:
       types:
         IntegerQuestion: "Ganze Zahl"
         FloatQuestion: "Gleitkommazahl"
-        CheckboxQuestion: "Checkbox"
-        RadioQuestion: "Radio"
+        MultipleChoiceQuestion: "Checkbox"
+        ChoiceQuestion: "Radio"
         TextQuestion: "Text"
         TextareaQuestion: "Textbereich"
 
