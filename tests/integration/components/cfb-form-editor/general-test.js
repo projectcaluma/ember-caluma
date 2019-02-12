@@ -103,20 +103,15 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
 
     this.server.create("form", { slug: "test-form" });
 
-    this.set("afterArchive", () => assert.step("after-archive"));
     this.set("afterSubmit", () => assert.step("after-submit"));
 
     // edit form
     await render(
       hbs`{{cfb-form-editor/general
         slug='test-form'
-        on-after-archive=(action afterArchive)
         on-after-submit=(action afterSubmit)
       }}`
     );
-
-    this.server.post("/graphql", () => graphqlError("archiveForm"), 200);
-    await click("[data-test-archive]");
 
     this.server.post("/graphql", () => graphqlError("saveForm"), 200);
     await click("button[type=submit]");

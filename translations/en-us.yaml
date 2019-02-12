@@ -6,7 +6,6 @@ caluma:
   form-builder:
     global:
       save: "Save"
-      archive: "Archive"
       loading: "Loading"
       cancel: "Cancel"
       search: "Search"
@@ -23,6 +22,7 @@ caluma:
       name: "Name"
       slug: "Slug"
       description: "Description"
+      isArchived: "Archived"
 
       all: "All forms"
       new: "New form"
@@ -75,10 +75,6 @@ caluma:
         create:
           success: "Your form was successfully created!"
           error: "Ooops, something went wrong while creating the form..."
-
-        archive:
-          success: "Your form was successfully archived!"
-          error: "Ooops, something went wrong while archiving the form..."
 
         reorder:
           success: "Your questions were successfully reordered!"
