@@ -1,13 +1,9 @@
-{{component labelComponent}}
-
-<div class="uk-form-controls">
-  {{uk-toggle-switch
-    value=boolValue
-    size=size
-    name=name
-    on-toggle=(action "toggle")
-  }}
-</div>
-
-{{component hintComponent}}
-{{component errorComponent}}
+{{cfb-toggle-switch
+  labelComponent=labelComponent
+  hintComponent=hintComponent
+  errorComponent=errorComponent
+  value=boolValue
+  size=size
+  name=name
+  update=(action "toggle")
+}}

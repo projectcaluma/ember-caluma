@@ -19,7 +19,7 @@ query FormEditorQuestion($slug: String!) {
         ... on TextareaQuestion {
           maxLength
         }
-        ... on CheckboxQuestion {
+        ... on MultipleChoiceQuestion {
           options {
             edges {
               node {
@@ -29,7 +29,7 @@ query FormEditorQuestion($slug: String!) {
             }
           }
         }
-        ... on RadioQuestion {
+        ... on ChoiceQuestion {
           options {
             edges {
               node {

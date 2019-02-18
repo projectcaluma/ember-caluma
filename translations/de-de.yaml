@@ -6,7 +6,6 @@ caluma:
   form-builder:
     global:
       save: "Speichern"
-      archive: "Archivieren"
       loading: "Laden"
       cancel: "Abbrechen"
       search: "Suchen"
@@ -23,6 +22,7 @@ caluma:
       name: "Name"
       slug: "Slug"
       description: "Beschreibung"
+      isArchived: "Archiviert"
 
       all: "Alle Formulare"
       new: "Neues Formular"
@@ -59,8 +59,8 @@ caluma:
       types:
         IntegerQuestion: "Ganze Zahl"
         FloatQuestion: "Gleitkommazahl"
-        CheckboxQuestion: "Checkbox"
-        RadioQuestion: "Radio"
+        MultipleChoiceQuestion: "Checkbox"
+        ChoiceQuestion: "Radio"
         TextQuestion: "Text"
         TextareaQuestion: "Textbereich"
 
@@ -75,10 +75,6 @@ caluma:
         create:
           success: "Ihr Formular wurde erfolgreich erstellt!"
           error: "Hoppla, beim Erstellen des Formulars ist etwas schief gelaufen..."
-
-        archive:
-          success: "Ihr Formular wurde erfolgreich archiviert!"
-          error: "Hoppla, beim Archivieren des Formulars ist etwas schief gelaufen..."
 
         reorder:
           success: "Ihre Fragen wurde erfolgreich sortiert!"

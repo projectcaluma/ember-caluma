@@ -13,7 +13,6 @@ import { getOwner } from "@ember/application";
 import checkFormSlugQuery from "ember-caluma-form-builder/gql/queries/check-form-slug";
 import formEditorGeneralQuery from "ember-caluma-form-builder/gql/queries/form-editor-general";
 import saveFormMutation from "ember-caluma-form-builder/gql/mutations/save-form";
-import archiveFormMutation from "ember-caluma-form-builder/gql/mutations/archive-form";
 
 export default Component.extend(ComponentQueryManager, {
   layout,
@@ -61,6 +60,7 @@ export default Component.extend(ComponentQueryManager, {
               name: changeset.get("name"),
               slug: changeset.get("slug"),
               description: changeset.get("description"),
+              isArchived: changeset.get("isArchived"),
               clientMutationId: v4()
             }
           }
@@ -83,37 +83,6 @@ export default Component.extend(ComponentQueryManager, {
           `caluma.form-builder.notification.form.${
             this.get("slug") ? "save" : "create"
           }.error`
-        )
-      );
-    }
-  }).drop(),
-
-  archive: task(function*(changeset) {
-    try {
-      const form = yield this.get("apollo").mutate(
-        {
-          mutation: archiveFormMutation,
-          variables: {
-            input: {
-              id: changeset.get("slug"),
-              clientMutationId: v4()
-            }
-          }
-        },
-        "archiveForm.form"
-      );
-
-      this.get("notification").success(
-        this.get("intl").t(
-          "caluma.form-builder.notification.form.archive.success"
-        )
-      );
-
-      optional([this.get("on-after-archive")])(form);
-    } catch (e) {
-      this.get("notification").danger(
-        this.get("intl").t(
-          "caluma.form-builder.notification.form.archive.error"
         )
       );
     }

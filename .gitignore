@@ -17,6 +17,7 @@
 /testem.log
 /yarn-error.log
 *.swp
+*.swo
 
 # ember-try
 /.node_modules.ember-try/

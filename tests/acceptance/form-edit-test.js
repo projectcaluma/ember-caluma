@@ -37,30 +37,4 @@ module("Acceptance | form edit", function(hooks) {
 
     assert.equal(currentURL(), "/demo/form-builder/test-form");
   });
-
-  test("can archive a form", async function(assert) {
-    assert.expect(4);
-
-    this.server.create("form", { slug: "test-form" });
-
-    await visit("/demo/form-builder");
-
-    assert
-      .dom("[data-test-demo-content] [data-test-form-list-item]")
-      .exists({ count: 1 });
-
-    await click(
-      "[data-test-demo-content] [data-test-form-list-item=test-form] [data-test-edit-form]"
-    );
-
-    assert.equal(currentURL(), "/demo/form-builder/test-form");
-
-    await click("[data-test-demo-content] [data-test-archive]");
-
-    assert.equal(currentURL(), "/demo/form-builder");
-
-    assert
-      .dom("[data-test-demo-content] [data-test-form-list-item=test-form]")
-      .doesNotExist();
-  });
 });

@@ -32,17 +32,15 @@
         rows=4
       }}
 
-      <div class="uk-text-right">
-        {{#if slug}}
-          {{uk-button
-            data-test-archive
-            disabled=(or archive.isRunning f.loading)
-            loading=archive.isRunning
-            label=(t "caluma.form-builder.global.archive")
-            on-click=(perform archive f.model)
-          }}
-        {{/if}}
+      {{f.input
+        name="isArchived"
+        label=(t "caluma.form-builder.form.isArchived")
+        required=true
+        renderComponent=(component "cfb-toggle-switch" size="small")
+        class="uk-flex uk-flex-between uk-flex-column"
+      }}
 
+      <div class="uk-text-right">
         {{f.submit
           disabled=(or f.loading f.model.isInvalid)
           label=(t "caluma.form-builder.global.save")

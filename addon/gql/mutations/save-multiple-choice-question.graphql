@@ -1,10 +1,10 @@
 #import "ember-caluma-form-builder/gql/fragments/question-info"
 
-mutation SaveCheckboxQuestion($input: SaveCheckboxQuestionInput!) {
-  saveCheckboxQuestion(input: $input) {
+mutation SaveMultipleChoiceQuestion($input: SaveMultipleChoiceQuestionInput!) {
+  saveMultipleChoiceQuestion(input: $input) {
     question {
       ...QuestionInfo
-      ... on CheckboxQuestion {
+      ... on MultipleChoiceQuestion {
         options {
           edges {
             node {

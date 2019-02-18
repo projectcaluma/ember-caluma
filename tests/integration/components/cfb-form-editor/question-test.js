@@ -230,13 +230,13 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     assert.verifySteps(["after-submit"]);
   });
 
-  test("it can create a checkbox question", async function(assert) {
+  test("it can create a multiple choice question", async function(assert) {
     assert.expect(7);
 
     this.server.create("form", { slug: "test-form" });
 
     this.set("afterSubmit", question => {
-      assert.equal(question.__typename, "CheckboxQuestion");
+      assert.equal(question.__typename, "MultipleChoiceQuestion");
       assert.equal(question.label, "Label");
       assert.equal(question.slug, "slug");
       assert.equal(question.options.edges[0].node.slug, "slug-option-1");
@@ -249,7 +249,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
       hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
     );
 
-    await click("[data-test-type=CheckboxQuestion]");
+    await click("[data-test-type=MultipleChoiceQuestion]");
     await fillIn("[name=label]", "Label");
     await fillIn("[name=slug]", "slug");
     await fillIn("[name=option-1-label]", "Option 1");
@@ -266,7 +266,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     this.server.create("form", { slug: "test-form" });
 
     this.set("afterSubmit", question => {
-      assert.equal(question.__typename, "RadioQuestion");
+      assert.equal(question.__typename, "ChoiceQuestion");
       assert.equal(question.label, "Label");
       assert.equal(question.slug, "slug");
       assert.equal(question.options.edges[0].node.slug, "slug-option-1");
@@ -279,7 +279,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
       hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
     );
 
-    await click("[data-test-type=RadioQuestion]");
+    await click("[data-test-type=ChoiceQuestion]");
     await fillIn("[name=label]", "Label");
     await fillIn("[name=slug]", "slug");
     await fillIn("[name=option-1-label]", "Option 1");
