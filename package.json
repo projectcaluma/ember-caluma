@@ -93,6 +93,7 @@
     "eslint-plugin-node": "8.0.1",
     "eslint-plugin-prettier": "2.6.0",
     "loader.js": "4.7.0",
+    "node-fetch": "2.3.0",
     "prettier": "1.15.3",
     "qunit-dom": "0.8.4",
     "typeface-oxygen": "0.0.54",
