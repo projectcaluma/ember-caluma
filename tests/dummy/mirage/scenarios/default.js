@@ -1,15 +1,59 @@
-import { faker } from "ember-cli-mirage";
-
 export default function(server) {
-  const forms = server.createList("form", 5);
-  const questions = server.createList("question", 20);
+  const form = server.create("form");
 
-  forms.forEach(form => {
-    const begin = faker.random.number({ min: 0, max: questions.length - 1 });
-    const end = faker.random.number({ min: begin + 1, max: questions.length });
-
-    form.update({
-      questionIds: questions.slice(begin, end).map(({ id }) => id)
-    });
+  server.create("question", {
+    slug: "name",
+    label: "What is your name?",
+    formIds: [form.id],
+    type: "TEXT",
+    maxLength: null
   });
+  server.create("question", {
+    slug: "description",
+    label: "Describe yourself.",
+    formIds: [form.id],
+    type: "TEXTAREA",
+    maxLength: 255
+  });
+  server.create("question", {
+    slug: "age",
+    label: "What is your age?",
+    formIds: [form.id],
+    type: "INTEGER",
+    minValue: 0,
+    maxValue: null
+  });
+  server.create("question", {
+    slug: "height",
+    label: "How tall are you in meters?",
+    formIds: [form.id],
+    type: "FLOAT",
+    minValue: 0,
+    maxValue: null,
+    isHidden: "'age'|answer < 18"
+  });
+  server.create("question", {
+    slug: "like-caluma",
+    label: "Do you like Caluma?",
+    type: "CHOICE",
+    formIds: [form.id],
+    options: [
+      server.create("option", { label: "Yes" }),
+      server.create("option", { label: "Hell yes" })
+    ]
+  });
+  server.create("question", {
+    slug: "short-reason",
+    label: "Why so short?",
+    formIds: [form.id],
+    type: "MULTIPLE_CHOICE",
+    isHidden: "'height'|answer > 1.6",
+    options: [
+      server.create("option", { label: "Moms fault" }),
+      server.create("option", { label: "Dads fault" }),
+      server.create("option", { label: "Not enough vegetables" })
+    ]
+  });
+
+  server.create("document", { formId: form.id });
 }

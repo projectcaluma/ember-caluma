@@ -5817,6 +5817,13 @@ ember-one-way-select@^4.0.0:
     ember-cli-htmlbars "^2.0.1"
     ember-invoke-action "^1.5.0"
 
+ember-promise-helpers@1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/ember-promise-helpers/-/ember-promise-helpers-1.0.6.tgz#6ff9f451330f4608ec4696de473a7f54bc179236"
+  integrity sha1-b/n0UTMPRgjsRpbeRzp/VLwXkjY=
+  dependencies:
+    ember-cli-babel "^6.6.0"
+
 ember-qunit@4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/ember-qunit/-/ember-qunit-4.2.0.tgz#376bf2eb6340f492e9cf9b5cb55b7dd74e8de600"

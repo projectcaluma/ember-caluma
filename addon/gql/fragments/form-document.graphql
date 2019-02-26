@@ -1,0 +1,23 @@
+#import 'ember-caluma-form-builder/gql/fragments/field-answer'
+#import 'ember-caluma-form-builder/gql/fragments/field-question'
+
+fragment FormDocument on Document {
+  id
+  answers {
+    edges {
+      node {
+        ...FieldAnswer
+      }
+    }
+  }
+  form {
+    slug
+    questions {
+      edges {
+        node {
+          ...FieldQuestion
+        }
+      }
+    }
+  }
+}

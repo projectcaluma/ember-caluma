@@ -1,0 +1,18 @@
+{{#each field.question.multipleChoiceOptions.edges as |optionEdge i|}}
+  {{#let optionEdge.node as |option|}}
+    {{#if (gt i 0)}}<br>{{/if}}
+    <label class={{if field.isInvalid "uk-form-danger"}}>
+      <input
+        class="uk-checkbox uk-margin-small-right"
+        type="checkbox"
+        name={{field.id}}
+        value={{option.slug}}
+        checked={{contains option.slug field.answer.listValue}}
+        disabled={{disabled}}
+        onchange={{action (action "toggle" option.slug) value="target.checked"}}
+      >
+      {{option.label}}
+    </label>
+  {{/let}}
+{{/each}}
+

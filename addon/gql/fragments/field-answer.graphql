@@ -1,0 +1,18 @@
+fragment FieldAnswer on Answer {
+  id
+  question {
+    slug
+  }
+  ... on StringAnswer {
+    stringValue: value
+  }
+  ... on IntegerAnswer {
+    integerValue: value
+  }
+  ... on FloatAnswer {
+    floatValue: value
+  }
+  ... on ListAnswer {
+    listValue: value
+  }
+}

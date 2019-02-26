@@ -1,0 +1,9 @@
+#import 'ember-caluma-form-builder/gql/fragments/field-answer'
+
+mutation($input: SaveDocumentStringAnswerInput!) {
+  saveDocumentStringAnswer(input: $input) {
+    answer {
+      ...FieldAnswer
+    }
+  }
+}
