@@ -39,6 +39,25 @@ You can find the interactive documentation [here](https://projectcaluma.github.i
 
 For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
 
+### Updating the schema
+
+The addon includes a mirage server for mocking Caluma's GraphQL API, which is generated from the GraphQL schema definition. If the upstream GraphQL schema changed you can update the addon by running
+
+```bash
+yarn update-schema
+yarn fragment-types
+```
+
+### History
+
+This addon is the result of a merge of three different addons:
+
+* [ember-caluma-form-builder](https://github.com/projectcaluma/ember-caluma-form-builder)
+* [ember-caluma-form](https://github.com/projectcaluma/ember-caluma-form)
+* [ember-caluma-utils](https://github.com/projectcaluma/ember-caluma-utils)
+
+The history of `ember-caluma-form` and `ember-caluma-utils` has not been preserved during the merge.
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).

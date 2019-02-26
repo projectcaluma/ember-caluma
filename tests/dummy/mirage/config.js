@@ -8,7 +8,7 @@ export default function() {
 
   this.post(config.apollo.apiURL, graphqlHandler(this), 200);
 
-  if (!config.environment === "production") {
+  if (config.environment !== "production") {
     this.get("/versions.json", {}, 200);
   }
 

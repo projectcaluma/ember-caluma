@@ -1,7 +1,6 @@
 dummy:
   demo: "Demo"
   usage: "Usage"
-  maintenance: "Maintenance"
 
 caluma:
   form:
