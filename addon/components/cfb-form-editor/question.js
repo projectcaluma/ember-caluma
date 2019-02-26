@@ -6,7 +6,7 @@ import { ComponentQueryManager } from "ember-apollo-client";
 import v4 from "uuid/v4";
 import { optional } from "ember-composable-helpers/helpers/optional";
 import { computed, getWithDefault } from "@ember/object";
-import slugify from "ember-caluma-utils/utils/slugify";
+import slugify from "ember-caluma-form-builder/utils/slugify";
 import { A } from "@ember/array";
 import validations from "ember-caluma-form-builder/validations/question";
 import { all } from "rsvp";

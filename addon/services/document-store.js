@@ -2,7 +2,7 @@ import Service from "@ember/service";
 import { computed } from "@ember/object";
 import { getOwner } from "@ember/application";
 import Document from "ember-caluma-form-builder/lib/document";
-import { atob } from "ember-caluma-utils/helpers/atob";
+import { atob } from "ember-caluma-form-builder/helpers/atob";
 
 /**
  * @class DocumentStoreService

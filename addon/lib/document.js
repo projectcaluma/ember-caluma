@@ -4,7 +4,7 @@ import { getOwner } from "@ember/application";
 import Evented, { on } from "@ember/object/evented";
 import Field from "ember-caluma-form-builder/lib/field";
 import jexl from "jexl";
-import { atob } from "ember-caluma-utils/helpers/atob";
+import { atob } from "ember-caluma-form-builder/helpers/atob";
 
 /**
  * Object which represents a document

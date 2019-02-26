@@ -3,7 +3,7 @@ import { inject as service } from "@ember/service";
 import { get } from "@ember/object";
 import { RouteQueryManager } from "ember-apollo-client";
 import gql from "graphql-tag";
-import { atob } from "ember-caluma-utils/helpers/atob";
+import { atob } from "ember-caluma-form-builder/helpers/atob";
 
 export default Route.extend(RouteQueryManager, {
   apollo: service(),

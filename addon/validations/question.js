@@ -1,5 +1,5 @@
-import and from "ember-caluma-utils/utils/and";
-import or from "ember-caluma-utils/utils/or";
+import and from "ember-caluma-form-builder/utils/and";
+import or from "ember-caluma-form-builder/utils/or";
 
 import {
   validatePresence,

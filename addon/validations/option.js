@@ -1,4 +1,4 @@
-import and from "ember-caluma-utils/utils/and";
+import and from "ember-caluma-form-builder/utils/and";
 import {
   validatePresence,
   validateLength

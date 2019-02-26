@@ -5,7 +5,7 @@ import { task, timeout } from "ember-concurrency";
 import { ComponentQueryManager } from "ember-apollo-client";
 import validations from "../../validations/form";
 import v4 from "uuid/v4";
-import slugify from "ember-caluma-utils/utils/slugify";
+import slugify from "ember-caluma-form-builder/utils/slugify";
 import { optional } from "ember-composable-helpers/helpers/optional";
 import { A } from "@ember/array";
 import { getOwner } from "@ember/application";
