@@ -3,8 +3,8 @@ import {
   InMemoryCache,
   IntrospectionFragmentMatcher
 } from "apollo-cache-inmemory";
-import introspectionQueryResultData from "ember-caluma-form-builder/-private/fragment-types";
-import CalumaApolloServiceMixinMixin from "ember-caluma-form-builder/mixins/caluma-apollo-service-mixin";
+import introspectionQueryResultData from "ember-caluma/-private/fragment-types";
+import CalumaApolloServiceMixinMixin from "ember-caluma/mixins/caluma-apollo-service-mixin";
 import { module, test } from "qunit";
 import { setupTest } from "ember-qunit";
 

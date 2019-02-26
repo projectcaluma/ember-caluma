@@ -8,13 +8,13 @@ import { task } from "ember-concurrency";
 import { all } from "rsvp";
 import { validate } from "ember-validators";
 
-import Answer from "ember-caluma-form-builder/lib/answer";
-import Question from "ember-caluma-form-builder/lib/question";
+import Answer from "ember-caluma/lib/answer";
+import Question from "ember-caluma/lib/question";
 
-import saveDocumentFloatAnswerMutation from "ember-caluma-form-builder/gql/mutations/save-document-float-answer";
-import saveDocumentIntegerAnswerMutation from "ember-caluma-form-builder/gql/mutations/save-document-integer-answer";
-import saveDocumentStringAnswerMutation from "ember-caluma-form-builder/gql/mutations/save-document-string-answer";
-import saveDocumentListAnswerMutation from "ember-caluma-form-builder/gql/mutations/save-document-list-answer";
+import saveDocumentFloatAnswerMutation from "ember-caluma/gql/mutations/save-document-float-answer";
+import saveDocumentIntegerAnswerMutation from "ember-caluma/gql/mutations/save-document-integer-answer";
+import saveDocumentStringAnswerMutation from "ember-caluma/gql/mutations/save-document-string-answer";
+import saveDocumentListAnswerMutation from "ember-caluma/gql/mutations/save-document-list-answer";
 
 const TYPE_MAP = {
   TextQuestion: "StringAnswer",

@@ -1,4 +1,4 @@
-import { lastValue } from "ember-caluma-form-builder/utils/concurrency";
+import { lastValue } from "ember-caluma/utils/concurrency";
 import { module, test } from "qunit";
 import { setupTest } from "ember-qunit";
 import EmberObject from "@ember/object";

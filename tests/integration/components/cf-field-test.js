@@ -2,7 +2,7 @@ import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
 import { render, fillIn } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
-import Document from "ember-caluma-form-builder/lib/document";
+import Document from "ember-caluma/lib/document";
 
 module("Integration | Component | cf-field", function(hooks) {
   setupRenderingTest(hooks);

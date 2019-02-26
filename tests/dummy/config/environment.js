@@ -54,8 +54,7 @@ module.exports = function(environment) {
 
     ENV["ember-cli-mirage"] = { enabled: true };
 
-    ENV.apollo.apiURL =
-      "https://projectcaluma.github.io/ember-caluma-form-builder/graphql";
+    ENV.apollo.apiURL = "https://projectcaluma.github.io/ember-caluma/graphql";
   }
 
   return ENV;

@@ -10,7 +10,7 @@ const App = Application.extend({
   Resolver,
 
   engines: {
-    emberCalumaFormBuilder: {
+    emberCaluma: {
       dependencies: {
         services: ["apollo", "notification", "router"]
       }

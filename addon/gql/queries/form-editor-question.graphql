@@ -1,4 +1,4 @@
-#import "ember-caluma-form-builder/gql/fragments/question-info"
+#import "ember-caluma/gql/fragments/question-info"
 
 query FormEditorQuestion($slug: String!) {
   allQuestions(slug: $slug) {

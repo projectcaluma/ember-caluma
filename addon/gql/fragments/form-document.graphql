@@ -1,5 +1,5 @@
-#import 'ember-caluma-form-builder/gql/fragments/field-answer'
-#import 'ember-caluma-form-builder/gql/fragments/field-question'
+#import 'ember-caluma/gql/fragments/field-answer'
+#import 'ember-caluma/gql/fragments/field-question'
 
 fragment FormDocument on Document {
   id

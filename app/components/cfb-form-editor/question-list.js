@@ -1,3 +1,1 @@
-export {
-  default
-} from "ember-caluma-form-builder/components/cfb-form-editor/question-list";
+export { default } from "ember-caluma/components/cfb-form-editor/question-list";

@@ -6,23 +6,23 @@ import { ComponentQueryManager } from "ember-apollo-client";
 import v4 from "uuid/v4";
 import { optional } from "ember-composable-helpers/helpers/optional";
 import { computed, getWithDefault } from "@ember/object";
-import slugify from "ember-caluma-form-builder/utils/slugify";
+import slugify from "ember-caluma/utils/slugify";
 import { A } from "@ember/array";
-import validations from "ember-caluma-form-builder/validations/question";
+import validations from "ember-caluma/validations/question";
 import { all } from "rsvp";
 import { getOwner } from "@ember/application";
 
-import checkQuestionSlugQuery from "ember-caluma-form-builder/gql/queries/check-question-slug";
-import formEditorQuestionQuery from "ember-caluma-form-builder/gql/queries/form-editor-question";
-import addFormQuestionMutation from "ember-caluma-form-builder/gql/mutations/add-form-question";
+import checkQuestionSlugQuery from "ember-caluma/gql/queries/check-question-slug";
+import formEditorQuestionQuery from "ember-caluma/gql/queries/form-editor-question";
+import addFormQuestionMutation from "ember-caluma/gql/mutations/add-form-question";
 
-import saveOptionMutation from "ember-caluma-form-builder/gql/mutations/save-option";
-import saveTextQuestionMutation from "ember-caluma-form-builder/gql/mutations/save-text-question";
-import saveTextareaQuestionMutation from "ember-caluma-form-builder/gql/mutations/save-textarea-question";
-import saveIntegerQuestionMutation from "ember-caluma-form-builder/gql/mutations/save-integer-question";
-import saveFloatQuestionMutation from "ember-caluma-form-builder/gql/mutations/save-float-question";
-import saveMultipleChoiceQuestionMutation from "ember-caluma-form-builder/gql/mutations/save-multiple-choice-question";
-import saveChoiceQuestionMutation from "ember-caluma-form-builder/gql/mutations/save-choice-question";
+import saveOptionMutation from "ember-caluma/gql/mutations/save-option";
+import saveTextQuestionMutation from "ember-caluma/gql/mutations/save-text-question";
+import saveTextareaQuestionMutation from "ember-caluma/gql/mutations/save-textarea-question";
+import saveIntegerQuestionMutation from "ember-caluma/gql/mutations/save-integer-question";
+import saveFloatQuestionMutation from "ember-caluma/gql/mutations/save-float-question";
+import saveMultipleChoiceQuestionMutation from "ember-caluma/gql/mutations/save-multiple-choice-question";
+import saveChoiceQuestionMutation from "ember-caluma/gql/mutations/save-choice-question";
 
 export const TYPES = {
   TextQuestion: saveTextQuestionMutation,

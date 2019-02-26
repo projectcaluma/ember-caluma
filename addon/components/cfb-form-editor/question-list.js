@@ -9,11 +9,11 @@ import { computed } from "@ember/object";
 import v4 from "uuid/v4";
 import { inject as service } from "@ember/service";
 
-import searchQuestionQuery from "ember-caluma-form-builder/gql/queries/search-question";
-import searchFormQuestionQuery from "ember-caluma-form-builder/gql/queries/search-form-question";
-import reorderFormQuestionsMutation from "ember-caluma-form-builder/gql/mutations/reorder-form-questions";
-import addFormQuestionMutation from "ember-caluma-form-builder/gql/mutations/add-form-question";
-import removeFormQuestionMutation from "ember-caluma-form-builder/gql/mutations/remove-form-question";
+import searchQuestionQuery from "ember-caluma/gql/queries/search-question";
+import searchFormQuestionQuery from "ember-caluma/gql/queries/search-form-question";
+import reorderFormQuestionsMutation from "ember-caluma/gql/mutations/reorder-form-questions";
+import addFormQuestionMutation from "ember-caluma/gql/mutations/add-form-question";
+import removeFormQuestionMutation from "ember-caluma/gql/mutations/remove-form-question";
 
 export default Component.extend(ComponentQueryManager, {
   layout,

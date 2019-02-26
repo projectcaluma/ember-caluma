@@ -9,7 +9,7 @@ const EngineAddon = require("ember-engines/lib/engine-addon");
 
 /* eslint-disable ember/avoid-leaking-state-in-ember-objects */
 module.exports = EngineAddon.extend({
-  name: "ember-caluma-form-builder",
+  name: "ember-caluma",
   lazyLoading: false,
 
   // see https://github.com/dfreeman/ember-cli-node-assets/issues/11

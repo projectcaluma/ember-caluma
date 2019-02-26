@@ -1,7 +1,7 @@
 import EmberObject, { computed } from "@ember/object";
 import { next } from "@ember/runloop";
-import { lastValue } from "ember-caluma-form-builder/utils/concurrency";
-import { getAST, getTransforms } from "ember-caluma-form-builder/utils/jexl";
+import { lastValue } from "ember-caluma/utils/concurrency";
+import { getAST, getTransforms } from "ember-caluma/utils/jexl";
 import { task } from "ember-concurrency";
 import { assert } from "@ember/debug";
 

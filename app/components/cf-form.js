@@ -1,1 +1,1 @@
-export { default } from "ember-caluma-form-builder/components/cf-form";
+export { default } from "ember-caluma/components/cf-form";

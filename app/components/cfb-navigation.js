@@ -1,1 +1,1 @@
-export { default } from "ember-caluma-form-builder/components/cfb-navigation";
+export { default } from "ember-caluma/components/cfb-navigation";

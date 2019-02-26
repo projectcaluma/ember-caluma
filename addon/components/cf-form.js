@@ -5,7 +5,7 @@ import { ComponentQueryManager } from "ember-apollo-client";
 import { task } from "ember-concurrency";
 import layout from "../templates/components/cf-form";
 
-import getDocumentQuery from "ember-caluma-form-builder/gql/queries/get-document";
+import getDocumentQuery from "ember-caluma/gql/queries/get-document";
 
 /**
  * Component to display a form for a whole document.

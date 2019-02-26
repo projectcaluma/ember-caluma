@@ -1,7 +1,7 @@
 Router.map(function() {
   // ...
 
-  this.mount("ember-caluma-form-builder", {
+  this.mount("ember-caluma", {
     as: "form-builder",
     path: "/form-builder"
   });

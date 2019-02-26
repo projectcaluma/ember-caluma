@@ -5,7 +5,7 @@ import {
   IntrospectionFragmentMatcher,
   defaultDataIdFromObject
 } from "apollo-cache-inmemory";
-import introspectionQueryResultData from "ember-caluma-form-builder/-private/fragment-types";
+import introspectionQueryResultData from "ember-caluma/-private/fragment-types";
 
 export default Mixin.create({
   cache: computed(

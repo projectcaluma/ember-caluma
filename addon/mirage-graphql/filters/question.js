@@ -1,4 +1,4 @@
-import BaseFilter from "ember-caluma-form-builder/mirage-graphql/filters/base";
+import BaseFilter from "ember-caluma/mirage-graphql/filters/base";
 
 export default class extends BaseFilter {
   isArchived(records, value) {

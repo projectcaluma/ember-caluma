@@ -25,6 +25,7 @@ module.exports = {
         ".eslintrc.js",
         ".template-lintrc.js",
         "ember-cli-build.js",
+        "fetch-fragment-types.js",
         "index.js",
         "testem.js",
         "blueprints/*/index.js",

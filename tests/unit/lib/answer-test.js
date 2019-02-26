@@ -1,6 +1,6 @@
 import { module, test } from "qunit";
 import { setupTest } from "ember-qunit";
-import Answer from "ember-caluma-form-builder/lib/answer";
+import Answer from "ember-caluma/lib/answer";
 
 module("Unit | Library | answer", function(hooks) {
   setupTest(hooks);

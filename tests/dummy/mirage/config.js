@@ -1,5 +1,5 @@
 import config from "../config/environment";
-import graphqlHandler from "ember-caluma-form-builder/mirage-graphql";
+import graphqlHandler from "ember-caluma/mirage-graphql";
 
 export default function() {
   this.urlPrefix = ""; // make this `http://localhost:8080`, for example, if your API is on a different server

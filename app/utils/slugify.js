@@ -1,1 +1,1 @@
-export { default } from "ember-caluma-form-builder/utils/slugify";
+export { default } from "ember-caluma/utils/slugify";

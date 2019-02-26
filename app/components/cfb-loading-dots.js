@@ -1,1 +1,1 @@
-export { default } from "ember-caluma-form-builder/components/cfb-loading-dots";
+export { default } from "ember-caluma/components/cfb-loading-dots";

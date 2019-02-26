@@ -1,12 +1,12 @@
 # Installation
 
 ```bash
-ember install ember-caluma-form-builder
+ember install ember-caluma
 ```
 
 # Usage
 
-To make `ember-caluma-form-builder` work a few steps must be followed. The
+To make `ember-caluma` work a few steps must be followed. The
 form builder is a [routable engine](http://ember-engines.com) which must be
 mounted in `app/router.js`:
 
@@ -24,7 +24,7 @@ with the provided mixin:
 
 {{docs-snippet name='usage/apollo.js'}}
 
-Last but not least import `ember-uikit` and `ember-caluma-form-builder` to
+Last but not least import `ember-uikit` and `ember-caluma` to
 apply styling in `app/styles/app.scss`:
 
 {{docs-snippet name='usage/app.scss'}}

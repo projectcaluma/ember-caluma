@@ -5,14 +5,14 @@ import { task, timeout } from "ember-concurrency";
 import { ComponentQueryManager } from "ember-apollo-client";
 import validations from "../../validations/form";
 import v4 from "uuid/v4";
-import slugify from "ember-caluma-form-builder/utils/slugify";
+import slugify from "ember-caluma/utils/slugify";
 import { optional } from "ember-composable-helpers/helpers/optional";
 import { A } from "@ember/array";
 import { getOwner } from "@ember/application";
 
-import checkFormSlugQuery from "ember-caluma-form-builder/gql/queries/check-form-slug";
-import formEditorGeneralQuery from "ember-caluma-form-builder/gql/queries/form-editor-general";
-import saveFormMutation from "ember-caluma-form-builder/gql/mutations/save-form";
+import checkFormSlugQuery from "ember-caluma/gql/queries/check-form-slug";
+import formEditorGeneralQuery from "ember-caluma/gql/queries/form-editor-general";
+import saveFormMutation from "ember-caluma/gql/mutations/save-form";
 
 export default Component.extend(ComponentQueryManager, {
   layout,

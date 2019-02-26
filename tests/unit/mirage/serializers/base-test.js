@@ -1,6 +1,6 @@
 import { module, test } from "qunit";
 import { setupTest } from "ember-qunit";
-import BaseSerializer from "ember-caluma-form-builder/mirage-graphql/serializers/base";
+import BaseSerializer from "ember-caluma/mirage-graphql/serializers/base";
 
 module("Unit | Mirage GraphQL Serializer | base", function(hooks) {
   setupTest(hooks);

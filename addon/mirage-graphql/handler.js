@@ -2,9 +2,9 @@ import { addMockFunctionsToSchema, makeExecutableSchema } from "graphql-tools";
 import { graphql } from "graphql";
 import { classify } from "@ember/string";
 import { singularize } from "ember-inflector";
-import rawSchema from "ember-caluma-form-builder/mirage-graphql/schema";
-import resolvers from "ember-caluma-form-builder/mirage-graphql/resolvers";
-import { Mock } from "ember-caluma-form-builder/mirage-graphql";
+import rawSchema from "ember-caluma/mirage-graphql/schema";
+import resolvers from "ember-caluma/mirage-graphql/resolvers";
+import { Mock } from "ember-caluma/mirage-graphql";
 
 export default function(server) {
   return function({ db }, request) {

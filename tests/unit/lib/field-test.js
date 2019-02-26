@@ -1,6 +1,6 @@
 import { module, test } from "qunit";
 import { setupTest } from "ember-qunit";
-import Field from "ember-caluma-form-builder/lib/field";
+import Field from "ember-caluma/lib/field";
 
 module("Unit | Library | field", function(hooks) {
   setupTest(hooks);

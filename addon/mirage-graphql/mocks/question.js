@@ -1,10 +1,6 @@
-import BaseMock from "ember-caluma-form-builder/mirage-graphql/mocks/base";
+import BaseMock from "ember-caluma/mirage-graphql/mocks/base";
 import { MockList } from "graphql-tools";
-import {
-  Filter,
-  Serializer,
-  register
-} from "ember-caluma-form-builder/mirage-graphql";
+import { Filter, Serializer, register } from "ember-caluma/mirage-graphql";
 import { classify } from "@ember/string";
 
 const optionFilter = new Filter("Option");

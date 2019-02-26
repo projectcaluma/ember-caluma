@@ -1,1 +1,1 @@
-export { default } from "ember-caluma-form-builder/utils/and";
+export { default } from "ember-caluma/utils/and";

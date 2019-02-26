@@ -1,3 +1,1 @@
-export {
-  default
-} from "ember-caluma-form-builder/components/cf-field/input/radio";
+export { default } from "ember-caluma/components/cf-field/input/radio";

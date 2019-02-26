@@ -1,14 +1,14 @@
 {
-  "name": "ember-caluma-form-builder",
+  "name": "ember-caluma",
   "version": "0.0.0",
-  "description": "The form builder for Caluma",
+  "description": "The Ember.js addon for Caluma",
   "keywords": [
     "ember-addon",
     "ember-engine"
   ],
   "license": "MIT",
   "author": "",
-  "repository": "github:projectcaluma/ember-caluma-form-builder",
+  "repository": "github:projectcaluma/ember-caluma",
   "directories": {
     "doc": "doc",
     "test": "tests"

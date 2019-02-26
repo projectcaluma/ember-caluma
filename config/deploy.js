@@ -5,7 +5,7 @@ module.exports = function() {
   let ENV = {
     build: {},
     git: {
-      repo: "git@github.com:projectcaluma/ember-caluma-form-builder.git"
+      repo: "git@github.com:projectcaluma/ember-caluma.git"
     }
   };
 

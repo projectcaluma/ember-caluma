@@ -1,5 +1,5 @@
 import EmberObject from "@ember/object";
-import NavigationRouteMixin from "ember-caluma-form-builder/mixins/navigation-route";
+import NavigationRouteMixin from "ember-caluma/mixins/navigation-route";
 import { module, test } from "qunit";
 
 module("Unit | Mixin | navigation-route", function() {

@@ -1,9 +1,9 @@
 import RenderComponent from "ember-validated-form/components/validated-input/-themes/uikit/render";
 import Changeset from "ember-changeset";
 import lookupValidator from "ember-changeset-validations";
-import OptionValidations from "ember-caluma-form-builder/validations/option";
+import OptionValidations from "ember-caluma/validations/option";
 import layout from "../../../templates/components/cfb-form-editor/question/options";
-import slugify from "ember-caluma-form-builder/utils/slugify";
+import slugify from "ember-caluma/utils/slugify";
 import { get } from "@ember/object";
 import { reads } from "@ember/object/computed";
 

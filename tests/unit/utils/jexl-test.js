@@ -1,4 +1,4 @@
-import { getAST, getTransforms } from "ember-caluma-form-builder/utils/jexl";
+import { getAST, getTransforms } from "ember-caluma/utils/jexl";
 import { module, test } from "qunit";
 import { setupTest } from "ember-qunit";
 

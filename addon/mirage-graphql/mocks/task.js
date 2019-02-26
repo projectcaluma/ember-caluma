@@ -1,7 +1,7 @@
-import BaseMock from "ember-caluma-form-builder/mirage-graphql/mocks/base";
-import { register } from "ember-caluma-form-builder/mirage-graphql";
+import BaseMock from "ember-caluma/mirage-graphql/mocks/base";
+import { register } from "ember-caluma/mirage-graphql";
 import { classify } from "@ember/string";
-import { atob } from "ember-caluma-form-builder/helpers/atob";
+import { atob } from "ember-caluma/helpers/atob";
 
 export default class extends BaseMock {
   @register("Task")

@@ -2,9 +2,9 @@ import EmberObject, { computed } from "@ember/object";
 import { assert } from "@ember/debug";
 import { getOwner } from "@ember/application";
 import Evented, { on } from "@ember/object/evented";
-import Field from "ember-caluma-form-builder/lib/field";
+import Field from "ember-caluma/lib/field";
 import jexl from "jexl";
-import { atob } from "ember-caluma-form-builder/helpers/atob";
+import { atob } from "ember-caluma/helpers/atob";
 
 /**
  * Object which represents a document

@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   const ENV = {
-    modulePrefix: "ember-caluma-form-builder",
+    modulePrefix: "ember-caluma",
     environment,
 
     "ember-validated-form": {

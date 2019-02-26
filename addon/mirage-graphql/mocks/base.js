@@ -1,8 +1,4 @@
-import {
-  Filter,
-  Serializer,
-  register
-} from "ember-caluma-form-builder/mirage-graphql";
+import { Filter, Serializer, register } from "ember-caluma/mirage-graphql";
 import { camelize, dasherize } from "@ember/string";
 import { MockList } from "graphql-tools";
 
