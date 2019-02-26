@@ -4660,7 +4660,7 @@ elliptic@^6.0.0:
     minimalistic-assert "^1.0.0"
     minimalistic-crypto-utils "^1.0.0"
 
-ember-apollo-client@^2.0.0-beta.1:
+ember-apollo-client@2.0.0-beta.2:
   version "2.0.0-beta.2"
   resolved "https://registry.yarnpkg.com/ember-apollo-client/-/ember-apollo-client-2.0.0-beta.2.tgz#c623b68a2a31b5a64ff1cbcd7d193cec0cbcf3e5"
   integrity sha512-XIEap+BJP+RX/iFk45WYpsZ5+aapf+CgP0Gh2PIg2hwZ7gc0cS2tAm3Urh5Zj0QCoGlbnfDtIO3cUiqqOs/QFg==
