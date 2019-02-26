@@ -1,4 +1,4 @@
-import validateOptions from "ember-caluma-form-builder/validators/options";
+import validateOptions from "ember-caluma/validators/options";
 import { module, test } from "qunit";
 
 module("Unit | Validator | options", function() {

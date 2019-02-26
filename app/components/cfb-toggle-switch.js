@@ -1,3 +1,1 @@
-export {
-  default
-} from "ember-caluma-form-builder/components/cfb-toggle-switch";
+export { default } from "ember-caluma/components/cfb-toggle-switch";

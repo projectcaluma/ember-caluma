@@ -3,6 +3,8 @@ dummy:
   usage: "Anwendung"
 
 caluma:
+  form:
+    optional: "Optional"
   form-builder:
     global:
       save: "Speichern"

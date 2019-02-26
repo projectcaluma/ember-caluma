@@ -1,1 +1,1 @@
-export { default } from "ember-caluma-form-builder/components/cfb-label";
+export { default } from "ember-caluma/components/cfb-label";

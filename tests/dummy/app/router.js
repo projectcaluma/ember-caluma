@@ -12,7 +12,7 @@ Router.map(function() {
   });
 
   this.route("demo", function() {
-    this.mount("ember-caluma-form-builder", {
+    this.mount("ember-caluma", {
       path: "/form-builder",
       as: "form-builder"
     });

@@ -1,13 +1,13 @@
-import and from "ember-caluma-utils/utils/and";
-import or from "ember-caluma-utils/utils/or";
+import and from "ember-caluma/utils/and";
+import or from "ember-caluma/utils/or";
 
 import {
   validatePresence,
   validateLength,
   validateNumber
 } from "ember-changeset-validations/validators";
-import validateSlug from "ember-caluma-form-builder/validators/slug";
-import validateType from "ember-caluma-form-builder/validators/type";
+import validateSlug from "ember-caluma/validators/slug";
+import validateType from "ember-caluma/validators/type";
 import validateGtLt from "../validators/gt-lt";
 import validateOptions from "../validators/options";
 

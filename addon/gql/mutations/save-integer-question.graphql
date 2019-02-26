@@ -1,4 +1,4 @@
-#import "ember-caluma-form-builder/gql/fragments/question-info"
+#import "ember-caluma/gql/fragments/question-info"
 
 mutation SaveIntegerQuestion($input: SaveIntegerQuestionInput!) {
   saveIntegerQuestion(input: $input) {

@@ -22,6 +22,7 @@
 /tests/
 /yarn.lock
 .gitkeep
+/fetch-fragment-types.js
 
 # ember-try
 /.node_modules.ember-try/

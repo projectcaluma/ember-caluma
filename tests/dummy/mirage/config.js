@@ -1,5 +1,5 @@
 import config from "../config/environment";
-import graphqlHandler from "ember-caluma-utils/mirage-graphql";
+import graphqlHandler from "ember-caluma/mirage-graphql";
 
 export default function() {
   this.urlPrefix = ""; // make this `http://localhost:8080`, for example, if your API is on a different server
@@ -8,7 +8,7 @@ export default function() {
 
   this.post(config.apollo.apiURL, graphqlHandler(this), 200);
 
-  if (!config.environment === "production") {
+  if (config.environment !== "production") {
     this.get("/versions.json", {}, 200);
   }
 

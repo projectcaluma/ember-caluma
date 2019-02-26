@@ -1,4 +1,4 @@
-import validateGtLt from "ember-caluma-form-builder/validators/gt-lt";
+import validateGtLt from "ember-caluma/validators/gt-lt";
 import { module, test } from "qunit";
 
 module("Unit | Validator | gt-lt", function() {

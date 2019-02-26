@@ -1,3 +1,1 @@
-export {
-  default
-} from "ember-caluma-form-builder/components/cfb-button-group-select";
+export { default } from "ember-caluma/components/cfb-button-group-select";

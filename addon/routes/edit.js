@@ -1,6 +1,6 @@
 import Route from "@ember/routing/route";
 import { inject as service } from "@ember/service";
-import NavigationRouteMixin from "ember-caluma-form-builder/mixins/navigation-route";
+import NavigationRouteMixin from "ember-caluma/mixins/navigation-route";
 import { task } from "ember-concurrency";
 import gql from "graphql-tag";
 import { RouteQueryManager } from "ember-apollo-client";
