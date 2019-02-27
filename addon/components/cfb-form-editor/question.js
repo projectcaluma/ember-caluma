@@ -152,6 +152,7 @@ export default Component.extend(ComponentQueryManager, {
                 slug: changeset.get("slug"),
                 isRequired: changeset.get("isRequired"),
                 isHidden: "false", // TODO: this must be configurable
+                isArchived: changeset.get("isArchived"),
                 clientMutationId: v4()
               },
               this[`_get${changeset.get("__typename")}Input`](changeset)

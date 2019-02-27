@@ -123,6 +123,14 @@
         }}
       {{/if}}
 
+      {{f.input
+        name="isArchived"
+        label=(t "caluma.form-builder.question.isArchived")
+        required=true
+        renderComponent=(component "cfb-toggle-switch" size="small")
+        class="uk-flex uk-flex-between uk-flex-column"
+      }}
+
       <div class="uk-text-right">
         {{f.submit
           disabled=(or f.loading f.model.isInvalid f.model.isPristine)
