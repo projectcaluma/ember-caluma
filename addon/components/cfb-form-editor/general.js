@@ -34,7 +34,8 @@ export default Component.extend(ComponentQueryManager, {
           node: {
             name: "",
             slug: "",
-            description: ""
+            description: "",
+            isPublished: true
           }
         }
       ]);
@@ -61,6 +62,7 @@ export default Component.extend(ComponentQueryManager, {
               slug: changeset.get("slug"),
               description: changeset.get("description"),
               isArchived: changeset.get("isArchived"),
+              isPublished: changeset.get("isPublished"),
               clientMutationId: v4()
             }
           }

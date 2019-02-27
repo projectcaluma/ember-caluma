@@ -25,6 +25,7 @@ caluma:
       slug: "Slug"
       description: "Beschreibung"
       isArchived: "Archiviert"
+      isPublished: "Publiziert"
 
       all: "Alle Formulare"
       new: "Neues Formular"
@@ -37,6 +38,7 @@ caluma:
       slug: "Slug"
       type: "Typ"
       isRequired: "Erforderlich"
+      isArchived: "Archiviert"
       type-disabled: "Sobald die Frage erstellt ist kann der Typ nicht mehr geändert werden um korrupte Daten zu verhindern."
 
       general: "Allgemein"

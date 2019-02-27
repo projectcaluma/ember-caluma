@@ -40,6 +40,14 @@
         class="uk-flex uk-flex-between uk-flex-column"
       }}
 
+      {{f.input
+        name="isPublished"
+        label=(t "caluma.form-builder.form.isPublished")
+        required=true
+        renderComponent=(component "cfb-toggle-switch" size="small")
+        class="uk-flex uk-flex-between uk-flex-column"
+      }}
+
       <div class="uk-text-right">
         {{f.submit
           disabled=(or f.loading f.model.isInvalid)
