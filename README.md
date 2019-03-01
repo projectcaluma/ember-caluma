@@ -1,6 +1,7 @@
 # ember-caluma
 
 [![Build Status](https://travis-ci.com/projectcaluma/ember-caluma.svg?branch=master)](https://travis-ci.com/projectcaluma/ember-caluma)
+[![npm](https://img.shields.io/npm/v/ember-caluma.svg)](https://www.npmjs.com/package/ember-caluma)
 [![Codecov](https://codecov.io/gh/projectcaluma/ember-caluma/branch/master/graph/badge.svg)](https://codecov.io/gh/projectcaluma/ember-caluma)
 [![dependencies Status](https://david-dm.org/projectcaluma/ember-caluma/status.svg)](https://david-dm.org/projectcaluma/ember-caluma)
 [![devDependencies Status](https://david-dm.org/projectcaluma/ember-caluma/dev-status.svg)](https://david-dm.org/projectcaluma/ember-caluma?type=dev)
