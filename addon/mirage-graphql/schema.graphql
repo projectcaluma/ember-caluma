@@ -1,5 +1,5 @@
 # source: http://localhost:8000/graphql
-# timestamp: Tue Feb 12 2019 09:39:36 GMT+0100 (CET)
+# timestamp: Thu Feb 28 2019 19:42:53 GMT+0100 (Central European Standard Time)
 
 input AddFormQuestionInput {
   form: ID!
@@ -119,6 +119,13 @@ type Case implements Node {
   The ID of the object.
   """
   id: ID!
+
+  """
+  Time when case has either been canceled or completed
+  """
+  closedAt: DateTime
+  closedByUser: String
+  closedByGroup: String
   workflow: Workflow!
   status: CaseStatus!
   meta: JSONString!
@@ -135,11 +142,14 @@ type Case implements Node {
     status: WorkItemStatusArgument
     task: ID
     case: ID
+    createdByUser: String
+    createdByGroup: String
 
     """
     WorkItemOrdering
     """
     orderBy: [WorkItemOrdering]
+    addressedGroups: [String]
   ): WorkItemConnection
   parentWorkItem: WorkItem
 }
@@ -283,6 +293,8 @@ type ChoiceQuestion implements Question & Node {
     description: String
     isPublished: Boolean
     isArchived: Boolean
+    createdByUser: String
+    createdByGroup: String
     search: String
   ): FormConnection
   options(
@@ -292,6 +304,8 @@ type ChoiceQuestion implements Question & Node {
     last: Int
     slug: String
     label: String
+    createdByUser: String
+    createdByGroup: String
     search: String
 
     """
@@ -318,6 +332,12 @@ type CompleteTaskFormTask implements Task & Node {
   meta: JSONString!
   addressGroups: GroupJexl
   isArchived: Boolean!
+
+  """
+  Time in seconds task may take to be processed.
+  """
+  leadTime: Int
+  isMultipleInstance: Boolean!
   form: Form!
 
   """
@@ -338,6 +358,12 @@ type CompleteWorkflowFormTask implements Task & Node {
   meta: JSONString!
   addressGroups: GroupJexl
   isArchived: Boolean!
+
+  """
+  Time in seconds task may take to be processed.
+  """
+  leadTime: Int
+  isMultipleInstance: Boolean!
 
   """
   The ID of the object.
@@ -392,6 +418,29 @@ type CopyQuestionPayload {
   clientMutationId: String
 }
 
+input CreateWorkItemInput {
+  case: ID!
+  multipleInstanceTask: ID!
+
+  """
+  Users responsible to undertake given work item.
+  """
+  assignedUsers: [String]
+
+  """
+  Offer work item to be processed by a group of users, such are not committed to process it though.
+  """
+  addressedGroups: [String]
+  deadline: DateTime
+  meta: JSONString
+  clientMutationId: String
+}
+
+type CreateWorkItemPayload {
+  workItem: WorkItem
+  clientMutationId: String
+}
+
 """
 The `DateTime` scalar type represents a DateTime
 value as specified by
@@ -418,6 +467,8 @@ type Document implements Node {
     last: Int
     question: ID
     search: String
+    createdByUser: String
+    createdByGroup: String
 
     """
     AnswerOrdering
@@ -532,6 +583,8 @@ type FloatQuestion implements Question & Node {
     description: String
     isPublished: Boolean
     isArchived: Boolean
+    createdByUser: String
+    createdByGroup: String
     search: String
   ): FormConnection
 
@@ -608,6 +661,8 @@ type Form implements Node {
     isRequired: String
     isHidden: String
     isArchived: Boolean
+    createdByUser: String
+    createdByGroup: String
     excludeForms: [ID]
     search: String
 
@@ -753,6 +808,8 @@ type IntegerQuestion implements Question & Node {
     description: String
     isPublished: Boolean
     isArchived: Boolean
+    createdByUser: String
+    createdByGroup: String
     search: String
   ): FormConnection
 
@@ -811,6 +868,8 @@ type MultipleChoiceQuestion implements Question & Node {
     description: String
     isPublished: Boolean
     isArchived: Boolean
+    createdByUser: String
+    createdByGroup: String
     search: String
   ): FormConnection
   options(
@@ -825,6 +884,8 @@ type MultipleChoiceQuestion implements Question & Node {
     orderBy: [OptionOrdering]
     slug: String
     label: String
+    createdByUser: String
+    createdByGroup: String
     search: String
   ): OptionConnection
 
@@ -848,9 +909,8 @@ type Mutation {
   startCase(input: StartCaseInput!): StartCasePayload
   cancelCase(input: CancelCaseInput!): CancelCasePayload
   completeWorkItem(input: CompleteWorkItemInput!): CompleteWorkItemPayload
-  setWorkItemAssignedUsers(
-    input: SetWorkItemAssignedUsersInput!
-  ): SetWorkItemAssignedUsersPayload
+  saveWorkItem(input: SaveWorkItemInput!): SaveWorkItemPayload
+  createWorkItem(input: CreateWorkItemInput!): CreateWorkItemPayload
   saveForm(input: SaveFormInput!): SaveFormPayload
   copyForm(input: CopyFormInput!): CopyFormPayload
   addFormQuestion(input: AddFormQuestionInput!): AddFormQuestionPayload
@@ -1028,6 +1088,8 @@ type Query {
     description: String
     isPublished: Boolean
     isArchived: Boolean
+    createdByUser: String
+    createdByGroup: String
     search: String
 
     """
@@ -1049,6 +1111,8 @@ type Query {
     """
     type: TaskTypeArgument
     isArchived: Boolean
+    createdByUser: String
+    createdByGroup: String
     search: String
 
     """
@@ -1067,6 +1131,8 @@ type Query {
     CaseStatusArgument
     """
     status: CaseStatusArgument
+    createdByUser: String
+    createdByGroup: String
 
     """
     CaseOrdering
@@ -1090,6 +1156,9 @@ type Query {
     orderBy: [WorkItemOrdering]
     task: ID
     case: ID
+    createdByUser: String
+    createdByGroup: String
+    addressedGroups: [String]
   ): WorkItemConnection
   allForms(
     before: String
@@ -1106,6 +1175,8 @@ type Query {
     description: String
     isPublished: Boolean
     isArchived: Boolean
+    createdByUser: String
+    createdByGroup: String
     search: String
   ): FormConnection
   allQuestions(
@@ -1123,6 +1194,8 @@ type Query {
     isRequired: String
     isHidden: String
     isArchived: Boolean
+    createdByUser: String
+    createdByGroup: String
     excludeForms: [ID]
     search: String
   ): QuestionConnection
@@ -1134,6 +1207,8 @@ type Query {
     form: ID
     search: String
     id: ID
+    createdByUser: String
+    createdByGroup: String
 
     """
     DocumentOrdering
@@ -1169,6 +1244,8 @@ interface Question {
     description: String
     isPublished: Boolean
     isArchived: Boolean
+    createdByUser: String
+    createdByGroup: String
     search: String
 
     """
@@ -1334,6 +1411,18 @@ input SaveCompleteTaskFormTaskInput {
   """
   addressGroups: GroupJexl
   isArchived: Boolean
+
+  """
+  Time in seconds task may take to be processed.
+  """
+  leadTime: Int
+
+  """
+  Allows creating multiple work items for this task using the `CreateWorkItem`
+  mutation. If true, one work item will be created for each entry in
+  `address_groups`.
+  """
+  isMultipleInstance: Boolean
   form: ID!
   clientMutationId: String
 }
@@ -1354,6 +1443,18 @@ input SaveCompleteWorkflowFormTaskInput {
   """
   addressGroups: GroupJexl
   isArchived: Boolean
+
+  """
+  Time in seconds task may take to be processed.
+  """
+  leadTime: Int
+
+  """
+  Allows creating multiple work items for this task using the `CreateWorkItem`
+  mutation. If true, one work item will be created for each entry in
+  `address_groups`.
+  """
+  isMultipleInstance: Boolean
   clientMutationId: String
 }
 
@@ -1530,6 +1631,18 @@ input SaveSimpleTaskInput {
   """
   addressGroups: GroupJexl
   isArchived: Boolean
+
+  """
+  Time in seconds task may take to be processed.
+  """
+  leadTime: Int
+
+  """
+  Allows creating multiple work items for this task using the `CreateWorkItem`
+  mutation. If true, one work item will be created for each entry in
+  `address_groups`.
+  """
+  isMultipleInstance: Boolean
   clientMutationId: String
 }
 
@@ -1620,13 +1733,19 @@ type SaveWorkflowPayload {
   clientMutationId: String
 }
 
-input SetWorkItemAssignedUsersInput {
+input SaveWorkItemInput {
   workItem: ID!
-  assignedUsers: [String]!
+
+  """
+  Users responsible to undertake given work item.
+  """
+  assignedUsers: [String]
+  deadline: DateTime
+  meta: JSONString
   clientMutationId: String
 }
 
-type SetWorkItemAssignedUsersPayload {
+type SaveWorkItemPayload {
   workItem: WorkItem
   clientMutationId: String
 }
@@ -1643,6 +1762,12 @@ type SimpleTask implements Task & Node {
   meta: JSONString!
   addressGroups: GroupJexl
   isArchived: Boolean!
+
+  """
+  Time in seconds task may take to be processed.
+  """
+  leadTime: Int
+  isMultipleInstance: Boolean!
 
   """
   The ID of the object.
@@ -1721,6 +1846,8 @@ type TableQuestion implements Question & Node {
     description: String
     isPublished: Boolean
     isArchived: Boolean
+    createdByUser: String
+    createdByGroup: String
     search: String
   ): FormConnection
 
@@ -1747,6 +1874,7 @@ interface Task {
   isArchived: Boolean!
   addressGroups: GroupJexl
   meta: JSONString!
+  isMultipleInstance: Boolean!
 }
 
 type TaskConnection {
@@ -1846,17 +1974,17 @@ An enumeration.
 """
 enum TaskType {
   """
-  Task which can only be marked as completed.
+  Task which can simply be marked as completed.
   """
   SIMPLE
 
   """
-  Task completing defined workflow form.
+  Task to complete a defined workflow form.
   """
   COMPLETE_WORKFLOW_FORM
 
   """
-  Task completing defined task form.
+  Task to complete a defined task form.
   """
   COMPLETE_TASK_FORM
 }
@@ -1866,17 +1994,17 @@ An enumeration.
 """
 enum TaskTypeArgument {
   """
-  Task which can only be marked as completed.
+  Task which can simply be marked as completed.
   """
   SIMPLE
 
   """
-  Task completing defined workflow form.
+  Task to complete a defined workflow form.
   """
   COMPLETE_WORKFLOW_FORM
 
   """
-  Task completing defined task form.
+  Task to complete a defined task form.
   """
   COMPLETE_TASK_FORM
 }
@@ -1908,6 +2036,8 @@ type TextareaQuestion implements Question & Node {
     description: String
     isPublished: Boolean
     isArchived: Boolean
+    createdByUser: String
+    createdByGroup: String
     search: String
   ): FormConnection
 
@@ -1945,6 +2075,8 @@ type TextQuestion implements Question & Node {
     description: String
     isPublished: Boolean
     isArchived: Boolean
+    createdByUser: String
+    createdByGroup: String
     search: String
   ): FormConnection
 
@@ -1983,12 +2115,19 @@ type Workflow implements Node {
   The ID of the object.
   """
   id: ID!
+
+  """
+  List of tasks referenced in workflow
+  """
+  tasks: [Task]!
   flows(
     before: String
     after: String
     first: Int
     last: Int
     task: ID
+    createdByUser: String
+    createdByGroup: String
   ): FlowConnection
 }
 
@@ -2084,6 +2223,14 @@ type WorkItem implements Node {
   The ID of the object.
   """
   id: ID!
+
+  """
+  Time when work item has either been canceled or completed
+  """
+  closedAt: DateTime
+  closedByUser: String
+  closedByGroup: String
+  deadline: DateTime
   task: Task!
   status: WorkItemStatus!
   meta: JSONString!
