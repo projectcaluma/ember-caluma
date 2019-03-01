@@ -1,7 +1,0 @@
-fragment QuestionInfo on Question {
-  slug
-  label
-  isRequired
-  isHidden
-  isArchived
-}

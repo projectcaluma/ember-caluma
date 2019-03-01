@@ -1,9 +1,0 @@
-query CheckFormSlug($slug: String!) {
-  allForms(slug: $slug) {
-    edges {
-      node {
-        slug
-      }
-    }
-  }
-}

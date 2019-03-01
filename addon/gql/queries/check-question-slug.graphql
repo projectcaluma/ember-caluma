@@ -1,9 +1,0 @@
-query CheckQuestionSlug($slug: String!) {
-  allQuestions(slug: $slug) {
-    edges {
-      node {
-        slug
-      }
-    }
-  }
-}
