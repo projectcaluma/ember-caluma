@@ -97,8 +97,8 @@
     "node-fetch": "2.3.0",
     "prettier": "1.15.3",
     "qunit-dom": "0.8.4",
-    "typeface-oxygen": "0.0.54",
-    "typeface-oxygen-mono": "0.0.54"
+    "typeface-oxygen": "0.0.72",
+    "typeface-oxygen-mono": "0.0.72"
   },
   "resolutions": {
     "**/tough-cookie": "~2.4.0"
