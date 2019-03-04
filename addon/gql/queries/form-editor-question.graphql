@@ -39,6 +39,11 @@ query FormEditorQuestion($slug: String!) {
             }
           }
         }
+        ... on TableQuestion {
+          rowForm {
+            slug
+          }
+        }
       }
     }
   }

@@ -137,4 +137,11 @@ export default class extends BaseMock {
 
     return res;
   }
+
+  @register("SaveTableQuestionPayload")
+  handleSaveTableFloatQuestion(_, { input }) {
+    return this.handleSavePayload.fn.call(this, _, {
+      input: { ...input, type: "TABLE" }
+    });
+  }
 }
