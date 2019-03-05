@@ -6,21 +6,55 @@ import hbs from "htmlbars-inline-precompile";
 module("Integration | Component | cf-field/input/powerselect", function(hooks) {
   setupRenderingTest(hooks);
 
-  test("it renders", async function(assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+  test("it renders (single)", async function(assert) {
+    assert.expect(1);
 
-    await render(hbs`{{cf-field/input/powerselect}}`);
+    this.set("field", {
+      id: "test",
+      answer: {
+        _valueKey: "stringValue",
+        stringValue: "option-3"
+      },
+      question: {
+        __typename: "ChoiceQuestion",
+        choiceOptions: {
+          edges: [
+            { node: { slug: "option-1", label: "Option 1" } },
+            { node: { slug: "option-2", label: "Option 2" } },
+            { node: { slug: "option-3", label: "Option 3" } }
+          ]
+        }
+      }
+    });
 
-    assert.equal(this.element.textContent.trim(), "");
+    await render(hbs`{{cf-field/input/powerselect field=field }}`);
 
-    // Template block usage:
-    await render(hbs`
-      {{#cf-field/input/powerselect}}
-        template block text
-      {{/cf-field/input/powerselect}}
-    `);
+    assert.dom(".ember-power-select-trigger").exists();
+  });
 
-    assert.equal(this.element.textContent.trim(), "template block text");
+  test("it renders (multiple)", async function(assert) {
+    assert.expect(1);
+
+    this.set("field", {
+      id: "test",
+      answer: {
+        _valueKey: "listValue",
+        listValue: ["option-1", "option-2"]
+      },
+      question: {
+        __typename: "MultipleChoiceQuestion",
+        multipleChoiceOptions: {
+          edges: [
+            { node: { slug: "option-1", label: "Option 1" } },
+            { node: { slug: "option-2", label: "Option 2" } },
+            { node: { slug: "option-3", label: "Option 3" } }
+          ]
+        }
+      }
+    });
+
+    await render(hbs`{{cf-field/input/powerselect field=field }}`);
+
+    assert.dom(".ember-power-select-trigger").exists();
   });
 });
