@@ -3,6 +3,7 @@ fragment FieldQuestion on Question {
   label
   isRequired
   isHidden
+  meta
   ... on TextQuestion {
     textMaxLength: maxLength
   }

@@ -121,6 +121,18 @@
           required=true
           renderComponent=(component "cfb-form-editor/question/options")
         }}
+
+        {{f.input
+          name="widgetType"
+          label=(t "caluma.form-builder.question.widgetType")
+          required=true
+          class="uk-flex uk-flex-between uk-flex-column"
+
+          type="select"
+          optionTargetPath="value"
+          optionLabelPath="label"
+          options=(array (hash value="default" label="Default") (hash value="powerselect" label="Dropdown"))
+        }}
       {{/if}}
 
       <div class="uk-text-right">

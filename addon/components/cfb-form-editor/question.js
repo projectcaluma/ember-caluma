@@ -75,7 +75,7 @@ export default Component.extend(ComponentQueryManager, {
       ]);
     }
 
-    return yield this.get("apollo").watchQuery(
+    const questions = yield this.get("apollo").watchQuery(
       {
         query: formEditorQuestionQuery,
         variables: { slug: this.get("slug") },
@@ -83,6 +83,14 @@ export default Component.extend(ComponentQueryManager, {
       },
       "allQuestions.edges"
     );
+
+    function setWidgetType(question) {
+      const meta = JSON.parse(question.node.meta);
+      question.node.widgetType = meta.widgetType;
+      return question;
+    }
+
+    return A(questions.map(setWidgetType));
   }).restartable(),
 
   _getIntegerQuestionInput(changeset) {
@@ -152,6 +160,9 @@ export default Component.extend(ComponentQueryManager, {
                 slug: changeset.get("slug"),
                 isRequired: changeset.get("isRequired"),
                 isHidden: "false", // TODO: this must be configurable
+                meta: JSON.stringify({
+                  widgetType: changeset.get("widgetType")
+                }),
                 clientMutationId: v4()
               },
               this[`_get${changeset.get("__typename")}Input`](changeset)

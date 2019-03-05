@@ -45,6 +45,7 @@ caluma:
       slug: "Slug"
       type: "Type"
       isRequired: "Required"
+      widgetType: "Widget type"
       type-disabled: "Once created, the type can't be changed to prevent corrupt data."
 
       general: "General"

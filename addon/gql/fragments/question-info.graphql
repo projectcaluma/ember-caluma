@@ -3,4 +3,5 @@ fragment QuestionInfo on Question {
   label
   isRequired
   isHidden
+  meta
 }
