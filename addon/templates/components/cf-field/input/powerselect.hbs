@@ -1,0 +1,20 @@
+{{#component componentName
+  options=choices
+  selected=field.answer.stringValue
+  disabled=disabled
+  allowClear=true
+  preventScroll=false
+  searchEnabled=true
+  searchField="label"
+  
+  placeholder="Choose one or more options."
+  loadingMessage="Loading options..."
+  searchMessage="No options available."
+  searchPlaceholder="Type here to search for options."
+  noMatchesMessage="Search didn't match any options."
+  
+  onchange=(action "change")
+  as |choice|
+}}
+  {{choice.label}}
+{{/component}}
