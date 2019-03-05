@@ -23,6 +23,16 @@ export default Component.extend({
     }
   ),
 
+  selected: computed(
+    "field.answer.{_valueKey,listValue,stringValue}",
+    function() {
+      let key = this.get("field.answer._valueKey");
+      let path = `field.answer.${key}`;
+
+      return this.get(path);
+    }
+  ),
+
   componentName: computed("multiple", function() {
     let name = "power-select";
 
@@ -33,6 +43,10 @@ export default Component.extend({
     return name;
   }),
 
+  searchEnabled: computed("choices", function() {
+    return this.get("choices").length > 10;
+  }),
+
   placeholder: computed("multiple", function() {
     let suffix = this.get("multiple") ? "multiple" : "single";
     let path = `caluma.form.power-select.placeholder-${suffix}`;
@@ -41,7 +55,10 @@ export default Component.extend({
 
   actions: {
     change: function(choices) {
-      this.set("field.answer.stringValue", choices);
+      let key = this.get("field.answer._valueKey");
+      let path = `field.answer.${key}`;
+
+      this.set(path, choices);
     }
   }
 });
