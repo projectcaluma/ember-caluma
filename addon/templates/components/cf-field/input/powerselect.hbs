@@ -7,11 +7,11 @@
   searchEnabled=true
   searchField="label"
   
-  placeholder="Choose one or more options."
-  loadingMessage="Loading options..."
-  searchMessage="No options available."
-  searchPlaceholder="Type here to search for options."
-  noMatchesMessage="Search didn't match any options."
+  placeholder=placeholder
+  loadingMessage=(t "caluma.form.power-select.options-loading")
+  searchMessage=(t "caluma.form.power-select.options-empty")
+  searchPlaceholder=(t "caluma.form.power-select.search-placeholder")
+  noMatchesMessage=(t "caluma.form.power-select.search-empty")
   
   onchange=(action "change")
   as |choice|

@@ -6,6 +6,14 @@ caluma:
   form:
     optional: "Optional"
 
+    power-select:
+      placeholder-single: "Choose one option"
+      placeholder-multiple: "Choose one or more options"
+      options-loading: "Loading options..."
+      options-empty: "No options available"
+      search-placeholder: "Type here to search options"
+      search-empty: "Search didn't match any options"
+
     validation:
       blank: "This field can't be blank"
       tooLong: "The value of this field can't be longer than {max} characters"

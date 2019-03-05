@@ -5,6 +5,15 @@ dummy:
 caluma:
   form:
     optional: "Optional"
+
+    power-select:
+      placeholder-single: "Wählen Sie eine Option aus"
+      placeholder-multiple: "Wählen Sie eine oder mehrere Optionen aus"
+      options-loading: "Lade Optionen..."
+      options-empty: "Keine Optionen vorhanden"
+      search-placeholder: "Hier tippen um zu suchen"
+      search-empty: "Keine Optionen entsprechen der Suche"
+      
   form-builder:
     global:
       save: "Speichern"
