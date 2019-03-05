@@ -13,11 +13,12 @@ export default Component.extend({
   }),
 
   choices: computed(
+    "multiple",
     "field.question.{choiceOptions,multipleChoiceOptions}.edges",
     function() {
-      let options =
-        this.get("field.question.choiceOptions") ||
-        this.get("field.question.multipleChoiceOptions");
+      let options = this.get("multiple")
+        ? this.get("field.question.multipleChoiceOptions")
+        : this.get("field.question.choiceOptions");
 
       return options.edges.map(edge => edge.node);
     }
