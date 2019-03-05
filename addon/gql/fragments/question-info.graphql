@@ -4,4 +4,5 @@ fragment QuestionInfo on Question {
   isRequired
   isHidden
   meta
+  isArchived
 }

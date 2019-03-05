@@ -33,6 +33,7 @@ caluma:
       slug: "Slug"
       description: "Description"
       isArchived: "Archived"
+      isPublished: "Published"
 
       all: "All forms"
       new: "New form"
@@ -46,6 +47,7 @@ caluma:
       type: "Type"
       isRequired: "Required"
       widgetType: "Widget type"
+      isArchived: "Archived"
       type-disabled: "Once created, the type can't be changed to prevent corrupt data."
 
       general: "General"

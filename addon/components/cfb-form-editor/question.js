@@ -163,6 +163,7 @@ export default Component.extend(ComponentQueryManager, {
                 meta: JSON.stringify({
                   widgetType: changeset.get("widgetType")
                 }),
+                isArchived: changeset.get("isArchived"),
                 clientMutationId: v4()
               },
               this[`_get${changeset.get("__typename")}Input`](changeset)

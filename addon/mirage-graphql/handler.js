@@ -27,6 +27,7 @@ export default function(server) {
       schema,
       mocks: {
         ...mocks,
+        JSONString: () => '{"foo": "bar"}',
         Node: (_, { id }) => ({ __typename: atob(id).split(":")[0] })
       },
       preserveResolvers: false
