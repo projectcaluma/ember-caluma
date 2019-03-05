@@ -1,7 +1,7 @@
 import Component from "@ember/component";
-import layout from "../../../templates/components/cf-field/input/powerselect";
 import { computed } from "@ember/object";
 import { inject as service } from "@ember/service";
+import layout from "../../../templates/components/cf-field/input/powerselect";
 
 export default Component.extend({
   layout,
