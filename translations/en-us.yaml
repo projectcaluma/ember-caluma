@@ -70,8 +70,8 @@ caluma:
       types:
         IntegerQuestion: "Integer"
         FloatQuestion: "Float"
-        MultipleChoiceQuestion: "Checkbox"
-        ChoiceQuestion: "Radio"
+        MultipleChoiceQuestion: "Choices"
+        ChoiceQuestion: "Choice"
         TextQuestion: "Text"
         TextareaQuestion: "Textarea"
 
