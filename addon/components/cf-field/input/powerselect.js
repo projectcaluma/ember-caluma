@@ -35,8 +35,20 @@ export default Component.extend({
     function() {
       let key = this.get("field.answer._valueKey");
       let path = `field.answer.${key}`;
+      let answers = this.get(path);
+      let selection = null;
 
-      return this.get(path);
+      if (answers !== null) {
+        selection = this.get("choices").filter(choice => {
+          return answers.includes(choice.slug);
+        });
+
+        if (key === "stringValue") {
+          selection = selection[0];
+        }
+      }
+
+      return selection;
     }
   ),
 
@@ -63,9 +75,15 @@ export default Component.extend({
   actions: {
     change: function(choices) {
       let key = this.get("field.answer._valueKey");
-      let path = `field.answer.${key}`;
+      let value = null;
 
-      this.set(path, choices);
+      if (key === "listValue") {
+        value = choices.map(choice => choice.slug);
+      } else if (choices !== null) {
+        value = choices.slug;
+      }
+
+      this.onSave(value);
     }
   }
 });
