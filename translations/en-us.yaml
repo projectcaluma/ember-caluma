@@ -5,6 +5,7 @@ dummy:
 caluma:
   form:
     optional: "Optional"
+    done: "Done"
 
     power-select:
       placeholder-single: "Choose one option"

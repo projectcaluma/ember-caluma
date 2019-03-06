@@ -5,6 +5,7 @@ dummy:
 caluma:
   form:
     optional: "Optional"
+    done: "Abschliessen"
 
     power-select:
       placeholder-single: "Wählen Sie eine Option aus"
@@ -39,8 +40,7 @@ caluma:
 
     form:
       name: "Name"
-      slug: "Slug"
-      description: "Beschreibung"
+      slug: "Slug" description: "Beschreibung"
       isArchived: "Archiviert"
       isPublished: "Publiziert"
 
