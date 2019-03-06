@@ -10,20 +10,22 @@ export default Component.extend({
 
   apollo: service(),
 
+  documentStore: service(),
+
   showModal: false,
   documentToEdit: null,
 
   addRow: task(function*() {
     let question = yield this.question;
 
-    const newDocument = yield this.get("apollo").mutate(
+    const newDocumentRaw = yield this.get("apollo").mutate(
       {
         mutation: saveDocumentMutation,
         variables: {
           input: { form: this.get("field.question.rowForm.slug") }
         }
       },
-      "saveDocument.document.id"
+      "saveDocument.document"
     );
     yield this.get("apollo").mutate({
       mutation: saveDocumentTableAnswerMutation,
@@ -32,14 +34,22 @@ export default Component.extend({
           question: this.get("field.question.slug"),
           document: this.get("field.document.id"),
           value: [
-            newDocument,
-            ...this.get("field.answer.rowDocuments").map(doc => doc.id)
+            newDocumentRaw.id,
+            ...this.getWithDefault("field.answer.rowDocuments", []).map(
+              doc => doc.id
+            )
           ]
         }
       }
     });
 
-    console.log(newDocument);
+    const newDocument = this.documentStore.find(newDocumentRaw);
+
+    // update client-side state
+    this.set("field.answer.rowDocuments", [
+      newDocument,
+      ...this.get("field.answer.rowDocuments")
+    ]);
 
     this.setProperties({
       documentToEdit: newDocument,
@@ -49,27 +59,33 @@ export default Component.extend({
 
   editRow: task(function*(document) {
     this.setProperties({
-      documentToEdit: document.id,
+      documentToEdit: document,
       showModal: true
     });
   }),
 
   deleteRow: task(function*(document) {
+    const remainingDocuments = this.get("field.answer.rowDocuments").filter(
+      doc => doc.id !== document.id
+    );
+
     yield this.get("apollo").mutate({
       mutation: saveDocumentTableAnswerMutation,
       variables: {
         input: {
           question: this.get("field.question.slug"),
           document: this.get("field.document.id"),
-          value: this.get("field.answer.rowDocuments")
-            .filter(doc => doc.id !== document.id)
-            .map(doc => doc.id)
+          value: remainingDocuments.map(doc => doc.id)
         }
       }
     });
+
+    // update client-side state
+    this.set("field.answer.rowDocuments", remainingDocuments);
   }),
 
-  save: task(function*() {
+  save: task(function*(document) {
+    console.log("saved", document);
     this.set("showModal", false);
   })
 });

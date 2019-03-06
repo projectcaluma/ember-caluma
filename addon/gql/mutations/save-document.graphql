@@ -1,7 +1,9 @@
+#import 'ember-caluma/gql/fragments/form-document'
+
 mutation($input: SaveDocumentInput!) {
   saveDocument(input: $input) {
     document {
-      id
+      ...FormDocument
     }
   }
 }

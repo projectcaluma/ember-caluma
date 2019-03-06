@@ -1,4 +1,3 @@
-{{log field}}
 {{#with field.question.rowForm.questions.edges as |questions|}}
   <table class="uk-table">
     <thead>
@@ -32,9 +31,9 @@
   </table>
   {{#uk-modal visible=showModal}}
     {{#if documentToEdit}}
-      {{cf-form documentId=(atob documentToEdit)}}
+      {{cf-form document=documentToEdit}}
       <p class="uk-text-right">
-        {{uk-button label=(t "caluma.form.done") on-click=(perform save)}}
+        {{uk-button label=(t "caluma.form.done") on-click=(action (perform save) documentToEdit)}}
       </p>
     {{/if}}
   {{/uk-modal}}
