@@ -1,0 +1,41 @@
+{{log field}}
+{{#with field.question.rowForm.questions.edges as |questions|}}
+  <table class="uk-table">
+    <thead>
+      <tr>
+        {{#each questions as |edge|}}
+          <th>{{edge.node.label}}</th>
+        {{/each}}
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each field.answer.rowDocuments as |document|}}
+        <tr>
+          {{#each document.fields as |field|}}
+            <td>{{field.answer.value}}</td>
+          {{/each}}
+          <td class="uk-text-right">
+            <button type="button" data-test-edit-row class="uk-icon-button" uk-icon="pencil" {{action (perform editRow) document}}></button>
+            <button type="button" data-test-delete-row class="uk-icon-button" uk-icon="trash" {{action (perform deleteRow) document}}></button>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan={{add (count-keys questions) 1}} class="uk-text-center">
+          {{#uk-button size="small" on-click=(perform addRow)}}{{uk-icon "plus"}}{{/uk-button}}
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+  {{#uk-modal visible=showModal}}
+    {{#if documentToEdit}}
+      {{cf-form documentId=(atob documentToEdit)}}
+      <p class="uk-text-right">
+        {{uk-button label=(t "caluma.form.done") on-click=(perform save)}}
+      </p>
+    {{/if}}
+  {{/uk-modal}}
+{{/with}}
