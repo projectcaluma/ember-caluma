@@ -1,9 +1,9 @@
 @import "ember-uikit/variables-theme";
-@import "ember-power-select";
 
 @import "cfb-form-editor/question-list/item";
 @import "cfb-loading-dots";
 @import "cfb-navigation";
+@import "cfb-powerselect";
 
 .cfb-pointer {
   cursor: pointer;
