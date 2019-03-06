@@ -24,9 +24,12 @@ export default Component.extend(ComponentQueryManager, {
   tagName: "form",
   apollo: service(),
   documentStore: service(),
+  document: null,
 
   willInsertElement() {
-    this.data.perform();
+    if (this.documentId) {
+      this.data.perform();
+    }
   },
 
   data: task(function*() {
@@ -43,13 +46,15 @@ export default Component.extend(ComponentQueryManager, {
   /**
    * Transform raw data into document object
    *
-   * @property {Document} document
+   * @property {Document} _document
    * @accessor
    */
-  document: computed("data.lastSuccessful.value", function() {
+  _document: computed("data.lastSuccessful.value", "document.id", function() {
+    console.log("recomputing", this.get("document"));
     return (
-      this.get("data.lastSuccessful.value") &&
-      this.documentStore.find(this.get("data.lastSuccessful.value"))
+      this.get("document") ||
+      (this.get("data.lastSuccessful.value") &&
+        this.documentStore.find(this.get("data.lastSuccessful.value")))
     );
   }).readOnly()
 });
