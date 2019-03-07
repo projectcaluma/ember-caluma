@@ -33,33 +33,23 @@ export default Component.extend({
   selected: computed(
     "field.answer.{_valueKey,listValue,stringValue}",
     function() {
-      let key = this.get("field.answer._valueKey");
-      let path = `field.answer.${key}`;
-      let answers = this.get(path);
-      let selection = null;
+      const key = this.get("field.answer._valueKey");
+      const answers = this.get(`field.answer.${key}`);
 
-      if (answers !== null) {
-        selection = this.get("choices").filter(choice => {
-          return answers.includes(choice.slug);
-        });
-
-        if (key === "stringValue") {
-          selection = selection[0];
-        }
+      if (!answers) {
+        return null;
       }
 
-      return selection;
+      const selection = this.get("choices").filter(choice => {
+        return answers.includes(choice.slug);
+      });
+
+      return key === "stringValue" ? selection[0] : selection;
     }
   ),
 
   componentName: computed("multiple", function() {
-    let name = "power-select";
-
-    if (this.get("multiple")) {
-      name += "-multiple";
-    }
-
-    return name;
+    return this.get("multiple") ? "power-select-multiple" : "power-select";
   }),
 
   searchEnabled: computed("choices", function() {
