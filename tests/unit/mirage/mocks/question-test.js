@@ -395,6 +395,10 @@ module("Unit | Mirage GraphQL Mock | question", function(hooks) {
       type: "CHOICE",
       formIds: [form.id]
     });
+    this.server.create("question", {
+      type: "TABLE",
+      formIds: [form.id]
+    });
 
     const document = this.server.create("document", { formId: form.id });
 
@@ -562,6 +566,13 @@ module("Unit | Mirage GraphQL Mock | question", function(hooks) {
         node: {
           __typename: "ChoiceQuestion",
           slug: "question-9"
+        }
+      },
+      {
+        __typename: "QuestionEdge",
+        node: {
+          __typename: "TableQuestion",
+          slug: "question-10"
         }
       }
     ]);

@@ -1,0 +1,15 @@
+#import "ember-caluma/gql/fragments/question-info"
+
+mutation SaveTableQuestion($input: SaveTableQuestionInput!) {
+  saveTableQuestion(input: $input) {
+    question {
+      ...QuestionInfo
+      ... on TableQuestion {
+        rowForm {
+          slug
+        }
+      }
+    }
+    clientMutationId
+  }
+}

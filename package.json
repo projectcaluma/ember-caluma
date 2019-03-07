@@ -9,6 +9,7 @@
   "license": "MIT",
   "author": "",
   "repository": "github:projectcaluma/ember-caluma",
+  "homepage": "https://projectcaluma.github.io/ember-caluma",
   "directories": {
     "doc": "doc",
     "test": "tests"

@@ -6,7 +6,8 @@ const TYPES = [
   "INTEGER",
   "FLOAT",
   "MULTIPLE_CHOICE",
-  "CHOICE"
+  "CHOICE",
+  "TABLE"
 ];
 
 export default Factory.extend({
@@ -49,6 +50,12 @@ export default Factory.extend({
         );
 
         question.update({ optionIds: options.map(({ id }) => id) });
+      }
+    } else if (question.type === "TABLE") {
+      if (question.rowForm === undefined) {
+        question.update({
+          rowForm: i => `subform-${i + 1}`
+        });
       }
     }
   }

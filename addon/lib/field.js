@@ -22,7 +22,8 @@ const TYPE_MAP = {
   IntegerQuestion: "IntegerAnswer",
   FloatQuestion: "FloatAnswer",
   MultipleChoiceQuestion: "ListAnswer",
-  ChoiceQuestion: "StringAnswer"
+  ChoiceQuestion: "StringAnswer",
+  TableQuestion: "TableAnswer"
 };
 
 /**

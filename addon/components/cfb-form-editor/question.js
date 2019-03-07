@@ -23,6 +23,7 @@ import saveIntegerQuestionMutation from "ember-caluma/gql/mutations/save-integer
 import saveFloatQuestionMutation from "ember-caluma/gql/mutations/save-float-question";
 import saveMultipleChoiceQuestionMutation from "ember-caluma/gql/mutations/save-multiple-choice-question";
 import saveChoiceQuestionMutation from "ember-caluma/gql/mutations/save-choice-question";
+import saveTableQuestionMutation from "ember-caluma/gql/mutations/save-table-question";
 
 export const TYPES = {
   TextQuestion: saveTextQuestionMutation,
@@ -30,7 +31,8 @@ export const TYPES = {
   IntegerQuestion: saveIntegerQuestionMutation,
   FloatQuestion: saveFloatQuestionMutation,
   MultipleChoiceQuestion: saveMultipleChoiceQuestionMutation,
-  ChoiceQuestion: saveChoiceQuestionMutation
+  ChoiceQuestion: saveChoiceQuestionMutation,
+  TableQuestion: saveTableQuestionMutation
 };
 
 export default Component.extend(ComponentQueryManager, {
@@ -85,6 +87,15 @@ export default Component.extend(ComponentQueryManager, {
     );
   }).restartable(),
 
+  model: computed("data.lastSuccessful.value.firstObject.node", function() {
+    const model = this.get("data.lastSuccessful.value.firstObject.node");
+    // flatten rowForm.slug until nested property support landed in ember-validated-form
+    if (model && model.rowForm) {
+      model.rowForm = model.rowForm.slug;
+    }
+    return model;
+  }),
+
   _getIntegerQuestionInput(changeset) {
     return {
       minValue: parseInt(changeset.get("integerMinValue")),
@@ -120,6 +131,12 @@ export default Component.extend(ComponentQueryManager, {
   _getChoiceQuestionInput(changeset) {
     return {
       options: changeset.get("options.edges").map(({ node: { slug } }) => slug)
+    };
+  },
+
+  _getTableQuestionInput(changeset) {
+    return {
+      rowForm: changeset.get("rowForm")
     };
   },
 

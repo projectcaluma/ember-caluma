@@ -3,7 +3,7 @@
     {{uk-spinner ratio=2}}
   </div>
 {{else}}
-  {{#with data.lastSuccessful.value.firstObject.node as |model|}}
+  {{#with model as |model|}}
     {{#validated-form
       model=(changeset model validations)
       on-submit=(perform submit)
@@ -120,6 +120,14 @@
           label=(t "caluma.form-builder.question.options")
           required=true
           renderComponent=(component "cfb-form-editor/question/options")
+        }}
+      {{/if}}
+
+      {{#if (eq f.model.__typename "TableQuestion")}}
+        {{f.input
+          name="rowForm"
+          required=true
+          label=(t "caluma.form-builder.question.rowForm")
         }}
       {{/if}}
 

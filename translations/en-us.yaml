@@ -55,6 +55,7 @@ caluma:
       min-value: "Minimum value"
       max-value: "Maximum value"
       max-length: "Maximum length"
+      rowForm: "Form to use for rows"
 
       new: "New question"
 
@@ -75,6 +76,7 @@ caluma:
         ChoiceQuestion: "Radio"
         TextQuestion: "Text"
         TextareaQuestion: "Textarea"
+        TableQuestion: "Table"
 
       not-found: "No question with slug '{slug}' found"
 
