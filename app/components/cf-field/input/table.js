@@ -1,1 +1,1 @@
-export { default } from 'ember-caluma/components/cf-field/input/table';
+export { default } from "ember-caluma/components/cf-field/input/table";

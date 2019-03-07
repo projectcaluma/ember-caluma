@@ -16,8 +16,6 @@ export default Component.extend({
   documentToEdit: null,
 
   addRow: task(function*() {
-    let question = yield this.question;
-
     const newDocumentRaw = yield this.get("apollo").mutate(
       {
         mutation: saveDocumentMutation,
@@ -57,13 +55,6 @@ export default Component.extend({
     });
   }).drop(),
 
-  editRow: task(function*(document) {
-    this.setProperties({
-      documentToEdit: document,
-      showModal: true
-    });
-  }),
-
   deleteRow: task(function*(document) {
     const remainingDocuments = this.get("field.answer.rowDocuments").filter(
       doc => doc.id !== document.id
@@ -84,8 +75,15 @@ export default Component.extend({
     this.set("field.answer.rowDocuments", remainingDocuments);
   }),
 
-  save: task(function*(document) {
-    console.log("saved", document);
-    this.set("showModal", false);
-  })
+  actions: {
+    save() {
+      this.set("showModal", false);
+    },
+    editRow(document) {
+      this.setProperties({
+        documentToEdit: document,
+        showModal: true
+      });
+    }
+  }
 });
