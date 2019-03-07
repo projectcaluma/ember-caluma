@@ -15,7 +15,7 @@
             <td>{{field.answer.value}}</td>
           {{/each}}
           <td class="uk-text-right">
-            <button type="button" data-test-edit-row class="uk-icon-button" uk-icon="pencil" {{action (perform editRow) document}}></button>
+            <button type="button" data-test-edit-row class="uk-icon-button" uk-icon="pencil" {{action "editRow" document}}></button>
             <button type="button" data-test-delete-row class="uk-icon-button" uk-icon="trash" {{action (perform deleteRow) document}}></button>
           </td>
         </tr>
@@ -29,11 +29,11 @@
       </tr>
     </tfoot>
   </table>
-  {{#uk-modal visible=showModal}}
+  {{#uk-modal visible=showModal closable=false}}
     {{#if documentToEdit}}
       {{cf-form document=documentToEdit}}
       <p class="uk-text-right">
-        {{uk-button label=(t "caluma.form.done") on-click=(action (perform save) documentToEdit)}}
+        {{uk-button label=(t "caluma.form.done") on-click=(action "save")}}
       </p>
     {{/if}}
   {{/uk-modal}}

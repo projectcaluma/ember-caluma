@@ -50,7 +50,6 @@ export default Component.extend(ComponentQueryManager, {
    * @accessor
    */
   _document: computed("data.lastSuccessful.value", "document.id", function() {
-    console.log("recomputing", this.get("document"));
     return (
       this.get("document") ||
       (this.get("data.lastSuccessful.value") &&
