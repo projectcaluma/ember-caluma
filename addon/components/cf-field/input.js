@@ -29,7 +29,7 @@ export default Component.extend({
     const customtype = JSON.parse(meta).widgetType;
 
     return (
-      (customtype && customtype !== "default" && customtype) ||
+      customtype ||
       (typename && mapping[typename]) ||
       typename.replace(/Question$/, "").toLowerCase()
     );

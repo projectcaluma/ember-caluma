@@ -131,7 +131,7 @@
           type="select"
           optionTargetPath="value"
           optionLabelPath="label"
-          options=(array (hash value="default" label="Default") (hash value="powerselect" label="Dropdown"))
+          options=(get widgetTypes f.model.__typename)
         }}
       {{/if}}
 

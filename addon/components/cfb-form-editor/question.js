@@ -53,6 +53,19 @@ export default Component.extend(ComponentQueryManager, {
     this.get("data").perform();
   },
 
+  widgetTypes: computed(function() {
+    return {
+      ChoiceQuestion: [
+        { value: "radio", label: "Radio buttons" },
+        { value: "powerselect", label: "Dropdown" }
+      ],
+      MultipleChoiceQuestion: [
+        { value: "checkbox", label: "Checkboxes" },
+        { value: "powerselect", label: "Dropdown" }
+      ]
+    };
+  }),
+
   data: task(function*() {
     if (!this.get("slug")) {
       return A([
