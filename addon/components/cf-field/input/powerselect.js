@@ -74,10 +74,9 @@ export default Component.extend({
 
   actions: {
     change: function(choices) {
-      let key = this.get("field.answer._valueKey");
       let value = null;
 
-      if (key === "listValue") {
+      if (Array.isArray(choices)) {
         value = choices.map(choice => choice.slug);
       } else if (choices !== null) {
         value = choices.slug;
