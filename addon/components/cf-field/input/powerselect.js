@@ -22,7 +22,7 @@ export default Component.extend({
     "multiple",
     "field.question.{choiceOptions,multipleChoiceOptions}.edges",
     function() {
-      let options = this.get("multiple")
+      const options = this.get("multiple")
         ? this.get("field.question.multipleChoiceOptions")
         : this.get("field.question.choiceOptions");
 
@@ -67,8 +67,8 @@ export default Component.extend({
   }),
 
   placeholder: computed("multiple", function() {
-    let suffix = this.get("multiple") ? "multiple" : "single";
-    let path = `caluma.form.power-select.placeholder-${suffix}`;
+    const suffix = this.get("multiple") ? "multiple" : "single";
+    const path = `caluma.form.power-select.placeholder-${suffix}`;
     return this.get("intl").t(path);
   }),
 

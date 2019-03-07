@@ -2,7 +2,7 @@
 "use strict";
 
 module.exports = function() {
-  let ENV = {
+  const ENV = {
     build: {},
     git: {
       repo: "git@github.com:projectcaluma/ember-caluma.git"
