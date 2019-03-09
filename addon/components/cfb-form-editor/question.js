@@ -15,6 +15,7 @@ import { getOwner } from "@ember/application";
 import checkQuestionSlugQuery from "ember-caluma/gql/queries/check-question-slug";
 import formEditorQuestionQuery from "ember-caluma/gql/queries/form-editor-question";
 import addFormQuestionMutation from "ember-caluma/gql/mutations/add-form-question";
+import formListQuery from "ember-caluma/gql/queries/form-list";
 
 import saveOptionMutation from "ember-caluma/gql/mutations/save-option";
 import saveTextQuestionMutation from "ember-caluma/gql/mutations/save-text-question";
@@ -49,10 +50,11 @@ export default Component.extend(ComponentQueryManager, {
     }));
   }),
 
-  didReceiveAttrs() {
+  async didReceiveAttrs() {
     this._super(...arguments);
 
-    this.get("data").perform();
+    await this.get("data").perform();
+    await this.get("availableForms").perform();
   },
 
   data: task(function*() {
@@ -71,6 +73,7 @@ export default Component.extend(ComponentQueryManager, {
             floatMaxValue: null,
             maxLength: null,
             options: [],
+            rowForm: "",
             __typename: Object.keys(TYPES)[0]
           }
         }
@@ -85,6 +88,22 @@ export default Component.extend(ComponentQueryManager, {
       },
       "allQuestions.edges"
     );
+  }).restartable(),
+
+  availableForms: task(function*() {
+    const forms = yield this.get("apollo").watchQuery(
+      {
+        query: formListQuery,
+        fetchPolicy: "cache-and-network"
+      },
+      "allForms.edges"
+    );
+    if (!forms.map) {
+      return [];
+    }
+    return forms
+      .map(edge => edge.node.slug)
+      .filter(slug => slug !== this.get("form"));
   }).restartable(),
 
   model: computed("data.lastSuccessful.value.firstObject.node", function() {

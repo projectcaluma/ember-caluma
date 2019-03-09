@@ -59,5 +59,6 @@ export default {
       validateType("ChoiceQuestion", false)
     ),
     and(validateOptions(), validateLength({ min: 1 }))
-  )
+  ),
+  rowForm: or(validateType("TableQuestion", false), validatePresence(true))
 };

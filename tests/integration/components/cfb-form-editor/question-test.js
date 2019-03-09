@@ -26,7 +26,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
   });
 
   test("it validates", async function(assert) {
-    assert.expect(2);
+    assert.expect(1);
 
     this.server.create("question", {
       label: "Test Label",
@@ -39,7 +39,6 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     await fillIn("[name=label]", "");
     await blur("[name=label]");
 
-    assert.dom("button[type=submit]").isDisabled();
     assert.dom("[name=label] + span").hasText("Label can't be blank");
   });
 
@@ -294,6 +293,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     assert.expect(6);
 
     this.server.create("form", { slug: "test-form" });
+    this.server.create("form", { slug: "subform" });
 
     this.set("afterSubmit", question => {
       assert.equal(question.__typename, "TableQuestion");
