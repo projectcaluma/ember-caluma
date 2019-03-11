@@ -6,3 +6,13 @@
   background: $global-danger-background;
   border-radius: 50%;
 }
+
+.cfb-form-editor__question-list__item__archived {
+  a { 
+    color: #808080;
+  }
+
+  .uk-badge {
+    background-color: #808080;
+  }
+}
