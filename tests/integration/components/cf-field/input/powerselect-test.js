@@ -11,7 +11,7 @@ module("Integration | Component | cf-field/input/powerselect", function(hooks) {
       id: "test-single",
       answer: {
         _valueKey: "stringValue",
-        stringValue: "option-3"
+        stringValue: null
       },
       question: {
         __typename: "ChoiceQuestion",
@@ -29,7 +29,7 @@ module("Integration | Component | cf-field/input/powerselect", function(hooks) {
       id: "test-multiple",
       answer: {
         _valueKey: "listValue",
-        listValue: ["option-1", "option-2"]
+        listValue: null
       },
       question: {
         __typename: "MultipleChoiceQuestion",
@@ -105,12 +105,46 @@ module("Integration | Component | cf-field/input/powerselect", function(hooks) {
       }}`
     );
 
+    // Check if select is being rendered.
+    assert.dom(".ember-power-select-trigger").exists();
+    // Open the dropdown menu.
+    await click(".ember-power-select-trigger");
+    // Check if dropdown content is being rendered.
+    assert.dom(".ember-power-select-option").exists({ count: 3 });
+    // Click first item from dropdown.
+    await click(".ember-power-select-option:nth-child(1)");
+    // Reopen dropdown menu.
+    await click(".ember-power-select-trigger");
+    // Select second item from dropdown .
+    await click(".ember-power-select-option:nth-child(2)");
+
+    assert.deepEqual(this.multipleChoiceField.answer.listValue, [
+      "option-1",
+      "option-2"
+    ]);
+  });
+
+  test("it handles empty selections (multiple)", async function(assert) {
+    assert.expect(3);
+
+    this.set("onSave", choices => {
+      this.set("multipleChoiceField.answer.listValue", choices);
+    });
+
+    await render(
+      hbs`{{cf-field/input/powerselect 
+        field=multipleChoiceField 
+        onSave=onSave 
+      }}`
+    );
+
+    this.set("multipleChoiceField.answer.listValue", ["option-1"]);
+
     assert.dom(".ember-power-select-trigger").exists();
     await click(".ember-power-select-trigger");
+    assert.dom(".ember-power-select-option[aria-selected='true']").exists();
+    await click(".ember-power-select-option[aria-selected='true']");
 
-    assert.dom(".ember-power-select-option").exists({ count: 3 });
-    await click(".ember-power-select-option:first-child");
-
-    assert.deepEqual(this.multipleChoiceField.answer.listValue, ["option-2"]);
+    assert.deepEqual(this.multipleChoiceField.answer.listValue, []);
   });
 });
