@@ -5,6 +5,15 @@ dummy:
 caluma:
   form:
     optional: "Optional"
+
+    power-select:
+      placeholder-single: "Wählen Sie eine Option aus"
+      placeholder-multiple: "Wählen Sie eine oder mehrere Optionen aus"
+      options-loading: "Lade Optionen..."
+      options-empty: "Keine Optionen vorhanden"
+      search-placeholder: "Hier tippen um zu suchen"
+      search-empty: "Keine Optionen gefunden"
+      
   form-builder:
     global:
       save: "Speichern"
@@ -38,6 +47,7 @@ caluma:
       slug: "Slug"
       type: "Typ"
       isRequired: "Erforderlich"
+      widgetType: "Widget Typ"
       isArchived: "Archiviert"
       type-disabled: "Sobald die Frage erstellt ist kann der Typ nicht mehr geändert werden um korrupte Daten zu verhindern."
 
@@ -63,8 +73,8 @@ caluma:
       types:
         IntegerQuestion: "Ganze Zahl"
         FloatQuestion: "Gleitkommazahl"
-        MultipleChoiceQuestion: "Checkbox"
-        ChoiceQuestion: "Radio"
+        MultipleChoiceQuestion: "Mehrfachauswahl"
+        ChoiceQuestion: "Einzelauswahl"
         TextQuestion: "Text"
         TextareaQuestion: "Textbereich"
 

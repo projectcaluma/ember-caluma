@@ -55,6 +55,19 @@ export default Component.extend(ComponentQueryManager, {
     this.get("data").perform();
   },
 
+  widgetTypes: computed(function() {
+    return {
+      ChoiceQuestion: [
+        { value: "radio", label: "Radio buttons" },
+        { value: "powerselect", label: "Dropdown" }
+      ],
+      MultipleChoiceQuestion: [
+        { value: "checkbox", label: "Checkboxes" },
+        { value: "powerselect", label: "Dropdown" }
+      ]
+    };
+  }),
+
   data: task(function*() {
     if (!this.get("slug")) {
       return A([
@@ -77,7 +90,7 @@ export default Component.extend(ComponentQueryManager, {
       ]);
     }
 
-    return yield this.get("apollo").watchQuery(
+    const questions = yield this.get("apollo").watchQuery(
       {
         query: formEditorQuestionQuery,
         variables: { slug: this.get("slug") },
@@ -85,6 +98,14 @@ export default Component.extend(ComponentQueryManager, {
       },
       "allQuestions.edges"
     );
+
+    function setWidgetType(question) {
+      const meta = JSON.parse(question.node.meta);
+      question.node.widgetType = meta.widgetType;
+      return question;
+    }
+
+    return A(questions.map(setWidgetType));
   }).restartable(),
 
   model: computed("data.lastSuccessful.value.firstObject.node", function() {
@@ -169,6 +190,9 @@ export default Component.extend(ComponentQueryManager, {
                 slug: changeset.get("slug"),
                 isRequired: changeset.get("isRequired"),
                 isHidden: "false", // TODO: this must be configurable
+                meta: JSON.stringify({
+                  widgetType: changeset.get("widgetType")
+                }),
                 isArchived: changeset.get("isArchived"),
                 clientMutationId: v4()
               },

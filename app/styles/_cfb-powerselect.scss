@@ -1,0 +1,17 @@
+$ember-power-select-focus-outline: 0;
+$ember-power-select-border-color: #e5e5e5;
+$ember-power-select-default-border-radius: 0;
+$ember-power-select-line-height: 38px;
+
+$ember-power-select-selected-background: #3799ad;
+$ember-power-select-multiple-selection-color: #ffffff;
+$ember-power-select-multiple-selection-background-color: $ember-power-select-selected-background;
+
+$ember-power-select-multiple-option-padding: 0 8px;
+$ember-power-select-multiple-option-line-height: 32px;
+$ember-power-select-multiple-option-border-color: $ember-power-select-border-color;
+
+$ember-power-select-highlighted-color: #ffffff;
+$ember-power-select-highlighted-background: lighten($ember-power-select-selected-background, 10%);
+
+@import "ember-power-select";

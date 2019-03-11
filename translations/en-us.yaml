@@ -6,6 +6,14 @@ caluma:
   form:
     optional: "Optional"
 
+    power-select:
+      placeholder-single: "Choose one option"
+      placeholder-multiple: "Choose one or more options"
+      options-loading: "Loading options..."
+      options-empty: "No options available"
+      search-placeholder: "Type here to search options"
+      search-empty: "Search didn't match any options"
+
     validation:
       blank: "This field can't be blank"
       tooLong: "The value of this field can't be longer than {max} characters"
@@ -46,6 +54,7 @@ caluma:
       slug: "Slug"
       type: "Type"
       isRequired: "Required"
+      widgetType: "Widget type"
       isArchived: "Archived"
       type-disabled: "Once created, the type can't be changed to prevent corrupt data."
 
@@ -72,8 +81,8 @@ caluma:
       types:
         IntegerQuestion: "Integer"
         FloatQuestion: "Float"
-        MultipleChoiceQuestion: "Checkbox"
-        ChoiceQuestion: "Radio"
+        MultipleChoiceQuestion: "Choices"
+        ChoiceQuestion: "Choice"
         TextQuestion: "Text"
         TextareaQuestion: "Textarea"
         TableQuestion: "Table"
