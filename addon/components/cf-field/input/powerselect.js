@@ -71,6 +71,9 @@ export default Component.extend({
       } else if (choices !== null) {
         value = choices.slug;
       }
+      // ELSE will never be taken as long as we don't allow for empty
+      // selections in single choice fields. Empty selections must first be
+      // implemented/allowed by the backend.
 
       this.onSave(value);
     }
