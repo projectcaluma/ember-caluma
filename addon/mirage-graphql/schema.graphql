@@ -1,5 +1,5 @@
 # source: http://localhost:8000/graphql
-# timestamp: Thu Feb 28 2019 19:42:53 GMT+0100 (Central European Standard Time)
+# timestamp: Mon Mar 11 2019 17:18:03 GMT+0100 (Central European Standard Time)
 
 input AddFormQuestionInput {
   form: ID!
@@ -34,7 +34,7 @@ interface Answer {
   createdByGroup: String
   modifiedAt: DateTime!
   question: Question!
-  meta: JSONString!
+  meta: GenericScalar!
 }
 
 type AnswerConnection {
@@ -144,6 +144,7 @@ type Case implements Node {
     case: ID
     createdByUser: String
     createdByGroup: String
+    metaHasKey: String
 
     """
     WorkItemOrdering
@@ -276,7 +277,7 @@ type ChoiceQuestion implements Question & Node {
   isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
-  meta: JSONString!
+  meta: GenericScalar!
   source: Question
   forms(
     before: String
@@ -295,6 +296,7 @@ type ChoiceQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    metaHasKey: String
     search: String
   ): FormConnection
   options(
@@ -306,6 +308,7 @@ type ChoiceQuestion implements Question & Node {
     label: String
     createdByUser: String
     createdByGroup: String
+    metaHasKey: String
     search: String
 
     """
@@ -329,7 +332,7 @@ type CompleteTaskFormTask implements Task & Node {
   name: String!
   description: String
   type: TaskType!
-  meta: JSONString!
+  meta: GenericScalar!
   addressGroups: GroupJexl
   isArchived: Boolean!
 
@@ -355,7 +358,7 @@ type CompleteWorkflowFormTask implements Task & Node {
   name: String!
   description: String
   type: TaskType!
-  meta: JSONString!
+  meta: GenericScalar!
   addressGroups: GroupJexl
   isArchived: Boolean!
 
@@ -469,6 +472,7 @@ type Document implements Node {
     search: String
     createdByUser: String
     createdByGroup: String
+    metaHasKey: String
 
     """
     AnswerOrdering
@@ -553,7 +557,7 @@ type FloatAnswer implements Answer & Node {
   id: ID!
   question: Question!
   value: Float!
-  meta: JSONString!
+  meta: GenericScalar!
 }
 
 type FloatQuestion implements Question & Node {
@@ -566,7 +570,7 @@ type FloatQuestion implements Question & Node {
   isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
-  meta: JSONString!
+  meta: GenericScalar!
   source: Question
   forms(
     before: String
@@ -585,6 +589,7 @@ type FloatQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    metaHasKey: String
     search: String
   ): FormConnection
 
@@ -648,7 +653,7 @@ type Form implements Node {
   slug: String!
   name: String!
   description: String
-  meta: JSONString!
+  meta: GenericScalar
   isPublished: Boolean!
   isArchived: Boolean!
   questions(
@@ -663,6 +668,7 @@ type Form implements Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    metaHasKey: String
     excludeForms: [ID]
     search: String
 
@@ -676,6 +682,12 @@ type Form implements Node {
   Reference this form has been copied from
   """
   source: Form
+  documents(
+    before: String
+    after: String
+    first: Int
+    last: Int
+  ): DocumentConnection
 
   """
   The ID of the object.
@@ -756,6 +768,13 @@ enum FormOrdering {
 }
 
 """
+The `GenericScalar` scalar type represents a generic
+GraphQL scalar value that could be:
+String, Boolean, Int, Float, List or Object.
+"""
+scalar GenericScalar
+
+"""
 Group jexl represents a jexl expression returning group names.
 
 Following transforms can be used:
@@ -778,7 +797,7 @@ type IntegerAnswer implements Answer & Node {
   id: ID!
   question: Question!
   value: Int!
-  meta: JSONString!
+  meta: GenericScalar!
 }
 
 type IntegerQuestion implements Question & Node {
@@ -791,7 +810,7 @@ type IntegerQuestion implements Question & Node {
   isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
-  meta: JSONString!
+  meta: GenericScalar!
   source: Question
   forms(
     before: String
@@ -810,6 +829,7 @@ type IntegerQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    metaHasKey: String
     search: String
   ): FormConnection
 
@@ -838,7 +858,7 @@ type ListAnswer implements Answer & Node {
   id: ID!
   question: Question!
   value: [String]!
-  meta: JSONString!
+  meta: GenericScalar!
 }
 
 type MultipleChoiceQuestion implements Question & Node {
@@ -851,7 +871,7 @@ type MultipleChoiceQuestion implements Question & Node {
   isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
-  meta: JSONString!
+  meta: GenericScalar!
   source: Question
   forms(
     before: String
@@ -870,6 +890,7 @@ type MultipleChoiceQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    metaHasKey: String
     search: String
   ): FormConnection
   options(
@@ -886,6 +907,7 @@ type MultipleChoiceQuestion implements Question & Node {
     label: String
     createdByUser: String
     createdByGroup: String
+    metaHasKey: String
     search: String
   ): OptionConnection
 
@@ -1090,6 +1112,7 @@ type Query {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    metaHasKey: String
     search: String
 
     """
@@ -1113,6 +1136,7 @@ type Query {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    metaHasKey: String
     search: String
 
     """
@@ -1133,6 +1157,7 @@ type Query {
     status: CaseStatusArgument
     createdByUser: String
     createdByGroup: String
+    metaHasKey: String
 
     """
     CaseOrdering
@@ -1158,6 +1183,7 @@ type Query {
     case: ID
     createdByUser: String
     createdByGroup: String
+    metaHasKey: String
     addressedGroups: [String]
   ): WorkItemConnection
   allForms(
@@ -1177,6 +1203,7 @@ type Query {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    metaHasKey: String
     search: String
   ): FormConnection
   allQuestions(
@@ -1196,6 +1223,7 @@ type Query {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    metaHasKey: String
     excludeForms: [ID]
     search: String
   ): QuestionConnection
@@ -1209,6 +1237,7 @@ type Query {
     id: ID
     createdByUser: String
     createdByGroup: String
+    metaHasKey: String
 
     """
     DocumentOrdering
@@ -1233,7 +1262,7 @@ interface Question {
   isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
-  meta: JSONString!
+  meta: GenericScalar!
   forms(
     before: String
     after: String
@@ -1246,6 +1275,7 @@ interface Question {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    metaHasKey: String
     search: String
 
     """
@@ -1759,7 +1789,7 @@ type SimpleTask implements Task & Node {
   name: String!
   description: String
   type: TaskType!
-  meta: JSONString!
+  meta: GenericScalar!
   addressGroups: GroupJexl
   isArchived: Boolean!
 
@@ -1800,7 +1830,7 @@ type StringAnswer implements Answer & Node {
   id: ID!
   question: Question!
   value: String!
-  meta: JSONString!
+  meta: GenericScalar!
 }
 
 type TableAnswer implements Answer & Node {
@@ -1815,7 +1845,7 @@ type TableAnswer implements Answer & Node {
   id: ID!
   question: Question!
   value: [Document]!
-  meta: JSONString!
+  meta: GenericScalar!
   document: Document!
 }
 
@@ -1829,7 +1859,7 @@ type TableQuestion implements Question & Node {
   isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
-  meta: JSONString!
+  meta: GenericScalar!
   source: Question
   forms(
     before: String
@@ -1848,6 +1878,7 @@ type TableQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    metaHasKey: String
     search: String
   ): FormConnection
 
@@ -1873,7 +1904,7 @@ interface Task {
   description: String
   isArchived: Boolean!
   addressGroups: GroupJexl
-  meta: JSONString!
+  meta: GenericScalar!
   isMultipleInstance: Boolean!
 }
 
@@ -2019,7 +2050,7 @@ type TextareaQuestion implements Question & Node {
   isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
-  meta: JSONString!
+  meta: GenericScalar!
   source: Question
   forms(
     before: String
@@ -2038,6 +2069,7 @@ type TextareaQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    metaHasKey: String
     search: String
   ): FormConnection
 
@@ -2058,7 +2090,7 @@ type TextQuestion implements Question & Node {
   isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
-  meta: JSONString!
+  meta: GenericScalar!
   source: Question
   forms(
     before: String
@@ -2077,6 +2109,7 @@ type TextQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    metaHasKey: String
     search: String
   ): FormConnection
 
@@ -2095,7 +2128,7 @@ type Workflow implements Node {
   slug: String!
   name: String!
   description: String
-  meta: JSONString!
+  meta: GenericScalar
   isPublished: Boolean!
   isArchived: Boolean!
   startTasks: [Task]!

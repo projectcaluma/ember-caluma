@@ -100,8 +100,7 @@ export default Component.extend(ComponentQueryManager, {
     );
 
     function setWidgetType(question) {
-      const meta = JSON.parse(question.node.meta);
-      question.node.widgetType = meta.widgetType;
+      question.node.widgetType = question.node.meta.widgetType;
       return question;
     }
 
