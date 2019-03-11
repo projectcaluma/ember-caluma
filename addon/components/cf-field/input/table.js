@@ -25,6 +25,8 @@ export default Component.extend({
       },
       "saveDocument.document"
     );
+    const newDocument = this.documentStore.find(newDocumentRaw);
+
     yield this.get("apollo").mutate({
       mutation: saveDocumentTableAnswerMutation,
       variables: {
@@ -32,21 +34,19 @@ export default Component.extend({
           question: this.get("field.question.slug"),
           document: this.get("field.document.id"),
           value: [
-            newDocumentRaw.id,
             ...this.getWithDefault("field.answer.rowDocuments", []).map(
               doc => doc.id
-            )
+            ),
+            newDocument.id
           ]
         }
       }
     });
 
-    const newDocument = this.documentStore.find(newDocumentRaw);
-
     // update client-side state
     this.set("field.answer.rowDocuments", [
-      newDocument,
-      ...this.get("field.answer.rowDocuments")
+      ...(this.get("field.answer.rowDocuments") || []),
+      newDocument
     ]);
 
     this.setProperties({
