@@ -5037,7 +5037,7 @@ ember-assign-polyfill@^2.5.0, ember-assign-polyfill@^2.6.0:
     ember-cli-babel "^6.16.0"
     ember-cli-version-checker "^2.0.0"
 
-ember-auto-import@1.2.21, ember-auto-import@^1.2.19:
+ember-auto-import@1.2.21, ember-auto-import@^1.2.19, ember-auto-import@^1.2.21:
   version "1.2.21"
   resolved "https://registry.yarnpkg.com/ember-auto-import/-/ember-auto-import-1.2.21.tgz#e02ded183844faba66c3f2af97028ef35175b837"
   integrity sha512-coHnqO3mRnlj/JAQSQBEqzX2wL8rH5YrfEJMzk1102X9MdSX1CWeaUYBcyjvI/pG8fHUhv+4VsD6rQuhTUyZUQ==
@@ -5067,7 +5067,7 @@ ember-auto-import@1.2.21, ember-auto-import@^1.2.19:
     walk-sync "^0.3.3"
     webpack "~4.28"
 
-ember-auto-import@^1.2.10, ember-auto-import@^1.2.13:
+ember-auto-import@^1.2.13:
   version "1.2.19"
   resolved "https://registry.yarnpkg.com/ember-auto-import/-/ember-auto-import-1.2.19.tgz#69a2da0d2c16ab88989c51381c415214e85d1af3"
   integrity sha512-OT7I3zrIAv/rbbYJFZNqfJi/2HpAscjOWOaBPPUj8VkUnY26HlLO6mSzDIkoUOaTAEWiy2GzjenHGj6b9rivxw==
@@ -5406,7 +5406,7 @@ ember-cli-get-component-path-option@^1.0.0:
   resolved "https://registry.yarnpkg.com/ember-cli-get-component-path-option/-/ember-cli-get-component-path-option-1.0.0.tgz#0d7b595559e2f9050abed804f1d8eff1b08bc771"
   integrity sha1-DXtZVVni+QUKvtgE8djv8bCLx3E=
 
-ember-cli-htmlbars-inline-precompile@1.0.5, ember-cli-htmlbars-inline-precompile@^1.0.2, ember-cli-htmlbars-inline-precompile@^1.0.3:
+ember-cli-htmlbars-inline-precompile@1.0.5, ember-cli-htmlbars-inline-precompile@^1.0.3:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars-inline-precompile/-/ember-cli-htmlbars-inline-precompile-1.0.5.tgz#312e050c9e3dd301c55fb399fd706296cd0b1d6a"
   integrity sha512-/CNEqPxroIcbY6qejrt704ZaghHLCntZKYLizFfJ2esirXoJx6fuYKBY1YyJ8GOgjfbHHKjBZuK4vFFJpkGqkQ==
@@ -6401,22 +6401,22 @@ ember-try@^0.2.23:
     rsvp "^3.0.17"
     semver "^5.1.0"
 
-ember-uikit@0.7.1:
-  version "0.7.1"
-  resolved "https://registry.yarnpkg.com/ember-uikit/-/ember-uikit-0.7.1.tgz#bb782d55634f3435dea0281681b14f4cb95a2c44"
-  integrity sha512-Duns3lTWGqN5tQKJb3bA3x9isLhNcMJD4Jdk4hX3XSPwuZFr1PP+xdmIrwMeW2204KYJnUv5BA8E1PbLek+04Q==
+ember-uikit@^0.7.3:
+  version "0.7.3"
+  resolved "https://registry.yarnpkg.com/ember-uikit/-/ember-uikit-0.7.3.tgz#a042b598b58ebd2b55dec59cb1afd8e4334590f5"
+  integrity sha512-9tnMLuRAfkFvEFERBj83tDxqySrsdFEstY9vWiC2YWxqRDMp5ilMBCA50Xa5iNpmdwea460kq+2WvrcfBmd7xg==
   dependencies:
-    broccoli-funnel "^2.0.1"
+    broccoli-funnel "^2.0.2"
     broccoli-merge-trees "^3.0.0"
     broccoli-stew "^2.0.0"
     chalk "^2.3.0"
-    ember-auto-import "^1.2.10"
-    ember-cli-babel "^7.1.0"
+    ember-auto-import "^1.2.21"
+    ember-cli-babel "^7.5.0"
     ember-cli-htmlbars "^3.0.0"
-    ember-cli-htmlbars-inline-precompile "^1.0.2"
+    ember-cli-htmlbars-inline-precompile "^2.1.0"
     ember-get-config "^0.2.4"
     ember-toggle "^5.3.0"
-    uikit "^3.0.0-beta.38"
+    uikit "^3.0.3"
 
 ember-validated-form@2.0.0-alpha.3:
   version "2.0.0-alpha.3"
@@ -14148,7 +14148,7 @@ uglify-to-browserify@~1.0.0:
   resolved "https://registry.yarnpkg.com/uglify-to-browserify/-/uglify-to-browserify-1.0.2.tgz#6e0924d6bda6b5afe349e39a6d632850a0f882b7"
   integrity sha1-bgkk1r2mta/jSeOabWMoUKD4grc=
 
-uikit@^3.0.0-beta.38:
+uikit@^3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/uikit/-/uikit-3.0.3.tgz#ead1b0a152d2771d2684f60086766ccc50fa3450"
   integrity sha512-Z73TXlnfJCAXczg5mFCZSTwR0Ii1wW2fZumfIR8G1x1x4SyKHpkU0JCZDoIryYFMu1gSpvy5hZiXk3t4i5tTlw==
