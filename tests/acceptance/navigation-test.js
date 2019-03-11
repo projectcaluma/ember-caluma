@@ -1,5 +1,5 @@
 import { module, test } from "qunit";
-import { visit, currentURL, click } from "@ember/test-helpers";
+import { visit, currentURL, click, settled } from "@ember/test-helpers";
 import { setupApplicationTest } from "ember-qunit";
 import setupMirage from "ember-cli-mirage/test-support/setup-mirage";
 
@@ -40,6 +40,7 @@ module("Acceptance | navigation", function(hooks) {
     assert.equal(currentURL(), "/demo/form-builder");
 
     await visit("/demo/form-builder/form-1/questions/new");
+    await settled();
 
     assert.dom("ul.uk-breadcrumb > li:nth-child(1) > a").hasText("All forms");
     assert.dom("ul.uk-breadcrumb > li:nth-child(2) > a").hasText("Form #1");

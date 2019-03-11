@@ -36,5 +36,10 @@ export default Route.extend(NavigationRouteMixin, RouteQueryManager, {
     return this.get("fetchLabel").perform(slug);
   },
 
-  model: ({ question_slug }) => question_slug
+  model({ question_slug }) {
+    return {
+      questionSlug: question_slug,
+      formSlug: this.modelFor("edit")
+    };
+  }
 });

@@ -17,7 +17,6 @@ export default Component.extend(ComponentQueryManager, {
     return yield this.get("apollo").watchQuery(
       {
         query: formListQuery,
-        variables: {},
         fetchPolicy: "cache-and-network"
       },
       "allForms.edges"

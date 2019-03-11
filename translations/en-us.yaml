@@ -65,6 +65,7 @@ caluma:
       max-value: "Maximum value"
       max-length: "Maximum length"
       rowForm: "Form to use for rows"
+      chooseRowForm: "-- please choose --"
 
       new: "New question"
 

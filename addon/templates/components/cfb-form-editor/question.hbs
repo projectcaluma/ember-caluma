@@ -135,10 +135,13 @@
         }}
       {{/if}}
 
-      {{#if (eq f.model.__typename "TableQuestion")}}
+      {{#if (and (eq f.model.__typename "TableQuestion") availableForms.lastSuccessful.value)}}
         {{f.input
           name="rowForm"
+          type="select"
+          options=availableForms.lastSuccessful.value
           required=true
+          includeBlank=(t "caluma.form-builder.question.chooseRowForm")
           label=(t "caluma.form-builder.question.rowForm")
         }}
       {{/if}}
@@ -153,7 +156,6 @@
 
       <div class="uk-text-right">
         {{f.submit
-          disabled=(or f.loading f.model.isInvalid f.model.isPristine)
           label=(t "caluma.form-builder.global.save")
         }}
       </div>
