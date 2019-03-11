@@ -16,6 +16,7 @@ export default Component.extend({
 
   sortable: true,
   slug: reads("question.slug"),
+  archived: reads("question.isArchived"),
 
   required: reads("_required.lastSuccessful.value"),
   _required: computed("question.isRequired", function() {

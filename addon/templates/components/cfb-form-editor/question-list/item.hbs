@@ -37,6 +37,7 @@
       {{action (optional on-edit-question) question}}
     >
       {{question.slug}}
+      {{#if archived}}({{t "caluma.form-builder.question.isArchived"}}){{/if}}
     </a>
   {{else}}
     <span class="uk-width-auto uk-margin-small-right uk-text-bold">{{question.slug}}</span>
