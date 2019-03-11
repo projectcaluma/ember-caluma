@@ -13,7 +13,8 @@ mounted in `app/router.js`:
 {{docs-snippet name='usage/router.js'}}
 
 To make `ember-apollo-client` work, we need to pass it as dependency for our
-engine in `app/app.js`:
+engine in `app/app.js`. Additionally, we need to specify `ember-intl` as a 
+dependency so that the the application has access to the addon's translations. 
 
 {{docs-snippet name='usage/app.js'}}
 
