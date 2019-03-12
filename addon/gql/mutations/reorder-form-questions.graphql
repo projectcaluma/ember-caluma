@@ -8,7 +8,7 @@ mutation ReorderFormQuestions(
   reorderFormQuestions(input: $input) {
     form {
       ...FormInfo
-      questions(search: $search, isArchived: false) {
+      questions(search: $search) {
         edges {
           node {
             ...QuestionInfo
