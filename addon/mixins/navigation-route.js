@@ -35,7 +35,10 @@ export default Mixin.create({
   updateNavigationEntry(sender, key) {
     this.get("navigation").replaceEntry(this.get("_id"), {
       title: sender.get(key),
-      url: this.get("routeName")
+      link: [
+        this.get("routeName"),
+        ...Object.values(this.paramsFor(this.get("routeName")))
+      ]
     });
   }
 });
