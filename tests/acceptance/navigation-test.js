@@ -2,10 +2,12 @@ import { module, test } from "qunit";
 import { visit, currentURL, click, settled } from "@ember/test-helpers";
 import { setupApplicationTest } from "ember-qunit";
 import setupMirage from "ember-cli-mirage/test-support/setup-mirage";
+import { setupIntl } from "ember-intl/test-support";
 
 module("Acceptance | navigation", function(hooks) {
   setupApplicationTest(hooks);
   setupMirage(hooks);
+  setupIntl(hooks, "en-us");
 
   hooks.beforeEach(function() {
     this.server.create("form", {
