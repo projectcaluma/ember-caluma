@@ -1,11 +1,11 @@
 #import "ember-caluma/gql/fragments/question-info"
 
-query SearchFormQuestion($slug: String!, $search: String) {
+query SearchFormQuestion($slug: String!, $search: String, $archived: Boolean) {
   allForms(slug: $slug) {
     edges {
       node {
         slug
-        questions(search: $search, isArchived: false) {
+        questions(search: $search, isArchived: $archived) {
           edges {
             node {
               ...QuestionInfo

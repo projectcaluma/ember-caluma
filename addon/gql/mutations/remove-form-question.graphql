@@ -5,7 +5,7 @@ mutation RemoveFormQuestion($input: RemoveFormQuestionInput!, $search: String) {
   removeFormQuestion(input: $input) {
     form {
       ...FormInfo
-      questions(search: $search, isArchived: false) {
+      questions(search: $search) {
         edges {
           node {
             ...QuestionInfo

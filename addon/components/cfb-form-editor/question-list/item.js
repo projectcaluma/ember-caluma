@@ -10,8 +10,13 @@ export default Component.extend({
   layout,
   tagName: "li",
 
+  classNameBindings: [
+    "question.isArchived:cfb-form-editor__question-list__item__archived"
+  ],
+
   sortable: true,
   slug: reads("question.slug"),
+  archived: reads("question.isArchived"),
 
   required: reads("_required.lastSuccessful.value"),
   _required: computed("question.isRequired", function() {
