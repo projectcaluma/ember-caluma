@@ -1,10 +1,11 @@
 import BaseMock from "ember-caluma/mirage-graphql/mocks/base";
+import { MockList } from "graphql-tools";
 import { register } from "ember-caluma/mirage-graphql";
 import { classify } from "@ember/string";
 
 export default class extends BaseMock {
   @register("Answer")
-  handleAnswer(root) {
+  handleAnswer(root, vars) {
     let answerId = root.answerId || (root.node && root.node(...arguments).id);
     let __typename = root.__typename;
 
@@ -13,24 +14,16 @@ export default class extends BaseMock {
         this.collection.findBy({ id: answerId }).type.toLowerCase()
       )}Answer`;
     }
-    console.log("handleAnswer", __typename);
+    if (__typename === "TableAnswer") {
+      const ids = this.collection.findBy({ id: answerId }).tableValueIds;
+      return {
+        value: ids.map(id =>
+          this.serializer.serialize(this.collection.findBy({ id }))
+        )
+      };
+    }
+
     return { __typename };
-  }
-
-  handleInterfaceType(root, vars, _, meta) {
-    return this.handle.fn.call(
-      this,
-      root,
-      { ...vars, id: root.answerId },
-      _,
-      meta
-    );
-  }
-
-  @register("TableAnswer")
-  handleTableAnswer() {
-    debugger;
-    return this.handleInterfaceType(...arguments);
   }
 
   _handleSaveDocumentAnswer(

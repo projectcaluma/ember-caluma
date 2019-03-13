@@ -70,10 +70,10 @@ export default Factory.extend({
         type: "TABLE"
       });
 
-      if (answer.value === undefined) {
+      if (answer.tableValue === undefined) {
         const rows = server.createList("document", 3);
 
-        answer.update({ value: rows.map(({ id }) => id) });
+        answer.update({ tableValue: rows });
       }
     }
   }

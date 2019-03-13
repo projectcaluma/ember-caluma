@@ -1,6 +1,7 @@
-import { Model, belongsTo } from "ember-cli-mirage";
+import { Model, belongsTo, hasMany } from "ember-cli-mirage";
 
 export default Model.extend({
   document: belongsTo(),
-  question: belongsTo()
+  question: belongsTo(),
+  tableValue: hasMany("document", { inverse: "parentAnswer" })
 });

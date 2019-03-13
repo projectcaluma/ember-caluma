@@ -72,7 +72,7 @@ module("Unit | Mirage GraphQL Mock | answer", function(hooks) {
     this.tableAnswer = this.server.create("answer", {
       questionId: tableQuestion.id,
       documentId,
-      value: this.tableRows.map(({ id }) => id)
+      tableValue: this.tableRows
     });
 
     this.apollo = this.owner.lookup("service:apollo");
@@ -168,11 +168,11 @@ module("Unit | Mirage GraphQL Mock | answer", function(hooks) {
           tableValue: [
             {
               __typename: "Document",
-              id: this.tableRows[0].id
+              id: window.btoa("Document:" + this.tableRows[0].id)
             },
             {
               __typename: "Document",
-              id: this.tableRows[1].id
+              id: window.btoa("Document:" + this.tableRows[1].id)
             }
           ]
         }
