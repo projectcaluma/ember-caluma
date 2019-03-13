@@ -15,6 +15,13 @@ module.exports = function(defaults) {
     }
   });
 
+  app.import("node_modules/moment/locale/de.js");
+  app.import("node_modules/moment/locale/de-ch.js");
+  app.import("node_modules/moment/locale/it.js");
+  app.import("node_modules/moment/locale/it-ch.js");
+  app.import("node_modules/moment/locale/fr.js");
+  app.import("node_modules/moment/locale/fr-ch.js");
+
   app.import("node_modules/typeface-oxygen/index.css");
   app.import("node_modules/typeface-oxygen-mono/index.css");
 

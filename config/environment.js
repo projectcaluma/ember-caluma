@@ -10,6 +10,10 @@ module.exports = function(environment) {
       defaults: {
         label: "cfb-label"
       }
+    },
+
+    moment: {
+      includeLocales: true
     }
   };
 

@@ -34,6 +34,10 @@ caluma:
       inclusion: "'{value}' is not a valid value for this field"
       uploadFailed: "An error occured during upload."
 
+    pikaday:
+      month-previous: "Previous month"
+      month-next: "Next month"
+
   form-builder:
     global:
       save: "Save"
