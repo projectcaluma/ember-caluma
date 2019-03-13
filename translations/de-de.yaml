@@ -40,7 +40,8 @@ caluma:
 
     form:
       name: "Name"
-      slug: "Slug" description: "Beschreibung"
+      slug: "Slug"
+      description: "Beschreibung"
       isArchived: "Archiviert"
       isPublished: "Publiziert"
 
