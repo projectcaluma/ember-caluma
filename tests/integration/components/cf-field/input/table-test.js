@@ -71,10 +71,9 @@ module("Integration | Component | cf-field/input/table", function(hooks) {
       }}
     `);
 
-    await click("button:nth-of-type(1)");
+    await click("button.add-row");
 
-    await settled();
-
-    assert.equal(this.get("showModal"), true);
+    debugger;
+    // assert.dom("button.add-row").hasText("foo");
   });
 });

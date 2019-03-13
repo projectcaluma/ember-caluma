@@ -65,6 +65,16 @@ export default Factory.extend({
           value: faker.random.arrayElement(answer.question.options.models).slug
         });
       }
+    } else if (answer.question.type === "TABLE") {
+      answer.update({
+        type: "TABLE"
+      });
+
+      if (answer.value === undefined) {
+        const rows = server.createList("document", 3);
+
+        answer.update({ value: rows.map(({ id }) => id) });
+      }
     }
   }
 });

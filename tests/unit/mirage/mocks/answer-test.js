@@ -37,6 +37,10 @@ module("Unit | Mirage GraphQL Mock | answer", function(hooks) {
       type: "CHOICE",
       formIds: [formId]
     });
+    const tableQuestion = this.server.create("question", {
+      type: "TABLE",
+      formIds: [formId]
+    });
 
     this.textAnswer = this.server.create("answer", {
       questionId: textQuestion.id,
@@ -61,6 +65,14 @@ module("Unit | Mirage GraphQL Mock | answer", function(hooks) {
     this.choiceAnswer = this.server.create("answer", {
       questionId: choiceQuestion.id,
       documentId
+    });
+    this.tableRows = this.server.createList("document", 2, {
+      formId: formId
+    });
+    this.tableAnswer = this.server.create("answer", {
+      questionId: tableQuestion.id,
+      documentId,
+      value: this.tableRows.map(({ id }) => id)
     });
 
     this.apollo = this.owner.lookup("service:apollo");
@@ -90,6 +102,11 @@ module("Unit | Mirage GraphQL Mock | answer", function(hooks) {
                       }
                       ... on ListAnswer {
                         listValue: value
+                      }
+                      ... on TableAnswer {
+                        tableValue: value {
+                          id
+                        }
                       }
                     }
                   }
@@ -142,6 +159,22 @@ module("Unit | Mirage GraphQL Mock | answer", function(hooks) {
         node: {
           __typename: "StringAnswer",
           stringValue: this.choiceAnswer.value
+        }
+      },
+      {
+        __typename: "AnswerEdge",
+        node: {
+          __typename: "TableAnswer",
+          tableValue: [
+            {
+              __typename: "Document",
+              id: this.tableRows[0].id
+            },
+            {
+              __typename: "Document",
+              id: this.tableRows[1].id
+            }
+          ]
         }
       }
     ]);
