@@ -13,7 +13,15 @@ caluma:
       options-empty: "Keine Optionen vorhanden"
       search-placeholder: "Hier tippen um zu suchen"
       search-empty: "Keine Optionen gefunden"
-      
+
+    validation:
+      blank: "Dieses Feld darf nicht leer gelassen werden"
+      tooLong: "In diesem Feld sind maximal {max} Zeichen erlaubt"
+      greaterThanOrEqualTo: "Die Eingabe in diesem Feld darf nicht kleiner als {gte} sein"
+      lessThanOrEqualTo: "Die Eingebae in diesem Feld darf nicht grösser als {lte} sein"
+      notAnInteger: "Bitte geben Sie eine ganze Zahl ein"
+      inclusion: "'{value}' ist keine gültiger Wert für dieses Feld"
+
   form-builder:
     global:
       save: "Speichern"
@@ -46,10 +54,10 @@ caluma:
       label: "Label"
       slug: "Slug"
       type: "Typ"
-      isRequired: "Erforderlich"
-      widgetType: "Widget Typ"
+      isRequired: "Pflichtfeld"
+      widgetType: "Anzeigetyp"
       isArchived: "Archiviert"
-      type-disabled: "Sobald die Frage erstellt ist kann der Typ nicht mehr geändert werden um korrupte Daten zu verhindern."
+      type-disabled: "Der Fragetyp kann nach dem Erstellen einer Frage nicht mehr geändert werden, um korrupte Daten zu verhindern."
 
       general: "Allgemein"
       options: "Optionen"
@@ -76,7 +84,8 @@ caluma:
         MultipleChoiceQuestion: "Mehrfachauswahl"
         ChoiceQuestion: "Einzelauswahl"
         TextQuestion: "Text"
-        TextareaQuestion: "Textbereich"
+        TextareaQuestion: "Text (mehrzeilig)"
+        TableQuestion: "Tabelle"
 
       not-found: "Keine Frage mit dem Slug '{slug}' gefunden"
 

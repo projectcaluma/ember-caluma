@@ -8,6 +8,14 @@ import { atob } from "ember-caluma/helpers/atob";
 export default Route.extend(RouteQueryManager, {
   apollo: service(),
 
+  intl: service(),
+
+  init() {
+    this._super(...arguments);
+
+    this.intl.setLocale([...navigator.languages, "en-us"]);
+  },
+
   async model() {
     const res = await this.apollo.watchQuery(
       {

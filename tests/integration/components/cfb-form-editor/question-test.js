@@ -131,7 +131,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
       hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
     );
 
-    await click("[data-test-type=TextQuestion]");
+    await fillIn("[name=__typename]", "TextQuestion");
     await fillIn("[name=label]", "Label");
     await fillIn("[name=slug]", "slug");
     await fillIn("[name=maxLength]", 20);
@@ -159,7 +159,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
       hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
     );
 
-    await click("[data-test-type=TextareaQuestion]");
+    await fillIn("[name=__typename]", "TextareaQuestion");
     await fillIn("[name=label]", "Label");
     await fillIn("[name=slug]", "slug");
     await fillIn("[name=maxLength]", 20);
@@ -188,7 +188,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
       hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
     );
 
-    await click("[data-test-type=IntegerQuestion]");
+    await fillIn("[name=__typename]", "IntegerQuestion");
     await fillIn("[name=label]", "Label");
     await fillIn("[name=slug]", "slug");
     await fillIn("[name=integerMinValue]", -20);
@@ -218,7 +218,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
       hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
     );
 
-    await click("[data-test-type=FloatQuestion]");
+    await fillIn("[name=__typename]", "FloatQuestion");
     await fillIn("[name=label]", "Label");
     await fillIn("[name=slug]", "slug");
     await fillIn("[name=floatMinValue]", -20);
@@ -248,7 +248,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
       hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
     );
 
-    await click("[data-test-type=MultipleChoiceQuestion]");
+    await fillIn("[name=__typename]", "MultipleChoiceQuestion");
     await fillIn("[name=label]", "Label");
     await fillIn("[name=slug]", "slug");
     await fillIn("[name=option-1-label]", "Option 1");
@@ -278,7 +278,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
       hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
     );
 
-    await click("[data-test-type=ChoiceQuestion]");
+    await fillIn("[name=__typename]", "ChoiceQuestion");
     await fillIn("[name=label]", "Label");
     await fillIn("[name=slug]", "slug");
     await fillIn("[name=option-1-label]", "Option 1");
@@ -308,7 +308,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
       hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
     );
 
-    await click("[data-test-type=TableQuestion]");
+    await fillIn("[name=__typename]", "TableQuestion");
     await fillIn("[name=label]", "Label");
     await fillIn("[name=slug]", "slug");
     await fillIn("[name=rowForm]", "subform");
