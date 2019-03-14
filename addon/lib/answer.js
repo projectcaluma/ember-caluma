@@ -18,7 +18,10 @@ export default EmberObject.extend({
    * @private
    */
   _valueKey: computed("__typename", function() {
-    return `${camelize(this.__typename.replace(/Answer$/, ""))}Value`;
+    return (
+      this.__typename &&
+      `${camelize(this.__typename.replace(/Answer$/, ""))}Value`
+    );
   }).readOnly(),
 
   /**
@@ -38,7 +41,9 @@ export default EmberObject.extend({
         return this.get(this._valueKey);
       },
       set(_, value) {
-        this.set(this._valueKey, value);
+        if (this._valueKey) {
+          this.set(this._valueKey, value);
+        }
 
         next(this, () =>
           this.document.trigger("valueChanged", this.question.slug, value)
