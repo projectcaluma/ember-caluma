@@ -56,6 +56,7 @@ caluma:
       slug: "Slug"
       type: "Typ"
       isRequired: "Pflichtfeld"
+      isHidden: "Versteckt (JEXL)"
       widgetType: "Anzeigetyp"
       isArchived: "Archiviert"
       type-disabled: "Der Fragetyp kann nach dem Erstellen einer Frage nicht mehr geändert werden, um korrupte Daten zu verhindern."
@@ -80,6 +81,7 @@ caluma:
       create: "oder eine neue Frage erstellen"
 
       empty: "Sie haben noch keine Fragen hinzugefügt. Drücken Sie den obenstehenden Knopf um dies zu tun!"
+      advancedSettings: "Erweiterte Einstellungen"
 
       types:
         IntegerQuestion: "Ganze Zahl"

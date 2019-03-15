@@ -154,6 +154,15 @@
         class="uk-flex uk-flex-between uk-flex-column"
       }}
 
+      <details>
+        <summary>{{t "caluma.form-builder.question.advancedSettings"}}</summary>
+        {{f.input
+          type="text"
+          label=(t "caluma.form-builder.question.isHidden")
+          name="isHidden"
+        }}
+      </details>
+
       <div class="uk-text-right">
         {{f.submit
           label=(t "caluma.form-builder.global.save")

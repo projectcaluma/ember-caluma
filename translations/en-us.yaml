@@ -55,6 +55,7 @@ caluma:
       slug: "Slug"
       type: "Type"
       isRequired: "Required"
+      isHidden: "Hidden (JEXL)"
       widgetType: "Widget type"
       isArchived: "Archived"
       type-disabled: "Once created, the type can't be changed to prevent corrupt data."
@@ -79,6 +80,7 @@ caluma:
       create: "or create a new question"
 
       empty: "You have not yet added a question. Press the plus button above to do so!"
+      advancedSettings: "Advanced settings"
 
       types:
         IntegerQuestion: "Integer"
