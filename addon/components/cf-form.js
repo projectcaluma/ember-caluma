@@ -26,6 +26,9 @@ export default Component.extend(ComponentQueryManager, {
   documentStore: service(),
   document: null,
 
+  attributeBindings: ["novalidate"],
+  novalidate: "novalidate",
+
   willInsertElement() {
     if (this.documentId) {
       this.data.perform();
