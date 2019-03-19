@@ -55,5 +55,22 @@ export default Component.extend(ComponentQueryManager, {
       (this.get("data.lastSuccessful.value") &&
         this.documentStore.find(this.get("data.lastSuccessful.value")))
     );
-  }).readOnly()
+  }).readOnly(),
+
+  actions: {
+    async crossReference(slug, value) {
+      const field = this._document.fields.find(
+        field => field.question.slug === slug
+      );
+
+      if (field) {
+        if (value === undefined) {
+          return field.answer.value;
+        } else {
+          field.answer.set("value", value);
+          field.save.unlinked().perform();
+        }
+      }
+    }
+  }
 });

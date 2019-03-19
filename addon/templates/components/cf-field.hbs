@@ -1,7 +1,11 @@
 {{cf-field/label field=field}}
 <div class="uk-flex">
   <div class="uk-width-expand">
-    {{cf-field/input field=field disabled=disabled onSave=(perform save)}}
+    {{#if override}}
+      {{component override crossReference=crossReference field=field disabled=disabled onSave=(perform save)}}
+    {{else}}
+      {{cf-field/input field=field disabled=disabled onSave=(perform save)}}
+    {{/if}}
   </div>
   <div
     class="cf-field__icon uk-padding-remove-vertical uk-flex uk-flex-middle uk-flex-center"
