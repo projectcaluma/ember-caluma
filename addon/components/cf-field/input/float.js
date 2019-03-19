@@ -31,6 +31,6 @@ export default Component.extend({
    * @param {String} e.target.value The current value of the field
    */
   input({ target: { value } }) {
-    this.onSave(parseFloat(value) || null);
+    this.onSave(isNaN(value) ? null : parseFloat(value));
   }
 });
