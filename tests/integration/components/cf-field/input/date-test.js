@@ -1,6 +1,7 @@
 import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
 import { click, render } from "@ember/test-helpers";
+import moment from "moment";
 import hbs from "htmlbars-inline-precompile";
 import { Interactor } from "ember-pikaday/test-support";
 
@@ -9,24 +10,27 @@ module("Integration | Component | cf-field/input/date", function(hooks) {
 
   test("it renders an input tag", async function(assert) {
     await render(hbs`
-      {{pikaday-input}}
+      {{cf-field/input/date}}
     `);
 
     assert.dom("input").exists();
   });
 
-  test("selecting a date should send an action", async function(assert) {
-    const expectedDate = new Date(2013, 3, 28);
+  test("it triggers save when selecting a date", async function(assert) {
+    const date_expected = new Date(2013, 3, 28);
 
-    this.set("onSelection", function(selectedDate) {
-      assert.deepEqual(selectedDate, expectedDate);
+    this.set("save", function(date_selected) {
+      assert.deepEqual(
+        date_selected,
+        moment(date_expected).format("YYYY-MM-DD")
+      );
     });
 
     await render(hbs`
-      {{pikaday-input onSelection=(action onSelection)}}
+      {{cf-field/input/date onSave=save}}
     `);
 
     await click("input");
-    await Interactor.selectDate(expectedDate);
+    await Interactor.selectDate(date_expected);
   });
 });
