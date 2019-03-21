@@ -112,6 +112,7 @@ caluma:
         TextQuestion: "Text"
         TextareaQuestion: "Text (mehrzeilig)"
         TableQuestion: "Tabelle"
+        DateQuestion: "Datum"
         FormQuestion: "Formular"
         FileQuestion: "Datei"
         StaticQuestion: "Statischer Inhalt"
