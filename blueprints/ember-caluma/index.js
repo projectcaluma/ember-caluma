@@ -10,7 +10,8 @@ module.exports = {
         { name: "ember-power-select" },
         { name: "ember-promise-helpers" },
         { name: "ember-math-helpers" },
-        { name: "ember-cli-showdown" }
+        { name: "ember-cli-showdown" },
+        { name: "ember-pikaday" }
       ]
     });
   }
