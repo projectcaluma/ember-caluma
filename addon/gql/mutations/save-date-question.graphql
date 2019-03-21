@@ -1,0 +1,10 @@
+#import "ember-caluma/gql/fragments/question-info"
+
+mutation SaveDateQuestion($input: SaveDateQuestionInput!) {
+  saveDateQuestion(input: $input) {
+    question {
+      ...QuestionInfo
+    }
+    clientMutationId
+  }
+}

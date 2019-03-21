@@ -31,7 +31,8 @@ const TYPE_MAP = {
   TableQuestion: "TableAnswer",
   FormQuestion: "FormAnswer",
   FileQuestion: "FileAnswer",
-  StaticQuestion: null
+  StaticQuestion: null,
+  DateQuestion: "DateAnswer"
 };
 
 /**
@@ -351,5 +352,16 @@ export default EmberObject.extend(Evented, {
    */
   _validateFileQuestion() {
     return Promise.resolve(true);
+  },
+
+  /**
+   * Method to validate a date question.
+   *
+   * @method _validateDateQuestion
+   * @return {Object[]|Boolean[]|Mixed[]} Returns per value an object if invalid or true if valid
+   * @internal
+   */
+  _validateDateQuestion() {
+    return validate("date", this.get("answer.value"));
   }
 });
