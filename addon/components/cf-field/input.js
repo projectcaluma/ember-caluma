@@ -4,8 +4,7 @@ import layout from "../../templates/components/cf-field/input";
 
 const mapping = {
   MultipleChoiceQuestion: "checkbox",
-  ChoiceQuestion: "radio",
-  TextQuestion: "pikaday"
+  ChoiceQuestion: "radio"
 };
 
 /**
