@@ -116,6 +116,7 @@ caluma:
         FormQuestion: "Formular"
         FileQuestion: "Datei"
         StaticQuestion: "Statischer Inhalt"
+        DateQuestion: "Datum"
 
       widgetOverrides:
         powerselect: "Power Select"

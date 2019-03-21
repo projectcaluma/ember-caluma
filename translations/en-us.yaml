@@ -112,10 +112,10 @@ caluma:
         TextQuestion: "Text"
         TextareaQuestion: "Textarea"
         TableQuestion: "Table"
-        DateQuestion: "Date"
         FormQuestion: "Form"
         FileQuestion: "File"
         StaticQuestion: "Static content"
+        DateQuestion: "Date"
 
       widgetOverrides:
         powerselect: "Power Select"
