@@ -31,6 +31,7 @@ import saveDateQuestionMutation from "ember-caluma/gql/mutations/save-date-quest
 import saveFormQuestionMutation from "ember-caluma/gql/mutations/save-form-question";
 import saveFileQuestionMutation from "ember-caluma/gql/mutations/save-file-question";
 import saveStaticQuestionMutation from "ember-caluma/gql/mutations/save-static-question";
+import saveDateQuestionMutation from "ember-caluma/gql/mutations/save-date-question";
 
 export const TYPES = {
   TextQuestion: saveTextQuestionMutation,
@@ -238,6 +239,8 @@ export default Component.extend(ComponentQueryManager, {
       isRequired: changeset.get("isRequired"),
       subForm: changeset.get("subForm")
     };
+  _getDateQuestionInput(/*changeset*/) {
+    return {};
   },
 
   _getFileQuestionInput(changeset) {
