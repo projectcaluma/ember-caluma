@@ -11,6 +11,7 @@ import { A } from "@ember/array";
 import validations from "ember-caluma/validations/question";
 import { all } from "rsvp";
 import { getOwner } from "@ember/application";
+import $ from "jquery";
 
 import checkQuestionSlugQuery from "ember-caluma/gql/queries/check-question-slug";
 import formEditorQuestionQuery from "ember-caluma/gql/queries/form-editor-question";
@@ -50,11 +51,63 @@ export default Component.extend(ComponentQueryManager, {
     }));
   }),
 
+  slugPrefix: computed("form", function() {
+    return this.get("form") + "-";
+  }),
+
+  prepareSlug() {
+    const $input = $('[name="slug"]');
+    const length = $input.val().length;
+
+    $input.on("keypress keydown", event => {
+      const key = event.key;
+      const shift = event.shiftKey;
+      const input = event.target;
+
+      if (key === "Home") {
+        input.selectionStart = length;
+
+        if (!shift) {
+          input.selectionEnd = length;
+        }
+
+        event.preventDefault();
+      } else if (input.selectionStart < length) {
+        event.preventDefault();
+      } else if (input.selectionStart === length) {
+        if (input.selectionStart === input.selectionEnd) {
+          if (key === "ArrowLeft" || key === "Backspace") {
+            event.preventDefault();
+          }
+        } else {
+          if (key === "ArrowLeft") {
+            if (!shift) {
+              input.selectionEnd = input.selectionStart;
+            }
+            event.preventDefault();
+          } else if (key === "Backspace") {
+            input.setRangeText("", input.selectionStart, input.selectionEnd);
+            event.preventDefault();
+          }
+        }
+      }
+    });
+
+    $input.on("focus click select", event => {
+      const input = event.target;
+      if (input.selectionStart <= length) {
+        input.selectionStart = length;
+      }
+    });
+  },
+
   async didReceiveAttrs() {
     this._super(...arguments);
 
     await this.get("data").perform();
     await this.get("availableForms").perform();
+
+    this.prepareSlug();
   },
 
   widgetTypes: computed(function() {
@@ -76,7 +129,7 @@ export default Component.extend(ComponentQueryManager, {
         {
           node: {
             label: "",
-            slug: "",
+            slug: this.slugPrefix,
             description: "",
             isRequired: "false",
             isHidden: "false",
@@ -282,7 +335,7 @@ export default Component.extend(ComponentQueryManager, {
       changeset.set("label", value);
 
       if (!this.get("slug")) {
-        const slug = slugify(value);
+        const slug = this.slugPrefix + slugify(value);
         changeset.set("slug", slug);
         this.get("validateSlug").perform(slug, changeset);
       }
