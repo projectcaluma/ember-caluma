@@ -154,6 +154,24 @@
         class="uk-flex uk-flex-between uk-flex-column"
       }}
 
+      <p>
+        {{#uk-button color="link" on-click=(toggle-action "showAdvanced" this)}}
+          {{#if showAdvanced}}
+            {{uk-icon "triangle-down"}}
+          {{else}}
+            {{uk-icon "triangle-right"}}
+          {{/if}}
+          {{t "caluma.form-builder.question.advancedSettings"}}
+        {{/uk-button}}
+      </p>
+      {{#if showAdvanced}}
+        {{f.input
+          type="text"
+          label=(t "caluma.form-builder.question.isHidden")
+          name="isHidden"
+        }}
+      {{/if}}
+
       <div class="uk-text-right">
         {{f.submit
           label=(t "caluma.form-builder.global.save")

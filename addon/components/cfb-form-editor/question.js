@@ -207,7 +207,7 @@ export default Component.extend(ComponentQueryManager, {
                 label: changeset.get("label"),
                 slug: changeset.get("slug"),
                 isRequired: changeset.get("isRequired"),
-                isHidden: "false", // TODO: this must be configurable
+                isHidden: changeset.get("isHidden"),
                 meta: JSON.stringify({
                   widgetType: changeset.get("widgetType")
                 }),
