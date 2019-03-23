@@ -13,14 +13,26 @@ module("Integration | Component | cf-field/input/table", function(hooks) {
         rowDocuments: [
           {
             fields: [
-              { answer: { value: "Max" } },
-              { answer: { value: "Muster" } }
+              {
+                question: { __typename: "TextQuestion" },
+                answer: { value: "Max" }
+              },
+              {
+                question: { __typename: "TextQuestion" },
+                answer: { value: "Muster" }
+              }
             ]
           },
           {
             fields: [
-              { answer: { value: "Bea" } },
-              { answer: { value: "Beispiel" } }
+              {
+                question: { __typename: "TextQuestion" },
+                answer: { value: "Bea" }
+              },
+              {
+                question: { __typename: "TextQuestion" },
+                answer: { value: "Beispiel" }
+              }
             ]
           }
         ]

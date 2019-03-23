@@ -12,7 +12,7 @@
       {{#each field.answer.rowDocuments as |document|}}
         <tr>
           {{#each (take 4 document.fields) as |field|}}
-            <td>{{field.answer.value}}</td>
+            <td>{{cf-field-value field=field}}</td>
           {{/each}}
           <td class="uk-text-right">
             <button type="button" data-test-edit-row class="uk-icon-button" uk-icon="pencil" {{action "editRow" document}}></button>
