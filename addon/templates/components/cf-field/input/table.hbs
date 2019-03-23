@@ -2,7 +2,7 @@
   <table class="uk-table">
     <thead>
       <tr>
-        {{#each questions as |edge|}}
+        {{#each (take 4 questions) as |edge|}}
           <th>{{edge.node.label}}</th>
         {{/each}}
         <th></th>
@@ -11,7 +11,7 @@
     <tbody>
       {{#each field.answer.rowDocuments as |document|}}
         <tr>
-          {{#each document.fields as |field|}}
+          {{#each (take 4 document.fields) as |field|}}
             <td>{{field.answer.value}}</td>
           {{/each}}
           <td class="uk-text-right">

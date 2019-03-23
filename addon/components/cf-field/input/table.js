@@ -4,13 +4,16 @@ import { task } from "ember-concurrency";
 import saveDocumentMutation from "ember-caluma/gql/mutations/save-document";
 import saveDocumentTableAnswerMutation from "ember-caluma/gql/mutations/save-document-table-answer";
 import { inject as service } from "@ember/service";
+import { ComponentQueryManager } from "ember-apollo-client";
 
-export default Component.extend({
+export default Component.extend(ComponentQueryManager, {
   layout,
 
-  apollo: service(),
+  notification: service(),
 
   documentStore: service(),
+
+  intl: service(),
 
   showModal: false,
   documentToEdit: null,
@@ -26,28 +29,6 @@ export default Component.extend({
       "saveDocument.document"
     );
     const newDocument = this.documentStore.find(newDocumentRaw);
-
-    yield this.get("apollo").mutate({
-      mutation: saveDocumentTableAnswerMutation,
-      variables: {
-        input: {
-          question: this.get("field.question.slug"),
-          document: this.get("field.document.id"),
-          value: [
-            ...this.getWithDefault("field.answer.rowDocuments", []).map(
-              doc => doc.id
-            ),
-            newDocument.id
-          ]
-        }
-      }
-    });
-
-    // update client-side state
-    this.set("field.answer.rowDocuments", [
-      ...(this.get("field.answer.rowDocuments") || []),
-      newDocument
-    ]);
 
     this.setProperties({
       documentToEdit: newDocument,
@@ -76,8 +57,46 @@ export default Component.extend({
   }),
 
   actions: {
-    save() {
-      this.set("showModal", false);
+    async save() {
+      try {
+        const newDocument = this.get("documentToEdit");
+
+        const rows = this.getWithDefault("field.answer.rowDocuments", []);
+
+        if (!rows.find(doc => doc.id === newDocument.id)) {
+          // add document to table
+          await this.get("apollo").mutate({
+            mutation: saveDocumentTableAnswerMutation,
+            variables: {
+              input: {
+                question: this.get("field.question.slug"),
+                document: this.get("field.document.id"),
+                value: [
+                  ...this.getWithDefault("field.answer.rowDocuments", []).map(
+                    doc => doc.id
+                  ),
+                  newDocument.id
+                ]
+              }
+            }
+          });
+
+          // update client-side state
+          this.set("field.answer.rowDocuments", [
+            ...(this.get("field.answer.rowDocuments") || []),
+            newDocument
+          ]);
+          this.get("notification").success(
+            this.get("intl").t("caluma.form.notification.table.add.success")
+          );
+        }
+
+        this.set("showModal", false);
+      } catch (e) {
+        this.get("notification").danger(
+          this.get("intl").t("caluma.form.notification.table.add.error")
+        );
+      }
     },
     editRow(document) {
       this.setProperties({
