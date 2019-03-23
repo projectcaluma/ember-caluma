@@ -144,4 +144,11 @@ export default class extends BaseMock {
       input: { ...input, type: "TABLE" }
     });
   }
+
+  @register("SaveFormQuestionPayload")
+  handleSaveFormQuestion(_, { input }) {
+    return this.handleSavePayload.fn.call(this, _, {
+      input: { ...input, type: "FORM" }
+    });
+  }
 }

@@ -135,11 +135,22 @@
         }}
       {{/if}}
 
-      {{#if (and (eq f.model.__typename "TableQuestion") availableForms.lastSuccessful.value)}}
+      {{#if (eq f.model.__typename "TableQuestion")}}
         {{f.input
           name="rowForm"
           type="select"
-          options=availableForms.lastSuccessful.value
+          options=(or availableForms.lastSuccessful.value (array ))
+          required=true
+          includeBlank=(t "caluma.form-builder.question.chooseRowForm")
+          label=(t "caluma.form-builder.question.rowForm")
+        }}
+      {{/if}}
+
+      {{#if (eq f.model.__typename "FormQuestion")}}
+        {{f.input
+          name="subForm"
+          type="select"
+          options=(or availableForms.lastSuccessful.value (array ))
           required=true
           includeBlank=(t "caluma.form-builder.question.chooseRowForm")
           label=(t "caluma.form-builder.question.rowForm")

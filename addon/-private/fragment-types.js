@@ -12,16 +12,19 @@ export default {
             name: "Form"
           },
           {
-            name: "Flow"
+            name: "Document"
+          },
+          {
+            name: "FormAnswer"
           },
           {
             name: "Case"
           },
           {
-            name: "Document"
+            name: "WorkItem"
           },
           {
-            name: "WorkItem"
+            name: "Flow"
           },
           {
             name: "Option"
@@ -45,7 +48,13 @@ export default {
             name: "IntegerQuestion"
           },
           {
+            name: "DateQuestion"
+          },
+          {
             name: "TableQuestion"
+          },
+          {
+            name: "FormQuestion"
           },
           {
             name: "StringAnswer"
@@ -58,6 +67,9 @@ export default {
           },
           {
             name: "FloatAnswer"
+          },
+          {
+            name: "DateAnswer"
           },
           {
             name: "TableAnswer"
@@ -111,7 +123,13 @@ export default {
             name: "IntegerQuestion"
           },
           {
+            name: "DateQuestion"
+          },
+          {
             name: "TableQuestion"
+          },
+          {
+            name: "FormQuestion"
           }
         ]
       },
@@ -119,6 +137,9 @@ export default {
         kind: "INTERFACE",
         name: "Answer",
         possibleTypes: [
+          {
+            name: "FormAnswer"
+          },
           {
             name: "StringAnswer"
           },
@@ -130,6 +151,9 @@ export default {
           },
           {
             name: "FloatAnswer"
+          },
+          {
+            name: "DateAnswer"
           },
           {
             name: "TableAnswer"

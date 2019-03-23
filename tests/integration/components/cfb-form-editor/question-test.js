@@ -318,6 +318,35 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     assert.verifySteps(["after-submit"]);
   });
 
+  test("it can create a form question", async function(assert) {
+    assert.expect(6);
+
+    this.server.create("form", { slug: "test-form" });
+    this.server.create("form", { slug: "subform" });
+
+    this.set("afterSubmit", question => {
+      assert.equal(question.__typename, "FormQuestion");
+      assert.equal(question.label, "Label");
+      assert.equal(question.slug, "slug");
+      assert.ok(question.subForm.slug);
+
+      assert.step("after-submit");
+    });
+
+    await render(
+      hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
+    );
+
+    await fillIn("[name=__typename]", "FormQuestion");
+    await fillIn("[name=label]", "Label");
+    await fillIn("[name=slug]", "slug");
+    await fillIn("[name=subForm]", "subform");
+
+    await click("button[type=submit]");
+
+    assert.verifySteps(["after-submit"]);
+  });
+
   test("it validates the slug", async function(assert) {
     assert.expect(3);
 

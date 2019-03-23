@@ -90,6 +90,7 @@ caluma:
         TextQuestion: "Text"
         TextareaQuestion: "Textarea"
         TableQuestion: "Table"
+        FormQuestion: "Form"
 
       not-found: "No question with slug '{slug}' found"
 

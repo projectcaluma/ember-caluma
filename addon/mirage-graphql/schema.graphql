@@ -1,5 +1,5 @@
 # source: http://localhost:8000/graphql
-# timestamp: Mon Mar 11 2019 17:18:03 GMT+0100 (Central European Standard Time)
+# timestamp: Sat Mar 23 2019 09:02:14 GMT+0100 (Central European Standard Time)
 
 input AddFormQuestionInput {
   form: ID!
@@ -389,6 +389,7 @@ input CopyFormInput {
   name: String!
   description: String
   source: ID!
+  isPublished: Boolean
   clientMutationId: String
 }
 
@@ -445,6 +446,67 @@ type CreateWorkItemPayload {
 }
 
 """
+The `Date` scalar type represents a Date
+value as specified by
+[iso8601](https://en.wikipedia.org/wiki/ISO_8601).
+"""
+scalar Date
+
+type DateAnswer implements Answer & Node {
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+  createdByUser: String
+  createdByGroup: String
+
+  """
+  The ID of the object.
+  """
+  id: ID!
+  question: Question!
+  value: Date!
+  meta: GenericScalar!
+}
+
+type DateQuestion implements Question & Node {
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+  createdByUser: String
+  createdByGroup: String
+  slug: String!
+  label: String!
+  isRequired: QuestionJexl!
+  isHidden: QuestionJexl!
+  isArchived: Boolean!
+  meta: GenericScalar!
+  source: Question
+  forms(
+    before: String
+    after: String
+    first: Int
+    last: Int
+
+    """
+    FormOrdering
+    """
+    orderBy: [FormOrdering]
+    slug: String
+    name: String
+    description: String
+    isPublished: Boolean
+    isArchived: Boolean
+    createdByUser: String
+    createdByGroup: String
+    metaHasKey: String
+    search: String
+  ): FormConnection
+
+  """
+  The ID of the object.
+  """
+  id: ID!
+}
+
+"""
 The `DateTime` scalar type represents a DateTime
 value as specified by
 [iso8601](https://en.wikipedia.org/wiki/ISO_8601).
@@ -479,6 +541,7 @@ type Document implements Node {
     """
     orderBy: [AnswerOrdering]
   ): AnswerConnection
+  parentAnswers: [FormAnswer]
   case: Case
   workItem: WorkItem
 }
@@ -695,6 +758,22 @@ type Form implements Node {
   id: ID!
 }
 
+type FormAnswer implements Answer & Node {
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+  createdByUser: String
+  createdByGroup: String
+
+  """
+  The ID of the object.
+  """
+  id: ID!
+  question: Question!
+  value: Document!
+  meta: GenericScalar!
+  document: Document!
+}
+
 type FormConnection {
   pageInfo: PageInfo!
   edges: [FormEdge]!
@@ -765,6 +844,50 @@ enum FormOrdering {
   Created by group (descending)
   """
   CREATED_BY_GROUP_DESC
+}
+
+type FormQuestion implements Question & Node {
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+  createdByUser: String
+  createdByGroup: String
+  slug: String!
+  label: String!
+  isRequired: QuestionJexl!
+  isHidden: QuestionJexl!
+  isArchived: Boolean!
+  meta: GenericScalar!
+  source: Question
+  forms(
+    before: String
+    after: String
+    first: Int
+    last: Int
+
+    """
+    FormOrdering
+    """
+    orderBy: [FormOrdering]
+    slug: String
+    name: String
+    description: String
+    isPublished: Boolean
+    isArchived: Boolean
+    createdByUser: String
+    createdByGroup: String
+    metaHasKey: String
+    search: String
+  ): FormConnection
+
+  """
+  Form referenced in a FormQuestion
+  """
+  subForm: Form
+
+  """
+  The ID of the object.
+  """
+  id: ID!
 }
 
 """
@@ -948,6 +1071,7 @@ type Mutation {
   saveTextareaQuestion(
     input: SaveTextareaQuestionInput!
   ): SaveTextareaQuestionPayload
+  saveDateQuestion(input: SaveDateQuestionInput!): SaveDateQuestionPayload
   saveChoiceQuestion(input: SaveChoiceQuestionInput!): SaveChoiceQuestionPayload
   saveMultipleChoiceQuestion(
     input: SaveMultipleChoiceQuestionInput!
@@ -957,6 +1081,7 @@ type Mutation {
     input: SaveIntegerQuestionInput!
   ): SaveIntegerQuestionPayload
   saveTableQuestion(input: SaveTableQuestionInput!): SaveTableQuestionPayload
+  saveFormQuestion(input: SaveFormQuestionInput!): SaveFormQuestionPayload
   saveDocument(input: SaveDocumentInput!): SaveDocumentPayload
   saveDocumentStringAnswer(
     input: SaveDocumentStringAnswerInput!
@@ -967,12 +1092,18 @@ type Mutation {
   saveDocumentFloatAnswer(
     input: SaveDocumentFloatAnswerInput!
   ): SaveDocumentFloatAnswerPayload
+  saveDocumentDateAnswer(
+    input: SaveDocumentDateAnswerInput!
+  ): SaveDocumentDateAnswerPayload
   saveDocumentListAnswer(
     input: SaveDocumentListAnswerInput!
   ): SaveDocumentListAnswerPayload
   saveDocumentTableAnswer(
     input: SaveDocumentTableAnswerInput!
   ): SaveDocumentTableAnswerPayload
+  saveDocumentFormAnswer(
+    input: SaveDocumentFormAnswerInput!
+  ): SaveDocumentFormAnswerPayload
 }
 
 """
@@ -1493,6 +1624,34 @@ type SaveCompleteWorkflowFormTaskPayload {
   clientMutationId: String
 }
 
+input SaveDateQuestionInput {
+  slug: String!
+  label: String!
+  isRequired: QuestionJexl
+  isHidden: QuestionJexl
+  meta: JSONString
+  isArchived: Boolean
+  clientMutationId: String
+}
+
+type SaveDateQuestionPayload {
+  question: Question
+  clientMutationId: String
+}
+
+input SaveDocumentDateAnswerInput {
+  question: ID!
+  document: ID!
+  meta: JSONString
+  value: Date!
+  clientMutationId: String
+}
+
+type SaveDocumentDateAnswerPayload {
+  answer: Answer
+  clientMutationId: String
+}
+
 input SaveDocumentFloatAnswerInput {
   question: ID!
   document: ID!
@@ -1502,6 +1661,23 @@ input SaveDocumentFloatAnswerInput {
 }
 
 type SaveDocumentFloatAnswerPayload {
+  answer: Answer
+  clientMutationId: String
+}
+
+input SaveDocumentFormAnswerInput {
+  question: ID!
+  document: ID!
+  meta: JSONString
+
+  """
+  Document IDs representing the content of the form.
+  """
+  value: ID!
+  clientMutationId: String
+}
+
+type SaveDocumentFormAnswerPayload {
   answer: Answer
   clientMutationId: String
 }
@@ -1605,6 +1781,22 @@ type SaveFormPayload {
   clientMutationId: String
 }
 
+input SaveFormQuestionInput {
+  slug: String!
+  label: String!
+  isRequired: QuestionJexl
+  isHidden: QuestionJexl
+  meta: JSONString
+  isArchived: Boolean
+  subForm: ID!
+  clientMutationId: String
+}
+
+type SaveFormQuestionPayload {
+  question: Question
+  clientMutationId: String
+}
+
 input SaveIntegerQuestionInput {
   slug: String!
   label: String!
@@ -1690,7 +1882,7 @@ input SaveTableQuestionInput {
   isArchived: Boolean
 
   """
-  One row of table is represented by this form
+  Form that represents rows of a TableQuestion
   """
   rowForm: ID!
   clientMutationId: String
@@ -1883,7 +2075,7 @@ type TableQuestion implements Question & Node {
   ): FormConnection
 
   """
-  One row of table is represented by this form
+  Form that represents rows of a TableQuestion
   """
   rowForm: Form
 

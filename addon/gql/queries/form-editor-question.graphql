@@ -44,6 +44,11 @@ query FormEditorQuestion($slug: String!) {
             slug
           }
         }
+        ... on FormQuestion {
+          subForm {
+            slug
+          }
+        }
       }
     }
   }
