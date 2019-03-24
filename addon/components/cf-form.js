@@ -29,7 +29,8 @@ export default Component.extend(ComponentQueryManager, {
   attributeBindings: ["novalidate"],
   novalidate: "novalidate",
 
-  willInsertElement() {
+  didReceiveAttrs() {
+    this._super(...arguments);
     if (this.documentId) {
       this.data.perform();
     }
