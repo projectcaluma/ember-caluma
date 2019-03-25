@@ -91,6 +91,7 @@ caluma:
         TextQuestion: "Text"
         TextareaQuestion: "Text (mehrzeilig)"
         TableQuestion: "Tabelle"
+        FormQuestion: "Formular"
 
       not-found: "Keine Frage mit dem Slug '{slug}' gefunden"
 

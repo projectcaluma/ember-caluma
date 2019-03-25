@@ -60,5 +60,6 @@ export default {
     ),
     and(validateOptions(), validateLength({ min: 1 }))
   ),
-  rowForm: or(validateType("TableQuestion", false), validatePresence(true))
+  rowForm: or(validateType("TableQuestion", false), validatePresence(true)),
+  subForm: or(validateType("FormQuestion", false), validatePresence(true))
 };

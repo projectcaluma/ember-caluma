@@ -25,6 +25,7 @@ import saveFloatQuestionMutation from "ember-caluma/gql/mutations/save-float-que
 import saveMultipleChoiceQuestionMutation from "ember-caluma/gql/mutations/save-multiple-choice-question";
 import saveChoiceQuestionMutation from "ember-caluma/gql/mutations/save-choice-question";
 import saveTableQuestionMutation from "ember-caluma/gql/mutations/save-table-question";
+import saveFormQuestionMutation from "ember-caluma/gql/mutations/save-form-question";
 
 export const TYPES = {
   TextQuestion: saveTextQuestionMutation,
@@ -33,7 +34,8 @@ export const TYPES = {
   FloatQuestion: saveFloatQuestionMutation,
   MultipleChoiceQuestion: saveMultipleChoiceQuestionMutation,
   ChoiceQuestion: saveChoiceQuestionMutation,
-  TableQuestion: saveTableQuestionMutation
+  TableQuestion: saveTableQuestionMutation,
+  FormQuestion: saveFormQuestionMutation
 };
 
 export default Component.extend(ComponentQueryManager, {
@@ -87,6 +89,7 @@ export default Component.extend(ComponentQueryManager, {
             maxLength: null,
             options: [],
             rowForm: "",
+            subForm: "",
             __typename: Object.keys(TYPES)[0]
           }
         }
@@ -132,6 +135,9 @@ export default Component.extend(ComponentQueryManager, {
     if (model && model.rowForm) {
       model.rowForm = model.rowForm.slug;
     }
+    if (model && model.subForm) {
+      model.subForm = model.subForm.slug;
+    }
     return model;
   }),
 
@@ -176,6 +182,12 @@ export default Component.extend(ComponentQueryManager, {
   _getTableQuestionInput(changeset) {
     return {
       rowForm: changeset.get("rowForm")
+    };
+  },
+
+  _getFormQuestionInput(changeset) {
+    return {
+      subForm: changeset.get("subForm")
     };
   },
 
@@ -244,6 +256,8 @@ export default Component.extend(ComponentQueryManager, {
 
       optional([this.get("on-after-submit")])(question);
     } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error(e);
       this.get("notification").danger(
         this.get("intl").t(
           "caluma.form-builder.notification.question.save.error"
