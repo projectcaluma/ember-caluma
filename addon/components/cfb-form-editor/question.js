@@ -239,6 +239,8 @@ export default Component.extend(ComponentQueryManager, {
       isRequired: changeset.get("isRequired"),
       subForm: changeset.get("subForm")
     };
+  },
+
   _getDateQuestionInput(/*changeset*/) {
     return {};
   },
