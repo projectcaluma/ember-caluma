@@ -36,6 +36,10 @@ module("Integration | Component | cf-form", function(hooks) {
       this.server.create("question", {
         formIds: [form.id],
         type: "MULTIPLE_CHOICE"
+      }),
+      this.server.create("question", {
+        formIds: [form.id],
+        type: "DATE"
       })
     ];
 
@@ -141,6 +145,11 @@ module("Integration | Component | cf-form", function(hooks) {
       type: "FILE"
     });
     */
+    this.server.create("question", {
+      formIds: [form.id],
+      slug: "date-question",
+      type: "DATE"
+    });
 
     radioQuestion.options.models.forEach((option, i) => {
       option.update({ slug: `${radioQuestion.slug}-option-${i + 1}` });
@@ -227,6 +236,10 @@ module("Integration | Component | cf-form", function(hooks) {
         {
           slug: "checkbox-question",
           value: ["checkbox-question-option-1", "checkbox-question-option-2"]
+        },
+        {
+          slug: "date-question",
+          value: ""
         }
         /*,
         {

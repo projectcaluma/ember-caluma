@@ -78,6 +78,18 @@ export default Factory.extend({
           }
         });
       }
+    } else if (answer.question.type === "DATE") {
+      answer.update({
+        type: "DATE"
+      });
+
+      if (answer.value === undefined) {
+        let date = faker.date.future();
+        answer.update({
+          value: `${date.getFullYear()}-${date.getMonth() +
+            1}-${date.getDate()}`
+        });
+      }
     }
   }
 });
