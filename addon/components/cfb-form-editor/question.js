@@ -59,7 +59,8 @@ export default Component.extend(ComponentQueryManager, {
     const $input = $('[name="slug"]');
     const length = $input.val().length;
 
-    $input.on("keypress keydown", event => {
+    $input.off("keypress.slug keydown.slug");
+    $input.on("keypress.slug keydown.slug", event => {
       const key = event.key;
       const shift = event.shiftKey;
       const input = event.target;
@@ -93,7 +94,8 @@ export default Component.extend(ComponentQueryManager, {
       }
     });
 
-    $input.on("focus click select", event => {
+    $input.off("focus.slug click.slug select.slug");
+    $input.on("focus.slug click.slug select.slug", event => {
       const input = event.target;
       if (input.selectionStart <= length) {
         input.selectionStart = length;
@@ -108,6 +110,14 @@ export default Component.extend(ComponentQueryManager, {
     await this.get("availableForms").perform();
 
     this.prepareSlug();
+  },
+
+  willDestroyElement() {
+    $('[name="slug"]').off(
+      "keypress.slug keydown.slug focus.slug click.slug select.slug"
+    );
+
+    this._super(...arguments);
   },
 
   widgetTypes: computed(function() {
