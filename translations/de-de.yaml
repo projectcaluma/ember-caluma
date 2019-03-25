@@ -7,6 +7,12 @@ caluma:
     optional: "Optional"
     done: "Abschliessen"
 
+    notification:
+      table:
+        add:
+          success: "Eintrag wurde erfolgreich hinzugefügt."
+          error: "Hoppla, beim Hinzufügen des Eintrags ist etwas schief gelaufen ..."
+
     power-select:
       placeholder-single: "Wählen Sie eine Option aus"
       placeholder-multiple: "Wählen Sie eine oder mehrere Optionen aus"
