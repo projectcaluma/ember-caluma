@@ -45,7 +45,7 @@
     "ember-promise-helpers": "1.0.6",
     "ember-test-selectors": "2.0.0",
     "ember-uikit": "0.7.3",
-    "ember-validated-form": "2.0.0-alpha.3",
+    "ember-validated-form": "2.0.0-alpha.4",
     "graphql": "14.1.1",
     "graphql-iso-date": "3.6.1",
     "graphql-tag": "2.10.1",
