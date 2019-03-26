@@ -6386,13 +6386,13 @@ ember-uikit@0.7.3:
     ember-toggle "^5.3.0"
     uikit "^3.0.3"
 
-ember-validated-form@2.0.0-alpha.3:
-  version "2.0.0-alpha.3"
-  resolved "https://registry.yarnpkg.com/ember-validated-form/-/ember-validated-form-2.0.0-alpha.3.tgz#c59ae2900ef2c09641c141718710f2208a4eaa25"
-  integrity sha512-loS7sruCaW4BIrBWaQv/Ld/T6DRX+72No2NH5lg7ACrxBFbbTFvSO7E/ordr6eAbHcxs9pL/bx3FuQrZi3RxRQ==
+ember-validated-form@2.0.0-alpha.4:
+  version "2.0.0-alpha.4"
+  resolved "https://registry.yarnpkg.com/ember-validated-form/-/ember-validated-form-2.0.0-alpha.4.tgz#0e78c82466e8e6eeedd200c8eef2d1b9d5a0ff45"
+  integrity sha512-dZ3i7Nzm6qaNSoknRaXXHOz5P9qVrEn21Di3Ofyv5kMNpI1m6apsbU/zZW3s47OIlDSCABXQhZsa0v5htRMuNg==
   dependencies:
     ember-auto-import "^1.2.13"
-    ember-cli-babel "^7.1.0"
+    ember-cli-babel "^7.1.2"
     ember-cli-htmlbars "^3.0.0"
     ember-one-way-select "^4.0.0"
     ember-truth-helpers "^2.0.0"
