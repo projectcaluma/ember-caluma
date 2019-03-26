@@ -54,6 +54,15 @@ export default EmberObject.extend(Evented, {
 
   fields: computed(() => []).readOnly(),
 
+  state: computed("fields.@each.isNew", function() {
+    console.log("recomputing state of document ", this.get("id"), this.fields);
+
+    if (!this.fields.find(field => !field.isNew)) {
+      return "new";
+    }
+    return "no idea";
+  }),
+
   updateHidden: on("valueChanged", "hiddenChanged", function(slug) {
     const dependentFields = this.fields.filter(field =>
       field.question.dependsOn.includes(slug)

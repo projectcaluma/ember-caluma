@@ -24,7 +24,8 @@ const TYPE_MAP = {
   FloatQuestion: "FloatAnswer",
   MultipleChoiceQuestion: "ListAnswer",
   ChoiceQuestion: "StringAnswer",
-  TableQuestion: "TableAnswer"
+  TableQuestion: "TableAnswer",
+  FormQuestion: "FormAnswer"
 };
 
 /**
@@ -132,6 +133,8 @@ export default EmberObject.extend({
    * @accessor
    */
   isInvalid: not("isValid"),
+
+  isNew: equal("answer.value.length", 0),
 
   /**
    * The error messages on this field.

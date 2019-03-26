@@ -1,0 +1,5 @@
+<ul class="uk-tab uk-tab-left">
+  {{#each fields as |field|}}
+    <li>{{#link-to "nested.detail" field.answer.value.id}}{{field.question.label}}{{/link-to}} {{field.childDocument.state}}</li>
+  {{/each}}
+</ul>
