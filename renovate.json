@@ -2,6 +2,7 @@
   "extends": [
     "config:base"
   ],
+  "prHourlyLimit": 0,
   "packageRules": [
     {
       "packageNames": ["eslint-plugin-prettier"],
