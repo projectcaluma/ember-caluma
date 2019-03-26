@@ -55,6 +55,12 @@ export default function(server) {
     ]
   });
   server.create("question", {
+    slug: "date",
+    label: "When?",
+    formIds: [form.id],
+    type: "DATE"
+  });
+  server.create("question", {
     slug: "dummy",
     label: "Dummy widget",
     formIds: [form.id],

@@ -1,6 +1,8 @@
 {{pikaday-wrapper
   class="uk-input"
+  name=field.id
   format="YYYY-MM-DD"
   onSelection=(action "onchange")
-  value=field.answer.value
+  value=(get field.answer field.answer._valueKey)
+  disabled=disabled
 }}

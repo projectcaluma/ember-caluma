@@ -196,6 +196,10 @@ module("Integration | Component | cf-form", function(hooks) {
         document.id
       }:Question:checkbox-question"][value="checkbox-question-option-2"]`
     );
+    await fillIn(
+      `[name="Document:${document.id}:Question:date-question"]`,
+      "2019-03-25"
+    );
 
     /*
     await triggerEvent(
@@ -239,7 +243,7 @@ module("Integration | Component | cf-form", function(hooks) {
         },
         {
           slug: "date-question",
-          value: ""
+          value: "2019-03-25"
         }
         /*,
         {

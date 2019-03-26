@@ -4,6 +4,7 @@ import layout from "../../../templates/components/cf-field/input/date";
 
 export default Component.extend({
   layout,
+  tagName: "",
 
   actions: {
     onchange: function(datetime) {
