@@ -6045,10 +6045,10 @@ ember-ignore-children-helper@^1.0.1:
   dependencies:
     ember-cli-babel "^6.6.0"
 
-ember-intl@3.5.0:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/ember-intl/-/ember-intl-3.5.0.tgz#40efd9e5c369943f1d1178a97a780e02a05b3dde"
-  integrity sha512-jm4Kr5vFE8MJZ+mNTvrxhtyE7z9Xdo0xJbmcavvg/aBDBM3MytPTotILA2febVLP2dVUtrDcRfL6CDHY+H27rA==
+ember-intl@3.5.2:
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/ember-intl/-/ember-intl-3.5.2.tgz#9db9205c679dcc13e164453b19997916f3b5b58f"
+  integrity sha512-rrgWX1D0nKkx3qSWxSqyQkuyXXDw8UYel8T7QBkOldTzOOlN+sJadvbyQW6HuN7RBJ9Bd2XfkDn16QwpCxGsiQ==
   dependencies:
     "@ember-intl/intl-messageformat" "^2.2.0"
     "@ember-intl/intl-messageformat-parser" "^1.4.0"
@@ -6060,7 +6060,7 @@ ember-intl@3.5.0:
     broccoli-source "^1.1.0"
     broccoli-stew "^2.0.0"
     cldr-core "28.0.0"
-    ember-auto-import "^1.2.13"
+    ember-auto-import "^1.2.21"
     ember-cli-babel "^7.1.2"
     extend "^3.0.2"
     fast-memoize "^2.5.1"
@@ -12533,14 +12533,7 @@ sane@^4.0.0:
     minimist "^1.1.1"
     walker "~1.0.5"
 
-sass@1.17.3:
-  version "1.17.3"
-  resolved "https://registry.yarnpkg.com/sass/-/sass-1.17.3.tgz#19f9164cf8653b9fca670a64e53285272c96d192"
-  integrity sha512-S4vJawbrNUxJUBiHLXPYUKZCoO6cvq3/3ZFBV66a+PafTxcDEFJB+FHLDFl0P+rUfha/703ajEXMuGTYhJESkQ==
-  dependencies:
-    chokidar "^2.0.0"
-
-sass@^1.17.0:
+sass@1.17.3, sass@^1.17.0:
   version "1.17.3"
   resolved "https://registry.yarnpkg.com/sass/-/sass-1.17.3.tgz#19f9164cf8653b9fca670a64e53285272c96d192"
   integrity sha512-S4vJawbrNUxJUBiHLXPYUKZCoO6cvq3/3ZFBV66a+PafTxcDEFJB+FHLDFl0P+rUfha/703ajEXMuGTYhJESkQ==
