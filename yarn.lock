@@ -5123,7 +5123,7 @@ ember-apollo-client@2.0.0-beta.2:
     ember-cli-babel "^7.1.2"
     graphql "^14.0.2"
 
-ember-app-scheduler@^1.0.5, ember-app-scheduler@ember-app-scheduler/ember-app-scheduler#master:
+ember-app-scheduler@^1.0.5:
   version "1.0.7"
   resolved "https://codeload.github.com/ember-app-scheduler/ember-app-scheduler/tar.gz/6fcd526a1a9cc48a5b943662bfab3b066f4caec7"
   dependencies:
@@ -6473,7 +6473,7 @@ ember-try@^0.2.23:
     rsvp "^3.0.17"
     semver "^5.1.0"
 
-ember-uikit@^0.7.3:
+ember-uikit@0.7.3:
   version "0.7.3"
   resolved "https://registry.yarnpkg.com/ember-uikit/-/ember-uikit-0.7.3.tgz#a042b598b58ebd2b55dec59cb1afd8e4334590f5"
   integrity sha512-9tnMLuRAfkFvEFERBj83tDxqySrsdFEstY9vWiC2YWxqRDMp5ilMBCA50Xa5iNpmdwea460kq+2WvrcfBmd7xg==
