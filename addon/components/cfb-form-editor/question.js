@@ -43,16 +43,13 @@ export default Component.extend(ComponentQueryManager, {
 
   notification: service(),
   intl: service(),
+  options: service(),
 
   possibleTypes: computed(function() {
     return Object.keys(TYPES).map(value => ({
       value,
       label: this.intl.t(`caluma.form-builder.question.types.${value}`)
     }));
-  }),
-
-  slugPrefix: computed("form", function() {
-    return this.get("form") + "-";
   }),
 
   prepareSlug() {
@@ -135,11 +132,13 @@ export default Component.extend(ComponentQueryManager, {
 
   data: task(function*() {
     if (!this.get("slug")) {
+      const slug = this.options.get("namespace");
+
       return A([
         {
           node: {
             label: "",
-            slug: this.slugPrefix,
+            slug: slug === undefined ? "" : `${slug}-`,
             description: "",
             isRequired: "false",
             isHidden: "false",
@@ -345,7 +344,10 @@ export default Component.extend(ComponentQueryManager, {
       changeset.set("label", value);
 
       if (!this.get("slug")) {
-        const slug = this.slugPrefix + slugify(value);
+        let prefix = this.options.get("namespace");
+        prefix = prefix === undefined ? "" : `${prefix}-`;
+
+        const slug = prefix + slugify(value);
         changeset.set("slug", slug);
         this.get("validateSlug").perform(slug, changeset);
       }
