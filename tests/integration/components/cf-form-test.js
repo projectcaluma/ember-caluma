@@ -224,6 +224,6 @@ module("Integration | Component | cf-form", function(hooks) {
       overrides=(hash question-1=(component "override"))
     }}`);
 
-    assert.dom(`[data-test-component-override]`).hasText("override");
+    assert.dom(`[data-test-component-override]`).exists();
   });
 });
