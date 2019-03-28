@@ -14,10 +14,7 @@ import getDocumentQuery from "ember-caluma/gql/queries/get-document";
  * {{cf-form documentId="the-id-of-your-document"}}
  * ```
  *
- * You can disable the whole form by passing `disabled=true`.
- *
  * @class CfFormComponent
- * @argument {String} documentId The ID of the document to display
  */
 export default Component.extend(ComponentQueryManager, {
   layout,
@@ -28,6 +25,34 @@ export default Component.extend(ComponentQueryManager, {
 
   attributeBindings: ["novalidate"],
   novalidate: "novalidate",
+
+  /**
+   * The ID of the document to display
+   * @argument {String} documentId
+   */
+  documentId: null,
+
+  /**
+   * Allows the whole form to be disabled.
+   * @argument {Boolean} disabled
+   */
+  disabled: false,
+
+  /**
+   * A hash containg mappings for widget overrides.
+   * Set the key of the hash to the slug of the question
+   * and the value to the Ember component.
+   *
+   * ```hbs
+   * {{cf-form
+   *   documentId="the-id-of-your-document"
+   *   overrides=(hash foo=(component "bar"))
+   * }}
+   * ```
+   *
+   * @argument {Object} overrides
+   */
+  overrides: null,
 
   didReceiveAttrs() {
     this._super(...arguments);
