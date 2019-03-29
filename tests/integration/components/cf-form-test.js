@@ -217,4 +217,13 @@ module("Integration | Component | cf-form", function(hooks) {
       ]
     );
   });
+
+  test("it allows for component overrides", async function(assert) {
+    await render(hbs`{{cf-form 
+      documentId=document.id 
+      overrides=(hash question-1=(component "override"))
+    }}`);
+
+    assert.dom(`[data-test-component-override]`).exists();
+  });
 });
