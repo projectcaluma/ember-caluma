@@ -54,24 +54,30 @@ export default EmberObject.extend(Evented, {
 
   fields: computed(() => []).readOnly(),
 
-  state: computed("fields.@each.{isNew,isValid,_errors}", function() {
-    if (this.fields.every(f => f.isNew)) {
-      return "untouched";
-    }
+  state: computed(
+    "fields.@each.{isNew,isValid,_errors,question.hidden}",
+    function() {
+      console.log("recomputing document state");
+      if (this.fields.every(f => f.isNew)) {
+        return "untouched";
+      }
 
-    if (this.fields.every(f => f.isValid)) {
-      return "valid";
-    }
+      const visibleFields = this.fields.filter(f => !f.question.hidden);
+      if (visibleFields.every(f => f.isValid)) {
+        return "valid";
+      }
 
-    return this.fields.some(f => f._errors.some(e => e.type !== "blank"))
-      ? "invalid"
-      : "unfinished";
-  }),
+      return visibleFields.some(f => f._errors.some(e => e.type !== "blank"))
+        ? "invalid"
+        : "unfinished";
+    }
+  ),
 
   updateHidden: on("valueChanged", "hiddenChanged", function(slug) {
     const dependentFields = this.fields.filter(field =>
       field.question.dependsOn.includes(slug)
     );
+    console.log("updating dependent fields: ", dependentFields);
 
     // update hidden state of those fields
     dependentFields.forEach(field => field.question.hiddenTask.perform());
