@@ -1,5 +1,16 @@
 <ul class="uk-tab uk-tab-left">
   {{#each fields as |field|}}
-    <li>{{#link-to "nested.detail" field.answer.value.id}}{{field.question.label}}{{/link-to}} {{field.childDocument.state}}</li>
+    <li>
+      {{#link-to "nested.detail" field.answer.value.id}}
+        <div class="uk-flex uk-flex-between uk-flex-middle">
+          <div>{{field.question.label}}</div>
+          {{#with field.childDocument.state as |s|}}
+            <span
+              class="uk-flex-none camac-nav-module-icon camac-nav-module-icon-{{s}}">
+            </span>
+          {{/with}}
+        </div>
+      {{/link-to}}
+    </li>
   {{/each}}
 </ul>

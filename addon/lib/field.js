@@ -1,5 +1,5 @@
 import EmberObject, { computed } from "@ember/object";
-import { equal, not } from "@ember/object/computed";
+import { equal, not, empty } from "@ember/object/computed";
 import { inject as service } from "@ember/service";
 import { assert } from "@ember/debug";
 import { getOwner } from "@ember/application";
@@ -134,7 +134,7 @@ export default EmberObject.extend({
    */
   isInvalid: not("isValid"),
 
-  isNew: equal("answer.value.length", 0),
+  isNew: empty("answer.value"),
 
   /**
    * The error messages on this field.

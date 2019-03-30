@@ -44,14 +44,12 @@ export default Component.extend({
 
     yield this.field.validate.perform();
 
-    if (this.field.isInvalid) {
-      return;
+    try {
+      const response = yield this.field.save.unlinked().perform();
+      answer.setProperties(response);
+      return response;
+    } catch (e) {
+      // that's ok
     }
-
-    const response = yield this.field.save.unlinked().perform();
-
-    answer.setProperties(response);
-
-    return response;
   }).restartable()
 });

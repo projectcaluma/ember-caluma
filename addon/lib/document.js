@@ -54,13 +54,18 @@ export default EmberObject.extend(Evented, {
 
   fields: computed(() => []).readOnly(),
 
-  state: computed("fields.@each.isNew", function() {
-    console.log("recomputing state of document ", this.get("id"), this.fields);
-
-    if (!this.fields.find(field => !field.isNew)) {
-      return "new";
+  state: computed("fields.@each.{isNew,isValid,_errors}", function() {
+    if (this.fields.every(f => f.isNew)) {
+      return "untouched";
     }
-    return "no idea";
+
+    if (this.fields.every(f => f.isValid)) {
+      return "valid";
+    }
+
+    return this.fields.some(f => f._errors.some(e => e.type !== "blank"))
+      ? "invalid"
+      : "unfinished";
   }),
 
   updateHidden: on("valueChanged", "hiddenChanged", function(slug) {

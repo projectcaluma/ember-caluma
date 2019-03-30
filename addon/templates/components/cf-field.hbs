@@ -1,5 +1,6 @@
 {{cf-field/label field=field}}
 isNew: {{field.isNew}}
+isValid: {{field.isValid}}
 <div class="uk-flex">
   <div class="uk-width-expand">
     {{#if override}}
@@ -13,7 +14,7 @@ isNew: {{field.isNew}}
   >
     {{#if field.save.isRunning}}
       {{uk-spinner class="uk-animation-fade"}}
-    {{else if (or field.save.last.isSuccessful field.answer.value)}}
+    {{else if field.save.last.isSuccessful}}
       {{uk-icon "check" class="uk-animation-fade uk-text-success"}}
     {{else if (or field.save.last.isError field.isInvalid)}}
       {{uk-icon "warning" class="uk-animation-fade uk-text-danger"}}
