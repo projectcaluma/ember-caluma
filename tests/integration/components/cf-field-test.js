@@ -75,7 +75,7 @@ module("Integration | Component | cf-field", function(hooks) {
     await fillIn("input", "Test");
 
     assert
-      .dom("span.uk-text-danger")
+      .dom("span.validation-errors")
       .hasText("The value of this field can't be longer than 2 characters");
   });
 });

@@ -1,7 +1,5 @@
 {{#if (not-eq field.question.__typename "FormQuestion")}}
   {{cf-field/label field=field}}
-  isNew: {{field.isNew}}
-  isValid: {{field.isValid}}
   <div class="uk-flex">
     <div class="uk-width-expand">
       {{#if override}}
