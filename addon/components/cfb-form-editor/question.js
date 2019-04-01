@@ -137,6 +137,7 @@ export default Component.extend(ComponentQueryManager, {
 
     function setWidgetType(question) {
       question.node.widgetType = question.node.meta.widgetType;
+      question.node.widgetOverride = question.node.meta.widgetOverride || null;
       return question;
     }
 
@@ -158,6 +159,16 @@ export default Component.extend(ComponentQueryManager, {
       .map(edge => edge.node.slug)
       .filter(slug => slug !== this.get("form"));
   }).restartable(),
+
+  availableOverrides: computed(function() {
+    const type = this.model.__typename.replace("Question", "").toLowerCase();
+    return [
+      { label: this.intl.t("caluma.form.power-select.null"), component: "" },
+      ...this.options.get("overrides").filter(override => {
+        return !override.types || override.types.includes(type);
+      })
+    ];
+  }),
 
   model: computed("data.lastSuccessful.value.firstObject.node", function() {
     const model = this.get("data.lastSuccessful.value.firstObject.node");
@@ -259,7 +270,8 @@ export default Component.extend(ComponentQueryManager, {
                 isRequired: changeset.get("isRequired"),
                 isHidden: changeset.get("isHidden"),
                 meta: JSON.stringify({
-                  widgetType: changeset.get("widgetType")
+                  widgetType: changeset.get("widgetType"),
+                  widgetOverride: changeset.get("widgetOverride")
                 }),
                 isArchived: changeset.get("isArchived"),
                 clientMutationId: v4()

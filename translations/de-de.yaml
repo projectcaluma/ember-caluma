@@ -21,6 +21,7 @@ caluma:
       options-empty: "Keine Optionen vorhanden"
       search-placeholder: "Hier tippen um zu suchen"
       search-empty: "Keine Optionen gefunden"
+      null: "Keine Auswahl"
 
     validation:
       blank: "Dieses Feld darf nicht leer gelassen werden"
@@ -50,6 +51,7 @@ caluma:
       slug: "Slug"
       description: "Beschreibung"
       isArchived: "Archiviert"
+      widgetOverride: "Spezialelement"
       isPublished: "Publiziert"
 
       all: "Alle Formulare"
@@ -99,6 +101,11 @@ caluma:
         TextareaQuestion: "Text (mehrzeilig)"
         TableQuestion: "Tabelle"
         FormQuestion: "Formular"
+
+      widgetOverrides:
+        powerselect: "Power Select"
+        dummy-one: "Dummy One"
+        dummy-two: "Dummy Two"
 
       not-found: "Keine Frage mit dem Slug '{slug}' gefunden"
 

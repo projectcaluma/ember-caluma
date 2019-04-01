@@ -4,6 +4,7 @@
   </div>
 {{else}}
   {{#with model as |model|}}
+
     {{#validated-form
       model=(changeset model validations)
       on-submit=(perform submit)
@@ -156,6 +157,18 @@
           label=(t "caluma.form-builder.question.rowForm")
         }}
       {{/if}}
+
+      {{f.input
+        name="widgetOverride"
+        label=(t "caluma.form-builder.question.widgetOverride")
+        class="uk-flex uk-flex-between uk-flex-column"
+
+        type="select"
+        allowClear=true
+        optionTargetPath="component"
+        optionLabelPath="label"
+        options=availableOverrides
+      }}
 
       {{f.input
         name="isArchived"

@@ -21,6 +21,7 @@ caluma:
       options-empty: "No options available"
       search-placeholder: "Type here to search options"
       search-empty: "Search didn't match any options"
+      null: "No selection"
 
     validation:
       blank: "This field can't be blank"
@@ -65,6 +66,7 @@ caluma:
       isRequired: "Required"
       isHidden: "Hidden (JEXL)"
       widgetType: "Widget type"
+      widgetOverride: "Custom widget"
       isArchived: "Archived"
       type-disabled: "Once created, the type can't be changed to prevent corrupt data."
 
@@ -99,6 +101,11 @@ caluma:
         TextareaQuestion: "Textarea"
         TableQuestion: "Table"
         FormQuestion: "Form"
+
+      widgetOverrides:
+        powerselect: "Power Select"
+        dummy-one: "Dummy One"
+        dummy-two: "Dummy Two"
 
       not-found: "No question with slug '{slug}' found"
 

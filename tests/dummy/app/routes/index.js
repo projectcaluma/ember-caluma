@@ -4,7 +4,6 @@ import { get } from "@ember/object";
 import { RouteQueryManager } from "ember-apollo-client";
 import gql from "graphql-tag";
 import { atob } from "ember-caluma/helpers/atob";
-import DummyComponent from "../components/dummy";
 
 export default Route.extend(RouteQueryManager, {
   apollo: service(),
@@ -17,9 +16,24 @@ export default Route.extend(RouteQueryManager, {
 
     this.intl.setLocale([...navigator.languages, "en-us"]);
 
-    this.options.set("overrides", {
-      "foo-test-1": DummyComponent
-    });
+    this.options.set(
+      "overrides",
+      this.options.get("overrides").concat([
+        {
+          label: this.intl.t(
+            "caluma.form-builder.question.widgetOverrides.dummy-one"
+          ),
+          component: "dummy-one",
+          types: ["text", "textarea"]
+        },
+        {
+          label: this.intl.t(
+            "caluma.form-builder.question.widgetOverrides.dummy-two"
+          ),
+          component: "dummy-two"
+        }
+      ])
+    );
   },
 
   async model() {
