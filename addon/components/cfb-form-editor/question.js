@@ -103,11 +103,12 @@ export default Component.extend(ComponentQueryManager, {
 
   data: task(function*() {
     if (!this.get("slug")) {
+      const namespace = this.options.get("namespace");
       return A([
         {
           node: {
             label: "",
-            slug: "",
+            slug: namespace === undefined ? "" : `${namespace}-`,
             description: "",
             isRequired: "false",
             isHidden: "false",
