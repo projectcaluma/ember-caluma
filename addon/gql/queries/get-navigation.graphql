@@ -12,7 +12,7 @@ query GetNavigation($id: ID!) {
               slug
             }
             ... on FormAnswer {
-              value {
+              formValue: value {
                 ...FormDocument
               }
             }
@@ -29,6 +29,22 @@ query GetNavigation($id: ID!) {
               isRequired
               isHidden
               meta
+              ... on FormQuestion {
+                subForm {
+                  slug
+                  questions {
+                    edges {
+                      node {
+                        slug
+                        label
+                        isRequired
+                        isHidden
+                        meta
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }

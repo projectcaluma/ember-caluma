@@ -62,7 +62,6 @@ export default EmberObject.extend({
    * @return {Boolean}
    */
   hiddenTask: task(function*() {
-    console.log("hiddenTask running for", this.slug);
     let hidden = this.document.fields
       .filter(field => this.dependsOn.includes(field.question.slug))
       .some(

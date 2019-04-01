@@ -10,6 +10,23 @@ fragment FormDocument on Document {
         ... on FormAnswer {
           formValue: value {
             id
+            form {
+              slug
+              questions {
+                edges {
+                  node {
+                    ...FieldQuestion
+                  }
+                }
+              }
+            }
+            answers {
+              edges {
+                node {
+                  ...FieldAnswer
+                }
+              }
+            }
           }
         }
         ... on TableAnswer {

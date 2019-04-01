@@ -41,10 +41,24 @@ export default Component.extend(ComponentQueryManager, {
   }).readOnly(),
 
   fields: computed("_document", function() {
-    console.log("recomputing navigation entries");
-    return (this.get("_document.fields") || []).map(field => {
-      field.set("childDocument", this.documentStore.find(field.answer.value));
-      return field;
-    });
+    return (this.get("_document.fields") || [])
+      .filter(field => field.question.__typename === "FormQuestion")
+      .map(field => {
+        field.set("childDocument", this.documentStore.find(field.answer.value));
+        field.set(
+          "navSubFields",
+          field.subFields
+            .filter(field => field.question.__typename === "FormQuestion")
+            .filter(field => field.answer.value)
+            .map(field => {
+              field.set(
+                "childDocument",
+                this.documentStore.find(field.answer.value)
+              );
+              return field;
+            })
+        );
+        return field;
+      });
   })
 });

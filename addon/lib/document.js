@@ -17,23 +17,32 @@ export default EmberObject.extend(Evented, {
 
     assert("The raw document `raw` must be passed", this.raw);
 
-    const fields = this.raw.form.questions.edges.map(({ node: question }) => {
-      const answer = this.raw.answers.edges.find(({ node: answer }) => {
-        return answer.question.slug === question.slug;
-      });
-
-      return Field.create(getOwner(this).ownerInjection(), {
-        document: this,
-        _question: question,
-        _answer: answer && answer.node
-      });
-    });
-
+    const fields = this.buildFields(this.raw);
     fields.forEach(field => this.fields.push(field));
 
     for (let field of fields) {
       await field.question.initDynamicFields();
     }
+  },
+
+  buildFields(rawDocument) {
+    return rawDocument.form.questions.edges.map(({ node: question }) => {
+      const answer = rawDocument.answers.edges.find(({ node: answer }) => {
+        return answer.question.slug === question.slug;
+      });
+
+      let subFields;
+      if (question.__typename === "FormQuestion" && answer) {
+        subFields = this.buildFields(answer.node.formValue);
+      }
+
+      return Field.create(getOwner(this).ownerInjection(), {
+        document: this,
+        _question: question,
+        _answer: answer && answer.node,
+        subFields
+      });
+    });
   },
 
   id: computed("raw.id", function() {
@@ -57,7 +66,6 @@ export default EmberObject.extend(Evented, {
   state: computed(
     "fields.@each.{isNew,isValid,_errors,question.hidden}",
     function() {
-      console.log("recomputing document state");
       if (this.fields.every(f => f.isNew)) {
         return "untouched";
       }
@@ -77,7 +85,6 @@ export default EmberObject.extend(Evented, {
     const dependentFields = this.fields.filter(field =>
       field.question.dependsOn.includes(slug)
     );
-    console.log("updating dependent fields: ", dependentFields);
 
     // update hidden state of those fields
     dependentFields.forEach(field => field.question.hiddenTask.perform());
