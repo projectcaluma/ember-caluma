@@ -56,16 +56,19 @@ export default Component.extend(ComponentQueryManager, {
    * This uses manual DOM manipulation to avoid adding a single-use component.
    */
   addSlug() {
-    const namespace = this.options.get("namespace");
     const input = this.element.querySelector('[name="slug"]');
 
-    if (namespace && input) {
+    if (
+      this.namespace.length &&
+      input &&
+      !input.classList.contains("slugnamespace-input")
+    ) {
       const span = document.createElement("span");
       const parent = input.parentElement;
 
       Object.assign(span, {
         className: "slugnamespace-slug",
-        innerHTML: `${namespace}-`
+        innerHTML: `${this.namespace}-`
       });
       parent.classList.add("slugnamespace");
       parent.insertBefore(span, input);
@@ -161,6 +164,10 @@ export default Component.extend(ComponentQueryManager, {
     return model;
   }),
 
+  namespace: computed("options.namespace", function() {
+    return slugify(this.options.get("namespace") || "");
+  }),
+
   _getIntegerQuestionInput(changeset) {
     return {
       minValue: parseInt(changeset.get("integerMinValue")),
@@ -222,12 +229,8 @@ export default Component.extend(ComponentQueryManager, {
 
   submit: task(function*(changeset) {
     try {
-      if (!this.get("slug")) {
-        const namespace = this.options.get("namespace");
-        if (namespace !== undefined) {
-          const slug = changeset.get("slug");
-          changeset.set("slug", `${namespace}-${slug}`);
-        }
+      if (!this.get("slug") && this.namespace.length) {
+        changeset.set("slug", `${this.namespace}-${changeset.get("slug")}`);
       }
 
       yield this.saveOptions.perform(changeset);
