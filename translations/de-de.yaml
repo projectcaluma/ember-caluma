@@ -67,6 +67,7 @@ caluma:
       isRequired: "Pflichtfeld"
       isHidden: "Versteckt (JEXL)"
       widgetType: "Anzeigetyp"
+      widgetOverride: "Spezialtyp"
       isArchived: "Archiviert"
       type-disabled: "Der Fragetyp kann nach dem Erstellen einer Frage nicht mehr geändert werden, um korrupte Daten zu verhindern."
 
