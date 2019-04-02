@@ -51,6 +51,10 @@ export default Component.extend(ComponentQueryManager, {
     }));
   }),
 
+  /**
+   * Adds an uneditable prefix to the input field.
+   * This uses manual DOM manipulation to avoid adding a single-use component.
+   */
   addSlug() {
     const namespace = this.options.get("namespace");
     const input = this.element.querySelector('[name="slug"]');
