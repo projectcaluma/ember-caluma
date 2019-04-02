@@ -15,7 +15,7 @@ export default Service.extend({
    * @property {Document[]} documents
    * @accessor
    */
-  documents: computed(() => []).readOnly(),
+  documents: computed(() => ({})).readOnly(),
 
   /**
    * Find a document in the cache or build it and put it in the cache.
@@ -24,16 +24,29 @@ export default Service.extend({
    * @param {Object} document The raw document
    * @return {Document} The document
    */
-  find(document) {
-    const cached = this.documents.find(doc => doc.id === atob(document.id));
+  find(document, { noCache } = {}) {
+    const id = atob(document.id);
+    const cached = this.documents[id];
 
-    if (!cached) {
-      this.documents.push(this._build(document));
+    if (noCache || !cached) {
+      const builtDocument = this._build(document);
+      this.documents[id] = builtDocument;
 
-      return this.find(document);
+      return builtDocument;
     }
 
     return cached;
+  },
+
+  /**
+   * Save (override) a document in the cache without considering existing cache entries
+   *
+   * @method save
+   * @param {Object} document The raw document
+   * @return {Document} The document
+   */
+  save(document) {
+    return this.find(document, { noCache: true });
   },
 
   /**
