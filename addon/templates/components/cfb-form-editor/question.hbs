@@ -3,7 +3,7 @@
     {{uk-spinner ratio=2}}
   </div>
 {{else}}
-  {{#with model}}
+  {{#if model}}
 
     {{#validated-form model=changeset on-submit=(perform submit) as |f|}}
       {{#if (and f.model.isDirty slug)}}
@@ -199,12 +199,12 @@
         }}
       </div>
     {{/validated-form}}
-  {{^}}
+  {{else}}
     <div
       class="uk-text-center uk-text-muted uk-padding uk-padding-remove-horizontal"
     >
       {{uk-icon "bolt" ratio=5}}
       <p>{{t "caluma.form-builder.question.not-found" slug=slug}}</p>
     </div>
-  {{/with}}
+  {{/if}}
 {{/if}}
