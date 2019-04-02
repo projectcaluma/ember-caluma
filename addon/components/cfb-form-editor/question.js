@@ -229,7 +229,7 @@ export default Component.extend(ComponentQueryManager, {
 
   submit: task(function*(changeset) {
     try {
-      if (!this.get("slug") && this.namespace.length) {
+      if (!this.get("slug") && this.namespace) {
         changeset.set("slug", `${this.namespace}-${changeset.get("slug")}`);
       }
 
