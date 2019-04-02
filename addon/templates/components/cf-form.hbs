@@ -1,5 +1,3 @@
 {{#each _document.fields as |field|}}
-  {{cf-field field=field disabled=disabled
-    override=(get overrides field.question.slug)
-  }}
+  {{cf-field field=field disabled=disabled}}
 {{/each}}
