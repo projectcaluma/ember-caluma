@@ -23,7 +23,7 @@ export default Component.extend({
   classNameBindings: ["field.question.hidden:uk-hidden"],
 
   options: service(),
-  override: computed("options._data.overrides.[]", function() {
+  componentOverride: computed("options._data.overrides.[]", function() {
     const override = this.field.question.meta.widgetOverride;
 
     if (override) {
