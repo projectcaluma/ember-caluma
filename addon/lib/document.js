@@ -1,5 +1,5 @@
 import EmberObject, { computed } from "@ember/object";
-import { mapBy } from "@ember/object/computed";
+import { mapBy, filter } from "@ember/object/computed";
 import { assert } from "@ember/debug";
 import { getOwner } from "@ember/application";
 import Evented, { on } from "@ember/object/evented";
@@ -7,6 +7,7 @@ import Field from "ember-caluma/lib/field";
 import jexl from "jexl";
 import { atob } from "ember-caluma/helpers/atob";
 import { inject as service } from "@ember/service";
+import { findFieldInTree } from "ember-caluma/utils/tree";
 
 const STATE_PRECEDENCE = ["invalid", "unfinished", "untouched", "valid"];
 
@@ -39,7 +40,9 @@ export default EmberObject.extend(Evented, {
 
       let childDocument;
       if (question.__typename === "FormQuestion" && answer) {
-        childDocument = this.documentStore.find(answer.node.formValue);
+        childDocument = this.documentStore.find(answer.node.formValue, {
+          parentDocument: this
+        });
       }
 
       return Field.create(getOwner(this).ownerInjection(), {
@@ -58,18 +61,23 @@ export default EmberObject.extend(Evented, {
   questionJexl: computed(function() {
     const questionJexl = new jexl.Jexl();
 
-    questionJexl.addTransform(
-      "answer",
-      slug =>
-        this.fields.find(field => field.question.slug === slug).answer.value
-    );
+    questionJexl.addTransform("answer", slug => this.findAnswer(slug));
 
     return questionJexl;
   }),
 
+  findAnswer(slug) {
+    const result = findFieldInTree(this, slug);
+    return result && result.answer.value;
+  },
+
   fields: computed(() => []).readOnly(),
 
-  childDocuments: mapBy("fields", "childDocument"),
+  childDocuments: computed("fields", function() {
+    return this.get("fields")
+      .map(field => field.childDocument)
+      .filter(Boolean);
+  }),
 
   childState: computed(
     "fields.@each.{isNew,isValid,_errors,question}",

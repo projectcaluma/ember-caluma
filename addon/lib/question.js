@@ -4,6 +4,7 @@ import { lastValue } from "ember-caluma/utils/concurrency";
 import { getAST, getTransforms } from "ember-caluma/utils/jexl";
 import { task } from "ember-concurrency";
 import { assert } from "@ember/debug";
+import { findFieldInTree } from "ember-caluma/utils/tree";
 
 /**
  * Object which represents a question in context of a field
@@ -45,7 +46,7 @@ export default EmberObject.extend({
     dependents.forEach(slug => {
       assert(
         `Field "${slug}" is not present in this document`,
-        this.document.fields.find(field => field.question.slug === slug)
+        findFieldInTree(this.document, slug)
       );
     });
     return dependents;

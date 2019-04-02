@@ -24,12 +24,12 @@ export default Service.extend({
    * @param {Object} document The raw document
    * @return {Document} The document
    */
-  find(document, { noCache } = {}) {
+  find(document, { noCache, parentDocument } = {}) {
     const id = atob(document.id);
     const cached = this.documents[id];
 
     if (noCache || !cached) {
-      const builtDocument = this._build(document);
+      const builtDocument = this._build(document, { parentDocument });
       this.documents[id] = builtDocument;
 
       return builtDocument;
@@ -40,13 +40,14 @@ export default Service.extend({
 
   /**
    * Save (override) a document in the cache without considering existing cache entries
+   * Shorthand for `find(document, { noCache: true })
    *
    * @method save
    * @param {Object} document The raw document
    * @return {Document} The document
    */
-  save(document) {
-    return this.find(document, { noCache: true });
+  save(document, { parentDocument }) {
+    return this.find(document, { parentDocument, noCache: true });
   },
 
   /**
@@ -57,9 +58,10 @@ export default Service.extend({
    * @return {Document} The built document
    * @internal
    */
-  _build(document) {
+  _build(document, { parentDocument } = {}) {
     return Document.create(getOwner(this).ownerInjection(), {
-      raw: document
+      raw: document,
+      parentDocument
     });
   }
 });

@@ -1,0 +1,466 @@
+{
+  "data": {
+    "node": {
+      "id": "RG9jdW1lbnQ6OTY2ZWE4ZmUtNDEyYy00OGM5LWE1YmMtOTRjZDAxMWI5MzEz",
+      "form": {
+        "slug": "main",
+        "questions": {
+          "edges": [
+            {
+              "node": {
+                "slug": "section-1",
+                "label": "Section 1",
+                "isRequired": "false",
+                "isHidden": "false",
+                "meta": {},
+                "__typename": "FormQuestion"
+              },
+              "__typename": "QuestionEdge"
+            },
+            {
+              "node": {
+                "slug": "section-2",
+                "label": "Section 2",
+                "isRequired": "false",
+                "isHidden": "false",
+                "meta": {},
+                "__typename": "FormQuestion"
+              },
+              "__typename": "QuestionEdge"
+            }
+          ],
+          "__typename": "QuestionConnection"
+        },
+        "__typename": "Form"
+      },
+      "__typename": "Document",
+      "answers": {
+        "edges": [
+          {
+            "node": {
+              "id": "Rm9ybUFuc3dlcjo1N2RiMmI2My0xYWUzLTQ1OWUtYTA4MC1iNjZkZjhjOTZlZDU=",
+              "question": { "slug": "section-1", "__typename": "FormQuestion" },
+              "formValue": {
+                "id": "RG9jdW1lbnQ6NDZlMGRjOTctOWM3Yi00MzQ4LTk0ZWEtMDRjMDE4OGE5MDQ4",
+                "form": {
+                  "slug": "sub",
+                  "questions": {
+                    "edges": [
+                      {
+                        "node": {
+                          "slug": "section-11",
+                          "label": "Section 1.1",
+                          "isRequired": "false",
+                          "isHidden": "false",
+                          "meta": {},
+                          "__typename": "FormQuestion"
+                        },
+                        "__typename": "QuestionEdge"
+                      },
+                      {
+                        "node": {
+                          "slug": "section-12",
+                          "label": "Section 1.2",
+                          "isRequired": "false",
+                          "isHidden": "false",
+                          "meta": {},
+                          "__typename": "FormQuestion"
+                        },
+                        "__typename": "QuestionEdge"
+                      },
+                      {
+                        "node": {
+                          "slug": "section-1-question",
+                          "label": "Section 1 Question",
+                          "isRequired": "false",
+                          "isHidden": "false",
+                          "meta": {},
+                          "__typename": "TextQuestion"
+                        },
+                        "__typename": "QuestionEdge"
+                      }
+                    ],
+                    "__typename": "QuestionConnection"
+                  },
+                  "__typename": "Form"
+                },
+                "__typename": "Document",
+                "answers": {
+                  "edges": [
+                    {
+                      "node": {
+                        "id": "Rm9ybUFuc3dlcjoyMTA2Y2ZhZC0wNzdhLTQ1MWItOGU0Mi03MTdlZDQyMDA3NWU=",
+                        "question": {
+                          "slug": "section-11",
+                          "__typename": "FormQuestion"
+                        },
+                        "formValue": {
+                          "id": "RG9jdW1lbnQ6NmQwYmY2NzAtYTIzMC00YTE5LWI5MTctZTQwNWEyY2UxMGJh",
+                          "answers": {
+                            "edges": [
+                              {
+                                "node": {
+                                  "id": "U3RyaW5nQW5zd2VyOmIwZmQwNjI1LTk3OTItNDcyNS04YTVhLWM3ZDg3MGFjYWYwOQ==",
+                                  "question": {
+                                    "slug": "subsub1",
+                                    "__typename": "TextQuestion"
+                                  },
+                                  "stringValue": "aaa",
+                                  "__typename": "StringAnswer"
+                                },
+                                "__typename": "AnswerEdge"
+                              },
+                              {
+                                "node": {
+                                  "id": "VGFibGVBbnN3ZXI6MzA1M2FmMzktMzU4Ny00NGMyLWJhNDktNDRmMjBkNTk4YWVk",
+                                  "question": {
+                                    "slug": "table",
+                                    "__typename": "TableQuestion"
+                                  },
+                                  "__typename": "TableAnswer",
+                                  "value": [
+                                    {
+                                      "id": "RG9jdW1lbnQ6YmZkNjZkOTgtYTU4My00YjY2LWFhZDgtYjk1NDlhYWRiMDM5",
+                                      "form": {
+                                        "slug": "table",
+                                        "questions": {
+                                          "edges": [
+                                            {
+                                              "node": {
+                                                "slug": "t1",
+                                                "label": "t1",
+                                                "isRequired": "true",
+                                                "isHidden": "false",
+                                                "meta": {},
+                                                "textMaxLength": null,
+                                                "__typename": "TextQuestion"
+                                              },
+                                              "__typename": "QuestionEdge"
+                                            },
+                                            {
+                                              "node": {
+                                                "slug": "t2",
+                                                "label": "t2",
+                                                "isRequired": "false",
+                                                "isHidden": "false",
+                                                "meta": {},
+                                                "textMaxLength": null,
+                                                "__typename": "TextQuestion"
+                                              },
+                                              "__typename": "QuestionEdge"
+                                            }
+                                          ],
+                                          "__typename": "QuestionConnection"
+                                        },
+                                        "__typename": "Form"
+                                      },
+                                      "answers": {
+                                        "edges": [
+                                          {
+                                            "node": {
+                                              "id": "U3RyaW5nQW5zd2VyOjUxMjYxOTlmLTMxNzctNDY1Zi1iNTNkLTdjMTJhNjJlYzZiMg==",
+                                              "question": {
+                                                "slug": "t1",
+                                                "__typename": "TextQuestion"
+                                              },
+                                              "stringValue": "x",
+                                              "__typename": "StringAnswer"
+                                            },
+                                            "__typename": "AnswerEdge"
+                                          },
+                                          {
+                                            "node": {
+                                              "id": "U3RyaW5nQW5zd2VyOjY4N2U2NTZiLTA0Y2QtNDdhZC1hNjAzLTkzNjJkMDkyYjJmNg==",
+                                              "question": {
+                                                "slug": "t2",
+                                                "__typename": "TextQuestion"
+                                              },
+                                              "stringValue": "y",
+                                              "__typename": "StringAnswer"
+                                            },
+                                            "__typename": "AnswerEdge"
+                                          }
+                                        ],
+                                        "__typename": "AnswerConnection"
+                                      },
+                                      "__typename": "Document"
+                                    }
+                                  ]
+                                },
+                                "__typename": "AnswerEdge"
+                              },
+                              {
+                                "node": {
+                                  "id": "U3RyaW5nQW5zd2VyOjIwOWFlMzQ3LTkxZDMtNDdjNC1hNWI3LTlkZDE0OGMxMmRkOA==",
+                                  "question": {
+                                    "slug": "choice",
+                                    "__typename": "ChoiceQuestion"
+                                  },
+                                  "stringValue": "choice-a",
+                                  "__typename": "StringAnswer"
+                                },
+                                "__typename": "AnswerEdge"
+                              }
+                            ],
+                            "__typename": "AnswerConnection"
+                          },
+                          "form": {
+                            "slug": "subsub",
+                            "questions": {
+                              "edges": [
+                                {
+                                  "node": {
+                                    "slug": "choice",
+                                    "label": "Choice",
+                                    "isRequired": "false",
+                                    "isHidden": "false",
+                                    "meta": {},
+                                    "choiceOptions": {
+                                      "edges": [
+                                        {
+                                          "node": {
+                                            "slug": "choice-a",
+                                            "label": "a",
+                                            "__typename": "Option"
+                                          },
+                                          "__typename": "OptionEdge"
+                                        },
+                                        {
+                                          "node": {
+                                            "slug": "choice-b",
+                                            "label": "b",
+                                            "__typename": "Option"
+                                          },
+                                          "__typename": "OptionEdge"
+                                        }
+                                      ],
+                                      "__typename": "OptionConnection"
+                                    },
+                                    "__typename": "ChoiceQuestion"
+                                  },
+                                  "__typename": "QuestionEdge"
+                                },
+                                {
+                                  "node": {
+                                    "slug": "subsub1",
+                                    "label": "Subsub1",
+                                    "isRequired": "true",
+                                    "isHidden": "'choice'|answer == 'choice-a'",
+                                    "meta": {},
+                                    "textMaxLength": 3,
+                                    "__typename": "TextQuestion"
+                                  },
+                                  "__typename": "QuestionEdge"
+                                },
+                                {
+                                  "node": {
+                                    "slug": "table",
+                                    "label": "table",
+                                    "isRequired": "false",
+                                    "isHidden": "false",
+                                    "meta": {},
+                                    "__typename": "TableQuestion",
+                                    "rowForm": {
+                                      "slug": "table",
+                                      "questions": {
+                                        "edges": [
+                                          {
+                                            "node": {
+                                              "slug": "t1",
+                                              "label": "t1",
+                                              "isRequired": "true",
+                                              "isHidden": "false",
+                                              "meta": {},
+                                              "textMaxLength": null,
+                                              "__typename": "TextQuestion"
+                                            },
+                                            "__typename": "QuestionEdge"
+                                          },
+                                          {
+                                            "node": {
+                                              "slug": "t2",
+                                              "label": "t2",
+                                              "isRequired": "false",
+                                              "isHidden": "false",
+                                              "meta": {},
+                                              "textMaxLength": null,
+                                              "__typename": "TextQuestion"
+                                            },
+                                            "__typename": "QuestionEdge"
+                                          }
+                                        ],
+                                        "__typename": "QuestionConnection"
+                                      },
+                                      "__typename": "Form"
+                                    }
+                                  },
+                                  "__typename": "QuestionEdge"
+                                }
+                              ],
+                              "__typename": "QuestionConnection"
+                            },
+                            "__typename": "Form"
+                          },
+                          "__typename": "Document"
+                        },
+                        "__typename": "FormAnswer"
+                      },
+                      "__typename": "AnswerEdge"
+                    },
+                    {
+                      "node": {
+                        "id": "Rm9ybUFuc3dlcjplMjc3OGQ1Yi0zZTQ5LTQ4ZDEtYTkwOS1iMmU1ZmVkYjg2MTI=",
+                        "question": {
+                          "slug": "section-12",
+                          "__typename": "FormQuestion"
+                        },
+                        "formValue": {
+                          "id": "RG9jdW1lbnQ6ZmI1NDE5NGQtYjY0Mi00YmM2LWJhYzQtYjdlNzc2ZWI4NmU4",
+                          "answers": {
+                            "edges": [
+                              {
+                                "node": {
+                                  "id": "U3RyaW5nQW5zd2VyOmMzNTkzZGI4LTEwMWQtNGY4ZS1hNDMxLTNhODZjMDk2MzAzYQ==",
+                                  "question": {
+                                    "slug": "12",
+                                    "__typename": "TextQuestion"
+                                  },
+                                  "stringValue": "a",
+                                  "__typename": "StringAnswer"
+                                },
+                                "__typename": "AnswerEdge"
+                              }
+                            ],
+                            "__typename": "AnswerConnection"
+                          },
+                          "form": {
+                            "slug": "sub12",
+                            "questions": {
+                              "edges": [
+                                {
+                                  "node": {
+                                    "slug": "12",
+                                    "label": "1.2",
+                                    "isRequired": "false",
+                                    "isHidden": "false",
+                                    "meta": {},
+                                    "textMaxLength": null,
+                                    "__typename": "TextQuestion"
+                                  },
+                                  "__typename": "QuestionEdge"
+                                }
+                              ],
+                              "__typename": "QuestionConnection"
+                            },
+                            "__typename": "Form"
+                          },
+                          "__typename": "Document"
+                        },
+                        "__typename": "FormAnswer"
+                      },
+                      "__typename": "AnswerEdge"
+                    }
+                  ],
+                  "__typename": "AnswerConnection"
+                }
+              },
+              "__typename": "FormAnswer"
+            },
+            "__typename": "AnswerEdge"
+          },
+          {
+            "node": {
+              "id": "Rm9ybUFuc3dlcjo0ODU2OWJiMi0wYTA2LTQyZjgtYmVkNi1hMTYzM2ZiM2YwNjU=",
+              "question": { "slug": "section-2", "__typename": "FormQuestion" },
+              "formValue": {
+                "id": "RG9jdW1lbnQ6ZTk3M2I2ZTQtMTJiOC00ZjNlLWI1NDItYzc0YjExYjYwZGQy",
+                "form": {
+                  "slug": "sub2",
+                  "questions": {
+                    "edges": [
+                      {
+                        "node": {
+                          "slug": "section-21",
+                          "label": "Section 2.1",
+                          "isRequired": "false",
+                          "isHidden": "false",
+                          "meta": {},
+                          "__typename": "FormQuestion"
+                        },
+                        "__typename": "QuestionEdge"
+                      }
+                    ],
+                    "__typename": "QuestionConnection"
+                  },
+                  "__typename": "Form"
+                },
+                "__typename": "Document",
+                "answers": {
+                  "edges": [
+                    {
+                      "node": {
+                        "id": "Rm9ybUFuc3dlcjpkNDliOGZjZC02OTU3LTQ5ZGEtYjljZC04OGY0ZjdkOTM2Njc=",
+                        "question": {
+                          "slug": "section-21",
+                          "__typename": "FormQuestion"
+                        },
+                        "formValue": {
+                          "id": "RG9jdW1lbnQ6MmY4Mjg2MzUtYWM2OS00ZmFlLWIxODItNDZmZTZiNThhMjBm",
+                          "answers": {
+                            "edges": [
+                              {
+                                "node": {
+                                  "id": "U3RyaW5nQW5zd2VyOjdlZjllNDg5LWFhYzEtNDA4NS04ZTUzLTkyM2U2YTk2YWUxOA==",
+                                  "question": {
+                                    "slug": "sub-2",
+                                    "__typename": "TextQuestion"
+                                  },
+                                  "stringValue": "a",
+                                  "__typename": "StringAnswer"
+                                },
+                                "__typename": "AnswerEdge"
+                              }
+                            ],
+                            "__typename": "AnswerConnection"
+                          },
+                          "form": {
+                            "slug": "subsub2",
+                            "questions": {
+                              "edges": [
+                                {
+                                  "node": {
+                                    "slug": "sub-2",
+                                    "label": "Subsub 2",
+                                    "isRequired": "false",
+                                    "isHidden": "false",
+                                    "meta": {},
+                                    "textMaxLength": null,
+                                    "__typename": "TextQuestion"
+                                  },
+                                  "__typename": "QuestionEdge"
+                                }
+                              ],
+                              "__typename": "QuestionConnection"
+                            },
+                            "__typename": "Form"
+                          },
+                          "__typename": "Document"
+                        },
+                        "__typename": "FormAnswer"
+                      },
+                      "__typename": "AnswerEdge"
+                    }
+                  ],
+                  "__typename": "AnswerConnection"
+                }
+              },
+              "__typename": "FormAnswer"
+            },
+            "__typename": "AnswerEdge"
+          }
+        ],
+        "__typename": "AnswerConnection"
+      }
+    }
+  }
+}
