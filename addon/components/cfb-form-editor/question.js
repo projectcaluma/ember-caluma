@@ -59,7 +59,7 @@ export default Component.extend(ComponentQueryManager, {
     const input = this.element.querySelector('[name="slug"]');
 
     if (
-      this.namespace.length &&
+      this.namespace &&
       input &&
       !input.classList.contains("slugnamespace-input")
     ) {
@@ -165,7 +165,7 @@ export default Component.extend(ComponentQueryManager, {
   }),
 
   namespace: computed("options.namespace", function() {
-    return slugify(this.options.get("namespace") || "");
+    return slugify(this.options.get("namespace") || "") || null;
   }),
 
   _getIntegerQuestionInput(changeset) {
