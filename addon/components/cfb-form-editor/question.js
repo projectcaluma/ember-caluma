@@ -53,17 +53,19 @@ export default Component.extend(ComponentQueryManager, {
 
   addSlug() {
     const namespace = this.options.get("namespace");
-
     const input = this.element.querySelector('[name="slug"]');
-    const span = document.createElement("span");
-    const parent = input.parentElement;
 
-    Object.assign(span, {
-      className: "slugnamespace-slug",
-      innerHTML: namespace === undefined ? "" : `${namespace}-`
-    });
-    parent.classList.add("slugnamespace");
-    parent.insertBefore(span, input);
+    if (namespace && input) {
+      const span = document.createElement("span");
+      const parent = input.parentElement;
+
+      Object.assign(span, {
+        className: "slugnamespace-slug",
+        innerHTML: `${namespace}-`
+      });
+      parent.classList.add("slugnamespace");
+      parent.insertBefore(span, input);
+    }
   },
 
   async didReceiveAttrs() {
@@ -71,8 +73,6 @@ export default Component.extend(ComponentQueryManager, {
 
     await this.get("data").perform();
     await this.get("availableForms").perform();
-
-    this.options.set("namespace", "foo");
 
     if (!this.get("slug")) {
       this.addSlug();

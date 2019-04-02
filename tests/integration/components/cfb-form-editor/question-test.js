@@ -109,7 +109,6 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     await render(hbs`{{cfb-form-editor/question slug=null}}`);
 
     await fillIn("input[name=label]", "Test Label 123");
-
     assert.dom("input[name=slug]").hasValue("test-label-123");
   });
 
