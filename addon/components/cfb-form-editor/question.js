@@ -83,14 +83,6 @@ export default Component.extend(ComponentQueryManager, {
     }
   },
 
-  willDestroyElement() {
-    this.$('[name="slug"]').off(
-      "keypress.slug keydown.slug focus.slug click.slug select.slug"
-    );
-
-    this._super(...arguments);
-  },
-
   widgetTypes: computed(function() {
     return {
       ChoiceQuestion: [
