@@ -1,0 +1,58 @@
+#import 'ember-caluma/gql/fragments/form-document'
+
+fragment FormInfo on Document {
+  form {
+    slug
+    questions {
+      edges {
+        node {
+          slug
+          label
+          isRequired
+          isHidden
+          meta
+        }
+      }
+    }
+  }
+}
+
+query GetNavigation($id: ID!) {
+  node(id: $id) {
+    ... on Document {
+      id
+      ...FormInfo
+      answers {
+        edges {
+          node {
+            id
+            question {
+              slug
+            }
+            ... on FormAnswer {
+              formValue: value {
+                id
+                ...FormInfo
+                answers {
+                  edges {
+                    node {
+                      id
+                      question {
+                        slug
+                      }
+                      ... on FormAnswer {
+                        formValue: value {
+                          ...FormDocument
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

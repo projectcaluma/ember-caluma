@@ -1,5 +1,5 @@
 import EmberObject, { computed } from "@ember/object";
-import { equal, not } from "@ember/object/computed";
+import { equal, not, empty } from "@ember/object/computed";
 import { inject as service } from "@ember/service";
 import { assert } from "@ember/debug";
 import { getOwner } from "@ember/application";
@@ -24,7 +24,8 @@ const TYPE_MAP = {
   FloatQuestion: "FloatAnswer",
   MultipleChoiceQuestion: "ListAnswer",
   ChoiceQuestion: "StringAnswer",
-  TableQuestion: "TableAnswer"
+  TableQuestion: "TableAnswer",
+  FormQuestion: "FormAnswer"
 };
 
 /**
@@ -132,6 +133,8 @@ export default EmberObject.extend({
    * @accessor
    */
   isInvalid: not("isValid"),
+
+  isNew: empty("answer.value"),
 
   /**
    * The error messages on this field.

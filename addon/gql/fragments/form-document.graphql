@@ -7,6 +7,28 @@ fragment FormDocument on Document {
     edges {
       node {
         ...FieldAnswer
+        ... on FormAnswer {
+          formValue: value {
+            id
+            form {
+              slug
+              questions {
+                edges {
+                  node {
+                    ...FieldQuestion
+                  }
+                }
+              }
+            }
+            answers {
+              edges {
+                node {
+                  ...FieldAnswer
+                }
+              }
+            }
+          }
+        }
         ... on TableAnswer {
           value {
             id

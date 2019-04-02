@@ -7,7 +7,7 @@ module("Integration | Component | cf-field/input/text", function(hooks) {
   setupRenderingTest(hooks);
 
   test("it renders", async function(assert) {
-    assert.expect(5);
+    assert.expect(4);
 
     await render(hbs`
       {{cf-field/input/text
@@ -26,7 +26,6 @@ module("Integration | Component | cf-field/input/text", function(hooks) {
     assert.dom("input").hasClass("uk-input");
     assert.dom("input").hasAttribute("name", "test");
     assert.dom("input").hasAttribute("type", "text");
-    assert.dom("input").hasAttribute("maxlength", "5");
     assert.dom("input").hasValue("Test");
   });
 

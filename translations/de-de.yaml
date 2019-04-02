@@ -1,5 +1,6 @@
 dummy:
   demo: "Demo"
+  nested: "Verschachtelt"
   usage: "Anwendung"
 
 caluma:

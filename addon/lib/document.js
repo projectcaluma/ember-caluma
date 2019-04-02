@@ -1,10 +1,14 @@
 import EmberObject, { computed } from "@ember/object";
+import { mapBy } from "@ember/object/computed";
 import { assert } from "@ember/debug";
 import { getOwner } from "@ember/application";
 import Evented, { on } from "@ember/object/evented";
 import Field from "ember-caluma/lib/field";
 import jexl from "jexl";
 import { atob } from "ember-caluma/helpers/atob";
+import { inject as service } from "@ember/service";
+
+const STATE_PRECEDENCE = ["invalid", "unfinished", "untouched", "valid"];
 
 /**
  * Object which represents a document
@@ -12,28 +16,39 @@ import { atob } from "ember-caluma/helpers/atob";
  * @class Document
  */
 export default EmberObject.extend(Evented, {
+  documentStore: service(),
+
   async init() {
     this._super(...arguments);
 
     assert("The raw document `raw` must be passed", this.raw);
 
-    const fields = this.raw.form.questions.edges.map(({ node: question }) => {
-      const answer = this.raw.answers.edges.find(({ node: answer }) => {
-        return answer.question.slug === question.slug;
-      });
-
-      return Field.create(getOwner(this).ownerInjection(), {
-        document: this,
-        _question: question,
-        _answer: answer && answer.node
-      });
-    });
-
+    const fields = this.buildFields(this.raw);
     fields.forEach(field => this.fields.push(field));
 
     for (let field of fields) {
       await field.question.initDynamicFields();
     }
+  },
+
+  buildFields(rawDocument) {
+    return rawDocument.form.questions.edges.map(({ node: question }) => {
+      const answer = rawDocument.answers.edges.find(({ node: answer }) => {
+        return answer.question.slug === question.slug;
+      });
+
+      let childDocument;
+      if (question.__typename === "FormQuestion" && answer) {
+        childDocument = this.documentStore.find(answer.node.formValue);
+      }
+
+      return Field.create(getOwner(this).ownerInjection(), {
+        document: this,
+        _question: question,
+        _answer: answer && answer.node,
+        childDocument
+      });
+    });
   },
 
   id: computed("raw.id", function() {
@@ -53,6 +68,46 @@ export default EmberObject.extend(Evented, {
   }),
 
   fields: computed(() => []).readOnly(),
+
+  childDocuments: mapBy("fields", "childDocument"),
+
+  childState: computed(
+    "fields.@each.{isNew,isValid,_errors,question}",
+    "childDocuments.@each.state",
+    function() {
+      const childDocumentStates = this.get("childDocuments")
+        .filter(Boolean)
+        .map(c => c.state);
+
+      return STATE_PRECEDENCE.find(state =>
+        childDocumentStates.includes(state)
+      );
+    }
+  ),
+
+  ownState: computed(
+    "fields.@each.{isNew,isValid,_errors,question,childDocument}",
+    function() {
+      if (this.fields.every(f => f.isNew)) {
+        return "untouched";
+      }
+
+      const visibleFields = this.fields.filter(f => !f.question.hidden);
+      if (visibleFields.every(f => f.isValid)) {
+        return "valid";
+      }
+
+      return visibleFields.some(f => f._errors.some(e => e.type !== "blank"))
+        ? "invalid"
+        : "unfinished";
+    }
+  ),
+
+  state: computed("childState", "ownState", function() {
+    return STATE_PRECEDENCE.find(state =>
+      [this.get("childState"), this.get("ownState")].includes(state)
+    );
+  }),
 
   updateHidden: on("valueChanged", "hiddenChanged", function(slug) {
     const dependentFields = this.fields.filter(field =>
