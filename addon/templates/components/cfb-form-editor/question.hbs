@@ -6,7 +6,7 @@
   {{#with model as |model|}}
 
     {{#validated-form
-      model=(changeset model validations)
+      model=changeset
       on-submit=(perform submit)
     as |f|}}
       {{#if (and f.model.isDirty slug)}}

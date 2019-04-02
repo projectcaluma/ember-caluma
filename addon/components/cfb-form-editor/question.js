@@ -9,6 +9,8 @@ import { computed, getWithDefault } from "@ember/object";
 import slugify from "ember-caluma/utils/slugify";
 import { A } from "@ember/array";
 import validations from "ember-caluma/validations/question";
+import Changeset from "ember-changeset";
+import lookupValidator from "ember-changeset-validations";
 import { all } from "rsvp";
 import { getOwner } from "@ember/application";
 
@@ -160,8 +162,12 @@ export default Component.extend(ComponentQueryManager, {
       .filter(slug => slug !== this.get("form"));
   }).restartable(),
 
-  availableOverrides: computed(function() {
-    const type = this.model.__typename.replace("Question", "").toLowerCase();
+  availableOverrides: computed("changeset.__typename", function() {
+    const type = this.changeset
+      .get("__typename")
+      .replace("Question", "")
+      .toLowerCase();
+
     return [
       { label: this.intl.t("caluma.form.power-select.null"), component: "" },
       ...this.options.get("overrides").filter(override => {
@@ -180,6 +186,10 @@ export default Component.extend(ComponentQueryManager, {
       model.subForm = model.subForm.slug;
     }
     return model;
+  }),
+
+  changeset: computed("model", function() {
+    return new Changeset(this.model, lookupValidator(validations));
   }),
 
   namespace: computed("calumaOptions._namespace", function() {
