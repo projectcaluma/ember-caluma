@@ -163,16 +163,14 @@ export default Component.extend(ComponentQueryManager, {
   }).restartable(),
 
   availableOverrides: computed("changeset.__typename", function() {
-    const type = this.changeset
-      .get("__typename")
-      .replace("Question", "")
-      .toLowerCase();
+    const type = this.changeset.get("__typename");
+    const overrides = this.options.getComponentOverrides(override => {
+      return !override.types || override.types.includes(type);
+    });
 
     return [
       { label: this.intl.t("caluma.form.power-select.null"), component: "" },
-      ...this.options.get("overrides").filter(override => {
-        return !override.types || override.types.includes(type);
-      })
+      ...overrides
     ];
   }),
 

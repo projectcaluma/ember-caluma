@@ -16,24 +16,20 @@ export default Route.extend(RouteQueryManager, {
 
     this.intl.setLocale([...navigator.languages, "en-us"]);
 
-    this.options.set(
-      "overrides",
-      this.options.get("overrides").concat([
-        {
-          label: this.intl.t(
-            "caluma.form-builder.question.widgetOverrides.dummy-one"
-          ),
-          component: "dummy-one",
-          types: ["text", "textarea"]
-        },
-        {
-          label: this.intl.t(
-            "caluma.form-builder.question.widgetOverrides.dummy-two"
-          ),
-          component: "dummy-two"
-        }
-      ])
-    );
+    this.options.registerComponentOverride({
+      label: this.intl.t(
+        "caluma.form-builder.question.widgetOverrides.dummy-one"
+      ),
+      component: "dummy-one",
+      types: ["TextQuestion", "TextareaQuestion"]
+    });
+
+    this.options.registerComponentOverride({
+      label: this.intl.t(
+        "caluma.form-builder.question.widgetOverrides.dummy-two"
+      ),
+      component: "dummy-two"
+    });
   },
 
   async model() {

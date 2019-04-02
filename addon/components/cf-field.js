@@ -24,12 +24,10 @@ export default Component.extend({
 
   options: service(),
   componentOverride: computed("options._data.overrides.[]", function() {
-    const override = this.field.question.meta.widgetOverride;
-
-    if (override) {
-      return this.options
-        .get("overrides")
-        .find(({ component }) => component === override).component;
+    const name = this.field.question.meta.widgetOverride;
+    const overrides = this.options.getComponentOverrides();
+    if (name && overrides.some(override => override.component === name)) {
+      return name;
     }
   }),
 

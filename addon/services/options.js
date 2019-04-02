@@ -13,17 +13,17 @@ export default Service.extend({
 
   init() {
     this._super(...arguments);
-    this._data = new EmberObject();
 
-    this._data.set("overrides", [
+    this._data = new EmberObject();
+    this._overrides = [
       {
         label: this.intl.t(
           "caluma.form-builder.question.widgetOverrides.powerselect"
         ),
         component: "cf-field/input/powerselect",
-        types: ["choice", "multiplechoice"]
+        types: ["ChoiceQuestion", "MultipleChoiceQuestion"]
       }
-    ]);
+    ];
   },
 
   /**
@@ -49,5 +49,53 @@ export default Service.extend({
    */
   set(path, value) {
     this._data.set(path, value);
+  },
+
+  /**
+   * Registers a new component override.
+   *
+   * @param {Object} override The additional override.
+   * @param {String} override.label The text displayed in the form-builder dropdown.
+   * @param {String} override.component The path/name of the overriding component.
+   * @param {Array} [override.types] An optional question type restriction.
+   * @return {Void}
+   */
+  registerComponentOverride(override) {
+    const index = this._overrides.findIndex(
+      datum => datum.component === override.component
+    );
+
+    if (index !== -1) {
+      this._overrides.splice(index, 1, override);
+    } else {
+      this._overrides.push(override);
+    }
+  },
+
+  /**
+   * Unregisters a component override.
+   *
+   * @param {Object|String} override Either an override object (see register method) or a component path/name.
+   * @return {Void}
+   */
+  unregisterComponentOverride(override) {
+    const name = override.component ? override.component : override;
+    const index = this._overrides.findIndex(
+      override => override.component === name
+    );
+
+    if (index !== -1) {
+      this._overrides.splice(index, 1);
+    }
+  },
+
+  /**
+   * Returns the registered overrides, optionally filtered by a predicate.
+   *
+   * @param {Function} [predicate] The predicate function used by the filter.
+   * @return {Array} The list of overrides matching the predicate.
+   */
+  getComponentOverrides(predicate = () => true) {
+    return this._overrides.filter(predicate);
   }
 });
