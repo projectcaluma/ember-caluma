@@ -29,10 +29,10 @@
       </tr>
     </tfoot>
   </table>
-  {{#uk-modal visible=(and showModal documentToEdit) closable=false}}
+  {{#uk-modal visible=(and showModal documentToEdit)}}
     {{cf-form document=documentToEdit}}
     <p class="uk-text-right">
-      {{uk-button label=(t "caluma.form.done") on-click=(action "save")}}
+      {{uk-button label=(t "caluma.form.save") on-click=(action "save")}}
     </p>
   {{/uk-modal}}
 {{/with}}
