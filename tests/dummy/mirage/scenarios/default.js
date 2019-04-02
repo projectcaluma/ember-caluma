@@ -54,6 +54,13 @@ export default function(server) {
       server.create("option", { label: "Not enough vegetables" })
     ]
   });
+  server.create("question", {
+    slug: "dummy",
+    label: "Dummy widget",
+    formIds: [form.id],
+    type: "TEXT",
+    meta: { widgetOverride: "dummy-one" }
+  });
 
   server.create("document", { formId: form.id });
 }
