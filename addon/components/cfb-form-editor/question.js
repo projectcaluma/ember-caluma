@@ -164,7 +164,7 @@ export default Component.extend(ComponentQueryManager, {
 
   availableOverrides: computed("changeset.__typename", function() {
     const type = this.changeset.get("__typename");
-    const overrides = this.options.getComponentOverrides(override => {
+    const overrides = this.options.getComponentOverrides().filter(override => {
       return !override.types || override.types.includes(type);
     });
 

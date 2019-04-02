@@ -15,15 +15,15 @@ export default Service.extend({
     this._super(...arguments);
 
     this._data = new EmberObject();
-    this._overrides = [
-      {
-        label: this.intl.t(
-          "caluma.form-builder.question.widgetOverrides.powerselect"
-        ),
-        component: "cf-field/input/powerselect",
-        types: ["ChoiceQuestion", "MultipleChoiceQuestion"]
-      }
-    ];
+    this._overrides = new EmberObject();
+
+    this.registerComponentOverride({
+      label: this.intl.t(
+        "caluma.form-builder.question.widgetOverrides.powerselect"
+      ),
+      component: "cf-field/input/powerselect",
+      types: ["ChoiceQuestion", "MultipleChoiceQuestion"]
+    });
   },
 
   /**
@@ -61,15 +61,7 @@ export default Service.extend({
    * @return {Void}
    */
   registerComponentOverride(override) {
-    const index = this._overrides.findIndex(
-      datum => datum.component === override.component
-    );
-
-    if (index !== -1) {
-      this._overrides.splice(index, 1, override);
-    } else {
-      this._overrides.push(override);
-    }
+    this._overrides[override.component] = override;
   },
 
   /**
@@ -79,23 +71,15 @@ export default Service.extend({
    * @return {Void}
    */
   unregisterComponentOverride(override) {
-    const name = override.component ? override.component : override;
-    const index = this._overrides.findIndex(
-      override => override.component === name
-    );
-
-    if (index !== -1) {
-      this._overrides.splice(index, 1);
-    }
+    delete this._overrides[override.component ? override.component : override];
   },
 
   /**
-   * Returns the registered overrides, optionally filtered by a predicate.
+   * Returns the registered overrides as an array.
    *
-   * @param {Function} [predicate] The predicate function used by the filter.
    * @return {Array} The list of overrides matching the predicate.
    */
-  getComponentOverrides(predicate = () => true) {
-    return this._overrides.filter(predicate);
+  getComponentOverrides() {
+    return Object.values(this._overrides);
   }
 });
