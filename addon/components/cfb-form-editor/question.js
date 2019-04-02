@@ -11,7 +11,6 @@ import { A } from "@ember/array";
 import validations from "ember-caluma/validations/question";
 import { all } from "rsvp";
 import { getOwner } from "@ember/application";
-import $ from "jquery";
 
 import checkQuestionSlugQuery from "ember-caluma/gql/queries/check-question-slug";
 import formEditorQuestionQuery from "ember-caluma/gql/queries/form-editor-question";
@@ -52,52 +51,19 @@ export default Component.extend(ComponentQueryManager, {
     }));
   }),
 
-  prepareSlug() {
-    const $input = $('[name="slug"]');
-    const length = $input.val().length;
+  addSlug() {
+    const namespace = this.options.get("namespace");
 
-    $input.off("keypress.slug keydown.slug");
-    $input.on("keypress.slug keydown.slug", event => {
-      const key = event.key;
-      const shift = event.shiftKey;
-      const input = event.target;
+    const input = this.element.querySelector('[name="slug"]');
+    const span = document.createElement("span");
+    const parent = input.parentElement;
 
-      if (key === "Home") {
-        input.selectionStart = length;
-
-        if (!shift) {
-          input.selectionEnd = length;
-        }
-
-        event.preventDefault();
-      } else if (input.selectionStart < length) {
-        event.preventDefault();
-      } else if (input.selectionStart === length) {
-        if (input.selectionStart === input.selectionEnd) {
-          if (key === "ArrowLeft" || key === "Backspace") {
-            event.preventDefault();
-          }
-        } else {
-          if (key === "ArrowLeft") {
-            if (!shift) {
-              input.selectionEnd = input.selectionStart;
-            }
-            event.preventDefault();
-          } else if (key === "Backspace") {
-            input.setRangeText("", input.selectionStart, input.selectionEnd);
-            event.preventDefault();
-          }
-        }
-      }
+    Object.assign(span, {
+      className: "slugnamespace-slug",
+      innerHTML: namespace === undefined ? "" : `${namespace}-`
     });
-
-    $input.off("focus.slug click.slug select.slug");
-    $input.on("focus.slug click.slug select.slug", event => {
-      const input = event.target;
-      if (input.selectionStart <= length) {
-        input.selectionStart = length;
-      }
-    });
+    parent.classList.add("slugnamespace");
+    parent.insertBefore(span, input);
   },
 
   async didReceiveAttrs() {
@@ -106,11 +72,15 @@ export default Component.extend(ComponentQueryManager, {
     await this.get("data").perform();
     await this.get("availableForms").perform();
 
-    this.prepareSlug();
+    this.options.set("namespace", "foo");
+
+    if (!this.get("slug")) {
+      this.addSlug();
+    }
   },
 
   willDestroyElement() {
-    $('[name="slug"]').off(
+    this.$('[name="slug"]').off(
       "keypress.slug keydown.slug focus.slug click.slug select.slug"
     );
 
@@ -132,13 +102,11 @@ export default Component.extend(ComponentQueryManager, {
 
   data: task(function*() {
     if (!this.get("slug")) {
-      const slug = this.options.get("namespace");
-
       return A([
         {
           node: {
             label: "",
-            slug: slug === undefined ? "" : `${slug}-`,
+            slug: "",
             description: "",
             isRequired: "false",
             isHidden: "false",
@@ -258,6 +226,14 @@ export default Component.extend(ComponentQueryManager, {
 
   submit: task(function*(changeset) {
     try {
+      if (!this.get("slug")) {
+        const namespace = this.options.get("namespace");
+        if (namespace !== undefined) {
+          const slug = changeset.get("slug");
+          changeset.set("slug", `${namespace}-${slug}`);
+        }
+      }
+
       yield this.saveOptions.perform(changeset);
 
       const question = yield this.get("apollo").mutate(
@@ -344,10 +320,7 @@ export default Component.extend(ComponentQueryManager, {
       changeset.set("label", value);
 
       if (!this.get("slug")) {
-        let prefix = this.options.get("namespace");
-        prefix = prefix === undefined ? "" : `${prefix}-`;
-
-        const slug = prefix + slugify(value);
+        const slug = slugify(value);
         changeset.set("slug", slug);
         this.get("validateSlug").perform(slug, changeset);
       }
