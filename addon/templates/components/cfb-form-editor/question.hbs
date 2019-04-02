@@ -3,12 +3,9 @@
     {{uk-spinner ratio=2}}
   </div>
 {{else}}
-  {{#with model as |model|}}
+  {{#with model}}
 
-    {{#validated-form
-      model=changeset
-      on-submit=(perform submit)
-    as |f|}}
+    {{#validated-form model=changeset on-submit=(perform submit) as |f|}}
       {{#if (and f.model.isDirty slug)}}
         <div class="uk-alert-warning uk-animation-fade" uk-alert>
           <a class="uk-alert-close" uk-close></a>
