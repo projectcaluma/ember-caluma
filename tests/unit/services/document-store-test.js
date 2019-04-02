@@ -43,13 +43,13 @@ module("Unit | Service | document-store", function(hooks) {
 
     const service = this.owner.lookup("service:document-store");
 
-    assert.equal(service.documents.length, 0);
+    assert.equal(Object.keys(service.documents), 0);
     assert.ok(service.find(this.document)); // uncached
-    assert.equal(service.documents.length, 1);
+    assert.equal(Object.keys(service.documents), 1);
 
     service._build = () => assert.ok(false); // make sure _build is not called
     assert.ok(service.find(this.document)); // cached
-    assert.equal(service.documents.length, 1);
+    assert.equal(Object.keys(service.documents), 1);
   });
 
   test("can build a document", function(assert) {
@@ -62,5 +62,21 @@ module("Unit | Service | document-store", function(hooks) {
     assert.ok(document);
     assert.equal(document.id, "1");
     assert.equal(document.fields.length, 1);
+  });
+
+  test("can override document in cache", function(assert) {
+    const service = this.owner.lookup("service:document-store");
+
+    const document = service.find(this.document);
+    assert.ok(document);
+
+    this.document.answers.edges[0].node.stringValue = "Something else!";
+    const changedDocument = service.save(this.document);
+
+    assert.equal(
+      changedDocument.fields[0].answer.stringValue,
+      "Something else!"
+    );
+    assert.equal(Object.keys(service.documents), 1);
   });
 });
