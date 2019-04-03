@@ -1,5 +1,5 @@
 import Service from "@ember/service";
-import EmberObject, { computed } from "@ember/object";
+import EmberObject from "@ember/object";
 import slugify from "ember-caluma/utils/slugify";
 
 /**
@@ -41,12 +41,10 @@ export default Service.extend({
   },
 
   _namespace: null,
-  namespace: computed({
-    get() {
-      return this._namespace;
-    },
-    set(value) {
-      this._namespace = value ? slugify(String(value)) : null;
-    }
-  })
+  setNamespace(value) {
+    this._namespace = value ? slugify(String(value)) : null;
+  },
+  getNamespace() {
+    return this._namespace;
+  }
 });
