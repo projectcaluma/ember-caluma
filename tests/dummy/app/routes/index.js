@@ -15,7 +15,6 @@ export default Route.extend(RouteQueryManager, {
     this._super(...arguments);
 
     this.intl.setLocale([...navigator.languages, "en-us"]);
-    this.calumaOptions.set("namespace", "Foo Bar");
   },
 
   async model() {
