@@ -6,7 +6,7 @@ dummy:
 caluma:
   form:
     optional: "Optional"
-    done: "Done"
+    save: "Save"
 
     notification:
       table:
