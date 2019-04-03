@@ -220,7 +220,7 @@ module("Integration | Component | cf-form", function(hooks) {
   });
 
   test("it allows for component overrides", async function(assert) {
-    const options = this.owner.lookup("service:options");
+    const options = this.owner.lookup("service:calumaOptions");
     options.registerComponentOverride({ component: "dummy-one" });
 
     await render(hbs`{{cf-form documentId=document.id}}`);

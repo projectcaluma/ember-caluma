@@ -22,12 +22,12 @@ export default Component.extend({
   classNames: ["uk-margin"],
   classNameBindings: ["field.question.hidden:uk-hidden"],
 
-  options: service(),
-  componentOverride: computed("options._data.overrides.[]", function() {
+  calumaOptions: service(),
+  componentOverride: computed("calumaOptions._overrides.[]", function() {
     // During testing the meta object is not necessarily set.
     try {
       const name = this.field.question.meta.widgetOverride;
-      const overrides = this.options.getComponentOverrides();
+      const overrides = this.calumaOptions.getComponentOverrides();
       if (name && overrides.some(override => override.component === name)) {
         return name;
       }

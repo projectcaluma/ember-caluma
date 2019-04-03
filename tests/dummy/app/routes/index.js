@@ -9,14 +9,16 @@ export default Route.extend(RouteQueryManager, {
   apollo: service(),
 
   intl: service(),
-  options: service(),
+  calumaOptions: service(),
 
   init() {
     this._super(...arguments);
 
     this.intl.setLocale([...navigator.languages, "en-us"]);
 
-    this.options.registerComponentOverride({
+    this.calumaOptions.setNamespace("Foo Bar");
+
+    this.calumaOptions.registerComponentOverride({
       label: this.intl.t(
         "caluma.form-builder.question.widgetOverrides.dummy-one"
       ),
@@ -24,7 +26,7 @@ export default Route.extend(RouteQueryManager, {
       types: ["TextQuestion", "TextareaQuestion"]
     });
 
-    this.options.registerComponentOverride({
+    this.calumaOptions.registerComponentOverride({
       label: this.intl.t(
         "caluma.form-builder.question.widgetOverrides.dummy-two"
       ),

@@ -105,12 +105,11 @@ export default Component.extend(ComponentQueryManager, {
 
   data: task(function*() {
     if (!this.get("slug")) {
-      const namespace = this.options.get("namespace");
       return A([
         {
           node: {
             label: "",
-            slug: namespace === undefined ? "" : `${namespace}-`,
+            slug: "",
             description: "",
             isRequired: "false",
             isHidden: "false",
@@ -164,9 +163,11 @@ export default Component.extend(ComponentQueryManager, {
 
   availableOverrides: computed("changeset.__typename", function() {
     const type = this.changeset.get("__typename");
-    const overrides = this.options.getComponentOverrides().filter(override => {
-      return !override.types || override.types.includes(type);
-    });
+    const overrides = this.calumaOptions
+      .getComponentOverrides()
+      .filter(override => {
+        return !override.types || override.types.includes(type);
+      });
 
     return [
       { label: this.intl.t("caluma.form.power-select.null"), component: "" },
@@ -314,6 +315,12 @@ export default Component.extend(ComponentQueryManager, {
 
       optional([this.get("on-after-submit")])(question);
     } catch (e) {
+      const slug = changeset.get("slug");
+      const namespace = `${this.namespace}-`;
+      if (slug.startsWith(namespace)) {
+        changeset.set("slug", slug.replace(namespace, ""));
+      }
+
       // eslint-disable-next-line no-console
       console.error(e);
       this.get("notification").danger(

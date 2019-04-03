@@ -5,12 +5,12 @@ module("Unit | Service | options", function(hooks) {
   setupTest(hooks);
 
   test("it exists", function(assert) {
-    const service = this.owner.lookup("service:options");
+    const service = this.owner.lookup("service:calumaOptions");
     assert.ok(service);
   });
 
   test("it returns whatever value was stored", function(assert) {
-    const service = this.owner.lookup("service:options");
+    const service = this.owner.lookup("service:calumaOptions");
     const value = "bar";
 
     service.set("foo", value);
@@ -19,7 +19,7 @@ module("Unit | Service | options", function(hooks) {
   });
 
   test("it allows for (un)registering of custom components", function(assert) {
-    const service = this.owner.lookup("service:options");
+    const service = this.owner.lookup("service:calumaOptions");
 
     const dummy = {
       label: "Dummy One",
