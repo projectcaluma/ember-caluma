@@ -9,6 +9,7 @@ export default Route.extend(RouteQueryManager, {
   apollo: service(),
 
   intl: service(),
+  calumaOptions: service(),
 
   init() {
     this._super(...arguments);
