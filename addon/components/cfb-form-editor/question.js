@@ -164,8 +164,8 @@ export default Component.extend(ComponentQueryManager, {
     return model;
   }),
 
-  namespace: computed("calumaOptions.namespace", function() {
-    return slugify(this.calumaOptions.get("namespace") || "") || null;
+  namespace: computed("calumaOptions._namespace", function() {
+    return slugify(this.calumaOptions.getNamespace() || "") || null;
   }),
 
   _getIntegerQuestionInput(changeset) {
