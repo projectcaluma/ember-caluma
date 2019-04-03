@@ -1,5 +1,4 @@
 import Service from "@ember/service";
-import EmberObject from "@ember/object";
 import slugify from "ember-caluma/utils/slugify";
 
 /**
@@ -10,40 +9,29 @@ import slugify from "ember-caluma/utils/slugify";
  * @extends Ember.Service
  */
 export default Service.extend({
-  init() {
-    this._super(...arguments);
-    this._data = new EmberObject();
-  },
+  /**
+   * The property where the namespace is stored.
+   * @property _namespace
+   */
+  _namespace: null,
 
   /**
-   * Reads a value from the store and
-   * provide an optional fallback value.
+   * Sets the namespace.
    *
-   * @method get
-   * @param {String} path The object path to return.
-   * @param {Any} fallback The fallback if the value at path is undefined.
-   * @return {Any} The value stored at path, undefined or the fallback.
+   * @method setNamespace
+   * @param {String} value The new namespace to set.
+   * @return {Void}
    */
-  get(path, fallback) {
-    return this._data.getWithDefault(path, fallback);
+  setNamespace(value) {
+    this._namespace = value ? slugify(String(value)) : null;
   },
 
   /**
    * Writes a value to the store.
    *
-   * @method set
-   * @param {String} path The object path to write to.
-   * @param {Any} value The value to store at path.
-   * @return {Void}
+   * @method getNamespace
+   * @return {String} The current namespace.
    */
-  set(path, value) {
-    this._data.set(path, value);
-  },
-
-  _namespace: null,
-  setNamespace(value) {
-    this._namespace = value ? slugify(String(value)) : null;
-  },
   getNamespace() {
     return this._namespace;
   }
