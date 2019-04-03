@@ -9,11 +9,13 @@ export default Route.extend(RouteQueryManager, {
   apollo: service(),
 
   intl: service(),
+  calumaOptions: service(),
 
   init() {
     this._super(...arguments);
 
     this.intl.setLocale([...navigator.languages, "en-us"]);
+    this.calumaOptions.set("namespace", "Foo Bar");
   },
 
   async model() {

@@ -1,11 +1,12 @@
 import Service from "@ember/service";
-import EmberObject from "@ember/object";
+import EmberObject, { computed } from "@ember/object";
+import slugify from "ember-caluma/utils/slugify";
 
 /**
  * The options service is there to provide a means to share data
  * between the host application and the addon at runtime.
  *
- * @class OptionsService
+ * @class CalumaOptionsService
  * @extends Ember.Service
  */
 export default Service.extend({
@@ -37,5 +38,15 @@ export default Service.extend({
    */
   set(path, value) {
     this._data.set(path, value);
-  }
+  },
+
+  _namespace: null,
+  namespace: computed({
+    get() {
+      return this._namespace;
+    },
+    set(value) {
+      this._namespace = value ? slugify(String(value)) : null;
+    }
+  })
 });

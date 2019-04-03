@@ -42,7 +42,7 @@ export default Component.extend(ComponentQueryManager, {
 
   notification: service(),
   intl: service(),
-  options: service(),
+  calumaOptions: service(),
 
   possibleTypes: computed(function() {
     return Object.keys(TYPES).map(value => ({
@@ -164,8 +164,8 @@ export default Component.extend(ComponentQueryManager, {
     return model;
   }),
 
-  namespace: computed("options.namespace", function() {
-    return slugify(this.options.get("namespace") || "") || null;
+  namespace: computed("calumaOptions.namespace", function() {
+    return slugify(this.calumaOptions.get("namespace") || "") || null;
   }),
 
   _getIntegerQuestionInput(changeset) {
