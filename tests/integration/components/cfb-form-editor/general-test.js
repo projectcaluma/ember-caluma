@@ -44,6 +44,35 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
     assert.dom("input[name=name] + span").hasText("Name can't be blank");
   });
 
+  test("it prepends the slug with a namespace", async function(assert) {
+    assert.expect(5);
+
+    this.set("afterSubmit", form => {
+      assert.ok(form);
+      assert.equal(form.slug, "foo-bar-form-2");
+      assert.step("after-submit");
+    });
+
+    this.owner.lookup("service:caluma-options").setNamespace("Foo Bar");
+
+    this.server.create("form", {
+      name: "Form 1",
+      slug: "foo-bar-form-1"
+    });
+
+    await render(
+      hbs`{{cfb-form-editor/general on-after-submit=(action afterSubmit)}}`
+    );
+
+    await fillIn("input[name=name]", "Form 1");
+    assert.dom("button[type=submit]").isDisabled();
+
+    await fillIn("input[name=slug]", "form-2");
+
+    await click("button[type=submit]");
+    assert.verifySteps(["after-submit"]);
+  });
+
   test("it can create a form", async function(assert) {
     assert.expect(6);
 
@@ -104,6 +133,10 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
     this.server.create("form", { slug: "test-form" });
 
     this.set("afterSubmit", () => assert.step("after-submit"));
+
+    // The namespace is not really needed for the test
+    // but is there to maximize code coverage.
+    this.owner.lookup("service:caluma-options").setNamespace("Foo Bar");
 
     // edit form
     await render(
