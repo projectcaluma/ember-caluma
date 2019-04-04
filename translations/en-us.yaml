@@ -51,6 +51,7 @@ caluma:
       slug: "Slug"
       description: "Description"
       isArchived: "Archived"
+      widgetOverride: "Custom widget"
       isPublished: "Published"
 
       all: "All forms"
