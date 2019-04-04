@@ -293,6 +293,12 @@ export default Component.extend(ComponentQueryManager, {
 
       optional([this.get("on-after-submit")])(question);
     } catch (e) {
+      const slug = changeset.get("slug");
+      const prefix = `${this.namespace}-`;
+      if (slug.startsWith(prefix)) {
+        changeset.set("slug", slug.replace(prefix, ""));
+      }
+
       // eslint-disable-next-line no-console
       console.error(e);
       this.get("notification").danger(

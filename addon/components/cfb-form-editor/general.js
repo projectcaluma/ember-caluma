@@ -118,6 +118,12 @@ export default Component.extend(ComponentQueryManager, {
 
       optional([this.get("on-after-submit")])(form);
     } catch (e) {
+      const slug = changeset.get("slug");
+      const prefix = `${this.namespace}-`;
+      if (slug.startsWith(prefix)) {
+        changeset.set("slug", slug.replace(prefix, ""));
+      }
+
       this.get("notification").danger(
         this.get("intl").t(
           `caluma.form-builder.notification.form.${
