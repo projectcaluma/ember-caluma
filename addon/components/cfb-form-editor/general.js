@@ -1,5 +1,6 @@
 import Component from "@ember/component";
 import { inject as service } from "@ember/service";
+import { computed } from "@ember/object";
 import layout from "../../templates/components/cfb-form-editor/general";
 import { task, timeout } from "ember-concurrency";
 import { ComponentQueryManager } from "ember-apollo-client";
@@ -20,11 +21,40 @@ export default Component.extend(ComponentQueryManager, {
 
   notification: service(),
   intl: service(),
+  calumaOptions: service(),
 
-  didReceiveAttrs() {
+  /**
+   * Adds an uneditable prefix to the input field.
+   * This uses manual DOM manipulation to avoid adding a single-use component.
+   */
+  addSlug() {
+    const input = this.element.querySelector('[name="slug"]');
+
+    if (
+      this.namespace &&
+      input &&
+      !input.classList.contains("slugnamespace-input")
+    ) {
+      const span = document.createElement("span");
+      const parent = input.parentElement;
+
+      Object.assign(span, {
+        className: "slugnamespace-slug",
+        innerHTML: `${this.namespace}-`
+      });
+      parent.classList.add("slugnamespace");
+      parent.insertBefore(span, input);
+    }
+  },
+
+  async didReceiveAttrs() {
     this._super(...arguments);
 
-    this.get("data").perform();
+    await this.get("data").perform();
+
+    if (!this.get("slug")) {
+      this.addSlug();
+    }
   },
 
   data: task(function*() {
@@ -51,8 +81,16 @@ export default Component.extend(ComponentQueryManager, {
     );
   }).restartable(),
 
+  namespace: computed("calumaOptions._namespace", function() {
+    return slugify(this.calumaOptions.getNamespace() || "") || null;
+  }),
+
   submit: task(function*(changeset) {
     try {
+      if (!this.get("slug") && this.namespace) {
+        changeset.set("slug", `${this.namespace}-${changeset.get("slug")}`);
+      }
+
       const form = yield this.get("apollo").mutate(
         {
           mutation: saveFormMutation,
@@ -122,14 +160,20 @@ export default Component.extend(ComponentQueryManager, {
       if (!this.get("slug")) {
         const slug = slugify(value);
         changeset.set("slug", slug);
-        this.get("validateSlug").perform(slug, changeset);
+        this.get("validateSlug").perform(
+          this.namespace ? `${this.namespace}-${slug}` : slug,
+          changeset
+        );
       }
     },
 
     updateSlug(value, changeset) {
       changeset.set("slug", value);
 
-      this.get("validateSlug").perform(value, changeset);
+      this.get("validateSlug").perform(
+        this.namespace ? `${this.namespace}-${value}` : value,
+        changeset
+      );
     }
   }
 });
