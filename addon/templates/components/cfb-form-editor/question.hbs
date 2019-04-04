@@ -43,23 +43,26 @@
 
       <div uk-grid class="uk-grid-small uk-margin">
         <div class="uk-width-expand">
-          {{f.input
-            type="text"
-            label=(t "caluma.form-builder.question.slug")
-            name="slug"
-            required=true
-            disabled=slug
-            on-update=(action "updateSlug")
-          }}
-
-          {{f.input
-            name="slug"
-            label=(t "caluma.form-builder.question.slug")
-            renderComponent=(component "cfb-prefixed-input" prefix=prefix)
-            required=true
-            disabled=slug
-            on-update=(action "updateSlug")
-          }}
+          {{#if (or slug (not namespace))}}
+            {{f.input
+              type="text"
+              label=(t "caluma.form-builder.question.slug")
+              name="slug"
+              required=true
+              disabled=slug
+              on-update=(action "updateSlug")
+            }}
+          {{else}}
+            {{f.input
+              name="slug"
+              label=(t "caluma.form-builder.question.slug")
+              renderComponent=(component "cfb-prefixed-input")
+              prefix=prefix
+              required=true
+              disabled=false
+              on-update=(action "updateSlug")
+            }}
+          {{/if}}
         </div>
 
         <div class="uk-width-auto uk-flex">

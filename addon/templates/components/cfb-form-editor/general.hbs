@@ -16,14 +16,26 @@
         on-update=(action "updateName")
       }}
 
-      {{f.input
-        type="text"
-        label=(t "caluma.form-builder.form.slug")
-        name="slug"
-        required=true
-        disabled=slug
-        on-update=(action "updateSlug")
-      }}
+      {{#if (or slug (not namespace))}}
+        {{f.input
+          type="text"
+          label=(t "caluma.form-builder.form.slug")
+          name="slug"
+          required=true
+          disabled=slug
+          on-update=(action "updateSlug")
+        }}
+      {{else}}
+        {{f.input
+          name="slug"
+          label=(t "caluma.form-builder.form.slug")
+          renderComponent=(component "cfb-prefixed-input")
+          prefix=prefix
+          required=true
+          disabled=false
+          on-update=(action "updateSlug")
+        }}
+      {{/if}}
 
       {{f.input
         type="textarea"

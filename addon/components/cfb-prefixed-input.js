@@ -1,29 +1,21 @@
 import Component from "@ember/component";
+import { reads } from "@ember/object/computed";
 import layout from "../templates/components/cfb-prefixed-input";
-import { computed } from "@ember/object";
 
 export default Component.extend({
   layout,
   tagName: "",
 
-  init() {
-    this._super(...arguments);
-    console.log(this);
-  },
-
-  dirty: computed("parentView.dirty", function() {
-    return this.get("parentView.dirty");
-  }),
-
-  showError: computed("dirty", "isInvalid", function() {
-    return this.isDirty && this.isInvalid;
-  }),
+  prefix: reads("parentView.prefix"),
+  errors: reads("parentView.errors"),
+  dirty: reads("parentView.dirty"),
 
   actions: {
     update({ target: { value } }) {
       this.get("update")(value);
+    },
+    blur() {
       this.get("setDirty")();
-      console.log(this);
     }
   }
 });
