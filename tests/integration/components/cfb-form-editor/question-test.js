@@ -71,14 +71,18 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
   test("it can handle errors", async function(assert) {
     assert.expect(1);
 
-    this.server.create("question", { slug: "test-slug" });
+    this.server.create("question", { slug: "foo-bar-test-slug" });
 
     this.set("afterSubmit", () => assert.step("after-submit"));
+
+    // The namespace is not really needed for the test
+    // but is there to maximize code coverage.
+    this.owner.lookup("service:caluma-options").setNamespace("Foo Bar");
 
     // edit question
     await render(
       hbs`{{cfb-form-editor/question
-        slug='test-slug'
+        slug='foo-bar-test-slug'
         on-after-submit=(action afterSubmit)
       }}`
     );
@@ -112,7 +116,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     assert.dom("input[name=slug]").hasValue("test-label-123");
   });
 
-  test("it suggests prepends the slug with a namespace", async function(assert) {
+  test("it prepends the slug with a namespace", async function(assert) {
     assert.expect(3);
 
     this.server.create("form", { slug: "test-form" });
