@@ -51,6 +51,15 @@
             disabled=slug
             on-update=(action "updateSlug")
           }}
+
+          {{f.input
+            name="slug"
+            label=(t "caluma.form-builder.question.slug")
+            renderComponent=(component "cfb-prefixed-input" prefix=prefix)
+            required=true
+            disabled=slug
+            on-update=(action "updateSlug")
+          }}
         </div>
 
         <div class="uk-width-auto uk-flex">

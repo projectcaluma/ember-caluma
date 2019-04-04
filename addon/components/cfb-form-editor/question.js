@@ -194,6 +194,9 @@ export default Component.extend(ComponentQueryManager, {
   namespace: computed("calumaOptions._namespace", function() {
     return slugify(this.calumaOptions.getNamespace() || "") || null;
   }),
+  prefix: computed("namespace", function() {
+    return this.namespace ? `${this.namespace}-` : "";
+  }),
 
   _getIntegerQuestionInput(changeset) {
     return {
