@@ -363,14 +363,20 @@ export default Component.extend(ComponentQueryManager, {
       if (!this.get("slug")) {
         const slug = slugify(value);
         changeset.set("slug", slug);
-        this.get("validateSlug").perform(slug, changeset);
+        this.get("validateSlug").perform(
+          this.namespace ? `${this.namespace}-${slug}` : slug,
+          changeset
+        );
       }
     },
 
     updateSlug(value, changeset) {
       changeset.set("slug", value);
 
-      this.get("validateSlug").perform(value, changeset);
+      this.get("validateSlug").perform(
+        this.namespace ? `${this.namespace}-${value}` : value,
+        changeset
+      );
     }
   }
 });
