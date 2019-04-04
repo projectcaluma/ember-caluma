@@ -7,6 +7,8 @@ import { inject as service } from "@ember/service";
  * The options service is there to provide a means to share data
  * between the host application and the addon at runtime.
  *
+ * The Power Select dropdown will be registered on initialization.
+ *
  * @class CalumaOptionsService
  * @extends Ember.Service
  */
@@ -29,6 +31,7 @@ export default Service.extend({
   /**
    * The property where the namespace is stored.
    * @property _namespace
+   * @private
    */
   _namespace: null,
 
