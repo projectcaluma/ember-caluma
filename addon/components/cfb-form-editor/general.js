@@ -2,6 +2,7 @@ import Component from "@ember/component";
 import { inject as service } from "@ember/service";
 import { computed } from "@ember/object";
 import layout from "../../templates/components/cfb-form-editor/general";
+import { settled } from "@ember/test-helpers";
 import { task, timeout } from "ember-concurrency";
 import { ComponentQueryManager } from "ember-apollo-client";
 import validations from "../../validations/form";
@@ -51,6 +52,7 @@ export default Component.extend(ComponentQueryManager, {
     this._super(...arguments);
 
     await this.get("data").perform();
+    await settled();
 
     if (!this.get("slug")) {
       this.addSlug();
