@@ -316,9 +316,9 @@ export default Component.extend(ComponentQueryManager, {
       optional([this.get("on-after-submit")])(question);
     } catch (e) {
       const slug = changeset.get("slug");
-      const namespace = `${this.namespace}-`;
-      if (slug.startsWith(namespace)) {
-        changeset.set("slug", slug.replace(namespace, ""));
+      const prefix = `${this.namespace}-`;
+      if (slug.startsWith(prefix)) {
+        changeset.set("slug", slug.replace(prefix, ""));
       }
 
       // eslint-disable-next-line no-console
