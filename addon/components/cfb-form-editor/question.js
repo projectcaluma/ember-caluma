@@ -55,39 +55,11 @@ export default Component.extend(ComponentQueryManager, {
     }));
   }),
 
-  /**
-   * Adds an uneditable prefix to the input field.
-   * This uses manual DOM manipulation to avoid adding a single-use component.
-   */
-  addSlug() {
-    const input = this.element.querySelector('[name="slug"]');
-
-    if (
-      this.namespace &&
-      input &&
-      !input.classList.contains("slugnamespace-input")
-    ) {
-      const span = document.createElement("span");
-      const parent = input.parentElement;
-
-      Object.assign(span, {
-        className: "slugnamespace-slug",
-        innerHTML: `${this.namespace}-`
-      });
-      parent.classList.add("slugnamespace");
-      parent.insertBefore(span, input);
-    }
-  },
-
   async didReceiveAttrs() {
     this._super(...arguments);
 
     await this.get("data").perform();
     await this.get("availableForms").perform();
-
-    if (!this.get("slug")) {
-      this.addSlug();
-    }
   },
 
   widgetTypes: computed(function() {

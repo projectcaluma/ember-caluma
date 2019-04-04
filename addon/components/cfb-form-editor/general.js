@@ -2,7 +2,6 @@ import Component from "@ember/component";
 import { inject as service } from "@ember/service";
 import { computed } from "@ember/object";
 import layout from "../../templates/components/cfb-form-editor/general";
-import { settled } from "@ember/test-helpers";
 import { task, timeout } from "ember-concurrency";
 import { ComponentQueryManager } from "ember-apollo-client";
 import validations from "../../validations/form";
@@ -24,39 +23,10 @@ export default Component.extend(ComponentQueryManager, {
   intl: service(),
   calumaOptions: service(),
 
-  /**
-   * Adds an uneditable prefix to the input field.
-   * This uses manual DOM manipulation to avoid adding a single-use component.
-   */
-  addSlug() {
-    const input = this.element.querySelector('[name="slug"]');
-
-    if (
-      this.namespace &&
-      input &&
-      !input.classList.contains("slugnamespace-input")
-    ) {
-      const span = document.createElement("span");
-      const parent = input.parentElement;
-
-      Object.assign(span, {
-        className: "slugnamespace-slug",
-        innerHTML: `${this.namespace}-`
-      });
-      parent.classList.add("slugnamespace");
-      parent.insertBefore(span, input);
-    }
-  },
-
   async didReceiveAttrs() {
     this._super(...arguments);
 
     await this.get("data").perform();
-    await settled();
-
-    if (!this.get("slug")) {
-      this.addSlug();
-    }
   },
 
   data: task(function*() {
