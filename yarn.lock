@@ -5139,9 +5139,9 @@ ember-cli-addon-docs-yuidoc@0.2.1:
     lodash "^4.17.5"
     yuidocjs "^0.10.2"
 
-ember-cli-addon-docs@czosel/ember-cli-addon-docs#fix-test-selectors:
-  version "0.6.7"
-  resolved "https://codeload.github.com/czosel/ember-cli-addon-docs/tar.gz/c2f6971d319b197581b1d0dd810e6ecdeb32e1e8"
+ember-cli-addon-docs@ember-learn/ember-cli-addon-docs#b7224c3d3e32691aa210af97ea38cc417ce9d053:
+  version "0.6.8"
+  resolved "https://codeload.github.com/ember-learn/ember-cli-addon-docs/tar.gz/b7224c3d3e32691aa210af97ea38cc417ce9d053"
   dependencies:
     "@glimmer/syntax" "^0.36.4"
     broccoli-bridge "^1.0.0"
@@ -5154,6 +5154,7 @@ ember-cli-addon-docs@czosel/ember-cli-addon-docs#fix-test-selectors:
     broccoli-plugin "^1.3.1"
     broccoli-source "^1.1.0"
     broccoli-stew "^2.0.0"
+    chalk "^2.4.2"
     ember-auto-import "^1.2.19"
     ember-cli-autoprefixer "^0.8.1"
     ember-cli-babel "^6.16.0"
@@ -5162,10 +5163,11 @@ ember-cli-addon-docs@czosel/ember-cli-addon-docs#fix-test-selectors:
     ember-cli-htmlbars-inline-precompile "^1.0.3"
     ember-cli-sass "10.0.0"
     ember-cli-string-helpers "^1.9.0"
+    ember-cli-string-utils "^1.1.0"
     ember-cli-tailwind "^0.6.2"
     ember-code-snippet "^2.4.0"
     ember-component-css "^0.6.7"
-    ember-concurrency "^0.8.21"
+    ember-concurrency "^0.9.0"
     ember-data "2.x - 3.x"
     ember-fetch "^6.2.0"
     ember-fetch-adapter "^0.4.3"
@@ -5173,6 +5175,7 @@ ember-cli-addon-docs@czosel/ember-cli-addon-docs#fix-test-selectors:
     ember-keyboard "^4.0.0"
     ember-modal-dialog "3.0.0-beta.3"
     ember-responsive "^3.0.0-beta.1"
+    ember-router-generator "^1.2.3"
     ember-router-scroll "^1.0.0"
     ember-svg-jar "^1.2.2"
     ember-tether "^1.0.0-beta.2"
@@ -5831,7 +5834,7 @@ ember-composable-helpers@2.2.0, ember-composable-helpers@^2.1.0:
     broccoli-funnel "^1.0.1"
     ember-cli-babel "^7.1.0"
 
-ember-concurrency@0.9.0:
+ember-concurrency@0.9.0, ember-concurrency@^0.9.0:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/ember-concurrency/-/ember-concurrency-0.9.0.tgz#0016652ff780fb665842e7f47815ee0601122ea1"
   integrity sha512-JDjvwSlZBUQwv1+qUj6YUqXXe0Y0/to4ppUTNXQ1EEiEAopkHJXQUn0ZcFOiQpEinrYp34Vg6+lUNskoJFL2Vg==
@@ -5841,7 +5844,7 @@ ember-concurrency@0.9.0:
     ember-compatibility-helpers "^1.2.0"
     ember-maybe-import-regenerator "^0.1.5"
 
-ember-concurrency@^0.8.21, ember-concurrency@^0.8.26:
+ember-concurrency@^0.8.26:
   version "0.8.27"
   resolved "https://registry.yarnpkg.com/ember-concurrency/-/ember-concurrency-0.8.27.tgz#6dd1b9928cf5d13d5ae9c8cd3d5869f6ff81a9a9"
   integrity sha512-2IujJ0Y79a+sHvEOPhUtZ7Ga8HDrwjbQqO7aZ88b0KCsXPro7birQFB508njQSQ0mxrsR9qzDv/KS5V67Cy5dA==
