@@ -1,31 +1,38 @@
 <div uk-grid>
   <div class="uk-width-1-1 uk-width-1-3@m">
-    {{#link-to "nested" (query-params section=null)}}main{{/link-to}}
     <ul class="uk-tab uk-tab-left">
-      {{#each fields as |field|}}
-        {{log field.question.slug field.question.hidden field}}
-        {{#unless field.question.hidden}}
-          <li>
-            {{cf-navigation-item field=field}}
-            <ul class="uk-tab uk-tab-left uk-margin-left uk-margin-remove-vertical">
-              {{#each field.navSubFields as |subField|}}
-                <li>
-                  {{#link-to "nested" (query-params section=field.question.slug subSection=subField.question.slug)}}
-                    <div class="uk-flex uk-flex-between uk-flex-middle">
-                      <div>{{subField.question.label}}</div>
-                      {{#with subField.childDocument.state as |s|}}
-                        <span
-                          class="uk-flex-none camac-nav-module-icon camac-nav-module-icon-{{s}}">
-                        </span>
-                      {{/with}}
-                    </div>
-                  {{/link-to}}
-                </li>
-              {{/each}}
-            </ul>
-          </li>
-        {{/unless}}
-      {{/each}}
+      <li>
+        {{cf-navigation-item
+          field=field
+          label=rootDocument.raw.form.name
+          state=rootDocument.state
+        }}
+        <ul class="uk-tab uk-tab-left uk-margin-left uk-margin-remove-vertical">
+          {{#each fields as |field|}}
+            <li>
+              {{cf-navigation-item
+                field=field
+                section=field.question.slug
+                label=field.question.label
+                state=field.childDocument.state
+                }}
+              <ul class="uk-tab uk-tab-left uk-margin-left uk-margin-remove-vertical">
+                {{#each field.navSubFields as |subField|}}
+                  <li>
+                    {{cf-navigation-item
+                      field=subField
+                      section=field.question.slug
+                      subSection=subField.question.slug
+                      label=subField.question.label
+                      state=subField.childDocument.state
+                    }}
+                  </li>
+                {{/each}}
+              </ul>
+            </li>
+          {{/each}}
+        </ul>
+      </li>
     </ul>
   </div>
 

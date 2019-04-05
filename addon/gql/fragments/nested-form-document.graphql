@@ -1,0 +1,67 @@
+#import 'ember-caluma/gql/fragments/field-answer'
+
+fragment NestedFormDocument on Document {
+  id
+  answers {
+    edges {
+      node {
+        ...FieldAnswer
+        ... on FormAnswer {
+          formValue: value {
+            id
+            form {
+              slug
+              questions {
+                edges {
+                  node {
+                    ...FieldQuestion
+                  }
+                }
+              }
+            }
+            answers {
+              edges {
+                node {
+                  ...FieldAnswer
+                  ... on FormAnswer {
+                    formValue: value {
+                      id
+                      form {
+                        slug
+                        questions {
+                          edges {
+                            node {
+                              ...FieldQuestion
+                            }
+                          }
+                        }
+                      }
+                      answers {
+                        edges {
+                          node {
+                            ...FieldAnswer
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  form {
+    slug
+    name
+    questions {
+      edges {
+        node {
+          ...FieldQuestion
+        }
+      }
+    }
+  }
+}
