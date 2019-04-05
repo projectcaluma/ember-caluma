@@ -7,9 +7,7 @@ const Router = AddonDocsRouter.extend({
 });
 
 Router.map(function() {
-  this.route("nested", function() {
-    this.route("detail", { path: "/:section" });
-  });
+  this.route("nested");
   docsRoute(this, function() {
     this.route("usage");
   });

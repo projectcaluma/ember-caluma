@@ -46,7 +46,7 @@ export default Service.extend({
    * @param {Object} document The raw document
    * @return {Document} The document
    */
-  save(document, { parentDocument }) {
+  save(document, { parentDocument } = {}) {
     return this.find(document, { parentDocument, noCache: true });
   },
 

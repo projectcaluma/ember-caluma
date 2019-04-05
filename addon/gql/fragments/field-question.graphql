@@ -1,9 +1,4 @@
-fragment FieldQuestion on Question {
-  slug
-  label
-  isRequired
-  isHidden
-  meta
+fragment SimpleQuestion on Question {
   ... on TextQuestion {
     textMaxLength: maxLength
   }
@@ -34,6 +29,32 @@ fragment FieldQuestion on Question {
         node {
           slug
           label
+        }
+      }
+    }
+  }
+}
+
+fragment FieldQuestion on Question {
+  slug
+  label
+  isRequired
+  isHidden
+  meta
+  ...SimpleQuestion
+  ... on TableQuestion {
+    rowForm {
+      slug
+      questions {
+        edges {
+          node {
+            slug
+            label
+            isRequired
+            isHidden
+            meta
+            ...SimpleQuestion
+          }
         }
       }
     }

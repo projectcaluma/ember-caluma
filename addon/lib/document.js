@@ -1,5 +1,4 @@
 import EmberObject, { computed } from "@ember/object";
-import { mapBy, filter } from "@ember/object/computed";
 import { assert } from "@ember/debug";
 import { getOwner } from "@ember/application";
 import Evented, { on } from "@ember/object/evented";
@@ -7,7 +6,7 @@ import Field from "ember-caluma/lib/field";
 import jexl from "jexl";
 import { atob } from "ember-caluma/helpers/atob";
 import { inject as service } from "@ember/service";
-import { findFieldInTree } from "ember-caluma/utils/tree";
+// import { findFieldInTree } from "ember-caluma/utils/tree";
 
 const STATE_PRECEDENCE = ["invalid", "unfinished", "untouched", "valid"];
 
@@ -27,8 +26,18 @@ export default EmberObject.extend(Evented, {
     const fields = this.buildFields(this.raw);
     fields.forEach(field => this.fields.push(field));
 
+    // automatic initialization of dynamic fields starts from the root level
+    if (!this.get("parentDocument")) {
+      this.initializeFieldTree(fields);
+    }
+  },
+
+  async initializeFieldTree(fields) {
     for (let field of fields) {
       await field.question.initDynamicFields();
+      if (field.childDocument) {
+        await this.initializeFieldTree(field.childDocument.fields);
+      }
     }
   },
 
@@ -67,13 +76,19 @@ export default EmberObject.extend(Evented, {
   }),
 
   findAnswer(slug) {
-    const result = findFieldInTree(this, slug);
+    const result = this.findField(slug);
     return result && result.answer.value;
+  },
+
+  findField(slug) {
+    // Here it would be possible to extend the search range
+    // over the entire tree by calling findFieldInTree()
+    return this.fields.find(field => field.question.slug === slug);
   },
 
   fields: computed(() => []).readOnly(),
 
-  childDocuments: computed("fields", function() {
+  childDocuments: computed("fields.[]", function() {
     return this.get("fields")
       .map(field => field.childDocument)
       .filter(Boolean);

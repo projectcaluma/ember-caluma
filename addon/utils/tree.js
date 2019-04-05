@@ -11,7 +11,6 @@ export function bfsSearch(root, searchFn, getChildren) {
   const queue = [root];
   while (queue.length) {
     const node = queue.shift();
-    console.log("searching", node.raw.form.slug, node);
     const match = searchFn(node);
     if (match) {
       return match;

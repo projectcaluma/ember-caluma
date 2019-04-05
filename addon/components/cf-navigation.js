@@ -11,7 +11,6 @@ export default Component.extend(ComponentQueryManager, {
   documentStore: service(),
 
   documentId: null,
-  document: null,
   activeDocumentId: null,
 
   didReceiveAttrs() {
@@ -32,18 +31,47 @@ export default Component.extend(ComponentQueryManager, {
     );
   }),
 
-  _document: computed("data.lastSuccessful.value", "document.id", function() {
+  rootDocument: computed("data.lastSuccessful.value", function() {
     return (
-      this.get("document") ||
-      (this.get("data.lastSuccessful.value") &&
-        this.documentStore.find(this.get("data.lastSuccessful.value")))
+      this.get("data.lastSuccessful.value") &&
+      this.documentStore.find(this.get("data.lastSuccessful.value"))
     );
   }).readOnly(),
 
-  fields: computed("_document", function() {
+  displayedDocument: computed(
+    "section",
+    "subSection",
+    "rootDocument",
+    function() {
+      try {
+        if (!this.get("rootDocument")) {
+          return null;
+        }
+        if (!this.get("section")) {
+          return this.get("rootDocument");
+        }
+        const section = this.get("rootDocument.fields").find(
+          field => field.question.slug === this.get("section")
+        );
+
+        if (!this.get("subSection")) {
+          return section.childDocument;
+        }
+        return section.childDocument.fields.find(
+          field => field.question.slug === this.get("subSection")
+        ).childDocument;
+      } catch (e) {
+        // eslint-disable-next-line no-console
+        console.error(e);
+        return null;
+      }
+    }
+  ),
+
+  fields: computed("rootDocument", function() {
     const isFormQuestion = field =>
       field.question.__typename === "FormQuestion";
-    return (this.get("_document.fields") || [])
+    return (this.get("rootDocument.fields") || [])
       .filter(isFormQuestion)
       .map(field => {
         field.set(

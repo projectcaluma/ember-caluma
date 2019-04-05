@@ -1,4 +1,6 @@
-fragment FieldAnswer on Answer {
+#import 'ember-caluma/gql/fragments/field-question'
+
+fragment SimpleAnswer on Answer {
   id
   question {
     slug
@@ -14,5 +16,31 @@ fragment FieldAnswer on Answer {
   }
   ... on ListAnswer {
     listValue: value
+  }
+}
+
+fragment FieldAnswer on Answer {
+  ...SimpleAnswer
+  ... on TableAnswer {
+    value {
+      id
+      form {
+        slug
+        questions {
+          edges {
+            node {
+              ...FieldQuestion
+            }
+          }
+        }
+      }
+      answers {
+        edges {
+          node {
+            ...SimpleAnswer
+          }
+        }
+      }
+    }
   }
 }
