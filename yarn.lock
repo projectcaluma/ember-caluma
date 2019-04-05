@@ -5139,9 +5139,9 @@ ember-cli-addon-docs-yuidoc@0.2.1:
     lodash "^4.17.5"
     yuidocjs "^0.10.2"
 
-ember-cli-addon-docs@ember-learn/ember-cli-addon-docs#master:
+ember-cli-addon-docs@ember-learn/ember-cli-addon-docs#b7224c3d3e32691aa210af97ea38cc417ce9d053:
   version "0.6.8"
-  resolved "https://codeload.github.com/ember-learn/ember-cli-addon-docs/tar.gz/88961498ddce576dd074812424ff4b2bda62d670"
+  resolved "https://codeload.github.com/ember-learn/ember-cli-addon-docs/tar.gz/b7224c3d3e32691aa210af97ea38cc417ce9d053"
   dependencies:
     "@glimmer/syntax" "^0.36.4"
     broccoli-bridge "^1.0.0"
