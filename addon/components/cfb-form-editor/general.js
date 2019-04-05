@@ -23,10 +23,10 @@ export default Component.extend(ComponentQueryManager, {
   intl: service(),
   calumaOptions: service(),
 
-  async didReceiveAttrs() {
+  didReceiveAttrs() {
     this._super(...arguments);
 
-    await this.get("data").perform();
+    this.get("data").perform();
   },
 
   data: task(function*() {
