@@ -62,8 +62,8 @@ export default Component.extend(ComponentQueryManager, {
 
   submit: task(function*(changeset) {
     try {
-      if (!this.get("slug") && this.namespace) {
-        changeset.set("slug", `${this.namespace}-${changeset.get("slug")}`);
+      if (!this.get("slug") && this.prefix) {
+        changeset.set("slug", this.prefix + changeset.get("slug"));
       }
 
       const form = yield this.get("apollo").mutate(
@@ -94,9 +94,8 @@ export default Component.extend(ComponentQueryManager, {
       optional([this.get("on-after-submit")])(form);
     } catch (e) {
       const slug = changeset.get("slug");
-      const prefix = `${this.namespace}-`;
-      if (slug.startsWith(prefix)) {
-        changeset.set("slug", slug.replace(prefix, ""));
+      if (slug.startsWith(this.prefix)) {
+        changeset.set("slug", slug.replace(this.prefix, ""));
       }
 
       this.get("notification").danger(
@@ -141,20 +140,15 @@ export default Component.extend(ComponentQueryManager, {
       if (!this.get("slug")) {
         const slug = slugify(value);
         changeset.set("slug", slug);
-        this.get("validateSlug").perform(
-          this.namespace ? `${this.namespace}-${slug}` : slug,
-          changeset
-        );
+
+        this.get("validateSlug").perform(this.prefix + slug, changeset);
       }
     },
 
     updateSlug(value, changeset) {
       changeset.set("slug", value);
 
-      this.get("validateSlug").perform(
-        this.namespace ? `${this.namespace}-${value}` : value,
-        changeset
-      );
+      this.get("validateSlug").perform(this.prefix + value, changeset);
     }
   }
 });
