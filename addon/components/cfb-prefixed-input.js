@@ -15,7 +15,11 @@ export default Component.extend({
       this.get("update")(value);
     },
     blur() {
-      this.get("setDirty")();
+      const setDirty = this.get("setDirty");
+
+      if (setDirty) {
+        setDirty();
+      }
     }
   }
 });
