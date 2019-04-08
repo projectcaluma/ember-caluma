@@ -90,19 +90,6 @@ export default Component.extend(ComponentQueryManager, {
     }
   },
 
-  widgetTypes: computed(function() {
-    return {
-      ChoiceQuestion: [
-        { value: "radio", label: "Radio buttons" },
-        { value: "powerselect", label: "Dropdown" }
-      ],
-      MultipleChoiceQuestion: [
-        { value: "checkbox", label: "Checkboxes" },
-        { value: "powerselect", label: "Dropdown" }
-      ]
-    };
-  }),
-
   data: task(function*() {
     if (!this.get("slug")) {
       return A([
@@ -136,13 +123,13 @@ export default Component.extend(ComponentQueryManager, {
       "allQuestions.edges"
     );
 
-    function setWidgetType(question) {
-      question.node.widgetType = question.node.meta.widgetType;
-      question.node.widgetOverride = question.node.meta.widgetOverride || null;
-      return question;
-    }
-
-    return A(questions.map(setWidgetType));
+    return A(
+      questions.map(question => {
+        question.node.widgetOverride =
+          question.node.meta.widgetOverride || null;
+        return question;
+      })
+    );
   }).restartable(),
 
   availableForms: task(function*() {
@@ -279,7 +266,6 @@ export default Component.extend(ComponentQueryManager, {
                 isRequired: changeset.get("isRequired"),
                 isHidden: changeset.get("isHidden"),
                 meta: JSON.stringify({
-                  widgetType: changeset.get("widgetType"),
                   widgetOverride: changeset.get("widgetOverride")
                 }),
                 isArchived: changeset.get("isArchived"),
