@@ -109,8 +109,32 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     await render(hbs`{{cfb-form-editor/question slug=null}}`);
 
     await fillIn("input[name=label]", "Test Label 123");
-
     assert.dom("input[name=slug]").hasValue("test-label-123");
+  });
+
+  test("it suggests prepends the slug with a namespace", async function(assert) {
+    assert.expect(3);
+
+    this.server.create("form", { slug: "test-form" });
+
+    this.set("afterSubmit", question => {
+      assert.equal(question.slug, "foo-bar-slug");
+      assert.step("after-submit");
+    });
+
+    this.owner.lookup("service:caluma-options").setNamespace("Foo Bar");
+
+    await render(
+      hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
+    );
+
+    await fillIn("[name=__typename]", "TextQuestion");
+    await fillIn("[name=label]", "Label");
+    await fillIn("[name=slug]", "slug");
+
+    await click("button[type=submit]");
+
+    assert.verifySteps(["after-submit"]);
   });
 
   test("it can create a text question", async function(assert) {

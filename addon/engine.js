@@ -11,7 +11,7 @@ const Eng = Engine.extend({
   Resolver,
 
   dependencies: {
-    services: ["apollo", "notification", "router", "intl"]
+    services: ["apollo", "notification", "router", "intl", "caluma-options"]
   }
 });
 

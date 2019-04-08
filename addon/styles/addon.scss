@@ -1,1 +1,11 @@
 @import "cf-field";
+
+.slugnamespace {
+  display: flex;
+
+  &-slug {
+    line-height: 40px;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+}

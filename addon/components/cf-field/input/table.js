@@ -1,6 +1,6 @@
 import Component from "@ember/component";
 import layout from "../../../templates/components/cf-field/input/table";
-import { task } from "ember-concurrency";
+import { task, all } from "ember-concurrency";
 import saveDocumentMutation from "ember-caluma/gql/mutations/save-document";
 import saveDocumentTableAnswerMutation from "ember-caluma/gql/mutations/save-document-table-answer";
 import { inject as service } from "@ember/service";
@@ -60,6 +60,10 @@ export default Component.extend(ComponentQueryManager, {
     async save() {
       try {
         const newDocument = this.get("documentToEdit");
+        await all(newDocument.fields.map(f => f.validate.perform()));
+        if (newDocument.fields.map(f => f.errors).flat().length) {
+          return;
+        }
 
         const rows = this.getWithDefault("field.answer.rowDocuments", []);
 
