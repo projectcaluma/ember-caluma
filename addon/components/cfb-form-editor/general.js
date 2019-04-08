@@ -53,11 +53,9 @@ export default Component.extend(ComponentQueryManager, {
     );
   }).restartable(),
 
-  namespace: computed("calumaOptions._namespace", function() {
-    return slugify(this.calumaOptions.getNamespace() || "") || null;
-  }),
-  prefix: computed("namespace", function() {
-    return this.namespace ? `${this.namespace}-` : "";
+  prefix: computed("calumaOptions._namespace", function() {
+    const namespace = this.calumaOptions.getNamespace();
+    return namespace ? `${namespace}-` : "";
   }),
 
   submit: task(function*(changeset) {

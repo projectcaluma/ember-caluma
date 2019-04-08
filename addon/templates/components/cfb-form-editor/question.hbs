@@ -43,7 +43,7 @@
 
       <div uk-grid class="uk-grid-small uk-margin">
         <div class="uk-width-expand">
-          {{#if (or slug (not namespace))}}
+          {{#if (or slug (not prefix))}}
             {{f.input
               type="text"
               label=(t "caluma.form-builder.question.slug")

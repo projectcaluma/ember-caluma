@@ -16,7 +16,7 @@
         on-update=(action "updateName")
       }}
 
-      {{#if (or slug (not namespace))}}
+      {{#if (or slug (not prefix))}}
         {{f.input
           type="text"
           label=(t "caluma.form-builder.form.slug")
