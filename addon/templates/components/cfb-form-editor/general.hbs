@@ -26,15 +26,28 @@
           on-update=(action "updateSlug")
         }}
       {{else}}
-        {{f.input
-          name="slug"
-          label=(t "caluma.form-builder.form.slug")
-          renderComponent=(component "cfb-prefixed-input")
-          prefix=prefix
+        {{#f.input 
+          name="slug" 
           required=true
-          disabled=false
-          on-update=(action "updateSlug")
-        }}
+          disabled=slug
+          label=(t "caluma.form-builder.question.slug")
+          on-update=(action "updateSlug" value="target.value")
+        as |fi|}}
+          <div class="cfb-prefixed">
+            <span class="cfb-prefixed-slug">{{prefix}}</span>
+
+            {{validated-input/types/-themes/uikit/input
+              type="text"
+              model=fi.model
+              value=fi.value
+              update=fi.update
+              setDirty=fi.setDirty
+              inputId=fi.inputId
+              isValid=fi.isValid
+              isInvalid=fi.isInvalid
+            }}
+          </div>
+        {{/f.input}}
       {{/if}}
 
       {{f.input
