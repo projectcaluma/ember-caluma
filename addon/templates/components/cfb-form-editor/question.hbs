@@ -3,11 +3,9 @@
     {{uk-spinner ratio=2}}
   </div>
 {{else}}
-  {{#with model as |model|}}
-    {{#validated-form
-      model=(changeset model validations)
-      on-submit=(perform submit)
-    as |f|}}
+  {{#if model}}
+
+    {{#validated-form model=changeset on-submit=(perform submit) as |f|}}
       {{#if (and f.model.isDirty slug)}}
         <div class="uk-alert-warning uk-animation-fade" uk-alert>
           <a class="uk-alert-close" uk-close></a>
@@ -158,6 +156,18 @@
       {{/if}}
 
       {{f.input
+        name="widgetOverride"
+        label=(t "caluma.form-builder.question.widgetOverride")
+        class="uk-flex uk-flex-between uk-flex-column"
+
+        type="select"
+        allowClear=true
+        optionTargetPath="component"
+        optionLabelPath="label"
+        options=availableOverrides
+      }}
+
+      {{f.input
         name="isArchived"
         label=(t "caluma.form-builder.question.isArchived")
         required=true
@@ -189,12 +199,12 @@
         }}
       </div>
     {{/validated-form}}
-  {{^}}
+  {{else}}
     <div
       class="uk-text-center uk-text-muted uk-padding uk-padding-remove-horizontal"
     >
       {{uk-icon "bolt" ratio=5}}
       <p>{{t "caluma.form-builder.question.not-found" slug=slug}}</p>
     </div>
-  {{/with}}
+  {{/if}}
 {{/if}}

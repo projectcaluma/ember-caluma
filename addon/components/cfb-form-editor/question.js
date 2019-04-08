@@ -9,6 +9,8 @@ import { computed, getWithDefault } from "@ember/object";
 import slugify from "ember-caluma/utils/slugify";
 import { A } from "@ember/array";
 import validations from "ember-caluma/validations/question";
+import Changeset from "ember-changeset";
+import lookupValidator from "ember-changeset-validations";
 import { all } from "rsvp";
 import { getOwner } from "@ember/application";
 
@@ -136,6 +138,7 @@ export default Component.extend(ComponentQueryManager, {
 
     function setWidgetType(question) {
       question.node.widgetType = question.node.meta.widgetType;
+      question.node.widgetOverride = question.node.meta.widgetOverride || null;
       return question;
     }
 
@@ -158,6 +161,20 @@ export default Component.extend(ComponentQueryManager, {
       .filter(slug => slug !== this.get("form"));
   }).restartable(),
 
+  availableOverrides: computed("changeset.__typename", function() {
+    const type = this.changeset.get("__typename");
+    const overrides = this.calumaOptions
+      .getComponentOverrides()
+      .filter(override => {
+        return !override.types || override.types.includes(type);
+      });
+
+    return [
+      { label: this.intl.t("caluma.form.power-select.null"), component: "" },
+      ...overrides
+    ];
+  }),
+
   model: computed("data.lastSuccessful.value.firstObject.node", function() {
     const model = this.get("data.lastSuccessful.value.firstObject.node");
     // flatten rowForm.slug until nested property support landed in ember-validated-form
@@ -168,6 +185,10 @@ export default Component.extend(ComponentQueryManager, {
       model.subForm = model.subForm.slug;
     }
     return model;
+  }),
+
+  changeset: computed("model", function() {
+    return new Changeset(this.model, lookupValidator(validations));
   }),
 
   namespace: computed("calumaOptions._namespace", function() {
@@ -258,7 +279,8 @@ export default Component.extend(ComponentQueryManager, {
                 isRequired: changeset.get("isRequired"),
                 isHidden: changeset.get("isHidden"),
                 meta: JSON.stringify({
-                  widgetType: changeset.get("widgetType")
+                  widgetType: changeset.get("widgetType"),
+                  widgetOverride: changeset.get("widgetOverride")
                 }),
                 isArchived: changeset.get("isArchived"),
                 clientMutationId: v4()
@@ -293,6 +315,12 @@ export default Component.extend(ComponentQueryManager, {
 
       optional([this.get("on-after-submit")])(question);
     } catch (e) {
+      const slug = changeset.get("slug");
+      const prefix = `${this.namespace}-`;
+      if (slug.startsWith(prefix)) {
+        changeset.set("slug", slug.replace(prefix, ""));
+      }
+
       // eslint-disable-next-line no-console
       console.error(e);
       this.get("notification").danger(

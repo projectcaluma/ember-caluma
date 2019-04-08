@@ -14,7 +14,8 @@ module("Integration | Component | cf-form", function(hooks) {
     const questions = [
       this.server.create("question", {
         formIds: [form.id],
-        type: "TEXT"
+        type: "TEXT",
+        meta: { widgetOverride: "dummy-one" }
       }),
       this.server.create("question", {
         formIds: [form.id],
@@ -219,11 +220,11 @@ module("Integration | Component | cf-form", function(hooks) {
   });
 
   test("it allows for component overrides", async function(assert) {
-    await render(hbs`{{cf-form 
-      documentId=document.id 
-      overrides=(hash question-1=(component "override"))
-    }}`);
+    const options = this.owner.lookup("service:calumaOptions");
+    options.registerComponentOverride({ component: "dummy-one" });
 
-    assert.dom(`[data-test-component-override]`).exists();
+    await render(hbs`{{cf-form documentId=document.id}}`);
+
+    assert.dom(`[data-test-dummy-one]`).exists();
   });
 });
