@@ -1,5 +1,4 @@
 #import 'ember-caluma/gql/fragments/field-answer'
-#import 'ember-caluma/gql/fragments/field-question'
 
 fragment FormDocument on Document {
   id
@@ -7,50 +6,6 @@ fragment FormDocument on Document {
     edges {
       node {
         ...FieldAnswer
-        ... on FormAnswer {
-          formValue: value {
-            id
-            form {
-              slug
-              questions {
-                edges {
-                  node {
-                    ...FieldQuestion
-                  }
-                }
-              }
-            }
-            answers {
-              edges {
-                node {
-                  ...FieldAnswer
-                }
-              }
-            }
-          }
-        }
-        ... on TableAnswer {
-          value {
-            id
-            form {
-              slug
-              questions {
-                edges {
-                  node {
-                    ...FieldQuestion
-                  }
-                }
-              }
-            }
-            answers {
-              edges {
-                node {
-                  ...FieldAnswer
-                }
-              }
-            }
-          }
-        }
       }
     }
   }
@@ -60,18 +15,6 @@ fragment FormDocument on Document {
       edges {
         node {
           ...FieldQuestion
-          ... on TableQuestion {
-            rowForm {
-              slug
-              questions {
-                edges {
-                  node {
-                    ...FieldQuestion
-                  }
-                }
-              }
-            }
-          }
         }
       }
     }
