@@ -25,10 +25,7 @@ export default Component.extend({
   type: computed("field.question.__typename", function() {
     const typename = get(this, "field.question.__typename");
 
-    const widgetType = get(this, "field.question.meta.widgetType");
-
     return (
-      widgetType ||
       (typename && mapping[typename]) ||
       typename.replace(/Question$/, "").toLowerCase()
     );

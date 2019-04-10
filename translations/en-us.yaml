@@ -66,8 +66,7 @@ caluma:
       type: "Type"
       isRequired: "Required"
       isHidden: "Hidden (JEXL)"
-      widgetType: "Widget type"
-      widgetOverride: "Custom widget"
+      widgetOverride: "Widget type"
       isArchived: "Archived"
       type-disabled: "Once created, the type can't be changed to prevent corrupt data."
 
