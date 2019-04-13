@@ -235,9 +235,8 @@ export default Component.extend(ComponentQueryManager, {
 
   submit: task(function*(changeset) {
     try {
-      if (!this.get("slug") && this.prefix) {
-        changeset.set("slug", this.prefix + changeset.get("slug"));
-      }
+      const slug =
+        ((!this.get("slug") && this.prefix) || "") + changeset.get("slug");
 
       yield this.saveOptions.perform(changeset);
 
@@ -248,7 +247,7 @@ export default Component.extend(ComponentQueryManager, {
             input: Object.assign(
               {
                 label: changeset.get("label"),
-                slug: changeset.get("slug"),
+                slug,
                 isRequired: changeset.get("isRequired"),
                 isHidden: changeset.get("isHidden"),
                 meta: JSON.stringify({
@@ -288,11 +287,6 @@ export default Component.extend(ComponentQueryManager, {
 
       optional([this.get("on-after-submit")])(question);
     } catch (e) {
-      const slug = changeset.get("slug");
-      if (slug.startsWith(this.prefix)) {
-        changeset.set("slug", slug.replace(this.prefix, ""));
-      }
-
       // eslint-disable-next-line no-console
       console.error(e);
       this.get("notification").danger(

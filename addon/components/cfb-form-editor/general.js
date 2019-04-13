@@ -60,9 +60,8 @@ export default Component.extend(ComponentQueryManager, {
 
   submit: task(function*(changeset) {
     try {
-      if (!this.get("slug") && this.prefix) {
-        changeset.set("slug", this.prefix + changeset.get("slug"));
-      }
+      const slug =
+        ((!this.get("slug") && this.prefix) || "") + changeset.get("slug");
 
       const form = yield this.get("apollo").mutate(
         {
@@ -70,7 +69,7 @@ export default Component.extend(ComponentQueryManager, {
           variables: {
             input: {
               name: changeset.get("name"),
-              slug: changeset.get("slug"),
+              slug,
               description: changeset.get("description"),
               isArchived: changeset.get("isArchived"),
               isPublished: changeset.get("isPublished"),
@@ -91,11 +90,6 @@ export default Component.extend(ComponentQueryManager, {
 
       optional([this.get("on-after-submit")])(form);
     } catch (e) {
-      const slug = changeset.get("slug");
-      if (slug.startsWith(this.prefix)) {
-        changeset.set("slug", slug.replace(this.prefix, ""));
-      }
-
       this.get("notification").danger(
         this.get("intl").t(
           `caluma.form-builder.notification.form.${
