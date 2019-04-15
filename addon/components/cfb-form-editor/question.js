@@ -55,39 +55,11 @@ export default Component.extend(ComponentQueryManager, {
     }));
   }),
 
-  /**
-   * Adds an uneditable prefix to the input field.
-   * This uses manual DOM manipulation to avoid adding a single-use component.
-   */
-  addSlug() {
-    const input = this.element.querySelector('[name="slug"]');
-
-    if (
-      this.namespace &&
-      input &&
-      !input.classList.contains("slugnamespace-input")
-    ) {
-      const span = document.createElement("span");
-      const parent = input.parentElement;
-
-      Object.assign(span, {
-        className: "slugnamespace-slug",
-        innerHTML: `${this.namespace}-`
-      });
-      parent.classList.add("slugnamespace");
-      parent.insertBefore(span, input);
-    }
-  },
-
   async didReceiveAttrs() {
     this._super(...arguments);
 
     await this.get("data").perform();
     await this.get("availableForms").perform();
-
-    if (!this.get("slug")) {
-      this.addSlug();
-    }
   },
 
   data: task(function*() {
@@ -178,8 +150,9 @@ export default Component.extend(ComponentQueryManager, {
     return new Changeset(this.model, lookupValidator(validations));
   }),
 
-  namespace: computed("calumaOptions._namespace", function() {
-    return slugify(this.calumaOptions.getNamespace() || "") || null;
+  prefix: computed("calumaOptions._namespace", function() {
+    const namespace = this.calumaOptions.getNamespace();
+    return namespace ? `${namespace}-` : "";
   }),
 
   _getIntegerQuestionInput(changeset) {
@@ -249,9 +222,8 @@ export default Component.extend(ComponentQueryManager, {
 
   submit: task(function*(changeset) {
     try {
-      if (!this.get("slug") && this.namespace) {
-        changeset.set("slug", `${this.namespace}-${changeset.get("slug")}`);
-      }
+      const slug =
+        ((!this.get("slug") && this.prefix) || "") + changeset.get("slug");
 
       yield this.saveOptions.perform(changeset);
 
@@ -262,7 +234,7 @@ export default Component.extend(ComponentQueryManager, {
             input: Object.assign(
               {
                 label: changeset.get("label"),
-                slug: changeset.get("slug"),
+                slug,
                 isRequired: changeset.get("isRequired"),
                 isHidden: changeset.get("isHidden"),
                 meta: JSON.stringify({
@@ -301,12 +273,6 @@ export default Component.extend(ComponentQueryManager, {
 
       optional([this.get("on-after-submit")])(question);
     } catch (e) {
-      const slug = changeset.get("slug");
-      const prefix = `${this.namespace}-`;
-      if (slug.startsWith(prefix)) {
-        changeset.set("slug", slug.replace(prefix, ""));
-      }
-
       // eslint-disable-next-line no-console
       console.error(e);
       this.get("notification").danger(
@@ -349,14 +315,15 @@ export default Component.extend(ComponentQueryManager, {
       if (!this.get("slug")) {
         const slug = slugify(value);
         changeset.set("slug", slug);
-        this.get("validateSlug").perform(slug, changeset);
+
+        this.get("validateSlug").perform(this.prefix + slug, changeset);
       }
     },
 
     updateSlug(value, changeset) {
       changeset.set("slug", value);
 
-      this.get("validateSlug").perform(value, changeset);
+      this.get("validateSlug").perform(this.prefix + value, changeset);
     }
   }
 });

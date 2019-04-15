@@ -16,14 +16,40 @@
         on-update=(action "updateName")
       }}
 
-      {{f.input
-        type="text"
-        label=(t "caluma.form-builder.form.slug")
-        name="slug"
-        required=true
-        disabled=slug
-        on-update=(action "updateSlug")
-      }}
+      {{#if (or slug (not prefix))}}
+        {{f.input
+          type="text"
+          label=(t "caluma.form-builder.form.slug")
+          name="slug"
+          required=true
+          disabled=slug
+          on-update=(action "updateSlug")
+        }}
+      {{else}}
+        {{#f.input 
+          name="slug" 
+          required=true
+          disabled=slug
+          label=(t "caluma.form-builder.question.slug")
+          on-update=(action "updateSlug" value="target.value")
+        as |fi|}}
+          <div class="cfb-prefixed">
+            <span class="cfb-prefixed-slug">{{prefix}}</span>
+
+            {{validated-input/types/-themes/uikit/input
+              type="text"
+              model=fi.model
+              name=fi.name
+              value=fi.value
+              update=fi.update
+              setDirty=fi.setDirty
+              inputId=fi.inputId
+              isValid=fi.isValid
+              isInvalid=fi.isInvalid
+            }}
+          </div>
+        {{/f.input}}
+      {{/if}}
 
       {{f.input
         type="textarea"

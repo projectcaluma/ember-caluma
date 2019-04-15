@@ -1,5 +1,6 @@
 import Component from "@ember/component";
 import { inject as service } from "@ember/service";
+import { computed } from "@ember/object";
 import layout from "../../templates/components/cfb-form-editor/general";
 import { task, timeout } from "ember-concurrency";
 import { ComponentQueryManager } from "ember-apollo-client";
@@ -20,6 +21,7 @@ export default Component.extend(ComponentQueryManager, {
 
   notification: service(),
   intl: service(),
+  calumaOptions: service(),
 
   didReceiveAttrs() {
     this._super(...arguments);
@@ -51,15 +53,23 @@ export default Component.extend(ComponentQueryManager, {
     );
   }).restartable(),
 
+  prefix: computed("calumaOptions._namespace", function() {
+    const namespace = this.calumaOptions.getNamespace();
+    return namespace ? `${namespace}-` : "";
+  }),
+
   submit: task(function*(changeset) {
     try {
+      const slug =
+        ((!this.get("slug") && this.prefix) || "") + changeset.get("slug");
+
       const form = yield this.get("apollo").mutate(
         {
           mutation: saveFormMutation,
           variables: {
             input: {
               name: changeset.get("name"),
-              slug: changeset.get("slug"),
+              slug,
               description: changeset.get("description"),
               isArchived: changeset.get("isArchived"),
               isPublished: changeset.get("isPublished"),
@@ -122,14 +132,15 @@ export default Component.extend(ComponentQueryManager, {
       if (!this.get("slug")) {
         const slug = slugify(value);
         changeset.set("slug", slug);
-        this.get("validateSlug").perform(slug, changeset);
+
+        this.get("validateSlug").perform(this.prefix + slug, changeset);
       }
     },
 
     updateSlug(value, changeset) {
       changeset.set("slug", value);
 
-      this.get("validateSlug").perform(value, changeset);
+      this.get("validateSlug").perform(this.prefix + value, changeset);
     }
   }
 });

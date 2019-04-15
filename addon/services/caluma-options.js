@@ -53,7 +53,7 @@ export default Service.extend({
    * @return {String} The current namespace.
    */
   getNamespace() {
-    return this._namespace;
+    return this._namespace || null;
   },
 
   /**
