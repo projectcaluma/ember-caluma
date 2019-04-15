@@ -5139,9 +5139,10 @@ ember-cli-addon-docs-yuidoc@0.2.1:
     lodash "^4.17.5"
     yuidocjs "^0.10.2"
 
-ember-cli-addon-docs@ember-learn/ember-cli-addon-docs#b7224c3d3e32691aa210af97ea38cc417ce9d053:
-  version "0.6.8"
-  resolved "https://codeload.github.com/ember-learn/ember-cli-addon-docs/tar.gz/b7224c3d3e32691aa210af97ea38cc417ce9d053"
+ember-cli-addon-docs@0.6.10:
+  version "0.6.10"
+  resolved "https://registry.yarnpkg.com/ember-cli-addon-docs/-/ember-cli-addon-docs-0.6.10.tgz#8a69607e96586826e46e69f6f9878def9af5a07e"
+  integrity sha512-IJSBx/yXHQQ6tmQjKnM7DLbThOoGOTBgzQogGD8kmHh+dZXdkI350uSGqYo1/sD2OJg89vdEY9eW30kOYZUflQ==
   dependencies:
     "@glimmer/syntax" "^0.36.4"
     broccoli-bridge "^1.0.0"
@@ -5194,6 +5195,7 @@ ember-cli-addon-docs@ember-learn/ember-cli-addon-docs#b7224c3d3e32691aa210af97ea
     lodash "^4.17.11"
     lunr "^2.3.3"
     marked "^0.5.0"
+    pad-start "^1.0.2"
     parse-git-config "^2.0.3"
     quick-temp "^0.1.8"
     resolve "^1.8.1"
@@ -11131,6 +11133,11 @@ package-json@^4.0.0, package-json@^4.0.1:
     registry-auth-token "^3.0.1"
     registry-url "^3.0.3"
     semver "^5.1.0"
+
+pad-start@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/pad-start/-/pad-start-1.0.2.tgz#23e5bab3e96446b62816cff6f150975f040d1b14"
+  integrity sha1-I+W6s+lkRrYoFs/28VCXXwQNGxQ=
 
 pako@~1.0.5:
   version "1.0.10"

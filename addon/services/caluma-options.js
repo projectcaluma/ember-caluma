@@ -59,6 +59,7 @@ export default Service.extend({
   /**
    * Registers a new component override.
    *
+   * @method registerComponentOverride
    * @param {Object} override The additional override.
    * @param {String} override.label The text displayed in the form-builder dropdown.
    * @param {String} override.component The path/name of the overriding component.
@@ -72,6 +73,7 @@ export default Service.extend({
   /**
    * Unregisters a component override.
    *
+   * @method unregisterComponentOverride
    * @param {Object|String} override Either an override object (see register method) or a component path/name.
    * @return {Void}
    */
@@ -82,7 +84,8 @@ export default Service.extend({
   /**
    * Returns the registered overrides as an array.
    *
-   * @return {Array} The list of overrides matching the predicate.
+   * @method getComponentOverrides
+   * @return {Array} List of registered overrides
    */
   getComponentOverrides() {
     return Object.values(this._overrides);
