@@ -13,10 +13,13 @@ export default Component.extend(ComponentQueryManager, {
   documentId: null,
   activeDocumentId: null,
 
-  didReceiveAttrs() {
+  _currentDocumentId: null,
+
+  async didReceiveAttrs() {
     this._super(...arguments);
-    if (this.documentId) {
-      this.data.perform();
+    if (this.documentId && this.documentId !== this._currentDocumentId) {
+      await this.data.perform();
+      this._currentDocumentId = this.documentId;
     }
   },
 
