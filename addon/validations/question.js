@@ -12,7 +12,7 @@ import validateGtLt from "../validators/gt-lt";
 import validateOptions from "../validators/options";
 
 export default {
-  label: and(validatePresence(true), validateLength({ max: 255 })),
+  label: and(validatePresence(true), validateLength({ max: 1024 })),
   slug: validateSlug(),
 
   integerMinValue: or(
