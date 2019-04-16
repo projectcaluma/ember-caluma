@@ -397,13 +397,36 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
 
     assert.dom("input[name=slug] + span").doesNotExist();
 
-    await fillIn("input[name=label]", "Other Test Slug");
-    await blur("input[name=label]");
+    await fillIn("input[name=slug]", "other-test-slug");
     await blur("input[name=slug]");
     await settled();
 
     assert
       .dom("input[name=slug] + span")
       .hasText("A question with this slug already exists");
+  });
+
+  test("it auto-suggests the slug if it has not been manually changed", async function(assert) {
+    assert.expect(3);
+
+    await render(hbs`{{cfb-form-editor/question slug=null}}`);
+
+    await fillIn("input[name=label]", "Foo Bar");
+    await blur("input[name=label]");
+    await settled();
+
+    assert.dom("input[name=slug]").hasValue("foo-bar");
+
+    await fillIn("input[name=slug]", "x-y");
+    await blur("input[name=slug]");
+    await settled();
+
+    assert.dom("input[name=slug]").hasValue("x-y");
+
+    await fillIn("input[name=label]", "Something Else");
+    await blur("input[name=label]");
+    await settled();
+
+    assert.dom("input[name=slug]").hasValue("x-y");
   });
 });

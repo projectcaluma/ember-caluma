@@ -34,7 +34,7 @@
             inputName=(concat "option-" (add i 1) "-slug")
             required=true
             disabled=(not row.isNew)
-            on-update=(action (queue (action (mut f.model.slug)) (action "update")))
+            on-update=(action (queue (action "updateSlug") (action "update")))
           }}
         </div>
       </div>
