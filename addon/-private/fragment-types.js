@@ -15,7 +15,10 @@ export default {
             name: "Document"
           },
           {
-            name: "FormAnswer"
+            name: "FileAnswer"
+          },
+          {
+            name: "File"
           },
           {
             name: "Case"
@@ -57,6 +60,9 @@ export default {
             name: "FormQuestion"
           },
           {
+            name: "FileQuestion"
+          },
+          {
             name: "StringAnswer"
           },
           {
@@ -73,6 +79,9 @@ export default {
           },
           {
             name: "TableAnswer"
+          },
+          {
+            name: "FormAnswer"
           },
           {
             name: "SimpleTask"
@@ -130,6 +139,9 @@ export default {
           },
           {
             name: "FormQuestion"
+          },
+          {
+            name: "FileQuestion"
           }
         ]
       },
@@ -138,7 +150,7 @@ export default {
         name: "Answer",
         possibleTypes: [
           {
-            name: "FormAnswer"
+            name: "FileAnswer"
           },
           {
             name: "StringAnswer"
@@ -157,6 +169,9 @@ export default {
           },
           {
             name: "TableAnswer"
+          },
+          {
+            name: "FormAnswer"
           }
         ]
       }

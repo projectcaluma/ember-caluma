@@ -8,16 +8,20 @@ query FormEditorQuestion($slug: String!) {
         ... on IntegerQuestion {
           integerMaxValue: maxValue
           integerMinValue: minValue
+          placeholder
         }
         ... on FloatQuestion {
           floatMaxValue: maxValue
           floatMinValue: minValue
+          placeholder
         }
         ... on TextQuestion {
           maxLength
+          placeholder
         }
         ... on TextareaQuestion {
           maxLength
+          placeholder
         }
         ... on MultipleChoiceQuestion {
           options {

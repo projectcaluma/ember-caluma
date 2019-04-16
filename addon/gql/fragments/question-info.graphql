@@ -5,4 +5,5 @@ fragment QuestionInfo on Question {
   isHidden
   meta
   isArchived
+  infoText
 }

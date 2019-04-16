@@ -34,7 +34,6 @@
       }}
 
       {{f.input
-        type="text"
         label=(t "caluma.form-builder.question.label")
         name="label"
         required=true
@@ -45,7 +44,6 @@
         <div class="uk-width-expand">
           {{#if (or slug (not prefix))}}
             {{f.input
-              type="text"
               label=(t "caluma.form-builder.question.slug")
               name="slug"
               required=true
@@ -53,8 +51,8 @@
               on-update=(action "updateSlug")
             }}
           {{else}}
-            {{#f.input 
-              name="slug" 
+            {{#f.input
+              name="slug"
               required=true
               disabled=slug
               label=(t "caluma.form-builder.question.slug")
@@ -64,7 +62,6 @@
                 <span class="cfb-prefixed-slug">{{prefix}}</span>
 
                 {{validated-input/types/-themes/uikit/input
-                  type="text"
                   model=fi.model
                   name=fi.name
                   value=fi.value
@@ -89,6 +86,24 @@
           }}
         </div>
       </div>
+
+      {{f.input
+        type="textarea"
+        label=(t "caluma.form-builder.question.infoText")
+        name="infoText"
+        class="uk-margin-remove-bottom"
+      }}
+      <small class="uk-text-muted">
+        {{t "caluma.form-builder.question.supportsMarkdownPrefix"}}
+        <a target="_blank" rel="noopener noreferrer" href="https://www.markdownguide.org/basic-syntax">{{t "caluma.form-builder.question.markdown"}}</a>
+      </small>
+
+      {{#if (contains f.model.__typename (array "TextQuestion" "TextareaQuestion" "IntegerQuestion" "FloatQuestion"))}}
+        {{f.input
+          name="placeholder"
+          label=(t "caluma.form-builder.question.placeholder")
+        }}
+      {{/if}}
 
       {{#if (contains f.model.__typename (array "TextQuestion" "TextareaQuestion"))}}
         {{f.input

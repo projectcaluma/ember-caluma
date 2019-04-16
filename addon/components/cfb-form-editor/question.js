@@ -158,26 +158,30 @@ export default Component.extend(ComponentQueryManager, {
   _getIntegerQuestionInput(changeset) {
     return {
       minValue: parseInt(changeset.get("integerMinValue")),
-      maxValue: parseInt(changeset.get("integerMaxValue"))
+      maxValue: parseInt(changeset.get("integerMaxValue")),
+      placeholder: changeset.get("placeholder")
     };
   },
 
   _getFloatQuestionInput(changeset) {
     return {
       minValue: parseFloat(changeset.get("floatMinValue")),
-      maxValue: parseFloat(changeset.get("floatMaxValue"))
+      maxValue: parseFloat(changeset.get("floatMaxValue")),
+      placeholder: changeset.get("placeholder")
     };
   },
 
   _getTextQuestionInput(changeset) {
     return {
-      maxLength: parseInt(changeset.get("maxLength"))
+      maxLength: parseInt(changeset.get("maxLength")),
+      placeholder: changeset.get("placeholder")
     };
   },
 
   _getTextareaQuestionInput(changeset) {
     return {
-      maxLength: parseInt(changeset.get("maxLength"))
+      maxLength: parseInt(changeset.get("maxLength")),
+      placeholder: changeset.get("placeholder")
     };
   },
 
@@ -237,6 +241,7 @@ export default Component.extend(ComponentQueryManager, {
                 slug,
                 isRequired: changeset.get("isRequired"),
                 isHidden: changeset.get("isHidden"),
+                infoText: changeset.get("infoText"),
                 meta: JSON.stringify({
                   widgetOverride: changeset.get("widgetOverride")
                 }),
