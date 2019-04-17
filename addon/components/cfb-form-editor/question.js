@@ -28,6 +28,7 @@ import saveMultipleChoiceQuestionMutation from "ember-caluma/gql/mutations/save-
 import saveChoiceQuestionMutation from "ember-caluma/gql/mutations/save-choice-question";
 import saveTableQuestionMutation from "ember-caluma/gql/mutations/save-table-question";
 import saveFormQuestionMutation from "ember-caluma/gql/mutations/save-form-question";
+import saveFileQuestionMutation from "ember-caluma/gql/mutations/save-file-question";
 
 export const TYPES = {
   TextQuestion: saveTextQuestionMutation,
@@ -37,7 +38,8 @@ export const TYPES = {
   MultipleChoiceQuestion: saveMultipleChoiceQuestionMutation,
   ChoiceQuestion: saveChoiceQuestionMutation,
   TableQuestion: saveTableQuestionMutation,
-  FormQuestion: saveFormQuestionMutation
+  FormQuestion: saveFormQuestionMutation,
+  FileQuestion: saveFileQuestionMutation
 };
 
 export default Component.extend(ComponentQueryManager, {
@@ -223,6 +225,10 @@ export default Component.extend(ComponentQueryManager, {
     return {
       subForm: changeset.get("subForm")
     };
+  },
+
+  _getFileQuestionInput(/* changeset */) {
+    return {};
   },
 
   saveOptions: task(function*(changeset) {

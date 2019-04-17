@@ -16,6 +16,7 @@ import saveDocumentFloatAnswerMutation from "ember-caluma/gql/mutations/save-doc
 import saveDocumentIntegerAnswerMutation from "ember-caluma/gql/mutations/save-document-integer-answer";
 import saveDocumentStringAnswerMutation from "ember-caluma/gql/mutations/save-document-string-answer";
 import saveDocumentListAnswerMutation from "ember-caluma/gql/mutations/save-document-list-answer";
+import saveDocumentFileAnswerMutation from "ember-caluma/gql/mutations/save-document-file-answer";
 
 const TYPE_MAP = {
   TextQuestion: "StringAnswer",
@@ -25,7 +26,8 @@ const TYPE_MAP = {
   MultipleChoiceQuestion: "ListAnswer",
   ChoiceQuestion: "StringAnswer",
   TableQuestion: "TableAnswer",
-  FormQuestion: "FormAnswer"
+  FormQuestion: "FormAnswer",
+  FileQuestion: "FileAnswer"
 };
 
 /**
@@ -38,6 +40,7 @@ export default EmberObject.extend({
   saveDocumentIntegerAnswerMutation,
   saveDocumentStringAnswerMutation,
   saveDocumentListAnswerMutation,
+  saveDocumentFileAnswerMutation,
 
   /**
    * The Apollo GraphQL service for making requests
@@ -214,6 +217,10 @@ export default EmberObject.extend({
       (await this.get("question.optional")) ||
       validate("presence", this.get("answer.value"), { presence: true })
     );
+  },
+
+  _validateFileQuestion() {
+    return Promise.resolve();
   },
 
   /**
