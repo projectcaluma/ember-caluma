@@ -1,0 +1,13 @@
+query getFileAnswerInfo($id: ID!) {
+  node(id: $id) {
+    id
+
+    ... on FileAnswer {
+      fileValue: value {
+        uploadUrl
+        downloadUrl
+        metadata
+      }
+    }
+  }
+}
