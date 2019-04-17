@@ -7,6 +7,8 @@ caluma:
   form:
     optional: "Optional"
     save: "Speichern"
+    selectFile: "Datei auswählen" 
+    changeFile: "Andere Datei auswählen"
 
     notification:
       table:
@@ -105,6 +107,7 @@ caluma:
         TextareaQuestion: "Text (mehrzeilig)"
         TableQuestion: "Tabelle"
         FormQuestion: "Formular"
+        FileQuestion: "Datei"
 
       widgetOverrides:
         powerselect: "Power Select"
