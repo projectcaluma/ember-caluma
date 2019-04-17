@@ -42,7 +42,7 @@ export default RenderComponent.extend({
           )
         : [
             new Changeset(
-              { slug: "", label: "", isNew: true },
+              { slug: "", label: "", isNew: true, linkSlug: true },
               lookupValidator(OptionValidations),
               OptionValidations
             )
@@ -81,7 +81,7 @@ export default RenderComponent.extend({
       this.set("optionRows", [
         ...this.optionRows,
         new Changeset(
-          { slug: "", label: "", isNew: true },
+          { slug: "", label: "", isNew: true, linkSlug: true },
           lookupValidator(OptionValidations),
           OptionValidations
         )
@@ -99,9 +99,14 @@ export default RenderComponent.extend({
     updateLabel(value, changeset) {
       changeset.set("label", value);
 
-      if (changeset.get("isNew")) {
+      if (changeset.get("isNew") && changeset.get("linkSlug")) {
         changeset.set("slug", slugify(value));
       }
+    },
+
+    updateSlug(value, changeset) {
+      changeset.set("slug", value);
+      changeset.set("linkSlug", false);
     },
 
     update() {

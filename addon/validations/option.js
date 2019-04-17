@@ -6,6 +6,6 @@ import {
 import validateSlug from "ember-caluma/validators/slug";
 
 export default {
-  label: and(validatePresence(true), validateLength({ max: 255 })),
+  label: and(validatePresence(true), validateLength({ max: 1024 })),
   slug: validateSlug()
 };

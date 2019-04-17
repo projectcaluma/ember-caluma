@@ -48,6 +48,11 @@ export default Component.extend(ComponentQueryManager, {
   intl: service(),
   calumaOptions: service(),
 
+  /**
+   * Determines if the slug is "linked" to the question label, i.e. follows it's updates
+   */
+  linkSlug: true,
+
   possibleTypes: computed(function() {
     return Object.keys(TYPES).map(value => ({
       value,
@@ -312,8 +317,9 @@ export default Component.extend(ComponentQueryManager, {
     updateLabel(value, changeset) {
       changeset.set("label", value);
 
-      if (!this.get("slug")) {
+      if (!this.get("slug") && this.get("linkSlug")) {
         const slug = slugify(value);
+
         changeset.set("slug", slug);
 
         this.get("validateSlug").perform(this.prefix + slug, changeset);
@@ -322,6 +328,7 @@ export default Component.extend(ComponentQueryManager, {
 
     updateSlug(value, changeset) {
       changeset.set("slug", value);
+      this.set("linkSlug", false);
 
       this.get("validateSlug").perform(this.prefix + value, changeset);
     }
