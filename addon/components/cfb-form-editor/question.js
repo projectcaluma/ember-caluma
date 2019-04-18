@@ -148,6 +148,9 @@ export default Component.extend(ComponentQueryManager, {
     if (model && model.subForm) {
       model.subForm = model.subForm.slug;
     }
+    if (model && model.meta && JSON.parse(model.meta).hideLabel) {
+      model.hideLabel = JSON.parse(model.meta).hideLabel;
+    }
     return model;
   }),
 
@@ -192,13 +195,21 @@ export default Component.extend(ComponentQueryManager, {
 
   _getMultipleChoiceQuestionInput(changeset) {
     return {
-      options: changeset.get("options.edges").map(({ node: { slug } }) => slug)
+      options: changeset.get("options.edges").map(({ node: { slug } }) => slug),
+      meta: JSON.stringify({
+        widgetOverride: changeset.get("widgetOverride"),
+        hideLabel: changeset.get("hideLabel")
+      })
     };
   },
 
   _getChoiceQuestionInput(changeset) {
     return {
-      options: changeset.get("options.edges").map(({ node: { slug } }) => slug)
+      options: changeset.get("options.edges").map(({ node: { slug } }) => slug),
+      meta: JSON.stringify({
+        widgetOverride: changeset.get("widgetOverride"),
+        hideLabel: changeset.get("hideLabel")
+      })
     };
   },
 

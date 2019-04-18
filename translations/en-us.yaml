@@ -113,6 +113,8 @@ caluma:
 
       not-found: "No question with slug '{slug}' found"
 
+      hideLabel: "Hide Label"
+
     notification:
       form:
         save:
