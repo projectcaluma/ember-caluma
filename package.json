@@ -52,7 +52,7 @@
     "graphql-tools": "4.0.4",
     "jexl": "1.1.4",
     "liquid-fire": "0.29.5",
-    "sass": "1.17.3",
+    "sass": "1.18.0",
     "slugify": "1.3.4",
     "uuid": "3.3.2"
   },
