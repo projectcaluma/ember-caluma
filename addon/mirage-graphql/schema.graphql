@@ -1,5 +1,5 @@
 # source: http://localhost:8000/graphql
-# timestamp: Sat Mar 23 2019 09:02:14 GMT+0100 (Central European Standard Time)
+# timestamp: Tue Apr 16 2019 21:09:35 GMT+0200 (Central European Summer Time)
 
 input AddFormQuestionInput {
   form: ID!
@@ -277,6 +277,7 @@ type ChoiceQuestion implements Question & Node {
   isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
+  infoText: String
   meta: GenericScalar!
   source: Question
   forms(
@@ -465,6 +466,7 @@ type DateAnswer implements Answer & Node {
   question: Question!
   value: Date!
   meta: GenericScalar!
+  date: Date
 }
 
 type DateQuestion implements Question & Node {
@@ -477,6 +479,7 @@ type DateQuestion implements Question & Node {
   isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
+  infoText: String
   meta: GenericScalar!
   source: Question
   forms(
@@ -541,7 +544,7 @@ type Document implements Node {
     """
     orderBy: [AnswerOrdering]
   ): AnswerConnection
-  parentAnswers: [FormAnswer]
+  parentAnswers: [FileAnswer]
   case: Case
   workItem: WorkItem
 }
@@ -608,6 +611,79 @@ enum DocumentOrdering {
   CREATED_BY_GROUP_DESC
 }
 
+type File implements Node {
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+  createdByUser: String
+  createdByGroup: String
+
+  """
+  The ID of the object.
+  """
+  id: ID!
+  name: String!
+  answer: FileAnswer
+  uploadUrl: String
+  downloadUrl: String
+  metadata: GenericScalar
+}
+
+type FileAnswer implements Answer & Node {
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+  createdByUser: String
+  createdByGroup: String
+
+  """
+  The ID of the object.
+  """
+  id: ID!
+  question: Question!
+  value: File!
+  meta: GenericScalar!
+  file: File
+}
+
+type FileQuestion implements Question & Node {
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+  createdByUser: String
+  createdByGroup: String
+  slug: String!
+  label: String!
+  isRequired: QuestionJexl!
+  isHidden: QuestionJexl!
+  isArchived: Boolean!
+  infoText: String
+  meta: GenericScalar!
+  source: Question
+  forms(
+    before: String
+    after: String
+    first: Int
+    last: Int
+
+    """
+    FormOrdering
+    """
+    orderBy: [FormOrdering]
+    slug: String
+    name: String
+    description: String
+    isPublished: Boolean
+    isArchived: Boolean
+    createdByUser: String
+    createdByGroup: String
+    metaHasKey: String
+    search: String
+  ): FormConnection
+
+  """
+  The ID of the object.
+  """
+  id: ID!
+}
+
 type FloatAnswer implements Answer & Node {
   createdAt: DateTime!
   modifiedAt: DateTime!
@@ -633,6 +709,8 @@ type FloatQuestion implements Question & Node {
   isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
+  placeholder: String
+  infoText: String
   meta: GenericScalar!
   source: Question
   forms(
@@ -856,6 +934,7 @@ type FormQuestion implements Question & Node {
   isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
+  infoText: String
   meta: GenericScalar!
   source: Question
   forms(
@@ -933,6 +1012,8 @@ type IntegerQuestion implements Question & Node {
   isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
+  placeholder: String
+  infoText: String
   meta: GenericScalar!
   source: Question
   forms(
@@ -994,6 +1075,7 @@ type MultipleChoiceQuestion implements Question & Node {
   isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
+  infoText: String
   meta: GenericScalar!
   source: Question
   forms(
@@ -1082,6 +1164,7 @@ type Mutation {
   ): SaveIntegerQuestionPayload
   saveTableQuestion(input: SaveTableQuestionInput!): SaveTableQuestionPayload
   saveFormQuestion(input: SaveFormQuestionInput!): SaveFormQuestionPayload
+  saveFileQuestion(input: SaveFileQuestionInput!): SaveFileQuestionPayload
   saveDocument(input: SaveDocumentInput!): SaveDocumentPayload
   saveDocumentStringAnswer(
     input: SaveDocumentStringAnswerInput!
@@ -1104,6 +1187,9 @@ type Mutation {
   saveDocumentFormAnswer(
     input: SaveDocumentFormAnswerInput!
   ): SaveDocumentFormAnswerPayload
+  saveDocumentFileAnswer(
+    input: SaveDocumentFileAnswerInput!
+  ): SaveDocumentFileAnswerPayload
 }
 
 """
@@ -1390,6 +1476,7 @@ interface Question {
   createdByGroup: String
   slug: String!
   label: String!
+  infoText: String
   isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
@@ -1548,6 +1635,7 @@ type ReorderFormQuestionsPayload {
 input SaveChoiceQuestionInput {
   slug: String!
   label: String!
+  infoText: String
   isRequired: QuestionJexl
   isHidden: QuestionJexl
   meta: JSONString
@@ -1627,6 +1715,7 @@ type SaveCompleteWorkflowFormTaskPayload {
 input SaveDateQuestionInput {
   slug: String!
   label: String!
+  infoText: String
   isRequired: QuestionJexl
   isHidden: QuestionJexl
   meta: JSONString
@@ -1648,6 +1737,29 @@ input SaveDocumentDateAnswerInput {
 }
 
 type SaveDocumentDateAnswerPayload {
+  answer: Answer
+  clientMutationId: String
+}
+
+input SaveDocumentFileAnswerInput {
+  id: String
+  value: String!
+  valueId: ID
+  createdAt: DateTime
+  modifiedAt: DateTime
+  createdByUser: String
+  createdByGroup: String
+  meta: JSONString
+  date: Date
+  question: ID!
+  document: ID!
+  valueDocument: ID
+  file: ID
+  documents: [ID]
+  clientMutationId: String
+}
+
+type SaveDocumentFileAnswerPayload {
   answer: Answer
   clientMutationId: String
 }
@@ -1749,15 +1861,33 @@ type SaveDocumentTableAnswerPayload {
   clientMutationId: String
 }
 
+input SaveFileQuestionInput {
+  slug: String!
+  label: String!
+  infoText: String
+  isRequired: QuestionJexl
+  isHidden: QuestionJexl
+  meta: JSONString
+  isArchived: Boolean
+  clientMutationId: String
+}
+
+type SaveFileQuestionPayload {
+  question: Question
+  clientMutationId: String
+}
+
 input SaveFloatQuestionInput {
   slug: String!
   label: String!
+  infoText: String
   isRequired: QuestionJexl
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
   minValue: Float
   maxValue: Float
+  placeholder: String
   clientMutationId: String
 }
 
@@ -1784,6 +1914,7 @@ type SaveFormPayload {
 input SaveFormQuestionInput {
   slug: String!
   label: String!
+  infoText: String
   isRequired: QuestionJexl
   isHidden: QuestionJexl
   meta: JSONString
@@ -1800,12 +1931,14 @@ type SaveFormQuestionPayload {
 input SaveIntegerQuestionInput {
   slug: String!
   label: String!
+  infoText: String
   isRequired: QuestionJexl
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
   minValue: Int
   maxValue: Int
+  placeholder: String
   clientMutationId: String
 }
 
@@ -1817,6 +1950,7 @@ type SaveIntegerQuestionPayload {
 input SaveMultipleChoiceQuestionInput {
   slug: String!
   label: String!
+  infoText: String
   isRequired: QuestionJexl
   isHidden: QuestionJexl
   meta: JSONString
@@ -1876,6 +2010,7 @@ type SaveSimpleTaskPayload {
 input SaveTableQuestionInput {
   slug: String!
   label: String!
+  infoText: String
   isRequired: QuestionJexl
   isHidden: QuestionJexl
   meta: JSONString
@@ -1896,11 +2031,13 @@ type SaveTableQuestionPayload {
 input SaveTextareaQuestionInput {
   slug: String!
   label: String!
+  infoText: String
   isRequired: QuestionJexl
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
   maxLength: Int
+  placeholder: String
   clientMutationId: String
 }
 
@@ -1912,11 +2049,13 @@ type SaveTextareaQuestionPayload {
 input SaveTextQuestionInput {
   slug: String!
   label: String!
+  infoText: String
   isRequired: QuestionJexl
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
   maxLength: Int
+  placeholder: String
   clientMutationId: String
 }
 
@@ -2051,6 +2190,7 @@ type TableQuestion implements Question & Node {
   isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
+  infoText: String
   meta: GenericScalar!
   source: Question
   forms(
@@ -2242,6 +2382,8 @@ type TextareaQuestion implements Question & Node {
   isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
+  placeholder: String
+  infoText: String
   meta: GenericScalar!
   source: Question
   forms(
@@ -2282,6 +2424,8 @@ type TextQuestion implements Question & Node {
   isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
+  placeholder: String
+  infoText: String
   meta: GenericScalar!
   source: Question
   forms(

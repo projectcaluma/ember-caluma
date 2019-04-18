@@ -1,17 +1,27 @@
 fragment SimpleQuestion on Question {
+  slug
+  label
+  isRequired
+  isHidden
+  meta
+  infoText
   ... on TextQuestion {
     textMaxLength: maxLength
+    placeholder
   }
   ... on TextareaQuestion {
     textareaMaxLength: maxLength
+    placeholder
   }
   ... on IntegerQuestion {
     integerMinValue: minValue
     integerMaxValue: maxValue
+    placeholder
   }
   ... on FloatQuestion {
     floatMinValue: minValue
     floatMaxValue: maxValue
+    placeholder
   }
   ... on ChoiceQuestion {
     choiceOptions: options {
@@ -36,11 +46,6 @@ fragment SimpleQuestion on Question {
 }
 
 fragment FieldQuestion on Question {
-  slug
-  label
-  isRequired
-  isHidden
-  meta
   ...SimpleQuestion
   ... on TableQuestion {
     rowForm {

@@ -8,6 +8,9 @@
         {{cf-field/input field=field disabled=disabled onSave=(perform save)}}
       {{/if}}
     </div>
+    {{#if field.question.infoText}}
+      {{cf-field/info text=field.question.infoText}}
+    {{/if}}
     <div
       class="cf-field__icon uk-padding-remove-vertical uk-flex uk-flex-middle uk-flex-center"
     >

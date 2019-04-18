@@ -14,7 +14,8 @@ export default Component.extend({
     "type",
     "disabled",
     "field.id:name",
-    "field.answer.stringValue:value"
+    "field.answer.stringValue:value",
+    "field.question.placeholder:placeholder"
   ],
   type: "text",
 
