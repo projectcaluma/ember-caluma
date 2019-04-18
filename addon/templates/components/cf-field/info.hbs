@@ -1,5 +1,7 @@
-<button type="button" class="uk-icon-button" uk-icon="info" {{action (mut showModal) true}}></button>
+<button type="button" class="uk-icon-button" uk-icon="info"></button>
 
-{{#uk-modal visible=showModal}}
-  {{markdown-to-html text}}
-{{/uk-modal}}
+<div uk-drop>
+  <div class="uk-card uk-card-body uk-card-default">
+    {{markdown-to-html text}}
+  </div>
+</div>
