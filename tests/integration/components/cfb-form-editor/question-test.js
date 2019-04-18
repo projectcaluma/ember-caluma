@@ -258,7 +258,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
   });
 
   test("it can create a multiple choice question", async function(assert) {
-    assert.expect(7);
+    assert.expect(8);
 
     this.server.create("form", { slug: "test-form" });
 
@@ -268,6 +268,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
       assert.equal(question.slug, "slug");
       assert.equal(question.options.edges[0].node.slug, "slug-option-1");
       assert.equal(question.options.edges[0].node.label, "Option 1");
+      assert.equal(question.meta, '{"hideLabel":true}');
 
       assert.step("after-submit");
     });
@@ -281,6 +282,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     await fillIn("[name=slug]", "slug");
     await fillIn("[name=option-1-label]", "Option 1");
     await fillIn("[name=option-1-slug]", "option-1");
+    await click("[data-test-hide-label] div div span input");
 
     await click("button[type=submit]");
 
