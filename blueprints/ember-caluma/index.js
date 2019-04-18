@@ -5,7 +5,12 @@ module.exports = {
 
   afterInstall() {
     return this.addAddonsToProject({
-      packages: [{ name: "ember-power-select" }]
+      packages: [
+        { name: "ember-engines" },
+        { name: "ember-power-select" },
+        { name: "ember-promise-helpers" },
+        { name: "ember-math-helpers" }
+      ]
     });
   }
 };
