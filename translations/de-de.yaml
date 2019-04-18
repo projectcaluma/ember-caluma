@@ -109,7 +109,7 @@ caluma:
 
       not-found: "Keine Frage mit dem Slug '{slug}' gefunden"
 
-      hideLabel: "Label Verstecken"
+      hideLabel: "Label verstecken"
 
     notification:
       form:

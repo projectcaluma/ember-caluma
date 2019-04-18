@@ -102,6 +102,7 @@ export default Component.extend(ComponentQueryManager, {
 
     return A(
       questions.map(question => {
+        question.node.meta = JSON.parse(question.node.meta);
         question.node.widgetOverride =
           question.node.meta.widgetOverride || null;
         return question;
@@ -148,8 +149,8 @@ export default Component.extend(ComponentQueryManager, {
     if (model && model.subForm) {
       model.subForm = model.subForm.slug;
     }
-    if (model && model.meta && JSON.parse(model.meta).hideLabel) {
-      model.hideLabel = JSON.parse(model.meta).hideLabel;
+    if (model && model.meta && model.meta.hideLabel) {
+      model.hideLabel = model.meta.hideLabel;
     }
     return model;
   }),
