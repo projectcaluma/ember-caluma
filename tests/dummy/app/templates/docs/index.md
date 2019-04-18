@@ -29,3 +29,7 @@ Last but not least import `ember-uikit` and `ember-caluma` to
 apply styling in `app/styles/app.scss`:
 
 {{docs-snippet name='usage/app.scss'}}
+
+The `$modal-z-index` variable is needed to keep the `ember-power-select` 
+dropdown above modal dialogs as the default of z-index of `1010` 
+(intentionally) dwarfs all other indexes.
