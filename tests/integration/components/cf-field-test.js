@@ -78,4 +78,61 @@ module("Integration | Component | cf-field", function(hooks) {
       .dom("span.validation-errors")
       .hasText("The value of this field can't be longer than 2 characters");
   });
+
+  test("it hides the label", async function(assert) {
+    const document = Document.create(this.owner.ownerInjection(), {
+      raw: {
+        id: window.btoa("Document:1"),
+        answers: {
+          edges: [
+            {
+              node: {
+                stringValue: "Test",
+                question: {
+                  slug: "question-2"
+                },
+                __typename: "StringAnswer"
+              }
+            }
+          ]
+        },
+        form: {
+          questions: {
+            edges: [
+              {
+                __typename: "QuestionEdge",
+                node: {
+                  slug: "question-2",
+                  label: "Test",
+                  isRequired: "true",
+                  isHidden: "false",
+                  __typename: "ChoiceQuestion",
+                  meta: { hideLabel: true },
+                  choiceOptions: {
+                    __typename: "OptionConnection",
+                    edges: [
+                      {
+                        __typename: "OptionEdge",
+                        node: {
+                          __typename: "Option",
+                          label: "Test",
+                          slug: "question-2"
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    });
+
+    this.set("question", document.fields[0]);
+
+    await render(hbs`{{cf-field field=question}}`);
+
+    assert.dom("uk-text-bold").doesNotExist();
+  });
 });
