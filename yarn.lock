@@ -6498,10 +6498,10 @@ ember-try@1.1.0:
     rsvp "^4.7.0"
     walk-sync "^0.3.3"
 
-ember-uikit@0.7.3:
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/ember-uikit/-/ember-uikit-0.7.3.tgz#a042b598b58ebd2b55dec59cb1afd8e4334590f5"
-  integrity sha512-9tnMLuRAfkFvEFERBj83tDxqySrsdFEstY9vWiC2YWxqRDMp5ilMBCA50Xa5iNpmdwea460kq+2WvrcfBmd7xg==
+ember-uikit@0.7.4:
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/ember-uikit/-/ember-uikit-0.7.4.tgz#27c163e0e90d26fb0b9468ddc51d0496578c5f77"
+  integrity sha512-vnacEDc6jvMO3eorhrYpXzZoPs9M1bIj+NQcvEynW6wvDCTYkCM6dqAWUowAqewOR4v0wLvH40NEzAtQ0I2KVw==
   dependencies:
     broccoli-funnel "^2.0.2"
     broccoli-merge-trees "^3.0.0"
@@ -6513,7 +6513,7 @@ ember-uikit@0.7.3:
     ember-cli-htmlbars-inline-precompile "^2.1.0"
     ember-get-config "^0.2.4"
     ember-toggle "^5.3.0"
-    uikit "^3.0.3"
+    uikit "3.0.3"
 
 ember-validated-form@2.0.0-alpha.5:
   version "2.0.0-alpha.5"
@@ -13906,7 +13906,7 @@ uglify-to-browserify@~1.0.0:
   resolved "https://registry.yarnpkg.com/uglify-to-browserify/-/uglify-to-browserify-1.0.2.tgz#6e0924d6bda6b5afe349e39a6d632850a0f882b7"
   integrity sha1-bgkk1r2mta/jSeOabWMoUKD4grc=
 
-uikit@^3.0.3:
+uikit@3.0.3:
   version "3.0.3"
   resolved "https://registry.yarnpkg.com/uikit/-/uikit-3.0.3.tgz#ead1b0a152d2771d2684f60086766ccc50fa3450"
   integrity sha512-Z73TXlnfJCAXczg5mFCZSTwR0Ii1wW2fZumfIR8G1x1x4SyKHpkU0JCZDoIryYFMu1gSpvy5hZiXk3t4i5tTlw==
