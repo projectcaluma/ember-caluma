@@ -15,7 +15,7 @@ export default Component.extend({
 
   downloadUrl: reads("field.answer.fileValue.downloadUrl"),
 
-  placeholder: computed("field.answer", function() {
+  placeholder: computed("field.answer.fileValue", function() {
     return this.get("field.answer.fileValue")
       ? this.intl.t("caluma.form.changeFile")
       : this.intl.t("caluma.form.selectFile");
