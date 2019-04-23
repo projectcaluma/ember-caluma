@@ -129,9 +129,9 @@ module("Integration | Component | cf-field", function(hooks) {
       }
     });
 
-    this.set("question", document.fields[0]);
+    this.set("field", document.fields[0]);
 
-    await render(hbs`{{cf-field field=question}}`);
+    await render(hbs`{{cf-field field=field}}`);
 
     assert.dom("uk-text-bold").doesNotExist();
   });

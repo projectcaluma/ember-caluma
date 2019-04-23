@@ -102,7 +102,6 @@ export default Component.extend(ComponentQueryManager, {
 
     return A(
       questions.map(question => {
-        question.node.meta = JSON.parse(question.node.meta);
         question.node.widgetOverride =
           question.node.meta.widgetOverride || null;
         return question;
@@ -142,7 +141,7 @@ export default Component.extend(ComponentQueryManager, {
 
   model: computed("data.lastSuccessful.value.firstObject.node", function() {
     const model = this.get("data.lastSuccessful.value.firstObject.node");
-    // flatten rowForm.slug until nested property support landed in ember-validated-form
+    // flatten attributes until nested property support landed in ember-validated-form
     if (model && model.rowForm) {
       model.rowForm = model.rowForm.slug;
     }
