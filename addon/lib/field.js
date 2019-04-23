@@ -219,10 +219,6 @@ export default EmberObject.extend({
     );
   },
 
-  _validateFileQuestion() {
-    return Promise.resolve();
-  },
-
   /**
    * Method to validate a text question. This checks if the value longer than
    * predefined by the question.
@@ -314,5 +310,16 @@ export default EmberObject.extend({
         )
       })
     );
+  },
+
+  /**
+   * Dummy method for the validation of file uploads.
+   *
+   * @method _validateFileQuestion
+   * @return {Boolean}
+   * @internal
+   */
+  _validateFileQuestion() {
+    return Promise.resolve(true);
   }
 });
