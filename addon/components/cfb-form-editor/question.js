@@ -141,12 +141,15 @@ export default Component.extend(ComponentQueryManager, {
 
   model: computed("data.lastSuccessful.value.firstObject.node", function() {
     const model = this.get("data.lastSuccessful.value.firstObject.node");
-    // flatten rowForm.slug until nested property support landed in ember-validated-form
+    // flatten attributes until nested property support landed in ember-validated-form
     if (model && model.rowForm) {
       model.rowForm = model.rowForm.slug;
     }
     if (model && model.subForm) {
       model.subForm = model.subForm.slug;
+    }
+    if (model && model.meta && model.meta.hideLabel) {
+      model.hideLabel = model.meta.hideLabel;
     }
     return model;
   }),
@@ -192,13 +195,21 @@ export default Component.extend(ComponentQueryManager, {
 
   _getMultipleChoiceQuestionInput(changeset) {
     return {
-      options: changeset.get("options.edges").map(({ node: { slug } }) => slug)
+      options: changeset.get("options.edges").map(({ node: { slug } }) => slug),
+      meta: JSON.stringify({
+        widgetOverride: changeset.get("widgetOverride"),
+        hideLabel: changeset.get("hideLabel")
+      })
     };
   },
 
   _getChoiceQuestionInput(changeset) {
     return {
-      options: changeset.get("options.edges").map(({ node: { slug } }) => slug)
+      options: changeset.get("options.edges").map(({ node: { slug } }) => slug),
+      meta: JSON.stringify({
+        widgetOverride: changeset.get("widgetOverride"),
+        hideLabel: changeset.get("hideLabel")
+      })
     };
   },
 
