@@ -1,10 +1,10 @@
 import Component from "@ember/component";
-import { inject as service } from "@ember/service";
+import { computed } from "@ember/object";
 import { reads } from "@ember/object/computed";
+import { inject as service } from "@ember/service";
 
 import getFileAnswerInfoQuery from "ember-caluma/gql/queries/get-fileanswer-info";
 import layout from "../../../templates/components/cf-field/input/file";
-import { computed } from "@ember/object";
 
 export default Component.extend({
   layout,
@@ -26,9 +26,7 @@ export default Component.extend({
       const { downloadUrl } = await this.apollo.watchQuery(
         {
           query: getFileAnswerInfoQuery,
-          variables: {
-            id: this.field.answer.id
-          },
+          variables: { id: this.field.answer.id },
           fetchPolicy: "cache-and-network"
         },
         "node.fileValue"
