@@ -7,6 +7,7 @@ import { camelize } from "@ember/string";
 import { task } from "ember-concurrency";
 import { all } from "rsvp";
 import { validate } from "ember-validators";
+import Evented, { on } from "@ember/object/evented";
 
 import Answer from "ember-caluma/lib/answer";
 import Question from "ember-caluma/lib/question";
@@ -33,7 +34,7 @@ const TYPE_MAP = {
  *
  * @class Field
  */
-export default EmberObject.extend({
+export default EmberObject.extend(Evented, {
   saveDocumentFloatAnswerMutation,
   saveDocumentIntegerAnswerMutation,
   saveDocumentStringAnswerMutation,
@@ -101,6 +102,7 @@ export default EmberObject.extend({
 
     this.setProperties({
       _errors: [],
+      dependentFields: [],
       question,
       answer
     });
@@ -117,6 +119,10 @@ export default EmberObject.extend({
   id: computed("document.id", "question.slug", function() {
     return `Document:${this.document.id}:Question:${this.question.slug}`;
   }).readOnly(),
+
+  updateHidden: on("valueChanged", "hiddenChanged", function() {
+    this.dependentFields.forEach(field => field.question.hiddenTask.perform());
+  }),
 
   /**
    * Whether the field is valid.

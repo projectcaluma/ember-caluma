@@ -1,7 +1,6 @@
 import EmberObject, { computed } from "@ember/object";
 import { assert } from "@ember/debug";
 import { getOwner } from "@ember/application";
-import Evented, { on } from "@ember/object/evented";
 import Field from "ember-caluma/lib/field";
 import jexl from "jexl";
 import { atob } from "ember-caluma/helpers/atob";
@@ -15,7 +14,7 @@ const STATE_PRECEDENCE = ["invalid", "unfinished", "untouched", "valid"];
  *
  * @class Document
  */
-export default EmberObject.extend(Evented, {
+export default EmberObject.extend({
   documentStore: service(),
 
   async init() {
@@ -70,20 +69,43 @@ export default EmberObject.extend(Evented, {
   questionJexl: computed(function() {
     const questionJexl = new jexl.Jexl();
 
-    questionJexl.addTransform("answer", slug => this.findAnswer(slug));
+    questionJexl.addTransform("answer", (slug, path) =>
+      this.findAnswer(slug, path)
+    );
 
     return questionJexl;
   }),
 
-  findAnswer(slug) {
-    const result = this.findField(slug);
+  findAnswer(slug, path) {
+    const result = this.findField(slug, path);
     return result && result.answer.value;
   },
 
-  findField(slug) {
-    // Here it would be possible to extend the search range
-    // over the entire tree by calling findFieldInTree()
-    return this.fields.find(field => field.question.slug === slug);
+  findField(slug, path) {
+    const doc = this.resolveDocument(path);
+    return doc && doc.fields.find(field => field.question.slug === slug);
+  },
+
+  resolveDocument(path) {
+    if (!path) {
+      return this;
+    }
+    let _document = this;
+    const parts = path.split(".");
+    for (let part of parts) {
+      if (part === "parent") {
+        _document = this.parentDocument;
+      } else {
+        const formField = _document.fields.find(
+          field => field.question.slug === part
+        );
+        if (!formField) {
+          return null;
+        }
+        _document = formField.childDocument;
+      }
+    }
+    return _document;
   },
 
   fields: computed(() => []).readOnly(),
@@ -130,14 +152,5 @@ export default EmberObject.extend(Evented, {
     return STATE_PRECEDENCE.find(state =>
       [this.get("childState"), this.get("ownState")].includes(state)
     );
-  }),
-
-  updateHidden: on("valueChanged", "hiddenChanged", function(slug) {
-    const dependentFields = this.fields.filter(field =>
-      field.question.dependsOn.includes(slug)
-    );
-
-    // update hidden state of those fields
-    dependentFields.forEach(field => field.question.hiddenTask.perform());
   })
 });

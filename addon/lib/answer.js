@@ -45,9 +45,7 @@ export default EmberObject.extend({
           this.set(this._valueKey, value);
         }
 
-        next(this, () =>
-          this.document.trigger("valueChanged", this.question.slug, value)
-        );
+        next(this, () => this.field.trigger("valueChanged", value));
 
         return value;
       }

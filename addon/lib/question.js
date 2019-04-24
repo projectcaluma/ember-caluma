@@ -3,7 +3,6 @@ import { next } from "@ember/runloop";
 import { lastValue } from "ember-caluma/utils/concurrency";
 import { getAST, getTransforms } from "ember-caluma/utils/jexl";
 import { task } from "ember-concurrency";
-import { assert } from "@ember/debug";
 // import { findFieldInTree } from "ember-caluma/utils/tree";
 
 /**
@@ -40,16 +39,30 @@ export default EmberObject.extend({
       ...new Set(
         getTransforms(getAST(this.isHidden))
           .filter(transform => transform.name === "answer")
-          .map(transform => transform.subject.value)
+          .map(transform => {
+            return {
+              slug: transform.subject.value,
+              path: transform.args[0] && transform.args[0].value
+            };
+          })
       )
     ];
-    dependents.forEach(slug => {
-      assert(
-        `Field "${slug}" is not present in this document`,
-        this.document.findField(slug)
-      );
+    return dependents.map(dependent => {
+      const { slug, path } = dependent;
+      const field = this.document.findField(slug, path);
+      if (!field) {
+        if (path) {
+          throw new Error(
+            `Field "${slug}" is not present in document "${path}"`
+          );
+        }
+        throw new Error(`Field "${slug}" is not present in this document`);
+      }
+      // register dependent field
+      // TODO: is this the right place to do this?
+      field.dependentFields.push(this.field);
+      return field;
     });
-    return dependents;
   }).readOnly(),
 
   /**
@@ -63,22 +76,18 @@ export default EmberObject.extend({
    * @return {Boolean}
    */
   hiddenTask: task(function*() {
-    let hidden = this.document.fields
-      .filter(field => this.dependsOn.includes(field.question.slug))
-      .some(
-        field =>
-          field.question.hidden ||
-          field.answer.value === null ||
-          field.answer.value === undefined
-      );
+    let hidden = this.dependsOn.some(
+      field =>
+        field.question.hidden ||
+        field.answer.value === null ||
+        field.answer.value === undefined
+    );
 
     hidden =
       hidden || (yield this.field.document.questionJexl.eval(this.isHidden));
 
     if (this.get("hiddenTask.lastSuccessful.value") !== hidden) {
-      next(this, () =>
-        this.document.trigger("hiddenChanged", this.slug, hidden)
-      );
+      next(this, () => this.field.trigger("hiddenChanged"));
     }
 
     return hidden;
