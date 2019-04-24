@@ -28,6 +28,7 @@ export default function(server) {
       mocks: {
         ...mocks,
         JSONString: () => '{"foo": "bar"}',
+        GenericScalar: value => value,
         Node: (_, { id }) => ({ __typename: atob(id).split(":")[0] })
       },
       preserveResolvers: false
