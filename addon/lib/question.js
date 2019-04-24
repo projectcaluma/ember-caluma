@@ -35,19 +35,20 @@ export default EmberObject.extend({
    * @accessor
    */
   dependsOn: computed("isHidden", function() {
-    const dependents = [
-      ...new Set(
-        getTransforms(getAST(this.isHidden))
-          .filter(transform => transform.name === "answer")
-          .map(transform => {
-            return {
-              slug: transform.subject.value,
-              path: transform.args[0] && transform.args[0].value
-            };
-          })
-      )
-    ];
-    return dependents.map(dependent => {
+    const dependents = getTransforms(getAST(this.isHidden))
+      .filter(transform => transform.name === "answer")
+      .map(transform => {
+        return {
+          slug: transform.subject.value,
+          path: transform.args[0] && transform.args[0].value
+        };
+      });
+    const uniqueDependents = dependents.filter((dep, i) => {
+      return (
+        dependents.findIndex(d => d.slug == dep.slug && d.path == dep.path) == i
+      );
+    });
+    return uniqueDependents.map(dependent => {
       const { slug, path } = dependent;
       const field = this.document.findField(slug, path);
       if (!field) {
@@ -58,9 +59,7 @@ export default EmberObject.extend({
         }
         throw new Error(`Field "${slug}" is not present in this document`);
       }
-      // register dependent field
-      // TODO: is this the right place to do this?
-      field.dependentFields.push(this.field);
+      field.registerDependentField(this.field);
       return field;
     });
   }).readOnly(),

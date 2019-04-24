@@ -94,7 +94,7 @@ export default EmberObject.extend({
     const parts = path.split(".");
     for (let part of parts) {
       if (part === "parent") {
-        _document = this.parentDocument;
+        _document = _document.parentDocument;
       } else {
         const formField = _document.fields.find(
           field => field.question.slug === part

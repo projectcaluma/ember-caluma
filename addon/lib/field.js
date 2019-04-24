@@ -124,6 +124,12 @@ export default EmberObject.extend(Evented, {
     this.dependentFields.forEach(field => field.question.hiddenTask.perform());
   }),
 
+  registerDependentField(field) {
+    if (!this.dependentFields.find(f => f.id === field.id)) {
+      this.dependentFields.push(field);
+    }
+  },
+
   /**
    * Whether the field is valid.
    *
