@@ -7,7 +7,8 @@ const TYPES = [
   "FLOAT",
   "MULTIPLE_CHOICE",
   "CHOICE",
-  "TABLE"
+  "TABLE",
+  "FILE"
 ];
 
 export default Factory.extend({
