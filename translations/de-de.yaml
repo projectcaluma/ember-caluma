@@ -7,8 +7,8 @@ caluma:
   form:
     optional: "Optional"
     save: "Speichern"
-    selectFile: "Datei auswählen" 
-    changeFile: "Andere Datei auswählen"
+    selectFile: "Klicken um Datei hochzuladen" 
+    changeFile: "Klicken um andere Datei hochzuladen"
 
     notification:
       table:

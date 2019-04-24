@@ -14,6 +14,7 @@ export default Component.extend({
   apollo: service(),
 
   downloadUrl: reads("field.answer.fileValue.downloadUrl"),
+  downloadName: reads("field.answer.fileValue.metadata.object_name"),
 
   placeholder: computed("field.answer.fileValue", function() {
     return this.get("field.answer.fileValue")
@@ -54,6 +55,15 @@ export default Component.extend({
       request.send(file);
       request.onload = event => {
         if (event.target.status == 200) {
+          this.set(
+            "field.answer.fileValue.downloadUrl",
+            saved.fileValue.downloadUrl
+          );
+          this.set("field.answer.fileValue.metadata", {
+            object_name: file.name
+          });
+
+          target.value = "";
           target.parentNode.querySelector("[type=text]").value = "";
         }
       };

@@ -7,8 +7,8 @@ caluma:
   form:
     optional: "Optional"
     save: "Save"
-    selectFile: "Select file" 
-    changeFile: "Select different file"
+    selectFile: "Click to upload a file" 
+    changeFile: "Click to upload a different file"
 
     notification:
       table:

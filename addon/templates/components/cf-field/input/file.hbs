@@ -1,28 +1,20 @@
-<div class="uk-grid">
-  <div class="uk-width-expand">
+<div 
+  class="uk-width-1-1" 
+  uk-form-custom="target: true"
+  data-test-file-upload>
 
-    <div class="uk-width-1-1" uk-form-custom="target: true">
+  <input type="file" onchange={{action "save"}}>
 
-      <input type="file" onchange={{action "save"}}>
-
-      <input 
-        class="uk-input" 
-        type="text" 
-        placeholder={{placeholder}} 
-        readonly>
-
-    </div>
-
-  </div>
-
-  {{#if downloadUrl}}
-    <div class="uk-width-auto">
-
-      {{#uk-button on-click=(action "download")}}
-        {{uk-icon "download"}}
-      {{/uk-button}}
-
-    </div>
-  {{/if}}
+  <input 
+    class="uk-input" 
+    type="text" 
+    placeholder={{placeholder}} 
+    readonly>
 
 </div>
+
+{{#if (and downloadUrl downloadName)}}
+  {{#uk-button color="link" on-click=(action "download")}}
+    {{downloadName}}
+  {{/uk-button}}
+{{/if}}
