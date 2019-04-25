@@ -76,4 +76,13 @@ export default class extends BaseMock {
       type: "LIST"
     });
   }
+
+  @register("SaveDocumentFileAnswerPayload")
+  handleSaveFileAnswer(_, { input }) {
+    return this._handleSaveDocumentAnswer(_, {
+      ...input,
+      value: { metadata: { object_name: input.value } },
+      type: "FILE"
+    });
+  }
 }
