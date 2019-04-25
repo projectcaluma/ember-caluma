@@ -16,6 +16,13 @@ module("Integration | Component | cf-field/input/file", function(hooks) {
   test("it allows to upload a file", async function(assert) {
     assert.expect(0);
 
+    this.set("field", {
+      answer: {
+        id: btoa("FileAnswer:1"),
+        fileValue: {}
+      }
+    });
+
     this.set("onSave", name => ({
       fileValue: { uploadUrl: `/minio/upload/${name}` }
     }));
@@ -23,7 +30,7 @@ module("Integration | Component | cf-field/input/file", function(hooks) {
     let payload_good = new File(["test"], "good.txt", { type: "text/plain" });
     let payload_fail = new File(["test"], "fail.txt", { type: "text/plain" });
 
-    await render(hbs`{{cf-field/input/file onSave=onSave}}`);
+    await render(hbs`{{cf-field/input/file field=field onSave=onSave}}`);
 
     await triggerEvent("input[type=file]", "change", []);
     await triggerEvent("input[type=file]", "change", [payload_fail]);
@@ -35,11 +42,13 @@ module("Integration | Component | cf-field/input/file", function(hooks) {
       answer: {
         id: btoa("FileAnswer:1"),
         fileValue: {
-          downloadUrl: "/minio/download/good.txt"
+          downloadUrl: "/minio/download/good.txt",
+          metadata: { object_name: "good.txt" }
         }
       }
     });
 
+    // Hijack window.open
     const window_open = window.open;
     window.open = (url, target) => {
       assert.ok(url.startsWith("http"), "The URL is an HTTP address");
@@ -48,9 +57,14 @@ module("Integration | Component | cf-field/input/file", function(hooks) {
 
     await render(hbs`{{cf-field/input/file field=field}}`);
 
-    assert.dom("[data-test-file-download]").exists();
-    await click("[data-test-file-download] button");
+    assert.dom(".uk-button").exists();
+    assert
+      .dom(".uk-button")
+      .hasText(this.field.answer.fileValue.metadata.object_name);
 
+    await click(".uk-button");
+
+    // Restore window.open
     window.open = window_open;
   });
 });
