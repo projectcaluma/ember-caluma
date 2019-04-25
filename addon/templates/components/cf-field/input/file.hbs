@@ -1,9 +1,11 @@
 <div 
   class="uk-width-1-1" 
-  uk-form-custom="target: true"
-  data-test-file-upload>
+  uk-form-custom="target: true">
 
-  <input type="file" onchange={{action "save"}}>
+  <input 
+    type="file" 
+    name={{field.id}}
+    onchange={{action "save"}}>
 
   <input 
     class="uk-input" 
