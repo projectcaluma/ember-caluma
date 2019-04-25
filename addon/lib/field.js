@@ -364,6 +364,8 @@ export default EmberObject.extend(Evented, {
    * @internal
    */
   _validateDateQuestion() {
-    return validate("date", this.get("answer.value"), {});
+    return validate("date", this.get("answer.value"), {
+      allowBlank: true
+    });
   }
 });

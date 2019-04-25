@@ -7,9 +7,9 @@ export default Component.extend({
   tagName: "",
 
   actions: {
-    onchange: function(datetime) {
-      let date = moment(datetime).format("YYYY-MM-DD");
-      this.onSave(date);
+    onchange: function(date) {
+      // Change Javascript date to ISO string if not null.
+      this.onSave(date ? moment(date).format("YYYY-MM-DD") : null);
     }
   }
 });
