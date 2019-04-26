@@ -37,6 +37,7 @@ export default EmberObject.extend({
     "floatValue",
     "listValue",
     "fileValue",
+    "dateValue",
     {
       get() {
         return this.get(this._valueKey);
