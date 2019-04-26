@@ -30,7 +30,7 @@ function uploadFile(file, url) {
       }
     });
 
-    request.open("PUT", "foo" + url);
+    request.open("PUT", url);
     request.send(file);
   });
 }
