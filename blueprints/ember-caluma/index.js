@@ -9,7 +9,8 @@ module.exports = {
         { name: "ember-engines" },
         { name: "ember-power-select" },
         { name: "ember-promise-helpers" },
-        { name: "ember-math-helpers" }
+        { name: "ember-math-helpers" },
+        { name: "ember-cli-showdown" }
       ]
     });
   }
