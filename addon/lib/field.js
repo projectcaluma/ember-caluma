@@ -188,20 +188,35 @@ export default EmberObject.extend(Evented, {
    */
   save: task(function*() {
     const type = this.get("answer.__typename");
+    const value = this.get("answer.value");
+    const question = this.get("question.slug");
+    const document = this.get("document.id");
 
-    return yield this.apollo.mutate(
-      {
-        mutation: this.get(`saveDocument${type}Mutation`),
+    if (value === null || value.length === 0) {
+      return yield this.apollo.mutate({
+        mutation: this.get(`removeDocument${type}Mutation`),
         variables: {
           input: {
-            question: this.get("question.slug"),
-            document: this.get("document.id"),
-            value: this.get("answer.value")
+            question,
+            document
           }
         }
-      },
-      `saveDocument${type}.answer`
-    );
+      });
+    } else {
+      return yield this.apollo.mutate(
+        {
+          mutation: this.get(`saveDocument${type}Mutation`),
+          variables: {
+            input: {
+              question,
+              document,
+              value
+            }
+          }
+        },
+        `saveDocument${type}.answer`
+      );
+    }
   }),
 
   /**
