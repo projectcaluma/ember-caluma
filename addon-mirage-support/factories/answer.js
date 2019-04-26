@@ -93,8 +93,6 @@ export default Factory.extend({
         answer.update({
           value: `${year}-${month}-${day}`
         });
-
-        debugger
       }
     }
   }

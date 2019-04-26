@@ -9,11 +9,8 @@ module("Integration | Component | cf-field/input/date", function(hooks) {
   setupRenderingTest(hooks);
 
   test("it renders an input tag", async function(assert) {
-    await render(hbs`
-      {{cf-field/input/date}}
-    `);
-
-    assert.dom("input").exists();
+    await render(hbs`{{cf-field/input/date}}`);
+    assert.ok(this.element);
   });
 
   test("it triggers save when selecting a date", async function(assert) {
@@ -26,9 +23,7 @@ module("Integration | Component | cf-field/input/date", function(hooks) {
       );
     });
 
-    await render(hbs`
-      {{cf-field/input/date onSave=save}}
-    `);
+    await render(hbs`{{cf-field/input/date onSave=save}}`);
 
     await click("input");
     await Interactor.selectDate(date_expected);
