@@ -1,0 +1,5 @@
+mutation($input: RemoveDocumentStringAnswerInput!) {
+  removeDocumentStringAnswer(input: $input) {
+    clientMutationId
+  }
+}
