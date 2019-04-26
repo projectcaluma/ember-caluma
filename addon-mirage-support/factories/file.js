@@ -8,7 +8,7 @@ export default Factory.extend({
   downloadUrl: faker.internet.url(),
 
   afterCreate(file) {
-/*
+    /*
     bucket_name: "caluma-media"
     content_type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
     etag: "31a7483ee20c44764f6d2b8ea0e28f98"
@@ -17,7 +17,7 @@ export default Factory.extend({
     metadata: {Content-Type: "application/vnd.openxmlformats-officedocument.wordprocessingml.document"}
     object_name: "ea7900f5-870c-4a6b-b154-9ed9c3f62a1f_docx-templatedocx"
     size: 5490
-*/
+    */
 
     if (!file.metadata) {
       file.update({ metadata: {} });
