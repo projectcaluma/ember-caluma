@@ -5,6 +5,9 @@ services:
     environment:
       - POSTGRES_USER=caluma
       - POSTGRES_PASSWORD=caluma
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+
   caluma:
     image: projectcaluma/caluma:latest@sha256:4725a80e7df4d75c3f6477dcbc8612398ef5d9204d71dd2863bf2718cd6e5a4e
     ports:
@@ -15,3 +18,20 @@ services:
       - DATABASE_HOST=db
       - DATABASE_PORT=5432
       - ENV=docker
+      #- MINIO_STORAGE_ENDPOINT=localhost:9000
+
+  minio:
+      image: minio/minio:latest@sha256:eec714a5c50799ae70004fcd3f5d54bd63a759ecaf0033eeb4e2906c18270133
+      volumes:
+        - minio_data:/data
+      ports:
+        - "9000:9000"
+      environment:
+        - MINIO_ACCESS_KEY=minio
+        - MINIO_SECRET_KEY=minio123
+        - MINIO_STORAGE_AUTO_CREATE_MEDIA_BUCKET=True
+      command: server data
+
+volumes:
+  dbdata:
+  minio_data:

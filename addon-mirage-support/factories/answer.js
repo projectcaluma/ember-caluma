@@ -65,6 +65,19 @@ export default Factory.extend({
           value: faker.random.arrayElement(answer.question.options.models).slug
         });
       }
+    } else if (answer.question.type === "FILE") {
+      answer.update({
+        type: "FILE"
+      });
+
+      if (answer.value === undefined) {
+        answer.update({
+          value: {
+            uploadUrl: faker.internet.url,
+            downloadUrl: faker.internet.url
+          }
+        });
+      }
     }
   }
 });

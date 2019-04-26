@@ -43,4 +43,13 @@ fragment FieldAnswer on Answer {
       }
     }
   }
+
+  ... on FileAnswer {
+    fileValue: value {
+      uploadUrl
+      downloadUrl
+      metadata
+      name
+    }
+  }
 }

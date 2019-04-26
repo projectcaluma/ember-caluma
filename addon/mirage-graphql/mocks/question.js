@@ -62,6 +62,11 @@ export default class extends BaseMock {
     return this.handleInterfaceType(...arguments);
   }
 
+  @register("FileQuestion")
+  handleFileQuestion() {
+    return this.handleInterfaceType(...arguments);
+  }
+
   @register("SaveTextQuestionPayload")
   handleSaveTextQuestion(_, { input }) {
     return this.handleSavePayload.fn.call(this, _, {
@@ -149,6 +154,13 @@ export default class extends BaseMock {
   handleSaveFormQuestion(_, { input }) {
     return this.handleSavePayload.fn.call(this, _, {
       input: { ...input, type: "FORM" }
+    });
+  }
+
+  @register("SaveFileQuestionPayload")
+  handleSaveFileQuestion(_, { input }) {
+    return this.handleSavePayload.fn.call(this, _, {
+      input: { ...input, type: "FILE" }
     });
   }
 }
