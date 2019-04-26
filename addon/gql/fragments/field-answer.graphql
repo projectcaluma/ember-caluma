@@ -49,6 +49,7 @@ fragment FieldAnswer on Answer {
       uploadUrl
       downloadUrl
       metadata
+      name
     }
   }
 }

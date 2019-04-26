@@ -14,7 +14,7 @@ export default Component.extend({
   apollo: service(),
 
   downloadUrl: reads("field.answer.fileValue.downloadUrl"),
-  downloadName: reads("field.answer.fileValue.metadata.object_name"),
+  downloadName: reads("field.answer.fileValue.name"),
 
   placeholder: computed("field.answer.fileValue", function() {
     return this.get("field.answer.fileValue")
