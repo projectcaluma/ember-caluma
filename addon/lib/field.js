@@ -195,24 +195,13 @@ export default EmberObject.extend(Evented, {
     if (value === null || value.length === 0) {
       return yield this.apollo.mutate({
         mutation: this.get(`removeDocument${type}Mutation`),
-        variables: {
-          input: {
-            question,
-            document
-          }
-        }
+        variables: { input: { question, document } }
       });
     } else {
       return yield this.apollo.mutate(
         {
           mutation: this.get(`saveDocument${type}Mutation`),
-          variables: {
-            input: {
-              question,
-              document,
-              value
-            }
-          }
+          variables: { input: { question, document, value } }
         },
         `saveDocument${type}.answer`
       );
