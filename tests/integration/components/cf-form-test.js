@@ -36,11 +36,13 @@ module("Integration | Component | cf-form", function(hooks) {
       this.server.create("question", {
         formIds: [form.id],
         type: "MULTIPLE_CHOICE"
-      }),
+      })
+      /*,
       this.server.create("question", {
         formIds: [form.id],
         type: "DATE"
       })
+      */
     ];
 
     const document = this.server.create("document", { formId: form.id });
@@ -150,6 +152,7 @@ module("Integration | Component | cf-form", function(hooks) {
       slug: "date-question",
       type: "DATE"
     });
+    */
 
     radioQuestion.options.models.forEach((option, i) => {
       option.update({ slug: `${radioQuestion.slug}-option-${i + 1}` });
@@ -196,10 +199,12 @@ module("Integration | Component | cf-form", function(hooks) {
         document.id
       }:Question:checkbox-question"][value="checkbox-question-option-2"]`
     );
+    /*
     await fillIn(
       `[name="Document:${document.id}:Question:date-question"]`,
       "2019-03-25"
     );
+    */
 
     /*
     await triggerEvent(
@@ -240,12 +245,12 @@ module("Integration | Component | cf-form", function(hooks) {
         {
           slug: "checkbox-question",
           value: ["checkbox-question-option-1", "checkbox-question-option-2"]
-        },
+        }
+        /*,
         {
           slug: "date-question",
           value: "2019-03-25"
-        }
-        /*,
+        },
         {
           slug: "file-question",
           value: { metadata: { object_name: "test.txt" } }
