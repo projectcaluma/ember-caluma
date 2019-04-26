@@ -32,6 +32,7 @@ caluma:
       lessThanOrEqualTo: "The value of this field must be less than or equal to {lte}"
       notAnInteger: "The value of this field must be an integer"
       inclusion: "'{value}' is not a valid value for this field"
+      uploadFailed: "An error occured during upload."
 
   form-builder:
     global:

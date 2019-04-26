@@ -6,6 +6,35 @@ import { inject as service } from "@ember/service";
 import getFileAnswerInfoQuery from "ember-caluma/gql/queries/get-fileanswer-info";
 import layout from "../../../templates/components/cf-field/input/file";
 
+/**
+ * Promise wrapper around XHMLHttpRequest
+ *
+ * @param {File} file The file to upload.
+ * @param {String} url The MinIO uploadUrl
+ * @return {Promise<Event>} A promise resolving or rejecting with the event.
+ */
+function uploadFile(file, url) {
+  return new Promise((resolve, reject) => {
+    const data = new FormData();
+    data.append("file", file);
+
+    const request = new XMLHttpRequest();
+
+    request.addEventListener("error", event => reject(event));
+    request.addEventListener("abort", event => reject(event));
+    request.addEventListener("load", event => {
+      if (event.target.status == 200) {
+        resolve(event);
+      } else {
+        reject(event);
+      }
+    });
+
+    request.open("PUT", "foo" + url);
+    request.send(file);
+  });
+}
+
 export default Component.extend({
   layout,
   tagName: "",
@@ -45,28 +74,22 @@ export default Component.extend({
         return;
       }
 
-      const saved = await this.onSave(file.name);
+      const { fileValue } = await this.onSave(file.name);
 
-      const data = new FormData();
-      data.append("file", file);
+      try {
+        await uploadFile(file, fileValue.uploadUrl);
 
-      const request = new XMLHttpRequest();
-      request.open("PUT", saved.fileValue.uploadUrl);
-      request.send(file);
-      request.onload = event => {
-        if (event.target.status == 200) {
-          this.set(
-            "field.answer.fileValue.downloadUrl",
-            saved.fileValue.downloadUrl
-          );
-          this.set("field.answer.fileValue.metadata", {
-            object_name: file.name
-          });
-
-          target.value = "";
-          target.parentNode.querySelector("[type=text]").value = "";
-        }
-      };
+        this.set("field.answer.fileValue", {
+          name: file.name,
+          downloadUrl: fileValue.downloadUrl
+        });
+      } catch (event) {
+        this.set("field._errors", [{ type: "uploadFailed" }]);
+        this.set("field.answer.fileValue", null);
+      } finally {
+        target.value = "";
+        target.parentNode.querySelector("[type=text]").value = "";
+      }
     }
   }
 });

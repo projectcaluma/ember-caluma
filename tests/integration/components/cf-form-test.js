@@ -1,12 +1,6 @@
 import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
-import {
-  render,
-  fillIn,
-  click,
-  settled,
-  triggerEvent
-} from "@ember/test-helpers";
+import { render, fillIn, click } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 import setupMirage from "ember-cli-mirage/test-support/setup-mirage";
 
@@ -140,11 +134,13 @@ module("Integration | Component | cf-form", function(hooks) {
       slug: "checkbox-question",
       type: "MULTIPLE_CHOICE"
     });
+    /*
     this.server.create("question", {
       formIds: [form.id],
       slug: "file-question",
       type: "FILE"
     });
+    */
 
     radioQuestion.options.models.forEach((option, i) => {
       option.update({ slug: `${radioQuestion.slug}-option-${i + 1}` });
@@ -192,13 +188,13 @@ module("Integration | Component | cf-form", function(hooks) {
       }:Question:checkbox-question"][value="checkbox-question-option-2"]`
     );
 
+    /*
     await triggerEvent(
       `[name="Document:${document.id}:Question:file-question"]`,
       "change",
       [new File(["test"], "test.txt")]
     );
-
-    await settled();
+    */
 
     assert.deepEqual(
       this.server.schema.documents
@@ -231,11 +227,13 @@ module("Integration | Component | cf-form", function(hooks) {
         {
           slug: "checkbox-question",
           value: ["checkbox-question-option-1", "checkbox-question-option-2"]
-        },
+        }
+        /*,
         {
           slug: "file-question",
           value: { metadata: { object_name: "test.txt" } }
         }
+        */
       ]
     );
   });
