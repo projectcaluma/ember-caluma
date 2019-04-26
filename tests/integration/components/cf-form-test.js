@@ -146,7 +146,6 @@ module("Integration | Component | cf-form", function(hooks) {
       slug: "file-question",
       type: "FILE"
     });
-    */
     this.server.create("question", {
       formIds: [form.id],
       slug: "date-question",
