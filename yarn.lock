@@ -5626,7 +5626,7 @@ ember-cli-shims@1.2.0:
     ember-rfc176-data "^0.3.1"
     silent-error "^1.0.1"
 
-ember-cli-showdown@^4.4.4:
+ember-cli-showdown@4.4.4:
   version "4.4.4"
   resolved "https://registry.yarnpkg.com/ember-cli-showdown/-/ember-cli-showdown-4.4.4.tgz#daf666369b1f35843dc5dc55a94da058e63f59c4"
   integrity sha1-2vZmNpsfNYQ9xdxVqU2gWOY/WcQ=
