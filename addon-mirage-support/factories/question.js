@@ -8,7 +8,8 @@ const TYPES = [
   "MULTIPLE_CHOICE",
   "CHOICE",
   "TABLE",
-  "FILE"
+  "FILE",
+  "STATIC"
 ];
 
 export default Factory.extend({
@@ -56,6 +57,12 @@ export default Factory.extend({
       if (question.rowForm === undefined) {
         question.update({
           rowForm: i => `subform-${i + 1}`
+        });
+      }
+    } else if (question.type === "STATIC") {
+      if (question.staticContent === undefined) {
+        question.update({
+          staticContent: i => `static-${i + 1}`
         });
       }
     }

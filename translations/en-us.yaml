@@ -7,7 +7,7 @@ caluma:
   form:
     optional: "Optional"
     save: "Save"
-    selectFile: "Click to upload a file" 
+    selectFile: "Click to upload a file"
     changeFile: "Click to upload a different file"
 
     notification:
@@ -68,6 +68,7 @@ caluma:
       slug: "Slug"
       type: "Type"
       isRequired: "Required"
+      staticContent: "Static content"
       infoText: "Information text"
       placeholder: "Placeholder"
       isHidden: "Hidden (JEXL)"
@@ -109,6 +110,7 @@ caluma:
         TableQuestion: "Table"
         FormQuestion: "Form"
         FileQuestion: "File"
+        StaticQuestion: "Static content"
 
       widgetOverrides:
         powerselect: "Power Select"

@@ -1,0 +1,13 @@
+#import "ember-caluma/gql/fragments/question-info"
+
+mutation SaveStaticQuestion($input: SaveStaticQuestionInput!) {
+  saveStaticQuestion(input: $input) {
+    question {
+      ...QuestionInfo
+      ... on StaticQuestion {
+        staticContent
+      }
+    }
+    clientMutationId
+  }
+}

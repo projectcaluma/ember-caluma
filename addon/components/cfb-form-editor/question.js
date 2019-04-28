@@ -29,6 +29,7 @@ import saveChoiceQuestionMutation from "ember-caluma/gql/mutations/save-choice-q
 import saveTableQuestionMutation from "ember-caluma/gql/mutations/save-table-question";
 import saveFormQuestionMutation from "ember-caluma/gql/mutations/save-form-question";
 import saveFileQuestionMutation from "ember-caluma/gql/mutations/save-file-question";
+import saveStaticQuestionMutation from "ember-caluma/gql/mutations/save-static-question";
 
 export const TYPES = {
   TextQuestion: saveTextQuestionMutation,
@@ -39,7 +40,8 @@ export const TYPES = {
   ChoiceQuestion: saveChoiceQuestionMutation,
   TableQuestion: saveTableQuestionMutation,
   FormQuestion: saveFormQuestionMutation,
-  FileQuestion: saveFileQuestionMutation
+  FileQuestion: saveFileQuestionMutation,
+  StaticQuestion: saveStaticQuestionMutation
 };
 
 export default Component.extend(ComponentQueryManager, {
@@ -167,6 +169,7 @@ export default Component.extend(ComponentQueryManager, {
 
   _getIntegerQuestionInput(changeset) {
     return {
+      isRequired: changeset.get("isRequired"),
       minValue: parseInt(changeset.get("integerMinValue")),
       maxValue: parseInt(changeset.get("integerMaxValue")),
       placeholder: changeset.get("placeholder")
@@ -175,6 +178,7 @@ export default Component.extend(ComponentQueryManager, {
 
   _getFloatQuestionInput(changeset) {
     return {
+      isRequired: changeset.get("isRequired"),
       minValue: parseFloat(changeset.get("floatMinValue")),
       maxValue: parseFloat(changeset.get("floatMaxValue")),
       placeholder: changeset.get("placeholder")
@@ -183,6 +187,7 @@ export default Component.extend(ComponentQueryManager, {
 
   _getTextQuestionInput(changeset) {
     return {
+      isRequired: changeset.get("isRequired"),
       maxLength: parseInt(changeset.get("maxLength")),
       placeholder: changeset.get("placeholder")
     };
@@ -190,6 +195,7 @@ export default Component.extend(ComponentQueryManager, {
 
   _getTextareaQuestionInput(changeset) {
     return {
+      isRequired: changeset.get("isRequired"),
       maxLength: parseInt(changeset.get("maxLength")),
       placeholder: changeset.get("placeholder")
     };
@@ -197,6 +203,7 @@ export default Component.extend(ComponentQueryManager, {
 
   _getMultipleChoiceQuestionInput(changeset) {
     return {
+      isRequired: changeset.get("isRequired"),
       options: changeset.get("options.edges").map(({ node: { slug } }) => slug),
       meta: JSON.stringify({
         widgetOverride: changeset.get("widgetOverride"),
@@ -207,6 +214,7 @@ export default Component.extend(ComponentQueryManager, {
 
   _getChoiceQuestionInput(changeset) {
     return {
+      isRequired: changeset.get("isRequired"),
       options: changeset.get("options.edges").map(({ node: { slug } }) => slug),
       meta: JSON.stringify({
         widgetOverride: changeset.get("widgetOverride"),
@@ -217,18 +225,28 @@ export default Component.extend(ComponentQueryManager, {
 
   _getTableQuestionInput(changeset) {
     return {
+      isRequired: changeset.get("isRequired"),
       rowForm: changeset.get("rowForm")
     };
   },
 
   _getFormQuestionInput(changeset) {
     return {
+      isRequired: changeset.get("isRequired"),
       subForm: changeset.get("subForm")
     };
   },
 
-  _getFileQuestionInput(/* changeset */) {
-    return {};
+  _getFileQuestionInput(changeset) {
+    return {
+      isRequired: changeset.get("isRequired")
+    };
+  },
+
+  _getStaticQuestionInput(changeset) {
+    return {
+      staticContent: changeset.get("staticContent")
+    };
   },
 
   saveOptions: task(function*(changeset) {
@@ -261,7 +279,6 @@ export default Component.extend(ComponentQueryManager, {
               {
                 label: changeset.get("label"),
                 slug,
-                isRequired: changeset.get("isRequired"),
                 isHidden: changeset.get("isHidden"),
                 infoText: changeset.get("infoText"),
                 meta: JSON.stringify({

@@ -7,7 +7,7 @@ caluma:
   form:
     optional: "Optional"
     save: "Speichern"
-    selectFile: "Klicken um Datei hochzuladen" 
+    selectFile: "Klicken um Datei hochzuladen"
     changeFile: "Klicken um andere Datei hochzuladen"
 
     notification:
@@ -68,6 +68,7 @@ caluma:
       slug: "Slug"
       type: "Typ"
       isRequired: "Pflichtfeld"
+      staticContent: "Statischer Inhalt"
       infoText: "Infotext"
       placeholder: "Platzhalter"
       isHidden: "Versteckt (JEXL)"
@@ -109,6 +110,7 @@ caluma:
         TableQuestion: "Tabelle"
         FormQuestion: "Formular"
         FileQuestion: "Datei"
+        StaticQuestion: "Statischer Inhalt"
 
       widgetOverrides:
         powerselect: "Power Select"

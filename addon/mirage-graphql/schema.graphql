@@ -1,5 +1,5 @@
 # source: http://localhost:8000/graphql
-# timestamp: Tue Apr 16 2019 21:09:35 GMT+0200 (Central European Summer Time)
+# timestamp: Sun Apr 28 2019 16:45:11 GMT+0200 (Central European Summer Time)
 
 input AddFormQuestionInput {
   form: ID!
@@ -1134,6 +1134,8 @@ type Mutation {
     input: SaveCompleteTaskFormTaskInput!
   ): SaveCompleteTaskFormTaskPayload
   startCase(input: StartCaseInput!): StartCasePayload
+    @deprecated(reason: "Use SaveCase mutation instead")
+  saveCase(input: SaveCaseInput!): SaveCasePayload
   cancelCase(input: CancelCaseInput!): CancelCasePayload
   completeWorkItem(input: CompleteWorkItemInput!): CompleteWorkItemPayload
   saveWorkItem(input: SaveWorkItemInput!): SaveWorkItemPayload
@@ -1165,6 +1167,7 @@ type Mutation {
   saveTableQuestion(input: SaveTableQuestionInput!): SaveTableQuestionPayload
   saveFormQuestion(input: SaveFormQuestionInput!): SaveFormQuestionPayload
   saveFileQuestion(input: SaveFileQuestionInput!): SaveFileQuestionPayload
+  saveStaticQuestion(input: SaveStaticQuestionInput!): SaveStaticQuestionPayload
   saveDocument(input: SaveDocumentInput!): SaveDocumentPayload
   saveDocumentStringAnswer(
     input: SaveDocumentStringAnswerInput!
@@ -1632,6 +1635,20 @@ type ReorderFormQuestionsPayload {
   clientMutationId: String
 }
 
+input SaveCaseInput {
+  id: String
+  workflow: ID!
+  meta: JSONString
+  parentWorkItem: ID
+  form: ID
+  clientMutationId: String
+}
+
+type SaveCasePayload {
+  case: Case
+  clientMutationId: String
+}
+
 input SaveChoiceQuestionInput {
   slug: String!
   label: String!
@@ -1795,6 +1812,7 @@ type SaveDocumentFormAnswerPayload {
 }
 
 input SaveDocumentInput {
+  id: String
   form: ID!
   meta: JSONString
   clientMutationId: String
@@ -2007,6 +2025,22 @@ type SaveSimpleTaskPayload {
   clientMutationId: String
 }
 
+input SaveStaticQuestionInput {
+  label: String!
+  slug: String!
+  infoText: String
+  isHidden: QuestionJexl
+  meta: JSONString
+  isArchived: Boolean
+  staticContent: String!
+  clientMutationId: String
+}
+
+type SaveStaticQuestionPayload {
+  question: Question
+  clientMutationId: String
+}
+
 input SaveTableQuestionInput {
   slug: String!
   label: String!
@@ -2147,6 +2181,47 @@ input StartCaseInput {
 type StartCasePayload {
   case: Case
   clientMutationId: String
+}
+
+type StaticQuestion implements Question & Node {
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+  createdByUser: String
+  createdByGroup: String
+  slug: String!
+  label: String!
+  isHidden: QuestionJexl!
+  isArchived: Boolean!
+  infoText: String
+  meta: GenericScalar!
+  source: Question
+  forms(
+    before: String
+    after: String
+    first: Int
+    last: Int
+
+    """
+    FormOrdering
+    """
+    orderBy: [FormOrdering]
+    slug: String
+    name: String
+    description: String
+    isPublished: Boolean
+    isArchived: Boolean
+    createdByUser: String
+    createdByGroup: String
+    metaHasKey: String
+    search: String
+  ): FormConnection
+  staticContent: String
+
+  """
+  The ID of the object.
+  """
+  id: ID!
+  isRequired: QuestionJexl!
 }
 
 type StringAnswer implements Answer & Node {

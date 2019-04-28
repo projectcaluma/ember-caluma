@@ -76,16 +76,31 @@
           {{/if}}
         </div>
 
-        <div class="uk-width-auto uk-flex">
-          {{f.input
-            name="isRequired"
-            label=(t "caluma.form-builder.question.isRequired")
-            required=true
-            renderComponent=(component "cfb-jexl-boolean-toggle-switch" size="small")
-            class="uk-flex uk-flex-between uk-flex-column"
-          }}
-        </div>
+        {{#if (not-eq f.model.__typename "StaticQuestion")}}
+          <div class="uk-width-auto uk-flex">
+            {{f.input
+              name="isRequired"
+              label=(t "caluma.form-builder.question.isRequired")
+              required=true
+              renderComponent=(component "cfb-jexl-boolean-toggle-switch" size="small")
+              class="uk-flex uk-flex-between uk-flex-column"
+            }}
+          </div>
+        {{/if}}
       </div>
+
+      {{#if (eq f.model.__typename "StaticQuestion")}}
+        {{f.input
+          type="textarea"
+          label=(t "caluma.form-builder.question.staticContent")
+          name="staticContent"
+          class="uk-margin-remove-bottom"
+        }}
+        <small class="uk-text-muted">
+          {{t "caluma.form-builder.question.supportsMarkdownPrefix"}}
+          <a target="_blank" rel="noopener noreferrer" href="https://www.markdownguide.org/basic-syntax">{{t "caluma.form-builder.question.markdown"}}</a>
+        </small>
+      {{/if}}
 
       {{f.input
         type="textarea"
