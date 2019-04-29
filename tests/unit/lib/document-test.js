@@ -121,7 +121,7 @@ module("Unit | Library | document", function(hooks) {
     const grandChildDoc = this.nestedDocument.childDocuments[0]
       .childDocuments[1];
     assert.deepEqual(
-      grandChildDoc.findField("b-a-1", "parent.parent.b.b-a").answer.value,
+      grandChildDoc.findField("parent.parent.b.b-a.b-a-1").answer.value,
       "foobar"
     );
   });

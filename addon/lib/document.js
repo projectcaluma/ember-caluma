@@ -69,35 +69,36 @@ export default EmberObject.extend({
   questionJexl: computed(function() {
     const questionJexl = new jexl.Jexl();
 
-    questionJexl.addTransform("answer", (slug, path) =>
-      this.findAnswer(slug, path)
+    questionJexl.addTransform("answer", slugWithPath =>
+      this.findAnswer(slugWithPath)
     );
 
     return questionJexl;
   }),
 
-  findAnswer(slug, path) {
-    const result = this.findField(slug, path);
+  findAnswer(slugWithPath) {
+    const result = this.findField(slugWithPath);
     return result && result.answer.value;
   },
 
-  findField(slug, path) {
-    const doc = this.resolveDocument(path);
+  findField(slugWithPath) {
+    const segments = slugWithPath.split(".");
+    const slug = segments.pop();
+    const doc = this.resolveDocument(segments);
     return doc && doc.fields.find(field => field.question.slug === slug);
   },
 
-  resolveDocument(path) {
-    if (!path) {
+  resolveDocument(segments) {
+    if (!segments) {
       return this;
     }
     let _document = this;
-    const parts = path.split(".");
-    for (let part of parts) {
-      if (part === "parent") {
+    for (let segment of segments) {
+      if (segment === "parent") {
         _document = _document.parentDocument;
       } else {
         const formField = _document.fields.find(
-          field => field.question.slug === part
+          field => field.question.slug === segment
         );
         if (!formField) {
           return null;

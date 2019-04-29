@@ -104,7 +104,7 @@ module("Unit | Library | question", function(hooks) {
       .childDocument.fields[0].question;
     ba1.set(
       "isHidden",
-      "'a-a-1'|answer('parent.parent.a.a-a') > 9000 && 'a-a-1'|answer('parent.parent.a.a-a') < 10000 && 'a-a-1'|answer('parent.parent.a.a-b')"
+      "'parent.parent.a.a-a.a-a-1'|answer > 9000 && 'parent.parent.a.a-a.a-a-1'|answer < 10000 && 'parent.parent.a.a-b.a-a-1'|answer"
     );
     assert.expect(1);
     assert.deepEqual(

@@ -3,7 +3,6 @@ import { next } from "@ember/runloop";
 import { lastValue } from "ember-caluma/utils/concurrency";
 import { getAST, getTransforms } from "ember-caluma/utils/jexl";
 import { task } from "ember-concurrency";
-// import { findFieldInTree } from "ember-caluma/utils/tree";
 
 /**
  * Object which represents a question in context of a field
@@ -35,29 +34,27 @@ export default EmberObject.extend({
    * @accessor
    */
   dependsOn: computed("isHidden", function() {
-    const dependents = getTransforms(getAST(this.isHidden))
-      .filter(transform => transform.name === "answer")
-      .map(transform => {
-        return {
-          slug: transform.subject.value,
-          path: transform.args[0] && transform.args[0].value
-        };
-      });
-    const uniqueDependents = dependents.filter((dep, i) => {
-      return (
-        dependents.findIndex(d => d.slug == dep.slug && d.path == dep.path) == i
-      );
-    });
-    return uniqueDependents.map(dependent => {
-      const { slug, path } = dependent;
-      const field = this.document.findField(slug, path);
+    const dependents = [
+      ...new Set(
+        getTransforms(getAST(this.isHidden))
+          .filter(transform => transform.name === "answer")
+          .map(transform => transform.subject.value)
+      )
+    ];
+
+    return dependents.map(slugWithPath => {
+      const field = this.document.findField(slugWithPath);
       if (!field) {
-        if (path) {
+        if (slugWithPath.includes(".")) {
+          const path = slugWithPath.split(".");
+          const slug = path.pop();
           throw new Error(
             `Field "${slug}" is not present in document "${path}"`
           );
         }
-        throw new Error(`Field "${slug}" is not present in this document`);
+        throw new Error(
+          `Field "${slugWithPath}" is not present in this document`
+        );
       }
       field.registerDependentField(this.field);
       return field;
