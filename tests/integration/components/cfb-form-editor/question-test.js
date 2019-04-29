@@ -403,6 +403,34 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     assert.verifySteps(["after-submit"]);
   });
 
+  test("it can create a static question", async function(assert) {
+    assert.expect(6);
+
+    this.server.create("form", { slug: "test-form" });
+
+    this.set("afterSubmit", question => {
+      assert.equal(question.__typename, "StaticQuestion");
+      assert.equal(question.label, "Label");
+      assert.equal(question.slug, "slug");
+      assert.equal(question.staticContent, "#bazz");
+
+      assert.step("after-submit");
+    });
+
+    await render(
+      hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
+    );
+
+    await fillIn("[name=__typename]", "StaticQuestion");
+    await fillIn("[name=label]", "Label");
+    await fillIn("[name=slug]", "slug");
+    await fillIn("[name=staticContent]", "#bazz");
+
+    await click("button[type=submit]");
+
+    assert.verifySteps(["after-submit"]);
+  });
+
   test("it validates the slug", async function(assert) {
     assert.expect(3);
 

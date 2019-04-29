@@ -67,6 +67,11 @@ export default class extends BaseMock {
     return this.handleInterfaceType(...arguments);
   }
 
+  @register("StaticQuestion")
+  handleStaticQuestion() {
+    return this.handleInterfaceType(...arguments);
+  }
+
   @register("SaveTextQuestionPayload")
   handleSaveTextQuestion(_, { input }) {
     return this.handleSavePayload.fn.call(this, _, {
@@ -92,6 +97,13 @@ export default class extends BaseMock {
   handleSaveFloatQuestion(_, { input }) {
     return this.handleSavePayload.fn.call(this, _, {
       input: { ...input, type: "FLOAT" }
+    });
+  }
+
+  @register("SaveStaticQuestionPayload")
+  handleSaveStaticQuestion(_, { input }) {
+    return this.handleSavePayload.fn.call(this, _, {
+      input: { ...input, type: "STATIC" }
     });
   }
 
@@ -144,7 +156,7 @@ export default class extends BaseMock {
   }
 
   @register("SaveTableQuestionPayload")
-  handleSaveTableFloatQuestion(_, { input }) {
+  handleSaveTableQuestion(_, { input }) {
     return this.handleSavePayload.fn.call(this, _, {
       input: { ...input, type: "TABLE" }
     });

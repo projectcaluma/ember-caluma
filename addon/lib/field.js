@@ -27,7 +27,8 @@ const TYPE_MAP = {
   ChoiceQuestion: "StringAnswer",
   TableQuestion: "TableAnswer",
   FormQuestion: "FormAnswer",
-  FileQuestion: "FileAnswer"
+  FileQuestion: "FileAnswer",
+  StaticQuestion: null
 };
 
 /**
@@ -81,26 +82,28 @@ export default EmberObject.extend({
       })
     );
 
-    const answer = Answer.create(
-      getOwner(this).ownerInjection(),
-      Object.assign(
-        this._answer || {
-          __typename,
-          question: { slug: this._question.slug },
-          [camelize(__typename.replace(/Answer$/, "Value"))]: null
-        },
-        { document: this.document, field: this },
-        this._answer && Array.isArray(this._answer.value)
-          ? {
-              rowDocuments: this._answer.value.map(document =>
-                Document.create(getOwner(this).ownerInjection(), {
-                  raw: document
-                })
-              )
-            }
-          : {}
-      )
-    );
+    const answer =
+      __typename &&
+      Answer.create(
+        getOwner(this).ownerInjection(),
+        Object.assign(
+          this._answer || {
+            __typename,
+            question: { slug: this._question.slug },
+            [camelize(__typename.replace(/Answer$/, "Value"))]: null
+          },
+          { document: this.document, field: this },
+          this._answer && Array.isArray(this._answer.value)
+            ? {
+                rowDocuments: this._answer.value.map(document =>
+                  Document.create(getOwner(this).ownerInjection(), {
+                    raw: document
+                  })
+                )
+              }
+            : {}
+        )
+      );
 
     this.setProperties({
       _errors: [],

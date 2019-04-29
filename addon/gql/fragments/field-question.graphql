@@ -43,6 +43,9 @@ fragment SimpleQuestion on Question {
       }
     }
   }
+  ... on StaticQuestion {
+    staticContent
+  }
 }
 
 fragment FieldQuestion on Question {

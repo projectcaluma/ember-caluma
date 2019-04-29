@@ -63,6 +63,9 @@ export default {
             name: "FileQuestion"
           },
           {
+            name: "StaticQuestion"
+          },
+          {
             name: "StringAnswer"
           },
           {
@@ -142,6 +145,9 @@ export default {
           },
           {
             name: "FileQuestion"
+          },
+          {
+            name: "StaticQuestion"
           }
         ]
       },
