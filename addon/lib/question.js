@@ -3,8 +3,6 @@ import { next } from "@ember/runloop";
 import { lastValue } from "ember-caluma/utils/concurrency";
 import { getAST, getTransforms } from "ember-caluma/utils/jexl";
 import { task } from "ember-concurrency";
-import { assert } from "@ember/debug";
-// import { findFieldInTree } from "ember-caluma/utils/tree";
 
 /**
  * Object which represents a question in context of a field
@@ -43,13 +41,24 @@ export default EmberObject.extend({
           .map(transform => transform.subject.value)
       )
     ];
-    dependents.forEach(slug => {
-      assert(
-        `Field "${slug}" is not present in this document`,
-        this.document.findField(slug)
-      );
+
+    return dependents.map(slugWithPath => {
+      const field = this.document.findField(slugWithPath);
+      if (!field) {
+        if (slugWithPath.includes(".")) {
+          const path = slugWithPath.split(".");
+          const slug = path.pop();
+          throw new Error(
+            `Field "${slug}" is not present in document "${path}"`
+          );
+        }
+        throw new Error(
+          `Field "${slugWithPath}" is not present in this document`
+        );
+      }
+      field.registerDependentField(this.field);
+      return field;
     });
-    return dependents;
   }).readOnly(),
 
   /**
@@ -63,22 +72,18 @@ export default EmberObject.extend({
    * @return {Boolean}
    */
   hiddenTask: task(function*() {
-    let hidden = this.document.fields
-      .filter(field => this.dependsOn.includes(field.question.slug))
-      .some(
-        field =>
-          field.question.hidden ||
-          field.answer.value === null ||
-          field.answer.value === undefined
-      );
+    let hidden = this.dependsOn.some(
+      field =>
+        field.question.hidden ||
+        field.answer.value === null ||
+        field.answer.value === undefined
+    );
 
     hidden =
       hidden || (yield this.field.document.questionJexl.eval(this.isHidden));
 
     if (this.get("hiddenTask.lastSuccessful.value") !== hidden) {
-      next(this, () =>
-        this.document.trigger("hiddenChanged", this.slug, hidden)
-      );
+      next(this, () => this.field.trigger("hiddenChanged"));
     }
 
     return hidden;
