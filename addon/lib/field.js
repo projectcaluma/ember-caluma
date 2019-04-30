@@ -203,7 +203,7 @@ export default EmberObject.extend(Evented, {
    */
   validate: task(function*() {
     const validationFns = [
-      this._validateRequired,
+      ...(!this.question.hidden ? [this._validateRequired] : []),
       this.get(`_validate${this.question.__typename}`)
     ];
 
