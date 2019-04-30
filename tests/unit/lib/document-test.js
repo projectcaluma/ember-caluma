@@ -125,4 +125,20 @@ module("Unit | Library | document", function(hooks) {
       "foobar"
     );
   });
+
+  test("question jexl intersects operator", async function(assert) {
+    const tests = [
+      ["[1,2] intersects [2,3]", true],
+      ["[1,2] intersects [3,4]", false],
+      ["[] intersects []", false],
+      ["[1] intersects []", false],
+      ["['foo'] intersects ['bar', 'bazz']", false],
+      ["['foo'] intersects ['foo', 'foo']", true],
+      ["[1] intersects [1] && [2] intersects [2]", true],
+      ["[2] intersects [1] + [2]", true]
+    ];
+    for (let [expression, result] of tests) {
+      assert.equal(await this.document.questionJexl.eval(expression), result);
+    }
+  });
 });
