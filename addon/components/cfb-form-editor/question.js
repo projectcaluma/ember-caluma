@@ -240,10 +240,6 @@ export default Component.extend(ComponentQueryManager, {
     };
   },
 
-  _getDateQuestionInput(/*changeset*/) {
-    return {};
-  },
-
   _getFileQuestionInput(changeset) {
     return {
       isRequired: changeset.get("isRequired")
