@@ -17,7 +17,7 @@ export default Service.extend({
 
   init() {
     this._super(...arguments);
-    this._overrides = new EmberObject();
+    this._overrides = EmberObject.create();
 
     this.registerComponentOverride({
       label: this.intl.t(
