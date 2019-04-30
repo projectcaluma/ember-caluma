@@ -42,6 +42,12 @@ export default {
             name: "MultipleChoiceQuestion"
           },
           {
+            name: "DynamicChoiceQuestion"
+          },
+          {
+            name: "DynamicMultipleChoiceQuestion"
+          },
+          {
             name: "TextareaQuestion"
           },
           {
@@ -124,6 +130,12 @@ export default {
           },
           {
             name: "MultipleChoiceQuestion"
+          },
+          {
+            name: "DynamicChoiceQuestion"
+          },
+          {
+            name: "DynamicMultipleChoiceQuestion"
           },
           {
             name: "TextareaQuestion"

@@ -1,5 +1,5 @@
 # source: http://localhost:8000/graphql
-# timestamp: Sun Apr 28 2019 16:45:11 GMT+0200 (Central European Summer Time)
+# timestamp: Mon Apr 29 2019 18:10:36 GMT+0200 (GMT+02:00)
 
 input AddFormQuestionInput {
   form: ID!
@@ -135,6 +135,7 @@ type Case implements Node {
     after: String
     first: Int
     last: Int
+    metaValue: MetaValueFilterType
 
     """
     WorkItemStatusArgument
@@ -285,6 +286,7 @@ type ChoiceQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
+    metaValue: MetaValueFilterType
 
     """
     FormOrdering
@@ -305,6 +307,7 @@ type ChoiceQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
+    metaValue: MetaValueFilterType
     slug: String
     label: String
     createdByUser: String
@@ -446,6 +449,50 @@ type CreateWorkItemPayload {
   clientMutationId: String
 }
 
+type DataSource {
+  info: String
+  name: String!
+}
+
+type DataSourceConnection {
+  pageInfo: PageInfo!
+  edges: [DataSourceEdge]!
+}
+
+type DataSourceData {
+  label: String!
+  slug: String!
+}
+
+type DataSourceDataConnection {
+  pageInfo: PageInfo!
+  edges: [DataSourceDataEdge]!
+}
+
+type DataSourceDataEdge {
+  """
+  The item at the end of the edge
+  """
+  node: DataSourceData
+
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+}
+
+type DataSourceEdge {
+  """
+  The item at the end of the edge
+  """
+  node: DataSource
+
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+}
+
 """
 The `Date` scalar type represents a Date
 value as specified by
@@ -487,6 +534,7 @@ type DateQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
+    metaValue: MetaValueFilterType
 
     """
     FormOrdering
@@ -533,6 +581,7 @@ type Document implements Node {
     after: String
     first: Int
     last: Int
+    metaValue: MetaValueFilterType
     question: ID
     search: String
     createdByUser: String
@@ -611,6 +660,102 @@ enum DocumentOrdering {
   CREATED_BY_GROUP_DESC
 }
 
+type DynamicChoiceQuestion implements Question & Node {
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+  createdByUser: String
+  createdByGroup: String
+  slug: String!
+  label: String!
+  isRequired: QuestionJexl!
+  isHidden: QuestionJexl!
+  isArchived: Boolean!
+  infoText: String
+  meta: GenericScalar!
+  source: Question
+  forms(
+    before: String
+    after: String
+    first: Int
+    last: Int
+    metaValue: MetaValueFilterType
+
+    """
+    FormOrdering
+    """
+    orderBy: [FormOrdering]
+    slug: String
+    name: String
+    description: String
+    isPublished: Boolean
+    isArchived: Boolean
+    createdByUser: String
+    createdByGroup: String
+    metaHasKey: String
+    search: String
+  ): FormConnection
+  options(
+    before: String
+    after: String
+    first: Int
+    last: Int
+  ): DataSourceDataConnection
+  dataSource: String!
+
+  """
+  The ID of the object.
+  """
+  id: ID!
+}
+
+type DynamicMultipleChoiceQuestion implements Question & Node {
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+  createdByUser: String
+  createdByGroup: String
+  slug: String!
+  label: String!
+  isRequired: QuestionJexl!
+  isHidden: QuestionJexl!
+  isArchived: Boolean!
+  infoText: String
+  meta: GenericScalar!
+  source: Question
+  forms(
+    before: String
+    after: String
+    first: Int
+    last: Int
+    metaValue: MetaValueFilterType
+
+    """
+    FormOrdering
+    """
+    orderBy: [FormOrdering]
+    slug: String
+    name: String
+    description: String
+    isPublished: Boolean
+    isArchived: Boolean
+    createdByUser: String
+    createdByGroup: String
+    metaHasKey: String
+    search: String
+  ): FormConnection
+  options(
+    before: String
+    after: String
+    first: Int
+    last: Int
+  ): DataSourceDataConnection
+  dataSource: String!
+
+  """
+  The ID of the object.
+  """
+  id: ID!
+}
+
 type File implements Node {
   createdAt: DateTime!
   modifiedAt: DateTime!
@@ -662,6 +807,7 @@ type FileQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
+    metaValue: MetaValueFilterType
 
     """
     FormOrdering
@@ -718,6 +864,7 @@ type FloatQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
+    metaValue: MetaValueFilterType
 
     """
     FormOrdering
@@ -802,6 +949,7 @@ type Form implements Node {
     after: String
     first: Int
     last: Int
+    metaValue: MetaValueFilterType
     slug: String
     label: String
     isRequired: String
@@ -942,6 +1090,7 @@ type FormQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
+    metaValue: MetaValueFilterType
 
     """
     FormOrdering
@@ -1021,6 +1170,7 @@ type IntegerQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
+    metaValue: MetaValueFilterType
 
     """
     FormOrdering
@@ -1065,6 +1215,18 @@ type ListAnswer implements Answer & Node {
   meta: GenericScalar!
 }
 
+enum MetaLookupMode {
+  EXACT
+  STARTSWITH
+  CONTAINS
+}
+
+input MetaValueFilterType {
+  key: String!
+  value: String!
+  lookup: MetaLookupMode
+}
+
 type MultipleChoiceQuestion implements Question & Node {
   createdAt: DateTime!
   modifiedAt: DateTime!
@@ -1083,6 +1245,7 @@ type MultipleChoiceQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
+    metaValue: MetaValueFilterType
 
     """
     FormOrdering
@@ -1103,6 +1266,7 @@ type MultipleChoiceQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
+    metaValue: MetaValueFilterType
 
     """
     OptionOrdering
@@ -1115,6 +1279,7 @@ type MultipleChoiceQuestion implements Question & Node {
     metaHasKey: String
     search: String
   ): OptionConnection
+  staticContent: String
 
   """
   The ID of the object.
@@ -1160,6 +1325,12 @@ type Mutation {
   saveMultipleChoiceQuestion(
     input: SaveMultipleChoiceQuestionInput!
   ): SaveMultipleChoiceQuestionPayload
+  saveDynamicChoiceQuestion(
+    input: SaveDynamicChoiceQuestionInput!
+  ): SaveDynamicChoiceQuestionPayload
+  saveDynamicMultipleChoiceQuestion(
+    input: SaveDynamicMultipleChoiceQuestionInput!
+  ): SaveDynamicMultipleChoiceQuestionPayload
   saveFloatQuestion(input: SaveFloatQuestionInput!): SaveFloatQuestionPayload
   saveIntegerQuestion(
     input: SaveIntegerQuestionInput!
@@ -1320,11 +1491,25 @@ type PageInfo {
 }
 
 type Query {
+  allDataSources(
+    before: String
+    after: String
+    first: Int
+    last: Int
+  ): DataSourceConnection
+  dataSource(
+    name: String
+    before: String
+    after: String
+    first: Int
+    last: Int
+  ): DataSourceDataConnection
   allWorkflows(
     before: String
     after: String
     first: Int
     last: Int
+    metaValue: MetaValueFilterType
     slug: String
     name: String
     description: String
@@ -1345,6 +1530,7 @@ type Query {
     after: String
     first: Int
     last: Int
+    metaValue: MetaValueFilterType
     slug: String
     name: String
     description: String
@@ -1369,6 +1555,7 @@ type Query {
     after: String
     first: Int
     last: Int
+    metaValue: MetaValueFilterType
     workflow: ID
 
     """
@@ -1389,6 +1576,7 @@ type Query {
     after: String
     first: Int
     last: Int
+    metaValue: MetaValueFilterType
 
     """
     WorkItemStatusArgument
@@ -1411,6 +1599,7 @@ type Query {
     after: String
     first: Int
     last: Int
+    metaValue: MetaValueFilterType
 
     """
     FormOrdering
@@ -1431,6 +1620,7 @@ type Query {
     after: String
     first: Int
     last: Int
+    metaValue: MetaValueFilterType
 
     """
     QuestionOrdering
@@ -1452,6 +1642,7 @@ type Query {
     after: String
     first: Int
     last: Int
+    metaValue: MetaValueFilterType
     form: ID
     search: String
     id: ID
@@ -1497,6 +1688,7 @@ interface Question {
     createdByUser: String
     createdByGroup: String
     metaHasKey: String
+    metaValue: MetaValueFilterType
     search: String
 
     """
@@ -1879,6 +2071,40 @@ type SaveDocumentTableAnswerPayload {
   clientMutationId: String
 }
 
+input SaveDynamicChoiceQuestionInput {
+  slug: String!
+  label: String!
+  infoText: String
+  isRequired: QuestionJexl
+  isHidden: QuestionJexl
+  meta: JSONString
+  isArchived: Boolean
+  dataSource: String!
+  clientMutationId: String
+}
+
+type SaveDynamicChoiceQuestionPayload {
+  question: Question
+  clientMutationId: String
+}
+
+input SaveDynamicMultipleChoiceQuestionInput {
+  slug: String!
+  label: String!
+  infoText: String
+  isRequired: QuestionJexl
+  isHidden: QuestionJexl
+  meta: JSONString
+  isArchived: Boolean
+  dataSource: String!
+  clientMutationId: String
+}
+
+type SaveDynamicMultipleChoiceQuestionPayload {
+  question: Question
+  clientMutationId: String
+}
+
 input SaveFileQuestionInput {
   slug: String!
   label: String!
@@ -2200,6 +2426,7 @@ type StaticQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
+    metaValue: MetaValueFilterType
 
     """
     FormOrdering
@@ -2216,6 +2443,7 @@ type StaticQuestion implements Question & Node {
     search: String
   ): FormConnection
   staticContent: String
+  dataSource: String
 
   """
   The ID of the object.
@@ -2273,6 +2501,7 @@ type TableQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
+    metaValue: MetaValueFilterType
 
     """
     FormOrdering
@@ -2466,6 +2695,7 @@ type TextareaQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
+    metaValue: MetaValueFilterType
 
     """
     FormOrdering
@@ -2508,6 +2738,7 @@ type TextQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
+    metaValue: MetaValueFilterType
 
     """
     FormOrdering
@@ -2727,6 +2958,16 @@ enum WorkItemOrdering {
   Status (descending)
   """
   STATUS_DESC
+
+  """
+  Deadline
+  """
+  DEADLINE_ASC
+
+  """
+  Deadline (descending)
+  """
+  DEADLINE_DESC
 
   """
   Created at
