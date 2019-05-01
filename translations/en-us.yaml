@@ -81,6 +81,7 @@ caluma:
       type-disabled: "Once created, the type can't be changed to prevent corrupt data."
       supportsMarkdownPrefix: "This field supports"
       markdown: "Markdown"
+      dataSource: "Data source"
 
       general: "General"
       options: "Options"
@@ -116,6 +117,8 @@ caluma:
         FileQuestion: "File"
         StaticQuestion: "Static content"
         DateQuestion: "Date"
+        DynamicMultipleChoiceQuestion: "Dynamic Choices"
+        DynamicChoiceQuestion: "Dynamic Choice"
 
       widgetOverrides:
         powerselect: "Power Select"

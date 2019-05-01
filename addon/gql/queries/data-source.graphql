@@ -1,0 +1,10 @@
+query DataSource($name: String!) {
+  dataSource(name: $name) {
+    edges {
+      node {
+        label
+        slug
+      }
+    }
+  }
+}

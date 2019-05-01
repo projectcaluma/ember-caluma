@@ -1,0 +1,13 @@
+#import "ember-caluma/gql/fragments/question-info"
+
+mutation SaveDynamicChoiceQuestion($input: SaveDynamicChoiceQuestionInput!) {
+  saveDynamicChoiceQuestion(input: $input) {
+    question {
+      ...QuestionInfo
+      ... on DynamicChoiceQuestion {
+        dataSource
+      }
+    }
+    clientMutationId
+  }
+}

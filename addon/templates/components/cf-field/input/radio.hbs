@@ -1,4 +1,4 @@
-{{#each field.question.choiceOptions.edges as |optionEdge i|}}
+{{#each choices as |optionEdge i|}}
   {{#let optionEdge.node as |option|}}
     {{#if (gt i 0)}}<br>{{/if}}
     <label class={{if field.isInvalid "uk-form-danger"}}>

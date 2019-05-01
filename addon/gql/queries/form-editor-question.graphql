@@ -43,6 +43,12 @@ query FormEditorQuestion($slug: String!) {
             }
           }
         }
+        ... on DynamicMultipleChoiceQuestion {
+          dataSource
+        }
+        ... on DynamicChoiceQuestion {
+          dataSource
+        }
         ... on TableQuestion {
           rowForm {
             slug

@@ -2,6 +2,7 @@ import Component from "@ember/component";
 import { computed } from "@ember/object";
 import { inject as service } from "@ember/service";
 import layout from "../../../templates/components/cf-field/input/powerselect";
+import { ComponentQueryManager } from "ember-apollo-client";
 
 /**
  * Dropdown component for the single and multiple choice question type
@@ -9,22 +10,32 @@ import layout from "../../../templates/components/cf-field/input/powerselect";
  * @class CfFieldInputPowerSelectComponent
  * @argument {Field} field The field for this input type
  */
-export default Component.extend({
+export default Component.extend(ComponentQueryManager, {
   layout,
   tagName: "",
   intl: service(),
 
   multiple: computed("field.question.__typename", function() {
-    return this.get("field.question.__typename").startsWith("Multiple");
+    return this.get("field.question.__typename").includes("Multiple");
   }),
 
   choices: computed(
     "multiple",
-    "field.question.{choiceOptions,multipleChoiceOptions}.edges",
+    "field.question.{choiceOptions,multipleChoiceOptions,dynamicChoiceOptions,dynamicMultipleChoiceOptions}.edges",
     function() {
-      const options = this.get("multiple")
-        ? this.get("field.question.multipleChoiceOptions")
-        : this.get("field.question.choiceOptions");
+      let options;
+      if (
+        this.get("field.question.__typename").includes("Dynamic") &&
+        this.multiple
+      ) {
+        options = this.get("field.question.dynamicMultipleChoiceOptions");
+      } else if (this.get("field.question.__typename").includes("Dynamic")) {
+        options = this.get("field.question.dynamicChoiceOptions");
+      } else if (this.multiple) {
+        options = this.get("field.question.multipleChoiceOptions");
+      } else {
+        options = this.get("field.question.choiceOptions");
+      }
 
       return options.edges.map(edge => edge.node);
     }
@@ -40,7 +51,7 @@ export default Component.extend({
         return null;
       }
 
-      const selection = this.get("choices").filter(choice => {
+      const selection = this.choices.filter(choice => {
         return answers.includes(choice.slug);
       });
 
