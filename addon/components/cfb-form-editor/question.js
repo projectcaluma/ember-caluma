@@ -54,6 +54,7 @@ export default Component.extend(ComponentQueryManager, {
 
   /**
    * Determines if the slug is "linked" to the question label, i.e. follows it's updates
+   * @property linkSlug
    */
   linkSlug: true,
 

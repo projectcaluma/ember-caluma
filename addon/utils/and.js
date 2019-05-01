@@ -1,6 +1,3 @@
-/**
- * Copied and updated from nucleartide/ember-changeset-hofs
- */
 import isPromise from "ember-changeset/utils/is-promise";
 import { typeOf } from "@ember/utils";
 
@@ -13,6 +10,12 @@ function handleResult(result) {
   return true;
 }
 
+/**
+ * Accepts an array of ember-changeset-validations validation functions.
+ *
+ * Copied and updated from nucleartide/ember-changeset-hofs
+ * @module and
+ */
 export default function and(...validators) {
   return (key, newValue, oldValue, changes, object) => {
     for (let i = 0; i < validators.length; i++) {

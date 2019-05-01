@@ -1,6 +1,3 @@
-/**
- * Copied and updated from nucleartide/ember-changeset-hofs
- */
 import isPromise from "ember-changeset/utils/is-promise";
 
 function isTrue(value) {
@@ -12,6 +9,10 @@ function handleResult(result) {
   return result;
 }
 
+/**
+ * Copied and updated from nucleartide/ember-changeset-hofs
+ * @module or
+ */
 export default function or(...validators) {
   return (key, newValue, oldValue, changes, object) => {
     let validation;
