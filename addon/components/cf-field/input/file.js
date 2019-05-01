@@ -6,35 +6,6 @@ import { inject as service } from "@ember/service";
 import getFileAnswerInfoQuery from "ember-caluma/gql/queries/get-fileanswer-info";
 import layout from "../../../templates/components/cf-field/input/file";
 
-/**
- * Promise wrapper around XHMLHttpRequest
- *
- * @param {File} file The file to upload.
- * @param {String} url The MinIO uploadUrl
- * @return {Promise<Event>} A promise resolving or rejecting with the event.
- */
-function uploadFile(file, url) {
-  return new Promise((resolve, reject) => {
-    const data = new FormData();
-    data.append("file", file);
-
-    const request = new XMLHttpRequest();
-
-    request.addEventListener("error", event => reject(event));
-    request.addEventListener("abort", event => reject(event));
-    request.addEventListener("load", event => {
-      if (event.target.status == 200) {
-        resolve(event);
-      } else {
-        reject(event);
-      }
-    });
-
-    request.open("PUT", url);
-    request.send(file);
-  });
-}
-
 export default Component.extend({
   layout,
   tagName: "",
@@ -50,6 +21,37 @@ export default Component.extend({
       ? this.intl.t("caluma.form.changeFile")
       : this.intl.t("caluma.form.selectFile");
   }),
+
+  /**
+   * Promise wrapper around XHMLHttpRequest
+   *
+   * @param {File} file The file to upload.
+   * @param {String} url The MinIO uploadUrl
+   * @return {Promise<Event>} A promise resolving or rejecting with the event.
+   * @method _uploadFile
+   * @private
+   */
+  _uploadFile(file, url) {
+    return new Promise((resolve, reject) => {
+      const data = new FormData();
+      data.append("file", file);
+
+      const request = new XMLHttpRequest();
+
+      request.addEventListener("error", event => reject(event));
+      request.addEventListener("abort", event => reject(event));
+      request.addEventListener("load", event => {
+        if (event.target.status == 200) {
+          resolve(event);
+        } else {
+          reject(event);
+        }
+      });
+
+      request.open("PUT", url);
+      request.send(file);
+    });
+  },
 
   actions: {
     async download() {
@@ -77,7 +79,7 @@ export default Component.extend({
       const { fileValue } = await this.onSave(file.name);
 
       try {
-        await uploadFile(file, fileValue.uploadUrl);
+        await this._uploadFile(file, fileValue.uploadUrl);
 
         this.set("field.answer.fileValue", {
           name: file.name,
