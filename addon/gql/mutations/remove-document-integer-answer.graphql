@@ -1,5 +1,0 @@
-mutation($input: RemoveDocumentIntegerAnswerInput!) {
-  removeDocumentIntegerAnswer(input: $input) {
-    clientMutationId
-  }
-}

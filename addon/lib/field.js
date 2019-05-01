@@ -19,10 +19,7 @@ import saveDocumentStringAnswerMutation from "ember-caluma/gql/mutations/save-do
 import saveDocumentListAnswerMutation from "ember-caluma/gql/mutations/save-document-list-answer";
 import saveDocumentFileAnswerMutation from "ember-caluma/gql/mutations/save-document-file-answer";
 
-import removeDocumentFloatAnswerMutation from "ember-caluma/gql/mutations/remove-document-float-answer";
-import removeDocumentIntegerAnswerMutation from "ember-caluma/gql/mutations/remove-document-integer-answer";
-import removeDocumentStringAnswerMutation from "ember-caluma/gql/mutations/remove-document-string-answer";
-import removeDocumentListAnswerMutation from "ember-caluma/gql/mutations/remove-document-list-answer";
+import removeAnswerMutation from "ember-caluma/gql/mutations/remove-answer";
 
 const TYPE_MAP = {
   TextQuestion: "StringAnswer",
@@ -48,11 +45,7 @@ export default EmberObject.extend(Evented, {
   saveDocumentStringAnswerMutation,
   saveDocumentListAnswerMutation,
   saveDocumentFileAnswerMutation,
-
-  removeDocumentFloatAnswerMutation,
-  removeDocumentIntegerAnswerMutation,
-  removeDocumentStringAnswerMutation,
-  removeDocumentListAnswerMutation,
+  removeAnswerMutation,
 
   /**
    * The Apollo GraphQL service for making requests
@@ -189,19 +182,27 @@ export default EmberObject.extend(Evented, {
   save: task(function*() {
     const type = this.get("answer.__typename");
     const value = this.get("answer.value");
-    const question = this.get("question.slug");
-    const document = this.get("document.id");
 
     if (value === null || value.length === 0) {
       return yield this.apollo.mutate({
-        mutation: this.get(`removeDocument${type}Mutation`),
-        variables: { input: { question, document } }
+        mutation: this.get(`removeAnswerMutation`),
+        variables: {
+          input: {
+            answer: atob(this.get("answer.id")).split(":")[1]
+          }
+        }
       });
     } else {
       return yield this.apollo.mutate(
         {
           mutation: this.get(`saveDocument${type}Mutation`),
-          variables: { input: { question, document, value } }
+          variables: {
+            input: {
+              question: this.get("question.slug"),
+              document: this.get("document.id"),
+              value
+            }
+          }
         },
         `saveDocument${type}.answer`
       );
