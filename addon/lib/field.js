@@ -45,7 +45,6 @@ export default EmberObject.extend(Evented, {
   saveDocumentStringAnswerMutation,
   saveDocumentListAnswerMutation,
   saveDocumentFileAnswerMutation,
-  removeAnswerMutation,
 
   /**
    * The Apollo GraphQL service for making requests
@@ -185,7 +184,7 @@ export default EmberObject.extend(Evented, {
 
     if (value === null || value.length === 0) {
       return yield this.apollo.mutate({
-        mutation: this.get(`removeAnswerMutation`),
+        mutation: removeAnswerMutation,
         variables: {
           input: {
             answer: atob(this.get("answer.id")).split(":")[1]
