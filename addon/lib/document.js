@@ -72,6 +72,9 @@ export default EmberObject.extend({
     questionJexl.addTransform("answer", slugWithPath =>
       this.findAnswer(slugWithPath)
     );
+    questionJexl.addBinaryOp("intersects", 20, (left, right) =>
+      left.some(val => right.includes(val))
+    );
 
     return questionJexl;
   }),
