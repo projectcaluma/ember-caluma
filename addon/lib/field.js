@@ -21,8 +21,6 @@ import saveDocumentListAnswerMutation from "ember-caluma/gql/mutations/save-docu
 import saveDocumentFileAnswerMutation from "ember-caluma/gql/mutations/save-document-file-answer";
 import removeAnswerMutation from "ember-caluma/gql/mutations/remove-answer";
 
-import removeAnswerMutation from "ember-caluma/gql/mutations/remove-answer";
-
 const TYPE_MAP = {
   TextQuestion: "StringAnswer",
   TextareaQuestion: "StringAnswer",
