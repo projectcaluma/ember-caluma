@@ -21,10 +21,7 @@ import saveDocumentListAnswerMutation from "ember-caluma/gql/mutations/save-docu
 import saveDocumentFileAnswerMutation from "ember-caluma/gql/mutations/save-document-file-answer";
 import removeAnswerMutation from "ember-caluma/gql/mutations/remove-answer";
 
-import removeDocumentFloatAnswerMutation from "ember-caluma/gql/mutations/remove-document-float-answer";
-import removeDocumentIntegerAnswerMutation from "ember-caluma/gql/mutations/remove-document-integer-answer";
-import removeDocumentStringAnswerMutation from "ember-caluma/gql/mutations/remove-document-string-answer";
-import removeDocumentListAnswerMutation from "ember-caluma/gql/mutations/remove-document-list-answer";
+import removeAnswerMutation from "ember-caluma/gql/mutations/remove-answer";
 
 const TYPE_MAP = {
   TextQuestion: "StringAnswer",
@@ -50,11 +47,7 @@ export default EmberObject.extend(Evented, {
   saveDocumentStringAnswerMutation,
   saveDocumentListAnswerMutation,
   saveDocumentFileAnswerMutation,
-
-  removeDocumentFloatAnswerMutation,
-  removeDocumentIntegerAnswerMutation,
-  removeDocumentStringAnswerMutation,
-  removeDocumentListAnswerMutation,
+  removeAnswerMutation,
 
   /**
    * The Apollo GraphQL service for making requests

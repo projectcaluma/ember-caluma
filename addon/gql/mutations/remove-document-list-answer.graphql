@@ -1,5 +1,0 @@
-mutation($input: RemoveDocumentListAnswerInput!) {
-  removeDocumentListAnswer(input: $input) {
-    clientMutationId
-  }
-}

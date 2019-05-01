@@ -1,5 +1,0 @@
-mutation($input: RemoveDocumentFloatAnswerInput!) {
-  removeDocumentFloatAnswer(input: $input) {
-    clientMutationId
-  }
-}
