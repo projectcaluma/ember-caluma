@@ -9084,10 +9084,9 @@ jest-docblock@^21.0.0:
   resolved "https://registry.yarnpkg.com/jest-docblock/-/jest-docblock-21.2.0.tgz#51529c3b30d5fd159da60c27ceedc195faf8d414"
   integrity sha512-5IZ7sY9dBAYSV+YjQ0Ovb540Ku7AO9Z5o2Cg789xj167iQuZ2cG+z0f3Uct6WeYLbU6aQiM2pCs7sZ+4dotydw==
 
-jexl@^1.1.4:
-  version "1.1.4"
-  resolved "https://registry.yarnpkg.com/jexl/-/jexl-1.1.4.tgz#35cf86f881ea219d1e215c7a41e2e747ce6ee8a6"
-  integrity sha1-Nc+G+IHqIZ0eIVx6QeLnR85u6KY=
+jexl@czosel/Jexl#allow-arbitrary-whitespace:
+  version "2.1.1"
+  resolved "https://codeload.github.com/czosel/Jexl/tar.gz/6b3eb2f6177b1e042e06bfc5d958a7272d6bb39d"
 
 joi@^12.0.0:
   version "12.0.0"
