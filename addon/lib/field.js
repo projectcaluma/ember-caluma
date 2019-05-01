@@ -317,6 +317,7 @@ export default EmberObject.extend(Evented, {
    */
   _validateChoiceQuestion() {
     return validate("inclusion", this.get("answer.value"), {
+      allowBlank: true,
       in: this.get("question.choiceOptions.edges").map(
         option => option.node.slug
       )
