@@ -5,7 +5,7 @@ import Field from "ember-caluma/lib/field";
 import jexl from "jexl";
 import { atob } from "ember-caluma/helpers/atob";
 import { inject as service } from "@ember/service";
-// import { findFieldInTree } from "ember-caluma/utils/tree";
+import { intersects } from "ember-caluma/utils/jexl";
 
 const STATE_PRECEDENCE = ["invalid", "unfinished", "untouched", "valid"];
 
@@ -72,9 +72,7 @@ export default EmberObject.extend({
     questionJexl.addTransform("answer", slugWithPath =>
       this.findAnswer(slugWithPath)
     );
-    questionJexl.addBinaryOp("intersects", 20, (left, right) =>
-      left.some(val => right.includes(val))
-    );
+    questionJexl.addBinaryOp("intersects", 20, intersects);
 
     return questionJexl;
   }),

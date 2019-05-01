@@ -1,6 +1,9 @@
 import Parser from "jexl/lib/parser/Parser";
 import jexl from "jexl";
 
+export const intersects = (left, right) =>
+  left.some(val => right.includes(val));
+
 /**
  * Transform a JEXL expression into it's AST
  *
@@ -9,6 +12,7 @@ import jexl from "jexl";
  * @return {Object} AST
  */
 export const getAST = expression => {
+  jexl.addBinaryOp("intersects", 20, intersects);
   let grammar = jexl._getGrammar();
   let parser = new Parser(grammar);
 
