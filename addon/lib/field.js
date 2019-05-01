@@ -47,7 +47,6 @@ export default EmberObject.extend(Evented, {
   saveDocumentStringAnswerMutation,
   saveDocumentListAnswerMutation,
   saveDocumentFileAnswerMutation,
-  removeAnswerMutation,
 
   /**
    * The Apollo GraphQL service for making requests
