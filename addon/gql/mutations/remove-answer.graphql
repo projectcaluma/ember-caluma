@@ -1,0 +1,5 @@
+mutation($input: RemoveAnswerInput!) {
+  removeAnswer(input: $input) {
+    clientMutationId
+  }
+}

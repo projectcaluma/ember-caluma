@@ -12,12 +12,14 @@ import Evented, { on } from "@ember/object/evented";
 import Answer from "ember-caluma/lib/answer";
 import Question from "ember-caluma/lib/question";
 import Document from "ember-caluma/lib/document";
+import { atob } from "ember-caluma/helpers/atob";
 
 import saveDocumentFloatAnswerMutation from "ember-caluma/gql/mutations/save-document-float-answer";
 import saveDocumentIntegerAnswerMutation from "ember-caluma/gql/mutations/save-document-integer-answer";
 import saveDocumentStringAnswerMutation from "ember-caluma/gql/mutations/save-document-string-answer";
 import saveDocumentListAnswerMutation from "ember-caluma/gql/mutations/save-document-list-answer";
 import saveDocumentFileAnswerMutation from "ember-caluma/gql/mutations/save-document-file-answer";
+import removeAnswerMutation from "ember-caluma/gql/mutations/remove-answer";
 
 const TYPE_MAP = {
   TextQuestion: "StringAnswer",
@@ -178,20 +180,32 @@ export default EmberObject.extend(Evented, {
    */
   save: task(function*() {
     const type = this.get("answer.__typename");
+    const value = this.get("answer.value");
 
-    return yield this.apollo.mutate(
-      {
-        mutation: this.get(`saveDocument${type}Mutation`),
+    if (value === null || value.length === 0) {
+      return yield this.apollo.mutate({
+        mutation: removeAnswerMutation,
         variables: {
           input: {
-            question: this.get("question.slug"),
-            document: this.get("document.id"),
-            value: this.get("answer.value")
+            answer: atob(this.get("answer.id"))
           }
         }
-      },
-      `saveDocument${type}.answer`
-    );
+      });
+    } else {
+      return yield this.apollo.mutate(
+        {
+          mutation: this.get(`saveDocument${type}Mutation`),
+          variables: {
+            input: {
+              question: this.get("question.slug"),
+              document: this.get("document.id"),
+              value
+            }
+          }
+        },
+        `saveDocument${type}.answer`
+      );
+    }
   }),
 
   /**
