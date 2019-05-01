@@ -86,8 +86,8 @@ export default Component.extend({
           downloadUrl: fileValue.downloadUrl
         });
       } catch (event) {
+        await this.onSave(null);
         this.set("field._errors", [{ type: "uploadFailed" }]);
-        this.set("field.answer.fileValue", null);
       } finally {
         target.value = "";
         target.parentNode.querySelector("[type=text]").value = "";
