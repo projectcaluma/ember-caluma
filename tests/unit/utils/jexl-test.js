@@ -53,4 +53,31 @@ module("Unit | Utility | jexl", function(hooks) {
       ]
     );
   });
+
+  test("custom intersects operator works", async function(assert) {
+    assert.expect(1);
+
+    assert.deepEqual(getAST("[1] intersects [1]"), {
+      left: {
+        type: "ArrayLiteral",
+        value: [
+          {
+            type: "Literal",
+            value: 1
+          }
+        ]
+      },
+      operator: "intersects",
+      right: {
+        type: "ArrayLiteral",
+        value: [
+          {
+            type: "Literal",
+            value: 1
+          }
+        ]
+      },
+      type: "BinaryExpression"
+    });
+  });
 });
