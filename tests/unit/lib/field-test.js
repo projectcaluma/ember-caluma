@@ -101,6 +101,22 @@ module("Unit | Library | field", function(hooks) {
       assert.deepEqual(field.errors, ["This field can't be blank"]);
     });
 
+    test("it ignores hidden required fields", async function(assert) {
+      assert.expect(1);
+
+      const field = Field.create(this.owner.ownerInjection(), {
+        _question: {
+          isRequired: "true",
+          hidden: true,
+          __typename: "TextQuestion"
+        },
+        _document: {}
+      });
+
+      await field.validate.perform();
+      assert.deepEqual(field.errors, []);
+    });
+
     test("it can validate text fields", async function(assert) {
       assert.expect(2);
 
