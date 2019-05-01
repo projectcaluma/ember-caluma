@@ -46,6 +46,16 @@ module("Integration | Component | cf-field", function(hooks) {
     this.set("field", document.fields[0]);
   });
 
+  test("it allows deleting existing input", async function(assert) {
+    assert.expect(1);
+
+    await render(hbs`{{cf-field field=field}}`);
+    this.set("field.answer.value", "Test");
+
+    await fillIn("input", "");
+    assert.equal(this.field.answer.value, "", "Value was removed.");
+  });
+
   test("it renders", async function(assert) {
     assert.expect(5);
 
