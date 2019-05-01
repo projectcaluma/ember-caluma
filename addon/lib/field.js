@@ -12,13 +12,13 @@ import Evented, { on } from "@ember/object/evented";
 import Answer from "ember-caluma/lib/answer";
 import Question from "ember-caluma/lib/question";
 import Document from "ember-caluma/lib/document";
+import { atob } from "ember-caluma/helpers/atob";
 
 import saveDocumentFloatAnswerMutation from "ember-caluma/gql/mutations/save-document-float-answer";
 import saveDocumentIntegerAnswerMutation from "ember-caluma/gql/mutations/save-document-integer-answer";
 import saveDocumentStringAnswerMutation from "ember-caluma/gql/mutations/save-document-string-answer";
 import saveDocumentListAnswerMutation from "ember-caluma/gql/mutations/save-document-list-answer";
 import saveDocumentFileAnswerMutation from "ember-caluma/gql/mutations/save-document-file-answer";
-
 import removeAnswerMutation from "ember-caluma/gql/mutations/remove-answer";
 
 const TYPE_MAP = {
@@ -187,7 +187,7 @@ export default EmberObject.extend(Evented, {
         mutation: removeAnswerMutation,
         variables: {
           input: {
-            answer: atob(this.get("answer.id")).split(":")[1]
+            answer: atob(this.get("answer.id"))
           }
         }
       });
