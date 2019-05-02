@@ -169,6 +169,13 @@ export default class extends BaseMock {
     });
   }
 
+  @register("SaveDateQuestionPayload")
+  handleSaveDateQuestion(_, { input }) {
+    return this.handleSavePayload.fn.call(this, _, {
+      input: { ...input, type: "DATE" }
+    });
+  }
+
   @register("SaveFileQuestionPayload")
   handleSaveFileQuestion(_, { input }) {
     return this.handleSavePayload.fn.call(this, _, {

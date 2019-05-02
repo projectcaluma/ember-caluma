@@ -9,7 +9,8 @@ const TYPES = [
   "CHOICE",
   "TABLE",
   "FILE",
-  "STATIC"
+  "STATIC",
+  "DATE"
 ];
 
 export default Factory.extend({

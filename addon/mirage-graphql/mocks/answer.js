@@ -85,4 +85,13 @@ export default class extends BaseMock {
       type: "FILE"
     });
   }
+
+  @register("SaveDocumentDateAnswerPayload")
+  handleSaveDateAnswer(_, { input }) {
+    return this._handleSaveDocumentAnswer(_, {
+      ...input,
+      value: String(input.value),
+      type: "DATE"
+    });
+  }
 }

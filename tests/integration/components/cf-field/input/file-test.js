@@ -32,9 +32,9 @@ module("Integration | Component | cf-field/input/file", function(hooks) {
 
     await render(hbs`{{cf-field/input/file field=field onSave=onSave}}`);
 
-    await triggerEvent("input[type=file]", "change", []);
-    await triggerEvent("input[type=file]", "change", [payload_fail]);
-    await triggerEvent("input[type=file]", "change", [payload_good]);
+    await triggerEvent("input[type=file]", "change", { files: [] });
+    await triggerEvent("input[type=file]", "change", { files: [payload_fail] });
+    await triggerEvent("input[type=file]", "change", { files: [payload_good] });
   });
 
   test("it allows to download a file", async function(assert) {

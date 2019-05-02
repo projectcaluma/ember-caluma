@@ -34,6 +34,10 @@ caluma:
       inclusion: "'{value}' ist kein gültiger Wert für dieses Feld"
       uploadFailed: "Beim Hochladen ist ein Fehler aufgetreten."
 
+    pikaday:
+      month-previous: "Vorheriger Monat"
+      month-next: "Nächster Monat"
+
   form-builder:
     global:
       save: "Speichern"
@@ -111,6 +115,7 @@ caluma:
         FormQuestion: "Formular"
         FileQuestion: "Datei"
         StaticQuestion: "Statischer Inhalt"
+        DateQuestion: "Datum"
 
       widgetOverrides:
         powerselect: "Power Select"

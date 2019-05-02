@@ -30,6 +30,7 @@ import saveTableQuestionMutation from "ember-caluma/gql/mutations/save-table-que
 import saveFormQuestionMutation from "ember-caluma/gql/mutations/save-form-question";
 import saveFileQuestionMutation from "ember-caluma/gql/mutations/save-file-question";
 import saveStaticQuestionMutation from "ember-caluma/gql/mutations/save-static-question";
+import saveDateQuestionMutation from "ember-caluma/gql/mutations/save-date-question";
 
 export const TYPES = {
   TextQuestion: saveTextQuestionMutation,
@@ -41,7 +42,8 @@ export const TYPES = {
   TableQuestion: saveTableQuestionMutation,
   FormQuestion: saveFormQuestionMutation,
   FileQuestion: saveFileQuestionMutation,
-  StaticQuestion: saveStaticQuestionMutation
+  StaticQuestion: saveStaticQuestionMutation,
+  DateQuestion: saveDateQuestionMutation
 };
 
 export default Component.extend(ComponentQueryManager, {
@@ -247,6 +249,12 @@ export default Component.extend(ComponentQueryManager, {
   _getStaticQuestionInput(changeset) {
     return {
       staticContent: changeset.get("staticContent")
+    };
+  },
+
+  _getDateQuestionInput(changeset) {
+    return {
+      isRequired: changeset.get("isRequired")
     };
   },
 

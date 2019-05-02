@@ -25,6 +25,9 @@ fragment SimpleAnswer on Answer {
       name
     }
   }
+  ... on DateAnswer {
+    dateValue: value
+  }
 }
 
 fragment FieldAnswer on Answer {
