@@ -61,9 +61,7 @@ export default Component.extend({
     yield this.field.validate.perform();
 
     try {
-      const response = yield this.field.save.unlinked().perform();
-      answer.setProperties(response);
-      return response;
+      return yield this.field.save.unlinked().perform();
     } catch (e) {
       // that's ok
     }

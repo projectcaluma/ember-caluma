@@ -183,16 +183,19 @@ export default EmberObject.extend(Evented, {
     const value = this.get("answer.value");
 
     if (value === null || value.length === 0) {
-      return yield this.apollo.mutate({
-        mutation: removeAnswerMutation,
-        variables: {
-          input: {
-            answer: atob(this.get("answer.id"))
-          }
-        }
-      });
-    } else {
       return yield this.apollo.mutate(
+        {
+          mutation: removeAnswerMutation,
+          variables: {
+            input: {
+              answer: atob(this.get("answer.id"))
+            }
+          }
+        },
+        `removeAnswer.answer`
+      );
+    } else {
+      const response = yield this.apollo.mutate(
         {
           mutation: this.get(`saveDocument${type}Mutation`),
           variables: {
@@ -205,6 +208,8 @@ export default EmberObject.extend(Evented, {
         },
         `saveDocument${type}.answer`
       );
+      this.answer.setProperties(response);
+      return response;
     }
   }),
 
