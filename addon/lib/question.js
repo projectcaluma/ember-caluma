@@ -44,18 +44,6 @@ export default EmberObject.extend({
 
     return dependents.map(slugWithPath => {
       const field = this.document.findField(slugWithPath);
-      if (!field) {
-        if (slugWithPath.includes(".")) {
-          const path = slugWithPath.split(".");
-          const slug = path.pop();
-          throw new Error(
-            `Field "${slug}" is not present in document "${path}"`
-          );
-        }
-        throw new Error(
-          `Field "${slugWithPath}" is not present in this document`
-        );
-      }
       field.registerDependentField(this.field);
       return field;
     });
