@@ -31,7 +31,7 @@ caluma:
       greaterThanOrEqualTo: "Die Eingabe in diesem Feld darf nicht kleiner als {gte} sein"
       lessThanOrEqualTo: "Die Eingebae in diesem Feld darf nicht grösser als {lte} sein"
       notAnInteger: "Bitte geben Sie eine ganze Zahl ein"
-      inclusion: "'{value}' ist keine gültiger Wert für dieses Feld"
+      inclusion: "'{value}' ist kein gültiger Wert für dieses Feld"
       uploadFailed: "Beim Hochladen ist ein Fehler aufgetreten."
 
   form-builder:
