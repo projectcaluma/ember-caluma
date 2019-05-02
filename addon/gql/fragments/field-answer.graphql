@@ -17,6 +17,14 @@ fragment SimpleAnswer on Answer {
   ... on ListAnswer {
     listValue: value
   }
+  ... on FileAnswer {
+    fileValue: value {
+      uploadUrl
+      downloadUrl
+      metadata
+      name
+    }
+  }
 }
 
 fragment FieldAnswer on Answer {
@@ -41,15 +49,6 @@ fragment FieldAnswer on Answer {
           }
         }
       }
-    }
-  }
-
-  ... on FileAnswer {
-    fileValue: value {
-      uploadUrl
-      downloadUrl
-      metadata
-      name
     }
   }
 }
