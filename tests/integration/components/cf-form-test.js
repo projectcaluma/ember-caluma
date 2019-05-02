@@ -37,6 +37,8 @@ module("Integration | Component | cf-form", function(hooks) {
         formIds: [form.id],
         type: "MULTIPLE_CHOICE"
       })
+      // The following question is commented-out as we currently have a 
+      // problem with GraphQL/Mirage and I didn't want to skip everything.
       /*,
       this.server.create("question", {
         formIds: [form.id],
@@ -140,6 +142,8 @@ module("Integration | Component | cf-form", function(hooks) {
       slug: "checkbox-question",
       type: "MULTIPLE_CHOICE"
     });
+    // The following questions is commented-out as we currently have a 
+    // problem with GraphQL/Mirage and I didn't want to skip everything.
     /*
     this.server.create("question", {
       formIds: [form.id],
@@ -198,6 +202,8 @@ module("Integration | Component | cf-form", function(hooks) {
         document.id
       }:Question:checkbox-question"][value="checkbox-question-option-2"]`
     );
+    // The following answers are commented-out as we currently have a 
+    // problem with GraphQL/Mirage and I didn't want to skip everything.
     /*
     await fillIn(
       `[name="Document:${document.id}:Question:date-question"]`,
@@ -245,6 +251,8 @@ module("Integration | Component | cf-form", function(hooks) {
           slug: "checkbox-question",
           value: ["checkbox-question-option-1", "checkbox-question-option-2"]
         }
+        // The following answers are commented-out as we currently have a 
+        // problem with GraphQL/Mirage and I didn't want to skip everything.
         /*,
         {
           slug: "date-question",
