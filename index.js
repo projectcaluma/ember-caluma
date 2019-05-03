@@ -15,9 +15,10 @@ module.exports = EngineAddon.extend({
   // see https://github.com/dfreeman/ember-cli-node-assets/issues/11
   // for why this is not wrapped in `options`
   babel: {
-    // Use babel 7 plugins with ember-cli-babel 7.x as soon as
-    // https://github.com/ef4/ember-auto-import/issues/119 is resolved
-    plugins: ["transform-decorators-legacy", "transform-object-rest-spread"]
+    plugins: [
+      ["@babel/plugin-proposal-decorators", { legacy: true }],
+      "@babel/plugin-proposal-object-rest-spread"
+    ]
   },
 
   included() {
