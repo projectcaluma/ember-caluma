@@ -86,25 +86,57 @@ export default EmberObject.extend({
     const segments = slugWithPath.split(".");
     const slug = segments.pop();
     const doc = this.resolveDocument(segments);
-    return doc && doc.fields.find(field => field.question.slug === slug);
+    let field = doc && doc.fields.find(field => field.question.slug === slug);
+    if (!field) {
+      segments.push(slug);
+      this._resolveError(segments, slug, doc);
+    }
+    return field;
   },
 
+  _resolveError(segments, failedAtSegment, failedAtDoc) {
+    let path = segments.join(".");
+    let explanation = "";
+    let availableKeys = failedAtDoc.fields
+      .map(field => field.question.slug)
+      .map(slug => `"${slug}"`)
+      .join(", ");
+
+    if (path != failedAtSegment) {
+      // single quesiton, doesn't need explanation about path / segment step
+      explanation = ` (failed at segment "${failedAtSegment}")`;
+    }
+    throw new Error(
+      `Question could not be resolved: "${path}"${explanation}. Available: ${availableKeys}`
+    );
+  },
   resolveDocument(segments) {
     if (!segments) {
       return this;
     }
     let _document = this;
     for (let segment of segments) {
-      if (segment === "parent") {
-        _document = _document.parentDocument;
-      } else {
-        const formField = _document.fields.find(
-          field => field.question.slug === segment
-        );
-        if (!formField) {
-          return null;
+      switch (segment) {
+        case "root":
+          while (_document.parentDocument) {
+            _document = _document.parentDocument;
+          }
+          break;
+        case "parent":
+          if (!_document.parentDocument) {
+            this._resolveError(segments, segment, _document);
+          }
+          _document = _document.parentDocument;
+          break;
+        default: {
+          let formField = _document.fields.find(
+            field => field.question.slug === segment
+          );
+          if (!formField) {
+            this._resolveError(segments, segment, _document);
+          }
+          _document = formField.childDocument;
         }
-        _document = formField.childDocument;
       }
     }
     return _document;

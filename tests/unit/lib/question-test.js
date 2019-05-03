@@ -81,7 +81,7 @@ module("Unit | Library | question", function(hooks) {
     assert.expect(1);
     assert.throws(
       () => this.question2.dependsOn,
-      /Field "question-nonexistent" is not present in this document/
+      /Question could not be resolved: "question-nonexistent". Available: "question1", "question2"/
     );
     this.set("question2.isHidden", "false");
   });
