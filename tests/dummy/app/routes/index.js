@@ -40,7 +40,7 @@ export default Route.extend(RouteQueryManager, {
       {
         query: gql`
           query {
-            allDocuments {
+            allDocuments(form: "main", orderBy: CREATED_AT_DESC) {
               edges {
                 node {
                   id
