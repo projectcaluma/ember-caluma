@@ -43,7 +43,7 @@ module("Unit | Library | document", function(hooks) {
                 slug: "question-2",
                 label: "Question 2",
                 isRequired: "false",
-                isHidden: "'question-1'|answer == 'magic'",
+                isHidden: "!('question-1'|answer == 'show-question-2')",
                 __typename: "TextQuestion"
               }
             },
@@ -52,7 +52,8 @@ module("Unit | Library | document", function(hooks) {
                 slug: "question-3",
                 label: "Question 3",
                 isRequired: "false",
-                isHidden: "'question-2'|answer == 'Harry Potter'",
+                isHidden:
+                  "!('question-1'|answer == 'show-question-3' || 'question-2'|answer == 'show-question-3')",
                 __typename: "TextQuestion"
               }
             }
@@ -84,8 +85,8 @@ module("Unit | Library | document", function(hooks) {
 
   test("it recomputes isHidden on value change of dependency", async function(assert) {
     assert.expect(1);
-    await this.setFieldValue("question-1", "foo");
-    await this.setFieldValue("question-2", "Harry Potter");
+    await this.setFieldValue("question-1", "show-question-2");
+    await this.setFieldValue("question-2", "foo");
     assert.deepEqual(this.getDocumentHiddenState(), [
       ["question-1", false],
       ["question-2", false],
@@ -94,25 +95,21 @@ module("Unit | Library | document", function(hooks) {
   });
 
   test("it recomputes isHidden on isHidden change of dependency", async function(assert) {
-    assert.expect(3);
-    await this.setFieldValue("question-1", "foo");
-    await this.setFieldValue("question-2", "bar");
+    assert.expect(2);
+    await this.setFieldValue("question-1", "show-question-2");
+    await this.setFieldValue("question-2", "show-question-3");
     assert.deepEqual(this.getDocumentHiddenState(), [
       ["question-1", false],
       ["question-2", false],
       ["question-3", false]
     ]);
-    await this.setFieldValue("question-1", "magic");
+    await this.setFieldValue("question-1", "foo");
+
+    // since question 2 is hidden, it's value is not considered in question 3's jexl.
     assert.deepEqual(this.getDocumentHiddenState(), [
       ["question-1", false],
       ["question-2", true],
       ["question-3", true]
-    ]);
-    await this.setFieldValue("question-1", "foo");
-    assert.deepEqual(this.getDocumentHiddenState(), [
-      ["question-1", false],
-      ["question-2", false],
-      ["question-3", false]
     ]);
   });
 

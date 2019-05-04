@@ -78,8 +78,21 @@ export default EmberObject.extend({
   }),
 
   findAnswer(slugWithPath) {
-    const result = this.findField(slugWithPath);
-    return result && result.answer.value;
+    const field = this.findField(slugWithPath);
+    if (!field || !field.answer) {
+      return null;
+    }
+
+    // Multiple choice questions should return an empty array if there is no answer
+    // otherwise `intersects` operator breaks
+    const emptyValue =
+      field.question.__typename == "MultipleChoiceQuestion" ? [] : null;
+
+    if (field.answer.value && !field.question.hidden) {
+      return field.answer.value;
+    }
+
+    return emptyValue;
   },
 
   findField(slugWithPath) {
