@@ -29,6 +29,7 @@ module("Integration | Component | cf-field/input/radio", function(hooks) {
                 (hash node=(hash slug="option-3" label="Option 3"))
               )
             )
+            __typename="ChoiceQuestion"
           )
         )
       }}
@@ -66,6 +67,7 @@ module("Integration | Component | cf-field/input/radio", function(hooks) {
                 (hash node=(hash slug="option-3" label="Option 3"))
               )
             )
+            __typename="ChoiceQuestion"
           )
         )
       }}
@@ -91,6 +93,7 @@ module("Integration | Component | cf-field/input/radio", function(hooks) {
                 (hash node=(hash slug="option-1" label="Option 1"))
               )
             )
+            __typename="ChoiceQuestion"
           )
         )
       }}

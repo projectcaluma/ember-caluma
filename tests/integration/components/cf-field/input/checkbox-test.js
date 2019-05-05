@@ -24,6 +24,7 @@ module("Integration | Component | cf-field/input/checkbox", function(hooks) {
                 (hash node=(hash slug="option-3" label="Option 3"))
               )
             )
+            __typename="MultipleChoiceQuestion"
           )
         )
       }}
@@ -67,6 +68,7 @@ module("Integration | Component | cf-field/input/checkbox", function(hooks) {
                 (hash node=(hash slug="option-3" label="Option 3"))
               )
             )
+            __typename="MultipleChoiceQuestion"
           )
         )
       }}
@@ -97,6 +99,7 @@ module("Integration | Component | cf-field/input/checkbox", function(hooks) {
                 (hash node=(hash slug="option-2" label="Option 2"))
               )
             )
+            __typename="MultipleChoiceQuestion"
           )
         )
       }}

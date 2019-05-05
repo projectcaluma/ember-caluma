@@ -19,7 +19,7 @@ export default Component.extend({
       if (this.get("field.question.__typename").includes("Dynamic")) {
         return this.get("field.question.dynamicMultipleChoiceOptions.edges");
       }
-      return this.get("field.question.multipleChoiceOptions");
+      return this.get("field.question.multipleChoiceOptions.edges");
     }
   ),
 

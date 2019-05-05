@@ -247,6 +247,7 @@ export default Component.extend(ComponentQueryManager, {
 
   _getDynamicMultipleChoiceQuestionInput(changeset) {
     return {
+      isRequired: changeset.get("isRequired"),
       dataSource: changeset.get("dataSource"),
       meta: JSON.stringify({
         widgetOverride: changeset.get("widgetOverride"),
@@ -257,6 +258,7 @@ export default Component.extend(ComponentQueryManager, {
 
   _getDynamicChoiceQuestionInput(changeset) {
     return {
+      isRequired: changeset.get("isRequired"),
       dataSource: changeset.get("dataSource"),
       meta: JSON.stringify({
         widgetOverride: changeset.get("widgetOverride"),
@@ -327,7 +329,6 @@ export default Component.extend(ComponentQueryManager, {
               {
                 label: changeset.get("label"),
                 slug,
-                isRequired: changeset.get("isRequired"),
                 isHidden: changeset.get("isHidden"),
                 infoText: changeset.get("infoText"),
                 meta: JSON.stringify({
