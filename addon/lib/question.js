@@ -60,12 +60,14 @@ export default EmberObject.extend({
    * @return {Boolean}
    */
   hiddenTask: task(function*() {
-    let hidden = this.dependsOn.some(
-      field =>
-        field.question.hidden ||
-        field.answer.value === null ||
-        field.answer.value === undefined
-    );
+    let hidden =
+      this.dependsOn.length &&
+      this.dependsOn.every(
+        field =>
+          field.question.hidden ||
+          field.answer.value === null ||
+          field.answer.value === undefined
+      );
 
     hidden =
       hidden || (yield this.field.document.questionJexl.eval(this.isHidden));
