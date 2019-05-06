@@ -21,7 +21,7 @@ export default Route.extend(RouteQueryManager, {
       {
         query: gql`
           query AllDocsToFindFirst {
-            allDocuments {
+            allDocuments(form: "main") {
               edges {
                 node {
                   id
