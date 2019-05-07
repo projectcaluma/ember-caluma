@@ -328,7 +328,7 @@ export default EmberObject.extend(Evented, {
   _validateChoiceQuestion() {
     return validate("inclusion", this.get("answer.value"), {
       allowBlank: true,
-      in: this.get("question.choiceOptions.edges").map(
+      in: this.getWithDefault("question.choiceOptions.edges", []).map(
         option => option.node.slug
       )
     });
@@ -343,9 +343,9 @@ export default EmberObject.extend(Evented, {
    * @internal
    */
   _validateMultipleChoiceQuestion() {
-    return this.get("answer.value").map(value =>
+    return this.getWithDefault("answer.value", []).map(value =>
       validate("inclusion", value, {
-        in: this.get("question.multipleChoiceOptions.edges").map(
+        in: this.getWithDefault("question.multipleChoiceOptions.edges", []).map(
           option => option.node.slug
         )
       })
@@ -362,7 +362,7 @@ export default EmberObject.extend(Evented, {
    */
   _validateDynamicChoiceQuestion() {
     return validate("inclusion", this.get("answer.value"), {
-      in: this.get("question.dynamicChoiceOptions.edges").map(
+      in: this.getWithDefault("question.dynamicChoiceOptions.edges", []).map(
         option => option.node.slug
       )
     });
@@ -377,11 +377,12 @@ export default EmberObject.extend(Evented, {
    * @internal
    */
   _validateDynamicMultipleChoiceQuestion() {
-    return this.get("answer.value").map(value => {
+    return this.getWithDefault("answer.value", []).map(value => {
       return validate("inclusion", value, {
-        in: this.get("question.dynamicMultipleChoiceOptions.edges").map(
-          option => option.node.slug
-        )
+        in: this.getWithDefault(
+          "question.dynamicMultipleChoiceOptions.edges",
+          []
+        ).map(option => option.node.slug)
       });
     });
   },
