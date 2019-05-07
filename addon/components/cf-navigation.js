@@ -67,6 +67,8 @@ export default Component.extend(ComponentQueryManager, {
         // eslint-disable-next-line no-console
         console.error(e);
         return null;
+      } finally {
+        window.scrollTo(0, 0);
       }
     }
   ),
