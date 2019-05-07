@@ -1,5 +1,5 @@
 <button type="button" class="uk-icon-button" uk-icon="info" {{action (mut showModal) true}}></button>
 
 {{#uk-modal visible=showModal}}
-  {{markdown-to-html text}}
+  {{markdown-to-html text openLinksInNewWindow=true}}
 {{/uk-modal}}
