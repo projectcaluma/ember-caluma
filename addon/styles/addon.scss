@@ -13,3 +13,16 @@
 .jexl-textarea textarea {
   font-family: monospace;
 }
+
+.cf-checkbox_label {
+  display: block;
+  position: relative;
+  padding-left: 26px;
+
+  .uk-checkbox {
+    position: absolute;
+    top: .25em;
+    left: 0;
+    margin: 0;
+  }
+}
