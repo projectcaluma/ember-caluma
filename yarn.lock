@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@adfinis-sygroup/semantic-release-config@^2.0.0":
+"@adfinis-sygroup/semantic-release-config@2.0.0":
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/@adfinis-sygroup/semantic-release-config/-/semantic-release-config-2.0.0.tgz#326e10072616f9fad223cc192b672c1f05a1c5cf"
   integrity sha512-jLNv3LXpr66UpJmCA8GPpDXnt59pycczIswjaF9fkO587r2yAJtyauNwZs3RWUfxjDnpAcawCSyDdU0DEngUUg==
@@ -754,7 +754,7 @@
     resolve-from "4.0.0"
     resolve-global "0.1.0"
 
-"@commitlint/cli@^7.6.0":
+"@commitlint/cli@7.6.0", "@commitlint/cli@^7.6.0":
   version "7.6.0"
   resolved "https://registry.yarnpkg.com/@commitlint/cli/-/cli-7.6.0.tgz#4f046342149ca7c5819d6f799509f77ab824e02e"
   integrity sha512-3n4qNS1xOIQcL2uLSo+aF8q79kt8qWFUqtVUrlsKsn4B++htJDav3Y2TPjbNXEZD2tO1kg1jfjNE8LLkrHTxqg==
@@ -771,7 +771,7 @@
     resolve-from "5.0.0"
     resolve-global "1.0.0"
 
-"@commitlint/config-conventional@^7.5.0", "@commitlint/config-conventional@^7.6.0":
+"@commitlint/config-conventional@7.6.0", "@commitlint/config-conventional@^7.5.0":
   version "7.6.0"
   resolved "https://registry.yarnpkg.com/@commitlint/config-conventional/-/config-conventional-7.6.0.tgz#f3dc66bf39e3b627fdd6f5ac3d0510dd0dd38f94"
   integrity sha512-1Gnv5p3tc1VsEK25oTIRBO86czLtX6s/jeLNPAQRzdCnyEmsxkbx/sfoUJ1dwv7v8W++xckVnnuvdZv2Hp8yCw==
@@ -9292,7 +9292,7 @@ humanize-ms@^1.2.1:
   dependencies:
     ms "^2.0.0"
 
-husky@^2.2.0:
+husky@2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/husky/-/husky-2.2.0.tgz#4dda4370ba0f145b6594be4a4e4e4d4c82a6f2d5"
   integrity sha512-lG33E7zq6v//H/DQIojPEi1ZL9ebPFt3MxUMD8MR0lrS2ljEPiuUUxlziKIs/o9EafF0chL7bAtLQkcPvXmdnA==
