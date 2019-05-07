@@ -6030,10 +6030,10 @@ ember-disable-prototype-extensions@1.1.3:
   resolved "https://registry.yarnpkg.com/ember-disable-prototype-extensions/-/ember-disable-prototype-extensions-1.1.3.tgz#1969135217654b5e278f9fe2d9d4e49b5720329e"
   integrity sha1-GWkTUhdlS14nj5/i2dTkm1cgMp4=
 
-ember-engines@0.6.3:
-  version "0.6.3"
-  resolved "https://registry.yarnpkg.com/ember-engines/-/ember-engines-0.6.3.tgz#7034714da5a260cd503f18a3763b892d4b0206f3"
-  integrity sha512-cueC/NA7wRLx5qA6ivQFtx8dUYM4KkH06/mpGKVNTjz8Z1CMgjjky37EwWpfmkBZj1uaw9qbfKe9ZtvgXRhBLw==
+ember-engines@0.7.0:
+  version "0.7.0"
+  resolved "https://registry.yarnpkg.com/ember-engines/-/ember-engines-0.7.0.tgz#77e2d9c6bcb3878e8e087ea354df4fc8cc187954"
+  integrity sha512-XuKg7J2yl+KJVnYDHxr9RYon5/Dcm6zb1YyWL9GZvSWm+SPwoIPa/5awSOOAT2vH76t7JfYVP6Nz/6zaGgNqtw==
   dependencies:
     amd-name-resolver "1.3.1"
     babel-plugin-compact-reexports "^1.1.0"
