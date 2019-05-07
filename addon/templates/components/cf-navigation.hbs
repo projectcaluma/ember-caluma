@@ -7,7 +7,7 @@
     <div class="uk-width-1-1 uk-width-1-3@m">
       <ul class="uk-tab uk-tab-left uk-margin-left uk-margin-remove-vertical">
         {{#each fields as |field|}}
-          <li>
+          <li class={{if (eq section field.question.slug) "uk-active"}}>
             {{cf-navigation-item
               field=field
               section=field.question.slug
@@ -16,7 +16,7 @@
               }}
             <ul class="uk-tab uk-tab-left uk-margin-left uk-margin-remove-vertical">
               {{#each field.navSubFields as |subField|}}
-                <li>
+                <li class={{if (eq subSection subField.question.slug) "uk-active"}}>
                   {{cf-navigation-item
                     field=subField
                     section=field.question.slug
