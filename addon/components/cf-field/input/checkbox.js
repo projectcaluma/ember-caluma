@@ -1,6 +1,7 @@
 import Component from "@ember/component";
 import { get } from "@ember/object";
 import layout from "../../../templates/components/cf-field/input/checkbox";
+import { computed } from "@ember/object";
 
 /**
  * Input component for the checkbox question type
@@ -11,6 +12,16 @@ import layout from "../../../templates/components/cf-field/input/checkbox";
 export default Component.extend({
   layout,
   tagName: "",
+
+  choices: computed(
+    "field.question.{multipleChoiceOptions,dynamicMultipleChoiceOptions}.edges",
+    function() {
+      if (this.get("field.question.__typename").includes("Dynamic")) {
+        return this.get("field.question.dynamicMultipleChoiceOptions.edges");
+      }
+      return this.get("field.question.multipleChoiceOptions.edges");
+    }
+  ),
 
   actions: {
     /**

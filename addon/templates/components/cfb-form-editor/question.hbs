@@ -187,6 +187,31 @@
         </div>
       {{/if}}
 
+      {{#if (contains f.model.__typename (array "DynamicMultipleChoiceQuestion" "DynamicChoiceQuestion"))}}
+        {{f.input
+          name="dataSource"
+          type="select"
+          required=true
+          class="uk-flex uk-flex-betwten uk-flex-column"
+
+          label=(t "caluma.form-builder.question.dataSource")
+          options=(or availableDataSources.lastSuccessful.value (array ))
+          optionTargetPath="name"
+          optionLabelPath="info"
+          includeBlank=(t "caluma.form-builder.question.chooseRowForm")
+        }}
+
+        <div data-test-hide-label>
+          {{f.input
+            name="hideLabel"
+            required=true
+            label=(t "caluma.form-builder.question.hideLabel")
+            renderComponent=(component "cfb-toggle-switch" size="small")
+            class="uk-flex uk-flex-between uk-flex-column"
+          }}
+        </div>
+      {{/if}}
+
       {{#if (eq f.model.__typename "TableQuestion")}}
         {{f.input
           name="rowForm"

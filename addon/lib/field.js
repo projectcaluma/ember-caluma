@@ -29,6 +29,8 @@ const TYPE_MAP = {
   FloatQuestion: "FloatAnswer",
   MultipleChoiceQuestion: "ListAnswer",
   ChoiceQuestion: "StringAnswer",
+  DynamicMultipleChoiceQuestion: "ListAnswer",
+  DynamicChoiceQuestion: "StringAnswer",
   TableQuestion: "TableAnswer",
   FormQuestion: "FormAnswer",
   FileQuestion: "FileAnswer",
@@ -348,6 +350,40 @@ export default EmberObject.extend(Evented, {
         )
       })
     );
+  },
+
+  /**
+   * Method to validate a radio question. This checks if the value is included
+   * in the provided options of the question.
+   *
+   * @method _validateChoiceQuestion
+   * @return {Object|Boolean} Returns an object if invalid or true if valid
+   * @internal
+   */
+  _validateDynamicChoiceQuestion() {
+    return validate("inclusion", this.get("answer.value"), {
+      in: this.get("question.dynamicChoiceOptions.edges").map(
+        option => option.node.slug
+      )
+    });
+  },
+
+  /**
+   * Method to validate a checkbox question. This checks if the all of the
+   * values are included in the provided options of the question.
+   *
+   * @method _validateMultipleChoiceQuestion
+   * @return {Object[]|Boolean[]|Mixed[]} Returns per value an object if invalid or true if valid
+   * @internal
+   */
+  _validateDynamicMultipleChoiceQuestion() {
+    return this.get("answer.value").map(value => {
+      return validate("inclusion", value, {
+        in: this.get("question.dynamicMultipleChoiceOptions.edges").map(
+          option => option.node.slug
+        )
+      });
+    });
   },
 
   /**

@@ -18,6 +18,7 @@ import checkQuestionSlugQuery from "ember-caluma/gql/queries/check-question-slug
 import formEditorQuestionQuery from "ember-caluma/gql/queries/form-editor-question";
 import addFormQuestionMutation from "ember-caluma/gql/mutations/add-form-question";
 import formListQuery from "ember-caluma/gql/queries/form-list";
+import allDataSourcesQuery from "ember-caluma/gql/queries/all-data-sources";
 
 import saveOptionMutation from "ember-caluma/gql/mutations/save-option";
 import saveTextQuestionMutation from "ember-caluma/gql/mutations/save-text-question";
@@ -31,6 +32,8 @@ import saveFormQuestionMutation from "ember-caluma/gql/mutations/save-form-quest
 import saveFileQuestionMutation from "ember-caluma/gql/mutations/save-file-question";
 import saveStaticQuestionMutation from "ember-caluma/gql/mutations/save-static-question";
 import saveDateQuestionMutation from "ember-caluma/gql/mutations/save-date-question";
+import saveDynamicMultipleChoiceQuestionMutation from "ember-caluma/gql/mutations/save-dynamic-multiple-choice-question";
+import saveDynamicChoiceQuestionMutation from "ember-caluma/gql/mutations/save-dynamic-choice-question";
 
 export const TYPES = {
   TextQuestion: saveTextQuestionMutation,
@@ -39,6 +42,8 @@ export const TYPES = {
   FloatQuestion: saveFloatQuestionMutation,
   MultipleChoiceQuestion: saveMultipleChoiceQuestionMutation,
   ChoiceQuestion: saveChoiceQuestionMutation,
+  DynamicMultipleChoiceQuestion: saveDynamicMultipleChoiceQuestionMutation,
+  DynamicChoiceQuestion: saveDynamicChoiceQuestionMutation,
   TableQuestion: saveTableQuestionMutation,
   FormQuestion: saveFormQuestionMutation,
   FileQuestion: saveFileQuestionMutation,
@@ -72,6 +77,7 @@ export default Component.extend(ComponentQueryManager, {
 
     await this.get("data").perform();
     await this.get("availableForms").perform();
+    await this.get("availableDataSources").perform();
   },
 
   data: task(function*() {
@@ -92,6 +98,7 @@ export default Component.extend(ComponentQueryManager, {
             options: [],
             rowForm: "",
             subForm: "",
+            dataSource: "",
             __typename: Object.keys(TYPES)[0]
           }
         }
@@ -127,9 +134,7 @@ export default Component.extend(ComponentQueryManager, {
     if (!forms.map) {
       return [];
     }
-    return forms
-      .map(edge => edge.node.slug)
-      .filter(slug => slug !== this.get("form"));
+    return forms.mapBy("node.slug").filter(slug => slug !== this.get("form"));
   }).restartable(),
 
   availableOverrides: computed("changeset.__typename", function() {
@@ -145,6 +150,20 @@ export default Component.extend(ComponentQueryManager, {
       ...overrides
     ];
   }),
+
+  availableDataSources: task(function*() {
+    const dataSources = yield this.get("apollo").watchQuery(
+      { query: allDataSourcesQuery, fetchPolicy: "cache-and-network" },
+      "allDataSources.edges"
+    );
+    if (!dataSources.mapBy) {
+      return [];
+    }
+    return dataSources.map(edge => {
+      delete edge.node.__typename;
+      return edge.node;
+    });
+  }).restartable(),
 
   model: computed("data.lastSuccessful.value.firstObject.node", function() {
     const model = this.get("data.lastSuccessful.value.firstObject.node");
@@ -219,6 +238,28 @@ export default Component.extend(ComponentQueryManager, {
     return {
       isRequired: changeset.get("isRequired"),
       options: changeset.get("options.edges").map(({ node: { slug } }) => slug),
+      meta: JSON.stringify({
+        widgetOverride: changeset.get("widgetOverride"),
+        hideLabel: changeset.get("hideLabel")
+      })
+    };
+  },
+
+  _getDynamicMultipleChoiceQuestionInput(changeset) {
+    return {
+      isRequired: changeset.get("isRequired"),
+      dataSource: changeset.get("dataSource"),
+      meta: JSON.stringify({
+        widgetOverride: changeset.get("widgetOverride"),
+        hideLabel: changeset.get("hideLabel")
+      })
+    };
+  },
+
+  _getDynamicChoiceQuestionInput(changeset) {
+    return {
+      isRequired: changeset.get("isRequired"),
+      dataSource: changeset.get("dataSource"),
       meta: JSON.stringify({
         widgetOverride: changeset.get("widgetOverride"),
         hideLabel: changeset.get("hideLabel")

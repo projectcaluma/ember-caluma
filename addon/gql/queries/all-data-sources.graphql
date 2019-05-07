@@ -1,0 +1,10 @@
+query AllDataSources {
+  allDataSources {
+    edges {
+      node {
+        info
+        name
+      }
+    }
+  }
+}

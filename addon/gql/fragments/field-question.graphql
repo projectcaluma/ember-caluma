@@ -43,6 +43,28 @@ fragment SimpleQuestion on Question {
       }
     }
   }
+  ... on DynamicChoiceQuestion {
+    dataSource
+    dynamicChoiceOptions: options {
+      edges {
+        node {
+          slug
+          label
+        }
+      }
+    }
+  }
+  ... on DynamicMultipleChoiceQuestion {
+    dataSource
+    dynamicMultipleChoiceOptions: options {
+      edges {
+        node {
+          slug
+          label
+        }
+      }
+    }
+  }
   ... on StaticQuestion {
     staticContent
   }

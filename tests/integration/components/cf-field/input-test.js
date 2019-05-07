@@ -126,7 +126,7 @@ module("Integration | Component | cf-field/input", function(hooks) {
                 (hash node=(hash slug="option-1"))
               )
             )
-            __typename="CheckboxQuestion"
+            __typename="MultipleChoiceQuestion"
           )
           answer=(hash
             listValue=(array "option-1")

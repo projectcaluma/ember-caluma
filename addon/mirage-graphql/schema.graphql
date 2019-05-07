@@ -1,5 +1,5 @@
 # source: http://localhost:8000/graphql
-# timestamp: Mon Apr 29 2019 18:10:36 GMT+0200 (GMT+02:00)
+# timestamp: Wed May 01 2019 08:23:45 GMT+0200 (Central European Summer Time)
 
 input AddFormQuestionInput {
   form: ID!
@@ -128,7 +128,7 @@ type Case implements Node {
   closedByGroup: String
   workflow: Workflow!
   status: CaseStatus!
-  meta: JSONString!
+  meta: GenericScalar
   document: Document
   workItems(
     before: String
@@ -575,7 +575,7 @@ type Document implements Node {
   """
   id: ID!
   form: Form!
-  meta: JSONString!
+  meta: GenericScalar
   answers(
     before: String
     after: String
@@ -1383,7 +1383,7 @@ type Option implements Node {
   createdByGroup: String
   slug: String!
   label: String!
-  meta: JSONString!
+  meta: GenericScalar
 
   """
   Reference this option has been copied from
@@ -2908,7 +2908,7 @@ type WorkItem implements Node {
   deadline: DateTime
   task: Task!
   status: WorkItemStatus!
-  meta: JSONString!
+  meta: GenericScalar
 
   """
   Offer work item to be processed by a group of users, such are not committed to process it though.

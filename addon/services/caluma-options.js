@@ -24,7 +24,12 @@ export default Service.extend({
         "caluma.form-builder.question.widgetOverrides.powerselect"
       ),
       component: "cf-field/input/powerselect",
-      types: ["ChoiceQuestion", "MultipleChoiceQuestion"]
+      types: [
+        "ChoiceQuestion",
+        "MultipleChoiceQuestion",
+        "DynamicChoiceQuestion",
+        "DynamicMultipleChoiceQuestion"
+      ]
     });
   },
 

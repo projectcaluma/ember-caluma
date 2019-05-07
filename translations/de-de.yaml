@@ -81,6 +81,7 @@ caluma:
       type-disabled: "Der Fragetyp kann nach dem Erstellen einer Frage nicht mehr geändert werden, um korrupte Daten zu verhindern."
       supportsMarkdownPrefix: "Dieses Feld unterstützt"
       markdown: "Markdown"
+      dataSource: "Datenquelle"
 
       general: "Allgemein"
       options: "Optionen"
@@ -116,6 +117,8 @@ caluma:
         FileQuestion: "Datei"
         StaticQuestion: "Statischer Inhalt"
         DateQuestion: "Datum"
+        DynamicMultipleChoiceQuestion: "Dynamische Mehrfachauswahl"
+        DynamicChoiceQuestion: "Dynamische Einzelauswahl"
 
       widgetOverrides:
         powerselect: "Power Select"
