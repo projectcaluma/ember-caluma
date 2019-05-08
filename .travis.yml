@@ -45,6 +45,17 @@ jobs:
     - stage: "Additional Tests"
       env: EMBER_TRY_SCENARIO=ember-release
 
+    - stage: release
+      if: branch = release and type = push
+      script: skip
+      deploy:
+        provider: script
+        skip_cleanup: true
+        on:
+          branch: release
+        script:
+          - npx semantic-release
+
     - stage: "Deploy"
       if: (branch = master or tag is present) and type = push
       script: yarn ember deploy production
