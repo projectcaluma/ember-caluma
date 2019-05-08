@@ -115,7 +115,7 @@ caluma:
         TableQuestion: "Tabelle"
         FormQuestion: "Formular"
         FileQuestion: "Datei"
-        StaticQuestion: "Statischer Inhalt"
+        StaticQuestion: "Nichtinteraktiver Inhalt"
         DateQuestion: "Datum"
         DynamicMultipleChoiceQuestion: "Dynamische Mehrfachauswahl"
         DynamicChoiceQuestion: "Dynamische Einzelauswahl"
