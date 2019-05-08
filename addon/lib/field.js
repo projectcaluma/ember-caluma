@@ -216,7 +216,7 @@ export default EmberObject.extend(Evented, {
       this.answer.setProperties(response);
       return response;
     }
-  }),
+  }).restartable(),
 
   /**
    * Validate the field. Every field goes through the required validation and
