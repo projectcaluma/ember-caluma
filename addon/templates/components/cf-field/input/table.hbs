@@ -29,14 +29,21 @@
       </tr>
     </tfoot>
   </table>
-  {{#uk-modal visible=(and showModal documentToEdit)}}
+  {{#uk-modal visible=(and showModal documentToEdit) closable=false}}
     {{cf-form document=documentToEdit}}
     <p class="uk-text-right">
+      {{uk-button
+        label=(t "caluma.form.cancel")
+        disabled=save.isRunning
+        on-click=(action (mut showModal) false)
+      }}
+
       {{uk-button
         label=(t "caluma.form.save")
         disabled=save.isRunning
         loading=save.isRunning
         on-click=(perform save)
+        color="primary"
       }}
     </p>
   {{/uk-modal}}

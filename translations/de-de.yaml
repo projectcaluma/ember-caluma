@@ -7,6 +7,7 @@ caluma:
   form:
     optional: "Optional"
     save: "Speichern"
+    cancel: "Abbrechen"
     selectFile: "Klicken um Datei hochzuladen"
     changeFile: "Klicken um andere Datei hochzuladen"
 

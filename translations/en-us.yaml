@@ -7,6 +7,7 @@ caluma:
   form:
     optional: "Optional"
     save: "Save"
+    cancel: "Cancel"
     selectFile: "Click to upload a file"
     changeFile: "Click to upload a different file"
 
