@@ -76,12 +76,14 @@ export default Component.extend(ComponentQueryManager, {
   fields: computed("rootDocument", function() {
     const isFormQuestion = field =>
       field.question.__typename === "FormQuestion";
-    return (this.get("rootDocument.fields") || [])
+    return this.getWithDefault("rootDocument.fields", [])
       .filter(isFormQuestion)
       .map(field => {
         field.set(
           "navSubFields",
-          field.childDocument.fields.filter(isFormQuestion)
+          field
+            .getWithDefault("childDocument.fields", [])
+            .filter(isFormQuestion)
         );
         return field;
       });
