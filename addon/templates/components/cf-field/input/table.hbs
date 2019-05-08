@@ -32,7 +32,12 @@
   {{#uk-modal visible=(and showModal documentToEdit)}}
     {{cf-form document=documentToEdit}}
     <p class="uk-text-right">
-      {{uk-button label=(t "caluma.form.save") on-click=(action "save")}}
+      {{uk-button
+        label=(t "caluma.form.save")
+        disabled=save.isRunning
+        loading=save.isRunning
+        on-click=(perform save)
+      }}
     </p>
   {{/uk-modal}}
 {{/with}}

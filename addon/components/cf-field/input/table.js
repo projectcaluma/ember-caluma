@@ -56,52 +56,53 @@ export default Component.extend(ComponentQueryManager, {
     this.set("field.answer.rowDocuments", remainingDocuments);
   }),
 
-  actions: {
-    async save() {
-      try {
-        const newDocument = this.get("documentToEdit");
-        await all(newDocument.fields.map(f => f.validate.perform()));
-        if (newDocument.fields.map(f => f.errors).flat().length) {
-          return;
-        }
+  save: task(function*() {
+    try {
+      const newDocument = this.get("documentToEdit");
+      yield all(newDocument.fields.map(f => f.validate.perform()));
+      if (newDocument.fields.map(f => f.errors).flat().length) {
+        return;
+      }
 
-        const rows = this.getWithDefault("field.answer.rowDocuments", []);
+      const rows = this.getWithDefault("field.answer.rowDocuments", []);
 
-        if (!rows.find(doc => doc.id === newDocument.id)) {
-          // add document to table
-          await this.get("apollo").mutate({
-            mutation: saveDocumentTableAnswerMutation,
-            variables: {
-              input: {
-                question: this.get("field.question.slug"),
-                document: this.get("field.document.id"),
-                value: [
-                  ...this.getWithDefault("field.answer.rowDocuments", []).map(
-                    doc => doc.id
-                  ),
-                  newDocument.id
-                ]
-              }
+      if (!rows.find(doc => doc.id === newDocument.id)) {
+        // add document to table
+        yield this.get("apollo").mutate({
+          mutation: saveDocumentTableAnswerMutation,
+          variables: {
+            input: {
+              question: this.get("field.question.slug"),
+              document: this.get("field.document.id"),
+              value: [
+                ...this.getWithDefault("field.answer.rowDocuments", []).map(
+                  doc => doc.id
+                ),
+                newDocument.id
+              ]
             }
-          });
+          }
+        });
 
-          // update client-side state
-          this.set("field.answer.rowDocuments", [
-            ...(this.get("field.answer.rowDocuments") || []),
-            newDocument
-          ]);
-          this.get("notification").success(
-            this.get("intl").t("caluma.form.notification.table.add.success")
-          );
-        }
-
-        this.set("showModal", false);
-      } catch (e) {
-        this.get("notification").danger(
-          this.get("intl").t("caluma.form.notification.table.add.error")
+        // update client-side state
+        this.set("field.answer.rowDocuments", [
+          ...(this.get("field.answer.rowDocuments") || []),
+          newDocument
+        ]);
+        this.get("notification").success(
+          this.get("intl").t("caluma.form.notification.table.add.success")
         );
       }
-    },
+
+      this.set("showModal", false);
+    } catch (e) {
+      this.get("notification").danger(
+        this.get("intl").t("caluma.form.notification.table.add.error")
+      );
+    }
+  }),
+
+  actions: {
     editRow(document) {
       this.setProperties({
         documentToEdit: document,
