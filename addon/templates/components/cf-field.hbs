@@ -5,7 +5,7 @@
   <div class="uk-flex">
     <div class="uk-width-expand">
       {{#if componentOverride}}
-        {{component componentOverride field=field disabled=disabled onSave=(perform save)}}
+        {{component componentOverride field=field disabled=disabled context=context onSave=(perform save)}}
       {{else}}
         {{cf-field/input field=field disabled=disabled onSave=(perform save)}}
       {{/if}}

@@ -54,6 +54,14 @@ export default Component.extend(ComponentQueryManager, {
    */
   overrides: null,
 
+  /**
+   * Can be used to pass "context" information from the outside through
+   * to custom overrides.
+   *
+   * @argument {*} overrides
+   */
+  context: null,
+
   didReceiveAttrs() {
     this._super(...arguments);
     if (this.documentId) {
