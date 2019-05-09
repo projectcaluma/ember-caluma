@@ -6,12 +6,46 @@ import { ComponentQueryManager } from "ember-apollo-client";
 import { task } from "ember-concurrency";
 import getNavigationQuery from "ember-caluma/gql/queries/get-navigation";
 
+/**
+ * Component to display a nested form including navigation.
+ *
+ * ```hbs
+ * {{cf-navigation documentId="myDocId" section=section subSection=subSection}}
+ * ```
+ *
+ * @class CfFormComponent
+ */
 export default Component.extend(ComponentQueryManager, {
   layout,
   documentStore: service(),
 
+  /**
+   * The ID of the nested document to display the navigation for
+   * @argument {String} documentId
+   */
   documentId: null,
-  activeDocumentId: null,
+
+  /**
+   * Can be used to pass "context" information from the outside through
+   * to custom overrides.
+   *
+   * @argument {*} context
+   */
+  context: null,
+
+  /**
+   * Form slug of currently visible section
+   *
+   * @argument {String} section
+   */
+  section: null,
+
+  /**
+   * Form slug of currently visible sub-section
+   *
+   * @argument {String} subSection
+   */
+  subSection: null,
 
   _currentDocumentId: null,
 
