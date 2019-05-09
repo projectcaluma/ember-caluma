@@ -29,7 +29,7 @@ export default Component.extend(ComponentQueryManager, {
    * Can be used to pass "context" information from the outside through
    * to custom overrides.
    *
-   * @argument {*} overrides
+   * @argument {*} context
    */
   context: null,
 
