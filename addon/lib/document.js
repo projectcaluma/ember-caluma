@@ -185,9 +185,7 @@ export default EmberObject.extend({
       }
 
       const visibleFields = this.fields.filter(f => !f.question.hidden);
-      const requiredFields = visibleFields.filter(
-        f => f.question.isRequired !== "false"
-      );
+      const requiredFields = visibleFields.filter(f => !f.question.optional);
 
       if (
         visibleFields.every(f => f.isValid) &&
