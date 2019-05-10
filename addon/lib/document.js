@@ -72,6 +72,9 @@ export default EmberObject.extend({
     questionJexl.addTransform("answer", slugWithPath =>
       this.findAnswer(slugWithPath)
     );
+    questionJexl.addTransform("mapby", (arr, key) => {
+      return arr && arr.map ? arr.map(obj => obj[key]) : null;
+    });
     questionJexl.addBinaryOp("intersects", 20, intersects);
 
     return questionJexl;
@@ -89,6 +92,16 @@ export default EmberObject.extend({
       field.question.__typename == "MultipleChoiceQuestion" ? [] : null;
 
     if (field.answer.value && !field.question.hidden) {
+      if (field.question.__typename === "TableQuestion") {
+        return field.getWithDefault("answer.rowDocuments", []).map(doc =>
+          doc.fields.reduce((obj, field) => {
+            return {
+              ...obj,
+              [field.question.slug]: field.answer.value
+            };
+          }, {})
+        );
+      }
       return field.answer.value;
     }
 

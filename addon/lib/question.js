@@ -53,7 +53,7 @@ export default EmberObject.extend({
    * Evaluate the question's hidden state.
    *
    * A question is hidden if
-   * * any of the `dependsOn` questions is hidden or empty, or
+   * * all of the `dependsOn` questions are hidden or empty, or
    * * the JEXL expression evaluates to `true`
    *
    * @method hiddenTask.perform
@@ -65,8 +65,8 @@ export default EmberObject.extend({
       this.dependsOn.every(
         field =>
           field.question.hidden ||
-          field.answer.value === null ||
-          field.answer.value === undefined
+          (field.question.__typename !== "TableQuestion" &&
+            (field.answer.value === null || field.answer.value === undefined))
       );
 
     hidden =

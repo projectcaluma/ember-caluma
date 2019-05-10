@@ -20,6 +20,7 @@ import saveDocumentStringAnswerMutation from "ember-caluma/gql/mutations/save-do
 import saveDocumentListAnswerMutation from "ember-caluma/gql/mutations/save-document-list-answer";
 import saveDocumentFileAnswerMutation from "ember-caluma/gql/mutations/save-document-file-answer";
 import saveDocumentDateAnswerMutation from "ember-caluma/gql/mutations/save-document-date-answer";
+import saveDocumentTableAnswerMutation from "ember-caluma/gql/mutations/save-document-table-answer";
 import removeAnswerMutation from "ember-caluma/gql/mutations/remove-answer";
 
 const TYPE_MAP = {
@@ -50,6 +51,7 @@ export default EmberObject.extend(Evented, {
   saveDocumentListAnswerMutation,
   saveDocumentFileAnswerMutation,
   saveDocumentDateAnswerMutation,
+  saveDocumentTableAnswerMutation,
 
   /**
    * The Apollo GraphQL service for making requests
@@ -431,6 +433,10 @@ export default EmberObject.extend(Evented, {
     return validate("date", this.get("answer.value"), {
       allowBlank: true
     });
+  },
+
+  _validateTableQuestion() {
+    return true;
   },
 
   _validateStaticQuestion() {

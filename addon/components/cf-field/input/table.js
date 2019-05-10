@@ -2,7 +2,6 @@ import Component from "@ember/component";
 import layout from "../../../templates/components/cf-field/input/table";
 import { task, all } from "ember-concurrency";
 import saveDocumentMutation from "ember-caluma/gql/mutations/save-document";
-import saveDocumentTableAnswerMutation from "ember-caluma/gql/mutations/save-document-table-answer";
 import { inject as service } from "@ember/service";
 import { ComponentQueryManager } from "ember-apollo-client";
 
@@ -52,19 +51,10 @@ export default Component.extend(ComponentQueryManager, {
       doc => doc.id !== document.id
     );
 
-    yield this.get("apollo").mutate({
-      mutation: saveDocumentTableAnswerMutation,
-      variables: {
-        input: {
-          question: this.get("field.question.slug"),
-          document: this.get("field.document.id"),
-          value: remainingDocuments.map(doc => doc.id)
-        }
-      }
-    });
-
     // update client-side state
     this.set("field.answer.rowDocuments", remainingDocuments);
+
+    yield this.onSave(remainingDocuments.map(doc => doc.id));
   }),
 
   save: task(function*() {
@@ -79,21 +69,12 @@ export default Component.extend(ComponentQueryManager, {
 
       if (!rows.find(doc => doc.id === newDocument.id)) {
         // add document to table
-        yield this.get("apollo").mutate({
-          mutation: saveDocumentTableAnswerMutation,
-          variables: {
-            input: {
-              question: this.get("field.question.slug"),
-              document: this.get("field.document.id"),
-              value: [
-                ...this.getWithDefault("field.answer.rowDocuments", []).map(
-                  doc => doc.id
-                ),
-                newDocument.id
-              ]
-            }
-          }
-        });
+        yield this.onSave([
+          ...this.getWithDefault("field.answer.rowDocuments", []).map(
+            doc => doc.id
+          ),
+          newDocument.id
+        ]);
 
         // update client-side state
         this.set("field.answer.rowDocuments", [
@@ -103,6 +84,12 @@ export default Component.extend(ComponentQueryManager, {
         this.get("notification").success(
           this.get("intl").t("caluma.form.notification.table.add.success")
         );
+      } else {
+        yield this.onSave([
+          ...this.getWithDefault("field.answer.rowDocuments", []).map(
+            doc => doc.id
+          )
+        ]);
       }
 
       this.set("showModal", false);
