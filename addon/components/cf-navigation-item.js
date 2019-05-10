@@ -19,9 +19,10 @@ export default Component.extend({
           f => f.get("question.__typename") !== "FormQuestion"
         )
       ) {
-        const target = this.get("field.childDocument.fields").find(
-          field => field.hidden === false
-        );
+        const target = this.getWithDefault(
+          "field.childDocument.fields",
+          []
+        ).find(field => field.hidden === false);
         return target && target.question.slug;
       }
       return this.get("subSection");
