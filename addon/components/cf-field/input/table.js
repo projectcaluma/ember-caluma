@@ -6,6 +6,17 @@ import saveDocumentTableAnswerMutation from "ember-caluma/gql/mutations/save-doc
 import { inject as service } from "@ember/service";
 import { ComponentQueryManager } from "ember-apollo-client";
 
+/**
+ * @babel/polyfill@^7.4.0 is supposed to include "flat", but that doesn't work of us -
+ * presumably because transitive dependencies still include babel 6 and the
+ * corresponding babel-polyfill package. So we include this "manual" polyfill for now.
+ *
+ * https://github.com/babel/babel/issues/9749
+ */
+function flat(arrays) {
+  return [].concat.apply([], arrays);
+}
+
 export default Component.extend(ComponentQueryManager, {
   layout,
 
@@ -60,7 +71,7 @@ export default Component.extend(ComponentQueryManager, {
     try {
       const newDocument = this.get("documentToEdit");
       yield all(newDocument.fields.map(f => f.validate.perform()));
-      if (newDocument.fields.map(f => f.errors).flat().length) {
+      if (flat(newDocument.fields.map(f => f.errors)).length) {
         return;
       }
 
