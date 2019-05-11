@@ -27,7 +27,7 @@ export default EmberObject.extend({
 
     // automatic initialization of dynamic fields starts from the root level
     if (!this.get("parentDocument")) {
-      this.initializeFieldTree(fields);
+      await this.initializeFieldTree(fields);
     }
   },
 

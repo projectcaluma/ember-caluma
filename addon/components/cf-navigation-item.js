@@ -11,15 +11,19 @@ export default Component.extend({
 
   _subSection: computed(
     "subSection",
-    "field.childDocument.fields.[]",
+    "field.childDocument.fields.@each.hidden",
     function() {
       if (
         !this.get("subSection") &&
-        !(this.get("field.childDocument.fields") || []).some(
+        !this.getWithDefault("field.childDocument.fields", []).some(
           f => f.get("question.__typename") !== "FormQuestion"
         )
       ) {
-        return this.get("field.childDocument.fields.firstObject.question.slug");
+        const target = this.getWithDefault(
+          "field.childDocument.fields",
+          []
+        ).find(field => field.hidden === false);
+        return target && target.question.slug;
       }
       return this.get("subSection");
     }

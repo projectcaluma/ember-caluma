@@ -1,5 +1,5 @@
 import EmberObject, { computed } from "@ember/object";
-import { equal, not, empty } from "@ember/object/computed";
+import { equal, not, empty, reads } from "@ember/object/computed";
 import { inject as service } from "@ember/service";
 import { assert } from "@ember/debug";
 import { getOwner } from "@ember/application";
@@ -160,6 +160,14 @@ export default EmberObject.extend(Evented, {
   isInvalid: not("isValid"),
 
   isNew: empty("answer.value"),
+
+  /**
+   * Whether or not the question is hidden.
+   * This is needed for the computed property in `cf-navigation-item`.
+   * @property {Boolean} hidden
+   * @accessor
+   */
+  hidden: reads("question.hidden"),
 
   /**
    * The error messages on this field.
