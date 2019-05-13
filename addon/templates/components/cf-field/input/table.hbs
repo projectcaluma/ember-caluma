@@ -29,7 +29,7 @@
       </tr>
     </tfoot>
   </table>
-  {{#uk-modal visible=(and showModal documentToEdit)}}
+  {{#uk-modal visible=(and showModal documentToEdit) bgClose=false}}
     {{cf-form document=documentToEdit}}
     <p class="uk-text-right">
       {{uk-button

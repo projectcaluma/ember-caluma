@@ -51,7 +51,7 @@
     "ember-math-helpers": "^2.10.0",
     "ember-promise-helpers": "^1.0.6",
     "ember-test-selectors": "^2.1.0",
-    "ember-uikit": "^0.8.0",
+    "ember-uikit": "^0.8.1",
     "ember-validated-form": "^2.0.0-alpha.5",
     "graphql": "^14.2.1",
     "graphql-iso-date": "^3.6.1",

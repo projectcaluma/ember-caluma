@@ -7237,7 +7237,7 @@ ember-try@1.1.0:
     rsvp "^4.7.0"
     walk-sync "^0.3.3"
 
-ember-uikit@^0.8.0:
+ember-uikit@^0.8.1:
   version "0.8.1"
   resolved "https://registry.yarnpkg.com/ember-uikit/-/ember-uikit-0.8.1.tgz#cd91b484e1866902f3c2a6e23217b1ab37a85295"
   integrity sha512-Cc4Uh7JJpw1TbVhKCfx3z6cx7mK9/yowJE74OeDGml/EWDWtahcoxV48YsD7LHvEZha9S2BsMcvkJq0hXtKvVA==
