@@ -178,13 +178,13 @@ export default EmberObject.extend({
   ),
 
   ownState: computed(
-    "fields.@each.{isNew,isValid,_errors,question,childDocument}",
+    "fields.@each.{isNew,isValid,_errors,hidden,question,childDocument}",
     function() {
       if (this.fields.every(f => f.isNew)) {
         return "untouched";
       }
 
-      const visibleFields = this.fields.filter(f => !f.question.hidden);
+      const visibleFields = this.fields.filter(f => !f.hidden);
       const requiredFields = visibleFields.filter(f => !f.question.optional);
 
       if (
