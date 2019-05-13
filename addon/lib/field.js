@@ -234,9 +234,17 @@ export default EmberObject.extend(Evented, {
    * @method validate
    */
   validate: task(function*() {
+    const specificValidation = this.get(`_validate${this.question.__typename}`);
+    if (!specificValidation) {
+      // eslint-disable-next-line no-console
+      console.error(
+        "Missing validation function for",
+        this.question.__typename
+      );
+    }
     const validationFns = [
       ...(!this.question.hidden ? [this._validateRequired] : []),
-      this.get(`_validate${this.question.__typename}`)
+      specificValidation
     ];
 
     const errors = (yield all(
@@ -351,13 +359,17 @@ export default EmberObject.extend(Evented, {
    * @internal
    */
   _validateMultipleChoiceQuestion() {
-    return this.getWithDefault("answer.value", []).map(value =>
+    const value = this.get("answer.value");
+    if (!value) {
+      return true;
+    }
+    return value.map(value => {
       validate("inclusion", value, {
         in: this.getWithDefault("question.multipleChoiceOptions.edges", []).map(
           option => option.node.slug
         )
-      })
-    );
+      });
+    });
   },
 
   /**
@@ -385,7 +397,11 @@ export default EmberObject.extend(Evented, {
    * @internal
    */
   _validateDynamicMultipleChoiceQuestion() {
-    return this.getWithDefault("answer.value", []).map(value => {
+    const value = this.get("answer.value");
+    if (!value) {
+      return true;
+    }
+    return value.map(value => {
       return validate("inclusion", value, {
         in: this.getWithDefault(
           "question.dynamicMultipleChoiceOptions.edges",
@@ -417,5 +433,9 @@ export default EmberObject.extend(Evented, {
     return validate("date", this.get("answer.value"), {
       allowBlank: true
     });
+  },
+
+  _validateStaticQuestion() {
+    return true;
   }
 });

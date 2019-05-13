@@ -107,6 +107,8 @@ export default Component.extend(ComponentQueryManager, {
 
       this.set("showModal", false);
     } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error(e);
       this.get("notification").danger(
         this.get("intl").t("caluma.form.notification.table.add.error")
       );
