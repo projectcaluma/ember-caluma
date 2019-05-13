@@ -38,6 +38,7 @@ export default EmberObject.extend({
     "listValue",
     "fileValue",
     "dateValue",
+    "tableValue",
     {
       get() {
         return this.get(this._valueKey);

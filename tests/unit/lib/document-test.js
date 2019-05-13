@@ -138,4 +138,24 @@ module("Unit | Library | document", function(hooks) {
       assert.equal(await this.document.questionJexl.eval(expression), result);
     }
   });
+
+  test("question jexl mapby transform", async function(assert) {
+    const tests = [
+      [[{ foo: "bar" }, { foo: "baz" }], "value|mapby('foo')", ["bar", "baz"]],
+      [
+        [{ foo: "bar" }, { xy: "baz" }],
+        "value|mapby('foo')",
+        ["bar", undefined]
+      ],
+      [null, "value|mapby('foo')", null],
+      ["astring", "value|mapby('foo')", null],
+      [{ foo: "bar" }, "value|mapby('foo')", null]
+    ];
+    for (let [value, expression, result] of tests) {
+      assert.deepEqual(
+        await this.document.questionJexl.eval(expression, { value }),
+        result
+      );
+    }
+  });
 });
