@@ -235,13 +235,11 @@ export default EmberObject.extend(Evented, {
    */
   validate: task(function*() {
     const specificValidation = this.get(`_validate${this.question.__typename}`);
-    if (!specificValidation) {
-      // eslint-disable-next-line no-console
-      console.error(
-        "Missing validation function for",
-        this.question.__typename
-      );
-    }
+    assert(
+      "Missing validation function for " + this.question.__typename,
+      specificValidation
+    );
+
     const validationFns = [
       ...(!this.question.hidden ? [this._validateRequired] : []),
       specificValidation
@@ -363,13 +361,13 @@ export default EmberObject.extend(Evented, {
     if (!value) {
       return true;
     }
-    return value.map(value => {
+    return value.map(value =>
       validate("inclusion", value, {
         in: this.getWithDefault("question.multipleChoiceOptions.edges", []).map(
           option => option.node.slug
         )
-      });
-    });
+      })
+    );
   },
 
   /**
