@@ -229,7 +229,7 @@
                 type="checkbox"
                 value={{row.slug}}
                 checked={{contains row.slug model.selectedColumnsToDisplay}}
-                onclick={{action "selectColumnToDisplay" row.slug}}
+                onclick={{action "toggleColumnToDisplay" row.slug}}
                 onfocusout={{fi.setDirty}}
                 class="uk-checkbox uk-margin-small-right"
               >

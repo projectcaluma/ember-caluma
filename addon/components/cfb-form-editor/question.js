@@ -431,7 +431,11 @@ export default Component.extend(ComponentQueryManager, {
       this.get("validateSlug").perform(this.prefix + value, changeset);
     },
 
-    selectColumnToDisplay(value) {
+    /*
+     * This function adds the selected slugs to the selectedColumnsToDisplay
+     * list if it isnt present, otherwise it will remove the slug.
+     */
+    toggleColumnToDisplay(value) {
       let arr = this.get("model.selectedColumnsToDisplay");
       let idx = arr.indexOf(value);
       if (idx >= 0) {
