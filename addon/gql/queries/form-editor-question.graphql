@@ -52,6 +52,14 @@ query FormEditorQuestion($slug: String!) {
         ... on TableQuestion {
           rowForm {
             slug
+            questions {
+              edges {
+                node {
+                  slug
+                  label
+                }
+              }
+            }
           }
         }
         ... on FormQuestion {

@@ -169,7 +169,12 @@ export default Component.extend(ComponentQueryManager, {
     const model = this.get("data.lastSuccessful.value.firstObject.node");
     // flatten attributes until nested property support landed in ember-validated-form
     if (model && model.rowForm) {
+      model.rowsToDisplay = model.rowForm.questions.edges.map(n => n.node);
       model.rowForm = model.rowForm.slug;
+      model.selectedColumnsToDisplay = [];
+      if (model.meta && model.meta.columnsToDisplay) {
+        model.selectedColumnsToDisplay = model.meta.columnsToDisplay;
+      }
     }
     if (model && model.subForm) {
       model.subForm = model.subForm.slug;
@@ -280,7 +285,11 @@ export default Component.extend(ComponentQueryManager, {
   _getTableQuestionInput(changeset) {
     return {
       isRequired: changeset.get("isRequired"),
-      rowForm: changeset.get("rowForm")
+      rowForm: changeset.get("rowForm"),
+      meta: JSON.stringify({
+        widgetOverride: changeset.get("widgetOverride"),
+        columnsToDisplay: this.get("model.selectedColumnsToDisplay")
+      })
     };
   },
 
@@ -430,6 +439,21 @@ export default Component.extend(ComponentQueryManager, {
       this.set("linkSlug", false);
 
       this.get("validateSlug").perform(this.prefix + value, changeset);
+    },
+
+    /*
+     * This function adds the selected slugs to the selectedColumnsToDisplay
+     * list if it isnt present, otherwise it will remove the slug.
+     */
+    toggleColumnToDisplay(value) {
+      let arr = this.get("model.selectedColumnsToDisplay");
+      let idx = arr.indexOf(value);
+      if (idx >= 0) {
+        arr.splice(idx, 1);
+        this.set("model.selectedColumnsToDisplay", arr);
+      } else {
+        this.set("model.selectedColumnsToDisplay", [...arr, value]);
+      }
     }
   }
 });
