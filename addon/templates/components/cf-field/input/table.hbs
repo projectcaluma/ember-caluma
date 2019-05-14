@@ -22,24 +22,24 @@
               <td>{{cf-field-value field=field}}</td>
             {{/each}}
           {{/if}}
-            <td class="uk-text-right">
-              <button type="button" data-test-edit-row class="uk-icon-button" uk-icon="pencil" {{action "editRow" document}}></button>
-              {{#unless disabled}}
-                <button type="button" data-test-delete-row class="uk-icon-button" uk-icon="trash" {{action (perform deleteRow) document}}></button>
-              {{/unless}}
-            </td>
+          <td class="uk-text-right">
+            <button type="button" data-test-edit-row class="uk-icon-button" uk-icon="pencil" {{action "editRow" document}}></button>
+            {{#unless disabled}}
+              <button type="button" data-test-delete-row class="uk-icon-button" uk-icon="trash" {{action (perform deleteRow) document}}></button>
+            {{/unless}}
+          </td>
         </tr>
       {{/each}}
     </tbody>
-    {{#unless disabled}}
-      <tfoot>
+    <tfoot>
+      {{#unless disabled}}
         <tr>
           <td colspan={{add (count-keys questions) 1}} class="uk-text-center">
             {{#uk-button size="small" on-click=(perform addRow)}}{{uk-icon "plus"}}{{/uk-button}}
           </td>
         </tr>
-      </tfoot>
-    {{/unless}}
+      {{/unless}}
+    </tfoot>
   </table>
   {{#uk-modal visible=(and showModal documentToEdit) bgClose=false}}
     {{cf-form document=documentToEdit}}
