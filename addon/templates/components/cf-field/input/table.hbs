@@ -22,12 +22,12 @@
               <td>{{cf-field-value field=field}}</td>
             {{/each}}
           {{/if}}
-          {{#unless disabled}}
             <td class="uk-text-right">
               <button type="button" data-test-edit-row class="uk-icon-button" uk-icon="pencil" {{action "editRow" document}}></button>
-              <button type="button" data-test-delete-row class="uk-icon-button" uk-icon="trash" {{action (perform deleteRow) document}}></button>
+              {{#unless disabled}}
+                <button type="button" data-test-delete-row class="uk-icon-button" uk-icon="trash" {{action (perform deleteRow) document}}></button>
+              {{/unless}}
             </td>
-          {{/unless}}
         </tr>
       {{/each}}
     </tbody>
