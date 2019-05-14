@@ -4,6 +4,7 @@ import { task, all } from "ember-concurrency";
 import saveDocumentMutation from "ember-caluma/gql/mutations/save-document";
 import { inject as service } from "@ember/service";
 import { ComponentQueryManager } from "ember-apollo-client";
+import { computed } from "@ember/object";
 
 /**
  * @babel/polyfill@^7.4.0 is supposed to include "flat", but that doesn't work of us -
@@ -27,6 +28,18 @@ export default Component.extend(ComponentQueryManager, {
 
   showModal: false,
   documentToEdit: null,
+
+  columnHeaders: computed(
+    "field.question.{rowForm.questions.edges.@each,meta.columnsToDisplay.[]}",
+    function() {
+      if (this.get("field.question.meta.columnsToDisplay.length")) {
+        return this.get("field.question.rowForm.questions.edges").filter(n =>
+          this.get("field.question.meta.columnsToDisplay").includes(n.node.slug)
+        );
+      }
+      return this.get("field.question.rowForm.questions.edges").slice(0, 4);
+    }
+  ),
 
   addRow: task(function*() {
     const newDocumentRaw = yield this.get("apollo").mutate(

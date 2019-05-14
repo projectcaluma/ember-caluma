@@ -91,6 +91,7 @@ caluma:
       max-length: "Maximum length"
       rowForm: "Form to use for rows"
       chooseRowForm: "-- please choose --"
+      columnsToDisplay: "Select columns to be shown"
 
       new: "New question"
 

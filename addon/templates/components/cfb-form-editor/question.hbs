@@ -221,6 +221,22 @@
           includeBlank=(t "caluma.form-builder.question.chooseRowForm")
           label=(t "caluma.form-builder.question.rowForm")
         }}
+
+        {{#f.input name="columnsToDisplay" label=(t "caluma.form-builder.question.columnsToDisplay") as |fi|}}
+          {{#each model.rowsToDisplay as |row|}}
+            <label class="cf-checkbox_label">
+              <input
+                type="checkbox"
+                value={{row.slug}}
+                checked={{contains row.slug model.selectedColumnsToDisplay}}
+                onclick={{action "selectColumnToDisplay" row.slug}}
+                onfocusout={{fi.setDirty}}
+                class="uk-checkbox uk-margin-small-right"
+              >
+              {{row.label}}
+            </label>
+          {{/each}}
+        {{/f.input}}
       {{/if}}
 
       {{#if (eq f.model.__typename "FormQuestion")}}

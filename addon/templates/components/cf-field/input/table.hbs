@@ -2,7 +2,7 @@
   <table class="uk-table">
     <thead>
       <tr>
-        {{#each (take 4 questions) as |edge|}}
+        {{#each columnHeaders as |edge|}}
           <th>{{edge.node.label}}</th>
         {{/each}}
         <th></th>
@@ -11,9 +11,17 @@
     <tbody>
       {{#each field.answer.rowDocuments as |document|}}
         <tr>
-          {{#each (take 4 document.fields) as |field|}}
-            <td>{{cf-field-value field=field}}</td>
-          {{/each}}
+          {{#if field.question.meta.columnsToDisplay.length}}
+            {{#each document.fields as |answerField|}}
+              {{#if (contains answerField.answer.question.slug field.question.meta.columnsToDisplay)}}
+                <td>{{cf-field-value field=answerField}}</td>
+              {{/if}}
+            {{/each}}
+          {{else}}
+            {{#each (take 4 document.fields) as |field|}}
+              <td>{{cf-field-value field=field}}</td>
+            {{/each}}
+          {{/if}}
           <td class="uk-text-right">
             <button type="button" data-test-edit-row class="uk-icon-button" uk-icon="pencil" {{action "editRow" document}}></button>
             <button type="button" data-test-delete-row class="uk-icon-button" uk-icon="trash" {{action (perform deleteRow) document}}></button>

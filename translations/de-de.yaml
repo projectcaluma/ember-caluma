@@ -91,6 +91,7 @@ caluma:
       max-length: "Maximale Länge"
       rowForm: "Formular für Einträge"
       chooseRowForm: "-- bitte wählen --"
+      columnsToDisplay: "Spalten zur Anzeige auswählen"
 
       new: "Neue Frage"
 
