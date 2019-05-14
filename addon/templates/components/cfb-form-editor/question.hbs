@@ -76,7 +76,7 @@
           {{/if}}
         </div>
 
-        {{#if (not-eq f.model.__typename "StaticQuestion")}}
+        {{#if requiredIsVisible}}
           <div class="uk-width-auto uk-flex">
             {{f.input
               name="isRequired"

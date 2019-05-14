@@ -189,6 +189,16 @@ export default Component.extend(ComponentQueryManager, {
     return namespace ? `${namespace}-` : "";
   }),
 
+  requiredIsVisible: computed("changeset.{__typename,isRequired}", function() {
+    const isRequired = this.changeset.get("isRequired");
+    const typename = this.changeset.get("__typename");
+
+    return (
+      (isRequired === "true" || isRequired === "false") &&
+      typename !== "StaticQuestion"
+    );
+  }),
+
   _getIntegerQuestionInput(changeset) {
     return {
       isRequired: changeset.get("isRequired"),
