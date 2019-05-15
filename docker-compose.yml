@@ -9,7 +9,7 @@ services:
       - dbdata:/var/lib/postgresql/data
 
   caluma:
-    image: projectcaluma/caluma:latest@sha256:7e7bc5675bd8585a43c7041998ac27cb493d4e3731152fbe657b2f845e41e9dd
+    image: projectcaluma/caluma:latest@sha256:c08d1f9bd2fc56cf9ce9dd252250148a35a172cd0366988ad373fc60aeaff4a5
     ports:
       - "8000:8000"
     depends_on:
