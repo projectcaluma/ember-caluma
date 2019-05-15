@@ -47,6 +47,12 @@ export default Component.extend(ComponentQueryManager, {
    */
   subSection: null,
 
+  /**
+   * Renders the forms disabled.
+   * @argument {Boolean} disabled
+   */
+  disabled: false,
+
   _currentDocumentId: null,
 
   async didReceiveAttrs() {
