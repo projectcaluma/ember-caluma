@@ -41,7 +41,11 @@
       {{/unless}}
     </tfoot>
   </table>
-  {{#uk-modal visible=(and showModal documentToEdit) bgClose=false}}
+  {{#uk-modal
+    visible=(and showModal documentToEdit)
+    bgClose=false
+    on-hide=(action (mut showModal) false)
+  }}
     {{cf-form document=documentToEdit}}
     <p class="uk-text-right">
       {{uk-button
