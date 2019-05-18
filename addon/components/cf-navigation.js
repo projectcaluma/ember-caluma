@@ -68,7 +68,8 @@ export default Component.extend(ComponentQueryManager, {
       {
         query: getNavigationQuery,
         variables: { id: window.btoa("Document:" + this.documentId) },
-        fetchPolicy: "network-only"
+        fetchPolicy: "network-only",
+        context: { headers: this.get("context.headers") }
       },
       "node"
     );
