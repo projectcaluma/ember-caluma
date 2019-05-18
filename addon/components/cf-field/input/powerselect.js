@@ -45,17 +45,20 @@ export default Component.extend(ComponentQueryManager, {
     "field.answer.{_valueKey,listValue,stringValue}",
     function() {
       const key = this.get("field.answer._valueKey");
-      const answers = this.get(`field.answer.${key}`);
+      const answer = this.get(`field.answer.${key}`);
+      const isSingleChoice = key === "stringValue";
 
-      if (!answers) {
+      if (!answer) {
         return null;
       }
 
       const selection = this.choices.filter(choice => {
-        return answers.includes(choice.slug);
+        return isSingleChoice
+          ? answer === choice.slug
+          : answer.includes(choice.slug);
       });
 
-      return key === "stringValue" ? selection[0] : selection;
+      return isSingleChoice ? selection[0] : selection;
     }
   ),
 
