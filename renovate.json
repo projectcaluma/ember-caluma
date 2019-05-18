@@ -1,3 +1,14 @@
 {
-  "extends": ["github>projectcaluma/renovate-config"]
+  "extends": ["github>projectcaluma/renovate-config"],
+  "docker": {
+    "digest": {
+      "automerge": true
+    }
+  },
+  "packageRules": [
+    {
+      "depTypeList": ["devDependencies"],
+      "automerge": true
+    }
+  ]
 }
