@@ -43,10 +43,10 @@
   </table>
   {{#uk-modal
     visible=(and showModal documentToEdit)
-    bgClose=false
     on-hide=(action (mut showModal) false)
+    bgClose=false
   }}
-    {{cf-form document=documentToEdit}}
+    {{cf-form document=documentToEdit disabled=disabled}}
     <p class="uk-text-right">
       {{uk-button
         label=(t "caluma.form.save")
