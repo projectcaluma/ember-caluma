@@ -18,10 +18,10 @@
     >
       {{#if field.save.isRunning}}
         {{uk-spinner class="uk-animation-fade"}}
-      {{else if field.save.last.isSuccessful}}
-        {{uk-icon "check" class="uk-animation-fade uk-text-success"}}
       {{else if (or field.save.last.isError field.isInvalid)}}
         {{uk-icon "warning" class="uk-animation-fade uk-text-danger"}}
+      {{else if field.save.last.isSuccessful}}
+        {{uk-icon "check" class="uk-animation-fade uk-text-success"}}
       {{/if}}
     </div>
   </div>
