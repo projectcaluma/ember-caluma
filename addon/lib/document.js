@@ -7,7 +7,17 @@ import { atob } from "ember-caluma/helpers/atob";
 import { inject as service } from "@ember/service";
 import { intersects } from "ember-caluma/utils/jexl";
 
-const STATE_PRECEDENCE = ["invalid", "unfinished", "untouched", "valid"];
+const getParentState = childStates => {
+  if (childStates.every(state => state === "untouched")) {
+    return "untouched";
+  }
+
+  if (childStates.some(state => state === "invalid")) {
+    return "invalid";
+  }
+
+  return childStates.every(state => state === "valid") ? "valid" : "unfinished";
+};
 
 /**
  * Object which represents a document
@@ -170,52 +180,60 @@ export default EmberObject.extend({
 
   fields: computed(() => []).readOnly(),
 
-  childDocuments: computed("fields.[]", function() {
-    return this.get("fields")
-      .map(field => field.childDocument)
-      .filter(Boolean);
-  }),
-
-  childState: computed(
-    "fields.@each.{isNew,isValid,_errors,question}",
-    "childDocuments.@each.state",
+  childDocuments: computed(
+    "fields.{[],@each.hidden,childDocument}",
     function() {
-      const childDocumentStates = this.get("childDocuments")
-        .filter(Boolean)
-        .map(c => c.state);
-
-      return STATE_PRECEDENCE.find(state =>
-        childDocumentStates.includes(state)
-      );
+      return this.fields
+        .filter(field => !field.hidden)
+        .map(field => field.childDocument)
+        .filter(Boolean);
     }
   ),
 
+  childState: computed("childDocuments.{[],@each.state}", function() {
+    const childDocumentStates = this.childDocuments
+      .filter(Boolean)
+      .map(c => c.state);
+
+    if (!childDocumentStates.length) {
+      return null;
+    }
+
+    return getParentState(childDocumentStates);
+  }),
+
   ownState: computed(
-    "fields.@each.{isNew,isValid,_errors,hidden,question,childDocument}",
+    "fields.@each.{isNew,isValid,hidden,optional,childDocument}",
     function() {
-      if (this.fields.every(f => f.isNew)) {
+      const visibleFields = this.fields
+        .filter(f => !f.hidden)
+        .filter(f => !f.childDocument);
+
+      if (!visibleFields.length) {
+        return null;
+      }
+
+      if (visibleFields.every(f => f.isNew)) {
         return "untouched";
       }
 
-      const visibleFields = this.fields.filter(f => !f.hidden);
-      const requiredFields = visibleFields.filter(f => !f.question.optional);
+      if (visibleFields.some(f => !f.isValid && !f.isNew)) {
+        return "invalid";
+      }
 
       if (
-        visibleFields.every(f => f.isValid) &&
-        requiredFields.every(f => !f.isNew)
+        visibleFields
+          .filter(f => !f.question.optional)
+          .every(f => f.isValid && !f.isNew)
       ) {
         return "valid";
       }
 
-      return visibleFields.some(f => f._errors.some(e => e.type !== "blank"))
-        ? "invalid"
-        : "unfinished";
+      return "unfinished";
     }
   ),
 
   state: computed("childState", "ownState", function() {
-    return STATE_PRECEDENCE.find(state =>
-      [this.get("childState"), this.get("ownState")].includes(state)
-    );
+    return getParentState([this.childState, this.ownState].filter(Boolean));
   })
 });

@@ -5,7 +5,7 @@ import { assert } from "@ember/debug";
 import { getOwner } from "@ember/application";
 import { camelize } from "@ember/string";
 import { task } from "ember-concurrency";
-import { all } from "rsvp";
+import { all, resolve } from "rsvp";
 import { validate } from "ember-validators";
 import Evented, { on } from "@ember/object/evented";
 
@@ -161,7 +161,21 @@ export default EmberObject.extend(Evented, {
    */
   isInvalid: not("isValid"),
 
-  isNew: empty("answer.value"),
+  /**
+   * Whether the field is new (never saved to the backend service)
+   *
+   * @property {Boolean} isNew
+   * @accessor
+   */
+  isNew: empty("answer.id"),
+
+  /**
+   * Whether the field is optional
+   *
+   * @property {Boolean} optional
+   * @accessor
+   */
+  optional: reads("question.optional"),
 
   /**
    * Whether or not the question is hidden.
@@ -197,8 +211,10 @@ export default EmberObject.extend(Evented, {
     const type = this.get("answer.__typename");
     const value = this.get("answer.value");
 
+    let response;
+
     if (value === null || value.length === 0) {
-      return yield this.apollo.mutate(
+      response = yield this.apollo.mutate(
         {
           mutation: removeAnswerMutation,
           variables: {
@@ -209,8 +225,10 @@ export default EmberObject.extend(Evented, {
         },
         `removeAnswer.answer`
       );
+
+      this.answer.id = undefined;
     } else {
-      const response = yield this.apollo.mutate(
+      response = yield this.apollo.mutate(
         {
           mutation: this.get(`saveDocument${type}Mutation`),
           variables: {
@@ -223,9 +241,11 @@ export default EmberObject.extend(Evented, {
         },
         `saveDocument${type}.answer`
       );
+
       this.answer.setProperties(response);
-      return response;
     }
+
+    return response;
   }).restartable(),
 
   /**
@@ -419,7 +439,7 @@ export default EmberObject.extend(Evented, {
    * @internal
    */
   _validateFileQuestion() {
-    return Promise.resolve(true);
+    return resolve(true);
   },
 
   /**
@@ -435,11 +455,25 @@ export default EmberObject.extend(Evented, {
     });
   },
 
+  /**
+   * Dummy method for the validation of table fields
+   *
+   * @method _validateTableQuestion
+   * @return {RSVP.Promise}
+   * @internal
+   */
   _validateTableQuestion() {
-    return true;
+    return resolve(true);
   },
 
+  /**
+   * Dummy method for the validation of static fields
+   *
+   * @method _validateStaticQuestion
+   * @return {RSVP.Promise}
+   * @internal
+   */
   _validateStaticQuestion() {
-    return true;
+    return resolve(true);
   }
 });
