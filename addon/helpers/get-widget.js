@@ -31,6 +31,7 @@ export default Helper.extend({
       if (!override) {
         warn(
           `Widget override "${widget}" is not registered. Please register it by calling \`calumaOptions.registerComponentOverride\``,
+          !widget,
           { id: "ember-caluma.unregistered-override" }
         );
 
