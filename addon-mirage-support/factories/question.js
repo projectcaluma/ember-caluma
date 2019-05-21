@@ -20,7 +20,7 @@ export default Factory.extend({
   isRequired: () => faker.random.boolean().toString(),
   isHidden: "false",
   isArchived: false,
-  meta: JSON.stringify({}),
+  meta: () => ({}),
 
   afterCreate(question, server) {
     if (["TEXT", "TEXTAREA"].includes(question.type)) {

@@ -268,7 +268,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
       assert.equal(question.slug, "slug");
       assert.equal(question.options.edges[0].node.slug, "slug-option-1");
       assert.equal(question.options.edges[0].node.label, "Option 1");
-      assert.equal(question.meta, '{"hideLabel":true}');
+      assert.equal(question.meta.hideLabel, true);
 
       assert.step("after-submit");
     });
