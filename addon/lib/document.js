@@ -66,6 +66,24 @@ export default EmberObject.extend({
     return atob(this.get("raw.id"));
   }),
 
+  field: computed(
+    "raw.form.slug",
+    "parentDocument.{id,fields.@each.id}",
+    function() {
+      if (!this.parentDocument) return null;
+
+      try {
+        return this.parentDocument.fields.find(
+          field =>
+            field.id ===
+            `Document:${this.parentDocument.id}:Question:${this.raw.form.slug}`
+        );
+      } catch (e) {
+        return null;
+      }
+    }
+  ),
+
   questionJexl: computed(function() {
     const questionJexl = new jexl.Jexl();
 
