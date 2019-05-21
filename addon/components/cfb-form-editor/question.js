@@ -5,7 +5,7 @@ import { task, timeout } from "ember-concurrency";
 import { ComponentQueryManager } from "ember-apollo-client";
 import v4 from "uuid/v4";
 import { optional } from "ember-composable-helpers/helpers/optional";
-import { computed, getWithDefault } from "@ember/object";
+import { computed, getWithDefault, get } from "@ember/object";
 import slugify from "ember-caluma/utils/slugify";
 import { A } from "@ember/array";
 import validations from "ember-caluma/validations/question";
@@ -105,21 +105,13 @@ export default Component.extend(ComponentQueryManager, {
       ]);
     }
 
-    const questions = yield this.get("apollo").watchQuery(
+    return yield this.get("apollo").watchQuery(
       {
         query: formEditorQuestionQuery,
         variables: { slug: this.get("slug") },
         fetchPolicy: "cache-and-network"
       },
       "allQuestions.edges"
-    );
-
-    return A(
-      questions.map(question => {
-        question.node.widgetOverride =
-          question.node.meta.widgetOverride || null;
-        return question;
-      })
     );
   }).restartable(),
 
@@ -167,22 +159,20 @@ export default Component.extend(ComponentQueryManager, {
 
   model: computed("data.lastSuccessful.value.firstObject.node", function() {
     const model = this.get("data.lastSuccessful.value.firstObject.node");
-    // flatten attributes until nested property support landed in ember-validated-form
-    if (model && model.rowForm) {
-      model.rowsToDisplay = model.rowForm.questions.edges.map(n => n.node);
-      model.rowForm = model.rowForm.slug;
-      model.selectedColumnsToDisplay = [];
-      if (model.meta && model.meta.columnsToDisplay) {
-        model.selectedColumnsToDisplay = model.meta.columnsToDisplay;
-      }
-    }
-    if (model && model.subForm) {
-      model.subForm = model.subForm.slug;
-    }
-    if (model && model.meta && model.meta.hideLabel) {
-      model.hideLabel = model.meta.hideLabel;
-    }
-    return model;
+
+    return (
+      model &&
+      Object.assign(model, {
+        subForm: get(model, "subForm.slug"),
+        rowForm: get(model, "rowForm.slug"),
+        rowsToDisplay: getWithDefault(model, "rowForm.questions.edges", []).map(
+          ({ node }) => node
+        ),
+        selectedColumnsToDisplay: get(model, "meta.columnsToDisplay"),
+        hideLabel: get(model, "meta.hideLabel"),
+        widgetOverride: get(model, "meta.widgetOverride")
+      })
+    );
   }),
 
   changeset: computed("model", function() {
@@ -241,55 +231,35 @@ export default Component.extend(ComponentQueryManager, {
   _getMultipleChoiceQuestionInput(changeset) {
     return {
       isRequired: changeset.get("isRequired"),
-      options: changeset.get("options.edges").map(({ node: { slug } }) => slug),
-      meta: JSON.stringify({
-        widgetOverride: changeset.get("widgetOverride"),
-        hideLabel: changeset.get("hideLabel")
-      })
+      options: changeset.get("options.edges").map(({ node: { slug } }) => slug)
     };
   },
 
   _getChoiceQuestionInput(changeset) {
     return {
       isRequired: changeset.get("isRequired"),
-      options: changeset.get("options.edges").map(({ node: { slug } }) => slug),
-      meta: JSON.stringify({
-        widgetOverride: changeset.get("widgetOverride"),
-        hideLabel: changeset.get("hideLabel")
-      })
+      options: changeset.get("options.edges").map(({ node: { slug } }) => slug)
     };
   },
 
   _getDynamicMultipleChoiceQuestionInput(changeset) {
     return {
       isRequired: changeset.get("isRequired"),
-      dataSource: changeset.get("dataSource"),
-      meta: JSON.stringify({
-        widgetOverride: changeset.get("widgetOverride"),
-        hideLabel: changeset.get("hideLabel")
-      })
+      dataSource: changeset.get("dataSource")
     };
   },
 
   _getDynamicChoiceQuestionInput(changeset) {
     return {
       isRequired: changeset.get("isRequired"),
-      dataSource: changeset.get("dataSource"),
-      meta: JSON.stringify({
-        widgetOverride: changeset.get("widgetOverride"),
-        hideLabel: changeset.get("hideLabel")
-      })
+      dataSource: changeset.get("dataSource")
     };
   },
 
   _getTableQuestionInput(changeset) {
     return {
       isRequired: changeset.get("isRequired"),
-      rowForm: changeset.get("rowForm"),
-      meta: JSON.stringify({
-        widgetOverride: changeset.get("widgetOverride"),
-        columnsToDisplay: this.get("model.selectedColumnsToDisplay")
-      })
+      rowForm: changeset.get("rowForm")
     };
   },
 
@@ -350,9 +320,13 @@ export default Component.extend(ComponentQueryManager, {
                 slug,
                 isHidden: changeset.get("isHidden"),
                 infoText: changeset.get("infoText"),
-                meta: JSON.stringify({
-                  widgetOverride: changeset.get("widgetOverride")
-                }),
+                meta: JSON.stringify(
+                  Object.assign({}, changeset.get("data.meta"), {
+                    hideLabel: changeset.get("hideLabel"),
+                    widgetOverride: changeset.get("widgetOverride"),
+                    columnsToDisplay: changeset.get("selectedColumnsToDisplay")
+                  })
+                ),
                 isArchived: changeset.get("isArchived"),
                 clientMutationId: v4()
               },

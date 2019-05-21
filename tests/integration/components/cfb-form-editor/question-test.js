@@ -68,6 +68,35 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     assert.verifySteps(["after-submit"]);
   });
 
+  test("it respects existing metadata", async function(assert) {
+    assert.expect(4);
+
+    this.server.create("question", {
+      label: "Test Label",
+      slug: "test-slug",
+      type: "TEXT",
+      meta: { someMetaKey: "foobar" }
+    });
+
+    this.server.logging = true;
+
+    this.set("afterSubmit", question => {
+      assert.ok(question);
+      assert.equal(question.meta.someMetaKey, "foobar");
+      assert.step("after-submit");
+    });
+
+    await render(
+      hbs`{{cfb-form-editor/question slug='test-slug' on-after-submit=(action afterSubmit)}}`
+    );
+
+    await fillIn("[name=label]", "Test Label 1");
+
+    await click("button[type=submit]");
+
+    assert.verifySteps(["after-submit"]);
+  });
+
   test("it can handle errors", async function(assert) {
     assert.expect(1);
 
