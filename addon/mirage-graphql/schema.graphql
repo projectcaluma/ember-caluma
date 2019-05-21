@@ -1,5 +1,5 @@
-# source: http://localhost:8000/graphql
-# timestamp: Wed May 01 2019 08:23:45 GMT+0200 (Central European Summer Time)
+# source: http://camac-ng.local/graphql/
+# timestamp: Tue May 21 2019 14:29:18 GMT+0200 (Central European Summer Time)
 
 input AddFormQuestionInput {
   form: ID!
@@ -40,6 +40,7 @@ interface Answer {
 type AnswerConnection {
   pageInfo: PageInfo!
   edges: [AnswerEdge]!
+  totalCount: Int
 }
 
 type AnswerEdge {
@@ -52,6 +53,22 @@ type AnswerEdge {
   A cursor for use in pagination
   """
   cursor: String!
+}
+
+enum AnswerHierarchyMode {
+  DIRECT
+  FAMILY
+}
+
+enum AnswerLookupMode {
+  EXACT
+  STARTSWITH
+  CONTAINS
+  ICONTAINS
+  GTE
+  GT
+  LTE
+  LT
 }
 
 """
@@ -159,6 +176,7 @@ type Case implements Node {
 type CaseConnection {
   pageInfo: PageInfo!
   edges: [CaseEdge]!
+  totalCount: Int
 }
 
 type CaseEdge {
@@ -457,6 +475,7 @@ type DataSource {
 type DataSourceConnection {
   pageInfo: PageInfo!
   edges: [DataSourceEdge]!
+  totalCount: Int
 }
 
 type DataSourceData {
@@ -467,6 +486,7 @@ type DataSourceData {
 type DataSourceDataConnection {
   pageInfo: PageInfo!
   edges: [DataSourceDataEdge]!
+  totalCount: Int
 }
 
 type DataSourceDataEdge {
@@ -592,8 +612,9 @@ type Document implements Node {
     AnswerOrdering
     """
     orderBy: [AnswerOrdering]
+    questions: [ID]
   ): AnswerConnection
-  parentAnswers: [FileAnswer]
+  parentAnswers: [FormAnswer]
   case: Case
   workItem: WorkItem
 }
@@ -601,6 +622,7 @@ type Document implements Node {
 type DocumentConnection {
   pageInfo: PageInfo!
   edges: [DocumentEdge]!
+  totalCount: Int
 }
 
 type DocumentEdge {
@@ -906,6 +928,7 @@ type Flow implements Node {
 type FlowConnection {
   pageInfo: PageInfo!
   edges: [FlowEdge]!
+  totalCount: Int
 }
 
 type FlowEdge {
@@ -1000,9 +1023,35 @@ type FormAnswer implements Answer & Node {
   document: Document!
 }
 
+type FormatValidator {
+  slug: String!
+  name: String!
+  regex: String!
+  errorMsg: String!
+}
+
+type FormatValidatorConnection {
+  pageInfo: PageInfo!
+  edges: [FormatValidatorEdge]!
+  totalCount: Int
+}
+
+type FormatValidatorEdge {
+  """
+  The item at the end of the edge
+  """
+  node: FormatValidator
+
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+}
+
 type FormConnection {
   pageInfo: PageInfo!
   edges: [FormEdge]!
+  totalCount: Int
 }
 
 type FormEdge {
@@ -1136,6 +1185,29 @@ Examples:
 """
 scalar GroupJexl
 
+"""
+Lookup type to search document structures.
+
+The question is either a "plain" question slug, or of the form
+"parent_slug.question_slug". Note that in this case, the parent_slug will
+match the form slug, which in turn may be a subform of the whole form
+structure.
+
+What does NOT work is matching a full path, as the lookup would quickly
+generate very complex database queries.
+
+So, given the document structure "top.some_form.subform.question_foo", you can
+either search for "subform.question_foo" (if question_foo is used in other
+contexts within the same form), or search directly for "question_foo" if
+you don't need to be that specific, which will speed up the query slightly.
+"""
+input HasAnswerFilterType {
+  question: String!
+  value: GenericScalar!
+  lookup: AnswerLookupMode
+  hierarchy: AnswerHierarchyMode
+}
+
 type IntegerAnswer implements Answer & Node {
   createdAt: DateTime!
   modifiedAt: DateTime!
@@ -1223,7 +1295,7 @@ enum MetaLookupMode {
 
 input MetaValueFilterType {
   key: String!
-  value: String!
+  value: GenericScalar!
   lookup: MetaLookupMode
 }
 
@@ -1364,6 +1436,7 @@ type Mutation {
   saveDocumentFileAnswer(
     input: SaveDocumentFileAnswerInput!
   ): SaveDocumentFileAnswerPayload
+  removeAnswer(input: RemoveAnswerInput!): RemoveAnswerPayload
 }
 
 """
@@ -1399,6 +1472,7 @@ type Option implements Node {
 type OptionConnection {
   pageInfo: PageInfo!
   edges: [OptionEdge]!
+  totalCount: Int
 }
 
 type OptionEdge {
@@ -1570,6 +1644,7 @@ type Query {
     CaseOrdering
     """
     orderBy: [CaseOrdering]
+    hasAnswer: [HasAnswerFilterType]
   ): CaseConnection
   allWorkItems(
     before: String
@@ -1654,7 +1729,14 @@ type Query {
     DocumentOrdering
     """
     orderBy: [DocumentOrdering]
+    hasAnswer: [HasAnswerFilterType]
   ): DocumentConnection
+  allFormatValidators(
+    before: String
+    after: String
+    first: Int
+    last: Int
+  ): FormatValidatorConnection
 
   """
   The ID of the object
@@ -1702,6 +1784,7 @@ interface Question {
 type QuestionConnection {
   pageInfo: PageInfo!
   edges: [QuestionEdge]!
+  totalCount: Int
 }
 
 type QuestionEdge {
@@ -1784,6 +1867,16 @@ enum QuestionOrdering {
   Created by group (descending)
   """
   CREATED_BY_GROUP_DESC
+}
+
+input RemoveAnswerInput {
+  answer: ID!
+  clientMutationId: String
+}
+
+type RemoveAnswerPayload {
+  answer: Answer
+  clientMutationId: String
 }
 
 input RemoveFlowInput {
@@ -1951,20 +2044,11 @@ type SaveDocumentDateAnswerPayload {
 }
 
 input SaveDocumentFileAnswerInput {
-  id: String
-  value: String!
-  valueId: ID
-  createdAt: DateTime
-  modifiedAt: DateTime
-  createdByUser: String
-  createdByGroup: String
-  meta: JSONString
-  date: Date
   question: ID!
   document: ID!
-  valueDocument: ID
-  file: ID
-  documents: [ID]
+  meta: JSONString
+  value: String!
+  valueId: ID
   clientMutationId: String
 }
 
@@ -2258,7 +2342,7 @@ input SaveStaticQuestionInput {
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
-  staticContent: String!
+  staticContent: String
   clientMutationId: String
 }
 
@@ -2298,6 +2382,7 @@ input SaveTextareaQuestionInput {
   isArchived: Boolean
   maxLength: Int
   placeholder: String
+  formatValidators: [String]
   clientMutationId: String
 }
 
@@ -2316,6 +2401,7 @@ input SaveTextQuestionInput {
   isArchived: Boolean
   maxLength: Int
   placeholder: String
+  formatValidators: [String]
   clientMutationId: String
 }
 
@@ -2547,6 +2633,7 @@ interface Task {
 type TaskConnection {
   pageInfo: PageInfo!
   edges: [TaskEdge]!
+  totalCount: Int
 }
 
 type TaskEdge {
@@ -2690,6 +2777,12 @@ type TextareaQuestion implements Question & Node {
   infoText: String
   meta: GenericScalar!
   source: Question
+  formatValidators(
+    before: String
+    after: String
+    first: Int
+    last: Int
+  ): FormatValidatorConnection
   forms(
     before: String
     after: String
@@ -2733,6 +2826,12 @@ type TextQuestion implements Question & Node {
   infoText: String
   meta: GenericScalar!
   source: Question
+  formatValidators(
+    before: String
+    after: String
+    first: Int
+    last: Int
+  ): FormatValidatorConnection
   forms(
     before: String
     after: String
@@ -2809,6 +2908,7 @@ type Workflow implements Node {
 type WorkflowConnection {
   pageInfo: PageInfo!
   edges: [WorkflowEdge]!
+  totalCount: Int
 }
 
 type WorkflowEdge {
@@ -2931,6 +3031,7 @@ type WorkItem implements Node {
 type WorkItemConnection {
   pageInfo: PageInfo!
   edges: [WorkItemEdge]!
+  totalCount: Int
 }
 
 type WorkItemEdge {

@@ -27,8 +27,8 @@ export default function(server) {
       schema,
       mocks: {
         ...mocks,
-        JSONString: () => '{"foo": "bar"}',
-        GenericScalar: value => value,
+        JSONString: () => JSON.stringify({}),
+        GenericScalar: () => ({}),
         Node: (_, { id }) => ({ __typename: atob(id).split(":")[0] })
       },
       preserveResolvers: false

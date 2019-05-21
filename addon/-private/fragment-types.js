@@ -15,10 +15,7 @@ export default {
             name: "Document"
           },
           {
-            name: "FileAnswer"
-          },
-          {
-            name: "File"
+            name: "FormAnswer"
           },
           {
             name: "Case"
@@ -90,7 +87,10 @@ export default {
             name: "TableAnswer"
           },
           {
-            name: "FormAnswer"
+            name: "FileAnswer"
+          },
+          {
+            name: "File"
           },
           {
             name: "SimpleTask"
@@ -168,7 +168,7 @@ export default {
         name: "Answer",
         possibleTypes: [
           {
-            name: "FileAnswer"
+            name: "FormAnswer"
           },
           {
             name: "StringAnswer"
@@ -189,7 +189,7 @@ export default {
             name: "TableAnswer"
           },
           {
-            name: "FormAnswer"
+            name: "FileAnswer"
           }
         ]
       }
