@@ -9,10 +9,7 @@ module.exports = function(defaults) {
     sassOptions: { implementation: sass },
     snippetPaths: ["tests/dummy/app/snippets"],
     babel: {
-      plugins: [
-        ["@babel/plugin-proposal-decorators", { legacy: true }],
-        "@babel/plugin-proposal-object-rest-spread"
-      ]
+      plugins: ["@babel/plugin-proposal-object-rest-spread"]
     }
   });
 
