@@ -56,7 +56,6 @@ jobs:
     - stage: "Release"
       if: branch = release and type = push
       script: skip
-      after_success: skip
       deploy:
         provider: script
         skip_cleanup: true
