@@ -19,6 +19,13 @@ env:
     - JOBS=1
     - COVERAGE=true
 
+branches:
+  only:
+    - master
+    - release
+    # npm version tags
+    - /^v\d+\.\d+\.\d+/
+
 jobs:
   fail_fast: true
   allow_failures:
@@ -43,9 +50,10 @@ jobs:
     # we recommend new addons test the current and previous LTS
     # as well as latest stable release (bonus points to beta/canary)
     - stage: "Additional Tests"
-      env: EMBER_TRY_SCENARIO=ember-release
+      env: EMBER_TRY_SCENARIO=ember-lts-3.8
+    - env: EMBER_TRY_SCENARIO=ember-release
 
-    - stage: release
+    - stage: "Release"
       if: branch = release and type = push
       script: skip
       deploy:
@@ -54,7 +62,7 @@ jobs:
         on:
           branch: release
         script:
-          - npx semantic-release
+          - yarn semantic-release
 
     - stage: "Deploy"
       if: (branch = master or tag is present) and type = push
