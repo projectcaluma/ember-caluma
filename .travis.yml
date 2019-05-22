@@ -56,6 +56,7 @@ jobs:
     - stage: "Release"
       if: branch = release and type = push
       script: skip
+      after_success: skip
       deploy:
         provider: script
         skip_cleanup: true
@@ -63,17 +64,6 @@ jobs:
           branch: release
         script:
           - yarn semantic-release
-
-    - stage: release
-      if: branch = release and type = push
-      script: skip
-      deploy:
-        provider: script
-        skip_cleanup: true
-        on:
-          branch: release
-        script:
-          - npx semantic-release
 
     - stage: "Deploy"
       if: (branch = master or tag is present) and type = push
