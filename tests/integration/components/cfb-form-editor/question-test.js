@@ -368,7 +368,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     await fillIn("[name=__typename]", "TableQuestion");
     await fillIn("[name=label]", "Label");
     await fillIn("[name=slug]", "slug");
-    await fillIn("[name=rowForm]", "subform");
+    await fillIn("[name=rowForm\\.slug]", "subform");
 
     await click("button[type=submit]");
 
@@ -397,7 +397,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     await fillIn("[name=__typename]", "FormQuestion");
     await fillIn("[name=label]", "Label");
     await fillIn("[name=slug]", "slug");
-    await fillIn("[name=subForm]", "subform");
+    await fillIn("[name=subForm\\.slug]", "subform");
 
     await click("button[type=submit]");
 

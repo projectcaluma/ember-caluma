@@ -5,7 +5,8 @@ import { task, timeout } from "ember-concurrency";
 import { ComponentQueryManager } from "ember-apollo-client";
 import v4 from "uuid/v4";
 import { optional } from "ember-composable-helpers/helpers/optional";
-import { computed, getWithDefault, get } from "@ember/object";
+import { computed, getWithDefault } from "@ember/object";
+import { reads } from "@ember/object/computed";
 import slugify from "ember-caluma/utils/slugify";
 import { A } from "@ember/array";
 import validations from "ember-caluma/validations/question";
@@ -96,8 +97,9 @@ export default Component.extend(ComponentQueryManager, {
             floatMaxValue: null,
             maxLength: null,
             options: [],
-            rowForm: "",
-            subForm: "",
+            rowForm: {},
+            subForm: {},
+            meta: {},
             dataSource: "",
             __typename: Object.keys(TYPES)[0]
           }
@@ -157,23 +159,7 @@ export default Component.extend(ComponentQueryManager, {
     });
   }).restartable(),
 
-  model: computed("data.lastSuccessful.value.firstObject.node", function() {
-    const model = this.get("data.lastSuccessful.value.firstObject.node");
-
-    return (
-      model &&
-      Object.assign(model, {
-        subForm: get(model, "subForm.slug"),
-        rowForm: get(model, "rowForm.slug"),
-        rowsToDisplay: getWithDefault(model, "rowForm.questions.edges", []).map(
-          ({ node }) => node
-        ),
-        selectedColumnsToDisplay: get(model, "meta.columnsToDisplay"),
-        hideLabel: get(model, "meta.hideLabel"),
-        widgetOverride: get(model, "meta.widgetOverride")
-      })
-    );
-  }),
+  model: reads("data.lastSuccessful.value.firstObject.node"),
 
   changeset: computed("model", function() {
     return new Changeset(this.model, lookupValidator(validations));
@@ -259,14 +245,14 @@ export default Component.extend(ComponentQueryManager, {
   _getTableQuestionInput(changeset) {
     return {
       isRequired: changeset.get("isRequired"),
-      rowForm: changeset.get("rowForm")
+      rowForm: changeset.get("rowForm.slug")
     };
   },
 
   _getFormQuestionInput(changeset) {
     return {
       isRequired: changeset.get("isRequired"),
-      subForm: changeset.get("subForm")
+      subForm: changeset.get("subForm.slug")
     };
   },
 
@@ -320,13 +306,7 @@ export default Component.extend(ComponentQueryManager, {
                 slug,
                 isHidden: changeset.get("isHidden"),
                 infoText: changeset.get("infoText"),
-                meta: JSON.stringify(
-                  Object.assign({}, changeset.get("data.meta"), {
-                    hideLabel: changeset.get("hideLabel"),
-                    widgetOverride: changeset.get("widgetOverride"),
-                    columnsToDisplay: changeset.get("selectedColumnsToDisplay")
-                  })
-                ),
+                meta: JSON.stringify(changeset.get("meta")),
                 isArchived: changeset.get("isArchived"),
                 clientMutationId: v4()
               },
@@ -416,18 +396,15 @@ export default Component.extend(ComponentQueryManager, {
     },
 
     /*
-     * This function adds the selected slugs to the selectedColumnsToDisplay
+     * This function adds the selected slugs to the columns to display
      * list if it isnt present, otherwise it will remove the slug.
      */
     toggleColumnToDisplay(value) {
-      let arr = this.get("model.selectedColumnsToDisplay");
-      let idx = arr.indexOf(value);
-      if (idx >= 0) {
-        arr.splice(idx, 1);
-        this.set("model.selectedColumnsToDisplay", arr);
-      } else {
-        this.set("model.selectedColumnsToDisplay", [...arr, value]);
-      }
+      let displayed = new Set(this.get("model.meta.columnsToDisplay"));
+
+      displayed.delete(value) || displayed.add(value);
+
+      this.set("model.meta.columnsToDisplay", [...displayed]);
     }
   }
 });
