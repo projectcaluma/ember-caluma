@@ -175,16 +175,6 @@
           required=true
           renderComponent=(component "cfb-form-editor/question/options")
         }}
-
-        <div data-test-hide-label>
-          {{f.input
-            name="hideLabel"
-            required=true
-            label=(t "caluma.form-builder.question.hideLabel")
-            renderComponent=(component "cfb-toggle-switch" size="small")
-            class="uk-flex uk-flex-between uk-flex-column"
-          }}
-        </div>
       {{/if}}
 
       {{#if (contains f.model.__typename (array "DynamicMultipleChoiceQuestion" "DynamicChoiceQuestion"))}}
@@ -200,10 +190,12 @@
           optionLabelPath="info"
           includeBlank=(t "caluma.form-builder.question.chooseRowForm")
         }}
+      {{/if}}
 
+      {{#if (contains f.model.__typename (array "DynamicMultipleChoiceQuestion" "DynamicChoiceQuestion" "MultipleChoiceQuestion" "ChoiceQuestion"))}}
         <div data-test-hide-label>
           {{f.input
-            name="hideLabel"
+            name="meta.hideLabel"
             required=true
             label=(t "caluma.form-builder.question.hideLabel")
             renderComponent=(component "cfb-toggle-switch" size="small")
@@ -214,44 +206,46 @@
 
       {{#if (eq f.model.__typename "TableQuestion")}}
         {{f.input
-          name="rowForm"
+          name="rowForm.slug"
           type="select"
           options=(or availableForms.lastSuccessful.value (array ))
           required=true
-          includeBlank=(t "caluma.form-builder.question.chooseRowForm")
+          includeBlank=(t "caluma.form-builder.question.choose")
           label=(t "caluma.form-builder.question.rowForm")
         }}
 
-        {{#f.input name="columnsToDisplay" label=(t "caluma.form-builder.question.columnsToDisplay") as |fi|}}
-          {{#each model.rowsToDisplay as |row|}}
-            <label class="cf-checkbox_label">
-              <input
-                type="checkbox"
-                value={{row.slug}}
-                checked={{contains row.slug model.selectedColumnsToDisplay}}
-                onclick={{action "toggleColumnToDisplay" row.slug}}
-                onfocusout={{fi.setDirty}}
-                class="uk-checkbox uk-margin-small-right"
-              >
-              {{row.label}}
-            </label>
+        {{#f.input name="meta.columnsToDisplay" label=(t "caluma.form-builder.question.columnsToDisplay") as |fi|}}
+          {{#each model.rowForm.questions.edges as |rowEdge|}}
+            {{#let rowEdge.node as |row|}}
+              <label class="cf-checkbox_label">
+                <input
+                  type="checkbox"
+                  value={{row.slug}}
+                  checked={{contains row.slug model.meta.columnsToDisplay}}
+                  onclick={{action "toggleColumnToDisplay" row.slug}}
+                  onfocusout={{fi.setDirty}}
+                  class="uk-checkbox uk-margin-small-right"
+                >
+                {{row.label}}
+              </label>
+            {{/let}}
           {{/each}}
         {{/f.input}}
       {{/if}}
 
       {{#if (eq f.model.__typename "FormQuestion")}}
         {{f.input
-          name="subForm"
+          name="subForm.slug"
           type="select"
           options=(or availableForms.lastSuccessful.value (array ))
           required=true
-          includeBlank=(t "caluma.form-builder.question.chooseRowForm")
-          label=(t "caluma.form-builder.question.rowForm")
+          includeBlank=(t "caluma.form-builder.question.choose")
+          label=(t "caluma.form-builder.question.subForm")
         }}
       {{/if}}
 
       {{f.input
-        name="widgetOverride"
+        name="meta.widgetOverride"
         label=(t "caluma.form-builder.question.widgetOverride")
         class="uk-flex uk-flex-between uk-flex-column"
 
