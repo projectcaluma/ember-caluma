@@ -89,7 +89,7 @@ caluma:
       min-value: "Minimaler Wert"
       max-value: "Maximaler Wert"
       max-length: "Maximale Länge"
-      rowForm: "Tabellen-Formular für Einträge"
+      rowForm: "Formular für Tabelleneinträge"
       subForm: "Formular für Einträge"
       choose: "-- bitte wählen --"
       columnsToDisplay: "Spalten zur Anzeige auswählen"

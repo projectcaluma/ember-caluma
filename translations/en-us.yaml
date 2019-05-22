@@ -90,7 +90,8 @@ caluma:
       max-value: "Maximum value"
       max-length: "Maximum length"
       rowForm: "Form to use for rows"
-      chooseRowForm: "-- please choose --"
+      subForm: "Form to use for entries"
+      choose: "-- please choose --"
       columnsToDisplay: "Select columns to be shown"
 
       new: "New question"
