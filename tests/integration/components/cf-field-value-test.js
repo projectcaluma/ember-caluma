@@ -40,7 +40,7 @@ module("Integration | Component | cf-field-value", function(hooks) {
 
     await render(hbs`{{cf-field-value field=field}}`);
 
-    assert.equal(this.element.textContent.trim(), "A, B");
+    assert.dom(this.element).hasText("A, B");
   });
 
   test("it renders choice questions", async function(assert) {
@@ -77,7 +77,7 @@ module("Integration | Component | cf-field-value", function(hooks) {
 
     await render(hbs`{{cf-field-value field=field}}`);
 
-    assert.equal(this.element.textContent.trim(), "C");
+    assert.dom(this.element).hasText("C");
   });
 
   test("it renders text questions", async function(assert) {
@@ -92,6 +92,6 @@ module("Integration | Component | cf-field-value", function(hooks) {
 
     await render(hbs`{{cf-field-value field=field}}`);
 
-    assert.equal(this.element.textContent.trim(), "foo");
+    assert.dom(this.element).hasText("foo");
   });
 });

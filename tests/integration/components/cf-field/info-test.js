@@ -9,6 +9,6 @@ module("Integration | Component | cf-field/info", function(hooks) {
   test("it renders", async function(assert) {
     await render(hbs`{{cf-field/info}}`);
 
-    assert.equal(this.element.textContent.trim(), "");
+    assert.dom(this.element).hasText("");
   });
 });

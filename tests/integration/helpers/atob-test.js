@@ -14,9 +14,6 @@ module("Integration | Helper | atob", function(hooks) {
 
     await render(hbs`{{atob inputValue}}`);
 
-    assert.equal(
-      this.element.textContent.trim(),
-      "9df3c607-2f54-48a8-8636-a4435f2fb653"
-    );
+    assert.dom(this.element).hasText("9df3c607-2f54-48a8-8636-a4435f2fb653");
   });
 });
