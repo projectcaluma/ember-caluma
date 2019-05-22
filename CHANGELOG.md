@@ -1,3 +1,47 @@
+# [0.2.0](https://github.com/projectcaluma/ember-caluma/compare/v0.1.0...v0.2.0) (2019-05-22)
+
+
+### Bug Fixes
+
+* **cf-navigation:** add compute watcher on hidden state ([#225](https://github.com/projectcaluma/ember-caluma/issues/225)) ([41ba470](https://github.com/projectcaluma/ember-caluma/commit/41ba470))
+* **cf-navigation:** add minor safety checks ([#217](https://github.com/projectcaluma/ember-caluma/issues/217)) ([cf3ca9e](https://github.com/projectcaluma/ember-caluma/commit/cf3ca9e))
+* **deps:** remove obsolete dependency ([be4dbad](https://github.com/projectcaluma/ember-caluma/commit/be4dbad))
+* **deps:** update @adfinis-sygroup/semantic-release-config ([2225e00](https://github.com/projectcaluma/ember-caluma/commit/2225e00))
+* **deps:** update dependency ember-uikit to ^0.8.0 ([#219](https://github.com/projectcaluma/ember-caluma/issues/219)) ([28a841b](https://github.com/projectcaluma/ember-caluma/commit/28a841b))
+* **deps:** update dependency ember-uikit to v0.8.1 ([#223](https://github.com/projectcaluma/ember-caluma/issues/223)) ([b892a50](https://github.com/projectcaluma/ember-caluma/commit/b892a50))
+* **deps:** update dependency graphql to v14.3.0 ([#208](https://github.com/projectcaluma/ember-caluma/issues/208)) ([6cf38cc](https://github.com/projectcaluma/ember-caluma/commit/6cf38cc))
+* **deps:** update dependency sass to v1.20.1 ([#196](https://github.com/projectcaluma/ember-caluma/issues/196)) ([1d7a944](https://github.com/projectcaluma/ember-caluma/commit/1d7a944))
+* **field:** drop running requests on next ([aa5f99c](https://github.com/projectcaluma/ember-caluma/commit/aa5f99c))
+* **field:** fix invalid state of a field ([8c3d6b4](https://github.com/projectcaluma/ember-caluma/commit/8c3d6b4))
+* **form builder:** fix handling of existing metadata ([4d9071f](https://github.com/projectcaluma/ember-caluma/commit/4d9071f))
+* **form builder:** fix usage of nested properties in the question editor ([97a59a5](https://github.com/projectcaluma/ember-caluma/commit/97a59a5))
+* **ie 11:** add "manual" polyfill for array.flat ([#199](https://github.com/projectcaluma/ember-caluma/issues/199)) ([fde3a0f](https://github.com/projectcaluma/ember-caluma/commit/fde3a0f))
+* **mirage:** update mirage schema and fix generic scalar type ([c1cdaa1](https://github.com/projectcaluma/ember-caluma/commit/c1cdaa1))
+* **navigation:** fix document states in navigation ([480b67b](https://github.com/projectcaluma/ember-caluma/commit/480b67b))
+* **powerselect:** render correct slected option for choice questions ([#254](https://github.com/projectcaluma/ember-caluma/issues/254)) ([837ca8c](https://github.com/projectcaluma/ember-caluma/commit/837ca8c))
+* **table:** dialog didn't reopen ([#243](https://github.com/projectcaluma/ember-caluma/issues/243)) ([7754585](https://github.com/projectcaluma/ember-caluma/commit/7754585))
+* **table:** disable form in table on disabled question ([c79a380](https://github.com/projectcaluma/ember-caluma/commit/c79a380))
+* **table:** fix table rendering for dynamic choice fields ([#239](https://github.com/projectcaluma/ember-caluma/issues/239)) ([5d40c13](https://github.com/projectcaluma/ember-caluma/commit/5d40c13))
+* **translations:** add missing translations ([e786b52](https://github.com/projectcaluma/ember-caluma/commit/e786b52))
+* consider empty but required fields ([#220](https://github.com/projectcaluma/ember-caluma/issues/220)) ([3538471](https://github.com/projectcaluma/ember-caluma/commit/3538471))
+* **validation:** add validation for static, fix multiple choice ([#228](https://github.com/projectcaluma/ember-caluma/issues/228)) ([7ab76a7](https://github.com/projectcaluma/ember-caluma/commit/7ab76a7))
+* do not display warning if no override ([3c2bf1d](https://github.com/projectcaluma/ember-caluma/commit/3c2bf1d))
+* remove jexl logic and hide toggle ([#233](https://github.com/projectcaluma/ember-caluma/issues/233)) ([9627dec](https://github.com/projectcaluma/ember-caluma/commit/9627dec))
+
+
+### Features
+
+* **cf-form:** all passing context information to cf-form, cf-navigation ([7372e4d](https://github.com/projectcaluma/ember-caluma/commit/7372e4d))
+* **cf-form:** allow passing context information to cf-form, cf-navigation ([#218](https://github.com/projectcaluma/ember-caluma/issues/218)) ([2955dc6](https://github.com/projectcaluma/ember-caluma/commit/2955dc6))
+* add jexl textarea for isRequired ([#232](https://github.com/projectcaluma/ember-caluma/issues/232)) ([7b3e16a](https://github.com/projectcaluma/ember-caluma/commit/7b3e16a))
+* add table column display configuration ([#237](https://github.com/projectcaluma/ember-caluma/issues/237)) ([88a1ae9](https://github.com/projectcaluma/ember-caluma/commit/88a1ae9)), closes [#236](https://github.com/projectcaluma/ember-caluma/issues/236)
+* **cf-navigation:** add disabled attribute ([#242](https://github.com/projectcaluma/ember-caluma/issues/242)) ([926b9de](https://github.com/projectcaluma/ember-caluma/commit/926b9de))
+* **cf-navigation:** add possibility to pass custom headers ([#255](https://github.com/projectcaluma/ember-caluma/issues/255)) ([16e4448](https://github.com/projectcaluma/ember-caluma/commit/16e4448))
+* **form:** enable widget overrides for forms ([581de15](https://github.com/projectcaluma/ember-caluma/commit/581de15))
+* **jexl:** support jexl referencing TableQuestions ([#229](https://github.com/projectcaluma/ember-caluma/issues/229)) ([858d95e](https://github.com/projectcaluma/ember-caluma/commit/858d95e))
+* **table:** remove action buttons in disabled state ([#238](https://github.com/projectcaluma/ember-caluma/issues/238)) ([9037a3b](https://github.com/projectcaluma/ember-caluma/commit/9037a3b))
+* **table:** show spinner while saving ([fe4fc33](https://github.com/projectcaluma/ember-caluma/commit/fe4fc33))
+
 ## [0.1.0](https://github.com/projectcaluma/ember-caluma/compare/v0.0.4...v0.1.0) (2019-05-08)
 
 ### Bug Fixes
