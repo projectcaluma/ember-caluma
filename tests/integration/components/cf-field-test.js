@@ -74,7 +74,7 @@ module("Integration | Component | cf-field", function(hooks) {
 
     await render(hbs`{{cf-field field=field disabled=true}}`);
 
-    assert.dom("input[type=text]").isDisabled();
+    assert.dom("input[type=text]").hasAttribute("readonly");
   });
 
   test("it validates input", async function(assert) {

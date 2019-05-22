@@ -38,7 +38,7 @@ module("Integration | Component | cf-field/input/integer", function(hooks) {
 
     await render(hbs`{{cf-field/input/integer disabled=true}}`);
 
-    assert.dom("input").isDisabled();
+    assert.dom("input").hasAttribute("readonly");
   });
 
   test("it triggers save on input", async function(assert) {

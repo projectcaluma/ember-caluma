@@ -153,6 +153,6 @@ module("Integration | Component | cf-field/input", function(hooks) {
       }}
     `);
 
-    assert.dom("input[type=text]").isDisabled();
+    assert.dom("input[type=text]").hasAttribute("readonly");
   });
 });

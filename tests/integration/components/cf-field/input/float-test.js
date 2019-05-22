@@ -38,7 +38,7 @@ module("Integration | Component | cf-field/input/float", function(hooks) {
 
     await render(hbs`{{cf-field/input/float disabled=true}}`);
 
-    assert.dom("input").isDisabled();
+    assert.dom("input").hasAttribute("readonly");
   });
 
   test("it triggers save on input", async function(assert) {

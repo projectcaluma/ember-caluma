@@ -34,7 +34,7 @@ module("Integration | Component | cf-field/input/textarea", function(hooks) {
 
     await render(hbs`{{cf-field/input/textarea disabled=true}}`);
 
-    assert.dom("textarea").isDisabled();
+    assert.dom("textarea").hasAttribute("readonly");
   });
 
   test("it triggers save on input", async function(assert) {

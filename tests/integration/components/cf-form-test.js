@@ -98,7 +98,7 @@ module("Integration | Component | cf-form", function(hooks) {
           assert.dom(`[name="${id}"][value="${slug}"]`).isDisabled();
         });
       } else {
-        assert.dom(`[name="${id}"]`).isDisabled();
+        assert.dom(`[name="${id}"]`).hasAttribute("readonly");
       }
     });
   });
