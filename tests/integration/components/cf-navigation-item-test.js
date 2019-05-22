@@ -12,6 +12,6 @@ module("Integration | Component | cf-navigation-item", function(hooks) {
 
     await render(hbs`{{cf-navigation-item}}`);
 
-    assert.equal(this.element.textContent.trim(), "");
+    assert.dom(this.element).hasText("");
   });
 });
