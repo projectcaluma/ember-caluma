@@ -9,6 +9,7 @@ caluma:
     save: "Speichern"
     selectFile: "Klicken um Datei hochzuladen"
     changeFile: "Klicken um andere Datei hochzuladen"
+    noFile: "Es wurde keine Datei hochgeladen"
 
     notification:
       table:

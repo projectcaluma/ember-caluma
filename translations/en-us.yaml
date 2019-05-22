@@ -9,6 +9,7 @@ caluma:
     save: "Save"
     selectFile: "Click to upload a file"
     changeFile: "Click to upload a different file"
+    noFile: "No file has been uploaded"
 
     notification:
       table:

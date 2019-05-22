@@ -1,8 +1,21 @@
-{{pikaday-wrapper
-  class="uk-input"
-  name=field.id
-  format="DD.MM.YYYY"
-  onSelection=(action "onchange")
-  value=(get field.answer field.answer._valueKey)
-  disabled=disabled
-}}
+{{#if (and disabled field.answer.value)}}
+  {{input
+    class="uk-input disabled"
+    value=(date-format field.answer.value "DD.MM.YYYY")
+    readonly=true
+  }}
+{{else if field.answer.value}}
+  {{pikaday-wrapper
+    class="uk-input"
+    name=field.id
+    format="DD.MM.YYYY"
+    onSelection=(action "onchange")
+    value=field.answer.value
+  }}
+{{else}}
+  {{input
+    class="uk-input disabled"
+    value=""
+    readonly=true
+  }}
+{{/if}}
