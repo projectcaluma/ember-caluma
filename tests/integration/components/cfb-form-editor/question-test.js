@@ -78,8 +78,6 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
       meta: { someMetaKey: "foobar" }
     });
 
-    this.server.logging = true;
-
     this.set("afterSubmit", question => {
       assert.ok(question);
       assert.equal(question.meta.someMetaKey, "foobar");

@@ -153,7 +153,6 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
     await render(
       hbs`{{cfb-form-editor/general slug=null on-after-submit=(action afterSubmit)}}`
     );
-    this.server.logging = true;
 
     // Slug validation must be valid
     this.server.post(
@@ -161,7 +160,6 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
       { data: { allForms: { edges: [], __typename: "FormConnection" } } },
       200
     );
-    this.server.logging = false;
     await fillIn("input[name=name]", "test");
 
     this.server.post("/graphql", () => graphqlError("saveForm"), 200);
