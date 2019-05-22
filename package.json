@@ -65,7 +65,6 @@
   },
   "devDependencies": {
     "@adfinis-sygroup/semantic-release-config": "2.1.0",
-    "@babel/plugin-proposal-decorators": "7.4.4",
     "@babel/plugin-proposal-object-rest-spread": "7.4.4",
     "@commitlint/cli": "7.6.1",
     "@commitlint/config-conventional": "7.6.0",
