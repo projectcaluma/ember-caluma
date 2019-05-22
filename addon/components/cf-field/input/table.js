@@ -12,6 +12,10 @@ import { computed } from "@ember/object";
  * corresponding babel-polyfill package. So we include this "manual" polyfill for now.
  *
  * https://github.com/babel/babel/issues/9749
+ *
+ * @function flat
+ * @param {Array} arrays The nested arrays
+ * @return {Array} The flattened array
  */
 function flat(arrays) {
   return [].concat.apply([], arrays);
