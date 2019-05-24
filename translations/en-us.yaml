@@ -87,6 +87,8 @@ caluma:
       supportsMarkdownPrefix: "This field supports"
       markdown: "Markdown"
       dataSource: "Data source"
+      formatValidators: "Validation"
+      chooseValidation: "Choose a validation"
 
       general: "General"
       options: "Options"

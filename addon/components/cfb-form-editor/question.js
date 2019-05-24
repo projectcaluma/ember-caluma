@@ -20,6 +20,7 @@ import formEditorQuestionQuery from "ember-caluma/gql/queries/form-editor-questi
 import addFormQuestionMutation from "ember-caluma/gql/mutations/add-form-question";
 import formListQuery from "ember-caluma/gql/queries/form-list";
 import allDataSourcesQuery from "ember-caluma/gql/queries/all-data-sources";
+import allFormatValidatorsQuery from "ember-caluma/gql/queries/all-format-validators";
 
 import saveOptionMutation from "ember-caluma/gql/mutations/save-option";
 import saveTextQuestionMutation from "ember-caluma/gql/mutations/save-text-question";
@@ -75,6 +76,7 @@ export default Component.extend(ComponentQueryManager, {
     await this.get("data").perform();
     await this.get("availableForms").perform();
     await this.get("availableDataSources").perform();
+    await this.get("availableFormatValidators").perform();
   },
 
   data: task(function*() {
@@ -97,6 +99,7 @@ export default Component.extend(ComponentQueryManager, {
             subForm: {},
             meta: {},
             dataSource: "",
+            formatValidators: "",
             __typename: Object.keys(TYPES)[0]
           }
         }
@@ -150,6 +153,20 @@ export default Component.extend(ComponentQueryManager, {
       return [];
     }
     return dataSources.map(edge => {
+      delete edge.node.__typename;
+      return edge.node;
+    });
+  }).restartable(),
+
+  availableFormatValidators: task(function*() {
+    const formatValidators = yield this.get("apollo").watchQuery(
+      { query: allFormatValidatorsQuery, fetchPolicy: "cache-and-network" },
+      "allFormatValidators.edges"
+    );
+    if (!formatValidators.mapBy) {
+      return [];
+    }
+    return formatValidators.map(edge => {
       delete edge.node.__typename;
       return edge.node;
     });
