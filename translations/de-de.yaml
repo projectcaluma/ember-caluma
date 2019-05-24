@@ -2,6 +2,7 @@ dummy:
   demo: "Demo"
   nested: "Verschachtelt"
   usage: "Anwendung"
+  testing: "Testen"
 
 caluma:
   form:
