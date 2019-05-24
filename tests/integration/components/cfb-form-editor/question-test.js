@@ -2,7 +2,7 @@ import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
 import { render, fillIn, blur, click, settled } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
-import setupMirage from "ember-cli-mirage/test-support/setup-mirage";
+import { setupMirage } from "ember-cli-mirage/test-support";
 import graphqlError from "dummy/tests/helpers/graphql-error";
 
 module("Integration | Component | cfb-form-editor/question", function(hooks) {
