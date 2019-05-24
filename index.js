@@ -7,6 +7,10 @@ const path = require("path");
 /* eslint-disable node/no-unpublished-require */
 const EngineAddon = require("ember-engines/lib/engine-addon");
 
+const DEFAULT_OPTIONS = {
+  includeMirageConfig: true
+};
+
 /* eslint-disable ember/avoid-leaking-state-in-ember-objects */
 module.exports = EngineAddon.extend({
   name: "ember-caluma",
@@ -28,13 +32,25 @@ module.exports = EngineAddon.extend({
   treeForApp(appTree) {
     const trees = [appTree];
 
-    const mirageDir = path.join(__dirname, "addon-mirage-support");
+    const app = this._findHost();
+    const addonOptions = Object.assign(
+      {},
+      DEFAULT_OPTIONS,
+      app.options["ember-caluma"]
+    );
 
-    const mirageTree = new Funnel(mirageDir, {
-      destDir: "mirage"
-    });
+    if (
+      addonOptions.includeMirageConfig &&
+      app.registry.availablePlugins["ember-cli-mirage"]
+    ) {
+      const mirageDir = path.join(__dirname, "addon-mirage-support");
 
-    trees.push(mirageTree);
+      const mirageTree = new Funnel(mirageDir, {
+        destDir: "mirage"
+      });
+
+      trees.push(mirageTree);
+    }
 
     return mergeTrees(trees);
   }
