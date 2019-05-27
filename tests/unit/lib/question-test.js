@@ -67,20 +67,29 @@ module("Unit | Library | question", function(hooks) {
       "question2.isHidden",
       "'question1'|answer > 9000 && 'question3'|doesntexist == 'blubb'"
     );
-    assert.expect(2);
-    assert.equal(this.question2.dependsOn.length, 1);
+    this.set("question2.isRequired", "'question1'|answer < 3");
+
+    assert.expect(4);
+    assert.equal(this.question2.dependsOn.isHidden.length, 1);
+    assert.equal(this.question2.dependsOn.isRequired.length, 1);
     assert.equal(
-      this.question2.dependsOn[0].id,
+      this.question2.dependsOn.isHidden[0].id,
       "Document:1:Question:question1"
     );
+    assert.equal(
+      this.question2.dependsOn.isRequired[0].id,
+      "Document:1:Question:question1"
+    );
+
     this.set("question2.isHidden", "false");
+    this.set("question2.isRequired", "false");
   });
 
   test("dependsOn only contains existing questions", async function(assert) {
     this.set("question2.isHidden", "'question-nonexistent'|answer > 9000");
     assert.expect(1);
     assert.throws(
-      () => this.question2.dependsOn,
+      () => this.question2.dependsOn.isHidden,
       /Question could not be resolved: "question-nonexistent". Available: "question1", "question2"/
     );
     this.set("question2.isHidden", "false");
@@ -91,9 +100,10 @@ module("Unit | Library | question", function(hooks) {
       "question2.isHidden",
       "'question1'|answer > 9000 && 'question1'|answer < 10000"
     );
+
     assert.expect(1);
     assert.deepEqual(
-      this.question2.dependsOn.map(field => field.question.slug),
+      this.question2.dependsOn.isHidden.map(field => field.question.slug),
       ["question1"]
     );
     this.set("question2.isHidden", "false");
@@ -108,7 +118,7 @@ module("Unit | Library | question", function(hooks) {
     );
     assert.expect(1);
     assert.deepEqual(
-      ba1.dependsOn.map(
+      ba1.dependsOn.isHidden.map(
         field => `${field.document.raw.form.slug} > ${field.question.slug}`
       ),
       ["a-a > a-a-1", "a-b > a-a-1"]
