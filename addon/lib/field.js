@@ -117,7 +117,7 @@ export default EmberObject.extend(Evented, {
 
     this.setProperties({
       _errors: [],
-      dependentFields: [],
+      dependentFields: { isRequired: [], isHidden: [] },
       question,
       answer
     });
@@ -136,13 +136,22 @@ export default EmberObject.extend(Evented, {
   }).readOnly(),
 
   updateHidden: on("valueChanged", "hiddenChanged", function() {
-    this.dependentFields.forEach(field => field.question.hiddenTask.perform());
+    this.dependentFields.isHidden.forEach(field =>
+      field.question.hiddenTask.perform()
+    );
   }),
 
-  registerDependentField(field) {
-    if (!this.dependentFields.find(f => f.id === field.id)) {
-      this.dependentFields.push(field);
-    }
+  updateOptional: on("valueChanged", "hiddenChanged", function() {
+    this.dependentFields.isRequired.forEach(field =>
+      field.question.optionalTask.perform()
+    );
+  }),
+
+  registerDependentField(field, key) {
+    this.set(`dependentFields.${key}`, [
+      ...new Set(this.get(`dependentFields.${key}`)),
+      field
+    ]);
   },
 
   /**

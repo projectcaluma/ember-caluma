@@ -33,20 +33,28 @@ export default EmberObject.extend({
    * @property {String[]} dependsOn
    * @accessor
    */
-  dependsOn: computed("isHidden", function() {
-    const dependents = [
-      ...new Set(
-        getTransforms(getAST(this.isHidden))
-          .filter(transform => transform.name === "answer")
-          .map(transform => transform.subject.value)
-      )
-    ];
+  dependsOn: computed("isHidden", "isRequired", function() {
+    const keys = ["isHidden", "isRequired"];
 
-    return dependents.map(slugWithPath => {
-      const field = this.document.findField(slugWithPath);
-      field.registerDependentField(this.field);
-      return field;
-    });
+    return keys.reduce((obj, key) => {
+      const dependents = [
+        ...new Set(
+          getTransforms(getAST(this[key]))
+            .filter(transform => transform.name === "answer")
+            .map(transform => transform.subject.value)
+        )
+      ];
+
+      return Object.assign(obj, {
+        [key]: dependents.map(slugWithPath => {
+          const field = this.document.findField(slugWithPath);
+
+          field.registerDependentField(this.field, key);
+
+          return field;
+        })
+      });
+    }, {});
   }).readOnly(),
 
   /**
@@ -61,8 +69,8 @@ export default EmberObject.extend({
    */
   hiddenTask: task(function*() {
     let hidden =
-      this.dependsOn.length &&
-      this.dependsOn.every(
+      this.dependsOn.isHidden.length &&
+      this.dependsOn.isHidden.every(
         field =>
           field.question.hidden ||
           (field.question.__typename !== "TableQuestion" &&
@@ -97,6 +105,15 @@ export default EmberObject.extend({
    * @return {Boolean}
    */
   optionalTask: task(function*() {
-    return !(yield this.document.questionJexl.eval(this.isRequired));
+    const hidden =
+      this.dependsOn.isRequired.length &&
+      this.dependsOn.isRequired.every(
+        field =>
+          field.question.hidden ||
+          (field.question.__typename !== "TableQuestion" &&
+            (field.answer.value === null || field.answer.value === undefined))
+      );
+
+    return hidden || !(yield this.document.questionJexl.eval(this.isRequired));
   })
 });
