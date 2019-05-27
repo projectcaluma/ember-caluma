@@ -1,3 +1,10 @@
+# [0.3.0](https://github.com/projectcaluma/ember-caluma/compare/v0.2.0...v0.3.0) (2019-05-27)
+
+
+### Features
+
+* **field:** recompute optional property on value or hidden changes ([fd18d43](https://github.com/projectcaluma/ember-caluma/commit/fd18d43))
+
 # [0.2.0](https://github.com/projectcaluma/ember-caluma/compare/v0.1.0...v0.2.0) (2019-05-22)
 
 
