@@ -1,10 +1,8 @@
-{{#if (not field.question.hidden)}}
-  {{#link-to (query-params section=section subSection=_subSection)}}
-    <div class="uk-flex uk-flex-between uk-flex-middle">
-      <div>{{label}}</div>
-      <span
-        class="uk-flex-none camac-nav-module-icon camac-nav-module-icon-{{state}}">
-      </span>
-    </div>
-  {{/link-to}}
-{{/if}}
+{{#link-to (query-params section=section subSection=_subSection)}}
+  <div class="uk-flex uk-flex-between uk-flex-middle">
+    <div>{{label}}</div>
+    <span
+      class="uk-flex-none camac-nav-module-icon camac-nav-module-icon-{{state}}">
+    </span>
+  </div>
+{{/link-to}}
