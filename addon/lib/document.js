@@ -6,6 +6,7 @@ import jexl from "jexl";
 import { atob } from "ember-caluma/helpers/atob";
 import { inject as service } from "@ember/service";
 import { intersects } from "ember-caluma/utils/jexl";
+import { filterBy } from "@ember/object/computed";
 
 const getParentState = childStates => {
   if (childStates.every(state => state === "untouched")) {
@@ -197,6 +198,8 @@ export default EmberObject.extend({
   },
 
   fields: computed(() => []).readOnly(),
+
+  visibleFields: filterBy("fields", "hidden", false),
 
   childDocuments: computed(
     "fields.{[],@each.hidden,childDocument}",

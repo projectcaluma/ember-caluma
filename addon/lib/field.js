@@ -1,4 +1,4 @@
-import EmberObject, { computed } from "@ember/object";
+import EmberObject, { computed, getWithDefault } from "@ember/object";
 import { equal, not, empty, reads } from "@ember/object/computed";
 import { inject as service } from "@ember/service";
 import { assert } from "@ember/debug";
@@ -193,6 +193,27 @@ export default EmberObject.extend(Evented, {
    * @accessor
    */
   hidden: reads("question.hidden"),
+
+  /**
+   * The type of the question
+   *
+   * @property {String} questionType
+   * @accessor
+   */
+  questionType: reads("question.__typename"),
+
+  visibleInNavigation: computed(
+    "hidden",
+    "questionType",
+    "childDocument.visibleFields",
+    function() {
+      return (
+        !this.hidden &&
+        this.questionType === "FormQuestion" &&
+        getWithDefault(this, "childDocument.visibleFields", []).length > 0
+      );
+    }
+  ),
 
   /**
    * The error messages on this field.
