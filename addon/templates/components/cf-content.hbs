@@ -5,6 +5,7 @@
     rootDocument=rootDocument
     displayedDocument=displayedDocument
     navigation=(component "cf-navigation" rootDocument=rootDocument section=section subSection=subSection)
+    pagination=(component "cf-pagination" rootDocument=rootDocument section=section subSection=subSection)
     form=(component "cf-form-wrapper" document=displayedDocument context=context disabled=disabled)
   ) as |content|}}
     {{#if hasBlock}}
@@ -14,6 +15,8 @@
         <div class="uk-width-1-1 uk-width-1-3@m">{{content.navigation}}</div>
         <div class="uk-width-1-1 uk-width-2-3@m">
           {{content.form}}
+          <hr>
+          {{content.pagination}}
         </div>
       </div>
     {{else}}

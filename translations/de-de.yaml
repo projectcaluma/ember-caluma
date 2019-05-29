@@ -11,6 +11,10 @@ caluma:
     selectFile: "Klicken um Datei hochzuladen"
     changeFile: "Klicken um andere Datei hochzuladen"
 
+    navigation:
+      next: "Weiter"
+      previous: "Zurück"
+
     notification:
       table:
         add:
