@@ -11,6 +11,10 @@ caluma:
     selectFile: "Click to upload a file"
     changeFile: "Click to upload a different file"
 
+    navigation:
+      next: "Next"
+      previous: "Next"
+
     notification:
       table:
         add:
