@@ -5693,7 +5693,7 @@ ee-first@1.1.1:
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
   integrity sha1-WQxhFWsK4vTwJVcyoViyZrxWsh0=
 
-electron-to-chromium@^1.3.133, electron-to-chromium@^1.3.47:
+electron-to-chromium@^1.3.133:
   version "1.3.137"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.137.tgz#ba7c88024984c038a5c5c434529aabcea7b42944"
   integrity sha512-kGi32g42a8vS/WnYE7ELJyejRT7hbr3UeOOu0WeuYuQ29gCpg9Lrf6RdcTQVXSt/v0bjCfnlb/EWOOsiKpTmkw==
@@ -5702,6 +5702,11 @@ electron-to-chromium@^1.3.30:
   version "1.3.136"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.136.tgz#758a156109077536780cfa8207b1aeaa99843e33"
   integrity sha512-xHkYkbEi4kI+2w5v6yBGCQTRXL7N0PWscygTFZu/1bArnPSo2WR9xjdw4m06RR4J5PncrWJcuOVv+MAG2mK5JQ==
+
+electron-to-chromium@^1.3.47:
+  version "1.3.140"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.140.tgz#8b554dd0fdccdf1d8eb5a67426e610fef42fdd7f"
+  integrity sha512-gznkq18tTzRWd/nHdmt9CQ/AC9Xv/TWstqKb6bhuVWE+koLg9NFlnXMwvQAUYKxIjPI2lS5TsuqqlRsCVuVdTg==
 
 elliptic@^6.0.0:
   version "6.4.1"
@@ -6298,12 +6303,12 @@ ember-cli-string-helpers@^1.9.0:
     ember-cli-babel "^6.6.0"
 
 ember-cli-string-helpers@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/ember-cli-string-helpers/-/ember-cli-string-helpers-2.0.0.tgz#80167028a8540edb1bedb516cd889169324553ab"
-  integrity sha512-mLN/41tsLED4xnM5ISP5H0eQWKUjqSGzKaoI5R2R9EuWhQV6GdWHuXqsF0iUg91mspZan+05SIs62yrxKX6CtA==
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-string-helpers/-/ember-cli-string-helpers-2.1.0.tgz#c16951a1b12474f99640c3363db03248195fa13f"
+  integrity sha512-O9+7Axm9dyRJohNsGrWxXHS56VFhokdaZOvnJ1NgP9rcUTnJHD6mC+lA6R7lHXkfedpVHrcJqYRaJxzwiS8GWQ==
   dependencies:
-    broccoli-funnel "^1.0.1"
-    ember-cli-babel "^6.16.0"
+    broccoli-funnel "^2.0.2"
+    ember-cli-babel "^7.7.3"
 
 ember-cli-string-utils@^1.0.0, ember-cli-string-utils@^1.1.0:
   version "1.1.0"
