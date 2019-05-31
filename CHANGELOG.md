@@ -1,3 +1,56 @@
+# [1.0.0](https://github.com/projectcaluma/ember-caluma/compare/v0.3.0...v1.0.0) (2019-05-31)
+
+
+### Bug Fixes
+
+* **deps:** update dependency ember-changeset to v2.1.1 ([e0be925](https://github.com/projectcaluma/ember-caluma/commit/e0be925))
+* **deps:** update dependency ember-cli-string-helpers to v2.1.0 ([e2d77c5](https://github.com/projectcaluma/ember-caluma/commit/e2d77c5))
+* **deps:** update dependency ember-concurrency to v0.10.1 ([c8259be](https://github.com/projectcaluma/ember-caluma/commit/c8259be))
+* **deps:** update dependency graphql to v14.3.1 ([782a11e](https://github.com/projectcaluma/ember-caluma/commit/782a11e))
+* **deps:** update ember-cli-mirage to v1.0.0 ([0ff0e23](https://github.com/projectcaluma/ember-caluma/commit/0ff0e23))
+
+
+### Features
+
+* **mirage:** add option to disable mirage support ([93531d1](https://github.com/projectcaluma/ember-caluma/commit/93531d1))
+* **navigation:** add previous / next pagination ([6aea609](https://github.com/projectcaluma/ember-caluma/commit/6aea609))
+* **navigation:** allow customization of the navigation ([fe61ca8](https://github.com/projectcaluma/ember-caluma/commit/fe61ca8))
+
+
+### BREAKING CHANGES
+
+* **navigation:** this changes the way a form is used in the host
+application. Before, the `cf-navigation` component rendered the whole
+navigation and the form in it. Now there is a wrapper component
+`cf-content` which yields or renders the form and the navigation. This
+way the host app is able to customize where to render the navigation and
+the form. Also the host app does not need to pass the `section` and
+`subSection` query parameters since they are taken directly from the
+router.
+
+Before:
+```hbs
+{{cf-navigation
+  documentId=documentId
+  context=context
+  section=section
+  subSection=subSection
+}}
+```
+
+After:
+```hbs
+{{cf-content documentId=documentId context=context}}
+```
+* **deps:** This change requires the users of ember-caluma to
+manually add faker and ember-auto-import to their devDependencies:
+
+`yarn add -D faker ember-auto-import`
+
+This is necessary because ember-cli-mirage stopped including faker in
+their build. Since we expose factories using faker to the host app, they
+need to install this.
+
 # [0.3.0](https://github.com/projectcaluma/ember-caluma/compare/v0.2.0...v0.3.0) (2019-05-27)
 
 
