@@ -1,5 +1,5 @@
 # source: http://camac-ng.local/graphql/
-# timestamp: Tue May 21 2019 14:29:18 GMT+0200 (Central European Summer Time)
+# timestamp: Fri May 31 2019 08:19:48 GMT+0200 (Central European Summer Time)
 
 input AddFormQuestionInput {
   form: ID!
@@ -162,6 +162,8 @@ type Case implements Node {
     case: ID
     createdByUser: String
     createdByGroup: String
+    offset: Int
+    limit: Int
     metaHasKey: String
 
     """
@@ -317,8 +319,11 @@ type ChoiceQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    offset: Int
+    limit: Int
     metaHasKey: String
     search: String
+    slugs: [String]
   ): FormConnection
   options(
     before: String
@@ -330,6 +335,8 @@ type ChoiceQuestion implements Question & Node {
     label: String
     createdByUser: String
     createdByGroup: String
+    offset: Int
+    limit: Int
     metaHasKey: String
     search: String
 
@@ -567,8 +574,11 @@ type DateQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    offset: Int
+    limit: Int
     metaHasKey: String
     search: String
+    slugs: [String]
   ): FormConnection
 
   """
@@ -606,6 +616,8 @@ type Document implements Node {
     search: String
     createdByUser: String
     createdByGroup: String
+    offset: Int
+    limit: Int
     metaHasKey: String
 
     """
@@ -713,8 +725,11 @@ type DynamicChoiceQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    offset: Int
+    limit: Int
     metaHasKey: String
     search: String
+    slugs: [String]
   ): FormConnection
   options(
     before: String
@@ -761,8 +776,11 @@ type DynamicMultipleChoiceQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    offset: Int
+    limit: Int
     metaHasKey: String
     search: String
+    slugs: [String]
   ): FormConnection
   options(
     before: String
@@ -842,8 +860,11 @@ type FileQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    offset: Int
+    limit: Int
     metaHasKey: String
     search: String
+    slugs: [String]
   ): FormConnection
 
   """
@@ -899,8 +920,11 @@ type FloatQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    offset: Int
+    limit: Int
     metaHasKey: String
     search: String
+    slugs: [String]
   ): FormConnection
 
   """
@@ -980,6 +1004,8 @@ type Form implements Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    offset: Int
+    limit: Int
     metaHasKey: String
     excludeForms: [ID]
     search: String
@@ -1152,8 +1178,11 @@ type FormQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    offset: Int
+    limit: Int
     metaHasKey: String
     search: String
+    slugs: [String]
   ): FormConnection
 
   """
@@ -1255,8 +1284,11 @@ type IntegerQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    offset: Int
+    limit: Int
     metaHasKey: String
     search: String
+    slugs: [String]
   ): FormConnection
 
   """
@@ -1330,8 +1362,11 @@ type MultipleChoiceQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    offset: Int
+    limit: Int
     metaHasKey: String
     search: String
+    slugs: [String]
   ): FormConnection
   options(
     before: String
@@ -1348,6 +1383,8 @@ type MultipleChoiceQuestion implements Question & Node {
     label: String
     createdByUser: String
     createdByGroup: String
+    offset: Int
+    limit: Int
     metaHasKey: String
     search: String
   ): OptionConnection
@@ -1591,6 +1628,8 @@ type Query {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    offset: Int
+    limit: Int
     metaHasKey: String
     search: String
 
@@ -1616,6 +1655,8 @@ type Query {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    offset: Int
+    limit: Int
     metaHasKey: String
     search: String
 
@@ -1638,6 +1679,8 @@ type Query {
     status: CaseStatusArgument
     createdByUser: String
     createdByGroup: String
+    offset: Int
+    limit: Int
     metaHasKey: String
 
     """
@@ -1666,6 +1709,8 @@ type Query {
     case: ID
     createdByUser: String
     createdByGroup: String
+    offset: Int
+    limit: Int
     metaHasKey: String
     addressedGroups: [String]
   ): WorkItemConnection
@@ -1687,8 +1732,11 @@ type Query {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    offset: Int
+    limit: Int
     metaHasKey: String
     search: String
+    slugs: [String]
   ): FormConnection
   allQuestions(
     before: String
@@ -1708,6 +1756,8 @@ type Query {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    offset: Int
+    limit: Int
     metaHasKey: String
     excludeForms: [ID]
     search: String
@@ -1723,12 +1773,15 @@ type Query {
     id: ID
     createdByUser: String
     createdByGroup: String
+    offset: Int
+    limit: Int
     metaHasKey: String
 
     """
     DocumentOrdering
     """
     orderBy: [DocumentOrdering]
+    rootDocument: ID
     hasAnswer: [HasAnswerFilterType]
   ): DocumentConnection
   allFormatValidators(
@@ -1769,6 +1822,8 @@ interface Question {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    offset: Int
+    limit: Int
     metaHasKey: String
     metaValue: MetaValueFilterType
     search: String
@@ -1777,6 +1832,7 @@ interface Question {
     FormOrdering
     """
     orderBy: [FormOrdering]
+    slugs: [String]
   ): FormConnection
   source: Question
 }
@@ -2525,8 +2581,11 @@ type StaticQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    offset: Int
+    limit: Int
     metaHasKey: String
     search: String
+    slugs: [String]
   ): FormConnection
   staticContent: String
   dataSource: String
@@ -2600,8 +2659,11 @@ type TableQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    offset: Int
+    limit: Int
     metaHasKey: String
     search: String
+    slugs: [String]
   ): FormConnection
 
   """
@@ -2801,8 +2863,11 @@ type TextareaQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    offset: Int
+    limit: Int
     metaHasKey: String
     search: String
+    slugs: [String]
   ): FormConnection
 
   """
@@ -2850,8 +2915,11 @@ type TextQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    offset: Int
+    limit: Int
     metaHasKey: String
     search: String
+    slugs: [String]
   ): FormConnection
 
   """
@@ -2902,6 +2970,8 @@ type Workflow implements Node {
     task: ID
     createdByUser: String
     createdByGroup: String
+    offset: Int
+    limit: Int
   ): FlowConnection
 }
 

@@ -1,9 +1,0 @@
-#import 'ember-caluma/gql/fragments/nested-form-document'
-
-query GetNavigation($id: ID!) {
-  node(id: $id) {
-    ... on Document {
-      ...NestedFormDocument
-    }
-  }
-}

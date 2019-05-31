@@ -5,7 +5,29 @@ import { computed } from "@ember/object";
 import { reads } from "@ember/object/computed";
 import { ComponentQueryManager } from "ember-apollo-client";
 import { task } from "ember-concurrency";
-import getNavigationQuery from "ember-caluma/gql/queries/get-navigation";
+
+import getNavigationDocumentsQuery from "ember-caluma/gql/queries/get-navigation-documents";
+import getNavigationFormsQuery from "ember-caluma/gql/queries/get-navigation-forms";
+
+const buildTree = (rootDocument, documents, forms) => {
+  if (rootDocument.__typename === "Document") {
+    rootDocument.form = forms.find(
+      form => form.slug === rootDocument.form.slug
+    );
+  }
+
+  rootDocument.answers.edges.forEach(answer => {
+    if (answer.node.__typename === "FormAnswer") {
+      answer.node.formValue = buildTree(
+        documents.find(doc => doc.form.slug === answer.node.question.slug),
+        documents,
+        forms
+      );
+    }
+  });
+
+  return rootDocument;
+};
 
 /**
  * Component to render a form with navigation.
@@ -80,14 +102,34 @@ export default Component.extend(ComponentQueryManager, {
   dataTask: task(function*() {
     if (!this.documentId) return null;
 
-    return yield this.apollo.watchQuery(
+    const rootId = window.btoa(`Document:${this.documentId}`);
+
+    const documents = (yield this.apollo.query(
       {
-        query: getNavigationQuery,
-        variables: { id: window.btoa("Document:" + this.documentId) },
+        query: getNavigationDocumentsQuery,
+        variables: { rootDocument: rootId },
         fetchPolicy: "network-only",
         context: { headers: this.get("context.headers") }
       },
-      "node"
+      "allDocuments.edges"
+    )).map(({ node }) => node);
+
+    const forms = (yield this.apollo.query(
+      {
+        query: getNavigationFormsQuery,
+        variables: {
+          slugs: documents.map(doc => doc.form.slug).sort()
+        },
+        fetchPolicy: "cache-first",
+        context: { headers: this.get("context.headers") }
+      },
+      "allForms.edges"
+    )).map(({ node }) => node);
+
+    return buildTree(
+      documents.find(doc => doc.id === rootId),
+      documents,
+      forms
     );
   }),
 
