@@ -12,7 +12,7 @@ import Evented, { on } from "@ember/object/evented";
 import Answer from "ember-caluma/lib/answer";
 import Question from "ember-caluma/lib/question";
 import Document from "ember-caluma/lib/document";
-import { atob } from "ember-caluma/helpers/atob";
+import { decodeId } from "ember-caluma/helpers/decode-id";
 
 import saveDocumentFloatAnswerMutation from "ember-caluma/gql/mutations/save-document-float-answer";
 import saveDocumentIntegerAnswerMutation from "ember-caluma/gql/mutations/save-document-integer-answer";
@@ -249,7 +249,7 @@ export default EmberObject.extend(Evented, {
           mutation: removeAnswerMutation,
           variables: {
             input: {
-              answer: atob(this.get("answer.id"))
+              answer: decodeId(this.get("answer.id"))
             }
           }
         },

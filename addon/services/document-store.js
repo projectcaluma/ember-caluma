@@ -2,7 +2,7 @@ import Service from "@ember/service";
 import { computed } from "@ember/object";
 import { getOwner } from "@ember/application";
 import Document from "ember-caluma/lib/document";
-import { atob } from "ember-caluma/helpers/atob";
+import { decodeId } from "ember-caluma/helpers/decode-id";
 
 /**
  * @class DocumentStoreService
@@ -25,7 +25,7 @@ export default Service.extend({
    * @return {Document} The document
    */
   find(document, { noCache, parentDocument } = {}) {
-    const id = atob(document.id);
+    const id = decodeId(document.id);
     const cached = this.documents[id];
 
     if (noCache || !cached) {

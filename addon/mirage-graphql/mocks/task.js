@@ -1,14 +1,16 @@
 import BaseMock from "ember-caluma/mirage-graphql/mocks/base";
 import { register } from "ember-caluma/mirage-graphql";
 import { classify } from "@ember/string";
-import { atob } from "ember-caluma/helpers/atob";
+import { decodeId } from "ember-caluma/helpers/decode-id";
 
 export default class extends BaseMock {
   @register("Task")
   handleTask(root, vars) {
     const serialized = this.handle.fn.call(this, root, vars);
 
-    let taskId = atob(root.taskId || (root.node && root.node(...arguments).id));
+    let taskId = decodeId(
+      root.taskId || (root.node && root.node(...arguments).id)
+    );
     let __typename = root.__typename;
 
     if (taskId) {
