@@ -1,15 +1,23 @@
 import { helper } from "@ember/component/helper";
+import { deprecate } from "@ember/application/deprecations";
+import { decodeId } from "ember-caluma/helpers/decode-id";
 
 export function atob(str) {
-  try {
-    return window.atob(str).split(":")[1];
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.warn("Attempted to decode", str, "as base64");
-    return str;
-  }
+  deprecate(
+    'DEPRECATED: Using the `atob` helper is deprecated. Instead, use the new `decodeId` helper: `import { decodeId } from "ember-caluma/helpers/decode-id";`.',
+    false,
+    { id: "ember-caluma.atob-in-code", until: "1.0.0" }
+  );
+
+  return decodeId(str);
 }
 
 export default helper(function([str]) {
-  return atob(str);
+  deprecate(
+    "DEPRECATED: Using the `{{atob}}` helper is deprecated. Instead, use the new `{{decodeId}}` helper.",
+    false,
+    { id: "ember-caluma.atob-in-template", until: "1.0.0" }
+  );
+
+  return decodeId(str);
 });

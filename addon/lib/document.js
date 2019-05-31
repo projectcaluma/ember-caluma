@@ -3,7 +3,7 @@ import { assert } from "@ember/debug";
 import { getOwner } from "@ember/application";
 import Field from "ember-caluma/lib/field";
 import jexl from "jexl";
-import { atob } from "ember-caluma/helpers/atob";
+import { decodeId } from "ember-caluma/helpers/decode-id";
 import { inject as service } from "@ember/service";
 import { intersects } from "ember-caluma/utils/jexl";
 import { filterBy } from "@ember/object/computed";
@@ -74,7 +74,7 @@ export default EmberObject.extend({
   },
 
   id: computed("raw.id", function() {
-    return atob(this.get("raw.id"));
+    return decodeId(this.get("raw.id"));
   }),
 
   field: computed(
