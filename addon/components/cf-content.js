@@ -19,7 +19,11 @@ import getNavigationQuery from "ember-caluma/gql/queries/get-navigation";
  * {{#cf-content documentId="some-id" as |content|}}
  *   <div uk-grid>
  *     <div class="uk-width-1-2">{{content.navigation}}</div>
- *     <div class="uk-width-1-2">{{content.form}}</div>
+ *     <div class="uk-width-1-2">
+ *       {{content.form}}</div>
+ *       <hr>
+ *       {{content.pagination}}
+ *     </div>
  *   </div>
  * {{/cf-content}}
  * ```
