@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/projectcaluma/ember-caluma/compare/v1.0.0...v1.0.1) (2019-06-06)
+
+
+### Bug Fixes
+
+* **form:** allow stacking of info modals ([bab5166](https://github.com/projectcaluma/ember-caluma/commit/bab5166))
+
 # [1.0.0](https://github.com/projectcaluma/ember-caluma/compare/v0.3.0...v1.0.0) (2019-05-31)
 
 
