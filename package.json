@@ -109,7 +109,7 @@
     "husky": "2.3.0",
     "loader.js": "4.7.0",
     "node-fetch": "2.6.0",
-    "prettier": "1.17.1",
+    "prettier": "1.18.2",
     "qunit-dom": "0.8.5",
     "typeface-oxygen": "0.0.72",
     "typeface-oxygen-mono": "0.0.72"
