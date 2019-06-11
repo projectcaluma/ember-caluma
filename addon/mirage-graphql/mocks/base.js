@@ -81,9 +81,7 @@ export default class {
     if (!record) {
       // eslint-disable-next-line no-console
       console.log(
-        `Did not find a record of type "${
-          this.type
-        }" in the store. Did you forget to create one?`,
+        `Did not find a record of type "${this.type}" in the store. Did you forget to create one?`,
         { vars }
       );
     }
