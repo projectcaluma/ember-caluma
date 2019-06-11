@@ -188,19 +188,13 @@ module("Integration | Component | cf-form", function(hooks) {
       1.1
     );
     await click(
-      `[name="Document:${
-        document.id
-      }:Question:radio-question"][value="radio-question-option-2"]`
+      `[name="Document:${document.id}:Question:radio-question"][value="radio-question-option-2"]`
     );
     await click(
-      `[name="Document:${
-        document.id
-      }:Question:checkbox-question"][value="checkbox-question-option-1"]`
+      `[name="Document:${document.id}:Question:checkbox-question"][value="checkbox-question-option-1"]`
     );
     await click(
-      `[name="Document:${
-        document.id
-      }:Question:checkbox-question"][value="checkbox-question-option-2"]`
+      `[name="Document:${document.id}:Question:checkbox-question"][value="checkbox-question-option-2"]`
     );
     // The following answers are commented-out as we currently have a
     // problem with GraphQL/Mirage and I didn't want to skip everything.
