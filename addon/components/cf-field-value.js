@@ -1,3 +1,4 @@
+import moment from "moment";
 import Component from "@ember/component";
 import layout from "../templates/components/cf-field-value";
 import { computed } from "@ember/object";
@@ -46,6 +47,11 @@ export default Component.extend({
         return {
           fileAnswerId: answerValue && field.answer.id,
           label: answerValue && answerValue.name
+        };
+      }
+      case "DateQuestion": {
+        return {
+          label: moment(field.answer.value).format("L")
         };
       }
 
