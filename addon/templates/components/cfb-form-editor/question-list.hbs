@@ -31,7 +31,7 @@
   {{/if}}
 </div>
 
-{{#liquid-if (contains mode (array "remove" "add"))}}
+{{#if (contains mode (array "remove" "add"))}}
   <form class="uk-search uk-search-default uk-width-1-1">
     <span class="uk-search-icon-flip" uk-search-icon></span>
     <input
@@ -48,7 +48,7 @@
       }}
     >
   </form>
-{{/liquid-if}}
+{{/if}}
 
 <ul
   data-test-question-list
