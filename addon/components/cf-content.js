@@ -1,13 +1,33 @@
 import Component from "@ember/component";
 import layout from "../templates/components/cf-content";
 import { inject as service } from "@ember/service";
-import { computed } from "@ember/object";
-import { reads } from "@ember/object/computed";
+import { computed, observer } from "@ember/object";
+import { reads, filterBy } from "@ember/object/computed";
 import { ComponentQueryManager } from "ember-apollo-client";
 import { task } from "ember-concurrency";
+import { later, once } from "@ember/runloop";
 
 import getNavigationDocumentsQuery from "ember-caluma/gql/queries/get-navigation-documents";
 import getNavigationFormsQuery from "ember-caluma/gql/queries/get-navigation-forms";
+
+const isDisplayableDocument = doc =>
+  doc &&
+  doc.visibleFields.length &&
+  !doc.visibleFields.every(field => field.questionType === "FormQuestion");
+
+const buildParams = (section, subSections) => {
+  if (!section) {
+    return [];
+  }
+
+  return [
+    { section: section.question.slug, subSection: undefined },
+    ...subSections.map(s => ({
+      section: section.question.slug,
+      subSection: s.question.slug
+    }))
+  ];
+};
 
 const buildTree = (rootDocument, documents, forms) => {
   if (rootDocument.__typename === "Document") {
@@ -130,19 +150,12 @@ export default Component.extend(ComponentQueryManager, {
       "allForms.edges"
     )).map(({ node }) => node);
 
-    return buildTree(
-      documents.find(doc => doc.id === rootId),
-      documents,
-      forms
+    return this.documentStore.find(
+      buildTree(documents.find(doc => doc.id === rootId), documents, forms)
     );
   }),
 
-  rootDocument: computed("data.lastSuccessful.value", function() {
-    return (
-      this.get("data.lastSuccessful.value") &&
-      this.documentStore.find(this.get("data.lastSuccessful.value"))
-    );
-  }),
+  rootDocument: reads("data.lastSuccessful.value"),
 
   displayedDocument: computed(
     "section",
@@ -170,9 +183,124 @@ export default Component.extend(ComponentQueryManager, {
         // eslint-disable-next-line no-console
         console.error(e);
         return null;
-      } finally {
-        window.scrollTo(0, 0);
       }
     }
-  )
+  ),
+
+  _sections: filterBy(
+    "rootDocument.visibleFields",
+    "visibleInNavigation",
+    true
+  ),
+
+  _currentSection: computed("_sections.[]", "section", function() {
+    return this._sections.find(s => s.question.slug === this.section);
+  }),
+
+  _currentSubSection: computed(
+    "_currentSubSections.[]",
+    "subSection",
+    function() {
+      return this._currentSubSections.find(
+        s => s.question.slug === this.subSection
+      );
+    }
+  ),
+
+  _currentSubSections: filterBy(
+    "_currentSection.childDocument.visibleFields",
+    "visibleInNavigation",
+    true
+  ),
+
+  _currentSectionIndex: computed("_sections.[]", "section", function() {
+    return this._sections.indexOf(this._currentSection);
+  }),
+
+  _previousSection: computed("_currentSectionIndex", function() {
+    return this._currentSectionIndex > 0
+      ? this._sections[this._currentSectionIndex - 1]
+      : null;
+  }),
+
+  _nextSection: computed(
+    "_currentSectionIndex",
+    "_sections.length",
+    function() {
+      return this._currentSectionIndex < this._sections.length
+        ? this._sections[this._currentSectionIndex + 1]
+        : null;
+    }
+  ),
+
+  _previousSubSections: filterBy(
+    "_previousSection.childDocument.visibleFields",
+    "visibleInNavigation",
+    true
+  ),
+
+  _nextSubSections: filterBy(
+    "_nextSection.childDocument.visibleFields",
+    "visibleInNavigation",
+    true
+  ),
+
+  adjacentSections: computed(
+    "_previousSubSections.[]",
+    "_currentSubSections.[]",
+    "_nextSubSections.[]",
+    function() {
+      return [
+        ...buildParams(this._previousSection, this._previousSubSections),
+        ...buildParams(this._currentSection, this._currentSubSections),
+        ...buildParams(this._nextSection, this._nextSubSections)
+      ];
+    }
+  ),
+
+  sectionIndex: computed(
+    "adjacentSections.[]",
+    "section",
+    "subSection",
+    function() {
+      return this.adjacentSections.findIndex(
+        s => s.section === this.section && s.subSection === this.subSection
+      );
+    }
+  ),
+
+  previousSection: computed("adjacentSections.[]", "sectionIndex", function() {
+    return this.sectionIndex > 0
+      ? this.adjacentSections[this.sectionIndex - 1]
+      : null;
+  }),
+
+  nextSection: computed("adjacentSections.[]", "sectionIndex", function() {
+    return this.sectionIndex < this.adjacentSections.length
+      ? this.adjacentSections[this.sectionIndex + 1]
+      : null;
+  }),
+
+  // eslint-disable-next-line ember/no-observers
+  _displayedDocumentChanged: observer(
+    "displayedDocument",
+    "nextSection",
+    function() {
+      if (isDisplayableDocument(this.displayedDocument) || !this.nextSection) {
+        return;
+      }
+
+      later(this, () => once(this, "_transitionToNextSection"));
+    }
+  ),
+
+  _transitionToNextSection() {
+    if (isDisplayableDocument(this.displayedDocument) || !this.nextSection) {
+      return;
+    }
+
+    this.router.replaceWith({ queryParams: this.nextSection }).then(() => {
+      this.element.scrollIntoView(true);
+    });
+  }
 });
