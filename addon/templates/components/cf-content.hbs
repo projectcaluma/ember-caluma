@@ -5,7 +5,7 @@
     rootDocument=rootDocument
     displayedDocument=displayedDocument
     navigation=(component "cf-navigation" rootDocument=rootDocument section=section subSection=subSection)
-    pagination=(component "cf-pagination" rootDocument=rootDocument section=section subSection=subSection)
+    pagination=(component "cf-pagination" next=nextSection previous=previousSection)
     form=(component "cf-form-wrapper" document=displayedDocument context=context disabled=disabled)
   ) as |content|}}
     {{#if hasBlock}}
