@@ -1,3 +1,18 @@
+## [1.0.2](https://github.com/projectcaluma/ember-caluma/compare/v1.0.1...v1.0.2) (2019-06-13)
+
+
+### Bug Fixes
+
+* **deps:** remove dependency to liquid-fire ([d0d7d60](https://github.com/projectcaluma/ember-caluma/commit/d0d7d60))
+* **deps:** update dependency ember-auto-import to v1.4.0 ([5a86384](https://github.com/projectcaluma/ember-caluma/commit/5a86384))
+* **deps:** update dependency ember-changeset to v2.1.2 ([b2c2e95](https://github.com/projectcaluma/ember-caluma/commit/b2c2e95))
+* **deps:** update dependency ember-concurrency to v1 ([e29c588](https://github.com/projectcaluma/ember-caluma/commit/e29c588))
+* **deps:** update dependency ember-uikit to v0.8.2 ([4990142](https://github.com/projectcaluma/ember-caluma/commit/4990142))
+* **deps:** update dependency sass to v1.21.0 ([ea032d5](https://github.com/projectcaluma/ember-caluma/commit/ea032d5))
+* **form:** improve initial loading performance ([fa4046b](https://github.com/projectcaluma/ember-caluma/commit/fa4046b))
+* **linting:** fix linting error happening since the prettier update ([9d61840](https://github.com/projectcaluma/ember-caluma/commit/9d61840))
+* **table-date:** correctly render date questions in table rows ([b07aa82](https://github.com/projectcaluma/ember-caluma/commit/b07aa82))
+
 ## [1.0.1](https://github.com/projectcaluma/ember-caluma/compare/v1.0.0...v1.0.1) (2019-06-06)
 
 
