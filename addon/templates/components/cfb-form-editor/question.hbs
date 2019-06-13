@@ -132,17 +132,17 @@
         <div uk-grid class="uk-grid-small uk-child-width-1-2 uk-margin">
           <div>
             {{f.input
-              type="number"
               name="floatMinValue"
               label=(t "caluma.form-builder.question.min-value")
+              renderComponent=(component "cfb-float-input")
             }}
           </div>
 
           <div>
             {{f.input
-              type="number"
               name="floatMaxValue"
               label=(t "caluma.form-builder.question.max-value")
+              renderComponent=(component "cfb-float-input")
             }}
           </div>
         </div>
