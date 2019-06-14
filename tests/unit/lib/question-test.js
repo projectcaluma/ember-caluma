@@ -157,4 +157,29 @@ module("Unit | Library | question", function(hooks) {
 
     this.question1.field.off("hiddenChanged", handler);
   });
+
+  test("form and rootForm can be used in jexl expressions", async function(assert) {
+    assert.expect(4);
+
+    const rootDocument = this.nestedDocument;
+    const document = rootDocument.childDocuments[0].childDocuments[0];
+    const question = document.fields[0].question;
+
+    const trueExpression = `rootForm == '${rootDocument.raw.form.slug}'`;
+    const falseExpression = "rootForm == 'thisisalsonottheslug'";
+
+    question.setProperties({
+      isHidden: trueExpression,
+      isRequired: trueExpression
+    });
+    assert.equal(await question.hiddenTask.perform(), true);
+    assert.equal(await question.optionalTask.perform(), false); // optional is inverted required!
+
+    question.setProperties({
+      isHidden: falseExpression,
+      isRequired: falseExpression
+    });
+    assert.equal(await question.hiddenTask.perform(), false);
+    assert.equal(await question.optionalTask.perform(), true); // optional is inverted required!
+  });
 });
