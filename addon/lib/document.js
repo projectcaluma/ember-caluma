@@ -95,6 +95,12 @@ export default EmberObject.extend({
     }
   ),
 
+  rootDocument: computed("parentDocument.rootDocument", function() {
+    if (!this.parentDocument) return null;
+
+    return this.parentDocument.rootDocument || this.parentDocument;
+  }),
+
   questionJexl: computed(function() {
     const questionJexl = new jexl.Jexl();
 
@@ -108,6 +114,18 @@ export default EmberObject.extend({
 
     return questionJexl;
   }),
+
+  questionJexlContext: computed(
+    "raw.form.slug",
+    "rootDocument.raw.form.slug",
+    function() {
+      return {
+        rootForm: this.rootDocument
+          ? this.rootDocument.raw.form.slug
+          : this.raw.form.slug
+      };
+    }
+  ),
 
   findAnswer(slugWithPath) {
     const field = this.findField(slugWithPath);

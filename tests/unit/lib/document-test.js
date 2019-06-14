@@ -158,4 +158,30 @@ module("Unit | Library | document", function(hooks) {
       );
     }
   });
+
+  test("computes the correct root document", async function(assert) {
+    assert.expect(3);
+
+    const level1 = this.nestedDocument;
+    const level2 = this.nestedDocument.childDocuments[0];
+    const level3 = this.nestedDocument.childDocuments[0].childDocuments[0];
+
+    assert.equal(level3.rootDocument.id, level1.id);
+    assert.equal(level2.rootDocument.id, level1.id);
+    assert.equal(level1.rootDocument, null);
+  });
+
+  test("computes the correct jexl context", async function(assert) {
+    assert.expect(3);
+
+    const level1 = this.nestedDocument;
+    const level2 = this.nestedDocument.childDocuments[0];
+    const level3 = this.nestedDocument.childDocuments[0].childDocuments[0];
+
+    const rootForm = level1.raw.form.slug;
+
+    assert.deepEqual(level3.questionJexlContext, { rootForm });
+    assert.deepEqual(level2.questionJexlContext, { rootForm });
+    assert.deepEqual(level1.questionJexlContext, { rootForm });
+  });
 });

@@ -78,7 +78,11 @@ export default EmberObject.extend({
       );
 
     hidden =
-      hidden || (yield this.field.document.questionJexl.eval(this.isHidden));
+      hidden ||
+      (yield this.field.document.questionJexl.eval(
+        this.isHidden,
+        this.field.document.questionJexlContext
+      ));
 
     if (this.get("hiddenTask.lastSuccessful.value") !== hidden) {
       next(this, () => this.field.trigger("hiddenChanged"));
@@ -114,6 +118,12 @@ export default EmberObject.extend({
             (field.answer.value === null || field.answer.value === undefined))
       );
 
-    return hidden || !(yield this.document.questionJexl.eval(this.isRequired));
+    return (
+      hidden ||
+      !(yield this.document.questionJexl.eval(
+        this.isRequired,
+        this.field.document.questionJexlContext
+      ))
+    );
   })
 });
