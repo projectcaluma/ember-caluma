@@ -47,7 +47,7 @@
     "ember-composable-helpers": "^2.2.0",
     "ember-concurrency": "^1.0.0",
     "ember-fetch": "^6.5.0",
-    "ember-intl": "^3.5.2",
+    "ember-intl": "^4.0.0",
     "ember-math-helpers": "^2.10.0",
     "ember-promise-helpers": "^1.0.6",
     "ember-test-selectors": "^2.1.0",
