@@ -19,10 +19,7 @@ module.exports = EngineAddon.extend({
   // see https://github.com/dfreeman/ember-cli-node-assets/issues/11
   // for why this is not wrapped in `options`
   babel: {
-    plugins: [
-      ["@babel/plugin-proposal-decorators", { legacy: true }],
-      "@babel/plugin-proposal-object-rest-spread"
-    ]
+    plugins: ["@babel/plugin-proposal-object-rest-spread"]
   },
 
   included() {
