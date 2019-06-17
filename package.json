@@ -113,11 +113,8 @@
     "typeface-oxygen": "0.0.72",
     "typeface-oxygen-mono": "0.0.72"
   },
-  "resolutions": {
-    "**/tough-cookie": "~2.4.0"
-  },
   "engines": {
-    "node": "6.* || 8.* || >= 10.*"
+    "node": "8.* || >= 10.*"
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
