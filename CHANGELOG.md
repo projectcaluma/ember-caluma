@@ -1,3 +1,21 @@
+# [1.1.0](https://github.com/projectcaluma/ember-caluma/compare/v1.0.2...v1.1.0) (2019-06-17)
+
+
+### Bug Fixes
+
+* **babel:** remove obsolete babel config ([53846bf](https://github.com/projectcaluma/ember-caluma/commit/53846bf))
+* **deps:** remove tough-cookie resolution ([9dd9506](https://github.com/projectcaluma/ember-caluma/commit/9dd9506))
+* **deps:** update dependency apollo-link-context to v1.0.18 ([5449909](https://github.com/projectcaluma/ember-caluma/commit/5449909))
+* **deps:** update dependency ember-auto-import to v1.4.1 ([144e81c](https://github.com/projectcaluma/ember-caluma/commit/144e81c))
+* **deps:** update dependency ember-intl to v4 ([3536974](https://github.com/projectcaluma/ember-caluma/commit/3536974))
+* **form builder:** fix float inputs ([6c111e5](https://github.com/projectcaluma/ember-caluma/commit/6c111e5))
+* **intl:** update the ember-intl config to the latest version ([41522fa](https://github.com/projectcaluma/ember-caluma/commit/41522fa))
+
+
+### Features
+
+* **form:** prevent displaying of empty forms ([5cbf7d3](https://github.com/projectcaluma/ember-caluma/commit/5cbf7d3))
+
 ## [1.0.2](https://github.com/projectcaluma/ember-caluma/compare/v1.0.1...v1.0.2) (2019-06-13)
 
 
