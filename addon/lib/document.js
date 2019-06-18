@@ -140,7 +140,7 @@ export default EmberObject.extend({
 
     if (field.answer.value && !field.question.hidden) {
       if (field.question.__typename === "TableQuestion") {
-        return field.getWithDefault("answer.rowDocuments", []).map(doc =>
+        return (field.get("answer.value") || []).map(doc =>
           doc.fields.reduce((obj, field) => {
             return {
               ...obj,

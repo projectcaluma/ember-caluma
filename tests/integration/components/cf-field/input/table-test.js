@@ -10,7 +10,7 @@ module("Integration | Component | cf-field/input/table", function(hooks) {
     this.set("field", {
       id: "table-test",
       answer: {
-        rowDocuments: [
+        value: [
           {
             fields: [
               {

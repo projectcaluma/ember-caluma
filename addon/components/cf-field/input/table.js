@@ -64,12 +64,12 @@ export default Component.extend(ComponentQueryManager, {
   }).drop(),
 
   deleteRow: task(function*(document) {
-    const remainingDocuments = this.get("field.answer.rowDocuments").filter(
+    const remainingDocuments = (this.get("field.answer.value") || []).filter(
       doc => doc.id !== document.id
     );
 
     // update client-side state
-    this.set("field.answer.rowDocuments", remainingDocuments);
+    this.set("field.answer.value", remainingDocuments);
 
     yield this.onSave(remainingDocuments.map(doc => doc.id));
   }),
@@ -82,31 +82,17 @@ export default Component.extend(ComponentQueryManager, {
         return;
       }
 
-      const rows = this.getWithDefault("field.answer.rowDocuments", []);
+      const rows = this.get("field.answer.value") || [];
 
       if (!rows.find(doc => doc.id === newDocument.id)) {
         // add document to table
-        yield this.onSave([
-          ...this.getWithDefault("field.answer.rowDocuments", []).map(
-            doc => doc.id
-          ),
-          newDocument.id
-        ]);
+        yield this.onSave([...rows.map(doc => doc.id), newDocument.id]);
 
-        // update client-side state
-        this.set("field.answer.rowDocuments", [
-          ...(this.get("field.answer.rowDocuments") || []),
-          newDocument
-        ]);
         this.get("notification").success(
           this.get("intl").t("caluma.form.notification.table.add.success")
         );
       } else {
-        yield this.onSave([
-          ...this.getWithDefault("field.answer.rowDocuments", []).map(
-            doc => doc.id
-          )
-        ]);
+        yield this.onSave([...rows.map(doc => doc.id)]);
       }
 
       this.set("showModal", false);

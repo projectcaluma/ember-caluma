@@ -33,7 +33,7 @@ fragment SimpleAnswer on Answer {
 fragment FieldAnswer on Answer {
   ...SimpleAnswer
   ... on TableAnswer {
-    value {
+    tableValue: value {
       id
       form {
         slug
