@@ -9,7 +9,7 @@
       </tr>
     </thead>
     <tbody>
-      {{#each field.answer.rowDocuments as |document|}}
+      {{#each field.answer.value as |document|}}
         <tr>
           {{#if field.question.meta.columnsToDisplay.length}}
             {{#each document.fields as |answerField|}}

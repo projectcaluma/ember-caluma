@@ -11,7 +11,6 @@ import Evented, { on } from "@ember/object/evented";
 
 import Answer from "ember-caluma/lib/answer";
 import Question from "ember-caluma/lib/question";
-import Document from "ember-caluma/lib/document";
 import { decodeId } from "ember-caluma/helpers/decode-id";
 
 import saveDocumentFloatAnswerMutation from "ember-caluma/gql/mutations/save-document-float-answer";
@@ -102,16 +101,7 @@ export default EmberObject.extend(Evented, {
             question: { slug: this._question.slug },
             [camelize(__typename.replace(/Answer$/, "Value"))]: null
           },
-          { document: this.document, field: this },
-          this._answer && Array.isArray(this._answer.value)
-            ? {
-                rowDocuments: this._answer.value.map(document =>
-                  Document.create(getOwner(this).ownerInjection(), {
-                    raw: document
-                  })
-                )
-              }
-            : {}
+          { document: this.document, field: this }
         )
       );
 
