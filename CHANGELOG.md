@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/projectcaluma/ember-caluma/compare/v1.1.0...v1.2.0) (2019-06-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency ember-cli-babel to v7.8.0 ([c46c575](https://github.com/projectcaluma/ember-caluma/commit/c46c575))
+
+
+### Features
+
+* **form:** pass form and root form as context for jexl expressions ([619ef0c](https://github.com/projectcaluma/ember-caluma/commit/619ef0c))
+
 # [1.1.0](https://github.com/projectcaluma/ember-caluma/compare/v1.0.2...v1.1.0) (2019-06-17)
 
 
