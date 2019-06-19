@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/projectcaluma/ember-caluma/compare/v1.2.0...v1.2.1) (2019-06-19)
+
+
+### Bug Fixes
+
+* **table:** fix answer handling of table questions ([7923168](https://github.com/projectcaluma/ember-caluma/commit/7923168))
+
 # [1.2.0](https://github.com/projectcaluma/ember-caluma/compare/v1.1.0...v1.2.0) (2019-06-18)
 
 
