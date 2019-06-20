@@ -1,11 +1,11 @@
 {{component labelComponent}}
 
 {{#power-select-multiple
-	selected=selected
-	options=(or availableFormatValidators.lastSuccessful.value (array))
+  selected=value
+	options=validators
 	onchange=(action "updateValidators")
 	as |item|}}
-	{{item.name}}
+  {{item.name}}
 {{/power-select-multiple}}
 
 {{component hintComponent}}

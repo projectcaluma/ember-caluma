@@ -4,7 +4,6 @@ import { task } from "ember-concurrency";
 import { inject as service } from "@ember/service";
 import allFormatValidatorsQuery from "ember-caluma/gql/queries/all-format-validators";
 import { computed } from "@ember/object";
-import { reads } from "@ember/object/computed";
 
 export default Component.extend({
   layout,
@@ -32,21 +31,20 @@ export default Component.extend({
     });
   }).restartable(),
 
-  validators: reads("availableFormatValidators.lastSuccessful.value"),
-
-  selected: computed("value", "validators", function() {
-    console.log(this.value);
-    return this.validators
-      ? this.validators.filter(validator => {
-          this.value.includes(validator.slug);
-        })
-      : [];
-  }),
+  validators: computed(
+    "availableFormatValidators.lastSuccessful.value",
+    function() {
+      if (this.availableFormatValidators.lastSuccessful) {
+        return this.availableFormatValidators.lastSuccessful.value;
+      } else {
+        return [];
+      }
+    }
+  ),
 
   actions: {
     updateValidators(value) {
-      debugger;
-      this.update(value.map(validator => validator.slug));
+      this.update(value);
       this.setDirty();
     }
   }
