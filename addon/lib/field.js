@@ -1,6 +1,6 @@
 import Base from "ember-caluma/lib/base";
 import { computed, getWithDefault } from "@ember/object";
-import { equal, not, reads } from "@ember/object/computed";
+import { equal, not, empty, reads } from "@ember/object/computed";
 import { inject as service } from "@ember/service";
 import { assert } from "@ember/debug";
 import { getOwner } from "@ember/application";
@@ -8,12 +8,14 @@ import { camelize } from "@ember/string";
 import { task } from "ember-concurrency";
 import { all, resolve } from "rsvp";
 import { validate } from "ember-validators";
-import Evented from "@ember/object/evented";
+import Evented, { on } from "@ember/object/evented";
+
 import { next } from "@ember/runloop";
 import { lastValue } from "ember-caluma/utils/concurrency";
 import { getAST, getTransforms } from "ember-caluma/utils/jexl";
 import Answer from "ember-caluma/lib/answer";
 import Question from "ember-caluma/lib/question";
+import { decodeId } from "ember-caluma/helpers/decode-id";
 
 import saveDocumentFloatAnswerMutation from "ember-caluma/gql/mutations/save-document-float-answer";
 import saveDocumentIntegerAnswerMutation from "ember-caluma/gql/mutations/save-document-integer-answer";
@@ -72,12 +74,59 @@ export default Base.extend(Evented, {
   saveDocumentDateAnswerMutation,
   saveDocumentTableAnswerMutation,
 
+  /**
+   * The Apollo GraphQL service for making requests
+   *
+   * @property {ApolloService} apollo
+   * @accessor
+   */
   apollo: service(),
+
+  /**
+   * The translation service
+   *
+   * @property {IntlService} intl
+   * @accessor
+   */
   intl: service(),
   calumaStore: service(),
 
+  /**
+   * Initialize function which validates the passed arguments and sets an
+   * initial state of errors.
+   *
+   * @method init
+   * @internal
+   */
   init() {
     this._super(...arguments);
+
+    assert("Owner must be injected!", getOwner(this));
+    assert("_question must be passed!", this._question);
+
+    const __typename = TYPE_MAP[this._question.__typename];
+
+    const question = Question.create(
+      getOwner(this).ownerInjection(),
+      Object.assign(this._question, {
+        document: this.document,
+        field: this
+      })
+    );
+
+    const answer =
+      __typename &&
+      Answer.create(
+        getOwner(this).ownerInjection(),
+        Object.assign(
+          this._answer || {
+            __typename,
+            question: { slug: this._question.slug },
+            [camelize(__typename.replace(/Answer$/, "Value"))]: null
+          },
+          { document: this.document, field: this }
+        )
+      );
 
     this.setProperties({
       _errors: []
@@ -85,8 +134,7 @@ export default Base.extend(Evented, {
   },
 
   /**
-   * The unique identifier for the field which consists of the documents pk and
-   * the questions pk separated by a colon.
+   * The ID of the field. Consists of the document ID and the question slug.
    *
    * E.g: `Document:b01e9071-c63a-43a5-8c88-2daa7b02e411:Question:some-question-slug`
    *
@@ -147,15 +195,7 @@ export default Base.extend(Evented, {
    * @property {Boolean} isValid
    * @accessor
    */
-  isValid: computed("error.length", "question.field.answer.value", function() {
-    // if regex...
-    return (
-      this.get("errors.length") === 0 &&
-      /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/.test(
-        this.get("question.field.answer.value")
-      )
-    );
-  }),
+  isValid: equal("errors.length", 0),
 
   /**
    * Whether the field is invalid.
@@ -414,9 +454,7 @@ export default Base.extend(Evented, {
    */
   _validateTextQuestion() {
     return (
-      validate("format", this.get("question.field.answer.value"), {
-        regex: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
-      }) &&
+      this.validator.validate(this.get("answer.value"), ["email"]) &&
       validate("length", this.get("answer.value"), {
         max: this.get("question.textMaxLength") || Number.POSITIVE_INFINITY
       })
