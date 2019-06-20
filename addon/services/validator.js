@@ -26,11 +26,18 @@ export default Service.extend({
       slugs = [slugs];
     }
 
-    return slugs.every(slug => {
+    return slugs.map(slug => {
       const validator = this.get("_validators")[slug];
 
       if (validator) {
-        return validator.test(value);
+        return validator.test(value)
+          ? true
+          : {
+              type: "format",
+              message: undefined,
+              context: { errorMsg: this.getText(slug) },
+              value
+            };
       } else {
         throw new Error(`No validator found with the slug ${slug}.`);
       }
@@ -39,6 +46,10 @@ export default Service.extend({
 
   getValidators() {
     return this.get("_validators");
+  },
+
+  getText(slug) {
+    return this.get("_translations")[slug];
   },
 
   _fetchValidators: task(function*() {
@@ -56,5 +67,15 @@ export default Service.extend({
       }
     );
     return validators;
+  }),
+
+  _translations: computed("_fetchValidators.lastSuccessful.value", function() {
+    const translations = {};
+    this.getWithDefault("_fetchValidators.lastSuccessful.value", []).forEach(
+      edge => {
+        translations[edge.node.slug] = edge.node.errorMsg;
+      }
+    );
+    return translations;
   })
 });

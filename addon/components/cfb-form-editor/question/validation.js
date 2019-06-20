@@ -1,9 +1,9 @@
 import Component from "@ember/component";
-import layout from "../../../templates/components/cfb-form-editor/question/validation";
-import { task } from "ember-concurrency";
-import { inject as service } from "@ember/service";
-import allFormatValidatorsQuery from "ember-caluma/gql/queries/all-format-validators";
 import { computed } from "@ember/object";
+import { inject as service } from "@ember/service";
+import { task } from "ember-concurrency";
+import layout from "../../../templates/components/cfb-form-editor/question/validation";
+import allFormatValidatorsQuery from "ember-caluma/gql/queries/all-format-validators";
 
 export default Component.extend({
   layout,
@@ -21,14 +21,7 @@ export default Component.extend({
       { query: allFormatValidatorsQuery, fetchPolicy: "cache-and-network" },
       "allFormatValidators.edges"
     );
-
-    if (!formatValidators.mapBy) {
-      return [];
-    }
-    return formatValidators.map(edge => {
-      delete edge.node.__typename;
-      return edge.node;
-    });
+    return formatValidators.map(edge => edge.node);
   }).restartable(),
 
   validators: computed(
@@ -42,9 +35,17 @@ export default Component.extend({
     }
   ),
 
+  selected: computed("value", function() {
+    return (
+      this.get("validators").filter(validator =>
+        this.get("value").includes(validator.slug)
+      ) || null
+    );
+  }),
+
   actions: {
     updateValidators(value) {
-      this.update(value);
+      this.update(value.map(validator => validator.slug));
       this.setDirty();
     }
   }

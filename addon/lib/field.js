@@ -453,12 +453,15 @@ export default Base.extend(Evented, {
    * @internal
    */
   _validateTextQuestion() {
-    return (
-      this.validator.validate(this.get("answer.value"), ["email"]) &&
+    return [
+      ...this.validator.validate(
+        this.get("answer.value"),
+        this.getWithDefault("question.meta.formatValidators", [])
+      ),
       validate("length", this.get("answer.value"), {
         max: this.get("question.textMaxLength") || Number.POSITIVE_INFINITY
       })
-    );
+    ];
   },
 
   /**
@@ -470,9 +473,15 @@ export default Base.extend(Evented, {
    * @internal
    */
   _validateTextareaQuestion() {
-    return validate("length", this.get("answer.value"), {
-      max: this.get("question.textareaMaxLength") || Number.POSITIVE_INFINITY
-    });
+    return [
+      ...this.validator.validate(
+        this.get("answer.value"),
+        this.getWithDefault("question.meta.formatValidators", [])
+      ),
+      validate("length", this.get("answer.value"), {
+        max: this.get("question.textareaMaxLength") || Number.POSITIVE_INFINITY
+      })
+    ];
   },
 
   /**

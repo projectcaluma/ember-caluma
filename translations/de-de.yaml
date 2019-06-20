@@ -38,6 +38,7 @@ caluma:
       notAnInteger: "Bitte geben Sie eine ganze Zahl ein"
       inclusion: "'{value}' ist kein gültiger Wert für dieses Feld"
       uploadFailed: "Beim Hochladen ist ein Fehler aufgetreten."
+      format: "{errorMsg}"
 
     pikaday:
       month-previous: "Vorheriger Monat"
