@@ -495,5 +495,16 @@ export default EmberObject.extend(Evented, {
    */
   _validateStaticQuestion() {
     return resolve(true);
+  },
+
+  /**
+   * Dummy method for the validation of form fields
+   *
+   * @method _validateFormQuestion
+   * @return {RSVP.Promise}
+   * @internal
+   */
+  _validateFormQuestion() {
+    return resolve(true);
   }
 });
