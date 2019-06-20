@@ -14,7 +14,7 @@ module("Integration | Component | cf-field/input/checkbox", function(hooks) {
         field=(hash
           id="test"
           answer=(hash
-            listValue=(array "option-1" "option-2")
+            value=(array "option-1" "option-2")
           )
           question=(hash
             multipleChoiceOptions=(hash
@@ -82,15 +82,15 @@ module("Integration | Component | cf-field/input/checkbox", function(hooks) {
   test("it triggers save on click", async function(assert) {
     assert.expect(3);
 
-    this.set("listValue", []);
-    this.set("save", value => this.set("listValue", value));
+    this.set("value", []);
+    this.set("save", value => this.set("value", value));
 
     await render(hbs`
       {{cf-field/input/checkbox
         onSave=save
         field=(hash
           answer=(hash
-            listValue=listValue
+            value=value
           )
           question=(hash
             multipleChoiceOptions=(hash
@@ -106,12 +106,12 @@ module("Integration | Component | cf-field/input/checkbox", function(hooks) {
     `);
 
     await click("label:nth-of-type(1) input");
-    assert.deepEqual(this.listValue, ["option-1"]);
+    assert.deepEqual(this.value, ["option-1"]);
 
     await click("label:nth-of-type(2) input");
-    assert.deepEqual(this.listValue, ["option-1", "option-2"]);
+    assert.deepEqual(this.value, ["option-1", "option-2"]);
 
     await click("label:nth-of-type(1) input");
-    assert.deepEqual(this.listValue, ["option-2"]);
+    assert.deepEqual(this.value, ["option-2"]);
   });
 });

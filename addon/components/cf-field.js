@@ -33,14 +33,12 @@ export default Component.extend({
       "config:environment"
     );
 
+    this.set("field.answer.value", value);
+
     /* istanbul ignore next */
     if (environment !== "test") {
       yield timeout(500);
     }
-
-    const answer = this.get("field.answer");
-
-    answer.set("value", value);
 
     yield this.field.validate.perform();
 
