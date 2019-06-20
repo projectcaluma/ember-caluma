@@ -131,13 +131,9 @@
       {{#if (contains f.model.__typename (array "TextQuestion" "TextareaQuestion"))}}
         {{f.input
           name="meta.formatValidators"
-          type="select"
-          class="uk-flex uk-flex-betwten uk-flex-column"
           label=(t "caluma.form-builder.question.formatValidators")
-          options=(or availableFormatValidators.lastSuccessful.value (array ))
-          optionTargetPath="slug"
-          optionLabelPath="name"
-          includeBlank=(t "caluma.form-builder.question.chooseValidation")
+          required=false
+          renderComponent=(component "cfb-form-editor/question/validation")
         }}
       {{/if}}
 

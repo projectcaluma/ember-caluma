@@ -58,6 +58,7 @@
     "graphql-tag": "^2.10.1",
     "graphql-tools": "^4.0.4",
     "jexl": "TomFrost/Jexl#2866a4aca9c46114ecc0d342942a7732763fd151",
+    "liquid-fire": "^0.29.5",
     "sass": "^1.18.0",
     "uuid": "^3.3.2",
     "slugify": "^1.3.4"
@@ -65,6 +66,8 @@
   "devDependencies": {
     "@adfinis-sygroup/semantic-release-config": "2.1.3",
     "@babel/plugin-proposal-object-rest-spread": "7.4.4",
+    "@commitlint/cli": "7.6.1",
+    "@commitlint/config-conventional": "7.6.0",
     "@ember/jquery": "0.6.1",
     "@ember/optional-features": "0.7.0",
     "babel-eslint": "10.0.2",
@@ -78,6 +81,7 @@
     "ember-cli-deploy-build": "1.1.1",
     "ember-cli-deploy-git": "1.3.3",
     "ember-cli-deploy-git-ci": "1.0.1",
+    "ember-cli-eslint": "5.1.0",
     "ember-cli-htmlbars-inline-precompile": "2.1.0",
     "ember-cli-inject-live-reload": "2.0.1",
     "ember-cli-mirage": "1.0.0",
@@ -111,6 +115,9 @@
     "qunit-dom": "0.9.0",
     "typeface-oxygen": "0.0.72",
     "typeface-oxygen-mono": "0.0.72"
+  },
+  "resolutions": {
+    "**/tough-cookie": "~2.4.0"
   },
   "engines": {
     "node": "8.* || >= 10.*"
