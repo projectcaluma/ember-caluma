@@ -10,8 +10,8 @@ module("Integration | Component | cf-field/input/powerselect", function(hooks) {
     this.set("singleChoiceField", {
       id: "test-single",
       answer: {
-        _valueKey: "stringValue",
-        stringValue: null
+        stringValue: null,
+        __typename: "StringAnswer"
       },
       question: {
         __typename: "ChoiceQuestion",
@@ -28,8 +28,8 @@ module("Integration | Component | cf-field/input/powerselect", function(hooks) {
     this.set("multipleChoiceField", {
       id: "test-multiple",
       answer: {
-        _valueKey: "listValue",
-        listValue: null
+        listValue: null,
+        __typename: "ListAnswer"
       },
       question: {
         __typename: "MultipleChoiceQuestion",
@@ -48,8 +48,8 @@ module("Integration | Component | cf-field/input/powerselect", function(hooks) {
     assert.expect(1);
 
     await render(
-      hbs`{{cf-field/input/powerselect 
-        field=singleChoiceField 
+      hbs`{{cf-field/input/powerselect
+        field=singleChoiceField
       }}`
     );
 
@@ -64,9 +64,9 @@ module("Integration | Component | cf-field/input/powerselect", function(hooks) {
     });
 
     await render(
-      hbs`{{cf-field/input/powerselect 
-        field=singleChoiceField 
-        onSave=onSave 
+      hbs`{{cf-field/input/powerselect
+        field=singleChoiceField
+        onSave=onSave
       }}`
     );
 
@@ -83,8 +83,8 @@ module("Integration | Component | cf-field/input/powerselect", function(hooks) {
     assert.expect(1);
 
     await render(
-      hbs`{{cf-field/input/powerselect 
-        field=multipleChoiceField 
+      hbs`{{cf-field/input/powerselect
+        field=multipleChoiceField
       }}`
     );
 
@@ -95,13 +95,13 @@ module("Integration | Component | cf-field/input/powerselect", function(hooks) {
     assert.expect(3);
 
     this.set("onSave", choices => {
-      this.set("multipleChoiceField.answer.listValue", choices);
+      this.set("multipleChoiceField.answer.value", choices);
     });
 
     await render(
-      hbs`{{cf-field/input/powerselect 
-        field=multipleChoiceField 
-        onSave=onSave 
+      hbs`{{cf-field/input/powerselect
+        field=multipleChoiceField
+        onSave=onSave
       }}`
     );
 
@@ -118,7 +118,7 @@ module("Integration | Component | cf-field/input/powerselect", function(hooks) {
     // Select second item from dropdown .
     await click(".ember-power-select-option:nth-child(2)");
 
-    assert.deepEqual(this.multipleChoiceField.answer.listValue, [
+    assert.deepEqual(this.multipleChoiceField.answer.value, [
       "option-1",
       "option-2"
     ]);
@@ -128,23 +128,23 @@ module("Integration | Component | cf-field/input/powerselect", function(hooks) {
     assert.expect(3);
 
     this.set("onSave", choices => {
-      this.set("multipleChoiceField.answer.listValue", choices);
+      this.set("multipleChoiceField.answer.value", choices);
     });
 
     await render(
-      hbs`{{cf-field/input/powerselect 
-        field=multipleChoiceField 
-        onSave=onSave 
+      hbs`{{cf-field/input/powerselect
+        field=multipleChoiceField
+        onSave=onSave
       }}`
     );
 
-    this.set("multipleChoiceField.answer.listValue", ["option-1"]);
+    this.set("multipleChoiceField.answer.value", ["option-1"]);
 
     assert.dom(".ember-power-select-trigger").exists();
     await click(".ember-power-select-trigger");
     assert.dom(".ember-power-select-option[aria-selected='true']").exists();
     await click(".ember-power-select-option[aria-selected='true']");
 
-    assert.deepEqual(this.multipleChoiceField.answer.listValue, []);
+    assert.deepEqual(this.multipleChoiceField.answer.value, []);
   });
 });

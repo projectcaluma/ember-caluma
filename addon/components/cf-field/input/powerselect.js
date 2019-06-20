@@ -41,26 +41,22 @@ export default Component.extend(ComponentQueryManager, {
     }
   ),
 
-  selected: computed(
-    "field.answer.{_valueKey,listValue,stringValue}",
-    function() {
-      const key = this.get("field.answer._valueKey");
-      const answer = this.get(`field.answer.${key}`);
-      const isSingleChoice = key === "stringValue";
+  selected: computed("field.answer.value", function() {
+    const answer = this.get("field.answer.value");
+    const isSingleChoice = !Array.isArray(answer);
 
-      if (!answer) {
-        return null;
-      }
-
-      const selection = this.choices.filter(choice => {
-        return isSingleChoice
-          ? answer === choice.slug
-          : answer.includes(choice.slug);
-      });
-
-      return isSingleChoice ? selection[0] : selection;
+    if (!answer) {
+      return null;
     }
-  ),
+
+    const selection = this.choices.filter(choice => {
+      return isSingleChoice
+        ? answer === choice.slug
+        : answer.includes(choice.slug);
+    });
+
+    return isSingleChoice ? selection[0] : selection;
+  }),
 
   componentName: computed("multiple", function() {
     return this.get("multiple") ? "power-select-multiple" : "power-select";
