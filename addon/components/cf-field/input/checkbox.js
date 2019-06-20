@@ -32,7 +32,7 @@ export default Component.extend({
      * @param {Boolean} checked Whether the options checkbox is checked or not
      */
     toggle(slug, checked) {
-      const value = get(this, "field.answer.listValue") || [];
+      const value = get(this, "field.answer.value") || [];
 
       this.onSave([
         ...new Set([...value, slug].filter(v => v !== slug || checked))

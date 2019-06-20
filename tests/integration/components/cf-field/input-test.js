@@ -129,7 +129,7 @@ module("Integration | Component | cf-field/input", function(hooks) {
             __typename="MultipleChoiceQuestion"
           )
           answer=(hash
-            listValue=(array "option-1")
+            value=(array "option-1")
           )
         )
       }}
