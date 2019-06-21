@@ -1,8 +1,12 @@
-{{#link-to (query-params section=section subSection=subSection)}}
-  <div class="uk-flex uk-flex-between uk-flex-middle">
-    <div>{{label}}</div>
-    <span
-      class="uk-flex-none camac-nav-module-icon camac-nav-module-icon-{{state}}">
-    </span>
-  </div>
+{{#link-to (query-params displayedForm=treeItem.item.slug)}}
+  {{treeItem.item.label}}
+  <span class="cf-navigation__item__icon cf-navigation__item__icon--{{treeItem.state}}"></span>
 {{/link-to}}
+
+{{#if treeItem.children}}
+  <ul class="uk-tab uk-tab-left uk-margin-left">
+    {{#each treeItem.children as |childTreeItem|}}
+      {{cf-navigation-item treeItem=childTreeItem}}
+    {{/each}}
+  </ul>
+{{/if}}

@@ -1,6 +1,6 @@
 dummy:
-  demo: "Demo"
-  nested: "Verschachtelt"
+  formBuilder: "Formularersteller"
+  form: "Formular"
   usage: "Anwendung"
   testing: "Testen"
 

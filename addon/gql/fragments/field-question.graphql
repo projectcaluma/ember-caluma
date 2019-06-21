@@ -1,10 +1,12 @@
 fragment SimpleQuestion on Question {
+  id
   slug
   label
   isRequired
   isHidden
   meta
   infoText
+
   ... on TextQuestion {
     textMaxLength: maxLength
     placeholder
@@ -70,20 +72,50 @@ fragment SimpleQuestion on Question {
   }
 }
 
-fragment FieldQuestion on Question {
-  ...SimpleQuestion
+fragment FieldTableQuestion on Question {
   ... on TableQuestion {
     rowForm {
+      id
       slug
       questions {
         edges {
           node {
-            slug
-            label
-            isRequired
-            isHidden
-            meta
             ...SimpleQuestion
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment FieldQuestion on Question {
+  ...SimpleQuestion
+  ...FieldTableQuestion
+  ... on FormQuestion {
+    subForm {
+      id
+      slug
+      questions {
+        edges {
+          node {
+            # This part here limits our query to 2 level deep nested forms. This
+            # has to be solved in another way!
+            ...SimpleQuestion
+            ...FieldTableQuestion
+            ... on FormQuestion {
+              subForm {
+                id
+                slug
+                questions {
+                  edges {
+                    node {
+                      ...SimpleQuestion
+                      ...FieldTableQuestion
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }

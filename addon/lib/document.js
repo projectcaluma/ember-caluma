@@ -1,75 +1,44 @@
-import EmberObject, { computed } from "@ember/object";
+import Base from "ember-caluma/lib/base";
+import { computed } from "@ember/object";
 import { assert } from "@ember/debug";
 import { getOwner } from "@ember/application";
-import Field from "ember-caluma/lib/field";
 import jexl from "jexl";
 import { decodeId } from "ember-caluma/helpers/decode-id";
-import { inject as service } from "@ember/service";
 import { intersects } from "ember-caluma/utils/jexl";
 import { filterBy } from "@ember/object/computed";
 
-const getParentState = childStates => {
-  if (childStates.every(state => state === "untouched")) {
-    return "untouched";
-  }
-
-  if (childStates.some(state => state === "invalid")) {
-    return "invalid";
-  }
-
-  return childStates.every(state => state === "valid") ? "valid" : "unfinished";
-};
+import Fieldset from "ember-caluma/lib/fieldset";
 
 /**
  * Object which represents a document
  *
  * @class Document
  */
-export default EmberObject.extend({
-  documentStore: service(),
-
-  async init() {
+export default Base.extend({
+  init() {
     this._super(...arguments);
 
-    assert("The raw document `raw` must be passed", this.raw);
+    assert(
+      "A GraphQL Document `raw` must be passed",
+      this.raw && this.raw.__typename === "Document"
+    );
 
-    const fields = this.buildFields(this.raw);
-    fields.forEach(field => this.fields.push(field));
+    this.set(
+      "fieldsets",
+      this.raw.forms.map(form =>
+        Fieldset.create(getOwner(this).ownerInjection(), {
+          raw: {
+            form,
+            answers: this.raw.answers
+          },
+          document: this
+        })
+      )
+    );
 
-    // automatic initialization of dynamic fields starts from the root level
-    if (!this.get("parentDocument")) {
-      await this.initializeFieldTree(fields);
-    }
-  },
-
-  async initializeFieldTree(fields) {
-    for (let field of fields) {
-      await field.question.initDynamicFields();
-      if (field.childDocument) {
-        await this.initializeFieldTree(field.childDocument.fields);
-      }
-    }
-  },
-
-  buildFields(rawDocument) {
-    return rawDocument.form.questions.edges.map(({ node: question }) => {
-      const answer = rawDocument.answers.edges.find(({ node: answer }) => {
-        return answer.question.slug === question.slug;
-      });
-
-      let childDocument;
-      if (question.__typename === "FormQuestion" && answer) {
-        childDocument = this.documentStore.find(answer.node.formValue, {
-          parentDocument: this
-        });
-      }
-
-      return Field.create(getOwner(this).ownerInjection(), {
-        document: this,
-        _question: question,
-        _answer: answer && answer.node,
-        childDocument
-      });
+    this.fields.forEach(field => {
+      field.question.hiddenTask.perform();
+      field.question.optionalTask.perform();
     });
   },
 
@@ -77,28 +46,11 @@ export default EmberObject.extend({
     return decodeId(this.get("raw.id"));
   }),
 
-  field: computed(
-    "raw.form.slug",
-    "parentDocument.{id,fields.@each.id}",
-    function() {
-      if (!this.parentDocument) return null;
-
-      try {
-        return this.parentDocument.fields.find(
-          field =>
-            field.id ===
-            `Document:${this.parentDocument.id}:Question:${this.raw.form.slug}`
-        );
-      } catch (e) {
-        return null;
-      }
-    }
-  ),
-
-  rootDocument: computed("parentDocument.rootDocument", function() {
-    if (!this.parentDocument) return null;
-
-    return this.parentDocument.rootDocument || this.parentDocument;
+  fields: computed("fieldsets.@each.fields", function() {
+    return this.fieldsets.reduce(
+      (fields, fieldset) => [...fields, ...fieldset.fields],
+      []
+    );
   }),
 
   questionJexl: computed(function() {
@@ -115,17 +67,11 @@ export default EmberObject.extend({
     return questionJexl;
   }),
 
-  questionJexlContext: computed(
-    "raw.form.slug",
-    "rootDocument.raw.form.slug",
-    function() {
-      return {
-        rootForm: this.rootDocument
-          ? this.rootDocument.raw.form.slug
-          : this.raw.form.slug
-      };
-    }
-  ),
+  questionJexlContext: computed("raw.form.slug", function() {
+    return {
+      form: this.raw.form.slug
+    };
+  }),
 
   findAnswer(slugWithPath) {
     const field = this.findField(slugWithPath);
@@ -167,112 +113,5 @@ export default EmberObject.extend({
     return field;
   },
 
-  _resolveError(segments, failedAtSegment, failedAtDoc) {
-    let path = segments.join(".");
-    let explanation = "";
-    let availableKeys = failedAtDoc.fields
-      .map(field => field.question.slug)
-      .map(slug => `"${slug}"`)
-      .join(", ");
-
-    if (path != failedAtSegment) {
-      // single quesiton, doesn't need explanation about path / segment step
-      explanation = ` (failed at segment "${failedAtSegment}")`;
-    }
-    throw new Error(
-      `Question could not be resolved: "${path}"${explanation}. Available: ${availableKeys}`
-    );
-  },
-  resolveDocument(segments) {
-    if (!segments) {
-      return this;
-    }
-    let _document = this;
-    for (let segment of segments) {
-      switch (segment) {
-        case "root":
-          while (_document.parentDocument) {
-            _document = _document.parentDocument;
-          }
-          break;
-        case "parent":
-          if (!_document.parentDocument) {
-            this._resolveError(segments, segment, _document);
-          }
-          _document = _document.parentDocument;
-          break;
-        default: {
-          let formField = _document.fields.find(
-            field => field.question.slug === segment
-          );
-          if (!formField) {
-            this._resolveError(segments, segment, _document);
-          }
-          _document = formField.childDocument;
-        }
-      }
-    }
-    return _document;
-  },
-
-  fields: computed(() => []).readOnly(),
-
-  visibleFields: filterBy("fields", "hidden", false),
-
-  childDocuments: computed(
-    "fields.{[],@each.hidden,childDocument}",
-    function() {
-      return this.fields
-        .filter(field => !field.hidden)
-        .map(field => field.childDocument)
-        .filter(Boolean);
-    }
-  ),
-
-  childState: computed("childDocuments.{[],@each.state}", function() {
-    const childDocumentStates = this.childDocuments
-      .filter(Boolean)
-      .map(c => c.state);
-
-    if (!childDocumentStates.length) {
-      return null;
-    }
-
-    return getParentState(childDocumentStates);
-  }),
-
-  ownState: computed(
-    "fields.@each.{isNew,isValid,hidden,optional,childDocument}",
-    function() {
-      const visibleFields = this.fields
-        .filter(f => !f.hidden)
-        .filter(f => !f.childDocument);
-
-      if (!visibleFields.length) {
-        return null;
-      }
-
-      if (visibleFields.every(f => f.isNew)) {
-        return "untouched";
-      }
-
-      if (visibleFields.some(f => !f.isValid && !f.isNew)) {
-        return "invalid";
-      }
-
-      if (
-        visibleFields
-          .filter(f => !f.question.optional)
-          .every(f => f.isValid && !f.isNew)
-      ) {
-        return "valid";
-      }
-
-      return "unfinished";
-    }
-  ),
-
-  state: computed("childState", "ownState", function() {
-    return getParentState([this.childState, this.ownState].filter(Boolean));
-  })
+  visibleFields: filterBy("fields", "hidden", false)
 });

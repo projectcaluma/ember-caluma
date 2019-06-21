@@ -5,6 +5,40 @@
 @import "cfb-navigation";
 @import "cfb-powerselect";
 
+@import "cf-field";
+@import "cf-navigation";
+
 .cfb-pointer {
   cursor: pointer;
+}
+
+.cfb-prefixed {
+  display: flex;
+
+  &-slug {
+    line-height: 40px;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+}
+
+.jexl-textarea textarea {
+  font-family: monospace;
+}
+
+.cf-checkbox_label {
+  display: block;
+  position: relative;
+  padding-left: 26px;
+
+  .uk-checkbox {
+    position: absolute;
+    top: 0.25em;
+    left: 0;
+    margin: 0;
+  }
+
+  & + br {
+    display: none;
+  }
 }

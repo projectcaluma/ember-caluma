@@ -24,7 +24,6 @@ export default Component.extend({
    * Task to save a field. This will set the passed value to the answer and
    * save the field to the API after a timeout off 500 milliseconds.
    *
-   * @todo Validate the value
    * @method save
    * @param {String|Number|String[]} value
    */

@@ -1,5 +1,3 @@
-#import 'ember-caluma/gql/fragments/field-question'
-
 fragment SimpleAnswer on Answer {
   id
   question {
@@ -28,16 +26,6 @@ fragment SimpleAnswer on Answer {
   ... on DateAnswer {
     dateValue: value
   }
-  ... on FormAnswer {
-    question {
-      slug
-      ... on FormQuestion {
-        subForm {
-          slug
-        }
-      }
-    }
-  }
 }
 
 fragment FieldAnswer on Answer {
@@ -47,13 +35,6 @@ fragment FieldAnswer on Answer {
       id
       form {
         slug
-        questions {
-          edges {
-            node {
-              ...FieldQuestion
-            }
-          }
-        }
       }
       answers {
         edges {

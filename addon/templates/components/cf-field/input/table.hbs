@@ -46,7 +46,9 @@
     on-hide=(action (mut showModal) false)
     bgClose=false
   }}
-    {{cf-form document=documentToEdit disabled=disabled}}
+    {{#if documentToEdit}}
+      {{cf-form-wrapper document=documentToEdit fieldset=(object-at 0 documentToEdit.fieldsets) disabled=disabled}}
+    {{/if}}
     <p class="uk-text-right">
       {{uk-button
         label=(t "caluma.form.save")

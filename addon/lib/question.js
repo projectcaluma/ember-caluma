@@ -1,27 +1,23 @@
-import EmberObject, { computed } from "@ember/object";
+import Base from "ember-caluma/lib/base";
+import { computed } from "@ember/object";
 import { next } from "@ember/runloop";
 import { lastValue } from "ember-caluma/utils/concurrency";
 import { getAST, getTransforms } from "ember-caluma/utils/jexl";
 import { task } from "ember-concurrency";
+import { assert } from "@ember/debug";
 
 /**
  * Object which represents a question in context of a field
  *
  * @class Question
  */
-export default EmberObject.extend({
-  /**
-   * Manual initialization of dynamic fields (e.g. hidden)
-   *
-   * Needed because _all_ fields need to be created before dynamic
-   * field relationships can be resolved.
-   *
-   * @method initDynamicFields
-   * @return {RSVP.Promise} Promise that resolves after init
-   */
-  async initDynamicFields() {
-    await this.hiddenTask.perform();
-    await this.optionalTask.perform();
+export default Base.extend({
+  init() {
+    this._super(...arguments);
+
+    assert("A graphql question `raw` must be passed", this.raw);
+
+    this.setProperties(this.raw);
   },
 
   /**
@@ -79,9 +75,9 @@ export default EmberObject.extend({
 
     hidden =
       hidden ||
-      (yield this.field.document.questionJexl.eval(
+      (yield this.field.fieldset.document.questionJexl.eval(
         this.isHidden,
-        this.field.document.questionJexlContext
+        this.field.fieldset.document.questionJexlContext
       ));
 
     if (this.get("hiddenTask.lastSuccessful.value") !== hidden) {
@@ -120,9 +116,9 @@ export default EmberObject.extend({
 
     return (
       hidden ||
-      !(yield this.document.questionJexl.eval(
+      !(yield this.field.fieldset.document.questionJexl.eval(
         this.isRequired,
-        this.field.document.questionJexlContext
+        this.field.fieldset.document.questionJexlContext
       ))
     );
   })

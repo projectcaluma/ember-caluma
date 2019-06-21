@@ -135,5 +135,8 @@
   },
   "release": {
     "extends": "@adfinis-sygroup/semantic-release-config"
+  },
+  "resolutions": {
+    "uikit": "fkm/uikit#fork/focusable"
   }
 }

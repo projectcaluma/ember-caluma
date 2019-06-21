@@ -5,6 +5,8 @@ import saveDocumentMutation from "ember-caluma/gql/mutations/save-document";
 import { inject as service } from "@ember/service";
 import { ComponentQueryManager } from "ember-apollo-client";
 import { computed } from "@ember/object";
+import { getOwner } from "@ember/application";
+import Document from "ember-caluma/lib/document";
 
 /**
  * @babel/polyfill@^7.4.0 is supposed to include "flat", but that doesn't work of us -
@@ -26,8 +28,6 @@ export default Component.extend(ComponentQueryManager, {
 
   notification: service(),
 
-  documentStore: service(),
-
   intl: service(),
 
   showModal: false,
@@ -46,7 +46,7 @@ export default Component.extend(ComponentQueryManager, {
   ),
 
   addRow: task(function*() {
-    const newDocumentRaw = yield this.get("apollo").mutate(
+    const raw = yield this.get("apollo").mutate(
       {
         mutation: saveDocumentMutation,
         variables: {
@@ -55,7 +55,17 @@ export default Component.extend(ComponentQueryManager, {
       },
       "saveDocument.document"
     );
-    const newDocument = this.documentStore.find(newDocumentRaw);
+
+    raw.answers = raw.answers.edges.map(({ node }) => node);
+    raw.forms = [
+      Object.assign(raw.form, {
+        questions: raw.form.questions.edges.map(({ node }) => node)
+      })
+    ];
+
+    const newDocument = Document.create(getOwner(this).ownerInjection(), {
+      raw
+    });
 
     this.setProperties({
       documentToEdit: newDocument,

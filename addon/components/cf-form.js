@@ -1,17 +1,13 @@
 import Component from "@ember/component";
-import { inject as service } from "@ember/service";
-import { computed } from "@ember/object";
 import { ComponentQueryManager } from "ember-apollo-client";
-import { task } from "ember-concurrency";
 import layout from "../templates/components/cf-form";
-
-import getDocumentQuery from "ember-caluma/gql/queries/get-document";
+import { assert } from "@ember/debug";
 
 /**
  * Component to display a form for a whole document.
  *
  * ```hbs
- * {{cf-form documentId="the-id-of-your-document"}}
+ * {{cf-form document=document}}
  * ```
  *
  * @class CfFormComponent
@@ -19,21 +15,25 @@ import getDocumentQuery from "ember-caluma/gql/queries/get-document";
 export default Component.extend(ComponentQueryManager, {
   layout,
   tagName: "form",
-  apollo: service(),
-  documentStore: service(),
-  document: null,
-
   attributeBindings: ["novalidate"],
   novalidate: "novalidate",
 
+  didReceiveAttrs() {
+    this._super(...arguments);
+
+    assert("A document `document` must be passed", this.document);
+  },
+
   /**
-   * The ID of the document to display
-   * @argument {String} documentId
+   * The document to display
+   *
+   * @argument {Document} document
    */
-  documentId: null,
+  document: null,
 
   /**
    * Allows the whole form to be disabled.
+   *
    * @argument {Boolean} disabled
    */
   disabled: false,
@@ -45,7 +45,7 @@ export default Component.extend(ComponentQueryManager, {
    *
    * ```hbs
    * {{cf-form
-   *   documentId="the-id-of-your-document"
+   *   document=document
    *   overrides=(hash foo=(component "bar"))
    * }}
    * ```
@@ -60,37 +60,5 @@ export default Component.extend(ComponentQueryManager, {
    *
    * @argument {*} overrides
    */
-  context: null,
-
-  didReceiveAttrs() {
-    this._super(...arguments);
-    if (this.documentId) {
-      this.data.perform();
-    }
-  },
-
-  data: task(function*() {
-    return yield this.apollo.watchQuery(
-      {
-        query: getDocumentQuery,
-        variables: { id: window.btoa("Document:" + this.documentId) },
-        fetchPolicy: "network-only"
-      },
-      "node"
-    );
-  }),
-
-  /**
-   * Transform raw data into document object
-   *
-   * @property {Document} _document
-   * @accessor
-   */
-  _document: computed("data.lastSuccessful.value", "document.id", function() {
-    return (
-      this.get("document") ||
-      (this.get("data.lastSuccessful.value") &&
-        this.documentStore.find(this.get("data.lastSuccessful.value")))
-    );
-  }).readOnly()
+  context: null
 });

@@ -1,15 +1,22 @@
-import EmberObject, { computed } from "@ember/object";
+import Base from "ember-caluma/lib/base";
+import { computed } from "@ember/object";
 import { camelize } from "@ember/string";
 import { next } from "@ember/runloop";
-import { inject as service } from "@ember/service";
+import { assert } from "@ember/debug";
 
 /**
  * Object which represents an answer in context of a field
  *
  * @class Answer
  */
-export default EmberObject.extend({
-  documentStore: service(),
+export default Base.extend({
+  init() {
+    this._super(...arguments);
+
+    assert("A graphql answer `raw` must be passed", this.raw);
+
+    this.setProperties(this.raw);
+  },
 
   /**
    * The name of the property in which the value is stored. This depends on the
@@ -32,6 +39,7 @@ export default EmberObject.extend({
    * answer.
    *
    * @property {String|Number|String[]} value
+   * @computed
    */
   value: computed(
     "_valueKey",
@@ -47,12 +55,8 @@ export default EmberObject.extend({
         const value = this.get(this._valueKey);
 
         if (this.__typename === "TableAnswer") {
-          return (
-            value &&
-            value.map(raw =>
-              this.documentStore.find(raw, { parentDocument: this.document })
-            )
-          );
+          return null;
+          // TODO: create document
         }
 
         return value;

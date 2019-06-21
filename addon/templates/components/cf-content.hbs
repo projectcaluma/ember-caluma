@@ -1,16 +1,15 @@
 {{#if data.isRunning}}
   <div class="uk-text-center">{{uk-spinner ratio=2}}</div>
-{{else}}
+{{else if document}}
   {{#let (hash
-    rootDocument=rootDocument
-    displayedDocument=displayedDocument
-    navigation=(component "cf-navigation" rootDocument=rootDocument section=section subSection=subSection)
-    pagination=(component "cf-pagination" next=nextSection previous=previousSection)
-    form=(component "cf-form-wrapper" document=displayedDocument context=context disabled=disabled)
+    document=document
+    navigation=(component "cf-navigation" navigation=navigation)
+    pagination=(component "cf-pagination" navigation=navigation)
+    form=(component "cf-form-wrapper" document=document fieldset=fieldset context=context disabled=disabled)
   ) as |content|}}
     {{#if hasBlock}}
       {{yield content}}
-    {{else if rootDocument.childDocuments.length}}
+    {{else if (gt document.fieldsets.length 1)}}
       <div uk-grid>
         <div class="uk-width-1-1 uk-width-1-3@m">{{content.navigation}}</div>
         <div class="uk-width-1-1 uk-width-2-3@m">

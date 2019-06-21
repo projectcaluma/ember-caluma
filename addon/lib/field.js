@@ -1,4 +1,5 @@
-import EmberObject, { computed, getWithDefault } from "@ember/object";
+import Base from "ember-caluma/lib/base";
+import { computed } from "@ember/object";
 import { equal, not, empty, reads } from "@ember/object/computed";
 import { inject as service } from "@ember/service";
 import { assert } from "@ember/debug";
@@ -43,7 +44,7 @@ const TYPE_MAP = {
  *
  * @class Field
  */
-export default EmberObject.extend(Evented, {
+export default Base.extend(Evented, {
   saveDocumentFloatAnswerMutation,
   saveDocumentIntegerAnswerMutation,
   saveDocumentStringAnswerMutation,
@@ -78,32 +79,33 @@ export default EmberObject.extend(Evented, {
   init() {
     this._super(...arguments);
 
-    assert("Owner must be injected!", getOwner(this));
-    assert("_question must be passed!", this._question);
-
-    const __typename = TYPE_MAP[this._question.__typename];
-
-    const question = Question.create(
-      getOwner(this).ownerInjection(),
-      Object.assign(this._question, {
-        document: this.document,
-        field: this
-      })
+    assert(
+      "A raw graphql question must be passed",
+      this.raw.question && /Question$/.test(this.raw.question.__typename)
     );
 
-    const answer =
-      __typename &&
-      Answer.create(
-        getOwner(this).ownerInjection(),
-        Object.assign(
-          this._answer || {
-            __typename,
-            question: { slug: this._question.slug },
-            [camelize(__typename.replace(/Answer$/, "Value"))]: null
-          },
-          { document: this.document, field: this }
-        )
-      );
+    assert(
+      "The passed answer must be a valid graphql answer",
+      !this.raw.answer || /Answer$/.test(this.raw.answer.__typename)
+    );
+
+    const __typename = TYPE_MAP[this.raw.question.__typename];
+
+    const question = Question.create(getOwner(this).ownerInjection(), {
+      raw: this.raw.question,
+      field: this
+    });
+
+    const answer = Answer.create(getOwner(this).ownerInjection(), {
+      field: this,
+      raw: Object.assign(
+        this.raw.answer || {
+          __typename,
+          question: { slug: this.raw.question.slug },
+          [camelize(__typename.replace(/Answer$/, "Value"))]: null
+        }
+      )
+    });
 
     this.setProperties({
       _errors: [],
@@ -121,8 +123,8 @@ export default EmberObject.extend(Evented, {
    * @property {String} id
    * @accessor
    */
-  id: computed("document.id", "question.slug", function() {
-    return `Document:${this.document.id}:Question:${this.question.slug}`;
+  id: computed("fieldset.document.id", "question.slug", function() {
+    return `Document:${this.fieldset.document.id}:Question:${this.question.slug}`;
   }).readOnly(),
 
   updateHidden: on("valueChanged", "hiddenChanged", function() {
@@ -192,19 +194,6 @@ export default EmberObject.extend(Evented, {
    */
   questionType: reads("question.__typename"),
 
-  visibleInNavigation: computed(
-    "hidden",
-    "questionType",
-    "childDocument.visibleFields",
-    function() {
-      return (
-        !this.hidden &&
-        this.questionType === "FormQuestion" &&
-        getWithDefault(this, "childDocument.visibleFields", []).length > 0
-      );
-    }
-  ),
-
   /**
    * The error messages on this field.
    *
@@ -246,7 +235,7 @@ export default EmberObject.extend(Evented, {
         `removeAnswer.answer`
       );
 
-      this.answer.id = undefined;
+      this.answer.set("id", undefined);
     } else {
       response = yield this.apollo.mutate(
         {
@@ -254,7 +243,7 @@ export default EmberObject.extend(Evented, {
           variables: {
             input: {
               question: this.get("question.slug"),
-              document: this.get("document.id"),
+              document: this.get("fieldset.document.id"),
               value
             }
           }
