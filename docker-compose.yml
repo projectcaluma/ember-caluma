@@ -1,7 +1,7 @@
 version: "3"
 services:
   db:
-    image: postgres:9.4@sha256:9bc190100ed0ff2977652f34061668972007b458114bbf32f67d1bf1f0f31904
+    image: postgres:9.4@sha256:26c46d7f6880cb1e46c9278acfe77f089caac9d22f6830949e2c9fcade3d5efd
     environment:
       - POSTGRES_USER=caluma
       - POSTGRES_PASSWORD=caluma
