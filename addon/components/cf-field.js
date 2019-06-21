@@ -18,13 +18,12 @@ import { task, timeout } from "ember-concurrency";
 export default Component.extend({
   layout,
   classNames: ["uk-margin"],
-  classNameBindings: ["field.question.hidden:uk-hidden"],
+  classNameBindings: ["field.hidden:uk-hidden"],
 
   /**
    * Task to save a field. This will set the passed value to the answer and
    * save the field to the API after a timeout off 500 milliseconds.
    *
-   * @todo Validate the value
    * @method save
    * @param {String|Number|String[]} value
    */

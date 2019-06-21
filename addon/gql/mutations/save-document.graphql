@@ -1,9 +1,26 @@
-#import 'ember-caluma/gql/fragments/form-document'
+#import 'ember-caluma/gql/fragments/field-answer'
 
 mutation($input: SaveDocumentInput!) {
   saveDocument(input: $input) {
     document {
-      ...FormDocument
+      id
+      answers {
+        edges {
+          node {
+            ...FieldAnswer
+          }
+        }
+      }
+      form {
+        slug
+        questions {
+          edges {
+            node {
+              ...FieldQuestion
+            }
+          }
+        }
+      }
     }
   }
 }

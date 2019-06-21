@@ -1,7 +1,7 @@
 #import 'ember-caluma/gql/fragments/field-answer'
 
-query($rootDocument: ID!) {
-  allDocuments(rootDocument: $rootDocument) {
+query($id: ID!) {
+  allDocuments(id: $id) {
     edges {
       node {
         id
@@ -11,9 +11,6 @@ query($rootDocument: ID!) {
               ...FieldAnswer
             }
           }
-        }
-        form {
-          slug
         }
       }
     }

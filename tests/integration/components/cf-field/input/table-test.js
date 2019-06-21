@@ -8,7 +8,7 @@ module("Integration | Component | cf-field/input/table", function(hooks) {
 
   test("it renders", async function(assert) {
     this.set("field", {
-      id: "table-test",
+      pk: "table-test",
       answer: {
         value: [
           {

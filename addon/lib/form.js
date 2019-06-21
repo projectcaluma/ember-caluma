@@ -3,32 +3,32 @@ import { assert } from "@ember/debug";
 import { computed } from "@ember/object";
 
 /**
- * Object which represents a question in context of a field
+ * Object that represents a blueprint form
  *
- * @class Question
+ * @class Form
  */
 export default Base.extend({
   init() {
     this._super(...arguments);
 
     assert(
-      "A graphql question `raw` must be passed",
-      this.raw && /Question$/.test(this.raw.__typename)
+      "A graphql form `raw` must be passed",
+      this.raw && this.raw.__typename === "Form"
     );
 
     this.setProperties(this.raw);
   },
 
   /**
-   * The unique identifier for the question which consists of the question slug
-   * prefixed by "Question".
+   * The unique identifier for the form which consists of the form slug
+   * prefixed by "Form".
    *
-   * E.g: `Question:some-question-slug`
+   * E.g: `Form:some-form-slug`
    *
    * @property {String} pk
    * @accessor
    */
   pk: computed("slug", function() {
-    return `Question:${this.slug}`;
+    return `Form:${this.slug}`;
   })
 });

@@ -12,7 +12,7 @@ module("Integration | Component | cf-field/input/textarea", function(hooks) {
     await render(hbs`
       {{cf-field/input/textarea
         field=(hash
-          id="test"
+          pk="test"
           answer=(hash
             value="Test Test Test"
           )

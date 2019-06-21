@@ -1,32 +1,5 @@
-@import "cf-field";
-
-.cfb-prefixed {
-  display: flex;
-
-  &-slug {
-    line-height: 40px;
-    padding-right: 10px;
-    white-space: nowrap;
-  }
-}
-
-.jexl-textarea textarea {
-  font-family: monospace;
-}
-
-.cf-checkbox_label {
-  display: block;
-  position: relative;
-  padding-left: 26px;
-
-  .uk-checkbox {
-    position: absolute;
-    top: .25em;
-    left: 0;
-    margin: 0;
-  }
-
-  & + br {
-    display: none;
-  }
-}
+/**
+ * This file should not contain any styles. Styles are located in
+ * /app/styles/ember-caluma.scss. This file merely exists that ember-cli-sass
+ * doesn't throw a build error.
+ */

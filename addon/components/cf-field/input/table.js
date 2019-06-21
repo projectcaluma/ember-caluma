@@ -5,28 +5,14 @@ import saveDocumentMutation from "ember-caluma/gql/mutations/save-document";
 import { inject as service } from "@ember/service";
 import { ComponentQueryManager } from "ember-apollo-client";
 import { computed } from "@ember/object";
-
-/**
- * @babel/polyfill@^7.4.0 is supposed to include "flat", but that doesn't work of us -
- * presumably because transitive dependencies still include babel 6 and the
- * corresponding babel-polyfill package. So we include this "manual" polyfill for now.
- *
- * https://github.com/babel/babel/issues/9749
- *
- * @function flat
- * @param {Array} arrays The nested arrays
- * @return {Array} The flattened array
- */
-function flat(arrays) {
-  return [].concat.apply([], arrays);
-}
+import { getOwner } from "@ember/application";
+import Document from "ember-caluma/lib/document";
+import { parseDocument } from "ember-caluma/lib/parsers";
 
 export default Component.extend(ComponentQueryManager, {
   layout,
 
   notification: service(),
-
-  documentStore: service(),
 
   intl: service(),
 
@@ -46,7 +32,7 @@ export default Component.extend(ComponentQueryManager, {
   ),
 
   addRow: task(function*() {
-    const newDocumentRaw = yield this.get("apollo").mutate(
+    const raw = yield this.get("apollo").mutate(
       {
         mutation: saveDocumentMutation,
         variables: {
@@ -55,7 +41,10 @@ export default Component.extend(ComponentQueryManager, {
       },
       "saveDocument.document"
     );
-    const newDocument = this.documentStore.find(newDocumentRaw);
+
+    const newDocument = Document.create(getOwner(this).ownerInjection(), {
+      raw: parseDocument(raw)
+    });
 
     this.setProperties({
       documentToEdit: newDocument,
@@ -64,7 +53,9 @@ export default Component.extend(ComponentQueryManager, {
   }).drop(),
 
   deleteRow: task(function*(document) {
-    const remainingDocuments = (this.get("field.answer.value") || []).filter(
+    if (!this.field.answer.value) return;
+
+    const remainingDocuments = this.field.answer.value.filter(
       doc => doc.id !== document.id
     );
 
@@ -75,13 +66,14 @@ export default Component.extend(ComponentQueryManager, {
     try {
       const newDocument = this.get("documentToEdit");
       yield all(newDocument.fields.map(f => f.validate.perform()));
-      if (flat(newDocument.fields.map(f => f.errors)).length) {
+
+      if (newDocument.fields.some(field => field.isInvalid)) {
         return;
       }
 
       const rows = this.get("field.answer.value") || [];
 
-      if (!rows.find(doc => doc.id === newDocument.id)) {
+      if (!rows.find(doc => doc.id === newDocument.uuid)) {
         // add document to table
         yield this.onSave([...rows, newDocument]);
 
@@ -89,6 +81,7 @@ export default Component.extend(ComponentQueryManager, {
           this.get("intl").t("caluma.form.notification.table.add.success")
         );
       } else {
+        // TODO: delete dangling document
         yield this.onSave([...rows]);
       }
 

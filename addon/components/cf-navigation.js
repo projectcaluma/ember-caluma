@@ -1,7 +1,11 @@
 import Component from "@ember/component";
 import layout from "../templates/components/cf-navigation";
-import { ComponentQueryManager } from "ember-apollo-client";
+import { next } from "@ember/runloop";
 
-export default Component.extend(ComponentQueryManager, {
-  layout
+export default Component.extend({
+  layout,
+
+  didReceiveAttrs() {
+    next(this.navigation, "goToNextItem");
+  }
 });

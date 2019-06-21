@@ -12,7 +12,7 @@ module("Integration | Component | cf-field/input/float", function(hooks) {
     await render(hbs`
       {{cf-field/input/float
         field=(hash
-          id="test"
+          pk="test"
           answer=(hash
             value=1.045
           )

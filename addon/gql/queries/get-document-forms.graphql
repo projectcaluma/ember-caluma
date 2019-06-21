@@ -1,0 +1,22 @@
+#import 'ember-caluma/gql/fragments/field-question'
+
+query($id: ID!) {
+  allDocuments(id: $id) {
+    edges {
+      node {
+        id
+        form {
+          slug
+          name
+          questions {
+            edges {
+              node {
+                ...FieldQuestion
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

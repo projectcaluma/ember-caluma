@@ -15,9 +15,6 @@ export default {
             name: "Document"
           },
           {
-            name: "FormAnswer"
-          },
-          {
             name: "Case"
           },
           {
@@ -167,9 +164,6 @@ export default {
         kind: "INTERFACE",
         name: "Answer",
         possibleTypes: [
-          {
-            name: "FormAnswer"
-          },
           {
             name: "StringAnswer"
           },

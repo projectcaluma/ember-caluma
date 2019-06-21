@@ -1,8 +1,14 @@
-{{#link-to (query-params section=section subSection=subSection)}}
-  <div class="uk-flex uk-flex-between uk-flex-middle">
-    <div>{{label}}</div>
-    <span
-      class="uk-flex-none camac-nav-module-icon camac-nav-module-icon-{{state}}">
-    </span>
-  </div>
+{{#link-to (query-params displayedForm=item.slug)}}
+  {{item.label}}
+  <span class="cf-navigation__item__icon cf-navigation__item__icon--{{item.state}}"></span>
 {{/link-to}}
+
+{{#if item.children}}
+  <ul class="uk-tab uk-tab-left uk-margin-left">
+    {{#each item.children as |childItem|}}
+      {{#if childItem.visible}}
+        {{cf-navigation-item item=childItem}}
+      {{/if}}
+    {{/each}}
+  </ul>
+{{/if}}

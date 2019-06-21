@@ -1,6 +1,6 @@
 dummy:
-  demo: "Demo"
-  nested: "Nested"
+  formBuilder: "Form Builder"
+  form: "Form"
   usage: "Usage"
   testing: "Testing"
 
@@ -13,7 +13,7 @@ caluma:
 
     navigation:
       next: "Next"
-      previous: "Next"
+      previous: "Previous"
 
     notification:
       table:
