@@ -92,6 +92,14 @@ export default Base.extend(Evented, {
   calumaStore: service(),
 
   /**
+   * The Validator service
+   *
+   * @property {ValidatorService} validator
+   * @accessor
+   */
+  validator: service(),
+
+  /**
    * Initialize function which validates the passed arguments and sets an
    * initial state of errors.
    *
@@ -100,6 +108,8 @@ export default Base.extend(Evented, {
    */
   init() {
     this._super(...arguments);
+
+    this.validator.getValidators();
 
     assert("Owner must be injected!", getOwner(this));
     assert("_question must be passed!", this._question);
@@ -188,6 +198,13 @@ export default Base.extend(Evented, {
 
     return answer.id ? this.calumaStore.push(answer) : answer;
   }),
+
+  registerDependentField(field, key) {
+    this.set(`dependentFields.${key}`, [
+      ...new Set(this.get(`dependentFields.${key}`)),
+      field
+    ]);
+  },
 
   /**
    * Whether the field is valid.
