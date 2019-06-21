@@ -1,81 +1,73 @@
-import { module, test } from "qunit";
+import { module, test, skip } from "qunit";
 import { setupTest } from "ember-qunit";
 import Document from "ember-caluma/lib/document";
 import { settled } from "@ember/test-helpers";
-import nestedRaw from "./nested";
 
 module("Unit | Library | document", function(hooks) {
   setupTest(hooks);
 
   hooks.beforeEach(async function() {
     this.set("setFieldValue", async (slug, value) => {
-      this.document.fields
-        .find(field => field.question.slug === slug)
-        .set("answer.value", value);
+      this.document.findField(slug).set("answer.value", value);
+
       await settled();
     });
+
     this.set("getDocumentHiddenState", () =>
-      this.document.fields.map(field => [
-        field.question.slug,
-        field.question.hidden
-      ])
+      this.document.fields.map(field => [field.question.slug, field.hidden])
     );
+
+    const form = {
+      __typename: "Form",
+      slug: "some-form",
+      questions: [
+        {
+          slug: "question-1",
+          label: "Question 1",
+          isRequired: "false",
+          isHidden: "false",
+          __typename: "TextQuestion"
+        },
+        {
+          slug: "question-2",
+          label: "Question 2",
+          isRequired: "false",
+          isHidden: "!('question-1'|answer == 'show-question-2')",
+          __typename: "TextQuestion"
+        },
+        {
+          slug: "question-3",
+          label: "Question 3",
+          isRequired: "false",
+          isHidden:
+            "!('question-1'|answer == 'show-question-3' || 'question-2'|answer == 'show-question-3')",
+          __typename: "TextQuestion"
+        }
+      ]
+    };
 
     const raw = {
       id: 1,
-      answers: {
-        edges: []
-      },
-      form: {
-        questions: {
-          edges: [
-            {
-              node: {
-                slug: "question-1",
-                label: "Question 1",
-                isRequired: "false",
-                isHidden: "false",
-                __typename: "TextQuestion"
-              }
-            },
-            {
-              node: {
-                slug: "question-2",
-                label: "Question 2",
-                isRequired: "false",
-                isHidden: "!('question-1'|answer == 'show-question-2')",
-                __typename: "TextQuestion"
-              }
-            },
-            {
-              node: {
-                slug: "question-3",
-                label: "Question 3",
-                isRequired: "false",
-                isHidden:
-                  "!('question-1'|answer == 'show-question-3' || 'question-2'|answer == 'show-question-3')",
-                __typename: "TextQuestion"
-              }
-            }
-          ]
-        }
-      }
+      __typename: "Document",
+      answers: [],
+      rootForm: form,
+      forms: [form]
     };
 
     this.set("document", Document.create(this.owner.ownerInjection(), { raw }));
-    this.set(
-      "nestedDocument",
-      Document.create(this.owner.ownerInjection(), { raw: nestedRaw })
-    );
+
     await settled();
   });
+
   hooks.afterEach(async function() {
     await this.setFieldValue("question-1", null);
     await this.setFieldValue("question-2", null);
+    await this.setFieldValue("question-3", null);
   });
 
-  test("it initializes isHidden correctly", async function(assert) {
+  test("it initializes the fields hidden state correctly", async function(assert) {
     assert.expect(1);
+
     assert.deepEqual(this.getDocumentHiddenState(), [
       ["question-1", false],
       ["question-2", true],
@@ -83,10 +75,12 @@ module("Unit | Library | document", function(hooks) {
     ]);
   });
 
-  test("it recomputes isHidden on value change of dependency", async function(assert) {
+  test("it recomputes hidden on value change of dependency", async function(assert) {
     assert.expect(1);
+
     await this.setFieldValue("question-1", "show-question-2");
     await this.setFieldValue("question-2", "foo");
+
     assert.deepEqual(this.getDocumentHiddenState(), [
       ["question-1", false],
       ["question-2", false],
@@ -94,7 +88,7 @@ module("Unit | Library | document", function(hooks) {
     ]);
   });
 
-  test("it recomputes isHidden on isHidden change of dependency", async function(assert) {
+  test("it recomputes hidden on hidden change of dependency", async function(assert) {
     assert.expect(2);
     await this.setFieldValue("question-1", "show-question-2");
     await this.setFieldValue("question-2", "show-question-3");
@@ -113,16 +107,6 @@ module("Unit | Library | document", function(hooks) {
     ]);
   });
 
-  test("can do cross-form path traversal", async function(assert) {
-    // get random leaf document
-    const grandChildDoc = this.nestedDocument.childDocuments[0]
-      .childDocuments[1];
-    assert.deepEqual(
-      grandChildDoc.findField("parent.parent.b.b-a.b-a-1").answer.value,
-      "foobar"
-    );
-  });
-
   test("question jexl intersects operator", async function(assert) {
     const tests = [
       ["[1,2] intersects [2,3]", true],
@@ -135,7 +119,7 @@ module("Unit | Library | document", function(hooks) {
       ["[2] intersects [1] + [2]", true]
     ];
     for (let [expression, result] of tests) {
-      assert.equal(await this.document.questionJexl.eval(expression), result);
+      assert.equal(await this.document.jexl.eval(expression), result);
     }
   });
 
@@ -153,35 +137,19 @@ module("Unit | Library | document", function(hooks) {
     ];
     for (let [value, expression, result] of tests) {
       assert.deepEqual(
-        await this.document.questionJexl.eval(expression, { value }),
+        await this.document.jexl.eval(expression, { value }),
         result
       );
     }
   });
 
-  test("computes the correct root document", async function(assert) {
-    assert.expect(3);
-
-    const level1 = this.nestedDocument;
-    const level2 = this.nestedDocument.childDocuments[0];
-    const level3 = this.nestedDocument.childDocuments[0].childDocuments[0];
-
-    assert.equal(level3.rootDocument.id, level1.id);
-    assert.equal(level2.rootDocument.id, level1.id);
-    assert.equal(level1.rootDocument, null);
-  });
-
   test("computes the correct jexl context", async function(assert) {
-    assert.expect(3);
+    assert.expect(1);
 
-    const level1 = this.nestedDocument;
-    const level2 = this.nestedDocument.childDocuments[0];
-    const level3 = this.nestedDocument.childDocuments[0].childDocuments[0];
-
-    const rootForm = level1.raw.form.slug;
-
-    assert.deepEqual(level3.questionJexlContext, { rootForm });
-    assert.deepEqual(level2.questionJexlContext, { rootForm });
-    assert.deepEqual(level1.questionJexlContext, { rootForm });
+    assert.deepEqual(this.document.jexlContext, { form: "some-form" });
   });
+
+  skip("it recomputes hidden on hidden change of parent fieldset", async function() {});
+  skip("it recomputes optional on hidden change of parent fieldset", async function() {});
+  skip("it recomputes optional on hidden change of dependency", async function() {});
 });

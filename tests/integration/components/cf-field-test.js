@@ -8,38 +8,36 @@ module("Integration | Component | cf-field", function(hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function() {
+    const form = {
+      __typename: "Form",
+      slug: "some-form",
+      questions: [
+        {
+          slug: "question-1",
+          label: "Test",
+          isRequired: "true",
+          isHidden: "true",
+          textMaxLength: 2,
+          __typename: "TextQuestion"
+        }
+      ]
+    };
+
     const document = Document.create(this.owner.ownerInjection(), {
       raw: {
+        __typename: "Document",
         id: window.btoa("Document:1"),
-        answers: {
-          edges: [
-            {
-              node: {
-                stringValue: "Test",
-                question: {
-                  slug: "question-1"
-                },
-                __typename: "StringAnswer"
-              }
-            }
-          ]
-        },
-        form: {
-          questions: {
-            edges: [
-              {
-                node: {
-                  slug: "question-1",
-                  label: "Test",
-                  isRequired: "true",
-                  isHidden: "true",
-                  textMaxLength: 2,
-                  __typename: "TextQuestion"
-                }
-              }
-            ]
+        answers: [
+          {
+            stringValue: "Test",
+            question: {
+              slug: "question-1"
+            },
+            __typename: "StringAnswer"
           }
-        }
+        ],
+        rootForm: form,
+        forms: [form]
       }
     });
 
@@ -90,56 +88,7 @@ module("Integration | Component | cf-field", function(hooks) {
   });
 
   test("it hides the label", async function(assert) {
-    const document = Document.create(this.owner.ownerInjection(), {
-      raw: {
-        id: window.btoa("Document:1"),
-        answers: {
-          edges: [
-            {
-              node: {
-                stringValue: "Test",
-                question: {
-                  slug: "question-2"
-                },
-                __typename: "StringAnswer"
-              }
-            }
-          ]
-        },
-        form: {
-          questions: {
-            edges: [
-              {
-                __typename: "QuestionEdge",
-                node: {
-                  slug: "question-2",
-                  label: "Test",
-                  isRequired: "true",
-                  isHidden: "false",
-                  __typename: "ChoiceQuestion",
-                  meta: { hideLabel: true },
-                  choiceOptions: {
-                    __typename: "OptionConnection",
-                    edges: [
-                      {
-                        __typename: "OptionEdge",
-                        node: {
-                          __typename: "Option",
-                          label: "Test",
-                          slug: "question-2"
-                        }
-                      }
-                    ]
-                  }
-                }
-              }
-            ]
-          }
-        }
-      }
-    });
-
-    this.set("field", document.fields[0]);
+    this.set("field.meta", { hideLabel: true });
 
     await render(hbs`{{cf-field field=field}}`);
 

@@ -7,13 +7,14 @@ const Router = AddonDocsRouter.extend({
 });
 
 Router.map(function() {
-  this.route("nested");
   docsRoute(this, function() {
     this.route("usage");
     this.route("testing");
   });
 
   this.route("demo", function() {
+    this.route("form");
+
     this.mount("ember-caluma", {
       path: "/form-builder",
       as: "form-builder"

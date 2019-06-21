@@ -1,29 +1,7 @@
 <ul class="uk-tab uk-tab-left">
-  {{#each rootDocument.fields as |field|}}
-    {{#if field.visibleInNavigation}}
-      <li class={{if (eq section field.question.slug) "uk-active"}}>
-        {{cf-navigation-item
-          field=field
-          section=field.question.slug
-          label=field.question.label
-          state=field.childDocument.state
-        }}
-        <ul class="uk-tab uk-tab-left uk-margin-left uk-margin-remove-vertical">
-          {{#each field.childDocument.fields as |subField|}}
-            {{#if subField.visibleInNavigation}}
-              <li class={{if (eq subSection subField.question.slug) "uk-active"}}>
-                {{cf-navigation-item
-                  field=subField
-                  section=field.question.slug
-                  subSection=subField.question.slug
-                  label=subField.question.label
-                  state=subField.childDocument.state
-                }}
-              </li>
-            {{/if}}
-          {{/each}}
-        </ul>
-      </li>
+  {{#each (reject-by "parent" navigation.items) as |item|}}
+    {{#if item.visible}}
+      {{cf-navigation-item item=item}}
     {{/if}}
   {{/each}}
 </ul>

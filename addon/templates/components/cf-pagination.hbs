@@ -1,14 +1,14 @@
 <div uk-grid>
   <div class="uk-text-left uk-width-1-2">
-    {{#if previous}}
-      {{#link-to (query-params section=previous.section subSection=previous.subSection) class="uk-button uk-button-default"}}
+    {{#if navigation.previousItem}}
+      {{#link-to (query-params displayedForm=navigation.previousItem.slug) class="uk-button uk-button-default"}}
         {{t "caluma.form.navigation.previous"}}
       {{/link-to}}
     {{/if}}
   </div>
   <div class="uk-text-right uk-width-1-2">
-    {{#if next}}
-      {{#link-to (query-params section=next.section subSection=next.subSection) class="uk-button uk-button-default"}}
+    {{#if navigation.nextItem}}
+      {{#link-to (query-params displayedForm=navigation.nextItem.slug) class="uk-button uk-button-default"}}
         {{t "caluma.form.navigation.next"}}
       {{/link-to}}
     {{/if}}

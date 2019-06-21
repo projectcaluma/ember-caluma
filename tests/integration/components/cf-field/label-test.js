@@ -8,26 +8,26 @@ module("Integration | Component | cf-field/label", function(hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function() {
+    const form = {
+      slug: "some-form",
+      __typename: "Form",
+      questions: [
+        {
+          slug: "question-1",
+          label: "Test",
+          isRequired: "true",
+          isHidden: "true",
+          __typename: "TextQuestion"
+        }
+      ]
+    };
+
     const raw = {
       id: 1,
-      answers: {
-        edges: []
-      },
-      form: {
-        questions: {
-          edges: [
-            {
-              node: {
-                slug: "question-1",
-                label: "Test",
-                isRequired: "true",
-                isHidden: "true",
-                __typename: "TextQuestion"
-              }
-            }
-          ]
-        }
-      }
+      __typename: "Document",
+      answers: [],
+      rootForm: form,
+      forms: [form]
     };
 
     const document = Document.create(this.owner.ownerInjection(), { raw });
@@ -48,12 +48,12 @@ module("Integration | Component | cf-field/label", function(hooks) {
 
     await render(hbs`{{cf-field/label field=field}}`);
 
-    await this.field.question.optionalTask.perform();
+    await this.field.optionalTask.perform();
     assert.dom("label").hasText("Test");
 
     this.set("field.question.isRequired", "false");
 
-    await this.field.question.optionalTask.perform();
+    await this.field.optionalTask.perform();
     await settled();
 
     assert.dom("label").hasText("Test (Optional)");

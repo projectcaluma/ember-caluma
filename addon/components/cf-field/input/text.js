@@ -13,7 +13,7 @@ export default Component.extend({
   attributeBindings: [
     "type",
     "disabled",
-    "field.id:name",
+    "field.pk:name",
     "field.answer.value:value",
     "field.question.placeholder:placeholder"
   ],

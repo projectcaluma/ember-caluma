@@ -1,5 +1,5 @@
-# source: http://camac-ng.local/graphql/
-# timestamp: Fri May 31 2019 08:19:48 GMT+0200 (Central European Summer Time)
+# source: http://localhost:8000/graphql
+# timestamp: Mon Jul 01 2019 07:46:24 GMT+0200 (CEST)
 
 input AddFormQuestionInput {
   form: ID!
@@ -626,7 +626,6 @@ type Document implements Node {
     orderBy: [AnswerOrdering]
     questions: [ID]
   ): AnswerConnection
-  parentAnswers: [FormAnswer]
   case: Case
   workItem: WorkItem
 }
@@ -692,6 +691,24 @@ enum DocumentOrdering {
   Created by group (descending)
   """
   CREATED_BY_GROUP_DESC
+}
+
+type DocumentValidityConnection {
+  pageInfo: PageInfo!
+  edges: [DocumentValidityEdge]!
+  totalCount: Int
+}
+
+type DocumentValidityEdge {
+  """
+  The item at the end of the edge
+  """
+  node: ValidationResult
+
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
 }
 
 type DynamicChoiceQuestion implements Question & Node {
@@ -1033,22 +1050,6 @@ type Form implements Node {
   id: ID!
 }
 
-type FormAnswer implements Answer & Node {
-  createdAt: DateTime!
-  modifiedAt: DateTime!
-  createdByUser: String
-  createdByGroup: String
-
-  """
-  The ID of the object.
-  """
-  id: ID!
-  question: Question!
-  value: Document!
-  meta: GenericScalar!
-  document: Document!
-}
-
 type FormatValidator {
   slug: String!
   name: String!
@@ -1216,19 +1217,6 @@ scalar GroupJexl
 
 """
 Lookup type to search document structures.
-
-The question is either a "plain" question slug, or of the form
-"parent_slug.question_slug". Note that in this case, the parent_slug will
-match the form slug, which in turn may be a subform of the whole form
-structure.
-
-What does NOT work is matching a full path, as the lookup would quickly
-generate very complex database queries.
-
-So, given the document structure "top.some_form.subform.question_foo", you can
-either search for "subform.question_foo" (if question_foo is used in other
-contexts within the same form), or search directly for "question_foo" if
-you don't need to be that specific, which will speed up the query slightly.
 """
 input HasAnswerFilterType {
   question: String!
@@ -1467,13 +1455,11 @@ type Mutation {
   saveDocumentTableAnswer(
     input: SaveDocumentTableAnswerInput!
   ): SaveDocumentTableAnswerPayload
-  saveDocumentFormAnswer(
-    input: SaveDocumentFormAnswerInput!
-  ): SaveDocumentFormAnswerPayload
   saveDocumentFileAnswer(
     input: SaveDocumentFileAnswerInput!
   ): SaveDocumentFileAnswerPayload
   removeAnswer(input: RemoveAnswerInput!): RemoveAnswerPayload
+  removeDocument(input: RemoveDocumentInput!): RemoveDocumentPayload
 }
 
 """
@@ -1672,11 +1658,6 @@ type Query {
     last: Int
     metaValue: MetaValueFilterType
     workflow: ID
-
-    """
-    CaseStatusArgument
-    """
-    status: CaseStatusArgument
     createdByUser: String
     createdByGroup: String
     offset: Int
@@ -1688,6 +1669,16 @@ type Query {
     """
     orderBy: [CaseOrdering]
     hasAnswer: [HasAnswerFilterType]
+    status: [CaseStatusArgument]
+
+    """
+    Expects a question slug. If the slug is prefixed with a hyphen, the order will be reversed
+
+    For file questions, the filename is used for sorting.
+
+    Table questions are not supported at this time.
+    """
+    orderByQuestionAnswerValue: String
   ): CaseConnection
   allWorkItems(
     before: String
@@ -1790,6 +1781,13 @@ type Query {
     first: Int
     last: Int
   ): FormatValidatorConnection
+  documentValidity(
+    id: ID!
+    before: String
+    after: String
+    first: Int
+    last: Int
+  ): DocumentValidityConnection
 
   """
   The ID of the object
@@ -1863,10 +1861,14 @@ Following transform can be used:
 * mapby - map list by key. Helpful to work with table answers
   whereas an answer is a list of dicts.
 
+Following context is available:
+* form - access form of document
+
 Examples:
 * 'answer' == 'question-slug'|answer
 * 'answer' in 'list-question-slug'|answer
 * 'answer' in 'table-question-slug'|answer|mapby('column-question')
+* 'form-slug' == form
 """
 scalar QuestionJexl
 
@@ -1932,6 +1934,16 @@ input RemoveAnswerInput {
 
 type RemoveAnswerPayload {
   answer: Answer
+  clientMutationId: String
+}
+
+input RemoveDocumentInput {
+  document: ID!
+  clientMutationId: String
+}
+
+type RemoveDocumentPayload {
+  document: Document
   clientMutationId: String
 }
 
@@ -2122,23 +2134,6 @@ input SaveDocumentFloatAnswerInput {
 }
 
 type SaveDocumentFloatAnswerPayload {
-  answer: Answer
-  clientMutationId: String
-}
-
-input SaveDocumentFormAnswerInput {
-  question: ID!
-  document: ID!
-  meta: JSONString
-
-  """
-  Document IDs representing the content of the form.
-  """
-  value: ID!
-  clientMutationId: String
-}
-
-type SaveDocumentFormAnswerPayload {
   answer: Answer
   clientMutationId: String
 }
@@ -2927,6 +2922,17 @@ type TextQuestion implements Question & Node {
   """
   id: ID!
   maxLength: Int
+}
+
+type ValidationEntry {
+  slug: String!
+  errorMsg: String!
+}
+
+type ValidationResult {
+  id: ID
+  isValid: Boolean
+  errors: [ValidationEntry]
 }
 
 type Workflow implements Node {

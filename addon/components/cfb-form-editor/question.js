@@ -60,10 +60,6 @@ export default Component.extend(ComponentQueryManager, {
   intl: service(),
   calumaOptions: service(),
 
-  /**
-   * Determines if the slug is "linked" to the question label, i.e. follows it's updates
-   * @property linkSlug
-   */
   linkSlug: true,
 
   possibleTypes: computed(function() {

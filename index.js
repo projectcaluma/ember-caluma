@@ -13,7 +13,7 @@ const DEFAULT_OPTIONS = {
 
 /* eslint-disable ember/avoid-leaking-state-in-ember-objects */
 module.exports = EngineAddon.extend({
-  name: "ember-caluma",
+  name: require("./package.json").name,
   lazyLoading: false,
 
   // see https://github.com/dfreeman/ember-cli-node-assets/issues/11

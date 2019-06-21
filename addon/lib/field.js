@@ -1,5 +1,6 @@
-import EmberObject, { computed, getWithDefault } from "@ember/object";
-import { equal, not, empty, reads } from "@ember/object/computed";
+import Base from "ember-caluma/lib/base";
+import { computed, getWithDefault } from "@ember/object";
+import { equal, not, reads } from "@ember/object/computed";
 import { inject as service } from "@ember/service";
 import { assert } from "@ember/debug";
 import { getOwner } from "@ember/application";
@@ -7,11 +8,12 @@ import { camelize } from "@ember/string";
 import { task } from "ember-concurrency";
 import { all, resolve } from "rsvp";
 import { validate } from "ember-validators";
-import Evented, { on } from "@ember/object/evented";
-
+import Evented from "@ember/object/evented";
+import { next } from "@ember/runloop";
+import { lastValue } from "ember-caluma/utils/concurrency";
+import { getAST, getTransforms } from "ember-caluma/utils/jexl";
 import Answer from "ember-caluma/lib/answer";
 import Question from "ember-caluma/lib/question";
-import { decodeId } from "ember-caluma/helpers/decode-id";
 
 import saveDocumentFloatAnswerMutation from "ember-caluma/gql/mutations/save-document-float-answer";
 import saveDocumentIntegerAnswerMutation from "ember-caluma/gql/mutations/save-document-integer-answer";
@@ -38,12 +40,30 @@ const TYPE_MAP = {
   DateQuestion: "DateAnswer"
 };
 
+const fieldIsHidden = field => {
+  return (
+    field.hidden ||
+    (field.question.__typename !== "TableQuestion" &&
+      (field.answer.value === null || field.answer.value === undefined))
+  );
+};
+
+const getDependenciesFromJexl = expression => {
+  return [
+    ...new Set(
+      getTransforms(getAST(expression))
+        .filter(transform => transform.name === "answer")
+        .map(transform => transform.subject.value)
+    )
+  ];
+};
+
 /**
  * An object which represents a combination of a question and an answer.
  *
  * @class Field
  */
-export default EmberObject.extend(Evented, {
+export default Base.extend(Evented, {
   saveDocumentFloatAnswerMutation,
   saveDocumentIntegerAnswerMutation,
   saveDocumentStringAnswerMutation,
@@ -52,97 +72,74 @@ export default EmberObject.extend(Evented, {
   saveDocumentDateAnswerMutation,
   saveDocumentTableAnswerMutation,
 
-  /**
-   * The Apollo GraphQL service for making requests
-   *
-   * @property {ApolloService} apollo
-   * @accessor
-   */
   apollo: service(),
-
-  /**
-   * The translation service
-   *
-   * @property {IntlService} intl
-   * @accessor
-   */
   intl: service(),
+  calumaStore: service(),
 
-  /**
-   * Initialize function which validates the passed arguments and sets an
-   * initial state of errors.
-   *
-   * @method init
-   * @internal
-   */
   init() {
     this._super(...arguments);
 
-    assert("Owner must be injected!", getOwner(this));
-    assert("_question must be passed!", this._question);
-
-    const __typename = TYPE_MAP[this._question.__typename];
-
-    const question = Question.create(
-      getOwner(this).ownerInjection(),
-      Object.assign(this._question, {
-        document: this.document,
-        field: this
-      })
-    );
-
-    const answer =
-      __typename &&
-      Answer.create(
-        getOwner(this).ownerInjection(),
-        Object.assign(
-          this._answer || {
-            __typename,
-            question: { slug: this._question.slug },
-            [camelize(__typename.replace(/Answer$/, "Value"))]: null
-          },
-          { document: this.document, field: this }
-        )
-      );
-
     this.setProperties({
-      _errors: [],
-      dependentFields: { isRequired: [], isHidden: [] },
-      question,
-      answer
+      _errors: []
     });
   },
 
   /**
-   * The ID of the field. Consists of the document ID and the question slug.
+   * The unique identifier for the field which consists of the documents pk and
+   * the questions pk separated by a colon.
    *
    * E.g: `Document:b01e9071-c63a-43a5-8c88-2daa7b02e411:Question:some-question-slug`
    *
-   * @property {String} id
+   * @property {String} pk
    * @accessor
    */
-  id: computed("document.id", "question.slug", function() {
-    return `Document:${this.document.id}:Question:${this.question.slug}`;
-  }).readOnly(),
+  pk: computed("document.pk", "question.pk", function() {
+    return [this.document.pk, this.question.pk].join(":");
+  }),
 
-  updateHidden: on("valueChanged", "hiddenChanged", function() {
-    this.dependentFields.isHidden.forEach(field =>
-      field.question.hiddenTask.perform()
+  /**
+   * The question to this field
+   *
+   * @property {Question} question
+   * @accessor
+   */
+  question: computed("raw.question", function() {
+    return (
+      this.calumaStore.find(`Question:${this.raw.question.slug}`) ||
+      this.calumaStore.push(
+        Question.create(getOwner(this).ownerInjection(), {
+          raw: this.raw.question
+        })
+      )
     );
   }),
 
-  updateOptional: on("valueChanged", "hiddenChanged", function() {
-    this.dependentFields.isRequired.forEach(field =>
-      field.question.optionalTask.perform()
-    );
-  }),
+  /**
+   * The answer to this field. It is possible for this to be `null` if the
+   * question is of the static question type.
+   *
+   * @property {Answer} answer
+   * @accessor
+   */
+  answer: computed("raw.answer", "raw.question.{slug,__typename}", function() {
+    const answerType = TYPE_MAP[this.raw.question.__typename];
 
-  registerDependentField(field, key) {
-    this.set(`dependentFields.${key}`, [
-      ...new Set(this.get(`dependentFields.${key}`)),
-      field
-    ]);
-  },
+    // static questions don't have an answer
+    if (!answerType) return null;
+
+    // use the passed answer or create an empty one
+    const raw = this.raw.answer || {
+      __typename: answerType,
+      question: { slug: this.raw.question.slug },
+      [camelize(answerType.replace(/Answer$/, "Value"))]: null
+    };
+
+    const answer = Answer.create(getOwner(this).ownerInjection(), {
+      raw
+    });
+
+    return answer.id ? this.calumaStore.push(answer) : answer;
+  }),
 
   /**
    * Whether the field is valid.
@@ -166,23 +163,7 @@ export default EmberObject.extend(Evented, {
    * @property {Boolean} isNew
    * @accessor
    */
-  isNew: empty("answer.id"),
-
-  /**
-   * Whether the field is optional
-   *
-   * @property {Boolean} optional
-   * @accessor
-   */
-  optional: reads("question.optional"),
-
-  /**
-   * Whether or not the question is hidden.
-   * This is needed for the computed property in `cf-navigation-item`.
-   * @property {Boolean} hidden
-   * @accessor
-   */
-  hidden: reads("question.hidden"),
+  isNew: reads("answer.isNew"),
 
   /**
    * The type of the question
@@ -192,39 +173,125 @@ export default EmberObject.extend(Evented, {
    */
   questionType: reads("question.__typename"),
 
-  visibleInNavigation: computed(
-    "hidden",
-    "questionType",
-    "childDocument.visibleFields",
-    function() {
-      return (
-        !this.hidden &&
-        this.questionType === "FormQuestion" &&
-        getWithDefault(this, "childDocument.visibleFields", []).length > 0
-      );
-    }
-  ),
-
   /**
-   * The error messages on this field.
+   * The document this field belongs to
    *
-   * @property {String[]} errors
+   * @property {Document} document
    * @accessor
    */
-  errors: computed("_errors.[]", function() {
-    return this._errors.map(({ type, context, value }) => {
-      return this.intl.t(
-        `caluma.form.validation.${type}`,
-        Object.assign({}, context, { value })
+  document: reads("fieldset.document"),
+
+  /**
+   * Boolean which tells whether the question is hidden or not
+   *
+   * @property {Boolean} hidden
+   * @accessor
+   */
+  hidden: lastValue("hiddenTask"),
+
+  /**
+   * Boolean which tells whether the question is optional or not
+   * (opposite of "required")
+   *
+   * @property {Boolean} optional
+   * @accessor
+   */
+  optional: lastValue("optionalTask"),
+
+  /**
+   * Question slugs that are used in the `isHidden` JEXL expression
+   *
+   * If the value or visibility of any of these fields is changed, the JEXL
+   * expression needs to be re-evaluated.
+   *
+   * @property {String[]} hiddenDependencies
+   * @accessor
+   */
+  hiddenDependencies: computed("question.isHidden", function() {
+    return getDependenciesFromJexl(this.question.isHidden);
+  }),
+
+  /**
+   * Question slugs that are used in the `isRequired` JEXL expression
+   *
+   * If the value or visibility of any of these fields is changed, the JEXL
+   * expression needs to be re-evaluated.
+   *
+   * @property {String[]} optionalDependencies
+   * @accessor
+   */
+  optionalDependencies: computed("question.isRequired", function() {
+    return getDependenciesFromJexl(this.question.isRequired);
+  }),
+
+  /**
+   * Evaluate the fields hidden state.
+   *
+   * A question is hidden if:
+   * - The form question field of the fieldset is hidden
+   * - A depending field (used in the expression) is hidden
+   * - The evaluated `question.isHidden` expression returns `true`
+   *
+   * @method hiddenTask.perform
+   * @return {Boolean}
+   */
+  hiddenTask: task(function*() {
+    const fieldsetHidden = getWithDefault(this, "fieldset.field.hidden", false);
+    const dependingHidden =
+      this.hiddenDependencies.length &&
+      this.hiddenDependencies.every(slug =>
+        fieldIsHidden(this.document.findField(slug))
       );
-    });
-  }).readOnly(),
+
+    const hidden =
+      fieldsetHidden ||
+      dependingHidden ||
+      (yield this.document.jexl.eval(
+        this.question.isHidden,
+        this.document.jexlContext
+      ));
+
+    if (this.get("hiddenTask.lastSuccessful.value") !== hidden) {
+      next(this, () => this.trigger("hiddenChanged"));
+    }
+
+    return hidden;
+  }).restartable(),
+
+  /**
+   * Evaluate the fields optional state.
+   *
+   * The field is optional if:
+   * - The form question field of the fieldset is hidden
+   * - A depending field (used in the expression) is hidden
+   * - The evaluated `question.isRequired` expression returns `false`
+   *
+   * @method optionalTask.perform
+   * @return {Boolean}
+   */
+  optionalTask: task(function*() {
+    const fieldsetHidden = getWithDefault(this, "fieldset.field.hidden", false);
+    const dependingHidden =
+      this.optionalDependencies.length &&
+      this.optionalDependencies.every(slug =>
+        fieldIsHidden(this.document.findField(slug))
+      );
+
+    return (
+      fieldsetHidden ||
+      dependingHidden ||
+      !(yield this.document.jexl.eval(
+        this.question.isRequired,
+        this.document.jexlContext
+      ))
+    );
+  }).restartable(),
 
   /**
    * Task to save a field. This uses a different mutation for every answer
    * type.
    *
-   * @method save
+   * @method save.perform
    * @return {Object} The response from the server
    */
   save: task(function*() {
@@ -239,23 +306,23 @@ export default EmberObject.extend(Evented, {
           mutation: removeAnswerMutation,
           variables: {
             input: {
-              answer: decodeId(this.get("answer.id"))
+              answer: this.answer.uuid
             }
           }
         },
         `removeAnswer.answer`
       );
 
-      this.answer.id = undefined;
+      this.answer.set("id", undefined);
     } else {
       response = yield this.apollo.mutate(
         {
           mutation: this.get(`saveDocument${type}Mutation`),
           variables: {
             input: {
-              question: this.get("question.slug"),
-              document: this.get("document.id"),
-              value
+              question: this.question.slug,
+              document: this.document.uuid,
+              value: this.answer.serializedValue
             }
           }
         },
@@ -269,11 +336,26 @@ export default EmberObject.extend(Evented, {
   }).restartable(),
 
   /**
+   * The error messages on this field.
+   *
+   * @property {String[]} errors
+   * @accessor
+   */
+  errors: computed("_errors.[]", function() {
+    return this._errors.map(({ type, context, value }) => {
+      return this.intl.t(
+        `caluma.form.validation.${type}`,
+        Object.assign({}, context, { value })
+      );
+    });
+  }),
+
+  /**
    * Validate the field. Every field goes through the required validation and
    * the validation for the given question type. This mutates the `errors` on
    * the field.
    *
-   * @method validate
+   * @method validate.perform
    */
   validate: task(function*() {
     const specificValidation = this.get(`_validate${this.question.__typename}`);
@@ -283,7 +365,7 @@ export default EmberObject.extend(Evented, {
     );
 
     const validationFns = [
-      ...(!this.question.hidden ? [this._validateRequired] : []),
+      ...(!this.hidden ? [this._validateRequired] : []),
       specificValidation
     ];
 
@@ -309,7 +391,7 @@ export default EmberObject.extend(Evented, {
    */
   async _validateRequired() {
     return (
-      (await this.get("question.optional")) ||
+      this.optional ||
       validate("presence", this.get("answer.value"), { presence: true })
     );
   },
@@ -455,8 +537,8 @@ export default EmberObject.extend(Evented, {
    * Dummy method for the validation of file uploads.
    *
    * @method _validateFileQuestion
-   * @return {Boolean}
-   * @internal
+   * @return {RSVP.Promise}
+   * @private
    */
   _validateFileQuestion() {
     return resolve(true);
@@ -480,7 +562,7 @@ export default EmberObject.extend(Evented, {
    *
    * @method _validateTableQuestion
    * @return {RSVP.Promise}
-   * @internal
+   * @private
    */
   _validateTableQuestion() {
     return resolve(true);
@@ -491,7 +573,7 @@ export default EmberObject.extend(Evented, {
    *
    * @method _validateStaticQuestion
    * @return {RSVP.Promise}
-   * @internal
+   * @private
    */
   _validateStaticQuestion() {
     return resolve(true);
@@ -502,9 +584,28 @@ export default EmberObject.extend(Evented, {
    *
    * @method _validateFormQuestion
    * @return {RSVP.Promise}
-   * @internal
+   * @private
    */
   _validateFormQuestion() {
     return resolve(true);
+  },
+
+  /**
+   * Validate that every dependent field of this field exists in the document
+   *
+   * @method _validateExpressions
+   * @private
+   */
+  _validateExpressions() {
+    const dependencies = [
+      ...new Set([...this.hiddenDependencies, ...this.optionalDependencies])
+    ];
+
+    dependencies.forEach(slug => {
+      assert(
+        `Field for question \`${slug}\` was not found in this document. Please check the jexl expressions of the question \`${this.question.slug}\`.`,
+        this.document.findField(slug)
+      );
+    });
   }
 });

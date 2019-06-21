@@ -12,7 +12,7 @@ export default Component.extend({
   classNameBindings: ["field.isInvalid:uk-form-danger"],
   attributeBindings: [
     "disabled",
-    "field.id:name",
+    "field.pk:name",
     "field.answer.value:value",
     "field.question.textareaMaxLength:maxlength"
   ],

@@ -17,7 +17,7 @@ module("Integration | Component | cf-field/input/radio", function(hooks) {
       {{cf-field/input/radio
         onSave=noop
         field=(hash
-          id="test"
+          pk="test"
           answer=(hash
             value="option-1"
           )

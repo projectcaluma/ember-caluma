@@ -1,0 +1,65 @@
+$icon-size: 0.8rem !default;
+
+.cf-navigation__item > a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cf-navigation__item__icon {
+  flex-shrink: 0;
+  position: relative;
+  height: $icon-size;
+  width: $icon-size;
+  color: transparent;
+  border: 1px solid transparent;
+
+  transition: color 500ms ease, border 500ms ease;
+
+  &::before {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    font-size: calc($icon-size * 0.8);
+  }
+}
+
+.cf-navigation__item__icon--untouched {
+  color: transparent;
+  border-color: $global-border;
+}
+
+.cf-navigation__item__icon--unfinished {
+  color: darken($global-warning-background, 20%);
+  border-color: lighten($global-warning-background, 10%);
+
+  &::before {
+    content: "?";
+  }
+}
+
+.cf-navigation__item__icon--valid {
+  color: darken($global-success-background, 20%);
+  border-color: lighten($global-success-background, 10%);
+
+  &::before {
+    content: "✓";
+  }
+}
+
+.cf-navigation__item__icon--invalid {
+  color: darken($global-danger-background, 20%);
+  border-color: lighten($global-danger-background, 10%);
+
+  &::before {
+    content: "×";
+  }
+}
+
+.cf-navigation__item__icon--readonly {
+  opacity: 0.6;
+}

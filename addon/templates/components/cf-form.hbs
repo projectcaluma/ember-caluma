@@ -1,3 +1,7 @@
-{{#each _document.fields as |field|}}
-  {{cf-field field=field disabled=disabled context=context}}
+{{#each fieldset.fields as |field|}}
+  {{#if (has-block)}}
+    {{yield field}}
+  {{else}}
+    {{cf-field field=field disabled=disabled context=context}}
+  {{/if}}
 {{/each}}

@@ -8,7 +8,7 @@ module("Integration | Component | cf-field/input/powerselect", function(hooks) {
 
   hooks.beforeEach(function() {
     this.set("singleChoiceField", {
-      id: "test-single",
+      pk: "test-single",
       answer: {
         value: null,
         __typename: "StringAnswer"
