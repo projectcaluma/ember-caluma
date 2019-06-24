@@ -28,6 +28,16 @@ fragment SimpleAnswer on Answer {
   ... on DateAnswer {
     dateValue: value
   }
+  ... on FormAnswer {
+    question {
+      slug
+      ... on FormQuestion {
+        subForm {
+          slug
+        }
+      }
+    }
+  }
 }
 
 fragment FieldAnswer on Answer {

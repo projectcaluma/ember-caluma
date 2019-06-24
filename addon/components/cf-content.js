@@ -9,6 +9,7 @@ import { later, once } from "@ember/runloop";
 
 import getNavigationDocumentsQuery from "ember-caluma/gql/queries/get-navigation-documents";
 import getNavigationFormsQuery from "ember-caluma/gql/queries/get-navigation-forms";
+import { assert } from "@ember/debug";
 
 const isDisplayableDocument = doc =>
   doc &&
@@ -38,11 +39,16 @@ const buildTree = (rootDocument, documents, forms) => {
 
   rootDocument.answers.edges.forEach(answer => {
     if (answer.node.__typename === "FormAnswer") {
-      answer.node.formValue = buildTree(
-        documents.find(doc => doc.form.slug === answer.node.question.slug),
-        documents,
-        forms
+      const childDocument = documents.find(
+        doc => doc.form.slug === answer.node.question.subForm.slug
       );
+
+      assert(
+        `Document for form "${answer.node.question.subForm.slug}" not found`,
+        childDocument
+      );
+
+      answer.node.formValue = buildTree(childDocument, documents, forms);
     }
   });
 
