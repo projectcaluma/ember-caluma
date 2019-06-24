@@ -58,6 +58,10 @@ export default EmberObject.extend({
         return value;
       },
       set(_, value) {
+        if (this.__typename === "TableAnswer") {
+          value = value.map(doc => doc.id);
+        }
+
         if (this._valueKey) {
           this.set(this._valueKey, value);
         }
