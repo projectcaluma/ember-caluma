@@ -64,6 +64,7 @@ module("Integration | Component | cf-field/input/file", function(hooks) {
     //await click(".uk-button");
 
     // Restore window.open
+    // eslint-disable-next-line require-atomic-updates
     window.open = window_open;
   });
 });

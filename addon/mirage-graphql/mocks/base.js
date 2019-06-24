@@ -18,7 +18,10 @@ export default class {
       const proto = Reflect.getPrototypeOf(target);
       const res = Object.values(proto);
 
-      return Reflect.getPrototypeOf(proto).isPrototypeOf(Object)
+      return Object.prototype.isPrototypeOf.call(
+        Reflect.getPrototypeOf(proto),
+        Object
+      )
         ? res
         : [...handlers(proto), ...res];
     };
@@ -44,7 +47,7 @@ export default class {
     );
 
     const relKey = `${camelize(this.type)}Ids`;
-    if (root && Object(root).hasOwnProperty(relKey)) {
+    if (root && Object.prototype.hasOwnProperty.call(root, relKey)) {
       const ids = root[relKey];
       records = records.filter(({ id }) => ids && ids.includes(id));
     }
@@ -62,13 +65,19 @@ export default class {
   handle(root, vars) {
     // If the parent node already resolved this branch in the graph, return it
     // directly without mocking it
-    if (root && Object(root).hasOwnProperty(camelize(this.type))) {
+    if (
+      root &&
+      Object.prototype.hasOwnProperty.call(root, camelize(this.type))
+    ) {
       return root[camelize(this.type)];
     }
 
     // If the parent node provides an ID for this relation, filter our mock data
     // with that given ID
-    if (root && Object(root).hasOwnProperty(`${camelize(this.type)}Id`)) {
+    if (
+      root &&
+      Object.prototype.hasOwnProperty.call(root, `${camelize(this.type)}Id`)
+    ) {
       vars = { id: root[`${camelize(this.type)}Id`] };
     }
 

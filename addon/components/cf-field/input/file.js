@@ -89,6 +89,7 @@ export default Component.extend({
         await this.onSave(null);
         this.set("field._errors", [{ type: "uploadFailed" }]);
       } finally {
+        // eslint-disable-next-line require-atomic-updates
         target.value = "";
         target.parentNode.querySelector("[type=text]").value = "";
       }
