@@ -35,7 +35,7 @@ export default Component.extend({
     }
   ),
 
-  selected: computed("value", function() {
+  selected: computed("value", "validators", function() {
     return (
       this.get("validators").filter(validator =>
         this.get("value").includes(validator.slug)
