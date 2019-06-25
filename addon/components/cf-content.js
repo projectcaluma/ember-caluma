@@ -138,8 +138,7 @@ export default Component.extend(ComponentQueryManager, {
       {
         query: getNavigationDocumentsQuery,
         variables: { rootDocument: rootId },
-        fetchPolicy: "network-only",
-        context: { headers: this.get("context.headers") }
+        fetchPolicy: "network-only"
       },
       "allDocuments.edges"
     )).map(({ node }) => node);
@@ -150,8 +149,7 @@ export default Component.extend(ComponentQueryManager, {
         variables: {
           slugs: documents.map(doc => doc.form.slug).sort()
         },
-        fetchPolicy: "cache-first",
-        context: { headers: this.get("context.headers") }
+        fetchPolicy: "cache-first"
       },
       "allForms.edges"
     )).map(({ node }) => node);
