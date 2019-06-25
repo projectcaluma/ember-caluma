@@ -1,3 +1,18 @@
+## [1.2.2](https://github.com/projectcaluma/ember-caluma/compare/v1.2.1...v1.2.2) (2019-06-25)
+
+
+### Bug Fixes
+
+* **deps:** update dependency ember-cli-string-helpers to v3 ([fc4d0c3](https://github.com/projectcaluma/ember-caluma/commit/fc4d0c3))
+* **deps:** update dependency ember-math-helpers to v2.11.2 ([13241bc](https://github.com/projectcaluma/ember-caluma/commit/13241bc))
+* **deps:** update dependency graphql-tools to v4.0.5 ([094f60c](https://github.com/projectcaluma/ember-caluma/commit/094f60c))
+* **deps:** update dependency sass to v1.22.0 ([4d94453](https://github.com/projectcaluma/ember-caluma/commit/4d94453))
+* **form:** add missing validation function for form questions ([c9a4a0f](https://github.com/projectcaluma/ember-caluma/commit/c9a4a0f))
+* **form:** fix answer handling of powerselect widget ([cb37130](https://github.com/projectcaluma/ember-caluma/commit/cb37130))
+* **form:** fix loading of subforms and improve error handling ([b47cd4d](https://github.com/projectcaluma/ember-caluma/commit/b47cd4d))
+* **form:** fix wrong answer when clicking checkboxes too fast ([8b8bc30](https://github.com/projectcaluma/ember-caluma/commit/8b8bc30))
+* **table:** allow tables to have documents as value ([017515f](https://github.com/projectcaluma/ember-caluma/commit/017515f))
+
 ## [1.2.1](https://github.com/projectcaluma/ember-caluma/compare/v1.2.0...v1.2.1) (2019-06-19)
 
 
