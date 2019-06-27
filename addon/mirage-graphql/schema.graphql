@@ -626,6 +626,7 @@ type Document implements Node {
     orderBy: [AnswerOrdering]
     questions: [ID]
   ): AnswerConnection
+  parentAnswers: [FormAnswer]
   case: Case
   workItem: WorkItem
 }
@@ -1050,6 +1051,22 @@ type Form implements Node {
   id: ID!
 }
 
+type FormAnswer implements Answer & Node {
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+  createdByUser: String
+  createdByGroup: String
+
+  """
+  The ID of the object.
+  """
+  id: ID!
+  question: Question!
+  value: Document!
+  meta: GenericScalar!
+  document: Document!
+}
+
 type FormatValidator {
   slug: String!
   name: String!
@@ -1217,6 +1234,19 @@ scalar GroupJexl
 
 """
 Lookup type to search document structures.
+
+The question is either a "plain" question slug, or of the form
+"parent_slug.question_slug". Note that in this case, the parent_slug will
+match the form slug, which in turn may be a subform of the whole form
+structure.
+
+What does NOT work is matching a full path, as the lookup would quickly
+generate very complex database queries.
+
+So, given the document structure "top.some_form.subform.question_foo", you can
+either search for "subform.question_foo" (if question_foo is used in other
+contexts within the same form), or search directly for "question_foo" if
+you don't need to be that specific, which will speed up the query slightly.
 """
 input HasAnswerFilterType {
   question: String!
@@ -1455,6 +1485,9 @@ type Mutation {
   saveDocumentTableAnswer(
     input: SaveDocumentTableAnswerInput!
   ): SaveDocumentTableAnswerPayload
+  saveDocumentFormAnswer(
+    input: SaveDocumentFormAnswerInput!
+  ): SaveDocumentFormAnswerPayload
   saveDocumentFileAnswer(
     input: SaveDocumentFileAnswerInput!
   ): SaveDocumentFileAnswerPayload
@@ -1658,6 +1691,11 @@ type Query {
     last: Int
     metaValue: MetaValueFilterType
     workflow: ID
+
+    """
+    CaseStatusArgument
+    """
+    status: CaseStatusArgument
     createdByUser: String
     createdByGroup: String
     offset: Int
@@ -2134,6 +2172,23 @@ input SaveDocumentFloatAnswerInput {
 }
 
 type SaveDocumentFloatAnswerPayload {
+  answer: Answer
+  clientMutationId: String
+}
+
+input SaveDocumentFormAnswerInput {
+  question: ID!
+  document: ID!
+  meta: JSONString
+
+  """
+  Document IDs representing the content of the form.
+  """
+  value: ID!
+  clientMutationId: String
+}
+
+type SaveDocumentFormAnswerPayload {
   answer: Answer
   clientMutationId: String
 }

@@ -1,9 +1,11 @@
 import { module, test } from "qunit";
 import { setupTest } from "ember-qunit";
 import Question from "ember-caluma/lib/question";
+import { setupMirage } from "ember-cli-mirage/test-support";
 
 module("Unit | Library | question", function(hooks) {
   setupTest(hooks);
+  setupMirage(hooks);
 
   test("it computes a pk", async function(assert) {
     assert.expect(1);

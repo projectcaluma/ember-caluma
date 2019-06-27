@@ -3,6 +3,7 @@ import { task } from "ember-concurrency";
 import { inject as service } from "@ember/service";
 import allFormatValidatorsQuery from "ember-caluma/gql/queries/all-format-validators";
 import { computed } from "@ember/object";
+import { assert } from "@ember/debug";
 
 export default Service.extend({
   apollo: service(),
@@ -29,18 +30,16 @@ export default Service.extend({
     return slugs.map(slug => {
       const validator = this.get("_validators")[slug];
 
-      if (validator) {
-        return validator.test(value)
-          ? true
-          : {
-              type: "format",
-              message: undefined,
-              context: { errorMsg: this.getText(slug) },
-              value
-            };
-      } else {
-        throw new Error(`No validator found with the slug ${slug}.`);
-      }
+      assert(`No validator found with the slug "${slug}".`, validator);
+
+      return validator.test(value)
+        ? true
+        : {
+            type: "format",
+            message: undefined,
+            context: { errorMsg: this.getText(slug) },
+            value
+          };
     });
   },
 

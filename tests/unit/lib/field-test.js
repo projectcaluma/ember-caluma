@@ -2,11 +2,13 @@ import { module, test } from "qunit";
 import { setupTest } from "ember-qunit";
 import { settled } from "@ember/test-helpers";
 import Field from "ember-caluma/lib/field";
+import { setupMirage } from "ember-cli-mirage/test-support";
 import Document from "ember-caluma/lib/document";
 import faker from "faker";
 
 module("Unit | Library | field", function(hooks) {
   setupTest(hooks);
+  setupMirage(hooks);
 
   hooks.beforeEach(function() {
     const question = {

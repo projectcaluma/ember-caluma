@@ -109,10 +109,10 @@ export default Base.extend(Evented, {
   init() {
     this._super(...arguments);
 
-    this.validator.getValidators();
-
     assert("Owner must be injected!", getOwner(this));
     assert("_question must be passed!", this._question);
+
+    this.validator.getValidators();
 
     const __typename = TYPE_MAP[this._question.__typename];
 

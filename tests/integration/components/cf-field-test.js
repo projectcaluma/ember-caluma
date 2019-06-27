@@ -3,9 +3,11 @@ import { setupRenderingTest } from "ember-qunit";
 import { render, fillIn } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 import Document from "ember-caluma/lib/document";
+import { setupMirage } from "ember-cli-mirage/test-support";
 
 module("Integration | Component | cf-field", function(hooks) {
   setupRenderingTest(hooks);
+  setupMirage(hooks);
 
   hooks.beforeEach(function() {
     const form = {

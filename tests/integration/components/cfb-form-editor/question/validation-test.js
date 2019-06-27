@@ -1,29 +1,71 @@
 import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
-import { render } from "@ember/test-helpers";
+import { render, fillIn } from "@ember/test-helpers";
+import Document from "ember-caluma/lib/document";
 import hbs from "htmlbars-inline-precompile";
+import { setupMirage } from "ember-cli-mirage/test-support";
+import { settled } from "@ember/test-helpers";
 
 module(
   "Integration | Component | cfb-form-editor/question/validation",
   function(hooks) {
     setupRenderingTest(hooks);
+    setupMirage(hooks);
 
-    test("it renders", async function(assert) {
-      // Set any properties with this.set('myProperty', 'value');
-      // Handle any actions with this.set('myAction', function(val) { ... });
+    hooks.beforeEach(function() {
+      this.server.create("format-validator", { slug: "email" });
 
-      await render(hbs`{{cfb-form-editor/question/validation}}`);
+      const document = Document.create(this.owner.ownerInjection(), {
+        raw: {
+          id: window.btoa("Document:1"),
+          answers: {
+            edges: [
+              {
+                node: {
+                  stringValue: "Test",
+                  question: {
+                    slug: "question-1"
+                  },
+                  __typename: "StringAnswer"
+                }
+              }
+            ]
+          },
+          form: {
+            questions: {
+              edges: [
+                {
+                  node: {
+                    slug: "question-1",
+                    label: "Test",
+                    isRequired: "true",
+                    isHidden: "false",
+                    meta: {
+                      formatValidators: ["email"]
+                    },
+                    __typename: "TextQuestion"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      });
 
-      assert.equal(this.element.textContent.trim(), "");
+      this.set("field", document.fields[0]);
+    });
 
-      // Template block usage:
-      await render(hbs`
-      {{#cfb-form-editor/question/validation}}
-        template block text
-      {{/cfb-form-editor/question/validation}}
-    `);
+    test("it shows error message", async function(assert) {
+      assert.expect(1);
+      let service = this.owner.lookup("service:validator");
+      await settled();
+      let error = service.getText("email");
 
-      assert.equal(this.element.textContent.trim(), "template block text");
+      await render(hbs`{{cf-field field=field}}`);
+
+      await fillIn("input", "Test");
+
+      assert.dom("span.validation-errors").hasText(error);
     });
   }
 );

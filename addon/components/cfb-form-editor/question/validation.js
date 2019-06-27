@@ -6,6 +6,7 @@ import layout from "../../../templates/components/cfb-form-editor/question/valid
 import allFormatValidatorsQuery from "ember-caluma/gql/queries/all-format-validators";
 
 export default Component.extend({
+  classNames: ["format-validators"],
   layout,
 
   apollo: service(),
@@ -36,10 +37,8 @@ export default Component.extend({
   ),
 
   selected: computed("value", "validators", function() {
-    return (
-      this.get("validators").filter(validator =>
-        this.get("value").includes(validator.slug)
-      ) || null
+    return this.getWithDefault("validators", []).filter(validator =>
+      this.getWithDefault("value", []).includes(validator.slug)
     );
   }),
 

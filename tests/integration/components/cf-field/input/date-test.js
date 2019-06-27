@@ -4,9 +4,11 @@ import { click, render } from "@ember/test-helpers";
 import moment from "moment";
 import hbs from "htmlbars-inline-precompile";
 import { Interactor } from "ember-pikaday/test-support";
+import { setupMirage } from "ember-cli-mirage/test-support";
 
 module("Integration | Component | cf-field/input/date", function(hooks) {
   setupRenderingTest(hooks);
+  setupMirage(hooks);
 
   test("it renders an input tag", async function(assert) {
     await render(hbs`{{cf-field/input/date}}`);
