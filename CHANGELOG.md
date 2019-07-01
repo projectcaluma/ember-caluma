@@ -1,3 +1,15 @@
+## [1.2.3](https://github.com/projectcaluma/ember-caluma/compare/v1.2.2...v1.2.3) (2019-07-01)
+
+
+### Bug Fixes
+
+* **deps:** update dependency ember-fetch to v6.6.0 ([cfc9e85](https://github.com/projectcaluma/ember-caluma/commit/cfc9e85))
+* **deps:** update dependency ember-math-helpers to v2.11.3 ([bd205da](https://github.com/projectcaluma/ember-caluma/commit/bd205da))
+* **deps:** update dependency graphql to v14.4.0 ([ed9fdb4](https://github.com/projectcaluma/ember-caluma/commit/ed9fdb4))
+* **deps:** update dependency graphql to v14.4.1 ([c0bf301](https://github.com/projectcaluma/ember-caluma/commit/c0bf301))
+* **deps:** update dependency sass to v1.22.1 ([9a86dc0](https://github.com/projectcaluma/ember-caluma/commit/9a86dc0))
+* **form:** fix resetting of values on slow input ([e07388a](https://github.com/projectcaluma/ember-caluma/commit/e07388a))
+
 ## [1.2.2](https://github.com/projectcaluma/ember-caluma/compare/v1.2.1...v1.2.2) (2019-06-25)
 
 
