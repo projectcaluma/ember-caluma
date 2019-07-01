@@ -15,7 +15,7 @@ export default Component.extend({
     "step",
     "disabled",
     "field.id:name",
-    "field.answer.floatValue:value",
+    "field.answer.value:value",
     "field.question.floatMinValue:min",
     "field.question.floatMaxValue:max"
   ],

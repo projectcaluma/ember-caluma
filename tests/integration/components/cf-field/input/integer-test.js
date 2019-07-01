@@ -14,7 +14,7 @@ module("Integration | Component | cf-field/input/integer", function(hooks) {
         field=(hash
           id="test"
           answer=(hash
-            integerValue=3
+            value=3
           )
           question=(hash
             integerMinValue=1

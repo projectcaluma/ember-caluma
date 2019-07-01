@@ -14,7 +14,7 @@ module("Integration | Component | cf-field/input/textarea", function(hooks) {
         field=(hash
           id="test"
           answer=(hash
-            stringValue="Test Test Test"
+            value="Test Test Test"
           )
           question=(hash
             textareaMaxLength=200

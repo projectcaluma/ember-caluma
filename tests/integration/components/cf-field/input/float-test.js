@@ -14,7 +14,7 @@ module("Integration | Component | cf-field/input/float", function(hooks) {
         field=(hash
           id="test"
           answer=(hash
-            floatValue=1.045
+            value=1.045
           )
           question=(hash
             floatMinValue=0.4

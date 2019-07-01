@@ -54,7 +54,7 @@ module("Unit | Library | field", function(hooks) {
       _answer: this.answer
     });
 
-    assert.equal(field.answer.stringValue, "Test");
+    assert.equal(field.answer.value, "Test");
 
     const fieldWithoutAnswer = Field.create(this.owner.ownerInjection(), {
       _question: this.question,
@@ -62,7 +62,7 @@ module("Unit | Library | field", function(hooks) {
       _answer: null
     });
 
-    assert.equal(fieldWithoutAnswer.answer.stringValue, null);
+    assert.equal(fieldWithoutAnswer.answer.value, null);
     assert.equal(fieldWithoutAnswer.answer.__typename, "StringAnswer");
   });
 
@@ -95,7 +95,7 @@ module("Unit | Library | field", function(hooks) {
       await field.validate.perform();
       assert.deepEqual(field.errors, []);
 
-      field.set("answer.stringValue", "");
+      field.set("answer.value", "");
 
       await field.validate.perform();
       assert.deepEqual(field.errors, ["This field can't be blank"]);
@@ -136,7 +136,7 @@ module("Unit | Library | field", function(hooks) {
       await field.validate.perform();
       assert.deepEqual(field.errors, []);
 
-      field.set("answer.stringValue", "Testx");
+      field.set("answer.value", "Testx");
 
       await field.validate.perform();
       assert.deepEqual(field.errors, [
@@ -163,7 +163,7 @@ module("Unit | Library | field", function(hooks) {
       await field.validate.perform();
       assert.deepEqual(field.errors, []);
 
-      field.set("answer.stringValue", "Testx");
+      field.set("answer.value", "Testx");
 
       await field.validate.perform();
       assert.deepEqual(field.errors, [
@@ -190,21 +190,21 @@ module("Unit | Library | field", function(hooks) {
 
       assert.equal(field._validateIntegerQuestion(), true);
 
-      field.set("answer.integerValue", 1);
+      field.set("answer.value", 1);
 
       await field.validate.perform();
       assert.deepEqual(field.errors, [
         "The value of this field must be greater than or equal to 2"
       ]);
 
-      field.set("answer.integerValue", 3);
+      field.set("answer.value", 3);
 
       await field.validate.perform();
       assert.deepEqual(field.errors, [
         "The value of this field must be less than or equal to 2"
       ]);
 
-      field.set("answer.integerValue", 1.5);
+      field.set("answer.value", 1.5);
 
       await field.validate.perform();
       assert.deepEqual(field.errors, [
@@ -232,14 +232,14 @@ module("Unit | Library | field", function(hooks) {
       await field.validate.perform();
       assert.deepEqual(field.errors, []);
 
-      field.set("answer.floatValue", 1.4);
+      field.set("answer.value", 1.4);
 
       await field.validate.perform();
       assert.deepEqual(field.errors, [
         "The value of this field must be greater than or equal to 1.5"
       ]);
 
-      field.set("answer.floatValue", 2.6);
+      field.set("answer.value", 2.6);
 
       await field.validate.perform();
       assert.deepEqual(field.errors, [
@@ -274,7 +274,7 @@ module("Unit | Library | field", function(hooks) {
       await field.validate.perform();
       assert.deepEqual(field.errors, []);
 
-      field.set("answer.stringValue", "invalid-option");
+      field.set("answer.value", "invalid-option");
 
       await field.validate.perform();
       assert.deepEqual(field.errors, [
@@ -309,14 +309,14 @@ module("Unit | Library | field", function(hooks) {
       await field.validate.perform();
       assert.deepEqual(field.errors, []);
 
-      field.set("answer.listValue", ["option-1", "invalid-option"]);
+      field.set("answer.value", ["option-1", "invalid-option"]);
 
       await field.validate.perform();
       assert.deepEqual(field.errors, [
         "'invalid-option' is not a valid value for this field"
       ]);
 
-      field.set("answer.listValue", ["invalid-option", "other-invalid-option"]);
+      field.set("answer.value", ["invalid-option", "other-invalid-option"]);
 
       await field.validate.perform();
       assert.deepEqual(field.errors, [
