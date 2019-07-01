@@ -19,12 +19,12 @@ module("Integration | Component | cf-field/input/file", function(hooks) {
     this.set("field", {
       answer: {
         id: btoa("FileAnswer:1"),
-        fileValue: {}
+        value: {}
       }
     });
 
     this.set("onSave", name => ({
-      fileValue: { uploadUrl: `/minio/upload/${name}` }
+      value: { uploadUrl: `/minio/upload/${name}` }
     }));
 
     let payload_good = new File(["test"], "good.txt", { type: "text/plain" });
@@ -41,7 +41,7 @@ module("Integration | Component | cf-field/input/file", function(hooks) {
     this.set("field", {
       answer: {
         id: btoa("FileAnswer:1"),
-        fileValue: {
+        value: {
           downloadUrl: "/minio/download/good.txt",
           name: "good.txt"
         }
@@ -58,7 +58,7 @@ module("Integration | Component | cf-field/input/file", function(hooks) {
     await render(hbs`{{cf-field/input/file field=field}}`);
 
     assert.dom(".uk-button").exists();
-    assert.dom(".uk-button").hasText(this.field.answer.fileValue.name);
+    assert.dom(".uk-button").hasText(this.field.answer.value.name);
 
     // Skip this part until the Mirage/GraphQL stuff is sorted out.
     //await click(".uk-button");

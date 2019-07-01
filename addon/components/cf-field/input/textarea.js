@@ -13,7 +13,7 @@ export default Component.extend({
   attributeBindings: [
     "disabled",
     "field.id:name",
-    "field.answer.stringValue:value",
+    "field.answer.value:value",
     "field.question.textareaMaxLength:maxlength"
   ],
 

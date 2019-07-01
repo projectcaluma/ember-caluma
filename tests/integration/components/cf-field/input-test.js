@@ -16,7 +16,7 @@ module("Integration | Component | cf-field/input", function(hooks) {
             __typename="TextQuestion"
           )
           answer=(hash
-            stringValue="Test"
+            value="Test"
           )
         )
       }}
@@ -36,7 +36,7 @@ module("Integration | Component | cf-field/input", function(hooks) {
             __typename="TextareaQuestion"
           )
           answer=(hash
-            stringValue="Test"
+            value="Test"
           )
         )
       }}
@@ -56,7 +56,7 @@ module("Integration | Component | cf-field/input", function(hooks) {
             __typename="IntegerQuestion"
           )
           answer=(hash
-            integerValue=5
+            value=5
           )
         )
       }}
@@ -76,7 +76,7 @@ module("Integration | Component | cf-field/input", function(hooks) {
             __typename="FloatQuestion"
           )
           answer=(hash
-            floatValue=0.55
+            value=0.55
           )
         )
       }}
@@ -104,7 +104,7 @@ module("Integration | Component | cf-field/input", function(hooks) {
             __typename="RadioQuestion"
           )
           answer=(hash
-            stringValue="option-1"
+            value="option-1"
           )
         )
       }}

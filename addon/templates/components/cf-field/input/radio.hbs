@@ -7,7 +7,7 @@
         type="radio"
         name={{field.id}}
         value={{option.slug}}
-        checked={{eq option.slug field.answer.stringValue}}
+        checked={{eq option.slug field.answer.value}}
         disabled={{disabled}}
         onchange={{action onSave option.slug}}
       >

@@ -13,11 +13,11 @@ export default Component.extend({
   intl: service(),
   apollo: service(),
 
-  downloadUrl: reads("field.answer.fileValue.downloadUrl"),
-  downloadName: reads("field.answer.fileValue.name"),
+  downloadUrl: reads("field.answer.value.downloadUrl"),
+  downloadName: reads("field.answer.value.name"),
 
-  placeholder: computed("field.answer.fileValue", function() {
-    return this.get("field.answer.fileValue")
+  placeholder: computed("field.answer.value", function() {
+    return this.get("field.answer.value")
       ? this.intl.t("caluma.form.changeFile")
       : this.intl.t("caluma.form.selectFile");
   }),
@@ -81,7 +81,7 @@ export default Component.extend({
       try {
         await this._uploadFile(file, fileValue.uploadUrl);
 
-        this.set("field.answer.fileValue", {
+        this.set("field.answer.value", {
           name: file.name,
           downloadUrl: fileValue.downloadUrl
         });

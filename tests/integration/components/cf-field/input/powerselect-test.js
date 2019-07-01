@@ -10,7 +10,7 @@ module("Integration | Component | cf-field/input/powerselect", function(hooks) {
     this.set("singleChoiceField", {
       id: "test-single",
       answer: {
-        stringValue: null,
+        value: null,
         __typename: "StringAnswer"
       },
       question: {
@@ -28,7 +28,7 @@ module("Integration | Component | cf-field/input/powerselect", function(hooks) {
     this.set("multipleChoiceField", {
       id: "test-multiple",
       answer: {
-        listValue: null,
+        value: null,
         __typename: "ListAnswer"
       },
       question: {
@@ -60,7 +60,7 @@ module("Integration | Component | cf-field/input/powerselect", function(hooks) {
     assert.expect(3);
 
     this.set("onSave", choice => {
-      this.set("singleChoiceField.answer.stringValue", choice);
+      this.set("singleChoiceField.answer.value", choice);
     });
 
     await render(
@@ -76,7 +76,7 @@ module("Integration | Component | cf-field/input/powerselect", function(hooks) {
     assert.dom(".ember-power-select-option").exists({ count: 3 });
     await click(".ember-power-select-option:first-child");
 
-    assert.equal(this.singleChoiceField.answer.stringValue, "option-1");
+    assert.equal(this.singleChoiceField.answer.value, "option-1");
   });
 
   test("it renders (multiple)", async function(assert) {

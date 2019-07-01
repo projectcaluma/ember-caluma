@@ -14,7 +14,7 @@ module("Integration | Component | cf-field/input/text", function(hooks) {
         field=(hash
           id="test"
           answer=(hash
-            stringValue="Test"
+            value="Test"
           )
           question=(hash
             textMaxLength=5

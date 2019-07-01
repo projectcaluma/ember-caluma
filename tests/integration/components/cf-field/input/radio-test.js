@@ -19,7 +19,7 @@ module("Integration | Component | cf-field/input/radio", function(hooks) {
         field=(hash
           id="test"
           answer=(hash
-            stringValue="option-1"
+            value="option-1"
           )
           question=(hash
             choiceOptions=(hash
