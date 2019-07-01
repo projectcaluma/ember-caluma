@@ -2,6 +2,6 @@
   {{field.question.label}}
 </span>
 
-{{#if (await field.question.optional)}}
+{{#if field.optional}}
   <span class="uk-margin-small-left uk-text-muted uk-text-lowercase">({{t "caluma.form.optional"}})</span>
 {{/if}}
