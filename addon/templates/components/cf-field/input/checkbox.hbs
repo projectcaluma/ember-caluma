@@ -5,7 +5,7 @@
       <input
         class="uk-checkbox uk-margin-small-right"
         type="checkbox"
-        name={{field.id}}
+        name="{{field.id}}:Option:{{option.slug}}"
         value={{option.slug}}
         checked={{contains option.slug field.answer.value}}
         disabled={{disabled}}
