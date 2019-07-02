@@ -1,5 +1,4 @@
 import Component from "@ember/component";
-import { get } from "@ember/object";
 import layout from "../../../templates/components/cf-field/input/checkbox";
 import { computed } from "@ember/object";
 
@@ -11,7 +10,6 @@ import { computed } from "@ember/object";
  */
 export default Component.extend({
   layout,
-  tagName: "",
 
   choices: computed(
     "field.question.{multipleChoiceOptions,dynamicMultipleChoiceOptions}.edges",
@@ -25,18 +23,17 @@ export default Component.extend({
 
   actions: {
     /**
-     * Toggle the checked state of an option and trigger saving the field.
+     * Update the value of the field with the slugs of the currently checked
+     * boxes.
      *
-     * @method toggle
-     * @param {String} slug The slug of the changed option
-     * @param {Boolean} checked Whether the options checkbox is checked or not
+     * @method update
      */
-    toggle(slug, checked) {
-      const value = get(this, "field.answer.value") || [];
+    update() {
+      const checkedBoxes = [
+        ...this.element.querySelectorAll("input[type=checkbox]:checked")
+      ];
 
-      this.onSave([
-        ...new Set([...value, slug].filter(v => v !== slug || checked))
-      ]);
+      this.onSave([...new Set(checkedBoxes.map(el => el.value))]);
     }
   }
 });
