@@ -9,7 +9,7 @@
         value={{option.slug}}
         checked={{contains option.slug field.answer.value}}
         disabled={{disabled}}
-        onchange={{action (action "toggle" option.slug) value="target.checked"}}
+        onchange={{action "update"}}
       >
       {{option.label}}
     </label>
