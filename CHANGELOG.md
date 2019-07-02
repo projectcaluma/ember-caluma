@@ -1,3 +1,12 @@
+## [1.2.4](https://github.com/projectcaluma/ember-caluma/compare/v1.2.3...v1.2.4) (2019-07-02)
+
+
+### Bug Fixes
+
+* **deps:** update dependency sass to v1.22.2 ([3881d3c](https://github.com/projectcaluma/ember-caluma/commit/3881d3c))
+* **deps:** update ember infrastructure ([7a63a38](https://github.com/projectcaluma/ember-caluma/commit/7a63a38))
+* **form:** fix wrong updating of the answer value ([091831e](https://github.com/projectcaluma/ember-caluma/commit/091831e))
+
 ## [1.2.3](https://github.com/projectcaluma/ember-caluma/compare/v1.2.2...v1.2.3) (2019-07-01)
 
 
