@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/projectcaluma/ember-caluma/compare/v2.0.0...v2.0.1) (2019-07-02)
+
+
+### Bug Fixes
+
+* **ie11:** fix checkboxes in IE11 ([6131128](https://github.com/projectcaluma/ember-caluma/commit/6131128))
+
 # [2.0.0](https://github.com/projectcaluma/ember-caluma/compare/v1.2.4...v2.0.0) (2019-07-02)
 
 
