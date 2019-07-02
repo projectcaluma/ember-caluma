@@ -1,6 +1,6 @@
 import Base from "ember-caluma/lib/base";
 import { computed, getWithDefault } from "@ember/object";
-import { equal, not, empty, reads } from "@ember/object/computed";
+import { equal, not, reads } from "@ember/object/computed";
 import { inject as service } from "@ember/service";
 import { assert } from "@ember/debug";
 import { getOwner } from "@ember/application";
@@ -8,14 +8,13 @@ import { camelize } from "@ember/string";
 import { task } from "ember-concurrency";
 import { all, resolve } from "rsvp";
 import { validate } from "ember-validators";
-import Evented, { on } from "@ember/object/evented";
+import Evented from "@ember/object/evented";
 
 import { next } from "@ember/runloop";
 import { lastValue } from "ember-caluma/utils/concurrency";
 import { getAST, getTransforms } from "ember-caluma/utils/jexl";
 import Answer from "ember-caluma/lib/answer";
 import Question from "ember-caluma/lib/question";
-import { decodeId } from "ember-caluma/helpers/decode-id";
 
 import saveDocumentFloatAnswerMutation from "ember-caluma/gql/mutations/save-document-float-answer";
 import saveDocumentIntegerAnswerMutation from "ember-caluma/gql/mutations/save-document-integer-answer";
@@ -109,34 +108,7 @@ export default Base.extend(Evented, {
   init() {
     this._super(...arguments);
 
-    assert("Owner must be injected!", getOwner(this));
-    assert("_question must be passed!", this._question);
-
     this.validator.getValidators();
-
-    const __typename = TYPE_MAP[this._question.__typename];
-
-    const question = Question.create(
-      getOwner(this).ownerInjection(),
-      Object.assign(this._question, {
-        document: this.document,
-        field: this
-      })
-    );
-
-    const answer =
-      __typename &&
-      Answer.create(
-        getOwner(this).ownerInjection(),
-        Object.assign(
-          this._answer || {
-            __typename,
-            question: { slug: this._question.slug },
-            [camelize(__typename.replace(/Answer$/, "Value"))]: null
-          },
-          { document: this.document, field: this }
-        )
-      );
 
     this.setProperties({
       _errors: []

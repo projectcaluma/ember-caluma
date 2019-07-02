@@ -15,40 +15,38 @@ module(
     hooks.beforeEach(function() {
       this.server.create("format-validator", { slug: "email" });
 
+      const form = {
+        __typename: "Form",
+        slug: "some-form",
+        questions: [
+          {
+            slug: "question-1",
+            label: "Test",
+            isRequired: "true",
+            isHidden: "false",
+            meta: {
+              formatValidators: ["email"]
+            },
+            __typename: "TextQuestion"
+          }
+        ]
+      };
+
       const document = Document.create(this.owner.ownerInjection(), {
         raw: {
           id: window.btoa("Document:1"),
-          answers: {
-            edges: [
-              {
-                node: {
-                  stringValue: "Test",
-                  question: {
-                    slug: "question-1"
-                  },
-                  __typename: "StringAnswer"
-                }
-              }
-            ]
-          },
-          form: {
-            questions: {
-              edges: [
-                {
-                  node: {
-                    slug: "question-1",
-                    label: "Test",
-                    isRequired: "true",
-                    isHidden: "false",
-                    meta: {
-                      formatValidators: ["email"]
-                    },
-                    __typename: "TextQuestion"
-                  }
-                }
-              ]
+          __typename: "Document",
+          answers: [
+            {
+              stringValue: "Test",
+              question: {
+                slug: "question-1"
+              },
+              __typename: "StringAnswer"
             }
-          }
+          ],
+          rootForm: form,
+          forms: [form]
         }
       });
 
