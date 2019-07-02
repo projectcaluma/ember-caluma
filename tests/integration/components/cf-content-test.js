@@ -75,8 +75,10 @@ module("Integration | Component | cf-content", function(hooks) {
       if (question.type === "CHOICE") {
         assert.dom(`[name="${id}"][value="${answer.value}"]`).isChecked();
       } else if (question.type === "MULTIPLE_CHOICE") {
+        // checkbox options have their option slug postfixed to the name in
+        // order to support IE11
         answer.value.forEach(v => {
-          assert.dom(`[name="${id}"][value="${v}"]`).isChecked();
+          assert.dom(`[name="${id}:Option:${v}"][value="${v}"]`).isChecked();
         });
       } else {
         assert.dom(`[name="${id}"]`).hasValue(String(answer.value));
@@ -93,9 +95,15 @@ module("Integration | Component | cf-content", function(hooks) {
         questionIds.includes(question.id)
       );
 
-      if (["CHOICE", "MULTIPLE_CHOICE"].includes(question.type)) {
+      if (question.type === "CHOICE") {
         options.forEach(({ slug }) => {
           assert.dom(`[name="${id}"][value="${slug}"]`).isDisabled();
+        });
+      } else if (question.type === "MULTIPLE_CHOICE") {
+        options.forEach(({ slug }) => {
+          assert
+            .dom(`[name="${id}:Option:${slug}"][value="${slug}"]`)
+            .isDisabled();
         });
       } else {
         assert.dom(`[name="${id}"]`).isDisabled();
@@ -191,10 +199,10 @@ module("Integration | Component | cf-content", function(hooks) {
       `[name="Document:${document.id}:Question:radio-question"][value="radio-question-option-2"]`
     );
     await click(
-      `[name="Document:${document.id}:Question:checkbox-question"][value="checkbox-question-option-1"]`
+      `[name="Document:${document.id}:Question:checkbox-question:Option:checkbox-question-option-1"][value="checkbox-question-option-1"]`
     );
     await click(
-      `[name="Document:${document.id}:Question:checkbox-question"][value="checkbox-question-option-2"]`
+      `[name="Document:${document.id}:Question:checkbox-question:Option:checkbox-question-option-2"][value="checkbox-question-option-2"]`
     );
     // The following answers are commented-out as we currently have a
     // problem with GraphQL/Mirage and I didn't want to skip everything.
