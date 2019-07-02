@@ -1,3 +1,17 @@
+# [2.0.0](https://github.com/projectcaluma/ember-caluma/compare/v1.2.4...v2.0.0) (2019-07-02)
+
+
+### Features
+
+* **lib:** support flat answers ([b602056](https://github.com/projectcaluma/ember-caluma/commit/b602056))
+
+
+### BREAKING CHANGES
+
+* **lib:** The whole lib layer changed since we moved to the new
+API structure. However, the cf-content component still works the same
+way as before.
+
 ## [1.2.4](https://github.com/projectcaluma/ember-caluma/compare/v1.2.3...v1.2.4) (2019-07-02)
 
 
