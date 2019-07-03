@@ -41,6 +41,20 @@ module("Unit | Library | field", function(hooks) {
     assert.equal(field.pk, "Document:xxx-xxx:Question:test-question");
   });
 
+  test("computes a isNew correctly", async function(assert) {
+    assert.expect(2);
+
+    const field = Field.create(this.owner.ownerInjection(), {
+      raw: { question: this.question, answer: this.answer }
+    });
+    const newField = Field.create(this.owner.ownerInjection(), {
+      raw: { question: this.question }
+    });
+
+    assert.equal(field.isNew, false);
+    assert.equal(newField.isNew, true);
+  });
+
   test("can compute the question", async function(assert) {
     assert.expect(2);
 
