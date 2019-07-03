@@ -108,8 +108,6 @@ export default Base.extend(Evented, {
   init() {
     this._super(...arguments);
 
-    this.validator.getValidators();
-
     this.setProperties({
       _errors: []
     });
