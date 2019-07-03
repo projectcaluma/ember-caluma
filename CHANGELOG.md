@@ -1,3 +1,10 @@
+## [2.0.2](https://github.com/projectcaluma/ember-caluma/compare/v2.0.1...v2.0.2) (2019-07-03)
+
+
+### Bug Fixes
+
+* **form:** fix new state of fields and fieldset initialization ([03a1b7c](https://github.com/projectcaluma/ember-caluma/commit/03a1b7c))
+
 ## [2.0.1](https://github.com/projectcaluma/ember-caluma/compare/v2.0.0...v2.0.1) (2019-07-02)
 
 
