@@ -8,7 +8,6 @@ import { decodeId } from "ember-caluma/helpers/decode-id";
 import { getOwner } from "@ember/application";
 import Document from "ember-caluma/lib/document";
 import { parseDocument } from "ember-caluma/lib/parsers";
-import { equal } from "@ember/object/computed";
 import Evented from "@ember/object/evented";
 
 /**
@@ -52,14 +51,6 @@ export default Base.extend(Evented, {
   uuid: computed("raw.id", function() {
     return this.raw.id ? decodeId(this.raw.id) : null;
   }),
-
-  /**
-   * Whether the answer is new.
-   *
-   * @property {Boolean} isNew
-   * @accessor
-   */
-  isNew: equal("id", null),
 
   /**
    * The name of the property in which the value is stored. This depends on the

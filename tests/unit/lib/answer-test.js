@@ -20,7 +20,7 @@ module("Unit | Library | answer", function(hooks) {
   });
 
   test("it computes a pk", async function(assert) {
-    assert.expect(4);
+    assert.expect(3);
 
     const answer = Answer.create(this.owner.ownerInjection(), {
       raw: {
@@ -29,7 +29,6 @@ module("Unit | Library | answer", function(hooks) {
       }
     });
 
-    assert.equal(answer.isNew, true);
     assert.equal(answer.id, null);
 
     answer.set("raw.id", btoa("Answer:xxxx-xxxx"));

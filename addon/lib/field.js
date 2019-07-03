@@ -163,7 +163,13 @@ export default Base.extend(Evented, {
    * @property {Boolean} isNew
    * @accessor
    */
-  isNew: reads("answer.isNew"),
+  isNew: computed("answer.pk", function() {
+    if (!this.answer) {
+      return true;
+    }
+
+    return !this.answer.pk;
+  }),
 
   /**
    * The type of the question
@@ -313,7 +319,7 @@ export default Base.extend(Evented, {
         `removeAnswer.answer`
       );
 
-      this.answer.set("id", undefined);
+      this.answer.set("raw.id", undefined);
     } else {
       response = yield this.apollo.mutate(
         {
@@ -329,7 +335,7 @@ export default Base.extend(Evented, {
         `saveDocument${type}.answer`
       );
 
-      this.answer.setProperties(response);
+      this.answer.setProperties({ raw: response });
     }
 
     return response;

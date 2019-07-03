@@ -4,7 +4,7 @@ import { getOwner } from "@ember/application";
 import { inject as service } from "@ember/service";
 import Field from "ember-caluma/lib/field";
 import Form from "ember-caluma/lib/form";
-import { computed } from "@ember/object";
+import { computed, get } from "@ember/object";
 
 /**
  * Object that represents a combination of a document and a form
@@ -91,7 +91,7 @@ export default Base.extend({
             raw: {
               question,
               answer: this.raw.answers.find(
-                answer => answer.question.slug === question.slug
+                answer => get(answer, "question.slug") === question.slug
               )
             },
             fieldset: this
