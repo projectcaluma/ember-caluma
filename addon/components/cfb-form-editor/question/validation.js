@@ -11,10 +11,10 @@ export default Component.extend({
 
   apollo: service(),
 
-  async didReceiveAttrs() {
+  init() {
     this._super(...arguments);
 
-    await this.get("availableFormatValidators").perform();
+    this.get("availableFormatValidators").perform();
   },
 
   availableFormatValidators: task(function*() {
@@ -23,21 +23,20 @@ export default Component.extend({
       "allFormatValidators.edges"
     );
     return formatValidators.map(edge => edge.node);
-  }).restartable(),
+  }).drop(),
 
   validators: computed(
-    "availableFormatValidators.lastSuccessful.value",
+    "availableFormatValidators.lastSuccessful.value.[]",
     function() {
-      if (this.availableFormatValidators.lastSuccessful) {
-        return this.availableFormatValidators.lastSuccessful.value;
-      } else {
-        return [];
-      }
+      return this.getWithDefault(
+        "availableFormatValidators.lastSuccessful.value",
+        []
+      );
     }
   ),
 
-  selected: computed("value", "validators", function() {
-    return this.getWithDefault("validators", []).filter(validator =>
+  selected: computed("value.[]", "validators.@each.slug", function() {
+    return this.validators.filter(validator =>
       this.getWithDefault("value", []).includes(validator.slug)
     );
   }),

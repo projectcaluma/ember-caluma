@@ -22,7 +22,7 @@ module("Unit | Service | validator", function(hooks) {
     this.server.logging = true;
     let service = this.owner.lookup("service:validator");
     await settled();
-    let result = service.validate("test@test.com", "email");
+    let result = service.validate("test@test.com", ["email"]);
     assert.deepEqual(result, [true]);
   });
 });

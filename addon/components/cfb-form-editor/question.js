@@ -291,13 +291,6 @@ export default Component.extend(ComponentQueryManager, {
 
       yield this.saveOptions.perform(changeset);
 
-      changeset.set(
-        "meta.formatValidators",
-        (changeset.get("meta.formatValidators") || []).map(
-          validator => validator.slug
-        )
-      );
-
       const question = yield this.get("apollo").mutate(
         {
           mutation: TYPES[changeset.get("__typename")],

@@ -57,7 +57,7 @@ module(
       assert.expect(1);
       let service = this.owner.lookup("service:validator");
       await settled();
-      let error = service.getText("email");
+      let error = service.validators.find(i => i.slug === "email").errorMsg;
 
       await render(hbs`{{cf-field field=field}}`);
 

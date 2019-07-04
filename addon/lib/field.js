@@ -73,38 +73,14 @@ export default Base.extend(Evented, {
   saveDocumentDateAnswerMutation,
   saveDocumentTableAnswerMutation,
 
-  /**
-   * The Apollo GraphQL service for making requests
-   *
-   * @property {ApolloService} apollo
-   * @accessor
-   */
   apollo: service(),
 
-  /**
-   * The translation service
-   *
-   * @property {IntlService} intl
-   * @accessor
-   */
   intl: service(),
+
   calumaStore: service(),
 
-  /**
-   * The Validator service
-   *
-   * @property {ValidatorService} validator
-   * @accessor
-   */
   validator: service(),
 
-  /**
-   * Initialize function which validates the passed arguments and sets an
-   * initial state of errors.
-   *
-   * @method init
-   * @internal
-   */
   init() {
     this._super(...arguments);
 
@@ -114,7 +90,8 @@ export default Base.extend(Evented, {
   },
 
   /**
-   * The ID of the field. Consists of the document ID and the question slug.
+   * The unique identifier for the field which consists of the documents pk and
+   * the questions pk separated by a colon.
    *
    * E.g: `Document:b01e9071-c63a-43a5-8c88-2daa7b02e411:Question:some-question-slug`
    *
@@ -168,13 +145,6 @@ export default Base.extend(Evented, {
 
     return answer.id ? this.calumaStore.push(answer) : answer;
   }),
-
-  registerDependentField(field, key) {
-    this.set(`dependentFields.${key}`, [
-      ...new Set(this.get(`dependentFields.${key}`)),
-      field
-    ]);
-  },
 
   /**
    * Whether the field is valid.

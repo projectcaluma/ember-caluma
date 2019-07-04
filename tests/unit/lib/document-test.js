@@ -2,13 +2,14 @@ import { module, test, skip } from "qunit";
 import { setupTest } from "ember-qunit";
 import Document from "ember-caluma/lib/document";
 import { settled } from "@ember/test-helpers";
-import { setupMirage } from "ember-cli-mirage/test-support";
+import ValidatorServiceStub from "dummy/tests/helpers/validator-service-stub";
 
 module("Unit | Library | document", function(hooks) {
   setupTest(hooks);
-  setupMirage(hooks);
 
   hooks.beforeEach(async function() {
+    this.owner.register("service:validator", ValidatorServiceStub);
+
     this.set("setFieldValue", async (slug, value) => {
       this.document.findField(slug).set("answer.value", value);
 

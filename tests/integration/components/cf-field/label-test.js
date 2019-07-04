@@ -3,13 +3,14 @@ import { setupRenderingTest } from "ember-qunit";
 import { render, settled } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 import Document from "ember-caluma/lib/document";
-import { setupMirage } from "ember-cli-mirage/test-support";
+import ValidatorServiceStub from "dummy/tests/helpers/validator-service-stub";
 
 module("Integration | Component | cf-field/label", function(hooks) {
   setupRenderingTest(hooks);
-  setupMirage(hooks);
 
   hooks.beforeEach(function() {
+    this.owner.register("service:validator", ValidatorServiceStub);
+
     const form = {
       slug: "some-form",
       __typename: "Form",
