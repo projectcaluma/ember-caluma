@@ -24,7 +24,9 @@ module("Unit | Library | field", function(hooks) {
       question: question.slug
     };
 
-    this.setProperties({ question, answer });
+    const document = { pk: "Document:xxxx-xxxx" };
+
+    this.setProperties({ question, answer, document });
   });
 
   test("computes a pk", async function(assert) {
@@ -35,20 +37,22 @@ module("Unit | Library | field", function(hooks) {
         question: this.question,
         answer: this.answer
       },
-      document: { pk: "Document:xxx-xxx" }
+      document: this.document
     });
 
-    assert.equal(field.pk, "Document:xxx-xxx:Question:test-question");
+    assert.equal(field.pk, "Document:xxxx-xxxx:Question:test-question");
   });
 
-  test("computes a isNew correctly", async function(assert) {
+  test("computes isNew correctly", async function(assert) {
     assert.expect(2);
 
     const field = Field.create(this.owner.ownerInjection(), {
-      raw: { question: this.question, answer: this.answer }
+      raw: { question: this.question, answer: this.answer },
+      document: this.document
     });
     const newField = Field.create(this.owner.ownerInjection(), {
-      raw: { question: this.question }
+      raw: { question: this.question },
+      document: this.document
     });
 
     assert.equal(field.isNew, false);
@@ -62,7 +66,8 @@ module("Unit | Library | field", function(hooks) {
       raw: {
         question: this.question,
         answer: this.answer
-      }
+      },
+      document: this.document
     });
 
     assert.equal(field.question.slug, "test-question");
@@ -76,7 +81,8 @@ module("Unit | Library | field", function(hooks) {
       raw: {
         question: this.question,
         answer: this.answer
-      }
+      },
+      document: this.document
     });
 
     assert.equal(field.answer.value, "test answer");
@@ -85,7 +91,8 @@ module("Unit | Library | field", function(hooks) {
       raw: {
         question: this.question,
         answer: null
-      }
+      },
+      document: this.document
     });
 
     assert.equal(fieldWithoutAnswer.answer.value, null);
@@ -201,7 +208,8 @@ module("Unit | Library | field", function(hooks) {
             stringValue: "Test",
             __typename: "StringAnswer"
           }
-        }
+        },
+        document: this.document
       });
 
       field.set("optional", false);
@@ -219,7 +227,8 @@ module("Unit | Library | field", function(hooks) {
             __typename: "TextQuestion"
           },
           answer: null
-        }
+        },
+        document: this.document
       });
 
       field.set("optional", true);
@@ -241,7 +250,8 @@ module("Unit | Library | field", function(hooks) {
             stringValue: "Test",
             __typename: "StringAnswer"
           }
-        }
+        },
+        document: this.document
       });
 
       field.set("answer.value", "Testx");
@@ -264,7 +274,8 @@ module("Unit | Library | field", function(hooks) {
             stringValue: "Test",
             __typename: "StringAnswer"
           }
-        }
+        },
+        document: this.document
       });
 
       field.set("answer.value", "Testx");
@@ -288,7 +299,8 @@ module("Unit | Library | field", function(hooks) {
             integerValue: 2,
             __typename: "IntegerAnswer"
           }
-        }
+        },
+        document: this.document
       });
 
       field.set("answer.integerValue", 1);
@@ -324,7 +336,8 @@ module("Unit | Library | field", function(hooks) {
             floatValue: 2.0,
             __typename: "FloatAnswer"
           }
-        }
+        },
+        document: this.document
       });
 
       await field.validate.perform();
@@ -366,7 +379,8 @@ module("Unit | Library | field", function(hooks) {
             stringValue: "option-1",
             __typename: "StringAnswer"
           }
-        }
+        },
+        document: this.document
       });
 
       field.set("answer.value", "invalid-option");
@@ -397,7 +411,8 @@ module("Unit | Library | field", function(hooks) {
             listValue: ["option-1"],
             __typename: "ListAnswer"
           }
-        }
+        },
+        document: this.document
       });
 
       field.set("answer.listValue", ["option-1", "invalid-option"]);

@@ -1,5 +1,5 @@
 import Base from "ember-caluma/lib/base";
-import { computed, get } from "@ember/object";
+import { computed, get, defineProperty } from "@ember/object";
 import { assert } from "@ember/debug";
 import { getOwner } from "@ember/application";
 import { decodeId } from "ember-caluma/helpers/decode-id";
@@ -18,28 +18,47 @@ export default Base.extend({
   calumaStore: service(),
 
   init() {
-    this._super(...arguments);
-
     assert(
       "A graphql document `raw` must be passed",
       this.raw && this.raw.__typename === "Document"
     );
 
+    defineProperty(this, "pk", {
+      writable: false,
+      value: `Document:${decodeId(this.raw.id)}`
+    });
+
+    this._super(...arguments);
+
+    this._createRootForm();
+    this._createFieldsets();
+
     this._registerFieldHandlers();
   },
 
-  /**
-   * The unique identifier for the document which consists of the documents
-   * uuid prefixed by "Document".
-   *
-   * E.g: `Document:b01e9071-c63a-43a5-8c88-2daa7b02e411`
-   *
-   * @property {String} pk
-   * @accessor
-   */
-  pk: computed("uuid", function() {
-    return `Document:${this.uuid}`;
-  }),
+  _createRootForm() {
+    const rootForm =
+      this.calumaStore.find(`Form:${this.raw.rootForm}`) ||
+      Form.create(getOwner(this).ownerInjection(), {
+        raw: this.raw.rootForm
+      });
+
+    this.set("rootForm", rootForm);
+  },
+
+  _createFieldsets() {
+    const fieldsets = this.raw.forms.map(form => {
+      return (
+        this.calumaStore.find(`${this.pk}:Form:${form.slug}`) ||
+        Fieldset.create(getOwner(this).ownerInjection(), {
+          raw: { form, answers: this.raw.answers },
+          document: this
+        })
+      );
+    });
+
+    fieldsets.forEach(fieldset => this.fieldsets.push(fieldset));
+  },
 
   /**
    * The uuid of the document
@@ -57,11 +76,7 @@ export default Base.extend({
    * @property {Form} rootForm
    * @accessor
    */
-  rootForm: computed("raw.rootForm", function() {
-    return this.calumaStore.push(
-      Form.create(getOwner(this).ownerInjection(), { raw: this.raw.rootForm })
-    );
-  }),
+  rootForm: null,
 
   /**
    * The fieldsets of this document
@@ -69,16 +84,7 @@ export default Base.extend({
    * @property {Fieldset[]} fieldsets
    * @accessor
    */
-  fieldsets: computed("raw.forms.[]", function() {
-    return this.raw.forms.map(form => {
-      return this.calumaStore.push(
-        Fieldset.create(getOwner(this).ownerInjection(), {
-          raw: { form, answers: this.raw.answers },
-          document: this
-        })
-      );
-    });
-  }),
+  fieldsets: computed(() => []),
 
   /**
    * All fields of all fieldsets of this document
@@ -125,7 +131,7 @@ export default Base.extend({
    * Find an answer for a given question slug
    *
    * @param {String} slug The slug of the question to find the answer for
-   * @returns {*} The answer to the given question
+   * @return {*} The answer to the given question
    */
   findAnswer(slug) {
     const field = this.findField(slug);
@@ -160,7 +166,7 @@ export default Base.extend({
    * Find a field in the document by a given question slug
    *
    * @param {String} slug The slug of the wanted field
-   * @returns {Field} The wanted field
+   * @return {Field} The wanted field
    */
   findField(slug) {
     return this.fields.find(field => field.question.slug === slug);

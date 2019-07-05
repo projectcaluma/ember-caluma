@@ -19,28 +19,19 @@ export default Base.extend(Evented, {
   calumaStore: service(),
 
   init() {
-    this._super(...arguments);
-
     assert(
       "A graphql answer `raw` must be passed",
       this.raw && /Answer$/.test(this.raw.__typename)
     );
 
+    if (this.raw.id) {
+      this.set("pk", `Answer:${decodeId(this.raw.id)}`);
+    }
+
+    this._super(...arguments);
+
     this.setProperties(this.raw);
   },
-
-  /**
-   * The unique identifier for the answer which consists of the answers
-   * uuid prefixed by "Answer". New answers return `null` as id.
-   *
-   * E.g: `Answer:b01e9071-c63a-43a5-8c88-2daa7b02e411`
-   *
-   * @property {String} pk
-   * @accessor
-   */
-  pk: computed("uuid", function() {
-    return this.uuid && `Answer:${this.uuid}`;
-  }),
 
   /**
    * The uuid of the answer
@@ -96,11 +87,9 @@ export default Base.extend(Evented, {
 
             return (
               existing ||
-              this.calumaStore.push(
-                Document.create(getOwner(this).ownerInjection(), {
-                  raw: parseDocument(document)
-                })
-              )
+              Document.create(getOwner(this).ownerInjection(), {
+                raw: parseDocument(document)
+              })
             );
           });
         }

@@ -12,7 +12,8 @@ module("Unit | Library | fieldset", function(hooks) {
       raw: {
         form: {
           __typename: "Form",
-          slug: "some-form"
+          slug: "some-form",
+          questions: []
         },
         answers: []
       },

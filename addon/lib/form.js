@@ -1,6 +1,6 @@
 import Base from "ember-caluma/lib/base";
 import { assert } from "@ember/debug";
-import { computed } from "@ember/object";
+import { defineProperty } from "@ember/object";
 
 /**
  * Object that represents a blueprint form
@@ -9,26 +9,18 @@ import { computed } from "@ember/object";
  */
 export default Base.extend({
   init() {
-    this._super(...arguments);
-
     assert(
       "A graphql form `raw` must be passed",
       this.raw && this.raw.__typename === "Form"
     );
 
-    this.setProperties(this.raw);
-  },
+    defineProperty(this, "pk", {
+      writable: false,
+      value: `Form:${this.raw.slug}`
+    });
 
-  /**
-   * The unique identifier for the form which consists of the form slug
-   * prefixed by "Form".
-   *
-   * E.g: `Form:some-form-slug`
-   *
-   * @property {String} pk
-   * @accessor
-   */
-  pk: computed("slug", function() {
-    return `Form:${this.slug}`;
-  })
+    this._super(...arguments);
+
+    this.setProperties(this.raw);
+  }
 });
