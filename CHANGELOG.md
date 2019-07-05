@@ -1,3 +1,14 @@
+## [2.0.3](https://github.com/projectcaluma/ember-caluma/compare/v2.0.2...v2.0.3) (2019-07-05)
+
+
+### Bug Fixes
+
+* **deps:** update dependency graphql to v14.4.2 ([1d3c2ba](https://github.com/projectcaluma/ember-caluma/commit/1d3c2ba))
+* **deps:** update dependency sass to v1.22.3 ([2f0b59e](https://github.com/projectcaluma/ember-caluma/commit/2f0b59e))
+* **dummy:** change cf-form to cf-content ([46db6aa](https://github.com/projectcaluma/ember-caluma/commit/46db6aa))
+* **lib:** fix library object initialization to prevent loops ([86f14dc](https://github.com/projectcaluma/ember-caluma/commit/86f14dc))
+* **uk-modal:** add DDAU handler ([c0f3130](https://github.com/projectcaluma/ember-caluma/commit/c0f3130))
+
 ## [2.0.2](https://github.com/projectcaluma/ember-caluma/compare/v2.0.1...v2.0.2) (2019-07-03)
 
 
