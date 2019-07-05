@@ -1,6 +1,6 @@
 import Base from "ember-caluma/lib/base";
-import { computed, getWithDefault } from "@ember/object";
-import { equal, not, reads } from "@ember/object/computed";
+import { computed, getWithDefault, defineProperty } from "@ember/object";
+import { equal, not, reads, empty } from "@ember/object/computed";
 import { inject as service } from "@ember/service";
 import { assert } from "@ember/debug";
 import { getOwner } from "@ember/application";
@@ -14,6 +14,7 @@ import { lastValue } from "ember-caluma/utils/concurrency";
 import { getAST, getTransforms } from "ember-caluma/utils/jexl";
 import Answer from "ember-caluma/lib/answer";
 import Question from "ember-caluma/lib/question";
+import { decodeId } from "ember-caluma/helpers/decode-id";
 
 import saveDocumentFloatAnswerMutation from "ember-caluma/gql/mutations/save-document-float-answer";
 import saveDocumentIntegerAnswerMutation from "ember-caluma/gql/mutations/save-document-integer-answer";
@@ -77,25 +78,60 @@ export default Base.extend(Evented, {
   calumaStore: service(),
 
   init() {
+    assert("A document must be passed", this.document);
+
+    defineProperty(this, "pk", {
+      writable: false,
+      value: `${this.document.pk}:Question:${this.raw.question.slug}`
+    });
+
     this._super(...arguments);
 
-    this.setProperties({
-      _errors: []
-    });
+    this._createQuestion();
+    this._createAnswer();
+
+    this.set("_errors", []);
   },
 
-  /**
-   * The unique identifier for the field which consists of the documents pk and
-   * the questions pk separated by a colon.
-   *
-   * E.g: `Document:b01e9071-c63a-43a5-8c88-2daa7b02e411:Question:some-question-slug`
-   *
-   * @property {String} pk
-   * @accessor
-   */
-  pk: computed("document.pk", "question.pk", function() {
-    return [this.document.pk, this.question.pk].join(":");
-  }),
+  _createQuestion() {
+    const question =
+      this.calumaStore.find(`Question:${this.raw.question.slug}`) ||
+      Question.create(getOwner(this).ownerInjection(), {
+        raw: this.raw.question
+      });
+
+    this.set("question", question);
+  },
+
+  _createAnswer() {
+    let answer;
+
+    // no answer passed, create an empty one
+    if (!this.raw.answer) {
+      const answerType = TYPE_MAP[this.raw.question.__typename];
+
+      // static questions don't have an answer
+      if (!answerType) {
+        return;
+      }
+
+      answer = Answer.create(getOwner(this).ownerInjection(), {
+        raw: {
+          __typename: answerType,
+          question: { slug: this.raw.question.slug },
+          [camelize(answerType.replace(/Answer$/, "Value"))]: null
+        }
+      });
+    } else {
+      answer =
+        this.calumaStore.find(`Answer:${decodeId(this.raw.answer.id)}`) ||
+        Answer.create(getOwner(this).ownerInjection(), {
+          raw: this.raw.answer
+        });
+    }
+
+    this.set("answer", answer);
+  },
 
   /**
    * The question to this field
@@ -103,16 +139,7 @@ export default Base.extend(Evented, {
    * @property {Question} question
    * @accessor
    */
-  question: computed("raw.question", function() {
-    return (
-      this.calumaStore.find(`Question:${this.raw.question.slug}`) ||
-      this.calumaStore.push(
-        Question.create(getOwner(this).ownerInjection(), {
-          raw: this.raw.question
-        })
-      )
-    );
-  }),
+  question: null,
 
   /**
    * The answer to this field. It is possible for this to be `null` if the
@@ -121,25 +148,7 @@ export default Base.extend(Evented, {
    * @property {Answer} answer
    * @accessor
    */
-  answer: computed("raw.answer", "raw.question.{slug,__typename}", function() {
-    const answerType = TYPE_MAP[this.raw.question.__typename];
-
-    // static questions don't have an answer
-    if (!answerType) return null;
-
-    // use the passed answer or create an empty one
-    const raw = this.raw.answer || {
-      __typename: answerType,
-      question: { slug: this.raw.question.slug },
-      [camelize(answerType.replace(/Answer$/, "Value"))]: null
-    };
-
-    const answer = Answer.create(getOwner(this).ownerInjection(), {
-      raw
-    });
-
-    return answer.id ? this.calumaStore.push(answer) : answer;
-  }),
+  answer: null,
 
   /**
    * Whether the field is valid.
@@ -163,13 +172,7 @@ export default Base.extend(Evented, {
    * @property {Boolean} isNew
    * @accessor
    */
-  isNew: computed("answer.pk", function() {
-    if (!this.answer) {
-      return true;
-    }
-
-    return !this.answer.pk;
-  }),
+  isNew: empty("answer.pk"),
 
   /**
    * The type of the question
@@ -319,7 +322,12 @@ export default Base.extend(Evented, {
         `removeAnswer.answer`
       );
 
-      this.answer.set("raw.id", undefined);
+      // remove the answer from the store and delete the data of the existing
+      // answer
+      this.calumaStore.delete(this.answer.pk);
+      Reflect.deleteProperty(this.answer.raw, "id");
+      Reflect.deleteProperty(this.answer, "id");
+      Reflect.deleteProperty(this.answer, "pk");
     } else {
       response = yield this.apollo.mutate(
         {
@@ -335,8 +343,19 @@ export default Base.extend(Evented, {
         `saveDocument${type}.answer`
       );
 
-      this.answer.setProperties({ raw: response });
+      if (this.isNew) {
+        // if the answer was new we need to set a pk an push the answer to the
+        // store
+        this.answer.set("pk", `Answer:${decodeId(response.id)}`);
+
+        this.calumaStore.push(this.answer);
+      }
+
+      // update the existing answer
+      this.answer.setProperties(response);
     }
+
+    this.set("raw.answer", response);
 
     return response;
   }).restartable(),

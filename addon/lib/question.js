@@ -1,6 +1,6 @@
 import Base from "ember-caluma/lib/base";
+import { defineProperty } from "@ember/object";
 import { assert } from "@ember/debug";
-import { computed } from "@ember/object";
 
 /**
  * Object which represents a question in context of a field
@@ -9,26 +9,18 @@ import { computed } from "@ember/object";
  */
 export default Base.extend({
   init() {
-    this._super(...arguments);
-
     assert(
       "A graphql question `raw` must be passed",
       this.raw && /Question$/.test(this.raw.__typename)
     );
 
-    this.setProperties(this.raw);
-  },
+    defineProperty(this, "pk", {
+      writable: false,
+      value: `Question:${this.raw.slug}`
+    });
 
-  /**
-   * The unique identifier for the question which consists of the question slug
-   * prefixed by "Question".
-   *
-   * E.g: `Question:some-question-slug`
-   *
-   * @property {String} pk
-   * @accessor
-   */
-  pk: computed("slug", function() {
-    return `Question:${this.slug}`;
-  })
+    this._super(...arguments);
+
+    this.setProperties(this.raw);
+  }
 });
