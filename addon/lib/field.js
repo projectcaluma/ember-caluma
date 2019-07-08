@@ -361,6 +361,7 @@ export default Base.extend(Evented, {
     }
 
     this.set("raw.answer", response);
+    this.set("answer.raw", response);
 
     return response;
   }).restartable(),
