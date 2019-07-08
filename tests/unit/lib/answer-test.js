@@ -20,22 +20,25 @@ module("Unit | Library | answer", function(hooks) {
   });
 
   test("it computes a pk", async function(assert) {
-    assert.expect(4);
+    assert.expect(3);
 
-    const answer = Answer.create(this.owner.ownerInjection(), {
+    const newAnswer = Answer.create(this.owner.ownerInjection(), {
       raw: {
-        __typename: "StringAnswer",
-        id: null
+        __typename: "StringAnswer"
       }
     });
 
-    assert.equal(answer.isNew, true);
-    assert.equal(answer.id, null);
+    assert.equal(newAnswer.pk, undefined);
 
-    answer.set("raw.id", btoa("Answer:xxxx-xxxx"));
+    const existingAnswer = Answer.create(this.owner.ownerInjection(), {
+      raw: {
+        __typename: "StringAnswer",
+        id: btoa("Answer:xxxx-xxxx")
+      }
+    });
 
-    assert.equal(answer.uuid, "xxxx-xxxx");
-    assert.equal(answer.pk, "Answer:xxxx-xxxx");
+    assert.equal(existingAnswer.uuid, "xxxx-xxxx");
+    assert.equal(existingAnswer.pk, "Answer:xxxx-xxxx");
   });
 
   test("it triggers a `valueChanged` event", async function(assert) {

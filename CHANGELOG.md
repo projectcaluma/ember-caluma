@@ -1,3 +1,42 @@
+## [2.0.3](https://github.com/projectcaluma/ember-caluma/compare/v2.0.2...v2.0.3) (2019-07-05)
+
+
+### Bug Fixes
+
+* **deps:** update dependency graphql to v14.4.2 ([1d3c2ba](https://github.com/projectcaluma/ember-caluma/commit/1d3c2ba))
+* **deps:** update dependency sass to v1.22.3 ([2f0b59e](https://github.com/projectcaluma/ember-caluma/commit/2f0b59e))
+* **dummy:** change cf-form to cf-content ([46db6aa](https://github.com/projectcaluma/ember-caluma/commit/46db6aa))
+* **lib:** fix library object initialization to prevent loops ([86f14dc](https://github.com/projectcaluma/ember-caluma/commit/86f14dc))
+* **uk-modal:** add DDAU handler ([c0f3130](https://github.com/projectcaluma/ember-caluma/commit/c0f3130))
+
+## [2.0.2](https://github.com/projectcaluma/ember-caluma/compare/v2.0.1...v2.0.2) (2019-07-03)
+
+
+### Bug Fixes
+
+* **form:** fix new state of fields and fieldset initialization ([03a1b7c](https://github.com/projectcaluma/ember-caluma/commit/03a1b7c))
+
+## [2.0.1](https://github.com/projectcaluma/ember-caluma/compare/v2.0.0...v2.0.1) (2019-07-02)
+
+
+### Bug Fixes
+
+* **ie11:** fix checkboxes in IE11 ([6131128](https://github.com/projectcaluma/ember-caluma/commit/6131128))
+
+# [2.0.0](https://github.com/projectcaluma/ember-caluma/compare/v1.2.4...v2.0.0) (2019-07-02)
+
+
+### Features
+
+* **lib:** support flat answers ([b602056](https://github.com/projectcaluma/ember-caluma/commit/b602056))
+
+
+### BREAKING CHANGES
+
+* **lib:** The whole lib layer changed since we moved to the new
+API structure. However, the cf-content component still works the same
+way as before.
+
 ## [1.2.4](https://github.com/projectcaluma/ember-caluma/compare/v1.2.3...v1.2.4) (2019-07-02)
 
 

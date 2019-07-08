@@ -57,6 +57,12 @@ export default Component.extend(ComponentQueryManager, {
     );
   },
 
+  willDestroy() {
+    this._super(...arguments);
+
+    this.calumaStore.clear();
+  },
+
   /**
    * The uuid of the document to display
    *
@@ -89,11 +95,9 @@ export default Component.extend(ComponentQueryManager, {
   navigation: computed("document", function() {
     if (!this.document) return;
 
-    return this.calumaStore.push(
-      Navigation.create(getOwner(this).ownerInjection(), {
-        document: this.document
-      })
-    );
+    return Navigation.create(getOwner(this).ownerInjection(), {
+      document: this.document
+    });
   }),
 
   fieldset: computed(
@@ -148,10 +152,10 @@ export default Component.extend(ComponentQueryManager, {
       "allDocuments.edges"
     )).map(({ node }) => node);
 
-    return this.calumaStore.push(
-      Document.create(getOwner(this).ownerInjection(), {
-        raw: parseDocument({ ...answerDocument, ...formDocument })
-      })
-    );
+    this.calumaStore.clear();
+
+    return Document.create(getOwner(this).ownerInjection(), {
+      raw: parseDocument({ ...answerDocument, ...formDocument })
+    });
   })
 });

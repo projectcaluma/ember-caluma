@@ -1,5 +1,5 @@
 import Base from "ember-caluma/lib/base";
-import { computed, observer } from "@ember/object";
+import { computed, observer, defineProperty } from "@ember/object";
 import { inject as service } from "@ember/service";
 import { reads } from "@ember/object/computed";
 import { assert } from "@ember/debug";
@@ -15,25 +15,17 @@ export const NavigationItem = Base.extend({
   router: service(),
 
   init() {
-    this._super(...arguments);
-
     assert("A fieldset `fieldset` must be passed", this.fieldset);
+
+    defineProperty(this, "pk", {
+      writable: false,
+      value: `NavigationItem:${this.fieldset.pk}`
+    });
+
+    this._super(...arguments);
 
     this.set("_items", []);
   },
-
-  /**
-   * The unique identifier for the navigation item which consists of the
-   * fieldsets pk prefixed by "NavigationItem".
-   *
-   * E.g: `NavigationItem:Document:b01e9071-c63a-43a5-8c88-2daa7b02e411:Form:some-form-slug`
-   *
-   * @property {String} pk
-   * @accessor
-   */
-  pk: computed("fieldset.pk", function() {
-    return `NavigationItem:${this.fieldset.pk}`;
-  }),
 
   /**
    * The parent navigation item
@@ -210,25 +202,38 @@ export const NavigationItem = Base.extend({
  */
 export const Navigation = Base.extend({
   router: service(),
+  calumaStore: service(),
 
   init() {
+    assert("A document `document` must be passed", this.document);
+
+    defineProperty(this, "pk", {
+      writable: false,
+      value: `Navigation:${this.document.pk}`
+    });
+
     this._super(...arguments);
 
-    assert("A document `document` must be passed", this.document);
+    this._createItems();
   },
 
-  /**
-   * The unique identifier for the navigation which consists of the documents
-   * pk prefixed by "Navigation".
-   *
-   * E.g: `Navigation:Document:b01e9071-c63a-43a5-8c88-2daa7b02e411`
-   *
-   * @property {String} pk
-   * @accessor
-   */
-  pk: computed("document.pk", function() {
-    return `Navigation:${this.document.pk}`;
-  }),
+  _createItems() {
+    const items = this.document.fieldsets
+      .filter(fieldset => fieldset.field)
+      .map(fieldset => {
+        const pk = `NavigationItem:${fieldset.pk}`;
+
+        return (
+          this.calumaStore.find(pk) ||
+          NavigationItem.create(getOwner(this).ownerInjection(), {
+            fieldset
+          })
+        );
+      });
+
+    items.forEach(item => item.set("_items", items));
+    items.forEach(item => this.items.push(item));
+  },
 
   /**
    * The document to build the navigation for
@@ -243,17 +248,7 @@ export const Navigation = Base.extend({
    * @property {NavigationItem[]} items
    * @accessor
    */
-  items: computed("document.fieldsets.[]", function() {
-    const items = this.document.fieldsets
-      .filter(fieldset => fieldset.field)
-      .map(fieldset =>
-        NavigationItem.create(getOwner(this).ownerInjection(), { fieldset })
-      );
-
-    items.forEach(item => item.set("_items", items));
-
-    return items;
-  }),
+  items: computed(() => []),
 
   /**
    * The currently active navigation item

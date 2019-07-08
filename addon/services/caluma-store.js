@@ -36,7 +36,13 @@ export default Service.extend({
     return this._store.find(i => i.pk === pk) || null;
   },
 
+  delete(pk) {
+    this.set("_store", this._store.filter(i => i.pk !== pk));
+  },
+
   clear() {
+    this._store.forEach(obj => obj.destroy());
+
     this.set("_store", []);
   }
 });

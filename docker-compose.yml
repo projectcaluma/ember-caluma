@@ -1,7 +1,7 @@
 version: "3"
 services:
   db:
-    image: postgres:9.4@sha256:26c46d7f6880cb1e46c9278acfe77f089caac9d22f6830949e2c9fcade3d5efd
+    image: postgres:9.4@sha256:2e38357854311f3f1fd32913ce62f81f95d471e27ed53144cac3192e94fd5468
     environment:
       - POSTGRES_USER=caluma
       - POSTGRES_PASSWORD=caluma
@@ -9,7 +9,7 @@ services:
       - dbdata:/var/lib/postgresql/data
 
   caluma:
-    image: projectcaluma/caluma:latest@sha256:185583cf37c4dee79641b8b61b4eabb23c37d7ecf72b1c65847080e7e09d7e41
+    image: projectcaluma/caluma:latest@sha256:09819fc77c7b7ad73569e8f5b59f2c6609e16a8943a123a14638dfd85731d285
     ports:
       - "8000:8000"
     depends_on:
@@ -21,7 +21,7 @@ services:
       #- MINIO_STORAGE_ENDPOINT=localhost:9000
 
   minio:
-      image: minio/minio:latest@sha256:8e7f0ba97da00ae6d38bda7b457fa4c159d9177cae170ad596185ec09f52eab9
+      image: minio/minio:latest@sha256:f79c41332aef24d35385fe6cfec074c329fdd3eba3110e46117145a9a28cf762
       volumes:
         - minio_data:/data
       ports:
