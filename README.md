@@ -1,4 +1,4 @@
-# ember-caluma
+# ![ember-caluma](https://user-images.githubusercontent.com/6150577/60805113-7d807580-a17f-11e9-8ba9-84f4f5474ef4.png)
 
 [![Build Status](https://travis-ci.com/projectcaluma/ember-caluma.svg?branch=master)](https://travis-ci.com/projectcaluma/ember-caluma)
 [![npm](https://img.shields.io/npm/v/ember-caluma.svg)](https://www.npmjs.com/package/ember-caluma)
