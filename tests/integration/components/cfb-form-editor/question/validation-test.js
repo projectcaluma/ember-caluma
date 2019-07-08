@@ -65,5 +65,18 @@ module(
 
       assert.dom("span.validation-errors").hasText(error);
     });
+
+    test("it saves the valid email address", async function(assert) {
+      assert.expect(1);
+      let service = this.owner.lookup("service:validator");
+      await settled();
+      let error = service.validators.find(i => i.slug === "email").errorMsg;
+
+      await render(hbs`{{cf-field field=field}}`);
+
+      await fillIn("input", "test@test.com");
+
+      assert.dom("span.validation-errors").hasText(error);
+    });
   }
 );

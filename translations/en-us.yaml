@@ -89,7 +89,6 @@ caluma:
       markdown: "Markdown"
       dataSource: "Data source"
       formatValidators: "Validation"
-      chooseValidation: "Choose a validation"
 
       general: "General"
       options: "Options"
