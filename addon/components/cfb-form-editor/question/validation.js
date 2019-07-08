@@ -6,7 +6,6 @@ import layout from "../../../templates/components/cfb-form-editor/question/valid
 import allFormatValidatorsQuery from "ember-caluma/gql/queries/all-format-validators";
 
 export default Component.extend({
-  classNames: ["format-validators"],
   layout,
 
   apollo: service(),

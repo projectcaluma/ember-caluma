@@ -523,7 +523,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
 
     await render(hbs`{{cfb-form-editor/question}}`);
     await selectChoose(
-      ".format-validators .ember-power-select-trigger",
+      ".ember-power-select-trigger",
       ".ember-power-select-option"
     );
     await settled();
