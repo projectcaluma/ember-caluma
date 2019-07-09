@@ -1,3 +1,18 @@
+# [2.1.0](https://github.com/projectcaluma/ember-caluma/compare/v2.0.3...v2.1.0) (2019-07-09)
+
+
+### Bug Fixes
+
+* **deps:** update dependency ember-auto-import to v1.5.0 ([67a1328](https://github.com/projectcaluma/ember-caluma/commit/67a1328))
+* **deps:** update dependency ember-fetch to v6.7.0 ([c2a0d5a](https://github.com/projectcaluma/ember-caluma/commit/c2a0d5a))
+* **deps:** update dependency ember-intl to v4.0.1 ([2f3c772](https://github.com/projectcaluma/ember-caluma/commit/2f3c772))
+* **form:** fix removing of empty answers ([bd6eb15](https://github.com/projectcaluma/ember-caluma/commit/bd6eb15))
+
+
+### Features
+
+* add format validation to text and textarea ([de6d46f](https://github.com/projectcaluma/ember-caluma/commit/de6d46f))
+
 ## [2.0.3](https://github.com/projectcaluma/ember-caluma/compare/v2.0.2...v2.0.3) (2019-07-05)
 
 
