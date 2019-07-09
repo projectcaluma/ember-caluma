@@ -1,3 +1,11 @@
+## [2.1.1](https://github.com/projectcaluma/ember-caluma/compare/v2.1.0...v2.1.1) (2019-07-09)
+
+
+### Bug Fixes
+
+* **form-builder:** make sure apollo is initialized properly ([8496daa](https://github.com/projectcaluma/ember-caluma/commit/8496daa))
+* **intl:** update deprecated macro to new syntax ([565f18a](https://github.com/projectcaluma/ember-caluma/commit/565f18a))
+
 # [2.1.0](https://github.com/projectcaluma/ember-caluma/compare/v2.0.3...v2.1.0) (2019-07-09)
 
 
