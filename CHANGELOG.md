@@ -13,6 +13,25 @@
 
 * add format validation to text and textarea ([de6d46f](https://github.com/projectcaluma/ember-caluma/commit/de6d46f))
 
+  This requires the host app to pass the new `validator` service to the form-builder engine:
+  ```js
+  // app/app.js
+  const App = Application.extend({
+    // ...
+
+    engines: {
+      emberCaluma: {
+        dependencies: {
+          services: [
+            // ...
+            "validator"
+          ]
+        }
+      }
+    }
+  });
+  ```
+
 ## [2.0.3](https://github.com/projectcaluma/ember-caluma/compare/v2.0.2...v2.0.3) (2019-07-05)
 
 
