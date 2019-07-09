@@ -10471,9 +10471,10 @@ java-properties@^1.0.0:
   resolved "https://registry.yarnpkg.com/java-properties/-/java-properties-1.0.1.tgz#ea0b5986c0894d73cf2a44de8bd216c459a07a94"
   integrity sha512-HbTaaXlIHoDVNXjmp4flOBWOfYBkrVN8dD1tp4m+95M/ADSDW/BxWbiwyVIhw/2+5d0cof4PHZCbE7+S1ukTQw==
 
-jexl@TomFrost/Jexl#2866a4aca9c46114ecc0d342942a7732763fd151:
-  version "1.1.4"
-  resolved "https://codeload.github.com/TomFrost/Jexl/tar.gz/2866a4aca9c46114ecc0d342942a7732763fd151"
+jexl@^2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/jexl/-/jexl-2.1.1.tgz#d4f2cb9e488ff737f73acc08c5afed37e07f886b"
+  integrity sha512-a+dZiuYIKl0nPYdAe7sJ8D/bCAbemwLjLypcT2brXtft/Mi3titp1QRCpTkaHrp+qeno8DKFxVpVKYNvw1AV3A==
 
 joi@^12.0.0:
   version "12.0.0"
