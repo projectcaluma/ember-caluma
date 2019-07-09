@@ -28,8 +28,7 @@
   "//": [
     "-- Documentation of blocked dependency updates --",
     "ember-apollo-client: https://github.com/bgentry/ember-apollo-client/issues/279",
-    "jexl: 2.x release is blocked due to https://github.com/ef4/ember-auto-import/issues/41",
-    "jexl: Using custom 1.x commit due to missing whitespace support (https://github.com/TomFrost/Jexl/pull/54)"
+    "jexl: Using custom 2.x commit due to missing whitespace support (https://github.com/TomFrost/Jexl/pull/54)"
   ],
   "dependencies": {
     "apollo-link-context": "^1.0.17",
@@ -58,7 +57,7 @@
     "graphql-iso-date": "^3.6.1",
     "graphql-tag": "^2.10.1",
     "graphql-tools": "^4.0.4",
-    "jexl": "TomFrost/Jexl#2866a4aca9c46114ecc0d342942a7732763fd151",
+    "jexl": "^2.1.1",
     "sass": "^1.18.0",
     "slugify": "^1.3.4",
     "uuid": "^3.3.2"
