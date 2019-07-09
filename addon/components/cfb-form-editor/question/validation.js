@@ -1,14 +1,12 @@
 import Component from "@ember/component";
 import { computed } from "@ember/object";
-import { inject as service } from "@ember/service";
 import { task } from "ember-concurrency";
 import layout from "../../../templates/components/cfb-form-editor/question/validation";
+import { ComponentQueryManager } from "ember-apollo-client";
 import allFormatValidatorsQuery from "ember-caluma/gql/queries/all-format-validators";
 
-export default Component.extend({
+export default Component.extend(ComponentQueryManager, {
   layout,
-
-  apollo: service(),
 
   init() {
     this._super(...arguments);
