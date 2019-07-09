@@ -1,16 +1,16 @@
 import Service from "@ember/service";
 import { task } from "ember-concurrency";
-import { inject as service } from "@ember/service";
 import allFormatValidatorsQuery from "ember-caluma/gql/queries/all-format-validators";
 import { computed } from "@ember/object";
 import { assert } from "@ember/debug";
+import { ObjectQueryManager } from "ember-apollo-client";
+import { next } from "@ember/runloop";
 
-export default Service.extend({
-  apollo: service(),
-
+export default Service.extend(ObjectQueryManager, {
   init() {
     this._super(...arguments);
-    this._fetchValidators.perform();
+
+    next(this._fetchValidators, "perform");
   },
 
   /**
@@ -42,7 +42,7 @@ export default Service.extend({
   },
 
   _fetchValidators: task(function*() {
-    return yield this.get("apollo").query(
+    return yield this.apollo.query(
       { query: allFormatValidatorsQuery },
       "allFormatValidators.edges"
     );
