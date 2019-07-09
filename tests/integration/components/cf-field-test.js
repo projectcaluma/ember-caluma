@@ -30,9 +30,15 @@ module("Integration | Component | cf-field", function(hooks) {
           label: "Test2",
           isRequired: "true",
           isHidden: "true",
-          meta: {
-            formatValidators: ["email"]
-          },
+          meta: { formatValidators: ["email"] },
+          __typename: "TextQuestion"
+        },
+        {
+          slug: "question-3",
+          label: "Test3",
+          isRequired: "true",
+          isHidden: "true",
+          formatValidators: ["email"],
           __typename: "TextQuestion"
         }
       ]
@@ -57,7 +63,8 @@ module("Integration | Component | cf-field", function(hooks) {
     });
 
     this.set("field", document.fields[0]);
-    this.set("emailField", document.fields[1]);
+    this.set("errorField", document.fields[1]);
+    this.set("emailField", document.fields[2]);
   });
 
   test("it allows deleting existing input", async function(assert) {
@@ -117,7 +124,7 @@ module("Integration | Component | cf-field", function(hooks) {
     await settled();
     let error = service.validators.find(i => i.slug === "email").errorMsg;
 
-    await render(hbs`{{cf-field field=emailField}}`);
+    await render(hbs`{{cf-field field=errorField}}`);
 
     await fillIn("input", "Test");
 
@@ -126,7 +133,6 @@ module("Integration | Component | cf-field", function(hooks) {
 
   test("it saves the valid email address", async function(assert) {
     assert.expect(1);
-    await settled();
 
     await render(hbs`{{cf-field field=emailField}}`);
 
