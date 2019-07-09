@@ -9,6 +9,7 @@ import { task } from "ember-concurrency";
 import { all, resolve } from "rsvp";
 import { validate } from "ember-validators";
 import Evented from "@ember/object/evented";
+
 import { next } from "@ember/runloop";
 import { lastValue } from "ember-caluma/utils/concurrency";
 import { getAST, getTransforms } from "ember-caluma/utils/jexl";
@@ -74,8 +75,12 @@ export default Base.extend(Evented, {
   saveDocumentTableAnswerMutation,
 
   apollo: service(),
+
   intl: service(),
+
   calumaStore: service(),
+
+  validator: service(),
 
   init() {
     assert("A document must be passed", this.document);
@@ -431,9 +436,15 @@ export default Base.extend(Evented, {
    * @internal
    */
   _validateTextQuestion() {
-    return validate("length", this.get("answer.value"), {
-      max: this.get("question.textMaxLength") || Number.POSITIVE_INFINITY
-    });
+    return [
+      ...this.validator.validate(
+        this.get("answer.value"),
+        this.getWithDefault("question.meta.formatValidators", [])
+      ),
+      validate("length", this.get("answer.value"), {
+        max: this.get("question.textMaxLength") || Number.POSITIVE_INFINITY
+      })
+    ];
   },
 
   /**
@@ -445,9 +456,15 @@ export default Base.extend(Evented, {
    * @internal
    */
   _validateTextareaQuestion() {
-    return validate("length", this.get("answer.value"), {
-      max: this.get("question.textareaMaxLength") || Number.POSITIVE_INFINITY
-    });
+    return [
+      ...this.validator.validate(
+        this.get("answer.value"),
+        this.getWithDefault("question.meta.formatValidators", [])
+      ),
+      validate("length", this.get("answer.value"), {
+        max: this.get("question.textareaMaxLength") || Number.POSITIVE_INFINITY
+      })
+    ];
   },
 
   /**

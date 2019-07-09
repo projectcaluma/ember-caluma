@@ -4,10 +4,15 @@ import { render, fillIn, blur, click, settled } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import graphqlError from "dummy/tests/helpers/graphql-error";
+import { selectChoose } from "ember-power-select/test-support";
 
 module("Integration | Component | cfb-form-editor/question", function(hooks) {
   setupRenderingTest(hooks);
   setupMirage(hooks);
+
+  hooks.beforeEach(function() {
+    this.server.create("format-validator", { slug: "email" });
+  });
 
   test("it renders", async function(assert) {
     assert.expect(3);
@@ -511,5 +516,18 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     await settled();
 
     assert.dom("input[name=slug]").hasValue("x-y");
+  });
+
+  test("it allows to select format-validators", async function(assert) {
+    assert.expect(1);
+
+    await render(hbs`{{cfb-form-editor/question}}`);
+    await selectChoose(
+      ".ember-power-select-trigger",
+      ".ember-power-select-option"
+    );
+    await settled();
+
+    assert.dom(".ember-power-select-multiple-option").exists();
   });
 });

@@ -1,0 +1,13 @@
+{{component labelComponent}}
+
+{{#power-select-multiple
+  selected=selected
+	placeholder=placeholder
+	options=validators
+	onchange=(action "updateValidators")
+	as |item|}}
+  {{item.name}}
+{{/power-select-multiple}}
+
+{{component hintComponent}}
+{{component errorComponent}}

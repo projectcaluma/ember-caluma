@@ -4,9 +4,14 @@ import { click, render } from "@ember/test-helpers";
 import moment from "moment";
 import hbs from "htmlbars-inline-precompile";
 import { Interactor } from "ember-pikaday/test-support";
+import ValidatorServiceStub from "dummy/tests/helpers/validator-service-stub";
 
 module("Integration | Component | cf-field/input/date", function(hooks) {
   setupRenderingTest(hooks);
+
+  hooks.beforeEach(function() {
+    this.owner.register("service:validator", ValidatorServiceStub);
+  });
 
   test("it renders an input tag", async function(assert) {
     await render(hbs`{{cf-field/input/date}}`);

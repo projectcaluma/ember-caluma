@@ -20,7 +20,6 @@ import formEditorQuestionQuery from "ember-caluma/gql/queries/form-editor-questi
 import addFormQuestionMutation from "ember-caluma/gql/mutations/add-form-question";
 import formListQuery from "ember-caluma/gql/queries/form-list";
 import allDataSourcesQuery from "ember-caluma/gql/queries/all-data-sources";
-
 import saveOptionMutation from "ember-caluma/gql/mutations/save-option";
 import saveTextQuestionMutation from "ember-caluma/gql/mutations/save-text-question";
 import saveTextareaQuestionMutation from "ember-caluma/gql/mutations/save-textarea-question";

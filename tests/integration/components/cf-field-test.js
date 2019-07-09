@@ -3,11 +3,16 @@ import { setupRenderingTest } from "ember-qunit";
 import { render, fillIn } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 import Document from "ember-caluma/lib/document";
+import { settled } from "@ember/test-helpers";
+import setupMirage from "ember-cli-mirage/test-support/setup-mirage";
 
 module("Integration | Component | cf-field", function(hooks) {
   setupRenderingTest(hooks);
+  setupMirage(hooks);
 
   hooks.beforeEach(function() {
+    this.server.create("format-validator", { slug: "email", regex: "/@/" });
+
     const form = {
       __typename: "Form",
       slug: "some-form",
@@ -16,8 +21,24 @@ module("Integration | Component | cf-field", function(hooks) {
           slug: "question-1",
           label: "Test",
           isRequired: "true",
-          isHidden: "true",
+          isHidden: "false",
           textMaxLength: 2,
+          __typename: "TextQuestion"
+        },
+        {
+          slug: "question-2",
+          label: "Test2",
+          isRequired: "true",
+          isHidden: "false",
+          meta: { formatValidators: ["email"] },
+          __typename: "TextQuestion"
+        },
+        {
+          slug: "question-3",
+          label: "Test3",
+          isRequired: "true",
+          isHidden: "false",
+          formatValidators: ["email"],
           __typename: "TextQuestion"
         }
       ]
@@ -42,6 +63,8 @@ module("Integration | Component | cf-field", function(hooks) {
     });
 
     this.set("field", document.fields[0]);
+    this.set("errorField", document.fields[1]);
+    this.set("emailField", document.fields[2]);
   });
 
   test("it allows deleting existing input", async function(assert) {
@@ -93,5 +116,28 @@ module("Integration | Component | cf-field", function(hooks) {
     await render(hbs`{{cf-field field=field}}`);
 
     assert.dom("uk-text-bold").doesNotExist();
+  });
+
+  test("it shows error message", async function(assert) {
+    assert.expect(1);
+    let service = this.owner.lookup("service:validator");
+    await settled();
+    let error = service.validators.find(i => i.slug === "email").errorMsg;
+
+    await render(hbs`{{cf-field field=errorField}}`);
+
+    await fillIn("input", "Test");
+
+    assert.dom("span.validation-errors").hasText(error);
+  });
+
+  test("it saves the valid email address", async function(assert) {
+    assert.expect(1);
+
+    await render(hbs`{{cf-field field=emailField}}`);
+
+    await fillIn("input", "test@test.com");
+
+    assert.dom("span.validation-errors").doesNotExist();
   });
 });

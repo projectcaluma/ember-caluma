@@ -4,11 +4,14 @@ import { settled } from "@ember/test-helpers";
 import Field from "ember-caluma/lib/field";
 import Document from "ember-caluma/lib/document";
 import faker from "faker";
+import ValidatorServiceStub from "dummy/tests/helpers/validator-service-stub";
 
 module("Unit | Library | field", function(hooks) {
   setupTest(hooks);
 
   hooks.beforeEach(function() {
+    this.owner.register("service:validator", ValidatorServiceStub);
+
     const question = {
       __typename: "TextQuestion",
       slug: "test-question",
@@ -196,6 +199,10 @@ module("Unit | Library | field", function(hooks) {
   });
 
   module("validation", function() {
+    hooks.beforeEach(function() {
+      this.owner.register("service:validator", ValidatorServiceStub);
+    });
+
     test("it can validate required fields", async function(assert) {
       assert.expect(1);
 

@@ -128,6 +128,16 @@
         }}
       {{/if}}
 
+      {{#if (contains f.model.__typename (array "TextQuestion" "TextareaQuestion"))}}
+        {{f.input
+          name="meta.formatValidators"
+          label=(t "caluma.form-builder.question.formatValidators")
+          placeholder=(t "caluma.form-builder.question.choose")
+          required=false
+          renderComponent=(component "cfb-form-editor/question/validation")
+        }}
+      {{/if}}
+
       {{#if (eq f.model.__typename "FloatQuestion")}}
         <div uk-grid class="uk-grid-small uk-child-width-1-2 uk-margin">
           <div>
