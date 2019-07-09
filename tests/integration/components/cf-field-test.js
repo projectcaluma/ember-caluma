@@ -21,7 +21,7 @@ module("Integration | Component | cf-field", function(hooks) {
           slug: "question-1",
           label: "Test",
           isRequired: "true",
-          isHidden: "true",
+          isHidden: "false",
           textMaxLength: 2,
           __typename: "TextQuestion"
         },
@@ -29,7 +29,7 @@ module("Integration | Component | cf-field", function(hooks) {
           slug: "question-2",
           label: "Test2",
           isRequired: "true",
-          isHidden: "true",
+          isHidden: "false",
           meta: { formatValidators: ["email"] },
           __typename: "TextQuestion"
         },
@@ -37,7 +37,7 @@ module("Integration | Component | cf-field", function(hooks) {
           slug: "question-3",
           label: "Test3",
           isRequired: "true",
-          isHidden: "true",
+          isHidden: "false",
           formatValidators: ["email"],
           __typename: "TextQuestion"
         }
