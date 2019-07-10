@@ -73,7 +73,7 @@ export default Component.extend(ComponentQueryManager, {
 
       const rows = this.get("field.answer.value") || [];
 
-      if (!rows.find(doc => doc.id === newDocument.uuid)) {
+      if (!rows.find(doc => doc.uuid === newDocument.uuid)) {
         // add document to table
         yield this.onSave([...rows, newDocument]);
 
