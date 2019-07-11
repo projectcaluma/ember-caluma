@@ -199,7 +199,7 @@ export default Base.extend({
         );
 
         hiddenDependents.forEach(f => f.hiddenTask.perform());
-        optionalDependents.forEach(f => f.hiddenTask.perform());
+        optionalDependents.forEach(f => f.optionalTask.perform());
       };
 
       // if the field is a form question, the fields of the linked fieldset must
