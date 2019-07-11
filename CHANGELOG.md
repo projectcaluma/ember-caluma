@@ -1,3 +1,12 @@
+## [2.1.2](https://github.com/projectcaluma/ember-caluma/compare/v2.1.1...v2.1.2) (2019-07-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency ember-auto-import to v1.5.2 ([755af94](https://github.com/projectcaluma/ember-caluma/commit/755af94))
+* **form:** fix saving of table answers ([ad88efb](https://github.com/projectcaluma/ember-caluma/commit/ad88efb))
+* **lib:** fix recomputing of the optional state ([13f4fee](https://github.com/projectcaluma/ember-caluma/commit/13f4fee))
+
 ## [2.1.1](https://github.com/projectcaluma/ember-caluma/compare/v2.1.0...v2.1.1) (2019-07-09)
 
 
