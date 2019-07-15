@@ -13,8 +13,8 @@ import { parseDocument } from "ember-caluma/lib/parsers";
  *
  * @class Answer
  */
-export default Base.extend({
-  calumaStore: service(),
+export default class Answer extends Base {
+  @service calumaStore;
 
   init() {
     assert(
@@ -26,10 +26,10 @@ export default Base.extend({
       this.set("pk", `Answer:${decodeId(this.raw.id)}`);
     }
 
-    this._super(...arguments);
+    super.init(...arguments);
 
     this.setProperties(this.raw);
-  },
+  }
 
   /**
    * The uuid of the answer
@@ -37,9 +37,10 @@ export default Base.extend({
    * @property {String} uuid
    * @accessor
    */
-  uuid: computed("raw.id", function() {
+  @computed("raw.id")
+  get uuid() {
     return this.raw.id ? decodeId(this.raw.id) : null;
-  }),
+  }
 
   /**
    * The name of the property in which the value is stored. This depends on the
@@ -50,12 +51,13 @@ export default Base.extend({
    * @accessor
    * @private
    */
-  _valueKey: computed("__typename", function() {
+  @computed("__typename")
+  get _valueKey() {
     return (
       this.__typename &&
       `${camelize(this.__typename.replace(/Answer$/, ""))}Value`
     );
-  }),
+  }
 
   /**
    * The value of the answer, the type of this value depends on the type of the
@@ -64,7 +66,7 @@ export default Base.extend({
    * @property {String|Number|String[]|Document[]} value
    * @computed
    */
-  value: computed(
+  @computed(
     "_valueKey",
     "stringValue",
     "integerValue",
@@ -72,37 +74,35 @@ export default Base.extend({
     "listValue",
     "fileValue",
     "dateValue",
-    "tableValue",
-    {
-      get() {
-        const value = this.get(this._valueKey);
+    "tableValue"
+  )
+  get value() {
+    const value = this.get(this._valueKey);
 
-        if (this.__typename === "TableAnswer" && value) {
-          return value.map(document => {
-            const existing = this.calumaStore.find(
-              `Document:${decodeId(document.id)}`
-            );
+    if (this.__typename === "TableAnswer" && value) {
+      return value.map(document => {
+        const existing = this.calumaStore.find(
+          `Document:${decodeId(document.id)}`
+        );
 
-            return (
-              existing ||
-              Document.create(getOwner(this).ownerInjection(), {
-                raw: parseDocument(document)
-              })
-            );
-          });
-        }
-
-        return value;
-      },
-      set(_, value) {
-        if (this._valueKey) {
-          this.set(this._valueKey, value);
-        }
-
-        return value;
-      }
+        return (
+          existing ||
+          Document.create(getOwner(this).ownerInjection(), {
+            raw: parseDocument(document)
+          })
+        );
+      });
     }
-  ),
+
+    return value;
+  }
+  set value(value) {
+    if (this._valueKey) {
+      this.set(this._valueKey, value);
+    }
+
+    return value;
+  }
 
   /**
    * The value serialized for a backend request.
@@ -110,11 +110,12 @@ export default Base.extend({
    * @property {String|Number|String[]} serializedValue
    * @accessor
    */
-  serializedValue: computed("value", function() {
+  @computed("value")
+  get serializedValue() {
     if (this.__typename === "TableAnswer") {
       return (this.value || []).map(({ uuid }) => uuid);
     }
 
     return this.value;
-  })
-});
+  }
+}

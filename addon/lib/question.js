@@ -25,6 +25,6 @@ export default class Question extends Base {
     this.setProperties(this.raw);
   }
 
-  @expression("isHidden") hiddenExpression
-  @expression("isRequired") requiredExpression
+  @expression("isHidden") hiddenExpression;
+  @expression("isRequired") requiredExpression;
 }
