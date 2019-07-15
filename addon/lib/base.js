@@ -3,11 +3,11 @@ import { getOwner } from "@ember/application";
 import { assert } from "@ember/debug";
 import { inject as service } from "@ember/service";
 
-export default EmberObject.extend({
-  calumaStore: service(),
+export default class Base extends EmberObject {
+  @service calumaStore;
 
   init() {
-    this._super(...arguments);
+    super.init(...arguments);
 
     assert("Owner must be injected", getOwner(this));
 
@@ -23,7 +23,7 @@ export default EmberObject.extend({
     if (this.pk) {
       this.calumaStore.push(this);
     }
-  },
+  }
 
   willDestroy() {
     this._super(...arguments);
@@ -32,4 +32,4 @@ export default EmberObject.extend({
       this.calumaStore.delete(this.pk);
     }
   }
-});
+}
