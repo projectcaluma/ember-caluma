@@ -8,7 +8,7 @@ import { expression } from "ember-caluma/utils/jexl";
  *
  * @class Question
  */
-export default Base.extend({
+export default class Question extends Base {
   init() {
     assert(
       "A graphql question `raw` must be passed",
@@ -20,11 +20,11 @@ export default Base.extend({
       value: `Question:${this.raw.slug}`
     });
 
-    this._super(...arguments);
+    super.init(...arguments);
 
     this.setProperties(this.raw);
-  },
+  }
 
-  hiddenExpression: expression("isHidden"),
-  requiredExpression: expression("isRequired")
-});
+  @expression("isHidden") hiddenExpression
+  @expression("isRequired") requiredExpression
+}
