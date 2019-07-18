@@ -221,8 +221,8 @@ export default Base.extend(Evented, {
    * @property {String[]} hiddenDependencies
    * @accessor
    */
-  hiddenDependencies: computed("question.isHidden", function() {
-    return getDependenciesFromJexl(this.question.isHidden);
+  hiddenDependencies: computed("question.hiddenExpression", function() {
+    return getDependenciesFromJexl(this.question.hiddenExpression);
   }),
 
   /**
@@ -234,8 +234,8 @@ export default Base.extend(Evented, {
    * @property {String[]} optionalDependencies
    * @accessor
    */
-  optionalDependencies: computed("question.isRequired", function() {
-    return getDependenciesFromJexl(this.question.isRequired);
+  optionalDependencies: computed("question.requiredExpression", function() {
+    return getDependenciesFromJexl(this.question.requiredExpression);
   }),
 
   /**
@@ -261,7 +261,7 @@ export default Base.extend(Evented, {
       fieldsetHidden ||
       dependingHidden ||
       (yield this.document.jexl.eval(
-        this.question.isHidden,
+        this.question.hiddenExpression,
         this.document.jexlContext
       ));
 
@@ -295,7 +295,7 @@ export default Base.extend(Evented, {
       fieldsetHidden ||
       dependingHidden ||
       !(yield this.document.jexl.eval(
-        this.question.isRequired,
+        this.question.requiredExpression,
         this.document.jexlContext
       ))
     );

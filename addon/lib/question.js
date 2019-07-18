@@ -1,6 +1,7 @@
 import Base from "ember-caluma/lib/base";
 import { defineProperty } from "@ember/object";
 import { assert } from "@ember/debug";
+import { expression } from "ember-caluma/utils/jexl";
 
 /**
  * Object which represents a question in context of a field
@@ -22,5 +23,8 @@ export default Base.extend({
     this._super(...arguments);
 
     this.setProperties(this.raw);
-  }
+  },
+
+  hiddenExpression: expression("isHidden"),
+  requiredExpression: expression("isRequired")
 });

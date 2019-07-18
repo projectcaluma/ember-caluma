@@ -202,7 +202,7 @@ module("Unit | Library | field", function(hooks) {
 
       const field = this.document.findField("test-question-2");
 
-      const whitespaced = "(\n  1 == 1\n    &&\n    2 == 2\n)";
+      const whitespaced = "(\n  1 == 1\r    &&\r    2 == 2\n)";
 
       field.question.set("isHidden", whitespaced);
       field.question.set("isRequired", whitespaced);
