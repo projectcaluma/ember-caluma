@@ -27,8 +27,7 @@
   },
   "//": [
     "-- Documentation of blocked dependency updates --",
-    "ember-apollo-client: https://github.com/bgentry/ember-apollo-client/issues/279",
-    "jexl: Using custom 2.x commit due to missing whitespace support (https://github.com/TomFrost/Jexl/pull/54)"
+    "ember-apollo-client: https://github.com/bgentry/ember-apollo-client/issues/279"
   ],
   "dependencies": {
     "apollo-link-context": "^1.0.17",
