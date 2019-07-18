@@ -5,6 +5,9 @@ query($id: ID!) {
     edges {
       node {
         id
+        form {
+          slug
+        }
         answers {
           edges {
             node {
