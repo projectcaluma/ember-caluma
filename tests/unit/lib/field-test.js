@@ -196,6 +196,20 @@ module("Unit | Library | field", function(hooks) {
 
       assert.deepEqual(field.optionalDependencies, ["test-question"]);
     });
+
+    test("it can handle newlines in JEXL expressions", async function(assert) {
+      assert.expect(2);
+
+      const field = this.document.findField("test-question-2");
+
+      const whitespaced = "(\n  1 == 1\n    &&\n    2 == 2\n)";
+
+      field.question.set("isHidden", whitespaced);
+      field.question.set("isRequired", whitespaced);
+
+      assert.equal(await field.hiddenTask.perform(), true);
+      assert.equal(await field.optionalTask.perform(), false);
+    });
   });
 
   module("validation", function() {
