@@ -143,19 +143,19 @@ export default Component.extend(ComponentQueryManager, {
       "allDocuments.edges"
     )).map(({ node }) => node);
 
-    const [formDocument] = (yield this.apollo.query(
+    const [form] = (yield this.apollo.query(
       {
         query: getDocumentFormsQuery,
         networkPolicy: "cache-first",
-        variables: { id: this.documentId }
+        variables: { slug: answerDocument.form.slug }
       },
-      "allDocuments.edges"
+      "allForms.edges"
     )).map(({ node }) => node);
 
     this.calumaStore.clear();
 
     return Document.create(getOwner(this).ownerInjection(), {
-      raw: parseDocument({ ...answerDocument, ...formDocument })
+      raw: parseDocument({ ...answerDocument, form })
     });
   })
 });
