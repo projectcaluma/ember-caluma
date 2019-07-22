@@ -7276,10 +7276,10 @@ ember-one-way-select@^4.0.0:
     ember-cli-htmlbars "^2.0.1"
     ember-invoke-action "^1.5.0"
 
-ember-pikaday@2.3.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/ember-pikaday/-/ember-pikaday-2.3.1.tgz#c70eaefcbe3fd7306bf72f27acfdd9be117aecb6"
-  integrity sha512-pFFyamXuoKO8Qd/NPygWlvlMTL/hXuJ3cdXQ4jlZEmw0Py+4KApQCaTOlPIBrXbLCabh2+CkqSuBv6dP8+F1dg==
+ember-pikaday@2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/ember-pikaday/-/ember-pikaday-2.4.0.tgz#d504db4ff2f4137da606d5c57bf6f8000c39a4c8"
+  integrity sha512-ZWgbrJKoYmt5X8HHAJNAIsOcDl/qxhixpvr/6f9ZNubxtyiPQ54dDsX6z50qDrIYKjYFfhSw9iJLoLebnL0OZg==
   dependencies:
     ember-cli-babel "^6.16.0"
     ember-cli-htmlbars "^3.0.0"
