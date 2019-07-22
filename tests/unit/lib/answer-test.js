@@ -1,6 +1,5 @@
 import { module, test } from "qunit";
 import { setupTest } from "ember-qunit";
-import { settled } from "@ember/test-helpers";
 import Answer from "ember-caluma/lib/answer";
 
 module("Unit | Library | answer", function(hooks) {
@@ -39,25 +38,6 @@ module("Unit | Library | answer", function(hooks) {
 
     assert.equal(existingAnswer.uuid, "xxxx-xxxx");
     assert.equal(existingAnswer.pk, "Answer:xxxx-xxxx");
-  });
-
-  test("it triggers a `valueChanged` event", async function(assert) {
-    assert.expect(2);
-
-    const answer = Answer.create(this.owner.ownerInjection(), {
-      raw: {
-        __typename: "StringAnswer",
-        stringValue: "test"
-      }
-    });
-
-    answer.on("valueChanged", () => assert.step("value-changed"));
-
-    answer.set("value", "othervalue");
-
-    await settled();
-
-    assert.verifySteps(["value-changed"]);
   });
 
   test("it generates documents for table answers", async function(assert) {

@@ -8,11 +8,7 @@ import { camelize } from "@ember/string";
 import { task } from "ember-concurrency";
 import { all, resolve } from "rsvp";
 import { validate } from "ember-validators";
-import Evented from "@ember/object/evented";
 
-import { next } from "@ember/runloop";
-import { lastValue } from "ember-caluma/utils/concurrency";
-import { getAST, getTransforms } from "ember-caluma/utils/jexl";
 import Answer from "ember-caluma/lib/answer";
 import Question from "ember-caluma/lib/question";
 import { decodeId } from "ember-caluma/helpers/decode-id";
@@ -25,6 +21,7 @@ import saveDocumentFileAnswerMutation from "ember-caluma/gql/mutations/save-docu
 import saveDocumentDateAnswerMutation from "ember-caluma/gql/mutations/save-document-date-answer";
 import saveDocumentTableAnswerMutation from "ember-caluma/gql/mutations/save-document-table-answer";
 import removeAnswerMutation from "ember-caluma/gql/mutations/remove-answer";
+import { getAST, getTransforms } from "ember-caluma/utils/jexl";
 
 const TYPE_MAP = {
   TextQuestion: "StringAnswer",
@@ -65,7 +62,7 @@ const getDependenciesFromJexl = expression => {
  *
  * @class Field
  */
-export default Base.extend(Evented, {
+export default Base.extend({
   saveDocumentFloatAnswerMutation,
   saveDocumentIntegerAnswerMutation,
   saveDocumentStringAnswerMutation,
@@ -196,110 +193,120 @@ export default Base.extend(Evented, {
   document: reads("fieldset.document"),
 
   /**
-   * Boolean which tells whether the question is hidden or not
+   * The value of the field
    *
-   * @property {Boolean} hidden
+   * @property {*} value
    * @accessor
    */
-  hidden: lastValue("hiddenTask"),
+  value: reads("answer.value"),
 
   /**
-   * Boolean which tells whether the question is optional or not
-   * (opposite of "required")
+   * Fields that are referenced in the `isHidden` JEXL expression
    *
-   * @property {Boolean} optional
-   * @accessor
-   */
-  optional: lastValue("optionalTask"),
-
-  /**
-   * Question slugs that are used in the `isHidden` JEXL expression
-   *
-   * If the value or visibility of any of these fields is changed, the JEXL
+   * If the value or hidden state of any of these fields change, the JEXL
    * expression needs to be re-evaluated.
    *
-   * @property {String[]} hiddenDependencies
+   * @property {Field[]} hiddenDependencies
    * @accessor
    */
-  hiddenDependencies: computed("question.hiddenExpression", function() {
-    return getDependenciesFromJexl(this.question.hiddenExpression);
-  }),
+  hiddenDependencies: computed(
+    "document.fields.[]",
+    "question.hiddenExpression",
+    function() {
+      return getDependenciesFromJexl(this.question.hiddenExpression).map(
+        slug => {
+          const f = this.document.findField(slug);
+
+          assert(
+            `Field for question \`${slug}\` was not found in this document. Please check the \`isHidden\` jexl expression: \`${this.question.hiddenExpression}\`.`,
+            f
+          );
+
+          return f;
+        }
+      );
+    }
+  ),
 
   /**
-   * Question slugs that are used in the `isRequired` JEXL expression
+   * Fields that are referenced in the `isRequired` JEXL expression
    *
-   * If the value or visibility of any of these fields is changed, the JEXL
+   * If the value or hidden state of any of these fields change, the JEXL
    * expression needs to be re-evaluated.
    *
-   * @property {String[]} optionalDependencies
+   * @property {Field[]} optionalDependencies
    * @accessor
    */
-  optionalDependencies: computed("question.requiredExpression", function() {
-    return getDependenciesFromJexl(this.question.requiredExpression);
-  }),
+  optionalDependencies: computed(
+    "document.fields.[]",
+    "question.requiredExpression",
+    function() {
+      return getDependenciesFromJexl(this.question.requiredExpression).map(
+        slug => {
+          const f = this.document.findField(slug);
+
+          assert(
+            `Field for question \`${slug}\` was not found in this document. Please check the \`isRequired\` jexl expression: \`${this.question.requiredExpression}\`.`,
+            f
+          );
+
+          return f;
+        }
+      );
+    }
+  ),
 
   /**
-   * Evaluate the fields hidden state.
+   * The field's hidden state
    *
    * A question is hidden if:
    * - The form question field of the fieldset is hidden
-   * - A depending field (used in the expression) is hidden
+   * - All depending field (used in the expression) are hidden
    * - The evaluated `question.isHidden` expression returns `true`
    *
-   * @method hiddenTask.perform
-   * @return {Boolean}
+   * @property {Boolean} hidden
    */
-  hiddenTask: task(function*() {
-    const fieldsetHidden = getWithDefault(this, "fieldset.field.hidden", false);
-    const dependingHidden =
-      this.hiddenDependencies.length &&
-      this.hiddenDependencies.every(slug =>
-        fieldIsHidden(this.document.findField(slug))
+  hidden: computed(
+    "fieldset.field.hidden",
+    "hiddenDependencies.@each.{hidden,value}",
+    function() {
+      return (
+        getWithDefault(this, "fieldset.field.hidden", false) ||
+        (this.hiddenDependencies.length &&
+          this.hiddenDependencies.every(fieldIsHidden)) ||
+        this.document.jexl.evalSync(
+          this.question.hiddenExpression,
+          this.document.jexlContext
+        )
       );
-
-    const hidden =
-      fieldsetHidden ||
-      dependingHidden ||
-      (yield this.document.jexl.eval(
-        this.question.hiddenExpression,
-        this.document.jexlContext
-      ));
-
-    if (this.get("hiddenTask.lastSuccessful.value") !== hidden) {
-      next(this, () => this.trigger("hiddenChanged"));
     }
-
-    return hidden;
-  }).restartable(),
+  ),
 
   /**
-   * Evaluate the fields optional state.
+   * The field's optional state
    *
    * The field is optional if:
    * - The form question field of the fieldset is hidden
-   * - A depending field (used in the expression) is hidden
+   * - All depending field (used in the expression) are hidden
    * - The evaluated `question.isRequired` expression returns `false`
    *
-   * @method optionalTask.perform
-   * @return {Boolean}
+   * @property {Boolean} optional
    */
-  optionalTask: task(function*() {
-    const fieldsetHidden = getWithDefault(this, "fieldset.field.hidden", false);
-    const dependingHidden =
-      this.optionalDependencies.length &&
-      this.optionalDependencies.every(slug =>
-        fieldIsHidden(this.document.findField(slug))
+  optional: computed(
+    "fieldset.field.hidden",
+    "optionalDependencies.@each.{hidden,value}",
+    function() {
+      return (
+        getWithDefault(this, "fieldset.field.hidden", false) ||
+        (this.optionalDependencies.length &&
+          this.optionalDependencies.every(fieldIsHidden)) ||
+        !this.document.jexl.evalSync(
+          this.question.requiredExpression,
+          this.document.jexlContext
+        )
       );
-
-    return (
-      fieldsetHidden ||
-      dependingHidden ||
-      !(yield this.document.jexl.eval(
-        this.question.requiredExpression,
-        this.document.jexlContext
-      ))
-    );
-  }).restartable(),
+    }
+  ),
 
   /**
    * Task to save a field. This uses a different mutation for every answer
@@ -631,24 +638,5 @@ export default Base.extend(Evented, {
    */
   _validateFormQuestion() {
     return resolve(true);
-  },
-
-  /**
-   * Validate that every dependent field of this field exists in the document
-   *
-   * @method _validateExpressions
-   * @private
-   */
-  _validateExpressions() {
-    const dependencies = [
-      ...new Set([...this.hiddenDependencies, ...this.optionalDependencies])
-    ];
-
-    dependencies.forEach(slug => {
-      assert(
-        `Field for question \`${slug}\` was not found in this document. Please check the jexl expressions of the question \`${this.question.slug}\`.`,
-        this.document.findField(slug)
-      );
-    });
   }
 });

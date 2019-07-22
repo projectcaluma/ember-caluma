@@ -1,5 +1,5 @@
 import Base from "ember-caluma/lib/base";
-import { computed, get, defineProperty } from "@ember/object";
+import { computed, defineProperty } from "@ember/object";
 import { assert } from "@ember/debug";
 import { getOwner } from "@ember/application";
 import { decodeId } from "ember-caluma/helpers/decode-id";
@@ -30,10 +30,10 @@ export default Base.extend({
 
     this._super(...arguments);
 
+    this.set("fieldsets", []);
+
     this._createRootForm();
     this._createFieldsets();
-
-    this._registerFieldHandlers();
   },
 
   _createRootForm() {
@@ -57,7 +57,7 @@ export default Base.extend({
       );
     });
 
-    fieldsets.forEach(fieldset => this.fieldsets.push(fieldset));
+    this.set("fieldsets", fieldsets);
   },
 
   /**
@@ -84,7 +84,7 @@ export default Base.extend({
    * @property {Fieldset[]} fieldsets
    * @accessor
    */
-  fieldsets: computed(() => []),
+  fieldsets: null,
 
   /**
    * All fields of all fieldsets of this document
@@ -170,64 +170,5 @@ export default Base.extend({
    */
   findField(slug) {
     return this.fields.find(field => field.question.slug === slug);
-  },
-
-  /**
-   * Register update handlers for all fields on the document
-   *
-   * @method _registerFieldHandlers
-   * @private
-   */
-  _registerFieldHandlers() {
-    this.fields.forEach(field => {
-      // validate all expressions
-      field._validateExpressions();
-
-      // initialize hidden and optional state
-      field.hiddenTask.perform();
-      field.optionalTask.perform();
-
-      // add handler for visibility and value changes which reruns hidden and
-      // optional states of fields that depend on the changed field
-      const refreshDependents = () => {
-        const hiddenDependents = this.fields.filter(f =>
-          f.hiddenDependencies.includes(field.question.slug)
-        );
-
-        const optionalDependents = this.fields.filter(f =>
-          f.optionalDependencies.includes(field.question.slug)
-        );
-
-        hiddenDependents.forEach(f => f.hiddenTask.perform());
-        optionalDependents.forEach(f => f.optionalTask.perform());
-      };
-
-      // if the field is a form question, the fields of the linked fieldset must
-      // be updated when the field's hidden state changes
-      const refreshFieldset = () => {
-        const fieldsets = this.fieldsets.filter(
-          fs => fs.form.slug === get(field, "question.subForm.slug")
-        );
-
-        fieldsets.forEach(fs =>
-          fs.fields.forEach(f => {
-            f.hiddenTask.perform();
-            f.optionalTask.perform();
-          })
-        );
-      };
-
-      field.on("hiddenChanged", () => {
-        refreshDependents();
-        refreshFieldset();
-      });
-
-      if (field.answer) {
-        // there are fields without an answer (e.g static or form questions)
-        field.answer.on("valueChanged", () => {
-          refreshDependents();
-        });
-      }
-    });
   }
 });

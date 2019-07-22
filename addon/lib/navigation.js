@@ -214,6 +214,8 @@ export const Navigation = Base.extend({
 
     this._super(...arguments);
 
+    this.set("items", []);
+
     this._createItems();
   },
 
@@ -232,7 +234,8 @@ export const Navigation = Base.extend({
       });
 
     items.forEach(item => item.set("_items", items));
-    items.forEach(item => this.items.push(item));
+
+    this.set("items", items);
   },
 
   /**
@@ -248,7 +251,7 @@ export const Navigation = Base.extend({
    * @property {NavigationItem[]} items
    * @accessor
    */
-  items: computed(() => []),
+  items: null,
 
   /**
    * The currently active navigation item
