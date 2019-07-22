@@ -1,6 +1,6 @@
 import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
-import { render, settled } from "@ember/test-helpers";
+import { render } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 import Document from "ember-caluma/lib/document";
 import ValidatorServiceStub from "dummy/tests/helpers/validator-service-stub";
@@ -51,13 +51,9 @@ module("Integration | Component | cf-field/label", function(hooks) {
 
     await render(hbs`{{cf-field/label field=field}}`);
 
-    await this.field.optionalTask.perform();
     assert.dom("label").hasText("Test");
 
     this.set("field.question.isRequired", "false");
-
-    await this.field.optionalTask.perform();
-    await settled();
 
     assert.dom("label").hasText("Test (Optional)");
   });

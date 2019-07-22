@@ -35,6 +35,8 @@ export default Base.extend({
 
     this._super(...arguments);
 
+    this.set("fields", []);
+
     this._createForm();
     this._createFields();
   },
@@ -67,7 +69,7 @@ export default Base.extend({
       );
     });
 
-    fields.forEach(field => this.fields.push(field));
+    this.set("fields", fields);
   },
 
   /**
@@ -97,5 +99,5 @@ export default Base.extend({
    * @property {Field[]} fields
    * @accessor
    */
-  fields: computed(() => [])
+  fields: null
 });

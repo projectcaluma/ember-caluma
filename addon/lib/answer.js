@@ -1,21 +1,19 @@
 import Base from "ember-caluma/lib/base";
 import { computed } from "@ember/object";
 import { camelize } from "@ember/string";
-import { next } from "@ember/runloop";
 import { assert } from "@ember/debug";
 import { inject as service } from "@ember/service";
 import { decodeId } from "ember-caluma/helpers/decode-id";
 import { getOwner } from "@ember/application";
 import Document from "ember-caluma/lib/document";
 import { parseDocument } from "ember-caluma/lib/parsers";
-import Evented from "@ember/object/evented";
 
 /**
  * Object which represents an answer in context of a field
  *
  * @class Answer
  */
-export default Base.extend(Evented, {
+export default Base.extend({
   calumaStore: service(),
 
   init() {
@@ -100,8 +98,6 @@ export default Base.extend(Evented, {
         if (this._valueKey) {
           this.set(this._valueKey, value);
         }
-
-        next(this, () => this.trigger("valueChanged", value));
 
         return value;
       }
