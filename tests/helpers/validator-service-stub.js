@@ -1,7 +1,7 @@
 import Service from "@ember/service";
 
 export default Service.extend({
-  validate() {
+  async validate() {
     return [true];
   }
 });

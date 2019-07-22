@@ -442,12 +442,12 @@ export default Base.extend({
    * @return {Object|Boolean} Returns an object if invalid or true if valid
    * @internal
    */
-  _validateTextQuestion() {
+  async _validateTextQuestion() {
     return [
-      ...this.validator.validate(
+      ...(await this.validator.validate(
         this.get("answer.value"),
         this.getWithDefault("question.meta.formatValidators", [])
-      ),
+      )),
       validate("length", this.get("answer.value"), {
         max: this.get("question.textMaxLength") || Number.POSITIVE_INFINITY
       })
@@ -462,12 +462,12 @@ export default Base.extend({
    * @return {Object|Boolean} Returns an object if invalid or true if valid
    * @internal
    */
-  _validateTextareaQuestion() {
+  async _validateTextareaQuestion() {
     return [
-      ...this.validator.validate(
+      ...(await this.validator.validate(
         this.get("answer.value"),
         this.getWithDefault("question.meta.formatValidators", [])
-      ),
+      )),
       validate("length", this.get("answer.value"), {
         max: this.get("question.textareaMaxLength") || Number.POSITIVE_INFINITY
       })
