@@ -3,7 +3,6 @@ import { setupRenderingTest } from "ember-qunit";
 import { render, fillIn } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 import Document from "ember-caluma/lib/document";
-import { settled } from "@ember/test-helpers";
 import setupMirage from "ember-cli-mirage/test-support/setup-mirage";
 
 module("Integration | Component | cf-field", function(hooks) {
@@ -11,7 +10,10 @@ module("Integration | Component | cf-field", function(hooks) {
   setupMirage(hooks);
 
   hooks.beforeEach(function() {
-    this.server.create("format-validator", { slug: "email", regex: "/@/" });
+    this.validator = this.server.create("format-validator", {
+      slug: "email",
+      regex: "/@/"
+    });
 
     const form = {
       __typename: "Form",
@@ -120,15 +122,12 @@ module("Integration | Component | cf-field", function(hooks) {
 
   test("it shows error message", async function(assert) {
     assert.expect(1);
-    let service = this.owner.lookup("service:validator");
-    await settled();
-    let error = service.validators.find(i => i.slug === "email").errorMsg;
 
     await render(hbs`{{cf-field field=errorField}}`);
 
     await fillIn("input", "Test");
 
-    assert.dom("span.validation-errors").hasText(error);
+    assert.dom("span.validation-errors").hasText(this.validator.errorMsg);
   });
 
   test("it saves the valid email address", async function(assert) {
