@@ -38,7 +38,7 @@ export default Base.extend({
 
   _createRootForm() {
     const rootForm =
-      this.calumaStore.find(`Form:${this.raw.rootForm}`) ||
+      this.calumaStore.find(`Form:${this.raw.rootForm.slug}`) ||
       Form.create(getOwner(this).ownerInjection(), {
         raw: this.raw.rootForm
       });
@@ -58,6 +58,14 @@ export default Base.extend({
     });
 
     this.set("fieldsets", fieldsets);
+  },
+
+  willDestroy() {
+    this._super(...arguments);
+
+    const fieldsets = this.fieldsets;
+    this.set("fieldsets", []);
+    fieldsets.forEach(fieldset => fieldset.destroy());
   },
 
   /**

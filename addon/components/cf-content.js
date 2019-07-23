@@ -60,7 +60,11 @@ export default Component.extend(ComponentQueryManager, {
   willDestroy() {
     this._super(...arguments);
 
-    this.calumaStore.clear();
+    this.document.destroy();
+
+    if (this.navigation) {
+      this.navigation.destroy();
+    }
   },
 
   /**
@@ -151,8 +155,6 @@ export default Component.extend(ComponentQueryManager, {
       },
       "allForms.edges"
     )).map(({ node }) => node);
-
-    this.calumaStore.clear();
 
     return Document.create(getOwner(this).ownerInjection(), {
       raw: parseDocument({ ...answerDocument, form })
