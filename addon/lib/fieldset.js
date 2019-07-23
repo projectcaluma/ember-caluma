@@ -41,6 +41,14 @@ export default Base.extend({
     this._createFields();
   },
 
+  willDestroy() {
+    this._super(...arguments);
+
+    const fields = this.fields;
+    this.set("fields", []);
+    fields.forEach(field => field.destroy());
+  },
+
   _createForm() {
     const form =
       this.calumaStore.find(`Form:${this.raw.form.slug}`) ||

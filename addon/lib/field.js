@@ -94,6 +94,14 @@ export default Base.extend(ObjectQueryManager, {
     this.set("_errors", []);
   },
 
+  willDestroy() {
+    this._super(...arguments);
+
+    if (this.answer) {
+      this.answer.destroy();
+    }
+  },
+
   _createQuestion() {
     const question =
       this.calumaStore.find(`Question:${this.raw.question.slug}`) ||

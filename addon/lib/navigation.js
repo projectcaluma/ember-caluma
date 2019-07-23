@@ -16,6 +16,7 @@ export const NavigationItem = Base.extend({
 
   init() {
     assert("A fieldset `fieldset` must be passed", this.fieldset);
+    assert("A navigation `navigation` must be passed", this.navigation);
 
     defineProperty(this, "pk", {
       writable: false,
@@ -23,8 +24,6 @@ export const NavigationItem = Base.extend({
     });
 
     this._super(...arguments);
-
-    this.set("_items", []);
   },
 
   /**
@@ -33,8 +32,8 @@ export const NavigationItem = Base.extend({
    * @property {NavigationItem} parent
    * @accessor
    */
-  parent: computed("_parentSlug", "_items.@each.slug", function() {
-    return this._items.find(item => item.slug === this._parentSlug);
+  parent: computed("_parentSlug", "navigation.items.@each.slug", function() {
+    return this.navigation.items.find(item => item.slug === this._parentSlug);
   }),
 
   /**
@@ -43,8 +42,8 @@ export const NavigationItem = Base.extend({
    * @property {NavigationItem[]} children
    * @accessor
    */
-  children: computed("slug", "_items.@each._parentSlug", function() {
-    return this._items.filter(item => item._parentSlug === this.slug);
+  children: computed("slug", "navigation.items.@each._parentSlug", function() {
+    return this.navigation.items.filter(item => item._parentSlug === this.slug);
   }),
 
   /**
@@ -219,6 +218,14 @@ export const Navigation = Base.extend({
     this._createItems();
   },
 
+  willDestroy() {
+    this._super(...arguments);
+
+    const items = this.items;
+    this.set("items", []);
+    items.forEach(item => item.destroy());
+  },
+
   _createItems() {
     const items = this.document.fieldsets
       .filter(fieldset => fieldset.field)
@@ -228,12 +235,11 @@ export const Navigation = Base.extend({
         return (
           this.calumaStore.find(pk) ||
           NavigationItem.create(getOwner(this).ownerInjection(), {
-            fieldset
+            fieldset,
+            navigation: this
           })
         );
       });
-
-    items.forEach(item => item.set("_items", items));
 
     this.set("items", items);
   },
