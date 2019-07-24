@@ -1,3 +1,17 @@
+## [2.1.3](https://github.com/projectcaluma/ember-caluma/compare/v2.1.2...v2.1.3) (2019-07-24)
+
+
+### Bug Fixes
+
+* **deps:** update dependency sass to v1.22.4 ([74d2810](https://github.com/projectcaluma/ember-caluma/commit/74d2810))
+* **deps:** update jexl ([8040e05](https://github.com/projectcaluma/ember-caluma/commit/8040e05))
+* **form:** fix premature access to validators which are not yet fetched ([df6a6e6](https://github.com/projectcaluma/ember-caluma/commit/df6a6e6))
+* **form:** fix removing of table rows ([5ea7881](https://github.com/projectcaluma/ember-caluma/commit/5ea7881))
+* **jexl:** fix handling of whitespace characters ([f783909](https://github.com/projectcaluma/ember-caluma/commit/f783909))
+* **performance:** improve loading performance and caching ([7bcedab](https://github.com/projectcaluma/ember-caluma/commit/7bcedab))
+* **performance:** improve performance of state calculations ([cb46c5b](https://github.com/projectcaluma/ember-caluma/commit/cb46c5b))
+* **tests:** add failing test for whitespace jexl expressions ([ba7d236](https://github.com/projectcaluma/ember-caluma/commit/ba7d236))
+
 ## [2.1.2](https://github.com/projectcaluma/ember-caluma/compare/v2.1.1...v2.1.2) (2019-07-11)
 
 
