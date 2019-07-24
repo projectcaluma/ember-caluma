@@ -2135,7 +2135,7 @@ aot-test-generators@^0.1.0:
   dependencies:
     jsesc "^2.5.0"
 
-apollo-cache-inmemory@^1.3.11:
+apollo-cache-inmemory@^1.3.11, apollo-cache-inmemory@^1.6.2:
   version "1.6.2"
   resolved "https://registry.yarnpkg.com/apollo-cache-inmemory/-/apollo-cache-inmemory-1.6.2.tgz#bbf2e4e1eacdf82b2d526f5c2f3b37e5acee3c5e"
   integrity sha512-AyCl3PGFv5Qv1w4N9vlg63GBPHXgMCekZy5mhlS042ji0GW84uTySX+r3F61ZX3+KM1vA4m9hQyctrEGiv5XjQ==
@@ -2248,7 +2248,7 @@ apollo-codegen@^0.20.2:
     source-map-support "^0.5.0"
     yargs "^10.0.3"
 
-apollo-link-context@^1.0.17:
+apollo-link-context@^1.0.17, apollo-link-context@^1.0.18:
   version "1.0.18"
   resolved "https://registry.yarnpkg.com/apollo-link-context/-/apollo-link-context-1.0.18.tgz#9e700e3314da8ded50057fee0a18af2bfcedbfc3"
   integrity sha512-aG5cbUp1zqOHHQjAJXG7n/izeMQ6LApd/whEF5z6qZp5ATvcyfSNkCfy3KRJMMZZ3iNfVTs6jF+IUA8Zvf+zeg==
@@ -6189,7 +6189,7 @@ ember-assign-polyfill@^2.5.0, ember-assign-polyfill@^2.6.0:
     ember-cli-babel "^6.16.0"
     ember-cli-version-checker "^2.0.0"
 
-ember-auto-import@^1.2.13, ember-auto-import@^1.2.19, ember-auto-import@^1.3.0, ember-auto-import@^1.4.0, ember-auto-import@^1.4.1:
+ember-auto-import@^1.2.13, ember-auto-import@^1.2.19, ember-auto-import@^1.4.0, ember-auto-import@^1.4.1, ember-auto-import@^1.5.2:
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/ember-auto-import/-/ember-auto-import-1.5.2.tgz#e97ed96b600caa6090ffed83e4611c3e7ec9bad7"
   integrity sha512-skVQpfdc6G5OVRsyemDn3vI1nj/iBBgnoqRLRka0ZbDT2GqelmyJ86bp+Bd/ztJe45Le3we+LXbR7T54RU5A9w==
@@ -7802,7 +7802,7 @@ eslint-scope@3.7.1:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint-scope@^4.0.0:
+eslint-scope@^4.0.0, eslint-scope@^4.0.3:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/eslint-scope/-/eslint-scope-4.0.3.tgz#ca03833310f6889a3264781aa82e63eb9cfe7848"
   integrity sha512-p7VutNr1O/QrxysMo3E45FjYDTeXBy0iTltPFNSqKAIfjDSXC+4dj+qfyuD8bfAXrW/y6lW3O76VaYNPKfpKrg==
@@ -9975,7 +9975,7 @@ inquirer@^3.3.0:
     strip-ansi "^4.0.0"
     through "^2.3.6"
 
-inquirer@^6, inquirer@^6.2.0, inquirer@^6.4.1:
+inquirer@^6, inquirer@^6.2.0, inquirer@^6.2.2, inquirer@^6.4.1:
   version "6.5.0"
   resolved "https://registry.yarnpkg.com/inquirer/-/inquirer-6.5.0.tgz#2303317efc9a4ea7ec2e2df6f86569b734accf42"
   integrity sha512-scfHejeG/lVZSpvCXpsB4j/wQNPM5JC8kiElOI0OUTwmc1RTpXr4H32/HOlQHcZiYl2z2VElwuCVDRG8vFmbnA==
@@ -15923,7 +15923,7 @@ strip-indent@^2.0.0:
   resolved "https://registry.yarnpkg.com/strip-indent/-/strip-indent-2.0.0.tgz#5ef8db295d01e6ed6cbf7aab96998d7822527b68"
   integrity sha1-XvjbKV0B5u1sv3qrlpmNeCJSe2g=
 
-strip-json-comments@2.0.1, strip-json-comments@~2.0.1:
+strip-json-comments@2.0.1, strip-json-comments@^2.0.1, strip-json-comments@~2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
   integrity sha1-PFMZQukIwml8DsNEhYwobHygpgo=
