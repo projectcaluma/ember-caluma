@@ -8,6 +8,7 @@ import { camelize } from "@ember/string";
 import { task } from "ember-concurrency";
 import { all, resolve } from "rsvp";
 import { validate } from "ember-validators";
+import { ObjectQueryManager } from "ember-apollo-client";
 
 import Answer from "ember-caluma/lib/answer";
 import Question from "ember-caluma/lib/question";
@@ -62,7 +63,7 @@ const getDependenciesFromJexl = expression => {
  *
  * @class Field
  */
-export default Base.extend({
+export default Base.extend(ObjectQueryManager, {
   saveDocumentFloatAnswerMutation,
   saveDocumentIntegerAnswerMutation,
   saveDocumentStringAnswerMutation,
@@ -70,8 +71,6 @@ export default Base.extend({
   saveDocumentFileAnswerMutation,
   saveDocumentDateAnswerMutation,
   saveDocumentTableAnswerMutation,
-
-  apollo: service(),
 
   intl: service(),
 

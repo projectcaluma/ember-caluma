@@ -20,21 +20,22 @@ module("Unit | Mixin | caluma-apollo-service-mixin", function(hooks) {
 
     let subject = CalumaApolloServiceMixinObject.create();
 
-    assert.ok(subject.get("cache") instanceof InMemoryCache);
+    const cache = subject.cache();
+
+    assert.ok(cache instanceof InMemoryCache);
     assert.ok(
-      subject.get("cache.config.fragmentMatcher") instanceof
-        IntrospectionFragmentMatcher
+      cache.config.fragmentMatcher instanceof IntrospectionFragmentMatcher
     );
 
     assert.deepEqual(
-      subject.get("cache.config.fragmentMatcher.possibleTypesMap.Node"),
+      cache.config.fragmentMatcher.possibleTypesMap.Node,
       introspectionQueryResultData.__schema.types
         .find(({ name }) => name === "Node")
         .possibleTypes.map(({ name }) => name)
     );
 
     assert.deepEqual(
-      subject.get("cache.config.fragmentMatcher.possibleTypesMap.Answer"),
+      cache.config.fragmentMatcher.possibleTypesMap.Answer,
       introspectionQueryResultData.__schema.types
         .find(({ name }) => name === "Answer")
         .possibleTypes.map(({ name }) => name)
@@ -50,8 +51,10 @@ module("Unit | Mixin | caluma-apollo-service-mixin", function(hooks) {
 
     let subject = CalumaApolloServiceMixinObject.create();
 
+    const cache = subject.cache();
+
     assert.equal(
-      subject.get("cache.config.dataIdFromObject")({
+      cache.config.dataIdFromObject({
         slug: "test",
         __typename: "TestType"
       }),
@@ -59,7 +62,7 @@ module("Unit | Mixin | caluma-apollo-service-mixin", function(hooks) {
     );
 
     assert.equal(
-      subject.get("cache.config.dataIdFromObject")({
+      cache.config.dataIdFromObject({
         edges: [
           {
             node: {

@@ -2,16 +2,16 @@ import Component from "@ember/component";
 import { computed } from "@ember/object";
 import { reads } from "@ember/object/computed";
 import { inject as service } from "@ember/service";
+import { ComponentQueryManager } from "ember-apollo-client";
 
 import getFileAnswerInfoQuery from "ember-caluma/gql/queries/get-fileanswer-info";
 import layout from "../../../templates/components/cf-field/input/file";
 
-export default Component.extend({
+export default Component.extend(ComponentQueryManager, {
   layout,
   tagName: "",
 
   intl: service(),
-  apollo: service(),
 
   downloadUrl: reads("field.answer.value.downloadUrl"),
   downloadName: reads("field.answer.value.name"),
