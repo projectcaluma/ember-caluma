@@ -34,7 +34,8 @@ export default Mixin.create({
     let localeLink = setContext((_, { headers }) => ({
       headers: {
         ...headers,
-        "Accept-Language": this.get("intl.locale")
+        language: this.get("intl.locale"),
+        "accept-language": this.get("intl.locale")
       }
     }));
 
