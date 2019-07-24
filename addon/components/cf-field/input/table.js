@@ -56,7 +56,7 @@ export default Component.extend(ComponentQueryManager, {
     if (!this.field.answer.value) return;
 
     const remainingDocuments = this.field.answer.value.filter(
-      doc => doc.id !== document.id
+      doc => doc.pk !== document.pk
     );
 
     yield this.onSave(remainingDocuments);
@@ -73,7 +73,7 @@ export default Component.extend(ComponentQueryManager, {
 
       const rows = this.get("field.answer.value") || [];
 
-      if (!rows.find(doc => doc.uuid === newDocument.uuid)) {
+      if (!rows.find(doc => doc.pk === newDocument.pk)) {
         // add document to table
         yield this.onSave([...rows, newDocument]);
 
