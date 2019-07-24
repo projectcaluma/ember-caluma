@@ -1,3 +1,15 @@
+# [2.2.0](https://github.com/projectcaluma/ember-caluma/compare/v2.1.3...v2.2.0) (2019-07-24)
+
+
+### Bug Fixes
+
+* **deps:** fix usage of apollo for the new version ([6ec5842](https://github.com/projectcaluma/ember-caluma/commit/6ec5842))
+
+
+### Features
+
+* **multilang:** add language header to caluma requests as well ([48f976c](https://github.com/projectcaluma/ember-caluma/commit/48f976c))
+
 ## [2.1.3](https://github.com/projectcaluma/ember-caluma/compare/v2.1.2...v2.1.3) (2019-07-24)
 
 
