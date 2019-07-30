@@ -1,3 +1,10 @@
+## [2.2.1](https://github.com/projectcaluma/ember-caluma/compare/v2.2.0...v2.2.1) (2019-07-30)
+
+
+### Bug Fixes
+
+* **lib:** fix teardown of lib objects ([bd583a2](https://github.com/projectcaluma/ember-caluma/commit/bd583a2))
+
 # [2.2.0](https://github.com/projectcaluma/ember-caluma/compare/v2.1.3...v2.2.0) (2019-07-24)
 
 
