@@ -1,5 +1,5 @@
 # source: http://localhost:8000/graphql
-# timestamp: Mon Jul 01 2019 07:46:24 GMT+0200 (CEST)
+# timestamp: Tue Jul 30 2019 09:17:41 GMT+0200 (Central European Summer Time)
 
 input AddFormQuestionInput {
   form: ID!
@@ -38,11 +38,21 @@ interface Answer {
 }
 
 type AnswerConnection {
+  """
+  Pagination data for this connection.
+  """
   pageInfo: PageInfo!
+
+  """
+  Contains the nodes in this connection.
+  """
   edges: [AnswerEdge]!
   totalCount: Int
 }
 
+"""
+A Relay edge containing a `Answer` and its cursor.
+"""
 type AnswerEdge {
   """
   The item at the end of the edge
@@ -65,6 +75,7 @@ enum AnswerLookupMode {
   STARTSWITH
   CONTAINS
   ICONTAINS
+  INTERSECTS
   GTE
   GT
   LTE
@@ -152,18 +163,12 @@ type Case implements Node {
     after: String
     first: Int
     last: Int
-    metaValue: MetaValueFilterType
-
-    """
-    WorkItemStatusArgument
-    """
+    metaValue: [MetaValueFilterType]
     status: WorkItemStatusArgument
     task: ID
     case: ID
     createdByUser: String
     createdByGroup: String
-    offset: Int
-    limit: Int
     metaHasKey: String
 
     """
@@ -171,16 +176,28 @@ type Case implements Node {
     """
     orderBy: [WorkItemOrdering]
     addressedGroups: [String]
+    documentHasAnswer: [HasAnswerFilterType]
+    caseDocumentHasAnswer: [HasAnswerFilterType]
   ): WorkItemConnection
   parentWorkItem: WorkItem
 }
 
 type CaseConnection {
+  """
+  Pagination data for this connection.
+  """
   pageInfo: PageInfo!
+
+  """
+  Contains the nodes in this connection.
+  """
   edges: [CaseEdge]!
   totalCount: Int
 }
 
+"""
+A Relay edge containing a `Case` and its cursor.
+"""
 type CaseEdge {
   """
   The item at the end of the edge
@@ -306,7 +323,7 @@ type ChoiceQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
-    metaValue: MetaValueFilterType
+    metaValue: [MetaValueFilterType]
 
     """
     FormOrdering
@@ -319,8 +336,6 @@ type ChoiceQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
-    offset: Int
-    limit: Int
     metaHasKey: String
     search: String
     slugs: [String]
@@ -330,13 +345,12 @@ type ChoiceQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
-    metaValue: MetaValueFilterType
+    metaValue: [MetaValueFilterType]
     slug: String
     label: String
+    isArchived: Boolean
     createdByUser: String
     createdByGroup: String
-    offset: Int
-    limit: Int
     metaHasKey: String
     search: String
 
@@ -480,7 +494,14 @@ type DataSource {
 }
 
 type DataSourceConnection {
+  """
+  Pagination data for this connection.
+  """
   pageInfo: PageInfo!
+
+  """
+  Contains the nodes in this connection.
+  """
   edges: [DataSourceEdge]!
   totalCount: Int
 }
@@ -491,11 +512,21 @@ type DataSourceData {
 }
 
 type DataSourceDataConnection {
+  """
+  Pagination data for this connection.
+  """
   pageInfo: PageInfo!
+
+  """
+  Contains the nodes in this connection.
+  """
   edges: [DataSourceDataEdge]!
   totalCount: Int
 }
 
+"""
+A Relay edge containing a `DataSourceData` and its cursor.
+"""
 type DataSourceDataEdge {
   """
   The item at the end of the edge
@@ -508,6 +539,9 @@ type DataSourceDataEdge {
   cursor: String!
 }
 
+"""
+A Relay edge containing a `DataSource` and its cursor.
+"""
 type DataSourceEdge {
   """
   The item at the end of the edge
@@ -561,7 +595,7 @@ type DateQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
-    metaValue: MetaValueFilterType
+    metaValue: [MetaValueFilterType]
 
     """
     FormOrdering
@@ -574,8 +608,6 @@ type DateQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
-    offset: Int
-    limit: Int
     metaHasKey: String
     search: String
     slugs: [String]
@@ -611,13 +643,11 @@ type Document implements Node {
     after: String
     first: Int
     last: Int
-    metaValue: MetaValueFilterType
+    metaValue: [MetaValueFilterType]
     question: ID
     search: String
     createdByUser: String
     createdByGroup: String
-    offset: Int
-    limit: Int
     metaHasKey: String
 
     """
@@ -631,11 +661,21 @@ type Document implements Node {
 }
 
 type DocumentConnection {
+  """
+  Pagination data for this connection.
+  """
   pageInfo: PageInfo!
+
+  """
+  Contains the nodes in this connection.
+  """
   edges: [DocumentEdge]!
   totalCount: Int
 }
 
+"""
+A Relay edge containing a `Document` and its cursor.
+"""
 type DocumentEdge {
   """
   The item at the end of the edge
@@ -694,11 +734,21 @@ enum DocumentOrdering {
 }
 
 type DocumentValidityConnection {
+  """
+  Pagination data for this connection.
+  """
   pageInfo: PageInfo!
+
+  """
+  Contains the nodes in this connection.
+  """
   edges: [DocumentValidityEdge]!
   totalCount: Int
 }
 
+"""
+A Relay edge containing a `DocumentValidity` and its cursor.
+"""
 type DocumentValidityEdge {
   """
   The item at the end of the edge
@@ -729,7 +779,7 @@ type DynamicChoiceQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
-    metaValue: MetaValueFilterType
+    metaValue: [MetaValueFilterType]
 
     """
     FormOrdering
@@ -742,8 +792,6 @@ type DynamicChoiceQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
-    offset: Int
-    limit: Int
     metaHasKey: String
     search: String
     slugs: [String]
@@ -780,7 +828,7 @@ type DynamicMultipleChoiceQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
-    metaValue: MetaValueFilterType
+    metaValue: [MetaValueFilterType]
 
     """
     FormOrdering
@@ -793,8 +841,6 @@ type DynamicMultipleChoiceQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
-    offset: Int
-    limit: Int
     metaHasKey: String
     search: String
     slugs: [String]
@@ -864,7 +910,7 @@ type FileQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
-    metaValue: MetaValueFilterType
+    metaValue: [MetaValueFilterType]
 
     """
     FormOrdering
@@ -877,8 +923,6 @@ type FileQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
-    offset: Int
-    limit: Int
     metaHasKey: String
     search: String
     slugs: [String]
@@ -924,7 +968,7 @@ type FloatQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
-    metaValue: MetaValueFilterType
+    metaValue: [MetaValueFilterType]
 
     """
     FormOrdering
@@ -937,8 +981,6 @@ type FloatQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
-    offset: Int
-    limit: Int
     metaHasKey: String
     search: String
     slugs: [String]
@@ -967,11 +1009,21 @@ type Flow implements Node {
 }
 
 type FlowConnection {
+  """
+  Pagination data for this connection.
+  """
   pageInfo: PageInfo!
+
+  """
+  Contains the nodes in this connection.
+  """
   edges: [FlowEdge]!
   totalCount: Int
 }
 
+"""
+A Relay edge containing a `Flow` and its cursor.
+"""
 type FlowEdge {
   """
   The item at the end of the edge
@@ -1013,7 +1065,7 @@ type Form implements Node {
     after: String
     first: Int
     last: Int
-    metaValue: MetaValueFilterType
+    metaValue: [MetaValueFilterType]
     slug: String
     label: String
     isRequired: String
@@ -1021,8 +1073,6 @@ type Form implements Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
-    offset: Int
-    limit: Int
     metaHasKey: String
     excludeForms: [ID]
     search: String
@@ -1058,11 +1108,21 @@ type FormatValidator {
 }
 
 type FormatValidatorConnection {
+  """
+  Pagination data for this connection.
+  """
   pageInfo: PageInfo!
+
+  """
+  Contains the nodes in this connection.
+  """
   edges: [FormatValidatorEdge]!
   totalCount: Int
 }
 
+"""
+A Relay edge containing a `FormatValidator` and its cursor.
+"""
 type FormatValidatorEdge {
   """
   The item at the end of the edge
@@ -1076,11 +1136,21 @@ type FormatValidatorEdge {
 }
 
 type FormConnection {
+  """
+  Pagination data for this connection.
+  """
   pageInfo: PageInfo!
+
+  """
+  Contains the nodes in this connection.
+  """
   edges: [FormEdge]!
   totalCount: Int
 }
 
+"""
+A Relay edge containing a `Form` and its cursor.
+"""
 type FormEdge {
   """
   The item at the end of the edge
@@ -1166,7 +1236,7 @@ type FormQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
-    metaValue: MetaValueFilterType
+    metaValue: [MetaValueFilterType]
 
     """
     FormOrdering
@@ -1179,8 +1249,6 @@ type FormQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
-    offset: Int
-    limit: Int
     metaHasKey: String
     search: String
     slugs: [String]
@@ -1259,7 +1327,7 @@ type IntegerQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
-    metaValue: MetaValueFilterType
+    metaValue: [MetaValueFilterType]
 
     """
     FormOrdering
@@ -1272,8 +1340,6 @@ type IntegerQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
-    offset: Int
-    limit: Int
     metaHasKey: String
     search: String
     slugs: [String]
@@ -1288,7 +1354,10 @@ type IntegerQuestion implements Question & Node {
 }
 
 """
-JSON String
+Allows use of a JSON String for input / output from the GraphQL schema.
+
+Use of this type is *not recommended* as you lose the benefits of having a defined, static
+schema (one of the key benefits of GraphQL).
 """
 scalar JSONString
 
@@ -1311,6 +1380,10 @@ enum MetaLookupMode {
   EXACT
   STARTSWITH
   CONTAINS
+  GTE
+  GT
+  LTE
+  LT
 }
 
 input MetaValueFilterType {
@@ -1337,7 +1410,7 @@ type MultipleChoiceQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
-    metaValue: MetaValueFilterType
+    metaValue: [MetaValueFilterType]
 
     """
     FormOrdering
@@ -1350,8 +1423,6 @@ type MultipleChoiceQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
-    offset: Int
-    limit: Int
     metaHasKey: String
     search: String
     slugs: [String]
@@ -1361,7 +1432,7 @@ type MultipleChoiceQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
-    metaValue: MetaValueFilterType
+    metaValue: [MetaValueFilterType]
 
     """
     OptionOrdering
@@ -1369,10 +1440,9 @@ type MultipleChoiceQuestion implements Question & Node {
     orderBy: [OptionOrdering]
     slug: String
     label: String
+    isArchived: Boolean
     createdByUser: String
     createdByGroup: String
-    offset: Int
-    limit: Int
     metaHasKey: String
     search: String
   ): OptionConnection
@@ -1404,13 +1474,16 @@ type Mutation {
   createWorkItem(input: CreateWorkItemInput!): CreateWorkItemPayload
   saveForm(input: SaveFormInput!): SaveFormPayload
   copyForm(input: CopyFormInput!): CopyFormPayload
+
+  """
+  Add question at the end of form.
+  """
   addFormQuestion(input: AddFormQuestionInput!): AddFormQuestionPayload
   removeFormQuestion(input: RemoveFormQuestionInput!): RemoveFormQuestionPayload
   reorderFormQuestions(
     input: ReorderFormQuestionsInput!
   ): ReorderFormQuestionsPayload
   saveOption(input: SaveOptionInput!): SaveOptionPayload
-  removeOption(input: RemoveOptionInput!): RemoveOptionPayload
   copyOption(input: CopyOptionInput!): CopyOptionPayload
   copyQuestion(input: CopyQuestionInput!): CopyQuestionPayload
   saveTextQuestion(input: SaveTextQuestionInput!): SaveTextQuestionPayload
@@ -1479,6 +1552,7 @@ type Option implements Node {
   createdByGroup: String
   slug: String!
   label: String!
+  isArchived: Boolean!
   meta: GenericScalar
 
   """
@@ -1493,11 +1567,21 @@ type Option implements Node {
 }
 
 type OptionConnection {
+  """
+  Pagination data for this connection.
+  """
   pageInfo: PageInfo!
+
+  """
+  Contains the nodes in this connection.
+  """
   edges: [OptionEdge]!
   totalCount: Int
 }
 
+"""
+A Relay edge containing a `Option` and its cursor.
+"""
 type OptionEdge {
   """
   The item at the end of the edge
@@ -1565,6 +1649,9 @@ enum OptionOrdering {
   CREATED_BY_GROUP_DESC
 }
 
+"""
+The Relay compliant `PageInfo` type, containing data necessary to paginate this connection.
+"""
 type PageInfo {
   """
   When paginating forwards, are there more items?
@@ -1606,7 +1693,7 @@ type Query {
     after: String
     first: Int
     last: Int
-    metaValue: MetaValueFilterType
+    metaValue: [MetaValueFilterType]
     slug: String
     name: String
     description: String
@@ -1614,8 +1701,6 @@ type Query {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
-    offset: Int
-    limit: Int
     metaHasKey: String
     search: String
 
@@ -1629,20 +1714,14 @@ type Query {
     after: String
     first: Int
     last: Int
-    metaValue: MetaValueFilterType
+    metaValue: [MetaValueFilterType]
     slug: String
     name: String
     description: String
-
-    """
-    TaskTypeArgument
-    """
     type: TaskTypeArgument
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
-    offset: Int
-    limit: Int
     metaHasKey: String
     search: String
 
@@ -1656,18 +1735,17 @@ type Query {
     after: String
     first: Int
     last: Int
-    metaValue: MetaValueFilterType
+    metaValue: [MetaValueFilterType]
     workflow: ID
     createdByUser: String
     createdByGroup: String
-    offset: Int
-    limit: Int
     metaHasKey: String
 
     """
     CaseOrdering
     """
     orderBy: [CaseOrdering]
+    documentForm: String
     hasAnswer: [HasAnswerFilterType]
     status: [CaseStatusArgument]
 
@@ -1685,23 +1763,19 @@ type Query {
     after: String
     first: Int
     last: Int
-    metaValue: MetaValueFilterType
-
-    """
-    WorkItemStatusArgument
-    """
+    metaValue: [MetaValueFilterType]
     status: WorkItemStatusArgument
 
     """
     WorkItemOrdering
     """
     orderBy: [WorkItemOrdering]
+    documentHasAnswer: [HasAnswerFilterType]
+    caseDocumentHasAnswer: [HasAnswerFilterType]
     task: ID
     case: ID
     createdByUser: String
     createdByGroup: String
-    offset: Int
-    limit: Int
     metaHasKey: String
     addressedGroups: [String]
   ): WorkItemConnection
@@ -1710,7 +1784,7 @@ type Query {
     after: String
     first: Int
     last: Int
-    metaValue: MetaValueFilterType
+    metaValue: [MetaValueFilterType]
 
     """
     FormOrdering
@@ -1723,8 +1797,6 @@ type Query {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
-    offset: Int
-    limit: Int
     metaHasKey: String
     search: String
     slugs: [String]
@@ -1734,7 +1806,7 @@ type Query {
     after: String
     first: Int
     last: Int
-    metaValue: MetaValueFilterType
+    metaValue: [MetaValueFilterType]
 
     """
     QuestionOrdering
@@ -1747,8 +1819,6 @@ type Query {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
-    offset: Int
-    limit: Int
     metaHasKey: String
     excludeForms: [ID]
     search: String
@@ -1758,14 +1828,13 @@ type Query {
     after: String
     first: Int
     last: Int
-    metaValue: MetaValueFilterType
+    metaValue: [MetaValueFilterType]
     form: ID
+    forms: [ID]
     search: String
     id: ID
     createdByUser: String
     createdByGroup: String
-    offset: Int
-    limit: Int
     metaHasKey: String
 
     """
@@ -1820,10 +1889,8 @@ interface Question {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
-    offset: Int
-    limit: Int
     metaHasKey: String
-    metaValue: MetaValueFilterType
+    metaValue: [MetaValueFilterType]
     search: String
 
     """
@@ -1836,11 +1903,21 @@ interface Question {
 }
 
 type QuestionConnection {
+  """
+  Pagination data for this connection.
+  """
   pageInfo: PageInfo!
+
+  """
+  Contains the nodes in this connection.
+  """
   edges: [QuestionEdge]!
   totalCount: Int
 }
 
+"""
+A Relay edge containing a `Question` and its cursor.
+"""
 type QuestionEdge {
   """
   The item at the end of the edge
@@ -1965,15 +2042,6 @@ input RemoveFormQuestionInput {
 
 type RemoveFormQuestionPayload {
   form: Form
-  clientMutationId: String
-}
-
-input RemoveOptionInput {
-  option: ID!
-  clientMutationId: String
-}
-
-type RemoveOptionPayload {
   clientMutationId: String
 }
 
@@ -2346,6 +2414,7 @@ type SaveMultipleChoiceQuestionPayload {
 input SaveOptionInput {
   slug: String!
   label: String!
+  isArchived: Boolean
   meta: JSONString
   clientMutationId: String
 }
@@ -2563,7 +2632,7 @@ type StaticQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
-    metaValue: MetaValueFilterType
+    metaValue: [MetaValueFilterType]
 
     """
     FormOrdering
@@ -2576,8 +2645,6 @@ type StaticQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
-    offset: Int
-    limit: Int
     metaHasKey: String
     search: String
     slugs: [String]
@@ -2641,7 +2708,7 @@ type TableQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
-    metaValue: MetaValueFilterType
+    metaValue: [MetaValueFilterType]
 
     """
     FormOrdering
@@ -2654,8 +2721,6 @@ type TableQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
-    offset: Int
-    limit: Int
     metaHasKey: String
     search: String
     slugs: [String]
@@ -2688,11 +2753,21 @@ interface Task {
 }
 
 type TaskConnection {
+  """
+  Pagination data for this connection.
+  """
   pageInfo: PageInfo!
+
+  """
+  Contains the nodes in this connection.
+  """
   edges: [TaskEdge]!
   totalCount: Int
 }
 
+"""
+A Relay edge containing a `Task` and its cursor.
+"""
 type TaskEdge {
   """
   The item at the end of the edge
@@ -2845,7 +2920,7 @@ type TextareaQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
-    metaValue: MetaValueFilterType
+    metaValue: [MetaValueFilterType]
 
     """
     FormOrdering
@@ -2858,8 +2933,6 @@ type TextareaQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
-    offset: Int
-    limit: Int
     metaHasKey: String
     search: String
     slugs: [String]
@@ -2897,7 +2970,7 @@ type TextQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
-    metaValue: MetaValueFilterType
+    metaValue: [MetaValueFilterType]
 
     """
     FormOrdering
@@ -2910,8 +2983,6 @@ type TextQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
-    offset: Int
-    limit: Int
     metaHasKey: String
     search: String
     slugs: [String]
@@ -2952,6 +3023,10 @@ type Workflow implements Node {
   Allow workflow to be started with any form
   """
   allowAllForms: Boolean!
+
+  """
+  List of forms which are allowed to start workflow with
+  """
   allowForms(
     before: String
     after: String
@@ -2976,17 +3051,25 @@ type Workflow implements Node {
     task: ID
     createdByUser: String
     createdByGroup: String
-    offset: Int
-    limit: Int
   ): FlowConnection
 }
 
 type WorkflowConnection {
+  """
+  Pagination data for this connection.
+  """
   pageInfo: PageInfo!
+
+  """
+  Contains the nodes in this connection.
+  """
   edges: [WorkflowEdge]!
   totalCount: Int
 }
 
+"""
+A Relay edge containing a `Workflow` and its cursor.
+"""
 type WorkflowEdge {
   """
   The item at the end of the edge
@@ -3105,11 +3188,21 @@ type WorkItem implements Node {
 }
 
 type WorkItemConnection {
+  """
+  Pagination data for this connection.
+  """
   pageInfo: PageInfo!
+
+  """
+  Contains the nodes in this connection.
+  """
   edges: [WorkItemEdge]!
   totalCount: Int
 }
 
+"""
+A Relay edge containing a `WorkItem` and its cursor.
+"""
 type WorkItemEdge {
   """
   The item at the end of the edge
