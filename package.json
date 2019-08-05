@@ -42,7 +42,7 @@
     "ember-cli-htmlbars": "^3.0.1",
     "ember-cli-sass": "^10.0.0",
     "ember-cli-showdown": "^4.4.4",
-    "ember-cli-string-helpers": "^3.0.0",
+    "ember-cli-string-helpers": "^4.0.0",
     "ember-composable-helpers": "^2.2.0",
     "ember-concurrency": "^1.0.0",
     "ember-fetch": "^6.5.0",
