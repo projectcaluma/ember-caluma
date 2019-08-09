@@ -329,7 +329,7 @@ export default Base.extend(ObjectQueryManager, {
     let response;
 
     if (value === null || value.length === 0) {
-      if (!this.answer.uuid) {
+      if (this.isNew) {
         return;
       }
 
