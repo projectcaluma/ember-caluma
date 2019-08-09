@@ -329,6 +329,10 @@ export default Base.extend(ObjectQueryManager, {
     let response;
 
     if (value === null || value.length === 0) {
+      if (!this.answer.uuid) {
+        return;
+      }
+
       response = yield this.apollo.mutate(
         {
           mutation: removeAnswerMutation,
