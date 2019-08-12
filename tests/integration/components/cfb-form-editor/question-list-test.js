@@ -4,12 +4,14 @@ import { render, click, find, fillIn, triggerEvent } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import graphqlError from "dummy/tests/helpers/graphql-error";
+import { setupIntl } from "ember-intl/test-support";
 
 module("Integration | Component | cfb-form-editor/question-list", function(
   hooks
 ) {
   setupRenderingTest(hooks);
   setupMirage(hooks);
+  setupIntl(hooks);
 
   hooks.beforeEach(function() {
     this.form = this.server.create("form", {
@@ -41,21 +43,19 @@ module("Integration | Component | cfb-form-editor/question-list", function(
     assert.dom("[data-test-question-list-empty]").exists();
     assert
       .dom("[data-test-question-list-empty]")
-      .hasText(
-        "You have not yet added a question. Press the plus button above to do so!"
-      );
+      .hasText("t:caluma.form-builder.question.empty:()");
 
     this.set("mode", "add");
     await fillIn("input[type=search]", "thisslugisveryunlikelytoexist");
     assert
       .dom("[data-test-question-list-empty]")
-      .hasText("No results found. Adjust your search to get better results.");
+      .hasText("t:caluma.form-builder.global.empty-search:()");
 
     this.set("mode", "remove");
     await fillIn("input[type=search]", "thisslugisveryunlikelytoexist");
     assert
       .dom("[data-test-question-list-empty]")
-      .hasText("No results found. Adjust your search to get better results.");
+      .hasText("t:caluma.form-builder.global.empty-search:()");
   });
 
   test("it can reorder questions", async function(assert) {

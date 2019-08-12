@@ -5,10 +5,12 @@ import hbs from "htmlbars-inline-precompile";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import graphqlError from "dummy/tests/helpers/graphql-error";
 import { selectChoose } from "ember-power-select/test-support";
+import { setupIntl } from "ember-intl/test-support";
 
 module("Integration | Component | cfb-form-editor/question", function(hooks) {
   setupRenderingTest(hooks);
   setupMirage(hooks);
+  setupIntl(hooks);
 
   hooks.beforeEach(function() {
     this.server.create("format-validator", { slug: "email" });
@@ -136,7 +138,9 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
 
     await render(hbs`{{cfb-form-editor/question slug='test-slug'}}`);
 
-    assert.dom("p").hasText("No question with slug 'test-slug' found");
+    assert
+      .dom("p")
+      .hasText('t:caluma.form-builder.question.not-found:("slug":"test-slug")');
   });
 
   test("it suggests a slug", async function(assert) {
@@ -477,7 +481,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
 
     assert
       .dom("input[name=slug] + span")
-      .hasText("A question with this slug already exists");
+      .hasText("t:caluma.form-builder.validations.question.slug:()");
 
     await fillIn("input[name=slug]", "valid-slug");
     await blur("input[name=slug]");
@@ -491,7 +495,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
 
     assert
       .dom("input[name=slug] + span")
-      .hasText("A question with this slug already exists");
+      .hasText("t:caluma.form-builder.validations.question.slug:()");
   });
 
   test("it auto-suggests the slug if it has not been manually changed", async function(assert) {

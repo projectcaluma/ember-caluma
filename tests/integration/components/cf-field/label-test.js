@@ -4,9 +4,11 @@ import { render } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 import Document from "ember-caluma/lib/document";
 import ValidatorServiceStub from "dummy/tests/helpers/validator-service-stub";
+import { setupIntl } from "ember-intl/test-support";
 
 module("Integration | Component | cf-field/label", function(hooks) {
   setupRenderingTest(hooks);
+  setupIntl(hooks);
 
   hooks.beforeEach(function() {
     this.owner.register("service:validator", ValidatorServiceStub);
@@ -55,6 +57,6 @@ module("Integration | Component | cf-field/label", function(hooks) {
 
     this.set("field.question.isRequired", "false");
 
-    assert.dom("label").hasText("Test (Optional)");
+    assert.dom("label").hasText("Test (t:caluma.form.optional:())");
   });
 });

@@ -4,10 +4,12 @@ import { render, click, fillIn, blur, settled } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import graphqlError from "dummy/tests/helpers/graphql-error";
+import { setupIntl } from "ember-intl/test-support";
 
 module("Integration | Component | cfb-form-editor/general", function(hooks) {
   setupRenderingTest(hooks);
   setupMirage(hooks);
+  setupIntl(hooks);
 
   test("it renders", async function(assert) {
     assert.expect(4);
@@ -177,7 +179,9 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
 
     await render(hbs`{{cfb-form-editor/general slug='test-slug'}}`);
 
-    assert.dom("p").hasText("No form with slug 'test-slug' found");
+    assert
+      .dom("p")
+      .hasText('t:caluma.form-builder.form.not-found:("slug":"test-slug")');
   });
 
   test("it validates the slug", async function(assert) {
@@ -194,7 +198,7 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
 
     assert
       .dom("input[name=slug] + span")
-      .hasText("A form with this slug already exists");
+      .hasText("t:caluma.form-builder.validations.form.slug:()");
 
     await fillIn("input[name=slug]", "valid-slug");
     await blur("input[name=slug]");
@@ -209,6 +213,6 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
 
     assert
       .dom("input[name=slug] + span")
-      .hasText("A form with this slug already exists");
+      .hasText("t:caluma.form-builder.validations.form.slug:()");
   });
 });
