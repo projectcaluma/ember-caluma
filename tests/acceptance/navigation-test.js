@@ -7,7 +7,7 @@ import { setupIntl } from "ember-intl/test-support";
 module("Acceptance | navigation", function(hooks) {
   setupApplicationTest(hooks);
   setupMirage(hooks);
-  setupIntl(hooks, "en-us");
+  setupIntl(hooks);
 
   hooks.beforeEach(function() {
     this.server.create("form", {

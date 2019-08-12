@@ -2,11 +2,13 @@ import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
 import { render, settled } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
+import { setupIntl } from "ember-intl/test-support";
 
 module("Integration | Component | cfb-form-editor/question-list/item", function(
   hooks
 ) {
   setupRenderingTest(hooks);
+  setupIntl(hooks);
 
   test("it renders", async function(assert) {
     assert.expect(6);
@@ -24,7 +26,11 @@ module("Integration | Component | cfb-form-editor/question-list/item", function(
       {{cfb-form-editor/question-list/item question=question mode=mode}}
     `);
 
-    assert.dom("li").hasText("test-question Test Question? Text");
+    assert
+      .dom("li")
+      .hasText(
+        "test-question Test Question? t:caluma.form-builder.question.types.TextQuestion:()"
+      );
     assert.dom(".cfb-form-editor__question-list__item__required").exists();
 
     this.set("question.isRequired", "false");

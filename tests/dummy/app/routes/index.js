@@ -13,7 +13,7 @@ export default Route.extend(RouteQueryManager, {
   init() {
     this._super(...arguments);
 
-    this.intl.setLocale([...navigator.languages, "en-us"]);
+    this.intl.setLocale([...navigator.languages, "en"]);
 
     if (ENV.environment !== "production") {
       this.calumaOptions.registerComponentOverride({

@@ -4,10 +4,12 @@ import { render, fillIn } from "@ember/test-helpers";
 import hbs from "htmlbars-inline-precompile";
 import Document from "ember-caluma/lib/document";
 import setupMirage from "ember-cli-mirage/test-support/setup-mirage";
+import { setupIntl } from "ember-intl/test-support";
 
 module("Integration | Component | cf-field", function(hooks) {
   setupRenderingTest(hooks);
   setupMirage(hooks);
+  setupIntl(hooks);
 
   hooks.beforeEach(function() {
     this.validator = this.server.create("format-validator", {
@@ -109,7 +111,7 @@ module("Integration | Component | cf-field", function(hooks) {
 
     assert
       .dom("span.validation-errors")
-      .hasText("The value of this field can't be longer than 2 characters");
+      .hasText('t:caluma.form.validation.tooLong:("max":2,"value":"Test")');
   });
 
   test("it hides the label", async function(assert) {
@@ -127,7 +129,11 @@ module("Integration | Component | cf-field", function(hooks) {
 
     await fillIn("input", "Test");
 
-    assert.dom("span.validation-errors").hasText(this.validator.errorMsg);
+    assert
+      .dom("span.validation-errors")
+      .hasText(
+        `t:caluma.form.validation.format:("errorMsg":"${this.validator.errorMsg}","value":"Test")`
+      );
   });
 
   test("it saves the valid email address", async function(assert) {

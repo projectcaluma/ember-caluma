@@ -4,9 +4,11 @@ import { settled } from "@ember/test-helpers";
 import Field from "ember-caluma/lib/field";
 import Document from "ember-caluma/lib/document";
 import ValidatorServiceStub from "dummy/tests/helpers/validator-service-stub";
+import { setupIntl } from "ember-intl/test-support";
 
 module("Unit | Library | field", function(hooks) {
   setupTest(hooks);
+  setupIntl(hooks);
 
   hooks.beforeEach(async function() {
     this.owner.register("service:validator", ValidatorServiceStub);
@@ -194,7 +196,9 @@ module("Unit | Library | field", function(hooks) {
     });
 
     await field.validate.perform();
-    assert.deepEqual(field.errors, ["This field can't be blank"]);
+    assert.deepEqual(field.errors, [
+      't:caluma.form.validation.blank:("presence":true,"value":"")'
+    ]);
   });
 
   test("it ignores optional fields", async function(assert) {
@@ -238,7 +242,7 @@ module("Unit | Library | field", function(hooks) {
     field.set("answer.value", "Testx");
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      "The value of this field can't be longer than 4 characters"
+      't:caluma.form.validation.tooLong:("max":4,"value":"Testx")'
     ]);
   });
 
@@ -264,7 +268,7 @@ module("Unit | Library | field", function(hooks) {
     field.set("answer.value", "Testx");
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      "The value of this field can't be longer than 4 characters"
+      't:caluma.form.validation.tooLong:("max":4,"value":"Testx")'
     ]);
   });
 
@@ -291,19 +295,19 @@ module("Unit | Library | field", function(hooks) {
     field.set("answer.integerValue", 1);
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      "The value of this field must be greater than or equal to 2"
+      't:caluma.form.validation.greaterThanOrEqualTo:("gte":2,"integer":true,"lte":2,"value":1)'
     ]);
 
     field.set("answer.integerValue", 3);
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      "The value of this field must be less than or equal to 2"
+      't:caluma.form.validation.lessThanOrEqualTo:("gte":2,"integer":true,"lte":2,"value":3)'
     ]);
 
     field.set("answer.integerValue", 1.5);
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      "The value of this field must be an integer"
+      't:caluma.form.validation.notAnInteger:("gte":2,"integer":true,"lte":2,"value":1.5)'
     ]);
   });
 
@@ -334,14 +338,14 @@ module("Unit | Library | field", function(hooks) {
 
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      "The value of this field must be greater than or equal to 1.5"
+      't:caluma.form.validation.greaterThanOrEqualTo:("gte":1.5,"lte":2.5,"value":1.4)'
     ]);
 
     field.set("answer.floatValue", 2.6);
 
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      "The value of this field must be less than or equal to 2.5"
+      't:caluma.form.validation.lessThanOrEqualTo:("gte":1.5,"lte":2.5,"value":2.6)'
     ]);
   });
 
@@ -375,7 +379,7 @@ module("Unit | Library | field", function(hooks) {
     field.set("answer.value", "invalid-option");
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      "'invalid-option' is not a valid value for this field"
+      't:caluma.form.validation.inclusion:("allowBlank":true,"in":["option-1"],"value":"invalid-option")'
     ]);
   });
 
@@ -409,14 +413,14 @@ module("Unit | Library | field", function(hooks) {
     field.set("answer.listValue", ["option-1", "invalid-option"]);
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      "'invalid-option' is not a valid value for this field"
+      't:caluma.form.validation.inclusion:("in":["option-1"],"value":"invalid-option")'
     ]);
 
     field.set("answer.listValue", ["invalid-option", "other-invalid-option"]);
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      "'invalid-option' is not a valid value for this field",
-      "'other-invalid-option' is not a valid value for this field"
+      't:caluma.form.validation.inclusion:("in":["option-1"],"value":"invalid-option")',
+      't:caluma.form.validation.inclusion:("in":["option-1"],"value":"other-invalid-option")'
     ]);
   });
 });
