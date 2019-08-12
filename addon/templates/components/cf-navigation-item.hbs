@@ -1,10 +1,10 @@
-{{#link-to (query-params displayedForm=item.slug)}}
-  {{item.label}}
+{{#link-to (query-params displayedForm=item.slug) class="uk-width-1-1"}}
+  <span title={{item.label}} class="uk-width-expand uk-text-truncate">{{item.label}}</span>
   <span class="cf-navigation__item__icon cf-navigation__item__icon--{{item.state}}"></span>
 {{/link-to}}
 
 {{#if item.children}}
-  <ul class="uk-tab uk-tab-left uk-margin-left">
+  <ul class="uk-tab uk-tab-left uk-margin-left uk-width-auto">
     {{#each item.children as |childItem|}}
       {{#if childItem.visible}}
         {{cf-navigation-item item=childItem}}

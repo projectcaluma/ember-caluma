@@ -5,6 +5,8 @@ import { next } from "@ember/runloop";
 export default Component.extend({
   layout,
 
+  classNames: ["uk-width-auto"],
+
   didReceiveAttrs() {
     next(this.navigation, "goToNextItem");
   }
