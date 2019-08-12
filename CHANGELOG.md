@@ -1,3 +1,11 @@
+## [2.2.2](https://github.com/projectcaluma/ember-caluma/compare/v2.2.1...v2.2.2) (2019-08-12)
+
+
+### Bug Fixes
+
+* **field:** don't delete non-existent answers ([53945b1](https://github.com/projectcaluma/ember-caluma/commit/53945b1))
+* **multilang:** remove country code for translations ([1772591](https://github.com/projectcaluma/ember-caluma/commit/1772591))
+
 ## [2.2.1](https://github.com/projectcaluma/ember-caluma/compare/v2.2.0...v2.2.1) (2019-07-30)
 
 
