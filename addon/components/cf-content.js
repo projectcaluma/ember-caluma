@@ -60,11 +60,12 @@ export default Component.extend(ComponentQueryManager, {
   willDestroy() {
     this._super(...arguments);
 
-    this.document.destroy();
+    this._teardown();
+  },
 
-    if (this.navigation) {
-      this.navigation.destroy();
-    }
+  _teardown() {
+    if (this.document) this.document.destroy();
+    if (this.navigation) this.navigation.destroy();
   },
 
   /**
@@ -94,15 +95,8 @@ export default Component.extend(ComponentQueryManager, {
    *
    * @property {Document} document
    */
-  document: reads("data.lastSuccessful.value"),
-
-  navigation: computed("document", function() {
-    if (!this.document) return;
-
-    return Navigation.create(getOwner(this).ownerInjection(), {
-      document: this.document
-    });
-  }),
+  document: reads("data.lastSuccessful.value.document"),
+  navigation: reads("data.lastSuccessful.value.navigation"),
 
   fieldset: computed(
     "document.{fieldsets.[],raw.form.slug}",
@@ -136,6 +130,8 @@ export default Component.extend(ComponentQueryManager, {
   }),
 
   dataTask: task(function*() {
+    yield this._teardown();
+
     if (!this.documentId) return;
 
     const [answerDocument] = (yield this.apollo.query(
@@ -156,8 +152,15 @@ export default Component.extend(ComponentQueryManager, {
       "allForms.edges"
     )).map(({ node }) => node);
 
-    return Document.create(getOwner(this).ownerInjection(), {
+    const document = Document.create(getOwner(this).ownerInjection(), {
       raw: parseDocument({ ...answerDocument, form })
     });
-  })
+
+    return {
+      document,
+      navigation: Navigation.create(getOwner(this).ownerInjection(), {
+        document
+      })
+    };
+  }).drop()
 });
