@@ -1,3 +1,11 @@
+## [2.2.3](https://github.com/projectcaluma/ember-caluma/compare/v2.2.2...v2.2.3) (2019-08-14)
+
+
+### Bug Fixes
+
+* **cf-content:** fix navigation teardown ([1bfc4d0](https://github.com/projectcaluma/ember-caluma/commit/1bfc4d0))
+* **navigation:** truncate long navigation items ([c79c524](https://github.com/projectcaluma/ember-caluma/commit/c79c524))
+
 ## [2.2.2](https://github.com/projectcaluma/ember-caluma/compare/v2.2.1...v2.2.2) (2019-08-12)
 
 
