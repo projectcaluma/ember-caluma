@@ -1,0 +1,45 @@
+dummy:
+  formBuilder: "auteur de formulaire"
+  form: "formulaire"
+  usage: "application"
+  testing: "tester"
+
+caluma:
+  form:
+    optional: "optional"
+    save: "sauvegarder"
+    selectFile: "cliquez pour télécharger le ficher"
+    changeFile: "cliquez pour télécharger un autre fichier"
+
+    navigation:
+      next: "suivante"
+      previous: "précédente"
+
+    notification:
+      table:
+        add:
+          success: "L'entrée a été ajoutée avec succès."
+          error: "Oups, quelque chose a mal tourné lors de l'ajout de l'entrée...."
+
+    power-select:
+      placeholder-single: "Sélectionnez une option"
+      placeholder-multiple: "Sélectionnez une ou plusieurs options"
+      options-loading: "chargez les options..."
+      options-empty: "Pas d'options disponibles"
+      search-placeholder: "Tapez ici pour rechercher"
+      search-empty: "Pas d'options trouvées"
+      null: "Aucune sélection"
+
+    validation:
+      blank: "Ce champ ne doit pas être laissé vide"
+      tooLong: "Un maximum de {max} caractères est autorisé dans ce champ"
+      greaterThanOrEqualTo: "La valeur indiquée dans ce champ ne doit pas être inférieure à {gte} "
+      lessThanOrEqualTo: "L'entrée dans ce champ ne doit pas être supérieure à {lte} "
+      notAnInteger: "Veuillez entrer un nombre entier"
+      inclusion: "'{value}' n'est pas une valeur valide pour ce champ"
+      uploadFailed: "Une erreur s'est produite pendant le téléchargement."
+      format: "{errorMsg}"
+
+    pikaday:
+      month-previous: "Mois précédent"
+      month-next: "Mois suivant"
