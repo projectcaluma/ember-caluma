@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/projectcaluma/ember-caluma/compare/v2.2.3...v2.3.0) (2019-08-21)
+
+
+### Features
+
+* **translations:** add (partial) french translation ([961d203](https://github.com/projectcaluma/ember-caluma/commit/961d203))
+
 ## [2.2.3](https://github.com/projectcaluma/ember-caluma/compare/v2.2.2...v2.2.3) (2019-08-14)
 
 
