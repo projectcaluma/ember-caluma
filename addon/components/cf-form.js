@@ -1,5 +1,5 @@
 import Component from "@ember/component";
-import { ComponentQueryManager } from "ember-apollo-client";
+import { queryManager } from "ember-apollo-client";
 import layout from "../templates/components/cf-form";
 import { assert } from "@ember/debug";
 
@@ -12,11 +12,13 @@ import { assert } from "@ember/debug";
  *
  * @class CfFormComponent
  */
-export default Component.extend(ComponentQueryManager, {
+export default Component.extend({
   layout,
   tagName: "form",
   attributeBindings: ["novalidate"],
   novalidate: "novalidate",
+
+  apollo: queryManager(),
 
   didReceiveAttrs() {
     this._super(...arguments);

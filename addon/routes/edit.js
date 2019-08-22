@@ -3,10 +3,12 @@ import { inject as service } from "@ember/service";
 import NavigationRouteMixin from "ember-caluma/mixins/navigation-route";
 import { task } from "ember-concurrency";
 import gql from "graphql-tag";
-import { RouteQueryManager } from "ember-apollo-client";
+import { queryManager } from "ember-apollo-client";
 import { reads } from "@ember/object/computed";
 
-export default Route.extend(NavigationRouteMixin, RouteQueryManager, {
+export default Route.extend(NavigationRouteMixin, {
+  apollo: queryManager(),
+
   intl: service(),
 
   title: reads("fetchName.lastSuccessful.value.firstObject.node.name"),

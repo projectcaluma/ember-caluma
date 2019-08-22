@@ -3,17 +3,18 @@ import layout from "../../../templates/components/cf-field/input/table";
 import { task, all } from "ember-concurrency";
 import saveDocumentMutation from "ember-caluma/gql/mutations/save-document";
 import { inject as service } from "@ember/service";
-import { ComponentQueryManager } from "ember-apollo-client";
+import { queryManager } from "ember-apollo-client";
 import { computed } from "@ember/object";
 import { getOwner } from "@ember/application";
 import Document from "ember-caluma/lib/document";
 import { parseDocument } from "ember-caluma/lib/parsers";
 
-export default Component.extend(ComponentQueryManager, {
+export default Component.extend({
   layout,
 
-  notification: service(),
+  apollo: queryManager(),
 
+  notification: service(),
   intl: service(),
 
   showModal: false,
