@@ -3,15 +3,17 @@ import Component from "@ember/component";
 import layout from "../templates/components/cf-field-value";
 import { computed } from "@ember/object";
 import { camelize } from "@ember/string";
-import { ComponentQueryManager } from "ember-apollo-client";
+import { queryManager } from "ember-apollo-client";
 import getFileAnswerInfoQuery from "ember-caluma/gql/queries/get-fileanswer-info";
 
 function getOptionKey(questionType) {
   return `${camelize(questionType.replace(/Question$/, ""))}Options`;
 }
 
-export default Component.extend(ComponentQueryManager, {
+export default Component.extend({
   layout,
+
+  apollo: queryManager(),
 
   tagName: "span",
 

@@ -2,7 +2,7 @@ import Component from "@ember/component";
 import { inject as service } from "@ember/service";
 import layout from "../../templates/components/cfb-form-editor/question";
 import { task, timeout } from "ember-concurrency";
-import { ComponentQueryManager } from "ember-apollo-client";
+import { queryManager } from "ember-apollo-client";
 import v4 from "uuid/v4";
 import { optional } from "ember-composable-helpers/helpers/optional";
 import { computed, getWithDefault } from "@ember/object";
@@ -51,9 +51,11 @@ export const TYPES = {
   DateQuestion: saveDateQuestionMutation
 };
 
-export default Component.extend(ComponentQueryManager, {
+export default Component.extend({
   layout,
   validations,
+
+  apollo: queryManager(),
 
   notification: service(),
   intl: service(),

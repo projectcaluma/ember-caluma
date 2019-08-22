@@ -3,7 +3,7 @@ import layout from "../templates/components/cf-content";
 import { inject as service } from "@ember/service";
 import { computed } from "@ember/object";
 import { reads } from "@ember/object/computed";
-import { ComponentQueryManager } from "ember-apollo-client";
+import { queryManager } from "ember-apollo-client";
 import { task } from "ember-concurrency";
 import Document from "ember-caluma/lib/document";
 import Navigation from "ember-caluma/lib/navigation";
@@ -42,9 +42,10 @@ import { assert } from "@ember/debug";
  * @yield {CfNavigationComponent} content.navigation
  * @yield {CfPaginationComponent} content.pagination
  */
-export default Component.extend(ComponentQueryManager, {
+export default Component.extend({
   layout,
 
+  apollo: queryManager(),
   router: service(),
   calumaStore: service(),
 
