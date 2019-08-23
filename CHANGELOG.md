@@ -1,3 +1,10 @@
+## [2.3.1](https://github.com/projectcaluma/ember-caluma/compare/v2.3.0...v2.3.1) (2019-08-23)
+
+
+### Bug Fixes
+
+* **apollo:** remove deprecated usage of query manager ([e1cab58](https://github.com/projectcaluma/ember-caluma/commit/e1cab58))
+
 # [2.3.0](https://github.com/projectcaluma/ember-caluma/compare/v2.2.3...v2.3.0) (2019-08-21)
 
 
