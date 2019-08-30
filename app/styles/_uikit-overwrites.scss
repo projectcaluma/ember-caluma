@@ -1,0 +1,46 @@
+// UIkit overwrites
+// ----------------
+// These styles amend UIkit so that disabled form elements can be styled as
+// disabled with a class instead of just by the element's disabled property.
+//
+// There is an open pull request upstream:
+// https://github.com/uikit/uikit/pull/3990
+
+.uk-radio.uk-disabled,
+.uk-checkbox.uk-disabled {
+  cursor: default;
+}
+
+.uk-input.uk-disabled,
+.uk-select.uk-disabled,
+.uk-textarea.uk-disabled {
+  background-color: $form-disabled-background;
+  color: $form-disabled-color;
+  @if(mixin-exists(hook-form-disabled)) {@include hook-form-disabled();}
+}
+
+.uk-select:not([multiple]):not([size]).uk-disabled {
+  @include svg-fill($internal-form-select-image, "#000", $form-select-disabled-icon-color);
+}
+
+.uk-radio.uk-disabled,
+.uk-checkbox.uk-disabled {
+  background-color: $form-radio-disabled-background;
+  @if(mixin-exists(hook-form-radio-disabled)) {@include hook-form-radio-disabled();}
+}
+
+.uk-radio.uk-disabled:checked {
+  @include svg-fill($internal-form-radio-image, "#000", $form-radio-disabled-icon-color);
+}
+
+.uk-checkbox.uk-disabled:checked {
+  @include svg-fill($internal-form-checkbox-image, "#000", $form-radio-disabled-icon-color);
+}
+
+.uk-checkbox.uk-disabled:indeterminate {
+  @include svg-fill($internal-form-checkbox-indeterminate-image, "#000", $form-radio-disabled-icon-color);
+}
+
+.uk-disabled[readonly] {
+  pointer-events: all;
+}

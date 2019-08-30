@@ -1,19 +1,21 @@
-<div
-  class="uk-width-1-1"
-  uk-form-custom="target: true">
+{{#unless disabled}}
+  <div
+    class="uk-width-1-1"
+    uk-form-custom="target: true">
 
-  <input
-    type="file"
-    name={{field.pk}}
-    onchange={{action "save"}}>
+    <input
+      type="file"
+      name={{field.pk}}
+      onchange={{action "save"}}>
 
-  <input
-    class="uk-input"
-    type="text"
-    placeholder={{placeholder}}
-    readonly>
+    <input
+      class="uk-input"
+      type="text"
+      placeholder={{placeholder}}
+      readonly>
 
-</div>
+  </div>
+{{/unless}}
 
 {{#if (and downloadUrl downloadName)}}
   {{#uk-button color="link" on-click=(action "download")}}

@@ -34,11 +34,12 @@ module("Integration | Component | cf-field/input/integer", function(hooks) {
   });
 
   test("it can be disabled", async function(assert) {
-    assert.expect(1);
+    assert.expect(2);
 
     await render(hbs`{{cf-field/input/integer disabled=true}}`);
 
-    assert.dom("input").isDisabled();
+    assert.dom("input").hasAttribute("readonly");
+    assert.dom("input").hasClass("uk-disabled");
   });
 
   test("it triggers save on input", async function(assert) {

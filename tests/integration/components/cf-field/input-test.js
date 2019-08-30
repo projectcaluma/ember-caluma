@@ -136,7 +136,7 @@ module("Integration | Component | cf-field/input", function(hooks) {
   });
 
   test("it renders disabled fields", async function(assert) {
-    assert.expect(1);
+    assert.expect(2);
 
     await render(hbs`
       {{cf-field/input
@@ -149,6 +149,7 @@ module("Integration | Component | cf-field/input", function(hooks) {
       }}
     `);
 
-    assert.dom("input[type=text]").isDisabled();
+    assert.dom("input[type=text]").hasAttribute("readonly");
+    assert.dom("input[type=text]").hasClass("uk-disabled");
   });
 });
