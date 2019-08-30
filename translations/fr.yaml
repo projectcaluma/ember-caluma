@@ -45,3 +45,9 @@ caluma:
     pikaday:
       month-previous: "Mois précédent"
       month-next: "Mois suivant"
+
+  form-builder:
+    options:
+      delete: "Supprimer l'option"
+      archive: "Archiver (masquer) l'option"
+      restore: "Restaurer l'option"

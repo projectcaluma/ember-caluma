@@ -29,6 +29,7 @@ query FormEditorQuestion($slug: String!) {
               node {
                 label
                 slug
+                isArchived
               }
             }
           }
@@ -39,6 +40,7 @@ query FormEditorQuestion($slug: String!) {
               node {
                 label
                 slug
+                isArchived
               }
             }
           }

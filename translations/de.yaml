@@ -141,6 +141,11 @@ caluma:
 
       hideLabel: "Label verstecken"
 
+    options:
+      delete: "Option löschen"
+      archive: "Option archivieren (verstecken)"
+      restore: "Option wiederherstellen"
+
     notification:
       form:
         save:
