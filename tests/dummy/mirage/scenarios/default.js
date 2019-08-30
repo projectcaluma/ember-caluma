@@ -39,7 +39,8 @@ export default function(server) {
     formIds: [form.id],
     options: [
       server.create("option", { label: "Yes" }),
-      server.create("option", { label: "Hell yes" })
+      server.create("option", { label: "Hell yes" }),
+      server.create("option", { label: "Certainly", isArchived: true })
     ]
   });
   server.create("question", {

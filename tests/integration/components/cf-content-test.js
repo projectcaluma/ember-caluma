@@ -73,7 +73,8 @@ module("Integration | Component | cf-content", function(hooks) {
       });
 
       if (question.type === "CHOICE") {
-        assert.dom(`[name="${id}"][value="${answer.value}"]`).isChecked();
+        const test = question.isArchived ? "isNotChecked" : "isChecked";
+        assert.dom(`[name="${id}"][value="${answer.value}"]`)[test]();
       } else if (question.type === "MULTIPLE_CHOICE") {
         // checkbox options have their option slug postfixed to the name in
         // order to support IE11
@@ -96,15 +97,19 @@ module("Integration | Component | cf-content", function(hooks) {
       );
 
       if (question.type === "CHOICE") {
-        options.forEach(({ slug }) => {
-          assert.dom(`[name="${id}"][value="${slug}"]`).isDisabled();
-        });
+        options
+          .filter(option => !option.isArchived)
+          .forEach(({ slug }) => {
+            assert.dom(`[name="${id}"][value="${slug}"]`).isDisabled();
+          });
       } else if (question.type === "MULTIPLE_CHOICE") {
-        options.forEach(({ slug }) => {
-          assert
-            .dom(`[name="${id}:Option:${slug}"][value="${slug}"]`)
-            .isDisabled();
-        });
+        options
+          .filter(option => !option.isArchived)
+          .forEach(({ slug }) => {
+            assert
+              .dom(`[name="${id}:Option:${slug}"][value="${slug}"]`)
+              .isDisabled();
+          });
       } else {
         assert.dom(`[name="${id}"]`).isDisabled();
       }

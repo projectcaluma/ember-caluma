@@ -15,10 +15,11 @@ export default Component.extend({
   choices: computed(
     "field.question.{choiceOptions,dynamicChoiceOptions}.edges",
     function() {
-      if (this.get("field.question.__typename").includes("Dynamic")) {
-        return this.get("field.question.dynamicChoiceOptions.edges");
-      }
-      return this.get("field.question.choiceOptions.edges");
+      const options = this.get("field.question.__typename").includes("Dynamic")
+        ? this.get("field.question.dynamicChoiceOptions.edges")
+        : this.get("field.question.choiceOptions.edges");
+
+      return options.filter(option => !option.node.isArchived);
     }
   )
 });
