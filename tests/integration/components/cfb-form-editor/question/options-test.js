@@ -121,13 +121,63 @@ module("Integration | Component | cfb-form-editor/question/options", function(
       // empty rows will be omitted
       assert.deepEqual(value, {
         edges: [
-          { node: { label: "Option #1", slug: "prefix-option-1" } },
-          { node: { label: "Option 2", slug: "prefix-x-option-2" } }
+          {
+            node: {
+              label: "Option #1",
+              slug: "prefix-option-1",
+              isArchived: false
+            }
+          },
+          {
+            node: {
+              label: "Option 2",
+              slug: "prefix-x-option-2",
+              isArchived: false
+            }
+          }
         ]
       });
     });
     this.set("setDirty", () => assert.ok(true));
 
     await fillIn("input[name=option-2-slug]", "x-option-2");
+  });
+
+  test("it can archive/restore options", async function(assert) {
+    assert.expect(3);
+
+    this.set("model", { slug: "prefix" });
+    this.set("value", {
+      edges: [
+        { node: { slug: "prefix-option-1", label: "Option 1" } },
+        { node: { slug: "prefix-option-2", label: "Option 2" } }
+      ]
+    });
+    this.set("noop", () => {});
+
+    await render(hbs`
+      {{cfb-form-editor/question/options
+        model=model
+        value=value
+        update=(action noop)
+        setDirty=(action noop)
+      }}
+    `);
+
+    assert.dom("[data-test-row]").exists({ count: 2 });
+
+    // Archive option
+    await click("[data-test-row=option-1] [data-test-archive-row]");
+
+    assert
+      .dom("[data-test-row=option-1] input[name=option-1-label]")
+      .isDisabled();
+
+    // Restore option
+    await click("[data-test-row=option-1] [data-test-archive-row]");
+
+    assert
+      .dom("[data-test-row=option-1] input[name=option-1-label]")
+      .isNotDisabled();
   });
 });

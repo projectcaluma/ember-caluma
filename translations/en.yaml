@@ -140,6 +140,11 @@ caluma:
 
       hideLabel: "Hide label"
 
+    options:
+      delete: "Delete option"
+      archive: "Archive (hide) option"
+      restore: "Restore option"
+
     notification:
       form:
         save:

@@ -273,11 +273,11 @@ export default Component.extend(ComponentQueryManager, {
     yield all(
       getWithDefault(changeset, "options.edges", []).map(
         async ({ node: option }) => {
-          let { label, slug } = option;
+          let { label, slug, isArchived } = option;
 
           await this.get("apollo").mutate({
             mutation: saveOptionMutation,
-            variables: { input: { label, slug } }
+            variables: { input: { label, slug, isArchived } }
           });
         }
       )

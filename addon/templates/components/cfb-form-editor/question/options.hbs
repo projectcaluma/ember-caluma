@@ -8,23 +8,34 @@
       model=row
     as |f|}}
       <div uk-grid class="uk-grid-small uk-flex">
-        {{#if (and row.isNew (gt optionRows.length 1))}}
-          <div class="uk-width-auto">
+        <div class="uk-width-auto">
+          {{#if (and row.isNew (gt optionRows.length 1))}}
             <button
               data-test-delete-row
               type="button"
               class="uk-icon-button"
               uk-icon="trash"
+              title={{t "caluma.form-builder.options.delete"}}
               {{action "deleteRow" row}}
             >
             </button>
-          </div>
-        {{/if}}
+          {{/if}}
+          <button
+            data-test-archive-row
+            type="button"
+            class="uk-icon-button"
+            uk-icon={{if row.isArchived "plus" "close"}}
+            title={{t (concat "caluma.form-builder.options." (if row.isArchived "restore" "archive"))}}
+            {{action "toggleRowArchived" row}}
+          >
+          </button>
+        </div>
         <div class="uk-width-expand">
           {{f.input
             name="label"
             inputName=(concat "option-" (add i 1) "-label")
             required=true
+            disabled=row.isArchived
             on-update=(action (queue (action "updateLabel") (action "update")))
           }}
         </div>

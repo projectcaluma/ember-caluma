@@ -29,11 +29,12 @@ export default RenderComponent.extend({
       "optionRows",
       get(value, "edges.length")
         ? get(value, "edges").map(
-            v =>
+            edge =>
               new Changeset(
                 {
-                  slug: removeQuestionPrefix(v.node.slug, this.questionSlug),
-                  label: v.node.label,
+                  slug: removeQuestionPrefix(edge.node.slug, this.questionSlug),
+                  label: edge.node.label,
+                  isArchived: edge.node.isArchived,
                   isNew: false
                 },
                 lookupValidator(OptionValidations),
@@ -55,7 +56,7 @@ export default RenderComponent.extend({
       edges: this.optionRows
         .filter(row => !get(row, "isNew") || get(row, "isDirty"))
         .map(row => {
-          const { label, slug } = Object.assign(
+          const { label, slug, isArchived } = Object.assign(
             {},
             row.get("data"),
             row.get("change")
@@ -67,7 +68,8 @@ export default RenderComponent.extend({
               slug: addQuestionPrefix(
                 removeQuestionPrefix(slug, this.questionSlug),
                 this.questionSlug
-              )
+              ),
+              isArchived: Boolean(isArchived)
             }
           };
         })
@@ -92,6 +94,12 @@ export default RenderComponent.extend({
 
     deleteRow(row) {
       this.set("optionRows", this.optionRows.filter(r => r !== row));
+
+      this._update();
+    },
+
+    toggleRowArchived(row) {
+      row.set("isArchived", !row.get("isArchived"));
 
       this._update();
     },
