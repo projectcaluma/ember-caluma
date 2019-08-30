@@ -29,6 +29,7 @@ fragment SimpleQuestion on Question {
         node {
           slug
           label
+          isArchived
         }
       }
     }
@@ -39,6 +40,7 @@ fragment SimpleQuestion on Question {
         node {
           slug
           label
+          isArchived
         }
       }
     }
