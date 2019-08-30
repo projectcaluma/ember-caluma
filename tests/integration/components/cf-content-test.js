@@ -111,7 +111,8 @@ module("Integration | Component | cf-content", function(hooks) {
               .isDisabled();
           });
       } else {
-        assert.dom(`[name="${id}"]`).isDisabled();
+        assert.dom(`[name="${id}"]`).hasAttribute("readonly");
+        assert.dom(`[name="${id}"]`).hasClass("uk-disabled");
       }
     });
   });

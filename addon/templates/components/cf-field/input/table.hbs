@@ -49,16 +49,23 @@
     bgClose=false
   }}
     {{#if documentToEdit}}
-      {{cf-form-wrapper document=documentToEdit fieldset=(object-at 0 documentToEdit.fieldsets) disabled=disabled}}
-    {{/if}}
-    <p class="uk-text-right">
-      {{uk-button
-        label=(t "caluma.form.save")
-        disabled=save.isRunning
-        loading=save.isRunning
-        on-click=(perform save)
+      {{cf-form-wrapper
+        document=documentToEdit
+        fieldset=(object-at 0 documentToEdit.fieldsets)
+        disabled=disabled
       }}
-    </p>
+    {{/if}}
+
+    {{#unless disabled}}
+      <p class="uk-text-right">
+        {{uk-button
+          label=(t "caluma.form.save")
+          disabled=save.isRunning
+          loading=save.isRunning
+          on-click=(perform save)
+        }}
+      </p>
+    {{/unless}}
   {{/uk-modal}}
 
   {{#uk-modal

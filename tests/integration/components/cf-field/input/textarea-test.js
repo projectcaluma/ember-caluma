@@ -30,11 +30,12 @@ module("Integration | Component | cf-field/input/textarea", function(hooks) {
   });
 
   test("it can be disabled", async function(assert) {
-    assert.expect(1);
+    assert.expect(2);
 
     await render(hbs`{{cf-field/input/textarea disabled=true}}`);
 
-    assert.dom("textarea").isDisabled();
+    assert.dom("textarea").hasAttribute("readonly");
+    assert.dom("textarea").hasClass("uk-disabled");
   });
 
   test("it triggers save on input", async function(assert) {

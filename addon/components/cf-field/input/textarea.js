@@ -9,9 +9,9 @@ import Component from "@ember/component";
 export default Component.extend({
   tagName: "textarea",
   classNames: ["uk-textarea"],
-  classNameBindings: ["field.isInvalid:uk-form-danger"],
+  classNameBindings: ["field.isInvalid:uk-form-danger", "disabled:uk-disabled"],
   attributeBindings: [
-    "disabled",
+    "disabled:readonly",
     "field.pk:name",
     "field.answer.value:value",
     "field.question.textareaMaxLength:maxlength"
