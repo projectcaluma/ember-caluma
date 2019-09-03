@@ -10492,9 +10492,9 @@ java-properties@^1.0.0:
   integrity sha512-qjdpeo2yKlYTH7nFdK0vbZWuTCesk4o63v5iVOlhMQPfuIZQfW/HI35SjfhA+4qpg36rnFSvUK5b1m+ckIblQQ==
 
 jexl@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/jexl/-/jexl-2.1.1.tgz#d4f2cb9e488ff737f73acc08c5afed37e07f886b"
-  integrity sha512-a+dZiuYIKl0nPYdAe7sJ8D/bCAbemwLjLypcT2brXtft/Mi3titp1QRCpTkaHrp+qeno8DKFxVpVKYNvw1AV3A==
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/jexl/-/jexl-2.2.0.tgz#e71c79ab6a41f0a8bc55776c6aeac790decb371c"
+  integrity sha512-7Ba6/gUM5A452Jm0QTW9zBwn8BkauamUsyHZAf43EDqyjhaO8NOlJ0PuuoaKyksRNccPSxSZ9z6qMH/p03PJkA==
 
 joi@^12.0.0:
   version "12.0.0"
