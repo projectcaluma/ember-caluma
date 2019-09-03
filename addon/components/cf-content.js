@@ -138,7 +138,7 @@ export default Component.extend({
     const [answerDocument] = (yield this.apollo.query(
       {
         query: getDocumentAnswersQuery,
-        networkPolicy: "network-only",
+        fetchPolicy: "network-only",
         variables: { id: this.documentId }
       },
       "allDocuments.edges"
@@ -147,7 +147,7 @@ export default Component.extend({
     const [form] = (yield this.apollo.query(
       {
         query: getDocumentFormsQuery,
-        networkPolicy: "cache-first",
+        fetchPolicy: "cache-first",
         variables: { slug: answerDocument.form.slug }
       },
       "allForms.edges"
