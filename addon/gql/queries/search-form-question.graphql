@@ -1,4 +1,4 @@
-#import "ember-caluma/gql/fragments/question-info"
+# import * from 'ember-caluma/gql/fragments/question-info'
 
 query SearchFormQuestion($slug: String!, $search: String, $archived: Boolean) {
   allForms(slug: $slug) {

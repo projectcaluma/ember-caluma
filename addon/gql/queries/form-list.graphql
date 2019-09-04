@@ -1,4 +1,4 @@
-#import "ember-caluma/gql/fragments/form-info"
+# import * from 'ember-caluma/gql/fragments/form-info'
 
 query FormList {
   allForms(isArchived: false) {

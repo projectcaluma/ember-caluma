@@ -1,4 +1,4 @@
-#import "ember-caluma/gql/fragments/question-info"
+# import * from 'ember-caluma/gql/fragments/question-info'
 
 query SearchQuestion($search: String, $excludeForms: [ID]) {
   allQuestions(
