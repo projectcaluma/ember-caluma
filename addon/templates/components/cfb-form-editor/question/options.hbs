@@ -8,7 +8,7 @@
       model=row
     as |f|}}
       <div uk-grid class="uk-grid-small uk-flex">
-        {{#if (gt optionRows.length 1)}}
+        {{#if (and row.isNew (gt optionRows.length 1))}}
           <div class="uk-width-auto">
             <button
               data-test-delete-row

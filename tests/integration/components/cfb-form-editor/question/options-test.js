@@ -65,7 +65,7 @@ module("Integration | Component | cfb-form-editor/question/options", function(
     assert.dom("li").exists({ count: 3 });
   });
 
-  test("it can delete row", async function(assert) {
+  test("it can delete unsaved row", async function(assert) {
     assert.expect(3);
 
     this.set("model", { slug: "prefix" });
@@ -83,10 +83,11 @@ module("Integration | Component | cfb-form-editor/question/options", function(
 
     assert.dom("li").exists({ count: 3 });
 
-    await click("[data-test-row=option-2] [data-test-delete-row]");
+    await click("[data-test-add-row]");
+    await click("[data-test-row=option-3] [data-test-delete-row]");
 
-    assert.dom("li").exists({ count: 2 });
-    assert.dom("[data-test-row=option-2]").doesNotExist();
+    assert.dom("li").exists({ count: 3 });
+    assert.dom("[data-test-row=option-3]").doesNotExist();
   });
 
   test("it can update", async function(assert) {
