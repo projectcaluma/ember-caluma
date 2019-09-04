@@ -1,5 +1,4 @@
 import { computed } from "@ember/object";
-import Parser from "jexl/lib/parser/Parser";
 import jexl from "jexl";
 
 export const intersects = (left, right) =>
@@ -14,12 +13,8 @@ export const intersects = (left, right) =>
  */
 export const getAST = expression => {
   jexl.addBinaryOp("intersects", 20, intersects);
-  let grammar = jexl._getGrammar();
-  let parser = new Parser(grammar);
 
-  parser.addTokens(jexl._getLexer().tokenize(expression));
-
-  return parser.complete();
+  return jexl.createExpression(expression)._getAst();
 };
 
 /**
