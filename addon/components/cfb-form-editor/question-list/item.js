@@ -5,7 +5,6 @@ import { reads } from "@ember/object/computed";
 import { task } from "ember-concurrency";
 import jexl from "jexl";
 import { computed } from "@ember/object";
-import { cleanExpression } from "ember-caluma/utils/jexl";
 
 export default Component.extend({
   layout,
@@ -26,7 +25,7 @@ export default Component.extend({
     return tsk;
   }),
   _requiredTask: task(function*() {
-    return yield jexl.eval(cleanExpression(this.get("question.isRequired")));
+    return yield jexl.eval(this.get("question.isRequired"));
   }),
 
   didInsertElement() {
