@@ -1,17 +1,20 @@
 import Helper from "@ember/component/helper";
+import { get } from "@ember/object";
 import { inject as service } from "@ember/service";
 import { warn } from "@ember/debug";
 
 /**
- * Helper for getting the right widget for a field.
+ * Helper for getting the right widget.
  *
- * This helper expects a field as first positional parameter. It checks if the
- * field has a widget override in it's metadata. If one exists it checks if
+ * This helper expects n objects as positional parameters. It checks if the
+ * object has a widget override in it's metadata. If one exists it checks if
  * said widget was registered in the caluma options service and then returns
- * the widget name.
+ * the widget name. If it doesn't have a valid widget, the next object will be
+ * checked. If no object returns a valid widget, the passed default widget will
+ * be used.
  *
  * ```hbs
- * {{component (get-widget field default="cf-form") foo=bar}}
+ * {{component (get-widget field.question someobject default="cf-form") foo=bar}}
  * ```
  *
  * @function getWidget
@@ -22,25 +25,24 @@ import { warn } from "@ember/debug";
 export default Helper.extend({
   calumaOptions: service(),
 
-  compute([field], { default: defaultWidget = "cf-field/input" }) {
-    try {
-      const widget = field.question.meta.widgetOverride;
-      const overrides = this.calumaOptions.getComponentOverrides();
-      const override = overrides.find(({ component }) => component === widget);
+  compute(params, { default: defaultWidget = "cf-field/input" }) {
+    for (let obj of params) {
+      const widget = obj && get(obj, "meta.widgetOverride");
+      const override =
+        widget &&
+        this.calumaOptions
+          .getComponentOverrides()
+          .find(({ component }) => component === widget);
 
-      if (!override) {
-        warn(
-          `Widget override "${widget}" is not registered. Please register it by calling \`calumaOptions.registerComponentOverride\``,
-          !widget,
-          { id: "ember-caluma.unregistered-override" }
-        );
+      warn(
+        `Widget override "${widget}" is not registered. Please register it by calling \`calumaOptions.registerComponentOverride\``,
+        !override,
+        { id: "ember-caluma.unregistered-override" }
+      );
 
-        throw new Error();
-      }
-
-      return widget;
-    } catch (e) {
-      return defaultWidget;
+      if (override) return widget;
     }
+
+    return defaultWidget;
   }
 });

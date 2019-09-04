@@ -15,7 +15,7 @@ module("Integration | Helper | get-widget", function(hooks) {
     });
 
     await render(
-      hbs`{{get-widget (hash question=(hash meta=(hash widgetOverride="some-component")))}}`
+      hbs`{{get-widget (hash meta=(hash widgetOverride="some-component"))}}`
     );
 
     assert.dom(this.element).hasText("some-component");
@@ -23,7 +23,7 @@ module("Integration | Helper | get-widget", function(hooks) {
 
   test("it doesn't return an invalid override", async function(assert) {
     await render(
-      hbs`{{get-widget (hash question=(hash meta=(hash widgetOverride="some-component")))}}`
+      hbs`{{get-widget (hash meta=(hash widgetOverride="some-component"))}}`
     );
 
     assert.dom(this.element).hasText("cf-field/input");
@@ -43,5 +43,24 @@ module("Integration | Helper | get-widget", function(hooks) {
     await render(hbs`{{get-widget null default="cf-form"}}`);
 
     assert.dom(this.element).hasText("cf-form");
+  });
+
+  test("it can handle multiple objects", async function(assert) {
+    const calumaOptions = this.owner.lookup("service:calumaOptions");
+
+    calumaOptions.registerComponentOverride({
+      label: "Some Component",
+      component: "some-component"
+    });
+
+    await render(
+      hbs`{{get-widget
+        null
+        (hash meta=(hash widgetOverride="some-invalid-component"))
+        (hash meta=(hash widgetOverride="some-component"))
+      }}`
+    );
+
+    assert.dom(this.element).hasText("some-component");
   });
 });
