@@ -4,7 +4,7 @@ import { reads } from "@ember/object/computed";
 import { assert } from "@ember/debug";
 import { computed } from "@ember/object";
 import { inject as service } from "@ember/service";
-import { queryManager } from "ember-apollo-client";
+import { ComponentQueryManager } from "ember-apollo-client";
 import { task } from "ember-concurrency";
 
 import Document from "ember-caluma/lib/document";
@@ -42,10 +42,9 @@ import getDocumentFormsQuery from "ember-caluma/gql/queries/get-document-forms";
  * @yield {CfNavigationComponent} content.navigation
  * @yield {CfPaginationComponent} content.pagination
  */
-export default Component.extend({
+export default Component.extend(ComponentQueryManager, {
   layout,
 
-  apollo: queryManager(),
   router: service(),
   calumaStore: service(),
 

@@ -1,13 +1,11 @@
 import Component from "@ember/component";
 import layout from "../templates/components/cfb-form-list";
 import { task } from "ember-concurrency";
-import { queryManager } from "ember-apollo-client";
+import { ComponentQueryManager } from "ember-apollo-client";
 import formListQuery from "ember-caluma/gql/queries/form-list";
 
-export default Component.extend({
+export default Component.extend(ComponentQueryManager, {
   layout,
-
-  apollo: queryManager(),
 
   didReceiveAttrs() {
     this._super(...arguments);

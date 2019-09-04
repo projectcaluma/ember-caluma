@@ -1,10 +1,8 @@
 import Route from "@ember/routing/route";
-import { queryManager } from "ember-apollo-client";
+import { RouteQueryManager } from "ember-apollo-client";
 import gql from "graphql-tag";
 
-export default Route.extend({
-  apollo: queryManager(),
-
+export default Route.extend(RouteQueryManager, {
   async model() {
     const documents = await this.apollo.query(
       {
