@@ -2,11 +2,9 @@ import Service from "@ember/service";
 import { task } from "ember-concurrency";
 import allFormatValidatorsQuery from "ember-caluma/gql/queries/all-format-validators";
 import { assert } from "@ember/debug";
-import { queryManager } from "ember-apollo-client";
+import { ObjectQueryManager } from "ember-apollo-client";
 
-export default Service.extend({
-  apollo: queryManager(),
-
+export default Service.extend(ObjectQueryManager, {
   /**
    * Tests a value against one or multiple regular expressions.
    *

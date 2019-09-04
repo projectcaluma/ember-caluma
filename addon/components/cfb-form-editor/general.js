@@ -3,7 +3,7 @@ import { inject as service } from "@ember/service";
 import { computed } from "@ember/object";
 import layout from "../../templates/components/cfb-form-editor/general";
 import { task, timeout } from "ember-concurrency";
-import { queryManager } from "ember-apollo-client";
+import { ComponentQueryManager } from "ember-apollo-client";
 import validations from "../../validations/form";
 import v4 from "uuid/v4";
 import slugify from "ember-caluma/utils/slugify";
@@ -15,11 +15,9 @@ import checkFormSlugQuery from "ember-caluma/gql/queries/check-form-slug";
 import formEditorGeneralQuery from "ember-caluma/gql/queries/form-editor-general";
 import saveFormMutation from "ember-caluma/gql/mutations/save-form";
 
-export default Component.extend({
+export default Component.extend(ComponentQueryManager, {
   layout,
   validations,
-
-  apollo: queryManager(),
 
   notification: service(),
   intl: service(),
