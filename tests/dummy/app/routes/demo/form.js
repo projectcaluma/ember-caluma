@@ -8,6 +8,7 @@ export default Route.extend({
   async model() {
     const documents = await this.apollo.query(
       {
+        fetchPolicy: "network-only",
         query: gql`
           query {
             allDocuments(form: "formular-1") {
