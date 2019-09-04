@@ -25,7 +25,7 @@
           <td class="uk-text-right">
             <button type="button" data-test-edit-row class="uk-icon-button" uk-icon="pencil" {{action "editRow" document}}></button>
             {{#unless disabled}}
-              <button type="button" data-test-delete-row class="uk-icon-button" uk-icon="trash" {{action (perform deleteRow) document}}></button>
+              <button type="button" data-test-delete-row class="uk-icon-button" uk-icon="trash" {{action "deleteRow" document}}></button>
             {{/unless}}
           </td>
         </tr>
@@ -41,9 +41,10 @@
       {{/unless}}
     </tfoot>
   </table>
+
   {{#uk-modal
-    visible=(and showModal documentToEdit)
-    on-hide=(action (mut showModal) false)
+    visible=(and showAddModal documentToEdit)
+    on-hide=(action (mut showAddModal) false)
     bgClose=false
   }}
     {{#if documentToEdit}}
@@ -55,6 +56,23 @@
         disabled=save.isRunning
         loading=save.isRunning
         on-click=(perform save)
+      }}
+    </p>
+  {{/uk-modal}}
+
+  {{#uk-modal
+    visible=(and showDeleteModal documentToDelete)
+    on-hide=(action (mut showDeleteModal) false)
+    bgClose=false
+  }}
+    <p>{{t "caluma.form.deleteRow"}}</p>
+
+    <p class="uk-text-right">
+      {{uk-button
+        label=(t "caluma.form.delete")
+        disabled=deleteRow.isRunning
+        loading=deleteRow.isRunning
+        on-click=(perform deleteRow documentToDelete)
       }}
     </p>
   {{/uk-modal}}

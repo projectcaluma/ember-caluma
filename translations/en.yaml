@@ -8,8 +8,10 @@ caluma:
   form:
     optional: "Optional"
     save: "Save"
+    delete: "Delete"
     selectFile: "Click to upload a file"
     changeFile: "Click to upload a different file"
+    deleteRow: "Do you really want to delete this row?"
 
     navigation:
       next: "Next"

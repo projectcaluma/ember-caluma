@@ -17,8 +17,10 @@ export default Component.extend({
   notification: service(),
   intl: service(),
 
-  showModal: false,
+  showAddModal: false,
+  showDeleteModal: false,
   documentToEdit: null,
+  documentToDelete: null,
 
   columnHeaders: computed(
     "field.question.{rowForm.questions.edges.@each,meta.columnsToDisplay.[]}",
@@ -49,7 +51,7 @@ export default Component.extend({
 
     this.setProperties({
       documentToEdit: newDocument,
-      showModal: true
+      showAddModal: true
     });
   }).drop(),
 
@@ -61,6 +63,8 @@ export default Component.extend({
     );
 
     yield this.onSave(remainingDocuments);
+
+    this.set("showDeleteModal", false);
   }),
 
   save: task(function*() {
@@ -86,7 +90,7 @@ export default Component.extend({
         yield this.onSave([...rows]);
       }
 
-      this.set("showModal", false);
+      this.set("showAddModal", false);
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e);
@@ -100,7 +104,13 @@ export default Component.extend({
     editRow(document) {
       this.setProperties({
         documentToEdit: document,
-        showModal: true
+        showAddModal: true
+      });
+    },
+    deleteRow(document) {
+      this.setProperties({
+        documentToDelete: document,
+        showDeleteModal: true
       });
     }
   }
