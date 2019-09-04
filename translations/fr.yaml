@@ -8,8 +8,10 @@ caluma:
   form:
     optional: "optional"
     save: "sauvegarder"
+    delete: "supprimer"
     selectFile: "cliquez pour télécharger le ficher"
     changeFile: "cliquez pour télécharger un autre fichier"
+    deleteRow: "Voulez-vous supprimer cette ligne?"
 
     navigation:
       next: "suivante"
