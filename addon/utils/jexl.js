@@ -1,4 +1,3 @@
-import { computed } from "@ember/object";
 import jexl from "jexl";
 
 export const intersects = (left, right) =>
@@ -58,32 +57,4 @@ export const getTransforms = tree => {
   return transforms;
 };
 
-/**
- * Function to clean all whitespace characters of a jexl expression
- *
- * @function cleanExpression
- * @param {String} expression The raw expression
- * @return {String} The cleaned expression
- *
- * @todo Remove this when https://github.com/TomFrost/Jexl/pull/54/ is merged
- */
-export const cleanExpression = expression => {
-  return expression.replace(/\s+/g, " ").trim();
-};
-
-/**
- * Computed property macro for automatically cleaning expression's whitespace
- * characters.
- *
- * @function expression
- * @param {String} key Key of the property holding the raw expression
- * @return {Function} The computed property
- *
- * @todo Remove this when https://github.com/TomFrost/Jexl/pull/54/ is merged
- */
-export const expression = key =>
-  computed(key, function() {
-    return cleanExpression(this.get(key));
-  });
-
-export default { getTransforms, getAST, cleanExpression, expression };
+export default { getTransforms, getAST };

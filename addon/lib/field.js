@@ -218,20 +218,18 @@ export default Base.extend({
    */
   hiddenDependencies: computed(
     "document.fields.[]",
-    "question.hiddenExpression",
+    "question.isHidden",
     function() {
-      return getDependenciesFromJexl(this.question.hiddenExpression).map(
-        slug => {
-          const f = this.document.findField(slug);
+      return getDependenciesFromJexl(this.question.isHidden).map(slug => {
+        const f = this.document.findField(slug);
 
-          assert(
-            `Field for question \`${slug}\` was not found in this document. Please check the \`isHidden\` jexl expression: \`${this.question.hiddenExpression}\`.`,
-            f
-          );
+        assert(
+          `Field for question \`${slug}\` was not found in this document. Please check the \`isHidden\` jexl expression: \`${this.question.isHidden}\`.`,
+          f
+        );
 
-          return f;
-        }
-      );
+        return f;
+      });
     }
   ),
 
@@ -246,20 +244,18 @@ export default Base.extend({
    */
   optionalDependencies: computed(
     "document.fields.[]",
-    "question.requiredExpression",
+    "question.isRequired",
     function() {
-      return getDependenciesFromJexl(this.question.requiredExpression).map(
-        slug => {
-          const f = this.document.findField(slug);
+      return getDependenciesFromJexl(this.question.isRequired).map(slug => {
+        const f = this.document.findField(slug);
 
-          assert(
-            `Field for question \`${slug}\` was not found in this document. Please check the \`isRequired\` jexl expression: \`${this.question.requiredExpression}\`.`,
-            f
-          );
+        assert(
+          `Field for question \`${slug}\` was not found in this document. Please check the \`isRequired\` jexl expression: \`${this.question.isRequired}\`.`,
+          f
+        );
 
-          return f;
-        }
-      );
+        return f;
+      });
     }
   ),
 
@@ -282,7 +278,7 @@ export default Base.extend({
         (this.hiddenDependencies.length &&
           this.hiddenDependencies.every(fieldIsHidden)) ||
         this.document.jexl.evalSync(
-          this.question.hiddenExpression,
+          this.question.isHidden,
           this.document.jexlContext
         )
       );
@@ -308,7 +304,7 @@ export default Base.extend({
         (this.optionalDependencies.length &&
           this.optionalDependencies.every(fieldIsHidden)) ||
         !this.document.jexl.evalSync(
-          this.question.requiredExpression,
+          this.question.isRequired,
           this.document.jexlContext
         )
       );
