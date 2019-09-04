@@ -1,18 +1,18 @@
+import { getOwner } from "@ember/application";
 import Component from "@ember/component";
-import layout from "../templates/components/cf-content";
-import { inject as service } from "@ember/service";
-import { computed } from "@ember/object";
 import { reads } from "@ember/object/computed";
+import { assert } from "@ember/debug";
+import { computed } from "@ember/object";
+import { inject as service } from "@ember/service";
 import { queryManager } from "ember-apollo-client";
 import { task } from "ember-concurrency";
+
 import Document from "ember-caluma/lib/document";
 import Navigation from "ember-caluma/lib/navigation";
 import { parseDocument } from "ember-caluma/lib/parsers";
-
+import layout from "ember-caluma/templates/components/cf-content";
 import getDocumentAnswersQuery from "ember-caluma/gql/queries/get-document-answers";
 import getDocumentFormsQuery from "ember-caluma/gql/queries/get-document-forms";
-import { getOwner } from "@ember/application";
-import { assert } from "@ember/debug";
 
 /**
  * Component to render a form with navigation.
