@@ -4,7 +4,7 @@ import UIkit from "uikit";
 import { run } from "@ember/runloop";
 import { optional } from "ember-composable-helpers/helpers/optional";
 import { task, timeout } from "ember-concurrency";
-import { ComponentQueryManager } from "ember-apollo-client";
+import { queryManager } from "ember-apollo-client";
 import { computed } from "@ember/object";
 import v4 from "uuid/v4";
 import { inject as service } from "@ember/service";
@@ -15,12 +15,14 @@ import reorderFormQuestionsMutation from "ember-caluma/gql/mutations/reorder-for
 import addFormQuestionMutation from "ember-caluma/gql/mutations/add-form-question";
 import removeFormQuestionMutation from "ember-caluma/gql/mutations/remove-form-question";
 
-export default Component.extend(ComponentQueryManager, {
+export default Component.extend({
   layout,
   tagName: "div",
 
   notification: service(),
   intl: service(),
+
+  apollo: queryManager(),
 
   search: "",
   mode: "reorder",

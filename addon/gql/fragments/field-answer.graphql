@@ -1,4 +1,4 @@
-#import 'ember-caluma/gql/fragments/field-question'
+# import * from 'ember-caluma/gql/fragments/field-question'
 
 fragment SimpleAnswer on Answer {
   id

@@ -1,5 +1,5 @@
-#import "ember-caluma/gql/fragments/form-info"
-#import "ember-caluma/gql/fragments/question-info"
+# import * from 'ember-caluma/gql/fragments/form-info'
+# import * from 'ember-caluma/gql/fragments/question-info'
 
 mutation AddFormQuestion($input: AddFormQuestionInput!, $search: String) {
   addFormQuestion(input: $input) {
