@@ -1,3 +1,19 @@
+# [2.4.0](https://github.com/projectcaluma/ember-caluma/compare/v2.3.1...v2.4.0) (2019-09-05)
+
+
+### Bug Fixes
+
+* **cf-content:** correct policy property name ([91e7b52](https://github.com/projectcaluma/ember-caluma/commit/91e7b52))
+* **cfb-options:** options cannot be deleted from db ([3668c66](https://github.com/projectcaluma/ember-caluma/commit/3668c66))
+* **ie11:** remove usage of queryManager which breaks in IE11 ([c424c0c](https://github.com/projectcaluma/ember-caluma/commit/c424c0c))
+
+
+### Features
+
+* **form:** allow forms to have a widget override ([9b25310](https://github.com/projectcaluma/ember-caluma/commit/9b25310))
+* **options:** hide archived options ([5cd58d8](https://github.com/projectcaluma/ember-caluma/commit/5cd58d8))
+* **table:** prompt before deleting rows ([a9e7b0c](https://github.com/projectcaluma/ember-caluma/commit/a9e7b0c))
+
 ## [2.3.1](https://github.com/projectcaluma/ember-caluma/compare/v2.3.0...v2.3.1) (2019-08-23)
 
 
