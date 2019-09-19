@@ -45,6 +45,7 @@
   {{#uk-modal
     visible=(and showAddModal documentToEdit)
     on-hide=(action (mut showAddModal) false)
+    btnClose=true
     bgClose=false
   }}
     {{#if documentToEdit}}
@@ -63,6 +64,7 @@
   {{#uk-modal
     visible=(and showDeleteModal documentToDelete)
     on-hide=(action (mut showDeleteModal) false)
+    btnClose=true
     bgClose=false
   }}
     <p>{{t "caluma.form.deleteRow"}}</p>
