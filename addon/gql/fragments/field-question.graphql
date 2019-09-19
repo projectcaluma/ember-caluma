@@ -24,23 +24,21 @@ fragment SimpleQuestion on Question {
     placeholder
   }
   ... on ChoiceQuestion {
-    choiceOptions: options {
+    choiceOptions: options(isArchived: false) {
       edges {
         node {
           slug
           label
-          isArchived
         }
       }
     }
   }
   ... on MultipleChoiceQuestion {
-    multipleChoiceOptions: options {
+    multipleChoiceOptions: options(isArchived: false) {
       edges {
         node {
           slug
           label
-          isArchived
         }
       }
     }
