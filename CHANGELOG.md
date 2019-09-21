@@ -1,3 +1,17 @@
+# [2.5.0](https://github.com/projectcaluma/ember-caluma/compare/v2.4.0...v2.5.0) (2019-09-21)
+
+
+### Bug Fixes
+
+* **input/table:** add btnClose to modals ([5d1b42d](https://github.com/projectcaluma/ember-caluma/commit/5d1b42d))
+* **translations:** shorten weekdays for french translations ([#533](https://github.com/projectcaluma/ember-caluma/issues/533)) ([0edca21](https://github.com/projectcaluma/ember-caluma/commit/0edca21))
+
+
+### Features
+
+* **input/options:** hide archived options ([ffbf840](https://github.com/projectcaluma/ember-caluma/commit/ffbf840))
+* **options:** add (un)archive to form-builder ([d1483a3](https://github.com/projectcaluma/ember-caluma/commit/d1483a3))
+
 # [2.4.0](https://github.com/projectcaluma/ember-caluma/compare/v2.3.1...v2.4.0) (2019-09-05)
 
 
