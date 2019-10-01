@@ -143,8 +143,9 @@ export default Base.extend({
    */
   findAnswer(slug) {
     const field = this.findField(slug);
+    const value = field.value;
 
-    if (!field || !field.answer) {
+    if (!field || !value) {
       return null;
     }
 
@@ -153,18 +154,18 @@ export default Base.extend({
     const emptyValue =
       field.question.__typename == "MultipleChoiceQuestion" ? [] : null;
 
-    if (field.answer.value && !field.hidden) {
+    if (value && !field.hidden) {
       if (field.question.__typename === "TableQuestion") {
-        return (field.get("answer.value") || []).map(doc =>
+        return (value || []).map(doc =>
           doc.fields.reduce((obj, field) => {
             return {
               ...obj,
-              [field.question.slug]: field.answer.value
+              [field.question.slug]: value
             };
           }, {})
         );
       }
-      return field.answer.value;
+      return value;
     }
 
     return emptyValue;

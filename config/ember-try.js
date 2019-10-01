@@ -21,6 +21,20 @@ module.exports = async function() {
         }
       },
       {
+        name: "ember-lts-3.12",
+        env: {
+          EMBER_OPTIONAL_FEATURES: JSON.stringify({
+            "jquery-integration": true
+          })
+        },
+        npm: {
+          devDependencies: {
+            "@ember/jquery": "^0.6.0",
+            "ember-source": "~3.12.0"
+          }
+        }
+      },
+      {
         name: "ember-release",
         npm: {
           devDependencies: {
