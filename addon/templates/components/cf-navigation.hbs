@@ -2,6 +2,9 @@
   {{#each (reject-by "parent" navigation.items) as |item|}}
     {{#if item.visible}}
       {{cf-navigation-item item=item}}
+      {{#unless item.fieldset.field}}
+        <hr class="uk-divider-small uk-margin-small">
+      {{/unless}}
     {{/if}}
   {{/each}}
 </ul>
