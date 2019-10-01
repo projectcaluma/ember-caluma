@@ -1,7 +1,7 @@
 import { module, skip } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
 import { render } from "@ember/test-helpers";
-import hbs from "htmlbars-inline-precompile";
+import { hbs } from "ember-cli-htmlbars";
 
 module("Integration | Component | cf-pagination", function(hooks) {
   setupRenderingTest(hooks);
@@ -12,7 +12,7 @@ module("Integration | Component | cf-pagination", function(hooks) {
 
     await render(hbs`<CfPagination />`);
 
-    assert.equal(this.element.textContent.trim(), "");
+    assert.dom(this.element).hasText("");
 
     // Template block usage:
     await render(hbs`
@@ -21,6 +21,6 @@ module("Integration | Component | cf-pagination", function(hooks) {
       </CfPagination>
     `);
 
-    assert.equal(this.element.textContent.trim(), "template block text");
+    assert.dom(this.element).hasText("template block text");
   });
 });

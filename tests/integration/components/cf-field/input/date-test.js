@@ -2,7 +2,7 @@ import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
 import { click, render } from "@ember/test-helpers";
 import moment from "moment";
-import hbs from "htmlbars-inline-precompile";
+import { hbs } from "ember-cli-htmlbars";
 import { Interactor } from "ember-pikaday/test-support";
 import ValidatorServiceStub from "dummy/tests/helpers/validator-service-stub";
 
