@@ -36,7 +36,7 @@ caluma:
       blank: "Dieses Feld darf nicht leer gelassen werden"
       tooLong: "In diesem Feld sind maximal {max} Zeichen erlaubt"
       greaterThanOrEqualTo: "Die Eingabe in diesem Feld darf nicht kleiner als {gte} sein"
-      lessThanOrEqualTo: "Die Eingebae in diesem Feld darf nicht grösser als {lte} sein"
+      lessThanOrEqualTo: "Die Eingabe in diesem Feld darf nicht grösser als {lte} sein"
       notAnInteger: "Bitte geben Sie eine ganze Zahl ein"
       inclusion: "'{value}' ist kein gültiger Wert für dieses Feld"
       uploadFailed: "Beim Hochladen ist ein Fehler aufgetreten."
