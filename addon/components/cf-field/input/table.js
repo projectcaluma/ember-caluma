@@ -85,7 +85,6 @@ export default Component.extend(ComponentQueryManager, {
         );
       } else {
         // TODO: delete dangling document
-        yield this.onSave([...rows]);
       }
 
       this.set("showAddModal", false);
