@@ -59,7 +59,12 @@ export const NavigationItem = Base.extend({
    * @property {String} label
    * @accessor
    */
-  label: reads("fieldset.field.question.label"),
+  label: computed("fieldset.{field.question.label,form.name}", function() {
+    return this.getWithDefault(
+      "fieldset.field.question.label",
+      this.get("fieldset.form.name")
+    );
+  }),
 
   /**
    * The slug of the items form
@@ -67,7 +72,15 @@ export const NavigationItem = Base.extend({
    * @property {String} slug
    * @accessor
    */
-  slug: reads("fieldset.field.question.subForm.slug"),
+  slug: computed(
+    "fieldset.{field.question.subForm.slug,form.slug}",
+    function() {
+      return this.getWithDefault(
+        "fieldset.field.question.subForm.slug",
+        this.get("fieldset.form.slug")
+      );
+    }
+  ),
 
   /**
    * The slug of the parent items form
@@ -101,7 +114,7 @@ export const NavigationItem = Base.extend({
     "fieldset.fields.@each.{hidden,questionType}",
     function() {
       return (
-        !this.fieldset.field.hidden &&
+        (this.fieldset.field === undefined || !this.fieldset.field.hidden) &&
         this.fieldset.fields.some(
           field => field.questionType !== "FormQuestion" && !field.hidden
         )
@@ -227,19 +240,17 @@ export const Navigation = Base.extend({
   },
 
   _createItems() {
-    const items = this.document.fieldsets
-      .filter(fieldset => fieldset.field)
-      .map(fieldset => {
-        const pk = `NavigationItem:${fieldset.pk}`;
+    const items = this.document.fieldsets.map(fieldset => {
+      const pk = `NavigationItem:${fieldset.pk}`;
 
-        return (
-          this.calumaStore.find(pk) ||
-          NavigationItem.create(getOwner(this).ownerInjection(), {
-            fieldset,
-            navigation: this
-          })
-        );
-      });
+      return (
+        this.calumaStore.find(pk) ||
+        NavigationItem.create(getOwner(this).ownerInjection(), {
+          fieldset,
+          navigation: this
+        })
+      );
+    });
 
     this.set("items", items);
   },
