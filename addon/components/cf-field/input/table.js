@@ -8,12 +8,14 @@ import { computed } from "@ember/object";
 import { getOwner } from "@ember/application";
 import Document from "ember-caluma/lib/document";
 import { parseDocument } from "ember-caluma/lib/parsers";
+import removeDocumentMutation from "ember-caluma/gql/mutations/remove-document";
 
 export default Component.extend(ComponentQueryManager, {
   layout,
 
   notification: service(),
   intl: service(),
+  calumaStore: service(),
 
   showAddModal: false,
   showDeleteModal: false,
@@ -62,6 +64,15 @@ export default Component.extend(ComponentQueryManager, {
 
     yield this.onSave(remainingDocuments);
 
+    // Remove orphaned document from database.
+    yield this.apollo.mutate({
+      mutation: removeDocumentMutation,
+      variables: { input: { document: document.uuid } }
+    });
+
+    // Remove orphand document from Caluma store.
+    this.calumaStore.delete(document.pk);
+
     this.set("showDeleteModal", false);
   }),
 
@@ -83,8 +94,6 @@ export default Component.extend(ComponentQueryManager, {
         this.get("notification").success(
           this.get("intl").t("caluma.form.notification.table.add.success")
         );
-      } else {
-        // TODO: delete dangling document
       }
 
       this.set("showAddModal", false);
