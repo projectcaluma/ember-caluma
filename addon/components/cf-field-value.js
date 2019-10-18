@@ -49,7 +49,7 @@ export default Component.extend(ComponentQueryManager, {
       }
       case "DateQuestion": {
         return {
-          label: moment(field.answer.value).format("L")
+          label: field.answer.value && moment(field.answer.value).format("L")
         };
       }
 
