@@ -1,6 +1,6 @@
 /* eslint-disable */
 define('dummy/config/node-asset-manifest', function() {
   return {
-    default: {"bundles":{"ember-caluma":{"assets":[{"uri":"/engines-dist/ember-caluma/config/environment-7f169f7bce1bb75ea9d626ae6be08da9.js","type":"js"}]}}}
+    default: {"bundles":{"ember-caluma":{"assets":[{"uri":"/engines-dist/ember-caluma/config/environment-3b977884c507d5eb756ee684a4f04e54.js","type":"js"}]}}}
   };
 });
