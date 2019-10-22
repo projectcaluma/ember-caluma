@@ -50,7 +50,7 @@
     "ember-math-helpers": "^2.12.0",
     "ember-power-select": "^2.3.5",
     "ember-test-selectors": "^2.1.0",
-    "ember-uikit": "^0.8.1",
+    "ember-uikit": "^0.9.0",
     "ember-validated-form": "^2.0.0-alpha.5",
     "faker": "4.1.0",
     "graphql": "^14.5.8",
