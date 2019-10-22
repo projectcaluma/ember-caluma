@@ -1,7 +1,7 @@
 import jexl from "jexl";
 
 export const intersects = (left, right) =>
-  left.some(val => right.includes(val));
+  (left || []).some(val => (right || []).includes(val));
 
 /**
  * Transform a JEXL expression into it's AST
