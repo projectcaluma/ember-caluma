@@ -106,7 +106,7 @@
     "loader.js": "4.7.0",
     "node-fetch": "2.6.0",
     "prettier": "1.18.2",
-    "qunit-dom": "0.9.0",
+    "qunit-dom": "0.9.1",
     "typeface-oxygen": "0.0.72",
     "typeface-oxygen-mono": "0.0.72"
   },
