@@ -22,6 +22,7 @@ import saveDocumentFileAnswerMutation from "ember-caluma/gql/mutations/save-docu
 import saveDocumentDateAnswerMutation from "ember-caluma/gql/mutations/save-document-date-answer";
 import saveDocumentTableAnswerMutation from "ember-caluma/gql/mutations/save-document-table-answer";
 import removeAnswerMutation from "ember-caluma/gql/mutations/remove-answer";
+import getDocumentUsedDynamicOptionsQuery from "ember-caluma/gql/queries/get-document-used-dynamic-options";
 import { getAST, getTransforms } from "ember-caluma/utils/jexl";
 
 const TYPE_MAP = {
@@ -108,6 +109,10 @@ export default Base.extend({
       Question.create(getOwner(this).ownerInjection(), {
         raw: this.raw.question
       });
+
+    if (question.isDynamic) {
+      question.loadDynamicOptions.perform();
+    }
 
     this.set("question", question);
   },
@@ -206,6 +211,125 @@ export default Base.extend({
    * @accessor
    */
   value: reads("answer.value"),
+
+  /**
+   * Fetch all formerly used dynamic options for this question. This will be
+   * taken from the apollo cache if possible.
+   *
+   * @method _fetchUsedDynamicOptions.perform
+   * @return {Object[]} Formerly used dynamic options
+   * @private
+   */
+  _fetchUsedDynamicOptions: task(function*() {
+    if (!this.question.isDynamic) return null;
+
+    const edges = yield this.apollo.query(
+      {
+        query: getDocumentUsedDynamicOptionsQuery,
+        fetchPolicy: "cache-first",
+        variables: {
+          document: this.document.uuid,
+          question: this.question.slug
+        }
+      },
+      "allUsedDynamicOptions.edges"
+    );
+
+    return edges.map(({ node: { slug, label } }) => ({
+      slug,
+      label
+    }));
+  }),
+
+  /**
+   * The formerly used dynamic options for this question.
+   *
+   * @property {Object[]} usedDynamicOptions
+   * @accessor
+   *
+   */
+  usedDynamicOptions: reads("_fetchUsedDynamicOptions.lastSuccessful.value"),
+
+  /**
+   * The available options for choice questions. This only works for the
+   * following types:
+   *
+   * - ChoiceQuestion
+   * - DynamicChoiceQuestion
+   * - MultipleChoiceQuestion
+   * - DynamicMultipleChoiceQuestion
+   *
+   * This will also return the disabled state of the option. An option can only
+   * be disabled, if it is an old value used in a dynamic question.
+   *
+   * @property {Null|Object[]} options
+   * @accessor
+   */
+  options: computed(
+    "value",
+    "question.options.[]",
+    "usedDynamicOptions.[]",
+    function() {
+      if (!this.question.isChoice && !this.question.isMultipleChoice) {
+        return null;
+      }
+
+      const selected =
+        (this.question.isMultipleChoice ? this.value : [this.value]) || [];
+
+      const options = this.question.options.map(option => ({
+        ...option,
+        disabled: false
+      }));
+
+      const hasInvalidSelected = !selected.every(slug =>
+        options.find(option => option.slug === slug)
+      );
+
+      if (this.question.isDynamic && hasInvalidSelected) {
+        if (!this._fetchUsedDynamicOptions.lastSuccessful) {
+          // Fetch used dynamic options if not done yet
+          this._fetchUsedDynamicOptions.perform();
+        }
+
+        return [
+          ...options,
+          ...(this.usedDynamicOptions || [])
+            .filter(used => {
+              return (
+                selected.includes(used.slug) &&
+                !options.find(option => option.slug === used.slug)
+              );
+            })
+            .map(used => ({ ...used, disabled: true }))
+        ];
+      }
+
+      return options;
+    }
+  ),
+
+  /**
+   * The currently selected option. This property is only used for choice
+   * questions. It can either return null if no value is selected yet, an
+   * object for single choices or an array of objects for multiple choices.
+   *
+   * @property {Null|Object|Object[]} selected
+   * @accessor
+   */
+  selected: computed("value", "options.@each.slug", function() {
+    if (!this.question.isChoice && !this.question.isMultipleChoice) {
+      return null;
+    }
+
+    const selected = this.options.filter(({ slug }) =>
+      this.question.isMultipleChoice
+        ? (this.value || []).includes(slug)
+        : this.value === slug
+    );
+
+    return this.question.isMultipleChoice ? selected : selected[0];
+  }),
 
   /**
    * Fields that are referenced in the `isHidden` JEXL expression
@@ -523,9 +647,7 @@ export default Base.extend({
   _validateChoiceQuestion() {
     return validate("inclusion", this.get("answer.value"), {
       allowBlank: true,
-      in: this.getWithDefault("question.choiceOptions.edges", []).map(
-        option => option.node.slug
-      )
+      in: (this.options || []).map(({ slug }) => slug)
     });
   },
 
@@ -544,9 +666,7 @@ export default Base.extend({
     }
     return value.map(value =>
       validate("inclusion", value, {
-        in: this.getWithDefault("question.multipleChoiceOptions.edges", []).map(
-          option => option.node.slug
-        )
+        in: (this.options || []).map(({ slug }) => slug)
       })
     );
   },
@@ -559,11 +679,11 @@ export default Base.extend({
    * @return {Object|Boolean} Returns an object if invalid or true if valid
    * @internal
    */
-  _validateDynamicChoiceQuestion() {
+  async _validateDynamicChoiceQuestion() {
+    await this.question.loadDynamicOptions.perform();
+
     return validate("inclusion", this.get("answer.value"), {
-      in: this.getWithDefault("question.dynamicChoiceOptions.edges", []).map(
-        option => option.node.slug
-      )
+      in: (this.options || []).map(({ slug }) => slug)
     });
   },
 
@@ -575,17 +695,18 @@ export default Base.extend({
    * @return {Object[]|Boolean[]|Mixed[]} Returns per value an object if invalid or true if valid
    * @internal
    */
-  _validateDynamicMultipleChoiceQuestion() {
+  async _validateDynamicMultipleChoiceQuestion() {
     const value = this.get("answer.value");
+
     if (!value) {
       return true;
     }
+
+    await this.question.loadDynamicOptions.perform();
+
     return value.map(value => {
       return validate("inclusion", value, {
-        in: this.getWithDefault(
-          "question.dynamicMultipleChoiceOptions.edges",
-          []
-        ).map(option => option.node.slug)
+        in: (this.options || []).map(({ slug }) => slug)
       });
     });
   },

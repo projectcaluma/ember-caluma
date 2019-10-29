@@ -2,9 +2,11 @@ import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
 import { render, click } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
+import { setupIntl } from "ember-intl/test-support";
 
 module("Integration | Component | cf-field/input/checkbox", function(hooks) {
   setupRenderingTest(hooks);
+  setupIntl(hooks);
 
   test("it renders", async function(assert) {
     assert.expect(12);
@@ -16,14 +18,12 @@ module("Integration | Component | cf-field/input/checkbox", function(hooks) {
           answer=(hash
             value=(array "option-1" "option-2")
           )
+          options=(array
+            (hash slug="option-1" label="Option 1")
+            (hash slug="option-2" label="Option 2")
+            (hash slug="option-3" label="Option 3")
+          )
           question=(hash
-            multipleChoiceOptions=(hash
-              edges=(array
-                (hash node=(hash slug="option-1" label="Option 1"))
-                (hash node=(hash slug="option-2" label="Option 2"))
-                (hash node=(hash slug="option-3" label="Option 3"))
-              )
-            )
             __typename="MultipleChoiceQuestion"
           )
         )
@@ -60,14 +60,12 @@ module("Integration | Component | cf-field/input/checkbox", function(hooks) {
       {{cf-field/input/checkbox
         disabled=true
         field=(hash
+          options=(array
+            (hash slug="option-1" label="Option 1")
+            (hash slug="option-2" label="Option 2")
+            (hash slug="option-3" label="Option 3")
+          )
           question=(hash
-            multipleChoiceOptions=(hash
-              edges=(array
-                (hash node=(hash slug="option-1" label="Option 1"))
-                (hash node=(hash slug="option-2" label="Option 2"))
-                (hash node=(hash slug="option-3" label="Option 3"))
-              )
-            )
             __typename="MultipleChoiceQuestion"
           )
         )
@@ -92,13 +90,11 @@ module("Integration | Component | cf-field/input/checkbox", function(hooks) {
           answer=(hash
             value=value
           )
+          options=(array
+            (hash slug="option-1" label="Option 1")
+            (hash slug="option-2" label="Option 2")
+          )
           question=(hash
-            multipleChoiceOptions=(hash
-              edges=(array
-                (hash node=(hash slug="option-1" label="Option 1"))
-                (hash node=(hash slug="option-2" label="Option 2"))
-              )
-            )
             __typename="MultipleChoiceQuestion"
           )
         )
@@ -113,5 +109,33 @@ module("Integration | Component | cf-field/input/checkbox", function(hooks) {
 
     await click("label:nth-of-type(1) input");
     assert.deepEqual(this.value, ["option-2"]);
+  });
+
+  test("it renders disabled options", async function(assert) {
+    assert.expect(2);
+
+    this.set("disabled", false);
+
+    await render(hbs`
+      {{cf-field/input/checkbox
+        disabled=disabled
+        field=(hash
+          options=(array
+            (hash slug="option-disabled" label="Option Disabled" disabled=true)
+          )
+          question=(hash
+            __typename="MultipleChoiceQuestion"
+          )
+        )
+      }}
+    `);
+
+    assert
+      .dom("label del.uk-text-muted")
+      .hasAttribute("title", "t:caluma.form.optionNotAvailable:()");
+
+    this.set("disabled", true);
+
+    assert.dom("label del.uk-text-muted").doesNotExist();
   });
 });

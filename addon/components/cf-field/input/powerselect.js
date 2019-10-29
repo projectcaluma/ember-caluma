@@ -1,6 +1,7 @@
 import Component from "@ember/component";
 import { computed } from "@ember/object";
 import { inject as service } from "@ember/service";
+import { gt } from "@ember/object/computed";
 import layout from "../../../templates/components/cf-field/input/powerselect";
 import { queryManager } from "ember-apollo-client";
 
@@ -23,52 +24,11 @@ export default Component.extend({
     return this.get("field.question.__typename").includes("Multiple");
   }),
 
-  choices: computed(
-    "multiple",
-    "field.question.{choiceOptions,multipleChoiceOptions,dynamicChoiceOptions,dynamicMultipleChoiceOptions}.edges",
-    function() {
-      let options;
-      if (
-        this.get("field.question.__typename").includes("Dynamic") &&
-        this.multiple
-      ) {
-        options = this.get("field.question.dynamicMultipleChoiceOptions");
-      } else if (this.get("field.question.__typename").includes("Dynamic")) {
-        options = this.get("field.question.dynamicChoiceOptions");
-      } else if (this.multiple) {
-        options = this.get("field.question.multipleChoiceOptions");
-      } else {
-        options = this.get("field.question.choiceOptions");
-      }
-
-      return options.edges.map(edge => edge.node);
-    }
-  ),
-
-  selected: computed("field.answer.value", function() {
-    const answer = this.get("field.answer.value");
-    const isSingleChoice = !Array.isArray(answer);
-
-    if (!answer) {
-      return null;
-    }
-
-    const selection = this.choices.filter(choice => {
-      return isSingleChoice
-        ? answer === choice.slug
-        : answer.includes(choice.slug);
-    });
-
-    return isSingleChoice ? selection[0] : selection;
-  }),
-
   componentName: computed("multiple", function() {
     return this.get("multiple") ? "power-select-multiple" : "power-select";
   }),
 
-  searchEnabled: computed("choices", function() {
-    return this.get("choices").length > 10;
-  }),
+  searchEnabled: gt("choices.length", 10),
 
   placeholder: computed("multiple", function() {
     const suffix = this.get("multiple") ? "multiple" : "single";
@@ -77,7 +37,7 @@ export default Component.extend({
   }),
 
   actions: {
-    change: function(choices) {
+    change(choices) {
       let value = null;
 
       if (Array.isArray(choices)) {

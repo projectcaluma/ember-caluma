@@ -1,17 +1,19 @@
-{{#each choices as |optionEdge i|}}
-  {{#let optionEdge.node as |option|}}
-    {{#if (gt i 0)}}<br>{{/if}}
-    <label class={{if field.isInvalid "uk-form-danger"}}>
-      <input
-        class="uk-radio uk-margin-small-right"
-        type="radio"
-        name={{field.pk}}
-        value={{option.slug}}
-        checked={{eq option.slug field.answer.value}}
-        disabled={{disabled}}
-        onchange={{action onSave option.slug}}
-      >
+{{#each field.options as |option i|}}
+  {{#if (gt i 0)}}<br>{{/if}}
+  <label class={{if field.isInvalid "uk-form-danger"}}>
+    <input
+      class="uk-radio uk-margin-small-right"
+      type="radio"
+      name={{field.pk}}
+      value={{option.slug}}
+      checked={{eq option.slug field.answer.value}}
+      disabled={{disabled}}
+      onchange={{action onSave option.slug}}
+    >
+    {{#if (and option.disabled (not disabled))}}
+      <del class="uk-text-muted" title={{t "caluma.form.optionNotAvailable"}}>{{option.label}}</del>
+    {{else}}
       {{option.label}}
-    </label>
-  {{/let}}
+    {{/if}}
+  </label>
 {{/each}}
