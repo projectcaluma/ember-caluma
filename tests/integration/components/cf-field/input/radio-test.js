@@ -2,9 +2,11 @@ import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
 import { render, click } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
+import { setupIntl } from "ember-intl/test-support";
 
 module("Integration | Component | cf-field/input/radio", function(hooks) {
   setupRenderingTest(hooks);
+  setupIntl(hooks);
 
   hooks.beforeEach(function() {
     this.set("noop", () => {});
@@ -21,14 +23,12 @@ module("Integration | Component | cf-field/input/radio", function(hooks) {
           answer=(hash
             value="option-1"
           )
+          options=(array
+            (hash slug="option-1" label="Option 1")
+            (hash slug="option-2" label="Option 2")
+            (hash slug="option-3" label="Option 3")
+          )
           question=(hash
-            choiceOptions=(hash
-              edges=(array
-                (hash node=(hash slug="option-1" label="Option 1"))
-                (hash node=(hash slug="option-2" label="Option 2"))
-                (hash node=(hash slug="option-3" label="Option 3"))
-              )
-            )
             __typename="ChoiceQuestion"
           )
         )
@@ -59,14 +59,12 @@ module("Integration | Component | cf-field/input/radio", function(hooks) {
         onSave=noop
         disabled=true
         field=(hash
+          options=(array
+            (hash slug="option-1" label="Option 1")
+            (hash slug="option-2" label="Option 2")
+            (hash slug="option-3" label="Option 3")
+          )
           question=(hash
-            choiceOptions=(hash
-              edges=(array
-                (hash node=(hash slug="option-1" label="Option 1"))
-                (hash node=(hash slug="option-2" label="Option 2"))
-                (hash node=(hash slug="option-3" label="Option 3"))
-              )
-            )
             __typename="ChoiceQuestion"
           )
         )
@@ -87,12 +85,10 @@ module("Integration | Component | cf-field/input/radio", function(hooks) {
       {{cf-field/input/radio
         onSave=save
         field=(hash
+          options=(array
+            (hash slug="option-1" label="Option 1")
+          )
           question=(hash
-            choiceOptions=(hash
-              edges=(array
-                (hash node=(hash slug="option-1" label="Option 1"))
-              )
-            )
             __typename="ChoiceQuestion"
           )
         )
@@ -100,5 +96,34 @@ module("Integration | Component | cf-field/input/radio", function(hooks) {
     `);
 
     await click("label:nth-of-type(1) input");
+  });
+
+  test("it renders disabled options", async function(assert) {
+    assert.expect(2);
+
+    this.set("disabled", false);
+
+    await render(hbs`
+      {{cf-field/input/radio
+        onSave=noop
+        disabled=disabled
+        field=(hash
+          options=(array
+            (hash slug="option-disabled" label="Option Disabled" disabled=true)
+          )
+          question=(hash
+            __typename="ChoiceQuestion"
+          )
+        )
+      }}
+    `);
+
+    assert
+      .dom("label del.uk-text-muted")
+      .hasAttribute("title", "t:caluma.form.optionNotAvailable:()");
+
+    this.set("disabled", true);
+
+    assert.dom("label del.uk-text-muted").doesNotExist();
   });
 });

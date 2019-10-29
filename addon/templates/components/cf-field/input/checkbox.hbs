@@ -1,17 +1,19 @@
-{{#each choices as |optionEdge i|}}
-  {{#let optionEdge.node as |option|}}
-    {{#if (gt i 0)}}<br>{{/if}}
-    <label class="cf-checkbox_label {{if field.isInvalid "uk-form-danger"}}">
-      <input
-        class="uk-checkbox uk-margin-small-right"
-        type="checkbox"
-        name="{{field.pk}}:Option:{{option.slug}}"
-        value={{option.slug}}
-        checked={{contains option.slug field.answer.value}}
-        disabled={{disabled}}
-        onchange={{action "update"}}
-      >
+{{#each field.options as |option i|}}
+  {{#if (gt i 0)}}<br>{{/if}}
+  <label class="cf-checkbox_label {{if field.isInvalid "uk-form-danger"}}">
+    <input
+      class="uk-checkbox uk-margin-small-right"
+      type="checkbox"
+      name="{{field.pk}}:Option:{{option.slug}}"
+      value={{option.slug}}
+      checked={{contains option.slug field.answer.value}}
+      disabled={{disabled}}
+      onchange={{action "update"}}
+    >
+    {{#if (and option.disabled (not disabled))}}
+      <del class="uk-text-muted" title={{t "caluma.form.optionNotAvailable"}}>{{option.label}}</del>
+    {{else}}
       {{option.label}}
-    </label>
-  {{/let}}
+    {{/if}}
+  </label>
 {{/each}}

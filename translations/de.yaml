@@ -12,6 +12,7 @@ caluma:
     selectFile: "Klicken um Datei hochzuladen"
     changeFile: "Klicken um andere Datei hochzuladen"
     deleteRow: "Möchten Sie diese Zeile wirklich löschen?"
+    optionNotAvailable: "Diese Option ist nicht mehr verfügbar"
 
     navigation:
       next: "Weiter"
@@ -91,7 +92,6 @@ caluma:
       markdown: "Markdown"
       dataSource: "Datenquelle"
       formatValidators: "Validierung"
-
 
       general: "Allgemein"
       options: "Optionen"

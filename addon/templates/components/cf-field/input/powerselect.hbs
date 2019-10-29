@@ -1,6 +1,6 @@
 {{#component componentName
-  options=choices
-  selected=selected
+  options=field.options
+  selected=field.selected
   disabled=disabled
   allowClear=true
   preventScroll=true
@@ -14,7 +14,11 @@
   noMatchesMessage=(t "caluma.form.power-select.search-empty")
 
   onchange=(action "change")
-  as |choice|
+  as |option|
 }}
-  {{choice.label}}
+  {{#if (and option.disabled (not disabled))}}
+    <del class="uk-text-muted" title={{t "caluma.form.optionNotAvailable"}}>{{option.label}}</del>
+  {{else}}
+    {{option.label}}
+  {{/if}}
 {{/component}}

@@ -95,12 +95,10 @@ module("Integration | Component | cf-field/input", function(hooks) {
       {{cf-field/input
         onSave=noop
         field=(hash
+          options=(array
+            (hash slug="option-1")
+          )
           question=(hash
-            choiceOptions=(hash
-              edges=(array
-                (hash node=(hash slug="option-1"))
-              )
-            )
             __typename="RadioQuestion"
           )
           answer=(hash
@@ -120,12 +118,10 @@ module("Integration | Component | cf-field/input", function(hooks) {
     await render(hbs`
       {{cf-field/input
         field=(hash
+          options=(array
+            (hash slug="option-1")
+          )
           question=(hash
-            multipleChoiceOptions=(hash
-              edges=(array
-                (hash node=(hash slug="option-1"))
-              )
-            )
             __typename="MultipleChoiceQuestion"
           )
           answer=(hash

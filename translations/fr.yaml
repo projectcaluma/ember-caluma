@@ -12,6 +12,7 @@ caluma:
     selectFile: "cliquez pour télécharger le ficher"
     changeFile: "cliquez pour télécharger un autre fichier"
     deleteRow: "Voulez-vous supprimer cette ligne?"
+    optionNotAvailable: "Cette option n'est plus disponible"
 
     navigation:
       next: "suivante"

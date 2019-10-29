@@ -1,6 +1,5 @@
 import Component from "@ember/component";
 import layout from "../../../templates/components/cf-field/input/checkbox";
-import { computed } from "@ember/object";
 
 /**
  * Function to extract the option slug out of an input element. This is needed
@@ -32,16 +31,6 @@ const getSlug = ({ value, name }) => {
  */
 export default Component.extend({
   layout,
-
-  choices: computed(
-    "field.question.{multipleChoiceOptions,dynamicMultipleChoiceOptions}.edges",
-    function() {
-      if (this.get("field.question.__typename").includes("Dynamic")) {
-        return this.get("field.question.dynamicMultipleChoiceOptions.edges");
-      }
-      return this.get("field.question.multipleChoiceOptions.edges");
-    }
-  ),
 
   actions: {
     /**

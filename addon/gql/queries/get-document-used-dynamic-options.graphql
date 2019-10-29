@@ -1,0 +1,12 @@
+query GetDocumentUsedDynamicOptions($document: ID!, $question: ID!) {
+  allUsedDynamicOptions(
+    filter: [{ document: $document, question: $question }]
+  ) {
+    edges {
+      node {
+        slug
+        label
+      }
+    }
+  }
+}

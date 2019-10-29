@@ -2,45 +2,63 @@ import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
 import { click, render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
+import Document from "ember-caluma/lib/document";
 
 module("Integration | Component | cf-field/input/powerselect", function(hooks) {
   setupRenderingTest(hooks);
 
   hooks.beforeEach(function() {
-    this.set("singleChoiceField", {
-      pk: "test-single",
-      answer: {
-        value: null,
-        __typename: "StringAnswer"
-      },
-      question: {
-        __typename: "ChoiceQuestion",
-        choiceOptions: {
-          edges: [
-            { node: { slug: "option-1", label: "Option 1" } },
-            { node: { slug: "option-2", label: "Option 2" } },
-            { node: { slug: "option-3", label: "Option 3" } }
-          ]
-        }
+    const singleChoice = {
+      __typename: "ChoiceQuestion",
+      slug: "test-single",
+      label: "Test Single Choice",
+      isHidden: "false",
+      isRequired: "true",
+      choiceOptions: {
+        edges: [
+          { node: { slug: "option-1", label: "Option 1" } },
+          { node: { slug: "option-2", label: "Option 2" } },
+          { node: { slug: "option-3", label: "Option 3" } }
+        ]
+      }
+    };
+
+    const multipleChoice = {
+      __typename: "MultipleChoiceQuestion",
+      slug: "test-multiple",
+      label: "Test Multiple Choice",
+      isHidden: "false",
+      isRequired: "true",
+      multipleChoiceOptions: {
+        edges: [
+          { node: { slug: "option-1", label: "Option 1" } },
+          { node: { slug: "option-2", label: "Option 2" } },
+          { node: { slug: "option-3", label: "Option 3" } }
+        ]
+      }
+    };
+
+    const form = {
+      __typename: "Form",
+      slug: "test-form",
+      name: "Test Form",
+      questions: [singleChoice, multipleChoice]
+    };
+
+    const document = Document.create(this.owner.ownerInjection(), {
+      raw: {
+        __typename: "Document",
+        id: btoa("Document:xxxx-xxxx"),
+        rootForm: form,
+        forms: [form],
+        answers: []
       }
     });
 
-    this.set("multipleChoiceField", {
-      id: "test-multiple",
-      answer: {
-        value: null,
-        __typename: "ListAnswer"
-      },
-      question: {
-        __typename: "MultipleChoiceQuestion",
-        multipleChoiceOptions: {
-          edges: [
-            { node: { slug: "option-1", label: "Option 1" } },
-            { node: { slug: "option-2", label: "Option 2" } },
-            { node: { slug: "option-3", label: "Option 3" } }
-          ]
-        }
-      }
+    this.setProperties({
+      document,
+      singleChoiceField: document.findField("test-single"),
+      multipleChoiceField: document.findField("test-multiple")
     });
   });
 
