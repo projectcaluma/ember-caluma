@@ -14,6 +14,10 @@ The Ember.js addon for [Caluma](https://projectcaluma.github.io) - a collaborati
 
 You can find the interactive documentation [here](https://projectcaluma.github.io/ember-caluma).
 
+## Compatibility
+
+`ember-caluma` is guaranteed to work with the **last LTS version** of Ember.js (currently 3.12).
+
 ## Contributing
 
 ### Installation
