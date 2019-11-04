@@ -6,7 +6,7 @@
     "ember-addon",
     "ember-engine"
   ],
-  "license": "MIT",
+  "license": "LGPL-3.0-or-later",
   "author": "",
   "repository": "github:projectcaluma/ember-caluma",
   "homepage": "https://projectcaluma.github.io/ember-caluma",
