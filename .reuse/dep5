@@ -1,0 +1,58 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: ember-caluma
+Upstream-Contact: Adfinis SyGroup AG <info@adfinis-sygroup.ch>
+Source: https://github.com/projectcaluma/ember-caluma
+
+# Files below the threshold of originality (generated files, metadata, config and project-information)
+Files:
+    .editorconfig
+    .ember-cli
+    .gitignore
+    .pre-commit-config.yaml
+    .prettierignore
+    .travis.yml
+    .eslintignore
+    .eslintrc.js
+    .npmignore
+    .template-lintrc.js
+    .watchmanconfig
+    AUTHORS
+    README.md
+    docker-compose.yml
+    yarn.lock
+    */robots.txt
+    config/*.js
+    index.js
+    testem.js
+    ember-cli-build.js
+    fetch-fragment-types.js
+    package.json
+    renovate.json
+Copyright: 2019 Adfinis SyGroup AG <info@adfinis-sygroup.ch>
+License: CC0-1.0
+
+# Translations of ember-caluma
+Files: translations/*
+Copyright: 2019 Adfinis SyGroup AG <info@adfinis-sygroup.ch>
+License: CC0-1.0
+
+# Source of ember-caluma
+Files:
+    app/*.js
+    app/*.scss
+    tests/*.js
+    tests/*.scss
+    tests/*index.html
+    tests/*.hbs
+    addon*/*.js
+    addon*/*.hbs
+    addon*/*.graphql
+    addon*/*.scss
+    blueprints/*.js
+Copyright: 2019 Adfinis SyGroup AG <info@adfinis-sygroup.ch>
+License: LGPL-3.0-or-later
+
+# Documentation of ember-caluma
+Files: tests/*.md CHANGELOG.md
+Copyright: 2019 Adfinis SyGroup AG <info@adfinis-sygroup.ch>
+License: GFDL-1.3-or-later
