@@ -1,5 +1,5 @@
 # source: http://localhost:8000/graphql
-# timestamp: Tue Jul 30 2019 09:17:41 GMT+0200 (Central European Summer Time)
+# timestamp: Mon Nov 04 2019 14:43:39 GMT+0100 (Central European Standard Time)
 
 input AddFormQuestionInput {
   form: ID!
@@ -65,6 +65,18 @@ type AnswerEdge {
   cursor: String!
 }
 
+input AnswerFilterSetType {
+  question: ID
+  search: String
+  createdByUser: String
+  createdByGroup: String
+  metaHasKey: String
+  metaValue: [JSONValueFilterType]
+  orderBy: [AnswerOrdering]
+  questions: [ID]
+  invert: Boolean
+}
+
 enum AnswerHierarchyMode {
   DIRECT
   FAMILY
@@ -127,6 +139,17 @@ enum AnswerOrdering {
   CREATED_BY_GROUP_DESC
 }
 
+input AnswerOrderSetType {
+  meta: String
+  attribute: SortableAnswerAttributes
+  direction: AscDesc
+}
+
+enum AscDesc {
+  ASC
+  DESC
+}
+
 input CancelCaseInput {
   id: ID!
   clientMutationId: String
@@ -163,21 +186,24 @@ type Case implements Node {
     after: String
     first: Int
     last: Int
-    metaValue: [MetaValueFilterType]
+    metaValue: [JSONValueFilterType]
     status: WorkItemStatusArgument
     task: ID
     case: ID
-    createdByUser: String
-    createdByGroup: String
-    metaHasKey: String
 
     """
     WorkItemOrdering
     """
     orderBy: [WorkItemOrdering]
+    filter: [WorkItemFilterSetType]
+    order: [WorkItemOrderSetType]
+    createdByUser: String
+    createdByGroup: String
+    metaHasKey: String
     addressedGroups: [String]
     documentHasAnswer: [HasAnswerFilterType]
     caseDocumentHasAnswer: [HasAnswerFilterType]
+    caseMetaValue: [JSONValueFilterType]
   ): WorkItemConnection
   parentWorkItem: WorkItem
 }
@@ -208,6 +234,21 @@ type CaseEdge {
   A cursor for use in pagination
   """
   cursor: String!
+}
+
+input CaseFilterSetType {
+  workflow: ID
+  createdByUser: String
+  createdByGroup: String
+  metaHasKey: String
+  metaValue: [JSONValueFilterType]
+  orderBy: [CaseOrdering]
+  documentForm: String
+  hasAnswer: [HasAnswerFilterType]
+  searchAnswers: [SearchAnswersFilterType]
+  status: [CaseStatusArgument]
+  orderByQuestionAnswerValue: String
+  invert: Boolean
 }
 
 """
@@ -265,6 +306,13 @@ enum CaseOrdering {
   CREATED_BY_GROUP_DESC
 }
 
+input CaseOrderSetType {
+  meta: String
+  attribute: SortableCaseAttributes
+  documentAnswer: String
+  direction: AscDesc
+}
+
 """
 An enumeration.
 """
@@ -312,6 +360,10 @@ type ChoiceQuestion implements Question & Node {
   createdByGroup: String
   slug: String!
   label: String!
+
+  """
+  Required expression is only evaluated when question is not hidden.
+  """
   isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
@@ -323,7 +375,7 @@ type ChoiceQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
-    metaValue: [MetaValueFilterType]
+    metaValue: [JSONValueFilterType]
 
     """
     FormOrdering
@@ -345,7 +397,7 @@ type ChoiceQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
-    metaValue: [MetaValueFilterType]
+    metaValue: [JSONValueFilterType]
     slug: String
     label: String
     isArchived: Boolean
@@ -584,6 +636,10 @@ type DateQuestion implements Question & Node {
   createdByGroup: String
   slug: String!
   label: String!
+
+  """
+  Required expression is only evaluated when question is not hidden.
+  """
   isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
@@ -595,7 +651,7 @@ type DateQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
-    metaValue: [MetaValueFilterType]
+    metaValue: [JSONValueFilterType]
 
     """
     FormOrdering
@@ -626,6 +682,91 @@ value as specified by
 """
 scalar DateTime
 
+"""
+Debugging information for the current query.
+"""
+type DjangoDebug {
+  """
+  Executed SQL queries for this API query.
+  """
+  sql: [DjangoDebugSQL]
+}
+
+"""
+Represents a single database query made to a Django managed DB.
+"""
+type DjangoDebugSQL {
+  """
+  The type of database being used (e.g. postrgesql, mysql, sqlite).
+  """
+  vendor: String!
+
+  """
+  The Django database alias (e.g. 'default').
+  """
+  alias: String!
+
+  """
+  The actual SQL sent to this database.
+  """
+  sql: String
+
+  """
+  Duration of this database query in seconds.
+  """
+  duration: Float!
+
+  """
+  The raw SQL of this query, without params.
+  """
+  rawSql: String!
+
+  """
+  JSON encoded database query parameters.
+  """
+  params: String!
+
+  """
+  Start time of this database query.
+  """
+  startTime: Float!
+
+  """
+  Stop time of this database query.
+  """
+  stopTime: Float!
+
+  """
+  Whether this database query took more than 10 seconds.
+  """
+  isSlow: Boolean!
+
+  """
+  Whether this database query was a SELECT.
+  """
+  isSelect: Boolean!
+
+  """
+  Postgres transaction ID if available.
+  """
+  transId: String
+
+  """
+  Postgres transaction status if available.
+  """
+  transStatus: String
+
+  """
+  Postgres isolation level if available.
+  """
+  isoLevel: String
+
+  """
+  Postgres connection encoding if available.
+  """
+  encoding: String
+}
+
 type Document implements Node {
   createdAt: DateTime!
   modifiedAt: DateTime!
@@ -643,17 +784,19 @@ type Document implements Node {
     after: String
     first: Int
     last: Int
-    metaValue: [MetaValueFilterType]
+    metaValue: [JSONValueFilterType]
     question: ID
     search: String
-    createdByUser: String
-    createdByGroup: String
-    metaHasKey: String
 
     """
     AnswerOrdering
     """
     orderBy: [AnswerOrdering]
+    filter: [AnswerFilterSetType]
+    order: [AnswerOrderSetType]
+    createdByUser: String
+    createdByGroup: String
+    metaHasKey: String
     questions: [ID]
   ): AnswerConnection
   case: Case
@@ -686,6 +829,22 @@ type DocumentEdge {
   A cursor for use in pagination
   """
   cursor: String!
+}
+
+input DocumentFilterSetType {
+  form: ID
+  forms: [ID]
+  search: String
+  id: ID
+  createdByUser: String
+  createdByGroup: String
+  metaHasKey: String
+  metaValue: [JSONValueFilterType]
+  orderBy: [DocumentOrdering]
+  rootDocument: ID
+  hasAnswer: [HasAnswerFilterType]
+  searchAnswers: [SearchAnswersFilterType]
+  invert: Boolean
 }
 
 """
@@ -733,6 +892,13 @@ enum DocumentOrdering {
   CREATED_BY_GROUP_DESC
 }
 
+input DocumentOrderSetType {
+  meta: String
+  answerValue: String
+  attribute: SortableDocumentAttributes
+  direction: AscDesc
+}
+
 type DocumentValidityConnection {
   """
   Pagination data for this connection.
@@ -768,6 +934,10 @@ type DynamicChoiceQuestion implements Question & Node {
   createdByGroup: String
   slug: String!
   label: String!
+
+  """
+  Required expression is only evaluated when question is not hidden.
+  """
   isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
@@ -779,7 +949,7 @@ type DynamicChoiceQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
-    metaValue: [MetaValueFilterType]
+    metaValue: [JSONValueFilterType]
 
     """
     FormOrdering
@@ -797,6 +967,7 @@ type DynamicChoiceQuestion implements Question & Node {
     slugs: [String]
   ): FormConnection
   options(
+    documentId: ID
     before: String
     after: String
     first: Int
@@ -817,6 +988,10 @@ type DynamicMultipleChoiceQuestion implements Question & Node {
   createdByGroup: String
   slug: String!
   label: String!
+
+  """
+  Required expression is only evaluated when question is not hidden.
+  """
   isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
@@ -828,7 +1003,7 @@ type DynamicMultipleChoiceQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
-    metaValue: [MetaValueFilterType]
+    metaValue: [JSONValueFilterType]
 
     """
     FormOrdering
@@ -846,6 +1021,7 @@ type DynamicMultipleChoiceQuestion implements Question & Node {
     slugs: [String]
   ): FormConnection
   options(
+    documentId: ID
     before: String
     after: String
     first: Int
@@ -899,6 +1075,10 @@ type FileQuestion implements Question & Node {
   createdByGroup: String
   slug: String!
   label: String!
+
+  """
+  Required expression is only evaluated when question is not hidden.
+  """
   isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
@@ -910,7 +1090,7 @@ type FileQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
-    metaValue: [MetaValueFilterType]
+    metaValue: [JSONValueFilterType]
 
     """
     FormOrdering
@@ -956,6 +1136,10 @@ type FloatQuestion implements Question & Node {
   createdByGroup: String
   slug: String!
   label: String!
+
+  """
+  Required expression is only evaluated when question is not hidden.
+  """
   isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
@@ -968,7 +1152,7 @@ type FloatQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
-    metaValue: [MetaValueFilterType]
+    metaValue: [JSONValueFilterType]
 
     """
     FormOrdering
@@ -1036,6 +1220,13 @@ type FlowEdge {
   cursor: String!
 }
 
+input FlowFilterSetType {
+  task: ID
+  createdByUser: String
+  createdByGroup: String
+  invert: Boolean
+}
+
 """
 Flow jexl represents a jexl expression returning task slugs.
 
@@ -1065,7 +1256,7 @@ type Form implements Node {
     after: String
     first: Int
     last: Int
-    metaValue: [MetaValueFilterType]
+    metaValue: [JSONValueFilterType]
     slug: String
     label: String
     isRequired: String
@@ -1081,6 +1272,7 @@ type Form implements Node {
     QuestionOrdering
     """
     orderBy: [QuestionOrdering]
+    slugs: [String]
   ): QuestionConnection
 
   """
@@ -1092,7 +1284,7 @@ type Form implements Node {
     after: String
     first: Int
     last: Int
-  ): DocumentConnection
+  ): DocumentConnection!
 
   """
   The ID of the object.
@@ -1163,6 +1355,22 @@ type FormEdge {
   cursor: String!
 }
 
+input FormFilterSetType {
+  orderBy: [FormOrdering]
+  slug: String
+  name: String
+  description: String
+  isPublished: Boolean
+  isArchived: Boolean
+  createdByUser: String
+  createdByGroup: String
+  metaHasKey: String
+  metaValue: [JSONValueFilterType]
+  search: String
+  slugs: [String]
+  invert: Boolean
+}
+
 """
 An enumeration.
 """
@@ -1218,6 +1426,12 @@ enum FormOrdering {
   CREATED_BY_GROUP_DESC
 }
 
+input FormOrderSetType {
+  meta: String
+  attribute: SortableFormAttributes
+  direction: AscDesc
+}
+
 type FormQuestion implements Question & Node {
   createdAt: DateTime!
   modifiedAt: DateTime!
@@ -1225,6 +1439,10 @@ type FormQuestion implements Question & Node {
   createdByGroup: String
   slug: String!
   label: String!
+
+  """
+  Required expression is only evaluated when question is not hidden.
+  """
   isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
@@ -1236,7 +1454,7 @@ type FormQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
-    metaValue: [MetaValueFilterType]
+    metaValue: [JSONValueFilterType]
 
     """
     FormOrdering
@@ -1315,6 +1533,10 @@ type IntegerQuestion implements Question & Node {
   createdByGroup: String
   slug: String!
   label: String!
+
+  """
+  Required expression is only evaluated when question is not hidden.
+  """
   isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
@@ -1327,7 +1549,7 @@ type IntegerQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
-    metaValue: [MetaValueFilterType]
+    metaValue: [JSONValueFilterType]
 
     """
     FormOrdering
@@ -1353,6 +1575,17 @@ type IntegerQuestion implements Question & Node {
   minValue: Int
 }
 
+enum JSONLookupMode {
+  EXACT
+  STARTSWITH
+  CONTAINS
+  ICONTAINS
+  GTE
+  GT
+  LTE
+  LT
+}
+
 """
 Allows use of a JSON String for input / output from the GraphQL schema.
 
@@ -1360,6 +1593,12 @@ Use of this type is *not recommended* as you lose the benefits of having a defin
 schema (one of the key benefits of GraphQL).
 """
 scalar JSONString
+
+input JSONValueFilterType {
+  key: String!
+  value: GenericScalar!
+  lookup: JSONLookupMode
+}
 
 type ListAnswer implements Answer & Node {
   createdAt: DateTime!
@@ -1376,22 +1615,6 @@ type ListAnswer implements Answer & Node {
   meta: GenericScalar!
 }
 
-enum MetaLookupMode {
-  EXACT
-  STARTSWITH
-  CONTAINS
-  GTE
-  GT
-  LTE
-  LT
-}
-
-input MetaValueFilterType {
-  key: String!
-  value: GenericScalar!
-  lookup: MetaLookupMode
-}
-
 type MultipleChoiceQuestion implements Question & Node {
   createdAt: DateTime!
   modifiedAt: DateTime!
@@ -1399,6 +1622,10 @@ type MultipleChoiceQuestion implements Question & Node {
   createdByGroup: String
   slug: String!
   label: String!
+
+  """
+  Required expression is only evaluated when question is not hidden.
+  """
   isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
@@ -1410,7 +1637,7 @@ type MultipleChoiceQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
-    metaValue: [MetaValueFilterType]
+    metaValue: [JSONValueFilterType]
 
     """
     FormOrdering
@@ -1432,7 +1659,7 @@ type MultipleChoiceQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
-    metaValue: [MetaValueFilterType]
+    metaValue: [JSONValueFilterType]
 
     """
     OptionOrdering
@@ -1682,7 +1909,7 @@ type Query {
     last: Int
   ): DataSourceConnection
   dataSource(
-    name: String
+    name: String!
     before: String
     after: String
     first: Int
@@ -1693,60 +1920,67 @@ type Query {
     after: String
     first: Int
     last: Int
-    metaValue: [MetaValueFilterType]
+    metaValue: [JSONValueFilterType]
     slug: String
     name: String
     description: String
     isPublished: Boolean
     isArchived: Boolean
-    createdByUser: String
-    createdByGroup: String
-    metaHasKey: String
-    search: String
 
     """
     WorkflowOrdering
     """
     orderBy: [WorkflowOrdering]
+    filter: [WorkflowFilterSetType]
+    order: [WorkflowOrderSetType]
+    createdByUser: String
+    createdByGroup: String
+    metaHasKey: String
+    search: String
   ): WorkflowConnection
   allTasks(
     before: String
     after: String
     first: Int
     last: Int
-    metaValue: [MetaValueFilterType]
+    metaValue: [JSONValueFilterType]
     slug: String
     name: String
     description: String
     type: TaskTypeArgument
     isArchived: Boolean
-    createdByUser: String
-    createdByGroup: String
-    metaHasKey: String
-    search: String
 
     """
     TaskOrdering
     """
     orderBy: [TaskOrdering]
+    filter: [TaskFilterSetType]
+    order: [TaskOrderSetType]
+    createdByUser: String
+    createdByGroup: String
+    metaHasKey: String
+    search: String
   ): TaskConnection
   allCases(
     before: String
     after: String
     first: Int
     last: Int
-    metaValue: [MetaValueFilterType]
+    metaValue: [JSONValueFilterType]
     workflow: ID
-    createdByUser: String
-    createdByGroup: String
-    metaHasKey: String
 
     """
     CaseOrdering
     """
     orderBy: [CaseOrdering]
+    filter: [CaseFilterSetType]
+    order: [CaseOrderSetType]
+    createdByUser: String
+    createdByGroup: String
+    metaHasKey: String
     documentForm: String
     hasAnswer: [HasAnswerFilterType]
+    searchAnswers: [SearchAnswersFilterType]
     status: [CaseStatusArgument]
 
     """
@@ -1763,15 +1997,18 @@ type Query {
     after: String
     first: Int
     last: Int
-    metaValue: [MetaValueFilterType]
+    metaValue: [JSONValueFilterType]
     status: WorkItemStatusArgument
 
     """
     WorkItemOrdering
     """
     orderBy: [WorkItemOrdering]
+    filter: [WorkItemFilterSetType]
+    order: [WorkItemOrderSetType]
     documentHasAnswer: [HasAnswerFilterType]
     caseDocumentHasAnswer: [HasAnswerFilterType]
+    caseMetaValue: [JSONValueFilterType]
     task: ID
     case: ID
     createdByUser: String
@@ -1784,7 +2021,7 @@ type Query {
     after: String
     first: Int
     last: Int
-    metaValue: [MetaValueFilterType]
+    metaValue: [JSONValueFilterType]
 
     """
     FormOrdering
@@ -1795,6 +2032,8 @@ type Query {
     description: String
     isPublished: Boolean
     isArchived: Boolean
+    filter: [FormFilterSetType]
+    order: [FormOrderSetType]
     createdByUser: String
     createdByGroup: String
     metaHasKey: String
@@ -1806,7 +2045,7 @@ type Query {
     after: String
     first: Int
     last: Int
-    metaValue: [MetaValueFilterType]
+    metaValue: [JSONValueFilterType]
 
     """
     QuestionOrdering
@@ -1817,32 +2056,38 @@ type Query {
     isRequired: String
     isHidden: String
     isArchived: Boolean
+    filter: [QuestionFilterSetType]
+    order: [QuestionOrderSetType]
     createdByUser: String
     createdByGroup: String
     metaHasKey: String
     excludeForms: [ID]
     search: String
+    slugs: [String]
   ): QuestionConnection
   allDocuments(
     before: String
     after: String
     first: Int
     last: Int
-    metaValue: [MetaValueFilterType]
+    metaValue: [JSONValueFilterType]
     form: ID
     forms: [ID]
     search: String
     id: ID
-    createdByUser: String
-    createdByGroup: String
-    metaHasKey: String
 
     """
     DocumentOrdering
     """
     orderBy: [DocumentOrdering]
+    filter: [DocumentFilterSetType]
+    order: [DocumentOrderSetType]
+    createdByUser: String
+    createdByGroup: String
+    metaHasKey: String
     rootDocument: ID
     hasAnswer: [HasAnswerFilterType]
+    searchAnswers: [SearchAnswersFilterType]
   ): DocumentConnection
   allFormatValidators(
     before: String
@@ -1862,6 +2107,7 @@ type Query {
   The ID of the object
   """
   node(id: ID!): Node
+  _debug: DjangoDebug
 }
 
 interface Question {
@@ -1873,6 +2119,10 @@ interface Question {
   slug: String!
   label: String!
   infoText: String
+
+  """
+  Required expression is only evaluated when question is not hidden.
+  """
   isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
@@ -1890,7 +2140,7 @@ interface Question {
     createdByUser: String
     createdByGroup: String
     metaHasKey: String
-    metaValue: [MetaValueFilterType]
+    metaValue: [JSONValueFilterType]
     search: String
 
     """
@@ -1928,6 +2178,23 @@ type QuestionEdge {
   A cursor for use in pagination
   """
   cursor: String!
+}
+
+input QuestionFilterSetType {
+  orderBy: [QuestionOrdering]
+  slug: String
+  label: String
+  isRequired: String
+  isHidden: String
+  isArchived: Boolean
+  createdByUser: String
+  createdByGroup: String
+  metaHasKey: String
+  metaValue: [JSONValueFilterType]
+  excludeForms: [ID]
+  search: String
+  slugs: [String]
+  invert: Boolean
 }
 
 """
@@ -2002,6 +2269,12 @@ enum QuestionOrdering {
   Created by group (descending)
   """
   CREATED_BY_GROUP_DESC
+}
+
+input QuestionOrderSetType {
+  meta: String
+  attribute: SortableQuestionAttributes
+  direction: AscDesc
 }
 
 input RemoveAnswerInput {
@@ -2577,6 +2850,21 @@ type SaveWorkItemPayload {
   clientMutationId: String
 }
 
+"""
+Lookup type to search in answers.
+"""
+input SearchAnswersFilterType {
+  questions: [String]
+  value: GenericScalar!
+  lookup: SearchLookupMode
+}
+
+enum SearchLookupMode {
+  STARTSWITH
+  CONTAINS
+  TEXT
+}
+
 type SimpleTask implements Task & Node {
   createdAt: DateTime!
   modifiedAt: DateTime!
@@ -2600,6 +2888,102 @@ type SimpleTask implements Task & Node {
   The ID of the object.
   """
   id: ID!
+}
+
+enum SortableAnswerAttributes {
+  CREATED_AT
+  MODIFIED_AT
+  CREATED_BY_USER
+  CREATED_BY_GROUP
+  QUESTION
+  VALUE
+  DOCUMENT
+  DATE
+  FILE
+}
+
+enum SortableCaseAttributes {
+  ALLOW_ALL_FORMS
+  CREATED_BY_GROUP
+  CREATED_BY_USER
+  DESCRIPTION
+  IS_ARCHIVED
+  IS_PUBLISHED
+  NAME
+  STATUS
+  SLUG
+}
+
+enum SortableDocumentAttributes {
+  CREATED_AT
+  MODIFIED_AT
+  CREATED_BY_USER
+  CREATED_BY_GROUP
+  FORM
+}
+
+enum SortableFormAttributes {
+  CREATED_AT
+  MODIFIED_AT
+  CREATED_BY_USER
+  CREATED_BY_GROUP
+  SLUG
+  NAME
+  DESCRIPTION
+  IS_PUBLISHED
+  IS_ARCHIVED
+}
+
+enum SortableQuestionAttributes {
+  CREATED_AT
+  MODIFIED_AT
+  CREATED_BY_USER
+  CREATED_BY_GROUP
+  SLUG
+  LABEL
+  TYPE
+  IS_REQUIRED
+  IS_HIDDEN
+  IS_ARCHIVED
+  PLACEHOLDER
+  INFO_TEXT
+}
+
+enum SortableTaskAttributes {
+  ALLOW_ALL_FORMS
+  ADDRESS_GROUPS
+  LEAD_TIME
+  TYPE
+  CREATED_BY_GROUP
+  CREATED_BY_USER
+  DESCRIPTION
+  IS_ARCHIVED
+  IS_PUBLISHED
+  NAME
+  SLUG
+}
+
+enum SortableWorkflowAttributes {
+  ALLOW_ALL_FORMS
+  CREATED_BY_GROUP
+  CREATED_BY_USER
+  DESCRIPTION
+  IS_ARCHIVED
+  IS_PUBLISHED
+  NAME
+  SLUG
+}
+
+enum SortableWorkItemAttributes {
+  ALLOW_ALL_FORMS
+  CREATED_BY_GROUP
+  CREATED_BY_USER
+  DESCRIPTION
+  IS_ARCHIVED
+  IS_PUBLISHED
+  NAME
+  STATUS
+  SLUG
 }
 
 input StartCaseInput {
@@ -2632,7 +3016,7 @@ type StaticQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
-    metaValue: [MetaValueFilterType]
+    metaValue: [JSONValueFilterType]
 
     """
     FormOrdering
@@ -2656,7 +3040,31 @@ type StaticQuestion implements Question & Node {
   The ID of the object.
   """
   id: ID!
+
+  """
+  Required expression is only evaluated when question is not hidden.
+  """
   isRequired: QuestionJexl!
+}
+
+"""
+An enumeration.
+"""
+enum Status {
+  """
+  Task is ready to be processed.
+  """
+  READY
+
+  """
+  Task is done.
+  """
+  COMPLETED
+
+  """
+  Task is cancelled.
+  """
+  CANCELED
 }
 
 type StringAnswer implements Answer & Node {
@@ -2697,6 +3105,10 @@ type TableQuestion implements Question & Node {
   createdByGroup: String
   slug: String!
   label: String!
+
+  """
+  Required expression is only evaluated when question is not hidden.
+  """
   isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
@@ -2708,7 +3120,7 @@ type TableQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
-    metaValue: [MetaValueFilterType]
+    metaValue: [JSONValueFilterType]
 
     """
     FormOrdering
@@ -2778,6 +3190,21 @@ type TaskEdge {
   A cursor for use in pagination
   """
   cursor: String!
+}
+
+input TaskFilterSetType {
+  slug: String
+  name: String
+  description: String
+  type: Type
+  isArchived: Boolean
+  createdByUser: String
+  createdByGroup: String
+  metaHasKey: String
+  metaValue: [JSONValueFilterType]
+  search: String
+  orderBy: [TaskOrdering]
+  invert: Boolean
 }
 
 """
@@ -2855,6 +3282,12 @@ enum TaskOrdering {
   CREATED_BY_GROUP_DESC
 }
 
+input TaskOrderSetType {
+  meta: String
+  attribute: SortableTaskAttributes
+  direction: AscDesc
+}
+
 """
 An enumeration.
 """
@@ -2902,6 +3335,10 @@ type TextareaQuestion implements Question & Node {
   createdByGroup: String
   slug: String!
   label: String!
+
+  """
+  Required expression is only evaluated when question is not hidden.
+  """
   isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
@@ -2920,7 +3357,7 @@ type TextareaQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
-    metaValue: [MetaValueFilterType]
+    metaValue: [JSONValueFilterType]
 
     """
     FormOrdering
@@ -2952,6 +3389,10 @@ type TextQuestion implements Question & Node {
   createdByGroup: String
   slug: String!
   label: String!
+
+  """
+  Required expression is only evaluated when question is not hidden.
+  """
   isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
@@ -2970,7 +3411,7 @@ type TextQuestion implements Question & Node {
     after: String
     first: Int
     last: Int
-    metaValue: [MetaValueFilterType]
+    metaValue: [JSONValueFilterType]
 
     """
     FormOrdering
@@ -2993,6 +3434,26 @@ type TextQuestion implements Question & Node {
   """
   id: ID!
   maxLength: Int
+}
+
+"""
+An enumeration.
+"""
+enum Type {
+  """
+  Task which can simply be marked as completed.
+  """
+  SIMPLE
+
+  """
+  Task to complete a defined workflow form.
+  """
+  COMPLETE_WORKFLOW_FORM
+
+  """
+  Task to complete a defined task form.
+  """
+  COMPLETE_TASK_FORM
 }
 
 type ValidationEntry {
@@ -3032,7 +3493,7 @@ type Workflow implements Node {
     after: String
     first: Int
     last: Int
-  ): FormConnection
+  ): FormConnection!
 
   """
   The ID of the object.
@@ -3049,6 +3510,7 @@ type Workflow implements Node {
     first: Int
     last: Int
     task: ID
+    filter: [FlowFilterSetType]
     createdByUser: String
     createdByGroup: String
   ): FlowConnection
@@ -3080,6 +3542,21 @@ type WorkflowEdge {
   A cursor for use in pagination
   """
   cursor: String!
+}
+
+input WorkflowFilterSetType {
+  slug: String
+  name: String
+  description: String
+  isPublished: Boolean
+  isArchived: Boolean
+  createdByUser: String
+  createdByGroup: String
+  metaHasKey: String
+  metaValue: [JSONValueFilterType]
+  search: String
+  orderBy: [WorkflowOrdering]
+  invert: Boolean
 }
 
 """
@@ -3145,6 +3622,12 @@ enum WorkflowOrdering {
   Created by group (descending)
   """
   CREATED_BY_GROUP_DESC
+}
+
+input WorkflowOrderSetType {
+  meta: String
+  attribute: SortableWorkflowAttributes
+  direction: AscDesc
 }
 
 type WorkItem implements Node {
@@ -3215,6 +3698,22 @@ type WorkItemEdge {
   cursor: String!
 }
 
+input WorkItemFilterSetType {
+  status: Status
+  task: ID
+  case: ID
+  createdByUser: String
+  createdByGroup: String
+  metaHasKey: String
+  metaValue: [JSONValueFilterType]
+  orderBy: [WorkItemOrdering]
+  addressedGroups: [String]
+  documentHasAnswer: [HasAnswerFilterType]
+  caseDocumentHasAnswer: [HasAnswerFilterType]
+  caseMetaValue: [JSONValueFilterType]
+  invert: Boolean
+}
+
 """
 An enumeration.
 """
@@ -3278,6 +3777,15 @@ enum WorkItemOrdering {
   Created by group (descending)
   """
   CREATED_BY_GROUP_DESC
+}
+
+input WorkItemOrderSetType {
+  meta: String
+  caseMeta: String
+  attribute: SortableWorkItemAttributes
+  documentAnswer: String
+  caseDocumentAnswer: String
+  direction: AscDesc
 }
 
 """
