@@ -28,7 +28,7 @@ export default Component.extend({
     return this.get("multiple") ? "power-select-multiple" : "power-select";
   }),
 
-  searchEnabled: gt("choices.length", 10),
+  searchEnabled: gt("field.options.length", 10),
 
   placeholder: computed("multiple", function() {
     const suffix = this.get("multiple") ? "multiple" : "single";
