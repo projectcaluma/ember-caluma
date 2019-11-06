@@ -1,3 +1,36 @@
+# [3.0.0](https://github.com/projectcaluma/ember-caluma/compare/v2.5.0...v3.0.0) (2019-11-06)
+
+
+### Bug Fixes
+
+* **jexl:** allow falsey values for intersects operator without breaking ([4fbb73f](https://github.com/projectcaluma/ember-caluma/commit/4fbb73fd790fbe10e1800d598c5df958b6040b28))
+* **navigation:** fix navigation to show base form questions ([#565](https://github.com/projectcaluma/ember-caluma/issues/565)) ([5f38df0](https://github.com/projectcaluma/ember-caluma/commit/5f38df0b273bda24a78d6f43af488e5eb623d602)), closes [#460](https://github.com/projectcaluma/ember-caluma/issues/460)
+* **table:** don't re-save existing rows after edit ([e5cd5ef](https://github.com/projectcaluma/ember-caluma/commit/e5cd5ef1d2c4562a55d8744a9093d6d4f23529bd))
+* **table:** remove row documents on delete ([395e4e4](https://github.com/projectcaluma/ember-caluma/commit/395e4e4f162dbbd5cd28e2acddd724aadf21aaa7))
+* **table:** skip empty dates in table view ([97f5758](https://github.com/projectcaluma/ember-caluma/commit/97f5758570aea2f5ff357e6edeb4dc5432a57483))
+
+
+### chore
+
+* remove support for ember 3.8 ([093d25b](https://github.com/projectcaluma/ember-caluma/commit/093d25b8cf0ee96d3d5d2148163412f1b4903e2c))
+
+
+### Features
+
+* **form:** handle old values of dynamic questions ([c9bbc36](https://github.com/projectcaluma/ember-caluma/commit/c9bbc36f82de9176ee33efe4eed1fa25864acf7c))
+* **license:** switch license from MIT to LGPL-3.0-or-later ([b1163eb](https://github.com/projectcaluma/ember-caluma/commit/b1163ebf8071c1029eb867aae671dc6c059d8d98))
+
+
+### BREAKING CHANGES
+
+* **license:** Since the LGPL license is more restrictive than MIT,
+this is marked as breaking
+* **form:** This is a breaking change, since it will only work with
+v3.0.0 or later of the caluma service.
+* This will remove the support for the second last LTS
+version of ember, since we support only the last LTS version which is
+3.12 now.
+
 # [2.5.0](https://github.com/projectcaluma/ember-caluma/compare/v2.4.0...v2.5.0) (2019-09-21)
 
 
