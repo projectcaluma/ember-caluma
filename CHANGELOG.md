@@ -1,3 +1,10 @@
+## [3.0.1](https://github.com/projectcaluma/ember-caluma/compare/v3.0.0...v3.0.1) (2019-11-06)
+
+
+### Bug Fixes
+
+* **form:** fix search for powerselect inputs ([34b57fb](https://github.com/projectcaluma/ember-caluma/commit/34b57fbc2861f74cecce4da076b231c9a6969092))
+
 # [3.0.0](https://github.com/projectcaluma/ember-caluma/compare/v2.5.0...v3.0.0) (2019-11-06)
 
 
