@@ -1,5 +1,5 @@
 # source: http://localhost:8000/graphql
-# timestamp: Mon Nov 04 2019 14:43:39 GMT+0100 (Central European Standard Time)
+# timestamp: Wed Nov 06 2019 13:15:23 GMT+0100 (Central European Standard Time)
 
 input AddFormQuestionInput {
   form: ID!
@@ -967,7 +967,6 @@ type DynamicChoiceQuestion implements Question & Node {
     slugs: [String]
   ): FormConnection
   options(
-    documentId: ID
     before: String
     after: String
     first: Int
@@ -1021,7 +1020,6 @@ type DynamicMultipleChoiceQuestion implements Question & Node {
     slugs: [String]
   ): FormConnection
   options(
-    documentId: ID
     before: String
     after: String
     first: Int
@@ -1033,6 +1031,56 @@ type DynamicMultipleChoiceQuestion implements Question & Node {
   The ID of the object.
   """
   id: ID!
+}
+
+type DynamicOption implements Node {
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+  createdByUser: String
+  createdByGroup: String
+
+  """
+  The ID of the object.
+  """
+  id: ID!
+  slug: String!
+  label: String!
+  document: Document!
+  question: StaticQuestion!
+}
+
+type DynamicOptionConnection {
+  """
+  Pagination data for this connection.
+  """
+  pageInfo: PageInfo!
+
+  """
+  Contains the nodes in this connection.
+  """
+  edges: [DynamicOptionEdge]!
+  totalCount: Int
+}
+
+"""
+A Relay edge containing a `DynamicOption` and its cursor.
+"""
+type DynamicOptionEdge {
+  """
+  The item at the end of the edge
+  """
+  node: DynamicOption
+
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+}
+
+input DynamicOptionFilterSetType {
+  question: ID
+  document: ID
+  invert: Boolean
 }
 
 type File implements Node {
@@ -1505,7 +1553,7 @@ scalar GroupJexl
 Lookup type to search document structures.
 """
 input HasAnswerFilterType {
-  question: String!
+  question: ID!
   value: GenericScalar!
   lookup: AnswerLookupMode
   hierarchy: AnswerHierarchyMode
@@ -1697,6 +1745,7 @@ type Mutation {
   saveCase(input: SaveCaseInput!): SaveCasePayload
   cancelCase(input: CancelCaseInput!): CancelCasePayload
   completeWorkItem(input: CompleteWorkItemInput!): CompleteWorkItemPayload
+  skipWorkItem(input: SkipWorkItemInput!): SkipWorkItemPayload
   saveWorkItem(input: SaveWorkItemInput!): SaveWorkItemPayload
   createWorkItem(input: CreateWorkItemInput!): CreateWorkItemPayload
   saveForm(input: SaveFormInput!): SaveFormPayload
@@ -2095,6 +2144,17 @@ type Query {
     first: Int
     last: Int
   ): FormatValidatorConnection
+  allUsedDynamicOptions(
+    before: String
+    after: String
+    first: Int
+    last: Int
+    question: ID
+    document: ID
+    filter: [DynamicOptionFilterSetType]
+    createdByUser: String
+    createdByGroup: String
+  ): DynamicOptionConnection
   documentValidity(
     id: ID!
     before: String
@@ -2854,7 +2914,7 @@ type SaveWorkItemPayload {
 Lookup type to search in answers.
 """
 input SearchAnswersFilterType {
-  questions: [String]
+  questions: [ID]
   value: GenericScalar!
   lookup: SearchLookupMode
 }
@@ -2888,6 +2948,16 @@ type SimpleTask implements Task & Node {
   The ID of the object.
   """
   id: ID!
+}
+
+input SkipWorkItemInput {
+  id: ID!
+  clientMutationId: String
+}
+
+type SkipWorkItemPayload {
+  workItem: WorkItem
+  clientMutationId: String
 }
 
 enum SortableAnswerAttributes {
@@ -2982,6 +3052,7 @@ enum SortableWorkItemAttributes {
   IS_ARCHIVED
   IS_PUBLISHED
   NAME
+  DEADLINE
   STATUS
   SLUG
 }
@@ -3065,6 +3136,11 @@ enum Status {
   Task is cancelled.
   """
   CANCELED
+
+  """
+  Task is skipped.
+  """
+  SKIPPED
 }
 
 type StringAnswer implements Answer & Node {
@@ -3806,6 +3882,11 @@ enum WorkItemStatus {
   Task is cancelled.
   """
   CANCELED
+
+  """
+  Task is skipped.
+  """
+  SKIPPED
 }
 
 """
@@ -3826,4 +3907,9 @@ enum WorkItemStatusArgument {
   Task is cancelled.
   """
   CANCELED
+
+  """
+  Task is skipped.
+  """
+  SKIPPED
 }
