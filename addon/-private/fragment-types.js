@@ -24,6 +24,12 @@ export default {
             name: "Flow"
           },
           {
+            name: "DynamicOption"
+          },
+          {
+            name: "StaticQuestion"
+          },
+          {
             name: "Option"
           },
           {
@@ -61,9 +67,6 @@ export default {
           },
           {
             name: "FileQuestion"
-          },
-          {
-            name: "StaticQuestion"
           },
           {
             name: "StringAnswer"
@@ -120,6 +123,9 @@ export default {
         name: "Question",
         possibleTypes: [
           {
+            name: "StaticQuestion"
+          },
+          {
             name: "TextQuestion"
           },
           {
@@ -154,9 +160,6 @@ export default {
           },
           {
             name: "FileQuestion"
-          },
-          {
-            name: "StaticQuestion"
           }
         ]
       },
