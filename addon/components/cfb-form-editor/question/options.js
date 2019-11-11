@@ -93,7 +93,10 @@ export default RenderComponent.extend({
     },
 
     deleteRow(row) {
-      this.set("optionRows", this.optionRows.filter(r => r !== row));
+      this.set(
+        "optionRows",
+        this.optionRows.filter(r => r !== row)
+      );
 
       this._update();
     },
