@@ -1498,6 +1498,11 @@
   resolved "https://registry.yarnpkg.com/@types/broccoli-plugin/-/broccoli-plugin-1.3.0.tgz#38f8462fecaebc4e09a32e4d4ed1b9808f75bbca"
   integrity sha512-SLk4/hFc2kGvgwNFrpn2O1juxFOllcHAywvlo7VwxfExLzoz1GGJ0oIZCwj5fwSpvHw4AWpZjJ1fUvb62PDayQ==
 
+"@types/color-name@^1.1.1":
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/@types/color-name/-/color-name-1.1.1.tgz#1c1261bbeaa10a8055bbc5d8ab84b7b2afc846a0"
+  integrity sha512-rr+OQyAjxze7GgWrSaJwydHStIhHq2lvY3BOC2Mj7KnzI7XK0Uw1TOOdI9lDoajEbSWLiYgoo4f1R51erQfhPQ==
+
 "@types/ember@^3.1.0":
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/@types/ember/-/ember-3.1.1.tgz#401810fa3ba911855d609d334ea77990b9b94802"
@@ -2126,6 +2131,14 @@ ansi-styles@^3.0.0, ansi-styles@^3.2.0, ansi-styles@^3.2.1:
   integrity sha512-VT0ZI6kZRdTh8YyJw3SMbYm/u+NqfsAxEpWO0Pf9sq8/e94WxxOpPKx9FR1FlyCtOVDNOQ+8ntlqFxiRc+r5qA==
   dependencies:
     color-convert "^1.9.0"
+
+ansi-styles@^4.1.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-4.2.0.tgz#5681f0dcf7ae5880a7841d8831c4724ed9cc0172"
+  integrity sha512-7kFQgnEaMdRtwf6uSfUnVr9gSGC7faurn+J/Mv90/W+iTtN0405/nLdopfMWwchyxhbGYl6TC4Sccn9TUkGAgg==
+  dependencies:
+    "@types/color-name" "^1.1.1"
+    color-convert "^2.0.1"
 
 ansi-to-html@^0.6.6:
   version "0.6.12"
@@ -4674,6 +4687,14 @@ chalk@^1.0.0, chalk@^1.1.3:
     strip-ansi "^3.0.0"
     supports-color "^2.0.0"
 
+chalk@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/chalk/-/chalk-3.0.0.tgz#3f73c2bf526591f574cc492c51e2456349f844e4"
+  integrity sha512-4D3B6Wf41KOYRFdszmDqMCGq5VV/uMAB273JILmO+3jAlh8X4qDtdtgCR3fxtbLEMzSx22QdhnDcJvu2u1fVwg==
+  dependencies:
+    ansi-styles "^4.1.0"
+    supports-color "^7.1.0"
+
 change-case@^3.0.1:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/change-case/-/change-case-3.1.0.tgz#0e611b7edc9952df2e8513b27b42de72647dd17e"
@@ -5047,10 +5068,22 @@ color-convert@^1.9.0:
   dependencies:
     color-name "1.1.3"
 
+color-convert@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/color-convert/-/color-convert-2.0.1.tgz#72d3a68d598c9bdb3af2ad1e84f21d896abd4de3"
+  integrity sha512-RRECPsj7iu/xb5oKYcsFHSppFNnsj/52OVTRKb4zP5onXwVF3zVmmToNcOfGC+CRDpfK/U584fMg38ZHCaElKQ==
+  dependencies:
+    color-name "~1.1.4"
+
 color-name@1.1.3:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/color-name/-/color-name-1.1.3.tgz#a7d0558bd89c42f795dd42328f740831ca53bc25"
   integrity sha1-p9BVi9icQveV3UIyj3QIMcpTvCU=
+
+color-name@~1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/color-name/-/color-name-1.1.4.tgz#c2a09a87acbde69543de6f63fa3995c826c536a2"
+  integrity sha512-dOy+3AuW3a2wNbZHIuMZpTcgjGuLU/uBL/ubcZF9OXbDo8ff4O8yVp5Bf0efS8uEoYo5q4Fx7dY9OgQGXgAsQA==
 
 colors@1.0.3:
   version "1.0.3"
@@ -6211,7 +6244,7 @@ ember-assign-polyfill@^2.5.0, ember-assign-polyfill@^2.6.0:
     ember-cli-babel "^6.16.0"
     ember-cli-version-checker "^2.0.0"
 
-ember-auto-import@^1.2.13, ember-auto-import@^1.2.19, ember-auto-import@^1.4.0, ember-auto-import@^1.5.2, ember-auto-import@^1.5.3:
+ember-auto-import@^1.2.13, ember-auto-import@^1.2.19, ember-auto-import@^1.5.2, ember-auto-import@^1.5.3:
   version "1.5.3"
   resolved "https://registry.yarnpkg.com/ember-auto-import/-/ember-auto-import-1.5.3.tgz#b32936f874d1ed7057ad2ed3f6116357820be44b"
   integrity sha512-7JfdunM1BmLy/lyUXu7uEoi0Gi4+dxkGM23FgIEyW5g7z4MidhP53Fc61t49oPSnq7+J4lLpbH1f6C+mDMgb4A==
@@ -7490,10 +7523,10 @@ ember-text-measurer@^0.5.0:
   dependencies:
     ember-cli-babel "^7.1.0"
 
-ember-toggle@^5.3.0:
-  version "5.3.3"
-  resolved "https://registry.yarnpkg.com/ember-toggle/-/ember-toggle-5.3.3.tgz#2dfaae06d56ec3afda2d7b4703f156b2fc8108d6"
-  integrity sha512-FhR5tIEFd3+HWro0M0frtta7pz3L+mxvRggZGyZX2YKwb0e00M2419f2HHB9MBr8catJAXQTvUPu/JFTPmhgzg==
+ember-toggle@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/ember-toggle/-/ember-toggle-6.0.0.tgz#17042a3880fb092cad7797d941f36ade25505932"
+  integrity sha512-czSdkt3X+dCzc3KFt3jr2GUJj2yUivFXLn+JmUcNeZjmHAyVGekdBzu8TvaNUC5dpfBWB0q/qrQDnqNW0K5P0A==
   dependencies:
     ember-cli-babel "^7.7.3"
     ember-cli-htmlbars "^3.0.1"
@@ -7538,22 +7571,21 @@ ember-try@1.2.1:
     rsvp "^4.7.0"
     walk-sync "^1.1.3"
 
-ember-uikit@^0.8.1:
-  version "0.8.2"
-  resolved "https://registry.yarnpkg.com/ember-uikit/-/ember-uikit-0.8.2.tgz#7795be2d7d4764ba2125a45bd6ffaefd7fb024d7"
-  integrity sha512-nQV7CKebrHpeD6RbblPe3CGth82ZNaWgfvr2pcWazd7EWP6m1SwqRU7pE7dehaQDfySUBlNjp2n5/DUSS/Zf1g==
+ember-uikit@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/ember-uikit/-/ember-uikit-1.0.0.tgz#5d84d5e2a457874e4d1aad7d68d3a7401c7ae68f"
+  integrity sha512-Q4l9vK9iwc/NT1hyRs+++rvT0jVL5qE1l1QbG5ajuSIVd9lSMrkz16aIf87kV88wuC8Pm1mu/SxNaY2zjqDSuw==
   dependencies:
     broccoli-funnel "^2.0.2"
     broccoli-merge-trees "^3.0.0"
-    broccoli-stew "^2.0.0"
-    chalk "^2.3.0"
-    ember-auto-import "^1.4.0"
-    ember-cli-babel "^7.7.3"
-    ember-cli-htmlbars "^3.0.0"
-    ember-cli-htmlbars-inline-precompile "^2.1.0"
+    broccoli-stew "^3.0.0"
+    chalk "^3.0.0"
+    ember-auto-import "^1.5.3"
+    ember-cli-babel "^7.11.1"
+    ember-cli-htmlbars "^4.0.8"
     ember-get-config "^0.2.4"
-    ember-toggle "^5.3.0"
-    uikit "^3.1.5"
+    ember-toggle "^6.0.0"
+    uikit "^3.2.3"
 
 ember-validated-form@^2.0.0-alpha.5:
   version "2.0.0-alpha.5"
@@ -9377,6 +9409,11 @@ has-flag@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-3.0.0.tgz#b5d454dc2199ae225699f3467e5a07f3b955bafd"
   integrity sha1-tdRU3CGZriJWmfNGfloH87lVuv0=
+
+has-flag@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/has-flag/-/has-flag-4.0.0.tgz#944771fd9c81c81265c4d6941860da06bb59479b"
+  integrity sha512-EykJT/Q1KjTWctppgIAgfSO0tKVuZUjhgMr17kqTumMl6Afv3EISleU7qZUzoXDFTAHTDC4NOoG/ZxU3EvlMPQ==
 
 has-symbol-support-x@^1.4.1:
   version "1.4.2"
@@ -15890,6 +15927,13 @@ supports-color@^6.1.0:
   dependencies:
     has-flag "^3.0.0"
 
+supports-color@^7.1.0:
+  version "7.1.0"
+  resolved "https://registry.yarnpkg.com/supports-color/-/supports-color-7.1.0.tgz#68e32591df73e25ad1c4b49108a2ec507962bfd1"
+  integrity sha512-oRSIpR8pxT1Wr2FquTNnGet79b3BWljqOuoW/h4oBhxJ/HUbX5nX6JSruTkvXDCFMwDPvsaTTbvMLKZWSy0R5g==
+  dependencies:
+    has-flag "^4.0.0"
+
 supports-hyperlinks@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/supports-hyperlinks/-/supports-hyperlinks-1.0.1.tgz#71daedf36cc1060ac5100c351bb3da48c29c0ef7"
@@ -16500,10 +16544,10 @@ uid-number@0.0.6:
   resolved "https://registry.yarnpkg.com/uid-number/-/uid-number-0.0.6.tgz#0ea10e8035e8eb5b8e4449f06da1c730663baa81"
   integrity sha1-DqEOgDXo61uOREnwbaHHMGY7qoE=
 
-uikit@^3.1.5:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/uikit/-/uikit-3.2.1.tgz#859122a260cb1e482c85a63d564af55ba96b7891"
-  integrity sha512-8mhv3n7m9/kGYv1+YPjTDGbI7HKK1o79wOyhpznoNYVTGhr1cwaTACITVVoUYONJxdqmIIGBA2OkKhMQ8zXwBg==
+uikit@^3.2.3:
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/uikit/-/uikit-3.2.3.tgz#1ee5a9d19706769b32e5f171ccd3feec3aed4f1d"
+  integrity sha512-XDkFIlJQNA2sovxnMJAMyryqXwBFbOjL2VT7uDUDbxyl39hiKG0U60z6T+v8zBfI5AmANjDBoCSsK8CDkZJgAQ==
 
 umask@^1.1.0, umask@~1.1.0:
   version "1.1.0"
