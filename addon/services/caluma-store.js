@@ -37,7 +37,10 @@ export default Service.extend({
   },
 
   delete(pk) {
-    this.set("_store", this._store.filter(i => i.pk !== pk));
+    this.set(
+      "_store",
+      this._store.filter(i => i.pk !== pk)
+    );
   },
 
   clear() {

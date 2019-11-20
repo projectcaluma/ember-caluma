@@ -108,9 +108,10 @@ export default Base.extend({
 
       const key = camelize(this.__typename.replace(/Question$/, "Options"));
 
-      return this.getWithDefault(`${key}.edges`, []).map(
-        ({ node: { label, slug } }) => ({ label, slug })
-      );
+      return this.getWithDefault(
+        `${key}.edges`,
+        []
+      ).map(({ node: { label, slug } }) => ({ label, slug }));
     }
   )
 });
