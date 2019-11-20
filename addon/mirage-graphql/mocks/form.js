@@ -9,9 +9,7 @@ export default class extends BaseMock {
   @register("ReorderFormQuestionsPayload")
   handleReorderFormQuestions(
     root,
-    {
-      input: { form: slug, questions: questionSlugs, clientMutationId }
-    }
+    { input: { form: slug, questions: questionSlugs, clientMutationId } }
   ) {
     const form = this.filter.find(this.collection, { slug });
 
@@ -41,9 +39,7 @@ export default class extends BaseMock {
   @register("AddFormQuestionPayload")
   handleAddFormQuestion(
     root,
-    {
-      input: { form: slug, question: questionSlug, clientMutationId }
-    }
+    { input: { form: slug, question: questionSlug, clientMutationId } }
   ) {
     const form = this.filter.find(this.collection, { slug });
 
@@ -79,9 +75,7 @@ export default class extends BaseMock {
   @register("RemoveFormQuestionPayload")
   handleRemoveFormQuestion(
     root,
-    {
-      input: { form: slug, question: questionSlug, clientMutationId }
-    }
+    { input: { form: slug, question: questionSlug, clientMutationId } }
   ) {
     const form = this.filter.find(this.collection, { slug });
 

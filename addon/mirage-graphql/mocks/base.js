@@ -99,12 +99,7 @@ export default class {
   }
 
   @register("Save{type}Payload")
-  handleSavePayload(
-    _,
-    {
-      input: { clientMutationId, slug, id, ...args }
-    }
-  ) {
+  handleSavePayload(_, { input: { clientMutationId, slug, id, ...args } }) {
     const identifier = slug ? { slug } : { id };
 
     const obj = this.filter.find(this.collection, identifier);
