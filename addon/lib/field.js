@@ -21,7 +21,6 @@ import saveDocumentListAnswerMutation from "ember-caluma/gql/mutations/save-docu
 import saveDocumentFileAnswerMutation from "ember-caluma/gql/mutations/save-document-file-answer";
 import saveDocumentDateAnswerMutation from "ember-caluma/gql/mutations/save-document-date-answer";
 import saveDocumentTableAnswerMutation from "ember-caluma/gql/mutations/save-document-table-answer";
-import removeAnswerMutation from "ember-caluma/gql/mutations/remove-answer";
 import getDocumentUsedDynamicOptionsQuery from "ember-caluma/gql/queries/get-document-used-dynamic-options";
 import { getAST, getTransforms } from "ember-caluma/utils/jexl";
 
@@ -444,59 +443,31 @@ export default Base.extend({
    */
   save: task(function*() {
     const type = this.get("answer.__typename");
-    const value = this.get("answer.value");
 
-    let response;
-
-    if (value === null || value.length === 0) {
-      if (this.isNew) {
-        return;
-      }
-
-      response = yield this.apollo.mutate(
-        {
-          mutation: removeAnswerMutation,
-          variables: {
-            input: {
-              answer: this.answer.uuid
-            }
+    const response = yield this.apollo.mutate(
+      {
+        mutation: this.get(`saveDocument${type}Mutation`),
+        variables: {
+          input: {
+            question: this.question.slug,
+            document: this.document.uuid,
+            value: this.answer.serializedValue
           }
-        },
-        `removeAnswer.answer`
-      );
+        }
+      },
+      `saveDocument${type}.answer`
+    );
 
-      // remove the answer from the store and delete the data of the existing
-      // answer
-      this.calumaStore.delete(this.answer.pk);
-      Reflect.deleteProperty(this.answer.raw, "id");
-      Reflect.deleteProperty(this.answer, "id");
-      Reflect.deleteProperty(this.answer, "pk");
-    } else {
-      response = yield this.apollo.mutate(
-        {
-          mutation: this.get(`saveDocument${type}Mutation`),
-          variables: {
-            input: {
-              question: this.question.slug,
-              document: this.document.uuid,
-              value: this.answer.serializedValue
-            }
-          }
-        },
-        `saveDocument${type}.answer`
-      );
+    if (this.isNew) {
+      // if the answer was new we need to set a pk an push the answer to the
+      // store
+      this.answer.set("pk", `Answer:${decodeId(response.id)}`);
 
-      if (this.isNew) {
-        // if the answer was new we need to set a pk an push the answer to the
-        // store
-        this.answer.set("pk", `Answer:${decodeId(response.id)}`);
-
-        this.calumaStore.push(this.answer);
-      }
-
-      // update the existing answer
-      this.answer.setProperties(response);
+      this.calumaStore.push(this.answer);
     }
+
+    // update the existing answer
+    this.answer.setProperties(response);
 
     this.set("raw.answer", response);
     this.set("answer.raw", response);
