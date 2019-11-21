@@ -1,7 +1,7 @@
 module.exports = {
   test_page: "tests/index.html?hidepassed",
   disable_watching: true,
-  parallel: "2",
+  parallel: 2,
   reporter: "dot",
   framework: "qunit",
   launch_in_ci: ["Chrome", "Firefox"],

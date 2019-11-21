@@ -16,9 +16,11 @@ cache:
 
 env:
   global:
-    # See https://git.io/vdao3 for details.
     - JOBS=1
     - COVERAGE=true
+    - BROWSERSTACK_USERNAME=caluma1
+    - secure: MVUSNHfxhStXejmWm66ZZaA81FX+EG37UPpC0g+E+acsIwTVxZ8lRNfQyMKt8nQwsnTN+NGikj5puuHhVZUSKzULzAGk4iUiQ7t0YQrdNl6rJIsOBbVqQ43NcwF+yuuyJkSOiAaEqhag7mtbTg2jgjPf8v78b5aba8uK/AXg0sA4rObkm564TSyBp5ujfTT6w6BA1R2MiZNFTDAUefpTh6Fl9/brsBs0ga9ZfHxBUXmtln+RFSmUaze4A2Q/vows7bzFgMD74dMc4FsApJjrOrscBwsIEKvtxbWXcDQuam1GFWXBVaMtnOucT+1eaXogbDg9NlvlPnJ875jyC7ty+yJfmVcxwVVGETP7Y5XQzmH7As1R4bOp9eQyb7yjeuS/3YzF9GSO7SLxEovENzs7c6sHq9d7vAh1Uz7jDzoZaN6kroGl7Czpl5G/RLUaoQOvjvYZz/jiiEhbIj/k3c0b0pWvm4A/z6E5nE0P7I255YTcqQhNWSwc+xVsWY8qtSJiEqTq3xdqfWiSSALwTz0ivUY99AgXYrvxfAhNOW/rEPK346T+5FE8jDQ+R16Ha95i6h6HEkcuJei00uEHmULaLhNg1mh4mZr88aGrI3BsK0th7rqs0NVVOHGYjnOG+qTlrGBTNO8vvWFhh3kRgeelDaR4XIr2Z50d+IcwS9hzGS0=
+
 
 branches:
   only:
@@ -35,8 +37,8 @@ jobs:
   include:
     # runs linting and tests with current locked deps
 
-    - stage: "Tests"
-      name: "Tests"
+    - stage: Tests
+      name: Tests
       install:
         - yarn install --non-interactive
       script:
@@ -45,17 +47,25 @@ jobs:
         - yarn lint:js
         - yarn test
 
-    - name: "Floating Dependencies"
+    - name: Browserstack Tests
+      install:
+        - yarn install --non-interactive
+      script:
+        - yarn ember browserstack:connect
+        - yarn test:browserstack
+        - yarn ember browserstack:results
+        - yarn ember browserstack:disconnect
+
+    - name: Floating Dependencies
       script:
         - yarn test
 
-    # we recommend new addons test the current and previous LTS
-    # as well as latest stable release (bonus points to beta/canary)
-    - stage: "Additional Tests"
+    - stage: Additional Tests
       env: EMBER_TRY_SCENARIO=ember-lts-3.12
     - env: EMBER_TRY_SCENARIO=ember-release
 
-    - stage: "Release"
+    - stage: Release
+      name: Release
       if: branch = release and type = push
       script: skip
       deploy:
@@ -66,8 +76,9 @@ jobs:
         script:
           - yarn semantic-release
 
-    - stage: "Deploy"
-      if: (branch = master or tag is present) and type = push
+    - stage: Deploy
+      name: Deploy
+      if: "(branch = master or tag is present) and type = push"
       script: yarn ember deploy production
 
 before_install:
