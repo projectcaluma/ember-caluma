@@ -1,10 +1,11 @@
+"use strict";
+
 module.exports = {
   test_page: "tests/index.html?hidepassed",
   disable_watching: true,
-  parallel: "2",
-  reporter: "dot",
   framework: "qunit",
-  launch_in_ci: ["Chrome", "Firefox"],
+  tap_quiet_logs: !!process.env.CI,
+  launch_in_ci: ["Chrome"],
   launch_in_dev: [],
   browser_args: {
     Chrome: {
@@ -19,9 +20,6 @@ module.exports = {
         "--remote-debugging-port=0",
         "--window-size=1440,900"
       ].filter(Boolean)
-    },
-    Firefox: {
-      ci: ["-headless", "--window-size=1440,900"]
     }
   }
 };
