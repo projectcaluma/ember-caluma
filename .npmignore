@@ -19,7 +19,7 @@
 /bower.json
 /config/ember-try.js
 /ember-cli-build.js
-/testem.js
+/testem*.js
 /tests/
 /yarn.lock
 .gitkeep

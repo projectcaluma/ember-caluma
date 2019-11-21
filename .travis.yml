@@ -1,7 +1,5 @@
 language: node_js
 node_js:
-  # we recommend testing addons with the same minimum supported node version as Ember CLI
-  # so that your addon works for all apps
   - "8"
 
 sudo: false
@@ -9,14 +7,12 @@ dist: trusty
 
 addons:
   chrome: stable
-  firefox: latest
 
 cache:
   yarn: true
 
 env:
   global:
-    # See https://git.io/vdao3 for details.
     - JOBS=1
     - COVERAGE=true
 
@@ -24,8 +20,14 @@ branches:
   only:
     - master
     - release
-    # npm version tags
     - /^v\d+\.\d+\.\d+/
+
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash
+  - export PATH=$HOME/.yarn/bin:$PATH
+
+install:
+  - yarn install --non-interactive
 
 jobs:
   fail_fast: true
@@ -33,52 +35,48 @@ jobs:
     - env: EMBER_TRY_SCENARIO=ember-release
 
   include:
-    # runs linting and tests with current locked deps
-
-    - stage: "Tests"
-      name: "Tests"
-      install:
-        - yarn install --non-interactive
+    - stage: Tests
+      name: Tests & Linting
       script:
         - commitlint-travis
         - yarn lint:hbs
         - yarn lint:js
         - yarn test
+      after_success:
+        - bash <(curl -s https://codecov.io/bash) -f coverage/lcov.info
 
-    - name: "Floating Dependencies"
+    - name: Tests (Browserstack)
+      env:
+        - BROWSERSTACK_USERNAME=caluma1
+        - secure: "mKthlQkNc/tI3reQogz6KHdhicbEnaW1e6ZSndDtmgdumoYqj5Wn+4X1pqFoG/Bc5Ga86Jkkp7gpQwPcj4CPE8iUAoqNTYqibC9weTdCBNn0NNjlUBbXvsq5cVj7Eq0ssSuENzqGfsbfMZ1aeQEZHDOUFYTtggAtzj+7InpuaJ0kNmmBrMgdoReztMGbaTqqIaAv73cLlndeU3yObBRGIzeq4whntGvXCdNK9ei0AxHuhJg86P7rYpN3K6HvW2omoeMmHY4Z6wt0mQkiWa4HxAHT9uh5rLa1hbrjPlQEHmcay+iEspGNfQnAHoUjVJ9OtHSV82ujlZKeLAL0/kMBBREzKPXulaJ4JO9bTs5iLSbSjuaSu+No6EeDeqlq6/JpSJh1VwN3hin9HldmozMOn6M6P2jt9ZB288tLSRcP6Dr/Ss837wsd+KXRftt6YceiTL5QI0IWbdnjaHr2l/vHhh0+EOdfVWe4xr+s0IOtfFpLGhg+WNCm34V8VdVgXCAeBmeI9PgT5cPUuCuPVf/VmEQTYLdjNa0POmjhLhR4ukD7REiyz4n5Q4EfU+IV0YM6+dl+I6BdMNGQKjvyoD8uMTzyDXYETfb3eFz9DhugvEV+Keo0lI3eVQZCwtGIpfZKtrgaA5fC4Q8nGgPG4c5ni4Kf6eDZyGiB9GQwkZnIdQ8="
+      before_script:
+        - yarn ember browserstack:connect
+      script:
+        - yarn test:browserstack
+        - yarn ember browserstack:results
+      after_script:
+        - yarn ember browserstack:disconnect
+
+    - name: Tests (Floating Dependencies)
+      install:
+        - yarn install --no-lockfile --non-interactive
       script:
         - yarn test
 
-    # we recommend new addons test the current and previous LTS
-    # as well as latest stable release (bonus points to beta/canary)
-    - stage: "Additional Tests"
+    - stage: Additional Tests
       env: EMBER_TRY_SCENARIO=ember-lts-3.12
     - env: EMBER_TRY_SCENARIO=ember-release
+      script:
+        - yarn ember try:one $EMBER_TRY_SCENARIO
 
-    - stage: "Release"
+    - stage: Release
+      name: Release
       if: branch = release and type = push
-      script: skip
-      deploy:
-        provider: script
-        skip_cleanup: true
-        on:
-          branch: release
-        script:
-          - yarn semantic-release
+      script:
+        - yarn semantic-release
 
-    - stage: "Deploy"
+    - stage: Deploy
+      name: Deploy
       if: (branch = master or tag is present) and type = push
-      script: yarn ember deploy production
-
-before_install:
-  - curl -o- -L https://yarnpkg.com/install.sh | bash
-  - export PATH=$HOME/.yarn/bin:$PATH
-
-install:
-  - yarn install --no-lockfile --non-interactive
-
-script:
-  - yarn ember try:one $EMBER_TRY_SCENARIO
-
-after_success:
-  - bash <(curl -s https://codecov.io/bash) -f coverage/lcov.info
+      script:
+        - yarn ember deploy production
