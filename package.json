@@ -21,6 +21,7 @@
     "start": "ember serve",
     "start-proxy": "ember serve --proxy http://localhost:8000",
     "test": "ember test --silent",
+    "test:browserstack": "ember test --silent --host=127.0.0.1 --test-port=7774 --config-file=testem.browserstack.js",
     "test:all": "ember try:each",
     "update-schema": "graphql get-schema -e http://localhost:8000/graphql -o addon/mirage-graphql/schema.graphql && prettier --write addon/mirage-graphql/schema.graphql",
     "update-fragment-types": "node fetch-fragment-types.js && prettier --write addon/-private/fragment-types.js"
@@ -72,6 +73,7 @@
     "ember-cli": "3.13.1",
     "ember-cli-addon-docs": "0.6.15",
     "ember-cli-addon-docs-yuidoc": "0.2.3",
+    "ember-cli-browserstack": "1.0.1",
     "ember-cli-code-coverage": "1.0.0-beta.8",
     "ember-cli-dependency-checker": "3.2.0",
     "ember-cli-deploy": "1.0.2",
@@ -107,6 +109,7 @@
     "node-fetch": "2.6.0",
     "prettier": "1.19.0",
     "qunit-dom": "0.9.2",
+    "testem-failure-only-reporter": "0.0.1",
     "typeface-oxygen": "0.0.72",
     "typeface-oxygen-mono": "0.0.72"
   },

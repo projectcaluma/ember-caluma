@@ -1,8 +1,9 @@
 # ![ember-caluma](https://user-images.githubusercontent.com/6150577/60805349-1e6f3080-a180-11e9-911f-874620aa72b1.png)
 
 [![Build Status](https://travis-ci.com/projectcaluma/ember-caluma.svg?branch=master)](https://travis-ci.com/projectcaluma/ember-caluma)
-[![npm](https://img.shields.io/npm/v/ember-caluma.svg)](https://www.npmjs.com/package/ember-caluma)
+[![BrowserStack Status](https://automate.browserstack.com/badge.svg?badge_key=OFpCTnVaaUhTWTU3SFBKMGdtS1hFeCtCMUgvMmdMSTZqVVNEejhrME5JND0tLUp6R3B6aEJhUjBRRUtxSjJxcFhVb3c9PQ==--234eac4a0f5f7c3759bf207a1ab7954f6bbaf078)](https://automate.browserstack.com/public-build/OFpCTnVaaUhTWTU3SFBKMGdtS1hFeCtCMUgvMmdMSTZqVVNEejhrME5JND0tLUp6R3B6aEJhUjBRRUtxSjJxcFhVb3c9PQ==--234eac4a0f5f7c3759bf207a1ab7954f6bbaf078)
 [![Codecov](https://codecov.io/gh/projectcaluma/ember-caluma/branch/master/graph/badge.svg)](https://codecov.io/gh/projectcaluma/ember-caluma)
+[![npm](https://img.shields.io/npm/v/ember-caluma.svg)](https://www.npmjs.com/package/ember-caluma)
 [![dependencies Status](https://david-dm.org/projectcaluma/ember-caluma/status.svg)](https://david-dm.org/projectcaluma/ember-caluma)
 [![devDependencies Status](https://david-dm.org/projectcaluma/ember-caluma/dev-status.svg)](https://david-dm.org/projectcaluma/ember-caluma?type=dev)
 [![Code Style: Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
@@ -36,6 +37,10 @@ You can find the interactive documentation [here](https://projectcaluma.github.i
 - `ember test` – Runs the test suite on the current Ember version
 - `ember test --server` – Runs the test suite in "watch mode"
 - `ember try:each` – Runs the test suite against multiple Ember versions
+
+Cross-browser testing provided by:
+
+<a href="https://browserstack.com"><img alt="BrowserStack" src="https://user-images.githubusercontent.com/6150577/69328224-24f1d680-0c4f-11ea-8b02-5670334923a3.png" height="50"></a>
 
 ### Running the dummy application
 
