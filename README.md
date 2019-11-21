@@ -37,6 +37,10 @@ You can find the interactive documentation [here](https://projectcaluma.github.i
 - `ember test --server` – Runs the test suite in "watch mode"
 - `ember try:each` – Runs the test suite against multiple Ember versions
 
+Cross-browser testing provided by:
+
+<a href="https://browserstack.com"><img alt="Browserstack" src="https://user-images.githubusercontent.com/6150577/69328224-24f1d680-0c4f-11ea-8b02-5670334923a3.png" height="50"></a>
+
 ### Running the dummy application
 
 - `ember serve`
