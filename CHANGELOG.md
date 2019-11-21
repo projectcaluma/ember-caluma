@@ -1,3 +1,20 @@
+# [4.0.0](https://github.com/projectcaluma/ember-caluma/compare/v3.0.1...v4.0.0) (2019-11-21)
+
+
+### Bug Fixes
+
+* **form:** transform empty string answers to null ([d3a736c](https://github.com/projectcaluma/ember-caluma/commit/d3a736c9445b5e73ba4935d9d415284641478dfe))
+
+
+### Features
+
+* **form:** allow empty values for answers ([7e52e23](https://github.com/projectcaluma/ember-caluma/commit/7e52e23440a0241d8315d16a5a492ef8ed1d4419))
+
+
+### BREAKING CHANGES
+
+* **form:** Only works with caluma v4.0.0 (https://github.com/projectcaluma/caluma/pull/791)
+
 ## [3.0.1](https://github.com/projectcaluma/ember-caluma/compare/v3.0.0...v3.0.1) (2019-11-06)
 
 
