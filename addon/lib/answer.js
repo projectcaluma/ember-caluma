@@ -95,6 +95,8 @@ export default Base.extend({
         return value;
       },
       set(_, value) {
+        value = [undefined, ""].includes(value) ? null : value;
+
         if (this._valueKey) {
           this.set(this._valueKey, value);
         }

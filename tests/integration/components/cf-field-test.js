@@ -78,7 +78,7 @@ module("Integration | Component | cf-field", function(hooks) {
     this.set("field.answer.value", "Test");
 
     await fillIn("input", "");
-    assert.equal(this.field.answer.value, "", "Value was removed.");
+    assert.equal(this.field.answer.value, null, "Value was removed.");
   });
 
   test("it renders", async function(assert) {
