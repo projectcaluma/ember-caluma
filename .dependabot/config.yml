@@ -1,0 +1,18 @@
+version: 1
+update_configs:
+  - package_manager: "javascript"
+    directory: "/"
+    update_schedule: "live"
+    version_requirement_updates: "increase_versions"
+    default_reviewers:
+      - "anehx"
+    ignored_updates:
+      # Addons that require ember octane (3.14.0+) can't be updated since we
+      # guarantee support for the latest LTS version of ember. Those can be
+      # removed as soon as a new LTS version of ember is released.
+      - match:
+          dependency_name: "ember-composable-helpers"
+          version_requirement: "2.x"
+      - match:
+          dependency_name: "ember-power-select"
+          version_requirement: "2.x"
