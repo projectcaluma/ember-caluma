@@ -4,6 +4,7 @@ const getChannelURL = require("ember-source-channel-url");
 
 module.exports = async function() {
   return {
+    command: "ember test --silent",
     useYarn: true,
     scenarios: [
       {

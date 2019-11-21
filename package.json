@@ -20,7 +20,7 @@
     "lint:js": "eslint .",
     "start": "ember serve",
     "start-proxy": "ember serve --proxy http://localhost:8000",
-    "test": "ember test",
+    "test": "ember test --silent",
     "test:all": "ember try:each",
     "update-schema": "graphql get-schema -e http://localhost:8000/graphql -o addon/mirage-graphql/schema.graphql && prettier --write addon/mirage-graphql/schema.graphql",
     "update-fragment-types": "node fetch-fragment-types.js && prettier --write addon/-private/fragment-types.js"
