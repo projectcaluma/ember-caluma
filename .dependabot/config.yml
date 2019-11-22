@@ -12,7 +12,7 @@ update_configs:
       # removed as soon as a new LTS version of ember is released.
       - match:
           dependency_name: "ember-composable-helpers"
-          version_requirement: "2.x"
+          version_requirement: ">=3"
       - match:
           dependency_name: "ember-power-select"
-          version_requirement: "2.x"
+          version_requirement: ">=3"
