@@ -26,10 +26,6 @@
     "update-schema": "graphql get-schema -e http://localhost:8000/graphql -o addon/mirage-graphql/schema.graphql && prettier --write addon/mirage-graphql/schema.graphql",
     "update-fragment-types": "node fetch-fragment-types.js && prettier --write addon/-private/fragment-types.js"
   },
-  "//": [
-    "-- Documentation of blocked dependency updates --",
-    "ember-apollo-client: https://github.com/bgentry/ember-apollo-client/issues/279"
-  ],
   "dependencies": {
     "apollo-cache-inmemory": "^1.6.2",
     "apollo-link-context": "^1.0.18",
@@ -46,7 +42,7 @@
     "ember-cli-string-helpers": "^4.0.5",
     "ember-composable-helpers": "^2.2.0",
     "ember-concurrency": "^1.1.3",
-    "ember-fetch": "^6.7.2",
+    "ember-fetch": "^7.0.0",
     "ember-intl": "^4.2.2",
     "ember-math-helpers": "^2.12.0",
     "ember-power-select": "^2.3.5",
@@ -88,7 +84,7 @@
     "ember-cli-template-lint": "1.0.0-beta.3",
     "ember-cli-uglify": "3.0.0",
     "ember-disable-prototype-extensions": "1.1.3",
-    "ember-engines": "0.8.2",
+    "ember-engines": "0.8.3",
     "ember-export-application-global": "2.0.1",
     "ember-load-initializers": "2.1.1",
     "ember-maybe-import-regenerator": "0.1.6",
@@ -98,16 +94,16 @@
     "ember-source": "3.14.2",
     "ember-source-channel-url": "2.0.1",
     "ember-try": "1.3.0",
-    "eslint": "6.7.1",
+    "eslint": "6.7.2",
     "eslint-config-prettier": "6.7.0",
-    "eslint-plugin-ember": "7.6.0",
+    "eslint-plugin-ember": "7.7.1",
     "eslint-plugin-node": "10.0.0",
     "eslint-plugin-prettier": "3.1.1",
     "graphql-cli": "3.0.14",
     "husky": "3.1.0",
     "loader.js": "4.7.0",
     "node-fetch": "2.6.0",
-    "prettier": "1.19.0",
+    "prettier": "1.19.1",
     "qunit-dom": "0.9.2",
     "testem-failure-only-reporter": "0.0.1",
     "typeface-oxygen": "0.0.72",
@@ -135,5 +131,8 @@
   },
   "release": {
     "extends": "@adfinis-sygroup/semantic-release-config"
+  },
+  "resolutions": {
+    "pretender": "^3.0.1"
   }
 }
