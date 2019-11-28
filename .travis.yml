@@ -58,11 +58,11 @@ jobs:
       after_script:
         - yarn ember browserstack:disconnect
 
-    # - name: Tests (Floating Dependencies)
-    #   install:
-    #     - yarn install --no-lockfile --non-interactive
-    #   script:
-    #     - yarn test
+    - name: Tests (Floating Dependencies)
+      install:
+        - yarn install --no-lockfile --non-interactive
+      script:
+        - yarn test
 
     - stage: Additional Tests
       env: EMBER_TRY_SCENARIO=ember-lts-3.12
