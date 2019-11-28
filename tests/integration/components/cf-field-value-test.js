@@ -8,6 +8,10 @@ module("Integration | Component | cf-field-value", function(hooks) {
 
   test("it renders multiple choice questions", async function(assert) {
     this.set("field", {
+      selected: [
+        { slug: "option-a", label: "A" },
+        { slug: "option-b", label: "B" }
+      ],
       question: {
         __typename: "MultipleChoiceQuestion",
         multipleChoiceOptions: {
@@ -45,6 +49,7 @@ module("Integration | Component | cf-field-value", function(hooks) {
 
   test("it renders choice questions", async function(assert) {
     this.set("field", {
+      selected: { slug: "option-c", label: "C" },
       question: {
         __typename: "ChoiceQuestion",
         choiceOptions: {
