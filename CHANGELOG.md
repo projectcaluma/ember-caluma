@@ -1,3 +1,11 @@
+## [4.0.1](https://github.com/projectcaluma/ember-caluma/compare/v4.0.0...v4.0.1) (2019-11-28)
+
+
+### Bug Fixes
+
+* **form:** fix cf-field-value for choice and multiple choice questions ([2afabb9](https://github.com/projectcaluma/ember-caluma/commit/2afabb99482309b3c4e66e88f9483ab821c536e7))
+* change disabled to readonly where applicable ([15f487a](https://github.com/projectcaluma/ember-caluma/commit/15f487a94a1ef893a822909811562a40ede5960a))
+
 # [4.0.0](https://github.com/projectcaluma/ember-caluma/compare/v3.0.1...v4.0.0) (2019-11-21)
 
 
