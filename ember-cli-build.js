@@ -8,9 +8,8 @@ module.exports = function(defaults) {
   const app = new EmberAddon(defaults, {
     sassOptions: { implementation: sass },
     snippetPaths: ["tests/dummy/app/snippets"],
-    babel: {
-      plugins: ["@babel/plugin-proposal-object-rest-spread"]
-    }
+    babel: { plugins: ["@babel/plugin-proposal-object-rest-spread"] },
+    emberApolloClient: { keepGraphqlFileExtension: false }
   });
 
   app.import("node_modules/moment/locale/de.js");
