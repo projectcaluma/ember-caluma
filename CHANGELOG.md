@@ -1,3 +1,10 @@
+## [4.0.2](https://github.com/projectcaluma/ember-caluma/compare/v4.0.1...v4.0.2) (2019-12-02)
+
+
+### Bug Fixes
+
+* **field:** don't pass `value` to save mutation if null ([4e05609](https://github.com/projectcaluma/ember-caluma/commit/4e05609f19d80c2ad3b4f792b313e165c2908207))
+
 ## [4.0.1](https://github.com/projectcaluma/ember-caluma/compare/v4.0.0...v4.0.1) (2019-11-28)
 
 
