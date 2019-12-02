@@ -47,24 +47,24 @@
     on-hide=(action (mut showAddModal) false)
     btnClose=true
     bgClose=false
-  }}
-    {{#if documentToEdit}}
+  as |modal|}}
+    {{#modal.body}}
       {{cf-form-wrapper
         document=documentToEdit
         fieldset=(object-at 0 documentToEdit.fieldsets)
         disabled=disabled
       }}
-    {{/if}}
+    {{/modal.body}}
 
     {{#unless disabled}}
-      <p class="uk-text-right">
+      {{#modal.footer class="uk-text-right"}}
         {{uk-button
           label=(t "caluma.form.save")
           disabled=save.isRunning
           loading=save.isRunning
           on-click=(perform save)
         }}
-      </p>
+      {{/modal.footer}}
     {{/unless}}
   {{/uk-modal}}
 
@@ -73,16 +73,18 @@
     on-hide=(action (mut showDeleteModal) false)
     btnClose=true
     bgClose=false
-  }}
-    <p>{{t "caluma.form.deleteRow"}}</p>
+  as |modal|}}
+    {{#modal.body}}
+      <p>{{t "caluma.form.deleteRow"}}</p>
+    {{/modal.body}}
 
-    <p class="uk-text-right">
+    {{#modal.footer class="uk-text-right"}}
       {{uk-button
         label=(t "caluma.form.delete")
         disabled=deleteRow.isRunning
         loading=deleteRow.isRunning
         on-click=(perform deleteRow documentToDelete)
       }}
-    </p>
+    {{/modal.footer}}
   {{/uk-modal}}
 {{/with}}
