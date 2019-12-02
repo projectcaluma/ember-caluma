@@ -451,7 +451,9 @@ export default Base.extend({
           input: {
             question: this.question.slug,
             document: this.document.uuid,
-            value: this.answer.serializedValue
+            ...(this.answer.serializedValue !== null
+              ? { value: this.answer.serializedValue }
+              : {})
           }
         }
       },
