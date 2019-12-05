@@ -9,6 +9,8 @@
   visible=showModal
   stack=true
   on-hide=(action (mut showModal) false)
-}}
-  {{markdown-to-html text openLinksInNewWindow=true}}
+as |modal|}}
+  {{#modal.body}}
+    {{markdown-to-html text openLinksInNewWindow=true}}
+  {{/modal.body}}
 {{/uk-modal}}
