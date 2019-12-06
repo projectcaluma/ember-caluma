@@ -1,3 +1,10 @@
+## [4.0.3](https://github.com/projectcaluma/ember-caluma/compare/v4.0.2...v4.0.3) (2019-12-06)
+
+
+### Bug Fixes
+
+* **deps:** update ember-uikit to v2.0.1 ([0b19859](https://github.com/projectcaluma/ember-caluma/commit/0b19859e4ea519a872be10e808becdade2c47721))
+
 ## [4.0.2](https://github.com/projectcaluma/ember-caluma/compare/v4.0.1...v4.0.2) (2019-12-02)
 
 
