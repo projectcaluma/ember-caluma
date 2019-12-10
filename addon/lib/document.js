@@ -143,32 +143,23 @@ export default Base.extend({
    */
   findAnswer(slug) {
     const field = this.findField(slug);
-    const value = field.value;
 
-    if (!field || !value) {
-      return null;
+    if (!field || field.hidden || [undefined, null].includes(field.value)) {
+      return field.question.isMultipleChoice ? [] : null;
     }
 
-    // Multiple choice questions should return an empty array if there is no answer
-    // otherwise `intersects` operator breaks
-    const emptyValue =
-      field.question.__typename == "MultipleChoiceQuestion" ? [] : null;
-
-    if (value && !field.hidden) {
-      if (field.question.__typename === "TableQuestion") {
-        return (value || []).map(doc =>
-          doc.fields.reduce((obj, field) => {
-            return {
-              ...obj,
-              [field.question.slug]: value
-            };
-          }, {})
-        );
-      }
-      return value;
+    if (field.question.__typename === "TableQuestion") {
+      return field.value.map(doc =>
+        doc.fields.reduce((obj, tableField) => {
+          return {
+            ...obj,
+            [tableField.question.slug]: tableField.value
+          };
+        }, {})
+      );
     }
 
-    return emptyValue;
+    return field.value;
   },
 
   /**

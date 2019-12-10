@@ -3,6 +3,8 @@ import { setupTest } from "ember-qunit";
 import Document from "ember-caluma/lib/document";
 import { settled } from "@ember/test-helpers";
 import ValidatorServiceStub from "dummy/tests/helpers/validator-service-stub";
+import data from "./data";
+import { parseDocument } from "ember-caluma/lib/parsers";
 
 module("Unit | Library | document", function(hooks) {
   setupTest(hooks);
@@ -20,44 +22,10 @@ module("Unit | Library | document", function(hooks) {
       this.document.fields.map(field => [field.question.slug, field.hidden])
     );
 
-    const form = {
-      __typename: "Form",
-      slug: "some-form",
-      questions: [
-        {
-          slug: "question-1",
-          label: "Question 1",
-          isRequired: "false",
-          isHidden: "false",
-          __typename: "TextQuestion"
-        },
-        {
-          slug: "question-2",
-          label: "Question 2",
-          isRequired: "false",
-          isHidden: "!('question-1'|answer == 'show-question-2')",
-          __typename: "TextQuestion"
-        },
-        {
-          slug: "question-3",
-          label: "Question 3",
-          isRequired: "false",
-          isHidden:
-            "!('question-1'|answer == 'show-question-3' || 'question-2'|answer == 'show-question-3')",
-          __typename: "TextQuestion"
-        }
-      ]
-    };
-
-    const raw = {
-      id: 1,
-      __typename: "Document",
-      answers: [],
-      rootForm: form,
-      forms: [form]
-    };
-
-    this.set("document", Document.create(this.owner.ownerInjection(), { raw }));
+    this.set(
+      "document",
+      Document.create(this.owner.ownerInjection(), { raw: parseDocument(data) })
+    );
 
     await settled();
   });
@@ -74,7 +42,9 @@ module("Unit | Library | document", function(hooks) {
     assert.deepEqual(this.getDocumentHiddenState(), [
       ["question-1", false],
       ["question-2", true],
-      ["question-3", true]
+      ["question-3", true],
+      ["table", false],
+      ["multiple-choice", false]
     ]);
   });
 
@@ -87,7 +57,9 @@ module("Unit | Library | document", function(hooks) {
     assert.deepEqual(this.getDocumentHiddenState(), [
       ["question-1", false],
       ["question-2", false],
-      ["question-3", true]
+      ["question-3", true],
+      ["table", false],
+      ["multiple-choice", false]
     ]);
   });
 
@@ -98,7 +70,9 @@ module("Unit | Library | document", function(hooks) {
     assert.deepEqual(this.getDocumentHiddenState(), [
       ["question-1", false],
       ["question-2", false],
-      ["question-3", false]
+      ["question-3", false],
+      ["table", false],
+      ["multiple-choice", false]
     ]);
     await this.setFieldValue("question-1", "foo");
 
@@ -106,7 +80,9 @@ module("Unit | Library | document", function(hooks) {
     assert.deepEqual(this.getDocumentHiddenState(), [
       ["question-1", false],
       ["question-2", true],
-      ["question-3", true]
+      ["question-3", true],
+      ["table", false],
+      ["multiple-choice", false]
     ]);
   });
 
@@ -149,7 +125,7 @@ module("Unit | Library | document", function(hooks) {
   test("computes the correct jexl context", async function(assert) {
     assert.expect(1);
 
-    assert.deepEqual(this.document.jexlContext, { form: "some-form" });
+    assert.deepEqual(this.document.jexlContext, { form: "form" });
   });
 
   skip("it recomputes hidden on hidden change of parent fieldset", async function() {});
