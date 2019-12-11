@@ -1,3 +1,10 @@
+## [4.0.4](https://github.com/projectcaluma/ember-caluma/compare/v4.0.3...v4.0.4) (2019-12-11)
+
+
+### Bug Fixes
+
+* **form:** fix JEXL answer transform for table values ([9049a0e](https://github.com/projectcaluma/ember-caluma/commit/9049a0e2dda46236913b84344f1892b0f30dcd58))
+
 ## [4.0.3](https://github.com/projectcaluma/ember-caluma/compare/v4.0.2...v4.0.3) (2019-12-06)
 
 
