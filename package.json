@@ -27,7 +27,7 @@
     "update-fragment-types": "node fetch-fragment-types.js && prettier --write addon/-private/fragment-types.js"
   },
   "dependencies": {
-    "apollo-cache-inmemory": "^1.6.2",
+    "apollo-cache-inmemory": "^1.6.5",
     "apollo-link-context": "^1.0.18",
     "broccoli-funnel": "^2.0.2",
     "broccoli-merge-trees": "^3.0.2",
