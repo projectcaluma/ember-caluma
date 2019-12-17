@@ -34,7 +34,7 @@ const TYPE_MAP = {
   DynamicMultipleChoiceQuestion: "ListAnswer",
   DynamicChoiceQuestion: "StringAnswer",
   TableQuestion: "TableAnswer",
-  FormQuestion: "FormAnswer",
+  FormQuestion: null,
   FileQuestion: "FileAnswer",
   StaticQuestion: null,
   DateQuestion: "DateAnswer"
