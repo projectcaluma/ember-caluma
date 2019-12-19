@@ -1,6 +1,5 @@
 import { module, test } from "qunit";
 import { setupTest } from "ember-qunit";
-import Answer from "ember-caluma/lib/answer";
 
 module("Unit | Library | answer", function(hooks) {
   setupTest(hooks);
@@ -8,7 +7,7 @@ module("Unit | Library | answer", function(hooks) {
   test("it works", async function(assert) {
     assert.expect(1);
 
-    const answer = Answer.create(this.owner.ownerInjection(), {
+    const answer = this.owner.factoryFor("caluma-model:answer").create({
       raw: {
         __typename: "StringAnswer",
         stringValue: "test"
@@ -21,7 +20,7 @@ module("Unit | Library | answer", function(hooks) {
   test("it computes a pk", async function(assert) {
     assert.expect(3);
 
-    const newAnswer = Answer.create(this.owner.ownerInjection(), {
+    const newAnswer = this.owner.factoryFor("caluma-model:answer").create({
       raw: {
         __typename: "StringAnswer"
       }
@@ -29,7 +28,7 @@ module("Unit | Library | answer", function(hooks) {
 
     assert.equal(newAnswer.pk, undefined);
 
-    const existingAnswer = Answer.create(this.owner.ownerInjection(), {
+    const existingAnswer = this.owner.factoryFor("caluma-model:answer").create({
       raw: {
         __typename: "StringAnswer",
         id: btoa("Answer:xxxx-xxxx")
@@ -43,7 +42,7 @@ module("Unit | Library | answer", function(hooks) {
   test("it generates documents for table answers", async function(assert) {
     assert.expect(2);
 
-    const answer = Answer.create(this.owner.ownerInjection(), {
+    const answer = this.owner.factoryFor("caluma-model:answer").create({
       raw: {
         __typename: "TableAnswer",
         tableValue: [

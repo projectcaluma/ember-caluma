@@ -10,8 +10,6 @@ import { all, resolve } from "rsvp";
 import { validate } from "ember-validators";
 import { queryManager } from "ember-apollo-client";
 
-import Answer from "ember-caluma/lib/answer";
-import Question from "ember-caluma/lib/question";
 import { decodeId } from "ember-caluma/helpers/decode-id";
 
 import saveDocumentFloatAnswerMutation from "ember-caluma/gql/mutations/save-document-float-answer";
@@ -105,9 +103,9 @@ export default Base.extend({
   _createQuestion() {
     const question =
       this.calumaStore.find(`Question:${this.raw.question.slug}`) ||
-      Question.create(getOwner(this).ownerInjection(), {
-        raw: this.raw.question
-      });
+      getOwner(this)
+        .factoryFor("caluma-model:question")
+        .create({ raw: this.raw.question });
 
     if (question.isDynamic) {
       question.loadDynamicOptions.perform();
@@ -117,6 +115,7 @@ export default Base.extend({
   },
 
   _createAnswer() {
+    const AnswerFactory = getOwner(this).factoryFor("caluma-model:answer");
     let answer;
 
     // no answer passed, create an empty one
@@ -128,7 +127,7 @@ export default Base.extend({
         return;
       }
 
-      answer = Answer.create(getOwner(this).ownerInjection(), {
+      answer = AnswerFactory.create({
         raw: {
           __typename: answerType,
           question: { slug: this.raw.question.slug },
@@ -138,9 +137,7 @@ export default Base.extend({
     } else {
       answer =
         this.calumaStore.find(`Answer:${decodeId(this.raw.answer.id)}`) ||
-        Answer.create(getOwner(this).ownerInjection(), {
-          raw: this.raw.answer
-        });
+        AnswerFactory.create({ raw: this.raw.answer });
     }
 
     this.set("answer", answer);

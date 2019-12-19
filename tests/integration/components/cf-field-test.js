@@ -2,7 +2,6 @@ import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
 import { render, fillIn } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
-import Document from "ember-caluma/lib/document";
 import setupMirage from "ember-cli-mirage/test-support/setup-mirage";
 import { setupIntl } from "ember-intl/test-support";
 
@@ -48,7 +47,7 @@ module("Integration | Component | cf-field", function(hooks) {
       ]
     };
 
-    const document = Document.create(this.owner.ownerInjection(), {
+    const document = this.owner.factoryFor("caluma-model:document").create({
       raw: {
         __typename: "Document",
         id: window.btoa("Document:1"),

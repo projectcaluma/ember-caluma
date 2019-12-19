@@ -7,8 +7,6 @@ import { inject as service } from "@ember/service";
 import { queryManager } from "ember-apollo-client";
 import { task } from "ember-concurrency";
 
-import Document from "ember-caluma/lib/document";
-import Navigation from "ember-caluma/lib/navigation";
 import { parseDocument } from "ember-caluma/lib/parsers";
 import layout from "ember-caluma/templates/components/cf-content";
 import getDocumentAnswersQuery from "ember-caluma/gql/queries/get-document-answers";
@@ -154,15 +152,14 @@ export default Component.extend({
       "allForms.edges"
     )).map(({ node }) => node);
 
-    const document = Document.create(getOwner(this).ownerInjection(), {
-      raw: parseDocument({ ...answerDocument, form })
-    });
+    const document = getOwner(this)
+      .factoryFor("caluma-model:document")
+      .create({ raw: parseDocument({ ...answerDocument, form }) });
 
-    return {
-      document,
-      navigation: Navigation.create(getOwner(this).ownerInjection(), {
-        document
-      })
-    };
+    const navigation = getOwner(this)
+      .factoryFor("caluma-model:navigation")
+      .create({ document });
+
+    return { document, navigation };
   }).drop()
 });

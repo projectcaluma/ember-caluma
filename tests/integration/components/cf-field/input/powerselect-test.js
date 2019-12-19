@@ -2,7 +2,6 @@ import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
 import { click, render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
-import Document from "ember-caluma/lib/document";
 
 module("Integration | Component | cf-field/input/powerselect", function(hooks) {
   setupRenderingTest(hooks);
@@ -45,7 +44,7 @@ module("Integration | Component | cf-field/input/powerselect", function(hooks) {
       questions: [singleChoice, multipleChoice]
     };
 
-    const document = Document.create(this.owner.ownerInjection(), {
+    const document = this.owner.factoryFor("caluma-model:document").create({
       raw: {
         __typename: "Document",
         id: btoa("Document:xxxx-xxxx"),

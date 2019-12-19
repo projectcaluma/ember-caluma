@@ -245,10 +245,9 @@ export const Navigation = Base.extend({
 
       return (
         this.calumaStore.find(pk) ||
-        NavigationItem.create(getOwner(this).ownerInjection(), {
-          fieldset,
-          navigation: this
-        })
+        getOwner(this)
+          .factoryFor("caluma-model:navigation-item")
+          .create({ fieldset, navigation: this })
       );
     });
 

@@ -3,11 +3,9 @@ import { computed, defineProperty } from "@ember/object";
 import { assert } from "@ember/debug";
 import { getOwner } from "@ember/application";
 import { decodeId } from "ember-caluma/helpers/decode-id";
-import Form from "ember-caluma/lib/form";
 import jexl from "jexl";
 import { intersects } from "ember-caluma/utils/jexl";
 import { inject as service } from "@ember/service";
-import Fieldset from "ember-caluma/lib/fieldset";
 
 /**
  * Object which represents a document
@@ -39,9 +37,9 @@ export default Base.extend({
   _createRootForm() {
     const rootForm =
       this.calumaStore.find(`Form:${this.raw.rootForm.slug}`) ||
-      Form.create(getOwner(this).ownerInjection(), {
-        raw: this.raw.rootForm
-      });
+      getOwner(this)
+        .factoryFor("caluma-model:form")
+        .create({ raw: this.raw.rootForm });
 
     this.set("rootForm", rootForm);
   },
@@ -50,10 +48,12 @@ export default Base.extend({
     const fieldsets = this.raw.forms.map(form => {
       return (
         this.calumaStore.find(`${this.pk}:Form:${form.slug}`) ||
-        Fieldset.create(getOwner(this).ownerInjection(), {
-          raw: { form, answers: this.raw.answers },
-          document: this
-        })
+        getOwner(this)
+          .factoryFor("caluma-model:fieldset")
+          .create({
+            raw: { form, answers: this.raw.answers },
+            document: this
+          })
       );
     });
 

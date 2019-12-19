@@ -1,6 +1,5 @@
 import { module, test } from "qunit";
 import { setupTest } from "ember-qunit";
-import Fieldset from "ember-caluma/lib/fieldset";
 
 module("Unit | Library | fieldset", function(hooks) {
   setupTest(hooks);
@@ -8,7 +7,7 @@ module("Unit | Library | fieldset", function(hooks) {
   test("it computes a pk", async function(assert) {
     assert.expect(1);
 
-    const fieldset = Fieldset.create(this.owner.ownerInjection(), {
+    const fieldset = this.owner.factoryFor("caluma-model:fieldset").create({
       raw: {
         form: {
           __typename: "Form",
