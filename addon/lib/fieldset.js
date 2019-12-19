@@ -2,8 +2,6 @@ import Base from "ember-caluma/lib/base";
 import { assert } from "@ember/debug";
 import { getOwner } from "@ember/application";
 import { inject as service } from "@ember/service";
-import Field from "ember-caluma/lib/field";
-import Form from "ember-caluma/lib/form";
 import { computed, get, defineProperty } from "@ember/object";
 
 /**
@@ -52,9 +50,9 @@ export default Base.extend({
   _createForm() {
     const form =
       this.calumaStore.find(`Form:${this.raw.form.slug}`) ||
-      Form.create(getOwner(this).ownerInjection(), {
-        raw: this.raw.form
-      });
+      getOwner(this)
+        .factoryFor("caluma-model:form")
+        .create({ raw: this.raw.form });
 
     this.set("form", form);
   },
@@ -65,15 +63,17 @@ export default Base.extend({
         this.calumaStore.find(
           `${this.document.pk}:Question:${question.slug}`
         ) ||
-        Field.create(getOwner(this).ownerInjection(), {
-          raw: {
-            question,
-            answer: this.raw.answers.find(
-              answer => get(answer, "question.slug") === question.slug
-            )
-          },
-          fieldset: this
-        })
+        getOwner(this)
+          .factoryFor("caluma-model:field")
+          .create({
+            raw: {
+              question,
+              answer: this.raw.answers.find(
+                answer => get(answer, "question.slug") === question.slug
+              )
+            },
+            fieldset: this
+          })
       );
     });
 

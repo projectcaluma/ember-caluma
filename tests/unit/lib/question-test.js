@@ -1,6 +1,5 @@
 import { module, test } from "qunit";
 import { setupTest } from "ember-qunit";
-import Question from "ember-caluma/lib/question";
 import ValidatorServiceStub from "dummy/tests/helpers/validator-service-stub";
 
 module("Unit | Library | question", function(hooks) {
@@ -13,7 +12,7 @@ module("Unit | Library | question", function(hooks) {
   test("it computes a pk", async function(assert) {
     assert.expect(1);
 
-    const question = Question.create(this.owner.ownerInjection(), {
+    const question = this.owner.factoryFor("caluma-model:question").create({
       raw: {
         slug: "some-question",
         label: "Test",

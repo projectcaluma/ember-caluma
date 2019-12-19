@@ -6,7 +6,6 @@ import { inject as service } from "@ember/service";
 import { queryManager } from "ember-apollo-client";
 import { computed } from "@ember/object";
 import { getOwner } from "@ember/application";
-import Document from "ember-caluma/lib/document";
 import { parseDocument } from "ember-caluma/lib/parsers";
 import removeDocumentMutation from "ember-caluma/gql/mutations/remove-document";
 
@@ -47,9 +46,9 @@ export default Component.extend({
       "saveDocument.document"
     );
 
-    const newDocument = Document.create(getOwner(this).ownerInjection(), {
-      raw: parseDocument(raw)
-    });
+    const newDocument = getOwner(this)
+      .factoryFor("caluma-model:document")
+      .create({ raw: parseDocument(raw) });
 
     this.setProperties({
       documentToEdit: newDocument,

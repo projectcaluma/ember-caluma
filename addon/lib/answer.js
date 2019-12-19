@@ -5,7 +5,6 @@ import { assert } from "@ember/debug";
 import { inject as service } from "@ember/service";
 import { decodeId } from "ember-caluma/helpers/decode-id";
 import { getOwner } from "@ember/application";
-import Document from "ember-caluma/lib/document";
 import { parseDocument } from "ember-caluma/lib/parsers";
 
 /**
@@ -85,9 +84,9 @@ export default Base.extend({
 
             return (
               existing ||
-              Document.create(getOwner(this).ownerInjection(), {
-                raw: parseDocument(document)
-              })
+              getOwner(this)
+                .factoryFor("caluma-model:document")
+                .create({ raw: parseDocument(document) })
             );
           });
         }

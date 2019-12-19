@@ -131,8 +131,5 @@
   },
   "release": {
     "extends": "@adfinis-sygroup/semantic-release-config"
-  },
-  "resolutions": {
-    "pretender": "^3.0.1"
   }
 }

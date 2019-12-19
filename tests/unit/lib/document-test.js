@@ -1,6 +1,5 @@
 import { module, test, skip } from "qunit";
 import { setupTest } from "ember-qunit";
-import Document from "ember-caluma/lib/document";
 import { settled } from "@ember/test-helpers";
 import ValidatorServiceStub from "dummy/tests/helpers/validator-service-stub";
 import data from "./data";
@@ -24,7 +23,9 @@ module("Unit | Library | document", function(hooks) {
 
     this.set(
       "document",
-      Document.create(this.owner.ownerInjection(), { raw: parseDocument(data) })
+      this.owner
+        .factoryFor("caluma-model:document")
+        .create({ raw: parseDocument(data) })
     );
 
     await settled();

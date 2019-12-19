@@ -1,6 +1,5 @@
 import { module, test } from "qunit";
 import { setupTest } from "ember-qunit";
-import Form from "ember-caluma/lib/form";
 
 module("Unit | Library | form", function(hooks) {
   setupTest(hooks);
@@ -8,7 +7,7 @@ module("Unit | Library | form", function(hooks) {
   test("it computes a pk", async function(assert) {
     assert.expect(1);
 
-    const form = Form.create(this.owner.ownerInjection(), {
+    const form = this.owner.factoryFor("caluma-model:form").create({
       raw: {
         slug: "some-form",
         name: "Some Form",

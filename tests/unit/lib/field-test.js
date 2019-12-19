@@ -1,8 +1,6 @@
 import { module, test } from "qunit";
 import { setupTest } from "ember-qunit";
 import { settled } from "@ember/test-helpers";
-import Field from "ember-caluma/lib/field";
-import Document from "ember-caluma/lib/document";
 import ValidatorServiceStub from "dummy/tests/helpers/validator-service-stub";
 import { setupIntl } from "ember-intl/test-support";
 
@@ -58,7 +56,7 @@ module("Unit | Library | field", function(hooks) {
       questions: [question, question2, question3]
     };
 
-    const document = Document.create(this.owner.ownerInjection(), {
+    const document = this.owner.factoryFor("caluma-model:document").create({
       raw: {
         __typename: "Document",
         id: btoa(`Document:xxxx-xxxx`),
@@ -180,7 +178,7 @@ module("Unit | Library | field", function(hooks) {
   test("it can validate required fields", async function(assert) {
     assert.expect(1);
 
-    const field = Field.create(this.owner.ownerInjection(), {
+    const field = this.owner.factoryFor("caluma-model:field").create({
       raw: {
         question: {
           __typename: "TextQuestion",
@@ -204,7 +202,7 @@ module("Unit | Library | field", function(hooks) {
   test("it ignores optional fields", async function(assert) {
     assert.expect(1);
 
-    const field = Field.create(this.owner.ownerInjection(), {
+    const field = this.owner.factoryFor("caluma-model:field").create({
       raw: {
         question: {
           __typename: "TextQuestion",
@@ -223,7 +221,7 @@ module("Unit | Library | field", function(hooks) {
   test("it can validate text fields", async function(assert) {
     assert.expect(1);
 
-    const field = Field.create(this.owner.ownerInjection(), {
+    const field = this.owner.factoryFor("caluma-model:field").create({
       raw: {
         question: {
           textMaxLength: 4,
@@ -249,7 +247,7 @@ module("Unit | Library | field", function(hooks) {
   test("it can validate textarea fields", async function(assert) {
     assert.expect(1);
 
-    const field = Field.create(this.owner.ownerInjection(), {
+    const field = this.owner.factoryFor("caluma-model:field").create({
       raw: {
         question: {
           textareaMaxLength: 4,
@@ -275,7 +273,7 @@ module("Unit | Library | field", function(hooks) {
   test("it can validate integer fields", async function(assert) {
     assert.expect(3);
 
-    const field = Field.create(this.owner.ownerInjection(), {
+    const field = this.owner.factoryFor("caluma-model:field").create({
       raw: {
         question: {
           integerMinValue: 2,
@@ -314,7 +312,7 @@ module("Unit | Library | field", function(hooks) {
   test("it can validate float fields", async function(assert) {
     assert.expect(3);
 
-    const field = Field.create(this.owner.ownerInjection(), {
+    const field = this.owner.factoryFor("caluma-model:field").create({
       raw: {
         question: {
           floatMinValue: 1.5,
@@ -352,7 +350,7 @@ module("Unit | Library | field", function(hooks) {
   test("it can validate radio fields", async function(assert) {
     assert.expect(1);
 
-    const field = Field.create(this.owner.ownerInjection(), {
+    const field = this.owner.factoryFor("caluma-model:field").create({
       raw: {
         question: {
           choiceOptions: {
@@ -386,7 +384,7 @@ module("Unit | Library | field", function(hooks) {
   test("it can validate checkbox fields", async function(assert) {
     assert.expect(2);
 
-    const field = Field.create(this.owner.ownerInjection(), {
+    const field = this.owner.factoryFor("caluma-model:field").create({
       raw: {
         question: {
           multipleChoiceOptions: {
