@@ -30,7 +30,7 @@
     "apollo-cache-inmemory": "^1.6.5",
     "apollo-link-context": "^1.0.18",
     "broccoli-funnel": "^2.0.2",
-    "broccoli-merge-trees": "^3.0.2",
+    "broccoli-merge-trees": "^4.0.0",
     "ember-apollo-client": "2.0.0",
     "ember-auto-import": "^1.5.3",
     "ember-changeset": "^2.1.3",
