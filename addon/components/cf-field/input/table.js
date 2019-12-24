@@ -48,7 +48,7 @@ export default Component.extend({
 
     const newDocument = getOwner(this)
       .factoryFor("caluma-model:document")
-      .create({ raw: parseDocument(raw) });
+      .create({ raw: parseDocument(raw), parentDocument: this.field.document });
 
     this.setProperties({
       documentToEdit: newDocument,
