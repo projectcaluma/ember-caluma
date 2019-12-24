@@ -132,7 +132,7 @@ export default Base.extend({
    * @accessor
    */
   jexlContext: computed(
-    "document.rootForm.slug",
+    "rootForm.slug",
     "parentDocument.jexlContext",
     function() {
       if (this.parentDocument) return this.parentDocument.jexlContext;
