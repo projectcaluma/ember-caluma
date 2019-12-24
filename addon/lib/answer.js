@@ -86,7 +86,10 @@ export default Base.extend({
               existing ||
               getOwner(this)
                 .factoryFor("caluma-model:document")
-                .create({ raw: parseDocument(document) })
+                .create({
+                  raw: parseDocument(document),
+                  parentDocument: this.field.document
+                })
             );
           });
         }

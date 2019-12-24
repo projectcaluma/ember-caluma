@@ -132,12 +132,13 @@ export default Base.extend({
           __typename: answerType,
           question: { slug: this.raw.question.slug },
           [camelize(answerType.replace(/Answer$/, "Value"))]: null
-        }
+        },
+        field: this
       });
     } else {
       answer =
         this.calumaStore.find(`Answer:${decodeId(this.raw.answer.id)}`) ||
-        AnswerFactory.create({ raw: this.raw.answer });
+        AnswerFactory.create({ raw: this.raw.answer, field: this });
     }
 
     this.set("answer", answer);

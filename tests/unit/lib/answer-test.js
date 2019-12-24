@@ -40,9 +40,16 @@ module("Unit | Library | answer", function(hooks) {
   });
 
   test("it generates documents for table answers", async function(assert) {
-    assert.expect(2);
+    assert.expect(3);
 
     const answer = this.owner.factoryFor("caluma-model:answer").create({
+      field: {
+        document: {
+          jexlContext: {
+            form: "parent-form"
+          }
+        }
+      },
       raw: {
         __typename: "TableAnswer",
         tableValue: [
@@ -86,5 +93,11 @@ module("Unit | Library | answer", function(hooks) {
 
     assert.equal(answer.value[0].pk, "Document:xxxx-xxxx");
     assert.deepEqual(answer.serializedValue, ["xxxx-xxxx"]);
+
+    assert.deepEqual(
+      answer.value[0].jexlContext,
+      { form: "parent-form" },
+      "JEXL context of the table rows do not match the parent documents context"
+    );
   });
 });

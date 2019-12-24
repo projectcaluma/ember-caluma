@@ -131,9 +131,15 @@ export default Base.extend({
    * @property {Object} jexlContext
    * @accessor
    */
-  jexlContext: computed("document.rootForm.slug", function() {
-    return { form: this.rootForm.slug };
-  }),
+  jexlContext: computed(
+    "document.rootForm.slug",
+    "parentDocument.jexlContext",
+    function() {
+      if (this.parentDocument) return this.parentDocument.jexlContext;
+
+      return { form: this.rootForm.slug };
+    }
+  ),
 
   /**
    * Find an answer for a given question slug
