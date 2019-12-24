@@ -1,6 +1,6 @@
 import Base from "ember-caluma/lib/base";
 import { computed, getWithDefault, defineProperty } from "@ember/object";
-import { equal, not, reads, empty } from "@ember/object/computed";
+import { equal, not, reads } from "@ember/object/computed";
 import { inject as service } from "@ember/service";
 import { assert } from "@ember/debug";
 import { getOwner } from "@ember/application";
@@ -178,12 +178,14 @@ export default Base.extend({
   isInvalid: not("isValid"),
 
   /**
-   * Whether the field is new (never saved to the backend service)
+   * Whether the field is new (never saved to the backend service or empty)
    *
    * @property {Boolean} isNew
    * @accessor
    */
-  isNew: empty("answer.pk"),
+  isNew: computed("answer.isNew", function() {
+    return !this.answer || this.answer.isNew;
+  }),
 
   /**
    * The type of the question

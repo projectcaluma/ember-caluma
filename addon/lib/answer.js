@@ -6,6 +6,7 @@ import { inject as service } from "@ember/service";
 import { decodeId } from "ember-caluma/helpers/decode-id";
 import { getOwner } from "@ember/application";
 import { parseDocument } from "ember-caluma/lib/parsers";
+import { isEmpty } from "@ember/utils";
 
 /**
  * Object which represents an answer in context of a field
@@ -38,6 +39,10 @@ export default Base.extend({
    */
   uuid: computed("raw.id", function() {
     return this.raw.id ? decodeId(this.raw.id) : null;
+  }),
+
+  isNew: computed("uuid", "value", function() {
+    return !this.uuid || isEmpty(this.value);
   }),
 
   /**
