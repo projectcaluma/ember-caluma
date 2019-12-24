@@ -87,10 +87,20 @@ module("Unit | Library | field", function(hooks) {
   });
 
   test("computes isNew correctly", async function(assert) {
-    assert.expect(2);
+    assert.expect(3);
 
-    assert.equal(this.document.findField("test-question").isNew, false);
-    assert.equal(this.document.findField("test-question-3").isNew, true);
+    const answeredField = this.document.findField("test-question");
+    const unansweredField = this.document.findField("test-question-3");
+
+    assert.equal(answeredField.isNew, false);
+    assert.equal(unansweredField.isNew, true);
+
+    const oldValue = answeredField.value;
+    answeredField.set("answer.value", null); // empty value
+
+    assert.equal(answeredField.isNew, true);
+
+    answeredField.set("answer.value", oldValue); // reset value
   });
 
   test("can compute the question", async function(assert) {
