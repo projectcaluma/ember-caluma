@@ -3,6 +3,8 @@ import { setupTest } from "ember-qunit";
 import { settled } from "@ember/test-helpers";
 import ValidatorServiceStub from "dummy/tests/helpers/validator-service-stub";
 import { setupIntl } from "ember-intl/test-support";
+import data from "./data";
+import { parseDocument } from "ember-caluma/lib/parsers";
 
 module("Unit | Library | field", function(hooks) {
   setupTest(hooks);
@@ -11,69 +13,12 @@ module("Unit | Library | field", function(hooks) {
   hooks.beforeEach(async function() {
     this.owner.register("service:validator", ValidatorServiceStub);
 
-    const question = {
-      __typename: "TextQuestion",
-      slug: "test-question",
-      label: "Test Question",
-      isHidden: "false",
-      isRequired: "true"
-    };
-
-    const question2 = {
-      __typename: "TextQuestion",
-      slug: "test-question-2",
-      label: "Test Question 2",
-      isHidden: "'test-question'|answer == 'hidequestion2'",
-      isRequired: "'test-question'|answer == 'requirequestion2'"
-    };
-
-    const question3 = {
-      __typename: "TextQuestion",
-      slug: "test-question-3",
-      label: "Test Question 3",
-      isHidden: "false",
-      isRequired: "false"
-    };
-
-    const answer = {
-      __typename: "StringAnswer",
-      id: btoa(`Answer:xxxx-xxxx`),
-      stringValue: "test answer",
-      question: { slug: question.slug }
-    };
-
-    const answer2 = {
-      __typename: "StringAnswer",
-      id: btoa(`Answer:yyyy-yyyy`),
-      stringValue: "test answer 2",
-      question: { slug: question2.slug }
-    };
-
-    const form = {
-      __typename: "Form",
-      slug: "test-form",
-      name: "Test Form",
-      questions: [question, question2, question3]
-    };
-
-    const document = this.owner.factoryFor("caluma-model:document").create({
-      raw: {
-        __typename: "Document",
-        id: btoa(`Document:xxxx-xxxx`),
-        rootForm: form,
-        forms: [form],
-        answers: [answer, answer2]
-      }
-    });
-
-    this.setProperties({
-      question,
-      question2,
-      question3,
-      answer,
-      answer2,
-      document
-    });
+    this.set(
+      "document",
+      this.owner
+        .factoryFor("caluma-model:document")
+        .create({ raw: parseDocument(data) })
+    );
 
     await settled();
   });
@@ -81,42 +26,39 @@ module("Unit | Library | field", function(hooks) {
   test("computes a pk", async function(assert) {
     assert.expect(1);
 
-    const field = this.document.findField("test-question");
+    const field = this.document.findField("question-1");
 
-    assert.equal(field.pk, "Document:xxxx-xxxx:Question:test-question");
+    assert.equal(field.pk, `${this.document.pk}:Question:question-1`);
   });
 
   test("computes isNew correctly", async function(assert) {
     assert.expect(3);
 
-    const answeredField = this.document.findField("test-question");
-    const unansweredField = this.document.findField("test-question-3");
+    const answeredField = this.document.findField("question-1");
+    const unansweredField = this.document.findField("question-3");
 
     assert.equal(answeredField.isNew, false);
     assert.equal(unansweredField.isNew, true);
 
-    const oldValue = answeredField.value;
-    answeredField.set("answer.value", null); // empty value
+    answeredField.set("answer.value", null);
 
     assert.equal(answeredField.isNew, true);
-
-    answeredField.set("answer.value", oldValue); // reset value
   });
 
   test("can compute the question", async function(assert) {
     assert.expect(2);
 
-    const field = this.document.findField("test-question");
+    const field = this.document.findField("question-1");
 
-    assert.equal(field.question.slug, "test-question");
-    assert.equal(field.question.label, "Test Question");
+    assert.equal(field.question.slug, "question-1");
+    assert.equal(field.question.label, "Question 1");
   });
 
   test("can compute the answer", async function(assert) {
     assert.expect(4);
 
-    const field = this.document.findField("test-question");
-    const fieldWithoutAnswer = this.document.findField("test-question-3");
+    const field = this.document.findField("question-1");
+    const fieldWithoutAnswer = this.document.findField("question-3");
 
     assert.equal(field.answer.value, "test answer");
     assert.equal(fieldWithoutAnswer.answer.value, null);
@@ -127,37 +69,34 @@ module("Unit | Library | field", function(hooks) {
   test("it computes optional", async function(assert) {
     assert.expect(2);
 
-    const dependsOnField = this.document.findField("test-question");
-    const field = this.document.findField("test-question-2");
+    const dependsOnField = this.document.findField("question-1");
+    const field = this.document.findField("question-2");
 
     dependsOnField.set("answer.value", "somevalue");
     assert.equal(field.optional, true);
 
-    dependsOnField.set("answer.value", "requirequestion2");
+    dependsOnField.set("answer.value", "require-question-2");
     assert.equal(field.optional, false);
   });
 
   test("it computes hidden", async function(assert) {
-    assert.expect(3);
+    assert.expect(2);
 
-    const dependsOnField = this.document.findField("test-question");
-    const field = this.document.findField("test-question-2");
+    const dependsOnField = this.document.findField("question-1");
+    const field = this.document.findField("question-2");
 
     dependsOnField.set("answer.value", "somevalue");
-    assert.equal(field.hidden, false);
-
-    dependsOnField.set("answer.value", "someothervalue");
-    assert.equal(field.hidden, false);
-
-    dependsOnField.set("answer.value", "hidequestion2");
     assert.equal(field.hidden, true);
+
+    dependsOnField.set("answer.value", "show-question-2");
+    assert.equal(field.hidden, false);
   });
 
   test("it computes hiddenDependencies based on 'answer' transform", async function(assert) {
     assert.expect(1);
 
-    const field = this.document.findField("test-question-2");
-    const dependentField = this.document.findField("test-question");
+    const field = this.document.findField("question-2");
+    const dependentField = this.document.findField("question-1");
 
     assert.deepEqual(field.hiddenDependencies, [dependentField]);
   });
@@ -165,8 +104,8 @@ module("Unit | Library | field", function(hooks) {
   test("it computes optionalDependencies based on 'answer' transform", async function(assert) {
     assert.expect(1);
 
-    const field = this.document.findField("test-question-2");
-    const dependentField = this.document.findField("test-question");
+    const field = this.document.findField("question-2");
+    const dependentField = this.document.findField("question-1");
 
     assert.deepEqual(field.optionalDependencies, [dependentField]);
   });
@@ -174,7 +113,7 @@ module("Unit | Library | field", function(hooks) {
   test("it can handle newlines in JEXL expressions", async function(assert) {
     assert.expect(2);
 
-    const field = this.document.findField("test-question-2");
+    const field = this.document.findField("question-2");
 
     const whitespaced = "(\n  1 == 1\r    &&\r    2 == 2\n)";
 
@@ -429,6 +368,22 @@ module("Unit | Library | field", function(hooks) {
     assert.deepEqual(field.errors, [
       't:caluma.form.validation.inclusion:("in":["option-1"],"value":"invalid-option")',
       't:caluma.form.validation.inclusion:("in":["option-1"],"value":"other-invalid-option")'
+    ]);
+  });
+
+  test("it can validate table fields", async function(assert) {
+    assert.expect(2);
+
+    const table = this.document.findField("table");
+    const row = table.value[0];
+
+    await table.validate.perform();
+    assert.deepEqual(table.errors, []);
+
+    row.findField("table-form-question").set("answer.value", null);
+    await table.validate.perform();
+    assert.deepEqual(table.errors, [
+      't:caluma.form.validation.table:("value":null)'
     ]);
   });
 });

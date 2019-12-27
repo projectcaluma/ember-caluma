@@ -44,7 +44,7 @@
 
   {{#uk-modal
     visible=(and showAddModal documentToEdit)
-    on-hide=(action (mut showAddModal) false)
+    on-hide=(action "closeModal" "showAddModal")
     btnClose=true
     bgClose=false
   as |modal|}}
@@ -72,10 +72,10 @@
 
   {{#uk-modal
     visible=(and showDeleteModal documentToDelete)
-    on-hide=(action (mut showDeleteModal) false)
+    on-hide=(action "closeModal" "showDeleteModal")
     btnClose=true
     bgClose=false
-  }}
+  as |modal|}}
     {{#modal.body}}
       {{t "caluma.form.deleteRow"}}
     {{/modal.body}}

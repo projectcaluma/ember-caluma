@@ -19,7 +19,7 @@ const form = {
         node: {
           slug: "question-2",
           label: "Question 2",
-          isRequired: "false",
+          isRequired: "'question-1'|answer == 'require-question-2'",
           isHidden: "!('question-1'|answer == 'show-question-2')",
           __typename: "TextQuestion"
         }
@@ -62,6 +62,26 @@ const answers = {
   edges: [
     {
       node: {
+        id: id("StringAnswer"),
+        question: {
+          slug: "question-1"
+        },
+        stringValue: "test answer",
+        __typename: "StringAnswer"
+      }
+    },
+    {
+      node: {
+        id: id("StringAnswer"),
+        question: {
+          slug: "question-2"
+        },
+        stringValue: "test answer 2",
+        __typename: "StringAnswer"
+      }
+    },
+    {
+      node: {
         id: id("TableAnswer"),
         question: {
           slug: "table"
@@ -77,7 +97,7 @@ const answers = {
                     node: {
                       slug: "table-form-question",
                       label: "Question",
-                      isRequired: "false",
+                      isRequired: "true",
                       isHidden: "false",
                       __typename: "TextQuestion"
                     }

@@ -715,8 +715,30 @@ export default Base.extend({
    * @return {RSVP.Promise}
    * @private
    */
-  _validateTableQuestion() {
-    return resolve(true);
+  async _validateTableQuestion() {
+    if (!this.value) return true;
+
+    const rowValidations = await all(
+      this.value.map(async row => {
+        const validFields = await all(
+          row.fields.map(async field => {
+            await field.validate.perform();
+
+            return field.isValid;
+          })
+        );
+
+        return validFields.every(Boolean);
+      })
+    );
+
+    return (
+      rowValidations.every(Boolean) || {
+        type: "table",
+        context: {},
+        value: null
+      }
+    );
   },
 
   /**
