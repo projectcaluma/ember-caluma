@@ -1,3 +1,14 @@
+## [4.0.5](https://github.com/projectcaluma/ember-caluma/compare/v4.0.4...v4.0.5) (2019-12-27)
+
+
+### Bug Fixes
+
+* remove FormAnswer ([548f1b1](https://github.com/projectcaluma/ember-caluma/commit/548f1b1273f7944047b14f02008d198fcadaef5d))
+* **document:** fix wrong computed property key ([544f0aa](https://github.com/projectcaluma/ember-caluma/commit/544f0aaa371f95a9b0f77f788421cf0d789e9e22))
+* **form:** add proper table validation ([7c6787b](https://github.com/projectcaluma/ember-caluma/commit/7c6787bf5e78d823bf175f60024eb0ad5db0213e))
+* **form:** fix isNew property for empty answers ([2491dbf](https://github.com/projectcaluma/ember-caluma/commit/2491dbf4658ff66573e1db0d815bacdcb5a731db))
+* **form:** use parent documents jexl context for table row documents ([aedf903](https://github.com/projectcaluma/ember-caluma/commit/aedf903fed5ec3f3a9756f1d82daffa9b6a573ae))
+
 ## [4.0.4](https://github.com/projectcaluma/ember-caluma/compare/v4.0.3...v4.0.4) (2019-12-11)
 
 
