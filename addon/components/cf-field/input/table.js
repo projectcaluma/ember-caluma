@@ -74,7 +74,7 @@ export default Component.extend({
     // Remove orphand document from Caluma store.
     this.calumaStore.delete(document.pk);
 
-    this.set("showDeleteModal", false);
+    this.closeModal("showDeleteModal");
   }),
 
   save: task(function*() {
@@ -97,7 +97,7 @@ export default Component.extend({
         );
       }
 
-      this.set("showAddModal", false);
+      this.closeModal("showAddModal");
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e);
@@ -107,13 +107,24 @@ export default Component.extend({
     }
   }),
 
+  closeModal(propertyName) {
+    this.set(propertyName, false);
+
+    this.field.validate.perform();
+  },
+
   actions: {
+    closeModal(propertyName) {
+      this.closeModal(propertyName);
+    },
+
     editRow(document) {
       this.setProperties({
         documentToEdit: document,
         showAddModal: true
       });
     },
+
     deleteRow(document) {
       this.setProperties({
         documentToDelete: document,
