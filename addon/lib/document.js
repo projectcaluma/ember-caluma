@@ -175,6 +175,9 @@ export default Base.extend({
    * @return {Field} The wanted field
    */
   findField(slug) {
-    return this.fields.find(field => field.question.slug === slug);
+    return [
+      ...this.fields,
+      ...(this.parentDocument ? this.parentDocument.fields : [])
+    ].find(field => field.question.slug === slug);
   }
 });
