@@ -1,3 +1,10 @@
+# [4.1.0](https://github.com/projectcaluma/ember-caluma/compare/v4.0.5...v4.1.0) (2020-01-06)
+
+
+### Features
+
+* **form:** include parent fields in find field method ([1e5b8ea](https://github.com/projectcaluma/ember-caluma/commit/1e5b8ea4c575c086b63553d2c4f1aa6cde6fb36c))
+
 ## [4.0.5](https://github.com/projectcaluma/ember-caluma/compare/v4.0.4...v4.0.5) (2019-12-27)
 
 
