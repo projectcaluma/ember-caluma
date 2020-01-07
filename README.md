@@ -7,7 +7,7 @@
 [![dependencies Status](https://david-dm.org/projectcaluma/ember-caluma/status.svg)](https://david-dm.org/projectcaluma/ember-caluma)
 [![devDependencies Status](https://david-dm.org/projectcaluma/ember-caluma/dev-status.svg)](https://david-dm.org/projectcaluma/ember-caluma?type=dev)
 [![Code Style: Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-[![License: LGPL-3.0](https://img.shields.io/badge/License-LGPL-3.0-blue.svg)](https://spdx.org/licenses/LGPL-3.0-or-later.html)
+[![License: LGPL-3.0](https://img.shields.io/badge/License-LGPL--3.0-blue.svg)](https://spdx.org/licenses/LGPL-3.0-or-later.html)
 
 The Ember.js addon for [Caluma](https://projectcaluma.github.io) - a collaborative form editing service.
 
