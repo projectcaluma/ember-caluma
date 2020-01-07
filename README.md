@@ -4,8 +4,7 @@
 [![BrowserStack Status](https://automate.browserstack.com/badge.svg?badge_key=OFpCTnVaaUhTWTU3SFBKMGdtS1hFeCtCMUgvMmdMSTZqVVNEejhrME5JND0tLUp6R3B6aEJhUjBRRUtxSjJxcFhVb3c9PQ==--234eac4a0f5f7c3759bf207a1ab7954f6bbaf078)](https://automate.browserstack.com/public-build/OFpCTnVaaUhTWTU3SFBKMGdtS1hFeCtCMUgvMmdMSTZqVVNEejhrME5JND0tLUp6R3B6aEJhUjBRRUtxSjJxcFhVb3c9PQ==--234eac4a0f5f7c3759bf207a1ab7954f6bbaf078)
 [![Codecov](https://codecov.io/gh/projectcaluma/ember-caluma/branch/master/graph/badge.svg)](https://codecov.io/gh/projectcaluma/ember-caluma)
 [![npm](https://img.shields.io/npm/v/ember-caluma.svg)](https://www.npmjs.com/package/ember-caluma)
-[![dependencies Status](https://david-dm.org/projectcaluma/ember-caluma/status.svg)](https://david-dm.org/projectcaluma/ember-caluma)
-[![devDependencies Status](https://david-dm.org/projectcaluma/ember-caluma/dev-status.svg)](https://david-dm.org/projectcaluma/ember-caluma?type=dev)
+[![Dependabot](https://badgen.net/dependabot/projectcaluma/ember-caluma/?icon=dependabot)](https://dependabot.com/)
 [![Code Style: Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![License: LGPL-3.0](https://img.shields.io/badge/License-LGPL--3.0-blue.svg)](https://spdx.org/licenses/LGPL-3.0-or-later.html)
 
