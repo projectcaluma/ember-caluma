@@ -19,4 +19,14 @@ module("Unit | Service | validator", function(hooks) {
       true
     ]);
   });
+
+  test("empty values are not being validated", async function(assert) {
+    assert.expect(3);
+
+    let service = this.owner.lookup("service:validator");
+
+    assert.deepEqual(await service.validate(null, ["email"]), [true]);
+    assert.deepEqual(await service.validate(undefined, ["email"]), [true]);
+    assert.deepEqual(await service.validate("", ["email"]), [true]);
+  });
 });
