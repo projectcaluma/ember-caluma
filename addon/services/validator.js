@@ -3,6 +3,7 @@ import { task } from "ember-concurrency";
 import allFormatValidatorsQuery from "ember-caluma/gql/queries/all-format-validators";
 import { assert } from "@ember/debug";
 import { queryManager } from "ember-apollo-client";
+import { isEmpty } from "@ember/utils";
 
 export default Service.extend({
   apollo: queryManager(),
@@ -19,6 +20,12 @@ export default Service.extend({
    * @return {RSVP.Promise}
    */
   async validate(value, slugs) {
+    if (isEmpty(value)) {
+      // empty values should not be validated since they are handled by the
+      // requiredness validation
+      return slugs.map(() => true);
+    }
+
     const validators =
       this.get("validators.lastSuccessful.value") ||
       (await this.validators.perform());
