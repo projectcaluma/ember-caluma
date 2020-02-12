@@ -48,7 +48,7 @@
     "ember-power-select": "^2.3.5",
     "ember-test-selectors": "^3.0.0",
     "ember-uikit": "^2.0.1",
-    "ember-validated-form": "^2.0.0-alpha.5",
+    "ember-validated-form": "^2.0.0",
     "faker": "4.1.0",
     "graphql": "^14.6.0",
     "graphql-iso-date": "^3.6.1",
