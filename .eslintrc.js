@@ -20,7 +20,8 @@ module.exports = {
   rules: {
     "ember/no-jquery": "error",
     // TODO: https://github.com/projectcaluma/ember-caluma/issues/529
-    "ember/no-new-mixins": "warn"
+    "ember/no-new-mixins": "warn",
+    "ember/no-observers": "warn"
   },
   overrides: [
     // node files

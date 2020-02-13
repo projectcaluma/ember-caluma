@@ -7,12 +7,18 @@ update_configs:
     default_reviewers:
       - "anehx"
     ignored_updates:
-      # Addons that require ember octane (3.14.0+) can't be updated since we
-      # guarantee support for the latest LTS version of ember. Those can be
-      # removed as soon as a new LTS version of ember is released.
+      # Addons that require ember 3.13.0+ can't be updated since we guarantee
+      # support for the latest LTS version of ember. Those can be removed as
+      # soon as a new LTS version of ember is released.
       - match:
           dependency_name: "ember-composable-helpers"
           version_requirement: ">=3"
       - match:
           dependency_name: "ember-power-select"
+          version_requirement: ">=3"
+      - match:
+          dependency_name: "ember-changeset"
+          version_requirement: ">=3"
+      - match:
+          dependency_name: "ember-changeset-validations"
           version_requirement: ">=3"
