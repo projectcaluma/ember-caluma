@@ -1,3 +1,20 @@
+# [5.0.0](https://github.com/projectcaluma/ember-caluma/compare/v4.1.0...v5.0.0) (2020-02-13)
+
+
+### Bug Fixes
+
+* **form:** do not run validators on empty values ([a3d996e](https://github.com/projectcaluma/ember-caluma/commit/a3d996e36e4063a27e5173ae6da1a6821dc27ea4))
+
+
+### Features
+
+* remove support for node v8.x ([42f84d3](https://github.com/projectcaluma/ember-caluma/commit/42f84d304d4d9081839e80851d2f8cba83ce2d1b))
+
+
+### BREAKING CHANGES
+
+* Node v8.x is no longer supported
+
 # [4.1.0](https://github.com/projectcaluma/ember-caluma/compare/v4.0.5...v4.1.0) (2020-01-06)
 
 
