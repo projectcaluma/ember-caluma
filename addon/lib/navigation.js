@@ -317,7 +317,6 @@ export const Navigation = Base.extend({
    *
    * @method preventNonNavigableItem
    */
-  // eslint-disable-next-line ember/no-observers
   preventNonNavigableItem: observer("currentItem", function() {
     if (!this.get("nextItem.slug") || this.get("currentItem.navigable")) {
       return;

@@ -1,11 +1,9 @@
 <div class="uk-text-right">
-  <button
+  <UkButton
     data-test-new-form
-    class="uk-button uk-button-default"
-    {{action (optional on-new-form)}}
-  >
-    {{t "caluma.form-builder.form.new"}}
-  </button>
+    @on-click={{optional @on-new-form}}
+    @label={{t "caluma.form-builder.form.new"}}
+  />
 </div>
 
 {{#if data.isRunning}}
