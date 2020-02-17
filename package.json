@@ -46,7 +46,7 @@
     "ember-intl": "^4.2.3",
     "ember-math-helpers": "^2.13.0",
     "ember-power-select": "^2.3.5",
-    "ember-test-selectors": "^3.0.0",
+    "ember-test-selectors": "^4.0.0",
     "ember-uikit": "^2.0.1",
     "ember-validated-form": "^2.0.0",
     "faker": "4.1.0",

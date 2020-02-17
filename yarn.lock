@@ -3094,7 +3094,7 @@ babel-plugin-dynamic-import-node@^2.3.0:
   dependencies:
     object.assign "^4.1.0"
 
-babel-plugin-ember-data-packages-polyfill@^0.1.1:
+babel-plugin-ember-data-packages-polyfill@^0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/babel-plugin-ember-data-packages-polyfill/-/babel-plugin-ember-data-packages-polyfill-0.1.2.tgz#21154c095ddc703722b1fb8bb06c126c0b6d77dc"
   integrity sha512-kTHnOwoOXfPXi00Z8yAgyD64+jdSXk3pknnS7NlqnCKAU6YDkXZ4Y7irl66kaZjZn0FBBt0P4YOZFZk85jYOww==
@@ -6856,10 +6856,10 @@ ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.10.0, ember-cli-babel@^6.11.0,
     ember-cli-version-checker "^2.1.2"
     semver "^5.5.0"
 
-ember-cli-babel@^7.1.0, ember-cli-babel@^7.1.2, ember-cli-babel@^7.1.3, ember-cli-babel@^7.1.4, ember-cli-babel@^7.10.0, ember-cli-babel@^7.11.0, ember-cli-babel@^7.11.1, ember-cli-babel@^7.12.0, ember-cli-babel@^7.13.0, ember-cli-babel@^7.13.2, ember-cli-babel@^7.17.2, ember-cli-babel@^7.2.0, ember-cli-babel@^7.5.0, ember-cli-babel@^7.7.0, ember-cli-babel@^7.7.3:
-  version "7.17.2"
-  resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-7.17.2.tgz#2c7717c6864425be3cd11913c722115fbf1448d2"
-  integrity sha512-64jRwtRVtEp4ghhew/sHeMsPyUOg3t1TB2dary5mCbKkRasb3L7FwF7xnuzPihaz+AW/v2LqYLALXGCml5XNLA==
+ember-cli-babel@^7.1.0, ember-cli-babel@^7.1.2, ember-cli-babel@^7.1.3, ember-cli-babel@^7.1.4, ember-cli-babel@^7.10.0, ember-cli-babel@^7.11.0, ember-cli-babel@^7.11.1, ember-cli-babel@^7.12.0, ember-cli-babel@^7.13.0, ember-cli-babel@^7.13.2, ember-cli-babel@^7.17.2, ember-cli-babel@^7.18.0, ember-cli-babel@^7.2.0, ember-cli-babel@^7.5.0, ember-cli-babel@^7.7.0, ember-cli-babel@^7.7.3:
+  version "7.18.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-7.18.0.tgz#e979b73eee00cd93f63452c6170d045e8832f29c"
+  integrity sha512-OLPfYD8wSfCrmGHcUf8zEfySSvbAL+5Qp2RWLycJIMaBZhg+SncKj5kVkL3cPJR5n2hVHPdfmKTQIYjOYl6FnQ==
   dependencies:
     "@babel/core" "^7.8.4"
     "@babel/helper-compilation-targets" "^7.8.4"
@@ -6873,7 +6873,7 @@ ember-cli-babel@^7.1.0, ember-cli-babel@^7.1.2, ember-cli-babel@^7.1.3, ember-cl
     "@babel/runtime" "^7.8.4"
     amd-name-resolver "^1.2.1"
     babel-plugin-debug-macros "^0.3.0"
-    babel-plugin-ember-data-packages-polyfill "^0.1.1"
+    babel-plugin-ember-data-packages-polyfill "^0.1.2"
     babel-plugin-ember-modules-api-polyfill "^2.12.0"
     babel-plugin-module-resolver "^3.1.1"
     broccoli-babel-transpiler "^7.4.0"
@@ -7321,6 +7321,15 @@ ember-cli-version-checker@^4.1.0:
   dependencies:
     resolve-package-path "^2.0.0"
     semver "^6.3.0"
+    silent-error "^1.1.1"
+
+ember-cli-version-checker@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/ember-cli-version-checker/-/ember-cli-version-checker-5.0.1.tgz#1cf488f1ece02b295577177d6a2ca51496d7967c"
+  integrity sha512-gvqyLZM8q31J1UD4OZVoK+T7iapz1jfLWJ23217lXcqMR3NA+VSzZi9B61zlMmCZzlxq3QPWkiL0OspVGCGR3A==
+  dependencies:
+    resolve-package-path "^2.0.0"
+    semver "^7.1.3"
     silent-error "^1.1.1"
 
 ember-cli@3.13.1:
@@ -7971,14 +7980,14 @@ ember-template-recast@^4.0.0:
     tmp "^0.1.0"
     workerpool "^5.0.2"
 
-ember-test-selectors@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/ember-test-selectors/-/ember-test-selectors-3.0.0.tgz#5be818cd4c10a3154e72ac5abc982e712c3514bf"
-  integrity sha512-yKCURzLx+mQfqL4ts4oIYobXZVhOAXDwsObdVVTY9+UuzH0xdZEpIx37nCXV7UugP/vCoaUN3YruYZKgqxWQpg==
+ember-test-selectors@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/ember-test-selectors/-/ember-test-selectors-4.0.0.tgz#84604b499ddbff290957c3fa0b1e7a9844f5174d"
+  integrity sha512-ABZ7+Xs8kcnVd9mp1AhGPuGPtaalz10cVpQIw1biA6TEscEnFhcJObtqyaxvF6C9AqfZ6p/MsgJZrXMPpgnpmw==
   dependencies:
     calculate-cache-key-for-tree "^2.0.0"
-    ember-cli-babel "^7.12.0"
-    ember-cli-version-checker "^3.1.3"
+    ember-cli-babel "^7.18.0"
+    ember-cli-version-checker "^5.0.1"
 
 ember-test-waiters@^1.1.1:
   version "1.2.0"
@@ -15719,6 +15728,11 @@ semver@7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.0.0.tgz#5f3ca35761e47e05b206c6daff2cf814f0316b8e"
   integrity sha512-+GB6zVA9LWh6zovYQLALHwv5rb2PHGlJi3lfiqIHxR0uuwCgefcOJc59v9fv1w8GbStwxuuqqAjI9NMAOOgq1A==
+
+semver@^7.1.3:
+  version "7.1.3"
+  resolved "https://registry.yarnpkg.com/semver/-/semver-7.1.3.tgz#e4345ce73071c53f336445cfc19efb1c311df2a6"
+  integrity sha512-ekM0zfiA9SCBlsKa2X1hxyxiI4L3B6EbVJkkdgQXnSEEaHlGdvyodMruTiulSRWMMB4NeIuYNMC9rTKTz97GxA==
 
 send@0.17.1:
   version "0.17.1"
