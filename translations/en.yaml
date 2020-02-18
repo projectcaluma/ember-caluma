@@ -43,6 +43,7 @@ caluma:
 
     validation:
       blank: "This field can't be blank"
+      tooShort: "The value of this field can't be shorter than {min} characters"
       tooLong: "The value of this field can't be longer than {max} characters"
       greaterThanOrEqualTo: "The value of this field must be greater than or equal to {gte}"
       lessThanOrEqualTo: "The value of this field must be less than or equal to {lte}"
@@ -107,6 +108,7 @@ caluma:
 
       min-value: "Minimum value"
       max-value: "Maximum value"
+      min-length: "Minimum length"
       max-length: "Maximum length"
       rowForm: "Form to use for rows"
       subForm: "Form to use for entries"

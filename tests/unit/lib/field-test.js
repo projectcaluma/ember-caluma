@@ -168,11 +168,12 @@ module("Unit | Library | field", function (hooks) {
   });
 
   test("it can validate text fields", async function (assert) {
-    assert.expect(1);
+    assert.expect(2);
 
     const field = this.owner.factoryFor("caluma-model:field").create({
       raw: {
         question: {
+          textMinLength: 2,
           textMaxLength: 4,
           isHidden: "false",
           isRequired: "true",
@@ -189,16 +190,23 @@ module("Unit | Library | field", function (hooks) {
     field.set("answer.value", "Testx");
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      't:caluma.form.validation.tooLong:("max":4,"value":"Testx")',
+      't:caluma.form.validation.tooLong:("max":4,"min":2,"value":"Testx")',
+    ]);
+
+    field.set("answer.value", "x");
+    await field.validate.perform();
+    assert.deepEqual(field.errors, [
+      't:caluma.form.validation.tooShort:("max":4,"min":2,"value":"x")',
     ]);
   });
 
   test("it can validate textarea fields", async function (assert) {
-    assert.expect(1);
+    assert.expect(2);
 
     const field = this.owner.factoryFor("caluma-model:field").create({
       raw: {
         question: {
+          textareaMinLength: 2,
           textareaMaxLength: 4,
           isHidden: "false",
           isRequired: "true",
@@ -215,7 +223,13 @@ module("Unit | Library | field", function (hooks) {
     field.set("answer.value", "Testx");
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      't:caluma.form.validation.tooLong:("max":4,"value":"Testx")',
+      't:caluma.form.validation.tooLong:("max":4,"min":2,"value":"Testx")',
+    ]);
+
+    field.set("answer.value", "x");
+    await field.validate.perform();
+    assert.deepEqual(field.errors, [
+      't:caluma.form.validation.tooShort:("max":4,"min":2,"value":"x")',
     ]);
   });
 

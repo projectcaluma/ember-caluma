@@ -43,6 +43,7 @@ caluma:
 
     validation:
       blank: "Ce champ ne doit pas être laissé vide"
+      tooShort: "Ce champ doit contenir au moins {min} caractères"
       tooLong: "Un maximum de {max} caractères est autorisé dans ce champ"
       greaterThanOrEqualTo: "La valeur indiquée dans ce champ ne doit pas être inférieure à {gte} "
       lessThanOrEqualTo: "L'entrée dans ce champ ne doit pas être supérieure à {lte} "

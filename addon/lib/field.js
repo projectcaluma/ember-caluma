@@ -553,6 +553,7 @@ export default Base.extend({
         this.getWithDefault("question.meta.formatValidators", [])
       )),
       validate("length", this.get("answer.value"), {
+        min: this.get("question.textMinLength") || 0,
         max: this.get("question.textMaxLength") || Number.POSITIVE_INFINITY,
       }),
     ];
@@ -573,6 +574,7 @@ export default Base.extend({
         this.getWithDefault("question.meta.formatValidators", [])
       )),
       validate("length", this.get("answer.value"), {
+        min: this.get("question.textareaMinLength") || 0,
         max: this.get("question.textareaMaxLength") || Number.POSITIVE_INFINITY,
       }),
     ];

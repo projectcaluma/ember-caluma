@@ -92,6 +92,7 @@ export default Component.extend({
             integerMaxValue: null,
             floatMinValue: null,
             floatMaxValue: null,
+            minLength: null,
             maxLength: null,
             options: [],
             rowForm: {},
@@ -198,6 +199,7 @@ export default Component.extend({
   _getTextQuestionInput(changeset) {
     return {
       isRequired: changeset.get("isRequired"),
+      minLength: parseInt(changeset.get("minLength")),
       maxLength: parseInt(changeset.get("maxLength")),
       placeholder: changeset.get("placeholder"),
     };
@@ -206,6 +208,7 @@ export default Component.extend({
   _getTextareaQuestionInput(changeset) {
     return {
       isRequired: changeset.get("isRequired"),
+      minLength: parseInt(changeset.get("minLength")),
       maxLength: parseInt(changeset.get("maxLength")),
       placeholder: changeset.get("placeholder"),
     };

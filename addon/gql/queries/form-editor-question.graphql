@@ -16,10 +16,12 @@ query FormEditorQuestion($slug: String!) {
           placeholder
         }
         ... on TextQuestion {
+          minLength
           maxLength
           placeholder
         }
         ... on TextareaQuestion {
+          minLength
           maxLength
           placeholder
         }
