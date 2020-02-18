@@ -45,6 +45,13 @@ export default {
     )
   ),
 
+  minLength: or(
+    and(
+      validateType("TextQuestion", false),
+      validateType("TextareaQuestion", false)
+    ),
+    validateNumber({ gt: 0, allowBlank: true })
+  ),
   maxLength: or(
     and(
       validateType("TextQuestion", false),

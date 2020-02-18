@@ -5,6 +5,7 @@ mutation SaveTextareaQuestion($input: SaveTextareaQuestionInput!) {
     question {
       ...QuestionInfo
       ... on TextareaQuestion {
+        minLength
         maxLength
       }
     }

@@ -1,5 +1,5 @@
 # source: http://localhost:8000/graphql
-# timestamp: Wed Nov 20 2019 16:33:51 GMT+0100 (Central European Standard Time)
+# timestamp: Tue Feb 18 2020 08:36:30 GMT+0100 (Central European Standard Time)
 
 input AddFormQuestionInput {
   form: ID!
@@ -74,6 +74,7 @@ input AnswerFilterSetType {
   metaValue: [JSONValueFilterType]
   orderBy: [AnswerOrdering]
   questions: [ID]
+  visibleInContext: Boolean
   invert: Boolean
 }
 
@@ -205,6 +206,7 @@ type Case implements Node {
     createdByGroup: String
     metaHasKey: String
     addressedGroups: [String]
+    assignedUsers: [String]
     documentHasAnswer: [HasAnswerFilterType]
     caseDocumentHasAnswer: [HasAnswerFilterType]
     caseMetaValue: [JSONValueFilterType]
@@ -249,6 +251,7 @@ input CaseFilterSetType {
   orderBy: [CaseOrdering]
   documentForm: String
   hasAnswer: [HasAnswerFilterType]
+  workItemDocumentHasAnswer: [HasAnswerFilterType]
   searchAnswers: [SearchAnswersFilterType]
   status: [CaseStatusArgument]
   orderByQuestionAnswerValue: String
@@ -802,6 +805,7 @@ type Document implements Node {
     createdByGroup: String
     metaHasKey: String
     questions: [ID]
+    visibleInContext: Boolean
   ): AnswerConnection
   case: Case
   workItem: WorkItem
@@ -2035,6 +2039,7 @@ type Query {
     metaHasKey: String
     documentForm: String
     hasAnswer: [HasAnswerFilterType]
+    workItemDocumentHasAnswer: [HasAnswerFilterType]
     searchAnswers: [SearchAnswersFilterType]
     status: [CaseStatusArgument]
 
@@ -2073,6 +2078,7 @@ type Query {
     createdByGroup: String
     metaHasKey: String
     addressedGroups: [String]
+    assignedUsers: [String]
   ): WorkItemConnection
   allForms(
     before: String
@@ -2842,6 +2848,7 @@ input SaveTextareaQuestionInput {
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
+  minLength: Int
   maxLength: Int
   placeholder: String
   formatValidators: [String]
@@ -2861,6 +2868,7 @@ input SaveTextQuestionInput {
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
+  minLength: Int
   maxLength: Int
   placeholder: String
   formatValidators: [String]
@@ -3089,6 +3097,12 @@ type StaticQuestion implements Question & Node {
   createdByGroup: String
   slug: String!
   label: String!
+
+  """
+  Required expression is only evaluated when question is not hidden. This should
+  not be used for `StaticQuestion`, because it can never be satisfied.
+  """
+  isRequired: QuestionJexl!
   isHidden: QuestionJexl!
   isArchived: Boolean!
   infoText: String
@@ -3123,11 +3137,6 @@ type StaticQuestion implements Question & Node {
   The ID of the object.
   """
   id: ID!
-
-  """
-  Required expression is only evaluated when question is not hidden.
-  """
-  isRequired: QuestionJexl!
 }
 
 """
@@ -3467,6 +3476,7 @@ type TextareaQuestion implements Question & Node {
   The ID of the object.
   """
   id: ID!
+  minLength: Int
   maxLength: Int
 }
 
@@ -3521,6 +3531,7 @@ type TextQuestion implements Question & Node {
   The ID of the object.
   """
   id: ID!
+  minLength: Int
   maxLength: Int
 }
 
@@ -3799,6 +3810,7 @@ input WorkItemFilterSetType {
   metaValue: [JSONValueFilterType]
   orderBy: [WorkItemOrdering]
   addressedGroups: [String]
+  assignedUsers: [String]
   documentHasAnswer: [HasAnswerFilterType]
   caseDocumentHasAnswer: [HasAnswerFilterType]
   caseMetaValue: [JSONValueFilterType]

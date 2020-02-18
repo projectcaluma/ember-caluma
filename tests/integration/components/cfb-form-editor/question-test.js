@@ -178,7 +178,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
   });
 
   test("it can create a text question", async function (assert) {
-    assert.expect(6);
+    assert.expect(7);
 
     this.server.create("form", { slug: "test-form" });
 
@@ -186,6 +186,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       assert.equal(question.__typename, "TextQuestion");
       assert.equal(question.label, "Label");
       assert.equal(question.slug, "slug");
+      assert.equal(question.minLength, 10);
       assert.equal(question.maxLength, 20);
 
       assert.step("after-submit");
@@ -198,6 +199,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     await fillIn("[name=__typename]", "TextQuestion");
     await fillIn("[name=label]", "Label");
     await fillIn("[name=slug]", "slug");
+    await fillIn("[name=minLength]", 10);
     await fillIn("[name=maxLength]", 20);
 
     await click("button[type=submit]");
@@ -206,7 +208,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
   });
 
   test("it can create a textarea question", async function (assert) {
-    assert.expect(6);
+    assert.expect(7);
 
     this.server.create("form", { slug: "test-form" });
 
@@ -214,6 +216,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       assert.equal(question.__typename, "TextareaQuestion");
       assert.equal(question.label, "Label");
       assert.equal(question.slug, "slug");
+      assert.equal(question.minLength, 10);
       assert.equal(question.maxLength, 20);
 
       assert.step("after-submit");
@@ -226,6 +229,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     await fillIn("[name=__typename]", "TextareaQuestion");
     await fillIn("[name=label]", "Label");
     await fillIn("[name=slug]", "slug");
+    await fillIn("[name=minLength]", 10);
     await fillIn("[name=maxLength]", 20);
 
     await click("button[type=submit]");

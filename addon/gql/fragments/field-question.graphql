@@ -6,10 +6,12 @@ fragment SimpleQuestion on Question {
   meta
   infoText
   ... on TextQuestion {
+    textMinLength: minLength
     textMaxLength: maxLength
     placeholder
   }
   ... on TextareaQuestion {
+    textareaMinLength: minLength
     textareaMaxLength: maxLength
     placeholder
   }

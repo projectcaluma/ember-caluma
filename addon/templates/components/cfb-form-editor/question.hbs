@@ -123,6 +123,11 @@
       {{#if (contains f.model.__typename (array "TextQuestion" "TextareaQuestion"))}}
         {{f.input
           type="number"
+          name="minLength"
+          label=(t "caluma.form-builder.question.min-length")
+        }}
+        {{f.input
+          type="number"
           name="maxLength"
           label=(t "caluma.form-builder.question.max-length")
         }}

@@ -43,6 +43,7 @@ caluma:
 
     validation:
       blank: "Dieses Feld darf nicht leer gelassen werden"
+      tooShort: "Dieses Feld muss mindestens {min} Zeichen enthalten"
       tooLong: "In diesem Feld sind maximal {max} Zeichen erlaubt"
       greaterThanOrEqualTo: "Die Eingabe in diesem Feld darf nicht kleiner als {gte} sein"
       lessThanOrEqualTo: "Die Eingabe in diesem Feld darf nicht grösser als {lte} sein"
@@ -107,6 +108,7 @@ caluma:
 
       min-value: "Minimaler Wert"
       max-value: "Maximaler Wert"
+      min-length: "Minimale Länge"
       max-length: "Maximale Länge"
       rowForm: "Formular für Tabelleneinträge"
       subForm: "Formular für Einträge"
