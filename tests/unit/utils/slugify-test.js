@@ -16,12 +16,9 @@ module("Unit | Utility | slugify", function(/*hooks*/) {
       slugify("test with special characters #?%/()"),
       "test-with-special-characters-percent"
     );
+  });
 
-    assert.equal(
-      slugify(
-        "test with more characters than 50 which is the maximum for a slug"
-      ),
-      "test-with-more-characters-than-50-which-is-the-max"
-    );
+  test("it truncates string with more than 150 characters", function(assert) {
+    assert.equal(slugify("0123456789".repeat(20)).length, 150);
   });
 });
