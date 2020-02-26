@@ -9,14 +9,22 @@ caluma:
     optional: "Optional"
     save: "Speichern"
     delete: "Löschen"
+    edit: "Bearbeiten"
     selectFile: "Klicken um Datei hochzuladen"
     changeFile: "Klicken um andere Datei hochzuladen"
     deleteRow: "Möchten Sie diese Zeile wirklich löschen?"
+    addRow: "Zeile hinzufügen"
     optionNotAvailable: "Diese Option ist nicht mehr verfügbar"
+    info: "Mehr Informationen"
 
     navigation:
       next: "Weiter"
       previous: "Zurück"
+      states:
+        untouched: "Nicht ausgefüllt"
+        unfinished: "Nicht vollständig ausgefüllt"
+        valid: "Korrekt ausgefüllt"
+        invalid: "Inkorrekt ausgefüllt"
 
     notification:
       table:

@@ -1,13 +1,26 @@
-{{#link-to (query-params displayedForm=item.slug) class="uk-width-1-1"}}
-  <span title={{item.label}} class="uk-width-expand uk-text-truncate">{{item.label}}</span>
-  <span class="cf-navigation__item__icon cf-navigation__item__icon--{{item.state}}"></span>
-{{/link-to}}
+<LinkTo @query={{hash displayedForm=@item.slug}}>
+  {{#if (and @useAsHeading this.active)}}
+    <span
+      role="heading"
+      aria-level={{@headingLevel}}
+      title={{@item.label}}
+      class="uk-width-expand uk-text-truncate"
+    >
+      {{@item.label}}
+    </span>
+  {{else}}
+    <span title={{@item.label}} class="uk-width-expand uk-text-truncate">
+      {{@item.label}}
+    </span>
+  {{/if}}
+  <span class="cf-navigation__item__icon cf-navigation__item__icon--{{@item.state}}"></span>
+</LinkTo>
 
-{{#if item.children}}
+{{#if @item.children}}
   <ul class="uk-tab uk-tab-left uk-margin-left uk-width-auto">
-    {{#each item.children as |childItem|}}
+    {{#each @item.children as |childItem|}}
       {{#if childItem.visible}}
-        {{cf-navigation-item item=childItem}}
+        <CfNavigationItem @item={{childItem}} @headingLevel={{add @headingLevel 1}} />
       {{/if}}
     {{/each}}
   </ul>

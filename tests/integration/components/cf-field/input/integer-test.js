@@ -6,6 +6,12 @@ import { hbs } from "ember-cli-htmlbars";
 module("Integration | Component | cf-field/input/integer", function(hooks) {
   setupRenderingTest(hooks);
 
+  test("it computes the proper element id", async function(assert) {
+    await render(hbs`{{cf-field/input/integer field=(hash pk="test-id")}}`);
+
+    assert.dom("#test-id").exists();
+  });
+
   test("it renders", async function(assert) {
     assert.expect(7);
 

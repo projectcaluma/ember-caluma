@@ -13,6 +13,12 @@ module("Integration | Component | cf-field/input/date", function(hooks) {
     this.owner.register("service:validator", ValidatorServiceStub);
   });
 
+  test("it computes the proper element id", async function(assert) {
+    await render(hbs`{{cf-field/input/date field=(hash pk="test-id")}}`);
+
+    assert.dom("#test-id").exists();
+  });
+
   test("it renders an input tag", async function(assert) {
     await render(hbs`{{cf-field/input/date}}`);
     assert.ok(this.element);

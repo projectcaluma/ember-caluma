@@ -13,6 +13,7 @@ export default Component.extend({
   attributeBindings: [
     "disabled:readonly",
     "field.pk:name",
+    "field.pk:id",
     "field.answer.value:value",
     "field.question.textareaMaxLength:maxlength"
   ],

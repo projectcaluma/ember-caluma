@@ -23,9 +23,27 @@
             {{/each}}
           {{/if}}
           <td class="uk-text-right">
-            <button type="button" data-test-edit-row class="uk-icon-button" uk-icon="pencil" {{action "editRow" document}}></button>
+            <button
+              data-test-edit-row
+              type="button"
+              class="uk-icon-button"
+              uk-icon="pencil"
+              title={{t "caluma.form.edit"}}
+              {{action "editRow" document}}
+            >
+              <span class="uk-hidden">{{t "caluma.form.edit"}}</span>
+            </button>
             {{#unless disabled}}
-              <button type="button" data-test-delete-row class="uk-icon-button" uk-icon="trash" {{action "deleteRow" document}}></button>
+              <button
+                data-test-delete-row
+                type="button"
+                class="uk-icon-button"
+                uk-icon="trash"
+                title={{t "caluma.form.delete"}}
+                {{action "deleteRow" document}}
+              >
+                <span class="uk-hidden">{{t "caluma.form.delete"}}</span>
+              </button>
             {{/unless}}
           </td>
         </tr>
@@ -35,7 +53,15 @@
       {{#unless disabled}}
         <tr>
           <td colspan={{add (count-keys questions) 1}} class="uk-text-center">
-            {{#uk-button size="small" on-click=(perform addRow)}}{{uk-icon "plus"}}{{/uk-button}}
+            <button
+              type="button"
+              class="uk-button uk-button-default uk-button-small"
+              title={{t "caluma.form.addRow"}}
+              {{on "click" (perform addRow)}}
+            >
+              <UkIcon @icon="plus" />
+              <span class="uk-hidden">{{t "caluma.form.addRow"}}</span>
+            </button>
           </td>
         </tr>
       {{/unless}}

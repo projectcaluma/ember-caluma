@@ -61,6 +61,20 @@ module("Integration | Component | cf-field/input/powerselect", function(hooks) {
     });
   });
 
+  test("it computes the proper element id", async function(assert) {
+    await render(hbs`{{cf-field/input/powerselect field=singleChoiceField}}`);
+
+    assert
+      .dom(".ember-power-select-trigger")
+      .hasAttribute("id", this.singleChoiceField.pk);
+
+    await render(hbs`{{cf-field/input/powerselect field=multipleChoiceField}}`);
+
+    assert
+      .dom(".ember-power-select-trigger")
+      .hasAttribute("id", this.multipleChoiceField.pk);
+  });
+
   test("it renders (single)", async function(assert) {
     assert.expect(1);
 

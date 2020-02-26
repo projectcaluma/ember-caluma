@@ -14,6 +14,7 @@ export default Component.extend({
     "type",
     "disabled:readonly",
     "field.pk:name",
+    "field.pk:id",
     "field.answer.value:value",
     "field.question.placeholder:placeholder"
   ],

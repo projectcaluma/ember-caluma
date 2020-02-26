@@ -104,6 +104,15 @@ export const NavigationItem = Base.extend({
   }),
 
   /**
+   * Whether the item has active children
+   *
+   * @property {Boolean} childrenActive
+   */
+  childrenActive: computed("children.@each.active", function() {
+    return this.children.some(child => child.active);
+  }),
+
+  /**
    * The item is navigable if it is not hidden and its fieldset contains at
    * least one question that is not a form question and is not hidden.
    *
