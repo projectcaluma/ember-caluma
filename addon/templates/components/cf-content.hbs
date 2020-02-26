@@ -3,7 +3,7 @@
 {{else if document}}
   {{#let (hash
     document=document
-    navigation=(component "cf-navigation" navigation=navigation)
+    navigation=(component "cf-navigation" navigation=navigation useAsHeading=(or @useAsHeading false) headingBaseLevel=(or @headingBaseLevel 1))
     pagination=(component "cf-pagination" navigation=navigation)
     form=(component "cf-form-wrapper" document=document fieldset=fieldset context=context disabled=disabled)
   ) as |content|}}

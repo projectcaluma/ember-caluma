@@ -8,9 +8,10 @@ module("Integration | Component | cf-field/input/file", function(hooks) {
   setupRenderingTest(hooks);
   setupMirage(hooks);
 
-  test("it renders", async function(assert) {
-    await render(hbs`{{cf-field/input/file}}`);
-    assert.ok(this.element);
+  test("it computes the proper element id", async function(assert) {
+    await render(hbs`{{cf-field/input/file field=(hash pk="test-id")}}`);
+
+    assert.dom("#test-id").exists();
   });
 
   test("it allows to upload a file", async function(assert) {

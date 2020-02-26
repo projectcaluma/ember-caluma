@@ -9,14 +9,22 @@ caluma:
     optional: "Optional"
     save: "Save"
     delete: "Delete"
+    edit: "Edit"
     selectFile: "Click to upload a file"
     changeFile: "Click to upload a different file"
     deleteRow: "Do you really want to delete this row?"
+    addRow: "Add row"
     optionNotAvailable: "This option is not available anymore"
+    info: "More information"
 
     navigation:
       next: "Next"
       previous: "Previous"
+      states:
+        untouched: "Not filled in"
+        unfinished: "Not completely filled in"
+        valid: "Correctly filled in"
+        invalid: "Incorrectly filled in"
 
     notification:
       table:
