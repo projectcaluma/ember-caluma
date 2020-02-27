@@ -5,7 +5,7 @@ import layout from "../../templates/components/cfb-form-editor/general";
 import { task, timeout } from "ember-concurrency";
 import { queryManager } from "ember-apollo-client";
 import validations from "../../validations/form";
-import v4 from "uuid/v4";
+import { v4 } from "uuid";
 import slugify from "ember-caluma/utils/slugify";
 import { optional } from "ember-composable-helpers/helpers/optional";
 import { A } from "@ember/array";
