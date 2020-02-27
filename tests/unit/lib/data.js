@@ -1,4 +1,4 @@
-import v4 from "uuid/v4";
+import { v4 } from "uuid";
 
 const id = (type, identifier = v4()) => btoa(`${type}:${identifier}`);
 

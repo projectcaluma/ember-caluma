@@ -1,6 +1,6 @@
 import Mixin from "@ember/object/mixin";
 import { inject as service } from "@ember/service";
-import v4 from "uuid/v4";
+import { v4 } from "uuid";
 
 export default Mixin.create({
   navigation: service(),

@@ -3,7 +3,7 @@ import { inject as service } from "@ember/service";
 import layout from "../../templates/components/cfb-form-editor/question";
 import { task, timeout } from "ember-concurrency";
 import { queryManager } from "ember-apollo-client";
-import v4 from "uuid/v4";
+import { v4 } from "uuid";
 import { optional } from "ember-composable-helpers/helpers/optional";
 import { computed, getWithDefault } from "@ember/object";
 import { reads } from "@ember/object/computed";

@@ -6,7 +6,7 @@ import { optional } from "ember-composable-helpers/helpers/optional";
 import { task, timeout } from "ember-concurrency";
 import { queryManager } from "ember-apollo-client";
 import { computed } from "@ember/object";
-import v4 from "uuid/v4";
+import { v4 } from "uuid";
 import { inject as service } from "@ember/service";
 
 import searchQuestionQuery from "ember-caluma/gql/queries/search-question";
