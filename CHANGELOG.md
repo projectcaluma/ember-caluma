@@ -1,3 +1,11 @@
+# [5.1.0](https://github.com/projectcaluma/ember-caluma/compare/v5.0.0...v5.1.0) (2020-03-03)
+
+
+### Features
+
+* **a11y:** various improvements for accessibility ([3185fc8](https://github.com/projectcaluma/ember-caluma/commit/3185fc83e2db128847599f808b4b732e12c16e7a))
+* **utils:** increase slugify max-length to 150 ([5c2093e](https://github.com/projectcaluma/ember-caluma/commit/5c2093eb7a0dd5bfd9cd0de7fd42fb673077ec71))
+
 # [5.0.0](https://github.com/projectcaluma/ember-caluma/compare/v4.1.0...v5.0.0) (2020-02-13)
 
 
