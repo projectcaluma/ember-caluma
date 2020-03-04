@@ -19,6 +19,6 @@ module("Unit | Utility | slugify", function(/*hooks*/) {
   });
 
   test("it truncates string with more than 150 characters", function(assert) {
-    assert.equal(slugify("0123456789".repeat(20)).length, 150);
+    assert.equal(slugify("0123456789".repeat(20)).length, 127);
   });
 });
