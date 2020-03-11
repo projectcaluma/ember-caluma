@@ -9,6 +9,7 @@ import { task } from "ember-concurrency";
 import { all, resolve } from "rsvp";
 import { validate } from "ember-validators";
 import { queryManager } from "ember-apollo-client";
+import cloneDeep from "lodash.clonedeep";
 
 import { decodeId } from "ember-caluma/helpers/decode-id";
 
@@ -331,6 +332,31 @@ export default Base.extend({
   }),
 
   /**
+   * The field's JEXL context.
+   *
+   * Properties:
+   * - `form`: Legacy property pointing to the root form.
+   * - `info.form`: The form this question is attached to.
+   * - `info.parent.form`: The parent form if applicable.
+   * - `info.root.form`: The new property for the root form.
+   */
+  jexlContext: computed(
+    "document.jexlContext.{form,info.root.form}",
+    "fieldset.{form.slug,field.fieldset.form.slug}",
+    "question.{isHidden,isRequired}",
+    function() {
+      const context = cloneDeep(this.document.jexlContext);
+      context.info.form = this.get("fieldset.form.slug");
+
+      context.info.parent = this.get("fieldset.field.fieldset.form.slug")
+        ? { form: this.get("fieldset.field.fieldset.form.slug") }
+        : null;
+
+      return context;
+    }
+  ),
+
+  /**
    * Fields that are referenced in the `isHidden` JEXL expression
    *
    * If the value or hidden state of any of these fields change, the JEXL
@@ -400,10 +426,7 @@ export default Base.extend({
         getWithDefault(this, "fieldset.field.hidden", false) ||
         (this.hiddenDependencies.length &&
           this.hiddenDependencies.every(fieldIsHidden)) ||
-        this.document.jexl.evalSync(
-          this.question.isHidden,
-          this.document.jexlContext
-        )
+        this.document.jexl.evalSync(this.question.isHidden, this.jexlContext)
       );
     }
   ),
@@ -426,10 +449,7 @@ export default Base.extend({
         getWithDefault(this, "fieldset.field.hidden", false) ||
         (this.optionalDependencies.length &&
           this.optionalDependencies.every(fieldIsHidden)) ||
-        !this.document.jexl.evalSync(
-          this.question.isRequired,
-          this.document.jexlContext
-        )
+        !this.document.jexl.evalSync(this.question.isRequired, this.jexlContext)
       );
     }
   ),

@@ -110,7 +110,22 @@ module("Unit | Library | field", function (hooks) {
     assert.deepEqual(field.optionalDependencies, [dependentField]);
   });
 
-  test("it can handle newlines in JEXL expressions", async function (assert) {
+  test("computes the correct Jexl context", async function(assert) {
+    assert.expect(1);
+
+    const field = this.document.findField("question-1");
+
+    assert.deepEqual(field.jexlContext, {
+      form: "form",
+      info: {
+        form: "form",
+        parent: null,
+        root: { form: "form" }
+      }
+    });
+  });
+
+  test("it can handle newlines in Jexl expressions", async function(assert) {
     assert.expect(2);
 
     const field = this.document.findField("question-2");

@@ -126,7 +126,10 @@ module("Unit | Library | document", function (hooks) {
   test("computes the correct jexl context", async function (assert) {
     assert.expect(1);
 
-    assert.deepEqual(this.document.jexlContext, { form: "form" });
+    assert.deepEqual(this.document.jexlContext, {
+      form: "form",
+      info: { root: { form: "form" } }
+    });
   });
 
   skip("it recomputes hidden on hidden change of parent fieldset", async function () {});
