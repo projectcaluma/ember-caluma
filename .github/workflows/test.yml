@@ -52,15 +52,13 @@ jobs:
         env:
           COVERAGE: true
 
-      - name: Run codecov
+      - name: Upload coverage report to Codecov
         uses: codecov/codecov-action@v1
         with:
-          token: ${{ secrets.CODECOV_TOKEN }}
           file: ./coverage/lcov.info
 
   test-browserstack:
     name: Browserstack Tests
-    if: github.repository == 'adfinis-sygroup/ember-caluma'
     needs: [test]
     runs-on: [ubuntu-latest]
 
