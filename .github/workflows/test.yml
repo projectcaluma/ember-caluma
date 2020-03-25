@@ -57,37 +57,40 @@ jobs:
         with:
           file: ./coverage/lcov.info
 
-  test-browserstack:
-    name: Browserstack Tests
-    needs: [test]
-    runs-on: [ubuntu-latest]
-    if: github.event_name == 'push'
-    env:
-      BROWSERSTACK_USERNAME: caluma1
-      BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+  # TODO: reenable and configure this when
+  # https://github.com/kategengler/ember-cli-browserstack/pull/27 is merged
 
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 10
+  # test-browserstack:
+  #   name: Browserstack Tests
+  #   needs: [test]
+  #   runs-on: [ubuntu-latest]
+  #   if: github.event_name == 'push'
+  #   env:
+  #     BROWSERSTACK_USERNAME: caluma1
+  #     BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
 
-      - name: Install dependencies
-        run: yarn install
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: actions/setup-node@v1
+  #       with:
+  #         node-version: 10
 
-      - name: Connect to Browserstack
-        run: yarn ember browserstack:connect
+  #     - name: Install dependencies
+  #       run: yarn install
 
-      - name: Run tests
-        run: yarn test:browserstack
-        env:
-          CI_JOB_ID: ${{ job.container.id	}}
+  #     - name: Connect to Browserstack
+  #       run: yarn ember browserstack:connect
 
-      - name: Collect test results
-        run: yarn ember browserstack:results
+  #     - name: Run tests
+  #       run: yarn test:browserstack
+  #       env:
+  #         CI_JOB_ID: ${{ job.container.id	}}
 
-      - name: Disconnect from Browserstack
-        run: yarn ember browserstack:disconnect
+  #     - name: Collect test results
+  #       run: yarn ember browserstack:results
+
+  #     - name: Disconnect from Browserstack
+  #       run: yarn ember browserstack:disconnect
 
   try-one:
     name: Additional Tests
