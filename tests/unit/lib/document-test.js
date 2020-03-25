@@ -128,7 +128,7 @@ module("Unit | Library | document", function (hooks) {
 
     assert.deepEqual(this.document.jexlContext, {
       form: "form",
-      info: { root: { form: "form" } }
+      info: { root: { form: "form" } },
     });
   });
 

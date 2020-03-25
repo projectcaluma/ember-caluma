@@ -339,12 +339,15 @@ export default Base.extend({
    * - `info.form`: The form this question is attached to.
    * - `info.parent.form`: The parent form if applicable.
    * - `info.root.form`: The new property for the root form.
+   *
+   * @property {Object} jexlContext
+   * @accessor
    */
   jexlContext: computed(
     "document.jexlContext.{form,info.root.form}",
     "fieldset.{form.slug,field.fieldset.form.slug}",
     "question.{isHidden,isRequired}",
-    function() {
+    function () {
       const context = cloneDeep(this.document.jexlContext);
       context.info.form = this.get("fieldset.form.slug");
 

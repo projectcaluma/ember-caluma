@@ -139,7 +139,7 @@ export default Base.extend({
 
       return {
         form: this.rootForm.slug,
-        info: { root: { form: this.rootForm.slug } }
+        info: { root: { form: this.rootForm.slug } },
       };
     }
   ),
