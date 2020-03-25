@@ -1,6 +1,6 @@
 # ![ember-caluma](https://user-images.githubusercontent.com/6150577/60805349-1e6f3080-a180-11e9-911f-874620aa72b1.png)
 
-[![Build Status](https://travis-ci.com/projectcaluma/ember-caluma.svg?branch=master)](https://travis-ci.com/projectcaluma/ember-caluma)
+![Test](https://github.com/projectcaluma/ember-caluma/workflows/Test/badge.svg)
 [![BrowserStack Status](https://automate.browserstack.com/badge.svg?badge_key=OFpCTnVaaUhTWTU3SFBKMGdtS1hFeCtCMUgvMmdMSTZqVVNEejhrME5JND0tLUp6R3B6aEJhUjBRRUtxSjJxcFhVb3c9PQ==--234eac4a0f5f7c3759bf207a1ab7954f6bbaf078)](https://automate.browserstack.com/public-build/OFpCTnVaaUhTWTU3SFBKMGdtS1hFeCtCMUgvMmdMSTZqVVNEejhrME5JND0tLUp6R3B6aEJhUjBRRUtxSjJxcFhVb3c9PQ==--234eac4a0f5f7c3759bf207a1ab7954f6bbaf078)
 [![Codecov](https://codecov.io/gh/projectcaluma/ember-caluma/branch/master/graph/badge.svg)](https://codecov.io/gh/projectcaluma/ember-caluma)
 [![npm](https://img.shields.io/npm/v/ember-caluma.svg)](https://www.npmjs.com/package/ember-caluma)
@@ -8,7 +8,7 @@
 [![Code Style: Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![License: LGPL-3.0](https://img.shields.io/badge/License-LGPL--3.0-blue.svg)](https://spdx.org/licenses/LGPL-3.0-or-later.html)
 
-The Ember.js addon for [Caluma](https://projectcaluma.github.io) - a collaborative form editing service.
+The Ember.js addon for [Caluma](https://caluma.io) - a collaborative form editing service.
 
 ## Browsers support
 
@@ -19,11 +19,11 @@ The Ember.js addon for [Caluma](https://projectcaluma.github.io) - a collaborati
 
 ## Compatibility
 
-`ember-caluma` is guaranteed to work with the **last LTS version** of Ember.js (currently 3.12).
+`ember-caluma` is guaranteed to work with the **last LTS version** of Ember.js (currently 3.16).
 
 ## Documentation
 
-You can find the interactive documentation [here](https://projectcaluma.github.io/ember-caluma).
+You can find the interactive documentation [here](https://caluma.io/ember-caluma).
 
 ## Contributing
 
@@ -35,8 +35,7 @@ You can find the interactive documentation [here](https://projectcaluma.github.i
 
 ### Linting
 
-- `yarn lint:js`
-- `yarn lint:js --fix`
+- `yarn lint`
 
 ### Running tests
 
