@@ -5,7 +5,7 @@ export default class extends BaseSerializer {
 
     return {
       ...serialized,
-      id: btoa(`Case:${deserialized.id}`)
+      id: btoa(`Case:${deserialized.id}`),
     };
   }
 }

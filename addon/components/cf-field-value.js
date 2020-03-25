@@ -12,7 +12,7 @@ export default Component.extend({
 
   tagName: "span",
 
-  value: computed("field.{selected,answer.value}", function() {
+  value: computed("field.{selected,answer.value}", function () {
     const field = this.field;
 
     switch (field.question.__typename) {
@@ -28,18 +28,18 @@ export default Component.extend({
         const answerValue = field.answer.value;
         return {
           fileAnswerId: answerValue && field.answer.id,
-          label: answerValue && answerValue.name
+          label: answerValue && answerValue.name,
         };
       }
       case "DateQuestion": {
         return {
-          label: field.answer.value && moment(field.answer.value).format("L")
+          label: field.answer.value && moment(field.answer.value).format("L"),
         };
       }
 
       default:
         return {
-          label: field.answer.value
+          label: field.answer.value,
         };
     }
   }),
@@ -50,11 +50,11 @@ export default Component.extend({
         {
           query: getFileAnswerInfoQuery,
           variables: { id: fileAnswerId },
-          fetchPolicy: "cache-and-network"
+          fetchPolicy: "cache-and-network",
         },
         "node.fileValue"
       );
       window.open(downloadUrl, "_blank");
-    }
-  }
+    },
+  },
 });

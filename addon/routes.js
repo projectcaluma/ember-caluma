@@ -1,10 +1,10 @@
 import buildRoutes from "ember-engines/routes";
 
-export default buildRoutes(function() {
+export default buildRoutes(function () {
   this.route("new");
-  this.route("edit", { path: "/:form_slug" }, function() {
+  this.route("edit", { path: "/:form_slug" }, function () {
     this.route("general", { path: "/" });
-    this.route("questions", function() {
+    this.route("questions", function () {
       this.route("edit", { path: "/:question_slug" });
       this.route("new");
     });

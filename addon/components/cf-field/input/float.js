@@ -18,7 +18,7 @@ export default Component.extend({
     "field.pk:id",
     "field.answer.value:value",
     "field.question.floatMinValue:min",
-    "field.question.floatMaxValue:max"
+    "field.question.floatMaxValue:max",
   ],
   type: "number",
   step: 0.001,
@@ -33,5 +33,5 @@ export default Component.extend({
    */
   input({ target: { value } }) {
     this.onSave(value === "" || isNaN(value) ? null : parseFloat(value));
-  }
+  },
 });

@@ -5,22 +5,22 @@ import { hbs } from "ember-cli-htmlbars";
 import { defineProperty } from "@ember/object";
 import { task } from "ember-concurrency";
 
-module("Integration | Component | cfb-form-list", function(hooks) {
+module("Integration | Component | cfb-form-list", function (hooks) {
   setupRenderingTest(hooks);
 
-  test("it renders blockless", async function(assert) {
+  test("it renders blockless", async function (assert) {
     assert.expect(2);
 
     defineProperty(
       this,
       "data",
-      task(function*() {
+      task(function* () {
         return yield [
           { node: { id: 1, slug: "form-1", title: "Form 1" } },
           { node: { id: 2, slug: "form-2", title: "Form 2" } },
           { node: { id: 3, slug: "form-3", title: "Form 3" } },
           { node: { id: 4, slug: "form-4", title: "Form 4" } },
-          { node: { id: 5, slug: "form-5", title: "Form 5" } }
+          { node: { id: 5, slug: "form-5", title: "Form 5" } },
         ];
       })
     );
@@ -31,13 +31,13 @@ module("Integration | Component | cfb-form-list", function(hooks) {
     assert.dom("[data-test-form-list-item]").exists({ count: 5 });
   });
 
-  test("it displays an empty state", async function(assert) {
+  test("it displays an empty state", async function (assert) {
     assert.expect(1);
 
     defineProperty(
       this,
       "data",
-      task(function*() {
+      task(function* () {
         return yield [];
       })
     );
@@ -47,13 +47,13 @@ module("Integration | Component | cfb-form-list", function(hooks) {
     assert.dom("[data-test-form-list-empty]").exists();
   });
 
-  test("it can trigger editing of a row", async function(assert) {
+  test("it can trigger editing of a row", async function (assert) {
     assert.expect(2);
 
     defineProperty(
       this,
       "data",
-      task(function*() {
+      task(function* () {
         return yield [{ node: { id: 1, slug: "form-1" } }];
       })
     );
@@ -69,13 +69,13 @@ module("Integration | Component | cfb-form-list", function(hooks) {
     assert.verifySteps(["edit-form"]);
   });
 
-  test("it can trigger adding a new form", async function(assert) {
+  test("it can trigger adding a new form", async function (assert) {
     assert.expect(2);
 
     defineProperty(
       this,
       "data",
-      task(function*() {
+      task(function* () {
         return yield [{ node: { slug: "" } }];
       })
     );

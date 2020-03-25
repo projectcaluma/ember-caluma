@@ -3,35 +3,35 @@ import { setupTest } from "ember-qunit";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import gql from "graphql-tag";
 
-module("Unit | Mirage GraphQL Mock | question", function(hooks) {
+module("Unit | Mirage GraphQL Mock | question", function (hooks) {
   setupTest(hooks);
   setupMirage(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     const form = this.server.create("form", { slug: "test-form" });
 
     this.server.create("question", {
       slug: "archived-question",
       type: "TEXT",
-      isArchived: true
+      isArchived: true,
     });
 
     this.server.create("question", {
       slug: "search-question",
       type: "TEXT",
-      label: "Blabla"
+      label: "Blabla",
     });
 
     this.server.create("question", {
       slug: "exclude-form-question",
       type: "TEXT",
-      formIds: [form.id]
+      formIds: [form.id],
     });
 
     this.apollo = this.owner.lookup("service:apollo");
   });
 
-  test("can fetch questions", async function(assert) {
+  test("can fetch questions", async function (assert) {
     assert.expect(1);
 
     const res = await this.apollo.query({
@@ -45,7 +45,7 @@ module("Unit | Mirage GraphQL Mock | question", function(hooks) {
             }
           }
         }
-      `
+      `,
     });
 
     assert.deepEqual(res.allQuestions.edges, [
@@ -53,27 +53,27 @@ module("Unit | Mirage GraphQL Mock | question", function(hooks) {
         __typename: "QuestionEdge",
         node: {
           __typename: "TextQuestion",
-          slug: "archived-question"
-        }
+          slug: "archived-question",
+        },
       },
       {
         __typename: "QuestionEdge",
         node: {
           __typename: "TextQuestion",
-          slug: "search-question"
-        }
+          slug: "search-question",
+        },
       },
       {
         __typename: "QuestionEdge",
         node: {
           __typename: "TextQuestion",
-          slug: "exclude-form-question"
-        }
-      }
+          slug: "exclude-form-question",
+        },
+      },
     ]);
   });
 
-  test("can filter archived questions", async function(assert) {
+  test("can filter archived questions", async function (assert) {
     assert.expect(1);
 
     const res = await this.apollo.query({
@@ -87,7 +87,7 @@ module("Unit | Mirage GraphQL Mock | question", function(hooks) {
             }
           }
         }
-      `
+      `,
     });
 
     assert.deepEqual(res.allQuestions.edges, [
@@ -95,13 +95,13 @@ module("Unit | Mirage GraphQL Mock | question", function(hooks) {
         __typename: "QuestionEdge",
         node: {
           __typename: "TextQuestion",
-          slug: "archived-question"
-        }
-      }
+          slug: "archived-question",
+        },
+      },
     ]);
   });
 
-  test("can search questions", async function(assert) {
+  test("can search questions", async function (assert) {
     assert.expect(1);
 
     const res = await this.apollo.query({
@@ -115,7 +115,7 @@ module("Unit | Mirage GraphQL Mock | question", function(hooks) {
             }
           }
         }
-      `
+      `,
     });
 
     assert.deepEqual(res.allQuestions.edges, [
@@ -123,13 +123,13 @@ module("Unit | Mirage GraphQL Mock | question", function(hooks) {
         __typename: "QuestionEdge",
         node: {
           __typename: "TextQuestion",
-          slug: "search-question"
-        }
-      }
+          slug: "search-question",
+        },
+      },
     ]);
   });
 
-  test("can exclude questions of a certain form", async function(assert) {
+  test("can exclude questions of a certain form", async function (assert) {
     assert.expect(1);
 
     const res = await this.apollo.query({
@@ -144,7 +144,7 @@ module("Unit | Mirage GraphQL Mock | question", function(hooks) {
           }
         }
       `,
-      variables: { excludeForms: ["test-form"] }
+      variables: { excludeForms: ["test-form"] },
     });
 
     assert.deepEqual(res.allQuestions.edges, [
@@ -152,20 +152,20 @@ module("Unit | Mirage GraphQL Mock | question", function(hooks) {
         __typename: "QuestionEdge",
         node: {
           __typename: "TextQuestion",
-          slug: "archived-question"
-        }
+          slug: "archived-question",
+        },
       },
       {
         __typename: "QuestionEdge",
         node: {
           __typename: "TextQuestion",
-          slug: "search-question"
-        }
-      }
+          slug: "search-question",
+        },
+      },
     ]);
   });
 
-  test("can add text question", async function(assert) {
+  test("can add text question", async function (assert) {
     assert.expect(1);
 
     const res = await this.apollo.mutate({
@@ -180,17 +180,17 @@ module("Unit | Mirage GraphQL Mock | question", function(hooks) {
             }
           }
         }
-      `
+      `,
     });
 
     assert.deepEqual(res.saveTextQuestion.question, {
       __typename: "TextQuestion",
       slug: "test-question",
-      label: "Test Question"
+      label: "Test Question",
     });
   });
 
-  test("can add textarea question", async function(assert) {
+  test("can add textarea question", async function (assert) {
     assert.expect(1);
 
     const res = await this.apollo.mutate({
@@ -205,17 +205,17 @@ module("Unit | Mirage GraphQL Mock | question", function(hooks) {
             }
           }
         }
-      `
+      `,
     });
 
     assert.deepEqual(res.saveTextareaQuestion.question, {
       __typename: "TextareaQuestion",
       slug: "test-question",
-      label: "Test Question"
+      label: "Test Question",
     });
   });
 
-  test("can add integer question", async function(assert) {
+  test("can add integer question", async function (assert) {
     assert.expect(1);
 
     const res = await this.apollo.mutate({
@@ -230,17 +230,17 @@ module("Unit | Mirage GraphQL Mock | question", function(hooks) {
             }
           }
         }
-      `
+      `,
     });
 
     assert.deepEqual(res.saveIntegerQuestion.question, {
       __typename: "IntegerQuestion",
       slug: "test-question",
-      label: "Test Question"
+      label: "Test Question",
     });
   });
 
-  test("can add float question", async function(assert) {
+  test("can add float question", async function (assert) {
     assert.expect(1);
 
     const res = await this.apollo.mutate({
@@ -255,17 +255,17 @@ module("Unit | Mirage GraphQL Mock | question", function(hooks) {
             }
           }
         }
-      `
+      `,
     });
 
     assert.deepEqual(res.saveFloatQuestion.question, {
       __typename: "FloatQuestion",
       slug: "test-question",
-      label: "Test Question"
+      label: "Test Question",
     });
   });
 
-  test("can add radio question", async function(assert) {
+  test("can add radio question", async function (assert) {
     assert.expect(1);
 
     const options = this.server.createList("option", 5);
@@ -295,7 +295,7 @@ module("Unit | Mirage GraphQL Mock | question", function(hooks) {
             }
           }
         }
-      `
+      `,
     });
 
     assert.deepEqual(res.saveChoiceQuestion.question, {
@@ -308,14 +308,14 @@ module("Unit | Mirage GraphQL Mock | question", function(hooks) {
           __typename: "OptionEdge",
           node: {
             __typename: "Option",
-            slug
-          }
-        }))
-      }
+            slug,
+          },
+        })),
+      },
     });
   });
 
-  test("can add checkbox question", async function(assert) {
+  test("can add checkbox question", async function (assert) {
     assert.expect(1);
 
     const options = this.server.createList("option", 5);
@@ -345,7 +345,7 @@ module("Unit | Mirage GraphQL Mock | question", function(hooks) {
             }
           }
         }
-      `
+      `,
     });
 
     assert.deepEqual(res.saveMultipleChoiceQuestion.question, {
@@ -359,72 +359,72 @@ module("Unit | Mirage GraphQL Mock | question", function(hooks) {
           __typename: "OptionEdge",
           node: {
             __typename: "Option",
-            slug
-          }
-        }))
-      }
+            slug,
+          },
+        })),
+      },
     });
   });
 
-  test("can fetch questions via form and answers", async function(assert) {
+  test("can fetch questions via form and answers", async function (assert) {
     assert.expect(2);
 
     const form = this.server.create("form");
 
     const textQuestion = this.server.create("question", {
       type: "TEXT",
-      formIds: [form.id]
+      formIds: [form.id],
     });
     const textareaQuestion = this.server.create("question", {
       type: "TEXTAREA",
-      formIds: [form.id]
+      formIds: [form.id],
     });
     const integerQuestion = this.server.create("question", {
       type: "INTEGER",
-      formIds: [form.id]
+      formIds: [form.id],
     });
     const floatQuestion = this.server.create("question", {
       type: "FLOAT",
-      formIds: [form.id]
+      formIds: [form.id],
     });
     const checkboxQuestion = this.server.create("question", {
       type: "MULTIPLE_CHOICE",
-      formIds: [form.id]
+      formIds: [form.id],
     });
     const radioQuestion = this.server.create("question", {
       type: "CHOICE",
-      formIds: [form.id]
+      formIds: [form.id],
     });
     this.server.create("question", {
       type: "TABLE",
-      formIds: [form.id]
+      formIds: [form.id],
     });
 
     const document = this.server.create("document", { formId: form.id });
 
     this.server.create("answer", {
       documentId: document.id,
-      questionId: textQuestion.id
+      questionId: textQuestion.id,
     });
     this.server.create("answer", {
       documentId: document.id,
-      questionId: textareaQuestion.id
+      questionId: textareaQuestion.id,
     });
     this.server.create("answer", {
       documentId: document.id,
-      questionId: integerQuestion.id
+      questionId: integerQuestion.id,
     });
     this.server.create("answer", {
       documentId: document.id,
-      questionId: floatQuestion.id
+      questionId: floatQuestion.id,
     });
     this.server.create("answer", {
       documentId: document.id,
-      questionId: checkboxQuestion.id
+      questionId: checkboxQuestion.id,
     });
     this.server.create("answer", {
       documentId: document.id,
-      questionId: radioQuestion.id
+      questionId: radioQuestion.id,
     });
 
     const res = await this.apollo.query({
@@ -458,8 +458,8 @@ module("Unit | Mirage GraphQL Mock | question", function(hooks) {
         }
       `,
       variables: {
-        id: document.id
-      }
+        id: document.id,
+      },
     });
 
     assert.deepEqual(res.allDocuments.edges[0].node.answers.edges, [
@@ -469,9 +469,9 @@ module("Unit | Mirage GraphQL Mock | question", function(hooks) {
           __typename: "StringAnswer",
           question: {
             __typename: "TextQuestion",
-            slug: "question-4"
-          }
-        }
+            slug: "question-4",
+          },
+        },
       },
       {
         __typename: "AnswerEdge",
@@ -479,9 +479,9 @@ module("Unit | Mirage GraphQL Mock | question", function(hooks) {
           __typename: "StringAnswer",
           question: {
             __typename: "TextareaQuestion",
-            slug: "question-5"
-          }
-        }
+            slug: "question-5",
+          },
+        },
       },
       {
         __typename: "AnswerEdge",
@@ -489,9 +489,9 @@ module("Unit | Mirage GraphQL Mock | question", function(hooks) {
           __typename: "IntegerAnswer",
           question: {
             __typename: "IntegerQuestion",
-            slug: "question-6"
-          }
-        }
+            slug: "question-6",
+          },
+        },
       },
       {
         __typename: "AnswerEdge",
@@ -499,9 +499,9 @@ module("Unit | Mirage GraphQL Mock | question", function(hooks) {
           __typename: "FloatAnswer",
           question: {
             __typename: "FloatQuestion",
-            slug: "question-7"
-          }
-        }
+            slug: "question-7",
+          },
+        },
       },
       {
         __typename: "AnswerEdge",
@@ -509,9 +509,9 @@ module("Unit | Mirage GraphQL Mock | question", function(hooks) {
           __typename: "ListAnswer",
           question: {
             __typename: "MultipleChoiceQuestion",
-            slug: "question-8"
-          }
-        }
+            slug: "question-8",
+          },
+        },
       },
       {
         __typename: "AnswerEdge",
@@ -519,10 +519,10 @@ module("Unit | Mirage GraphQL Mock | question", function(hooks) {
           __typename: "StringAnswer",
           question: {
             __typename: "ChoiceQuestion",
-            slug: "question-9"
-          }
-        }
-      }
+            slug: "question-9",
+          },
+        },
+      },
     ]);
 
     assert.deepEqual(res.allDocuments.edges[0].node.form.questions.edges, [
@@ -530,51 +530,51 @@ module("Unit | Mirage GraphQL Mock | question", function(hooks) {
         __typename: "QuestionEdge",
         node: {
           __typename: "TextQuestion",
-          slug: "question-4"
-        }
+          slug: "question-4",
+        },
       },
       {
         __typename: "QuestionEdge",
         node: {
           __typename: "TextareaQuestion",
-          slug: "question-5"
-        }
+          slug: "question-5",
+        },
       },
       {
         __typename: "QuestionEdge",
         node: {
           __typename: "IntegerQuestion",
-          slug: "question-6"
-        }
+          slug: "question-6",
+        },
       },
       {
         __typename: "QuestionEdge",
         node: {
           __typename: "FloatQuestion",
-          slug: "question-7"
-        }
+          slug: "question-7",
+        },
       },
       {
         __typename: "QuestionEdge",
         node: {
           __typename: "MultipleChoiceQuestion",
-          slug: "question-8"
-        }
+          slug: "question-8",
+        },
       },
       {
         __typename: "QuestionEdge",
         node: {
           __typename: "ChoiceQuestion",
-          slug: "question-9"
-        }
+          slug: "question-9",
+        },
       },
       {
         __typename: "QuestionEdge",
         node: {
           __typename: "TableQuestion",
-          slug: "question-10"
-        }
-      }
+          slug: "question-10",
+        },
+      },
     ]);
   });
 });

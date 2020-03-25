@@ -16,17 +16,17 @@ export default Component.extend({
     this.get("availableFormatValidators").perform();
   },
 
-  availableFormatValidators: task(function*() {
+  availableFormatValidators: task(function* () {
     const formatValidators = yield this.get("apollo").watchQuery(
       { query: allFormatValidatorsQuery, fetchPolicy: "cache-and-network" },
       "allFormatValidators.edges"
     );
-    return formatValidators.map(edge => edge.node);
+    return formatValidators.map((edge) => edge.node);
   }).drop(),
 
   validators: computed(
     "availableFormatValidators.lastSuccessful.value.[]",
-    function() {
+    function () {
       return this.getWithDefault(
         "availableFormatValidators.lastSuccessful.value",
         []
@@ -34,16 +34,16 @@ export default Component.extend({
     }
   ),
 
-  selected: computed("value.[]", "validators.@each.slug", function() {
-    return this.validators.filter(validator =>
+  selected: computed("value.[]", "validators.@each.slug", function () {
+    return this.validators.filter((validator) =>
       this.getWithDefault("value", []).includes(validator.slug)
     );
   }),
 
   actions: {
     updateValidators(value) {
-      this.update(value.map(validator => validator.slug));
+      this.update(value.map((validator) => validator.slug));
       this.setDirty();
-    }
-  }
+    },
+  },
 });

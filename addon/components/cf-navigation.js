@@ -9,5 +9,5 @@ export default Component.extend({
 
   didReceiveAttrs() {
     next(this.navigation, "goToNextItem");
-  }
+  },
 });

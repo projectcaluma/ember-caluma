@@ -12,8 +12,8 @@ const form = {
           label: "Question 1",
           isRequired: "false",
           isHidden: "false",
-          __typename: "TextQuestion"
-        }
+          __typename: "TextQuestion",
+        },
       },
       {
         node: {
@@ -21,8 +21,8 @@ const form = {
           label: "Question 2",
           isRequired: "'question-1'|answer == 'require-question-2'",
           isHidden: "!('question-1'|answer == 'show-question-2')",
-          __typename: "TextQuestion"
-        }
+          __typename: "TextQuestion",
+        },
       },
       {
         node: {
@@ -31,8 +31,8 @@ const form = {
           isRequired: "false",
           isHidden:
             "!('question-1'|answer == 'show-question-3' || 'question-2'|answer == 'show-question-3')",
-          __typename: "TextQuestion"
-        }
+          __typename: "TextQuestion",
+        },
       },
       {
         node: {
@@ -40,8 +40,8 @@ const form = {
           label: "Table",
           isRequired: "false",
           isHidden: "false",
-          __typename: "TableQuestion"
-        }
+          __typename: "TableQuestion",
+        },
       },
       {
         node: {
@@ -50,12 +50,12 @@ const form = {
           isRequired: "false",
           isHidden:
             "!('show-multiple-choice' in 'table'|answer|mapby('table-form-question'))",
-          __typename: "MultipleChoiceQuestion"
-        }
-      }
-    ]
+          __typename: "MultipleChoiceQuestion",
+        },
+      },
+    ],
   },
-  __typename: "Form"
+  __typename: "Form",
 };
 
 const answers = {
@@ -64,27 +64,27 @@ const answers = {
       node: {
         id: id("StringAnswer"),
         question: {
-          slug: "question-1"
+          slug: "question-1",
         },
         stringValue: "test answer",
-        __typename: "StringAnswer"
-      }
+        __typename: "StringAnswer",
+      },
     },
     {
       node: {
         id: id("StringAnswer"),
         question: {
-          slug: "question-2"
+          slug: "question-2",
         },
         stringValue: "test answer 2",
-        __typename: "StringAnswer"
-      }
+        __typename: "StringAnswer",
+      },
     },
     {
       node: {
         id: id("TableAnswer"),
         question: {
-          slug: "table"
+          slug: "table",
         },
         tableValue: [
           {
@@ -99,12 +99,12 @@ const answers = {
                       label: "Question",
                       isRequired: "true",
                       isHidden: "false",
-                      __typename: "TextQuestion"
-                    }
-                  }
-                ]
+                      __typename: "TextQuestion",
+                    },
+                  },
+                ],
               },
-              __typename: "Form"
+              __typename: "Form",
             },
             answers: {
               edges: [
@@ -112,26 +112,26 @@ const answers = {
                   node: {
                     id: id("StringAnswer"),
                     question: {
-                      slug: "table-form-question"
+                      slug: "table-form-question",
                     },
                     stringValue: "show-multiple-choice",
-                    __typename: "StringAnswer"
-                  }
-                }
-              ]
+                    __typename: "StringAnswer",
+                  },
+                },
+              ],
             },
-            __typename: "Document"
-          }
+            __typename: "Document",
+          },
         ],
-        __typename: "TableAnswer"
-      }
-    }
-  ]
+        __typename: "TableAnswer",
+      },
+    },
+  ],
 };
 
 export default {
   id: id("Document"),
   answers,
   form,
-  __typename: "Document"
+  __typename: "Document",
 };

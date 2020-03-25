@@ -7,15 +7,15 @@ import { click } from "@ember/test-helpers";
 
 module(
   "Integration | Component | cfb-form-editor/question/validation",
-  function(hooks) {
+  function (hooks) {
     setupRenderingTest(hooks);
     setupMirage(hooks);
 
-    hooks.beforeEach(function() {
+    hooks.beforeEach(function () {
       this.server.createList("format-validator", 5);
     });
 
-    test("it renders all available validators", async function(assert) {
+    test("it renders all available validators", async function (assert) {
       assert.expect(2);
 
       await render(hbs`{{cfb-form-editor/question/validation}}`);

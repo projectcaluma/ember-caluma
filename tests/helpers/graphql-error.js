@@ -1,4 +1,4 @@
-export default name => ({
+export default (name) => ({
   data: { [name]: null },
   errors: [
     {
@@ -6,10 +6,10 @@ export default name => ({
       locations: [
         {
           line: 1,
-          column: 1
-        }
+          column: 1,
+        },
       ],
-      path: name
-    }
-  ]
+      path: name,
+    },
+  ],
 });

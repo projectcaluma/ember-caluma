@@ -6,5 +6,5 @@ import NavigationRouteMixin from "ember-caluma/mixins/navigation-route";
 export default Route.extend(NavigationRouteMixin, {
   intl: service(),
 
-  title: t("caluma.form-builder.form.all")
+  title: t("caluma.form-builder.form.all"),
 });

@@ -7,6 +7,6 @@ export default Component.extend({
   actions: {
     toggle(value) {
       this.get("update")(value);
-    }
-  }
+    },
+  },
 });

@@ -18,11 +18,11 @@ const App = Application.extend({
           "router",
           "intl",
           "caluma-options",
-          "validator"
-        ]
-      }
-    }
-  }
+          "validator",
+        ],
+      },
+    },
+  },
 });
 
 loadInitializers(App, config.modulePrefix);

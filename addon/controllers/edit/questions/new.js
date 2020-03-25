@@ -4,6 +4,6 @@ export default Controller.extend({
   actions: {
     afterSubmit(slug) {
       this.transitionToRoute("edit.questions.edit", slug);
-    }
-  }
+    },
+  },
 });

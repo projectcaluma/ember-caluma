@@ -30,8 +30,8 @@ export default Service.extend({
       this.get("validators.lastSuccessful.value") ||
       (await this.validators.perform());
 
-    return slugs.map(slug => {
-      const validator = validators.find(validator => validator.slug === slug);
+    return slugs.map((slug) => {
+      const validator = validators.find((validator) => validator.slug === slug);
 
       assert(`No validator found with the slug "${slug}".`, validator);
 
@@ -40,24 +40,24 @@ export default Service.extend({
           type: "format",
           message: undefined,
           context: { errorMsg: validator.errorMsg },
-          value
+          value,
         }
       );
     });
   },
 
-  validators: task(function*() {
+  validators: task(function* () {
     const raw = yield this.apollo.query(
       { query: allFormatValidatorsQuery },
       "allFormatValidators.edges"
     );
 
-    return raw.map(rawValidator => {
+    return raw.map((rawValidator) => {
       return {
         slug: rawValidator.node.slug,
         regex: new RegExp(rawValidator.node.regex),
-        errorMsg: rawValidator.node.errorMsg
+        errorMsg: rawValidator.node.errorMsg,
       };
     });
-  })
+  }),
 });

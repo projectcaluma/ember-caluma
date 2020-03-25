@@ -1,10 +1,10 @@
 import { module, test } from "qunit";
 import { setupTest } from "ember-qunit";
 
-module("Unit | Service | navigation", function(hooks) {
+module("Unit | Service | navigation", function (hooks) {
   setupTest(hooks);
 
-  test("it exists", function(assert) {
+  test("it exists", function (assert) {
     assert.expect(1);
 
     let service = this.owner.lookup("service:navigation");
@@ -12,7 +12,7 @@ module("Unit | Service | navigation", function(hooks) {
     assert.deepEqual(service.get("entries"), []);
   });
 
-  test("it can push an entry", function(assert) {
+  test("it can push an entry", function (assert) {
     assert.expect(1);
 
     let service = this.owner.lookup("service:navigation");
@@ -22,7 +22,7 @@ module("Unit | Service | navigation", function(hooks) {
     assert.deepEqual(service.get("entries"), [{ id: "someid", foo: "bar" }]);
   });
 
-  test("it can remove an entry", function(assert) {
+  test("it can remove an entry", function (assert) {
     assert.expect(1);
 
     let service = this.owner.lookup("service:navigation");
@@ -33,7 +33,7 @@ module("Unit | Service | navigation", function(hooks) {
     assert.deepEqual(service.get("entries"), []);
   });
 
-  test("it can replace an entry", function(assert) {
+  test("it can replace an entry", function (assert) {
     assert.expect(1);
 
     let service = this.owner.lookup("service:navigation");

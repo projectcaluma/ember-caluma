@@ -1,8 +1,8 @@
 import validateGtLt from "ember-caluma/validators/gt-lt";
 import { module, test } from "qunit";
 
-module("Unit | Validator | gt-lt", function() {
-  test("it validates correctly", function(assert) {
+module("Unit | Validator | gt-lt", function () {
+  test("it validates correctly", function (assert) {
     assert.expect(8);
 
     assert.equal(validateGtLt()("key", 1, null, {}, {}), true);

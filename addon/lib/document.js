@@ -23,7 +23,7 @@ export default Base.extend({
 
     defineProperty(this, "pk", {
       writable: false,
-      value: `Document:${decodeId(this.raw.id)}`
+      value: `Document:${decodeId(this.raw.id)}`,
     });
 
     this._super(...arguments);
@@ -45,14 +45,14 @@ export default Base.extend({
   },
 
   _createFieldsets() {
-    const fieldsets = this.raw.forms.map(form => {
+    const fieldsets = this.raw.forms.map((form) => {
       return (
         this.calumaStore.find(`${this.pk}:Form:${form.slug}`) ||
         getOwner(this)
           .factoryFor("caluma-model:fieldset")
           .create({
             raw: { form, answers: this.raw.answers },
-            document: this
+            document: this,
           })
       );
     });
@@ -65,7 +65,7 @@ export default Base.extend({
 
     const fieldsets = this.fieldsets;
     this.set("fieldsets", []);
-    fieldsets.forEach(fieldset => fieldset.destroy());
+    fieldsets.forEach((fieldset) => fieldset.destroy());
   },
 
   /**
@@ -74,7 +74,7 @@ export default Base.extend({
    * @property {String} uuid
    * @accessor
    */
-  uuid: computed("raw.id", function() {
+  uuid: computed("raw.id", function () {
     return decodeId(this.raw.id);
   }),
 
@@ -100,7 +100,7 @@ export default Base.extend({
    * @property {Field[]} fields
    * @accessor
    */
-  fields: computed("fieldsets.@each.fields", function() {
+  fields: computed("fieldsets.@each.fields", function () {
     return this.fieldsets.reduce(
       (fields, fieldset) => [...fields, ...fieldset.fields],
       []
@@ -113,12 +113,12 @@ export default Base.extend({
    * @property {JEXL} jexl
    * @accessor
    */
-  jexl: computed(function() {
+  jexl: computed(function () {
     const documentJexl = new jexl.Jexl();
 
-    documentJexl.addTransform("answer", slug => this.findAnswer(slug));
+    documentJexl.addTransform("answer", (slug) => this.findAnswer(slug));
     documentJexl.addTransform("mapby", (arr, key) => {
-      return Array.isArray(arr) ? arr.map(obj => obj[key]) : null;
+      return Array.isArray(arr) ? arr.map((obj) => obj[key]) : null;
     });
     documentJexl.addBinaryOp("intersects", 20, intersects);
 
@@ -134,7 +134,7 @@ export default Base.extend({
   jexlContext: computed(
     "rootForm.slug",
     "parentDocument.jexlContext",
-    function() {
+    function () {
       if (this.parentDocument) return this.parentDocument.jexlContext;
 
       return { form: this.rootForm.slug };
@@ -155,11 +155,11 @@ export default Base.extend({
     }
 
     if (field.question.__typename === "TableQuestion") {
-      return field.value.map(doc =>
+      return field.value.map((doc) =>
         doc.fields.reduce((obj, tableField) => {
           return {
             ...obj,
-            [tableField.question.slug]: tableField.value
+            [tableField.question.slug]: tableField.value,
           };
         }, {})
       );
@@ -177,7 +177,7 @@ export default Base.extend({
   findField(slug) {
     return [
       ...this.fields,
-      ...(this.parentDocument ? this.parentDocument.fields : [])
-    ].find(field => field.question.slug === slug);
-  }
+      ...(this.parentDocument ? this.parentDocument.fields : []),
+    ].find((field) => field.question.slug === slug);
+  },
 });

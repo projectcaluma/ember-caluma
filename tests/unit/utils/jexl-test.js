@@ -2,10 +2,10 @@ import { getAST, getTransforms } from "ember-caluma/utils/jexl";
 import { module, test } from "qunit";
 import { setupTest } from "ember-qunit";
 
-module("Unit | Utility | jexl", function(hooks) {
+module("Unit | Utility | jexl", function (hooks) {
   setupTest(hooks);
 
-  test("AST parsing works", async function(assert) {
+  test("AST parsing works", async function (assert) {
     assert.expect(1);
 
     const jexlExpression = "'foo'|bar > 'baz'";
@@ -15,20 +15,20 @@ module("Unit | Utility | jexl", function(hooks) {
         name: "bar",
         subject: {
           type: "Literal",
-          value: "foo"
+          value: "foo",
         },
-        type: "Transform"
+        type: "Transform",
       },
       operator: ">",
       right: {
         type: "Literal",
-        value: "baz"
+        value: "baz",
       },
-      type: "BinaryExpression"
+      type: "BinaryExpression",
     });
   });
 
-  test("getTransforms works", async function(assert) {
+  test("getTransforms works", async function (assert) {
     assert.expect(1);
 
     assert.deepEqual(
@@ -39,22 +39,22 @@ module("Unit | Utility | jexl", function(hooks) {
           name: "bar",
           subject: {
             type: "Literal",
-            value: "foo"
-          }
+            value: "foo",
+          },
         },
         {
           args: [],
           name: "y",
           subject: {
             type: "Literal",
-            value: "x"
-          }
-        }
+            value: "x",
+          },
+        },
       ]
     );
   });
 
-  test("custom intersects operator works", async function(assert) {
+  test("custom intersects operator works", async function (assert) {
     assert.expect(1);
 
     assert.deepEqual(getAST("[1] intersects [1]"), {
@@ -63,9 +63,9 @@ module("Unit | Utility | jexl", function(hooks) {
         value: [
           {
             type: "Literal",
-            value: 1
-          }
-        ]
+            value: 1,
+          },
+        ],
       },
       operator: "intersects",
       right: {
@@ -73,11 +73,11 @@ module("Unit | Utility | jexl", function(hooks) {
         value: [
           {
             type: "Literal",
-            value: 1
-          }
-        ]
+            value: 1,
+          },
+        ],
       },
-      type: "BinaryExpression"
+      type: "BinaryExpression",
     });
   });
 });

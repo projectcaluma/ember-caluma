@@ -1,7 +1,7 @@
 import {
   validatePresence,
   validateLength,
-  validateFormat
+  validateFormat,
 } from "ember-changeset-validations/validators";
 
 export default {
@@ -9,6 +9,6 @@ export default {
   slug: [
     validatePresence(true),
     validateLength({ max: 50 }),
-    validateFormat({ regex: /^[a-z0-9-]+$/ })
-  ]
+    validateFormat({ regex: /^[a-z0-9-]+$/ }),
+  ],
 };

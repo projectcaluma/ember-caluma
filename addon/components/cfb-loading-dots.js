@@ -5,5 +5,5 @@ export default Component.extend({
   layout,
   tagName: "span",
   classNames: ["cfb-loading-dots"],
-  count: 3
+  count: 3,
 });

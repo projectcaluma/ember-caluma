@@ -27,7 +27,7 @@ export default Component.extend({
    * @method save
    * @param {String|Number|String[]} value
    */
-  save: task(function*(value) {
+  save: task(function* (value) {
     const { environment } = getOwner(this).resolveRegistration(
       "config:environment"
     );
@@ -46,5 +46,5 @@ export default Component.extend({
     } catch (e) {
       // that's ok
     }
-  }).restartable()
+  }).restartable(),
 });

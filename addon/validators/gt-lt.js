@@ -20,8 +20,8 @@ export default function validateGtLt(options = { gt: null, lt: null }) {
               type: "greaterThan",
               value: newValue,
               context: {
-                gt: messages.getDescriptionFor(options.gt)
-              }
+                gt: messages.getDescriptionFor(options.gt),
+              },
             })
         : true;
     }
@@ -35,8 +35,8 @@ export default function validateGtLt(options = { gt: null, lt: null }) {
               type: "lessThan",
               value: newValue,
               context: {
-                lt: messages.getDescriptionFor(options.lt)
-              }
+                lt: messages.getDescriptionFor(options.lt),
+              },
             })
         : true;
     }

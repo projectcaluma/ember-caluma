@@ -14,7 +14,7 @@ export default Component.extend({
     "uk-text-large",
     "uk-width-1-1",
     "uk-flex",
-    "uk-flex-nowrap"
+    "uk-flex-nowrap",
   ],
 
   actions: {
@@ -25,6 +25,6 @@ export default Component.extend({
         routeName === "application" ? mountPoint : `${mountPoint}.${routeName}`,
         ...params
       );
-    }
-  }
+    },
+  },
 });

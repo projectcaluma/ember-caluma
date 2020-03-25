@@ -1,7 +1,7 @@
 import jexl from "jexl";
 
 export const intersects = (left, right) =>
-  (left || []).some(val => (right || []).includes(val));
+  (left || []).some((val) => (right || []).includes(val));
 
 /**
  * Transform a JEXL expression into it's AST
@@ -10,7 +10,7 @@ export const intersects = (left, right) =>
  * @param {String} expression JEXL expression
  * @return {Object} AST
  */
-export const getAST = expression => {
+export const getAST = (expression) => {
   jexl.addBinaryOp("intersects", 20, intersects);
 
   return jexl.createExpression(expression)._getAst();
@@ -25,7 +25,7 @@ export const getAST = expression => {
  * @param {Object} tree The JEXL AST tree or branch
  * @yields {Object} The found transform
  */
-const traverseTransforms = function*(tree) {
+const traverseTransforms = function* (tree) {
   for (let node of Object.values(tree)) {
     if (typeof node === "object") {
       yield* traverseTransforms(node);
@@ -43,7 +43,7 @@ const traverseTransforms = function*(tree) {
  * @param {Object} tree The JEXL AST tree or branch
  * @return {Object[]} The found transforms
  */
-export const getTransforms = tree => {
+export const getTransforms = (tree) => {
   let iterator = traverseTransforms(tree);
   let result = iterator.next();
   let transforms = [];

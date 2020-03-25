@@ -3,11 +3,11 @@ import { visit, triggerEvent, find } from "@ember/test-helpers";
 import { setupApplicationTest } from "ember-qunit";
 import { setupMirage } from "ember-cli-mirage/test-support";
 
-module("Acceptance | question reorder", function(hooks) {
+module("Acceptance | question reorder", function (hooks) {
   setupApplicationTest(hooks);
   setupMirage(hooks);
 
-  test("can reorder questions", async function(assert) {
+  test("can reorder questions", async function (assert) {
     assert.expect(2);
 
     const questions = this.server.createList("question", 4);
@@ -15,7 +15,7 @@ module("Acceptance | question reorder", function(hooks) {
 
     this.server.create("form", {
       slug: "test-form",
-      questions: [...questions, question]
+      questions: [...questions, question],
     });
 
     await visit("/demo/form-builder/test-form");
@@ -35,18 +35,18 @@ module("Acceptance | question reorder", function(hooks) {
     let children = [
       item,
       ...[...list.children].filter(
-        c => c.dataset.testQuestionListItem !== "test"
-      )
+        (c) => c.dataset.testQuestionListItem !== "test"
+      ),
     ];
 
     await triggerEvent(list, "moved", {
       detail: [
         {
           $el: {
-            children
-          }
-        }
-      ]
+            children,
+          },
+        },
+      ],
     });
 
     assert

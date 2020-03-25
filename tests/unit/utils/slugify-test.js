@@ -1,8 +1,8 @@
 import slugify from "dummy/utils/slugify";
 import { module, test } from "qunit";
 
-module("Unit | Utility | slugify", function(/*hooks*/) {
-  test("it slugifies correctly", function(assert) {
+module("Unit | Utility | slugify", function (/*hooks*/) {
+  test("it slugifies correctly", function (assert) {
     assert.equal(slugify("simple test"), "simple-test");
 
     assert.equal(
@@ -18,7 +18,7 @@ module("Unit | Utility | slugify", function(/*hooks*/) {
     );
   });
 
-  test("it truncates string with more than 150 characters", function(assert) {
+  test("it truncates string with more than 150 characters", function (assert) {
     assert.equal(slugify("0123456789".repeat(20)).length, 127);
   });
 });

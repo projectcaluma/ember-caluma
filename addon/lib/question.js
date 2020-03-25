@@ -24,7 +24,7 @@ export default Base.extend({
 
     defineProperty(this, "pk", {
       writable: false,
-      value: `Question:${this.raw.slug}`
+      value: `Question:${this.raw.slug}`,
     });
 
     this._super(...arguments);
@@ -39,14 +39,14 @@ export default Base.extend({
    * @return {Object[]} The dynamic options
    * @public
    */
-  loadDynamicOptions: task(function*() {
+  loadDynamicOptions: task(function* () {
     if (!this.isDynamic) return;
 
     const [question] = yield this.apollo.query(
       {
         query: getDynamicOptions,
         fetchPolicy: "network-only",
-        variables: { question: this.slug }
+        variables: { question: this.slug },
       },
       "allQuestions.edges"
     );
@@ -68,7 +68,7 @@ export default Base.extend({
    * @property {Boolean} isChoice
    * @accessor
    */
-  isChoice: computed("__typename", function() {
+  isChoice: computed("__typename", function () {
     return /(Dynamic)?ChoiceQuestion/.test(this.__typename);
   }),
 
@@ -78,7 +78,7 @@ export default Base.extend({
    * @property {Boolean} isMultipleChoice
    * @accessor
    */
-  isMultipleChoice: computed("__typename", function() {
+  isMultipleChoice: computed("__typename", function () {
     return /(Dynamic)?MultipleChoiceQuestion/.test(this.__typename);
   }),
 
@@ -88,7 +88,7 @@ export default Base.extend({
    * @property {Boolean} isDynamic
    * @accessor
    */
-  isDynamic: computed("__typename", function() {
+  isDynamic: computed("__typename", function () {
     return /Dynamic(Multiple)?ChoiceQuestion/.test(this.__typename);
   }),
 
@@ -103,7 +103,7 @@ export default Base.extend({
     "dynamicChoiceOptions.edges.[]",
     "multipleChoiceOptions.edges.[]",
     "dynamicMultipleChoiceOptions.edges.[]",
-    function() {
+    function () {
       if (!this.isChoice && !this.isMultipleChoice) return null;
 
       const key = camelize(this.__typename.replace(/Question$/, "Options"));
@@ -113,5 +113,5 @@ export default Base.extend({
         []
       ).map(({ node: { label, slug } }) => ({ label, slug }));
     }
-  )
+  ),
 });

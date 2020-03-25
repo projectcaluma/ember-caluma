@@ -31,5 +31,5 @@ export default EmberObject.extend({
     if (this.pk) {
       this.calumaStore.delete(this.pk);
     }
-  }
+  },
 });

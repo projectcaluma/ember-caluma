@@ -3,11 +3,11 @@ import { visit, currentURL, click, fillIn } from "@ember/test-helpers";
 import { setupApplicationTest } from "ember-qunit";
 import { setupMirage } from "ember-cli-mirage/test-support";
 
-module("Acceptance | form edit", function(hooks) {
+module("Acceptance | form edit", function (hooks) {
   setupApplicationTest(hooks);
   setupMirage(hooks);
 
-  test("can edit a form", async function(assert) {
+  test("can edit a form", async function (assert) {
     assert.expect(3);
 
     this.server.create("form", { slug: "test-form" });

@@ -28,8 +28,8 @@ export default Service.extend({
         "ChoiceQuestion",
         "MultipleChoiceQuestion",
         "DynamicChoiceQuestion",
-        "DynamicMultipleChoiceQuestion"
-      ]
+        "DynamicMultipleChoiceQuestion",
+      ],
     });
   },
 
@@ -94,5 +94,5 @@ export default Service.extend({
    */
   getComponentOverrides() {
     return Object.values(this._overrides);
-  }
+  },
 });

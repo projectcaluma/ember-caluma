@@ -3,12 +3,12 @@ import { setupRenderingTest } from "ember-qunit";
 import { render, click, settled } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 
-module("Integration | Component | cfb-jexl-boolean-toggle-switch", function(
+module("Integration | Component | cfb-jexl-boolean-toggle-switch", function (
   hooks
 ) {
   setupRenderingTest(hooks);
 
-  test("it renders", async function(assert) {
+  test("it renders", async function (assert) {
     assert.expect(2);
 
     this.set("value", "false");
@@ -30,12 +30,12 @@ module("Integration | Component | cfb-jexl-boolean-toggle-switch", function(
     assert.dom("input[name=test]").isChecked();
   });
 
-  test("it can toggle", async function(assert) {
+  test("it can toggle", async function (assert) {
     assert.expect(4);
 
     this.set("value", "false");
 
-    this.set("update", value => {
+    this.set("update", (value) => {
       assert.step("update");
 
       this.set("value", value);

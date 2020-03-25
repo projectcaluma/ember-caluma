@@ -15,8 +15,8 @@ export default Mixin.create({
       title: this.get("title"),
       link: [
         this.get("routeName"),
-        ...Object.values(this.paramsFor(this.get("routeName")))
-      ]
+        ...Object.values(this.paramsFor(this.get("routeName"))),
+      ],
     });
 
     this.addObserver("title", this, "updateNavigationEntry");
@@ -37,8 +37,8 @@ export default Mixin.create({
       title: sender.get(key),
       link: [
         this.get("routeName"),
-        ...Object.values(this.paramsFor(this.get("routeName")))
-      ]
+        ...Object.values(this.paramsFor(this.get("routeName"))),
+      ],
     });
-  }
+  },
 });

@@ -35,10 +35,10 @@ const TYPE_MAP = {
   FormQuestion: null,
   FileQuestion: "FileAnswer",
   StaticQuestion: null,
-  DateQuestion: "DateAnswer"
+  DateQuestion: "DateAnswer",
 };
 
-const fieldIsHidden = field => {
+const fieldIsHidden = (field) => {
   return (
     field.hidden ||
     (field.question.__typename !== "TableQuestion" &&
@@ -46,13 +46,13 @@ const fieldIsHidden = field => {
   );
 };
 
-const getDependenciesFromJexl = expression => {
+const getDependenciesFromJexl = (expression) => {
   return [
     ...new Set(
       getTransforms(getAST(expression))
-        .filter(transform => transform.name === "answer")
-        .map(transform => transform.subject.value)
-    )
+        .filter((transform) => transform.name === "answer")
+        .map((transform) => transform.subject.value)
+    ),
   ];
 };
 
@@ -81,7 +81,7 @@ export default Base.extend({
 
     defineProperty(this, "pk", {
       writable: false,
-      value: `${this.document.pk}:Question:${this.raw.question.slug}`
+      value: `${this.document.pk}:Question:${this.raw.question.slug}`,
     });
 
     this._super(...arguments);
@@ -131,9 +131,9 @@ export default Base.extend({
         raw: {
           __typename: answerType,
           question: { slug: this.raw.question.slug },
-          [camelize(answerType.replace(/Answer$/, "Value"))]: null
+          [camelize(answerType.replace(/Answer$/, "Value"))]: null,
         },
-        field: this
+        field: this,
       });
     } else {
       answer =
@@ -183,7 +183,7 @@ export default Base.extend({
    * @property {Boolean} isNew
    * @accessor
    */
-  isNew: computed("answer.isNew", function() {
+  isNew: computed("answer.isNew", function () {
     return !this.answer || this.answer.isNew;
   }),
 
@@ -219,7 +219,7 @@ export default Base.extend({
    * @return {Object[]} Formerly used dynamic options
    * @private
    */
-  _fetchUsedDynamicOptions: task(function*() {
+  _fetchUsedDynamicOptions: task(function* () {
     if (!this.question.isDynamic) return null;
 
     const edges = yield this.apollo.query(
@@ -228,15 +228,15 @@ export default Base.extend({
         fetchPolicy: "cache-first",
         variables: {
           document: this.document.uuid,
-          question: this.question.slug
-        }
+          question: this.question.slug,
+        },
       },
       "allUsedDynamicOptions.edges"
     );
 
     return edges.map(({ node: { slug, label } }) => ({
       slug,
-      label
+      label,
     }));
   }),
 
@@ -268,7 +268,7 @@ export default Base.extend({
     "value",
     "question.options.[]",
     "usedDynamicOptions.[]",
-    function() {
+    function () {
       if (!this.question.isChoice && !this.question.isMultipleChoice) {
         return null;
       }
@@ -276,13 +276,13 @@ export default Base.extend({
       const selected =
         (this.question.isMultipleChoice ? this.value : [this.value]) || [];
 
-      const options = this.question.options.map(option => ({
+      const options = this.question.options.map((option) => ({
         ...option,
-        disabled: false
+        disabled: false,
       }));
 
-      const hasInvalidSelected = !selected.every(slug =>
-        options.find(option => option.slug === slug)
+      const hasInvalidSelected = !selected.every((slug) =>
+        options.find((option) => option.slug === slug)
       );
 
       if (this.question.isDynamic && hasInvalidSelected) {
@@ -294,13 +294,13 @@ export default Base.extend({
         return [
           ...options,
           ...(this.usedDynamicOptions || [])
-            .filter(used => {
+            .filter((used) => {
               return (
                 selected.includes(used.slug) &&
-                !options.find(option => option.slug === used.slug)
+                !options.find((option) => option.slug === used.slug)
               );
             })
-            .map(used => ({ ...used, disabled: true }))
+            .map((used) => ({ ...used, disabled: true })),
         ];
       }
 
@@ -316,7 +316,7 @@ export default Base.extend({
    * @property {Null|Object|Object[]} selected
    * @accessor
    */
-  selected: computed("value", "options.@each.slug", function() {
+  selected: computed("value", "options.@each.slug", function () {
     if (!this.question.isChoice && !this.question.isMultipleChoice) {
       return null;
     }
@@ -342,8 +342,8 @@ export default Base.extend({
   hiddenDependencies: computed(
     "document.fields.[]",
     "question.isHidden",
-    function() {
-      return getDependenciesFromJexl(this.question.isHidden).map(slug => {
+    function () {
+      return getDependenciesFromJexl(this.question.isHidden).map((slug) => {
         const f = this.document.findField(slug);
 
         assert(
@@ -368,8 +368,8 @@ export default Base.extend({
   optionalDependencies: computed(
     "document.fields.[]",
     "question.isRequired",
-    function() {
-      return getDependenciesFromJexl(this.question.isRequired).map(slug => {
+    function () {
+      return getDependenciesFromJexl(this.question.isRequired).map((slug) => {
         const f = this.document.findField(slug);
 
         assert(
@@ -395,7 +395,7 @@ export default Base.extend({
   hidden: computed(
     "fieldset.field.hidden",
     "hiddenDependencies.@each.{hidden,value}",
-    function() {
+    function () {
       return (
         getWithDefault(this, "fieldset.field.hidden", false) ||
         (this.hiddenDependencies.length &&
@@ -421,7 +421,7 @@ export default Base.extend({
   optional: computed(
     "fieldset.field.hidden",
     "optionalDependencies.@each.{hidden,value}",
-    function() {
+    function () {
       return (
         getWithDefault(this, "fieldset.field.hidden", false) ||
         (this.optionalDependencies.length &&
@@ -441,7 +441,7 @@ export default Base.extend({
    * @method save.perform
    * @return {Object} The response from the server
    */
-  save: task(function*() {
+  save: task(function* () {
     const type = this.get("answer.__typename");
 
     const response = yield this.apollo.mutate(
@@ -453,9 +453,9 @@ export default Base.extend({
             document: this.document.uuid,
             ...(this.answer.serializedValue !== null
               ? { value: this.answer.serializedValue }
-              : {})
-          }
-        }
+              : {}),
+          },
+        },
       },
       `saveDocument${type}.answer`
     );
@@ -483,7 +483,7 @@ export default Base.extend({
    * @property {String[]} errors
    * @accessor
    */
-  errors: computed("_errors.[]", function() {
+  errors: computed("_errors.[]", function () {
     return this._errors.map(({ type, context, value }) => {
       return this.intl.t(
         `caluma.form.validation.${type}`,
@@ -499,7 +499,7 @@ export default Base.extend({
    *
    * @method validate.perform
    */
-  validate: task(function*() {
+  validate: task(function* () {
     const specificValidation = this.get(`_validate${this.question.__typename}`);
     assert(
       "Missing validation function for " + this.question.__typename,
@@ -508,18 +508,18 @@ export default Base.extend({
 
     const validationFns = [
       ...(!this.hidden ? [this._validateRequired] : []),
-      specificValidation
+      specificValidation,
     ];
 
     const errors = (yield all(
-      validationFns.map(async fn => {
+      validationFns.map(async (fn) => {
         const res = await fn.call(this);
 
         return Array.isArray(res) ? res : [res];
       })
     ))
       .reduce((arr, e) => [...arr, ...e], []) // flatten the array
-      .filter(e => typeof e === "object");
+      .filter((e) => typeof e === "object");
 
     this.set("_errors", errors);
   }).restartable(),
@@ -553,8 +553,8 @@ export default Base.extend({
         this.getWithDefault("question.meta.formatValidators", [])
       )),
       validate("length", this.get("answer.value"), {
-        max: this.get("question.textMaxLength") || Number.POSITIVE_INFINITY
-      })
+        max: this.get("question.textMaxLength") || Number.POSITIVE_INFINITY,
+      }),
     ];
   },
 
@@ -573,8 +573,8 @@ export default Base.extend({
         this.getWithDefault("question.meta.formatValidators", [])
       )),
       validate("length", this.get("answer.value"), {
-        max: this.get("question.textareaMaxLength") || Number.POSITIVE_INFINITY
-      })
+        max: this.get("question.textareaMaxLength") || Number.POSITIVE_INFINITY,
+      }),
     ];
   },
 
@@ -590,7 +590,7 @@ export default Base.extend({
     return validate("number", this.get("answer.value"), {
       integer: true,
       gte: this.get("question.integerMinValue") || Number.NEGATIVE_INFINITY,
-      lte: this.get("question.integerMaxValue") || Number.POSITIVE_INFINITY
+      lte: this.get("question.integerMaxValue") || Number.POSITIVE_INFINITY,
     });
   },
 
@@ -605,7 +605,7 @@ export default Base.extend({
   _validateFloatQuestion() {
     return validate("number", this.get("answer.value"), {
       gte: this.get("question.floatMinValue") || Number.NEGATIVE_INFINITY,
-      lte: this.get("question.floatMaxValue") || Number.POSITIVE_INFINITY
+      lte: this.get("question.floatMaxValue") || Number.POSITIVE_INFINITY,
     });
   },
 
@@ -620,7 +620,7 @@ export default Base.extend({
   _validateChoiceQuestion() {
     return validate("inclusion", this.get("answer.value"), {
       allowBlank: true,
-      in: (this.options || []).map(({ slug }) => slug)
+      in: (this.options || []).map(({ slug }) => slug),
     });
   },
 
@@ -637,9 +637,9 @@ export default Base.extend({
     if (!value) {
       return true;
     }
-    return value.map(value =>
+    return value.map((value) =>
       validate("inclusion", value, {
-        in: (this.options || []).map(({ slug }) => slug)
+        in: (this.options || []).map(({ slug }) => slug),
       })
     );
   },
@@ -656,7 +656,7 @@ export default Base.extend({
     await this.question.loadDynamicOptions.perform();
 
     return validate("inclusion", this.get("answer.value"), {
-      in: (this.options || []).map(({ slug }) => slug)
+      in: (this.options || []).map(({ slug }) => slug),
     });
   },
 
@@ -677,9 +677,9 @@ export default Base.extend({
 
     await this.question.loadDynamicOptions.perform();
 
-    return value.map(value => {
+    return value.map((value) => {
       return validate("inclusion", value, {
-        in: (this.options || []).map(({ slug }) => slug)
+        in: (this.options || []).map(({ slug }) => slug),
       });
     });
   },
@@ -704,7 +704,7 @@ export default Base.extend({
    */
   _validateDateQuestion() {
     return validate("date", this.get("answer.value"), {
-      allowBlank: true
+      allowBlank: true,
     });
   },
 
@@ -719,9 +719,9 @@ export default Base.extend({
     if (!this.value) return true;
 
     const rowValidations = await all(
-      this.value.map(async row => {
+      this.value.map(async (row) => {
         const validFields = await all(
-          row.fields.map(async field => {
+          row.fields.map(async (field) => {
             await field.validate.perform();
 
             return field.isValid;
@@ -736,7 +736,7 @@ export default Base.extend({
       rowValidations.every(Boolean) || {
         type: "table",
         context: {},
-        value: null
+        value: null,
       }
     );
   },
@@ -761,5 +761,5 @@ export default Base.extend({
    */
   _validateFormQuestion() {
     return resolve(true);
-  }
+  },
 });

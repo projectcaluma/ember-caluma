@@ -4,21 +4,21 @@ import { setupMirage } from "ember-cli-mirage/test-support";
 import gql from "graphql-tag";
 import { classify } from "@ember/string";
 
-module("Unit | Mirage GraphQL Mock | work item", function(hooks) {
+module("Unit | Mirage GraphQL Mock | work item", function (hooks) {
   setupTest(hooks);
   setupMirage(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     this.apollo = this.owner.lookup("service:apollo");
   });
 
-  test("can fetch workitems", async function(assert) {
+  test("can fetch workitems", async function (assert) {
     const { id: formId } = this.server.create("form", { slug: "test-form" });
     const { id: documentId } = this.server.create("document", {
-      formId
+      formId,
     });
     const { id: caseId } = this.server.create("case", {
-      documentId
+      documentId,
     });
     const { id: taskId } = this.server.create("task");
     this.workItem = this.server.create("workItem", { caseId, taskId });
@@ -42,7 +42,7 @@ module("Unit | Mirage GraphQL Mock | work item", function(hooks) {
             }
           }
         }
-      `
+      `,
     });
 
     assert.deepEqual(res.allWorkItems.edges[0].node, {
@@ -53,30 +53,30 @@ module("Unit | Mirage GraphQL Mock | work item", function(hooks) {
       createdAt: this.workItem.createdAt.toISOString(),
       task: {
         __typename: `${classify(this.workItem.task.type.toLowerCase())}Task`,
-        name: this.workItem.task.name
-      }
+        name: this.workItem.task.name,
+      },
     });
   });
 
-  test("can fetch nested data", async function(assert) {
+  test("can fetch nested data", async function (assert) {
     const { id: taskId } = this.server.create("task");
     const { id: workflowId } = this.server.create("workflow", {
-      taskId: taskId
+      taskId: taskId,
     });
     const { id: formId } = this.server.create("form", { slug: "test-form" });
     const { id: documentId } = this.server.create("document", {
-      formId
+      formId,
     });
     const { id: childWorkItemId } = this.server.create("workItem", {
-      documentId
+      documentId,
     });
     const { id: caseId } = this.server.create("case", {
       workflowId,
-      workItemIds: [childWorkItemId]
+      workItemIds: [childWorkItemId],
     });
     const { id: workItemId } = this.server.create("workItem", {
       caseId,
-      taskId
+      taskId,
     });
     assert.expect(1);
 
@@ -112,7 +112,7 @@ module("Unit | Mirage GraphQL Mock | work item", function(hooks) {
           }
         }
       `,
-      variables: { workItemId: window.btoa(`WorkItem:${workItemId}`) }
+      variables: { workItemId: window.btoa(`WorkItem:${workItemId}`) },
     });
     assert.ok(res.node);
   });

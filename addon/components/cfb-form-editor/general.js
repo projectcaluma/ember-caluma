@@ -31,7 +31,7 @@ export default Component.extend({
     this.get("data").perform();
   },
 
-  data: task(function*() {
+  data: task(function* () {
     if (!this.get("slug")) {
       return A([
         {
@@ -39,9 +39,9 @@ export default Component.extend({
             name: "",
             slug: "",
             description: "",
-            isPublished: true
-          }
-        }
+            isPublished: true,
+          },
+        },
       ]);
     }
 
@@ -49,18 +49,18 @@ export default Component.extend({
       {
         query: formEditorGeneralQuery,
         variables: { slug: this.get("slug") },
-        fetchPolicy: "cache-and-network"
+        fetchPolicy: "cache-and-network",
       },
       "allForms.edges"
     );
   }).restartable(),
 
-  prefix: computed("calumaOptions._namespace", function() {
+  prefix: computed("calumaOptions._namespace", function () {
     const namespace = this.calumaOptions.getNamespace();
     return namespace ? `${namespace}-` : "";
   }),
 
-  submit: task(function*(changeset) {
+  submit: task(function* (changeset) {
     try {
       const slug =
         ((!this.get("slug") && this.prefix) || "") + changeset.get("slug");
@@ -75,9 +75,9 @@ export default Component.extend({
               description: changeset.get("description"),
               isArchived: changeset.get("isArchived"),
               isPublished: changeset.get("isPublished"),
-              clientMutationId: v4()
-            }
-          }
+              clientMutationId: v4(),
+            },
+          },
         },
         "saveForm.form"
       );
@@ -102,7 +102,7 @@ export default Component.extend({
     }
   }).drop(),
 
-  validateSlug: task(function*(slug, changeset) {
+  validateSlug: task(function* (slug, changeset) {
     /* istanbul ignore next */
     if (
       getOwner(this).resolveRegistration("config:environment").environment !==
@@ -114,7 +114,7 @@ export default Component.extend({
     const res = yield this.get("apollo").query(
       {
         query: checkFormSlugQuery,
-        variables: { slug }
+        variables: { slug },
       },
       "allForms.edges"
     );
@@ -143,6 +143,6 @@ export default Component.extend({
       changeset.set("slug", value);
 
       this.get("validateSlug").perform(this.prefix + value, changeset);
-    }
-  }
+    },
+  },
 });

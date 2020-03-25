@@ -8,7 +8,7 @@ const path = require("path");
 const EngineAddon = require("ember-engines/lib/engine-addon");
 
 const DEFAULT_OPTIONS = {
-  includeMirageConfig: true
+  includeMirageConfig: true,
 };
 
 /* eslint-disable ember/avoid-leaking-state-in-ember-objects */
@@ -19,7 +19,7 @@ module.exports = EngineAddon.extend({
   // see https://github.com/dfreeman/ember-cli-node-assets/issues/11
   // for why this is not wrapped in `options`
   babel: {
-    plugins: ["@babel/plugin-proposal-object-rest-spread"]
+    plugins: ["@babel/plugin-proposal-object-rest-spread"],
   },
 
   included() {
@@ -43,12 +43,12 @@ module.exports = EngineAddon.extend({
       const mirageDir = path.join(__dirname, "addon-mirage-support");
 
       const mirageTree = new Funnel(mirageDir, {
-        destDir: "mirage"
+        destDir: "mirage",
       });
 
       trees.push(mirageTree);
     }
 
     return mergeTrees(trees);
-  }
+  },
 });

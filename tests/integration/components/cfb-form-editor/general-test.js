@@ -6,18 +6,18 @@ import { setupMirage } from "ember-cli-mirage/test-support";
 import graphqlError from "dummy/tests/helpers/graphql-error";
 import { setupIntl } from "ember-intl/test-support";
 
-module("Integration | Component | cfb-form-editor/general", function(hooks) {
+module("Integration | Component | cfb-form-editor/general", function (hooks) {
   setupRenderingTest(hooks);
   setupMirage(hooks);
   setupIntl(hooks);
 
-  test("it renders", async function(assert) {
+  test("it renders", async function (assert) {
     assert.expect(4);
 
     this.server.create("form", {
       name: "Test Name",
       slug: "test-slug",
-      description: "Test Description"
+      description: "Test Description",
     });
 
     await render(hbs`{{cfb-form-editor/general slug='test-slug'}}`);
@@ -28,13 +28,13 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
     assert.dom("textarea[name=description]").hasValue("Test Description");
   });
 
-  test("it validates", async function(assert) {
+  test("it validates", async function (assert) {
     assert.expect(2);
 
     this.server.create("form", {
       name: "Test Name",
       slug: "test-slug",
-      description: "Test Description"
+      description: "Test Description",
     });
 
     await render(hbs`{{cfb-form-editor/general slug='test-slug'}}`);
@@ -46,10 +46,10 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
     assert.dom("input[name=name] + span").hasText("Name can't be blank");
   });
 
-  test("it prepends the slug with a namespace", async function(assert) {
+  test("it prepends the slug with a namespace", async function (assert) {
     assert.expect(5);
 
-    this.set("afterSubmit", form => {
+    this.set("afterSubmit", (form) => {
       assert.ok(form);
       assert.equal(form.slug, "foo-bar-form-2");
       assert.step("after-submit");
@@ -59,7 +59,7 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
 
     this.server.create("form", {
       name: "Form 1",
-      slug: "foo-bar-form-1"
+      slug: "foo-bar-form-1",
     });
 
     await render(
@@ -75,10 +75,10 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
     assert.verifySteps(["after-submit"]);
   });
 
-  test("it can create a form", async function(assert) {
+  test("it can create a form", async function (assert) {
     assert.expect(6);
 
-    this.set("afterSubmit", form => {
+    this.set("afterSubmit", (form) => {
       assert.ok(form);
       assert.equal(form.slug, "form-slug");
       assert.step("after-submit");
@@ -102,16 +102,16 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
     assert.verifySteps(["after-submit"]);
   });
 
-  test("it can edit a form", async function(assert) {
+  test("it can edit a form", async function (assert) {
     assert.expect(4);
 
     this.server.create("form", {
       name: "Test Name",
       slug: "test-slug",
-      description: "Test Description"
+      description: "Test Description",
     });
 
-    this.set("afterSubmit", form => {
+    this.set("afterSubmit", (form) => {
       assert.ok(form);
       assert.equal(form.name, "Test Name 1");
       assert.step("after-submit");
@@ -129,7 +129,7 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
     assert.verifySteps(["after-submit"]);
   });
 
-  test("it can handle errors", async function(assert) {
+  test("it can handle errors", async function (assert) {
     assert.expect(1);
 
     this.server.create("form", { slug: "test-form" });
@@ -170,11 +170,11 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
     assert.verifySteps([]);
   });
 
-  test("it can handle 404 errors", async function(assert) {
+  test("it can handle 404 errors", async function (assert) {
     assert.expect(1);
 
     this.server.post("/graphql", () => ({
-      data: { allForms: { edges: [], __typename: "FormEdges" } }
+      data: { allForms: { edges: [], __typename: "FormEdges" } },
     }));
 
     await render(hbs`{{cfb-form-editor/general slug='test-slug'}}`);
@@ -184,7 +184,7 @@ module("Integration | Component | cfb-form-editor/general", function(hooks) {
       .hasText('t:caluma.form-builder.form.not-found:("slug":"test-slug")');
   });
 
-  test("it validates the slug", async function(assert) {
+  test("it validates the slug", async function (assert) {
     assert.expect(3);
 
     this.server.create("form", { slug: "test-slug" });

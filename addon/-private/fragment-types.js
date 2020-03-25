@@ -6,190 +6,190 @@ export default {
         name: "Node",
         possibleTypes: [
           {
-            name: "Workflow"
+            name: "Workflow",
           },
           {
-            name: "Form"
+            name: "Form",
           },
           {
-            name: "Document"
+            name: "Document",
           },
           {
-            name: "Case"
+            name: "Case",
           },
           {
-            name: "WorkItem"
+            name: "WorkItem",
           },
           {
-            name: "Flow"
+            name: "Flow",
           },
           {
-            name: "DynamicOption"
+            name: "DynamicOption",
           },
           {
-            name: "StaticQuestion"
+            name: "StaticQuestion",
           },
           {
-            name: "Option"
+            name: "Option",
           },
           {
-            name: "TextQuestion"
+            name: "TextQuestion",
           },
           {
-            name: "ChoiceQuestion"
+            name: "ChoiceQuestion",
           },
           {
-            name: "MultipleChoiceQuestion"
+            name: "MultipleChoiceQuestion",
           },
           {
-            name: "DynamicChoiceQuestion"
+            name: "DynamicChoiceQuestion",
           },
           {
-            name: "DynamicMultipleChoiceQuestion"
+            name: "DynamicMultipleChoiceQuestion",
           },
           {
-            name: "TextareaQuestion"
+            name: "TextareaQuestion",
           },
           {
-            name: "FloatQuestion"
+            name: "FloatQuestion",
           },
           {
-            name: "IntegerQuestion"
+            name: "IntegerQuestion",
           },
           {
-            name: "DateQuestion"
+            name: "DateQuestion",
           },
           {
-            name: "TableQuestion"
+            name: "TableQuestion",
           },
           {
-            name: "FormQuestion"
+            name: "FormQuestion",
           },
           {
-            name: "FileQuestion"
+            name: "FileQuestion",
           },
           {
-            name: "StringAnswer"
+            name: "StringAnswer",
           },
           {
-            name: "ListAnswer"
+            name: "ListAnswer",
           },
           {
-            name: "IntegerAnswer"
+            name: "IntegerAnswer",
           },
           {
-            name: "FloatAnswer"
+            name: "FloatAnswer",
           },
           {
-            name: "DateAnswer"
+            name: "DateAnswer",
           },
           {
-            name: "TableAnswer"
+            name: "TableAnswer",
           },
           {
-            name: "FileAnswer"
+            name: "FileAnswer",
           },
           {
-            name: "File"
+            name: "File",
           },
           {
-            name: "SimpleTask"
+            name: "SimpleTask",
           },
           {
-            name: "CompleteWorkflowFormTask"
+            name: "CompleteWorkflowFormTask",
           },
           {
-            name: "CompleteTaskFormTask"
-          }
-        ]
+            name: "CompleteTaskFormTask",
+          },
+        ],
       },
       {
         kind: "INTERFACE",
         name: "Task",
         possibleTypes: [
           {
-            name: "SimpleTask"
+            name: "SimpleTask",
           },
           {
-            name: "CompleteWorkflowFormTask"
+            name: "CompleteWorkflowFormTask",
           },
           {
-            name: "CompleteTaskFormTask"
-          }
-        ]
+            name: "CompleteTaskFormTask",
+          },
+        ],
       },
       {
         kind: "INTERFACE",
         name: "Question",
         possibleTypes: [
           {
-            name: "StaticQuestion"
+            name: "StaticQuestion",
           },
           {
-            name: "TextQuestion"
+            name: "TextQuestion",
           },
           {
-            name: "ChoiceQuestion"
+            name: "ChoiceQuestion",
           },
           {
-            name: "MultipleChoiceQuestion"
+            name: "MultipleChoiceQuestion",
           },
           {
-            name: "DynamicChoiceQuestion"
+            name: "DynamicChoiceQuestion",
           },
           {
-            name: "DynamicMultipleChoiceQuestion"
+            name: "DynamicMultipleChoiceQuestion",
           },
           {
-            name: "TextareaQuestion"
+            name: "TextareaQuestion",
           },
           {
-            name: "FloatQuestion"
+            name: "FloatQuestion",
           },
           {
-            name: "IntegerQuestion"
+            name: "IntegerQuestion",
           },
           {
-            name: "DateQuestion"
+            name: "DateQuestion",
           },
           {
-            name: "TableQuestion"
+            name: "TableQuestion",
           },
           {
-            name: "FormQuestion"
+            name: "FormQuestion",
           },
           {
-            name: "FileQuestion"
-          }
-        ]
+            name: "FileQuestion",
+          },
+        ],
       },
       {
         kind: "INTERFACE",
         name: "Answer",
         possibleTypes: [
           {
-            name: "StringAnswer"
+            name: "StringAnswer",
           },
           {
-            name: "ListAnswer"
+            name: "ListAnswer",
           },
           {
-            name: "IntegerAnswer"
+            name: "IntegerAnswer",
           },
           {
-            name: "FloatAnswer"
+            name: "FloatAnswer",
           },
           {
-            name: "DateAnswer"
+            name: "DateAnswer",
           },
           {
-            name: "TableAnswer"
+            name: "TableAnswer",
           },
           {
-            name: "FileAnswer"
-          }
-        ]
-      }
-    ]
-  }
+            name: "FileAnswer",
+          },
+        ],
+      },
+    ],
+  },
 };

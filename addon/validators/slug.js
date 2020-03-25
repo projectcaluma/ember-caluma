@@ -1,7 +1,7 @@
 import {
   validatePresence,
   validateLength,
-  validateFormat
+  validateFormat,
 } from "ember-changeset-validations/validators";
 import and from "ember-caluma/utils/and";
 

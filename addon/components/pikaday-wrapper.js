@@ -15,7 +15,7 @@ export default PikadayInput.extend({
       nextMonth: this.intl.t("caluma.form.pikaday.month-next"),
       months: moment.localeData()._months,
       weekdays: moment.localeData()._weekdays,
-      weekdaysShort: moment.localeData()._weekdaysMin
+      weekdaysShort: moment.localeData()._weekdaysMin,
     };
-  }
+  },
 });

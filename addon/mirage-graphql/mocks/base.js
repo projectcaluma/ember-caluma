@@ -14,7 +14,7 @@ export default class {
   }
 
   getHandlers() {
-    const handlers = target => {
+    const handlers = (target) => {
       const proto = Reflect.getPrototypeOf(target);
       const res = Object.values(proto);
 
@@ -31,7 +31,7 @@ export default class {
         return {
           ...handlers,
           [handler.__handlerFor.replace(/\{type\}/, this.type)]: (...args) =>
-            handler.fn.apply(this, args)
+            handler.fn.apply(this, args),
         };
       }
 
@@ -56,8 +56,8 @@ export default class {
       edges: () =>
         new MockList(records.length, () => ({
           node: (r, v, _, meta) =>
-            this.serializer.serialize(records[meta.path.prev.key])
-        }))
+            this.serializer.serialize(records[meta.path.prev.key]),
+        })),
     };
   }
 
@@ -109,14 +109,14 @@ export default class {
           this.serializer.deserialize(
             this.server.build(dasherize(this.type), {
               ...identifier,
-              ...args
+              ...args,
             })
           )
         );
 
     const x = {
       [camelize(this.type)]: this.serializer.serialize(res),
-      clientMutationId
+      clientMutationId,
     };
 
     return x;

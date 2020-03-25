@@ -1,29 +1,29 @@
 import { module, test } from "qunit";
 import { setupTest } from "ember-qunit";
 
-module("Unit | Library | answer", function(hooks) {
+module("Unit | Library | answer", function (hooks) {
   setupTest(hooks);
 
-  test("it works", async function(assert) {
+  test("it works", async function (assert) {
     assert.expect(1);
 
     const answer = this.owner.factoryFor("caluma-model:answer").create({
       raw: {
         __typename: "StringAnswer",
-        stringValue: "test"
-      }
+        stringValue: "test",
+      },
     });
 
     assert.equal(answer.value, "test");
   });
 
-  test("it computes a pk", async function(assert) {
+  test("it computes a pk", async function (assert) {
     assert.expect(3);
 
     const newAnswer = this.owner.factoryFor("caluma-model:answer").create({
       raw: {
-        __typename: "StringAnswer"
-      }
+        __typename: "StringAnswer",
+      },
     });
 
     assert.equal(newAnswer.pk, undefined);
@@ -31,24 +31,24 @@ module("Unit | Library | answer", function(hooks) {
     const existingAnswer = this.owner.factoryFor("caluma-model:answer").create({
       raw: {
         __typename: "StringAnswer",
-        id: btoa("Answer:xxxx-xxxx")
-      }
+        id: btoa("Answer:xxxx-xxxx"),
+      },
     });
 
     assert.equal(existingAnswer.uuid, "xxxx-xxxx");
     assert.equal(existingAnswer.pk, "Answer:xxxx-xxxx");
   });
 
-  test("it generates documents for table answers", async function(assert) {
+  test("it generates documents for table answers", async function (assert) {
     assert.expect(3);
 
     const answer = this.owner.factoryFor("caluma-model:answer").create({
       field: {
         document: {
           jexlContext: {
-            form: "parent-form"
-          }
-        }
+            form: "parent-form",
+          },
+        },
       },
       raw: {
         __typename: "TableAnswer",
@@ -66,11 +66,11 @@ module("Unit | Library | answer", function(hooks) {
                       __typename: "TextQuestion",
                       slug: "frage",
                       isHidden: "false",
-                      isRequired: "false"
-                    }
-                  }
-                ]
-              }
+                      isRequired: "false",
+                    },
+                  },
+                ],
+              },
             },
             answers: {
               edges: [
@@ -80,15 +80,15 @@ module("Unit | Library | answer", function(hooks) {
                     stringValue: "test",
                     id: btoa("Answer:yyyy-yyyy"),
                     question: {
-                      slug: "frage"
-                    }
-                  }
-                }
-              ]
-            }
-          }
-        ]
-      }
+                      slug: "frage",
+                    },
+                  },
+                },
+              ],
+            },
+          },
+        ],
+      },
     });
 
     assert.equal(answer.value[0].pk, "Document:xxxx-xxxx");

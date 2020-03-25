@@ -75,47 +75,47 @@ export default class extends BaseMock {
   @register("SaveTextQuestionPayload")
   handleSaveTextQuestion(_, { input }) {
     return this.handleSavePayload.fn.call(this, _, {
-      input: { ...input, type: "TEXT" }
+      input: { ...input, type: "TEXT" },
     });
   }
 
   @register("SaveTextareaQuestionPayload")
   handleSaveTextareaQuestion(_, { input }) {
     return this.handleSavePayload.fn.call(this, _, {
-      input: { ...input, type: "TEXTAREA" }
+      input: { ...input, type: "TEXTAREA" },
     });
   }
 
   @register("SaveIntegerQuestionPayload")
   handleSaveIntegerQuestion(_, { input }) {
     return this.handleSavePayload.fn.call(this, _, {
-      input: { ...input, type: "INTEGER" }
+      input: { ...input, type: "INTEGER" },
     });
   }
 
   @register("SaveFloatQuestionPayload")
   handleSaveFloatQuestion(_, { input }) {
     return this.handleSavePayload.fn.call(this, _, {
-      input: { ...input, type: "FLOAT" }
+      input: { ...input, type: "FLOAT" },
     });
   }
 
   @register("SaveStaticQuestionPayload")
   handleSaveStaticQuestion(_, { input }) {
     return this.handleSavePayload.fn.call(this, _, {
-      input: { ...input, type: "STATIC" }
+      input: { ...input, type: "STATIC" },
     });
   }
 
   @register("SaveChoiceQuestionPayload")
   handleSaveChoiceQuestion(_, { input }) {
-    const options = input.options.map(slug =>
+    const options = input.options.map((slug) =>
       optionFilter.find(this.db.options, { slug })
     );
     const optionIds = options.map(({ id }) => String(id));
 
     const res = this.handleSavePayload.fn.call(this, _, {
-      input: { ...input, options, optionIds, type: "CHOICE" }
+      input: { ...input, options, optionIds, type: "CHOICE" },
     });
 
     Object.assign(res.question, {
@@ -123,9 +123,9 @@ export default class extends BaseMock {
         edges: () =>
           new MockList(options.length, () => ({
             node: (r, v, _, meta) =>
-              optionSerializer.serialize(options[meta.path.prev.key])
-          }))
-      }
+              optionSerializer.serialize(options[meta.path.prev.key]),
+          })),
+      },
     });
 
     return res;
@@ -133,13 +133,13 @@ export default class extends BaseMock {
 
   @register("SaveMultipleChoiceQuestionPayload")
   handleSaveMultipleChoiceQuestion(_, { input }) {
-    const options = input.options.map(slug =>
+    const options = input.options.map((slug) =>
       optionFilter.find(this.db.options, { slug })
     );
     const optionIds = options.map(({ id }) => String(id));
 
     const res = this.handleSavePayload.fn.call(this, _, {
-      input: { ...input, options, optionIds, type: "MULTIPLE_CHOICE" }
+      input: { ...input, options, optionIds, type: "MULTIPLE_CHOICE" },
     });
 
     Object.assign(res.question, {
@@ -147,9 +147,9 @@ export default class extends BaseMock {
         edges: () =>
           new MockList(options.length, () => ({
             node: (r, v, _, meta) =>
-              optionSerializer.serialize(options[meta.path.prev.key])
-          }))
-      }
+              optionSerializer.serialize(options[meta.path.prev.key]),
+          })),
+      },
     });
 
     return res;
@@ -158,28 +158,28 @@ export default class extends BaseMock {
   @register("SaveTableQuestionPayload")
   handleSaveTableQuestion(_, { input }) {
     return this.handleSavePayload.fn.call(this, _, {
-      input: { ...input, type: "TABLE" }
+      input: { ...input, type: "TABLE" },
     });
   }
 
   @register("SaveFormQuestionPayload")
   handleSaveFormQuestion(_, { input }) {
     return this.handleSavePayload.fn.call(this, _, {
-      input: { ...input, type: "FORM" }
+      input: { ...input, type: "FORM" },
     });
   }
 
   @register("SaveDateQuestionPayload")
   handleSaveDateQuestion(_, { input }) {
     return this.handleSavePayload.fn.call(this, _, {
-      input: { ...input, type: "DATE" }
+      input: { ...input, type: "DATE" },
     });
   }
 
   @register("SaveFileQuestionPayload")
   handleSaveFileQuestion(_, { input }) {
     return this.handleSavePayload.fn.call(this, _, {
-      input: { ...input, type: "FILE" }
+      input: { ...input, type: "FILE" },
     });
   }
 }

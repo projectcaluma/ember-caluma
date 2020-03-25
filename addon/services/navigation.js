@@ -16,7 +16,7 @@ export default Service.extend({
     let entry = this.get("entries").findBy("id", id);
 
     this.get("entries").replace(this.get("entries").indexOf(entry), 1, [
-      Object.assign(newEntry, { id })
+      Object.assign(newEntry, { id }),
     ]);
   },
 
@@ -24,5 +24,5 @@ export default Service.extend({
     let entry = this.get("entries").findBy("id", id);
 
     this.get("entries").removeObject(entry);
-  }
+  },
 });

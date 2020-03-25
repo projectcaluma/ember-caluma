@@ -12,7 +12,7 @@ export function atob(str) {
   return decodeId(str);
 }
 
-export default helper(function([str]) {
+export default helper(function ([str]) {
   deprecate(
     "DEPRECATED: Using the `{{atob}}` helper is deprecated. Instead, use the new `{{decodeId}}` helper.",
     false,

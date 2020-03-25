@@ -3,14 +3,14 @@ import { setupRenderingTest } from "ember-qunit";
 import { render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 
-module("Integration | Component | cf-field-value", function(hooks) {
+module("Integration | Component | cf-field-value", function (hooks) {
   setupRenderingTest(hooks);
 
-  test("it renders multiple choice questions", async function(assert) {
+  test("it renders multiple choice questions", async function (assert) {
     this.set("field", {
       selected: [
         { slug: "option-a", label: "A" },
-        { slug: "option-b", label: "B" }
+        { slug: "option-b", label: "B" },
       ],
       question: {
         __typename: "MultipleChoiceQuestion",
@@ -19,27 +19,27 @@ module("Integration | Component | cf-field-value", function(hooks) {
             {
               node: {
                 slug: "option-a",
-                label: "A"
-              }
+                label: "A",
+              },
             },
             {
               node: {
                 slug: "option-b",
-                label: "B"
-              }
+                label: "B",
+              },
             },
             {
               node: {
                 slug: "option-c",
-                label: "C"
-              }
-            }
-          ]
-        }
+                label: "C",
+              },
+            },
+          ],
+        },
       },
       answer: {
-        value: ["option-a", "option-b"]
-      }
+        value: ["option-a", "option-b"],
+      },
     });
 
     await render(hbs`{{cf-field-value field=field}}`);
@@ -47,7 +47,7 @@ module("Integration | Component | cf-field-value", function(hooks) {
     assert.dom(this.element).hasText("A, B");
   });
 
-  test("it renders choice questions", async function(assert) {
+  test("it renders choice questions", async function (assert) {
     this.set("field", {
       selected: { slug: "option-c", label: "C" },
       question: {
@@ -57,27 +57,27 @@ module("Integration | Component | cf-field-value", function(hooks) {
             {
               node: {
                 slug: "option-a",
-                label: "A"
-              }
+                label: "A",
+              },
             },
             {
               node: {
                 slug: "option-b",
-                label: "B"
-              }
+                label: "B",
+              },
             },
             {
               node: {
                 slug: "option-c",
-                label: "C"
-              }
-            }
-          ]
-        }
+                label: "C",
+              },
+            },
+          ],
+        },
       },
       answer: {
-        value: "option-c"
-      }
+        value: "option-c",
+      },
     });
 
     await render(hbs`{{cf-field-value field=field}}`);
@@ -85,14 +85,14 @@ module("Integration | Component | cf-field-value", function(hooks) {
     assert.dom(this.element).hasText("C");
   });
 
-  test("it renders text questions", async function(assert) {
+  test("it renders text questions", async function (assert) {
     this.set("field", {
       question: {
-        __typename: "TextQuestion"
+        __typename: "TextQuestion",
       },
       answer: {
-        value: "foo"
-      }
+        value: "foo",
+      },
     });
 
     await render(hbs`{{cf-field-value field=field}}`);

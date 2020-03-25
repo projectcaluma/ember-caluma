@@ -8,5 +8,5 @@ export default Component.extend({
   classNames: ["cf-navigation__item", "uk-width-auto"],
   classNameBindings: ["active:uk-active"],
 
-  active: or("item.active", "item.childrenActive")
+  active: or("item.active", "item.childrenActive"),
 });

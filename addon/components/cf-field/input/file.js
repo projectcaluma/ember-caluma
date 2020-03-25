@@ -18,7 +18,7 @@ export default Component.extend({
   downloadUrl: reads("field.answer.value.downloadUrl"),
   downloadName: reads("field.answer.value.name"),
 
-  placeholder: computed("field.answer.value", function() {
+  placeholder: computed("field.answer.value", function () {
     return this.get("field.answer.value")
       ? this.intl.t("caluma.form.changeFile")
       : this.intl.t("caluma.form.selectFile");
@@ -40,9 +40,9 @@ export default Component.extend({
 
       const request = new XMLHttpRequest();
 
-      request.addEventListener("error", event => reject(event));
-      request.addEventListener("abort", event => reject(event));
-      request.addEventListener("load", event => {
+      request.addEventListener("error", (event) => reject(event));
+      request.addEventListener("abort", (event) => reject(event));
+      request.addEventListener("load", (event) => {
         if (event.target.status == 200) {
           resolve(event);
         } else {
@@ -61,7 +61,7 @@ export default Component.extend({
         {
           query: getFileAnswerInfoQuery,
           variables: { id: this.field.answer.id },
-          fetchPolicy: "cache-and-network"
+          fetchPolicy: "cache-and-network",
         },
         "node.fileValue"
       );
@@ -85,7 +85,7 @@ export default Component.extend({
 
         this.set("field.answer.value", {
           name: file.name,
-          downloadUrl: fileValue.downloadUrl
+          downloadUrl: fileValue.downloadUrl,
         });
       } catch (event) {
         await this.onSave(null);
@@ -95,6 +95,6 @@ export default Component.extend({
         target.value = "";
         target.parentNode.querySelector("[type=text]").value = "";
       }
-    }
-  }
+    },
+  },
 });

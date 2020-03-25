@@ -1,4 +1,4 @@
-export default function(server) {
+export default function (server) {
   const form = server.create("form");
 
   server.create("question", {
@@ -6,14 +6,14 @@ export default function(server) {
     label: "What is your name?",
     formIds: [form.id],
     type: "TEXT",
-    maxLength: null
+    maxLength: null,
   });
   server.create("question", {
     slug: "description",
     label: "Describe yourself.",
     formIds: [form.id],
     type: "TEXTAREA",
-    maxLength: 255
+    maxLength: 255,
   });
   server.create("question", {
     slug: "age",
@@ -21,7 +21,7 @@ export default function(server) {
     formIds: [form.id],
     type: "INTEGER",
     minValue: 0,
-    maxValue: null
+    maxValue: null,
   });
   server.create("question", {
     slug: "height",
@@ -30,7 +30,7 @@ export default function(server) {
     type: "FLOAT",
     minValue: 0,
     maxValue: null,
-    isHidden: "'age'|answer < 18"
+    isHidden: "'age'|answer < 18",
   });
   server.create("question", {
     slug: "like-caluma",
@@ -40,8 +40,8 @@ export default function(server) {
     options: [
       server.create("option", { label: "Yes" }),
       server.create("option", { label: "Hell yes" }),
-      server.create("option", { label: "Certainly", isArchived: true })
-    ]
+      server.create("option", { label: "Certainly", isArchived: true }),
+    ],
   });
   server.create("question", {
     slug: "short-reason",
@@ -52,21 +52,21 @@ export default function(server) {
     options: [
       server.create("option", { label: "Moms fault" }),
       server.create("option", { label: "Dads fault" }),
-      server.create("option", { label: "Not enough vegetables" })
-    ]
+      server.create("option", { label: "Not enough vegetables" }),
+    ],
   });
   server.create("question", {
     slug: "date",
     label: "When?",
     formIds: [form.id],
-    type: "DATE"
+    type: "DATE",
   });
   server.create("question", {
     slug: "dummy",
     label: "Dummy widget",
     formIds: [form.id],
     type: "TEXT",
-    meta: { widgetOverride: "dummy-one" }
+    meta: { widgetOverride: "dummy-one" },
   });
 
   server.create("document", { formId: form.id });

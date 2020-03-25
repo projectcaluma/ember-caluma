@@ -6,5 +6,5 @@ export default Component.extend({
 
   tagName: "li",
 
-  classNames: ["uk-text-nowrap", "uk-flex", "uk-flex-middle"]
+  classNames: ["uk-text-nowrap", "uk-flex", "uk-flex-middle"],
 });

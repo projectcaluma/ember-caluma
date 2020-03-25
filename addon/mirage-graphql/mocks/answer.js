@@ -14,7 +14,7 @@ export default class extends BaseMock {
       document: documentId,
       clientMutationId,
       value,
-      type
+      type,
     }
   ) {
     const questionId = this.db.questions.findBy({ slug: questionSlug }).id;
@@ -28,14 +28,14 @@ export default class extends BaseMock {
         value,
         documentId,
         questionId,
-        clientMutationId
-      }
+        clientMutationId,
+      },
     });
 
     const doc = this.db.documents.findBy({ id: res.answer.documentId });
 
     this.db.documents.update(doc.id, {
-      answerIds: [...new Set([...(doc.answerIds || []), res.answer.id])]
+      answerIds: [...new Set([...(doc.answerIds || []), res.answer.id])],
     });
 
     return res;
@@ -46,7 +46,7 @@ export default class extends BaseMock {
     return this._handleSaveDocumentAnswer(_, {
       ...input,
       value: String(input.value),
-      type: "STRING"
+      type: "STRING",
     });
   }
 
@@ -55,7 +55,7 @@ export default class extends BaseMock {
     return this._handleSaveDocumentAnswer(_, {
       ...input,
       value: parseInt(input.value),
-      type: "INTEGER"
+      type: "INTEGER",
     });
   }
 
@@ -64,7 +64,7 @@ export default class extends BaseMock {
     return this._handleSaveDocumentAnswer(_, {
       ...input,
       value: parseFloat(input.value),
-      type: "FLOAT"
+      type: "FLOAT",
     });
   }
 
@@ -73,7 +73,7 @@ export default class extends BaseMock {
     return this._handleSaveDocumentAnswer(_, {
       ...input,
       value: [...input.value].map(String),
-      type: "LIST"
+      type: "LIST",
     });
   }
 
@@ -82,7 +82,7 @@ export default class extends BaseMock {
     return this._handleSaveDocumentAnswer(_, {
       ...input,
       value: { metadata: { object_name: input.value } },
-      type: "FILE"
+      type: "FILE",
     });
   }
 
@@ -91,7 +91,7 @@ export default class extends BaseMock {
     return this._handleSaveDocumentAnswer(_, {
       ...input,
       value: String(input.value),
-      type: "DATE"
+      type: "DATE",
     });
   }
 }

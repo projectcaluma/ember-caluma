@@ -5,5 +5,5 @@ export default Component.extend({
   layout,
   tagName: "label",
   classNames: ["uk-form-label"],
-  attributeBindings: ["field.pk:for"]
+  attributeBindings: ["field.pk:for"],
 });

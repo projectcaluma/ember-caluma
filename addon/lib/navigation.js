@@ -20,7 +20,7 @@ export const NavigationItem = Base.extend({
 
     defineProperty(this, "pk", {
       writable: false,
-      value: `NavigationItem:${this.fieldset.pk}`
+      value: `NavigationItem:${this.fieldset.pk}`,
     });
 
     this._super(...arguments);
@@ -32,8 +32,8 @@ export const NavigationItem = Base.extend({
    * @property {NavigationItem} parent
    * @accessor
    */
-  parent: computed("_parentSlug", "navigation.items.@each.slug", function() {
-    return this.navigation.items.find(item => item.slug === this._parentSlug);
+  parent: computed("_parentSlug", "navigation.items.@each.slug", function () {
+    return this.navigation.items.find((item) => item.slug === this._parentSlug);
   }),
 
   /**
@@ -42,8 +42,10 @@ export const NavigationItem = Base.extend({
    * @property {NavigationItem[]} children
    * @accessor
    */
-  children: computed("slug", "navigation.items.@each._parentSlug", function() {
-    return this.navigation.items.filter(item => item._parentSlug === this.slug);
+  children: computed("slug", "navigation.items.@each._parentSlug", function () {
+    return this.navigation.items.filter(
+      (item) => item._parentSlug === this.slug
+    );
   }),
 
   /**
@@ -59,7 +61,7 @@ export const NavigationItem = Base.extend({
    * @property {String} label
    * @accessor
    */
-  label: computed("fieldset.{field.question.label,form.name}", function() {
+  label: computed("fieldset.{field.question.label,form.name}", function () {
     return this.getWithDefault(
       "fieldset.field.question.label",
       this.get("fieldset.form.name")
@@ -74,7 +76,7 @@ export const NavigationItem = Base.extend({
    */
   slug: computed(
     "fieldset.{field.question.subForm.slug,form.slug}",
-    function() {
+    function () {
       return this.getWithDefault(
         "fieldset.field.question.subForm.slug",
         this.get("fieldset.form.slug")
@@ -97,19 +99,22 @@ export const NavigationItem = Base.extend({
    *
    * @property {Boolean} active
    */
-  active: computed("router.currentRoute.queryParams.displayedForm", function() {
-    return (
-      this.slug === this.get("router.currentRoute.queryParams.displayedForm")
-    );
-  }),
+  active: computed(
+    "router.currentRoute.queryParams.displayedForm",
+    function () {
+      return (
+        this.slug === this.get("router.currentRoute.queryParams.displayedForm")
+      );
+    }
+  ),
 
   /**
    * Whether the item has active children
    *
    * @property {Boolean} childrenActive
    */
-  childrenActive: computed("children.@each.active", function() {
-    return this.children.some(child => child.active);
+  childrenActive: computed("children.@each.active", function () {
+    return this.children.some((child) => child.active);
   }),
 
   /**
@@ -121,11 +126,11 @@ export const NavigationItem = Base.extend({
   navigable: computed(
     "fieldset.field.hidden",
     "fieldset.fields.@each.{hidden,questionType}",
-    function() {
+    function () {
       return (
         (this.fieldset.field === undefined || !this.fieldset.field.hidden) &&
         this.fieldset.fields.some(
-          field => field.questionType !== "FormQuestion" && !field.hidden
+          (field) => field.questionType !== "FormQuestion" && !field.hidden
         )
       );
     }
@@ -137,8 +142,8 @@ export const NavigationItem = Base.extend({
    *
    * @property {Boolean} visible
    */
-  visible: computed("navigable", "children.@each.visible", function() {
-    return this.navigable || this.children.some(item => item.visible);
+  visible: computed("navigable", "children.@each.visible", function () {
+    return this.navigable || this.children.some((item) => item.visible);
   }),
 
   /**
@@ -154,23 +159,23 @@ export const NavigationItem = Base.extend({
    * @property {String} state
    * @accessor
    */
-  state: computed("fieldsetState", "children.@each.fieldsetState", function() {
+  state: computed("fieldsetState", "children.@each.fieldsetState", function () {
     const states = [
       this.fieldsetState,
       ...this.children
-        .filter(i => i.visible)
-        .map(childItem => childItem.fieldsetState)
+        .filter((i) => i.visible)
+        .map((childItem) => childItem.fieldsetState),
     ].filter(Boolean);
 
-    if (states.every(state => state === "untouched")) {
+    if (states.every((state) => state === "untouched")) {
       return "untouched";
     }
 
-    if (states.some(state => state === "invalid")) {
+    if (states.some((state) => state === "invalid")) {
       return "invalid";
     }
 
-    return states.every(state => state === "valid") ? "valid" : "unfinished";
+    return states.every((state) => state === "valid") ? "valid" : "unfinished";
   }),
 
   /**
@@ -188,32 +193,34 @@ export const NavigationItem = Base.extend({
    */
   fieldsetState: computed(
     "fieldset.fields.@each.{isNew,isValid,hidden,optional}",
-    function() {
+    function () {
       const visibleFields = this.fieldset.fields.filter(
-        f => f.questionType !== "FormQuestion" && !f.hidden
+        (f) => f.questionType !== "FormQuestion" && !f.hidden
       );
 
       if (!visibleFields.length) {
         return null;
       }
 
-      if (visibleFields.every(f => f.isNew)) {
+      if (visibleFields.every((f) => f.isNew)) {
         return "untouched";
       }
 
-      if (visibleFields.some(f => !f.isValid && !f.isNew)) {
+      if (visibleFields.some((f) => !f.isValid && !f.isNew)) {
         return "invalid";
       }
 
       if (
-        visibleFields.filter(f => !f.optional).every(f => f.isValid && !f.isNew)
+        visibleFields
+          .filter((f) => !f.optional)
+          .every((f) => f.isValid && !f.isNew)
       ) {
         return "valid";
       }
 
       return "unfinished";
     }
-  )
+  ),
 });
 
 /**
@@ -230,7 +237,7 @@ export const Navigation = Base.extend({
 
     defineProperty(this, "pk", {
       writable: false,
-      value: `Navigation:${this.document.pk}`
+      value: `Navigation:${this.document.pk}`,
     });
 
     this._super(...arguments);
@@ -245,11 +252,11 @@ export const Navigation = Base.extend({
 
     const items = this.items;
     this.set("items", []);
-    items.forEach(item => item.destroy());
+    items.forEach((item) => item.destroy());
   },
 
   _createItems() {
-    const items = this.document.fieldsets.map(fieldset => {
+    const items = this.document.fieldsets.map((fieldset) => {
       const pk = `NavigationItem:${fieldset.pk}`;
 
       return (
@@ -284,8 +291,8 @@ export const Navigation = Base.extend({
    * @property {NavigationItem} currentItem
    * @accessor
    */
-  currentItem: computed("items.@each.active", function() {
-    return this.items.find(item => item.active);
+  currentItem: computed("items.@each.active", function () {
+    return this.items.find((item) => item.active);
   }),
 
   /**
@@ -294,12 +301,13 @@ export const Navigation = Base.extend({
    * @property {NavigationItem} nextItem
    * @accessor
    */
-  nextItem: computed("currentItem", "items.@each.navigable", function() {
-    if (!this.currentItem) return this.items.filter(item => item.navigable)[0];
+  nextItem: computed("currentItem", "items.@each.navigable", function () {
+    if (!this.currentItem)
+      return this.items.filter((item) => item.navigable)[0];
 
     const items = this.items
       .slice(this.items.indexOf(this.currentItem) + 1)
-      .filter(item => item.navigable);
+      .filter((item) => item.navigable);
 
     return items.length ? items[0] : null;
   }),
@@ -310,12 +318,12 @@ export const Navigation = Base.extend({
    * @property {NavigationItem} previousItem
    * @accessor
    */
-  previousItem: computed("currentItem", "items.@each.navigable", function() {
+  previousItem: computed("currentItem", "items.@each.navigable", function () {
     if (!this.currentItem) return null;
 
     const items = this.items
       .slice(0, this.items.indexOf(this.currentItem))
-      .filter(item => item.navigable);
+      .filter((item) => item.navigable);
 
     return items.length ? items[items.length - 1] : null;
   }),
@@ -326,7 +334,7 @@ export const Navigation = Base.extend({
    *
    * @method preventNonNavigableItem
    */
-  preventNonNavigableItem: observer("currentItem", function() {
+  preventNonNavigableItem: observer("currentItem", function () {
     if (!this.get("nextItem.slug") || this.get("currentItem.navigable")) {
       return;
     }
@@ -345,9 +353,9 @@ export const Navigation = Base.extend({
     }
 
     this.router.replaceWith({
-      queryParams: { displayedForm: this.nextItem.slug }
+      queryParams: { displayedForm: this.nextItem.slug },
     });
-  }
+  },
 });
 
 export default Navigation;

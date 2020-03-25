@@ -27,9 +27,9 @@ export default Factory.extend({
     if (!file.metadata.object_name) {
       file.update({
         metadata: {
-          object_name: faker.helpers.slugify()
-        }
+          object_name: faker.helpers.slugify(),
+        },
       });
     }
-  }
+  },
 });

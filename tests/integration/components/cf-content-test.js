@@ -4,39 +4,39 @@ import { render, fillIn, click } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 
-module("Integration | Component | cf-content", function(hooks) {
+module("Integration | Component | cf-content", function (hooks) {
   setupRenderingTest(hooks);
   setupMirage(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     const form = this.server.create("form");
 
     const questions = [
       this.server.create("question", {
         formIds: [form.id],
         type: "TEXT",
-        meta: { widgetOverride: "dummy-one" }
+        meta: { widgetOverride: "dummy-one" },
       }),
       this.server.create("question", {
         formIds: [form.id],
-        type: "TEXTAREA"
+        type: "TEXTAREA",
       }),
       this.server.create("question", {
         formIds: [form.id],
-        type: "INTEGER"
+        type: "INTEGER",
       }),
       this.server.create("question", {
         formIds: [form.id],
-        type: "FLOAT"
+        type: "FLOAT",
       }),
       this.server.create("question", {
         formIds: [form.id],
-        type: "CHOICE"
+        type: "CHOICE",
       }),
       this.server.create("question", {
         formIds: [form.id],
-        type: "MULTIPLE_CHOICE"
-      })
+        type: "MULTIPLE_CHOICE",
+      }),
       // The following question is commented-out as we currently have a
       // problem with GraphQL/Mirage and I didn't want to skip everything.
       /*,
@@ -49,10 +49,10 @@ module("Integration | Component | cf-content", function(hooks) {
 
     const document = this.server.create("document", { formId: form.id });
 
-    questions.forEach(question => {
+    questions.forEach((question) => {
       this.server.create("answer", {
         questionId: question.id,
-        documentId: document.id
+        documentId: document.id,
       });
     });
 
@@ -60,16 +60,16 @@ module("Integration | Component | cf-content", function(hooks) {
     this.set("document", document);
   });
 
-  test("it renders", async function(assert) {
+  test("it renders", async function (assert) {
     await render(hbs`{{cf-content documentId=document.id}}`);
 
     assert.dom("form").exists();
 
-    this.questions.forEach(question => {
+    this.questions.forEach((question) => {
       const id = `Document:${this.document.id}:Question:${question.slug}`;
       const answer = this.server.db.answers.findBy({
         questionId: question.id,
-        documentId: this.document.id
+        documentId: this.document.id,
       });
 
       if (question.type === "CHOICE") {
@@ -78,7 +78,7 @@ module("Integration | Component | cf-content", function(hooks) {
       } else if (question.type === "MULTIPLE_CHOICE") {
         // checkbox options have their option slug postfixed to the name in
         // order to support IE11
-        answer.value.forEach(v => {
+        answer.value.forEach((v) => {
           assert.dom(`[name="${id}:Option:${v}"][value="${v}"]`).isChecked();
         });
       } else {
@@ -87,10 +87,10 @@ module("Integration | Component | cf-content", function(hooks) {
     });
   });
 
-  test("it renders in disabled mode", async function(assert) {
+  test("it renders in disabled mode", async function (assert) {
     await render(hbs`{{cf-content disabled=true documentId=document.id}}`);
 
-    this.questions.forEach(question => {
+    this.questions.forEach((question) => {
       const id = `Document:${this.document.id}:Question:${question.slug}`;
       const options = this.server.db.options.filter(({ questionIds }) =>
         questionIds.includes(question.id)
@@ -98,13 +98,13 @@ module("Integration | Component | cf-content", function(hooks) {
 
       if (question.type === "CHOICE") {
         options
-          .filter(option => !option.isArchived)
+          .filter((option) => !option.isArchived)
           .forEach(({ slug }) => {
             assert.dom(`[name="${id}"][value="${slug}"]`).isDisabled();
           });
       } else if (question.type === "MULTIPLE_CHOICE") {
         options
-          .filter(option => !option.isArchived)
+          .filter((option) => !option.isArchived)
           .forEach(({ slug }) => {
             assert
               .dom(`[name="${id}:Option:${slug}"][value="${slug}"]`)
@@ -117,44 +117,44 @@ module("Integration | Component | cf-content", function(hooks) {
     });
   });
 
-  test("it can save fields", async function(assert) {
+  test("it can save fields", async function (assert) {
     const form = this.server.create("form");
 
     this.server.create("question", {
       formIds: [form.id],
       slug: "text-question",
       type: "TEXT",
-      maxLength: null
+      maxLength: null,
     });
     this.server.create("question", {
       formIds: [form.id],
       slug: "textarea-question",
       type: "TEXTAREA",
-      maxLength: null
+      maxLength: null,
     });
     this.server.create("question", {
       formIds: [form.id],
       slug: "integer-question",
       type: "INTEGER",
       minValue: null,
-      maxValue: null
+      maxValue: null,
     });
     this.server.create("question", {
       formIds: [form.id],
       slug: "float-question",
       type: "FLOAT",
       minValue: null,
-      maxValue: null
+      maxValue: null,
     });
     const radioQuestion = this.server.create("question", {
       formIds: [form.id],
       slug: "radio-question",
-      type: "CHOICE"
+      type: "CHOICE",
     });
     const checkboxQuestion = this.server.create("question", {
       formIds: [form.id],
       slug: "checkbox-question",
-      type: "MULTIPLE_CHOICE"
+      type: "MULTIPLE_CHOICE",
     });
     // The following questions is commented-out as we currently have a
     // problem with GraphQL/Mirage and I didn't want to skip everything.
@@ -232,33 +232,33 @@ module("Integration | Component | cf-content", function(hooks) {
         .find(document.id)
         .answers.models.map(({ value, question: { slug } }) => ({
           value,
-          slug
+          slug,
         })),
       [
         {
           slug: "text-question",
-          value: "Text"
+          value: "Text",
         },
         {
           slug: "textarea-question",
-          value: "Textarea"
+          value: "Textarea",
         },
         {
           slug: "integer-question",
-          value: 1
+          value: 1,
         },
         {
           slug: "float-question",
-          value: 1.1
+          value: 1.1,
         },
         {
           slug: "radio-question",
-          value: "radio-question-option-2"
+          value: "radio-question-option-2",
         },
         {
           slug: "checkbox-question",
-          value: ["checkbox-question-option-1", "checkbox-question-option-2"]
-        }
+          value: ["checkbox-question-option-1", "checkbox-question-option-2"],
+        },
         // The following answers are commented-out as we currently have a
         // problem with GraphQL/Mirage and I didn't want to skip everything.
         /*,
@@ -275,7 +275,7 @@ module("Integration | Component | cf-content", function(hooks) {
     );
   });
 
-  test("it allows for component overrides", async function(assert) {
+  test("it allows for component overrides", async function (assert) {
     const options = this.owner.lookup("service:calumaOptions");
     options.registerComponentOverride({ component: "dummy-one" });
 

@@ -8,5 +8,5 @@ export default Factory.extend({
   createdAt: faker.date.past(),
   deadline: faker.date.future(),
   status: faker.random.arrayElement(STATUS),
-  addressedGroups: () => ["group1", "group2"]
+  addressedGroups: () => ["group1", "group2"],
 });

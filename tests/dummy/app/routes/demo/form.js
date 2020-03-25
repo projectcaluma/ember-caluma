@@ -19,7 +19,7 @@ export default Route.extend({
               }
             }
           }
-        `
+        `,
       },
       "allDocuments.edges"
     );
@@ -38,14 +38,14 @@ export default Route.extend({
           `,
           variables: {
             input: {
-              form: "formular-1"
-            }
-          }
+              form: "formular-1",
+            },
+          },
         },
         "saveDocument.document.id"
       );
     }
 
     return documents[0].node.id;
-  }
+  },
 });

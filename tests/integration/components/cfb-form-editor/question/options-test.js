@@ -3,20 +3,20 @@ import { setupRenderingTest } from "ember-qunit";
 import { render, click, fillIn } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 
-module("Integration | Component | cfb-form-editor/question/options", function(
+module("Integration | Component | cfb-form-editor/question/options", function (
   hooks
 ) {
   setupRenderingTest(hooks);
 
-  test("it renders", async function(assert) {
+  test("it renders", async function (assert) {
     assert.expect(3);
 
     this.set("model", { slug: "prefix" });
     this.set("value", {
       edges: [
         { node: { slug: "prefix-option-1", label: "Option 1" } },
-        { node: { slug: "prefix-option-2", label: "Option 2" } }
-      ]
+        { node: { slug: "prefix-option-2", label: "Option 2" } },
+      ],
     });
 
     await render(
@@ -29,12 +29,12 @@ module("Integration | Component | cfb-form-editor/question/options", function(
     assert.dom("input[name=option-1-slug]").hasValue("option-1"); // This must trim the prefix!
   });
 
-  test("it renders an empty row per default", async function(assert) {
+  test("it renders an empty row per default", async function (assert) {
     assert.expect(4);
 
     this.set("model", { slug: "prefix" });
     this.set("value", {
-      edges: []
+      edges: [],
     });
 
     await render(
@@ -47,12 +47,12 @@ module("Integration | Component | cfb-form-editor/question/options", function(
     assert.dom("[data-test-delete-row]").doesNotExist();
   });
 
-  test("it can add row", async function(assert) {
+  test("it can add row", async function (assert) {
     assert.expect(1);
 
     this.set("model", { slug: "prefix" });
     this.set("value", {
-      edges: []
+      edges: [],
     });
     this.set("noop", () => {});
 
@@ -65,15 +65,15 @@ module("Integration | Component | cfb-form-editor/question/options", function(
     assert.dom("li").exists({ count: 3 });
   });
 
-  test("it can delete unsaved row", async function(assert) {
+  test("it can delete unsaved row", async function (assert) {
     assert.expect(3);
 
     this.set("model", { slug: "prefix" });
     this.set("value", {
       edges: [
         { node: { slug: "prefix-option-1", label: "Option 1" } },
-        { node: { slug: "prefix-option-2", label: "Option 2" } }
-      ]
+        { node: { slug: "prefix-option-2", label: "Option 2" } },
+      ],
     });
     this.set("noop", () => {});
 
@@ -90,12 +90,12 @@ module("Integration | Component | cfb-form-editor/question/options", function(
     assert.dom("[data-test-row=option-3]").doesNotExist();
   });
 
-  test("it can update", async function(assert) {
+  test("it can update", async function (assert) {
     assert.expect(4);
 
     this.set("model", { slug: "prefix" });
     this.set("value", {
-      edges: [{ node: { slug: "prefix-option-1", label: "Option 1" } }]
+      edges: [{ node: { slug: "prefix-option-1", label: "Option 1" } }],
     });
 
     this.set("update", () => {});
@@ -117,7 +117,7 @@ module("Integration | Component | cfb-form-editor/question/options", function(
 
     assert.dom("input[name=option-2-slug]").hasValue("option-2");
 
-    this.set("update", value => {
+    this.set("update", (value) => {
       // empty rows will be omitted
       assert.deepEqual(value, {
         edges: [
@@ -125,17 +125,17 @@ module("Integration | Component | cfb-form-editor/question/options", function(
             node: {
               label: "Option #1",
               slug: "prefix-option-1",
-              isArchived: false
-            }
+              isArchived: false,
+            },
           },
           {
             node: {
               label: "Option 2",
               slug: "prefix-x-option-2",
-              isArchived: false
-            }
-          }
-        ]
+              isArchived: false,
+            },
+          },
+        ],
       });
     });
     this.set("setDirty", () => assert.ok(true));
@@ -143,15 +143,15 @@ module("Integration | Component | cfb-form-editor/question/options", function(
     await fillIn("input[name=option-2-slug]", "x-option-2");
   });
 
-  test("it can archive/restore options", async function(assert) {
+  test("it can archive/restore options", async function (assert) {
     assert.expect(3);
 
     this.set("model", { slug: "prefix" });
     this.set("value", {
       edges: [
         { node: { slug: "prefix-option-1", label: "Option 1" } },
-        { node: { slug: "prefix-option-2", label: "Option 2" } }
-      ]
+        { node: { slug: "prefix-option-2", label: "Option 2" } },
+      ],
     });
     this.set("noop", () => {});
 

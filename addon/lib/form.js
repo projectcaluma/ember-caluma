@@ -16,11 +16,11 @@ export default Base.extend({
 
     defineProperty(this, "pk", {
       writable: false,
-      value: `Form:${this.raw.slug}`
+      value: `Form:${this.raw.slug}`,
     });
 
     this._super(...arguments);
 
     this.setProperties(this.raw);
-  }
+  },
 });

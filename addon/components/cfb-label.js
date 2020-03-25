@@ -3,5 +3,5 @@ import layout from "../templates/components/cfb-label";
 
 export default LabelComponent.extend({
   layout,
-  classNames: ["uk-flex", "uk-flex-between"]
+  classNames: ["uk-flex", "uk-flex-between"],
 });

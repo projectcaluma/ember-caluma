@@ -4,11 +4,11 @@ import { render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupIntl } from "ember-intl/test-support";
 
-module("Integration | Component | cfb-label", function(hooks) {
+module("Integration | Component | cfb-label", function (hooks) {
   setupRenderingTest(hooks);
   setupIntl(hooks);
 
-  test("it renders", async function(assert) {
+  test("it renders", async function (assert) {
     assert.expect(3);
 
     this.set("required", true);

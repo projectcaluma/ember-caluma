@@ -49,7 +49,7 @@ export default Component.extend({
 
   questions: computed(
     "data.lastSuccessful.value.{[],firstObject.questions.edges.[]}",
-    function() {
+    function () {
       return this.get("mode") === "add"
         ? this.get("data.lastSuccessful.value")
         : this.get(
@@ -58,7 +58,7 @@ export default Component.extend({
     }
   ),
 
-  data: task(function*() {
+  data: task(function* () {
     const mode = this.get("mode");
     const search = mode !== "reorder" ? this.get("search") : "";
 
@@ -72,9 +72,9 @@ export default Component.extend({
           query: searchQuestionQuery,
           variables: {
             search,
-            excludeForms: [this.get("form")]
+            excludeForms: [this.get("form")],
           },
-          fetchPolicy: "cache-and-network"
+          fetchPolicy: "cache-and-network",
         },
         "allQuestions.edges"
       );
@@ -85,15 +85,15 @@ export default Component.extend({
         query: searchFormQuestionQuery,
         variables: {
           search,
-          slug: this.get("form")
+          slug: this.get("form"),
         },
-        fetchPolicy: "cache-and-network"
+        fetchPolicy: "cache-and-network",
       },
       "allForms.edges"
     );
   }).restartable(),
 
-  reorderQuestions: task(function*(slugs) {
+  reorderQuestions: task(function* (slugs) {
     try {
       yield this.get("apollo").mutate({
         mutation: reorderFormQuestionsMutation,
@@ -101,10 +101,10 @@ export default Component.extend({
           input: {
             form: this.get("form"),
             questions: slugs,
-            clientMutationId: v4()
+            clientMutationId: v4(),
           },
-          search: ""
-        }
+          search: "",
+        },
       });
 
       this.get("notification").success(
@@ -121,7 +121,7 @@ export default Component.extend({
     }
   }).restartable(),
 
-  addQuestion: task(function*(question) {
+  addQuestion: task(function* (question) {
     try {
       yield this.get("apollo").mutate({
         mutation: addFormQuestionMutation,
@@ -129,10 +129,10 @@ export default Component.extend({
           input: {
             question: question.slug,
             form: this.get("form"),
-            clientMutationId: v4()
+            clientMutationId: v4(),
           },
-          search: this.get("search")
-        }
+          search: this.get("search"),
+        },
       });
 
       this.get("notification").success(
@@ -153,7 +153,7 @@ export default Component.extend({
     }
   }).enqueue(),
 
-  removeQuestion: task(function*(question) {
+  removeQuestion: task(function* (question) {
     try {
       yield this.get("apollo").mutate({
         mutation: removeFormQuestionMutation,
@@ -161,10 +161,10 @@ export default Component.extend({
           input: {
             question: question.slug,
             form: this.get("form"),
-            clientMutationId: v4()
+            clientMutationId: v4(),
           },
-          search: this.get("search")
-        }
+          search: this.get("search"),
+        },
       });
 
       this.get("notification").success(
@@ -187,7 +187,7 @@ export default Component.extend({
     let children = [...sortable.$el.children];
 
     this.get("reorderQuestions").perform(
-      children.map(child => this.get(`_children.${child.id}`))
+      children.map((child) => this.get(`_children.${child.id}`))
     );
   },
 
@@ -204,6 +204,6 @@ export default Component.extend({
       this.set("mode", mode);
 
       this.get("data").perform();
-    }
-  }
+    },
+  },
 });

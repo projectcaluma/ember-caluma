@@ -44,5 +44,5 @@ export default Helper.extend({
     }
 
     return defaultWidget;
-  }
+  },
 });

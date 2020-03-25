@@ -14,7 +14,7 @@ module.exports = {
   launch_in_ci: [
     "BS_Chrome_Current",
     "BS_Firefox_Current",
-    "BS_Safari_Current"
+    "BS_Safari_Current",
     // TODO: fix Edge and IE issues
     // "BS_MS_Edge",
     // "BS_IE_11"
@@ -36,9 +36,9 @@ module.exports = {
         "1200",
         "--u",
         "<url>",
-        ...project
+        ...project,
       ],
-      protocol: "browser"
+      protocol: "browser",
     },
     BS_Firefox_Current: {
       exe: "node_modules/.bin/browserstack-launch",
@@ -55,9 +55,9 @@ module.exports = {
         "1200",
         "--u",
         "<url>",
-        ...project
+        ...project,
       ],
-      protocol: "browser"
+      protocol: "browser",
     },
     BS_Safari_Current: {
       exe: "node_modules/.bin/browserstack-launch",
@@ -74,9 +74,9 @@ module.exports = {
         "1200",
         "--u",
         "<url>",
-        ...project
+        ...project,
       ],
-      protocol: "browser"
+      protocol: "browser",
     },
     BS_MS_Edge: {
       exe: "node_modules/.bin/browserstack-launch",
@@ -93,9 +93,9 @@ module.exports = {
         "1200",
         "--u",
         "<url>",
-        ...project
+        ...project,
       ],
-      protocol: "browser"
+      protocol: "browser",
     },
     BS_IE_11: {
       exe: "node_modules/.bin/browserstack-launch",
@@ -112,9 +112,9 @@ module.exports = {
         "1500",
         "--u",
         "<url>",
-        ...project
+        ...project,
       ],
-      protocol: "browser"
-    }
-  }
+      protocol: "browser",
+    },
+  },
 };

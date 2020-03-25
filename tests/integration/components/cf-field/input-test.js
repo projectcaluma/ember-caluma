@@ -3,10 +3,10 @@ import { setupRenderingTest } from "ember-qunit";
 import { render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 
-module("Integration | Component | cf-field/input", function(hooks) {
+module("Integration | Component | cf-field/input", function (hooks) {
   setupRenderingTest(hooks);
 
-  test("it renders a text field", async function(assert) {
+  test("it renders a text field", async function (assert) {
     assert.expect(2);
 
     await render(hbs`
@@ -26,7 +26,7 @@ module("Integration | Component | cf-field/input", function(hooks) {
     assert.dom("input[type=text]").hasValue("Test");
   });
 
-  test("it renders a textarea field", async function(assert) {
+  test("it renders a textarea field", async function (assert) {
     assert.expect(2);
 
     await render(hbs`
@@ -46,7 +46,7 @@ module("Integration | Component | cf-field/input", function(hooks) {
     assert.dom("textarea").hasValue("Test");
   });
 
-  test("it renders an integer field", async function(assert) {
+  test("it renders an integer field", async function (assert) {
     assert.expect(2);
 
     await render(hbs`
@@ -66,7 +66,7 @@ module("Integration | Component | cf-field/input", function(hooks) {
     assert.dom("input[type=number]").hasValue("5");
   });
 
-  test("it renders a float field", async function(assert) {
+  test("it renders a float field", async function (assert) {
     assert.expect(2);
 
     await render(hbs`
@@ -86,7 +86,7 @@ module("Integration | Component | cf-field/input", function(hooks) {
     assert.dom("input[type=number]").hasValue("0.55");
   });
 
-  test("it renders a radio field", async function(assert) {
+  test("it renders a radio field", async function (assert) {
     assert.expect(2);
 
     this.set("noop", () => {});
@@ -112,7 +112,7 @@ module("Integration | Component | cf-field/input", function(hooks) {
     assert.dom("input[type=radio][value='option-1']").isChecked();
   });
 
-  test("it renders a checkbox field", async function(assert) {
+  test("it renders a checkbox field", async function (assert) {
     assert.expect(2);
 
     await render(hbs`
@@ -135,7 +135,7 @@ module("Integration | Component | cf-field/input", function(hooks) {
     assert.dom("input[type=checkbox][value='option-1']").isChecked();
   });
 
-  test("it renders disabled fields", async function(assert) {
+  test("it renders disabled fields", async function (assert) {
     assert.expect(2);
 
     await render(hbs`

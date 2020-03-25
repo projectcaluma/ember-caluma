@@ -18,6 +18,6 @@ export default Controller.extend({
       ) {
         this.transitionToRoute("edit.general");
       }
-    }
-  }
+    },
+  },
 });

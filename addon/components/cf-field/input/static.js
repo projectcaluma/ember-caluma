@@ -8,5 +8,5 @@ import layout from "../../../templates/components/cf-field/input/static";
  * @argument {Field} field The field for this input type
  */
 export default Component.extend({
-  layout
+  layout,
 });

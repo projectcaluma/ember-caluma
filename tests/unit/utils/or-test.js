@@ -27,22 +27,22 @@ export function rejectAfter(ms, errorMessage) {
   });
 }
 
-module("Unit | Utility | or", function() {
-  module("sync validators", function() {
-    test("should work with an argument list", function(assert) {
+module("Unit | Utility | or", function () {
+  module("sync validators", function () {
+    test("should work with an argument list", function (assert) {
       const testCases = [
         {
           validators: [() => true, () => "this is an error message"],
-          expected: true
+          expected: true,
         },
         {
           validators: [() => true, () => false],
-          expected: true
+          expected: true,
         },
         {
           validators: [() => true, () => true],
-          expected: true
-        }
+          expected: true,
+        },
       ];
 
       for (const { validators, expected } of testCases) {
@@ -51,7 +51,7 @@ module("Unit | Utility | or", function() {
       }
     });
 
-    test("should short-circuit", function(assert) {
+    test("should short-circuit", function (assert) {
       const didExecute = [false, false, false];
       const validators = [
         () => {
@@ -61,42 +61,42 @@ module("Unit | Utility | or", function() {
         () => true,
         () => {
           throw new Error("This validator should not be reached.");
-        }
+        },
       ];
       const validationFn = or(...validators);
       validationFn();
       assert.deepEqual(didExecute, [true, false, false]);
     });
 
-    test("should return the last error if all validators return errors", function(assert) {
+    test("should return the last error if all validators return errors", function (assert) {
       const validators = [
         () => "first error",
         () => "second error",
-        () => "third error"
+        () => "third error",
       ];
 
       const validationFn = or(...validators);
       assert.equal(validationFn(), "third error");
     });
 
-    test("should work with arbitrary nesting", function(assert) {
+    test("should work with arbitrary nesting", function (assert) {
       {
         const validators1 = [
           () => "first error",
           () => "second error",
-          () => "third error"
+          () => "third error",
         ];
 
         const validators2 = [
           () => "fourth error",
           () => "fifth error",
-          () => "sixth error"
+          () => "sixth error",
         ];
 
         const validators3 = [
           () => "seventh error",
           () => "eighth error",
-          () => "ninth error"
+          () => "ninth error",
         ];
 
         const validationFn = or(
@@ -111,19 +111,19 @@ module("Unit | Utility | or", function() {
         const validators1 = [
           () => "first error",
           () => "second error",
-          () => "third error"
+          () => "third error",
         ];
 
         const validators2 = [
           () => "fourth error",
           () => true, // derp
-          () => "sixth error"
+          () => "sixth error",
         ];
 
         const validators3 = [
           () => "seventh error",
           () => "eighth error",
-          () => "ninth error"
+          () => "ninth error",
         ];
 
         const validationFn = or(
@@ -136,25 +136,25 @@ module("Unit | Utility | or", function() {
     });
   });
 
-  module("async validators", function() {
-    test("should work with an argument list", async function(assert) {
+  module("async validators", function () {
+    test("should work with an argument list", async function (assert) {
       const testCases = [
         {
           validators: [
             () => rejectAfter(1, "first"),
             () => rejectAfter(2, "second"),
-            () => rejectAfter(3, "third")
+            () => rejectAfter(3, "third"),
           ],
-          expected: "third"
+          expected: "third",
         },
         {
           validators: [() => rejectAfter(1), () => true, () => rejectAfter(3)],
-          expected: true
+          expected: true,
         },
         {
           validators: [() => true, () => resolveAfter(3, "rip")],
-          expected: true
-        }
+          expected: true,
+        },
       ];
 
       for (const { validators, expected } of testCases) {
@@ -164,7 +164,7 @@ module("Unit | Utility | or", function() {
       }
     });
 
-    test("should short-circuit", async function(assert) {
+    test("should short-circuit", async function (assert) {
       const didExecute = [false, false, false];
       const validators = [
         () =>
@@ -176,42 +176,42 @@ module("Unit | Utility | or", function() {
         () =>
           rejectAfter(1, "third").then(() => {
             throw new Error("This validator should not be reached.");
-          })
+          }),
       ];
       const validationFn = or(...validators);
       await validationFn();
       assert.deepEqual(didExecute, [true, false, false]);
     });
 
-    test("should return the last error if all validators return errors", async function(assert) {
+    test("should return the last error if all validators return errors", async function (assert) {
       const validators = [
         () => resolve("first error"),
         () => resolve("second error"),
-        () => resolve("third error")
+        () => resolve("third error"),
       ];
 
       const validationFn = or(...validators);
       assert.deepEqual(await validationFn(), "third error");
     });
 
-    test("should work with arbitrary nesting", async function(assert) {
+    test("should work with arbitrary nesting", async function (assert) {
       {
         const validators1 = [
           () => resolve("first error"),
           () => resolve("second error"),
-          () => resolve("third error")
+          () => resolve("third error"),
         ];
 
         const validators2 = [
           () => resolve("fourth error"),
           () => resolve("fifth error"),
-          () => resolve("sixth error")
+          () => resolve("sixth error"),
         ];
 
         const validators3 = [
           () => resolve("seventh error"),
           () => resolve("eighth error"),
-          () => resolve("ninth error")
+          () => resolve("ninth error"),
         ];
 
         const validationFn = or(
@@ -226,19 +226,19 @@ module("Unit | Utility | or", function() {
         const validators1 = [
           () => resolve("first error"),
           () => resolve("second error"),
-          () => resolve("third error")
+          () => resolve("third error"),
         ];
 
         const validators2 = [
           () => resolve("fourth error"),
           () => resolve(true), // derp
-          () => resolve("sixth error")
+          () => resolve("sixth error"),
         ];
 
         const validators3 = [
           () => resolve("seventh error"),
           () => resolve("eighth error"),
-          () => resolve("ninth error")
+          () => resolve("ninth error"),
         ];
 
         const validationFn = or(
@@ -250,7 +250,7 @@ module("Unit | Utility | or", function() {
       }
     });
 
-    test("should pass arguments to validators", function(assert) {
+    test("should pass arguments to validators", function (assert) {
       {
         const validators = [
           (key, newValue, oldValue, changes, object) => [
@@ -258,8 +258,8 @@ module("Unit | Utility | or", function() {
             newValue,
             oldValue,
             changes,
-            object
-          ]
+            object,
+          ],
         ];
 
         const validationFn = or(...validators);
@@ -274,8 +274,8 @@ module("Unit | Utility | or", function() {
             newValue,
             oldValue,
             changes,
-            object
-          ]
+            object,
+          ],
         ];
 
         const validationFn = or(...validators);

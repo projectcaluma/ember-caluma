@@ -4,25 +4,25 @@ import { setupApplicationTest } from "ember-qunit";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
 
-module("Acceptance | navigation", function(hooks) {
+module("Acceptance | navigation", function (hooks) {
   setupApplicationTest(hooks);
   setupMirage(hooks);
   setupIntl(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     this.server.create("form", {
       title: "Form 1",
       slug: "form-1",
       questions: [
         this.server.create("question", {
           label: "Question #1",
-          slug: "question-1"
-        })
-      ]
+          slug: "question-1",
+        }),
+      ],
     });
   });
 
-  test("can navigate", async function(assert) {
+  test("can navigate", async function (assert) {
     assert.expect(14);
 
     await visit("/demo/form-builder/new");

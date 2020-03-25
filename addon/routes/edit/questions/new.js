@@ -10,5 +10,5 @@ export default Route.extend(NavigationRouteMixin, {
 
   model() {
     return this.modelFor("edit");
-  }
+  },
 });

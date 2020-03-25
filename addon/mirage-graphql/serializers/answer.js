@@ -7,7 +7,7 @@ export default class extends BaseSerializer {
 
     return {
       ...serialized,
-      __typename: `${classify(serialized.type.toLowerCase())}Answer`
+      __typename: `${classify(serialized.type.toLowerCase())}Answer`,
     };
   }
 }

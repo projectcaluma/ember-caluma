@@ -29,7 +29,7 @@ export default function or(...validators) {
             .then(handleResult);
         }
 
-        return promise.catch(err => err);
+        return promise.catch((err) => err);
       }
 
       if (isTrue(validation)) return true;

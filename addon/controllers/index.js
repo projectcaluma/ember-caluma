@@ -7,6 +7,6 @@ export default Controller.extend({
     },
     editForm({ slug }) {
       this.transitionToRoute("edit", slug);
-    }
-  }
+    },
+  },
 });

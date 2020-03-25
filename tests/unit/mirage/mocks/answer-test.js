@@ -3,70 +3,70 @@ import { setupTest } from "ember-qunit";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import gql from "graphql-tag";
 
-module("Unit | Mirage GraphQL Mock | answer", function(hooks) {
+module("Unit | Mirage GraphQL Mock | answer", function (hooks) {
   setupTest(hooks);
   setupMirage(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     const { id: formId } = this.server.create("form", { slug: "test-form" });
     const { id: documentId } = this.server.create("document", {
-      formId: formId
+      formId: formId,
     });
 
     const textQuestion = this.server.create("question", {
       type: "TEXT",
-      formIds: [formId]
+      formIds: [formId],
     });
     const textareaQuestion = this.server.create("question", {
       type: "TEXTAREA",
-      formIds: [formId]
+      formIds: [formId],
     });
     const integerQuestion = this.server.create("question", {
       type: "INTEGER",
-      formIds: [formId]
+      formIds: [formId],
     });
     const floatQuestion = this.server.create("question", {
       type: "FLOAT",
-      formIds: [formId]
+      formIds: [formId],
     });
     const multipleChoiceQuestion = this.server.create("question", {
       type: "MULTIPLE_CHOICE",
-      formIds: [formId]
+      formIds: [formId],
     });
     const choiceQuestion = this.server.create("question", {
       type: "CHOICE",
-      formIds: [formId]
+      formIds: [formId],
     });
 
     this.textAnswer = this.server.create("answer", {
       questionId: textQuestion.id,
-      documentId
+      documentId,
     });
     this.textareaAnswer = this.server.create("answer", {
       questionId: textareaQuestion.id,
-      documentId
+      documentId,
     });
     this.integerAnswer = this.server.create("answer", {
       questionId: integerQuestion.id,
-      documentId
+      documentId,
     });
     this.floatAnswer = this.server.create("answer", {
       questionId: floatQuestion.id,
-      documentId
+      documentId,
     });
     this.multipleChoiceAnswer = this.server.create("answer", {
       questionId: multipleChoiceQuestion.id,
-      documentId
+      documentId,
     });
     this.choiceAnswer = this.server.create("answer", {
       questionId: choiceQuestion.id,
-      documentId
+      documentId,
     });
 
     this.apollo = this.owner.lookup("service:apollo");
   });
 
-  test("can fetch answers (via documents)", async function(assert) {
+  test("can fetch answers (via documents)", async function (assert) {
     assert.expect(1);
 
     const res = await this.apollo.query({
@@ -98,7 +98,7 @@ module("Unit | Mirage GraphQL Mock | answer", function(hooks) {
             }
           }
         }
-      `
+      `,
     });
 
     assert.deepEqual(res.allDocuments.edges[0].node.answers.edges, [
@@ -106,54 +106,54 @@ module("Unit | Mirage GraphQL Mock | answer", function(hooks) {
         __typename: "AnswerEdge",
         node: {
           __typename: "StringAnswer",
-          stringValue: this.textAnswer.value
-        }
+          stringValue: this.textAnswer.value,
+        },
       },
       {
         __typename: "AnswerEdge",
         node: {
           __typename: "StringAnswer",
-          stringValue: this.textareaAnswer.value
-        }
+          stringValue: this.textareaAnswer.value,
+        },
       },
       {
         __typename: "AnswerEdge",
         node: {
           __typename: "IntegerAnswer",
-          integerValue: this.integerAnswer.value
-        }
+          integerValue: this.integerAnswer.value,
+        },
       },
       {
         __typename: "AnswerEdge",
         node: {
           __typename: "FloatAnswer",
-          floatValue: this.floatAnswer.value
-        }
+          floatValue: this.floatAnswer.value,
+        },
       },
       {
         __typename: "AnswerEdge",
         node: {
           __typename: "ListAnswer",
-          listValue: this.multipleChoiceAnswer.value
-        }
+          listValue: this.multipleChoiceAnswer.value,
+        },
       },
       {
         __typename: "AnswerEdge",
         node: {
           __typename: "StringAnswer",
-          stringValue: this.choiceAnswer.value
-        }
-      }
+          stringValue: this.choiceAnswer.value,
+        },
+      },
     ]);
   });
 
-  test("can save string answer", async function(assert) {
+  test("can save string answer", async function (assert) {
     assert.expect(1);
 
     const f = this.server.create("form");
     const q = this.server.create("question", {
       type: "TEXT",
-      formIds: [f.id]
+      formIds: [f.id],
     });
     const d = this.server.create("document", { formId: f.id });
 
@@ -173,7 +173,7 @@ module("Unit | Mirage GraphQL Mock | answer", function(hooks) {
             }
           }
         }
-      `
+      `,
     });
 
     assert.deepEqual(res.saveDocumentStringAnswer.answer, {
@@ -181,18 +181,18 @@ module("Unit | Mirage GraphQL Mock | answer", function(hooks) {
       __typename: "StringAnswer",
       question: {
         slug: q.slug,
-        __typename: "TextQuestion"
-      }
+        __typename: "TextQuestion",
+      },
     });
   });
 
-  test("can save integer answer", async function(assert) {
+  test("can save integer answer", async function (assert) {
     assert.expect(1);
 
     const f = this.server.create("form");
     const q = this.server.create("question", {
       type: "INTEGER",
-      formIds: [f.id]
+      formIds: [f.id],
     });
     const d = this.server.create("document", { formId: f.id });
 
@@ -212,7 +212,7 @@ module("Unit | Mirage GraphQL Mock | answer", function(hooks) {
             }
           }
         }
-      `
+      `,
     });
 
     assert.deepEqual(res.saveDocumentIntegerAnswer.answer, {
@@ -220,18 +220,18 @@ module("Unit | Mirage GraphQL Mock | answer", function(hooks) {
       __typename: "IntegerAnswer",
       question: {
         slug: q.slug,
-        __typename: "IntegerQuestion"
-      }
+        __typename: "IntegerQuestion",
+      },
     });
   });
 
-  test("can save float answer", async function(assert) {
+  test("can save float answer", async function (assert) {
     assert.expect(1);
 
     const f = this.server.create("form");
     const q = this.server.create("question", {
       type: "FLOAT",
-      formIds: [f.id]
+      formIds: [f.id],
     });
     const d = this.server.create("document", { formId: f.id });
 
@@ -251,7 +251,7 @@ module("Unit | Mirage GraphQL Mock | answer", function(hooks) {
             }
           }
         }
-      `
+      `,
     });
 
     assert.deepEqual(res.saveDocumentFloatAnswer.answer, {
@@ -259,18 +259,18 @@ module("Unit | Mirage GraphQL Mock | answer", function(hooks) {
       __typename: "FloatAnswer",
       question: {
         slug: q.slug,
-        __typename: "FloatQuestion"
-      }
+        __typename: "FloatQuestion",
+      },
     });
   });
 
-  test("can save list answer", async function(assert) {
+  test("can save list answer", async function (assert) {
     assert.expect(1);
 
     const f = this.server.create("form");
     const q = this.server.create("question", {
       type: "MULTIPLE_CHOICE",
-      formIds: [f.id]
+      formIds: [f.id],
     });
     const d = this.server.create("document", { formId: f.id });
 
@@ -281,7 +281,7 @@ module("Unit | Mirage GraphQL Mock | answer", function(hooks) {
             input: {
               document: "${d.id}",
               question: "${q.slug}",
-              value: [${q.options.models.map(o => `"${o.slug}"`).join(",")}]
+              value: [${q.options.models.map((o) => `"${o.slug}"`).join(",")}]
             }
           ) {
             answer {
@@ -294,7 +294,7 @@ module("Unit | Mirage GraphQL Mock | answer", function(hooks) {
             }
           }
         }
-      `
+      `,
     });
 
     assert.deepEqual(res.saveDocumentListAnswer.answer, {
@@ -302,24 +302,24 @@ module("Unit | Mirage GraphQL Mock | answer", function(hooks) {
       __typename: "ListAnswer",
       question: {
         slug: q.slug,
-        __typename: "MultipleChoiceQuestion"
-      }
+        __typename: "MultipleChoiceQuestion",
+      },
     });
   });
 
-  test("can update an answer", async function(assert) {
+  test("can update an answer", async function (assert) {
     assert.expect(1);
 
     const f = this.server.create("form");
     const q = this.server.create("question", {
       type: "MULTIPLE_CHOICE",
-      formIds: [f.id]
+      formIds: [f.id],
     });
     const d = this.server.create("document", { formId: f.id });
 
     this.server.create("answer", {
       questionId: q.id,
-      documentId: d.id
+      documentId: d.id,
     });
 
     const res = await this.apollo.mutate({
@@ -329,7 +329,7 @@ module("Unit | Mirage GraphQL Mock | answer", function(hooks) {
             input: {
               document: "${d.id}",
               question: "${q.slug}",
-              value: [${q.options.models.map(o => `"${o.slug}"`).join(",")}]
+              value: [${q.options.models.map((o) => `"${o.slug}"`).join(",")}]
             }
           ) {
             answer {
@@ -342,7 +342,7 @@ module("Unit | Mirage GraphQL Mock | answer", function(hooks) {
             }
           }
         }
-      `
+      `,
     });
 
     assert.deepEqual(res.saveDocumentListAnswer.answer, {
@@ -350,8 +350,8 @@ module("Unit | Mirage GraphQL Mock | answer", function(hooks) {
       __typename: "ListAnswer",
       question: {
         slug: q.slug,
-        __typename: "MultipleChoiceQuestion"
-      }
+        __typename: "MultipleChoiceQuestion",
+      },
     });
   });
 });

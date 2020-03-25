@@ -17,9 +17,9 @@ const Eng = Engine.extend({
       "router",
       "intl",
       "caluma-options",
-      "validator"
-    ]
-  }
+      "validator",
+    ],
+  },
 });
 
 loadInitializers(Eng, modulePrefix);

@@ -15,7 +15,7 @@ export default Component.extend({
     "field.pk:name",
     "field.pk:id",
     "field.answer.value:value",
-    "field.question.textareaMaxLength:maxlength"
+    "field.question.textareaMaxLength:maxlength",
   ],
 
   /**
@@ -28,5 +28,5 @@ export default Component.extend({
    */
   input({ target: { value } }) {
     this.onSave(value);
-  }
+  },
 });

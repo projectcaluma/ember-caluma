@@ -7,22 +7,22 @@ import graphqlError from "dummy/tests/helpers/graphql-error";
 import { selectChoose } from "ember-power-select/test-support";
 import { setupIntl } from "ember-intl/test-support";
 
-module("Integration | Component | cfb-form-editor/question", function(hooks) {
+module("Integration | Component | cfb-form-editor/question", function (hooks) {
   setupRenderingTest(hooks);
   setupMirage(hooks);
   setupIntl(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     this.server.create("format-validator", { slug: "email" });
   });
 
-  test("it renders", async function(assert) {
+  test("it renders", async function (assert) {
     assert.expect(3);
 
     this.server.create("question", {
       label: "Test Label",
       slug: "test-slug",
-      type: "TEXT"
+      type: "TEXT",
     });
 
     await render(hbs`{{cfb-form-editor/question slug='test-slug'}}`);
@@ -32,13 +32,13 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     assert.dom("[name=slug]").isDisabled();
   });
 
-  test("it validates", async function(assert) {
+  test("it validates", async function (assert) {
     assert.expect(1);
 
     this.server.create("question", {
       label: "Test Label",
       slug: "test-slug",
-      type: "TEXT"
+      type: "TEXT",
     });
 
     await render(hbs`{{cfb-form-editor/question slug='test-slug'}}`);
@@ -49,16 +49,16 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     assert.dom("[name=label] + span").hasText("Label can't be blank");
   });
 
-  test("it can edit a question", async function(assert) {
+  test("it can edit a question", async function (assert) {
     assert.expect(4);
 
     this.server.create("question", {
       label: "Test Label",
       slug: "test-slug",
-      type: "TEXT"
+      type: "TEXT",
     });
 
-    this.set("afterSubmit", question => {
+    this.set("afterSubmit", (question) => {
       assert.ok(question);
       assert.equal(question.label, "Test Label 1");
       assert.step("after-submit");
@@ -75,17 +75,17 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     assert.verifySteps(["after-submit"]);
   });
 
-  test("it respects existing metadata", async function(assert) {
+  test("it respects existing metadata", async function (assert) {
     assert.expect(4);
 
     this.server.create("question", {
       label: "Test Label",
       slug: "test-slug",
       type: "TEXT",
-      meta: { someMetaKey: "foobar" }
+      meta: { someMetaKey: "foobar" },
     });
 
-    this.set("afterSubmit", question => {
+    this.set("afterSubmit", (question) => {
       assert.ok(question);
       assert.equal(question.meta.someMetaKey, "foobar");
       assert.step("after-submit");
@@ -102,7 +102,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     assert.verifySteps(["after-submit"]);
   });
 
-  test("it can handle errors", async function(assert) {
+  test("it can handle errors", async function (assert) {
     assert.expect(1);
 
     this.server.create("question", { slug: "foo-bar-test-slug" });
@@ -129,11 +129,11 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     assert.verifySteps([]);
   });
 
-  test("it can handle 404 errors", async function(assert) {
+  test("it can handle 404 errors", async function (assert) {
     assert.expect(1);
 
     this.server.post("/graphql", () => ({
-      data: { allQuestions: { edges: [], __typename: "QuestionEdges" } }
+      data: { allQuestions: { edges: [], __typename: "QuestionEdges" } },
     }));
 
     await render(hbs`{{cfb-form-editor/question slug='test-slug'}}`);
@@ -143,7 +143,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
       .hasText('t:caluma.form-builder.question.not-found:("slug":"test-slug")');
   });
 
-  test("it suggests a slug", async function(assert) {
+  test("it suggests a slug", async function (assert) {
     assert.expect(1);
 
     await render(hbs`{{cfb-form-editor/question slug=null}}`);
@@ -152,12 +152,12 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     assert.dom("input[name=slug]").hasValue("test-label-123");
   });
 
-  test("it prepends the slug with a namespace", async function(assert) {
+  test("it prepends the slug with a namespace", async function (assert) {
     assert.expect(3);
 
     this.server.create("form", { slug: "test-form" });
 
-    this.set("afterSubmit", question => {
+    this.set("afterSubmit", (question) => {
       assert.equal(question.slug, "foo-bar-slug");
       assert.step("after-submit");
     });
@@ -177,12 +177,12 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     assert.verifySteps(["after-submit"]);
   });
 
-  test("it can create a text question", async function(assert) {
+  test("it can create a text question", async function (assert) {
     assert.expect(6);
 
     this.server.create("form", { slug: "test-form" });
 
-    this.set("afterSubmit", question => {
+    this.set("afterSubmit", (question) => {
       assert.equal(question.__typename, "TextQuestion");
       assert.equal(question.label, "Label");
       assert.equal(question.slug, "slug");
@@ -205,12 +205,12 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     assert.verifySteps(["after-submit"]);
   });
 
-  test("it can create a textarea question", async function(assert) {
+  test("it can create a textarea question", async function (assert) {
     assert.expect(6);
 
     this.server.create("form", { slug: "test-form" });
 
-    this.set("afterSubmit", question => {
+    this.set("afterSubmit", (question) => {
       assert.equal(question.__typename, "TextareaQuestion");
       assert.equal(question.label, "Label");
       assert.equal(question.slug, "slug");
@@ -233,12 +233,12 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     assert.verifySteps(["after-submit"]);
   });
 
-  test("it can create an integer question", async function(assert) {
+  test("it can create an integer question", async function (assert) {
     assert.expect(7);
 
     this.server.create("form", { slug: "test-form" });
 
-    this.set("afterSubmit", question => {
+    this.set("afterSubmit", (question) => {
       assert.equal(question.__typename, "IntegerQuestion");
       assert.equal(question.label, "Label");
       assert.equal(question.slug, "slug");
@@ -263,12 +263,12 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     assert.verifySteps(["after-submit"]);
   });
 
-  test("it can create a float question", async function(assert) {
+  test("it can create a float question", async function (assert) {
     assert.expect(7);
 
     this.server.create("form", { slug: "test-form" });
 
-    this.set("afterSubmit", question => {
+    this.set("afterSubmit", (question) => {
       assert.equal(question.__typename, "FloatQuestion");
       assert.equal(question.label, "Label");
       assert.equal(question.slug, "slug");
@@ -293,12 +293,12 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     assert.verifySteps(["after-submit"]);
   });
 
-  test("it can create a multiple choice question", async function(assert) {
+  test("it can create a multiple choice question", async function (assert) {
     assert.expect(8);
 
     this.server.create("form", { slug: "test-form" });
 
-    this.set("afterSubmit", question => {
+    this.set("afterSubmit", (question) => {
       assert.equal(question.__typename, "MultipleChoiceQuestion");
       assert.equal(question.label, "Label");
       assert.equal(question.slug, "slug");
@@ -325,12 +325,12 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     assert.verifySteps(["after-submit"]);
   });
 
-  test("it can create a radio question", async function(assert) {
+  test("it can create a radio question", async function (assert) {
     assert.expect(7);
 
     this.server.create("form", { slug: "test-form" });
 
-    this.set("afterSubmit", question => {
+    this.set("afterSubmit", (question) => {
       assert.equal(question.__typename, "ChoiceQuestion");
       assert.equal(question.label, "Label");
       assert.equal(question.slug, "slug");
@@ -355,13 +355,13 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     assert.verifySteps(["after-submit"]);
   });
 
-  test("it can create a table question", async function(assert) {
+  test("it can create a table question", async function (assert) {
     assert.expect(6);
 
     this.server.create("form", { slug: "test-form" });
     this.server.create("form", { slug: "subform" });
 
-    this.set("afterSubmit", question => {
+    this.set("afterSubmit", (question) => {
       assert.equal(question.__typename, "TableQuestion");
       assert.equal(question.label, "Label");
       assert.equal(question.slug, "slug");
@@ -384,13 +384,13 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     assert.verifySteps(["after-submit"]);
   });
 
-  test("it can create a form question", async function(assert) {
+  test("it can create a form question", async function (assert) {
     assert.expect(6);
 
     this.server.create("form", { slug: "test-form" });
     this.server.create("form", { slug: "subform" });
 
-    this.set("afterSubmit", question => {
+    this.set("afterSubmit", (question) => {
       assert.equal(question.__typename, "FormQuestion");
       assert.equal(question.label, "Label");
       assert.equal(question.slug, "slug");
@@ -413,12 +413,12 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     assert.verifySteps(["after-submit"]);
   });
 
-  test("it can create a file question", async function(assert) {
+  test("it can create a file question", async function (assert) {
     assert.expect(5);
 
     this.server.create("form", { slug: "test-form" });
 
-    this.set("afterSubmit", question => {
+    this.set("afterSubmit", (question) => {
       assert.equal(question.__typename, "FileQuestion");
       assert.equal(question.label, "Label");
       assert.equal(question.slug, "slug");
@@ -439,12 +439,12 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     assert.verifySteps(["after-submit"]);
   });
 
-  test("it can create a static question", async function(assert) {
+  test("it can create a static question", async function (assert) {
     assert.expect(6);
 
     this.server.create("form", { slug: "test-form" });
 
-    this.set("afterSubmit", question => {
+    this.set("afterSubmit", (question) => {
       assert.equal(question.__typename, "StaticQuestion");
       assert.equal(question.label, "Label");
       assert.equal(question.slug, "slug");
@@ -467,7 +467,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     assert.verifySteps(["after-submit"]);
   });
 
-  test("it validates the slug", async function(assert) {
+  test("it validates the slug", async function (assert) {
     assert.expect(3);
 
     this.server.create("question", { slug: "test-slug" });
@@ -498,7 +498,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
       .hasText("t:caluma.form-builder.validations.question.slug:()");
   });
 
-  test("it auto-suggests the slug if it has not been manually changed", async function(assert) {
+  test("it auto-suggests the slug if it has not been manually changed", async function (assert) {
     assert.expect(3);
 
     await render(hbs`{{cfb-form-editor/question slug=null}}`);
@@ -522,7 +522,7 @@ module("Integration | Component | cfb-form-editor/question", function(hooks) {
     assert.dom("input[name=slug]").hasValue("x-y");
   });
 
-  test("it allows to select format-validators", async function(assert) {
+  test("it allows to select format-validators", async function (assert) {
     assert.expect(1);
 
     await render(hbs`{{cfb-form-editor/question}}`);

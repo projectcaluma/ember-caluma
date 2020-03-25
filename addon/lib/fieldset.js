@@ -28,7 +28,7 @@ export default Base.extend({
 
     defineProperty(this, "pk", {
       writable: false,
-      value: `${this.document.pk}:Form:${this.raw.form.slug}`
+      value: `${this.document.pk}:Form:${this.raw.form.slug}`,
     });
 
     this._super(...arguments);
@@ -44,7 +44,7 @@ export default Base.extend({
 
     const fields = this.fields;
     this.set("fields", []);
-    fields.forEach(field => field.destroy());
+    fields.forEach((field) => field.destroy());
   },
 
   _createForm() {
@@ -58,7 +58,7 @@ export default Base.extend({
   },
 
   _createFields() {
-    const fields = this.raw.form.questions.map(question => {
+    const fields = this.raw.form.questions.map((question) => {
       return (
         this.calumaStore.find(
           `${this.document.pk}:Question:${question.slug}`
@@ -69,10 +69,10 @@ export default Base.extend({
             raw: {
               question,
               answer: this.raw.answers.find(
-                answer => get(answer, "question.slug") === question.slug
-              )
+                (answer) => get(answer, "question.slug") === question.slug
+              ),
             },
-            fieldset: this
+            fieldset: this,
           })
       );
     });
@@ -87,10 +87,10 @@ export default Base.extend({
    * @property {Field} field
    * @accessor
    */
-  field: computed("form.slug", "document.fields.[]", function() {
+  field: computed("form.slug", "document.fields.[]", function () {
     return this.document.fields
-      .filter(field => field.questionType === "FormQuestion")
-      .find(field => field.question.subForm.slug === this.form.slug);
+      .filter((field) => field.questionType === "FormQuestion")
+      .find((field) => field.question.subForm.slug === this.form.slug);
   }),
 
   /**
@@ -107,5 +107,5 @@ export default Base.extend({
    * @property {Field[]} fields
    * @accessor
    */
-  fields: null
+  fields: null,
 });

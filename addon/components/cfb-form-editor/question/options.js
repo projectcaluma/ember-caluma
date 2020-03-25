@@ -29,13 +29,13 @@ export default RenderComponent.extend({
       "optionRows",
       get(value, "edges.length")
         ? get(value, "edges").map(
-            edge =>
+            (edge) =>
               new Changeset(
                 {
                   slug: removeQuestionPrefix(edge.node.slug, this.questionSlug),
                   label: edge.node.label,
                   isArchived: edge.node.isArchived,
-                  isNew: false
+                  isNew: false,
                 },
                 lookupValidator(OptionValidations),
                 OptionValidations
@@ -46,7 +46,7 @@ export default RenderComponent.extend({
               { slug: "", label: "", isNew: true, linkSlug: true },
               lookupValidator(OptionValidations),
               OptionValidations
-            )
+            ),
           ]
     );
   },
@@ -54,8 +54,8 @@ export default RenderComponent.extend({
   _update() {
     this.update({
       edges: this.optionRows
-        .filter(row => !get(row, "isNew") || get(row, "isDirty"))
-        .map(row => {
+        .filter((row) => !get(row, "isNew") || get(row, "isDirty"))
+        .map((row) => {
           const { label, slug, isArchived } = Object.assign(
             {},
             row.get("data"),
@@ -69,10 +69,10 @@ export default RenderComponent.extend({
                 removeQuestionPrefix(slug, this.questionSlug),
                 this.questionSlug
               ),
-              isArchived: Boolean(isArchived)
-            }
+              isArchived: Boolean(isArchived),
+            },
           };
-        })
+        }),
     });
 
     this.setDirty();
@@ -86,7 +86,7 @@ export default RenderComponent.extend({
           { slug: "", label: "", isNew: true, linkSlug: true },
           lookupValidator(OptionValidations),
           OptionValidations
-        )
+        ),
       ]);
 
       this._update();
@@ -95,7 +95,7 @@ export default RenderComponent.extend({
     deleteRow(row) {
       this.set(
         "optionRows",
-        this.optionRows.filter(r => r !== row)
+        this.optionRows.filter((r) => r !== row)
       );
 
       this._update();
@@ -122,6 +122,6 @@ export default RenderComponent.extend({
 
     update() {
       this._update();
-    }
-  }
+    },
+  },
 });

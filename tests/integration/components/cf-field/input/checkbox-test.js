@@ -4,11 +4,11 @@ import { render, click } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupIntl } from "ember-intl/test-support";
 
-module("Integration | Component | cf-field/input/checkbox", function(hooks) {
+module("Integration | Component | cf-field/input/checkbox", function (hooks) {
   setupRenderingTest(hooks);
   setupIntl(hooks);
 
-  test("it renders", async function(assert) {
+  test("it renders", async function (assert) {
     assert.expect(12);
 
     await render(hbs`
@@ -53,7 +53,7 @@ module("Integration | Component | cf-field/input/checkbox", function(hooks) {
     assert.dom("label:nth-of-type(2) input[type=checkbox]").isChecked();
   });
 
-  test("it can be disabled", async function(assert) {
+  test("it can be disabled", async function (assert) {
     assert.expect(3);
 
     await render(hbs`
@@ -77,11 +77,11 @@ module("Integration | Component | cf-field/input/checkbox", function(hooks) {
     assert.dom("label:nth-of-type(3) input[type=checkbox]").isDisabled();
   });
 
-  test("it triggers save on click", async function(assert) {
+  test("it triggers save on click", async function (assert) {
     assert.expect(3);
 
     this.set("value", []);
-    this.set("save", value => this.set("value", value));
+    this.set("save", (value) => this.set("value", value));
 
     await render(hbs`
       {{cf-field/input/checkbox
@@ -111,7 +111,7 @@ module("Integration | Component | cf-field/input/checkbox", function(hooks) {
     assert.deepEqual(this.value, ["option-2"]);
   });
 
-  test("it renders disabled options", async function(assert) {
+  test("it renders disabled options", async function (assert) {
     assert.expect(2);
 
     this.set("disabled", false);

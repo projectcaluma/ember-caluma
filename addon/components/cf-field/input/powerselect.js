@@ -20,17 +20,17 @@ export default Component.extend({
 
   apollo: queryManager(),
 
-  multiple: computed("field.question.__typename", function() {
+  multiple: computed("field.question.__typename", function () {
     return this.get("field.question.__typename").includes("Multiple");
   }),
 
-  componentName: computed("multiple", function() {
+  componentName: computed("multiple", function () {
     return this.get("multiple") ? "power-select-multiple" : "power-select";
   }),
 
   searchEnabled: gt("field.options.length", 10),
 
-  placeholder: computed("multiple", function() {
+  placeholder: computed("multiple", function () {
     const suffix = this.get("multiple") ? "multiple" : "single";
     const path = `caluma.form.power-select.placeholder-${suffix}`;
     return this.get("intl").t(path);
@@ -41,7 +41,7 @@ export default Component.extend({
       let value = null;
 
       if (Array.isArray(choices)) {
-        value = choices.map(choice => choice.slug);
+        value = choices.map((choice) => choice.slug);
       } else if (choices !== null) {
         value = choices.slug;
       }
@@ -50,6 +50,6 @@ export default Component.extend({
       // implemented/allowed by the backend.
 
       this.onSave(value);
-    }
-  }
+    },
+  },
 });

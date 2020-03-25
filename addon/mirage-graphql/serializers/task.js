@@ -9,7 +9,7 @@ export default class extends BaseSerializer {
     return {
       ...serialized,
       id: btoa(`${__typename}:${deserialized.id}`),
-      __typename
+      __typename,
     };
   }
 }

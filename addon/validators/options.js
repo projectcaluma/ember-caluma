@@ -5,7 +5,7 @@ import { Promise, all } from "rsvp";
 
 export default function validateOptions() {
   return (_, value) => {
-    return new Promise(resolve => {
+    return new Promise((resolve) => {
       all(
         value.edges.map(async ({ node: option }) => {
           const cs = new Changeset(
@@ -18,7 +18,7 @@ export default function validateOptions() {
 
           return cs.get("isValid");
         })
-      ).then(res => resolve(res.every(Boolean) || "Invalid options"));
+      ).then((res) => resolve(res.every(Boolean) || "Invalid options"));
     });
   };
 }

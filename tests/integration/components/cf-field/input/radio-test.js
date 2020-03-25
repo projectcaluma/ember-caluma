@@ -4,15 +4,15 @@ import { render, click } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupIntl } from "ember-intl/test-support";
 
-module("Integration | Component | cf-field/input/radio", function(hooks) {
+module("Integration | Component | cf-field/input/radio", function (hooks) {
   setupRenderingTest(hooks);
   setupIntl(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     this.set("noop", () => {});
   });
 
-  test("it renders", async function(assert) {
+  test("it renders", async function (assert) {
     assert.expect(11);
 
     await render(hbs`
@@ -51,7 +51,7 @@ module("Integration | Component | cf-field/input/radio", function(hooks) {
     assert.dom("label:nth-of-type(1) input[type=radio]").isChecked();
   });
 
-  test("it can be disabled", async function(assert) {
+  test("it can be disabled", async function (assert) {
     assert.expect(3);
 
     await render(hbs`
@@ -76,10 +76,10 @@ module("Integration | Component | cf-field/input/radio", function(hooks) {
     assert.dom("label:nth-of-type(3) input[type=radio]").isDisabled();
   });
 
-  test("it triggers save on click", async function(assert) {
+  test("it triggers save on click", async function (assert) {
     assert.expect(1);
 
-    this.set("save", value => assert.equal(value, "option-1"));
+    this.set("save", (value) => assert.equal(value, "option-1"));
 
     await render(hbs`
       {{cf-field/input/radio
@@ -98,7 +98,7 @@ module("Integration | Component | cf-field/input/radio", function(hooks) {
     await click("label:nth-of-type(1) input");
   });
 
-  test("it renders disabled options", async function(assert) {
+  test("it renders disabled options", async function (assert) {
     assert.expect(2);
 
     this.set("disabled", false);

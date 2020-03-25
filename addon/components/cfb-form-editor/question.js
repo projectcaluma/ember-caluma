@@ -48,7 +48,7 @@ export const TYPES = {
   FormQuestion: saveFormQuestionMutation,
   FileQuestion: saveFileQuestionMutation,
   StaticQuestion: saveStaticQuestionMutation,
-  DateQuestion: saveDateQuestionMutation
+  DateQuestion: saveDateQuestionMutation,
 };
 
 export default Component.extend({
@@ -63,10 +63,10 @@ export default Component.extend({
 
   linkSlug: true,
 
-  possibleTypes: computed(function() {
-    return Object.keys(TYPES).map(value => ({
+  possibleTypes: computed(function () {
+    return Object.keys(TYPES).map((value) => ({
       value,
-      label: this.intl.t(`caluma.form-builder.question.types.${value}`)
+      label: this.intl.t(`caluma.form-builder.question.types.${value}`),
     }));
   }),
 
@@ -78,7 +78,7 @@ export default Component.extend({
     await this.get("availableDataSources").perform();
   },
 
-  data: task(function*() {
+  data: task(function* () {
     if (!this.get("slug")) {
       return A([
         {
@@ -98,9 +98,9 @@ export default Component.extend({
             subForm: {},
             meta: {},
             dataSource: "",
-            __typename: Object.keys(TYPES)[0]
-          }
-        }
+            __typename: Object.keys(TYPES)[0],
+          },
+        },
       ]);
     }
 
@@ -108,41 +108,41 @@ export default Component.extend({
       {
         query: formEditorQuestionQuery,
         variables: { slug: this.get("slug") },
-        fetchPolicy: "cache-and-network"
+        fetchPolicy: "cache-and-network",
       },
       "allQuestions.edges"
     );
   }).restartable(),
 
-  availableForms: task(function*() {
+  availableForms: task(function* () {
     const forms = yield this.get("apollo").watchQuery(
       {
         query: formListQuery,
-        fetchPolicy: "cache-and-network"
+        fetchPolicy: "cache-and-network",
       },
       "allForms.edges"
     );
     if (!forms.map) {
       return [];
     }
-    return forms.mapBy("node.slug").filter(slug => slug !== this.get("form"));
+    return forms.mapBy("node.slug").filter((slug) => slug !== this.get("form"));
   }).restartable(),
 
-  availableOverrides: computed("changeset.__typename", function() {
+  availableOverrides: computed("changeset.__typename", function () {
     const type = this.changeset.get("__typename");
     const overrides = this.calumaOptions
       .getComponentOverrides()
-      .filter(override => {
+      .filter((override) => {
         return !override.types || override.types.includes(type);
       });
 
     return [
       { label: this.intl.t("caluma.form.power-select.null"), component: "" },
-      ...overrides
+      ...overrides,
     ];
   }),
 
-  availableDataSources: task(function*() {
+  availableDataSources: task(function* () {
     const dataSources = yield this.get("apollo").watchQuery(
       { query: allDataSourcesQuery, fetchPolicy: "cache-and-network" },
       "allDataSources.edges"
@@ -150,7 +150,7 @@ export default Component.extend({
     if (!dataSources.mapBy) {
       return [];
     }
-    return dataSources.map(edge => {
+    return dataSources.map((edge) => {
       delete edge.node.__typename;
       return edge.node;
     });
@@ -158,16 +158,16 @@ export default Component.extend({
 
   model: reads("data.lastSuccessful.value.firstObject.node"),
 
-  changeset: computed("model", function() {
+  changeset: computed("model", function () {
     return new Changeset(this.model, lookupValidator(validations));
   }),
 
-  prefix: computed("calumaOptions._namespace", function() {
+  prefix: computed("calumaOptions._namespace", function () {
     const namespace = this.calumaOptions.getNamespace();
     return namespace ? `${namespace}-` : "";
   }),
 
-  requiredIsVisible: computed("changeset.{__typename,isRequired}", function() {
+  requiredIsVisible: computed("changeset.{__typename,isRequired}", function () {
     const isRequired = this.changeset.get("isRequired");
     const typename = this.changeset.get("__typename");
 
@@ -182,7 +182,7 @@ export default Component.extend({
       isRequired: changeset.get("isRequired"),
       minValue: parseInt(changeset.get("integerMinValue")),
       maxValue: parseInt(changeset.get("integerMaxValue")),
-      placeholder: changeset.get("placeholder")
+      placeholder: changeset.get("placeholder"),
     };
   },
 
@@ -191,7 +191,7 @@ export default Component.extend({
       isRequired: changeset.get("isRequired"),
       minValue: parseFloat(changeset.get("floatMinValue")),
       maxValue: parseFloat(changeset.get("floatMaxValue")),
-      placeholder: changeset.get("placeholder")
+      placeholder: changeset.get("placeholder"),
     };
   },
 
@@ -199,7 +199,7 @@ export default Component.extend({
     return {
       isRequired: changeset.get("isRequired"),
       maxLength: parseInt(changeset.get("maxLength")),
-      placeholder: changeset.get("placeholder")
+      placeholder: changeset.get("placeholder"),
     };
   },
 
@@ -207,71 +207,71 @@ export default Component.extend({
     return {
       isRequired: changeset.get("isRequired"),
       maxLength: parseInt(changeset.get("maxLength")),
-      placeholder: changeset.get("placeholder")
+      placeholder: changeset.get("placeholder"),
     };
   },
 
   _getMultipleChoiceQuestionInput(changeset) {
     return {
       isRequired: changeset.get("isRequired"),
-      options: changeset.get("options.edges").map(({ node: { slug } }) => slug)
+      options: changeset.get("options.edges").map(({ node: { slug } }) => slug),
     };
   },
 
   _getChoiceQuestionInput(changeset) {
     return {
       isRequired: changeset.get("isRequired"),
-      options: changeset.get("options.edges").map(({ node: { slug } }) => slug)
+      options: changeset.get("options.edges").map(({ node: { slug } }) => slug),
     };
   },
 
   _getDynamicMultipleChoiceQuestionInput(changeset) {
     return {
       isRequired: changeset.get("isRequired"),
-      dataSource: changeset.get("dataSource")
+      dataSource: changeset.get("dataSource"),
     };
   },
 
   _getDynamicChoiceQuestionInput(changeset) {
     return {
       isRequired: changeset.get("isRequired"),
-      dataSource: changeset.get("dataSource")
+      dataSource: changeset.get("dataSource"),
     };
   },
 
   _getTableQuestionInput(changeset) {
     return {
       isRequired: changeset.get("isRequired"),
-      rowForm: changeset.get("rowForm.slug")
+      rowForm: changeset.get("rowForm.slug"),
     };
   },
 
   _getFormQuestionInput(changeset) {
     return {
       isRequired: changeset.get("isRequired"),
-      subForm: changeset.get("subForm.slug")
+      subForm: changeset.get("subForm.slug"),
     };
   },
 
   _getFileQuestionInput(changeset) {
     return {
-      isRequired: changeset.get("isRequired")
+      isRequired: changeset.get("isRequired"),
     };
   },
 
   _getStaticQuestionInput(changeset) {
     return {
-      staticContent: changeset.get("staticContent")
+      staticContent: changeset.get("staticContent"),
     };
   },
 
   _getDateQuestionInput(changeset) {
     return {
-      isRequired: changeset.get("isRequired")
+      isRequired: changeset.get("isRequired"),
     };
   },
 
-  saveOptions: task(function*(changeset) {
+  saveOptions: task(function* (changeset) {
     yield all(
       getWithDefault(changeset, "options.edges", []).map(
         async ({ node: option }) => {
@@ -279,14 +279,14 @@ export default Component.extend({
 
           await this.get("apollo").mutate({
             mutation: saveOptionMutation,
-            variables: { input: { label, slug, isArchived } }
+            variables: { input: { label, slug, isArchived } },
           });
         }
       )
     );
   }),
 
-  submit: task(function*(changeset) {
+  submit: task(function* (changeset) {
     try {
       const slug =
         ((!this.get("slug") && this.prefix) || "") + changeset.get("slug");
@@ -305,11 +305,11 @@ export default Component.extend({
                 infoText: changeset.get("infoText"),
                 meta: JSON.stringify(changeset.get("meta")),
                 isArchived: changeset.get("isArchived"),
-                clientMutationId: v4()
+                clientMutationId: v4(),
               },
               this[`_get${changeset.get("__typename")}Input`](changeset)
-            )
-          }
+            ),
+          },
         },
         `save${changeset.get("__typename")}.question`
       );
@@ -322,10 +322,10 @@ export default Component.extend({
             input: {
               question: question.slug,
               form: this.get("form"),
-              clientMutationId: v4()
+              clientMutationId: v4(),
             },
-            search: ""
-          }
+            search: "",
+          },
         });
       }
 
@@ -347,7 +347,7 @@ export default Component.extend({
     }
   }).drop(),
 
-  validateSlug: task(function*(slug, changeset) {
+  validateSlug: task(function* (slug, changeset) {
     /* istanbul ignore next */
     if (
       getOwner(this).resolveRegistration("config:environment").environment !==
@@ -359,7 +359,7 @@ export default Component.extend({
     const res = yield this.get("apollo").query(
       {
         query: checkQuestionSlugQuery,
-        variables: { slug }
+        variables: { slug },
       },
       "allQuestions.edges"
     );
@@ -402,6 +402,6 @@ export default Component.extend({
       displayed.delete(value) || displayed.add(value);
 
       this.set("model.meta.columnsToDisplay", [...displayed]);
-    }
-  }
+    },
+  },
 });

@@ -7,5 +7,5 @@ export default Factory.extend({
   createdByUser: faker.random.uuid(),
   createdAt: faker.date.past(),
   modifiedAt: faker.date.past(),
-  status: faker.random.arrayElement(STATUS)
+  status: faker.random.arrayElement(STATUS),
 });

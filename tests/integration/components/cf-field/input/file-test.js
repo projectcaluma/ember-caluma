@@ -4,28 +4,28 @@ import { render, triggerEvent } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 
-module("Integration | Component | cf-field/input/file", function(hooks) {
+module("Integration | Component | cf-field/input/file", function (hooks) {
   setupRenderingTest(hooks);
   setupMirage(hooks);
 
-  test("it computes the proper element id", async function(assert) {
+  test("it computes the proper element id", async function (assert) {
     await render(hbs`{{cf-field/input/file field=(hash pk="test-id")}}`);
 
     assert.dom("#test-id").exists();
   });
 
-  test("it allows to upload a file", async function(assert) {
+  test("it allows to upload a file", async function (assert) {
     assert.expect(0);
 
     this.set("field", {
       answer: {
         id: btoa("FileAnswer:1"),
-        value: {}
-      }
+        value: {},
+      },
     });
 
-    this.set("onSave", name => ({
-      value: { uploadUrl: `/minio/upload/${name}` }
+    this.set("onSave", (name) => ({
+      value: { uploadUrl: `/minio/upload/${name}` },
     }));
 
     let payload_good = new File(["test"], "good.txt", { type: "text/plain" });
@@ -38,15 +38,15 @@ module("Integration | Component | cf-field/input/file", function(hooks) {
     await triggerEvent("input[type=file]", "change", { files: [payload_good] });
   });
 
-  test("it allows to download a file", async function(assert) {
+  test("it allows to download a file", async function (assert) {
     this.set("field", {
       answer: {
         id: btoa("FileAnswer:1"),
         value: {
           downloadUrl: "/minio/download/good.txt",
-          name: "good.txt"
-        }
-      }
+          name: "good.txt",
+        },
+      },
     });
 
     // Hijack window.open

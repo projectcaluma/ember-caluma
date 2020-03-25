@@ -5,11 +5,11 @@ import { hbs } from "ember-cli-htmlbars";
 import ValidatorServiceStub from "dummy/tests/helpers/validator-service-stub";
 import { setupIntl } from "ember-intl/test-support";
 
-module("Integration | Component | cf-field/label", function(hooks) {
+module("Integration | Component | cf-field/label", function (hooks) {
   setupRenderingTest(hooks);
   setupIntl(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     this.owner.register("service:validator", ValidatorServiceStub);
 
     const form = {
@@ -21,9 +21,9 @@ module("Integration | Component | cf-field/label", function(hooks) {
           label: "Test",
           isRequired: "true",
           isHidden: "true",
-          __typename: "TextQuestion"
-        }
-      ]
+          __typename: "TextQuestion",
+        },
+      ],
     };
 
     const raw = {
@@ -31,7 +31,7 @@ module("Integration | Component | cf-field/label", function(hooks) {
       __typename: "Document",
       answers: [],
       rootForm: form,
-      forms: [form]
+      forms: [form],
     };
 
     const document = this.owner
@@ -40,7 +40,7 @@ module("Integration | Component | cf-field/label", function(hooks) {
     this.set("field", document.fields[0]);
   });
 
-  test("it renders", async function(assert) {
+  test("it renders", async function (assert) {
     assert.expect(2);
 
     await render(hbs`{{cf-field/label field=field}}`);
@@ -49,7 +49,7 @@ module("Integration | Component | cf-field/label", function(hooks) {
     assert.dom("label").hasText("Test");
   });
 
-  test("it marks optional fields as such", async function(assert) {
+  test("it marks optional fields as such", async function (assert) {
     assert.expect(2);
 
     await render(hbs`{{cf-field/label field=field}}`);

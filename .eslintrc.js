@@ -1,27 +1,27 @@
 module.exports = {
   globals: {
-    server: true
+    server: true,
   },
   root: true,
   parserOptions: {
     ecmaVersion: 2018,
-    sourceType: "module"
+    sourceType: "module",
   },
   parser: "babel-eslint",
   plugins: ["ember", "prettier"],
   extends: [
     "eslint:recommended",
     "plugin:ember/recommended",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
   ],
   env: {
-    browser: true
+    browser: true,
   },
   rules: {
     "ember/no-jquery": "error",
     // TODO: https://github.com/projectcaluma/ember-caluma/issues/529
     "ember/no-new-mixins": "warn",
-    "ember/no-observers": "warn"
+    "ember/no-observers": "warn",
   },
   overrides: [
     // node files
@@ -35,21 +35,21 @@ module.exports = {
         "testem*.js",
         "blueprints/*/index.js",
         "config/**/*.js",
-        "tests/dummy/config/**/*.js"
+        "tests/dummy/config/**/*.js",
       ],
       excludedFiles: [
         "addon/**",
         "addon-test-support/**",
         "app/**",
         "tests/dummy/app/**",
-        "tests/dummy/mirage/**"
+        "tests/dummy/mirage/**",
       ],
       parserOptions: {
-        sourceType: "script"
+        sourceType: "script",
       },
       env: {
         browser: false,
-        node: true
+        node: true,
       },
       plugins: ["node"],
       rules: Object.assign(
@@ -57,9 +57,9 @@ module.exports = {
         require("eslint-plugin-node").configs.recommended.rules,
         {
           // add your custom rules and overrides for node files here
-          "prefer-const": ["error"]
+          "prefer-const": ["error"],
         }
-      )
-    }
-  ]
+      ),
+    },
+  ],
 };

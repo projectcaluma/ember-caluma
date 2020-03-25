@@ -3,20 +3,20 @@ import { setupTest } from "ember-qunit";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import gql from "graphql-tag";
 
-module("Unit | Mirage GraphQL Mock | document", function(hooks) {
+module("Unit | Mirage GraphQL Mock | document", function (hooks) {
   setupTest(hooks);
   setupMirage(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     const { id: formId } = this.server.create("form", { slug: "test-form" });
     this.document = this.server.create("document", {
-      formId
+      formId,
     });
 
     this.apollo = this.owner.lookup("service:apollo");
   });
 
-  test("can fetch document", async function(assert) {
+  test("can fetch document", async function (assert) {
     assert.expect(1);
 
     const res = await this.apollo.query({
@@ -34,7 +34,7 @@ module("Unit | Mirage GraphQL Mock | document", function(hooks) {
             }
           }
         }
-      `
+      `,
     });
 
     assert.deepEqual(res.allDocuments.edges[0].node, {
@@ -43,8 +43,8 @@ module("Unit | Mirage GraphQL Mock | document", function(hooks) {
       form: {
         __typename: "Form",
         name: this.document.form.name,
-        slug: this.document.form.slug
-      }
+        slug: this.document.form.slug,
+      },
     });
   });
 });

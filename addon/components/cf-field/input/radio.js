@@ -9,5 +9,5 @@ import layout from "../../../templates/components/cf-field/input/radio";
  */
 export default Component.extend({
   layout,
-  tagName: ""
+  tagName: "",
 });

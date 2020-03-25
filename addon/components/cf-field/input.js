@@ -6,7 +6,7 @@ const mapping = {
   MultipleChoiceQuestion: "checkbox",
   ChoiceQuestion: "radio",
   DynamicMultipleChoiceQuestion: "checkbox",
-  DynamicChoiceQuestion: "radio"
+  DynamicChoiceQuestion: "radio",
 };
 
 /**
@@ -24,12 +24,12 @@ export default Component.extend({
    * @property {String} type
    * @accessor
    */
-  type: computed("field.question.__typename", function() {
+  type: computed("field.question.__typename", function () {
     const typename = get(this, "field.question.__typename");
 
     return (
       (typename && mapping[typename]) ||
       typename.replace(/Question$/, "").toLowerCase()
     );
-  }).readOnly()
+  }).readOnly(),
 });

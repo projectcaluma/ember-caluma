@@ -23,14 +23,14 @@ export default Route.extend({
           "caluma.form-builder.question.widgetOverrides.dummy-one"
         ),
         component: "dummy-one",
-        types: ["TextQuestion", "TextareaQuestion"]
+        types: ["TextQuestion", "TextareaQuestion"],
       });
 
       this.calumaOptions.registerComponentOverride({
         label: this.intl.t(
           "caluma.form-builder.question.widgetOverrides.dummy-two"
         ),
-        component: "dummy-two"
+        component: "dummy-two",
       });
     }
   },
@@ -48,11 +48,11 @@ export default Route.extend({
               }
             }
           }
-        `
+        `,
       },
       "allDocuments.edges"
     );
 
     return decodeId(get(res, "firstObject.node.id"));
-  }
+  },
 });

@@ -1,10 +1,10 @@
 import { module, test } from "qunit";
 import { setupTest } from "ember-qunit";
 
-module("Unit | Library | fieldset", function(hooks) {
+module("Unit | Library | fieldset", function (hooks) {
   setupTest(hooks);
 
-  test("it computes a pk", async function(assert) {
+  test("it computes a pk", async function (assert) {
     assert.expect(1);
 
     const fieldset = this.owner.factoryFor("caluma-model:fieldset").create({
@@ -12,11 +12,11 @@ module("Unit | Library | fieldset", function(hooks) {
         form: {
           __typename: "Form",
           slug: "some-form",
-          questions: []
+          questions: [],
         },
-        answers: []
+        answers: [],
       },
-      document: { pk: "Document:xxx-xxx" }
+      document: { pk: "Document:xxx-xxx" },
     });
 
     assert.equal(fieldset.pk, "Document:xxx-xxx:Form:some-form");

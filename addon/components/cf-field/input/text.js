@@ -16,7 +16,7 @@ export default Component.extend({
     "field.pk:name",
     "field.pk:id",
     "field.answer.value:value",
-    "field.question.placeholder:placeholder"
+    "field.question.placeholder:placeholder",
   ],
   type: "text",
 
@@ -30,5 +30,5 @@ export default Component.extend({
    */
   input({ target: { value } }) {
     this.onSave(value);
-  }
+  },
 });

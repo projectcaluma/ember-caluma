@@ -1,6 +1,6 @@
 "use strict";
 
-module.exports = function(environment) {
+module.exports = function (environment) {
   const ENV = {
     modulePrefix: "ember-caluma",
     environment,
@@ -8,13 +8,13 @@ module.exports = function(environment) {
     "ember-validated-form": {
       theme: "uikit",
       defaults: {
-        label: "cfb-label"
-      }
+        label: "cfb-label",
+      },
     },
 
     moment: {
-      includeLocales: true
-    }
+      includeLocales: true,
+    },
   };
 
   return ENV;

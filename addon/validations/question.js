@@ -4,7 +4,7 @@ import or from "ember-caluma/utils/or";
 import {
   validatePresence,
   validateLength,
-  validateNumber
+  validateNumber,
 } from "ember-changeset-validations/validators";
 import validateSlug from "ember-caluma/validators/slug";
 import validateType from "ember-caluma/validators/type";
@@ -67,5 +67,5 @@ export default {
   "subForm.slug": or(
     validateType("FormQuestion", false),
     validatePresence(true)
-  )
+  ),
 };

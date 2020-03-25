@@ -1,17 +1,17 @@
 import EmberObject from "@ember/object";
 import {
   InMemoryCache,
-  IntrospectionFragmentMatcher
+  IntrospectionFragmentMatcher,
 } from "apollo-cache-inmemory";
 import introspectionQueryResultData from "ember-caluma/-private/fragment-types";
 import CalumaApolloServiceMixinMixin from "ember-caluma/mixins/caluma-apollo-service-mixin";
 import { module, test } from "qunit";
 import { setupTest } from "ember-qunit";
 
-module("Unit | Mixin | caluma-apollo-service-mixin", function(hooks) {
+module("Unit | Mixin | caluma-apollo-service-mixin", function (hooks) {
   setupTest(hooks);
 
-  test("it uses the correct fragment matcher", function(assert) {
+  test("it uses the correct fragment matcher", function (assert) {
     assert.expect(4);
 
     let CalumaApolloServiceMixinObject = EmberObject.extend(
@@ -42,7 +42,7 @@ module("Unit | Mixin | caluma-apollo-service-mixin", function(hooks) {
     );
   });
 
-  test("it resolves the correct data id", function(assert) {
+  test("it resolves the correct data id", function (assert) {
     assert.expect(2);
 
     let CalumaApolloServiceMixinObject = EmberObject.extend(
@@ -56,7 +56,7 @@ module("Unit | Mixin | caluma-apollo-service-mixin", function(hooks) {
     assert.equal(
       cache.config.dataIdFromObject({
         slug: "test",
-        __typename: "TestType"
+        __typename: "TestType",
       }),
       "TestType:test"
     );
@@ -67,10 +67,10 @@ module("Unit | Mixin | caluma-apollo-service-mixin", function(hooks) {
           {
             node: {
               slug: "test",
-              __typename: "TestType"
-            }
-          }
-        ]
+              __typename: "TestType",
+            },
+          },
+        ],
       }),
       null
     );

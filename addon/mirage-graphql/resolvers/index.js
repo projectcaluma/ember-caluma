@@ -10,6 +10,6 @@ export default {
     },
     deserialize(obj) {
       return obj;
-    }
-  }
+    },
+  },
 };

@@ -21,20 +21,20 @@ fetch("http://localhost:8000/graphql", {
           }
         }
       }
-    `
-  })
+    `,
+  }),
 })
-  .then(result => result.json())
-  .then(result => {
+  .then((result) => result.json())
+  .then((result) => {
     // here we're filtering out any type information unrelated to unions or interfaces
     const filteredData = result.data.__schema.types.filter(
-      type => type.possibleTypes !== null
+      (type) => type.possibleTypes !== null
     );
     result.data.__schema.types = filteredData;
     fs.writeFile(
       "addon/-private/fragment-types.js",
       `export default ${JSON.stringify(result.data, null, 2)}`,
-      err => {
+      (err) => {
         if (err) throw err;
         // eslint-disable-next-line no-console
         console.log("The file has been saved!");

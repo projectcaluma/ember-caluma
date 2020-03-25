@@ -9,28 +9,28 @@ const importTypeOrBase = (path, type) => {
   }
 };
 
-export const register = tpl => (target, name, descriptor) => {
+export const register = (tpl) => (target, name, descriptor) => {
   descriptor.writable = false;
   descriptor.enumerable = true;
 
   descriptor.value = {
     __isHandler: true,
     __handlerFor: tpl,
-    fn: descriptor.value
+    fn: descriptor.value,
   };
 
   return descriptor;
 };
 
-export const Serializer = function(type, ...args) {
+export const Serializer = function (type, ...args) {
   return new (importTypeOrBase("./serializers", type))(type, ...args);
 };
 
-export const Filter = function(type, ...args) {
+export const Filter = function (type, ...args) {
   return new (importTypeOrBase("./filters", type))(type, ...args);
 };
 
-export const Mock = function(type, ...args) {
+export const Mock = function (type, ...args) {
   return new (importTypeOrBase("./mocks", type))(type, ...args);
 };
 

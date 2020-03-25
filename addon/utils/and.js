@@ -36,7 +36,7 @@ export default function and(...validators) {
             .then(handleResult);
         }
 
-        return promise.catch(err => err);
+        return promise.catch((err) => err);
       }
 
       if (notTrue(validation)) return validation;

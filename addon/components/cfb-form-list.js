@@ -15,13 +15,13 @@ export default Component.extend({
     this.get("data").perform();
   },
 
-  data: task(function*() {
+  data: task(function* () {
     return yield this.get("apollo").watchQuery(
       {
         query: formListQuery,
-        fetchPolicy: "cache-and-network"
+        fetchPolicy: "cache-and-network",
       },
       "allForms.edges"
     );
-  }).restartable()
+  }).restartable(),
 });

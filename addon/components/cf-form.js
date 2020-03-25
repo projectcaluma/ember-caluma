@@ -59,5 +59,5 @@ export default Component.extend({
    *
    * @argument {*} overrides
    */
-  context: null
+  context: null,
 });

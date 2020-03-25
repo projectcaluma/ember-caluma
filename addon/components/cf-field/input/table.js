@@ -25,9 +25,9 @@ export default Component.extend({
 
   columnHeaders: computed(
     "field.question.{rowForm.questions.edges.@each,meta.columnsToDisplay.[]}",
-    function() {
+    function () {
       if (this.get("field.question.meta.columnsToDisplay.length")) {
-        return this.get("field.question.rowForm.questions.edges").filter(n =>
+        return this.get("field.question.rowForm.questions.edges").filter((n) =>
           this.get("field.question.meta.columnsToDisplay").includes(n.node.slug)
         );
       }
@@ -35,13 +35,13 @@ export default Component.extend({
     }
   ),
 
-  addRow: task(function*() {
+  addRow: task(function* () {
     const raw = yield this.get("apollo").mutate(
       {
         mutation: saveDocumentMutation,
         variables: {
-          input: { form: this.get("field.question.rowForm.slug") }
-        }
+          input: { form: this.get("field.question.rowForm.slug") },
+        },
       },
       "saveDocument.document"
     );
@@ -52,15 +52,15 @@ export default Component.extend({
 
     this.setProperties({
       documentToEdit: newDocument,
-      showAddModal: true
+      showAddModal: true,
     });
   }).drop(),
 
-  deleteRow: task(function*(document) {
+  deleteRow: task(function* (document) {
     if (!this.field.answer.value) return;
 
     const remainingDocuments = this.field.answer.value.filter(
-      doc => doc.pk !== document.pk
+      (doc) => doc.pk !== document.pk
     );
 
     yield this.onSave(remainingDocuments);
@@ -68,7 +68,7 @@ export default Component.extend({
     // Remove orphaned document from database.
     yield this.apollo.mutate({
       mutation: removeDocumentMutation,
-      variables: { input: { document: document.uuid } }
+      variables: { input: { document: document.uuid } },
     });
 
     // Remove orphand document from Caluma store.
@@ -77,18 +77,18 @@ export default Component.extend({
     this.closeModal("showDeleteModal");
   }),
 
-  save: task(function*() {
+  save: task(function* () {
     try {
       const newDocument = this.get("documentToEdit");
-      yield all(newDocument.fields.map(f => f.validate.perform()));
+      yield all(newDocument.fields.map((f) => f.validate.perform()));
 
-      if (newDocument.fields.some(field => field.isInvalid)) {
+      if (newDocument.fields.some((field) => field.isInvalid)) {
         return;
       }
 
       const rows = this.get("field.answer.value") || [];
 
-      if (!rows.find(doc => doc.pk === newDocument.pk)) {
+      if (!rows.find((doc) => doc.pk === newDocument.pk)) {
         // add document to table
         yield this.onSave([...rows, newDocument]);
 
@@ -121,15 +121,15 @@ export default Component.extend({
     editRow(document) {
       this.setProperties({
         documentToEdit: document,
-        showAddModal: true
+        showAddModal: true,
       });
     },
 
     deleteRow(document) {
       this.setProperties({
         documentToDelete: document,
-        showDeleteModal: true
+        showDeleteModal: true,
       });
-    }
-  }
+    },
+  },
 });

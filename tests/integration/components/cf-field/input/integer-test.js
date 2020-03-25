@@ -3,16 +3,16 @@ import { setupRenderingTest } from "ember-qunit";
 import { render, fillIn } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 
-module("Integration | Component | cf-field/input/integer", function(hooks) {
+module("Integration | Component | cf-field/input/integer", function (hooks) {
   setupRenderingTest(hooks);
 
-  test("it computes the proper element id", async function(assert) {
+  test("it computes the proper element id", async function (assert) {
     await render(hbs`{{cf-field/input/integer field=(hash pk="test-id")}}`);
 
     assert.dom("#test-id").exists();
   });
 
-  test("it renders", async function(assert) {
+  test("it renders", async function (assert) {
     assert.expect(7);
 
     await render(hbs`
@@ -39,7 +39,7 @@ module("Integration | Component | cf-field/input/integer", function(hooks) {
     assert.dom("input").hasValue("3");
   });
 
-  test("it can be disabled", async function(assert) {
+  test("it can be disabled", async function (assert) {
     assert.expect(2);
 
     await render(hbs`{{cf-field/input/integer disabled=true}}`);
@@ -48,20 +48,20 @@ module("Integration | Component | cf-field/input/integer", function(hooks) {
     assert.dom("input").hasClass("uk-disabled");
   });
 
-  test("it triggers save on input", async function(assert) {
+  test("it triggers save on input", async function (assert) {
     assert.expect(1);
 
-    this.set("save", value => assert.equal(value, 1));
+    this.set("save", (value) => assert.equal(value, 1));
 
     await render(hbs`{{cf-field/input/integer onSave=save}}`);
 
     await fillIn("input", 1);
   });
 
-  test("it does not allow non integer input", async function(assert) {
+  test("it does not allow non integer input", async function (assert) {
     assert.expect(1);
 
-    this.set("save", value => assert.equal(value, null));
+    this.set("save", (value) => assert.equal(value, null));
 
     await render(hbs`{{cf-field/input/integer onSave=save}}`);
 

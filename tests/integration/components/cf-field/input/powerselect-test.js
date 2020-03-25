@@ -3,10 +3,12 @@ import { setupRenderingTest } from "ember-qunit";
 import { click, render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 
-module("Integration | Component | cf-field/input/powerselect", function(hooks) {
+module("Integration | Component | cf-field/input/powerselect", function (
+  hooks
+) {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     const singleChoice = {
       __typename: "ChoiceQuestion",
       slug: "test-single",
@@ -17,9 +19,9 @@ module("Integration | Component | cf-field/input/powerselect", function(hooks) {
         edges: [
           { node: { slug: "option-1", label: "Option 1" } },
           { node: { slug: "option-2", label: "Option 2" } },
-          { node: { slug: "option-3", label: "Option 3" } }
-        ]
-      }
+          { node: { slug: "option-3", label: "Option 3" } },
+        ],
+      },
     };
 
     const multipleChoice = {
@@ -32,16 +34,16 @@ module("Integration | Component | cf-field/input/powerselect", function(hooks) {
         edges: [
           { node: { slug: "option-1", label: "Option 1" } },
           { node: { slug: "option-2", label: "Option 2" } },
-          { node: { slug: "option-3", label: "Option 3" } }
-        ]
-      }
+          { node: { slug: "option-3", label: "Option 3" } },
+        ],
+      },
     };
 
     const form = {
       __typename: "Form",
       slug: "test-form",
       name: "Test Form",
-      questions: [singleChoice, multipleChoice]
+      questions: [singleChoice, multipleChoice],
     };
 
     const document = this.owner.factoryFor("caluma-model:document").create({
@@ -50,18 +52,18 @@ module("Integration | Component | cf-field/input/powerselect", function(hooks) {
         id: btoa("Document:xxxx-xxxx"),
         rootForm: form,
         forms: [form],
-        answers: []
-      }
+        answers: [],
+      },
     });
 
     this.setProperties({
       document,
       singleChoiceField: document.findField("test-single"),
-      multipleChoiceField: document.findField("test-multiple")
+      multipleChoiceField: document.findField("test-multiple"),
     });
   });
 
-  test("it computes the proper element id", async function(assert) {
+  test("it computes the proper element id", async function (assert) {
     await render(hbs`{{cf-field/input/powerselect field=singleChoiceField}}`);
 
     assert
@@ -75,7 +77,7 @@ module("Integration | Component | cf-field/input/powerselect", function(hooks) {
       .hasAttribute("id", this.multipleChoiceField.pk);
   });
 
-  test("it renders (single)", async function(assert) {
+  test("it renders (single)", async function (assert) {
     assert.expect(1);
 
     await render(
@@ -87,10 +89,10 @@ module("Integration | Component | cf-field/input/powerselect", function(hooks) {
     assert.dom(".ember-power-select-trigger").exists();
   });
 
-  test("it saves on click (single)", async function(assert) {
+  test("it saves on click (single)", async function (assert) {
     assert.expect(3);
 
-    this.set("onSave", choice => {
+    this.set("onSave", (choice) => {
       this.set("singleChoiceField.answer.value", choice);
     });
 
@@ -110,7 +112,7 @@ module("Integration | Component | cf-field/input/powerselect", function(hooks) {
     assert.equal(this.singleChoiceField.answer.value, "option-1");
   });
 
-  test("it renders (multiple)", async function(assert) {
+  test("it renders (multiple)", async function (assert) {
     assert.expect(1);
 
     await render(
@@ -122,10 +124,10 @@ module("Integration | Component | cf-field/input/powerselect", function(hooks) {
     assert.dom(".ember-power-select-trigger").exists();
   });
 
-  test("it saves on click (multiple)", async function(assert) {
+  test("it saves on click (multiple)", async function (assert) {
     assert.expect(3);
 
-    this.set("onSave", choices => {
+    this.set("onSave", (choices) => {
       this.set("multipleChoiceField.answer.value", choices);
     });
 
@@ -151,14 +153,14 @@ module("Integration | Component | cf-field/input/powerselect", function(hooks) {
 
     assert.deepEqual(this.multipleChoiceField.answer.value, [
       "option-1",
-      "option-2"
+      "option-2",
     ]);
   });
 
-  test("it handles empty selections (multiple)", async function(assert) {
+  test("it handles empty selections (multiple)", async function (assert) {
     assert.expect(3);
 
-    this.set("onSave", choices => {
+    this.set("onSave", (choices) => {
       this.set("multipleChoiceField.answer.value", choices);
     });
 

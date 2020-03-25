@@ -4,5 +4,5 @@ import layout from "../templates/components/cf-form-wrapper";
 export default Component.extend({
   layout,
 
-  tagName: ""
+  tagName: "",
 });

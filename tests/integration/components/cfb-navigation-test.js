@@ -3,10 +3,10 @@ import { setupRenderingTest } from "ember-qunit";
 import { render, click, settled } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 
-module("Integration | Component | cfb-navigation", function(hooks) {
+module("Integration | Component | cfb-navigation", function (hooks) {
   setupRenderingTest(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     this.nav = this.owner.lookup("service:navigation");
 
     this.nav.pushEntry(1, { title: "foo", link: ["foo", 1] });
@@ -14,7 +14,7 @@ module("Integration | Component | cfb-navigation", function(hooks) {
     this.nav.pushEntry(3, { title: "baz", link: ["baz", 3] });
   });
 
-  test("it renders", async function(assert) {
+  test("it renders", async function (assert) {
     assert.expect(2);
 
     await render(hbs`{{cfb-navigation}}`);
@@ -23,7 +23,7 @@ module("Integration | Component | cfb-navigation", function(hooks) {
     assert.dom("ul.uk-breadcrumb > li").exists({ count: 3 });
   });
 
-  test("it only renders the last x (3 per default) items", async function(assert) {
+  test("it only renders the last x (3 per default) items", async function (assert) {
     assert.expect(3);
 
     this.nav.pushEntry(4, { title: "bla", link: ["bla", 4] });
@@ -38,7 +38,7 @@ module("Integration | Component | cfb-navigation", function(hooks) {
     assert.dom("ul.uk-breadcrumb > li").exists({ count: 1 });
   });
 
-  test("it can navigate", async function(assert) {
+  test("it can navigate", async function (assert) {
     assert.expect(4);
 
     let router = this.owner.lookup("service:router");

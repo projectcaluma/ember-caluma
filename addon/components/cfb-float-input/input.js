@@ -8,5 +8,5 @@ export default InputComponent.extend({
   },
 
   attributeBindings: ["step"],
-  step: "any"
+  step: "any",
 });

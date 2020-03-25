@@ -11,7 +11,7 @@ export default Component.extend({
   tagName: "li",
 
   classNameBindings: [
-    "question.isArchived:cfb-form-editor__question-list__item__archived"
+    "question.isArchived:cfb-form-editor__question-list__item__archived",
   ],
 
   sortable: true,
@@ -19,12 +19,12 @@ export default Component.extend({
   archived: reads("question.isArchived"),
 
   required: reads("_required.lastSuccessful.value"),
-  _required: computed("question.isRequired", function() {
+  _required: computed("question.isRequired", function () {
     const tsk = this.get("_requiredTask");
     tsk.perform();
     return tsk;
   }),
-  _requiredTask: task(function*() {
+  _requiredTask: task(function* () {
     return yield jexl.eval(this.get("question.isRequired"));
   }),
 
@@ -44,5 +44,5 @@ export default Component.extend({
       this.get("elementId"),
       this.get("slug")
     );
-  }
+  },
 });

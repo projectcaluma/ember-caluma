@@ -101,7 +101,7 @@ export default Component.extend({
   fieldset: computed(
     "document.{fieldsets.[],raw.form.slug}",
     "router.currentRoute.queryParams.displayedForm",
-    function() {
+    function () {
       if (!this.document) return;
 
       const slug =
@@ -109,7 +109,7 @@ export default Component.extend({
         this.get("document.raw.form.slug");
 
       const fieldset = this.document.fieldsets.find(
-        fieldset => fieldset.form.slug === slug
+        (fieldset) => fieldset.form.slug === slug
       );
 
       assert(
@@ -121,7 +121,7 @@ export default Component.extend({
     }
   ),
 
-  data: computed("documentId", function() {
+  data: computed("documentId", function () {
     const task = this.get("dataTask");
 
     task.perform();
@@ -129,7 +129,7 @@ export default Component.extend({
     return task;
   }),
 
-  dataTask: task(function*() {
+  dataTask: task(function* () {
     yield this._teardown();
 
     if (!this.documentId) return;
@@ -138,7 +138,7 @@ export default Component.extend({
       {
         query: getDocumentAnswersQuery,
         fetchPolicy: "network-only",
-        variables: { id: this.documentId }
+        variables: { id: this.documentId },
       },
       "allDocuments.edges"
     )).map(({ node }) => node);
@@ -147,7 +147,7 @@ export default Component.extend({
       {
         query: getDocumentFormsQuery,
         fetchPolicy: "cache-first",
-        variables: { slug: answerDocument.form.slug }
+        variables: { slug: answerDocument.form.slug },
       },
       "allForms.edges"
     )).map(({ node }) => node);
@@ -161,5 +161,5 @@ export default Component.extend({
       .create({ document });
 
     return { document, navigation };
-  }).drop()
+  }).drop(),
 });

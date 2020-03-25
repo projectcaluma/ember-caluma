@@ -10,8 +10,8 @@ export default class {
       const fn = this[name];
 
       return typeof fn === "function"
-        ? records => fn.call(this, records, value)
-        : records => records;
+        ? (records) => fn.call(this, records, value)
+        : (records) => records;
     });
   }
 

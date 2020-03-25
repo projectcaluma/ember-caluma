@@ -4,18 +4,18 @@ import { setupMirage } from "ember-cli-mirage/test-support";
 import gql from "graphql-tag";
 import { classify } from "@ember/string";
 
-module("Unit | Mirage GraphQL Mock | task", function(hooks) {
+module("Unit | Mirage GraphQL Mock | task", function (hooks) {
   setupTest(hooks);
   setupMirage(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     const { id: caseId } = this.server.create("case");
     this.task = this.server.create("task", { caseId });
 
     this.apollo = this.owner.lookup("service:apollo");
   });
 
-  test("can fetch tasks", async function(assert) {
+  test("can fetch tasks", async function (assert) {
     assert.expect(1);
 
     const res = await this.apollo.query({
@@ -32,7 +32,7 @@ module("Unit | Mirage GraphQL Mock | task", function(hooks) {
             }
           }
         }
-      `
+      `,
     });
 
     const __typename = `${classify(this.task.type.toLowerCase())}Task`;
@@ -41,7 +41,7 @@ module("Unit | Mirage GraphQL Mock | task", function(hooks) {
       name: this.task.name,
       id: window.btoa(`${__typename}:${this.task.id}`),
       createdByUser: this.task.createdByUser,
-      createdAt: this.task.createdAt.toISOString()
+      createdAt: this.task.createdAt.toISOString(),
     });
   });
 });

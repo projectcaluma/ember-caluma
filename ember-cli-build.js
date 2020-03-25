@@ -4,13 +4,13 @@ const EmberAddon = require("ember-cli/lib/broccoli/ember-addon");
 const funnel = require("broccoli-funnel");
 const sass = require("sass");
 
-module.exports = function(defaults) {
+module.exports = function (defaults) {
   const app = new EmberAddon(defaults, {
     sassOptions: { implementation: sass },
     snippetPaths: ["tests/dummy/app/snippets"],
     babel: {
-      plugins: ["@babel/plugin-proposal-object-rest-spread"]
-    }
+      plugins: ["@babel/plugin-proposal-object-rest-spread"],
+    },
   });
 
   app.import("node_modules/moment/locale/de.js");
@@ -25,12 +25,12 @@ module.exports = function(defaults) {
 
   const oxygen = funnel("node_modules/typeface-oxygen/files", {
     include: ["*.woff", "*.woff2"],
-    destDir: "/assets/files/"
+    destDir: "/assets/files/",
   });
 
   const oxygenMono = funnel("node_modules/typeface-oxygen-mono/files", {
     include: ["*.woff", "*.woff2"],
-    destDir: "/assets/files/"
+    destDir: "/assets/files/",
   });
 
   return app.toTree([oxygen, oxygenMono]);

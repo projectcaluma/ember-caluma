@@ -5,15 +5,15 @@ import { hbs } from "ember-cli-htmlbars";
 import setupMirage from "ember-cli-mirage/test-support/setup-mirage";
 import { setupIntl } from "ember-intl/test-support";
 
-module("Integration | Component | cf-field", function(hooks) {
+module("Integration | Component | cf-field", function (hooks) {
   setupRenderingTest(hooks);
   setupMirage(hooks);
   setupIntl(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     this.validator = this.server.create("format-validator", {
       slug: "email",
-      regex: "/@/"
+      regex: "/@/",
     });
 
     const form = {
@@ -26,7 +26,7 @@ module("Integration | Component | cf-field", function(hooks) {
           isRequired: "true",
           isHidden: "false",
           textMaxLength: 2,
-          __typename: "TextQuestion"
+          __typename: "TextQuestion",
         },
         {
           slug: "question-2",
@@ -34,7 +34,7 @@ module("Integration | Component | cf-field", function(hooks) {
           isRequired: "true",
           isHidden: "false",
           meta: { formatValidators: ["email"] },
-          __typename: "TextQuestion"
+          __typename: "TextQuestion",
         },
         {
           slug: "question-3",
@@ -42,9 +42,9 @@ module("Integration | Component | cf-field", function(hooks) {
           isRequired: "true",
           isHidden: "false",
           formatValidators: ["email"],
-          __typename: "TextQuestion"
-        }
-      ]
+          __typename: "TextQuestion",
+        },
+      ],
     };
 
     const document = this.owner.factoryFor("caluma-model:document").create({
@@ -55,14 +55,14 @@ module("Integration | Component | cf-field", function(hooks) {
           {
             stringValue: "Test",
             question: {
-              slug: "question-1"
+              slug: "question-1",
             },
-            __typename: "StringAnswer"
-          }
+            __typename: "StringAnswer",
+          },
         ],
         rootForm: form,
-        forms: [form]
-      }
+        forms: [form],
+      },
     });
 
     this.set("field", document.fields[0]);
@@ -70,7 +70,7 @@ module("Integration | Component | cf-field", function(hooks) {
     this.set("emailField", document.fields[2]);
   });
 
-  test("it allows deleting existing input", async function(assert) {
+  test("it allows deleting existing input", async function (assert) {
     assert.expect(1);
 
     await render(hbs`{{cf-field field=field}}`);
@@ -80,7 +80,7 @@ module("Integration | Component | cf-field", function(hooks) {
     assert.equal(this.field.answer.value, null, "Value was removed.");
   });
 
-  test("it renders", async function(assert) {
+  test("it renders", async function (assert) {
     assert.expect(5);
 
     await render(hbs`{{cf-field field=field}}`);
@@ -93,7 +93,7 @@ module("Integration | Component | cf-field", function(hooks) {
     assert.dom("input[type=text]").hasValue("Test");
   });
 
-  test("it renders disabled fields", async function(assert) {
+  test("it renders disabled fields", async function (assert) {
     assert.expect(2);
 
     await render(hbs`{{cf-field field=field disabled=true}}`);
@@ -102,7 +102,7 @@ module("Integration | Component | cf-field", function(hooks) {
     assert.dom("input[type=text]").hasClass("uk-disabled");
   });
 
-  test("it validates input", async function(assert) {
+  test("it validates input", async function (assert) {
     assert.expect(1);
 
     await render(hbs`{{cf-field field=field}}`);
@@ -114,7 +114,7 @@ module("Integration | Component | cf-field", function(hooks) {
       .hasText('t:caluma.form.validation.tooLong:("max":2,"value":"Test")');
   });
 
-  test("it hides the label", async function(assert) {
+  test("it hides the label", async function (assert) {
     this.set("field.meta", { hideLabel: true });
 
     await render(hbs`{{cf-field field=field}}`);
@@ -122,7 +122,7 @@ module("Integration | Component | cf-field", function(hooks) {
     assert.dom("uk-text-bold").doesNotExist();
   });
 
-  test("it shows error message", async function(assert) {
+  test("it shows error message", async function (assert) {
     assert.expect(1);
 
     await render(hbs`{{cf-field field=errorField}}`);
@@ -136,7 +136,7 @@ module("Integration | Component | cf-field", function(hooks) {
       );
   });
 
-  test("it saves the valid email address", async function(assert) {
+  test("it saves the valid email address", async function (assert) {
     assert.expect(1);
 
     await render(hbs`{{cf-field field=emailField}}`);

@@ -13,12 +13,12 @@ export default class extends BaseMock {
   ) {
     const form = this.filter.find(this.collection, { slug });
 
-    const questions = questionSlugs.map(slug => {
+    const questions = questionSlugs.map((slug) => {
       return questionFilter.find(this.db.questions, { slug });
     });
 
     const res = this.collection.update(form.id, {
-      questionIds: questions.map(({ id }) => id)
+      questionIds: questions.map(({ id }) => id),
     });
 
     return {
@@ -28,11 +28,11 @@ export default class extends BaseMock {
           edges: () =>
             new MockList(questions.length, () => ({
               node: (r, v, _, meta) =>
-                questionSerializer.serialize(questions[meta.path.prev.key])
-            }))
-        }
+                questionSerializer.serialize(questions[meta.path.prev.key]),
+            })),
+        },
       },
-      clientMutationId
+      clientMutationId,
     };
   }
 
@@ -44,18 +44,18 @@ export default class extends BaseMock {
     const form = this.filter.find(this.collection, { slug });
 
     const question = questionFilter.find(this.db.questions, {
-      slug: questionSlug
+      slug: questionSlug,
     });
 
     this.db.questions.update(question.id, {
-      formIds: [...(question.formIds || []), form.id]
+      formIds: [...(question.formIds || []), form.id],
     });
 
     const res = this.collection.update(form.id, {
-      questionIds: [...(form.questionIds || []), question.id]
+      questionIds: [...(form.questionIds || []), question.id],
     });
 
-    const questions = res.questionIds.map(id => this.db.questions.find(id));
+    const questions = res.questionIds.map((id) => this.db.questions.find(id));
 
     return {
       form: {
@@ -64,11 +64,11 @@ export default class extends BaseMock {
           edges: () =>
             new MockList(questions.length, () => ({
               node: (r, v, _, meta) =>
-                questionSerializer.serialize(questions[meta.path.prev.key])
-            }))
-        }
+                questionSerializer.serialize(questions[meta.path.prev.key]),
+            })),
+        },
       },
-      clientMutationId
+      clientMutationId,
     };
   }
 
@@ -80,18 +80,18 @@ export default class extends BaseMock {
     const form = this.filter.find(this.collection, { slug });
 
     const question = questionFilter.find(this.db.questions, {
-      slug: questionSlug
+      slug: questionSlug,
     });
 
     this.db.questions.update(question.id, {
-      formIds: question.formIds.filter(id => id !== form.id)
+      formIds: question.formIds.filter((id) => id !== form.id),
     });
 
     const res = this.collection.update(form.id, {
-      questionIds: form.questionIds.filter(id => id !== question.id)
+      questionIds: form.questionIds.filter((id) => id !== question.id),
     });
 
-    const questions = res.questionIds.map(id => this.db.questions.find(id));
+    const questions = res.questionIds.map((id) => this.db.questions.find(id));
 
     return {
       form: {
@@ -100,11 +100,11 @@ export default class extends BaseMock {
           edges: () =>
             new MockList(questions.length, () => ({
               node: (r, v, _, meta) =>
-                questionSerializer.serialize(questions[meta.path.prev.key])
-            }))
-        }
+                questionSerializer.serialize(questions[meta.path.prev.key]),
+            })),
+        },
       },
-      clientMutationId
+      clientMutationId,
     };
   }
 }

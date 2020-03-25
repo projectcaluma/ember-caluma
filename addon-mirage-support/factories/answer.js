@@ -9,30 +9,17 @@ export default Factory.extend({
 
     if (["TEXT", "TEXTAREA"].includes(answer.question.type)) {
       answer.update({
-        type: "STRING"
+        type: "STRING",
       });
 
       if (answer.value === undefined) {
         answer.update({
-          value: faker.lorem.sentence()
+          value: faker.lorem.sentence(),
         });
       }
     } else if (answer.question.type === "INTEGER") {
       answer.update({
-        type: "INTEGER"
-      });
-
-      if (answer.value === undefined) {
-        answer.update({
-          value: faker.random.number({
-            min: answer.question.minValue,
-            max: answer.question.maxValue
-          })
-        });
-      }
-    } else if (answer.question.type === "FLOAT") {
-      answer.update({
-        type: "FLOAT"
+        type: "INTEGER",
       });
 
       if (answer.value === undefined) {
@@ -40,48 +27,61 @@ export default Factory.extend({
           value: faker.random.number({
             min: answer.question.minValue,
             max: answer.question.maxValue,
-            precision: 0.1
-          })
+          }),
+        });
+      }
+    } else if (answer.question.type === "FLOAT") {
+      answer.update({
+        type: "FLOAT",
+      });
+
+      if (answer.value === undefined) {
+        answer.update({
+          value: faker.random.number({
+            min: answer.question.minValue,
+            max: answer.question.maxValue,
+            precision: 0.1,
+          }),
         });
       }
     } else if (answer.question.type === "MULTIPLE_CHOICE") {
       answer.update({
-        type: "LIST"
+        type: "LIST",
       });
 
       if (answer.value === undefined) {
         answer.update({
           value: [
-            faker.random.arrayElement(answer.question.options.models).slug
-          ]
+            faker.random.arrayElement(answer.question.options.models).slug,
+          ],
         });
       }
     } else if (answer.question.type === "CHOICE") {
       answer.update({
-        type: "STRING"
+        type: "STRING",
       });
 
       if (answer.value === undefined) {
         answer.update({
-          value: faker.random.arrayElement(answer.question.options.models).slug
+          value: faker.random.arrayElement(answer.question.options.models).slug,
         });
       }
     } else if (answer.question.type === "FILE") {
       answer.update({
-        type: "FILE"
+        type: "FILE",
       });
 
       if (answer.value === undefined) {
         answer.update({
           value: {
             uploadUrl: faker.internet.url,
-            downloadUrl: faker.internet.url
-          }
+            downloadUrl: faker.internet.url,
+          },
         });
       }
     } else if (answer.question.type === "DATE") {
       answer.update({
-        type: "DATE"
+        type: "DATE",
       });
 
       if (answer.value === undefined) {
@@ -92,9 +92,9 @@ export default Factory.extend({
         const day = String(date.getDate()).padStart(2, "0");
 
         answer.update({
-          value: `${year}-${month}-${day}`
+          value: `${year}-${month}-${day}`,
         });
       }
     }
-  }
+  },
 });

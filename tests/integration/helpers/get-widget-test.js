@@ -3,15 +3,15 @@ import { setupRenderingTest } from "ember-qunit";
 import { render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 
-module("Integration | Helper | get-widget", function(hooks) {
+module("Integration | Helper | get-widget", function (hooks) {
   setupRenderingTest(hooks);
 
-  test("it returns valid overrides", async function(assert) {
+  test("it returns valid overrides", async function (assert) {
     const calumaOptions = this.owner.lookup("service:calumaOptions");
 
     calumaOptions.registerComponentOverride({
       label: "Some Component",
-      component: "some-component"
+      component: "some-component",
     });
 
     await render(
@@ -21,7 +21,7 @@ module("Integration | Helper | get-widget", function(hooks) {
     assert.dom(this.element).hasText("some-component");
   });
 
-  test("it doesn't return an invalid override", async function(assert) {
+  test("it doesn't return an invalid override", async function (assert) {
     await render(
       hbs`{{get-widget (hash meta=(hash widgetOverride="some-component"))}}`
     );
@@ -29,7 +29,7 @@ module("Integration | Helper | get-widget", function(hooks) {
     assert.dom(this.element).hasText("cf-field/input");
   });
 
-  test("it has a fallback", async function(assert) {
+  test("it has a fallback", async function (assert) {
     await render(hbs`{{get-widget null}}`);
 
     assert.dom(this.element).hasText("cf-field/input");
@@ -39,18 +39,18 @@ module("Integration | Helper | get-widget", function(hooks) {
     assert.dom(this.element).hasText("cf-field/input");
   });
 
-  test("it can pass the default widget", async function(assert) {
+  test("it can pass the default widget", async function (assert) {
     await render(hbs`{{get-widget null default="cf-form"}}`);
 
     assert.dom(this.element).hasText("cf-form");
   });
 
-  test("it can handle multiple objects", async function(assert) {
+  test("it can handle multiple objects", async function (assert) {
     const calumaOptions = this.owner.lookup("service:calumaOptions");
 
     calumaOptions.registerComponentOverride({
       label: "Some Component",
-      component: "some-component"
+      component: "some-component",
     });
 
     await render(

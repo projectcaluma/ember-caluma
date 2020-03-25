@@ -3,11 +3,11 @@ import { visit } from "@ember/test-helpers";
 import { setupApplicationTest } from "ember-qunit";
 import { setupMirage } from "ember-cli-mirage/test-support";
 
-module("Acceptance | form list", function(hooks) {
+module("Acceptance | form list", function (hooks) {
   setupApplicationTest(hooks);
   setupMirage(hooks);
 
-  test("can list forms", async function(assert) {
+  test("can list forms", async function (assert) {
     assert.expect(1);
 
     this.server.createList("form", 5);

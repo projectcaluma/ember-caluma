@@ -3,10 +3,10 @@ import { setupRenderingTest } from "ember-qunit";
 import { render, click } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 
-module("Integration | Component | cfb-toggle-switch", function(hooks) {
+module("Integration | Component | cfb-toggle-switch", function (hooks) {
   setupRenderingTest(hooks);
 
-  test("it renders", async function(assert) {
+  test("it renders", async function (assert) {
     assert.expect(2);
 
     this.set("value", false);
@@ -26,12 +26,12 @@ module("Integration | Component | cfb-toggle-switch", function(hooks) {
     assert.dom("input[name=test]").isChecked();
   });
 
-  test("it can toggle", async function(assert) {
+  test("it can toggle", async function (assert) {
     assert.expect(4);
 
     this.set("value", false);
 
-    this.set("update", value => {
+    this.set("update", (value) => {
       assert.step("update");
 
       this.set("value", value);

@@ -12,7 +12,7 @@ export default Route.extend(NavigationRouteMixin, {
   apollo: queryManager(),
 
   title: reads("fetchLabel.lastSuccessful.value.firstObject.node.label"),
-  fetchLabel: task(function*(slug) {
+  fetchLabel: task(function* (slug) {
     return yield this.get("apollo").watchQuery(
       {
         query: gql`
@@ -26,7 +26,7 @@ export default Route.extend(NavigationRouteMixin, {
             }
           }
         `,
-        variables: { slug }
+        variables: { slug },
       },
       "allQuestions.edges"
     );
@@ -41,7 +41,7 @@ export default Route.extend(NavigationRouteMixin, {
   model({ question_slug }) {
     return {
       questionSlug: question_slug,
-      formSlug: this.modelFor("edit")
+      formSlug: this.modelFor("edit"),
     };
-  }
+  },
 });

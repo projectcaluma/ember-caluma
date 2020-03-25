@@ -15,7 +15,7 @@ export default Service.extend({
       obj.pk
     );
 
-    const existing = this._store.find(i => i.pk === obj.pk);
+    const existing = this._store.find((i) => i.pk === obj.pk);
 
     if (existing) {
       debug(
@@ -27,25 +27,25 @@ export default Service.extend({
       return existing;
     }
 
-    this.set("_store", [...this._store.filter(i => i.pk !== obj.pk), obj]);
+    this.set("_store", [...this._store.filter((i) => i.pk !== obj.pk), obj]);
 
     return obj;
   },
 
   find(pk) {
-    return this._store.find(i => i.pk === pk) || null;
+    return this._store.find((i) => i.pk === pk) || null;
   },
 
   delete(pk) {
     this.set(
       "_store",
-      this._store.filter(i => i.pk !== pk)
+      this._store.filter((i) => i.pk !== pk)
     );
   },
 
   clear() {
-    this._store.forEach(obj => obj.destroy());
+    this._store.forEach((obj) => obj.destroy());
 
     this.set("_store", []);
-  }
+  },
 });

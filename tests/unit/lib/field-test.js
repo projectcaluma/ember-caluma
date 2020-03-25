@@ -6,11 +6,11 @@ import { setupIntl } from "ember-intl/test-support";
 import data from "./data";
 import { parseDocument } from "ember-caluma/lib/parsers";
 
-module("Unit | Library | field", function(hooks) {
+module("Unit | Library | field", function (hooks) {
   setupTest(hooks);
   setupIntl(hooks);
 
-  hooks.beforeEach(async function() {
+  hooks.beforeEach(async function () {
     this.owner.register("service:validator", ValidatorServiceStub);
 
     this.set(
@@ -23,7 +23,7 @@ module("Unit | Library | field", function(hooks) {
     await settled();
   });
 
-  test("computes a pk", async function(assert) {
+  test("computes a pk", async function (assert) {
     assert.expect(1);
 
     const field = this.document.findField("question-1");
@@ -31,7 +31,7 @@ module("Unit | Library | field", function(hooks) {
     assert.equal(field.pk, `${this.document.pk}:Question:question-1`);
   });
 
-  test("computes isNew correctly", async function(assert) {
+  test("computes isNew correctly", async function (assert) {
     assert.expect(3);
 
     const answeredField = this.document.findField("question-1");
@@ -45,7 +45,7 @@ module("Unit | Library | field", function(hooks) {
     assert.equal(answeredField.isNew, true);
   });
 
-  test("can compute the question", async function(assert) {
+  test("can compute the question", async function (assert) {
     assert.expect(2);
 
     const field = this.document.findField("question-1");
@@ -54,7 +54,7 @@ module("Unit | Library | field", function(hooks) {
     assert.equal(field.question.label, "Question 1");
   });
 
-  test("can compute the answer", async function(assert) {
+  test("can compute the answer", async function (assert) {
     assert.expect(4);
 
     const field = this.document.findField("question-1");
@@ -66,7 +66,7 @@ module("Unit | Library | field", function(hooks) {
     assert.equal(fieldWithoutAnswer.answer.id, null);
   });
 
-  test("it computes optional", async function(assert) {
+  test("it computes optional", async function (assert) {
     assert.expect(2);
 
     const dependsOnField = this.document.findField("question-1");
@@ -79,7 +79,7 @@ module("Unit | Library | field", function(hooks) {
     assert.equal(field.optional, false);
   });
 
-  test("it computes hidden", async function(assert) {
+  test("it computes hidden", async function (assert) {
     assert.expect(2);
 
     const dependsOnField = this.document.findField("question-1");
@@ -92,7 +92,7 @@ module("Unit | Library | field", function(hooks) {
     assert.equal(field.hidden, false);
   });
 
-  test("it computes hiddenDependencies based on 'answer' transform", async function(assert) {
+  test("it computes hiddenDependencies based on 'answer' transform", async function (assert) {
     assert.expect(1);
 
     const field = this.document.findField("question-2");
@@ -101,7 +101,7 @@ module("Unit | Library | field", function(hooks) {
     assert.deepEqual(field.hiddenDependencies, [dependentField]);
   });
 
-  test("it computes optionalDependencies based on 'answer' transform", async function(assert) {
+  test("it computes optionalDependencies based on 'answer' transform", async function (assert) {
     assert.expect(1);
 
     const field = this.document.findField("question-2");
@@ -110,7 +110,7 @@ module("Unit | Library | field", function(hooks) {
     assert.deepEqual(field.optionalDependencies, [dependentField]);
   });
 
-  test("it can handle newlines in JEXL expressions", async function(assert) {
+  test("it can handle newlines in JEXL expressions", async function (assert) {
     assert.expect(2);
 
     const field = this.document.findField("question-2");
@@ -124,7 +124,7 @@ module("Unit | Library | field", function(hooks) {
     assert.equal(field.optional, false);
   });
 
-  test("it can validate required fields", async function(assert) {
+  test("it can validate required fields", async function (assert) {
     assert.expect(1);
 
     const field = this.owner.factoryFor("caluma-model:field").create({
@@ -132,23 +132,23 @@ module("Unit | Library | field", function(hooks) {
         question: {
           __typename: "TextQuestion",
           isHidden: "false",
-          isRequired: "true"
+          isRequired: "true",
         },
         answer: {
           stringValue: "",
-          __typename: "StringAnswer"
-        }
+          __typename: "StringAnswer",
+        },
       },
-      document: this.document
+      document: this.document,
     });
 
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      't:caluma.form.validation.blank:("presence":true,"value":"")'
+      't:caluma.form.validation.blank:("presence":true,"value":"")',
     ]);
   });
 
-  test("it ignores optional fields", async function(assert) {
+  test("it ignores optional fields", async function (assert) {
     assert.expect(1);
 
     const field = this.owner.factoryFor("caluma-model:field").create({
@@ -156,18 +156,18 @@ module("Unit | Library | field", function(hooks) {
         question: {
           __typename: "TextQuestion",
           isHidden: "false",
-          isRequired: "false"
+          isRequired: "false",
         },
-        answer: null
+        answer: null,
       },
-      document: this.document
+      document: this.document,
     });
 
     await field.validate.perform();
     assert.deepEqual(field.errors, []);
   });
 
-  test("it can validate text fields", async function(assert) {
+  test("it can validate text fields", async function (assert) {
     assert.expect(1);
 
     const field = this.owner.factoryFor("caluma-model:field").create({
@@ -176,24 +176,24 @@ module("Unit | Library | field", function(hooks) {
           textMaxLength: 4,
           isHidden: "false",
           isRequired: "true",
-          __typename: "TextQuestion"
+          __typename: "TextQuestion",
         },
         answer: {
           stringValue: "Test",
-          __typename: "StringAnswer"
-        }
+          __typename: "StringAnswer",
+        },
       },
-      document: this.document
+      document: this.document,
     });
 
     field.set("answer.value", "Testx");
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      't:caluma.form.validation.tooLong:("max":4,"value":"Testx")'
+      't:caluma.form.validation.tooLong:("max":4,"value":"Testx")',
     ]);
   });
 
-  test("it can validate textarea fields", async function(assert) {
+  test("it can validate textarea fields", async function (assert) {
     assert.expect(1);
 
     const field = this.owner.factoryFor("caluma-model:field").create({
@@ -202,24 +202,24 @@ module("Unit | Library | field", function(hooks) {
           textareaMaxLength: 4,
           isHidden: "false",
           isRequired: "true",
-          __typename: "TextareaQuestion"
+          __typename: "TextareaQuestion",
         },
         answer: {
           stringValue: "Test",
-          __typename: "StringAnswer"
-        }
+          __typename: "StringAnswer",
+        },
       },
-      document: this.document
+      document: this.document,
     });
 
     field.set("answer.value", "Testx");
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      't:caluma.form.validation.tooLong:("max":4,"value":"Testx")'
+      't:caluma.form.validation.tooLong:("max":4,"value":"Testx")',
     ]);
   });
 
-  test("it can validate integer fields", async function(assert) {
+  test("it can validate integer fields", async function (assert) {
     assert.expect(3);
 
     const field = this.owner.factoryFor("caluma-model:field").create({
@@ -229,36 +229,36 @@ module("Unit | Library | field", function(hooks) {
           integerMaxValue: 2,
           isHidden: "false",
           isRequired: "true",
-          __typename: "IntegerQuestion"
+          __typename: "IntegerQuestion",
         },
         answer: {
           integerValue: 2,
-          __typename: "IntegerAnswer"
-        }
+          __typename: "IntegerAnswer",
+        },
       },
-      document: this.document
+      document: this.document,
     });
 
     field.set("answer.integerValue", 1);
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      't:caluma.form.validation.greaterThanOrEqualTo:("gte":2,"integer":true,"lte":2,"value":1)'
+      't:caluma.form.validation.greaterThanOrEqualTo:("gte":2,"integer":true,"lte":2,"value":1)',
     ]);
 
     field.set("answer.integerValue", 3);
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      't:caluma.form.validation.lessThanOrEqualTo:("gte":2,"integer":true,"lte":2,"value":3)'
+      't:caluma.form.validation.lessThanOrEqualTo:("gte":2,"integer":true,"lte":2,"value":3)',
     ]);
 
     field.set("answer.integerValue", 1.5);
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      't:caluma.form.validation.notAnInteger:("gte":2,"integer":true,"lte":2,"value":1.5)'
+      't:caluma.form.validation.notAnInteger:("gte":2,"integer":true,"lte":2,"value":1.5)',
     ]);
   });
 
-  test("it can validate float fields", async function(assert) {
+  test("it can validate float fields", async function (assert) {
     assert.expect(3);
 
     const field = this.owner.factoryFor("caluma-model:field").create({
@@ -268,14 +268,14 @@ module("Unit | Library | field", function(hooks) {
           floatMaxValue: 2.5,
           isHidden: "false",
           isRequired: "true",
-          __typename: "FloatQuestion"
+          __typename: "FloatQuestion",
         },
         answer: {
           floatValue: 2.0,
-          __typename: "FloatAnswer"
-        }
+          __typename: "FloatAnswer",
+        },
       },
-      document: this.document
+      document: this.document,
     });
 
     await field.validate.perform();
@@ -285,18 +285,18 @@ module("Unit | Library | field", function(hooks) {
 
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      't:caluma.form.validation.greaterThanOrEqualTo:("gte":1.5,"lte":2.5,"value":1.4)'
+      't:caluma.form.validation.greaterThanOrEqualTo:("gte":1.5,"lte":2.5,"value":1.4)',
     ]);
 
     field.set("answer.floatValue", 2.6);
 
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      't:caluma.form.validation.lessThanOrEqualTo:("gte":1.5,"lte":2.5,"value":2.6)'
+      't:caluma.form.validation.lessThanOrEqualTo:("gte":1.5,"lte":2.5,"value":2.6)',
     ]);
   });
 
-  test("it can validate radio fields", async function(assert) {
+  test("it can validate radio fields", async function (assert) {
     assert.expect(1);
 
     const field = this.owner.factoryFor("caluma-model:field").create({
@@ -306,31 +306,31 @@ module("Unit | Library | field", function(hooks) {
             edges: [
               {
                 node: {
-                  slug: "option-1"
-                }
-              }
-            ]
+                  slug: "option-1",
+                },
+              },
+            ],
           },
           isHidden: "false",
           isRequired: "true",
-          __typename: "ChoiceQuestion"
+          __typename: "ChoiceQuestion",
         },
         answer: {
           stringValue: "option-1",
-          __typename: "StringAnswer"
-        }
+          __typename: "StringAnswer",
+        },
       },
-      document: this.document
+      document: this.document,
     });
 
     field.set("answer.value", "invalid-option");
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      't:caluma.form.validation.inclusion:("allowBlank":true,"in":["option-1"],"value":"invalid-option")'
+      't:caluma.form.validation.inclusion:("allowBlank":true,"in":["option-1"],"value":"invalid-option")',
     ]);
   });
 
-  test("it can validate checkbox fields", async function(assert) {
+  test("it can validate checkbox fields", async function (assert) {
     assert.expect(2);
 
     const field = this.owner.factoryFor("caluma-model:field").create({
@@ -340,38 +340,38 @@ module("Unit | Library | field", function(hooks) {
             edges: [
               {
                 node: {
-                  slug: "option-1"
-                }
-              }
-            ]
+                  slug: "option-1",
+                },
+              },
+            ],
           },
           isHidden: "false",
           isRequired: "true",
-          __typename: "MultipleChoiceQuestion"
+          __typename: "MultipleChoiceQuestion",
         },
         answer: {
           listValue: ["option-1"],
-          __typename: "ListAnswer"
-        }
+          __typename: "ListAnswer",
+        },
       },
-      document: this.document
+      document: this.document,
     });
 
     field.set("answer.listValue", ["option-1", "invalid-option"]);
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      't:caluma.form.validation.inclusion:("in":["option-1"],"value":"invalid-option")'
+      't:caluma.form.validation.inclusion:("in":["option-1"],"value":"invalid-option")',
     ]);
 
     field.set("answer.listValue", ["invalid-option", "other-invalid-option"]);
     await field.validate.perform();
     assert.deepEqual(field.errors, [
       't:caluma.form.validation.inclusion:("in":["option-1"],"value":"invalid-option")',
-      't:caluma.form.validation.inclusion:("in":["option-1"],"value":"other-invalid-option")'
+      't:caluma.form.validation.inclusion:("in":["option-1"],"value":"other-invalid-option")',
     ]);
   });
 
-  test("it can validate table fields", async function(assert) {
+  test("it can validate table fields", async function (assert) {
     assert.expect(2);
 
     const table = this.document.findField("table");
@@ -383,7 +383,7 @@ module("Unit | Library | field", function(hooks) {
     row.findField("table-form-question").set("answer.value", null);
     await table.validate.perform();
     assert.deepEqual(table.errors, [
-      't:caluma.form.validation.table:("value":null)'
+      't:caluma.form.validation.table:("value":null)',
     ]);
   });
 });

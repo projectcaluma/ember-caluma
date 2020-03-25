@@ -11,8 +11,8 @@ module.exports = {
         { name: "ember-promise-helpers" },
         { name: "ember-math-helpers" },
         { name: "ember-cli-showdown" },
-        { name: "ember-pikaday" }
-      ]
+        { name: "ember-pikaday" },
+      ],
     });
-  }
+  },
 };

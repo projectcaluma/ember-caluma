@@ -1,4 +1,4 @@
-export default function(type, value) {
+export default function (type, value) {
   return (key, newValue, oldValue, changes, content) => {
     const { __typename } = { ...changes, ...content };
 

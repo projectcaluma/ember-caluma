@@ -6,22 +6,22 @@ import { setupMirage } from "ember-cli-mirage/test-support";
 import graphqlError from "dummy/tests/helpers/graphql-error";
 import { setupIntl } from "ember-intl/test-support";
 
-module("Integration | Component | cfb-form-editor/question-list", function(
+module("Integration | Component | cfb-form-editor/question-list", function (
   hooks
 ) {
   setupRenderingTest(hooks);
   setupMirage(hooks);
   setupIntl(hooks);
 
-  hooks.beforeEach(function() {
+  hooks.beforeEach(function () {
     this.form = this.server.create("form", {
       name: "Test Name",
       slug: "test-slug",
-      questions: this.server.createList("question", 5)
+      questions: this.server.createList("question", 5),
     });
   });
 
-  test("it renders", async function(assert) {
+  test("it renders", async function (assert) {
     assert.expect(1);
 
     await render(
@@ -31,7 +31,7 @@ module("Integration | Component | cfb-form-editor/question-list", function(
     assert.dom("[data-test-question-list-item]").exists({ count: 5 });
   });
 
-  test("it renders an empty state", async function(assert) {
+  test("it renders an empty state", async function (assert) {
     assert.expect(4);
 
     this.server.create("form", { slug: "oioi" });
@@ -58,12 +58,12 @@ module("Integration | Component | cfb-form-editor/question-list", function(
       .hasText("t:caluma.form-builder.global.empty-search:()");
   });
 
-  test("it can reorder questions", async function(assert) {
+  test("it can reorder questions", async function (assert) {
     assert.expect(2);
 
     const question = this.server.create("question", {
       slug: "test",
-      formIds: [this.form.id]
+      formIds: [this.form.id],
     });
 
     this.form.questionIds = [...this.form.questionIds, question.id];
@@ -81,24 +81,24 @@ module("Integration | Component | cfb-form-editor/question-list", function(
     let children = [
       item,
       ...[...list.children].filter(
-        c => c.dataset.testQuestionListItem !== "test"
-      )
+        (c) => c.dataset.testQuestionListItem !== "test"
+      ),
     ];
 
     await triggerEvent(list, "moved", {
       detail: [
         {
           $el: {
-            children
-          }
-        }
-      ]
+            children,
+          },
+        },
+      ],
     });
 
     assert.dom("[data-test-question-list-item=test]:first-child").exists();
   });
 
-  test("it can add questions", async function(assert) {
+  test("it can add questions", async function (assert) {
     assert.expect(3);
 
     this.server.create("question", { slug: "test" });
@@ -114,7 +114,7 @@ module("Integration | Component | cfb-form-editor/question-list", function(
     assert.dom("[data-test-question-list-item=test]").exists();
   });
 
-  test("it can remove questions", async function(assert) {
+  test("it can remove questions", async function (assert) {
     assert.expect(3);
 
     this.server.create("question", { slug: "test", formIds: [this.form.id] });
@@ -130,7 +130,7 @@ module("Integration | Component | cfb-form-editor/question-list", function(
     assert.dom("[data-test-question-list-item=test]").doesNotExist();
   });
 
-  test("it can handle reorder errors", async function(assert) {
+  test("it can handle reorder errors", async function (assert) {
     assert.expect(1);
 
     await render(
@@ -146,16 +146,16 @@ module("Integration | Component | cfb-form-editor/question-list", function(
       detail: [
         {
           $el: {
-            children: []
-          }
-        }
-      ]
+            children: [],
+          },
+        },
+      ],
     });
 
     assert.ok(true);
   });
 
-  test("it can handle remove errors", async function(assert) {
+  test("it can handle remove errors", async function (assert) {
     assert.expect(1);
 
     await render(
@@ -168,7 +168,7 @@ module("Integration | Component | cfb-form-editor/question-list", function(
     assert.ok(true);
   });
 
-  test("it can handle add errors", async function(assert) {
+  test("it can handle add errors", async function (assert) {
     assert.expect(1);
 
     this.server.create("question");

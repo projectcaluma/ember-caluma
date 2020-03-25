@@ -37,11 +37,11 @@ export default Base.extend({
    * @property {String} uuid
    * @accessor
    */
-  uuid: computed("raw.id", function() {
+  uuid: computed("raw.id", function () {
     return this.raw.id ? decodeId(this.raw.id) : null;
   }),
 
-  isNew: computed("uuid", "value", function() {
+  isNew: computed("uuid", "value", function () {
     return !this.uuid || isEmpty(this.value);
   }),
 
@@ -54,7 +54,7 @@ export default Base.extend({
    * @accessor
    * @private
    */
-  _valueKey: computed("__typename", function() {
+  _valueKey: computed("__typename", function () {
     return (
       this.__typename &&
       `${camelize(this.__typename.replace(/Answer$/, ""))}Value`
@@ -82,7 +82,7 @@ export default Base.extend({
         const value = this.get(this._valueKey);
 
         if (this.__typename === "TableAnswer" && value) {
-          return value.map(document => {
+          return value.map((document) => {
             const existing = this.calumaStore.find(
               `Document:${decodeId(document.id)}`
             );
@@ -93,7 +93,7 @@ export default Base.extend({
                 .factoryFor("caluma-model:document")
                 .create({
                   raw: parseDocument(document),
-                  parentDocument: this.field.document
+                  parentDocument: this.field.document,
                 })
             );
           });
@@ -109,7 +109,7 @@ export default Base.extend({
         }
 
         return value;
-      }
+      },
     }
   ),
 
@@ -119,11 +119,11 @@ export default Base.extend({
    * @property {String|Number|String[]} serializedValue
    * @accessor
    */
-  serializedValue: computed("value", function() {
+  serializedValue: computed("value", function () {
     if (this.__typename === "TableAnswer") {
       return (this.value || []).map(({ uuid }) => uuid);
     }
 
     return this.value;
-  })
+  }),
 });

@@ -3,10 +3,10 @@ import { setupRenderingTest } from "ember-qunit";
 import { render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 
-module("Integration | Helper | decodeId", function(hooks) {
+module("Integration | Helper | decodeId", function (hooks) {
   setupRenderingTest(hooks);
 
-  test("it renders", async function(assert) {
+  test("it renders", async function (assert) {
     this.set(
       "inputValue",
       "Q2FzZTo5ZGYzYzYwNy0yZjU0LTQ4YTgtODYzNi1hNDQzNWYyZmI2NTM"

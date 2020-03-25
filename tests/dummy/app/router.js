@@ -3,21 +3,21 @@ import config from "./config/environment";
 
 const Router = AddonDocsRouter.extend({
   location: config.locationType,
-  rootURL: config.rootURL
+  rootURL: config.rootURL,
 });
 
-Router.map(function() {
-  docsRoute(this, function() {
+Router.map(function () {
+  docsRoute(this, function () {
     this.route("usage");
     this.route("testing");
   });
 
-  this.route("demo", function() {
+  this.route("demo", function () {
     this.route("form");
 
     this.mount("ember-caluma", {
       path: "/form-builder",
-      as: "form-builder"
+      as: "form-builder",
     });
   });
 });

@@ -41,10 +41,10 @@ export default Component.extend({
      */
     update() {
       const checkedBoxes = [
-        ...this.element.querySelectorAll("input[type=checkbox]:checked")
+        ...this.element.querySelectorAll("input[type=checkbox]:checked"),
       ];
 
       this.onSave([...new Set(checkedBoxes.map(getSlug))]);
-    }
-  }
+    },
+  },
 });

@@ -3,14 +3,14 @@ import { setupRenderingTest } from "ember-qunit";
 import { render, click } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 
-module("Integration | Component | cfb-form-list/item", function(hooks) {
+module("Integration | Component | cfb-form-list/item", function (hooks) {
   setupRenderingTest(hooks);
 
-  test("it renders", async function(assert) {
+  test("it renders", async function (assert) {
     this.set("form", {
       slug: "test",
       name: "Test",
-      description: "Test"
+      description: "Test",
     });
 
     await render(hbs`{{cfb-form-list/item item=form}}`);
@@ -20,11 +20,11 @@ module("Integration | Component | cfb-form-list/item", function(hooks) {
     assert.dom("li > span:nth-child(2)").hasText("Test");
   });
 
-  test("it can trigger on-edit-form action", async function(assert) {
+  test("it can trigger on-edit-form action", async function (assert) {
     this.set("form", {
       slug: "test",
       name: "Test",
-      description: "Test"
+      description: "Test",
     });
 
     this.set("editForm", () => assert.step("edit-form"));
