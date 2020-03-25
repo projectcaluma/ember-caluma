@@ -1,3 +1,22 @@
+# [6.0.0](https://github.com/projectcaluma/ember-caluma/compare/v5.1.0...v6.0.0) (2020-03-25)
+
+
+### Features
+
+* **deps:** drop support for ember 3.12 ([6fa06e1](https://github.com/projectcaluma/ember-caluma/commit/6fa06e14802c84949be23e670b2f505f40e940eb))
+* **utils:** increase slugify max-length to 127 ([3c647ea](https://github.com/projectcaluma/ember-caluma/commit/3c647ea16bea0e88e177bc3713bc63ad1a8fc8de))
+* **validation:** add minlength validation for text fields ([b34fc47](https://github.com/projectcaluma/ember-caluma/commit/b34fc47bd523e369d71871c609543838c84beed3))
+
+
+### BREAKING CHANGES
+
+* **deps:** The support for the former ember LTS version 3.12 was
+dropped since we only support the latest LTS version which is now 3.16.
+
+This change happened in 4eaecdb163a7cd6159d488c414dcf2b8afd98c27 where
+we forgot to mark it as a breaking change which is why this commit is
+empty.
+
 # [5.1.0](https://github.com/projectcaluma/ember-caluma/compare/v5.0.0...v5.1.0) (2020-03-03)
 
 
