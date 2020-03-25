@@ -1,0 +1,127 @@
+name: Test
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+env:
+  CI: true
+
+jobs:
+  lint-hbs:
+    name: Lint Handlebars
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
+
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: Lint Handlebars
+        run: yarn lint:hbs
+
+  lint-js:
+    name: Lint Javascript
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
+
+      - name: Install Dependencies
+        run: yarn install
+
+      - name: Lint Javascript
+        run: yarn lint:js
+
+  test:
+    name: Tests
+    needs: [lint-hbs, lint-js]
+    runs-on: [ubuntu-latest]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
+
+      - name: Install dependencies (no lockfile)
+        run: yarn install --no-lockfile
+
+      - name: Run tests (floating dependencies)
+        run: yarn test
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Run tests
+        run: yarn test
+        env:
+          COVERAGE: true
+
+      - name: Run codecov
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage/lcov.info
+
+  test-browserstack:
+    name: Browserstack Tests
+    if: github.repository == 'adfinis-sygroup/ember-uikit'
+    needs: [test]
+    runs-on: [ubuntu-latest]
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Connect to Browserstack
+        run: yarn ember browserstack:connect
+        env:
+          BROWSERSTACK_USERNAME: caluma1
+          BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+
+      - name: Run tests
+        run: yarn test:browserstack
+
+      - name: Collect test results
+        run: yarn ember browserstack:results
+
+      - name: Disconnect from Browserstack
+        run: yarn ember browserstack:disconnect
+
+  try-one:
+    name: Additional Tests
+    needs: [test]
+    runs-on: [ubuntu-latest]
+
+    strategy:
+      matrix:
+        scenario:
+          - ember-lts-3.12
+          - ember-release
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Run tests
+        run: yarn ember try:one ${{ matrix.scenario }}
