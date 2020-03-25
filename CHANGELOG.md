@@ -1,3 +1,11 @@
+# [5.2.0](https://github.com/projectcaluma/ember-caluma/compare/v5.1.0...v5.2.0) (2020-03-25)
+
+
+### Features
+
+* **utils:** increase slugify max-length to 127 ([3c647ea](https://github.com/projectcaluma/ember-caluma/commit/3c647ea16bea0e88e177bc3713bc63ad1a8fc8de))
+* **validation:** add minlength validation for text fields ([b34fc47](https://github.com/projectcaluma/ember-caluma/commit/b34fc47bd523e369d71871c609543838c84beed3))
+
 # [5.1.0](https://github.com/projectcaluma/ember-caluma/compare/v5.0.0...v5.1.0) (2020-03-03)
 
 
