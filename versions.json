@@ -130,5 +130,11 @@
     "name": "v5.1.0",
     "sha": "b61649abdd0137e98a628335efec9b9067cf85fb",
     "tag": "v5.1.0"
+  },
+  "${GITHUB_REF#refs/heads/}": {
+    "path": "versions/${GITHUB_REF#refs/heads/}",
+    "name": "${GITHUB_REF#refs/heads/}",
+    "sha": "bbdad0da1a96ec5a5d1849c91b06b41fd604f613",
+    "tag": null
   }
 }
