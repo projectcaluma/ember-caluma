@@ -21,4 +21,6 @@ jobs:
       - name: Deploy to Github Pages
         run: yarn ember deploy production
         env:
+          CI: true
           DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+          ADDON_DOCS_VERSION_PATH: ${GITHUB_REF#refs/heads/}

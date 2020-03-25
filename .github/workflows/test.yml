@@ -60,7 +60,7 @@ jobs:
 
   test-browserstack:
     name: Browserstack Tests
-    if: github.repository == 'adfinis-sygroup/ember-uikit'
+    if: github.repository == 'adfinis-sygroup/ember-caluma'
     needs: [test]
     runs-on: [ubuntu-latest]
 
