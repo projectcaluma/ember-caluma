@@ -12,8 +12,8 @@ env:
   CI: true
 
 jobs:
-  lint-hbs:
-    name: Lint Handlebars
+  lint:
+    name: Lint
     runs-on: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v2
@@ -25,26 +25,11 @@ jobs:
         run: yarn install
 
       - name: Lint Handlebars
-        run: yarn lint:hbs
-
-  lint-js:
-    name: Lint Javascript
-    runs-on: [ubuntu-latest]
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-        with:
-          node-version: 10
-
-      - name: Install Dependencies
-        run: yarn install
-
-      - name: Lint Javascript
-        run: yarn lint:js
+        run: yarn lint
 
   test:
     name: Tests
-    needs: [lint-hbs, lint-js]
+    needs: [lint]
     runs-on: [ubuntu-latest]
 
     steps:
@@ -57,13 +42,13 @@ jobs:
         run: yarn install --no-lockfile
 
       - name: Run tests (floating dependencies)
-        run: yarn test
+        run: yarn test:ember
 
       - name: Install dependencies
         run: yarn install
 
       - name: Run tests
-        run: yarn test
+        run: yarn test:ember
         env:
           COVERAGE: true
 
@@ -111,7 +96,7 @@ jobs:
     strategy:
       matrix:
         scenario:
-          - ember-lts-3.12
+          - ember-lts-3.16
           - ember-release
 
     steps:

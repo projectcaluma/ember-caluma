@@ -1,9 +1,9 @@
 import EmberObject from "@ember/object";
 import NavigationRouteMixin from "ember-caluma/mixins/navigation-route";
-import { module, test } from "qunit";
+import { module, skip } from "qunit";
 
 module("Unit | Mixin | navigation-route", function () {
-  test("it works", function (assert) {
+  skip("it works", function (assert) {
     assert.expect(7);
 
     let NavigationRouteObject = EmberObject.extend(NavigationRouteMixin);

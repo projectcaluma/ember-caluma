@@ -7,6 +7,7 @@ module.exports = {
   tap_quiet_logs: !!process.env.CI,
   launch_in_ci: ["Chrome"],
   launch_in_dev: [],
+  browser_start_timeout: 120,
   browser_args: {
     Chrome: {
       ci: [
