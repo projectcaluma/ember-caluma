@@ -61,6 +61,7 @@ jobs:
     name: Browserstack Tests
     needs: [test]
     runs-on: [ubuntu-latest]
+    if: github.event_name == 'push'
     env:
       BROWSERSTACK_USERNAME: caluma1
       BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
@@ -79,6 +80,8 @@ jobs:
 
       - name: Run tests
         run: yarn test:browserstack
+        env:
+          CI_JOB_ID: ${{ job.container.id	}}
 
       - name: Collect test results
         run: yarn ember browserstack:results
