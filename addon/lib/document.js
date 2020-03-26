@@ -137,7 +137,10 @@ export default Base.extend({
     function () {
       if (this.parentDocument) return this.parentDocument.jexlContext;
 
-      return { form: this.rootForm.slug };
+      return {
+        form: this.rootForm.slug,
+        info: { root: { form: this.rootForm.slug } },
+      };
     }
   ),
 
