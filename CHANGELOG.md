@@ -1,3 +1,10 @@
+# [6.1.0](https://github.com/projectcaluma/ember-caluma/compare/v6.0.0...v6.1.0) (2020-03-26)
+
+
+### Features
+
+* **jexl:** add info object to context ([#805](https://github.com/projectcaluma/ember-caluma/issues/805)) ([c8ff839](https://github.com/projectcaluma/ember-caluma/commit/c8ff83996591f762fc1037faee902ccf75118631))
+
 # [6.0.0](https://github.com/projectcaluma/ember-caluma/compare/v5.1.0...v6.0.0) (2020-03-25)
 
 
