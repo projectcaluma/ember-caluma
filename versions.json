@@ -134,7 +134,7 @@
   "${GITHUB_REF#refs/heads/}": {
     "path": "versions/${GITHUB_REF#refs/heads/}",
     "name": "${GITHUB_REF#refs/heads/}",
-    "sha": "5e6ce74869f962599dd465115dd870d89293eb29",
+    "sha": "5b0bc763db58fd653ab5af9ec577b98456600292",
     "tag": null
   }
 }
