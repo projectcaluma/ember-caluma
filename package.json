@@ -52,7 +52,7 @@
     "ember-uikit": "^2.1.2",
     "ember-validated-form": "^2.0.0",
     "faker": "4.1.0",
-    "graphql": "^14.6.0",
+    "graphql": "^15.0.0",
     "graphql-iso-date": "^3.6.1",
     "graphql-tag": "^2.10.3",
     "graphql-tools": "^4.0.7",
