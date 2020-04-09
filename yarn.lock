@@ -2580,7 +2580,7 @@ anymatch@~3.1.1:
     normalize-path "^3.0.0"
     picomatch "^2.0.4"
 
-apollo-cache-inmemory@^1.6.3, apollo-cache-inmemory@^1.6.5:
+apollo-cache-inmemory@^1.6.5:
   version "1.6.5"
   resolved "https://registry.yarnpkg.com/apollo-cache-inmemory/-/apollo-cache-inmemory-1.6.5.tgz#2ccaa3827686f6ed7fb634203dbf2b8d7015856a"
   integrity sha512-koB76JUDJaycfejHmrXBbWIN9pRKM0Z9CJGQcBzIOtmte1JhEBSuzsOUu7NQgiXKYI4iGoMREcnaWffsosZynA==
@@ -2599,7 +2599,7 @@ apollo-cache@1.3.4, apollo-cache@^1.3.4:
     apollo-utilities "^1.3.3"
     tslib "^1.10.0"
 
-apollo-client@^2.6.4:
+apollo-client@^2.6.8:
   version "2.6.8"
   resolved "https://registry.yarnpkg.com/apollo-client/-/apollo-client-2.6.8.tgz#01cebc18692abf90c6b3806414e081696b0fa537"
   integrity sha512-0zvJtAcONiozpa5z5zgou83iEKkBaXhhSSXJebFHRXs100SecDojyUWKjwTtBPn9HbM6o5xrvC5mo9VQ5fgAjw==
@@ -6802,18 +6802,18 @@ ember-angle-bracket-invocation-polyfill@^2.0.2:
     ember-compatibility-helpers "^1.0.2"
     silent-error "^1.1.1"
 
-ember-apollo-client@2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/ember-apollo-client/-/ember-apollo-client-2.0.0.tgz#eb195a38177da8e71d3464db7a356e48ffd280b2"
-  integrity sha512-neLh6uLjGJ/UsTR2nu/kmtmx1muK5KBCfuwZMNiD9fNG5vsWADCBjlzX8cuMZIkMy4gO/SBYs0zITux+wFGWmQ==
+ember-apollo-client@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/ember-apollo-client/-/ember-apollo-client-2.1.0.tgz#5fa7aede785a848a40dc02df5a5b3d8a57b8a79b"
+  integrity sha512-3jtErkhhZB8oSrW57TLzWRG2xDSjDSBG4gfnrldvY0LnGfAORwx1FHqDUgMrT4ve+nRzELIgCQ1aBecxZg3eqA==
   dependencies:
-    apollo-cache-inmemory "^1.6.3"
-    apollo-client "^2.6.4"
+    apollo-cache-inmemory "^1.6.5"
+    apollo-client "^2.6.8"
     apollo-link-context "^1.0.18"
     apollo-link-http "^1.5.15"
     broccoli-graphql-filter "^0.4.1"
     ember-auto-import "^1.5.3"
-    ember-cli-babel "^7.13.0"
+    ember-cli-babel "^7.18.0"
 
 ember-app-scheduler@^1.0.5:
   version "1.0.8"
@@ -7040,7 +7040,7 @@ ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.10.0, ember-cli-babel@^6.11.0,
     ember-cli-version-checker "^2.1.2"
     semver "^5.5.0"
 
-ember-cli-babel@^7.1.0, ember-cli-babel@^7.1.2, ember-cli-babel@^7.1.3, ember-cli-babel@^7.1.4, ember-cli-babel@^7.10.0, ember-cli-babel@^7.11.0, ember-cli-babel@^7.11.1, ember-cli-babel@^7.12.0, ember-cli-babel@^7.13.0, ember-cli-babel@^7.13.2, ember-cli-babel@^7.17.2, ember-cli-babel@^7.18.0, ember-cli-babel@^7.19.0, ember-cli-babel@^7.2.0, ember-cli-babel@^7.5.0, ember-cli-babel@^7.7.0, ember-cli-babel@^7.7.3:
+ember-cli-babel@^7.1.0, ember-cli-babel@^7.1.2, ember-cli-babel@^7.1.3, ember-cli-babel@^7.1.4, ember-cli-babel@^7.10.0, ember-cli-babel@^7.11.0, ember-cli-babel@^7.11.1, ember-cli-babel@^7.12.0, ember-cli-babel@^7.13.2, ember-cli-babel@^7.17.2, ember-cli-babel@^7.18.0, ember-cli-babel@^7.19.0, ember-cli-babel@^7.2.0, ember-cli-babel@^7.5.0, ember-cli-babel@^7.7.0, ember-cli-babel@^7.7.3:
   version "7.19.0"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-7.19.0.tgz#e6eddea18a867231fcf90a80689e92b98be9a63b"
   integrity sha512-HiWKuoyy35vGEr+iCw6gUnQ3pS5qslyTlKEDW8cVoMbvZNGYBgRxHed5nklVUh+BS74AwR9lsp25BTAagYAP9Q==
