@@ -11,10 +11,6 @@ module.exports = function (environment) {
         label: "cfb-label",
       },
     },
-
-    moment: {
-      includeLocales: true,
-    },
   };
 
   return ENV;
