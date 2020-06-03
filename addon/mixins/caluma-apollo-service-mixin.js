@@ -32,8 +32,8 @@ export default Mixin.create({
       ...context,
       headers: {
         ...context.headers,
-        language: this.get("intl.locale"),
-        "accept-language": this.get("intl.locale"),
+        language: this.intl.primaryLocale,
+        "accept-language": this.intl.primaryLocale,
       },
     }));
 
