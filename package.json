@@ -115,9 +115,15 @@
     "typeface-oxygen": "0.0.72",
     "typeface-oxygen-mono": "0.0.72"
   },
-  "//": "TODO: Remove once https://github.com/ember-learn/ember-cli-addon-docs/pull/452 is merged",
+  "//": [
+    "TODO: Remove once https://github.com/ember-learn/ember-cli-addon-docs/pull/452 is merged",
+    "https://github.com/jasonmit/ember-cli-moment-shim/issues/183"
+  ],
   "resolutions": {
-    "ember-composable-helpers": "^3.1.1"
+    "ember-composable-helpers": "^3.1.1",
+    "ember-cli-moment-shim": "3.8.0",
+    "ember-cli-moment-shim/moment": "2.24.0",
+    "moment": "2.24.0"
   },
   "engines": {
     "node": "10.* || >= 12"
