@@ -6,16 +6,16 @@ update_configs:
     version_requirement_updates: "increase_versions"
     default_reviewers:
       - "anehx"
+    automerged_updates:
+      - match:
+          dependency_type: "development"
+          update_type: "semver:minor"
+      - match:
+          dependency_type: "production"
+          update_type: "in_range"
     ignored_updates:
-      # Addons that require ember 3.13.0+ can't be updated since we guarantee
-      # support for the latest LTS version of ember. Those can be removed as
-      # soon as a new LTS version of ember is released.
-      - match:
-          dependency_name: "ember-composable-helpers"
-          version_requirement: ">=3"
-      - match:
-          dependency_name: "ember-power-select"
-          version_requirement: ">=3"
+      # ember-changeset and ember-changeset-validations require Proxy objects
+      # which do not work in IE11
       - match:
           dependency_name: "ember-changeset"
           version_requirement: ">=3"
