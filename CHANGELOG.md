@@ -1,3 +1,12 @@
+## [6.1.1](https://github.com/projectcaluma/ember-caluma/compare/v6.1.0...v6.1.1) (2020-06-04)
+
+
+### Bug Fixes
+
+* **deps:** add resolutions to fix build ([2fa230c](https://github.com/projectcaluma/ember-caluma/commit/2fa230cefb8622ebf2b8b3ea22d9f0561b18ee3e))
+* **dummy:** fix moment config for dummy app ([e335fe2](https://github.com/projectcaluma/ember-caluma/commit/e335fe2ed63f1d4127acd509ebfead1fc717ed11))
+* **i18n:** only use primary locale in http headers ([7f36264](https://github.com/projectcaluma/ember-caluma/commit/7f3626463ae74ad99e189733cf8e6df7d6acc823))
+
 # [6.1.0](https://github.com/projectcaluma/ember-caluma/compare/v6.0.0...v6.1.0) (2020-03-26)
 
 
