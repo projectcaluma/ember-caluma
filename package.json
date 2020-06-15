@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "apollo-cache-inmemory": "^1.6.6",
-    "apollo-link-context": "^1.0.18",
+    "apollo-link-context": "^1.0.20",
     "broccoli-funnel": "^3.0.2",
     "broccoli-merge-trees": "^4.2.0",
     "ember-apollo-client": "2.1.0",
