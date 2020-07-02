@@ -1,5 +1,5 @@
 # source: http://localhost:8000/graphql
-# timestamp: Tue Feb 18 2020 08:36:30 GMT+0100 (Central European Standard Time)
+# timestamp: Thu Jul 02 2020 12:52:31 GMT+0200 (Central European Summer Time)
 
 input AddFormQuestionInput {
   form: ID!
@@ -70,6 +70,8 @@ input AnswerFilterSetType {
   search: String
   createdByUser: String
   createdByGroup: String
+  createdBefore: DateTime
+  createdAfter: DateTime
   metaHasKey: String
   metaValue: [JSONValueFilterType]
   orderBy: [AnswerOrdering]
@@ -190,6 +192,7 @@ type Case implements Node {
     last: Int
     metaValue: [JSONValueFilterType]
     status: WorkItemStatusArgument
+    name: String
     task: ID
     case: ID
     createdAt: DateTime
@@ -204,14 +207,65 @@ type Case implements Node {
     order: [WorkItemOrderSetType]
     createdByUser: String
     createdByGroup: String
+
+    """
+    Only return entries created after the given DateTime (Exclusive)
+    """
+    createdBefore: DateTime
+
+    """
+    Only return entries created at or before the given DateTime (Inclusive)
+    """
+    createdAfter: DateTime
     metaHasKey: String
     addressedGroups: [String]
+    controllingGroups: [String]
     assignedUsers: [String]
     documentHasAnswer: [HasAnswerFilterType]
     caseDocumentHasAnswer: [HasAnswerFilterType]
     caseMetaValue: [JSONValueFilterType]
   ): WorkItemConnection
   parentWorkItem: WorkItem
+  familyWorkItems(
+    before: String
+    after: String
+    first: Int
+    last: Int
+    metaValue: [JSONValueFilterType]
+    status: WorkItemStatusArgument
+
+    """
+    WorkItemOrdering
+    """
+    orderBy: [WorkItemOrdering]
+    filter: [WorkItemFilterSetType]
+    order: [WorkItemOrderSetType]
+    documentHasAnswer: [HasAnswerFilterType]
+    caseDocumentHasAnswer: [HasAnswerFilterType]
+    caseMetaValue: [JSONValueFilterType]
+    name: String
+    task: ID
+    case: ID
+    createdAt: DateTime
+    closedAt: DateTime
+    modifiedAt: DateTime
+    createdByUser: String
+    createdByGroup: String
+
+    """
+    Only return entries created after the given DateTime (Exclusive)
+    """
+    createdBefore: DateTime
+
+    """
+    Only return entries created at or before the given DateTime (Inclusive)
+    """
+    createdAfter: DateTime
+    metaHasKey: String
+    addressedGroups: [String]
+    controllingGroups: [String]
+    assignedUsers: [String]
+  ): WorkItemConnection
 }
 
 type CaseConnection {
@@ -246,12 +300,16 @@ input CaseFilterSetType {
   workflow: ID
   createdByUser: String
   createdByGroup: String
+  createdBefore: DateTime
+  createdAfter: DateTime
   metaHasKey: String
   metaValue: [JSONValueFilterType]
   orderBy: [CaseOrdering]
   documentForm: String
+  documentForms: [String]
   hasAnswer: [HasAnswerFilterType]
   workItemDocumentHasAnswer: [HasAnswerFilterType]
+  rootCase: ID
   searchAnswers: [SearchAnswersFilterType]
   status: [CaseStatusArgument]
   orderByQuestionAnswerValue: String
@@ -395,6 +453,16 @@ type ChoiceQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+
+    """
+    Only return entries created after the given DateTime (Exclusive)
+    """
+    createdBefore: DateTime
+
+    """
+    Only return entries created at or before the given DateTime (Inclusive)
+    """
+    createdAfter: DateTime
     metaHasKey: String
     search: String
     slugs: [String]
@@ -410,6 +478,16 @@ type ChoiceQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+
+    """
+    Only return entries created after the given DateTime (Exclusive)
+    """
+    createdBefore: DateTime
+
+    """
+    Only return entries created at or before the given DateTime (Inclusive)
+    """
+    createdAfter: DateTime
     metaHasKey: String
     search: String
 
@@ -436,6 +514,7 @@ type CompleteTaskFormTask implements Task & Node {
   type: TaskType!
   meta: GenericScalar!
   addressGroups: GroupJexl
+  controlGroups: GroupJexl
   isArchived: Boolean!
 
   """
@@ -462,6 +541,7 @@ type CompleteWorkflowFormTask implements Task & Node {
   type: TaskType!
   meta: GenericScalar!
   addressGroups: GroupJexl
+  controlGroups: GroupJexl
   isArchived: Boolean!
 
   """
@@ -483,6 +563,16 @@ input CompleteWorkItemInput {
 
 type CompleteWorkItemPayload {
   workItem: WorkItem
+  clientMutationId: String
+}
+
+input CopyDocumentInput {
+  source: ID!
+  clientMutationId: String
+}
+
+type CopyDocumentPayload {
+  document: Document
   clientMutationId: String
 }
 
@@ -529,14 +619,21 @@ input CreateWorkItemInput {
   multipleInstanceTask: ID!
 
   """
+  Will be set from Task, if not provided.
+  """
+  name: String
+
+  """
+  Will be set from Task, if not provided.
+  """
+  description: String
+
+  """
   Users responsible to undertake given work item.
   """
   assignedUsers: [String]
-
-  """
-  Offer work item to be processed by a group of users, such are not committed to process it though.
-  """
   addressedGroups: [String]
+  controllingGroups: [String]
   deadline: DateTime
   meta: JSONString
   clientMutationId: String
@@ -671,6 +768,16 @@ type DateQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+
+    """
+    Only return entries created after the given DateTime (Exclusive)
+    """
+    createdBefore: DateTime
+
+    """
+    Only return entries created at or before the given DateTime (Inclusive)
+    """
+    createdAfter: DateTime
     metaHasKey: String
     search: String
     slugs: [String]
@@ -785,7 +892,22 @@ type Document implements Node {
   """
   id: ID!
   form: Form!
+
+  """
+  Reference this document has been copied from
+  """
+  source: Document
   meta: GenericScalar
+
+  """
+  Reference this document has been copied from
+  """
+  copies(
+    before: String
+    after: String
+    first: Int
+    last: Int
+  ): DocumentConnection!
   answers(
     before: String
     after: String
@@ -803,6 +925,16 @@ type Document implements Node {
     order: [AnswerOrderSetType]
     createdByUser: String
     createdByGroup: String
+
+    """
+    Only return entries created after the given DateTime (Exclusive)
+    """
+    createdBefore: DateTime
+
+    """
+    Only return entries created at or before the given DateTime (Inclusive)
+    """
+    createdAfter: DateTime
     metaHasKey: String
     questions: [ID]
     visibleInContext: Boolean
@@ -846,6 +978,8 @@ input DocumentFilterSetType {
   id: ID
   createdByUser: String
   createdByGroup: String
+  createdBefore: DateTime
+  createdAfter: DateTime
   metaHasKey: String
   metaValue: [JSONValueFilterType]
   orderBy: [DocumentOrdering]
@@ -970,6 +1104,16 @@ type DynamicChoiceQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+
+    """
+    Only return entries created after the given DateTime (Exclusive)
+    """
+    createdBefore: DateTime
+
+    """
+    Only return entries created at or before the given DateTime (Inclusive)
+    """
+    createdAfter: DateTime
     metaHasKey: String
     search: String
     slugs: [String]
@@ -1023,6 +1167,16 @@ type DynamicMultipleChoiceQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+
+    """
+    Only return entries created after the given DateTime (Exclusive)
+    """
+    createdBefore: DateTime
+
+    """
+    Only return entries created at or before the given DateTime (Inclusive)
+    """
+    createdAfter: DateTime
     metaHasKey: String
     search: String
     slugs: [String]
@@ -1159,6 +1313,16 @@ type FileQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+
+    """
+    Only return entries created after the given DateTime (Exclusive)
+    """
+    createdBefore: DateTime
+
+    """
+    Only return entries created at or before the given DateTime (Inclusive)
+    """
+    createdAfter: DateTime
     metaHasKey: String
     search: String
     slugs: [String]
@@ -1221,6 +1385,16 @@ type FloatQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+
+    """
+    Only return entries created after the given DateTime (Exclusive)
+    """
+    createdBefore: DateTime
+
+    """
+    Only return entries created at or before the given DateTime (Inclusive)
+    """
+    createdAfter: DateTime
     metaHasKey: String
     search: String
     slugs: [String]
@@ -1280,6 +1454,8 @@ input FlowFilterSetType {
   task: ID
   createdByUser: String
   createdByGroup: String
+  createdBefore: DateTime
+  createdAfter: DateTime
   invert: Boolean
 }
 
@@ -1320,6 +1496,16 @@ type Form implements Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+
+    """
+    Only return entries created after the given DateTime (Exclusive)
+    """
+    createdBefore: DateTime
+
+    """
+    Only return entries created at or before the given DateTime (Inclusive)
+    """
+    createdAfter: DateTime
     metaHasKey: String
     excludeForms: [ID]
     search: String
@@ -1420,6 +1606,8 @@ input FormFilterSetType {
   isArchived: Boolean
   createdByUser: String
   createdByGroup: String
+  createdBefore: DateTime
+  createdAfter: DateTime
   metaHasKey: String
   metaValue: [JSONValueFilterType]
   search: String
@@ -1523,6 +1711,16 @@ type FormQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+
+    """
+    Only return entries created after the given DateTime (Exclusive)
+    """
+    createdBefore: DateTime
+
+    """
+    Only return entries created at or before the given DateTime (Inclusive)
+    """
+    createdAfter: DateTime
     metaHasKey: String
     search: String
     slugs: [String]
@@ -1620,6 +1818,16 @@ type IntegerQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+
+    """
+    Only return entries created after the given DateTime (Exclusive)
+    """
+    createdBefore: DateTime
+
+    """
+    Only return entries created at or before the given DateTime (Inclusive)
+    """
+    createdAfter: DateTime
     metaHasKey: String
     search: String
     slugs: [String]
@@ -1708,6 +1916,16 @@ type MultipleChoiceQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+
+    """
+    Only return entries created after the given DateTime (Exclusive)
+    """
+    createdBefore: DateTime
+
+    """
+    Only return entries created at or before the given DateTime (Inclusive)
+    """
+    createdAfter: DateTime
     metaHasKey: String
     search: String
     slugs: [String]
@@ -1728,6 +1946,16 @@ type MultipleChoiceQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+
+    """
+    Only return entries created after the given DateTime (Exclusive)
+    """
+    createdBefore: DateTime
+
+    """
+    Only return entries created at or before the given DateTime (Inclusive)
+    """
+    createdAfter: DateTime
     metaHasKey: String
     search: String
   ): OptionConnection
@@ -1795,6 +2023,7 @@ type Mutation {
   saveFormQuestion(input: SaveFormQuestionInput!): SaveFormQuestionPayload
   saveFileQuestion(input: SaveFileQuestionInput!): SaveFileQuestionPayload
   saveStaticQuestion(input: SaveStaticQuestionInput!): SaveStaticQuestionPayload
+  copyDocument(input: CopyDocumentInput!): CopyDocumentPayload
   saveDocument(input: SaveDocumentInput!): SaveDocumentPayload
   saveDocumentStringAnswer(
     input: SaveDocumentStringAnswerInput!
@@ -1994,6 +2223,16 @@ type Query {
     order: [WorkflowOrderSetType]
     createdByUser: String
     createdByGroup: String
+
+    """
+    Only return entries created after the given DateTime (Exclusive)
+    """
+    createdBefore: DateTime
+
+    """
+    Only return entries created at or before the given DateTime (Inclusive)
+    """
+    createdAfter: DateTime
     metaHasKey: String
     search: String
   ): WorkflowConnection
@@ -2017,6 +2256,16 @@ type Query {
     order: [TaskOrderSetType]
     createdByUser: String
     createdByGroup: String
+
+    """
+    Only return entries created after the given DateTime (Exclusive)
+    """
+    createdBefore: DateTime
+
+    """
+    Only return entries created at or before the given DateTime (Inclusive)
+    """
+    createdAfter: DateTime
     metaHasKey: String
     search: String
   ): TaskConnection
@@ -2036,10 +2285,22 @@ type Query {
     order: [CaseOrderSetType]
     createdByUser: String
     createdByGroup: String
+
+    """
+    Only return entries created after the given DateTime (Exclusive)
+    """
+    createdBefore: DateTime
+
+    """
+    Only return entries created at or before the given DateTime (Inclusive)
+    """
+    createdAfter: DateTime
     metaHasKey: String
     documentForm: String
+    documentForms: [String]
     hasAnswer: [HasAnswerFilterType]
     workItemDocumentHasAnswer: [HasAnswerFilterType]
+    rootCase: ID
     searchAnswers: [SearchAnswersFilterType]
     status: [CaseStatusArgument]
 
@@ -2069,6 +2330,7 @@ type Query {
     documentHasAnswer: [HasAnswerFilterType]
     caseDocumentHasAnswer: [HasAnswerFilterType]
     caseMetaValue: [JSONValueFilterType]
+    name: String
     task: ID
     case: ID
     createdAt: DateTime
@@ -2076,8 +2338,19 @@ type Query {
     modifiedAt: DateTime
     createdByUser: String
     createdByGroup: String
+
+    """
+    Only return entries created after the given DateTime (Exclusive)
+    """
+    createdBefore: DateTime
+
+    """
+    Only return entries created at or before the given DateTime (Inclusive)
+    """
+    createdAfter: DateTime
     metaHasKey: String
     addressedGroups: [String]
+    controllingGroups: [String]
     assignedUsers: [String]
   ): WorkItemConnection
   allForms(
@@ -2100,6 +2373,16 @@ type Query {
     order: [FormOrderSetType]
     createdByUser: String
     createdByGroup: String
+
+    """
+    Only return entries created after the given DateTime (Exclusive)
+    """
+    createdBefore: DateTime
+
+    """
+    Only return entries created at or before the given DateTime (Inclusive)
+    """
+    createdAfter: DateTime
     metaHasKey: String
     search: String
     slugs: [String]
@@ -2124,6 +2407,16 @@ type Query {
     order: [QuestionOrderSetType]
     createdByUser: String
     createdByGroup: String
+
+    """
+    Only return entries created after the given DateTime (Exclusive)
+    """
+    createdBefore: DateTime
+
+    """
+    Only return entries created at or before the given DateTime (Inclusive)
+    """
+    createdAfter: DateTime
     metaHasKey: String
     excludeForms: [ID]
     search: String
@@ -2148,6 +2441,16 @@ type Query {
     order: [DocumentOrderSetType]
     createdByUser: String
     createdByGroup: String
+
+    """
+    Only return entries created after the given DateTime (Exclusive)
+    """
+    createdBefore: DateTime
+
+    """
+    Only return entries created at or before the given DateTime (Inclusive)
+    """
+    createdAfter: DateTime
     metaHasKey: String
     rootDocument: ID
     hasAnswer: [HasAnswerFilterType]
@@ -2169,6 +2472,16 @@ type Query {
     filter: [DynamicOptionFilterSetType]
     createdByUser: String
     createdByGroup: String
+
+    """
+    Only return entries created after the given DateTime (Exclusive)
+    """
+    createdBefore: DateTime
+
+    """
+    Only return entries created at or before the given DateTime (Inclusive)
+    """
+    createdAfter: DateTime
   ): DynamicOptionConnection
   documentValidity(
     id: ID!
@@ -2214,6 +2527,16 @@ interface Question {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+
+    """
+    Only return entries created after the given DateTime (Exclusive)
+    """
+    createdBefore: DateTime
+
+    """
+    Only return entries created at or before the given DateTime (Inclusive)
+    """
+    createdAfter: DateTime
     metaHasKey: String
     metaValue: [JSONValueFilterType]
     search: String
@@ -2264,6 +2587,8 @@ input QuestionFilterSetType {
   isArchived: Boolean
   createdByUser: String
   createdByGroup: String
+  createdBefore: DateTime
+  createdAfter: DateTime
   metaHasKey: String
   metaValue: [JSONValueFilterType]
   excludeForms: [ID]
@@ -2445,6 +2770,11 @@ input SaveCompleteTaskFormTaskInput {
   Group jexl returning what group(s) derived work items will be addressed to.
   """
   addressGroups: GroupJexl
+
+  """
+  Group jexl returning what group(s) derived work items will be assigned to for controlling.
+  """
+  controlGroups: GroupJexl
   isArchived: Boolean
 
   """
@@ -2477,6 +2807,11 @@ input SaveCompleteWorkflowFormTaskInput {
   Group jexl returning what group(s) derived work items will be addressed to.
   """
   addressGroups: GroupJexl
+
+  """
+  Group jexl returning what group(s) derived work items will be assigned to for controlling.
+  """
+  controlGroups: GroupJexl
   isArchived: Boolean
 
   """
@@ -2782,6 +3117,11 @@ input SaveSimpleTaskInput {
   Group jexl returning what group(s) derived work items will be addressed to.
   """
   addressGroups: GroupJexl
+
+  """
+  Group jexl returning what group(s) derived work items will be assigned to for controlling.
+  """
+  controlGroups: GroupJexl
   isArchived: Boolean
 
   """
@@ -2914,6 +3254,16 @@ input SaveWorkItemInput {
   workItem: ID!
 
   """
+  Will be set from Task, if not provided.
+  """
+  name: String
+
+  """
+  Will be set from Task, if not provided.
+  """
+  description: String
+
+  """
   Users responsible to undertake given work item.
   """
   assignedUsers: [String]
@@ -2953,6 +3303,7 @@ type SimpleTask implements Task & Node {
   type: TaskType!
   meta: GenericScalar!
   addressGroups: GroupJexl
+  controlGroups: GroupJexl
   isArchived: Boolean!
 
   """
@@ -3007,6 +3358,7 @@ enum SortableDocumentAttributes {
   CREATED_BY_USER
   CREATED_BY_GROUP
   FORM
+  SOURCE
 }
 
 enum SortableFormAttributes {
@@ -3038,7 +3390,6 @@ enum SortableQuestionAttributes {
 
 enum SortableTaskAttributes {
   ALLOW_ALL_FORMS
-  ADDRESS_GROUPS
   LEAD_TIME
   TYPE
   CREATED_BY_GROUP
@@ -3126,6 +3477,16 @@ type StaticQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+
+    """
+    Only return entries created after the given DateTime (Exclusive)
+    """
+    createdBefore: DateTime
+
+    """
+    Only return entries created at or before the given DateTime (Inclusive)
+    """
+    createdAfter: DateTime
     metaHasKey: String
     search: String
     slugs: [String]
@@ -3230,6 +3591,16 @@ type TableQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+
+    """
+    Only return entries created after the given DateTime (Exclusive)
+    """
+    createdBefore: DateTime
+
+    """
+    Only return entries created at or before the given DateTime (Inclusive)
+    """
+    createdAfter: DateTime
     metaHasKey: String
     search: String
     slugs: [String]
@@ -3257,6 +3628,7 @@ interface Task {
   description: String
   isArchived: Boolean!
   addressGroups: GroupJexl
+  controlGroups: GroupJexl
   meta: GenericScalar!
   isMultipleInstance: Boolean!
 }
@@ -3297,6 +3669,8 @@ input TaskFilterSetType {
   isArchived: Boolean
   createdByUser: String
   createdByGroup: String
+  createdBefore: DateTime
+  createdAfter: DateTime
   metaHasKey: String
   metaValue: [JSONValueFilterType]
   search: String
@@ -3467,6 +3841,16 @@ type TextareaQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+
+    """
+    Only return entries created after the given DateTime (Exclusive)
+    """
+    createdBefore: DateTime
+
+    """
+    Only return entries created at or before the given DateTime (Inclusive)
+    """
+    createdAfter: DateTime
     metaHasKey: String
     search: String
     slugs: [String]
@@ -3522,6 +3906,16 @@ type TextQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+
+    """
+    Only return entries created after the given DateTime (Exclusive)
+    """
+    createdBefore: DateTime
+
+    """
+    Only return entries created at or before the given DateTime (Inclusive)
+    """
+    createdAfter: DateTime
     metaHasKey: String
     search: String
     slugs: [String]
@@ -3612,6 +4006,16 @@ type Workflow implements Node {
     filter: [FlowFilterSetType]
     createdByUser: String
     createdByGroup: String
+
+    """
+    Only return entries created after the given DateTime (Exclusive)
+    """
+    createdBefore: DateTime
+
+    """
+    Only return entries created at or before the given DateTime (Inclusive)
+    """
+    createdAfter: DateTime
   ): FlowConnection
 }
 
@@ -3651,6 +4055,8 @@ input WorkflowFilterSetType {
   isArchived: Boolean
   createdByUser: String
   createdByGroup: String
+  createdBefore: DateTime
+  createdAfter: DateTime
   metaHasKey: String
   metaValue: [JSONValueFilterType]
   search: String
@@ -3741,6 +4147,16 @@ type WorkItem implements Node {
   id: ID!
 
   """
+  Will be set from Task, if not provided.
+  """
+  name: String!
+
+  """
+  Will be set from Task, if not provided.
+  """
+  description: String
+
+  """
   Time when work item has either been canceled or completed
   """
   closedAt: DateTime
@@ -3755,6 +4171,11 @@ type WorkItem implements Node {
   Offer work item to be processed by a group of users, such are not committed to process it though.
   """
   addressedGroups: [String]!
+
+  """
+  List of groups this work item is assigned to for controlling.
+  """
+  controllingGroups: [String]!
 
   """
   Users responsible to undertake given work item.
@@ -3799,6 +4220,7 @@ type WorkItemEdge {
 
 input WorkItemFilterSetType {
   status: Status
+  name: String
   task: ID
   case: ID
   createdAt: DateTime
@@ -3806,10 +4228,13 @@ input WorkItemFilterSetType {
   modifiedAt: DateTime
   createdByUser: String
   createdByGroup: String
+  createdBefore: DateTime
+  createdAfter: DateTime
   metaHasKey: String
   metaValue: [JSONValueFilterType]
   orderBy: [WorkItemOrdering]
   addressedGroups: [String]
+  controllingGroups: [String]
   assignedUsers: [String]
   documentHasAnswer: [HasAnswerFilterType]
   caseDocumentHasAnswer: [HasAnswerFilterType]
