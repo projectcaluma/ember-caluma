@@ -1,0 +1,12 @@
+<h1>{{t "dummy.queries.title"}}</h1>
+
+<button class="uk-button uk-button-default" type="button" {{on "click" this.load}}>{{t "dummy.queries.load"}}</button>
+<button class="uk-button uk-button-default" type="button" {{on "click" this.loadMore}}>{{t "dummy.queries.loadMore"}}</button>
+
+<h2>{{t "dummy.queries.getWorkItems"}}</h2>
+
+<ul>
+  {{#each this.workItemQuery.value as |workItem|}}
+    <li>{{workItem.id}} - {{workItem.createdAt}} - {{workItem.status}}</li>
+  {{/each}}
+</ul>
