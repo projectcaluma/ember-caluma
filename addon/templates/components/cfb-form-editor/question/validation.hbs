@@ -1,13 +1,13 @@
 {{component labelComponent}}
 
-{{#power-select-multiple
-  selected=selected
-	placeholder=placeholder
-	options=validators
-	onchange=(action "updateValidators")
-	as |item|}}
-  {{item.name}}
-{{/power-select-multiple}}
+<PowerSelectMultiple
+	@selected={{selected}}
+	@placeholder={{placeholder}}
+	@options={{validators}}
+	@onChange={{action "updateValidators"}}
+	as |item|>
+	{{item.name}}
+</PowerSelectMultiple>
 
 {{component hintComponent}}
 {{component errorComponent}}

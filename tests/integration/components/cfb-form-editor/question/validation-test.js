@@ -20,7 +20,7 @@ module(
 
       await render(hbs`{{cfb-form-editor/question/validation}}`);
 
-      await click(".ember-power-select-trigger-multiple-input");
+      await click(".ember-power-select-trigger");
 
       assert.dom(".ember-power-select-option").exists({ count: 5 });
       assert.dom(".ember-power-select-option").hasText("Validator #1");
