@@ -70,4 +70,6 @@ export default function (server) {
   });
 
   server.create("document", { formId: form.id });
+
+  server.createList("work-item", 20);
 }

@@ -3,8 +3,21 @@ dummy:
   form: "formulaire"
   usage: "application"
   testing: "tester"
+  queries:
+    title: "Queries"
+    load: "Télécharger"
+    loadMore: "Télécharger plus"
+    getWorkItems: "getWorkItems"
 
 caluma:
+  caluma-query:
+    work-item:
+      status:
+        READY: "En attente"
+        COMPLETED: "Terminé"
+        CANCELED: "Annulé"
+        SKIPPED: "Sauté"
+
   form:
     optional: "optional"
     save: "sauvegarder"

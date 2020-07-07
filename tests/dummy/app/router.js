@@ -10,10 +10,12 @@ Router.map(function () {
   docsRoute(this, function () {
     this.route("usage");
     this.route("testing");
+    this.route("queries");
   });
 
   this.route("demo", function () {
     this.route("form");
+    this.route("queries");
 
     this.mount("ember-caluma", {
       path: "/form-builder",
