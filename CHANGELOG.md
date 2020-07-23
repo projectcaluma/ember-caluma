@@ -1,3 +1,10 @@
+## [6.1.2](https://github.com/projectcaluma/ember-caluma/compare/v6.1.1...v6.1.2) (2020-07-23)
+
+
+### Bug Fixes
+
+* fix ember-power-select ([6a0ce3c](https://github.com/projectcaluma/ember-caluma/commit/6a0ce3ca2959392f5fa086c708568c0dfed7ac2c))
+
 ## [6.1.1](https://github.com/projectcaluma/ember-caluma/compare/v6.1.0...v6.1.1) (2020-06-04)
 
 
