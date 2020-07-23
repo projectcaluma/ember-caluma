@@ -11,6 +11,9 @@ module.exports = function (defaults) {
     babel: {
       plugins: ["@babel/plugin-proposal-object-rest-spread"],
     },
+    emberApolloClient: {
+      keepGraphqlFileExtension: true,
+    },
   });
 
   app.import("node_modules/typeface-oxygen/index.css");
