@@ -58,7 +58,7 @@
     "jexl": "^2.2.0",
     "lodash.clonedeep": "^4.5.0",
     "sass": "^1.26.10",
-    "slugify": "^1.4.4",
+    "slugify": "^1.4.5",
     "uuid": "^8.2.0"
   },
   "devDependencies": {
