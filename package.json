@@ -70,7 +70,7 @@
     "@glimmer/tracking": "1.0.1",
     "babel-eslint": "10.1.0",
     "broccoli-asset-rev": "3.0.0",
-    "ember-cli": "3.19.0",
+    "ember-cli": "3.20.0",
     "ember-cli-addon-docs": "0.7.0",
     "ember-cli-addon-docs-yuidoc": "0.2.4",
     "ember-cli-browserstack": "1.1.0",
