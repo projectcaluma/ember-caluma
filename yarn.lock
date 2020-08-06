@@ -1469,17 +1469,17 @@
     resolve "^1.8.1"
     semver "^5.6.0"
 
-"@formatjs/intl-numberformat@^5.0.2":
-  version "5.0.2"
-  resolved "https://registry.yarnpkg.com/@formatjs/intl-numberformat/-/intl-numberformat-5.0.2.tgz#c99c48300ba1c97ce3b3babee1896411bd99a05f"
-  integrity sha512-Mok7ZcEkm0ShfIPQLykPMWDDa6zuWiVflp6yfsMF2IorilEZx0dzl7/5x4fhs2XN1fOpss54H9MtlyPpcW1VXw==
+"@formatjs/intl-numberformat@^5.3.3":
+  version "5.3.3"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-numberformat/-/intl-numberformat-5.3.3.tgz#ade268890d33a4a5535bdfbc8a9415df62113d2c"
+  integrity sha512-keU4arK7WoQMMfUuXzVP5nPzKFXrNpcNne/58OxxDxoJfqiv4vHiBjHHfPzy5xf+1rgnoplaV1mabNt1HTPtwA==
   dependencies:
-    "@formatjs/intl-utils" "^3.6.0"
+    "@formatjs/intl-utils" "^3.8.2"
 
-"@formatjs/intl-utils@^3.6.0":
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/@formatjs/intl-utils/-/intl-utils-3.6.0.tgz#25c11a099c01ac9b7b904dda84cb840417893fa3"
-  integrity sha512-KojfGYH3b0HbyN8H+HRHxEYOctC9tOne8jU1MNw7O+g8QyIPK9y0y1cyXlj6FoLsHRi26u9jR1CJg5XrRfArug==
+"@formatjs/intl-utils@^3.8.2":
+  version "3.8.2"
+  resolved "https://registry.yarnpkg.com/@formatjs/intl-utils/-/intl-utils-3.8.2.tgz#168b528d482483e333a08646258eb17e26c9760d"
+  integrity sha512-34J1HmuNSRYQgJ6Gi/dYJQzdDsyAPJOrzXx977UajrhlXlI+0dvoqleP4W+Qtyc65EqzTGtUSgqLYhoPty8v3w==
   dependencies:
     emojis-list "^3.0.0"
 
@@ -8182,10 +8182,10 @@ ember-ignore-children-helper@^1.0.1:
   dependencies:
     ember-cli-babel "^6.6.0"
 
-ember-intl@^5.3.1:
-  version "5.3.1"
-  resolved "https://registry.yarnpkg.com/ember-intl/-/ember-intl-5.3.1.tgz#d401de4c0851da96b25029c8049925df5cd78cff"
-  integrity sha512-JtYx+wuCqFT7a+nB44Z9nI255hpjYxtSxQkmuh5T1i4XbRyZsTWIrMs8xF+YWTjmELiQESsFkYejvkehUWJmaA==
+ember-intl@^5.4.0:
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/ember-intl/-/ember-intl-5.4.0.tgz#06f8bee783594d93839573ec27500e2d6cbed9aa"
+  integrity sha512-nSimgNK1iqyup5XNr+dQ1jQYM8YFQXomxp3U443vwBiXYVemix+gLYrsIYLqP6oFGc9Ru0rDsC549GOVleTIfQ==
   dependencies:
     broccoli-caching-writer "^3.0.3"
     broccoli-funnel "^3.0.3"
@@ -8200,7 +8200,7 @@ ember-intl@^5.3.1:
     extend "^3.0.2"
     fast-memoize "^2.5.2"
     has-unicode "^2.0.1"
-    intl-messageformat "^8.3.9"
+    intl-messageformat "^9.2.0"
     intl-messageformat-parser "^5.0.2"
     js-yaml "^3.13.1"
     json-stable-stringify "^1.0.1"
@@ -11164,25 +11164,20 @@ inquirer@^7.0.1:
     strip-ansi "^6.0.0"
     through "^2.3.6"
 
-intl-format-cache@^4.2.43:
-  version "4.2.46"
-  resolved "https://registry.yarnpkg.com/intl-format-cache/-/intl-format-cache-4.2.46.tgz#045a6e4fb75a6b47ff3f0b4290836c72df4e65e1"
-  integrity sha512-J8Rkun92yCQEnQDia2yO5o8SY82CzhxLx2G0ocbOysP93ZtIIbtAXDkVQK/a1DwSi70pp69fh4vpO2BbINxPSg==
-
-intl-messageformat-parser@^5.0.2, intl-messageformat-parser@^5.2.1:
-  version "5.2.4"
-  resolved "https://registry.yarnpkg.com/intl-messageformat-parser/-/intl-messageformat-parser-5.2.4.tgz#d1a002c498f6f7f27cd9d309d2353e866875e0fa"
-  integrity sha512-vwuG+rYawjr73UFD60x1coJaU0u0cWEHT8s2XhfYqxQv7cJEj7CIZhCZLldzjUO2IKZgWkvOOP6krSfMTJBuRA==
+intl-messageformat-parser@^5.0.2, intl-messageformat-parser@^5.3.7:
+  version "5.3.7"
+  resolved "https://registry.yarnpkg.com/intl-messageformat-parser/-/intl-messageformat-parser-5.3.7.tgz#96d93cc1856048ee8e09193951f1e1ba69073204"
+  integrity sha512-83C+eODXu/zfR35bKjSz/HKEGkNSHbsF1WOuZDgFs/TudaEuVIZ8pstQYFyY0CIuCGXomcSevrFW1d4y7nW5xw==
   dependencies:
-    "@formatjs/intl-numberformat" "^5.0.2"
+    "@formatjs/intl-numberformat" "^5.3.3"
 
-intl-messageformat@^8.3.9:
-  version "8.4.1"
-  resolved "https://registry.yarnpkg.com/intl-messageformat/-/intl-messageformat-8.4.1.tgz#f31c811efc561700b61ab4ee4716b870787c0fe5"
-  integrity sha512-N4jLt0KebfqXZZZQRwBwZMrqwccHzZnN6KSeUsfidIoHMPIlLIgq08KcYsn7bZS6adh1KKH4/99VODWDDDu85Q==
+intl-messageformat@^9.2.0:
+  version "9.2.0"
+  resolved "https://registry.yarnpkg.com/intl-messageformat/-/intl-messageformat-9.2.0.tgz#13576d7ce7c25dede3bc8915b9a50749791c779f"
+  integrity sha512-mdASJPZpKfhbM//NLNIETArWgVL06j5M9ZdhgiKBO4XayS4GQHnXW+zVUE5iAwHcGZIKzvdWCj4D4kmNzUmEzA==
   dependencies:
-    intl-format-cache "^4.2.43"
-    intl-messageformat-parser "^5.2.1"
+    fast-memoize "^2.5.2"
+    intl-messageformat-parser "^5.3.7"
 
 into-stream@^3.1.0:
   version "3.1.0"
