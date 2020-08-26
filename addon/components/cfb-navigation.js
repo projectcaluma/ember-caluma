@@ -21,7 +21,7 @@ export default Component.extend({
     navigate([routeName, ...params]) {
       const mountPoint = getOwner(this).mountPoint;
 
-      this.get("router").transitionTo(
+      this.router.transitionTo(
         routeName === "application" ? mountPoint : `${mountPoint}.${routeName}`,
         ...params
       );

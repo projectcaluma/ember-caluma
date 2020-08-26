@@ -99,18 +99,20 @@ export default Base.extend({
    * @accessor
    */
   options: computed(
+    "__typename",
     "choiceOptions.edges.[]",
     "dynamicChoiceOptions.edges.[]",
-    "multipleChoiceOptions.edges.[]",
     "dynamicMultipleChoiceOptions.edges.[]",
+    "isChoice",
+    "isMultipleChoice",
+    "multipleChoiceOptions.edges.[]",
     function () {
       if (!this.isChoice && !this.isMultipleChoice) return null;
 
       const key = camelize(this.__typename.replace(/Question$/, "Options"));
 
-      return this.getWithDefault(
-        `${key}.edges`,
-        []
+      return (
+        this.get(`${key}.edges`) || []
       ).map(({ node: { label, slug } }) => ({ label, slug }));
     }
   ),

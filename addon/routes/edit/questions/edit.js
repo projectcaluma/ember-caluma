@@ -13,7 +13,7 @@ export default Route.extend(NavigationRouteMixin, {
 
   title: reads("fetchLabel.lastSuccessful.value.firstObject.node.label"),
   fetchLabel: task(function* (slug) {
-    return yield this.get("apollo").watchQuery(
+    return yield this.apollo.watchQuery(
       {
         query: gql`
           query QuestionLabel($slug: String!) {
@@ -33,9 +33,9 @@ export default Route.extend(NavigationRouteMixin, {
   }),
 
   beforeModel() {
-    const { question_slug: slug } = this.paramsFor(this.get("routeName"));
+    const { question_slug: slug } = this.paramsFor(this.routeName);
 
-    return this.get("fetchLabel").perform(slug);
+    return this.fetchLabel.perform(slug);
   },
 
   model({ question_slug }) {

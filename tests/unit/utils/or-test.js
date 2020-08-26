@@ -3,29 +3,8 @@
  */
 import or from "dummy/utils/or";
 import { module, test } from "qunit";
-import { Promise, resolve } from "rsvp";
-import { later } from "@ember/runloop";
-
-export function resolveAfter(ms) {
-  return new Promise((resolve, reject) => {
-    try {
-      later(resolve, true, ms);
-    } catch (err) {
-      reject(err);
-    }
-  });
-}
-
-export function rejectAfter(ms, errorMessage) {
-  return new Promise((resolve, reject) => {
-    try {
-      // resolve with a string throws an error for ember-changeset-validations
-      later(resolve, errorMessage, ms);
-    } catch (err) {
-      reject(err);
-    }
-  });
-}
+import { resolveAfter, rejectAfter } from "dummy/tests/helpers/promise";
+import { resolve } from "rsvp";
 
 module("Unit | Utility | or", function () {
   module("sync validators", function () {

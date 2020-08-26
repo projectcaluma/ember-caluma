@@ -5,7 +5,7 @@ import { task, timeout } from "ember-concurrency";
 import { queryManager } from "ember-apollo-client";
 import { v4 } from "uuid";
 import { optional } from "ember-composable-helpers/helpers/optional";
-import { computed, getWithDefault } from "@ember/object";
+import { computed, get } from "@ember/object";
 import { reads } from "@ember/object/computed";
 import slugify from "ember-caluma/utils/slugify";
 import { A } from "@ember/array";
@@ -73,13 +73,13 @@ export default Component.extend({
   async didReceiveAttrs() {
     this._super(...arguments);
 
-    await this.get("data").perform();
-    await this.get("availableForms").perform();
-    await this.get("availableDataSources").perform();
+    await this.data.perform();
+    await this.availableForms.perform();
+    await this.availableDataSources.perform();
   },
 
   data: task(function* () {
-    if (!this.get("slug")) {
+    if (!this.slug) {
       return A([
         {
           node: {
@@ -105,10 +105,10 @@ export default Component.extend({
       ]);
     }
 
-    return yield this.get("apollo").watchQuery(
+    return yield this.apollo.watchQuery(
       {
         query: formEditorQuestionQuery,
-        variables: { slug: this.get("slug") },
+        variables: { slug: this.slug },
         fetchPolicy: "cache-and-network",
       },
       "allQuestions.edges"
@@ -116,7 +116,7 @@ export default Component.extend({
   }).restartable(),
 
   availableForms: task(function* () {
-    const forms = yield this.get("apollo").watchQuery(
+    const forms = yield this.apollo.watchQuery(
       {
         query: formListQuery,
         fetchPolicy: "cache-and-network",
@@ -126,7 +126,7 @@ export default Component.extend({
     if (!forms.map) {
       return [];
     }
-    return forms.mapBy("node.slug").filter((slug) => slug !== this.get("form"));
+    return forms.mapBy("node.slug").filter((slug) => slug !== this.form);
   }).restartable(),
 
   availableOverrides: computed("changeset.__typename", function () {
@@ -144,7 +144,7 @@ export default Component.extend({
   }),
 
   availableDataSources: task(function* () {
-    const dataSources = yield this.get("apollo").watchQuery(
+    const dataSources = yield this.apollo.watchQuery(
       { query: allDataSourcesQuery, fetchPolicy: "cache-and-network" },
       "allDataSources.edges"
     );
@@ -276,27 +276,24 @@ export default Component.extend({
 
   saveOptions: task(function* (changeset) {
     yield all(
-      getWithDefault(changeset, "options.edges", []).map(
-        async ({ node: option }) => {
-          let { label, slug, isArchived } = option;
+      (get(changeset, "options.edges") || []).map(async ({ node: option }) => {
+        let { label, slug, isArchived } = option;
 
-          await this.get("apollo").mutate({
-            mutation: saveOptionMutation,
-            variables: { input: { label, slug, isArchived } },
-          });
-        }
-      )
+        await this.apollo.mutate({
+          mutation: saveOptionMutation,
+          variables: { input: { label, slug, isArchived } },
+        });
+      })
     );
   }),
 
   submit: task(function* (changeset) {
     try {
-      const slug =
-        ((!this.get("slug") && this.prefix) || "") + changeset.get("slug");
+      const slug = ((!this.slug && this.prefix) || "") + changeset.get("slug");
 
       yield this.saveOptions.perform(changeset);
 
-      const question = yield this.get("apollo").mutate(
+      const question = yield this.apollo.mutate(
         {
           mutation: TYPES[changeset.get("__typename")],
           variables: {
@@ -317,14 +314,14 @@ export default Component.extend({
         `save${changeset.get("__typename")}.question`
       );
 
-      if (!this.get("slug")) {
+      if (!this.slug) {
         // This is a new question which must be added to the form after creating it
-        yield this.get("apollo").mutate({
+        yield this.apollo.mutate({
           mutation: addFormQuestionMutation,
           variables: {
             input: {
               question: question.slug,
-              form: this.get("form"),
+              form: this.form,
               clientMutationId: v4(),
             },
             search: "",
@@ -332,20 +329,16 @@ export default Component.extend({
         });
       }
 
-      this.get("notification").success(
-        this.get("intl").t(
-          "caluma.form-builder.notification.question.save.success"
-        )
+      this.notification.success(
+        this.intl.t("caluma.form-builder.notification.question.save.success")
       );
 
       optional([this.get("on-after-submit")])(question);
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e);
-      this.get("notification").danger(
-        this.get("intl").t(
-          "caluma.form-builder.notification.question.save.error"
-        )
+      this.notification.danger(
+        this.intl.t("caluma.form-builder.notification.question.save.error")
       );
     }
   }).drop(),
@@ -359,7 +352,7 @@ export default Component.extend({
       yield timeout(500);
     }
 
-    const res = yield this.get("apollo").query(
+    const res = yield this.apollo.query(
       {
         query: checkQuestionSlugQuery,
         variables: { slug },
@@ -370,7 +363,7 @@ export default Component.extend({
     if (res && res.length) {
       changeset.pushErrors(
         "slug",
-        this.get("intl").t("caluma.form-builder.validations.question.slug")
+        this.intl.t("caluma.form-builder.validations.question.slug")
       );
     }
   }).restartable(),
@@ -379,12 +372,12 @@ export default Component.extend({
     updateLabel(value, changeset) {
       changeset.set("label", value);
 
-      if (!this.get("slug") && this.get("linkSlug")) {
+      if (!this.slug && this.linkSlug) {
         const slug = slugify(value);
 
         changeset.set("slug", slug);
 
-        this.get("validateSlug").perform(this.prefix + slug, changeset);
+        this.validateSlug.perform(this.prefix + slug, changeset);
       }
     },
 
@@ -392,7 +385,7 @@ export default Component.extend({
       changeset.set("slug", value);
       this.set("linkSlug", false);
 
-      this.get("validateSlug").perform(this.prefix + value, changeset);
+      this.validateSlug.perform(this.prefix + value, changeset);
     },
 
     /*

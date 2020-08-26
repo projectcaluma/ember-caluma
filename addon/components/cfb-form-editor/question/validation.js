@@ -13,11 +13,11 @@ export default Component.extend({
   init() {
     this._super(...arguments);
 
-    this.get("availableFormatValidators").perform();
+    this.availableFormatValidators.perform();
   },
 
   availableFormatValidators: task(function* () {
-    const formatValidators = yield this.get("apollo").watchQuery(
+    const formatValidators = yield this.apollo.watchQuery(
       { query: allFormatValidatorsQuery, fetchPolicy: "cache-and-network" },
       "allFormatValidators.edges"
     );
@@ -27,16 +27,13 @@ export default Component.extend({
   validators: computed(
     "availableFormatValidators.lastSuccessful.value.[]",
     function () {
-      return this.getWithDefault(
-        "availableFormatValidators.lastSuccessful.value",
-        []
-      );
+      return this.get("availableFormatValidators.lastSuccessful.value") || [];
     }
   ),
 
   selected: computed("value.[]", "validators.@each.slug", function () {
     return this.validators.filter((validator) =>
-      this.getWithDefault("value", []).includes(validator.slug)
+      (this.value || []).includes(validator.slug)
     );
   }),
 

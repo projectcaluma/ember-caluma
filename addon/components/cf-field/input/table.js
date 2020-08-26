@@ -36,7 +36,7 @@ export default Component.extend({
   ),
 
   addRow: task(function* () {
-    const raw = yield this.get("apollo").mutate(
+    const raw = yield this.apollo.mutate(
       {
         mutation: saveDocumentMutation,
         variables: {
@@ -79,7 +79,7 @@ export default Component.extend({
 
   save: task(function* () {
     try {
-      const newDocument = this.get("documentToEdit");
+      const newDocument = this.documentToEdit;
       yield all(newDocument.fields.map((f) => f.validate.perform()));
 
       if (newDocument.fields.some((field) => field.isInvalid)) {
@@ -92,8 +92,8 @@ export default Component.extend({
         // add document to table
         yield this.onSave([...rows, newDocument]);
 
-        this.get("notification").success(
-          this.get("intl").t("caluma.form.notification.table.add.success")
+        this.notification.success(
+          this.intl.t("caluma.form.notification.table.add.success")
         );
       }
 
@@ -101,8 +101,8 @@ export default Component.extend({
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e);
-      this.get("notification").danger(
-        this.get("intl").t("caluma.form.notification.table.add.error")
+      this.notification.danger(
+        this.intl.t("caluma.form.notification.table.add.error")
       );
     }
   }),

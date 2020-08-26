@@ -1,5 +1,5 @@
 import Base from "ember-caluma/lib/base";
-import { computed, getWithDefault, defineProperty } from "@ember/object";
+import { computed, defineProperty } from "@ember/object";
 import { equal, not, reads } from "@ember/object/computed";
 import { inject as service } from "@ember/service";
 import { assert } from "@ember/debug";
@@ -266,9 +266,10 @@ export default Base.extend({
    * @accessor
    */
   options: computed(
-    "value",
-    "question.options.[]",
+    "_fetchUsedDynamicOptions.lastSuccessful",
+    "question.{options.[],isChoice,isDynamic,isMultipleChoice}",
     "usedDynamicOptions.[]",
+    "value",
     function () {
       if (!this.question.isChoice && !this.question.isMultipleChoice) {
         return null;
@@ -317,19 +318,24 @@ export default Base.extend({
    * @property {Null|Object|Object[]} selected
    * @accessor
    */
-  selected: computed("value", "options.@each.slug", function () {
-    if (!this.question.isChoice && !this.question.isMultipleChoice) {
-      return null;
+  selected: computed(
+    "options.@each.slug",
+    "question.{isChoice,isMultipleChoice}",
+    "value",
+    function () {
+      if (!this.question.isChoice && !this.question.isMultipleChoice) {
+        return null;
+      }
+
+      const selected = this.options.filter(({ slug }) =>
+        this.question.isMultipleChoice
+          ? (this.value || []).includes(slug)
+          : this.value === slug
+      );
+
+      return this.question.isMultipleChoice ? selected : selected[0];
     }
-
-    const selected = this.options.filter(({ slug }) =>
-      this.question.isMultipleChoice
-        ? (this.value || []).includes(slug)
-        : this.value === slug
-    );
-
-    return this.question.isMultipleChoice ? selected : selected[0];
-  }),
+  ),
 
   /**
    * The field's JEXL context.
@@ -422,11 +428,14 @@ export default Base.extend({
    * @property {Boolean} hidden
    */
   hidden: computed(
+    "document.jexl",
     "fieldset.field.hidden",
     "hiddenDependencies.@each.{hidden,value}",
+    "jexlContext",
+    "question.isHidden",
     function () {
       return (
-        getWithDefault(this, "fieldset.field.hidden", false) ||
+        this.get("fieldset.field.hidden") ||
         (this.hiddenDependencies.length &&
           this.hiddenDependencies.every(fieldIsHidden)) ||
         this.document.jexl.evalSync(this.question.isHidden, this.jexlContext)
@@ -445,11 +454,14 @@ export default Base.extend({
    * @property {Boolean} optional
    */
   optional: computed(
+    "document.jexl",
     "fieldset.field.hidden",
+    "jexlContext",
     "optionalDependencies.@each.{hidden,value}",
+    "question.isRequired",
     function () {
       return (
-        getWithDefault(this, "fieldset.field.hidden", false) ||
+        this.get("fieldset.field.hidden") ||
         (this.optionalDependencies.length &&
           this.optionalDependencies.every(fieldIsHidden)) ||
         !this.document.jexl.evalSync(this.question.isRequired, this.jexlContext)
@@ -573,7 +585,7 @@ export default Base.extend({
     return [
       ...(await this.validator.validate(
         this.get("answer.value"),
-        this.getWithDefault("question.meta.formatValidators", [])
+        this.get("question.meta.formatValidators") || []
       )),
       validate("length", this.get("answer.value"), {
         min: this.get("question.textMinLength") || 0,
@@ -594,7 +606,7 @@ export default Base.extend({
     return [
       ...(await this.validator.validate(
         this.get("answer.value"),
-        this.getWithDefault("question.meta.formatValidators", [])
+        this.get("question.meta.formatValidators") || []
       )),
       validate("length", this.get("answer.value"), {
         min: this.get("question.textareaMinLength") || 0,
