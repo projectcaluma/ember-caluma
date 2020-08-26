@@ -135,6 +135,6 @@
     "path": "versions/${GITHUB_REF#refs/heads/}",
     "name": "${GITHUB_REF#refs/heads/}",
     "sha": "6cc0eaeba8422d7bd2df8e48f2d25f591427bb72",
-    "tag": "v6.2.0"
+    "tag": null
   }
 }
