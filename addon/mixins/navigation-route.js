@@ -11,12 +11,9 @@ export default Mixin.create({
   activate() {
     this.set("_id", v4());
 
-    this.get("navigation").pushEntry(this.get("_id"), {
-      title: this.get("title"),
-      link: [
-        this.get("routeName"),
-        ...Object.values(this.paramsFor(this.get("routeName"))),
-      ],
+    this.navigation.pushEntry(this._id, {
+      title: this.title,
+      link: [this.routeName, ...Object.values(this.paramsFor(this.routeName))],
     });
 
     this.addObserver("title", this, "updateNavigationEntry");
@@ -26,19 +23,16 @@ export default Mixin.create({
 
   deactivate() {
     this.removeObserver("title", this, "updateNavigationEntry");
-    this.get("navigation").removeEntry(this.get("_id"));
+    this.navigation.removeEntry(this._id);
     this.set("_id", null);
 
     this._super(...arguments);
   },
 
   updateNavigationEntry(sender, key) {
-    this.get("navigation").replaceEntry(this.get("_id"), {
+    this.navigation.replaceEntry(this._id, {
       title: sender.get(key),
-      link: [
-        this.get("routeName"),
-        ...Object.values(this.paramsFor(this.get("routeName"))),
-      ],
+      link: [this.routeName, ...Object.values(this.paramsFor(this.routeName))],
     });
   },
 });

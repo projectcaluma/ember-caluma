@@ -9,20 +9,20 @@ export default Service.extend({
   },
 
   pushEntry(id, entry) {
-    this.get("entries").pushObject(Object.assign(entry, { id }));
+    this.entries.pushObject(Object.assign(entry, { id }));
   },
 
   replaceEntry(id, newEntry) {
-    let entry = this.get("entries").findBy("id", id);
+    let entry = this.entries.findBy("id", id);
 
-    this.get("entries").replace(this.get("entries").indexOf(entry), 1, [
+    this.entries.replace(this.entries.indexOf(entry), 1, [
       Object.assign(newEntry, { id }),
     ]);
   },
 
   removeEntry(id) {
-    let entry = this.get("entries").findBy("id", id);
+    let entry = this.entries.findBy("id", id);
 
-    this.get("entries").removeObject(entry);
+    this.entries.removeObject(entry);
   },
 });

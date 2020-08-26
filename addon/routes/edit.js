@@ -13,7 +13,7 @@ export default Route.extend(NavigationRouteMixin, {
 
   title: reads("fetchName.lastSuccessful.value.firstObject.node.name"),
   fetchName: task(function* (slug) {
-    return yield this.get("apollo").watchQuery(
+    return yield this.apollo.watchQuery(
       {
         query: gql`
           query FormName($slug: String!) {
@@ -33,9 +33,9 @@ export default Route.extend(NavigationRouteMixin, {
   }),
 
   beforeModel() {
-    const { form_slug: slug } = this.paramsFor(this.get("routeName"));
+    const { form_slug: slug } = this.paramsFor(this.routeName);
 
-    return this.get("fetchName").perform(slug);
+    return this.fetchName.perform(slug);
   },
 
   model: ({ form_slug }) => form_slug,

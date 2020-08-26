@@ -61,12 +61,7 @@ export const NavigationItem = Base.extend({
    * @property {String} label
    * @accessor
    */
-  label: computed("fieldset.{field.question.label,form.name}", function () {
-    return this.getWithDefault(
-      "fieldset.field.question.label",
-      this.get("fieldset.form.name")
-    );
-  }),
+  label: computed.or("fieldset.field.question.label", "fieldset.form.name"),
 
   /**
    * The slug of the items form
@@ -74,14 +69,9 @@ export const NavigationItem = Base.extend({
    * @property {String} slug
    * @accessor
    */
-  slug: computed(
-    "fieldset.{field.question.subForm.slug,form.slug}",
-    function () {
-      return this.getWithDefault(
-        "fieldset.field.question.subForm.slug",
-        this.get("fieldset.form.slug")
-      );
-    }
+  slug: computed.or(
+    "fieldset.field.question.subForm.slug",
+    "fieldset.form.slug"
   ),
 
   /**
@@ -101,6 +91,7 @@ export const NavigationItem = Base.extend({
    */
   active: computed(
     "router.currentRoute.queryParams.displayedForm",
+    "slug",
     function () {
       return (
         this.slug === this.get("router.currentRoute.queryParams.displayedForm")

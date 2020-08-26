@@ -9,13 +9,11 @@ export default RenderComponent.extend({
     this._super(...arguments);
   },
 
-  boolValue: computed("value", function () {
-    return this.get("value") === "true";
-  }),
+  boolValue: computed.equal("value", "true"),
 
   actions: {
     toggle(boolValue) {
-      this.get("update")(String(boolValue));
+      this.update(String(boolValue));
     },
   },
 });

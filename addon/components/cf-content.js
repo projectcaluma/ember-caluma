@@ -121,8 +121,8 @@ export default Component.extend({
     }
   ),
 
-  data: computed("documentId", function () {
-    const task = this.get("dataTask");
+  data: computed("dataTask", "documentId", function () {
+    const task = this.dataTask;
 
     task.perform();
 

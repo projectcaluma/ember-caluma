@@ -36,21 +36,22 @@ export default Component.extend({
   didReceiveAttrs() {
     this._super(...arguments);
 
-    this.get("data").perform();
+    this.data.perform();
   },
 
   didInsertElement() {
     this._super(...arguments);
 
-    UIkit.util.on(this.get("element"), "moved", (...args) =>
+    UIkit.util.on(this.element, "moved", (...args) =>
       run(this, this._handleMoved, ...args)
     );
   },
 
   questions: computed(
-    "data.lastSuccessful.value.{[],firstObject.questions.edges.[]}",
+    "data.lastSuccessful.value.{[],firstObject.node.questions.edges,firstObject.questions.edges.[]}",
+    "mode",
     function () {
-      return this.get("mode") === "add"
+      return this.mode === "add"
         ? this.get("data.lastSuccessful.value")
         : this.get(
             "data.lastSuccessful.value.firstObject.node.questions.edges"
@@ -59,20 +60,20 @@ export default Component.extend({
   ),
 
   data: task(function* () {
-    const mode = this.get("mode");
-    const search = mode !== "reorder" ? this.get("search") : "";
+    const mode = this.mode;
+    const search = mode !== "reorder" ? this.search : "";
 
     if (search) {
       yield timeout(500);
     }
 
     if (mode === "add") {
-      return yield this.get("apollo").watchQuery(
+      return yield this.apollo.watchQuery(
         {
           query: searchQuestionQuery,
           variables: {
             search,
-            excludeForms: [this.get("form")],
+            excludeForms: [this.form],
           },
           fetchPolicy: "cache-and-network",
         },
@@ -80,12 +81,12 @@ export default Component.extend({
       );
     }
 
-    return yield this.get("apollo").watchQuery(
+    return yield this.apollo.watchQuery(
       {
         query: searchFormQuestionQuery,
         variables: {
           search,
-          slug: this.get("form"),
+          slug: this.form,
         },
         fetchPolicy: "cache-and-network",
       },
@@ -95,11 +96,11 @@ export default Component.extend({
 
   reorderQuestions: task(function* (slugs) {
     try {
-      yield this.get("apollo").mutate({
+      yield this.apollo.mutate({
         mutation: reorderFormQuestionsMutation,
         variables: {
           input: {
-            form: this.get("form"),
+            form: this.form,
             questions: slugs,
             clientMutationId: v4(),
           },
@@ -107,76 +108,70 @@ export default Component.extend({
         },
       });
 
-      this.get("notification").success(
-        this.get("intl").t(
-          "caluma.form-builder.notification.form.reorder.success"
-        )
+      this.notification.success(
+        this.intl.t("caluma.form-builder.notification.form.reorder.success")
       );
     } catch (e) {
-      this.get("notification").danger(
-        this.get("intl").t(
-          "caluma.form-builder.notification.form.reorder.error"
-        )
+      this.notification.danger(
+        this.intl.t("caluma.form-builder.notification.form.reorder.error")
       );
     }
   }).restartable(),
 
   addQuestion: task(function* (question) {
     try {
-      yield this.get("apollo").mutate({
+      yield this.apollo.mutate({
         mutation: addFormQuestionMutation,
         variables: {
           input: {
             question: question.slug,
-            form: this.get("form"),
+            form: this.form,
             clientMutationId: v4(),
           },
-          search: this.get("search"),
+          search: this.search,
         },
       });
 
-      this.get("notification").success(
-        this.get("intl").t(
+      this.notification.success(
+        this.intl.t(
           "caluma.form-builder.notification.form.add-question.success"
         )
       );
 
-      this.get("data").perform();
+      this.data.perform();
 
       optional([this.get("on-after-add-question")])(question);
     } catch (e) {
-      this.get("notification").danger(
-        this.get("intl").t(
-          "caluma.form-builder.notification.form.add-question.error"
-        )
+      this.notification.danger(
+        this.intl.t("caluma.form-builder.notification.form.add-question.error")
       );
     }
   }).enqueue(),
 
   removeQuestion: task(function* (question) {
     try {
-      yield this.get("apollo").mutate({
+      yield this.apollo.mutate({
         mutation: removeFormQuestionMutation,
         variables: {
           input: {
             question: question.slug,
-            form: this.get("form"),
+            form: this.form,
             clientMutationId: v4(),
           },
-          search: this.get("search"),
+          search: this.search,
         },
       });
 
-      this.get("notification").success(
-        this.get("intl").t(
+      this.notification.success(
+        this.intl.t(
           "caluma.form-builder.notification.form.remove-question.success"
         )
       );
 
       optional([this.get("on-after-remove-question")])(question);
     } catch (e) {
-      this.get("notification").danger(
-        this.get("intl").t(
+      this.notification.danger(
+        this.intl.t(
           "caluma.form-builder.notification.form.remove-question.error"
         )
       );
@@ -186,7 +181,7 @@ export default Component.extend({
   _handleMoved({ detail: [sortable] }) {
     let children = [...sortable.$el.children];
 
-    this.get("reorderQuestions").perform(
+    this.reorderQuestions.perform(
       children.map((child) => this.get(`_children.${child.id}`))
     );
   },
@@ -203,7 +198,7 @@ export default Component.extend({
     setMode(mode) {
       this.set("mode", mode);
 
-      this.get("data").perform();
+      this.data.perform();
     },
   },
 });

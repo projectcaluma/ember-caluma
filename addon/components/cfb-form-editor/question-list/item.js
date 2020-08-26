@@ -19,8 +19,8 @@ export default Component.extend({
   archived: reads("question.isArchived"),
 
   required: reads("_required.lastSuccessful.value"),
-  _required: computed("question.isRequired", function () {
-    const tsk = this.get("_requiredTask");
+  _required: computed("_requiredTask", "question.isRequired", function () {
+    const tsk = this._requiredTask;
     tsk.perform();
     return tsk;
   }),
@@ -31,18 +31,12 @@ export default Component.extend({
   didInsertElement() {
     this._super(...arguments);
 
-    optional([this.get("on-register")])(
-      this.get("elementId"),
-      this.get("slug")
-    );
+    optional([this.get("on-register")])(this.elementId, this.slug);
   },
 
   willDestroyElement() {
     this._super(...arguments);
 
-    optional([this.get("on-unregister")])(
-      this.get("elementId"),
-      this.get("slug")
-    );
+    optional([this.get("on-unregister")])(this.elementId, this.slug);
   },
 });

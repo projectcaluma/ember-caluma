@@ -28,11 +28,11 @@ export default Component.extend({
   didReceiveAttrs() {
     this._super(...arguments);
 
-    this.get("data").perform();
+    this.data.perform();
   },
 
   data: task(function* () {
-    if (!this.get("slug")) {
+    if (!this.slug) {
       return A([
         {
           node: {
@@ -45,10 +45,10 @@ export default Component.extend({
       ]);
     }
 
-    return yield this.get("apollo").watchQuery(
+    return yield this.apollo.watchQuery(
       {
         query: formEditorGeneralQuery,
-        variables: { slug: this.get("slug") },
+        variables: { slug: this.slug },
         fetchPolicy: "cache-and-network",
       },
       "allForms.edges"
@@ -62,10 +62,9 @@ export default Component.extend({
 
   submit: task(function* (changeset) {
     try {
-      const slug =
-        ((!this.get("slug") && this.prefix) || "") + changeset.get("slug");
+      const slug = ((!this.slug && this.prefix) || "") + changeset.get("slug");
 
-      const form = yield this.get("apollo").mutate(
+      const form = yield this.apollo.mutate(
         {
           mutation: saveFormMutation,
           variables: {
@@ -82,20 +81,20 @@ export default Component.extend({
         "saveForm.form"
       );
 
-      this.get("notification").success(
-        this.get("intl").t(
+      this.notification.success(
+        this.intl.t(
           `caluma.form-builder.notification.form.${
-            this.get("slug") ? "save" : "create"
+            this.slug ? "save" : "create"
           }.success`
         )
       );
 
       optional([this.get("on-after-submit")])(form);
     } catch (e) {
-      this.get("notification").danger(
-        this.get("intl").t(
+      this.notification.danger(
+        this.intl.t(
           `caluma.form-builder.notification.form.${
-            this.get("slug") ? "save" : "create"
+            this.slug ? "save" : "create"
           }.error`
         )
       );
@@ -111,7 +110,7 @@ export default Component.extend({
       yield timeout(500);
     }
 
-    const res = yield this.get("apollo").query(
+    const res = yield this.apollo.query(
       {
         query: checkFormSlugQuery,
         variables: { slug },
@@ -122,7 +121,7 @@ export default Component.extend({
     if (res && res.length) {
       changeset.pushErrors(
         "slug",
-        this.get("intl").t("caluma.form-builder.validations.form.slug")
+        this.intl.t("caluma.form-builder.validations.form.slug")
       );
     }
   }).restartable(),
@@ -131,18 +130,18 @@ export default Component.extend({
     updateName(value, changeset) {
       changeset.set("name", value);
 
-      if (!this.get("slug")) {
+      if (!this.slug) {
         const slug = slugify(value);
         changeset.set("slug", slug);
 
-        this.get("validateSlug").perform(this.prefix + slug, changeset);
+        this.validateSlug.perform(this.prefix + slug, changeset);
       }
     },
 
     updateSlug(value, changeset) {
       changeset.set("slug", value);
 
-      this.get("validateSlug").perform(this.prefix + value, changeset);
+      this.validateSlug.perform(this.prefix + value, changeset);
     },
   },
 });

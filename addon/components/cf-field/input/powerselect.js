@@ -25,15 +25,15 @@ export default Component.extend({
   }),
 
   componentName: computed("multiple", function () {
-    return this.get("multiple") ? "power-select-multiple" : "power-select";
+    return this.multiple ? "power-select-multiple" : "power-select";
   }),
 
   searchEnabled: gt("field.options.length", 10),
 
   placeholder: computed("multiple", function () {
-    const suffix = this.get("multiple") ? "multiple" : "single";
+    const suffix = this.multiple ? "multiple" : "single";
     const path = `caluma.form.power-select.placeholder-${suffix}`;
-    return this.get("intl").t(path);
+    return this.intl.t(path);
   }),
 
   actions: {

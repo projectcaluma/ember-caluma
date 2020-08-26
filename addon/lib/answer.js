@@ -69,13 +69,15 @@ export default Base.extend({
    * @computed
    */
   value: computed(
+    "__typename",
     "_valueKey",
-    "stringValue",
-    "integerValue",
-    "floatValue",
-    "listValue",
-    "fileValue",
     "dateValue",
+    "field.document",
+    "fileValue",
+    "floatValue",
+    "integerValue",
+    "listValue",
+    "stringValue",
     "tableValue",
     {
       get() {
@@ -119,7 +121,7 @@ export default Base.extend({
    * @property {String|Number|String[]} serializedValue
    * @accessor
    */
-  serializedValue: computed("value", function () {
+  serializedValue: computed("__typename", "value", function () {
     if (this.__typename === "TableAnswer") {
       return (this.value || []).map(({ uuid }) => uuid);
     }

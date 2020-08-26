@@ -14,11 +14,24 @@ update_configs:
           dependency_type: "production"
           update_type: "in_range"
     ignored_updates:
-      # ember-changeset and ember-changeset-validations require Proxy objects
-      # which do not work in IE11
+      # ember-changeset and ember-changeset-validations v3+ require Proxy
+      # objects which do not work in IE11
       - match:
           dependency_name: "ember-changeset"
           version_requirement: ">=3"
       - match:
           dependency_name: "ember-changeset-validations"
           version_requirement: ">=3"
+
+      # graphql-tools v5+ breaks generic mocking
+      - match:
+          dependency_name: "graphql-tools"
+          version_requirement: "<= 4"
+
+      # https://github.com/jasonmit/ember-cli-moment-shim/issues/183
+      - match:
+          dependency_name: "ember-cli-moment-shim"
+          version_requirement: "3.8.0"
+      - match:
+          dependency_name: "moment"
+          version_requirement: "2.24.0"

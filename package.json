@@ -33,7 +33,7 @@
     "apollo-link-context": "^1.0.20",
     "broccoli-funnel": "^3.0.3",
     "broccoli-merge-trees": "^4.2.0",
-    "ember-apollo-client": "2.1.0",
+    "ember-apollo-client": "^2.2.0",
     "ember-auto-import": "^1.6.0",
     "ember-changeset": "^2.2.5",
     "ember-changeset-validations": "^2.2.1",
@@ -51,12 +51,13 @@
     "ember-test-selectors": "^4.1.0",
     "ember-uikit": "^2.1.2",
     "ember-validated-form": "^2.0.0",
-    "graphql": "^14.7.0",
+    "graphql": "^15.3.0",
     "graphql-iso-date": "^3.6.1",
-    "graphql-tag": "^2.10.4",
-    "graphql-tools": "^4.0.7",
+    "graphql-tag": "^2.11.0",
+    "graphql-tools": "^4.0.8",
     "jexl": "^2.2.0",
     "lodash.clonedeep": "^4.5.0",
+    "moment": "2.24.0",
     "sass": "^1.26.10",
     "slugify": "^1.4.5",
     "uuid": "^8.3.0"
@@ -71,7 +72,7 @@
     "babel-eslint": "10.1.0",
     "broccoli-asset-rev": "3.0.0",
     "ember-cli": "3.20.0",
-    "ember-cli-addon-docs": "0.7.0",
+    "ember-cli-addon-docs": "0.9.0",
     "ember-cli-addon-docs-yuidoc": "0.2.4",
     "ember-cli-browserstack": "1.1.0",
     "ember-cli-code-coverage": "1.0.0-beta.9",
@@ -100,7 +101,7 @@
     "ember-try": "1.4.0",
     "eslint": "7.7.0",
     "eslint-config-prettier": "6.11.0",
-    "eslint-plugin-ember": "7.11.1",
+    "eslint-plugin-ember": "8.12.0",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-prettier": "3.1.4",
     "faker": "5.0.0",
@@ -109,21 +110,11 @@
     "loader.js": "4.7.0",
     "node-fetch": "2.6.0",
     "npm-run-all": "4.1.5",
-    "prettier": "2.1.0",
+    "prettier": "2.1.1",
     "qunit-dom": "1.4.0",
     "testem-failure-only-reporter": "0.0.1",
     "typeface-oxygen": "0.0.72",
     "typeface-oxygen-mono": "0.0.72"
-  },
-  "//": [
-    "TODO: Remove once https://github.com/ember-learn/ember-cli-addon-docs/pull/452 is merged",
-    "https://github.com/jasonmit/ember-cli-moment-shim/issues/183"
-  ],
-  "resolutions": {
-    "ember-composable-helpers": "^3.1.1",
-    "ember-cli-moment-shim": "3.8.0",
-    "ember-cli-moment-shim/moment": "2.24.0",
-    "moment": "2.24.0"
   },
   "engines": {
     "node": "10.* || >= 12"

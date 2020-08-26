@@ -12,11 +12,11 @@ export default Component.extend({
   didReceiveAttrs() {
     this._super(...arguments);
 
-    this.get("data").perform();
+    this.data.perform();
   },
 
   data: task(function* () {
-    return yield this.get("apollo").watchQuery(
+    return yield this.apollo.watchQuery(
       {
         query: formListQuery,
         fetchPolicy: "cache-and-network",

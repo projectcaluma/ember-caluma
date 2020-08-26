@@ -23,7 +23,7 @@ export default RenderComponent.extend({
   init() {
     this._super(...arguments);
 
-    const value = this.get("value");
+    const value = this.value;
 
     this.set(
       "optionRows",
