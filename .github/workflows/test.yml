@@ -15,17 +15,22 @@ jobs:
   lint:
     name: Lint
     runs-on: [ubuntu-latest]
+
+    strategy:
+      matrix:
+        target: [js, hbs, deps]
+
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
           node-version: 10
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: yarn install
 
-      - name: Lint Handlebars
-        run: yarn lint
+      - name: Lint ${{ matrix.target }}
+        run: yarn lint:${{ matrix.target }}
 
   test:
     name: Tests

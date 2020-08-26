@@ -19,6 +19,7 @@
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*",
     "lint:hbs": "ember-template-lint .",
     "lint:js": "eslint .",
+    "lint:deps": "ember dependency-lint",
     "start": "ember serve",
     "start-proxy": "ember serve --proxy http://localhost:8000",
     "test": "npm-run-all lint:* test:*",
@@ -77,6 +78,7 @@
     "ember-cli-browserstack": "1.1.0",
     "ember-cli-code-coverage": "1.0.0-beta.9",
     "ember-cli-dependency-checker": "3.2.0",
+    "ember-cli-dependency-lint": "^1.1.3",
     "ember-cli-deploy": "1.0.2",
     "ember-cli-deploy-build": "2.0.0",
     "ember-cli-deploy-git": "1.3.4",
@@ -115,6 +117,10 @@
     "testem-failure-only-reporter": "0.0.1",
     "typeface-oxygen": "0.0.72",
     "typeface-oxygen-mono": "0.0.72"
+  },
+  "resolutions": {
+    "**/ember-test-waiters": "^2.1.3",
+    "ember-changeset-validations/ember-changeset": "^2.2.5"
   },
   "engines": {
     "node": "10.* || >= 12"
