@@ -1,3 +1,10 @@
+# [6.2.0](https://github.com/projectcaluma/ember-caluma/compare/v6.1.2...v6.2.0) (2020-08-26)
+
+
+### Features
+
+* add queries for fetching work items ([ef2daff](https://github.com/projectcaluma/ember-caluma/commit/ef2daff7a573298e09db5fa94ca10b74a5f73d85))
+
 ## [6.1.2](https://github.com/projectcaluma/ember-caluma/compare/v6.1.1...v6.1.2) (2020-07-23)
 
 
