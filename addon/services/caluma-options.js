@@ -48,7 +48,9 @@ export default Service.extend({
    * @return {Void}
    */
   setNamespace(value) {
-    this._namespace = value ? slugify(String(value)) : null;
+    this._namespace = value
+      ? slugify(String(value), { locale: this.intl.primaryLocale })
+      : null;
   },
 
   /**
