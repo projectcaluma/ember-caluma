@@ -6,6 +6,7 @@ import layout from "../../../templates/components/cfb-form-editor/question/optio
 import slugify from "ember-caluma/utils/slugify";
 import { get } from "@ember/object";
 import { reads } from "@ember/object/computed";
+import { inject as service } from "@ember/service";
 
 const removeQuestionPrefix = (slug, questionSlug) => {
   return slug.replace(new RegExp(`^${questionSlug}-`), "");
@@ -17,6 +18,8 @@ const addQuestionPrefix = (slug, questionSlug) => {
 
 export default RenderComponent.extend({
   layout,
+
+  intl: service(),
 
   questionSlug: reads("model.slug"),
 
@@ -111,7 +114,10 @@ export default RenderComponent.extend({
       changeset.set("label", value);
 
       if (changeset.get("isNew") && changeset.get("linkSlug")) {
-        changeset.set("slug", slugify(value));
+        changeset.set(
+          "slug",
+          slugify(value, { locale: this.intl.primaryLocale })
+        );
       }
     },
 

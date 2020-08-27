@@ -131,7 +131,7 @@ export default Component.extend({
       changeset.set("name", value);
 
       if (!this.slug) {
-        const slug = slugify(value);
+        const slug = slugify(value, { locale: this.intl.primaryLocale });
         changeset.set("slug", slug);
 
         this.validateSlug.perform(this.prefix + slug, changeset);

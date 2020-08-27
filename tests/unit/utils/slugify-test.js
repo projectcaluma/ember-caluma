@@ -21,4 +21,8 @@ module("Unit | Utility | slugify", function (/*hooks*/) {
   test("it truncates string with more than 150 characters", function (assert) {
     assert.equal(slugify("0123456789".repeat(20)).length, 127);
   });
+
+  test("it converts umlauts correctly", function (assert) {
+    assert.equal(slugify("äöü", { locale: "de" }), "aeoeue");
+  });
 });

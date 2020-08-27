@@ -373,7 +373,7 @@ export default Component.extend({
       changeset.set("label", value);
 
       if (!this.slug && this.linkSlug) {
-        const slug = slugify(value);
+        const slug = slugify(value, { locale: this.intl.primaryLocale });
 
         changeset.set("slug", slug);
 

@@ -3,8 +3,10 @@ import slugify from "slugify";
 /**
  * @see https://github.com/projectcaluma/caluma/pull/962
  */
-export default function (value) {
-  return slugify(value.toLowerCase(), {
-    remove: /((?![a-z0-9-\s]).)/g,
+export default function (value, { locale = null } = {}) {
+  return slugify(value, {
+    lower: true,
+    strict: true,
+    locale,
   }).substr(0, 127);
 }
