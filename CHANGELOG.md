@@ -1,3 +1,11 @@
+## [6.2.1](https://github.com/projectcaluma/ember-caluma/compare/v6.2.0...v6.2.1) (2020-09-02)
+
+
+### Bug Fixes
+
+* **embed:** render power select in place ([20d7f76](https://github.com/projectcaluma/ember-caluma/commit/20d7f76971549298ce677afa2e51aa759feb1546))
+* **queries:** fix pagination parameters ([c1cf6c9](https://github.com/projectcaluma/ember-caluma/commit/c1cf6c91c69e118f4c9fb4b445c002720bcb72fe))
+
 # [6.2.0](https://github.com/projectcaluma/ember-caluma/compare/v6.1.2...v6.2.0) (2020-08-26)
 
 
