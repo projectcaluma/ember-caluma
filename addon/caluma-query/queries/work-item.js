@@ -16,7 +16,7 @@ export default class WorkItemQuery extends BaseQuery {
           filter: $filter
           order: $order
           after: $cursor
-          last: $pageSize
+          first: $pageSize
         ) {
           ${this.pagination}
           edges {
