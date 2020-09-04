@@ -12,6 +12,7 @@ module.exports = {
         { name: "ember-math-helpers" },
         { name: "ember-cli-showdown" },
         { name: "ember-pikaday" },
+        { name: "ember-composable-helpers" },
       ],
     });
   },
