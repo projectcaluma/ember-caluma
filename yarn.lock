@@ -1407,7 +1407,7 @@
     postcss "7.0.32"
     purgecss "^2.3.0"
 
-"@glimmer/component@1.0.1", "@glimmer/component@^1.0.0", "@glimmer/component@^1.0.1":
+"@glimmer/component@1.0.1", "@glimmer/component@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@glimmer/component/-/component-1.0.1.tgz#f304b2f9cf4f2762396abed2b8962486767e0b2e"
   integrity sha512-Bo+R6e2fnydZz0JQrV6E5cAIYvCEUQVh6mmXexVSgFmPr/7Q1DB/afAgTQrpK5vXUGRAU7sBB8gzoO0t7vl+Ng==
@@ -1469,15 +1469,7 @@
     handlebars "^4.7.4"
     simple-html-tokenizer "^0.5.9"
 
-"@glimmer/tracking@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@glimmer/tracking/-/tracking-1.0.0.tgz#aba9feeb47c48d5aadc1226b7e8d19e34031a6bc"
-  integrity sha512-OuF04ihYD/Rjvf++Rf7MzJVnawMSax/SZXEj4rlsQoMRwtQafgtkWjlFBcbBNQkJ3rev1zzfNN+3mdD2BFIaNg==
-  dependencies:
-    "@glimmer/env" "^0.1.7"
-    "@glimmer/validator" "^0.44.0"
-
-"@glimmer/tracking@^1.0.1":
+"@glimmer/tracking@^1.0.0", "@glimmer/tracking@^1.0.1":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/@glimmer/tracking/-/tracking-1.0.1.tgz#77d8b16e9e0be2cc8e4a00b77259fdc208802840"
   integrity sha512-Jt8rn4/6S6CObILaotYUT0lFWNPq1xJubXdU/9p6zxWtMrBXYJalVvI5hFYrCh/hG8Z/aLoERGnb2YRWtBSyzw==
@@ -7005,7 +6997,7 @@ ember-auto-import@^1.2.13, ember-auto-import@^1.2.19, ember-auto-import@^1.5.3, 
     walk-sync "^0.3.3"
     webpack "~4.28"
 
-ember-basic-dropdown@^3.0.3:
+ember-basic-dropdown@^3.0.10:
   version "3.0.10"
   resolved "https://registry.yarnpkg.com/ember-basic-dropdown/-/ember-basic-dropdown-3.0.10.tgz#47ed9fe9ff9e69d1a021771a91823c730985ffe0"
   integrity sha512-TabEKUIlLPQLZqyXx1N8M/tDhrf/2meXjK2mNw6RfiOvwMHYJ41MwIhJusnlQd/Rn7cL0MbA+EGCnjdI0HhB/w==
@@ -8117,16 +8109,16 @@ ember-pikaday@3.0.0:
     ember-cli-moment-shim "^3.7.1"
     pikaday "^1.8.0"
 
-ember-power-select@^4.0.3:
-  version "4.0.3"
-  resolved "https://registry.yarnpkg.com/ember-power-select/-/ember-power-select-4.0.3.tgz#73a98154abf9c5c19c11cdae98294a94d082b381"
-  integrity sha512-WkMq2eLUgq3oBW/6lxBS5u0oBu8sh9Y0ACgMPe2hP3YmZKnfXCuUzV2QrttbeNnxehmyiXKAleuev7J4BvObdA==
+ember-power-select@^4.0.4:
+  version "4.0.4"
+  resolved "https://registry.yarnpkg.com/ember-power-select/-/ember-power-select-4.0.4.tgz#a48205e9d095522e6a40b6372eca23f08023451e"
+  integrity sha512-loE6wZx01HXnFlU4Gq0r7eobjggdocB8OXPYk3NXKkuymANA8R9zHCeygNwHL183llrh2saUeo6AzSJTVr25+w==
   dependencies:
     "@ember-decorators/component" "^6.1.0"
-    "@glimmer/component" "^1.0.0"
+    "@glimmer/component" "^1.0.1"
     "@glimmer/tracking" "^1.0.0"
     ember-assign-helper "^0.3.0"
-    ember-basic-dropdown "^3.0.3"
+    ember-basic-dropdown "^3.0.10"
     ember-cli-babel "^7.21.0"
     ember-cli-htmlbars "^5.2.0"
     ember-cli-typescript "^3.1.4"
