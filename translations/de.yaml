@@ -18,6 +18,11 @@ caluma:
         CANCELED: "Abgebrochen"
         SKIPPED: "Übersprungen"
 
+    case:
+      status:
+        RUNNING: "In Bearbeitung"
+        COMPLETED: "Abgeschlossen"
+        CANCELED: "Abgebrochen"
   form:
     optional: "Optional"
     save: "Speichern"
