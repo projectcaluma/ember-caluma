@@ -51,20 +51,22 @@ Also, it exposes some helpful properties:
 
 ### Queries
 
-For now, we only have one query:
+For now, we only have the following two queries:
 
 - `allWorkItems`
+- `allCases`
 
 However, this will be extended in time. The idea of it is to add queries with
 predefined filters, such as e.g `myWorkItems`.
 
 ### Options
 
-| Name         | Type                          | Description                                                                                                                                                           |
-| ------------ | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `pageSize`   | `Number`                      | This defines the default page size which will be used for the query                                                                                                   |
-| `processAll` | `Function<Promise<Object[]>>` | A function that expects **all** items to be passed and returns a `Promise` that resolves into an array of `Object`s. This function will be used to process all items. |
-| `processNew` | `Function<Promise<Object[]>>` | Identical to `processAll` but **only new** items (triggered by `loadMore`) will be processed                                                                          |
+| Name           | Type                          | Description                                                  |
+| -------------- | ----------------------------- | ------------------------------------------------------------ |
+| `pageSize`     | `Number`                      | This defines the default page size which will be used for the query |
+| `processAll`   | `Function<Promise<Object[]>>` | A function that expects **all** items to be passed and returns a `Promise` that resolves into an array of `Object`s. This function will be used to process all items. |
+| `processNew`   | `Function<Promise<Object[]>>` | Identical to `processAll` but **only new** items (triggered by `loadMore`) will be processed |
+| `queryOptions` | `Object`                      | Pass options to `apollo.query`. For more information on what options exist, [see here](https://www.apollographql.com/docs/react/api/core/ApolloClient/#ApolloClient.query). |
 
 ## Extending
 
