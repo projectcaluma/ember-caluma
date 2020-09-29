@@ -18,12 +18,14 @@ export default class BaseQuery {
     pageSize = null,
     processNew = async (items) => items,
     processAll = async (items) => items,
+    queryOptions = {},
   }) {
     this.pageSize = pageSize;
     this.cursor = null;
 
     this.processNew = processNew;
     this.processAll = processAll;
+    this.queryOptions = queryOptions;
   }
 
   get query() {
@@ -77,6 +79,7 @@ export default class BaseQuery {
           cursor: this.cursor,
         },
         fetchPolicy: "network-only",
+        ...this.queryOptions,
       });
 
       this.cursor = data[this.dataKey].pageInfo.endCursor;
