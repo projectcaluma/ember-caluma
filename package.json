@@ -62,7 +62,7 @@
     "moment": "2.24.0",
     "sass": "^1.26.10",
     "slugify": "^1.4.5",
-    "uuid": "^8.3.0"
+    "uuid": "^8.3.1"
   },
   "devDependencies": {
     "@adfinis-sygroup/semantic-release-config": "2.1.4",
