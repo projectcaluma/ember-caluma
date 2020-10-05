@@ -57,7 +57,7 @@
     "graphql-iso-date": "^3.6.1",
     "graphql-tag": "^2.11.0",
     "graphql-tools": "^4.0.8",
-    "jexl": "2.2.0",
+    "jexl": "2.3.0",
     "lodash.clonedeep": "^4.5.0",
     "moment": "2.24.0",
     "sass": "^1.26.10",
