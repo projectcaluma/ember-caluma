@@ -1,23 +1,34 @@
 import { getAST, getTransforms } from "ember-caluma/utils/jexl";
 import { module, test } from "qunit";
 import { setupTest } from "ember-qunit";
+import jexl from "jexl";
+import { intersects } from "ember-caluma/utils/jexl";
 
 module("Unit | Utility | jexl", function (hooks) {
   setupTest(hooks);
+
+  hooks.beforeEach(function () {
+    this.customJexl = new jexl.Jexl();
+    this.customJexl.addBinaryOp("intersects", 20, intersects);
+    this.customJexl.addTransform("bar", () => {});
+    this.customJexl.addTransform("y", () => {});
+  });
 
   test("AST parsing works", async function (assert) {
     assert.expect(1);
 
     const jexlExpression = "'foo'|bar > 'baz'";
-    assert.deepEqual(getAST(jexlExpression), {
+    assert.deepEqual(getAST(this.customJexl, jexlExpression), {
       left: {
-        args: [],
         name: "bar",
-        subject: {
-          type: "Literal",
-          value: "foo",
-        },
-        type: "Transform",
+        args: [
+          {
+            type: "Literal",
+            value: "foo",
+          },
+        ],
+        pool: "transforms",
+        type: "FunctionCall",
       },
       operator: ">",
       right: {
@@ -32,23 +43,27 @@ module("Unit | Utility | jexl", function (hooks) {
     assert.expect(1);
 
     assert.deepEqual(
-      getTransforms(getAST("'foo'|bar > 'baz' && 'x'|y > 9000")),
+      getTransforms(
+        getAST(this.customJexl, "'foo'|bar > 'baz' && 'x'|y > 9000")
+      ),
       [
         {
-          args: [],
           name: "bar",
-          subject: {
-            type: "Literal",
-            value: "foo",
-          },
+          args: [
+            {
+              type: "Literal",
+              value: "foo",
+            },
+          ],
         },
         {
-          args: [],
           name: "y",
-          subject: {
-            type: "Literal",
-            value: "x",
-          },
+          args: [
+            {
+              type: "Literal",
+              value: "x",
+            },
+          ],
         },
       ]
     );
@@ -57,7 +72,7 @@ module("Unit | Utility | jexl", function (hooks) {
   test("custom intersects operator works", async function (assert) {
     assert.expect(1);
 
-    assert.deepEqual(getAST("[1] intersects [1]"), {
+    assert.deepEqual(getAST(this.customJexl, "[1] intersects [1]"), {
       left: {
         type: "ArrayLiteral",
         value: [
