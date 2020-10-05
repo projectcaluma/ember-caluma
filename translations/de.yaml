@@ -97,10 +97,14 @@ caluma:
       isArchived: "Archiviert"
       widgetOverride: "Spezialelement"
       isPublished: "Publiziert"
+      archived: "Archivierte"
+      draft: "Entwurf"
 
       all: "Alle Formulare"
       new: "Neues Formular"
       empty: "Wir haben keine Formulare gefunden. Klicken Sie den Knopf im der rechten oberen Ecke um ein Formular zu Erstellen!"
+      emptyArchived: "Es wurden noch keine Formulare archiviert."
+      showArchived: "Archivierte Formulare anzeigen"
 
       not-found: "Kein Formular mit dem Slug '{slug}' gefunden"
 
