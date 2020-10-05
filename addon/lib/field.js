@@ -47,12 +47,12 @@ const fieldIsHidden = (field) => {
   );
 };
 
-const getDependenciesFromJexl = (expression) => {
+const getDependenciesFromJexl = (jexl, expression) => {
   return [
     ...new Set(
-      getTransforms(getAST(expression))
+      getTransforms(getAST(jexl, expression))
         .filter((transform) => transform.name === "answer")
-        .map((transform) => transform.subject.value)
+        .map((transform) => transform.args[0].value)
     ),
   ];
 };
@@ -375,10 +375,13 @@ export default Base.extend({
    * @accessor
    */
   hiddenDependencies: computed(
-    "document.fields.[]",
+    "document.{jexl,fields.[]}",
     "question.isHidden",
     function () {
-      return getDependenciesFromJexl(this.question.isHidden).map((slug) => {
+      return getDependenciesFromJexl(
+        this.document.jexl,
+        this.question.isHidden
+      ).map((slug) => {
         const f = this.document.findField(slug);
 
         assert(
@@ -401,10 +404,13 @@ export default Base.extend({
    * @accessor
    */
   optionalDependencies: computed(
-    "document.fields.[]",
+    "document.{jexl,fields.[]}",
     "question.isRequired",
     function () {
-      return getDependenciesFromJexl(this.question.isRequired).map((slug) => {
+      return getDependenciesFromJexl(
+        this.document.jexl,
+        this.question.isRequired
+      ).map((slug) => {
         const f = this.document.findField(slug);
 
         assert(
