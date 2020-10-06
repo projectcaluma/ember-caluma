@@ -1,3 +1,18 @@
+# [6.3.0](https://github.com/projectcaluma/ember-caluma/compare/v6.2.1...v6.3.0) (2020-10-06)
+
+
+### Bug Fixes
+
+* **blueprints:** add ember-composable-helpers to host app dependencies ([9526fff](https://github.com/projectcaluma/ember-caluma/commit/9526fff961b2adb50beae87787a437fd1cb74970))
+* **dependencies:** update @glimmer/component and pin jexl ([8e9471d](https://github.com/projectcaluma/ember-caluma/commit/8e9471df6f9bf5bc39818a81d2c3ebbd7c577706))
+* **deps:** update jexl to 2.3.0 ([da041bc](https://github.com/projectcaluma/ember-caluma/commit/da041bc5d41b3034e3252ae27754c09a31d5021e))
+
+
+### Features
+
+* **caluma-query:** allow passing of options to apollo query method ([9b27d14](https://github.com/projectcaluma/ember-caluma/commit/9b27d145110bef10970feb11083efc206d55754b))
+* **query:** add a case query ([d63228b](https://github.com/projectcaluma/ember-caluma/commit/d63228bbe127a8d646d6c84b84b406d14dc32dc8))
+
 ## [6.2.1](https://github.com/projectcaluma/ember-caluma/compare/v6.2.0...v6.2.1) (2020-09-02)
 
 
