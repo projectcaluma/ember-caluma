@@ -6,6 +6,7 @@
       @class={{if this.showArchived "" "uk-button-primary"}}
     />
     <UkButton
+      data-test-filter-archived
       @on-click={{fn (mut this.showArchived) true}}
       @label={{t "caluma.form-builder.form.archived"}}
       @class={{if this.showArchived "uk-button-primary" ""}}

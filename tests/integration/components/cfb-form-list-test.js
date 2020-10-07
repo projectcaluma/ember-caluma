@@ -101,17 +101,6 @@ module("Integration | Component | cfb-form-list", function (hooks) {
         return yield [{ node: { id: 1, slug: "form-1", title: "Form 1" } }];
       })
     );
-    defineProperty(
-      this,
-      "formsArchived",
-      task(function* () {
-        return yield [
-          { node: { id: 1, slug: "form-1", title: "Form 1" } },
-          { node: { id: 2, slug: "form-2", title: "Form 2" } },
-          { node: { id: 3, slug: "form-3", title: "Form 3" } },
-        ];
-      })
-    );
 
     await render(
       hbs`{{cfb-form-list forms=forms formsArchived=formsArchived}}`
@@ -120,9 +109,9 @@ module("Integration | Component | cfb-form-list", function (hooks) {
     assert.dom("[data-test-form-list]").exists();
     assert.dom("[data-test-form-list-item]").exists({ count: 1 });
 
-    await click("[data-test-show-archived]");
+    await click("[data-test-filter-archived]");
 
-    assert.dom("[data-test-archived-form-list]").exists();
-    assert.dom("[data-test-archived-form-list-item]").exists({ count: 3 });
+    assert.dom("[data-test-form-list]").exists();
+    assert.dom("[data-test-form-list-item]").exists({ count: 1 });
   });
 });
