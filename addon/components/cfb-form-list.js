@@ -4,14 +4,21 @@ import { queryManager } from "ember-apollo-client";
 import formListQuery from "ember-caluma/gql/queries/form-list";
 import { restartableTask } from "ember-concurrency-decorators";
 import { tracked } from "@glimmer/tracking";
-import { action } from "@ember/object";
 
 export default class ComponentsCfbFormListComponent extends Component {
   layout = layout;
 
-  @tracked showArchived = false;
-
   @queryManager apollo;
+
+  @tracked _showArchived = false;
+
+  get showArchived() {
+    return this._showArchived;
+  }
+  set showArchived(value) {
+    this._showArchived = value;
+    this.forms.perform();
+  }
 
   didReceiveAttrs() {
     this.forms.perform();
@@ -23,30 +30,9 @@ export default class ComponentsCfbFormListComponent extends Component {
       {
         query: formListQuery,
         fetchPolicy: "cache-and-network",
-        variables: { isArchived: false },
+        variables: { isArchived: this.showArchived },
       },
       "allForms.edges"
     );
-  }
-
-  @restartableTask
-  *formsArchived() {
-    return yield this.apollo.watchQuery(
-      {
-        query: formListQuery,
-        fetchPolicy: "cache-and-network",
-        variables: { isArchived: true },
-      },
-      "allForms.edges"
-    );
-  }
-
-  @action
-  toggleArchived() {
-    this.showArchived = !this.showArchived;
-
-    if (this.showArchived) {
-      this.formsArchived.perform();
-    }
   }
 }

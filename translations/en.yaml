@@ -99,12 +99,11 @@ caluma:
       isPublished: "Published"
       archived: "Archived"
       draft: "Draft"
+      active: "Active"
 
       all: "All forms"
       new: "New form"
       empty: "We did not find any forms. Click the button in the top right corner to create a new form right now!"
-      emptyArchived: "No forms have been archived."
-      showArchived: "Show archived forms"
 
       not-found: "No form with slug '{slug}' found"
 
