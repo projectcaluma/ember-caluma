@@ -94,7 +94,7 @@
       </li>
     {{/each}}
     {{#if (and this.hasNextPage (eq this.mode "add"))}}
-      <li {{on "click" (perform this.data)}} class="uk-text-center cfb-pointer" role="button">{{t "caluma.form-builder.question.loadMore"}}</li>
+      <li class="uk-text-center cfb-pointer"><a {{on "click" (perform this.data)}} href="#">{{t "caluma.form-builder.question.loadMore"}}</a></li>
     {{/if}}
   {{/if}}
 </ul>
