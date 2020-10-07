@@ -63,7 +63,9 @@ export default Component.extend({
     }
   ),
 
-  data: task(function* () {
+  data: task(function* (event) {
+    event?.preventDefault();
+
     const mode = this.mode;
     const search = mode !== "reorder" ? this.search : "";
 
