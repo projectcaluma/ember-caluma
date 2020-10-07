@@ -28,6 +28,9 @@ export default Helper.extend({
   compute(params, { default: defaultWidget = "cf-field/input" }) {
     for (let obj of params) {
       const widget = obj && get(obj, "meta.widgetOverride");
+      if (!widget) {
+        continue;
+      }
       const override =
         widget &&
         this.calumaOptions
@@ -36,7 +39,7 @@ export default Helper.extend({
 
       warn(
         `Widget override "${widget}" is not registered. Please register it by calling \`calumaOptions.registerComponentOverride\``,
-        !override,
+        override,
         { id: "ember-caluma.unregistered-override" }
       );
 

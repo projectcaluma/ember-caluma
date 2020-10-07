@@ -28,8 +28,8 @@ export default Component.extend({
     const typename = get(this, "field.question.__typename");
 
     return (
-      (typename && mapping[typename]) ||
-      typename.replace(/Question$/, "").toLowerCase()
+      typename &&
+      (mapping[typename] || typename.replace(/Question$/, "").toLowerCase())
     );
   }).readOnly(),
 });
