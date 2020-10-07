@@ -10,13 +10,13 @@ export default class ComponentsCfbFormListComponent extends Component {
 
   @queryManager apollo;
 
-  @tracked _showArchived = false;
+  @tracked _filter = "active";
 
-  get showArchived() {
-    return this._showArchived;
+  get filter() {
+    return this._filter;
   }
-  set showArchived(value) {
-    this._showArchived = value;
+  set filter(value) {
+    this._filter = value;
     this.forms.perform();
   }
 
@@ -26,11 +26,24 @@ export default class ComponentsCfbFormListComponent extends Component {
 
   @restartableTask
   *forms() {
+    let filter = [];
+
+    switch (this.filter) {
+      case "all":
+        break;
+      case "active":
+        filter.push({ isArchived: false });
+        break;
+      case "archived":
+        filter.push({ isArchived: true });
+        break;
+    }
+
     return yield this.apollo.watchQuery(
       {
         query: formListQuery,
         fetchPolicy: "cache-and-network",
-        variables: { isArchived: this.showArchived },
+        variables: { filter, order: [{ attribute: "NAME", direction: "ASC" }] },
       },
       "allForms.edges"
     );

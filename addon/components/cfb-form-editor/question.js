@@ -119,6 +119,10 @@ export default Component.extend({
     const forms = yield this.apollo.watchQuery(
       {
         query: formListQuery,
+        variables: {
+          filter: [{ isArchived: false }],
+          order: [{ attribute: "NAME", direction: "ASC" }],
+        },
         fetchPolicy: "cache-and-network",
       },
       "allForms.edges"

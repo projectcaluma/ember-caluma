@@ -100,8 +100,9 @@ caluma:
       archived: "Archivierte"
       draft: "Entwurf"
       active: "Aktive"
+      all: "Alle"
 
-      all: "Alle Formulare"
+      allForms: "Alle Formulare"
       new: "Neues Formular"
       empty: "Wir haben keine Formulare gefunden. Klicken Sie den Knopf im der rechten oberen Ecke um ein Formular zu Erstellen!"
 

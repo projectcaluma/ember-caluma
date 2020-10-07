@@ -1,15 +1,20 @@
 <div class="uk-flex uk-flex-between">
-  <div>
+  <div class="uk-button-group">
     <UkButton
-      @on-click={{fn (mut this.showArchived) false}}
+      @on-click={{fn (mut this.filter) "active"}}
       @label={{t "caluma.form-builder.form.active"}}
-      @class={{if this.showArchived "" "uk-button-primary"}}
+      @class={{if (eq this.filter "active") "uk-button-primary" ""}}
     />
     <UkButton
       data-test-filter-archived
-      @on-click={{fn (mut this.showArchived) true}}
+      @on-click={{fn (mut this.filter) "archived"}}
       @label={{t "caluma.form-builder.form.archived"}}
-      @class={{if this.showArchived "uk-button-primary" ""}}
+      @class={{if (eq this.filter "archived") "uk-button-primary" ""}}
+    />
+    <UkButton
+      @on-click={{fn (mut this.filter) "all"}}
+      @label={{t "caluma.form-builder.form.all"}}
+      @class={{if (eq this.filter "all") "uk-button-primary" ""}}
     />
   </div>
   <div>
