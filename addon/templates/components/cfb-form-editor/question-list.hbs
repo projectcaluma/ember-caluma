@@ -40,10 +40,7 @@
       placeholder="{{t "caluma.form-builder.global.search"}}..."
       value={{search}}
       oninput={{action
-        (queue
-          (action (mut search))
-          (action (perform data))
-        )
+        "search"
         value="target.value"
       }}
     >
@@ -96,5 +93,8 @@
         </p>
       </li>
     {{/each}}
+    {{#if (and this.hasNextPage (eq this.mode "add"))}}
+      <li {{on "click" (perform this.data)}} class="uk-text-center cfb-pointer" role="button">{{t "caluma.form-builder.question.loadMore"}}</li>
+    {{/if}}
   {{/if}}
 </ul>

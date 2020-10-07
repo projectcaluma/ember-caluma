@@ -27,10 +27,14 @@ export default Component.extend({
   search: "",
   mode: "reorder",
 
+  cursor: null,
+  hasNextPage: true,
+
   init() {
     this._super(...arguments);
 
     this.set("_children", {});
+    this.set("items", []);
   },
 
   didReceiveAttrs() {
@@ -67,18 +71,27 @@ export default Component.extend({
       yield timeout(500);
     }
 
-    if (mode === "add") {
-      return yield this.apollo.watchQuery(
+    if (mode === "add" && this.hasNextPage) {
+      const questions = yield this.apollo.watchQuery(
         {
           query: searchQuestionQuery,
           variables: {
             search,
             excludeForms: [this.form],
+            pageSize: 20,
+            cursor: this.cursor,
           },
-          fetchPolicy: "cache-and-network",
+          fetchPolicy: "network-only",
         },
-        "allQuestions.edges"
+        "allQuestions"
       );
+
+      this.cursor = questions.pageInfo.endCursor;
+      this.hasNextPage = questions.pageInfo.hasNextPage;
+
+      this.items = [...this.items, ...questions.edges];
+
+      return this.items;
     }
 
     return yield this.apollo.watchQuery(
@@ -138,6 +151,8 @@ export default Component.extend({
         )
       );
 
+      this._resetParameters();
+
       this.data.perform();
 
       optional([this.get("on-after-add-question")])(question);
@@ -186,6 +201,12 @@ export default Component.extend({
     );
   },
 
+  _resetParameters() {
+    this.cursor = null;
+    this.hasNextPage = true;
+    this.items = [];
+  },
+
   actions: {
     registerChild(elementId, slug) {
       this.set(`_children.${elementId}`, slug);
@@ -198,6 +219,16 @@ export default Component.extend({
     setMode(mode) {
       this.set("mode", mode);
 
+      if (mode === "add") {
+        this._resetParameters();
+      }
+
+      this.data.perform();
+    },
+
+    search(input) {
+      this.search = input;
+      this._resetParameters();
       this.data.perform();
     },
   },

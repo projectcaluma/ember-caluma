@@ -1,11 +1,18 @@
 # import * from 'ember-caluma/gql/fragments/question-info'
 
-query SearchQuestion($search: String, $excludeForms: [ID]) {
+query SearchQuestion($search: String, $excludeForms: [ID], $pageSize: Int, $cursor: String) {
   allQuestions(
     search: $search
     excludeForms: $excludeForms
     isArchived: false
+    first: $pageSize
+    after: $cursor
   ) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    totalCount
     edges {
       node {
         ...QuestionInfo

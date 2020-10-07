@@ -142,6 +142,7 @@ caluma:
       add: "Neue oder existierende Frage hinzufügen"
       search: "Nach einer Frage (Label oder Slug) suchen,"
       create: "oder eine neue Frage erstellen"
+      loadMore: "Mehr Fragen laden"
 
       empty: "Sie haben noch keine Fragen hinzugefügt. Drücken Sie den obenstehenden Knopf um dies zu tun!"
       advancedSettings: "Erweiterte Einstellungen"
