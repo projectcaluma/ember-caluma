@@ -1,100 +1,100 @@
-<div class="uk-text-center uk-margin">
-  {{#if (contains mode (array "remove" "add"))}}
-    <button
-      data-test-cancel
-      type="button"
-      class="uk-icon-button uk-animation-slide-top"
-      uk-icon="close"
-      title={{t "caluma.form-builder.global.cancel"}}
-      {{action "setMode" "reorder"}}
-    >
-    </button>
-  {{else}}
-    <button
-      data-test-remove-question
-      type="button"
-      class="uk-icon-button uk-animation-slide-left"
-      uk-icon="minus"
-      title={{t "caluma.form-builder.question.remove"}}
-      {{action "setMode" "remove"}}
-    >
-    </button>
-    <button
-      data-test-add-question
-      type="button"
-      class="uk-icon-button uk-margin-left uk-animation-slide-right"
-      uk-icon="plus"
-      title={{t "caluma.form-builder.question.add"}}
-      {{action "setMode" "add"}}
-    >
-    </button>
-  {{/if}}
-</div>
-
-{{#if (contains mode (array "remove" "add"))}}
-  <form class="uk-search uk-search-default uk-width-1-1">
-    <span class="uk-search-icon-flip" uk-search-icon></span>
-    <input
-      class="uk-search-input"
-      type="search"
-      placeholder="{{t "caluma.form-builder.global.search"}}..."
-      value={{search}}
-      oninput={{action
-        "search"
-        value="target.value"
-      }}
-    >
-  </form>
-{{/if}}
-
-<ul
-  data-test-question-list
-  uk-sortable="handle: .uk-sortable-handle;"
-  class="uk-list"
->
-  {{#if (eq mode "add")}}
-    <li class="uk-text-small uk-text-muted">
-      {{t "caluma.form-builder.question.search"}}
-      <a
-        href="#"
-        data-test-new-question
-        {{action (queue (action (optional on-create-question)) (action "setMode" "reorder"))}}
+<div ...attributes {{did-insert (queue (fn this.setupUIkit) (perform this.questionTask))}}>
+  <div class="uk-text-center uk-margin">
+    {{#if (contains this.mode (array "remove" "add"))}}
+      <button
+        data-test-cancel
+        type="button"
+        class="uk-icon-button uk-animation-slide-top"
+        uk-icon="close"
+        title={{t "caluma.form-builder.global.ca    ncel"}}
+        {{on "click" (fn this.setMode "reorder")}}
       >
-        {{t "caluma.form-builder.question.create"}}
-      </a>
-    </li>
-  {{/if}}
-  {{#if data.isRunning}}
-    <li class="uk-text-center">{{uk-spinner ratio=1.5}}</li>
-  {{else}}
-    {{#each questions as |item|}}
-      {{cfb-form-editor/question-list/item
-        data-test-question-list-item=item.node.slug
-        mode=mode
-        question=item.node
-        on-edit-question=on-edit-question
-        on-remove-question=(perform removeQuestion)
-        on-add-question=(perform addQuestion)
-        on-register=(action "registerChild")
-        on-unregister=(action "unregisterChild")
-      }}
+      </button>
     {{else}}
-      <li
-        data-test-question-list-empty
-        class="uk-text-small uk-text-muted uk-text-center"
+      <button
+        data-test-remove-question
+        type="button"
+        class="uk-icon-button uk-animation-slide-left"
+        uk-icon="minus"
+        title={{t "caluma.form-builder.question.remove"}}
+        {{on "click" (fn this.setMode "remove")}}
       >
-        {{uk-icon "search" ratio=4}}
-        <p>
-          {{#if (eq mode "reorder")}}
-            {{t "caluma.form-builder.question.empty"}}
-          {{else}}
-            {{t "caluma.form-builder.global.empty-search"}}
-          {{/if}}
-        </p>
-      </li>
-    {{/each}}
-    {{#if (and this.hasNextPage (eq this.mode "add"))}}
-      <li class="uk-text-center cfb-pointer"><a {{on "click" (perform this.data)}} href="#">{{t "caluma.form-builder.question.loadMore"}}</a></li>
+      </button>
+      <button
+        data-test-add-question
+        type="button"
+        class="uk-icon-button uk-margin-left uk-animation-slide-right"
+        uk-icon="plus"
+        title={{t "caluma.form-builder.question.add"}}
+        {{on "click" (fn this.setMode "add")}}
+      >
+      </button>
     {{/if}}
+  </div>
+
+  {{#if (contains this.mode (array "remove" "add"))}}
+    <form class="uk-search uk-search-default uk-width-1-1">
+      <span class="uk-search-icon-flip" uk-search-icon></span>
+      <input
+        class="uk-search-input"
+        type="search"
+        placeholder="{{t "caluma.form-builder.global.search"}}..."
+        value={{this.search}}
+        {{on "input" (fn (mut this.search))}}
+      >
+    </form>
   {{/if}}
-</ul>
+
+  <ul
+    data-test-question-list
+    uk-sortable="handle: .uk-sortable-handle;"
+    class="uk-list"
+    id="question-list"
+  >
+    {{#if (eq this.mode "add")}}
+      <li class="uk-text-small uk-text-muted">
+        {{t "caluma.form-builder.question.search"}}
+        <a
+          href="#"
+          data-test-new-question
+          {{on "click" (queue (fn (optional @on-create-question)) (fn this.setMode "reorder"))}}
+        >
+          {{t "caluma.form-builder.question.create"}}
+        </a>
+      </li>
+    {{/if}}
+    {{#if this.questionTask.isRunning}}
+      <li class="uk-text-center"><UkSpinner @ratio={{1.5}}/></li>
+    {{else}}
+      {{#each this.questions as |item|}}
+        <CfbFormEditor::QuestionList::Item
+          data-test-question-list-item={{item.node.slug}}
+          @mode={{this.mode}}
+          @question={{item.node}}
+          @on-edit-question={{@on-edit-question}}
+          @on-remove-question={{perform this.removeQuestion}}
+          @on-add-question={{perform this.addQuestion}}
+          @on-register={{fn this.registerChild}}
+          @on-unregister={{fn this.unregisterChild}}
+        />
+      {{else}}
+        <li
+          data-test-question-list-empty
+          class="uk-text-small uk-text-muted uk-text-center"
+        >
+          {{uk-icon "search" ratio=4}}
+          <p>
+            {{#if (eq this.mode "reorder")}}
+              {{t "caluma.form-builder.question.empty"}}
+            {{else}}
+              {{t "caluma.form-builder.global.empty-search"}}
+            {{/if}}
+          </p>
+        </li>
+      {{/each}}
+      {{#if (and this.hasNextPage (eq this.mode "add"))}}
+        <li class="uk-text-center cfb-pointer"><a {{on "click" (perform this.questionTask)}} href="#">{{t "caluma.form-builder.question.loadMore"}}</a></li>
+      {{/if}}
+    {{/if}}
+  </ul>
+</div>

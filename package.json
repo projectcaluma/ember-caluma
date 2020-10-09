@@ -69,6 +69,7 @@
     "@babel/plugin-proposal-object-rest-spread": "7.12.1",
     "@ember/jquery": "1.1.0",
     "@ember/optional-features": "2.0.0",
+    "@ember/render-modifiers": "1.0.2",
     "@glimmer/component": "1.0.2",
     "babel-eslint": "10.1.0",
     "broccoli-asset-rev": "3.0.0",
