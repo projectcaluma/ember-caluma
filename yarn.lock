@@ -1433,7 +1433,7 @@
     handlebars "^4.7.4"
     simple-html-tokenizer "^0.5.9"
 
-"@glimmer/tracking@^1.0.0", "@glimmer/tracking@^1.0.1":
+"@glimmer/tracking@^1.0.0", "@glimmer/tracking@^1.0.1", "@glimmer/tracking@^1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@glimmer/tracking/-/tracking-1.0.2.tgz#4fe9ca89e3f4a2ae8e37c8bd8e4ea0d886d9abbf"
   integrity sha512-9Vp04TM2IDTShGFdxccfvnmcaj4NwqLrwbOXm4iju5KL/WkeB8mqoCSLtO3kUg+80DqU0pKE8tR460lQP8CutA==
@@ -8345,13 +8345,13 @@ ember-text-measurer@^0.6.0:
     ember-cli-babel "^7.19.0"
     ember-cli-htmlbars "^4.3.1"
 
-ember-toggle@^6.0.2:
-  version "6.0.3"
-  resolved "https://registry.yarnpkg.com/ember-toggle/-/ember-toggle-6.0.3.tgz#da58ce496b272cd1004524058221aff73b9f33f6"
-  integrity sha512-SnovlbjY+I3+XUDPXnEyK1grymwvzWH9v7zEeeWK3+aE2JDxABjVBE0hbgzVghvPoyEzYBz1o+7VsDUYuSxmiA==
+ember-toggle@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/ember-toggle/-/ember-toggle-7.0.0.tgz#a443c7b127eebcd55062f99df05ef3e011999330"
+  integrity sha512-1/Eay84YzwcFbbqrlXB+XjMxbGFDifAKSUu6i4Bf6WarB1++/FqmY9NB6UhAmKhZjMw++ObSj2uAu+rthKyhBw==
   dependencies:
-    ember-cli-babel "^7.7.3"
-    ember-cli-htmlbars "^3.0.1"
+    ember-cli-babel "^7.22.1"
+    ember-cli-htmlbars "^5.3.1"
     ember-gestures "^1.1.1"
     ember-runtime-enumerable-includes-polyfill "^2.0.0"
 
@@ -8393,21 +8393,22 @@ ember-try@1.4.0:
     rsvp "^4.7.0"
     walk-sync "^1.1.3"
 
-ember-uikit@^2.1.2:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/ember-uikit/-/ember-uikit-2.1.2.tgz#91585168cdfe4018e2aaedadc5ae5147933d3146"
-  integrity sha512-/BUt5Af3v8UP19MRNBq/+FwnQKyTpg6kQLp6fIvC5SyJ9OThtmWkMZjM2ED/OWfcT3k1lPuleeC5/XudbUNzoQ==
+ember-uikit@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/ember-uikit/-/ember-uikit-2.2.0.tgz#f62d24cb55a1ea6aedc37e94b73f9f29c52a9342"
+  integrity sha512-+nSFmCt2zQLdCj8t39fcwOBavMRepUNvGKKR8vwtnszHCdKsRwo3rdKy8Im87pMKtR/LhUHh9BhbpyatsTzkYA==
   dependencies:
-    broccoli-funnel "^2.0.2"
+    "@glimmer/tracking" "^1.0.2"
+    broccoli-funnel "^3.0.3"
     broccoli-merge-trees "^4.1.0"
     broccoli-stew "^3.0.0"
-    chalk "^3.0.0"
-    ember-auto-import "^1.5.3"
-    ember-cli-babel "^7.18.0"
-    ember-cli-htmlbars "^4.2.3"
+    chalk "^4.1.0"
+    ember-auto-import "^1.6.0"
+    ember-cli-babel "^7.22.1"
+    ember-cli-htmlbars "^5.3.1"
     ember-focus-trap "0.4.0"
     ember-get-config "^0.2.4"
-    ember-toggle "^6.0.2"
+    ember-toggle "^7.0.0"
     uikit "^3.3.7"
 
 ember-validated-form@^2.0.0:
