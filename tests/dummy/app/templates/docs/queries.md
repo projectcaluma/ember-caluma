@@ -18,7 +18,11 @@ export default class extends Controller {
   workItemsQuery;
 
   setup() {
-    this.workItemsQuery.fetch({ filter: this.filter, order: this.order });
+    this.workItemsQuery.fetch({
+        filter: this.filter,
+        order: this.order,
+        queryOptions: this.queryOptions
+    });
   }
 
   @action
@@ -38,9 +42,17 @@ The decorator expects two parameters:
 The decorator will then initialize a query object that exposes the following
 public methods:
 
-- `fetch` To initially fetch the first page of the query. This will reset all existing items in the query.
+- `fetch` To initially fetch the first page of the query. This will reset all existing items in the query. `fetch` takes the following optional arguments:
 
-Also, it exposes some helpful properties:
+| Name           | Type              | Description                                                  |
+| -------------- | ----------------- | ------------------------------------------------------------ |
+| `filter`       | `String | Object` | According to the `gql` filter type defined in the query you're using. |
+| `order`        | `String | Object` | According to the `gql` order type defined in the query you're using. |
+| `queryOptions` | `Object`          | Pass options to `apollo.query`. For more information on what options exist, [see here](https://www.apollographql.com/docs/react/api/core/ApolloClient/#ApolloClient.query). |
+
+- `fetchMore` This  will load the next page of your data.
+
+- Also, it exposes some helpful properties:
 
 | Name          | Type       | Description                                                                            |
 | ------------- | ---------- | -------------------------------------------------------------------------------------- |

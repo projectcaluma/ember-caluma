@@ -52,7 +52,7 @@ export default class BaseQuery {
     return factory.class;
   }
 
-  fetch({ filter = [], order = [] } = {}) {
+  fetch({ filter = [], order = [], queryOptions = {} } = {}) {
     this.items = [];
     this.totalCount = 0;
     this.hasNextPage = true;
@@ -60,6 +60,7 @@ export default class BaseQuery {
 
     this.filter = filter;
     this.order = order;
+    this.queryOptions = { ...(this.queryOptions ?? {}), ...queryOptions };
 
     return this.fetchMore();
   }
