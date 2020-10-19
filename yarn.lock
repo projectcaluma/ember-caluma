@@ -7943,10 +7943,10 @@ ember-element-helper@^0.2.0:
   dependencies:
     ember-cli-babel "^6.16.0"
 
-ember-engines@0.8.6:
-  version "0.8.6"
-  resolved "https://registry.yarnpkg.com/ember-engines/-/ember-engines-0.8.6.tgz#151d2fff6929a86b501acd1c650770d9c3593997"
-  integrity sha512-0MXMtUmhA3aY3F4iW0nbrVL1yr/0ExeijY/BrEk0qbbVt+IJ8jJpaSQd2a/q/ksujuGxF0ZclG0rUU8gfWPE1Q==
+ember-engines@0.8.7:
+  version "0.8.7"
+  resolved "https://registry.yarnpkg.com/ember-engines/-/ember-engines-0.8.7.tgz#564b0d4861f3bcd77daa07ea41f7c5fc2578fcc0"
+  integrity sha512-WcXzBVvyLmJEZsqphzBzOV424Kwq1NHVLjC7PUCsdAvU1BlSdJ7cA4IHm2Gq7QKoR7qnOrsk/PSaryaNGGPX9w==
   dependencies:
     amd-name-resolver "1.3.1"
     babel-plugin-compact-reexports "^1.1.0"
@@ -7961,7 +7961,7 @@ ember-engines@0.8.6:
     calculate-cache-key-for-tree "^2.0.0"
     ember-asset-loader "^0.6.1"
     ember-cli-babel "^7.18.0"
-    ember-cli-htmlbars "^4.2.3"
+    ember-cli-htmlbars "^5.3.1"
     ember-cli-preprocess-registry "^3.3.0"
     ember-cli-string-utils "^1.1.0"
     ember-cli-version-checker "^3.1.3"
