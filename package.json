@@ -59,7 +59,7 @@
     "graphql-tools": "^4.0.8",
     "jexl": "^2.3.0",
     "lodash.clonedeep": "^4.5.0",
-    "moment": "2.24.0",
+    "moment": "2.29.1",
     "sass": "^1.27.0",
     "slugify": "^1.4.5",
     "uuid": "^8.3.1"
