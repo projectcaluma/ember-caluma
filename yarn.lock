@@ -8842,10 +8842,10 @@ eslint-config-prettier@6.13.0:
   dependencies:
     get-stdin "^6.0.0"
 
-eslint-plugin-ember@8.13.0:
-  version "8.13.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-ember/-/eslint-plugin-ember-8.13.0.tgz#7178e059ecfb37df46644966fbacd02abb98ac13"
-  integrity sha512-CD7K8m2pTpDKInpzivpku81N5EbvEdhqy/lS1InEp0pZD+G6zi/yK1/jUxz5bAURnoFtF5r6xZZLF56zCC32+w==
+eslint-plugin-ember@9.3.0:
+  version "9.3.0"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-ember/-/eslint-plugin-ember-9.3.0.tgz#77ec28a0c586ea55bbd30d140c784afcdf59e97b"
+  integrity sha512-qrzptSwC58HD8211vF8rGu+TRT8XzIsZVm6j4PleuSZqJ6k3VG8FKofQkb4ZBVU9jOJ0lnZCbYqBfjs4Iy/HHw==
   dependencies:
     "@ember-data/rfc395-data" "^0.0.4"
     ember-rfc176-data "^0.3.15"
