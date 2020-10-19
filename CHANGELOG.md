@@ -1,3 +1,10 @@
+# [6.4.0](https://github.com/projectcaluma/ember-caluma/compare/v6.3.0...v6.4.0) (2020-10-19)
+
+
+### Features
+
+* **caluma-query:** allow `queryOptions` to be set on `fetch` ([547d08d](https://github.com/projectcaluma/ember-caluma/commit/547d08d7897d85242a8524b61bc0d2a494f4cfa8))
+
 # [6.3.0](https://github.com/projectcaluma/ember-caluma/compare/v6.2.1...v6.3.0) (2020-10-06)
 
 
