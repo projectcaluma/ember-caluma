@@ -13,7 +13,7 @@ module("Integration | Component | cfb-form-list/item", function (hooks) {
       description: "Test",
     });
 
-    await render(hbs`{{cfb-form-list/item item=form}}`);
+    await render(hbs`<CfbFormList::Item @item={{this.form}}/>`);
 
     assert.dom("li").exists();
     assert.dom("li > span:nth-child(1)").hasText("Test");
@@ -30,7 +30,7 @@ module("Integration | Component | cfb-form-list/item", function (hooks) {
     this.set("editForm", () => assert.step("edit-form"));
 
     await render(
-      hbs`{{cfb-form-list/item item=form on-edit-form=(action editForm)}}`
+      hbs`<CfbFormList::Item @item={{this.form}} @on-edit-form={{this.editForm}}/>`
     );
 
     await click("[data-test-edit-form]");

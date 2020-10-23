@@ -34,11 +34,11 @@
   {{#if this.forms.lastSuccessful.value.length}}
     <ul data-test-form-list class="uk-list uk-list-divider uk-list-large">
       {{#each this.forms.lastSuccessful.value key="node.id" as |item|}}
-        {{cfb-form-list/item
-          data-test-form-list-item=item.node.slug
-          item=item.node
-          on-edit-form=on-edit-form
-        }}
+        <CfbFormList::Item
+          data-test-form-list-item={{item.node.slug}}
+          @item={{item.node}}
+          @on-edit-form={{@on-edit-form}}
+        />
       {{/each}}
     </ul>
   {{else}}
