@@ -51,9 +51,9 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
 
   @lastValue("questionTask") questionTaskValue = [];
   @restartableTask
-  *questionTask(caller) {
-    if (caller?.preventDefault) {
-      caller.preventDefault();
+  *questionTask(event) {
+    if (event?.preventDefault) {
+      event.preventDefault();
     }
 
     const mode = this.mode;

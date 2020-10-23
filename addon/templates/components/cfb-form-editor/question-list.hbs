@@ -74,15 +74,15 @@
           @on-edit-question={{@on-edit-question}}
           @on-remove-question={{perform this.removeQuestion}}
           @on-add-question={{perform this.addQuestion}}
-          @on-register={{fn this.registerChild}}
-          @on-unregister={{fn this.unregisterChild}}
+          @on-register={{this.registerChild}}
+          @on-unregister={{this.unregisterChild}}
         />
       {{else}}
         <li
           data-test-question-list-empty
           class="uk-text-small uk-text-muted uk-text-center"
         >
-          {{uk-icon "search" ratio=4}}
+          <UkIcon @icon="search" @ratio={{4}} />
           <p>
             {{#if (eq this.mode "reorder")}}
               {{t "caluma.form-builder.question.empty"}}
