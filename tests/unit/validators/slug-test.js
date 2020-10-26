@@ -19,8 +19,8 @@ module("Unit | Validator | slug", function () {
     assert.expect(1);
 
     assert.equal(
-      validateSlug()("test", "x".repeat(60)),
-      "Test is too long (maximum is 50 characters)"
+      validateSlug()("test", "x".repeat(128)),
+      "Test is too long (maximum is 127 characters)"
     );
   });
 
