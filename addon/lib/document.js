@@ -121,6 +121,10 @@ export default Base.extend({
       return Array.isArray(arr) ? arr.map((obj) => obj[key]) : null;
     });
     documentJexl.addBinaryOp("intersects", 20, intersects);
+    documentJexl.addTransform("debug", (any, label = "JEXL Debug") => {
+      console.debug(`${label}:`, any);
+      return any;
+    });
 
     return documentJexl;
   }),
