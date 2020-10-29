@@ -2,7 +2,7 @@ import Base from "ember-caluma/lib/base";
 import { computed, defineProperty } from "@ember/object";
 import { equal, not, reads } from "@ember/object/computed";
 import { inject as service } from "@ember/service";
-import { assert } from "@ember/debug";
+import { assert, warn } from "@ember/debug";
 import { getOwner } from "@ember/application";
 import { camelize } from "@ember/string";
 import { task } from "ember-concurrency";
@@ -378,19 +378,19 @@ export default Base.extend({
     "document.{jexl,fields.[]}",
     "question.isHidden",
     function () {
-      return getDependenciesFromJexl(
-        this.document.jexl,
-        this.question.isHidden
-      ).map((slug) => {
-        const f = this.document.findField(slug);
+      return getDependenciesFromJexl(this.document.jexl, this.question.isHidden)
+        .map((slug) => {
+          const f = this.document.findField(slug);
 
-        assert(
-          `Field for question \`${slug}\` was not found in this document. Please check the \`isHidden\` jexl expression: \`${this.question.isHidden}\`.`,
-          f
-        );
+          warn(
+            `Field for question \`${slug}\` was not found in this document. Please check the \`isHidden\` jexl expression: \`${this.question.isHidden}\`.`,
+            !f,
+            { id: "ember-caluma.lib.field.hiddenDependencies" }
+          );
 
-        return f;
-      });
+          return f;
+        })
+        .filter(Boolean);
     }
   ),
 
@@ -410,16 +410,19 @@ export default Base.extend({
       return getDependenciesFromJexl(
         this.document.jexl,
         this.question.isRequired
-      ).map((slug) => {
-        const f = this.document.findField(slug);
+      )
+        .map((slug) => {
+          const f = this.document.findField(slug);
 
-        assert(
-          `Field for question \`${slug}\` was not found in this document. Please check the \`isRequired\` jexl expression: \`${this.question.isRequired}\`.`,
-          f
-        );
+          warn(
+            `Field for question \`${slug}\` was not found in this document. Please check the \`isRequired\` jexl expression: \`${this.question.isRequired}\`.`,
+            !f,
+            { id: "ember-caluma.lib.field.optionalDependencies" }
+          );
 
-        return f;
-      });
+          return f;
+        })
+        .filter(Boolean);
     }
   ),
 
