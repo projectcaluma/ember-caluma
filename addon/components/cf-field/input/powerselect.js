@@ -1,7 +1,7 @@
+import { getOwner } from "@ember/application";
 import Component from "@ember/component";
 import { computed } from "@ember/object";
 import { inject as service } from "@ember/service";
-import { gt } from "@ember/object/computed";
 import layout from "../../../templates/components/cf-field/input/powerselect";
 import { queryManager } from "ember-apollo-client";
 
@@ -28,7 +28,12 @@ export default Component.extend({
     return this.multiple ? "power-select-multiple" : "power-select";
   }),
 
-  searchEnabled: gt("field.options.length", 10),
+  searchEnabled: computed("field.options.length", function () {
+    const { powerSelectEnableSearchLimit: limit } = getOwner(
+      this
+    ).resolveRegistration("config:environment")["ember-caluma"];
+    return this.get("field.options.length") > limit;
+  }),
 
   placeholder: computed("multiple", function () {
     const suffix = this.multiple ? "multiple" : "single";
