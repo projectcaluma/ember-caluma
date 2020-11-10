@@ -17689,10 +17689,10 @@ typeface-oxygen-mono@1.1.13:
   resolved "https://registry.yarnpkg.com/typeface-oxygen-mono/-/typeface-oxygen-mono-1.1.13.tgz#971bbdf030b7729d0aa768921be4fa0169905a34"
   integrity sha512-TxELTMcgH9H9D5fI/5n8zGV+q9VOhi0MHft+YFKl+Y9CrUUtujhXeRp4XPMyjXzlwjTFuiRUYLxfrWEAT/ikpA==
 
-typeface-oxygen@0.0.72:
-  version "0.0.72"
-  resolved "https://registry.yarnpkg.com/typeface-oxygen/-/typeface-oxygen-0.0.72.tgz#7c3a187b45bb112ca53d2953ba10018af1eb270f"
-  integrity sha512-wDLMaWKrq/P6Y3dDfrgy8JEQXfminKhzkXeQsN5XeOo9TWMJIhetAggqZLM1H7/hkzy/j329c8imScgXefjudg==
+typeface-oxygen@1.1.13:
+  version "1.1.13"
+  resolved "https://registry.yarnpkg.com/typeface-oxygen/-/typeface-oxygen-1.1.13.tgz#05b33008227cca46a7bc4a0ee351672819ae352e"
+  integrity sha512-HvAveSoDs5qWT76zYH3rUU9prIqum3vzNQw6ONqcWykVMW4r3uXyGEj0MCBbdWyGNgnBe9b8be1JjpC4HWo3hA==
 
 typescript-memoize@^1.0.0-alpha.3:
   version "1.0.0-alpha.3"
