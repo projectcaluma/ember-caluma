@@ -115,7 +115,7 @@
     "prettier": "2.1.2",
     "qunit-dom": "1.6.0",
     "testem-failure-only-reporter": "0.0.1",
-    "typeface-oxygen": "0.0.72",
+    "typeface-oxygen": "1.1.13",
     "typeface-oxygen-mono": "1.1.13"
   },
   "resolutions": {
