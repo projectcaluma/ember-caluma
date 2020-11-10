@@ -25,7 +25,7 @@ module("Integration | Component | cfb-form-list", function (hooks) {
       })
     );
 
-    await render(hbs`{{cfb-form-list forms=forms}}`);
+    await render(hbs`<CfbFormList @forms={{this.forms}}/>`);
 
     assert.dom("[data-test-form-list]").exists();
     assert.dom("[data-test-form-list-item]").exists({ count: 5 });
@@ -42,7 +42,7 @@ module("Integration | Component | cfb-form-list", function (hooks) {
       })
     );
 
-    await render(hbs`{{cfb-form-list forms=forms}}`);
+    await render(hbs`<CfbFormList @forms={{this.forms}}/>`);
 
     assert.dom("[data-test-form-list-empty]").exists();
   });
@@ -61,7 +61,7 @@ module("Integration | Component | cfb-form-list", function (hooks) {
     this.set("on-edit-form", () => assert.step("edit-form"));
 
     await render(
-      hbs`{{cfb-form-list forms=forms on-edit-form=(action on-edit-form)}}`
+      hbs`<CfbFormList @forms={{this.forms}} @on-edit-form={{this.on-edit-form}}/>`
     );
 
     await click(`[data-test-form-list-item=form-1] [data-test-edit-form]`);
@@ -83,7 +83,7 @@ module("Integration | Component | cfb-form-list", function (hooks) {
     this.set("on-new-form", () => assert.step("new-form"));
 
     await render(
-      hbs`{{cfb-form-list forms=forms on-new-form=(action on-new-form)}}`
+      hbs`<CfbFormList @forms={{this.forms}} @on-new-form={{this.on-new-form}}/>`
     );
 
     await click("[data-test-new-form]");
@@ -102,9 +102,7 @@ module("Integration | Component | cfb-form-list", function (hooks) {
       })
     );
 
-    await render(
-      hbs`{{cfb-form-list forms=forms formsArchived=formsArchived}}`
-    );
+    await render(hbs`<CfbFormList @forms={{this.forms}}/>`);
 
     assert.dom("[data-test-form-list]").exists();
     assert.dom("[data-test-form-list-item]").exists({ count: 1 });

@@ -31,7 +31,7 @@ export default RenderComponent.extend({
     this.set(
       "optionRows",
       get(value, "edges.length")
-        ? get(value, "edges").map(
+        ? value.edges.map(
             (edge) =>
               new Changeset(
                 {

@@ -1,13 +1,10 @@
-import Component from "@ember/component";
-import layout from "../templates/components/cfb-form-list";
+import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
 import formListQuery from "ember-caluma/gql/queries/form-list";
 import { restartableTask } from "ember-concurrency-decorators";
 import { tracked } from "@glimmer/tracking";
 
 export default class ComponentsCfbFormListComponent extends Component {
-  layout = layout;
-
   @queryManager apollo;
 
   @tracked _filter = "active";
@@ -20,12 +17,12 @@ export default class ComponentsCfbFormListComponent extends Component {
     this.forms.perform();
   }
 
-  didReceiveAttrs() {
-    this.forms.perform();
-  }
-
   @restartableTask
   *forms() {
+    if (this.args.forms) {
+      return this.args.forms.perform();
+    }
+
     let filter = [];
 
     switch (this.filter) {
