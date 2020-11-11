@@ -36,7 +36,7 @@
     "broccoli-funnel": "^3.0.3",
     "broccoli-merge-trees": "^4.2.0",
     "ember-apollo-client": "^2.2.0",
-    "ember-auto-import": "^1.6.0",
+    "ember-auto-import": "^1.7.0",
     "ember-changeset": "^2.2.5",
     "ember-changeset-validations": "^2.2.1",
     "ember-cli-babel": "^7.23.0",
