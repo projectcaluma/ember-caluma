@@ -18,20 +18,20 @@ update_configs:
       # objects which do not work in IE11
       - match:
           dependency_name: "ember-changeset"
-          version_requirement: ">=3"
+          version_requirement: ">= 3"
       - match:
           dependency_name: "ember-changeset-validations"
-          version_requirement: ">=3"
+          version_requirement: ">= 3"
 
       # graphql-tools v5+ breaks generic mocking
       - match:
           dependency_name: "graphql-tools"
-          version_requirement: "<= 4"
+          version_requirement: ">= 5"
 
       # https://github.com/jasonmit/ember-cli-moment-shim/issues/183
       - match:
           dependency_name: "ember-cli-moment-shim"
-          version_requirement: "3.8.0"
+          version_requirement: "> 3.8.0"
       - match:
           dependency_name: "moment"
-          version_requirement: "2.24.0"
+          version_requirement: "> 2.24.0"
