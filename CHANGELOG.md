@@ -1,3 +1,25 @@
+# [6.5.0](https://github.com/projectcaluma/ember-caluma/compare/v6.4.0...v6.5.0) (2020-11-17)
+
+
+### Bug Fixes
+
+* **form:** don't throw when typename is undefined in cf-field/input ([34b4a36](https://github.com/projectcaluma/ember-caluma/commit/34b4a36bd2c0e20d20bd81c556fd8fb8688d7988))
+* **test:** fix test selector ([2c15fa5](https://github.com/projectcaluma/ember-caluma/commit/2c15fa5dba46e766fd6dcf8c58ea9ab5470a2483))
+* change maximum slug length to fit backend implementation ([1da4e29](https://github.com/projectcaluma/ember-caluma/commit/1da4e297525577640b1377ab86cefe7a798601a2))
+
+
+### Features
+
+* **cf-field:** make options limit configurable ([#1097](https://github.com/projectcaluma/ember-caluma/issues/1097)) ([2a819c0](https://github.com/projectcaluma/ember-caluma/commit/2a819c081830054f36cf891bf31909e6a2b92b67))
+* **cfb:** add paging to question list ([#1064](https://github.com/projectcaluma/ember-caluma/issues/1064)) ([2c80035](https://github.com/projectcaluma/ember-caluma/commit/2c80035e52ab00c7b023c95241d44d91cc112362))
+* **cfb:** add seperation between archived and active forms ([#1054](https://github.com/projectcaluma/ember-caluma/issues/1054)) ([bda4c79](https://github.com/projectcaluma/ember-caluma/commit/bda4c79fe4778f36786b7dcac819fcc0806fff87))
+* **lib:** add a debug transform which logs to console ([#1098](https://github.com/projectcaluma/ember-caluma/issues/1098)) ([8ed447b](https://github.com/projectcaluma/ember-caluma/commit/8ed447b64a830b6b3b4419fe2d2d8682642021f9))
+
+
+### Reverts
+
+* Revert "chore(deps): bump moment from 2.24.0 to 2.29.1 (#1059)" (#1100) ([dc404e6](https://github.com/projectcaluma/ember-caluma/commit/dc404e63a2190f7b13cf44a06e14261581ab05e5)), closes [#1059](https://github.com/projectcaluma/ember-caluma/issues/1059) [#1100](https://github.com/projectcaluma/ember-caluma/issues/1100)
+
 # [6.4.0](https://github.com/projectcaluma/ember-caluma/compare/v6.3.0...v6.4.0) (2020-10-19)
 
 
