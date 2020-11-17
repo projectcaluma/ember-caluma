@@ -9,6 +9,7 @@ const EngineAddon = require("ember-engines/lib/engine-addon");
 
 const DEFAULT_OPTIONS = {
   includeMirageConfig: true,
+  includeProxyPolyfill: true,
 };
 
 /* eslint-disable ember/avoid-leaking-state-in-ember-objects */
@@ -22,22 +23,27 @@ module.exports = EngineAddon.extend({
     plugins: ["@babel/plugin-proposal-object-rest-spread"],
   },
 
+  _getOptions() {
+    const app = this._findHost();
+
+    return Object.assign({}, DEFAULT_OPTIONS, app.options["ember-caluma"]);
+  },
+
   included() {
     this._super.included.apply(this, arguments);
+
+    if (this._getOptions().includeProxyPolyfill) {
+      this.import("node_modules/proxy-polyfill/proxy.min.js");
+    }
   },
 
   treeForApp(appTree) {
     const trees = [appTree];
 
     const app = this._findHost();
-    const addonOptions = Object.assign(
-      {},
-      DEFAULT_OPTIONS,
-      app.options["ember-caluma"]
-    );
 
     if (
-      addonOptions.includeMirageConfig &&
+      this._getOptions().includeMirageConfig &&
       app.registry.availablePlugins["ember-cli-mirage"]
     ) {
       const mirageDir = path.join(__dirname, "addon-mirage-support");

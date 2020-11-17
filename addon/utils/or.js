@@ -1,4 +1,4 @@
-import isPromise from "ember-changeset/utils/is-promise";
+import { isPromise } from "validated-changeset";
 
 function isTrue(value) {
   return value === true;

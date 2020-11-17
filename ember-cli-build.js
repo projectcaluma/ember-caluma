@@ -11,6 +11,9 @@ module.exports = function (defaults) {
     babel: {
       plugins: ["@babel/plugin-proposal-object-rest-spread"],
     },
+    "ember-cli-babel": {
+      includePolyfill: process.env.EMBER_ENV === "production",
+    },
     emberApolloClient: {
       keepGraphqlFileExtension: true,
     },

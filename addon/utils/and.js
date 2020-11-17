@@ -1,4 +1,4 @@
-import isPromise from "ember-changeset/utils/is-promise";
+import { isPromise } from "validated-changeset";
 import { typeOf } from "@ember/utils";
 
 function notTrue(value) {
