@@ -113,14 +113,14 @@
         <a target="_blank" rel="noopener noreferrer" href="https://www.markdownguide.org/basic-syntax">{{t "caluma.form-builder.question.markdown"}}</a>
       </small>
 
-      {{#if (contains f.model.__typename (array "TextQuestion" "TextareaQuestion" "IntegerQuestion" "FloatQuestion"))}}
+      {{#if (includes f.model.__typename (array "TextQuestion" "TextareaQuestion" "IntegerQuestion" "FloatQuestion"))}}
         {{f.input
           name="placeholder"
           label=(t "caluma.form-builder.question.placeholder")
         }}
       {{/if}}
 
-      {{#if (contains f.model.__typename (array "TextQuestion" "TextareaQuestion"))}}
+      {{#if (includes f.model.__typename (array "TextQuestion" "TextareaQuestion"))}}
         {{f.input
           type="number"
           name="minLength"
@@ -133,7 +133,7 @@
         }}
       {{/if}}
 
-      {{#if (contains f.model.__typename (array "TextQuestion" "TextareaQuestion"))}}
+      {{#if (includes f.model.__typename (array "TextQuestion" "TextareaQuestion"))}}
         {{f.input
           name="meta.formatValidators"
           label=(t "caluma.form-builder.question.formatValidators")
@@ -183,7 +183,7 @@
         </div>
       {{/if}}
 
-      {{#if (contains f.model.__typename (array "MultipleChoiceQuestion" "ChoiceQuestion"))}}
+      {{#if (includes f.model.__typename (array "MultipleChoiceQuestion" "ChoiceQuestion"))}}
         {{f.input
           name="options"
           label=(t "caluma.form-builder.question.options")
@@ -192,7 +192,7 @@
         }}
       {{/if}}
 
-      {{#if (contains f.model.__typename (array "DynamicMultipleChoiceQuestion" "DynamicChoiceQuestion"))}}
+      {{#if (includes f.model.__typename (array "DynamicMultipleChoiceQuestion" "DynamicChoiceQuestion"))}}
         {{f.input
           name="dataSource"
           type="select"
@@ -207,7 +207,7 @@
         }}
       {{/if}}
 
-      {{#if (contains f.model.__typename (array "DynamicMultipleChoiceQuestion" "DynamicChoiceQuestion" "MultipleChoiceQuestion" "ChoiceQuestion"))}}
+      {{#if (includes f.model.__typename (array "DynamicMultipleChoiceQuestion" "DynamicChoiceQuestion" "MultipleChoiceQuestion" "ChoiceQuestion"))}}
         <div data-test-hide-label>
           {{f.input
             name="meta.hideLabel"

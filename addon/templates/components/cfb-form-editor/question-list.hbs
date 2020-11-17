@@ -1,6 +1,6 @@
 <div ...attributes {{did-insert (queue (fn this.setupUIkit) (perform this.questionTask))}}>
   <div class="uk-text-center uk-margin">
-    {{#if (contains this.mode (array "remove" "add"))}}
+    {{#if (includes this.mode (array "remove" "add"))}}
       <button
         data-test-cancel
         type="button"
@@ -32,7 +32,7 @@
     {{/if}}
   </div>
 
-  {{#if (contains this.mode (array "remove" "add"))}}
+  {{#if (includes this.mode (array "remove" "add"))}}
     <form class="uk-search uk-search-default uk-width-1-1">
       <span class="uk-search-icon-flip" uk-search-icon></span>
       <input

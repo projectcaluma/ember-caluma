@@ -13,7 +13,7 @@
         <tr>
           {{#if field.question.meta.columnsToDisplay.length}}
             {{#each document.fields as |answerField|}}
-              {{#if (contains answerField.answer.question.slug field.question.meta.columnsToDisplay)}}
+              {{#if (includes answerField.answer.question.slug field.question.meta.columnsToDisplay)}}
                 <td>{{cf-field-value field=answerField}}</td>
               {{/if}}
             {{/each}}
