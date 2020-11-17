@@ -15,7 +15,7 @@ export default Route.extend({
   init() {
     this._super(...arguments);
 
-    this.intl.setLocale([...navigator.languages, "en"]);
+    this.intl.setLocale("en");
 
     if (ENV.environment !== "production") {
       this.calumaOptions.registerComponentOverride({
