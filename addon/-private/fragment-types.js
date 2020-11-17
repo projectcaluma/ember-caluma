@@ -36,10 +36,16 @@ export default {
             name: "TextQuestion",
           },
           {
+            name: "StringAnswer",
+          },
+          {
             name: "ChoiceQuestion",
           },
           {
             name: "MultipleChoiceQuestion",
+          },
+          {
+            name: "ListAnswer",
           },
           {
             name: "DynamicChoiceQuestion",
@@ -54,37 +60,31 @@ export default {
             name: "FloatQuestion",
           },
           {
+            name: "FloatAnswer",
+          },
+          {
             name: "IntegerQuestion",
+          },
+          {
+            name: "IntegerAnswer",
           },
           {
             name: "DateQuestion",
           },
           {
+            name: "DateAnswer",
+          },
+          {
             name: "TableQuestion",
+          },
+          {
+            name: "TableAnswer",
           },
           {
             name: "FormQuestion",
           },
           {
             name: "FileQuestion",
-          },
-          {
-            name: "StringAnswer",
-          },
-          {
-            name: "ListAnswer",
-          },
-          {
-            name: "IntegerAnswer",
-          },
-          {
-            name: "FloatAnswer",
-          },
-          {
-            name: "DateAnswer",
-          },
-          {
-            name: "TableAnswer",
           },
           {
             name: "FileAnswer",
@@ -174,10 +174,10 @@ export default {
             name: "ListAnswer",
           },
           {
-            name: "IntegerAnswer",
+            name: "FloatAnswer",
           },
           {
-            name: "FloatAnswer",
+            name: "IntegerAnswer",
           },
           {
             name: "DateAnswer",
