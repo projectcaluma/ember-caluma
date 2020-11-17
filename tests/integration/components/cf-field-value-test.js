@@ -2,9 +2,11 @@ import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
 import { render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
+import { setupIntl } from "ember-intl/test-support";
 
 module("Integration | Component | cf-field-value", function (hooks) {
   setupRenderingTest(hooks);
+  setupIntl(hooks);
 
   test("it renders multiple choice questions", async function (assert) {
     this.set("field", {

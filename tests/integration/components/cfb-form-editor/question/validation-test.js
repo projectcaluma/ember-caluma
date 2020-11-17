@@ -1,15 +1,16 @@
 import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
-import { render } from "@ember/test-helpers";
+import { render, click } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import setupMirage from "ember-cli-mirage/test-support/setup-mirage";
-import { click } from "@ember/test-helpers";
+import { setupIntl } from "ember-intl/test-support";
 
 module(
   "Integration | Component | cfb-form-editor/question/validation",
   function (hooks) {
     setupRenderingTest(hooks);
     setupMirage(hooks);
+    setupIntl(hooks);
 
     hooks.beforeEach(function () {
       this.server.createList("format-validator", 5);
