@@ -236,7 +236,7 @@
                 <input
                   type="checkbox"
                   value={{row.slug}}
-                  checked={{contains row.slug model.meta.columnsToDisplay}}
+                  checked={{includes row.slug model.meta.columnsToDisplay}}
                   onclick={{action "toggleColumnToDisplay" row.slug}}
                   onfocusout={{fi.setDirty}}
                   class="uk-checkbox uk-margin-small-right"

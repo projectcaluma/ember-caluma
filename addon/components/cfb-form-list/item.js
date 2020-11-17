@@ -1,10 +1,26 @@
-import Component from "@ember/component";
-import layout from "../../templates/components/cfb-form-list/item";
+import Component from "@glimmer/component";
+import { inject as service } from "@ember/service";
 
-export default Component.extend({
-  layout,
+export default class componentsCfbFormItemListItem extends Component {
+  @service intl;
 
-  tagName: "li",
+  get labelClass() {
+    if (this.args.item.isArchived) {
+      return "uk-label-warning";
+    } else if (this.args.item.isPublished) {
+      return "uk-label-success";
+    }
 
-  classNames: ["uk-text-nowrap", "uk-flex", "uk-flex-middle"],
-});
+    return "";
+  }
+
+  get labelName() {
+    if (this.args.item.isArchived) {
+      return this.intl.t("caluma.form-builder.form.isArchived");
+    } else if (this.args.item.isPublished) {
+      return this.intl.t("caluma.form-builder.form.isPublished");
+    }
+
+    return this.intl.t("caluma.form-builder.form.draft");
+  }
+}

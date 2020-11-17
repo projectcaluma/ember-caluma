@@ -1,33 +1,55 @@
-<div class="uk-text-right">
-  <UkButton
-    data-test-new-form
-    @on-click={{optional @on-new-form}}
-    @label={{t "caluma.form-builder.form.new"}}
-  />
-</div>
-
-{{#if data.isRunning}}
-  <div class="uk-height-small uk-flex uk-flex-center uk-flex-middle">
-    {{uk-spinner ratio=2}}
-  </div>
-{{else}}
-  {{#if data.lastSuccessful.value.length}}
-    <ul data-test-form-list class="uk-list uk-list-divider uk-list-large">
-      {{#each data.lastSuccessful.value key="node.id" as |item|}}
-        {{cfb-form-list/item
-          data-test-form-list-item=item.node.slug
-          item=item.node
-          on-edit-form=on-edit-form
-        }}
-      {{/each}}
-    </ul>
-  {{else}}
-    <div
-      data-test-form-list-empty
-      class="uk-padding-large uk-padding-remove-horizontal uk-text-center"
-    >
-      {{uk-icon "search" ratio=10}}
-      <p class="uk-text-muted">{{t "caluma.form-builder.form.empty"}}</p>
+<div {{did-insert (perform this.forms)}} {{did-update (perform this.forms)}} ...attributes>
+  <div class="uk-flex uk-flex-between">
+    <div class="uk-button-group">
+      <UkButton
+        @on-click={{fn (mut this.filter) "active"}}
+        @label={{t "caluma.form-builder.form.active"}}
+        @class={{if (eq this.filter "active") "uk-button-primary" ""}}
+      />
+      <UkButton
+        data-test-filter-archived
+        @on-click={{fn (mut this.filter) "archived"}}
+        @label={{t "caluma.form-builder.form.archived"}}
+        @class={{if (eq this.filter "archived") "uk-button-primary" ""}}
+      />
+      <UkButton
+        @on-click={{fn (mut this.filter) "all"}}
+        @label={{t "caluma.form-builder.form.all"}}
+        @class={{if (eq this.filter "all") "uk-button-primary" ""}}
+      />
     </div>
+    <div>
+      <UkButton
+        data-test-new-form
+        @on-click={{optional @on-new-form}}
+        @label={{t "caluma.form-builder.form.new"}}
+      />
+    </div>
+  </div>
+
+  {{#if this.forms.isRunning}}
+    <div class="uk-height-small uk-flex uk-flex-center uk-flex-middle">
+      {{uk-spinner ratio=2}}
+    </div>
+  {{else}}
+    {{#if this.forms.lastSuccessful.value.length}}
+      <ul data-test-form-list class="uk-list uk-list-divider uk-list-large">
+        {{#each this.forms.lastSuccessful.value key="node.id" as |item|}}
+          <CfbFormList::Item
+            data-test-form-list-item={{item.node.slug}}
+            @item={{item.node}}
+            @on-edit-form={{@on-edit-form}}
+          />
+        {{/each}}
+      </ul>
+    {{else}}
+      <div
+        data-test-form-list-empty
+        class="uk-padding-large uk-padding-remove-horizontal uk-text-center"
+      >
+        {{uk-icon "search" ratio=10}}
+        <p class="uk-text-muted">{{t "caluma.form-builder.form.empty"}}</p>
+      </div>
+    {{/if}}
   {{/if}}
-{{/if}}
+</div>

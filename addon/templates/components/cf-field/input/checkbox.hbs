@@ -6,7 +6,7 @@
       type="checkbox"
       name="{{field.pk}}:Option:{{option.slug}}"
       value={{option.slug}}
-      checked={{contains option.slug field.answer.value}}
+      checked={{includes option.slug field.answer.value}}
       disabled={{disabled}}
       onchange={{action "update"}}
     >

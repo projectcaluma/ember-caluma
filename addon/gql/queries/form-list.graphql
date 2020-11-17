@@ -1,7 +1,7 @@
 # import * from 'ember-caluma/gql/fragments/form-info'
 
-query FormList {
-  allForms(isArchived: false) {
+query FormList($filter: [FormFilterSetType], $order: [FormOrderSetType]) {
+  allForms(filter: $filter, order: $order) {
     edges {
       node {
         ...FormInfo
