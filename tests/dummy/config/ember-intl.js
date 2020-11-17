@@ -89,6 +89,10 @@ module.exports = function (/* environment */) {
      * @default "function(key,locale) { return true }"
      */
     requiresTranslation(key, locale) {
+      if (!key.startsWith("caluma")) {
+        return false;
+      }
+
       const requiredLocales = ["en", "de"];
 
       // form builder is not yet supported in french

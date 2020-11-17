@@ -72,4 +72,5 @@ export default function (server) {
   server.create("document", { formId: form.id });
 
   server.createList("work-item", 20);
+  server.createList("format-validator", 3);
 }

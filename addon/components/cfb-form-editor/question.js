@@ -307,7 +307,7 @@ export default Component.extend({
                 slug,
                 isHidden: changeset.get("isHidden"),
                 infoText: changeset.get("infoText"),
-                meta: JSON.stringify(changeset.get("meta")),
+                meta: JSON.stringify(changeset.get("meta").unwrap()),
                 isArchived: changeset.get("isArchived"),
                 clientMutationId: v4(),
               },
@@ -397,11 +397,11 @@ export default Component.extend({
      * list if it isnt present, otherwise it will remove the slug.
      */
     toggleColumnToDisplay(value) {
-      let displayed = new Set(this.get("model.meta.columnsToDisplay"));
+      const displayed = new Set(this.changeset.get("meta.columnsToDisplay"));
 
       displayed.delete(value) || displayed.add(value);
 
-      this.set("model.meta.columnsToDisplay", [...displayed]);
+      this.changeset.set("meta.columnsToDisplay", [...displayed]);
     },
   },
 });

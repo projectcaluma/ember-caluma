@@ -57,7 +57,7 @@ export default RenderComponent.extend({
   _update() {
     this.update({
       edges: this.optionRows
-        .filter((row) => !get(row, "isNew") || get(row, "isDirty"))
+        .filter((row) => !row.isNew || row.isDirty)
         .map((row) => {
           const { label, slug, isArchived } = Object.assign(
             {},

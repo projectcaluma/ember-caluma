@@ -140,6 +140,8 @@
           placeholder=(t "caluma.form-builder.question.choose")
           required=false
           renderComponent=(component "cfb-form-editor/question/validation")
+          on-update=(changeset-set f.model "meta.formatValidators")
+          value=(changeset-get f.model "meta.formatValidators")
         }}
       {{/if}}
 
@@ -215,6 +217,8 @@
             label=(t "caluma.form-builder.question.hideLabel")
             renderComponent=(component "cfb-toggle-switch" size="small")
             class="uk-flex uk-flex-between uk-flex-column"
+            on-update=(changeset-set f.model "meta.hideLabel")
+            value=(changeset-get f.model "meta.hideLabel")
           }}
         </div>
       {{/if}}
