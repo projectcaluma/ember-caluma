@@ -2,10 +2,12 @@ import { module, test } from "qunit";
 import { visit, currentURL, click } from "@ember/test-helpers";
 import { setupApplicationTest } from "ember-qunit";
 import { setupMirage } from "ember-cli-mirage/test-support";
+import { setupIntl } from "ember-intl/test-support";
 
 module("Acceptance | question remove", function (hooks) {
   setupApplicationTest(hooks);
   setupMirage(hooks);
+  setupIntl(hooks);
 
   test("can remove a question", async function (assert) {
     assert.expect(4);

@@ -2,11 +2,13 @@ import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
 import { click, render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
+import { setupIntl } from "ember-intl/test-support";
 
 module("Integration | Component | cf-field/input/powerselect", function (
   hooks
 ) {
   setupRenderingTest(hooks);
+  setupIntl(hooks);
 
   hooks.beforeEach(function () {
     const singleChoice = {

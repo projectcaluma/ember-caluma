@@ -2,9 +2,11 @@ import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
 import { render, click, settled } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
+import { setupIntl } from "ember-intl/test-support";
 
 module("Integration | Component | cfb-navigation", function (hooks) {
   setupRenderingTest(hooks);
+  setupIntl(hooks);
 
   hooks.beforeEach(function () {
     this.nav = this.owner.lookup("service:navigation");

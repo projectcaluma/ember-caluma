@@ -4,9 +4,11 @@ import { render, click } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { defineProperty } from "@ember/object";
 import { task } from "ember-concurrency";
+import { setupIntl } from "ember-intl/test-support";
 
 module("Integration | Component | cfb-form-list", function (hooks) {
   setupRenderingTest(hooks);
+  setupIntl(hooks);
 
   test("it renders blockless", async function (assert) {
     assert.expect(2);

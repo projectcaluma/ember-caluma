@@ -2,9 +2,11 @@ import { module, skip } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
 import { render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
+import { setupIntl } from "ember-intl/test-support";
 
 module("Integration | Component | cf-form-wrapper", function (hooks) {
   setupRenderingTest(hooks);
+  setupIntl(hooks);
 
   skip("it renders", async function (assert) {
     // Set any properties with this.set('myProperty', 'value');

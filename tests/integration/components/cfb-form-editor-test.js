@@ -3,10 +3,12 @@ import { setupRenderingTest } from "ember-qunit";
 import { render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
+import { setupIntl } from "ember-intl/test-support";
 
 module("Integration | Component | cfb-form-editor", function (hooks) {
   setupRenderingTest(hooks);
   setupMirage(hooks);
+  setupIntl(hooks);
 
   hooks.beforeEach(function () {
     this.form = this.server.create("form", {

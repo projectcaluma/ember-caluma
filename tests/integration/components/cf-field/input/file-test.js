@@ -3,10 +3,12 @@ import { setupRenderingTest } from "ember-qunit";
 import { render, triggerEvent } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
+import { setupIntl } from "ember-intl/test-support";
 
 module("Integration | Component | cf-field/input/file", function (hooks) {
   setupRenderingTest(hooks);
   setupMirage(hooks);
+  setupIntl(hooks);
 
   test("it computes the proper element id", async function (assert) {
     await render(hbs`{{cf-field/input/file field=(hash pk="test-id")}}`);

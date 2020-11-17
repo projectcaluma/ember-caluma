@@ -5,9 +5,11 @@ import moment from "moment";
 import { hbs } from "ember-cli-htmlbars";
 import { Interactor } from "ember-pikaday/test-support";
 import ValidatorServiceStub from "dummy/tests/helpers/validator-service-stub";
+import { setupIntl } from "ember-intl/test-support";
 
 module("Integration | Component | cf-field/input/date", function (hooks) {
   setupRenderingTest(hooks);
+  setupIntl(hooks);
 
   hooks.beforeEach(function () {
     this.owner.register("service:validator", ValidatorServiceStub);

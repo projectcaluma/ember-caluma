@@ -2,9 +2,11 @@ import { module, test } from "qunit";
 import { setupRenderingTest } from "ember-qunit";
 import { render, fillIn } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
+import { setupIntl } from "ember-intl/test-support";
 
 module("Integration | Component | cf-field/input/text", function (hooks) {
   setupRenderingTest(hooks);
+  setupIntl(hooks);
 
   test("it computes the proper element id", async function (assert) {
     await render(hbs`{{cf-field/input/text field=(hash pk="test-id")}}`);
