@@ -24,9 +24,7 @@ module("Integration | Component | cfb-form-editor/question-list", function (
   test("it renders", async function (assert) {
     assert.expect(1);
 
-    await render(
-      hbs`{{cfb-form-editor/question-list form='test-slug' mode='reorder'}}`
-    );
+    await render(hbs`<CfbFormEditor::QuestionList @form='test-slug'/>`);
 
     assert.dom("[data-test-question-list-item]").exists({ count: 5 });
   });
@@ -38,14 +36,16 @@ module("Integration | Component | cfb-form-editor/question-list", function (
 
     this.set("mode", "reorder");
 
-    await render(hbs`{{cfb-form-editor/question-list form='oioi' mode=mode}}`);
+    await render(
+      hbs`<CfbFormEditor::QuestionList @form='oioi' @mode={{this.mode}}/>`
+    );
 
     assert.dom("[data-test-question-list-empty]").exists();
     assert
       .dom("[data-test-question-list-empty]")
       .hasText("t:caluma.form-builder.question.empty:()");
 
-    this.set("mode", "add");
+    await click("[data-test-add-question]");
     await fillIn("input[type=search]", "thisslugisveryunlikelytoexist");
     assert
       .dom("[data-test-question-list-empty]")
@@ -69,7 +69,7 @@ module("Integration | Component | cfb-form-editor/question-list", function (
     this.form.questionIds = [...this.form.questionIds, question.id];
 
     await render(
-      hbs`{{cfb-form-editor/question-list form='test-slug' mode='reorder'}}`
+      hbs`<CfbFormEditor::QuestionList @form='test-slug' @mode='reorder'/>`
     );
 
     assert.dom("[data-test-question-list-item=test]:last-child").exists();
@@ -104,7 +104,7 @@ module("Integration | Component | cfb-form-editor/question-list", function (
     this.server.create("question", { slug: "test" });
 
     await render(
-      hbs`{{cfb-form-editor/question-list form='test-slug' mode='add'}}`
+      hbs`<CfbFormEditor::QuestionList @form='test-slug' @mode='add'/>`
     );
 
     assert.dom("[data-test-question-list-item=test]").exists();
@@ -120,7 +120,7 @@ module("Integration | Component | cfb-form-editor/question-list", function (
     this.server.create("question", { slug: "test", formIds: [this.form.id] });
 
     await render(
-      hbs`{{cfb-form-editor/question-list form='test-slug' mode='remove'}}`
+      hbs`<CfbFormEditor::QuestionList @form='test-slug' @mode='remove'/>`
     );
 
     assert.dom("[data-test-question-list-item=test]").exists();
@@ -134,7 +134,7 @@ module("Integration | Component | cfb-form-editor/question-list", function (
     assert.expect(1);
 
     await render(
-      hbs`{{cfb-form-editor/question-list form='test-slug' mode='reorder'}}`
+      hbs`<CfbFormEditor::QuestionList @form='test-slug' @mode='reorder'/>`
     );
 
     this.server.post(
@@ -159,7 +159,7 @@ module("Integration | Component | cfb-form-editor/question-list", function (
     assert.expect(1);
 
     await render(
-      hbs`{{cfb-form-editor/question-list form='test-slug' mode='remove'}}`
+      hbs`<CfbFormEditor::QuestionList @form='test-slug' @mode='remove'/>`
     );
 
     this.server.post("/graphql", () => graphqlError("removeFormQuestion"), 200);
@@ -174,7 +174,7 @@ module("Integration | Component | cfb-form-editor/question-list", function (
     this.server.create("question");
 
     await render(
-      hbs`{{cfb-form-editor/question-list form='test-slug' mode='add'}}`
+      hbs`<CfbFormEditor::QuestionList @form='test-slug' @mode='add'/>`
     );
 
     this.server.post("/graphql", () => graphqlError("addFormQuestion"), 200);

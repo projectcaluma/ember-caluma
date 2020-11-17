@@ -1,25 +1,27 @@
-{{#if slug}}
+{{#if @slug}}
   <div uk-grid class="uk-grid-divider uk-child-width-1-1 uk-child-width-1-2@m">
     <div>
       {{yield}}
     </div>
 
     <div>
-      {{#if data.isRunning}}
+      {{#if @data.isRunning}}
         <div class="uk-flex uk-flex-center uk-flex-middle uk-height-small">
-          {{uk-spinner ratio=2}}
+          <UkSpinner @ratio={{2}}/>
         </div>
       {{else}}
-        {{cfb-form-editor/question-list
-          form=slug
-          on-edit-question=on-edit-question
-          on-create-question=on-create-question
-          on-after-add-question=on-after-add-question
-          on-after-remove-question=on-after-remove-question
-        }}
+        <CfbFormEditor::QuestionList
+          @form={{@slug}}
+          @on-edit-question={{@on-edit-question}}
+          @on-create-question={{@on-create-question}}
+          @on-after-add-question={{@on-after-add-question}}
+          @on-after-remove-question={{@on-after-remove-question}}
+        />
       {{/if}}
     </div>
   </div>
 {{else}}
+<span>
   {{yield}}
+</span>
 {{/if}}

@@ -1,13 +1,18 @@
-import Component from "@ember/component";
-import layout from "../../templates/components/cfb-form-editor/question-list";
+import Component from "@glimmer/component";
 import UIkit from "uikit";
 import { run } from "@ember/runloop";
 import { optional } from "ember-composable-helpers/helpers/optional";
-import { task, timeout } from "ember-concurrency";
+import { timeout } from "ember-concurrency";
+import {
+  restartableTask,
+  enqueueTask,
+  lastValue,
+} from "ember-concurrency-decorators";
 import { queryManager } from "ember-apollo-client";
-import { computed } from "@ember/object";
+import { action } from "@ember/object";
 import { v4 } from "uuid";
 import { inject as service } from "@ember/service";
+import { tracked } from "@glimmer/tracking";
 
 import searchQuestionQuery from "ember-caluma/gql/queries/search-question";
 import searchFormQuestionQuery from "ember-caluma/gql/queries/search-form-question";
@@ -15,51 +20,42 @@ import reorderFormQuestionsMutation from "ember-caluma/gql/mutations/reorder-for
 import addFormQuestionMutation from "ember-caluma/gql/mutations/add-form-question";
 import removeFormQuestionMutation from "ember-caluma/gql/mutations/remove-form-question";
 
-export default Component.extend({
-  layout,
-  tagName: "div",
+export default class ComponentsCfbFormEditorQuestionList extends Component {
+  @service notification;
+  @service intl;
 
-  notification: service(),
-  intl: service(),
+  @queryManager apollo;
 
-  apollo: queryManager(),
+  @tracked _search = "";
+  @tracked mode = this.args.mode || "reorder";
+  @tracked _children = [];
+  @tracked cursor = null;
+  @tracked hasNextPage = true;
+  @tracked items = [];
 
-  search: "",
-  mode: "reorder",
+  get questions() {
+    return this.mode === "add"
+      ? this.questionTaskValue
+      : this.questionTaskValue.firstObject?.node.questions.edges;
+  }
 
-  init() {
-    this._super(...arguments);
+  // Use built in input component when it works instead of this getter and setter
+  get search() {
+    return this._search;
+  }
+  set search(event) {
+    this._search = event.target.value;
+    this._resetParameters();
+    this.questionTask.perform();
+  }
 
-    this.set("_children", {});
-  },
-
-  didReceiveAttrs() {
-    this._super(...arguments);
-
-    this.data.perform();
-  },
-
-  didInsertElement() {
-    this._super(...arguments);
-
-    UIkit.util.on(this.element, "moved", (...args) =>
-      run(this, this._handleMoved, ...args)
-    );
-  },
-
-  questions: computed(
-    "data.lastSuccessful.value.{[],firstObject.node.questions.edges,firstObject.questions.edges.[]}",
-    "mode",
-    function () {
-      return this.mode === "add"
-        ? this.get("data.lastSuccessful.value")
-        : this.get(
-            "data.lastSuccessful.value.firstObject.node.questions.edges"
-          );
+  @lastValue("questionTask") questionTaskValue = [];
+  @restartableTask
+  *questionTask(event) {
+    if (event?.preventDefault) {
+      event.preventDefault();
     }
-  ),
 
-  data: task(function* () {
     const mode = this.mode;
     const search = mode !== "reorder" ? this.search : "";
 
@@ -67,18 +63,27 @@ export default Component.extend({
       yield timeout(500);
     }
 
-    if (mode === "add") {
-      return yield this.apollo.watchQuery(
+    if (mode === "add" && this.hasNextPage) {
+      const questions = yield this.apollo.watchQuery(
         {
           query: searchQuestionQuery,
           variables: {
             search,
-            excludeForms: [this.form],
+            excludeForms: [this.args.form],
+            pageSize: 20,
+            cursor: this.cursor,
           },
-          fetchPolicy: "cache-and-network",
+          fetchPolicy: "network-only",
         },
-        "allQuestions.edges"
+        "allQuestions"
       );
+
+      this.cursor = questions.pageInfo.endCursor;
+      this.hasNextPage = questions.pageInfo.hasNextPage;
+
+      this.items = [...this.items, ...questions.edges];
+
+      return this.items;
     }
 
     return yield this.apollo.watchQuery(
@@ -86,21 +91,22 @@ export default Component.extend({
         query: searchFormQuestionQuery,
         variables: {
           search,
-          slug: this.form,
+          slug: this.args.form,
         },
         fetchPolicy: "cache-and-network",
       },
       "allForms.edges"
     );
-  }).restartable(),
+  }
 
-  reorderQuestions: task(function* (slugs) {
+  @restartableTask
+  *reorderQuestions(slugs) {
     try {
       yield this.apollo.mutate({
         mutation: reorderFormQuestionsMutation,
         variables: {
           input: {
-            form: this.form,
+            form: this.args.form,
             questions: slugs,
             clientMutationId: v4(),
           },
@@ -116,16 +122,17 @@ export default Component.extend({
         this.intl.t("caluma.form-builder.notification.form.reorder.error")
       );
     }
-  }).restartable(),
+  }
 
-  addQuestion: task(function* (question) {
+  @enqueueTask
+  *addQuestion(question) {
     try {
       yield this.apollo.mutate({
         mutation: addFormQuestionMutation,
         variables: {
           input: {
             question: question.slug,
-            form: this.form,
+            form: this.args.form,
             clientMutationId: v4(),
           },
           search: this.search,
@@ -138,24 +145,28 @@ export default Component.extend({
         )
       );
 
-      this.data.perform();
+      this._resetParameters();
 
-      optional([this.get("on-after-add-question")])(question);
+      this.questionTask.perform();
+
+      optional([this.args["on-after-add-question"]])(question);
     } catch (e) {
+      console.log(e);
       this.notification.danger(
         this.intl.t("caluma.form-builder.notification.form.add-question.error")
       );
     }
-  }).enqueue(),
+  }
 
-  removeQuestion: task(function* (question) {
+  @enqueueTask
+  *removeQuestion(question) {
     try {
       yield this.apollo.mutate({
         mutation: removeFormQuestionMutation,
         variables: {
           input: {
             question: question.slug,
-            form: this.form,
+            form: this.args.form,
             clientMutationId: v4(),
           },
           search: this.search,
@@ -168,7 +179,7 @@ export default Component.extend({
         )
       );
 
-      optional([this.get("on-after-remove-question")])(question);
+      optional([this.args["on-after-remove-question"]])(question);
     } catch (e) {
       this.notification.danger(
         this.intl.t(
@@ -176,29 +187,53 @@ export default Component.extend({
         )
       );
     }
-  }).enqueue(),
+  }
 
   _handleMoved({ detail: [sortable] }) {
     let children = [...sortable.$el.children];
 
     this.reorderQuestions.perform(
-      children.map((child) => this.get(`_children.${child.id}`))
+      children.map((child) => this._children[child.id])
     );
-  },
+  }
 
-  actions: {
-    registerChild(elementId, slug) {
-      this.set(`_children.${elementId}`, slug);
-    },
+  _resetParameters() {
+    this.cursor = null;
+    this.hasNextPage = true;
+    this.items = [];
+  }
 
-    unregisterChild(elementId) {
-      this.set(`_children.${elementId}`, undefined);
-    },
+  @action
+  setupUIkit() {
+    UIkit.util.on("#question-list", "moved", (...args) =>
+      run(this, this._handleMoved, ...args)
+    );
+  }
 
-    setMode(mode) {
-      this.set("mode", mode);
+  @action
+  registerChild(elementId, slug) {
+    this._children[elementId] = slug;
+  }
 
-      this.data.perform();
-    },
-  },
-});
+  @action
+  unregisterChild(elementId) {
+    this._children[elementId] = undefined;
+  }
+
+  @action
+  setMode(mode) {
+    this.mode = mode;
+
+    if (mode === "add") {
+      this._resetParameters();
+    }
+
+    this.questionTask.perform();
+  }
+
+  @action
+  performSearch() {
+    this._resetParameters();
+    this.questionTask.perform();
+  }
+}

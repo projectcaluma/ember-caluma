@@ -19,7 +19,7 @@ module("Integration | Component | cfb-form-editor", function (hooks) {
   test("it renders blockless", async function (assert) {
     assert.expect(1);
 
-    await render(hbs`{{cfb-form-editor slug='test-slug'}}`);
+    await render(hbs`<CfbFormEditor @slug='test-slug'/>`);
 
     assert.dom("[data-test-question-list-item]").exists({ count: 5 });
   });
@@ -28,9 +28,9 @@ module("Integration | Component | cfb-form-editor", function (hooks) {
     assert.expect(2);
 
     await render(hbs`
-      {{#cfb-form-editor slug='test-slug'}}
+      <CfbFormEditor @slug='test-slug'>
         Content!
-      {{/cfb-form-editor}}
+      </CfbFormEditor>
     `);
 
     assert.dom("[uk-grid] > div:first-of-type").hasText("Content!");

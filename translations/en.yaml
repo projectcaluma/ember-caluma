@@ -142,6 +142,7 @@ caluma:
       add: "Add a new or existing question"
       search: "Search for a question label or slug,"
       create: "or create a new question"
+      loadMore: "Load more questions"
 
       empty: "You have not yet added a question. Press the plus button above to do so!"
       advancedSettings: "Advanced settings"
