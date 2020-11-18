@@ -1,3 +1,10 @@
+## [6.5.1](https://github.com/projectcaluma/ember-caluma/compare/v6.5.0...v6.5.1) (2020-11-18)
+
+
+### Bug Fixes
+
+* **deps:** update ember-changeset and ember-changeset-validations ([c66cc8e](https://github.com/projectcaluma/ember-caluma/commit/c66cc8ec485513d1fb9b90ed520990b2f30dca72))
+
 # [6.5.0](https://github.com/projectcaluma/ember-caluma/compare/v6.4.0...v6.5.0) (2020-11-17)
 
 
