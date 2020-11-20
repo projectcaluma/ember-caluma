@@ -4,18 +4,18 @@ import { render, click, settled } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupIntl } from "ember-intl/test-support";
 
-module("Integration | Component | cfb-jexl-boolean-toggle-switch", function (
-  hooks
-) {
-  setupRenderingTest(hooks);
-  setupIntl(hooks);
+module(
+  "Integration | Component | cfb-jexl-boolean-toggle-switch",
+  function (hooks) {
+    setupRenderingTest(hooks);
+    setupIntl(hooks);
 
-  test("it renders", async function (assert) {
-    assert.expect(2);
+    test("it renders", async function (assert) {
+      assert.expect(2);
 
-    this.set("value", "false");
+      this.set("value", "false");
 
-    await render(hbs`
+      await render(hbs`
       {{cfb-jexl-boolean-toggle-switch
         name='test'
         value=value
@@ -23,27 +23,27 @@ module("Integration | Component | cfb-jexl-boolean-toggle-switch", function (
       }}
     `);
 
-    assert.dom("input[name=test]").isNotChecked();
+      assert.dom("input[name=test]").isNotChecked();
 
-    this.set("value", "true");
+      this.set("value", "true");
 
-    await settled();
+      await settled();
 
-    assert.dom("input[name=test]").isChecked();
-  });
-
-  test("it can toggle", async function (assert) {
-    assert.expect(4);
-
-    this.set("value", "false");
-
-    this.set("update", (value) => {
-      assert.step("update");
-
-      this.set("value", value);
+      assert.dom("input[name=test]").isChecked();
     });
 
-    await render(hbs`
+    test("it can toggle", async function (assert) {
+      assert.expect(4);
+
+      this.set("value", "false");
+
+      this.set("update", (value) => {
+        assert.step("update");
+
+        this.set("value", value);
+      });
+
+      await render(hbs`
       {{cfb-jexl-boolean-toggle-switch
         name='test'
         value=value
@@ -51,12 +51,13 @@ module("Integration | Component | cfb-jexl-boolean-toggle-switch", function (
       }}
     `);
 
-    assert.dom("input[name=test]").isNotChecked();
+      assert.dom("input[name=test]").isNotChecked();
 
-    await click(".x-toggle");
+      await click(".x-toggle");
 
-    assert.dom("input[name=test]").isChecked();
+      assert.dom("input[name=test]").isChecked();
 
-    assert.verifySteps(["update"]);
-  });
-});
+      assert.verifySteps(["update"]);
+    });
+  }
+);
