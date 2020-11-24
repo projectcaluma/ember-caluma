@@ -1,3 +1,10 @@
+## [6.5.2](https://github.com/projectcaluma/ember-caluma/compare/v6.5.1...v6.5.2) (2020-11-24)
+
+
+### Bug Fixes
+
+* **config:** fix power select limit default config ([1a1dec1](https://github.com/projectcaluma/ember-caluma/commit/1a1dec1217ef284471474be714264b1502face9d))
+
 ## [6.5.1](https://github.com/projectcaluma/ember-caluma/compare/v6.5.0...v6.5.1) (2020-11-18)
 
 
