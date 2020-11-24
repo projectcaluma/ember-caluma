@@ -1,7 +1,7 @@
 # ![ember-caluma](https://user-images.githubusercontent.com/6150577/60805349-1e6f3080-a180-11e9-911f-874620aa72b1.png)
 
-![Test](https://github.com/projectcaluma/ember-caluma/workflows/Test/badge.svg)
-[![BrowserStack Status](https://automate.browserstack.com/badge.svg?badge_key=OFpCTnVaaUhTWTU3SFBKMGdtS1hFeCtCMUgvMmdMSTZqVVNEejhrME5JND0tLUp6R3B6aEJhUjBRRUtxSjJxcFhVb3c9PQ==--234eac4a0f5f7c3759bf207a1ab7954f6bbaf078)](https://automate.browserstack.com/public-build/OFpCTnVaaUhTWTU3SFBKMGdtS1hFeCtCMUgvMmdMSTZqVVNEejhrME5JND0tLUp6R3B6aEJhUjBRRUtxSjJxcFhVb3c9PQ==--234eac4a0f5f7c3759bf207a1ab7954f6bbaf078)
+[![Test](https://github.com/projectcaluma/ember-caluma/workflows/Test/badge.svg)](https://github.com/projectcaluma/ember-caluma/actions?query=workflow%3ATest)
+[![BrowserStack Status](https://automate.browserstack.com/badge.svg?badge_key=RFNMT2hyTnRjNVZkUitkWUl2d3BWK21KbnU3MU1tTGpHS2tOVHVCU1RrZz0tLXJjZ1J5VEZ6ZmtJWVpFdHpDRnREcFE9PQ==--3034affde596526379b7a0a19798a7ba1f79154c)](https://automate.browserstack.com/public-build/RFNMT2hyTnRjNVZkUitkWUl2d3BWK21KbnU3MU1tTGpHS2tOVHVCU1RrZz0tLXJjZ1J5VEZ6ZmtJWVpFdHpDRnREcFE9PQ==--3034affde596526379b7a0a19798a7ba1f79154c)
 [![Codecov](https://codecov.io/gh/projectcaluma/ember-caluma/branch/master/graph/badge.svg)](https://codecov.io/gh/projectcaluma/ember-caluma)
 [![npm](https://img.shields.io/npm/v/ember-caluma.svg)](https://www.npmjs.com/package/ember-caluma)
 [![Dependabot](https://badgen.net/dependabot/projectcaluma/ember-caluma/?icon=dependabot)](https://dependabot.com/)
@@ -10,12 +10,11 @@
 
 The Ember.js addon for [Caluma](https://caluma.io) - a collaborative form editing service.
 
-## Browsers support
+## Browser support
 
-| [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png" alt="IE / Edge" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br>IE / Edge | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png" alt="Firefox" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br>Firefox | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png" alt="Chrome" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br>Chrome | [<img src="https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_48x48.png" alt="iOS Safari" width="24px" height="24px" />](http://godban.github.io/browsers-support-badges/)<br>iOS Safari |
-| --------- | --------- | --------- | --------- |
-| IE11, Edge| last version| last version| last version
-
+| ![IE / Edge](https://raw.githubusercontent.com/alrra/browser-logos/master/src/edge/edge_48x48.png) | ![Firefox](https://raw.githubusercontent.com/alrra/browser-logos/master/src/firefox/firefox_48x48.png) | ![Chrome](https://raw.githubusercontent.com/alrra/browser-logos/master/src/chrome/chrome_48x48.png) | ![Safari](https://raw.githubusercontent.com/alrra/browser-logos/master/src/safari-ios/safari-ios_48x48.png) |
+| -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| IE11, Edge latest version                                                                          | latest version                                                                                         | latest version                                                                                      | latest version                                                                                              |
 
 ## Compatibility
 
@@ -63,15 +62,10 @@ yarn update-schema
 yarn update-fragment-types
 ```
 
-### History
+### Releasing
 
-This addon is the result of a merge of three different addons:
-
-* [ember-caluma-form-builder](https://github.com/projectcaluma/ember-caluma-form-builder)
-* [ember-caluma-form](https://github.com/projectcaluma/ember-caluma-form)
-* [ember-caluma-utils](https://github.com/projectcaluma/ember-caluma-utils)
-
-The history of `ember-caluma-form` and `ember-caluma-utils` has not been preserved during the merge.
+To release a new version, head over to [Actions](https://github.com/projectcaluma/ember-caluma/actions?query=workflow%3ARelease) and trigger a workflow run.
+This will automatically check if a new version can be released, generate a changelog, draft a release and publish it on NPM.
 
 ## License
 
