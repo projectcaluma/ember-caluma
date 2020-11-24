@@ -5,10 +5,6 @@ module.exports = function (environment) {
     modulePrefix: "ember-caluma",
     environment,
 
-    "ember-caluma": {
-      powerSelectEnableSearchLimit: 10,
-    },
-
     "ember-validated-form": {
       theme: "uikit",
       defaults: {

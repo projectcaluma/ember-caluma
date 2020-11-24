@@ -29,10 +29,10 @@ export default Component.extend({
   }),
 
   searchEnabled: computed("field.options.length", function () {
-    const { powerSelectEnableSearchLimit: limit } = getOwner(
-      this
-    ).resolveRegistration("config:environment")["ember-caluma"];
-    return this.get("field.options.length") > limit;
+    const config = getOwner(this).resolveRegistration("config:environment");
+    const { powerSelectEnableSearchLimit = 10 } = config["ember-caluma"] || {};
+
+    return this.get("field.options.length") > powerSelectEnableSearchLimit;
   }),
 
   placeholder: computed("multiple", function () {
