@@ -1,9 +1,9 @@
-import { module, test } from "qunit";
-import { setupRenderingTest } from "ember-qunit";
 import { render, triggerEvent } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
+import { setupRenderingTest } from "ember-qunit";
+import { module, test } from "qunit";
 
 module("Integration | Component | cf-field/input/file", function (hooks) {
   setupRenderingTest(hooks);
@@ -30,8 +30,8 @@ module("Integration | Component | cf-field/input/file", function (hooks) {
       value: { uploadUrl: `/minio/upload/${name}` },
     }));
 
-    let payload_good = new File(["test"], "good.txt", { type: "text/plain" });
-    let payload_fail = new File(["test"], "fail.txt", { type: "text/plain" });
+    const payload_good = new File(["test"], "good.txt", { type: "text/plain" });
+    const payload_fail = new File(["test"], "fail.txt", { type: "text/plain" });
 
     await render(hbs`{{cf-field/input/file field=field onSave=onSave}}`);
 

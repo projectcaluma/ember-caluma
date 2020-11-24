@@ -1,39 +1,40 @@
+import { getOwner } from "@ember/application";
+import { A } from "@ember/array";
 import Component from "@ember/component";
-import { inject as service } from "@ember/service";
-import layout from "../../templates/components/cfb-form-editor/question";
-import { task, timeout } from "ember-concurrency";
-import { queryManager } from "ember-apollo-client";
-import { v4 } from "uuid";
-import { optional } from "ember-composable-helpers/helpers/optional";
 import { computed, get } from "@ember/object";
 import { reads } from "@ember/object/computed";
-import slugify from "ember-caluma/utils/slugify";
-import { A } from "@ember/array";
-import validations from "ember-caluma/validations/question";
+import { inject as service } from "@ember/service";
+import { queryManager } from "ember-apollo-client";
 import Changeset from "ember-changeset";
 import lookupValidator from "ember-changeset-validations";
+import { optional } from "ember-composable-helpers/helpers/optional";
+import { task, timeout } from "ember-concurrency";
 import { all } from "rsvp";
-import { getOwner } from "@ember/application";
+import { v4 } from "uuid";
 
-import checkQuestionSlugQuery from "ember-caluma/gql/queries/check-question-slug";
-import formEditorQuestionQuery from "ember-caluma/gql/queries/form-editor-question";
+import layout from "../../templates/components/cfb-form-editor/question";
+
 import addFormQuestionMutation from "ember-caluma/gql/mutations/add-form-question";
-import formListQuery from "ember-caluma/gql/queries/form-list";
-import allDataSourcesQuery from "ember-caluma/gql/queries/all-data-sources";
+import saveChoiceQuestionMutation from "ember-caluma/gql/mutations/save-choice-question";
+import saveDateQuestionMutation from "ember-caluma/gql/mutations/save-date-question";
+import saveDynamicChoiceQuestionMutation from "ember-caluma/gql/mutations/save-dynamic-choice-question";
+import saveDynamicMultipleChoiceQuestionMutation from "ember-caluma/gql/mutations/save-dynamic-multiple-choice-question";
+import saveFileQuestionMutation from "ember-caluma/gql/mutations/save-file-question";
+import saveFloatQuestionMutation from "ember-caluma/gql/mutations/save-float-question";
+import saveFormQuestionMutation from "ember-caluma/gql/mutations/save-form-question";
+import saveIntegerQuestionMutation from "ember-caluma/gql/mutations/save-integer-question";
+import saveMultipleChoiceQuestionMutation from "ember-caluma/gql/mutations/save-multiple-choice-question";
 import saveOptionMutation from "ember-caluma/gql/mutations/save-option";
+import saveStaticQuestionMutation from "ember-caluma/gql/mutations/save-static-question";
+import saveTableQuestionMutation from "ember-caluma/gql/mutations/save-table-question";
 import saveTextQuestionMutation from "ember-caluma/gql/mutations/save-text-question";
 import saveTextareaQuestionMutation from "ember-caluma/gql/mutations/save-textarea-question";
-import saveIntegerQuestionMutation from "ember-caluma/gql/mutations/save-integer-question";
-import saveFloatQuestionMutation from "ember-caluma/gql/mutations/save-float-question";
-import saveMultipleChoiceQuestionMutation from "ember-caluma/gql/mutations/save-multiple-choice-question";
-import saveChoiceQuestionMutation from "ember-caluma/gql/mutations/save-choice-question";
-import saveTableQuestionMutation from "ember-caluma/gql/mutations/save-table-question";
-import saveFormQuestionMutation from "ember-caluma/gql/mutations/save-form-question";
-import saveFileQuestionMutation from "ember-caluma/gql/mutations/save-file-question";
-import saveStaticQuestionMutation from "ember-caluma/gql/mutations/save-static-question";
-import saveDateQuestionMutation from "ember-caluma/gql/mutations/save-date-question";
-import saveDynamicMultipleChoiceQuestionMutation from "ember-caluma/gql/mutations/save-dynamic-multiple-choice-question";
-import saveDynamicChoiceQuestionMutation from "ember-caluma/gql/mutations/save-dynamic-choice-question";
+import allDataSourcesQuery from "ember-caluma/gql/queries/all-data-sources";
+import checkQuestionSlugQuery from "ember-caluma/gql/queries/check-question-slug";
+import formEditorQuestionQuery from "ember-caluma/gql/queries/form-editor-question";
+import formListQuery from "ember-caluma/gql/queries/form-list";
+import slugify from "ember-caluma/utils/slugify";
+import validations from "ember-caluma/validations/question";
 
 export const TYPES = {
   TextQuestion: saveTextQuestionMutation,
@@ -71,8 +72,6 @@ export default Component.extend({
   }),
 
   async didReceiveAttrs() {
-    this._super(...arguments);
-
     await this.data.perform();
     await this.availableForms.perform();
     await this.availableDataSources.perform();
@@ -281,7 +280,7 @@ export default Component.extend({
   saveOptions: task(function* (changeset) {
     yield all(
       (get(changeset, "options.edges") || []).map(async ({ node: option }) => {
-        let { label, slug, isArchived } = option;
+        const { label, slug, isArchived } = option;
 
         await this.apollo.mutate({
           mutation: saveOptionMutation,

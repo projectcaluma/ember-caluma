@@ -1,10 +1,11 @@
+import { get } from "@ember/object";
 import Route from "@ember/routing/route";
 import { inject as service } from "@ember/service";
-import { get } from "@ember/object";
 import { queryManager } from "ember-apollo-client";
 import gql from "graphql-tag";
-import { decodeId } from "ember-caluma/helpers/decode-id";
+
 import ENV from "ember-caluma/config/environment";
+import { decodeId } from "ember-caluma/helpers/decode-id";
 
 export default Route.extend({
   intl: service(),
@@ -12,8 +13,8 @@ export default Route.extend({
 
   apollo: queryManager(),
 
-  init() {
-    this._super(...arguments);
+  init(...args) {
+    this._super(...args);
 
     this.intl.setLocale("en");
 

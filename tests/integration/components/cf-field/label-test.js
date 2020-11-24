@@ -1,9 +1,9 @@
-import { module, test } from "qunit";
-import { setupRenderingTest } from "ember-qunit";
 import { render } from "@ember/test-helpers";
-import { hbs } from "ember-cli-htmlbars";
 import ValidatorServiceStub from "dummy/tests/helpers/validator-service-stub";
+import { hbs } from "ember-cli-htmlbars";
 import { setupIntl } from "ember-intl/test-support";
+import { setupRenderingTest } from "ember-qunit";
+import { module, test } from "qunit";
 
 module("Integration | Component | cf-field/label", function (hooks) {
   setupRenderingTest(hooks);

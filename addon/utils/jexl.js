@@ -23,7 +23,7 @@ export const getAST = (jexl, expression) => {
  * @yields {Object} The found transform
  */
 const traverseTransforms = function* (tree) {
-  for (let node of Object.values(tree)) {
+  for (const node of Object.values(tree)) {
     if (typeof node === "object") {
       yield* traverseTransforms(node);
     }
@@ -41,9 +41,9 @@ const traverseTransforms = function* (tree) {
  * @return {Object[]} The found transforms
  */
 export const getTransforms = (tree) => {
-  let iterator = traverseTransforms(tree);
+  const iterator = traverseTransforms(tree);
   let result = iterator.next();
-  let transforms = [];
+  const transforms = [];
 
   while (!result.done) {
     transforms.push(result.value);

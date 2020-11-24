@@ -1,5 +1,5 @@
-import buildMessage from "ember-changeset-validations/utils/validation-errors";
 import getMessages from "ember-changeset-validations/utils/get-messages";
+import buildMessage from "ember-changeset-validations/utils/validation-errors";
 
 export default function validateGtLt(options = { gt: null, lt: null }) {
   return (key, newValue, oldValue, changes, content) => {

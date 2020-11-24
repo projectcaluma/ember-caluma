@@ -1,6 +1,6 @@
-import { module, test } from "qunit";
-import { setupTest } from "ember-qunit";
 import ValidatorServiceStub from "dummy/tests/helpers/validator-service-stub";
+import { setupTest } from "ember-qunit";
+import { module, test } from "qunit";
 
 module("Unit | Library | question", function (hooks) {
   setupTest(hooks);

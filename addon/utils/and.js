@@ -1,5 +1,5 @@
-import { isPromise } from "validated-changeset";
 import { typeOf } from "@ember/utils";
+import { isPromise } from "validated-changeset";
 
 function notTrue(value) {
   return typeOf(value) !== "boolean" || !value;

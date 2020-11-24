@@ -1,5 +1,5 @@
-import WorkItemQuery from "./work-item";
 import CaseQuery from "./case";
+import WorkItemQuery from "./work-item";
 
 export function allWorkItems(options) {
   return new WorkItemQuery(options);

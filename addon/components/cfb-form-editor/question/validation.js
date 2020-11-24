@@ -1,8 +1,10 @@
 import Component from "@ember/component";
 import { computed } from "@ember/object";
-import { task } from "ember-concurrency";
-import layout from "../../../templates/components/cfb-form-editor/question/validation";
 import { queryManager } from "ember-apollo-client";
+import { task } from "ember-concurrency";
+
+import layout from "../../../templates/components/cfb-form-editor/question/validation";
+
 import allFormatValidatorsQuery from "ember-caluma/gql/queries/all-format-validators";
 
 export default Component.extend({
@@ -10,8 +12,8 @@ export default Component.extend({
 
   apollo: queryManager(),
 
-  init() {
-    this._super(...arguments);
+  init(...args) {
+    this._super(...args);
 
     this.availableFormatValidators.perform();
   },

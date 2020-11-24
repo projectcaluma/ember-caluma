@@ -1,6 +1,6 @@
-import { module, test } from "qunit";
-import { setupTest } from "ember-qunit";
 import { setupMirage } from "ember-cli-mirage/test-support";
+import { setupTest } from "ember-qunit";
+import { module, test } from "qunit";
 
 module("Unit | Service | validator", function (hooks) {
   setupTest(hooks);
@@ -13,7 +13,7 @@ module("Unit | Service | validator", function (hooks) {
   test("slugs are in a string not in an array", async function (assert) {
     assert.expect(1);
 
-    let service = this.owner.lookup("service:validator");
+    const service = this.owner.lookup("service:validator");
 
     assert.deepEqual(await service.validate("test@test.com", ["email"]), [
       true,
@@ -23,7 +23,7 @@ module("Unit | Service | validator", function (hooks) {
   test("empty values are not being validated", async function (assert) {
     assert.expect(3);
 
-    let service = this.owner.lookup("service:validator");
+    const service = this.owner.lookup("service:validator");
 
     assert.deepEqual(await service.validate(null, ["email"]), [true]);
     assert.deepEqual(await service.validate(undefined, ["email"]), [true]);

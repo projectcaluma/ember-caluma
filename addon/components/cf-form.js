@@ -1,6 +1,7 @@
 import Component from "@ember/component";
-import layout from "../templates/components/cf-form";
 import { assert } from "@ember/debug";
+
+import layout from "../templates/components/cf-form";
 
 /**
  * Component to display a form for a whole document.
@@ -18,8 +19,6 @@ export default Component.extend({
   novalidate: "novalidate",
 
   didReceiveAttrs() {
-    this._super(...arguments);
-
     assert("A document `document` must be passed", this.document);
   },
 

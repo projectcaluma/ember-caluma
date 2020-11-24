@@ -1,8 +1,10 @@
-import moment from "moment";
 import Component from "@ember/component";
-import layout from "../templates/components/cf-field-value";
 import { computed } from "@ember/object";
 import { queryManager } from "ember-apollo-client";
+import moment from "moment";
+
+import layout from "../templates/components/cf-field-value";
+
 import getFileAnswerInfoQuery from "ember-caluma/gql/queries/get-fileanswer-info";
 
 export default Component.extend({

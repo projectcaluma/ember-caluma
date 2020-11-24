@@ -1,12 +1,13 @@
-import Base from "ember-caluma/lib/base";
-import { computed } from "@ember/object";
-import { camelize } from "@ember/string";
-import { assert } from "@ember/debug";
-import { inject as service } from "@ember/service";
-import { decodeId } from "ember-caluma/helpers/decode-id";
 import { getOwner } from "@ember/application";
-import { parseDocument } from "ember-caluma/lib/parsers";
+import { assert } from "@ember/debug";
+import { computed } from "@ember/object";
+import { inject as service } from "@ember/service";
+import { camelize } from "@ember/string";
 import { isEmpty } from "@ember/utils";
+
+import { decodeId } from "ember-caluma/helpers/decode-id";
+import Base from "ember-caluma/lib/base";
+import { parseDocument } from "ember-caluma/lib/parsers";
 
 /**
  * Object which represents an answer in context of a field
@@ -16,7 +17,7 @@ import { isEmpty } from "@ember/utils";
 export default Base.extend({
   calumaStore: service(),
 
-  init() {
+  init(...args) {
     assert(
       "A graphql answer `raw` must be passed",
       this.raw && /Answer$/.test(this.raw.__typename)
@@ -26,7 +27,7 @@ export default Base.extend({
       this.set("pk", `Answer:${decodeId(this.raw.id)}`);
     }
 
-    this._super(...arguments);
+    this._super(...args);
 
     this.setProperties(this.raw);
   },

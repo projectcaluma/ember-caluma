@@ -1,6 +1,6 @@
-import Service from "@ember/service";
-import { set } from "@ember/object";
 import { assert, debug } from "@ember/debug";
+import { set } from "@ember/object";
+import Service from "@ember/service";
 
 export default Service.extend({
   init() {

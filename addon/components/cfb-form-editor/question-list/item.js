@@ -1,10 +1,11 @@
 import Component from "@ember/component";
-import layout from "../../../templates/components/cfb-form-editor/question-list/item";
-import { optional } from "ember-composable-helpers/helpers/optional";
+import { computed } from "@ember/object";
 import { reads } from "@ember/object/computed";
+import { optional } from "ember-composable-helpers/helpers/optional";
 import { task } from "ember-concurrency";
 import jexl from "jexl";
-import { computed } from "@ember/object";
+
+import layout from "../../../templates/components/cfb-form-editor/question-list/item";
 
 export default Component.extend({
   layout,
@@ -28,14 +29,14 @@ export default Component.extend({
     return yield jexl.eval(this.get("question.isRequired"));
   }),
 
-  didInsertElement() {
-    this._super(...arguments);
+  didInsertElement(...args) {
+    this._super(...args);
 
     optional([this.get("on-register")])(this.elementId, this.slug);
   },
 
-  willDestroyElement() {
-    this._super(...arguments);
+  willDestroyElement(...args) {
+    this._super(...args);
 
     optional([this.get("on-unregister")])(this.elementId, this.slug);
   },

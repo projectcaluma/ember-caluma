@@ -1,9 +1,9 @@
-import Service from "@ember/service";
 import { A } from "@ember/array";
+import Service from "@ember/service";
 
 export default Service.extend({
-  init() {
-    this._super(...arguments);
+  init(...args) {
+    this._super(...args);
 
     this.set("entries", A());
   },
@@ -13,7 +13,7 @@ export default Service.extend({
   },
 
   replaceEntry(id, newEntry) {
-    let entry = this.entries.findBy("id", id);
+    const entry = this.entries.findBy("id", id);
 
     this.entries.replace(this.entries.indexOf(entry), 1, [
       Object.assign(newEntry, { id }),
@@ -21,7 +21,7 @@ export default Service.extend({
   },
 
   removeEntry(id) {
-    let entry = this.entries.findBy("id", id);
+    const entry = this.entries.findBy("id", id);
 
     this.entries.removeObject(entry);
   },

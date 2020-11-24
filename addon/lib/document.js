@@ -1,11 +1,12 @@
-import Base from "ember-caluma/lib/base";
-import { computed, defineProperty } from "@ember/object";
-import { assert } from "@ember/debug";
 import { getOwner } from "@ember/application";
-import { decodeId } from "ember-caluma/helpers/decode-id";
-import jexl from "jexl";
-import { intersects } from "ember-caluma/utils/jexl";
+import { assert } from "@ember/debug";
+import { computed, defineProperty } from "@ember/object";
 import { inject as service } from "@ember/service";
+import jexl from "jexl";
+
+import { decodeId } from "ember-caluma/helpers/decode-id";
+import Base from "ember-caluma/lib/base";
+import { intersects } from "ember-caluma/utils/jexl";
 
 /**
  * Object which represents a document
@@ -15,7 +16,7 @@ import { inject as service } from "@ember/service";
 export default Base.extend({
   calumaStore: service(),
 
-  init() {
+  init(...args) {
     assert(
       "A graphql document `raw` must be passed",
       this.raw && this.raw.__typename === "Document"
@@ -26,7 +27,7 @@ export default Base.extend({
       value: `Document:${decodeId(this.raw.id)}`,
     });
 
-    this._super(...arguments);
+    this._super(...args);
 
     this.set("fieldsets", []);
 
@@ -60,8 +61,8 @@ export default Base.extend({
     this.set("fieldsets", fieldsets);
   },
 
-  willDestroy() {
-    this._super(...arguments);
+  willDestroy(...args) {
+    this._super(...args);
 
     const fieldsets = this.fieldsets;
     this.set("fieldsets", []);
@@ -122,6 +123,7 @@ export default Base.extend({
     });
     documentJexl.addBinaryOp("intersects", 20, intersects);
     documentJexl.addTransform("debug", (any, label = "JEXL Debug") => {
+      // eslint-disable-next-line no-console
       console.debug(`${label}:`, any);
       return any;
     });

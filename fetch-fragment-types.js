@@ -1,7 +1,9 @@
 "use strict";
 
-const fetch = require("node-fetch");
 const fs = require("fs");
+
+// eslint-disable-next-line node/no-unpublished-require
+const fetch = require("node-fetch");
 
 fetch("http://localhost:8000/graphql", {
   method: "POST",

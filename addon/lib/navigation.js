@@ -1,10 +1,11 @@
-import Base from "ember-caluma/lib/base";
-import { computed, observer, defineProperty } from "@ember/object";
-import { inject as service } from "@ember/service";
-import { reads } from "@ember/object/computed";
-import { assert } from "@ember/debug";
 import { getOwner } from "@ember/application";
+import { assert } from "@ember/debug";
+import { computed, observer, defineProperty } from "@ember/object";
+import { reads } from "@ember/object/computed";
 import { later, once } from "@ember/runloop";
+import { inject as service } from "@ember/service";
+
+import Base from "ember-caluma/lib/base";
 
 /**
  * Object to represent a navigation state for a certain fieldset.
@@ -14,7 +15,7 @@ import { later, once } from "@ember/runloop";
 export const NavigationItem = Base.extend({
   router: service(),
 
-  init() {
+  init(...args) {
     assert("A fieldset `fieldset` must be passed", this.fieldset);
     assert("A navigation `navigation` must be passed", this.navigation);
 
@@ -23,7 +24,7 @@ export const NavigationItem = Base.extend({
       value: `NavigationItem:${this.fieldset.pk}`,
     });
 
-    this._super(...arguments);
+    this._super(...args);
   },
 
   /**
@@ -223,7 +224,7 @@ export const Navigation = Base.extend({
   router: service(),
   calumaStore: service(),
 
-  init() {
+  init(...args) {
     assert("A document `document` must be passed", this.document);
 
     defineProperty(this, "pk", {
@@ -231,15 +232,15 @@ export const Navigation = Base.extend({
       value: `Navigation:${this.document.pk}`,
     });
 
-    this._super(...arguments);
+    this._super(...args);
 
     this.set("items", []);
 
     this._createItems();
   },
 
-  willDestroy() {
-    this._super(...arguments);
+  willDestroy(...args) {
+    this._super(...args);
 
     const items = this.items;
     this.set("items", []);

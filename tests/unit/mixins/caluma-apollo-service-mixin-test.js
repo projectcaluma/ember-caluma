@@ -3,10 +3,11 @@ import {
   InMemoryCache,
   IntrospectionFragmentMatcher,
 } from "apollo-cache-inmemory";
+import { setupTest } from "ember-qunit";
+import { module, test } from "qunit";
+
 import introspectionQueryResultData from "ember-caluma/-private/fragment-types";
 import CalumaApolloServiceMixinMixin from "ember-caluma/mixins/caluma-apollo-service-mixin";
-import { module, test } from "qunit";
-import { setupTest } from "ember-qunit";
 
 module("Unit | Mixin | caluma-apollo-service-mixin", function (hooks) {
   setupTest(hooks);
@@ -14,11 +15,11 @@ module("Unit | Mixin | caluma-apollo-service-mixin", function (hooks) {
   test("it uses the correct fragment matcher", function (assert) {
     assert.expect(4);
 
-    let CalumaApolloServiceMixinObject = EmberObject.extend(
+    const CalumaApolloServiceMixinObject = EmberObject.extend(
       CalumaApolloServiceMixinMixin
     );
 
-    let subject = CalumaApolloServiceMixinObject.create();
+    const subject = CalumaApolloServiceMixinObject.create();
 
     const cache = subject.cache();
 
@@ -45,11 +46,11 @@ module("Unit | Mixin | caluma-apollo-service-mixin", function (hooks) {
   test("it resolves the correct data id", function (assert) {
     assert.expect(2);
 
-    let CalumaApolloServiceMixinObject = EmberObject.extend(
+    const CalumaApolloServiceMixinObject = EmberObject.extend(
       CalumaApolloServiceMixinMixin
     );
 
-    let subject = CalumaApolloServiceMixinObject.create();
+    const subject = CalumaApolloServiceMixinObject.create();
 
     const cache = subject.cache();
 

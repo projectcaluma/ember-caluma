@@ -1,6 +1,9 @@
-import Component from "@glimmer/component";
-import UIkit from "uikit";
+import { action } from "@ember/object";
 import { run } from "@ember/runloop";
+import { inject as service } from "@ember/service";
+import Component from "@glimmer/component";
+import { tracked } from "@glimmer/tracking";
+import { queryManager } from "ember-apollo-client";
 import { optional } from "ember-composable-helpers/helpers/optional";
 import { timeout } from "ember-concurrency";
 import {
@@ -8,17 +11,14 @@ import {
   enqueueTask,
   lastValue,
 } from "ember-concurrency-decorators";
-import { queryManager } from "ember-apollo-client";
-import { action } from "@ember/object";
+import UIkit from "uikit";
 import { v4 } from "uuid";
-import { inject as service } from "@ember/service";
-import { tracked } from "@glimmer/tracking";
 
-import searchQuestionQuery from "ember-caluma/gql/queries/search-question";
-import searchFormQuestionQuery from "ember-caluma/gql/queries/search-form-question";
-import reorderFormQuestionsMutation from "ember-caluma/gql/mutations/reorder-form-questions";
 import addFormQuestionMutation from "ember-caluma/gql/mutations/add-form-question";
 import removeFormQuestionMutation from "ember-caluma/gql/mutations/remove-form-question";
+import reorderFormQuestionsMutation from "ember-caluma/gql/mutations/reorder-form-questions";
+import searchFormQuestionQuery from "ember-caluma/gql/queries/search-form-question";
+import searchQuestionQuery from "ember-caluma/gql/queries/search-question";
 
 export default class ComponentsCfbFormEditorQuestionList extends Component {
   @service notification;
@@ -151,7 +151,6 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
 
       optional([this.args["on-after-add-question"]])(question);
     } catch (e) {
-      console.log(e);
       this.notification.danger(
         this.intl.t("caluma.form-builder.notification.form.add-question.error")
       );
@@ -190,7 +189,7 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
   }
 
   _handleMoved({ detail: [sortable] }) {
-    let children = [...sortable.$el.children];
+    const children = [...sortable.$el.children];
 
     this.reorderQuestions.perform(
       children.map((child) => this._children[child.id])

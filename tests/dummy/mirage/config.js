@@ -1,6 +1,8 @@
-import config from "../config/environment";
-import graphqlHandler from "ember-caluma/mirage-graphql";
 import Response from "ember-cli-mirage/response";
+
+import config from "../config/environment";
+
+import graphqlHandler from "ember-caluma/mirage-graphql";
 
 export default function () {
   this.urlPrefix = ""; // make this `http://localhost:8080`, for example, if your API is on a different server
@@ -16,9 +18,8 @@ export default function () {
   this.put("/minio/upload/:filename", (scheme, request) => {
     if (request.params.filename.startsWith("fail")) {
       return new Response(500);
-    } else {
-      return new Response(200);
     }
+    return new Response(200);
   });
 
   this.passthrough();

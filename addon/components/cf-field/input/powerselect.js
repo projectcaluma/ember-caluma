@@ -2,8 +2,9 @@ import { getOwner } from "@ember/application";
 import Component from "@ember/component";
 import { computed } from "@ember/object";
 import { inject as service } from "@ember/service";
-import layout from "../../../templates/components/cf-field/input/powerselect";
 import { queryManager } from "ember-apollo-client";
+
+import layout from "../../../templates/components/cf-field/input/powerselect";
 
 /**
  * Dropdown component for the single and multiple choice question type

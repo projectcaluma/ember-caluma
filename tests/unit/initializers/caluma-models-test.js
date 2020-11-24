@@ -1,8 +1,7 @@
 import Application from "@ember/application";
-
+import { run } from "@ember/runloop";
 import { initialize } from "dummy/initializers/caluma-models";
 import { module, test } from "qunit";
-import { run } from "@ember/runloop";
 
 module("Unit | Initializer | caluma-models", function (hooks) {
   hooks.beforeEach(function () {

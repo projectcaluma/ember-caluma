@@ -1,5 +1,6 @@
-import { helper } from "@ember/component/helper";
 import { deprecate } from "@ember/application/deprecations";
+import { helper } from "@ember/component/helper";
+
 import { decodeId } from "ember-caluma/helpers/decode-id";
 
 export function atob(str) {

@@ -1,7 +1,7 @@
-import { module, test } from "qunit";
-import { setupTest } from "ember-qunit";
 import { setupMirage } from "ember-cli-mirage/test-support";
+import { setupTest } from "ember-qunit";
 import gql from "graphql-tag";
+import { module, test } from "qunit";
 
 module("Unit | Mirage GraphQL Mock | document", function (hooks) {
   setupTest(hooks);
@@ -39,7 +39,7 @@ module("Unit | Mirage GraphQL Mock | document", function (hooks) {
 
     assert.deepEqual(res.allDocuments.edges[0].node, {
       __typename: "Document",
-      id: window.btoa("Document:" + this.document.id),
+      id: window.btoa(`Document:${this.document.id}`),
       form: {
         __typename: "Form",
         name: this.document.form.name,

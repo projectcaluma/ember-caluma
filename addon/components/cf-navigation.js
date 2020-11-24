@@ -1,6 +1,7 @@
 import Component from "@ember/component";
-import layout from "../templates/components/cf-navigation";
 import { next } from "@ember/runloop";
+
+import layout from "../templates/components/cf-navigation";
 
 export default Component.extend({
   layout,

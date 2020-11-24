@@ -1,16 +1,17 @@
-import BaseMock from "ember-caluma/mirage-graphql/mocks/base";
-import { MockList } from "graphql-tools";
-import { Filter, Serializer, register } from "ember-caluma/mirage-graphql";
 import { classify } from "@ember/string";
+import { MockList } from "graphql-tools";
+
+import { Filter, Serializer, register } from "ember-caluma/mirage-graphql";
+import BaseMock from "ember-caluma/mirage-graphql/mocks/base";
 
 const optionFilter = new Filter("Option");
 const optionSerializer = new Serializer("Option");
 
 export default class extends BaseMock {
   @register("Question")
-  handleQuestion(root) {
-    let questionId =
-      root.questionId || (root.node && root.node(...arguments).id);
+  handleQuestion(root, ...args) {
+    const questionId =
+      root.questionId || (root.node && root.node(root, ...args).id);
     let __typename = root.__typename;
 
     if (questionId) {
@@ -33,43 +34,43 @@ export default class extends BaseMock {
   }
 
   @register("TextQuestion")
-  handleTextQuestion() {
-    return this.handleInterfaceType(...arguments);
+  handleTextQuestion(...args) {
+    return this.handleInterfaceType(...args);
   }
 
   @register("TextareaQuestion")
-  handleTextareaQuestion() {
-    return this.handleInterfaceType(...arguments);
+  handleTextareaQuestion(...args) {
+    return this.handleInterfaceType(...args);
   }
 
   @register("IntegerQuestion")
-  handleIntegerQuestion() {
-    return this.handleInterfaceType(...arguments);
+  handleIntegerQuestion(...args) {
+    return this.handleInterfaceType(...args);
   }
 
   @register("FloatQuestion")
-  handleFloatQuestion() {
-    return this.handleInterfaceType(...arguments);
+  handleFloatQuestion(...args) {
+    return this.handleInterfaceType(...args);
   }
 
   @register("MultipleChoiceQuestion")
-  handleMultipleChoiceQuestion() {
-    return this.handleInterfaceType(...arguments);
+  handleMultipleChoiceQuestion(...args) {
+    return this.handleInterfaceType(...args);
   }
 
   @register("ChoiceQuestion")
-  handleChoiceQuestion() {
-    return this.handleInterfaceType(...arguments);
+  handleChoiceQuestion(...args) {
+    return this.handleInterfaceType(...args);
   }
 
   @register("FileQuestion")
-  handleFileQuestion() {
-    return this.handleInterfaceType(...arguments);
+  handleFileQuestion(...args) {
+    return this.handleInterfaceType(...args);
   }
 
   @register("StaticQuestion")
-  handleStaticQuestion() {
-    return this.handleInterfaceType(...arguments);
+  handleStaticQuestion(...args) {
+    return this.handleInterfaceType(...args);
   }
 
   @register("SaveTextQuestionPayload")

@@ -1,7 +1,8 @@
-import Component from "@ember/component";
 import { getOwner } from "@ember/application";
-import layout from "../templates/components/cf-field";
+import Component from "@ember/component";
 import { task, timeout } from "ember-concurrency";
+
+import layout from "../templates/components/cf-field";
 
 /**
  * Component to display a label and input for a certain field of a document.

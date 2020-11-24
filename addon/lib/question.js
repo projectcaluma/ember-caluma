@@ -1,12 +1,12 @@
-import Base from "ember-caluma/lib/base";
+import { assert } from "@ember/debug";
 import { defineProperty, computed } from "@ember/object";
 import { reads } from "@ember/object/computed";
-import { assert } from "@ember/debug";
 import { camelize } from "@ember/string";
-import { task } from "ember-concurrency";
 import { queryManager } from "ember-apollo-client";
+import { task } from "ember-concurrency";
 
 import getDynamicOptions from "ember-caluma/gql/queries/get-dynamic-options";
+import Base from "ember-caluma/lib/base";
 
 /**
  * Object which represents a question in context of a field
@@ -16,7 +16,7 @@ import getDynamicOptions from "ember-caluma/gql/queries/get-dynamic-options";
 export default Base.extend({
   apollo: queryManager(),
 
-  init() {
+  init(...args) {
     assert(
       "A graphql question `raw` must be passed",
       this.raw && /Question$/.test(this.raw.__typename)
@@ -27,7 +27,7 @@ export default Base.extend({
       value: `Question:${this.raw.slug}`,
     });
 
-    this._super(...arguments);
+    this._super(...args);
 
     this.setProperties(this.raw);
   },

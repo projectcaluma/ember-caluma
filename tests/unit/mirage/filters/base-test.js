@@ -1,5 +1,6 @@
-import { module, test } from "qunit";
 import { setupTest } from "ember-qunit";
+import { module, test } from "qunit";
+
 import BaseFilter from "ember-caluma/mirage-graphql/filters/base";
 
 module("Unit | Mirage GraphQL Filter | base", function (hooks) {

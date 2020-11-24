@@ -1,5 +1,6 @@
-import moment from "moment";
 import Component from "@ember/component";
+import moment from "moment";
+
 import layout from "../../../templates/components/cf-field/input/date";
 
 export default Component.extend({
@@ -7,7 +8,7 @@ export default Component.extend({
   tagName: "",
 
   actions: {
-    onchange: function (date) {
+    onchange(date) {
       // Change Javascript date to ISO string if not null.
       this.onSave(date ? moment(date).format("YYYY-MM-DD") : null);
     },

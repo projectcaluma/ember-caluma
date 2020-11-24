@@ -1,5 +1,6 @@
-import validateSlug from "ember-caluma/validators/slug";
 import { module, test } from "qunit";
+
+import validateSlug from "ember-caluma/validators/slug";
 
 module("Unit | Validator | slug", function () {
   test("it validates", function (assert) {
