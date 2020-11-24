@@ -1,19 +1,20 @@
-import Component from "@ember/component";
-import { inject as service } from "@ember/service";
-import { computed } from "@ember/object";
-import layout from "../../templates/components/cfb-form-editor/general";
-import { task, timeout } from "ember-concurrency";
-import { queryManager } from "ember-apollo-client";
-import validations from "../../validations/form";
-import { v4 } from "uuid";
-import slugify from "ember-caluma/utils/slugify";
-import { optional } from "ember-composable-helpers/helpers/optional";
-import { A } from "@ember/array";
 import { getOwner } from "@ember/application";
+import { A } from "@ember/array";
+import Component from "@ember/component";
+import { computed } from "@ember/object";
+import { inject as service } from "@ember/service";
+import { queryManager } from "ember-apollo-client";
+import { optional } from "ember-composable-helpers/helpers/optional";
+import { task, timeout } from "ember-concurrency";
+import { v4 } from "uuid";
 
+import layout from "../../templates/components/cfb-form-editor/general";
+import validations from "../../validations/form";
+
+import saveFormMutation from "ember-caluma/gql/mutations/save-form";
 import checkFormSlugQuery from "ember-caluma/gql/queries/check-form-slug";
 import formEditorGeneralQuery from "ember-caluma/gql/queries/form-editor-general";
-import saveFormMutation from "ember-caluma/gql/mutations/save-form";
+import slugify from "ember-caluma/utils/slugify";
 
 export default Component.extend({
   layout,
@@ -26,8 +27,6 @@ export default Component.extend({
   apollo: queryManager(),
 
   didReceiveAttrs() {
-    this._super(...arguments);
-
     this.data.perform();
   },
 

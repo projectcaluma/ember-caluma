@@ -1,5 +1,6 @@
 import Component from "@ember/component";
 import { or } from "@ember/object/computed";
+
 import layout from "../templates/components/cf-navigation-item";
 
 export default Component.extend({

@@ -45,7 +45,7 @@ export default class CalumaQueryModel {
   constructor(raw) {
     this.raw = raw;
 
-    for (let [key, value] of Object.entries(raw)) {
+    for (const [key, value] of Object.entries(raw)) {
       if (!(key in this)) {
         this[key] = value;
       }

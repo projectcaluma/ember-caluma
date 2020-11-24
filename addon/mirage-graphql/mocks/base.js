@@ -1,16 +1,17 @@
-import { Filter, Serializer, register } from "ember-caluma/mirage-graphql";
 import { camelize, dasherize } from "@ember/string";
 import { MockList } from "graphql-tools";
 
+import { Filter, Serializer, register } from "ember-caluma/mirage-graphql";
+
 export default class {
-  constructor(type, collection, db, server) {
+  constructor(type, collection, db, server, ...args) {
     this.type = type;
     this.collection = collection;
     this.db = db;
     this.server = server;
 
-    this.filter = new Filter(...arguments);
-    this.serializer = new Serializer(...arguments);
+    this.filter = new Filter(type, collection, db, server, ...args);
+    this.serializer = new Serializer(type, collection, db, server, ...args);
   }
 
   getHandlers() {
@@ -81,7 +82,7 @@ export default class {
       vars = { id: root[`${camelize(this.type)}Id`] };
     }
 
-    let record = this.filter.find(
+    const record = this.filter.find(
       this.collection,
       this.serializer.deserialize(vars)
     );

@@ -1,5 +1,5 @@
-import { module, test } from "qunit";
 import { setupTest } from "ember-qunit";
+import { module, test } from "qunit";
 
 module("Unit | Service | navigation", function (hooks) {
   setupTest(hooks);
@@ -7,7 +7,7 @@ module("Unit | Service | navigation", function (hooks) {
   test("it exists", function (assert) {
     assert.expect(1);
 
-    let service = this.owner.lookup("service:navigation");
+    const service = this.owner.lookup("service:navigation");
 
     assert.deepEqual(service.get("entries"), []);
   });
@@ -15,7 +15,7 @@ module("Unit | Service | navigation", function (hooks) {
   test("it can push an entry", function (assert) {
     assert.expect(1);
 
-    let service = this.owner.lookup("service:navigation");
+    const service = this.owner.lookup("service:navigation");
 
     service.pushEntry("someid", { foo: "bar" });
 
@@ -25,7 +25,7 @@ module("Unit | Service | navigation", function (hooks) {
   test("it can remove an entry", function (assert) {
     assert.expect(1);
 
-    let service = this.owner.lookup("service:navigation");
+    const service = this.owner.lookup("service:navigation");
 
     service.pushEntry("someid", { foo: "bar" });
     service.removeEntry("someid");
@@ -36,7 +36,7 @@ module("Unit | Service | navigation", function (hooks) {
   test("it can replace an entry", function (assert) {
     assert.expect(1);
 
-    let service = this.owner.lookup("service:navigation");
+    const service = this.owner.lookup("service:navigation");
 
     service.pushEntry("someid", { foo: "bar" });
     service.replaceEntry("someid", { foo: "baz" });

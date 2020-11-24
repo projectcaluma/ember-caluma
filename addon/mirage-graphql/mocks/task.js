@@ -1,15 +1,16 @@
-import BaseMock from "ember-caluma/mirage-graphql/mocks/base";
-import { register } from "ember-caluma/mirage-graphql";
 import { classify } from "@ember/string";
+
 import { decodeId } from "ember-caluma/helpers/decode-id";
+import { register } from "ember-caluma/mirage-graphql";
+import BaseMock from "ember-caluma/mirage-graphql/mocks/base";
 
 export default class extends BaseMock {
   @register("Task")
-  handleTask(root, vars) {
+  handleTask(root, vars, ...args) {
     const serialized = this.handle.fn.call(this, root, vars);
 
-    let taskId = decodeId(
-      root.taskId || (root.node && root.node(...arguments).id)
+    const taskId = decodeId(
+      root.taskId || (root.node && root.node(root, vars, ...args).id)
     );
     let __typename = root.__typename;
 
@@ -33,17 +34,17 @@ export default class extends BaseMock {
   }
 
   @register("SimpleTask")
-  handleSimpleTask() {
-    return this.handleInterfaceType(...arguments);
+  handleSimpleTask(...args) {
+    return this.handleInterfaceType(...args);
   }
 
   @register("CompleteWorkflowFormTask")
-  handleCompleteWorkflowForm() {
-    return this.handleInterfaceType(...arguments);
+  handleCompleteWorkflowForm(...args) {
+    return this.handleInterfaceType(...args);
   }
 
   @register("CompleteTaskFormTask")
-  handleCompleteTaskForm() {
-    return this.handleInterfaceType(...arguments);
+  handleCompleteTaskForm(...args) {
+    return this.handleInterfaceType(...args);
   }
 }

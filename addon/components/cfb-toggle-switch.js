@@ -1,4 +1,5 @@
 import Component from "@ember/component";
+
 import layout from "../templates/components/cfb-toggle-switch";
 
 export default Component.extend({

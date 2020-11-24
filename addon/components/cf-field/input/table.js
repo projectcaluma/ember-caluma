@@ -1,13 +1,15 @@
+import { getOwner } from "@ember/application";
 import Component from "@ember/component";
-import layout from "../../../templates/components/cf-field/input/table";
-import { task, all } from "ember-concurrency";
-import saveDocumentMutation from "ember-caluma/gql/mutations/save-document";
+import { computed } from "@ember/object";
 import { inject as service } from "@ember/service";
 import { queryManager } from "ember-apollo-client";
-import { computed } from "@ember/object";
-import { getOwner } from "@ember/application";
-import { parseDocument } from "ember-caluma/lib/parsers";
+import { task, all } from "ember-concurrency";
+
+import layout from "../../../templates/components/cf-field/input/table";
+
 import removeDocumentMutation from "ember-caluma/gql/mutations/remove-document";
+import saveDocumentMutation from "ember-caluma/gql/mutations/save-document";
+import { parseDocument } from "ember-caluma/lib/parsers";
 
 export default Component.extend({
   layout,

@@ -1,10 +1,10 @@
-import { module, test } from "qunit";
-import { setupRenderingTest } from "ember-qunit";
 import { render, click, fillIn, blur, settled } from "@ember/test-helpers";
+import graphqlError from "dummy/tests/helpers/graphql-error";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
-import graphqlError from "dummy/tests/helpers/graphql-error";
 import { setupIntl } from "ember-intl/test-support";
+import { setupRenderingTest } from "ember-qunit";
+import { module, test } from "qunit";
 
 module("Integration | Component | cfb-form-editor/general", function (hooks) {
   setupRenderingTest(hooks);

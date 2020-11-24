@@ -1,8 +1,8 @@
-import { getAST, getTransforms } from "ember-caluma/utils/jexl";
-import { module, test } from "qunit";
 import { setupTest } from "ember-qunit";
 import jexl from "jexl";
-import { intersects } from "ember-caluma/utils/jexl";
+import { module, test } from "qunit";
+
+import { getAST, getTransforms, intersects } from "ember-caluma/utils/jexl";
 
 module("Unit | Utility | jexl", function (hooks) {
   setupTest(hooks);

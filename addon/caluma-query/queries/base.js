@@ -1,8 +1,8 @@
-import { queryManager } from "ember-apollo-client";
-import { tracked } from "@glimmer/tracking";
-import gql from "graphql-tag";
 import { getOwner, setOwner } from "@ember/application";
 import { assert } from "@ember/debug";
+import { tracked } from "@glimmer/tracking";
+import { queryManager } from "ember-apollo-client";
+import gql from "graphql-tag";
 
 export default class BaseQuery {
   @queryManager apollo;

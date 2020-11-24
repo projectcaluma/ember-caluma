@@ -6,6 +6,7 @@ module.exports = {
   test_page: "tests/index.html?hidepassed&hideskipped&timeout=60000",
   disable_watching: true,
   parallel: 5,
+  // eslint-disable-next-line node/no-unpublished-require
   reporter: require("testem-failure-only-reporter/grouped-by-browser"),
   framework: "qunit",
   timeout: 600,

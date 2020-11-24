@@ -5,8 +5,8 @@ import moment from "moment";
 export default PikadayInput.extend({
   intl: service(),
 
-  init() {
-    this._super(...arguments);
+  init(...args) {
+    this._super(...args);
 
     moment.locale(this.intl.locale);
 

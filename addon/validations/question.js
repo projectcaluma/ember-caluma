@@ -1,15 +1,16 @@
-import and from "ember-caluma/utils/and";
-import or from "ember-caluma/utils/or";
-
 import {
   validatePresence,
   validateLength,
   validateNumber,
 } from "ember-changeset-validations/validators";
-import validateSlug from "ember-caluma/validators/slug";
-import validateType from "ember-caluma/validators/type";
+
 import validateGtLt from "../validators/gt-lt";
 import validateOptions from "../validators/options";
+
+import and from "ember-caluma/utils/and";
+import or from "ember-caluma/utils/or";
+import validateSlug from "ember-caluma/validators/slug";
+import validateType from "ember-caluma/validators/type";
 
 export default {
   label: and(validatePresence(true), validateLength({ max: 1024 })),

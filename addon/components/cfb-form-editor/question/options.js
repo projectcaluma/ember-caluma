@@ -1,12 +1,14 @@
-import RenderComponent from "ember-validated-form/components/validated-input/-themes/uikit/render";
-import Changeset from "ember-changeset";
-import lookupValidator from "ember-changeset-validations";
-import OptionValidations from "ember-caluma/validations/option";
-import layout from "../../../templates/components/cfb-form-editor/question/options";
-import slugify from "ember-caluma/utils/slugify";
 import { get } from "@ember/object";
 import { reads } from "@ember/object/computed";
 import { inject as service } from "@ember/service";
+import Changeset from "ember-changeset";
+import lookupValidator from "ember-changeset-validations";
+import RenderComponent from "ember-validated-form/components/validated-input/-themes/uikit/render";
+
+import layout from "../../../templates/components/cfb-form-editor/question/options";
+
+import slugify from "ember-caluma/utils/slugify";
+import OptionValidations from "ember-caluma/validations/option";
 
 const removeQuestionPrefix = (slug, questionSlug) => {
   return slug.replace(new RegExp(`^${questionSlug}-`), "");
@@ -23,8 +25,8 @@ export default RenderComponent.extend({
 
   questionSlug: reads("model.slug"),
 
-  init() {
-    this._super(...arguments);
+  init(...args) {
+    this._super(...args);
 
     const value = this.value;
 

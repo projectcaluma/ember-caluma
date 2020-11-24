@@ -1,8 +1,8 @@
-import { module, test } from "qunit";
-import { setupRenderingTest } from "ember-qunit";
 import { render, click, settled } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupIntl } from "ember-intl/test-support";
+import { setupRenderingTest } from "ember-qunit";
+import { module, test } from "qunit";
 
 module("Integration | Component | cfb-navigation", function (hooks) {
   setupRenderingTest(hooks);
@@ -43,7 +43,7 @@ module("Integration | Component | cfb-navigation", function (hooks) {
   test("it can navigate", async function (assert) {
     assert.expect(4);
 
-    let router = this.owner.lookup("service:router");
+    const router = this.owner.lookup("service:router");
 
     this.owner.set("mountPoint", "mount");
 

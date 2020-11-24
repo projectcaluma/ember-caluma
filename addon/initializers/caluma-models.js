@@ -1,10 +1,10 @@
-import Document from "ember-caluma/lib/document";
-import Question from "ember-caluma/lib/question";
-import Form from "ember-caluma/lib/form";
-import Fieldset from "ember-caluma/lib/fieldset";
 import Answer from "ember-caluma/lib/answer";
+import Document from "ember-caluma/lib/document";
 import Field from "ember-caluma/lib/field";
+import Fieldset from "ember-caluma/lib/fieldset";
+import Form from "ember-caluma/lib/form";
 import Navigation, { NavigationItem } from "ember-caluma/lib/navigation";
+import Question from "ember-caluma/lib/question";
 
 export function initialize(application) {
   application.register("caluma-model:document", Document);

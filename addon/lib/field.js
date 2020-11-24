@@ -1,26 +1,25 @@
-import Base from "ember-caluma/lib/base";
+import { getOwner } from "@ember/application";
+import { assert } from "@ember/debug";
 import { computed, defineProperty } from "@ember/object";
 import { equal, not, reads } from "@ember/object/computed";
 import { inject as service } from "@ember/service";
-import { assert } from "@ember/debug";
-import { getOwner } from "@ember/application";
 import { camelize } from "@ember/string";
-import { task } from "ember-concurrency";
-import { all, resolve } from "rsvp";
-import { validate } from "ember-validators";
 import { queryManager } from "ember-apollo-client";
+import { task } from "ember-concurrency";
+import { validate } from "ember-validators";
 import cloneDeep from "lodash.clonedeep";
+import { all, resolve } from "rsvp";
 
-import { decodeId } from "ember-caluma/helpers/decode-id";
-
+import saveDocumentDateAnswerMutation from "ember-caluma/gql/mutations/save-document-date-answer";
+import saveDocumentFileAnswerMutation from "ember-caluma/gql/mutations/save-document-file-answer";
 import saveDocumentFloatAnswerMutation from "ember-caluma/gql/mutations/save-document-float-answer";
 import saveDocumentIntegerAnswerMutation from "ember-caluma/gql/mutations/save-document-integer-answer";
-import saveDocumentStringAnswerMutation from "ember-caluma/gql/mutations/save-document-string-answer";
 import saveDocumentListAnswerMutation from "ember-caluma/gql/mutations/save-document-list-answer";
-import saveDocumentFileAnswerMutation from "ember-caluma/gql/mutations/save-document-file-answer";
-import saveDocumentDateAnswerMutation from "ember-caluma/gql/mutations/save-document-date-answer";
+import saveDocumentStringAnswerMutation from "ember-caluma/gql/mutations/save-document-string-answer";
 import saveDocumentTableAnswerMutation from "ember-caluma/gql/mutations/save-document-table-answer";
 import getDocumentUsedDynamicOptionsQuery from "ember-caluma/gql/queries/get-document-used-dynamic-options";
+import { decodeId } from "ember-caluma/helpers/decode-id";
+import Base from "ember-caluma/lib/base";
 import { getAST, getTransforms } from "ember-caluma/utils/jexl";
 
 const TYPE_MAP = {
@@ -77,7 +76,7 @@ export default Base.extend({
 
   apollo: queryManager(),
 
-  init() {
+  init(...args) {
     assert("A document must be passed", this.document);
 
     defineProperty(this, "pk", {
@@ -85,7 +84,7 @@ export default Base.extend({
       value: `${this.document.pk}:Question:${this.raw.question.slug}`,
     });
 
-    this._super(...arguments);
+    this._super(...args);
 
     this._createQuestion();
     this._createAnswer();
@@ -93,8 +92,8 @@ export default Base.extend({
     this.set("_errors", []);
   },
 
-  willDestroy() {
-    this._super(...arguments);
+  willDestroy(...args) {
+    this._super(...args);
 
     if (this.answer) {
       this.answer.destroy();
@@ -543,7 +542,7 @@ export default Base.extend({
   validate: task(function* () {
     const specificValidation = this.get(`_validate${this.question.__typename}`);
     assert(
-      "Missing validation function for " + this.question.__typename,
+      `Missing validation function for ${this.question.__typename}`,
       specificValidation
     );
 

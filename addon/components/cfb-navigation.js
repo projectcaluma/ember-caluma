@@ -1,7 +1,8 @@
+import { getOwner } from "@ember/application";
 import Component from "@ember/component";
 import { inject as service } from "@ember/service";
+
 import layout from "../templates/components/cfb-navigation";
-import { getOwner } from "@ember/application";
 
 export default Component.extend({
   layout,

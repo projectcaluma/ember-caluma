@@ -1,8 +1,8 @@
-import { module, test } from "qunit";
-import { setupTest } from "ember-qunit";
-import { setupMirage } from "ember-cli-mirage/test-support";
-import gql from "graphql-tag";
 import { classify } from "@ember/string";
+import { setupMirage } from "ember-cli-mirage/test-support";
+import { setupTest } from "ember-qunit";
+import gql from "graphql-tag";
+import { module, test } from "qunit";
 
 module("Unit | Mirage GraphQL Mock | work item", function (hooks) {
   setupTest(hooks);
@@ -47,7 +47,7 @@ module("Unit | Mirage GraphQL Mock | work item", function (hooks) {
 
     assert.deepEqual(res.allWorkItems.edges[0].node, {
       __typename: "WorkItem",
-      id: window.btoa("WorkItem:" + this.workItem.id),
+      id: window.btoa(`WorkItem:${this.workItem.id}`),
       status: this.workItem.status,
       createdByUser: this.workItem.createdByUser,
       createdAt: this.workItem.createdAt.toISOString(),
@@ -61,7 +61,7 @@ module("Unit | Mirage GraphQL Mock | work item", function (hooks) {
   test("can fetch nested data", async function (assert) {
     const { id: taskId } = this.server.create("task");
     const { id: workflowId } = this.server.create("workflow", {
-      taskId: taskId,
+      taskId,
     });
     const { id: formId } = this.server.create("form", { slug: "test-form" });
     const { id: documentId } = this.server.create("document", {

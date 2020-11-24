@@ -8,7 +8,7 @@ export default Mixin.create({
 
   _id: null,
 
-  activate() {
+  activate(...args) {
     this.set("_id", v4());
 
     this.navigation.pushEntry(this._id, {
@@ -18,15 +18,15 @@ export default Mixin.create({
 
     this.addObserver("title", this, "updateNavigationEntry");
 
-    this._super(...arguments);
+    this._super(...args);
   },
 
-  deactivate() {
+  deactivate(...args) {
     this.removeObserver("title", this, "updateNavigationEntry");
     this.navigation.removeEntry(this._id);
     this.set("_id", null);
 
-    this._super(...arguments);
+    this._super(...args);
   },
 
   updateNavigationEntry(sender, key) {

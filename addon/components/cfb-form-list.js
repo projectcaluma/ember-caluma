@@ -1,8 +1,9 @@
 import Component from "@glimmer/component";
-import { queryManager } from "ember-apollo-client";
-import formListQuery from "ember-caluma/gql/queries/form-list";
-import { restartableTask } from "ember-concurrency-decorators";
 import { tracked } from "@glimmer/tracking";
+import { queryManager } from "ember-apollo-client";
+import { restartableTask } from "ember-concurrency-decorators";
+
+import formListQuery from "ember-caluma/gql/queries/form-list";
 
 export default class ComponentsCfbFormListComponent extends Component {
   @queryManager apollo;
@@ -23,7 +24,7 @@ export default class ComponentsCfbFormListComponent extends Component {
       return this.args.forms.perform();
     }
 
-    let filter = [];
+    const filter = [];
 
     switch (this.filter) {
       case "all":

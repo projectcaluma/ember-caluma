@@ -1,10 +1,10 @@
 "use strict";
 
-const Funnel = require("broccoli-funnel");
-const mergeTrees = require("broccoli-merge-trees");
 const path = require("path");
 
-/* eslint-disable node/no-unpublished-require */
+const Funnel = require("broccoli-funnel");
+const mergeTrees = require("broccoli-merge-trees");
+// eslint-disable-next-line node/no-unpublished-require
 const EngineAddon = require("ember-engines/lib/engine-addon");
 
 const DEFAULT_OPTIONS = {
@@ -29,8 +29,8 @@ module.exports = EngineAddon.extend({
     return Object.assign({}, DEFAULT_OPTIONS, app.options["ember-caluma"]);
   },
 
-  included() {
-    this._super.included.apply(this, arguments);
+  included(...args) {
+    this._super.included.apply(this, args);
 
     if (this._getOptions().includeProxyPolyfill) {
       this.import("node_modules/proxy-polyfill/proxy.min.js");

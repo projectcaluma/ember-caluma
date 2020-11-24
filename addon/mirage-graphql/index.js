@@ -1,5 +1,5 @@
-import require from "require";
 import { dasherize } from "@ember/string";
+import require from "require";
 
 const importTypeOrBase = (path, type) => {
   try {

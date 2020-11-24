@@ -1,8 +1,8 @@
-import { module, test } from "qunit";
 import { visit, currentURL, click, settled } from "@ember/test-helpers";
-import { setupApplicationTest } from "ember-qunit";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
+import { setupApplicationTest } from "ember-qunit";
+import { module, test } from "qunit";
 
 module("Acceptance | navigation", function (hooks) {
   setupApplicationTest(hooks);

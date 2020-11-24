@@ -1,10 +1,11 @@
-import { addMockFunctionsToSchema, makeExecutableSchema } from "graphql-tools";
-import { graphql } from "graphql";
 import { classify } from "@ember/string";
 import { singularize } from "ember-inflector";
-import rawSchema from "ember-caluma/mirage-graphql/schema";
-import resolvers from "ember-caluma/mirage-graphql/resolvers";
+import { graphql } from "graphql";
+import { addMockFunctionsToSchema, makeExecutableSchema } from "graphql-tools";
+
 import { Mock } from "ember-caluma/mirage-graphql";
+import resolvers from "ember-caluma/mirage-graphql/resolvers";
+import rawSchema from "ember-caluma/mirage-graphql/schema";
 
 export default function (server) {
   return function ({ db }, request) {
@@ -15,13 +16,13 @@ export default function (server) {
       return { ...m, ...mock.getHandlers() };
     }, {});
 
-    let schema = makeExecutableSchema({
+    const schema = makeExecutableSchema({
       typeDefs: rawSchema,
       resolvers,
       resolverValidationOptions: { requireResolversForResolveType: false },
     });
 
-    let { query, variables } = JSON.parse(request.requestBody);
+    const { query, variables } = JSON.parse(request.requestBody);
 
     addMockFunctionsToSchema({
       schema,

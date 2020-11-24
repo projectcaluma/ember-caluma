@@ -1,8 +1,10 @@
-import { module, test, skip } from "qunit";
-import { setupTest } from "ember-qunit";
 import { settled } from "@ember/test-helpers";
 import ValidatorServiceStub from "dummy/tests/helpers/validator-service-stub";
+import { setupTest } from "ember-qunit";
+import { module, test, skip } from "qunit";
+
 import data from "./data";
+
 import { parseDocument } from "ember-caluma/lib/parsers";
 
 module("Unit | Library | document", function (hooks) {
@@ -98,9 +100,12 @@ module("Unit | Library | document", function (hooks) {
       ["[1] intersects [1] && [2] intersects [2]", true],
       ["[2] intersects [1] + [2]", true],
     ];
-    for (let [expression, result] of tests) {
-      assert.equal(await this.document.jexl.eval(expression), result);
-    }
+
+    await Promise.all(
+      tests.map(async ([expression, result]) => {
+        assert.equal(await this.document.jexl.eval(expression), result);
+      })
+    );
   });
 
   test("question jexl mapby transform", async function (assert) {
@@ -115,12 +120,15 @@ module("Unit | Library | document", function (hooks) {
       ["astring", "value|mapby('foo')", null],
       [{ foo: "bar" }, "value|mapby('foo')", null],
     ];
-    for (let [value, expression, result] of tests) {
-      assert.deepEqual(
-        await this.document.jexl.eval(expression, { value }),
-        result
-      );
-    }
+
+    await Promise.all(
+      tests.map(async ([value, expression, result]) => {
+        assert.deepEqual(
+          await this.document.jexl.eval(expression, { value }),
+          result
+        );
+      })
+    );
   });
 
   test("computes the correct jexl context", async function (assert) {

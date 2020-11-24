@@ -1,16 +1,16 @@
 import { getOwner } from "@ember/application";
 import Component from "@ember/component";
-import { reads } from "@ember/object/computed";
 import { assert } from "@ember/debug";
 import { computed } from "@ember/object";
+import { reads } from "@ember/object/computed";
 import { inject as service } from "@ember/service";
 import { queryManager } from "ember-apollo-client";
 import { task } from "ember-concurrency";
 
-import { parseDocument } from "ember-caluma/lib/parsers";
-import layout from "ember-caluma/templates/components/cf-content";
 import getDocumentAnswersQuery from "ember-caluma/gql/queries/get-document-answers";
 import getDocumentFormsQuery from "ember-caluma/gql/queries/get-document-forms";
+import { parseDocument } from "ember-caluma/lib/parsers";
+import layout from "ember-caluma/templates/components/cf-content";
 
 /**
  * Component to render a form with navigation.
@@ -48,8 +48,8 @@ export default Component.extend({
 
   apollo: queryManager(),
 
-  init() {
-    this._super(...arguments);
+  init(...args) {
+    this._super(...args);
 
     assert(
       "A `documentId` must be passed to `{{cf-content}}`",
@@ -57,8 +57,8 @@ export default Component.extend({
     );
   },
 
-  willDestroy() {
-    this._super(...arguments);
+  willDestroy(...args) {
+    this._super(...args);
 
     this._teardown();
   },

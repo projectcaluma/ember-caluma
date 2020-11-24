@@ -1,7 +1,8 @@
-import { module, test } from "qunit";
-import { setupTest } from "ember-qunit";
 import { setupMirage } from "ember-cli-mirage/test-support";
+import { setupTest } from "ember-qunit";
 import gql from "graphql-tag";
+import { module, test } from "qunit";
+
 import BaseMock from "ember-caluma/mirage-graphql/mocks/base";
 
 module("Unit | Mirage GraphQL Mock | base", function (hooks) {

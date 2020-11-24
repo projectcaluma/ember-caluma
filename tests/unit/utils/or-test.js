@@ -1,9 +1,9 @@
 /**
  * Copied and updated from nucleartide/ember-changeset-hofs
  */
+import { resolveAfter, rejectAfter } from "dummy/tests/helpers/promise";
 import or from "dummy/utils/or";
 import { module, test } from "qunit";
-import { resolveAfter, rejectAfter } from "dummy/tests/helpers/promise";
 import { resolve } from "rsvp";
 
 module("Unit | Utility | or", function () {
@@ -136,11 +136,13 @@ module("Unit | Utility | or", function () {
         },
       ];
 
-      for (const { validators, expected } of testCases) {
-        const validationFn = or(...validators);
-        const result = await validationFn();
-        assert.equal(result, expected);
-      }
+      await Promise.all(
+        testCases.map(async ({ validators, expected }) => {
+          const validationFn = or(...validators);
+          const result = await validationFn();
+          assert.equal(result, expected);
+        })
+      );
     });
 
     test("should short-circuit", async function (assert) {

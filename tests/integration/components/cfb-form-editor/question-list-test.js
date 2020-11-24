@@ -1,10 +1,10 @@
-import { module, test } from "qunit";
-import { setupRenderingTest } from "ember-qunit";
 import { render, click, find, fillIn, triggerEvent } from "@ember/test-helpers";
+import graphqlError from "dummy/tests/helpers/graphql-error";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
-import graphqlError from "dummy/tests/helpers/graphql-error";
 import { setupIntl } from "ember-intl/test-support";
+import { setupRenderingTest } from "ember-qunit";
+import { module, test } from "qunit";
 
 module(
   "Integration | Component | cfb-form-editor/question-list",
@@ -74,11 +74,11 @@ module(
 
       assert.dom("[data-test-question-list-item=test]:last-child").exists();
 
-      let list = await find("[data-test-question-list]");
-      let item = await find("[data-test-question-list-item=test]");
+      const list = await find("[data-test-question-list]");
+      const item = await find("[data-test-question-list-item=test]");
 
       // create a new array of children in which the chosen item is first instead of last
-      let children = [
+      const children = [
         item,
         ...[...list.children].filter(
           (c) => c.dataset.testQuestionListItem !== "test"

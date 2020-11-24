@@ -67,6 +67,7 @@
     "uuid": "^8.3.1"
   },
   "devDependencies": {
+    "@adfinis-sygroup/eslint-config": "1.3.2",
     "@adfinis-sygroup/semantic-release-config": "3.0.1",
     "@babel/plugin-proposal-object-rest-spread": "7.12.1",
     "@ember/jquery": "1.1.0",
@@ -92,7 +93,7 @@
     "ember-cli-sri": "2.1.1",
     "ember-cli-uglify": "3.0.0",
     "ember-concurrency-decorators": "2.0.1",
-    "ember-data": "^3.22.1",
+    "ember-data": "3.22.1",
     "ember-disable-prototype-extensions": "1.1.3",
     "ember-engines": "0.8.8",
     "ember-export-application-global": "2.0.1",
@@ -108,6 +109,7 @@
     "eslint": "7.14.0",
     "eslint-config-prettier": "6.15.0",
     "eslint-plugin-ember": "9.6.0",
+    "eslint-plugin-import": "2.22.1",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-prettier": "3.1.4",
     "faker": "5.1.0",

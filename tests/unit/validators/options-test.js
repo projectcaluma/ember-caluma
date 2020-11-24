@@ -1,5 +1,6 @@
-import validateOptions from "ember-caluma/validators/options";
 import { module, test } from "qunit";
+
+import validateOptions from "ember-caluma/validators/options";
 
 module("Unit | Validator | options", function () {
   test("it validates correctly", async function (assert) {

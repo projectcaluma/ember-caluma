@@ -1,5 +1,6 @@
-import CalumaQueryModel, { momentAttr } from "./index";
 import { inject as service } from "@ember/service";
+
+import CalumaQueryModel, { momentAttr } from "./index";
 
 export default class WorkItemModel extends CalumaQueryModel {
   @service intl;

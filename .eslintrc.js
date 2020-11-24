@@ -1,24 +1,7 @@
 "use strict";
 
 module.exports = {
-  root: true,
-  parser: "babel-eslint",
-  parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: "module",
-    ecmaFeatures: {
-      legacyDecorators: true,
-    },
-  },
-  plugins: ["ember", "prettier"],
-  extends: [
-    "eslint:recommended",
-    "plugin:ember/recommended",
-    "plugin:prettier/recommended",
-  ],
-  env: {
-    browser: true,
-  },
+  extends: "@adfinis-sygroup/eslint-config/ember-addon",
   rules: {
     "ember/no-jquery": "error",
     // TODO: https://github.com/projectcaluma/ember-caluma/issues/529
@@ -28,27 +11,13 @@ module.exports = {
     // TODO: This needs to be done seperately
     "ember/no-get": "warn",
   },
+  settings: {
+    "import/internal-regex": "^ember-caluma/",
+  },
   overrides: [
-    // node files
+    ...require("@adfinis-sygroup/eslint-config/ember-addon").overrides,
     {
-      files: [
-        ".eslintrc.js",
-        ".template-lintrc.js",
-        "ember-cli-build.js",
-        "fetch-fragment-types.js",
-        "index.js",
-        "testem*.js",
-        "blueprints/*/index.js",
-        "config/**/*.js",
-        "tests/dummy/config/**/*.js",
-      ],
-      excludedFiles: [
-        "addon/**",
-        "addon-test-support/**",
-        "app/**",
-        "tests/dummy/app/**",
-        "tests/dummy/mirage/**",
-      ],
+      files: ["fetch-fragment-types.js", "testem.browserstack.js"],
       parserOptions: {
         sourceType: "script",
       },
@@ -60,10 +29,7 @@ module.exports = {
       rules: Object.assign(
         {},
         require("eslint-plugin-node").configs.recommended.rules,
-        {
-          // add your custom rules and overrides for node files here
-          "prefer-const": ["error"],
-        }
+        { "prefer-const": ["error"] }
       ),
     },
   ],

@@ -1,9 +1,11 @@
-import { module, test } from "qunit";
-import { setupTest } from "ember-qunit";
 import { settled } from "@ember/test-helpers";
 import ValidatorServiceStub from "dummy/tests/helpers/validator-service-stub";
 import { setupIntl } from "ember-intl/test-support";
+import { setupTest } from "ember-qunit";
+import { module, test } from "qunit";
+
 import data from "./data";
+
 import { parseDocument } from "ember-caluma/lib/parsers";
 
 module("Unit | Library | field", function (hooks) {

@@ -3,6 +3,7 @@ import {
   validateLength,
   validateFormat,
 } from "ember-changeset-validations/validators";
+
 import and from "ember-caluma/utils/and";
 
 const validateSlug = () =>

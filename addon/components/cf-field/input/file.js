@@ -4,8 +4,9 @@ import { reads } from "@ember/object/computed";
 import { inject as service } from "@ember/service";
 import { queryManager } from "ember-apollo-client";
 
-import getFileAnswerInfoQuery from "ember-caluma/gql/queries/get-fileanswer-info";
 import layout from "../../../templates/components/cf-field/input/file";
+
+import getFileAnswerInfoQuery from "ember-caluma/gql/queries/get-fileanswer-info";
 
 export default Component.extend({
   layout,
@@ -43,7 +44,7 @@ export default Component.extend({
       request.addEventListener("error", (event) => reject(event));
       request.addEventListener("abort", (event) => reject(event));
       request.addEventListener("load", (event) => {
-        if (event.target.status == 200) {
+        if (event.target.status === 200) {
           resolve(event);
         } else {
           reject(event);

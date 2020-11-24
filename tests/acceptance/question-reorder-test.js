@@ -1,8 +1,8 @@
-import { module, test } from "qunit";
 import { visit, triggerEvent, find } from "@ember/test-helpers";
-import { setupApplicationTest } from "ember-qunit";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
+import { setupApplicationTest } from "ember-qunit";
+import { module, test } from "qunit";
 
 module("Acceptance | question reorder", function (hooks) {
   setupApplicationTest(hooks);
@@ -28,13 +28,15 @@ module("Acceptance | question reorder", function (hooks) {
       )
       .exists();
 
-    let list = await find("[data-test-demo-content] [data-test-question-list]");
-    let item = await find(
+    const list = await find(
+      "[data-test-demo-content] [data-test-question-list]"
+    );
+    const item = await find(
       "[data-test-demo-content] [data-test-question-list-item=test]"
     );
 
     // create a new array of children in which the chosen item is first instead of last
-    let children = [
+    const children = [
       item,
       ...[...list.children].filter(
         (c) => c.dataset.testQuestionListItem !== "test"

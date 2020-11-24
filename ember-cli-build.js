@@ -1,7 +1,7 @@
 "use strict";
 
-const EmberAddon = require("ember-cli/lib/broccoli/ember-addon");
 const funnel = require("broccoli-funnel");
+const EmberAddon = require("ember-cli/lib/broccoli/ember-addon");
 const sass = require("sass");
 
 module.exports = function (defaults) {

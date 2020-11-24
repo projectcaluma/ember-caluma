@@ -1,10 +1,10 @@
-import { module, test } from "qunit";
-import { setupRenderingTest } from "ember-qunit";
+import { defineProperty } from "@ember/object";
 import { render, click } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
-import { defineProperty } from "@ember/object";
 import { task } from "ember-concurrency";
 import { setupIntl } from "ember-intl/test-support";
+import { setupRenderingTest } from "ember-qunit";
+import { module, test } from "qunit";
 
 module("Integration | Component | cfb-form-list", function (hooks) {
   setupRenderingTest(hooks);

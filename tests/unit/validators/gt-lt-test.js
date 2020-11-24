@@ -1,5 +1,6 @@
-import validateGtLt from "ember-caluma/validators/gt-lt";
 import { module, test } from "qunit";
+
+import validateGtLt from "ember-caluma/validators/gt-lt";
 
 module("Unit | Validator | gt-lt", function () {
   test("it validates correctly", function (assert) {

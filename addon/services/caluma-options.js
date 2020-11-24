@@ -1,7 +1,7 @@
-import Service from "@ember/service";
-import slugify from "ember-caluma/utils/slugify";
 import EmberObject from "@ember/object";
-import { inject as service } from "@ember/service";
+import Service, { inject as service } from "@ember/service";
+
+import slugify from "ember-caluma/utils/slugify";
 
 /**
  * The options service is there to provide a means to share data
@@ -15,8 +15,8 @@ import { inject as service } from "@ember/service";
 export default Service.extend({
   intl: service(),
 
-  init() {
-    this._super(...arguments);
+  init(...args) {
+    this._super(...args);
     this._overrides = EmberObject.create();
 
     this.registerComponentOverride({

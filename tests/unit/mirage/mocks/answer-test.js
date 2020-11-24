@@ -1,7 +1,7 @@
-import { module, test } from "qunit";
-import { setupTest } from "ember-qunit";
 import { setupMirage } from "ember-cli-mirage/test-support";
+import { setupTest } from "ember-qunit";
 import gql from "graphql-tag";
+import { module, test } from "qunit";
 
 module("Unit | Mirage GraphQL Mock | answer", function (hooks) {
   setupTest(hooks);
@@ -10,7 +10,7 @@ module("Unit | Mirage GraphQL Mock | answer", function (hooks) {
   hooks.beforeEach(function () {
     const { id: formId } = this.server.create("form", { slug: "test-form" });
     const { id: documentId } = this.server.create("document", {
-      formId: formId,
+      formId,
     });
 
     const textQuestion = this.server.create("question", {

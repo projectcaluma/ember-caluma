@@ -1,8 +1,9 @@
-import Base from "ember-caluma/lib/base";
-import { assert } from "@ember/debug";
 import { getOwner } from "@ember/application";
-import { inject as service } from "@ember/service";
+import { assert } from "@ember/debug";
 import { computed, get, defineProperty } from "@ember/object";
+import { inject as service } from "@ember/service";
+
+import Base from "ember-caluma/lib/base";
 
 /**
  * Object that represents a combination of a document and a form
@@ -12,7 +13,7 @@ import { computed, get, defineProperty } from "@ember/object";
 export default Base.extend({
   calumaStore: service(),
 
-  init() {
+  init(...args) {
     assert(
       "A graphql form `raw.form` must be passed",
       this.raw && this.raw.form && this.raw.form.__typename === "Form"
@@ -31,7 +32,7 @@ export default Base.extend({
       value: `${this.document.pk}:Form:${this.raw.form.slug}`,
     });
 
-    this._super(...arguments);
+    this._super(...args);
 
     this.set("fields", []);
 
@@ -39,8 +40,8 @@ export default Base.extend({
     this._createFields();
   },
 
-  willDestroy() {
-    this._super(...arguments);
+  willDestroy(...args) {
+    this._super(...args);
 
     const fields = this.fields;
     this.set("fields", []);

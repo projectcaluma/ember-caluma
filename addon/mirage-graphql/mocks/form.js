@@ -1,6 +1,7 @@
-import BaseMock from "ember-caluma/mirage-graphql/mocks/base";
-import { Serializer, Filter, register } from "ember-caluma/mirage-graphql";
 import { MockList } from "graphql-tools";
+
+import { Serializer, Filter, register } from "ember-caluma/mirage-graphql";
+import BaseMock from "ember-caluma/mirage-graphql/mocks/base";
 
 const questionSerializer = new Serializer("Question");
 const questionFilter = new Filter("Question");

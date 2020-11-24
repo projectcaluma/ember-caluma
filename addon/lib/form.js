@@ -1,6 +1,7 @@
-import Base from "ember-caluma/lib/base";
 import { assert } from "@ember/debug";
 import { defineProperty } from "@ember/object";
+
+import Base from "ember-caluma/lib/base";
 
 /**
  * Object that represents a blueprint form
@@ -8,7 +9,7 @@ import { defineProperty } from "@ember/object";
  * @class Form
  */
 export default Base.extend({
-  init() {
+  init(...args) {
     assert(
       "A graphql form `raw` must be passed",
       this.raw && this.raw.__typename === "Form"
@@ -19,7 +20,7 @@ export default Base.extend({
       value: `Form:${this.raw.slug}`,
     });
 
-    this._super(...arguments);
+    this._super(...args);
 
     this.setProperties(this.raw);
   },
