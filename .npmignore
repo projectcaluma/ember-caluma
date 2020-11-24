@@ -1,3 +1,4 @@
+
 # compiled output
 /dist/
 /tmp/
@@ -9,6 +10,7 @@
 /.bowerrc
 /.editorconfig
 /.ember-cli
+/.env*
 /.eslintignore
 /.eslintrc.js
 /.git/
@@ -18,17 +20,20 @@
 /.watchmanconfig
 /bower.json
 /config/ember-try.js
+/CONTRIBUTING.md
 /ember-cli-build.js
-/testem*.js
+/testem.js
 /tests/
 /yarn.lock
 .gitkeep
-/fetch-fragment-types.js
 
 # ember-try
 /.node_modules.ember-try/
 /bower.json.ember-try
 /package.json.ember-try
 
-# ember-cli-addon-docs
+# custom
 /config/addon-docs.js
+/config/dependency-lint.js
+/config/deploy.js
+/docker-compose.yml
