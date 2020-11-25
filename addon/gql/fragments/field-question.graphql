@@ -8,21 +8,33 @@ fragment SimpleQuestion on Question {
   ... on TextQuestion {
     textMinLength: minLength
     textMaxLength: maxLength
+    textDefaultAnswer: defaultAnswer {
+      value
+    }
     placeholder
   }
   ... on TextareaQuestion {
     textareaMinLength: minLength
     textareaMaxLength: maxLength
+    textareaDefaultAnswer: defaultAnswer {
+      value
+    }
     placeholder
   }
   ... on IntegerQuestion {
     integerMinValue: minValue
     integerMaxValue: maxValue
+    integerDefaultAnswer: defaultAnswer {
+      value
+    }
     placeholder
   }
   ... on FloatQuestion {
     floatMinValue: minValue
     floatMaxValue: maxValue
+    floatDefaultAnswer: defaultAnswer {
+      value
+    }
     placeholder
   }
   ... on ChoiceQuestion {
@@ -34,6 +46,9 @@ fragment SimpleQuestion on Question {
         }
       }
     }
+    choiceDefaultAnswer: defaultAnswer {
+      value
+    }
   }
   ... on MultipleChoiceQuestion {
     multipleChoiceOptions: options(isArchived: false) {
@@ -43,6 +58,14 @@ fragment SimpleQuestion on Question {
           label
         }
       }
+    }
+    multipleChoiceDefaultAnswer: defaultAnswer {
+      value
+    }
+  }
+  ... on DateQuestion {
+    dateDefaultAnswer: defaultAnswer {
+      value
     }
   }
   ... on StaticQuestion {
@@ -58,6 +81,36 @@ fragment FieldTableQuestion on Question {
         edges {
           node {
             ...SimpleQuestion
+          }
+        }
+      }
+    }
+    tableDefaultAnswer: defaultAnswer {
+      value {
+        id
+        answers {
+          edges {
+            node {
+              id
+              question {
+                slug
+              }
+              ... on StringAnswer {
+                stringValue: value
+              }
+              ... on IntegerAnswer {
+                integerValue: value
+              }
+              ... on FloatAnswer {
+                floatValue: value
+              }
+              ... on ListAnswer {
+                listValue: value
+              }
+              ... on DateAnswer {
+                dateValue: value
+              }
+            }
           }
         }
       }

@@ -127,6 +127,26 @@ module("Unit | Library | field", function (hooks) {
     });
   });
 
+  test("computes isDefault correctly on simple fields", async function (assert) {
+    assert.expect(2);
+
+    const field = this.document.findField("question-1");
+
+    assert.ok(field.isDefault);
+    field.answer.value = "some other value";
+    assert.notOk(field.isDefault);
+  });
+
+  test("computes isDefault correctly on table fields", async function (assert) {
+    assert.expect(2);
+
+    const field = this.document.findField("table");
+
+    assert.ok(field.isDefault);
+    field.answer.value[0].fields[0].value = "some other value";
+    assert.notOk(field.isDefault);
+  });
+
   test("it can handle newlines in Jexl expressions", async function (assert) {
     assert.expect(2);
 

@@ -12,6 +12,10 @@ const form = {
           label: "Question 1",
           isRequired: "false",
           isHidden: "false",
+          textDefaultAnswer: {
+            __typename: "StringAnswer",
+            value: "test answer",
+          },
           __typename: "TextQuestion",
         },
       },
@@ -40,6 +44,25 @@ const form = {
           label: "Table",
           isRequired: "false",
           isHidden: "false",
+          tableDefaultAnswer: {
+            value: [
+              {
+                answers: {
+                  edges: [
+                    {
+                      node: {
+                        question: {
+                          slug: "table-form-question",
+                        },
+                        stringValue: "show-multiple-choice",
+                        __typename: "StringAnswer",
+                      },
+                    },
+                  ],
+                },
+              },
+            ],
+          },
           __typename: "TableQuestion",
         },
       },
