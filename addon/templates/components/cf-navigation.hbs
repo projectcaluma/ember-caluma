@@ -1,10 +1,8 @@
 <ul class="uk-tab uk-tab-left">
-  {{#each (reject-by "parent" this.navigation.items) as |item|}}
-    {{#if item.visible}}
-      <CfNavigationItem @item={{item}} @useAsHeading={{@useAsHeading}} @headingLevel={{@headingBaseLevel}} />
-      {{#unless item.fieldset.field}}
-        <hr class="uk-divider-small uk-margin-small">
-      {{/unless}}
-    {{/if}}
+  {{#each this.navigation.rootItems as |item|}}
+    <CfNavigationItem @item={{item}} @useAsHeading={{@useAsHeading}} @headingLevel={{@headingBaseLevel}} />
+    {{#unless item.fieldset.field}}
+      <hr class="uk-divider-small uk-margin-small">
+    {{/unless}}
   {{/each}}
 </ul>

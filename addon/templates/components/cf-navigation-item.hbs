@@ -13,15 +13,13 @@
       {{@item.label}}
     </span>
   {{/if}}
-  <span class="cf-navigation__item__icon cf-navigation__item__icon--{{@item.state}}"></span>
+  <span class="cf-navigation__item__icon cf-navigation__item__icon--{{@item.state}} {{if @item.dirty "cf-navigation__item__icon--dirty"}}"></span>
 </LinkTo>
 
 {{#if @item.children}}
   <ul class="uk-tab uk-tab-left uk-margin-left uk-width-auto">
     {{#each @item.children as |childItem|}}
-      {{#if childItem.visible}}
-        <CfNavigationItem @item={{childItem}} @headingLevel={{add @headingLevel 1}} />
-      {{/if}}
+      <CfNavigationItem @item={{childItem}} @headingLevel={{add @headingLevel 1}} />
     {{/each}}
   </ul>
 {{/if}}

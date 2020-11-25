@@ -26,7 +26,7 @@
     "test:ember": "ember test",
     "test:ember-compatibility": "ember try:each",
     "test:browserstack": "ember test --host=127.0.0.1 --test-port=7774 --config-file=testem.browserstack.js",
-    "update-schema": "graphql get-schema -e http://localhost:8000/graphql -o addon/mirage-graphql/schema.graphql && prettier --write addon/mirage-graphql/schema.graphql",
+    "update-schema": "get-graphql-schema http://localhost:8000/graphql > addon/mirage-graphql/schema.graphql && prettier --write addon/mirage-graphql/schema.graphql",
     "update-fragment-types": "node fetch-fragment-types.js && prettier --write addon/-private/fragment-types.js"
   },
   "dependencies": {
@@ -60,6 +60,7 @@
     "graphql-tools": "^4.0.8",
     "jexl": "^2.3.0",
     "lodash.clonedeep": "^4.5.0",
+    "lodash.isequal": "^4.5.0",
     "moment": "2.24.0",
     "proxy-polyfill": "^0.3.2",
     "sass": "^1.29.0",
@@ -113,7 +114,7 @@
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-prettier": "3.1.4",
     "faker": "5.1.0",
-    "graphql-cli": "4.1.0",
+    "get-graphql-schema": "2.1.2",
     "husky": "4.3.0",
     "loader.js": "4.7.0",
     "node-fetch": "2.6.1",

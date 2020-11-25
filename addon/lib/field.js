@@ -8,6 +8,7 @@ import { queryManager } from "ember-apollo-client";
 import { task } from "ember-concurrency";
 import { validate } from "ember-validators";
 import cloneDeep from "lodash.clonedeep";
+import isEqual from "lodash.isequal";
 import { all, resolve } from "rsvp";
 
 import saveDocumentDateAnswerMutation from "ember-caluma/gql/mutations/save-document-date-answer";
@@ -185,6 +186,37 @@ export default Base.extend({
    */
   isNew: computed("answer.isNew", function () {
     return !this.answer || this.answer.isNew;
+  }),
+
+  /**
+   * Whether the field has the defined default answer of the question as value.
+   *
+   * @property {Boolean} isDefault
+   * @accessor
+   */
+  isDefault: computed(
+    "value.@each.flatAnswerMap",
+    "question.{isTable,defaultValue}",
+    function () {
+      if (!this.value || !this.question.defaultValue) return false;
+
+      const value = this.question.isTable
+        ? this.value.map((doc) => doc.flatAnswerMap)
+        : this.value;
+
+      return isEqual(value, this.question.defaultValue);
+    }
+  ),
+
+  /**
+   * Whether the field is dirty. This will be true, if there is a value on the
+   * answer which differs from the default value of the question.
+   *
+   * @property {Boolean} isDirty
+   * @accessor
+   */
+  isDirty: computed("isNew", "isDefault", function () {
+    return !this.isNew && !this.isDefault;
   }),
 
   /**

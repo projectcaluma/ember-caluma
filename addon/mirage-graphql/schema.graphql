@@ -1,6 +1,3 @@
-# source: http://localhost:8000/graphql
-# timestamp: Thu Jul 02 2020 12:52:31 GMT+0200 (Central European Summer Time)
-
 input AddFormQuestionInput {
   form: ID!
   question: ID!
@@ -156,11 +153,31 @@ enum AscDesc {
 
 input CancelCaseInput {
   id: ID!
+
+  """
+  Provide extra context for dynamic jexl transforms and events
+  """
+  context: JSONString
   clientMutationId: String
 }
 
 type CancelCasePayload {
   case: Case
+  clientMutationId: String
+}
+
+input CancelWorkItemInput {
+  id: ID!
+
+  """
+  Provide extra context for dynamic jexl transforms and events
+  """
+  context: JSONString
+  clientMutationId: String
+}
+
+type CancelWorkItemPayload {
+  workItem: WorkItem
   clientMutationId: String
 }
 
@@ -194,10 +211,14 @@ type Case implements Node {
     status: WorkItemStatusArgument
     name: String
     task: ID
+    tasks: [String]
     case: ID
     createdAt: DateTime
     closedAt: DateTime
     modifiedAt: DateTime
+    deadline: DateTime
+    hasDeadline: Boolean
+    caseFamily: ID
 
     """
     WorkItemOrdering
@@ -218,12 +239,14 @@ type Case implements Node {
     """
     createdAfter: DateTime
     metaHasKey: String
+    id: ID
     addressedGroups: [String]
     controllingGroups: [String]
     assignedUsers: [String]
     documentHasAnswer: [HasAnswerFilterType]
     caseDocumentHasAnswer: [HasAnswerFilterType]
     caseMetaValue: [JSONValueFilterType]
+    rootCaseMetaValue: [JSONValueFilterType]
   ): WorkItemConnection
   parentWorkItem: WorkItem
   familyWorkItems(
@@ -243,12 +266,17 @@ type Case implements Node {
     documentHasAnswer: [HasAnswerFilterType]
     caseDocumentHasAnswer: [HasAnswerFilterType]
     caseMetaValue: [JSONValueFilterType]
+    rootCaseMetaValue: [JSONValueFilterType]
     name: String
     task: ID
+    tasks: [String]
     case: ID
     createdAt: DateTime
     closedAt: DateTime
     modifiedAt: DateTime
+    deadline: DateTime
+    hasDeadline: Boolean
+    caseFamily: ID
     createdByUser: String
     createdByGroup: String
 
@@ -262,6 +290,7 @@ type Case implements Node {
     """
     createdAfter: DateTime
     metaHasKey: String
+    id: ID
     addressedGroups: [String]
     controllingGroups: [String]
     assignedUsers: [String]
@@ -304,6 +333,7 @@ input CaseFilterSetType {
   createdAfter: DateTime
   metaHasKey: String
   metaValue: [JSONValueFilterType]
+  id: ID
   orderBy: [CaseOrdering]
   documentForm: String
   documentForms: [String]
@@ -393,9 +423,14 @@ enum CaseStatus {
   COMPLETED
 
   """
-  Case is cancelled.
+  Case is canceled.
   """
   CANCELED
+
+  """
+  Case is suspended.
+  """
+  SUSPENDED
 }
 
 """
@@ -413,9 +448,14 @@ enum CaseStatusArgument {
   COMPLETED
 
   """
-  Case is cancelled.
+  Case is canceled.
   """
   CANCELED
+
+  """
+  Case is suspended.
+  """
+  SUSPENDED
 }
 
 type ChoiceQuestion implements Question & Node {
@@ -435,6 +475,7 @@ type ChoiceQuestion implements Question & Node {
   infoText: String
   meta: GenericScalar!
   source: Question
+  defaultAnswer: StringAnswer
   forms(
     before: String
     after: String
@@ -558,6 +599,11 @@ type CompleteWorkflowFormTask implements Task & Node {
 
 input CompleteWorkItemInput {
   id: ID!
+
+  """
+  Provide extra context for dynamic jexl transforms and events
+  """
+  context: JSONString
   clientMutationId: String
 }
 
@@ -636,6 +682,11 @@ input CreateWorkItemInput {
   controllingGroups: [String]
   deadline: DateTime
   meta: JSONString
+
+  """
+  Provide extra context for dynamic jexl transforms and events
+  """
+  context: JSONString
   clientMutationId: String
 }
 
@@ -750,6 +801,7 @@ type DateQuestion implements Question & Node {
   infoText: String
   meta: GenericScalar!
   source: Question
+  defaultAnswer: DateAnswer
   forms(
     before: String
     after: String
@@ -1367,6 +1419,7 @@ type FloatQuestion implements Question & Node {
   infoText: String
   meta: GenericScalar!
   source: Question
+  defaultAnswer: FloatAnswer
   forms(
     before: String
     after: String
@@ -1800,6 +1853,7 @@ type IntegerQuestion implements Question & Node {
   infoText: String
   meta: GenericScalar!
   source: Question
+  defaultAnswer: IntegerAnswer
   forms(
     before: String
     after: String
@@ -1898,6 +1952,7 @@ type MultipleChoiceQuestion implements Question & Node {
   infoText: String
   meta: GenericScalar!
   source: Question
+  defaultAnswer: ListAnswer
   forms(
     before: String
     after: String
@@ -1982,8 +2037,13 @@ type Mutation {
     @deprecated(reason: "Use SaveCase mutation instead")
   saveCase(input: SaveCaseInput!): SaveCasePayload
   cancelCase(input: CancelCaseInput!): CancelCasePayload
+  suspendCase(input: SuspendCaseInput!): SuspendCasePayload
+  resumeCase(input: ResumeCaseInput!): ResumeCasePayload
   completeWorkItem(input: CompleteWorkItemInput!): CompleteWorkItemPayload
   skipWorkItem(input: SkipWorkItemInput!): SkipWorkItemPayload
+  cancelWorkItem(input: CancelWorkItemInput!): CancelWorkItemPayload
+  suspendWorkItem(input: SuspendWorkItemInput!): SuspendWorkItemPayload
+  resumeWorkItem(input: ResumeWorkItemInput!): ResumeWorkItemPayload
   saveWorkItem(input: SaveWorkItemInput!): SaveWorkItemPayload
   createWorkItem(input: CreateWorkItemInput!): CreateWorkItemPayload
   saveForm(input: SaveFormInput!): SaveFormPayload
@@ -2296,6 +2356,7 @@ type Query {
     """
     createdAfter: DateTime
     metaHasKey: String
+    id: ID
     documentForm: String
     documentForms: [String]
     hasAnswer: [HasAnswerFilterType]
@@ -2330,12 +2391,17 @@ type Query {
     documentHasAnswer: [HasAnswerFilterType]
     caseDocumentHasAnswer: [HasAnswerFilterType]
     caseMetaValue: [JSONValueFilterType]
+    rootCaseMetaValue: [JSONValueFilterType]
     name: String
     task: ID
+    tasks: [String]
     case: ID
     createdAt: DateTime
     closedAt: DateTime
     modifiedAt: DateTime
+    deadline: DateTime
+    hasDeadline: Boolean
+    caseFamily: ID
     createdByUser: String
     createdByGroup: String
 
@@ -2349,6 +2415,7 @@ type Query {
     """
     createdAfter: DateTime
     metaHasKey: String
+    id: ID
     addressedGroups: [String]
     controllingGroups: [String]
     assignedUsers: [String]
@@ -2729,12 +2796,47 @@ type ReorderFormQuestionsPayload {
   clientMutationId: String
 }
 
+input ResumeCaseInput {
+  id: ID!
+
+  """
+  Provide extra context for dynamic jexl transforms and events
+  """
+  context: JSONString
+  clientMutationId: String
+}
+
+type ResumeCasePayload {
+  case: Case
+  clientMutationId: String
+}
+
+input ResumeWorkItemInput {
+  id: ID!
+
+  """
+  Provide extra context for dynamic jexl transforms and events
+  """
+  context: JSONString
+  clientMutationId: String
+}
+
+type ResumeWorkItemPayload {
+  workItem: WorkItem
+  clientMutationId: String
+}
+
 input SaveCaseInput {
   id: String
   workflow: ID!
   meta: JSONString
   parentWorkItem: ID
   form: ID
+
+  """
+  Provide extra context for dynamic jexl transforms and events
+  """
+  context: JSONString
   clientMutationId: String
 }
 
@@ -2751,6 +2853,7 @@ input SaveChoiceQuestionInput {
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
+  defaultAnswer: ID
   options: [ID]!
   clientMutationId: String
 }
@@ -2841,6 +2944,7 @@ input SaveDateQuestionInput {
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
+  defaultAnswer: ID
   clientMutationId: String
 }
 
@@ -2965,6 +3069,7 @@ input SaveDynamicChoiceQuestionInput {
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
+  defaultAnswer: ID
   dataSource: String!
   clientMutationId: String
 }
@@ -2982,6 +3087,7 @@ input SaveDynamicMultipleChoiceQuestionInput {
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
+  defaultAnswer: ID
   dataSource: String!
   clientMutationId: String
 }
@@ -2999,6 +3105,7 @@ input SaveFileQuestionInput {
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
+  defaultAnswer: ID
   clientMutationId: String
 }
 
@@ -3015,6 +3122,7 @@ input SaveFloatQuestionInput {
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
+  defaultAnswer: ID
   minValue: Float
   maxValue: Float
   placeholder: String
@@ -3049,6 +3157,7 @@ input SaveFormQuestionInput {
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
+  defaultAnswer: ID
   subForm: ID!
   clientMutationId: String
 }
@@ -3066,6 +3175,7 @@ input SaveIntegerQuestionInput {
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
+  defaultAnswer: ID
   minValue: Int
   maxValue: Int
   placeholder: String
@@ -3085,6 +3195,7 @@ input SaveMultipleChoiceQuestionInput {
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
+  defaultAnswer: ID
   options: [ID]!
   clientMutationId: String
 }
@@ -3167,6 +3278,7 @@ input SaveTableQuestionInput {
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
+  defaultAnswer: ID
 
   """
   Form that represents rows of a TableQuestion
@@ -3188,6 +3300,7 @@ input SaveTextareaQuestionInput {
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
+  defaultAnswer: ID
   minLength: Int
   maxLength: Int
   placeholder: String
@@ -3208,6 +3321,7 @@ input SaveTextQuestionInput {
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
+  defaultAnswer: ID
   minLength: Int
   maxLength: Int
   placeholder: String
@@ -3269,6 +3383,11 @@ input SaveWorkItemInput {
   assignedUsers: [String]
   deadline: DateTime
   meta: JSONString
+
+  """
+  Provide extra context for dynamic jexl transforms and events
+  """
+  context: JSONString
   clientMutationId: String
 }
 
@@ -3320,6 +3439,11 @@ type SimpleTask implements Task & Node {
 
 input SkipWorkItemInput {
   id: ID!
+
+  """
+  Provide extra context for dynamic jexl transforms and events
+  """
+  context: JSONString
   clientMutationId: String
 }
 
@@ -3433,6 +3557,11 @@ input StartCaseInput {
   meta: JSONString
   parentWorkItem: ID
   form: ID
+
+  """
+  Provide extra context for dynamic jexl transforms and events
+  """
+  context: JSONString
   clientMutationId: String
 }
 
@@ -3505,24 +3634,29 @@ An enumeration.
 """
 enum Status {
   """
-  Task is ready to be processed.
+  Work item is ready to be processed.
   """
   READY
 
   """
-  Task is done.
+  Work item is done.
   """
   COMPLETED
 
   """
-  Task is cancelled.
+  Work item is canceled.
   """
   CANCELED
 
   """
-  Task is skipped.
+  Work item is skipped.
   """
   SKIPPED
+
+  """
+  Work item is suspended.
+  """
+  SUSPENDED
 }
 
 type StringAnswer implements Answer & Node {
@@ -3540,6 +3674,36 @@ type StringAnswer implements Answer & Node {
   meta: GenericScalar!
 }
 
+input SuspendCaseInput {
+  id: ID!
+
+  """
+  Provide extra context for dynamic jexl transforms and events
+  """
+  context: JSONString
+  clientMutationId: String
+}
+
+type SuspendCasePayload {
+  case: Case
+  clientMutationId: String
+}
+
+input SuspendWorkItemInput {
+  id: ID!
+
+  """
+  Provide extra context for dynamic jexl transforms and events
+  """
+  context: JSONString
+  clientMutationId: String
+}
+
+type SuspendWorkItemPayload {
+  workItem: WorkItem
+  clientMutationId: String
+}
+
 type TableAnswer implements Answer & Node {
   createdAt: DateTime!
   modifiedAt: DateTime!
@@ -3553,7 +3717,7 @@ type TableAnswer implements Answer & Node {
   question: Question!
   value: [Document]
   meta: GenericScalar!
-  document: Document!
+  document: Document
 }
 
 type TableQuestion implements Question & Node {
@@ -3573,6 +3737,7 @@ type TableQuestion implements Question & Node {
   infoText: String
   meta: GenericScalar!
   source: Question
+  defaultAnswer: TableAnswer
   forms(
     before: String
     after: String
@@ -3823,6 +3988,7 @@ type TextareaQuestion implements Question & Node {
     first: Int
     last: Int
   ): FormatValidatorConnection
+  defaultAnswer: StringAnswer
   forms(
     before: String
     after: String
@@ -3888,6 +4054,7 @@ type TextQuestion implements Question & Node {
     first: Int
     last: Int
   ): FormatValidatorConnection
+  defaultAnswer: StringAnswer
   forms(
     before: String
     after: String
@@ -4188,6 +4355,13 @@ type WorkItem implements Node {
   """
   childCase: Case
   document: Document
+  previousWorkItem: WorkItem
+  succeedingWorkItems(
+    before: String
+    after: String
+    first: Int
+    last: Int
+  ): WorkItemConnection!
 }
 
 type WorkItemConnection {
@@ -4222,16 +4396,21 @@ input WorkItemFilterSetType {
   status: Status
   name: String
   task: ID
+  tasks: [String]
   case: ID
   createdAt: DateTime
   closedAt: DateTime
   modifiedAt: DateTime
+  deadline: DateTime
+  hasDeadline: Boolean
+  caseFamily: ID
   createdByUser: String
   createdByGroup: String
   createdBefore: DateTime
   createdAfter: DateTime
   metaHasKey: String
   metaValue: [JSONValueFilterType]
+  id: ID
   orderBy: [WorkItemOrdering]
   addressedGroups: [String]
   controllingGroups: [String]
@@ -4239,6 +4418,7 @@ input WorkItemFilterSetType {
   documentHasAnswer: [HasAnswerFilterType]
   caseDocumentHasAnswer: [HasAnswerFilterType]
   caseMetaValue: [JSONValueFilterType]
+  rootCaseMetaValue: [JSONValueFilterType]
   invert: Boolean
 }
 
@@ -4321,24 +4501,29 @@ An enumeration.
 """
 enum WorkItemStatus {
   """
-  Task is ready to be processed.
+  Work item is ready to be processed.
   """
   READY
 
   """
-  Task is done.
+  Work item is done.
   """
   COMPLETED
 
   """
-  Task is cancelled.
+  Work item is canceled.
   """
   CANCELED
 
   """
-  Task is skipped.
+  Work item is skipped.
   """
   SKIPPED
+
+  """
+  Work item is suspended.
+  """
+  SUSPENDED
 }
 
 """
@@ -4346,22 +4531,27 @@ An enumeration.
 """
 enum WorkItemStatusArgument {
   """
-  Task is ready to be processed.
+  Work item is ready to be processed.
   """
   READY
 
   """
-  Task is done.
+  Work item is done.
   """
   COMPLETED
 
   """
-  Task is cancelled.
+  Work item is canceled.
   """
   CANCELED
 
   """
-  Task is skipped.
+  Work item is skipped.
   """
   SKIPPED
+
+  """
+  Work item is suspended.
+  """
+  SUSPENDED
 }

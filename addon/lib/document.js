@@ -151,6 +151,33 @@ export default Base.extend({
   ),
 
   /**
+   * Object representation of a document. The question slug as key and the
+   * answer value as value. E.g:
+   *
+   * ```json
+   * {
+   *   "some-question": "Test Value",
+   *   "some-other-question": 123,
+   * }
+   * ```
+   *
+   * This is needed for comparing a table row with the table questions default
+   * answer.
+   *
+   * @property {Object} flatAnswerMap
+   * @accessor
+   */
+  flatAnswerMap: computed("fields.@each.{question,value}", function () {
+    return this.fields.reduce(
+      (answerMap, field) => ({
+        ...answerMap,
+        [field.question.slug]: field.value,
+      }),
+      {}
+    );
+  }),
+
+  /**
    * Find an answer for a given question slug
    *
    * @param {String} slug The slug of the question to find the answer for

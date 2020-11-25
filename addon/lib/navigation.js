@@ -7,6 +7,13 @@ import { inject as service } from "@ember/service";
 
 import Base from "ember-caluma/lib/base";
 
+const STATES = {
+  EMPTY: "empty",
+  IN_PROGRESS: "in-progress",
+  INVALID: "invalid",
+  VALID: "valid",
+};
+
 /**
  * Object to represent a navigation state for a certain fieldset.
  *
@@ -45,7 +52,7 @@ export const NavigationItem = Base.extend({
    */
   children: computed("slug", "navigation.items.@each._parentSlug", function () {
     return this.navigation.items.filter(
-      (item) => item._parentSlug === this.slug
+      (item) => item._parentSlug === this.slug && item.visible
     );
   }),
 
@@ -129,13 +136,12 @@ export const NavigationItem = Base.extend({
   ),
 
   /**
-   * The item is visible if it is navigable or at least one of its children is
-   * navigable.
+   * The item is visible if it is navigable or has at least one child item.
    *
    * @property {Boolean} visible
    */
-  visible: computed("navigable", "children.@each.visible", function () {
-    return this.navigable || this.children.some((item) => item.visible);
+  visible: computed("navigable", "children.length", function () {
+    return this.navigable || Boolean(this.children.length);
   }),
 
   /**
@@ -143,10 +149,10 @@ export const NavigationItem = Base.extend({
    * state.
    *
    * This can be one of 4 states:
-   * - `untouched` if every fieldset is `untouched`
+   * - `empty` if every fieldset is `empty`
+   * - `in-progress` if there are `valid` and `empty` fieldsets
    * - `invalid` if any fieldset is `invalid`
    * - `valid` if every fieldset is `valid`
-   * - `unfinished` if there are `valid` and `untouched` fieldsets
    *
    * @property {String} state
    * @accessor
@@ -154,65 +160,102 @@ export const NavigationItem = Base.extend({
   state: computed("fieldsetState", "children.@each.fieldsetState", function () {
     const states = [
       this.fieldsetState,
-      ...this.children
-        .filter((i) => i.visible)
-        .map((childItem) => childItem.fieldsetState),
+      ...this.children.map((childItem) => childItem.fieldsetState),
     ].filter(Boolean);
 
-    if (states.every((state) => state === "untouched")) {
-      return "untouched";
+    if (states.every((state) => state === STATES.EMPTY)) {
+      return STATES.EMPTY;
     }
 
-    if (states.some((state) => state === "invalid")) {
-      return "invalid";
+    if (states.some((state) => state === STATES.INVALID)) {
+      return STATES.INVALID;
     }
 
-    return states.every((state) => state === "valid") ? "valid" : "unfinished";
+    return states.every((state) => state === STATES.VALID)
+      ? STATES.VALID
+      : STATES.IN_PROGRESS;
   }),
+
+  /**
+   * The dirty state of the navigation item. This will be true if at least one
+   * of the children or the navigation fieldset itself is dirty.
+   *
+   * @property {Boolean} fieldsetDirty
+   * @accessor
+   */
+  dirty: computed("fieldsetDirty", "children.@each.fieldsetDirty", function () {
+    return [
+      this.fieldsetDirty,
+      ...this.children.map((i) => i.fieldsetDirty),
+    ].some(Boolean);
+  }),
+
+  /**
+   * All visible fields (excluding form question fields) of the fieldset that
+   * are visible.
+   *
+   * @property {Field[]} visibleFields
+   * @accessor
+   */
+  visibleFields: computed(
+    "fieldset.fields.@each.{questionType,hidden}",
+    function () {
+      return this.fieldset.fields.filter(
+        (f) => f.questionType !== "FormQuestion" && !f.hidden
+      );
+    }
+  ),
 
   /**
    * The current state of the item's fieldset. This does not consider the state
    * of children items.
    *
    * This can be one of 4 states:
-   * - `untouched` if every field is new
+   * - `empty` if every field is new
+   * - `in-progress` if there are valid and new fields
    * - `invalid` if any field is invalid
    * - `valid` if every field is valid
-   * - `unfinished` if there are valid and new fields
    *
    * @property {String} fieldsetState
    * @accessor
    */
   fieldsetState: computed(
-    "fieldset.fields.@each.{isNew,isValid,hidden,optional}",
+    "visibleFields.@each.{isNew,isValid,optional}",
     function () {
-      const visibleFields = this.fieldset.fields.filter(
-        (f) => f.questionType !== "FormQuestion" && !f.hidden
-      );
-
-      if (!visibleFields.length) {
+      if (!this.visibleFields.length) {
         return null;
       }
 
-      if (visibleFields.every((f) => f.isNew)) {
-        return "untouched";
+      if (this.visibleFields.every((f) => f.isNew)) {
+        return STATES.EMPTY;
       }
 
-      if (visibleFields.some((f) => !f.isValid && !f.isNew)) {
-        return "invalid";
+      if (this.visibleFields.some((f) => !f.isValid && !f.isNew)) {
+        return STATES.INVALID;
       }
 
       if (
-        visibleFields
+        this.visibleFields
           .filter((f) => !f.optional)
           .every((f) => f.isValid && !f.isNew)
       ) {
-        return "valid";
+        return STATES.VALID;
       }
 
-      return "unfinished";
+      return STATES.IN_PROGRESS;
     }
   ),
+
+  /**
+   * The dirty state of the current fieldset. This will be true if at least one
+   * field in the fieldset is dirty.
+   *
+   * @property {Boolean} fieldsetDirty
+   * @accessor
+   */
+  fieldsetDirty: computed("visibleFields.@each.isDirty", function () {
+    return this.visibleFields.some((f) => f.isDirty);
+  }),
 });
 
 /**
@@ -276,6 +319,17 @@ export const Navigation = Base.extend({
    * @accessor
    */
   items: null,
+
+  /**
+   * The top level navigation items. Those are items without a parent item that
+   * are visible.
+   *
+   * @property {NavigationItem[]} rootItems
+   * @accessor
+   */
+  rootItems: computed("items.@each.{parent,visible}", function () {
+    return this.items.filter((i) => !i.parent && i.visible);
+  }),
 
   /**
    * The currently active navigation item

@@ -57,8 +57,7 @@ export default Base.extend({
    */
   _valueKey: computed("__typename", function () {
     return (
-      this.__typename &&
-      `${camelize(this.__typename.replace(/Answer$/, ""))}Value`
+      this.__typename && camelize(this.__typename.replace(/Answer$/, "Value"))
     );
   }),
 
@@ -70,21 +69,20 @@ export default Base.extend({
    * @computed
    */
   value: computed(
-    "__typename",
+    "field.document",
     "_valueKey",
     "dateValue",
-    "field.document",
     "fileValue",
     "floatValue",
     "integerValue",
-    "listValue",
+    "listValue.[]",
     "stringValue",
-    "tableValue",
+    "tableValue.[]",
     {
       get() {
         const value = this.get(this._valueKey);
 
-        if (this.__typename === "TableAnswer" && value) {
+        if (this._valueKey === "tableValue" && value) {
           return value.map((document) => {
             const existing = this.calumaStore.find(
               `Document:${decodeId(document.id)}`

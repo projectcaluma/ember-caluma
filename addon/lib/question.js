@@ -1,12 +1,16 @@
 import { assert } from "@ember/debug";
 import { defineProperty, computed } from "@ember/object";
-import { reads } from "@ember/object/computed";
+import { reads, equal } from "@ember/object/computed";
 import { camelize } from "@ember/string";
 import { queryManager } from "ember-apollo-client";
 import { task } from "ember-concurrency";
 
 import getDynamicOptions from "ember-caluma/gql/queries/get-dynamic-options";
 import Base from "ember-caluma/lib/base";
+
+const getValue = (answer) => {
+  return answer[camelize(answer.__typename.replace(/Answer$/, "Value"))];
+};
 
 /**
  * Object which represents a question in context of a field
@@ -92,6 +96,8 @@ export default Base.extend({
     return /Dynamic(Multiple)?ChoiceQuestion/.test(this.__typename);
   }),
 
+  isTable: equal("__typename", "TableQuestion"),
+
   /**
    * All valid options for this question
    *
@@ -114,6 +120,42 @@ export default Base.extend({
       return (
         this.get(`${key}.edges`) || []
       ).map(({ node: { label, slug } }) => ({ label, slug }));
+    }
+  ),
+
+  defaultValue: computed(
+    "__typename",
+    "isTable",
+    "textDefaultAnswer",
+    "textareaDefaultAnswer",
+    "integerDefaultAnswer",
+    "floatDefaultAnswer",
+    "choiceDefaultAnswer",
+    "multipleChoiceDefaultAnswer.[]",
+    "dateDefaultAnswer",
+    "tableDefaultAnswer.[]",
+    function () {
+      const key = camelize(
+        this.__typename.replace(/Question$/, "DefaultAnswer")
+      );
+
+      const value = this[key] && this[key].value;
+
+      if (this.isTable && value) {
+        return value.map((defaultDocument) => {
+          return defaultDocument.answers.edges.reduce(
+            (defaultMap, { node: answer }) => {
+              return {
+                ...defaultMap,
+                [answer.question.slug]: getValue(answer),
+              };
+            },
+            {}
+          );
+        });
+      }
+
+      return value;
     }
   ),
 });
