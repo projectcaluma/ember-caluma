@@ -59,7 +59,7 @@ The addon includes a mirage server for mocking Caluma's GraphQL API, which is ge
 
 ```bash
 yarn update-schema
-yarn update-fragment-types
+yarn update-possible-types
 ```
 
 ### Releasing

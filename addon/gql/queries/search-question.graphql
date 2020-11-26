@@ -1,6 +1,11 @@
-# import * from 'ember-caluma/gql/fragments/question-info'
+# import * from 'ember-caluma/gql/fragments/question-info.graphql'
 
-query SearchQuestion($search: String, $excludeForms: [ID], $pageSize: Int, $cursor: String) {
+query SearchQuestion(
+  $search: String
+  $excludeForms: [ID]
+  $pageSize: Int
+  $cursor: String
+) {
   allQuestions(
     search: $search
     excludeForms: $excludeForms

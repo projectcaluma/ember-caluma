@@ -1,14 +1,3 @@
-dummy:
-  formBuilder: "Formularersteller"
-  form: "Formular"
-  usage: "Anwendung"
-  testing: "Testen"
-  queries:
-    title: "Queries"
-    load: "Laden"
-    loadMore: "Mehr laden"
-    getWorkItems: "getWorkItems"
-
 caluma:
   caluma-query:
     work-item:

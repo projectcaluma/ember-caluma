@@ -14,33 +14,33 @@ import { all } from "rsvp";
 
 import layout from "../../templates/components/cfb-form-editor/question";
 
-import addFormQuestionMutation from "ember-caluma/gql/mutations/add-form-question";
-import removeDefaultAnswerMutation from "ember-caluma/gql/mutations/remove-default-answer";
-import saveCalculatedFloatQuestionMutation from "ember-caluma/gql/mutations/save-calculated-float-question";
-import saveChoiceQuestionMutation from "ember-caluma/gql/mutations/save-choice-question";
-import saveDateQuestionMutation from "ember-caluma/gql/mutations/save-date-question";
-import saveDefaultDateAnswerMutation from "ember-caluma/gql/mutations/save-default-date-answer";
-import saveDefaultFloatAnswerMutation from "ember-caluma/gql/mutations/save-default-float-answer";
-import saveDefaultIntegerAnswerMutation from "ember-caluma/gql/mutations/save-default-integer-answer";
-import saveDefaultListAnswerMutation from "ember-caluma/gql/mutations/save-default-list-answer";
-import saveDefaultStringAnswerMutation from "ember-caluma/gql/mutations/save-default-string-answer";
-import saveDefaultTableAnswerMutation from "ember-caluma/gql/mutations/save-default-table-answer";
-import saveDynamicChoiceQuestionMutation from "ember-caluma/gql/mutations/save-dynamic-choice-question";
-import saveDynamicMultipleChoiceQuestionMutation from "ember-caluma/gql/mutations/save-dynamic-multiple-choice-question";
-import saveFileQuestionMutation from "ember-caluma/gql/mutations/save-file-question";
-import saveFloatQuestionMutation from "ember-caluma/gql/mutations/save-float-question";
-import saveFormQuestionMutation from "ember-caluma/gql/mutations/save-form-question";
-import saveIntegerQuestionMutation from "ember-caluma/gql/mutations/save-integer-question";
-import saveMultipleChoiceQuestionMutation from "ember-caluma/gql/mutations/save-multiple-choice-question";
-import saveOptionMutation from "ember-caluma/gql/mutations/save-option";
-import saveStaticQuestionMutation from "ember-caluma/gql/mutations/save-static-question";
-import saveTableQuestionMutation from "ember-caluma/gql/mutations/save-table-question";
-import saveTextQuestionMutation from "ember-caluma/gql/mutations/save-text-question";
-import saveTextareaQuestionMutation from "ember-caluma/gql/mutations/save-textarea-question";
-import allDataSourcesQuery from "ember-caluma/gql/queries/all-data-sources";
-import checkQuestionSlugQuery from "ember-caluma/gql/queries/check-question-slug";
-import formEditorQuestionQuery from "ember-caluma/gql/queries/form-editor-question";
-import formListQuery from "ember-caluma/gql/queries/form-list";
+import addFormQuestionMutation from "ember-caluma/gql/mutations/add-form-question.graphql";
+import removeDefaultAnswerMutation from "ember-caluma/gql/mutations/remove-default-answer.graphql";
+import saveCalculatedFloatQuestionMutation from "ember-caluma/gql/mutations/save-calculated-float-question.graphql";
+import saveChoiceQuestionMutation from "ember-caluma/gql/mutations/save-choice-question.graphql";
+import saveDateQuestionMutation from "ember-caluma/gql/mutations/save-date-question.graphql";
+import saveDefaultDateAnswerMutation from "ember-caluma/gql/mutations/save-default-date-answer.graphql";
+import saveDefaultFloatAnswerMutation from "ember-caluma/gql/mutations/save-default-float-answer.graphql";
+import saveDefaultIntegerAnswerMutation from "ember-caluma/gql/mutations/save-default-integer-answer.graphql";
+import saveDefaultListAnswerMutation from "ember-caluma/gql/mutations/save-default-list-answer.graphql";
+import saveDefaultStringAnswerMutation from "ember-caluma/gql/mutations/save-default-string-answer.graphql";
+import saveDefaultTableAnswerMutation from "ember-caluma/gql/mutations/save-default-table-answer.graphql";
+import saveDynamicChoiceQuestionMutation from "ember-caluma/gql/mutations/save-dynamic-choice-question.graphql";
+import saveDynamicMultipleChoiceQuestionMutation from "ember-caluma/gql/mutations/save-dynamic-multiple-choice-question.graphql";
+import saveFileQuestionMutation from "ember-caluma/gql/mutations/save-file-question.graphql";
+import saveFloatQuestionMutation from "ember-caluma/gql/mutations/save-float-question.graphql";
+import saveFormQuestionMutation from "ember-caluma/gql/mutations/save-form-question.graphql";
+import saveIntegerQuestionMutation from "ember-caluma/gql/mutations/save-integer-question.graphql";
+import saveMultipleChoiceQuestionMutation from "ember-caluma/gql/mutations/save-multiple-choice-question.graphql";
+import saveOptionMutation from "ember-caluma/gql/mutations/save-option.graphql";
+import saveStaticQuestionMutation from "ember-caluma/gql/mutations/save-static-question.graphql";
+import saveTableQuestionMutation from "ember-caluma/gql/mutations/save-table-question.graphql";
+import saveTextQuestionMutation from "ember-caluma/gql/mutations/save-text-question.graphql";
+import saveTextareaQuestionMutation from "ember-caluma/gql/mutations/save-textarea-question.graphql";
+import allDataSourcesQuery from "ember-caluma/gql/queries/all-data-sources.graphql";
+import checkQuestionSlugQuery from "ember-caluma/gql/queries/check-question-slug.graphql";
+import formEditorQuestionQuery from "ember-caluma/gql/queries/form-editor-question.graphql";
+import formListQuery from "ember-caluma/gql/queries/form-list.graphql";
 import slugify from "ember-caluma/utils/slugify";
 import validations from "ember-caluma/validations/question";
 
@@ -172,12 +172,11 @@ export default Component.extend({
       { query: allDataSourcesQuery, fetchPolicy: "cache-and-network" },
       "allDataSources.edges"
     );
-    if (!dataSources.mapBy) {
-      return [];
-    }
     return dataSources.map((edge) => {
-      delete edge.node.__typename;
-      return edge.node;
+      return {
+        ...edge.node,
+        __typename: undefined,
+      };
     });
   }).restartable(),
 

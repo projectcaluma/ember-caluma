@@ -11,14 +11,14 @@ import cloneDeep from "lodash.clonedeep";
 import isEqual from "lodash.isequal";
 import { all, resolve } from "rsvp";
 
-import saveDocumentDateAnswerMutation from "ember-caluma/gql/mutations/save-document-date-answer";
-import saveDocumentFileAnswerMutation from "ember-caluma/gql/mutations/save-document-file-answer";
-import saveDocumentFloatAnswerMutation from "ember-caluma/gql/mutations/save-document-float-answer";
-import saveDocumentIntegerAnswerMutation from "ember-caluma/gql/mutations/save-document-integer-answer";
-import saveDocumentListAnswerMutation from "ember-caluma/gql/mutations/save-document-list-answer";
-import saveDocumentStringAnswerMutation from "ember-caluma/gql/mutations/save-document-string-answer";
-import saveDocumentTableAnswerMutation from "ember-caluma/gql/mutations/save-document-table-answer";
-import getDocumentUsedDynamicOptionsQuery from "ember-caluma/gql/queries/get-document-used-dynamic-options";
+import saveDocumentDateAnswerMutation from "ember-caluma/gql/mutations/save-document-date-answer.graphql";
+import saveDocumentFileAnswerMutation from "ember-caluma/gql/mutations/save-document-file-answer.graphql";
+import saveDocumentFloatAnswerMutation from "ember-caluma/gql/mutations/save-document-float-answer.graphql";
+import saveDocumentIntegerAnswerMutation from "ember-caluma/gql/mutations/save-document-integer-answer.graphql";
+import saveDocumentListAnswerMutation from "ember-caluma/gql/mutations/save-document-list-answer.graphql";
+import saveDocumentStringAnswerMutation from "ember-caluma/gql/mutations/save-document-string-answer.graphql";
+import saveDocumentTableAnswerMutation from "ember-caluma/gql/mutations/save-document-table-answer.graphql";
+import getDocumentUsedDynamicOptionsQuery from "ember-caluma/gql/queries/get-document-used-dynamic-options.graphql";
 import { decodeId } from "ember-caluma/helpers/decode-id";
 import Base from "ember-caluma/lib/base";
 import {

@@ -6,7 +6,7 @@ import { queryManager } from "ember-apollo-client";
 
 import layout from "../../../templates/components/cf-field/input/file";
 
-import getFileAnswerInfoQuery from "ember-caluma/gql/queries/get-fileanswer-info";
+import getFileAnswerInfoQuery from "ember-caluma/gql/queries/get-fileanswer-info.graphql";
 
 export default Component.extend({
   layout,

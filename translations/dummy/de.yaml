@@ -1,0 +1,11 @@
+dummy:
+  formBuilder: "Formularersteller"
+  form: "Formular"
+  usage: "Anwendung"
+  testing: "Testen"
+  migration: "Migration"
+  queries:
+    title: "Queries"
+    load: "Laden"
+    loadMore: "Mehr laden"
+    getWorkItems: "getWorkItems"

@@ -9,8 +9,8 @@ import RenderComponent from "ember-validated-form/components/validated-input/-th
 
 import layout from "../../../templates/components/cfb-form-editor/question/options";
 
-import saveChoiceQuestionMutation from "ember-caluma/gql/mutations/save-choice-question";
-import saveMultipleChoiceQuestionMutation from "ember-caluma/gql/mutations/save-multiple-choice-question";
+import saveChoiceQuestionMutation from "ember-caluma/gql/mutations/save-choice-question.graphql";
+import saveMultipleChoiceQuestionMutation from "ember-caluma/gql/mutations/save-multiple-choice-question.graphql";
 import slugify from "ember-caluma/utils/slugify";
 import OptionValidations from "ember-caluma/validations/option";
 

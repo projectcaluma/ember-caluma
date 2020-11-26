@@ -5,7 +5,7 @@ import { camelize } from "@ember/string";
 import { queryManager } from "ember-apollo-client";
 import { task } from "ember-concurrency";
 
-import getDynamicOptions from "ember-caluma/gql/queries/get-dynamic-options";
+import getDynamicOptions from "ember-caluma/gql/queries/get-dynamic-options.graphql";
 import Base from "ember-caluma/lib/base";
 
 const getValue = (answer) => {

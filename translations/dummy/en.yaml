@@ -1,0 +1,11 @@
+dummy:
+  formBuilder: "Form Builder"
+  form: "Form"
+  usage: "Usage"
+  testing: "Testing"
+  migration: "Migration"
+  queries:
+    title: "Queries"
+    load: "Load"
+    loadMore: "Load more"
+    getWorkItems: "getWorkItems"

@@ -1,4 +1,4 @@
-# import * from 'ember-caluma/gql/fragments/field-question'
+# import * from 'ember-caluma/gql/fragments/field-question.graphql'
 
 query($slug: String!) {
   allForms(slug: $slug) {

@@ -1,4 +1,4 @@
-# import * from 'ember-caluma/gql/fragments/form-info'
+# import * from 'ember-caluma/gql/fragments/form-info.graphql'
 
 mutation SaveForm($input: SaveFormInput!) {
   saveForm(input: $input) {

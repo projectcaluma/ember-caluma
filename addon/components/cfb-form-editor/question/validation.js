@@ -5,7 +5,7 @@ import { task } from "ember-concurrency";
 
 import layout from "../../../templates/components/cfb-form-editor/question/validation";
 
-import allFormatValidatorsQuery from "ember-caluma/gql/queries/all-format-validators";
+import allFormatValidatorsQuery from "ember-caluma/gql/queries/all-format-validators.graphql";
 
 export default Component.extend({
   layout,

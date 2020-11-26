@@ -1,6 +1,6 @@
-# import * from 'ember-caluma/gql/fragments/question-info'
-# import * from 'ember-caluma/gql/fragments/field-question'
-# import SimpleAnswer from 'ember-caluma/gql/fragments/field-answer'
+# import * from 'ember-caluma/gql/fragments/question-info.graphql'
+# import * from 'ember-caluma/gql/fragments/field-question.graphql'
+# import SimpleAnswer from 'ember-caluma/gql/fragments/field-answer.graphql'
 
 query FormEditorQuestion($slug: String!) {
   allQuestions(slug: $slug) {
