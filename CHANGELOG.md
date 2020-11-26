@@ -1,3 +1,10 @@
+# [6.6.0](https://github.com/projectcaluma/ember-caluma/compare/v6.5.2...v6.6.0) (2020-11-26)
+
+
+### Features
+
+* **nav:** implement navigation states for default answers ([0e32e9e](https://github.com/projectcaluma/ember-caluma/commit/0e32e9eac486a6c22e0d11304a149ffbdfc97e50))
+
 ## [6.5.2](https://github.com/projectcaluma/ember-caluma/compare/v6.5.1...v6.5.2) (2020-11-24)
 
 
