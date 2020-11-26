@@ -70,16 +70,18 @@ export default class CfbFormEditorQuestionDefault extends RenderComponent {
       __typename: "Form",
     };
 
+    const newAnswer = {
+      id: btoa(`Answer:dv-answer-${this.model.slug}`),
+      __typename: TYPE_MAP[this.model.__typename],
+    };
+
     // The value depends on where it comes from. If there is a default value
     // present on load the `value.content` will be set. After an update through
     // this component the value will be a POJO on `value`.
-    const answer = (this.value && this.value.content) ||
-      this.value || {
-        id: btoa(`Answer:dv-answer-${this.model.slug}`),
-        __typename: TYPE_MAP[this.model.__typename],
-      };
-
-    answer.question = this.question;
+    const answer = {
+      ...(this.value?.content || this.value || newAnswer),
+      question: this.question,
+    };
 
     const document = getOwner(this)
       .factoryFor("caluma-model:document")

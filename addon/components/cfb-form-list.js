@@ -3,7 +3,7 @@ import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
 import { restartableTask } from "ember-concurrency";
 
-import formListQuery from "ember-caluma/gql/queries/form-list";
+import formListQuery from "ember-caluma/gql/queries/form-list.graphql";
 
 export default class ComponentsCfbFormListComponent extends Component {
   @queryManager apollo;

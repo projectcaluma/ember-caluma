@@ -14,9 +14,6 @@ module.exports = function (defaults) {
     "ember-cli-babel": {
       includePolyfill: process.env.EMBER_ENV === "production",
     },
-    emberApolloClient: {
-      keepGraphqlFileExtension: true,
-    },
   });
 
   app.import("node_modules/typeface-oxygen/index.css");

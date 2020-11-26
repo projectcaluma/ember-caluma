@@ -1,4 +1,4 @@
-# import * from 'ember-caluma/gql/fragments/question-info'
+# import * from 'ember-caluma/gql/fragments/question-info.graphql'
 
 mutation SaveTextQuestion($input: SaveTextQuestionInput!) {
   saveTextQuestion(input: $input) {

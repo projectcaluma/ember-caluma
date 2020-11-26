@@ -14,11 +14,11 @@ import {
 import UIkit from "uikit";
 import { v4 } from "uuid";
 
-import addFormQuestionMutation from "ember-caluma/gql/mutations/add-form-question";
-import removeFormQuestionMutation from "ember-caluma/gql/mutations/remove-form-question";
-import reorderFormQuestionsMutation from "ember-caluma/gql/mutations/reorder-form-questions";
-import searchFormQuestionQuery from "ember-caluma/gql/queries/search-form-question";
-import searchQuestionQuery from "ember-caluma/gql/queries/search-question";
+import addFormQuestionMutation from "ember-caluma/gql/mutations/add-form-question.graphql";
+import removeFormQuestionMutation from "ember-caluma/gql/mutations/remove-form-question.graphql";
+import reorderFormQuestionsMutation from "ember-caluma/gql/mutations/reorder-form-questions.graphql";
+import searchFormQuestionQuery from "ember-caluma/gql/queries/search-form-question.graphql";
+import searchQuestionQuery from "ember-caluma/gql/queries/search-question.graphql";
 
 export default class ComponentsCfbFormEditorQuestionList extends Component {
   @service notification;

@@ -1,4 +1,4 @@
-# import * from 'ember-caluma/gql/fragments/form-info'
+# import * from 'ember-caluma/gql/fragments/form-info.graphql'
 
 query FormList($filter: [FormFilterSetType], $order: [FormOrderSetType]) {
   allForms(filter: $filter, order: $order) {

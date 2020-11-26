@@ -1,28 +1,21 @@
+import { InMemoryCache, defaultDataIdFromObject } from "@apollo/client/cache";
+import { setContext } from "@apollo/client/link/context";
 import Mixin from "@ember/object/mixin";
 import { inject as service } from "@ember/service";
-import {
-  InMemoryCache,
-  IntrospectionFragmentMatcher,
-  defaultDataIdFromObject,
-} from "apollo-cache-inmemory";
-import { setContext } from "apollo-link-context";
 
-import introspectionQueryResultData from "ember-caluma/-private/fragment-types";
+import possibleTypes from "ember-caluma/-private/possible-types";
 
 export default Mixin.create({
   intl: service(),
 
   cache() {
     return new InMemoryCache({
-      fragmentMatcher: new IntrospectionFragmentMatcher({
-        introspectionQueryResultData,
-      }),
-      dataIdFromObject: (obj) => {
-        if (obj.slug) {
-          obj = Object.assign({}, obj, { _id: obj.slug });
-        }
-        return defaultDataIdFromObject(obj);
-      },
+      possibleTypes,
+      dataIdFromObject: (obj) =>
+        defaultDataIdFromObject({
+          ...obj,
+          _id: obj.slug || obj._id,
+        }),
     });
   },
 

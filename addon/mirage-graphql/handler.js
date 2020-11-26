@@ -6,7 +6,7 @@ import moment from "moment";
 
 import { Mock } from "ember-caluma/mirage-graphql";
 import resolvers from "ember-caluma/mirage-graphql/resolvers";
-import rawSchema from "ember-caluma/mirage-graphql/schema";
+import rawSchema from "ember-caluma/mirage-graphql/schema.graphql";
 
 export default function (server) {
   return function ({ db }, request) {

@@ -5,7 +5,7 @@ import moment from "moment";
 
 import layout from "../templates/components/cf-field-value";
 
-import getFileAnswerInfoQuery from "ember-caluma/gql/queries/get-fileanswer-info";
+import getFileAnswerInfoQuery from "ember-caluma/gql/queries/get-fileanswer-info.graphql";
 
 export default Component.extend({
   layout,

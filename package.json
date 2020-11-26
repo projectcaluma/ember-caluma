@@ -27,17 +27,16 @@
     "test:ember-compatibility": "ember try:each",
     "test:browserstack": "ember test --host=127.0.0.1 --test-port=7774 --config-file=testem.browserstack.js",
     "update-schema": "get-graphql-schema http://localhost:8000/graphql > addon/mirage-graphql/schema.graphql && prettier --write addon/mirage-graphql/schema.graphql",
-    "update-fragment-types": "node bin/fetch-fragment-types.js && prettier --write addon/-private/fragment-types.js"
+    "update-possible-types": "node bin/fetch-possible-types.js && prettier --write addon/-private/fragment-types.js"
   },
   "dependencies": {
+    "@apollo/client": "^3.3.11",
     "@ember/render-modifiers": "^1.0.2",
     "@glimmer/component": "1.0.3",
     "@glimmer/tracking": "^1.0.1",
-    "apollo-cache-inmemory": "^1.6.6",
-    "apollo-link-context": "^1.0.20",
     "broccoli-funnel": "^3.0.3",
     "broccoli-merge-trees": "^4.2.0",
-    "ember-apollo-client": "^2.2.0",
+    "ember-apollo-client": "^3.0.3",
     "ember-auto-import": "^1.7.0",
     "ember-changeset": "^3.12.0",
     "ember-changeset-validations": "^3.13.0",

@@ -7,8 +7,8 @@ import { task, all } from "ember-concurrency";
 
 import layout from "../../../templates/components/cf-field/input/table";
 
-import removeDocumentMutation from "ember-caluma/gql/mutations/remove-document";
-import saveDocumentMutation from "ember-caluma/gql/mutations/save-document";
+import removeDocumentMutation from "ember-caluma/gql/mutations/remove-document.graphql";
+import saveDocumentMutation from "ember-caluma/gql/mutations/save-document.graphql";
 import { parseDocument } from "ember-caluma/lib/parsers";
 
 export default Component.extend({

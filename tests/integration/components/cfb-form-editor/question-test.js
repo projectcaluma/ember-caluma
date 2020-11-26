@@ -133,7 +133,11 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     assert.expect(1);
 
     this.server.post("/graphql", () => ({
-      data: { allQuestions: { edges: [], __typename: "QuestionEdges" } },
+      data: {
+        allQuestions: { edges: [], __typename: "QuestionEdges" },
+        allForms: { edges: [], __typename: "FormEdge" },
+        allDataSources: { edges: [], __typename: "DataSourceEdge" },
+      },
     }));
 
     await render(hbs`{{cfb-form-editor/question slug='test-slug'}}`);

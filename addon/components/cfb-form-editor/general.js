@@ -11,9 +11,9 @@ import { v4 } from "uuid";
 import layout from "../../templates/components/cfb-form-editor/general";
 import validations from "../../validations/form";
 
-import saveFormMutation from "ember-caluma/gql/mutations/save-form";
-import checkFormSlugQuery from "ember-caluma/gql/queries/check-form-slug";
-import formEditorGeneralQuery from "ember-caluma/gql/queries/form-editor-general";
+import saveFormMutation from "ember-caluma/gql/mutations/save-form.graphql";
+import checkFormSlugQuery from "ember-caluma/gql/queries/check-form-slug.graphql";
+import formEditorGeneralQuery from "ember-caluma/gql/queries/form-editor-general.graphql";
 import slugify from "ember-caluma/utils/slugify";
 
 export default Component.extend({
