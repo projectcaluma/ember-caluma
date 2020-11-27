@@ -16,10 +16,10 @@
   <span class="cf-navigation__item__icon cf-navigation__item__icon--{{@item.state}} {{if @item.dirty "cf-navigation__item__icon--dirty"}}"></span>
 </LinkTo>
 
-{{#if @item.children}}
+{{#if @item.visibleChildren}}
   <ul class="uk-tab uk-tab-left uk-margin-left uk-width-auto">
-    {{#each @item.children as |childItem|}}
-      <CfNavigationItem @item={{childItem}} @headingLevel={{add @headingLevel 1}} />
+    {{#each @item.visibleChildren as |child|}}
+      <CfNavigationItem @item={{child}} @headingLevel={{add @headingLevel 1}} />
     {{/each}}
   </ul>
 {{/if}}
