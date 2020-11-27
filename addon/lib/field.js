@@ -189,19 +189,30 @@ export default Base.extend({
   }),
 
   /**
+   * Only table values, this is used for certain computed property keys.
+   *
+   * @property {Document[]} tableValue
+   * @accessor
+   */
+  tableValue: computed("value", "question.isTable", function () {
+    return this.question.isTable ? this.value : [];
+  }),
+
+  /**
    * Whether the field has the defined default answer of the question as value.
    *
    * @property {Boolean} isDefault
    * @accessor
    */
   isDefault: computed(
-    "value.@each.flatAnswerMap",
+    "value",
+    "tableValue.@each.flatAnswerMap",
     "question.{isTable,defaultValue}",
     function () {
       if (!this.value || !this.question.defaultValue) return false;
 
       const value = this.question.isTable
-        ? this.value.map((doc) => doc.flatAnswerMap)
+        ? this.tableValue.map((doc) => doc.flatAnswerMap)
         : this.value;
 
       return isEqual(value, this.question.defaultValue);

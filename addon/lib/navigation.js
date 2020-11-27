@@ -52,8 +52,18 @@ export const NavigationItem = Base.extend({
    */
   children: computed("slug", "navigation.items.@each._parentSlug", function () {
     return this.navigation.items.filter(
-      (item) => item._parentSlug === this.slug && item.visible
+      (item) => item._parentSlug === this.slug
     );
+  }),
+
+  /**
+   * The visible children of this navigation item
+   *
+   * @property {NavigationItem[]} visibleChildren
+   * @accessor
+   */
+  visibleChildren: computed("children.@each.visible", function () {
+    return this.children.filter((child) => child.visible);
   }),
 
   /**
@@ -140,8 +150,8 @@ export const NavigationItem = Base.extend({
    *
    * @property {Boolean} visible
    */
-  visible: computed("navigable", "children.length", function () {
-    return this.navigable || Boolean(this.children.length);
+  visible: computed("navigable", "visibleChildren.length", function () {
+    return this.navigable || Boolean(this.visibleChildren.length);
   }),
 
   /**
@@ -157,24 +167,28 @@ export const NavigationItem = Base.extend({
    * @property {String} state
    * @accessor
    */
-  state: computed("fieldsetState", "children.@each.fieldsetState", function () {
-    const states = [
-      this.fieldsetState,
-      ...this.children.map((childItem) => childItem.fieldsetState),
-    ].filter(Boolean);
+  state: computed(
+    "fieldsetState",
+    "visibleChildren.@each.fieldsetState",
+    function () {
+      const states = [
+        this.fieldsetState,
+        ...this.visibleChildren.map((child) => child.fieldsetState),
+      ].filter(Boolean);
 
-    if (states.every((state) => state === STATES.EMPTY)) {
-      return STATES.EMPTY;
+      if (states.every((state) => state === STATES.EMPTY)) {
+        return STATES.EMPTY;
+      }
+
+      if (states.some((state) => state === STATES.INVALID)) {
+        return STATES.INVALID;
+      }
+
+      return states.every((state) => state === STATES.VALID)
+        ? STATES.VALID
+        : STATES.IN_PROGRESS;
     }
-
-    if (states.some((state) => state === STATES.INVALID)) {
-      return STATES.INVALID;
-    }
-
-    return states.every((state) => state === STATES.VALID)
-      ? STATES.VALID
-      : STATES.IN_PROGRESS;
-  }),
+  ),
 
   /**
    * The dirty state of the navigation item. This will be true if at least one
@@ -183,12 +197,16 @@ export const NavigationItem = Base.extend({
    * @property {Boolean} fieldsetDirty
    * @accessor
    */
-  dirty: computed("fieldsetDirty", "children.@each.fieldsetDirty", function () {
-    return [
-      this.fieldsetDirty,
-      ...this.children.map((i) => i.fieldsetDirty),
-    ].some(Boolean);
-  }),
+  dirty: computed(
+    "fieldsetDirty",
+    "visibleChildren.@each.fieldsetDirty",
+    function () {
+      return [
+        this.fieldsetDirty,
+        ...this.visibleChildren.map((child) => child.fieldsetDirty),
+      ].some(Boolean);
+    }
+  ),
 
   /**
    * All visible fields (excluding form question fields) of the fieldset that
