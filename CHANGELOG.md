@@ -1,3 +1,10 @@
+## [6.6.1](https://github.com/projectcaluma/ember-caluma/compare/v6.6.0...v6.6.1) (2020-11-30)
+
+
+### Bug Fixes
+
+* **nav:** fix navigation hidden state and computed key in field ([2a149ca](https://github.com/projectcaluma/ember-caluma/commit/2a149cad7c2302311a854ecb631b70ba87eb73f4))
+
 # [6.6.0](https://github.com/projectcaluma/ember-caluma/compare/v6.5.2...v6.6.0) (2020-11-26)
 
 
