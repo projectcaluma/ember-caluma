@@ -4,6 +4,7 @@ import Component from "@ember/component";
 import { computed, get } from "@ember/object";
 import { reads } from "@ember/object/computed";
 import { inject as service } from "@ember/service";
+import { camelize } from "@ember/string";
 import { queryManager } from "ember-apollo-client";
 import Changeset from "ember-changeset";
 import lookupValidator from "ember-changeset-validations";
@@ -14,9 +15,16 @@ import { all } from "rsvp";
 import layout from "../../templates/components/cfb-form-editor/question";
 
 import addFormQuestionMutation from "ember-caluma/gql/mutations/add-form-question";
+import removeDefaultAnswerMutation from "ember-caluma/gql/mutations/remove-default-answer";
 import saveCalculatedFloatQuestionMutation from "ember-caluma/gql/mutations/save-calculated-float-question";
 import saveChoiceQuestionMutation from "ember-caluma/gql/mutations/save-choice-question";
 import saveDateQuestionMutation from "ember-caluma/gql/mutations/save-date-question";
+import saveDefaultDateAnswerMutation from "ember-caluma/gql/mutations/save-default-date-answer";
+import saveDefaultFloatAnswerMutation from "ember-caluma/gql/mutations/save-default-float-answer";
+import saveDefaultIntegerAnswerMutation from "ember-caluma/gql/mutations/save-default-integer-answer";
+import saveDefaultListAnswerMutation from "ember-caluma/gql/mutations/save-default-list-answer";
+import saveDefaultStringAnswerMutation from "ember-caluma/gql/mutations/save-default-string-answer";
+import saveDefaultTableAnswerMutation from "ember-caluma/gql/mutations/save-default-table-answer";
 import saveDynamicChoiceQuestionMutation from "ember-caluma/gql/mutations/save-dynamic-choice-question";
 import saveDynamicMultipleChoiceQuestionMutation from "ember-caluma/gql/mutations/save-dynamic-multiple-choice-question";
 import saveFileQuestionMutation from "ember-caluma/gql/mutations/save-file-question";
@@ -51,6 +59,15 @@ export const TYPES = {
   StaticQuestion: saveStaticQuestionMutation,
   DateQuestion: saveDateQuestionMutation,
   CalculatedFloatQuestion: saveCalculatedFloatQuestionMutation,
+};
+
+const TYPES_ANSWER = {
+  StringAnswer: saveDefaultStringAnswerMutation,
+  IntegerAnswer: saveDefaultIntegerAnswerMutation,
+  FloatAnswer: saveDefaultFloatAnswerMutation,
+  DateAnswer: saveDefaultDateAnswerMutation,
+  ListAnswer: saveDefaultListAnswerMutation,
+  TableAnswer: saveDefaultTableAnswerMutation,
 };
 
 export default Component.extend({
@@ -95,6 +112,7 @@ export default Component.extend({
             floatMaxValue: null,
             minLength: null,
             maxLength: null,
+            defaultAnswer: null,
             options: [],
             rowForm: {},
             subForm: {},
@@ -302,6 +320,39 @@ export default Component.extend({
     );
   }),
 
+  saveDefaultAnswer: task(function* (question, changeset) {
+    const answer = changeset.get("defaultAnswer");
+
+    if (!answer) {
+      return;
+    }
+
+    const valueKey = camelize(answer.__typename.replace(/Answer$/, "Value"));
+    const value = answer[valueKey];
+
+    // We need to map the UUIDs of the document's if the user didn't touch
+    // the default answer and thus never triggered the onUpdate action.
+    if (answer.__typename === "TableAnswer" && typeof value[0] !== "string") {
+      return;
+    }
+
+    const isAddMutation = value !== null && value.length !== 0;
+
+    // Save or remove depending on the value.
+    const mutation = !isAddMutation
+      ? removeDefaultAnswerMutation
+      : TYPES_ANSWER[answer.__typename];
+
+    const input = { question: question.slug };
+
+    // The remove mutation must not include a value.
+    if (isAddMutation) {
+      input.value = value;
+    }
+
+    yield this.apollo.mutate({ mutation, variables: { input } });
+  }),
+
   submit: task(function* (changeset) {
     try {
       yield this.saveOptions.perform(changeset);
@@ -315,6 +366,8 @@ export default Component.extend({
         },
         `save${typename}.question`
       );
+
+      yield this.saveDefaultAnswer.perform(question, changeset);
 
       if (!this.slug) {
         // This is a new question which must be added to the form after creating it

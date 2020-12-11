@@ -10,12 +10,18 @@ const importTypeOrBase = (path, type) => {
 };
 
 export const register = (tpl) => (target, name, descriptor) => {
+  if (descriptor.value.__isHandler) {
+    descriptor.value.__handlerFor.push(tpl);
+    return descriptor;
+  }
+
   descriptor.writable = false;
   descriptor.enumerable = true;
 
   descriptor.value = {
     __isHandler: true,
-    __handlerFor: tpl,
+    // Mocks can have multiple handlers per type.
+    __handlerFor: [tpl],
     fn: descriptor.value,
   };
 

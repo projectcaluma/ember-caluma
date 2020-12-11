@@ -1,0 +1,5 @@
+mutation RemoveDefaultAnswer($input: RemoveDefaultAnswerInput!) {
+  removeDefaultAnswer(input: $input) {
+    clientMutationId
+  }
+}

@@ -1,0 +1,98 @@
+import { getOwner } from "@ember/application";
+import { action, computed, get } from "@ember/object";
+import { inject as service } from "@ember/service";
+import RenderComponent from "ember-validated-form/components/validated-input/-themes/uikit/render";
+
+import { TYPE_MAP } from "ember-caluma/lib/field";
+import layout from "ember-caluma/templates/components/cfb-form-editor/question/default";
+
+export default class CfbFormEditorQuestionDefault extends RenderComponent {
+  layout = layout;
+
+  @service router;
+
+  @computed("model.{id,__typename}")
+  get question() {
+    const raw = {
+      ...this.model.get("data"),
+      ...this.model.get("change"),
+      // While we want the real value, typename, etc. of the question,
+      // the question should never be required or hidden in the form-builder.
+      // We need to set a value here as no value will lead to a Jexl error.
+      isRequired: "false",
+      isHidden: "false",
+    };
+
+    if (
+      ["ChoiceQuestion", "MultipleChoiceQuestion"].includes(
+        this.model.__typename
+      )
+    ) {
+      // Use Power Select for choice questions to save space.
+      raw.meta = { widgetOverride: "cf-field/input/powerselect" };
+
+      const key = this.model.__typename
+        .replace(/^./, (match) => match.toLowerCase())
+        .replace("Question", "Options");
+
+      raw[key] = raw.options;
+      delete raw.options;
+    }
+
+    return raw;
+  }
+
+  get field() {
+    return getOwner(this)
+      .factoryFor("caluma-model:field")
+      .create({
+        raw: {
+          question: this.question,
+          // The value depends on where it comes from. If there is a default
+          // value present on load the `value.content` will be set. After an
+          // update through this component the value will be a POJO on `value`.
+          answer: (this.value && this.value.content) ||
+            this.value || {
+              id: btoa(`Answer:dv-answer-${this.model.slug}`),
+              __typename: TYPE_MAP[this.model.__typename],
+            },
+        },
+        // In order to mock the field, we need a document instance and its form.
+        document: getOwner(this)
+          .factoryFor("caluma-model:document")
+          .create({
+            raw: {
+              id: btoa(`Document:dv-document-${this.model.slug}`),
+              rootForm: {
+                slug:
+                  // There is no currentRoute in the integration tests.
+                  get(this, "router.currentRoute.attributes.formSlug") ||
+                  "dv-form",
+                __typename: "Form",
+              },
+              forms: [],
+              __typename: "Document",
+            },
+          }),
+      });
+  }
+
+  @action async onUpdate(value) {
+    this.set("field.answer.value", value);
+
+    await this.field.validate.perform();
+
+    this.update({
+      [this.field.answer._valueKey]: this.field.answer.serializedValue,
+      __typename: this.field.answer.__typename,
+      id: this.field.answer.id,
+    });
+
+    if (this.field.errors.length > 0) {
+      // The errors must be pushed after calling update.
+      this.model.pushErrors(this.name, ...this.field.errors);
+    }
+
+    this.setDirty();
+  }
+}

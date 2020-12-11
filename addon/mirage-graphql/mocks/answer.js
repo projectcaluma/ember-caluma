@@ -32,16 +32,20 @@ export default class extends BaseMock {
       },
     });
 
-    const doc = this.db.documents.findBy({ id: res.answer.documentId });
+    // Default answers don't have a document.
+    if (res.answer.documentId) {
+      const doc = this.db.documents.findBy({ id: res.answer.documentId });
 
-    this.db.documents.update(doc.id, {
-      answerIds: [...new Set([...(doc.answerIds || []), res.answer.id])],
-    });
+      this.db.documents.update(doc.id, {
+        answerIds: [...new Set([...(doc.answerIds || []), res.answer.id])],
+      });
+    }
 
     return res;
   }
 
   @register("SaveDocumentStringAnswerPayload")
+  @register("SaveDefaultStringAnswerPayload")
   handleSaveDocumentStringAnswer(_, { input }) {
     return this._handleSaveDocumentAnswer(_, {
       ...input,
@@ -51,6 +55,7 @@ export default class extends BaseMock {
   }
 
   @register("SaveDocumentIntegerAnswerPayload")
+  @register("SaveDefaultIntegerAnswerPayload")
   handleSaveIntegerAnswer(_, { input }) {
     return this._handleSaveDocumentAnswer(_, {
       ...input,
@@ -60,6 +65,7 @@ export default class extends BaseMock {
   }
 
   @register("SaveDocumentFloatAnswerPayload")
+  @register("SaveDefaultFloatAnswerPayload")
   handleSaveFloatAnswer(_, { input }) {
     return this._handleSaveDocumentAnswer(_, {
       ...input,
@@ -69,6 +75,7 @@ export default class extends BaseMock {
   }
 
   @register("SaveDocumentListAnswerPayload")
+  @register("SaveDefaultListAnswerPayload")
   handleSaveListAnswer(_, { input }) {
     return this._handleSaveDocumentAnswer(_, {
       ...input,
@@ -87,6 +94,7 @@ export default class extends BaseMock {
   }
 
   @register("SaveDocumentDateAnswerPayload")
+  @register("SaveDefaultDateAnswerPayload")
   handleSaveDateAnswer(_, { input }) {
     return this._handleSaveDocumentAnswer(_, {
       ...input,

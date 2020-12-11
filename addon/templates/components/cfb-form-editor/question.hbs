@@ -129,6 +129,14 @@
         }}
       {{/if}}
 
+      {{#if (and slug (has-question-type f.model "text" "textarea" "integer" "float" "choice" "multiple-choice" "date" "table"))}}
+        {{f.input
+          name="defaultAnswer"
+          label=(t "caluma.form-builder.question.defaultValue")
+          renderComponent=(component "cfb-form-editor/question/default")
+        }}
+      {{/if}}
+
       {{#if (has-question-type f.model "text" "textarea")}}
         {{f.input
           type="number"

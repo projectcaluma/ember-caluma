@@ -31,8 +31,14 @@ export default class {
       if (typeof handler === "object" && handler.__isHandler) {
         return {
           ...handlers,
-          [handler.__handlerFor.replace(/\{type\}/, this.type)]: (...args) =>
-            handler.fn.apply(this, args),
+          // Mocks can have multiple handlers per type.
+          ...handler.__handlerFor.reduce((targets, target) => {
+            return {
+              ...targets,
+              [target.replace(/\{type\}/, this.type)]: (...args) =>
+                handler.fn.apply(this, args),
+            };
+          }, {}),
         };
       }
 

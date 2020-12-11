@@ -124,6 +124,7 @@ caluma:
       markdown: "Markdown"
       dataSource: "Data source"
       formatValidators: "Validation"
+      defaultValue: "Default value"
 
       general: "General"
       options: "Options"
