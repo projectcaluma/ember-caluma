@@ -1,0 +1,9 @@
+# import * from 'ember-caluma/gql/fragments/field-answer'
+
+mutation($input: SaveDefaultDateAnswerInput!) {
+  saveDefaultDateAnswer(input: $input) {
+    answer {
+      ...FieldAnswer
+    }
+  }
+}

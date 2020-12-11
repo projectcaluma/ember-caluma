@@ -23,7 +23,7 @@ import { decodeId } from "ember-caluma/helpers/decode-id";
 import Base from "ember-caluma/lib/base";
 import { getAST, getTransforms } from "ember-caluma/utils/jexl";
 
-const TYPE_MAP = {
+export const TYPE_MAP = {
   TextQuestion: "StringAnswer",
   TextareaQuestion: "StringAnswer",
   IntegerQuestion: "IntegerAnswer",

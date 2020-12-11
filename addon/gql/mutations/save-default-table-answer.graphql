@@ -1,0 +1,9 @@
+# import * from 'ember-caluma/gql/fragments/field-answer'
+
+mutation($input: SaveDefaultTableAnswerInput!) {
+  saveDefaultTableAnswer(input: $input) {
+    answer {
+      ...FieldAnswer
+    }
+  }
+}

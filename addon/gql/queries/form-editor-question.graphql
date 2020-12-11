@@ -1,4 +1,6 @@
 # import * from 'ember-caluma/gql/fragments/question-info'
+# import * from 'ember-caluma/gql/fragments/field-question'
+# import SimpleAnswer from 'ember-caluma/gql/fragments/field-answer'
 
 query FormEditorQuestion($slug: String!) {
   allQuestions(slug: $slug) {
@@ -9,21 +11,43 @@ query FormEditorQuestion($slug: String!) {
           integerMaxValue: maxValue
           integerMinValue: minValue
           placeholder
+          defaultAnswer {
+            id
+            integerValue: value
+          }
         }
         ... on FloatQuestion {
           floatMaxValue: maxValue
           floatMinValue: minValue
           placeholder
+          defaultAnswer {
+            id
+            floatValue: value
+          }
         }
         ... on TextQuestion {
           minLength
           maxLength
           placeholder
+          defaultAnswer {
+            id
+            stringValue: value
+          }
         }
         ... on TextareaQuestion {
           minLength
           maxLength
           placeholder
+          defaultAnswer {
+            id
+            stringValue: value
+          }
+        }
+        ... on DateQuestion {
+          defaultAnswer {
+            id
+            dateValue: value
+          }
         }
         ... on MultipleChoiceQuestion {
           options {
@@ -35,6 +59,10 @@ query FormEditorQuestion($slug: String!) {
               }
             }
           }
+          defaultAnswer {
+            id
+            listValue: value
+          }
         }
         ... on ChoiceQuestion {
           options {
@@ -45,6 +73,10 @@ query FormEditorQuestion($slug: String!) {
                 isArchived
               }
             }
+          }
+          defaultAnswer {
+            id
+            stringValue: value
           }
         }
         ... on DynamicMultipleChoiceQuestion {
@@ -61,6 +93,29 @@ query FormEditorQuestion($slug: String!) {
                 node {
                   slug
                   label
+                }
+              }
+            }
+          }
+          defaultAnswer {
+            id
+            tableValue: value {
+              id
+              form {
+                slug
+                questions {
+                  edges {
+                    node {
+                      ...FieldQuestion
+                    }
+                  }
+                }
+              }
+              answers {
+                edges {
+                  node {
+                    ...SimpleAnswer
+                  }
                 }
               }
             }
