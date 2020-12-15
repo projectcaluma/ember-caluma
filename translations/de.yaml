@@ -193,9 +193,13 @@ caluma:
           success: "Ihr Formular wurde erfolgreich erstellt!"
           error: "Hoppla, beim Erstellen des Formulars ist etwas schief gelaufen..."
 
-        reorder:
+        reorder-questions:
           success: "Ihre Fragen wurde erfolgreich sortiert!"
           error: "Hoppla, beim Sortieren der Fragen ist etwas schief gelaufen..."
+
+        reorder-options:
+          success: "Ihre Optionen wurde erfolgreich sortiert!"
+          error: "Hoppla, beim Sortieren der Optionen ist etwas schief gelaufen..."
 
         add-question:
           success: "Die Frage wurde erfolgreich zu Ihrem Formular hinzugefügt!"

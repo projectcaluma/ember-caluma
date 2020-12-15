@@ -1,14 +1,25 @@
 import { get } from "@ember/object";
 import { reads } from "@ember/object/computed";
+import { run } from "@ember/runloop";
 import { inject as service } from "@ember/service";
 import Changeset from "ember-changeset";
 import lookupValidator from "ember-changeset-validations";
+import { task } from "ember-concurrency";
 import RenderComponent from "ember-validated-form/components/validated-input/-themes/uikit/render";
+import UIkit from "uikit";
+import { v4 } from "uuid";
 
 import layout from "../../../templates/components/cfb-form-editor/question/options";
 
+import saveChoiceQuestionMutation from "ember-caluma/gql/mutations/save-choice-question";
+import saveMultipleChoiceQuestionMutation from "ember-caluma/gql/mutations/save-multiple-choice-question";
 import slugify from "ember-caluma/utils/slugify";
 import OptionValidations from "ember-caluma/validations/option";
+
+const TYPES = {
+  MultipleChoiceQuestion: saveMultipleChoiceQuestionMutation,
+  ChoiceQuestion: saveChoiceQuestionMutation,
+};
 
 const removeQuestionPrefix = (slug, questionSlug) => {
   return slug.replace(new RegExp(`^${questionSlug}-`), "");
@@ -22,6 +33,8 @@ export default RenderComponent.extend({
   layout,
 
   intl: service(),
+  notification: service(),
+  apollo: service(),
 
   questionSlug: reads("model.slug"),
 
@@ -56,6 +69,11 @@ export default RenderComponent.extend({
     );
   },
 
+  didInsertElement(...args) {
+    this._super(...args);
+    this.setupUIkit();
+  },
+
   _update() {
     this.update({
       edges: this.optionRows
@@ -82,6 +100,52 @@ export default RenderComponent.extend({
 
     this.setDirty();
   },
+
+  setupUIkit() {
+    UIkit.util.on("#option-list", "moved", (...args) =>
+      run(this, this._handleMoved, ...args)
+    );
+  },
+
+  _handleMoved({ detail: [sortable] }) {
+    const options = [...sortable.$el.children];
+
+    this.reorderQuestions.perform(
+      options.map((option) =>
+        addQuestionPrefix(option.firstElementChild.id, this.questionSlug)
+      )
+    );
+  },
+
+  reorderQuestions: task(function* (slugs) {
+    try {
+      slugs.pop();
+
+      yield this.apollo.mutate({
+        mutation: TYPES[this.model.__typename],
+        variables: {
+          input: {
+            slug: this.questionSlug,
+            label: this.model.label,
+            options: slugs,
+            clientMutationId: v4(),
+          },
+        },
+      });
+
+      this.notification.success(
+        this.intl.t(
+          "caluma.form-builder.notification.form.reorder-options.success"
+        )
+      );
+    } catch (e) {
+      this.notification.danger(
+        this.intl.t(
+          "caluma.form-builder.notification.form.reorder-options.error"
+        )
+      );
+    }
+  }),
 
   actions: {
     addRow() {

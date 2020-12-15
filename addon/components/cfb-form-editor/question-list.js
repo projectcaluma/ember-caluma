@@ -115,11 +115,15 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
       });
 
       this.notification.success(
-        this.intl.t("caluma.form-builder.notification.form.reorder.success")
+        this.intl.t(
+          "caluma.form-builder.notification.form.reorder-questions.success"
+        )
       );
     } catch (e) {
       this.notification.danger(
-        this.intl.t("caluma.form-builder.notification.form.reorder.error")
+        this.intl.t(
+          "caluma.form-builder.notification.form.reorder-questions.error"
+        )
       );
     }
   }

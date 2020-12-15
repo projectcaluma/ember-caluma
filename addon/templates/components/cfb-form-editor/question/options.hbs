@@ -1,13 +1,21 @@
 {{component labelComponent}}
 
-<ul class="uk-list uk-list-divider uk-margin-remove-bottom uk-margin-small-top">
+<ul class="uk-list uk-list-divider uk-margin-remove-bottom uk-margin-small-top" id="option-list" uk-sortable="handle: .uk-sortable-handle;">
   {{#each optionRows as |row i|}}
     {{#validated-form
       data-test-row=(concat "option-" (add i 1))
       tagName="li"
       model=row
     as |f|}}
-      <div uk-grid class="uk-grid-small uk-flex">
+      <div uk-grid class="uk-grid-small uk-flex uk-flex-middle" id={{row.slug}}>
+        {{#if (not (and row.isNew (gt optionRows.length 1)))}}
+          <span
+            data-test-sort-handle
+            uk-icon="menu"
+            class="uk-sortable-handle"
+            role="button"
+          ></span>
+        {{/if}}
         <div class="uk-width-auto">
           {{#if (and row.isNew (gt optionRows.length 1))}}
             <button
