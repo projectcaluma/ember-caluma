@@ -190,9 +190,13 @@ caluma:
           success: "Your form was successfully created!"
           error: "Ooops, something went wrong while creating the form..."
 
-        reorder:
+        reorder-questions:
           success: "Your questions were successfully reordered!"
           error: "Ooops, something went wrong while reordering the questions..."
+
+        reorder-options:
+          success: "Your options were successfully reordered!"
+          error: "Ooops, something went wrong while reordering the options..."
 
         add-question:
           success: "The question was successfully added to your form!"
