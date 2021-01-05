@@ -126,7 +126,7 @@
     "typeface-oxygen-mono": "1.1.13"
   },
   "//":{
-    "focus-trap": "Focus trap now an error if there is no tabbable element on initialization. This breaks the modal dialogs as they are hidden on initialization."
+    "focus-trap": "Focus trap now throws an error if there is no tabbable element on initialization. This breaks the modal dialogs as they are hidden on initialization."
   },
   "resolutions": {
     "focus-trap": "6.2.1"
