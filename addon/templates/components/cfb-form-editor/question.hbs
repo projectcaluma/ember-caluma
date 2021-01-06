@@ -98,7 +98,7 @@
         />
       {{/if}}
 
-      {{#if (eq f.model.__typename "StaticQuestion")}}
+      {{#if (has-question-type f.model "static")}}
         {{f.input
           type="textarea"
           label=(t "caluma.form-builder.question.staticContent")
@@ -122,27 +122,26 @@
         <a target="_blank" rel="noopener noreferrer" href="https://www.markdownguide.org/basic-syntax">{{t "caluma.form-builder.question.markdown"}}</a>
       </small>
 
-      {{#if (includes f.model.__typename (array "TextQuestion" "TextareaQuestion" "IntegerQuestion" "FloatQuestion"))}}
+      {{#if (has-question-type f.model "text" "textarea" "integer" "float")}}
         {{f.input
           name="placeholder"
           label=(t "caluma.form-builder.question.placeholder")
         }}
       {{/if}}
 
-      {{#if (includes f.model.__typename (array "TextQuestion" "TextareaQuestion"))}}
+      {{#if (has-question-type f.model "text" "textarea")}}
         {{f.input
           type="number"
           name="minLength"
           label=(t "caluma.form-builder.question.min-length")
         }}
+
         {{f.input
           type="number"
           name="maxLength"
           label=(t "caluma.form-builder.question.max-length")
         }}
-      {{/if}}
 
-      {{#if (includes f.model.__typename (array "TextQuestion" "TextareaQuestion"))}}
         {{f.input
           name="meta.formatValidators"
           label=(t "caluma.form-builder.question.formatValidators")
@@ -154,7 +153,7 @@
         }}
       {{/if}}
 
-      {{#if (eq f.model.__typename "FloatQuestion")}}
+      {{#if (has-question-type f.model "float")}}
         <div uk-grid class="uk-grid-small uk-child-width-1-2 uk-margin">
           <div>
             {{f.input
@@ -174,7 +173,7 @@
         </div>
       {{/if}}
 
-      {{#if (eq f.model.__typename "IntegerQuestion")}}
+      {{#if (has-question-type f.model "integer")}}
         <div uk-grid class="uk-grid-small uk-child-width-1-2 uk-margin">
           <div>
             {{f.input
@@ -194,7 +193,7 @@
         </div>
       {{/if}}
 
-      {{#if (includes f.model.__typename (array "MultipleChoiceQuestion" "ChoiceQuestion"))}}
+      {{#if (has-question-type f.model "choice" "multiple-choice")}}
         {{f.input
           name="options"
           label=(t "caluma.form-builder.question.options")
@@ -203,7 +202,7 @@
         }}
       {{/if}}
 
-      {{#if (includes f.model.__typename (array "DynamicMultipleChoiceQuestion" "DynamicChoiceQuestion"))}}
+      {{#if (has-question-type f.model "dynamic-choice" "dynamic-multiple-choice")}}
         {{f.input
           name="dataSource"
           type="select"
@@ -218,7 +217,7 @@
         }}
       {{/if}}
 
-      {{#if (includes f.model.__typename (array "DynamicMultipleChoiceQuestion" "DynamicChoiceQuestion" "MultipleChoiceQuestion" "ChoiceQuestion"))}}
+      {{#if (has-question-type f.model "choice" "multiple-choice" "dynamic-choice" "dynamic-multiple-choice")}}
         <div data-test-hide-label>
           {{f.input
             name="meta.hideLabel"
@@ -232,7 +231,7 @@
         </div>
       {{/if}}
 
-      {{#if (eq f.model.__typename "TableQuestion")}}
+      {{#if (has-question-type f.model "table")}}
         {{f.input
           name="rowForm.slug"
           type="select"
@@ -261,7 +260,7 @@
         {{/f.input}}
       {{/if}}
 
-      {{#if (eq f.model.__typename "FormQuestion")}}
+      {{#if (has-question-type f.model "form")}}
         {{f.input
           name="subForm.slug"
           type="select"
