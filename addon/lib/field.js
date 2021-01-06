@@ -226,7 +226,11 @@ export default Base.extend({
    * @property {Boolean} isDirty
    * @accessor
    */
-  isDirty: computed("isNew", "isDefault", function () {
+  isDirty: computed("question.isCalculated", "isNew", "isDefault", function () {
+    if (this.question.isCalculated) {
+      return false;
+    }
+
     return !this.isNew && !this.isDefault;
   }),
 
@@ -252,7 +256,48 @@ export default Base.extend({
    * @property {*} value
    * @accessor
    */
-  value: reads("answer.value"),
+  value: computed(
+    "question.isCalculated",
+    "calculatedValue",
+    "answer.value",
+    function () {
+      if (this.question.isCalculated) {
+        return this.calculatedValue;
+      }
+
+      return this.answer.value;
+    }
+  ),
+
+  /**
+   * The computed value of a caluclated question
+   *
+   * @property {*} calculatedValue
+   * @accessor
+   */
+  calculatedValue: computed(
+    "document.jexl",
+    "calculatedDependencies.@each.{hidden,value}",
+    "jexlContext",
+    "question.{isCalculated,calcExpression}",
+    function () {
+      if (
+        !this.question.isCalculated ||
+        !this.calculatedDependencies.every((field) => !field.hidden)
+      ) {
+        return null;
+      }
+
+      try {
+        return this.document.jexl.evalSync(
+          this.question.calcExpression,
+          this.jexlContext
+        );
+      } catch (error) {
+        return null;
+      }
+    }
+  ),
 
   /**
    * Fetch all formerly used dynamic options for this question. This will be
@@ -408,6 +453,39 @@ export default Base.extend({
   ),
 
   /**
+   * Fields that are referenced in the `calcExpression` JEXL expression
+   *
+   * If the value or hidden state of any of these fields change, the JEXL
+   * expression needs to be re-evaluated.
+   *
+   * @property {Field[]} calculatedDependencies
+   * @accessor
+   */
+  calculatedDependencies: computed(
+    "document.{jexl,fields.[]}",
+    "question.{isCalculated,calcExpression}",
+    function () {
+      if (!this.question.isCalculated) {
+        return [];
+      }
+
+      return getDependenciesFromJexl(
+        this.document.jexl,
+        this.question.calcExpression
+      ).map((slug) => {
+        const f = this.document.findField(slug);
+
+        assert(
+          `Field for question \`${slug}\` was not found in this document. Please check the \`calcExpression\` jexl expression: \`${this.question.calcExpression}\`.`,
+          f
+        );
+
+        return f;
+      });
+    }
+  ),
+
+  /**
    * Fields that are referenced in the `isHidden` JEXL expression
    *
    * If the value or hidden state of any of these fields change, the JEXL
@@ -525,6 +603,10 @@ export default Base.extend({
    * @return {Object} The response from the server
    */
   save: task(function* () {
+    if (this.question.isCalculated) {
+      return;
+    }
+
     const type = this.get("answer.__typename");
 
     const response = yield this.apollo.mutate(

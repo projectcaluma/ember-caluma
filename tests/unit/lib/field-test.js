@@ -437,4 +437,32 @@ module("Unit | Library | field", function (hooks) {
       't:caluma.form.validation.table:("value":null)',
     ]);
   });
+
+  module("calculated", function (hooks) {
+    hooks.beforeEach(function () {
+      this.calculated = this.document.findField("calculated");
+      this.float = this.document.findField("float");
+    });
+
+    test("calculates the correct value", async function (assert) {
+      assert.expect(1);
+
+      // 1.1 + 5 * 100 = 501.1
+      assert.equal(this.calculated.value, 501.1);
+    });
+
+    test("recalculates when a dependent value changes", async function (assert) {
+      assert.expect(1);
+
+      this.set("float.value", 2);
+      assert.equal(this.calculated.value, 502);
+    });
+
+    test("recalculates when a dependent hidden state changes", async function (assert) {
+      assert.expect(1);
+
+      this.set("float.question.isHidden", "true");
+      assert.equal(this.calculated.value, null);
+    });
+  });
 });

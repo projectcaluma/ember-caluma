@@ -46,6 +46,8 @@ module("Unit | Library | document", function (hooks) {
       ["question-1", false],
       ["question-2", true],
       ["question-3", true],
+      ["float", false],
+      ["calculated", false],
       ["table", false],
       ["multiple-choice", false],
     ]);
@@ -61,6 +63,8 @@ module("Unit | Library | document", function (hooks) {
       ["question-1", false],
       ["question-2", false],
       ["question-3", true],
+      ["float", false],
+      ["calculated", false],
       ["table", false],
       ["multiple-choice", false],
     ]);
@@ -74,6 +78,8 @@ module("Unit | Library | document", function (hooks) {
       ["question-1", false],
       ["question-2", false],
       ["question-3", false],
+      ["float", false],
+      ["calculated", false],
       ["table", false],
       ["multiple-choice", false],
     ]);
@@ -84,6 +90,8 @@ module("Unit | Library | document", function (hooks) {
       ["question-1", false],
       ["question-2", true],
       ["question-3", true],
+      ["float", false],
+      ["calculated", false],
       ["table", false],
       ["multiple-choice", false],
     ]);

@@ -77,9 +77,7 @@ module("Integration | Component | cf-field/input", function (hooks) {
           question=(hash
             __typename="FloatQuestion"
           )
-          answer=(hash
-            value=0.55
-          )
+          value=0.55
         )
       }}
     `);

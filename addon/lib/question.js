@@ -97,6 +97,7 @@ export default Base.extend({
   }),
 
   isTable: equal("__typename", "TableQuestion"),
+  isCalculated: equal("__typename", "CalculatedFloatQuestion"),
 
   /**
    * All valid options for this question
