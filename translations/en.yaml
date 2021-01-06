@@ -136,6 +136,7 @@ caluma:
       subForm: "Form to use for entries"
       choose: "-- please choose --"
       columnsToDisplay: "Select columns to be shown"
+      calcExpression: "Calculation formula"
 
       new: "New question"
 
@@ -163,8 +164,9 @@ caluma:
         FileQuestion: "File"
         StaticQuestion: "Non-interactive content"
         DateQuestion: "Date"
-        DynamicMultipleChoiceQuestion: "Dynamic Choices"
-        DynamicChoiceQuestion: "Dynamic Choice"
+        DynamicMultipleChoiceQuestion: "Dynamic choices"
+        DynamicChoiceQuestion: "Dynamic choice"
+        CalculatedFloatQuestion: "Calculation (float)"
 
       widgetOverrides:
         powerselect: "Power Select"

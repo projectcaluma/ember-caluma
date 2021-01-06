@@ -1,0 +1,15 @@
+# import * from 'ember-caluma/gql/fragments/question-info'
+
+mutation SaveCalculatedFloatQuestion(
+  $input: SaveCalculatedFloatQuestionInput!
+) {
+  saveCalculatedFloatQuestion(input: $input) {
+    question {
+      ...QuestionInfo
+      ... on CalculatedFloatQuestion {
+        calcExpression
+      }
+    }
+    clientMutationId
+  }
+}
