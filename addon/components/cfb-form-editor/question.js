@@ -15,6 +15,7 @@ import { v4 } from "uuid";
 import layout from "../../templates/components/cfb-form-editor/question";
 
 import addFormQuestionMutation from "ember-caluma/gql/mutations/add-form-question";
+import saveCalculatedFloatQuestionMutation from "ember-caluma/gql/mutations/save-calculated-float-question";
 import saveChoiceQuestionMutation from "ember-caluma/gql/mutations/save-choice-question";
 import saveDateQuestionMutation from "ember-caluma/gql/mutations/save-date-question";
 import saveDynamicChoiceQuestionMutation from "ember-caluma/gql/mutations/save-dynamic-choice-question";
@@ -50,6 +51,7 @@ export const TYPES = {
   FileQuestion: saveFileQuestionMutation,
   StaticQuestion: saveStaticQuestionMutation,
   DateQuestion: saveDateQuestionMutation,
+  CalculatedFloatQuestion: saveCalculatedFloatQuestionMutation,
 };
 
 export default Component.extend({
@@ -87,6 +89,7 @@ export default Component.extend({
             description: "",
             isRequired: "false",
             isHidden: "false",
+            calcExpression: "",
             integerMinValue: null,
             integerMaxValue: null,
             floatMinValue: null,
@@ -177,13 +180,32 @@ export default Component.extend({
 
     return (
       (isRequired === "true" || isRequired === "false") &&
-      typename !== "StaticQuestion"
+      !["StaticQuestion", "CalculatedFloatQuestion"].includes(typename)
     );
   }),
 
+  _getBaseInput(changeset) {
+    const slug = ((!this.slug && this.prefix) || "") + changeset.get("slug");
+
+    const input = {
+      slug,
+      label: changeset.get("label"),
+      isHidden: changeset.get("isHidden"),
+      infoText: changeset.get("infoText"),
+      meta: JSON.stringify(changeset.get("meta").unwrap()),
+      isArchived: changeset.get("isArchived"),
+      clientMutationId: v4(),
+    };
+
+    if (this.requiredIsVisible) {
+      input.isRequired = changeset.get("isRequired");
+    }
+
+    return input;
+  },
+
   _getIntegerQuestionInput(changeset) {
     return {
-      isRequired: changeset.get("isRequired"),
       minValue: parseInt(changeset.get("integerMinValue")),
       maxValue: parseInt(changeset.get("integerMaxValue")),
       placeholder: changeset.get("placeholder"),
@@ -192,7 +214,6 @@ export default Component.extend({
 
   _getFloatQuestionInput(changeset) {
     return {
-      isRequired: changeset.get("isRequired"),
       minValue: parseFloat(changeset.get("floatMinValue")),
       maxValue: parseFloat(changeset.get("floatMaxValue")),
       placeholder: changeset.get("placeholder"),
@@ -201,7 +222,6 @@ export default Component.extend({
 
   _getTextQuestionInput(changeset) {
     return {
-      isRequired: changeset.get("isRequired"),
       minLength: parseInt(changeset.get("minLength")),
       maxLength: parseInt(changeset.get("maxLength")),
       placeholder: changeset.get("placeholder"),
@@ -210,7 +230,6 @@ export default Component.extend({
 
   _getTextareaQuestionInput(changeset) {
     return {
-      isRequired: changeset.get("isRequired"),
       minLength: parseInt(changeset.get("minLength")),
       maxLength: parseInt(changeset.get("maxLength")),
       placeholder: changeset.get("placeholder"),
@@ -219,49 +238,37 @@ export default Component.extend({
 
   _getMultipleChoiceQuestionInput(changeset) {
     return {
-      isRequired: changeset.get("isRequired"),
       options: changeset.get("options.edges").map(({ node: { slug } }) => slug),
     };
   },
 
   _getChoiceQuestionInput(changeset) {
     return {
-      isRequired: changeset.get("isRequired"),
       options: changeset.get("options.edges").map(({ node: { slug } }) => slug),
     };
   },
 
   _getDynamicMultipleChoiceQuestionInput(changeset) {
     return {
-      isRequired: changeset.get("isRequired"),
       dataSource: changeset.get("dataSource"),
     };
   },
 
   _getDynamicChoiceQuestionInput(changeset) {
     return {
-      isRequired: changeset.get("isRequired"),
       dataSource: changeset.get("dataSource"),
     };
   },
 
   _getTableQuestionInput(changeset) {
     return {
-      isRequired: changeset.get("isRequired"),
       rowForm: changeset.get("rowForm.slug"),
     };
   },
 
   _getFormQuestionInput(changeset) {
     return {
-      isRequired: changeset.get("isRequired"),
       subForm: changeset.get("subForm.slug"),
-    };
-  },
-
-  _getFileQuestionInput(changeset) {
-    return {
-      isRequired: changeset.get("isRequired"),
     };
   },
 
@@ -271,9 +278,9 @@ export default Component.extend({
     };
   },
 
-  _getDateQuestionInput(changeset) {
+  _getCalculatedFloatQuestionInput(changeset) {
     return {
-      isRequired: changeset.get("isRequired"),
+      calcExpression: changeset.get("calcExpression"),
     };
   },
 
@@ -292,26 +299,18 @@ export default Component.extend({
 
   submit: task(function* (changeset) {
     try {
-      const slug = ((!this.slug && this.prefix) || "") + changeset.get("slug");
-
       yield this.saveOptions.perform(changeset);
 
       const question = yield this.apollo.mutate(
         {
           mutation: TYPES[changeset.get("__typename")],
           variables: {
-            input: Object.assign(
-              {
-                label: changeset.get("label"),
-                slug,
-                isHidden: changeset.get("isHidden"),
-                infoText: changeset.get("infoText"),
-                meta: JSON.stringify(changeset.get("meta").unwrap()),
-                isArchived: changeset.get("isArchived"),
-                clientMutationId: v4(),
-              },
-              this[`_get${changeset.get("__typename")}Input`](changeset)
-            ),
+            input: {
+              ...this._getBaseInput(changeset),
+              ...(
+                this[`_get${changeset.get("__typename")}Input`] || (() => ({}))
+              )(changeset),
+            },
           },
         },
         `save${changeset.get("__typename")}.question`

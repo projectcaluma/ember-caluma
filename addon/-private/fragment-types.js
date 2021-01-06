@@ -27,7 +27,7 @@ export default {
             name: "DynamicOption",
           },
           {
-            name: "StaticQuestion",
+            name: "CalculatedFloatQuestion",
           },
           {
             name: "Option",
@@ -87,6 +87,9 @@ export default {
             name: "FileQuestion",
           },
           {
+            name: "StaticQuestion",
+          },
+          {
             name: "FileAnswer",
           },
           {
@@ -123,7 +126,7 @@ export default {
         name: "Question",
         possibleTypes: [
           {
-            name: "StaticQuestion",
+            name: "CalculatedFloatQuestion",
           },
           {
             name: "TextQuestion",
@@ -160,6 +163,9 @@ export default {
           },
           {
             name: "FileQuestion",
+          },
+          {
+            name: "StaticQuestion",
           },
         ],
       },

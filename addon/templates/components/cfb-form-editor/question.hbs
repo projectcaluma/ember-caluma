@@ -76,7 +76,7 @@
           {{/if}}
         </div>
 
-        {{#if requiredIsVisible}}
+        {{#if this.requiredIsVisible}}
           <div class="uk-width-auto uk-flex">
             {{f.input
               name="isRequired"
@@ -88,6 +88,15 @@
           </div>
         {{/if}}
       </div>
+
+      {{#if (has-question-type f.model "calculated-float")}}
+        <f.input
+          @type="textarea"
+          @label={{t "caluma.form-builder.question.calcExpression"}}
+          @name="calcExpression"
+          class="uk-margin-remove-bottom"
+        />
+      {{/if}}
 
       {{#if (eq f.model.__typename "StaticQuestion")}}
         {{f.input
@@ -301,12 +310,14 @@
           class="jexl-textarea"
         }}
 
-        {{f.input
-          type="textarea"
-          label=(t "caluma.form-builder.question.isRequired")
-          name="isRequired"
-          class="jexl-textarea"
-        }}
+        {{#if this.requiredIsVisible}}
+          <f.input
+            @type="textarea"
+            @label={{t "caluma.form-builder.question.isRequired"}}
+            @name="isRequired"
+            class="jexl-textarea"
+          />
+        {{/if}}
       {{/if}}
 
       <div class="uk-text-right">

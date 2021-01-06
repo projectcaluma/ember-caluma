@@ -74,6 +74,9 @@ query FormEditorQuestion($slug: String!) {
         ... on StaticQuestion {
           staticContent
         }
+        ... on CalculatedFloatQuestion {
+          calcExpression
+        }
       }
     }
   }

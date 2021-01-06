@@ -136,6 +136,7 @@ caluma:
       subForm: "Formular für Einträge"
       choose: "-- bitte wählen --"
       columnsToDisplay: "Spalten zur Anzeige auswählen"
+      calcExpression: "Berechnungsformel"
 
       new: "Neue Frage"
 
@@ -165,6 +166,7 @@ caluma:
         DateQuestion: "Datum"
         DynamicMultipleChoiceQuestion: "Dynamische Mehrfachauswahl"
         DynamicChoiceQuestion: "Dynamische Einzelauswahl"
+        CalculatedFloatQuestion: "Berechnung (Gleitkommazahl)"
 
       widgetOverrides:
         powerselect: "Power Select"
