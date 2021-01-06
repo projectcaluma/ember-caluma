@@ -71,6 +71,9 @@ fragment SimpleQuestion on Question {
   ... on StaticQuestion {
     staticContent
   }
+  ... on CalculatedFloatQuestion {
+    calcExpression
+  }
 }
 
 fragment FieldTableQuestion on Question {

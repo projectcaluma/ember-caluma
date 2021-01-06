@@ -1,10 +1,11 @@
-import Component from "@ember/component";
+import Component from "@glimmer/component";
 
-import layout from "../../templates/components/cf-field/label";
+export default class CfFieldLabelComponent extends Component {
+  get optional() {
+    if (this.args.field.question.isCalculated) {
+      return false;
+    }
 
-export default Component.extend({
-  layout,
-  tagName: "label",
-  classNames: ["uk-form-label"],
-  attributeBindings: ["field.pk:for"],
-});
+    return this.args.field.optional;
+  }
+}

@@ -40,6 +40,25 @@ const form = {
       },
       {
         node: {
+          slug: "float",
+          label: "Float question",
+          isRequired: "false",
+          isHidden: "false",
+          __typename: "FloatQuestion",
+        },
+      },
+      {
+        node: {
+          slug: "calculated",
+          label: "Calculated question",
+          isRequired: "false",
+          isHidden: "false",
+          calcExpression: "'float'|answer + 5 * 100",
+          __typename: "CalculatedFloatQuestion",
+        },
+      },
+      {
+        node: {
           slug: "table",
           label: "Table",
           isRequired: "false",
@@ -101,6 +120,14 @@ const answers = {
         },
         stringValue: "test answer 2",
         __typename: "StringAnswer",
+      },
+    },
+    {
+      node: {
+        id: id("FloatAnswer"),
+        question: { slug: "float" },
+        floatValue: 1.1,
+        __typename: "FloatAnswer",
       },
     },
     {

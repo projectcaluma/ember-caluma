@@ -1,37 +1,26 @@
-import Component from "@ember/component";
+import { action } from "@ember/object";
+import Component from "@glimmer/component";
 
-/**
- * Input component for the float question type
- *
- * @class CfFieldInputFloatComponent
- * @argument {Field} field The field for this input type
- */
-export default Component.extend({
-  tagName: "input",
-  classNames: ["uk-input"],
-  classNameBindings: ["field.isInvalid:uk-form-danger", "disabled:uk-disabled"],
-  attributeBindings: [
-    "type",
-    "step",
-    "disabled:readonly",
-    "field.pk:name",
-    "field.pk:id",
-    "field.answer.value:value",
-    "field.question.floatMinValue:min",
-    "field.question.floatMaxValue:max",
-  ],
-  type: "number",
-  step: 0.001,
+export default class CfFieldInputFloatComponent extends Component {
+  get isDisabled() {
+    return this.args.disabled || this.args.field.question.isCalculated;
+  }
 
   /**
    * Trigger save on input
    *
-   * @event input
+   * @method onInput
    * @param {Event} e The input event
    * @param {Object} e.target The target of the event
    * @param {String} e.target.value The current value of the field
    */
-  input({ target: { value } }) {
-    this.onSave(value === "" || isNaN(value) ? null : parseFloat(value));
-  },
-});
+  @action onInput({ target: { value } }) {
+    if (this.isDisabled) {
+      return;
+    }
+
+    const parsedValue = parseFloat(value);
+
+    this.args.onSave(!isNaN(parsedValue) ? parsedValue : null);
+  }
+}

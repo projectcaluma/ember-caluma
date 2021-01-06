@@ -8,8 +8,20 @@ module("Integration | Component | cf-field/input/float", function (hooks) {
   setupRenderingTest(hooks);
   setupIntl(hooks);
 
+  hooks.beforeEach(function () {
+    this.set("field", {
+      pk: "test-id",
+      value: 1.045,
+      question: {
+        isCalculated: false,
+        floatMinValue: 0.4,
+        floatMaxValue: 1.4,
+      },
+    });
+  });
+
   test("it computes the proper element id", async function (assert) {
-    await render(hbs`{{cf-field/input/float field=(hash pk="test-id")}}`);
+    await render(hbs`<CfField::input::float @field={{this.field}} />`);
 
     assert.dom("#test-id").exists();
   });
@@ -17,23 +29,10 @@ module("Integration | Component | cf-field/input/float", function (hooks) {
   test("it renders", async function (assert) {
     assert.expect(7);
 
-    await render(hbs`
-      {{cf-field/input/float
-        field=(hash
-          pk="test"
-          answer=(hash
-            value=1.045
-          )
-          question=(hash
-            floatMinValue=0.4
-            floatMaxValue=1.4
-          )
-        )
-      }}
-    `);
+    await render(hbs`<CfField::input::float @field={{this.field}} />`);
 
     assert.dom("input").hasClass("uk-input");
-    assert.dom("input").hasAttribute("name", "test");
+    assert.dom("input").hasAttribute("name", "test-id");
     assert.dom("input").hasAttribute("type", "number");
     assert.dom("input").hasAttribute("step", "0.001");
     assert.dom("input").hasAttribute("min", "0.4");
@@ -44,7 +43,12 @@ module("Integration | Component | cf-field/input/float", function (hooks) {
   test("it can be disabled", async function (assert) {
     assert.expect(2);
 
-    await render(hbs`{{cf-field/input/float disabled=true}}`);
+    await render(
+      hbs`<CfField::input::float
+        @field={{this.field}}
+        @disabled={{true}}
+      />`
+    );
 
     assert.dom("input").hasAttribute("readonly");
     assert.dom("input").hasClass("uk-disabled");
@@ -55,7 +59,12 @@ module("Integration | Component | cf-field/input/float", function (hooks) {
 
     this.set("save", (value) => assert.equal(value, 1.5));
 
-    await render(hbs`{{cf-field/input/float onSave=save}}`);
+    await render(
+      hbs`<CfField::input::float
+        @field={{this.field}}
+        @onSave={{this.save}}
+      />`
+    );
 
     await fillIn("input", 1.5);
   });
@@ -65,7 +74,12 @@ module("Integration | Component | cf-field/input/float", function (hooks) {
 
     this.set("save", (value) => assert.equal(value, null));
 
-    await render(hbs`{{cf-field/input/float onSave=save}}`);
+    await render(
+      hbs`<CfField::input::float
+        @field={{this.field}}
+        @onSave={{this.save}}
+      />`
+    );
 
     await fillIn("input", "Test");
   });

@@ -8,6 +8,7 @@ const mapping = {
   ChoiceQuestion: "radio",
   DynamicMultipleChoiceQuestion: "checkbox",
   DynamicChoiceQuestion: "radio",
+  CalculatedFloatQuestion: "float",
 };
 
 /**
