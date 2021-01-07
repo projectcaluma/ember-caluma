@@ -10,7 +10,6 @@ import lookupValidator from "ember-changeset-validations";
 import { optional } from "ember-composable-helpers/helpers/optional";
 import { task, timeout } from "ember-concurrency";
 import { all } from "rsvp";
-import { v4 } from "uuid";
 
 import layout from "../../templates/components/cfb-form-editor/question";
 
@@ -184,7 +183,7 @@ export default Component.extend({
     );
   }),
 
-  _getBaseInput(changeset) {
+  getInput(changeset) {
     const slug = ((!this.slug && this.prefix) || "") + changeset.get("slug");
 
     const input = {
@@ -194,11 +193,17 @@ export default Component.extend({
       infoText: changeset.get("infoText"),
       meta: JSON.stringify(changeset.get("meta").unwrap()),
       isArchived: changeset.get("isArchived"),
-      clientMutationId: v4(),
     };
 
     if (this.requiredIsVisible) {
-      input.isRequired = changeset.get("isRequired");
+      Object.assign(input, {
+        isRequired: changeset.get("isRequired"),
+      });
+    }
+
+    const typeSpecificInputKey = `_get${changeset.get("__typename")}Input`;
+    if (typeof this[typeSpecificInputKey] === "function") {
+      Object.assign(input, this[typeSpecificInputKey](changeset));
     }
 
     return input;
@@ -301,19 +306,14 @@ export default Component.extend({
     try {
       yield this.saveOptions.perform(changeset);
 
+      const typename = changeset.get("__typename");
+      const input = this.getInput(changeset);
       const question = yield this.apollo.mutate(
         {
-          mutation: TYPES[changeset.get("__typename")],
-          variables: {
-            input: {
-              ...this._getBaseInput(changeset),
-              ...(
-                this[`_get${changeset.get("__typename")}Input`] || (() => ({}))
-              )(changeset),
-            },
-          },
+          mutation: TYPES[typename],
+          variables: { input },
         },
-        `save${changeset.get("__typename")}.question`
+        `save${typename}.question`
       );
 
       if (!this.slug) {
@@ -324,7 +324,6 @@ export default Component.extend({
             input: {
               question: question.slug,
               form: this.form,
-              clientMutationId: v4(),
             },
             search: "",
           },
