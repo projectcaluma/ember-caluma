@@ -1,3 +1,12 @@
+# [6.7.0](https://github.com/projectcaluma/ember-caluma/compare/v6.6.1...v6.7.0) (2021-01-14)
+
+
+### Features
+
+* **cfb:** add input for default values ([48a6a7b](https://github.com/projectcaluma/ember-caluma/commit/48a6a7b4aee78e718e3b7dd8b580b659361a2cb4))
+* **form:** show calculated fields in form and compute their value live ([2f47be2](https://github.com/projectcaluma/ember-caluma/commit/2f47be22535cbaae7856c949efc6c5b2ba38663c))
+* **form-builder:** add calculated fields for the form builder ([dab9ee8](https://github.com/projectcaluma/ember-caluma/commit/dab9ee84708642bc054d2a98da15b5f9b14dd5d6))
+
 ## [6.6.1](https://github.com/projectcaluma/ember-caluma/compare/v6.6.0...v6.6.1) (2020-11-30)
 
 

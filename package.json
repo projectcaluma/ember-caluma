@@ -1,6 +1,6 @@
 {
   "name": "ember-caluma",
-  "version": "6.6.1",
+  "version": "6.7.0",
   "description": "The Ember.js addon for Caluma",
   "keywords": [
     "ember-addon",
@@ -125,7 +125,7 @@
     "typeface-oxygen": "1.1.13",
     "typeface-oxygen-mono": "1.1.13"
   },
-  "//":{
+  "//": {
     "focus-trap": "Focus trap now throws an error if there is no tabbable element on initialization. This breaks the modal dialogs as they are hidden on initialization."
   },
   "resolutions": {
