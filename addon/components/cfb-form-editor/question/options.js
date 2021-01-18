@@ -7,7 +7,6 @@ import lookupValidator from "ember-changeset-validations";
 import { task } from "ember-concurrency";
 import RenderComponent from "ember-validated-form/components/validated-input/-themes/uikit/render";
 import UIkit from "uikit";
-import { v4 } from "uuid";
 
 import layout from "../../../templates/components/cfb-form-editor/question/options";
 
@@ -109,6 +108,8 @@ export default RenderComponent.extend({
 
   _handleMoved({ detail: [sortable] }) {
     const options = [...sortable.$el.children];
+    // Remove last element as it is the add row button
+    options.pop();
 
     this.reorderQuestions.perform(
       options.map((option) =>
@@ -119,8 +120,6 @@ export default RenderComponent.extend({
 
   reorderQuestions: task(function* (slugs) {
     try {
-      slugs.pop();
-
       yield this.apollo.mutate({
         mutation: TYPES[this.model.__typename],
         variables: {
@@ -128,7 +127,6 @@ export default RenderComponent.extend({
             slug: this.questionSlug,
             label: this.model.label,
             options: slugs,
-            clientMutationId: v4(),
           },
         },
       });
