@@ -107,18 +107,17 @@ export default RenderComponent.extend({
   },
 
   _handleMoved({ detail: [sortable] }) {
-    const options = [...sortable.$el.children];
     // Remove last element as it is the add row button
-    options.pop();
+    const options = [...sortable.$el.children].slice(0, -1);
 
-    this.reorderQuestions.perform(
+    this.reorderOptions.perform(
       options.map((option) =>
         addQuestionPrefix(option.firstElementChild.id, this.questionSlug)
       )
     );
   },
 
-  reorderQuestions: task(function* (slugs) {
+  reorderOptions: task(function* (slugs) {
     try {
       yield this.apollo.mutate({
         mutation: TYPES[this.model.__typename],
