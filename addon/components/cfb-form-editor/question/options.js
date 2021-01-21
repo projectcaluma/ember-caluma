@@ -1,12 +1,11 @@
 import { get } from "@ember/object";
 import { reads } from "@ember/object/computed";
-import { run } from "@ember/runloop";
 import { inject as service } from "@ember/service";
+import { queryManager } from "ember-apollo-client";
 import Changeset from "ember-changeset";
 import lookupValidator from "ember-changeset-validations";
 import { task } from "ember-concurrency";
 import RenderComponent from "ember-validated-form/components/validated-input/-themes/uikit/render";
-import UIkit from "uikit";
 
 import layout from "../../../templates/components/cfb-form-editor/question/options";
 
@@ -33,7 +32,7 @@ export default RenderComponent.extend({
 
   intl: service(),
   notification: service(),
-  apollo: service(),
+  apollo: queryManager(),
 
   questionSlug: reads("model.slug"),
 
@@ -68,11 +67,6 @@ export default RenderComponent.extend({
     );
   },
 
-  didInsertElement(...args) {
-    this._super(...args);
-    this.setupUIkit();
-  },
-
   _update() {
     this.update({
       edges: this.optionRows
@@ -98,23 +92,6 @@ export default RenderComponent.extend({
     });
 
     this.setDirty();
-  },
-
-  setupUIkit() {
-    UIkit.util.on("#option-list", "moved", (...args) =>
-      run(this, this._handleMoved, ...args)
-    );
-  },
-
-  _handleMoved({ detail: [sortable] }) {
-    // Remove last element as it is the add row button
-    const options = [...sortable.$el.children].slice(0, -1);
-
-    this.reorderOptions.perform(
-      options.map((option) =>
-        addQuestionPrefix(option.firstElementChild.id, this.questionSlug)
-      )
-    );
   },
 
   reorderOptions: task(function* (slugs) {
@@ -191,6 +168,17 @@ export default RenderComponent.extend({
 
     update() {
       this._update();
+    },
+
+    _handleMoved({ detail: [sortable] }) {
+      // Remove last element as it is the add row button
+      const options = [...sortable.$el.children].slice(0, -1);
+
+      this.reorderOptions.perform(
+        options.map((option) =>
+          addQuestionPrefix(option.firstElementChild.id, this.questionSlug)
+        )
+      );
     },
   },
 });
