@@ -442,6 +442,9 @@ module("Unit | Library | field", function (hooks) {
     hooks.beforeEach(function () {
       this.calculated = this.document.findField("calculated");
       this.float = this.document.findField("float");
+      this.table = this.document
+        .findField("table")
+        .value[0].findField("table-form-question");
     });
 
     test("calculates the correct value", async function (assert) {
@@ -452,10 +455,13 @@ module("Unit | Library | field", function (hooks) {
     });
 
     test("recalculates when a dependent value changes", async function (assert) {
-      assert.expect(1);
+      assert.expect(2);
 
       this.set("float.value", 2);
       assert.equal(this.calculated.value, 502);
+
+      this.set("table.value", "test");
+      assert.equal(this.calculated.value, 100);
     });
 
     test("recalculates when a dependent hidden state changes", async function (assert) {

@@ -53,7 +53,8 @@ const form = {
           label: "Calculated question",
           isRequired: "false",
           isHidden: "false",
-          calcExpression: "'float'|answer + 5 * 100",
+          calcExpression:
+            "('test' in 'table'|answer|mapby('table-form-question')) ? 100 : 'float'|answer + 5 * 100",
           __typename: "CalculatedFloatQuestion",
         },
       },

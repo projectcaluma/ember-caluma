@@ -21,7 +21,10 @@ import saveDocumentTableAnswerMutation from "ember-caluma/gql/mutations/save-doc
 import getDocumentUsedDynamicOptionsQuery from "ember-caluma/gql/queries/get-document-used-dynamic-options";
 import { decodeId } from "ember-caluma/helpers/decode-id";
 import Base from "ember-caluma/lib/base";
-import { getAST, getTransforms } from "ember-caluma/utils/jexl";
+import {
+  nestedDependencyParents,
+  dependencies,
+} from "ember-caluma/lib/dependencies";
 
 export const TYPE_MAP = {
   TextQuestion: "StringAnswer",
@@ -45,16 +48,6 @@ const fieldIsHidden = (field) => {
     (field.question.__typename !== "TableQuestion" &&
       (field.answer.value === null || field.answer.value === undefined))
   );
-};
-
-const getDependenciesFromJexl = (jexl, expression) => {
-  return [
-    ...new Set(
-      getTransforms(getAST(jexl, expression))
-        .filter((transform) => transform.name === "answer")
-        .map((transform) => transform.args[0].value)
-    ),
-  ];
 };
 
 /**
@@ -461,29 +454,12 @@ export default Base.extend({
    * @property {Field[]} calculatedDependencies
    * @accessor
    */
-  calculatedDependencies: computed(
-    "document.{jexl,fields.[]}",
-    "question.{isCalculated,calcExpression}",
-    function () {
-      if (!this.question.isCalculated) {
-        return [];
-      }
-
-      return getDependenciesFromJexl(
-        this.document.jexl,
-        this.question.calcExpression
-      ).map((slug) => {
-        const f = this.document.findField(slug);
-
-        assert(
-          `Field for question \`${slug}\` was not found in this document. Please check the \`calcExpression\` jexl expression: \`${this.question.calcExpression}\`.`,
-          f
-        );
-
-        return f;
-      });
-    }
+  _calculatedNestedDependencyParents: nestedDependencyParents(
+    "question.calcExpression"
   ),
+  calculatedDependencies: dependencies("question.calcExpression", {
+    nestedParentsPath: "_calculatedNestedDependencyParents",
+  }),
 
   /**
    * Fields that are referenced in the `isHidden` JEXL expression
@@ -494,25 +470,10 @@ export default Base.extend({
    * @property {Field[]} hiddenDependencies
    * @accessor
    */
-  hiddenDependencies: computed(
-    "document.{jexl,fields.[]}",
-    "question.isHidden",
-    function () {
-      return getDependenciesFromJexl(
-        this.document.jexl,
-        this.question.isHidden
-      ).map((slug) => {
-        const f = this.document.findField(slug);
-
-        assert(
-          `Field for question \`${slug}\` was not found in this document. Please check the \`isHidden\` jexl expression: \`${this.question.isHidden}\`.`,
-          f
-        );
-
-        return f;
-      });
-    }
-  ),
+  _hiddenNestedDependencyParents: nestedDependencyParents("question.isHidden"),
+  hiddenDependencies: dependencies("question.isHidden", {
+    nestedParentsPath: "_hiddenNestedDependencyParents",
+  }),
 
   /**
    * Fields that are referenced in the `isRequired` JEXL expression
@@ -523,25 +484,12 @@ export default Base.extend({
    * @property {Field[]} optionalDependencies
    * @accessor
    */
-  optionalDependencies: computed(
-    "document.{jexl,fields.[]}",
-    "question.isRequired",
-    function () {
-      return getDependenciesFromJexl(
-        this.document.jexl,
-        this.question.isRequired
-      ).map((slug) => {
-        const f = this.document.findField(slug);
-
-        assert(
-          `Field for question \`${slug}\` was not found in this document. Please check the \`isRequired\` jexl expression: \`${this.question.isRequired}\`.`,
-          f
-        );
-
-        return f;
-      });
-    }
+  _optionalNestedDependencyParents: nestedDependencyParents(
+    "question.isRequired"
   ),
+  optionalDependencies: dependencies("question.isHidden", {
+    nestedParentsPath: "_optionalNestedDependencyParents",
+  }),
 
   /**
    * The field's hidden state
