@@ -7774,10 +7774,10 @@ ember-in-element-polyfill@^1.0.0:
   dependencies:
     ember-cli-babel "^6.6.0"
 
-ember-intl@^5.6.1:
-  version "5.6.1"
-  resolved "https://registry.yarnpkg.com/ember-intl/-/ember-intl-5.6.1.tgz#7e8110527ea155583fb393d388511e39786ed22d"
-  integrity sha512-ddVQmKg1gicD9MRDlbMlOJXK4TeGgvp0nXr6by43I0jFwcQh7f7UhlQ63eowAreC25nhhCaSfA4aF+47e+O1uw==
+ember-intl@^5.6.2:
+  version "5.6.2"
+  resolved "https://registry.yarnpkg.com/ember-intl/-/ember-intl-5.6.2.tgz#ece4820923dfda033c279b7e3920cbbc8b6bde07"
+  integrity sha512-+FfI2udVbnEzueompcRb3ytBWhfnBfVVjAwnCuxwqIyS9ti8lK0ZiYHa5bquNPHjjfBzfFl4x5TlVgDNaCnccg==
   dependencies:
     broccoli-caching-writer "^3.0.3"
     broccoli-funnel "^3.0.3"
