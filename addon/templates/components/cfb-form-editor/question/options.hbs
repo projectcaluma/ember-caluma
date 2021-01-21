@@ -1,6 +1,11 @@
 {{component labelComponent}}
 
-<ul class="uk-list uk-list-divider uk-margin-remove-bottom uk-margin-small-top" id="option-list" uk-sortable="handle: .uk-sortable-handle;">
+<UkSortable
+  @handle=".uk-sortable-handle"
+  @on-moved={{action "_handleMoved"}}
+  @tagName="ul"
+  class="uk-list uk-list-divider uk-margin-remove-bottom uk-margin-small-top"
+>
   {{#each this.optionRows as |row i|}}
     {{#validated-form
       data-test-row=(concat "option-" (add i 1))
@@ -69,7 +74,7 @@
     >
     </button>
   </li>
-</ul>
+</UkSortable>
 
 {{component hintComponent}}
 {{component errorComponent}}
