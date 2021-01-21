@@ -42,6 +42,14 @@ export default class CfbFormEditorQuestionDefault extends RenderComponent {
     return raw;
   }
 
+  // This @computed decorator is important. Otherwise, Ember will - under some
+  // circumstances - enter the getter method multiple times and throw an error.
+  @computed(
+    "model.{__typename,slug}",
+    "question",
+    "router.currentRoute.attributes.formSlug",
+    "value.content"
+  )
   get field() {
     return getOwner(this)
       .factoryFor("caluma-model:field")
