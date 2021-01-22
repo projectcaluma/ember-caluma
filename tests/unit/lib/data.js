@@ -4,6 +4,10 @@ const id = (type, identifier = v4()) => btoa(`${type}:${identifier}`);
 
 const form = {
   slug: "form",
+  meta: {
+    "is-top-form": true,
+    level: 0,
+  },
   questions: {
     edges: [
       {
@@ -141,6 +145,10 @@ const answers = {
             id: id("Document"),
             form: {
               slug: "table-form",
+              meta: {
+                "is-top-form": false,
+                level: 1,
+              },
               questions: {
                 edges: [
                   {

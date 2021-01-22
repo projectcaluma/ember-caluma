@@ -430,25 +430,38 @@ export default Base.extend({
    * Properties:
    * - `form`: Legacy property pointing to the root form.
    * - `info.form`: The form this question is attached to.
+   * - `info.formMeta`: The meta of the form this question is attached to.
    * - `info.parent.form`: The parent form if applicable.
+   * - `info.parent.formMeta`: The parent form meta if applicable.
    * - `info.root.form`: The new property for the root form.
+   * - `info.root.formMeta`: The new property for the root form meta.
    *
    * @property {Object} jexlContext
    * @accessor
    */
   jexlContext: computed(
-    "document.jexlContext.{form,info.root.form}",
-    "fieldset.{form.slug,field.fieldset.form.slug}",
-    "question.{isHidden,isRequired}",
+    "document.jexlContext",
+    "fieldset.{form.slug,form.meta,field.fieldset.form.slug,field.fieldset.form.meta}",
     function () {
       const context = cloneDeep(this.document.jexlContext);
-      context.info.form = this.get("fieldset.form.slug");
 
-      context.info.parent = this.get("fieldset.field.fieldset.form.slug")
-        ? { form: this.get("fieldset.field.fieldset.form.slug") }
-        : null;
+      const form = this.get("fieldset.form");
+      const parent = this.get("fieldset.field.fieldset.form");
 
-      return context;
+      return {
+        ...context,
+        info: {
+          ...context.info,
+          form: form.slug,
+          formMeta: form.meta,
+          parent: parent
+            ? {
+                form: parent.slug,
+                formMeta: parent.meta,
+              }
+            : null,
+        },
+      };
     }
   ),
 

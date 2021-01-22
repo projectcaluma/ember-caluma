@@ -23,6 +23,13 @@ module("Unit | Library | field", function (hooks) {
     );
 
     await settled();
+
+    this.addField = (raw) =>
+      this.owner.factoryFor("caluma-model:field").create({
+        raw,
+        fieldset: this.document.fieldsets[0],
+        document: this.document,
+      });
   });
 
   test("computes a pk", async function (assert) {
@@ -115,14 +122,26 @@ module("Unit | Library | field", function (hooks) {
   test("computes the correct Jexl context", async function (assert) {
     assert.expect(1);
 
-    const field = this.document.findField("question-1");
+    const field = this.document
+      .findField("table")
+      .value[0].findField("table-form-question");
 
     assert.deepEqual(field.jexlContext, {
       form: "form",
       info: {
-        form: "form",
+        form: "table-form",
+        formMeta: {
+          "is-top-form": false,
+          level: 1,
+        },
         parent: null,
-        root: { form: "form" },
+        root: {
+          form: "form",
+          formMeta: {
+            "is-top-form": true,
+            level: 0,
+          },
+        },
       },
     });
   });
@@ -164,19 +183,16 @@ module("Unit | Library | field", function (hooks) {
   test("it can validate required fields", async function (assert) {
     assert.expect(1);
 
-    const field = this.owner.factoryFor("caluma-model:field").create({
-      raw: {
-        question: {
-          __typename: "TextQuestion",
-          isHidden: "false",
-          isRequired: "true",
-        },
-        answer: {
-          stringValue: "",
-          __typename: "StringAnswer",
-        },
+    const field = this.addField({
+      question: {
+        __typename: "TextQuestion",
+        isHidden: "false",
+        isRequired: "true",
       },
-      document: this.document,
+      answer: {
+        stringValue: "",
+        __typename: "StringAnswer",
+      },
     });
 
     await field.validate.perform();
@@ -188,16 +204,13 @@ module("Unit | Library | field", function (hooks) {
   test("it ignores optional fields", async function (assert) {
     assert.expect(1);
 
-    const field = this.owner.factoryFor("caluma-model:field").create({
-      raw: {
-        question: {
-          __typename: "TextQuestion",
-          isHidden: "false",
-          isRequired: "false",
-        },
-        answer: null,
+    const field = this.addField({
+      question: {
+        __typename: "TextQuestion",
+        isHidden: "false",
+        isRequired: "false",
       },
-      document: this.document,
+      answer: null,
     });
 
     await field.validate.perform();
@@ -207,21 +220,18 @@ module("Unit | Library | field", function (hooks) {
   test("it can validate text fields", async function (assert) {
     assert.expect(2);
 
-    const field = this.owner.factoryFor("caluma-model:field").create({
-      raw: {
-        question: {
-          textMinLength: 2,
-          textMaxLength: 4,
-          isHidden: "false",
-          isRequired: "true",
-          __typename: "TextQuestion",
-        },
-        answer: {
-          stringValue: "Test",
-          __typename: "StringAnswer",
-        },
+    const field = this.addField({
+      question: {
+        textMinLength: 2,
+        textMaxLength: 4,
+        isHidden: "false",
+        isRequired: "true",
+        __typename: "TextQuestion",
       },
-      document: this.document,
+      answer: {
+        stringValue: "Test",
+        __typename: "StringAnswer",
+      },
     });
 
     field.set("answer.value", "Testx");
@@ -240,21 +250,18 @@ module("Unit | Library | field", function (hooks) {
   test("it can validate textarea fields", async function (assert) {
     assert.expect(2);
 
-    const field = this.owner.factoryFor("caluma-model:field").create({
-      raw: {
-        question: {
-          textareaMinLength: 2,
-          textareaMaxLength: 4,
-          isHidden: "false",
-          isRequired: "true",
-          __typename: "TextareaQuestion",
-        },
-        answer: {
-          stringValue: "Test",
-          __typename: "StringAnswer",
-        },
+    const field = this.addField({
+      question: {
+        textareaMinLength: 2,
+        textareaMaxLength: 4,
+        isHidden: "false",
+        isRequired: "true",
+        __typename: "TextareaQuestion",
       },
-      document: this.document,
+      answer: {
+        stringValue: "Test",
+        __typename: "StringAnswer",
+      },
     });
 
     field.set("answer.value", "Testx");
@@ -273,21 +280,18 @@ module("Unit | Library | field", function (hooks) {
   test("it can validate integer fields", async function (assert) {
     assert.expect(3);
 
-    const field = this.owner.factoryFor("caluma-model:field").create({
-      raw: {
-        question: {
-          integerMinValue: 2,
-          integerMaxValue: 2,
-          isHidden: "false",
-          isRequired: "true",
-          __typename: "IntegerQuestion",
-        },
-        answer: {
-          integerValue: 2,
-          __typename: "IntegerAnswer",
-        },
+    const field = this.addField({
+      question: {
+        integerMinValue: 2,
+        integerMaxValue: 2,
+        isHidden: "false",
+        isRequired: "true",
+        __typename: "IntegerQuestion",
       },
-      document: this.document,
+      answer: {
+        integerValue: 2,
+        __typename: "IntegerAnswer",
+      },
     });
 
     field.set("answer.integerValue", 1);
@@ -312,21 +316,18 @@ module("Unit | Library | field", function (hooks) {
   test("it can validate float fields", async function (assert) {
     assert.expect(3);
 
-    const field = this.owner.factoryFor("caluma-model:field").create({
-      raw: {
-        question: {
-          floatMinValue: 1.5,
-          floatMaxValue: 2.5,
-          isHidden: "false",
-          isRequired: "true",
-          __typename: "FloatQuestion",
-        },
-        answer: {
-          floatValue: 2.0,
-          __typename: "FloatAnswer",
-        },
+    const field = this.addField({
+      question: {
+        floatMinValue: 1.5,
+        floatMaxValue: 2.5,
+        isHidden: "false",
+        isRequired: "true",
+        __typename: "FloatQuestion",
       },
-      document: this.document,
+      answer: {
+        floatValue: 2.0,
+        __typename: "FloatAnswer",
+      },
     });
 
     await field.validate.perform();
@@ -350,28 +351,25 @@ module("Unit | Library | field", function (hooks) {
   test("it can validate radio fields", async function (assert) {
     assert.expect(1);
 
-    const field = this.owner.factoryFor("caluma-model:field").create({
-      raw: {
-        question: {
-          choiceOptions: {
-            edges: [
-              {
-                node: {
-                  slug: "option-1",
-                },
+    const field = this.addField({
+      question: {
+        choiceOptions: {
+          edges: [
+            {
+              node: {
+                slug: "option-1",
               },
-            ],
-          },
-          isHidden: "false",
-          isRequired: "true",
-          __typename: "ChoiceQuestion",
+            },
+          ],
         },
-        answer: {
-          stringValue: "option-1",
-          __typename: "StringAnswer",
-        },
+        isHidden: "false",
+        isRequired: "true",
+        __typename: "ChoiceQuestion",
       },
-      document: this.document,
+      answer: {
+        stringValue: "option-1",
+        __typename: "StringAnswer",
+      },
     });
 
     field.set("answer.value", "invalid-option");
@@ -384,28 +382,25 @@ module("Unit | Library | field", function (hooks) {
   test("it can validate checkbox fields", async function (assert) {
     assert.expect(2);
 
-    const field = this.owner.factoryFor("caluma-model:field").create({
-      raw: {
-        question: {
-          multipleChoiceOptions: {
-            edges: [
-              {
-                node: {
-                  slug: "option-1",
-                },
+    const field = this.addField({
+      question: {
+        multipleChoiceOptions: {
+          edges: [
+            {
+              node: {
+                slug: "option-1",
               },
-            ],
-          },
-          isHidden: "false",
-          isRequired: "true",
-          __typename: "MultipleChoiceQuestion",
+            },
+          ],
         },
-        answer: {
-          listValue: ["option-1"],
-          __typename: "ListAnswer",
-        },
+        isHidden: "false",
+        isRequired: "true",
+        __typename: "MultipleChoiceQuestion",
       },
-      document: this.document,
+      answer: {
+        listValue: ["option-1"],
+        __typename: "ListAnswer",
+      },
     });
 
     field.set("answer.listValue", ["option-1", "invalid-option"]);
