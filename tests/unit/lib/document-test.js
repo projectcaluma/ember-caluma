@@ -144,7 +144,9 @@ module("Unit | Library | document", function (hooks) {
 
     assert.deepEqual(this.document.jexlContext, {
       form: "form",
-      info: { root: { form: "form" } },
+      info: {
+        root: { form: "form", formMeta: { "is-top-form": true, level: 0 } },
+      },
     });
   });
 

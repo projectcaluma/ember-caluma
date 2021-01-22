@@ -138,14 +138,16 @@ export default Base.extend({
    * @accessor
    */
   jexlContext: computed(
-    "rootForm.slug",
+    "rootForm.{slug,meta}",
     "parentDocument.jexlContext",
     function () {
       if (this.parentDocument) return this.parentDocument.jexlContext;
 
       return {
         form: this.rootForm.slug,
-        info: { root: { form: this.rootForm.slug } },
+        info: {
+          root: { form: this.rootForm.slug, formMeta: this.rootForm.meta },
+        },
       };
     }
   ),
