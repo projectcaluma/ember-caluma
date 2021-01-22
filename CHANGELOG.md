@@ -1,3 +1,18 @@
+# [6.8.0](https://github.com/projectcaluma/ember-caluma/compare/v6.7.0...v6.8.0) (2021-01-22)
+
+
+### Bug Fixes
+
+* **cfb:** clean up options code ([5a4073d](https://github.com/projectcaluma/ember-caluma/commit/5a4073d0297a7782f1a2655e653c601c5f236c88))
+* **cfb:** fix recalculation issue in default values ([f549637](https://github.com/projectcaluma/ember-caluma/commit/f549637735596b215849d9170188cae28516e839))
+* **cfb:** improve options sorting code ([d5a2591](https://github.com/projectcaluma/ember-caluma/commit/d5a25912d694f66d69ace55d61fea777bf9b5a33))
+
+
+### Features
+
+* **cfb:** implement reordering of question options ([3928a7c](https://github.com/projectcaluma/ember-caluma/commit/3928a7cd797127672f61d65179b3bd38a44d5fcf))
+* **cfb:** use uk-sortable component for options sorting ([eba83f7](https://github.com/projectcaluma/ember-caluma/commit/eba83f7382f9cd5dabd80c833958df4ae684c04a))
+
 # [6.7.0](https://github.com/projectcaluma/ember-caluma/compare/v6.6.1...v6.7.0) (2021-01-14)
 
 
