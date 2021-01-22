@@ -1,3 +1,10 @@
+# [6.9.0](https://github.com/projectcaluma/ember-caluma/compare/v6.8.0...v6.9.0) (2021-01-22)
+
+
+### Features
+
+* **jexl:** allow usage of form meta in question jexl ([2956db5](https://github.com/projectcaluma/ember-caluma/commit/2956db5ef74f896f7234b641d7e15da6336067cc))
+
 # [6.8.0](https://github.com/projectcaluma/ember-caluma/compare/v6.7.0...v6.8.0) (2021-01-22)
 
 
