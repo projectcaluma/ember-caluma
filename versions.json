@@ -14,8 +14,8 @@
   "-latest": {
     "path": "",
     "name": "Latest",
-    "sha": "4439aca83a3335beb92c50a968e5c9e869465667",
-    "tag": "v6.6.1"
+    "sha": "54e0083711f815ca75900d1e6430bb875666bbee",
+    "tag": "v6.8.0"
   },
   "v0.0.3": {
     "path": "versions/v0.0.3",
@@ -135,6 +135,6 @@
     "path": "versions/${GITHUB_REF#refs/heads/}",
     "name": "${GITHUB_REF#refs/heads/}",
     "sha": "54e0083711f815ca75900d1e6430bb875666bbee",
-    "tag": null
+    "tag": "v6.8.0"
   }
 }
