@@ -47,42 +47,42 @@ export default class CfbFormEditorQuestionDefault extends RenderComponent {
   @computed(
     "model.{__typename,slug}",
     "question",
+    "question.slug",
     "router.currentRoute.attributes.formSlug",
     "value.content"
   )
   get field() {
-    return getOwner(this)
-      .factoryFor("caluma-model:field")
+    const rootForm = {
+      slug:
+        // There is no currentRoute in the integration tests.
+        get(this, "router.currentRoute.attributes.formSlug") || "dv-form",
+      meta: {},
+      questions: [this.question],
+      __typename: "Form",
+    };
+
+    // The value depends on where it comes from. If there is a default value
+    // present on load the `value.content` will be set. After an update through
+    // this component the value will be a POJO on `value`.
+    const answer = (this.value && this.value.content) ||
+      this.value || {
+        id: btoa(`Answer:dv-answer-${this.model.slug}`),
+        __typename: TYPE_MAP[this.model.__typename],
+      };
+
+    const document = getOwner(this)
+      .factoryFor("caluma-model:document")
       .create({
         raw: {
-          question: this.question,
-          // The value depends on where it comes from. If there is a default
-          // value present on load the `value.content` will be set. After an
-          // update through this component the value will be a POJO on `value`.
-          answer: (this.value && this.value.content) ||
-            this.value || {
-              id: btoa(`Answer:dv-answer-${this.model.slug}`),
-              __typename: TYPE_MAP[this.model.__typename],
-            },
+          id: btoa(`Document:dv-document-${this.model.slug}`),
+          rootForm,
+          forms: [rootForm],
+          answers: [answer],
+          __typename: "Document",
         },
-        // In order to mock the field, we need a document instance and its form.
-        document: getOwner(this)
-          .factoryFor("caluma-model:document")
-          .create({
-            raw: {
-              id: btoa(`Document:dv-document-${this.model.slug}`),
-              rootForm: {
-                slug:
-                  // There is no currentRoute in the integration tests.
-                  get(this, "router.currentRoute.attributes.formSlug") ||
-                  "dv-form",
-                __typename: "Form",
-              },
-              forms: [],
-              __typename: "Document",
-            },
-          }),
       });
+
+    return document.findField(this.question.slug);
   }
 
   @action async onUpdate(value) {
