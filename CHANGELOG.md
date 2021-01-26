@@ -1,3 +1,10 @@
+## [6.9.1](https://github.com/projectcaluma/ember-caluma/compare/v6.9.0...v6.9.1) (2021-01-26)
+
+
+### Bug Fixes
+
+* **form-builder:** fix fieldset on generated field for the default value ([a5f9dcd](https://github.com/projectcaluma/ember-caluma/commit/a5f9dcde7ad04c97eaed982447e8595f698739fe))
+
 # [6.9.0](https://github.com/projectcaluma/ember-caluma/compare/v6.8.0...v6.9.0) (2021-01-22)
 
 
