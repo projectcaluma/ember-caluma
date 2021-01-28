@@ -70,6 +70,8 @@ export default class CfbFormEditorQuestionDefault extends RenderComponent {
         __typename: TYPE_MAP[this.model.__typename],
       };
 
+    answer.question = this.question;
+
     const document = getOwner(this)
       .factoryFor("caluma-model:document")
       .create({
