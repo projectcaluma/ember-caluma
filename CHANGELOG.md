@@ -1,3 +1,10 @@
+## [6.9.2](https://github.com/projectcaluma/ember-caluma/compare/v6.9.1...v6.9.2) (2021-01-28)
+
+
+### Bug Fixes
+
+* **form-builder:** fix missing question on answer for default value ([#1204](https://github.com/projectcaluma/ember-caluma/issues/1204)) ([c1c6173](https://github.com/projectcaluma/ember-caluma/commit/c1c6173638da7dfca275c97158733c5dca441ad5))
+
 ## [6.9.1](https://github.com/projectcaluma/ember-caluma/compare/v6.9.0...v6.9.1) (2021-01-26)
 
 
