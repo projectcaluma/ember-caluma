@@ -97,7 +97,7 @@
     "ember-concurrency-decorators": "2.0.3",
     "ember-data": "3.24.0",
     "ember-disable-prototype-extensions": "1.1.3",
-    "ember-engines": "0.8.10",
+    "ember-engines": "0.8.12",
     "ember-export-application-global": "2.0.1",
     "ember-load-initializers": "2.1.2",
     "ember-maybe-import-regenerator": "0.1.6",
