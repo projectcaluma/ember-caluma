@@ -23,6 +23,14 @@ export default class CfbFormEditorQuestionDefault extends RenderComponent {
       isHidden: "false",
     };
 
+    // Widget overrides from the questions should not be considered for this
+    // component. We manually set an override for choices but otherwise, we
+    // use the real input type.
+    raw.meta = {
+      ...(raw.meta || {}),
+      widgetOverride: undefined,
+    };
+
     if (
       ["ChoiceQuestion", "MultipleChoiceQuestion"].includes(
         this.model.__typename
