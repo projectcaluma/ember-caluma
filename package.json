@@ -131,7 +131,8 @@
     "focus-trap": "Focus trap now throws an error if there is no tabbable element on initialization. This breaks the modal dialogs as they are hidden on initialization."
   },
   "resolutions": {
-    "focus-trap": "6.2.1"
+    "focus-trap": "6.2.1",
+    "uikit": "3.6.14"
   },
   "engines": {
     "node": "10.* || >= 12"
