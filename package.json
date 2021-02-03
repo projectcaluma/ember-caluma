@@ -128,11 +128,13 @@
     "typeface-oxygen-mono": "1.1.13"
   },
   "//": {
-    "focus-trap": "Focus trap now throws an error if there is no tabbable element on initialization. This breaks the modal dialogs as they are hidden on initialization."
+    "focus-trap": "Focus trap now throws an error if there is no tabbable element on initialization. This breaks the modal dialogs as they are hidden on initialization.",
+    "@babel/parser": "For some reason 7.12.13 fails to transpile TypeScript sources. https://github.com/babel/babel/issues/12745"
   },
   "resolutions": {
     "focus-trap": "6.2.1",
-    "uikit": "3.6.14"
+    "uikit": "3.6.14",
+    "@babel/parser": "7.12.11"
   },
   "engines": {
     "node": "10.* || >= 12"
