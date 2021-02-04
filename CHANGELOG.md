@@ -1,3 +1,13 @@
+## [6.9.3](https://github.com/projectcaluma/ember-caluma/compare/v6.9.2...v6.9.3) (2021-02-04)
+
+
+### Bug Fixes
+
+* pin uikit ([12523f4](https://github.com/projectcaluma/ember-caluma/commit/12523f456fcaf343b0fc39593c908cfada535cfe))
+* **deps:** add resolution to fix @babel/parser to 7.12.11 ([2333c88](https://github.com/projectcaluma/ember-caluma/commit/2333c8873dd1e97b66b17981d3a2dfe3103e5722))
+* **form:** add fields used in mapby transforms to dependencies ([adedd7e](https://github.com/projectcaluma/ember-caluma/commit/adedd7e50c3e848481949c6413c5268bce575680))
+* **question/default:** ignore question's widgetOverride ([0e0f9cc](https://github.com/projectcaluma/ember-caluma/commit/0e0f9cc98a5d7b98d200938db62269103ef6d46b))
+
 ## [6.9.2](https://github.com/projectcaluma/ember-caluma/compare/v6.9.1...v6.9.2) (2021-01-28)
 
 
