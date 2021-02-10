@@ -219,13 +219,19 @@ export default Base.extend({
    * @property {Boolean} isDirty
    * @accessor
    */
-  isDirty: computed("question.isCalculated", "isNew", "isDefault", function () {
-    if (this.question.isCalculated) {
-      return false;
-    }
+  isDirty: computed(
+    "isDefault",
+    "isNew",
+    "question.isCalculated",
+    "validate.lastSuccessful",
+    function () {
+      if (this.question.isCalculated || this.isDefault) {
+        return false;
+      }
 
-    return !this.isNew && !this.isDefault;
-  }),
+      return Boolean(this.validate.lastSuccessful) || !this.isNew;
+    }
+  ),
 
   /**
    * The type of the question
