@@ -244,12 +244,12 @@ export const NavigationItem = Base.extend({
         return null;
       }
 
-      if (this.visibleFields.every((f) => f.isNew)) {
-        return STATES.EMPTY;
+      if (this.visibleFields.some((f) => !f.isValid && f.isDirty)) {
+        return STATES.INVALID;
       }
 
-      if (this.visibleFields.some((f) => !f.isValid && !f.isNew)) {
-        return STATES.INVALID;
+      if (this.visibleFields.every((f) => f.isNew)) {
+        return STATES.EMPTY;
       }
 
       if (
