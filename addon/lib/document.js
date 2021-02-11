@@ -8,6 +8,9 @@ import { decodeId } from "ember-caluma/helpers/decode-id";
 import Base from "ember-caluma/lib/base";
 import { intersects } from "ember-caluma/utils/jexl";
 
+const onlyNumbers = (nums) => nums.filter((num) => !isNaN(num));
+const sum = (nums) => nums.reduce((num, base) => base + num, 0);
+
 /**
  * Object which represents a document
  *
@@ -126,6 +129,30 @@ export default Base.extend({
       // eslint-disable-next-line no-console
       console.debug(`${label}:`, any);
       return any;
+    });
+    documentJexl.addTransform("min", (arr) => {
+      const nums = onlyNumbers(arr);
+      return nums.length ? Math.min(...nums) : null;
+    });
+    documentJexl.addTransform("max", (arr) => {
+      const nums = onlyNumbers(arr);
+      return nums.length ? Math.max(...nums) : null;
+    });
+    documentJexl.addTransform("round", (num, places = 0) =>
+      isNaN(num)
+        ? null
+        : Math.round(num * Math.pow(10, places)) / Math.pow(10, places)
+    );
+    documentJexl.addTransform("ceil", (num) =>
+      isNaN(num) ? null : Math.ceil(num)
+    );
+    documentJexl.addTransform("floor", (num) =>
+      isNaN(num) ? null : Math.floor(num)
+    );
+    documentJexl.addTransform("sum", (arr) => sum(onlyNumbers(arr)));
+    documentJexl.addTransform("avg", (arr) => {
+      const nums = onlyNumbers(arr);
+      return sum(nums) / nums.length;
     });
 
     return documentJexl;
