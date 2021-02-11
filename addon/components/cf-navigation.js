@@ -9,6 +9,7 @@ export default Component.extend({
   classNames: ["uk-width-auto"],
 
   didReceiveAttrs() {
+    this._super();
     next(this.navigation, "goToNextItem");
   },
 });

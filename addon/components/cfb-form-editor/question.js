@@ -90,6 +90,7 @@ export default Component.extend({
   }),
 
   async didReceiveAttrs() {
+    this._super();
     await this.data.perform();
     await this.availableForms.perform();
     await this.availableDataSources.perform();

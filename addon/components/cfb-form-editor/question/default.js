@@ -1,5 +1,6 @@
 import { getOwner } from "@ember/application";
-import { action, computed, get } from "@ember/object";
+// eslint-disable-next-line ember/no-computed-properties-in-native-classes
+import { action, computed, get, set } from "@ember/object";
 import { inject as service } from "@ember/service";
 import RenderComponent from "ember-validated-form/components/validated-input/-themes/uikit/render";
 
@@ -96,7 +97,7 @@ export default class CfbFormEditorQuestionDefault extends RenderComponent {
   }
 
   @action async onUpdate(value) {
-    this.set("field.answer.value", value);
+    set(this, "field.answer.value", value);
 
     await this.field.validate.perform();
 

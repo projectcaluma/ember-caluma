@@ -27,7 +27,7 @@
     "test:ember-compatibility": "ember try:each",
     "test:browserstack": "ember test --host=127.0.0.1 --test-port=7774 --config-file=testem.browserstack.js",
     "update-schema": "get-graphql-schema http://localhost:8000/graphql > addon/mirage-graphql/schema.graphql && prettier --write addon/mirage-graphql/schema.graphql",
-    "update-fragment-types": "node fetch-fragment-types.js && prettier --write addon/-private/fragment-types.js"
+    "update-fragment-types": "node bin/fetch-fragment-types.js && prettier --write addon/-private/fragment-types.js"
   },
   "dependencies": {
     "@ember/render-modifiers": "^1.0.2",
@@ -71,7 +71,6 @@
   "devDependencies": {
     "@adfinis-sygroup/eslint-config": "1.3.2",
     "@adfinis-sygroup/semantic-release-config": "3.1.0",
-    "@babel/plugin-proposal-object-rest-spread": "7.12.1",
     "@ember/jquery": "1.1.0",
     "@ember/optional-features": "2.0.0",
     "@ember/test-helpers": "^2.1.4",
@@ -97,7 +96,7 @@
     "ember-concurrency-decorators": "2.0.3",
     "ember-data": "3.24.0",
     "ember-disable-prototype-extensions": "1.1.3",
-    "ember-engines": "0.8.10",
+    "ember-engines": "0.8.12",
     "ember-export-application-global": "2.0.1",
     "ember-load-initializers": "2.1.2",
     "ember-maybe-import-regenerator": "0.1.6",
@@ -110,7 +109,7 @@
     "ember-try": "1.4.0",
     "eslint": "7.19.0",
     "eslint-config-prettier": "7.2.0",
-    "eslint-plugin-ember": "9.6.0",
+    "eslint-plugin-ember": "10.2.0",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-prettier": "3.3.1",
@@ -128,13 +127,10 @@
     "typeface-oxygen-mono": "1.1.13"
   },
   "//": {
-    "focus-trap": "Focus trap now throws an error if there is no tabbable element on initialization. This breaks the modal dialogs as they are hidden on initialization.",
-    "@babel/parser": "For some reason 7.12.13 fails to transpile TypeScript sources. https://github.com/babel/babel/issues/12745"
+    "focus-trap": "Focus trap now throws an error if there is no tabbable element on initialization. This breaks the modal dialogs as they are hidden on initialization."
   },
   "resolutions": {
-    "focus-trap": "6.2.1",
-    "uikit": "3.6.14",
-    "@babel/parser": "7.12.11"
+    "focus-trap": "6.2.1"
   },
   "engines": {
     "node": "10.* || >= 12"
@@ -153,11 +149,6 @@
     "extends": [
       "@commitlint/config-conventional"
     ]
-  },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
   },
   "release": {
     "extends": "@adfinis-sygroup/semantic-release-config"
