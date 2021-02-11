@@ -1,4 +1,4 @@
-import { render, click, fillIn, blur, settled } from "@ember/test-helpers";
+import { render, click, fillIn, blur } from "@ember/test-helpers";
 import graphqlError from "dummy/tests/helpers/graphql-error";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
@@ -194,7 +194,6 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
 
     await fillIn("input[name=slug]", "test-slug");
     await blur("input[name=slug]");
-    await settled();
 
     assert
       .dom("input[name=slug] + span")
@@ -202,14 +201,12 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
 
     await fillIn("input[name=slug]", "valid-slug");
     await blur("input[name=slug]");
-    await settled();
 
     assert.dom("input[name=slug] + span").doesNotExist();
 
     await fillIn("input[name=name]", "Other Test Slug");
     await blur("input[name=name]");
     await blur("input[name=slug]");
-    await settled();
 
     assert
       .dom("input[name=slug] + span")

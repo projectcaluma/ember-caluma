@@ -27,6 +27,7 @@ export default Component.extend({
   apollo: queryManager(),
 
   didReceiveAttrs() {
+    this._super();
     this.data.perform();
   },
 

@@ -19,6 +19,7 @@ export default Component.extend({
   novalidate: "novalidate",
 
   didReceiveAttrs() {
+    this._super();
     assert("A document `document` must be passed", this.document);
   },
 

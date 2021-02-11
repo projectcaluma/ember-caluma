@@ -1,4 +1,4 @@
-import { render, fillIn, blur, click, settled } from "@ember/test-helpers";
+import { render, fillIn, blur, click } from "@ember/test-helpers";
 import graphqlError from "dummy/tests/helpers/graphql-error";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
@@ -481,7 +481,6 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
 
     await fillIn("input[name=slug]", "test-slug");
     await blur("input[name=slug]");
-    await settled();
 
     assert
       .dom("input[name=slug] + span")
@@ -489,13 +488,11 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
 
     await fillIn("input[name=slug]", "valid-slug");
     await blur("input[name=slug]");
-    await settled();
 
     assert.dom("input[name=slug] + span").doesNotExist();
 
     await fillIn("input[name=slug]", "other-test-slug");
     await blur("input[name=slug]");
-    await settled();
 
     assert
       .dom("input[name=slug] + span")
@@ -509,19 +506,16 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
 
     await fillIn("input[name=label]", "Foo Bar");
     await blur("input[name=label]");
-    await settled();
 
     assert.dom("input[name=slug]").hasValue("foo-bar");
 
     await fillIn("input[name=slug]", "x-y");
     await blur("input[name=slug]");
-    await settled();
 
     assert.dom("input[name=slug]").hasValue("x-y");
 
     await fillIn("input[name=label]", "Something Else");
     await blur("input[name=label]");
-    await settled();
 
     assert.dom("input[name=slug]").hasValue("x-y");
   });
@@ -534,7 +528,6 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       ".ember-power-select-trigger",
       ".ember-power-select-option"
     );
-    await settled();
 
     assert.dom(".ember-power-select-multiple-option").exists();
   });

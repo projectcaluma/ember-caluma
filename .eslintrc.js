@@ -10,6 +10,11 @@ module.exports = {
     "ember/no-observers": "warn",
     // TODO: This needs to be done seperately
     "ember/no-get": "warn",
+    "ember/no-classic-components": "warn",
+    "ember/no-classic-classes": "warn",
+    "ember/require-tagless-components": "warn",
+    "ember/no-actions-hash": "warn",
+    "ember/no-component-lifecycle-hooks": "warn",
   },
   settings: {
     "import/internal-regex": "^ember-caluma/",
@@ -17,7 +22,7 @@ module.exports = {
   overrides: [
     ...require("@adfinis-sygroup/eslint-config/ember-addon").overrides,
     {
-      files: ["fetch-fragment-types.js", "testem.browserstack.js"],
+      files: ["bin/*.js", "testem*.js"],
       parserOptions: {
         sourceType: "script",
       },
