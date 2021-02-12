@@ -22,7 +22,7 @@ The Ember.js addon for [Caluma](https://caluma.io) - a collaborative form editin
 
 ## Documentation
 
-You can find the interactive documentation [here](https://caluma.io/ember-caluma).
+You can find the interactive documentation [here](https://docs.caluma.io/ember-caluma).
 
 ## Contributing
 
