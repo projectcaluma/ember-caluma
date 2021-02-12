@@ -152,7 +152,7 @@ export default Base.extend({
     documentJexl.addTransform("sum", (arr) => sum(onlyNumbers(arr)));
     documentJexl.addTransform("avg", (arr) => {
       const nums = onlyNumbers(arr);
-      return sum(nums) / nums.length;
+      return nums.length ? sum(nums) / nums.length : null;
     });
 
     return documentJexl;

@@ -196,6 +196,10 @@ module("Unit | Library | document", function (hooks) {
     const expression = "values|avg";
 
     assert.equal(await this.document.jexl.eval(expression, { values }), 20);
+    assert.equal(
+      await this.document.jexl.eval(expression, { values: [] }),
+      null
+    );
   });
 
   test("computes the correct jexl context", async function (assert) {
