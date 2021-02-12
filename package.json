@@ -9,7 +9,7 @@
   "license": "LGPL-3.0-or-later",
   "author": "",
   "repository": "github:projectcaluma/ember-caluma",
-  "homepage": "https://caluma.io/ember-caluma",
+  "homepage": "https://docs.caluma.io/ember-caluma",
   "directories": {
     "doc": "doc",
     "test": "tests"
@@ -140,7 +140,7 @@
   },
   "ember-addon": {
     "configPath": "tests/dummy/config",
-    "demoURL": "https://caluma.io/ember-caluma",
+    "demoURL": "https://docs.caluma.io/ember-caluma",
     "after": [
       "ember-cli-mirage"
     ]
