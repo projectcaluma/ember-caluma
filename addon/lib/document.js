@@ -8,7 +8,8 @@ import { decodeId } from "ember-caluma/helpers/decode-id";
 import Base from "ember-caluma/lib/base";
 import { intersects } from "ember-caluma/utils/jexl";
 
-const onlyNumbers = (nums) => nums.filter((num) => !isNaN(num));
+const onlyNumbers = (nums) =>
+  nums.filter((num) => !isNaN(num) && typeof num === "number");
 const sum = (nums) => nums.reduce((num, base) => base + num, 0);
 
 /**
@@ -139,15 +140,15 @@ export default Base.extend({
       return nums.length ? Math.max(...nums) : null;
     });
     documentJexl.addTransform("round", (num, places = 0) =>
-      isNaN(num)
+      !onlyNumbers([num]).length
         ? null
         : Math.round(num * Math.pow(10, places)) / Math.pow(10, places)
     );
     documentJexl.addTransform("ceil", (num) =>
-      isNaN(num) ? null : Math.ceil(num)
+      !onlyNumbers([num]).length ? null : Math.ceil(num)
     );
     documentJexl.addTransform("floor", (num) =>
-      isNaN(num) ? null : Math.floor(num)
+      !onlyNumbers([num]).length ? null : Math.floor(num)
     );
     documentJexl.addTransform("sum", (arr) => sum(onlyNumbers(arr)));
     documentJexl.addTransform("avg", (arr) => {
