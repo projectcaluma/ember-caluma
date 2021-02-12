@@ -6,6 +6,8 @@ module.exports = function () {
     build: {},
     git: {
       repo: "git@github.com:projectcaluma/ember-caluma.git",
+      branch: "gh-pages",
+      destDir: "ember-caluma",
     },
   };
 
