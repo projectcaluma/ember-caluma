@@ -114,7 +114,7 @@ export function dependencies(
 
           const field = findField(this.document, fieldSlug, expression);
 
-          if (!onlyNestedParents && nestedSlug) {
+          if (!onlyNestedParents && nestedSlug && field.value) {
             // Get the nested fields from the parents value (rows)
             return [
               field,
