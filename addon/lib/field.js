@@ -264,7 +264,7 @@ export default Base.extend({
         return this.calculatedValue;
       }
 
-      return this.answer.value;
+      return this.answer?.value;
     }
   ),
 
