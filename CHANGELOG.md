@@ -1,3 +1,10 @@
+## [6.10.1](https://github.com/projectcaluma/ember-caluma/compare/v6.10.0...v6.10.1) (2021-02-15)
+
+
+### Bug Fixes
+
+* **jexl:** fix jexl dependency gathering for empty tables ([#1239](https://github.com/projectcaluma/ember-caluma/issues/1239)) ([22c68d3](https://github.com/projectcaluma/ember-caluma/commit/22c68d395129c653112e26fa4d760d3ad661ec39))
+
 # [6.10.0](https://github.com/projectcaluma/ember-caluma/compare/v6.9.3...v6.10.0) (2021-02-15)
 
 
