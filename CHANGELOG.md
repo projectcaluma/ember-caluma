@@ -1,3 +1,10 @@
+## [6.10.2](https://github.com/projectcaluma/ember-caluma/compare/v6.10.1...v6.10.2) (2021-02-15)
+
+
+### Bug Fixes
+
+* **field:** some questions do not have an answer, handle this correctly ([#1240](https://github.com/projectcaluma/ember-caluma/issues/1240)) ([f163748](https://github.com/projectcaluma/ember-caluma/commit/f1637489d590936bf20ffd2a98a96145f9a84c6e))
+
 ## [6.10.1](https://github.com/projectcaluma/ember-caluma/compare/v6.10.0...v6.10.1) (2021-02-15)
 
 
