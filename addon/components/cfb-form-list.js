@@ -1,7 +1,7 @@
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
-import { restartableTask } from "ember-concurrency-decorators";
+import { restartableTask } from "ember-concurrency";
 
 import formListQuery from "ember-caluma/gql/queries/form-list";
 
