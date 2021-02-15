@@ -1,3 +1,17 @@
+# [6.10.0](https://github.com/projectcaluma/ember-caluma/compare/v6.9.3...v6.10.0) (2021-02-15)
+
+
+### Bug Fixes
+
+* **jexl:** fix division by 0 in avg transform ([#1233](https://github.com/projectcaluma/ember-caluma/issues/1233)) ([0f7ef59](https://github.com/projectcaluma/ember-caluma/commit/0f7ef596159e9fd2d3e9929b596bc0dd6e803132))
+* **jexl:** fix validation of numbers in transforms ([#1234](https://github.com/projectcaluma/ember-caluma/issues/1234)) ([27f3324](https://github.com/projectcaluma/ember-caluma/commit/27f3324ac382eed221eba807cc4220cfd09ef20b))
+* **navigation:** set validated fields to dirty and check for that ([2975356](https://github.com/projectcaluma/ember-caluma/commit/29753561d0b9d53fd6c0a05fb5e0b96a1376cf5b))
+
+
+### Features
+
+* **jexl:** add transforms for mathematical functions ([#1230](https://github.com/projectcaluma/ember-caluma/issues/1230)) ([e7c1974](https://github.com/projectcaluma/ember-caluma/commit/e7c1974f079cfba18997cc23d9465d3dcdc6b4e2))
+
 ## [6.9.3](https://github.com/projectcaluma/ember-caluma/compare/v6.9.2...v6.9.3) (2021-02-04)
 
 
