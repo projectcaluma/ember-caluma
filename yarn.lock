@@ -7561,7 +7561,7 @@ ember-composable-helpers@^4.4.0, ember-composable-helpers@^4.4.1:
     ember-cli-babel "^7.11.1"
     resolve "^1.10.0"
 
-ember-concurrency-decorators@2.0.3, ember-concurrency-decorators@^2.0.0:
+ember-concurrency-decorators@^2.0.0:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/ember-concurrency-decorators/-/ember-concurrency-decorators-2.0.3.tgz#2816c9a0283b90ba5340fc5b4e0b92ea91f7d6e3"
   integrity sha512-r6O34YKI/slyYapVsuOPnmaKC4AsmBSwvgcadbdy+jHNj+mnryXPkm+3hhhRnFdlsKUKdEuXvl43lhjhYRLhhA==
@@ -7571,14 +7571,16 @@ ember-concurrency-decorators@2.0.3, ember-concurrency-decorators@^2.0.0:
     ember-cli-htmlbars "^4.3.1"
     ember-cli-typescript "^3.1.4"
 
-"ember-concurrency@>=0.9.0 <3", "ember-concurrency@>=1.0.0 <3", ember-concurrency@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/ember-concurrency/-/ember-concurrency-1.3.0.tgz#66f90fb792687470bcee1172adc0ebf33f5e8b9c"
-  integrity sha512-DwGlfWFpYyAkTwsedlEtK4t1DznJSculAW6Vq5S1C0shVPc5b6tTpHB2FFYisannSYkm+wpm1f1Pd40qiNPtOQ==
+"ember-concurrency@>=0.9.0 <3", "ember-concurrency@>=1.0.0 <3", ember-concurrency@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ember-concurrency/-/ember-concurrency-2.0.0.tgz#5ec729ce6f3971bb652be4504c8e5a06333029b6"
+  integrity sha512-qFpxIaWdBcWM3fjN6CrNaXNTBRVbdympyQMM30GYMoyVKxM0JhzlOelPtGOKkG9uL3dAB5phJ0bfKtoO5x6mnQ==
   dependencies:
-    ember-cli-babel "^7.7.3"
+    "@glimmer/tracking" "^1.0.2"
+    ember-cli-babel "^7.22.1"
+    ember-cli-htmlbars "^5.3.1"
     ember-compatibility-helpers "^1.2.0"
-    ember-maybe-import-regenerator "^0.1.6"
+    ember-destroyable-polyfill "^2.0.2"
 
 ember-data@3.24.0:
   version "3.24.0"
@@ -7825,7 +7827,7 @@ ember-math-helpers@^2.15.0:
     ember-cli-babel "^7.20.5"
     ember-cli-htmlbars "^5.1.2"
 
-ember-maybe-import-regenerator@0.1.6, ember-maybe-import-regenerator@^0.1.6:
+ember-maybe-import-regenerator@0.1.6:
   version "0.1.6"
   resolved "https://registry.yarnpkg.com/ember-maybe-import-regenerator/-/ember-maybe-import-regenerator-0.1.6.tgz#35d41828afa6d6a59bc0da3ce47f34c573d776ca"
   integrity sha1-NdQYKK+m1qWbwNo85H80xXPXdso=
