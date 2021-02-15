@@ -1,140 +1,14 @@
 {
-  "master": {
-    "path": "versions/master",
-    "name": "master",
-    "sha": "ef60f9252ea29951f046de9a5bdb13562c64b092",
-    "tag": null
-  },
-  "v0.0.2": {
-    "path": "versions/v0.0.2",
-    "name": "v0.0.2",
-    "sha": "62c46b8b69be50af25b2fdd71b71b6e29d98733c",
-    "tag": "v0.0.2"
+  "${GITHUB_REF#refs/heads/}": {
+    "path": "versions/${GITHUB_REF#refs/heads/}",
+    "name": "${GITHUB_REF#refs/heads/}",
+    "sha": "5233af483769d39db64f92173dcc0c1399c1eb69",
+    "tag": "v6.10.0"
   },
   "-latest": {
     "path": "",
     "name": "Latest",
-    "sha": "ec61f29d96b69ffc27c7faa661472b80084ce3e0",
-    "tag": "v6.9.2"
-  },
-  "v0.0.3": {
-    "path": "versions/v0.0.3",
-    "name": "v0.0.3",
-    "sha": "eeddd2ac560f9dc507aa6bf67bce54a8421e15c2",
-    "tag": "v0.0.3"
-  },
-  "v0.0.4": {
-    "path": "versions/v0.0.4",
-    "name": "v0.0.4",
-    "sha": "f6131d4debbe71d63c02d56151c97f9392e83162",
-    "tag": "v0.0.4"
-  },
-  "v0.1.0": {
-    "path": "versions/v0.1.0",
-    "name": "v0.1.0",
-    "sha": "c69f403d1cfcf233305acf018190519700d60fc7",
-    "tag": "v0.1.0"
-  },
-  "v2.2.2": {
-    "path": "versions/v2.2.2",
-    "name": "v2.2.2",
-    "sha": "0ab6fb0cb9c1662339ec86f486e794d3f91e578d",
-    "tag": "v2.2.2"
-  },
-  "v2.2.3": {
-    "path": "versions/v2.2.3",
-    "name": "v2.2.3",
-    "sha": "9bdcdd1d4f3ba705c02f1f98903521a8040d12b4",
-    "tag": "v2.2.3"
-  },
-  "v2.3.0": {
-    "path": "versions/v2.3.0",
-    "name": "v2.3.0",
-    "sha": "5afa1862f99cf12217119c126acabcb6cf75505b",
-    "tag": "v2.3.0"
-  },
-  "v2.3.1": {
-    "path": "versions/v2.3.1",
-    "name": "v2.3.1",
-    "sha": "4e049614f26897949b6f8456fe95cdcac21608c0",
-    "tag": "v2.3.1"
-  },
-  "v2.4.0": {
-    "path": "versions/v2.4.0",
-    "name": "v2.4.0",
-    "sha": "33b16b0f7a35a62096ba9239d18070273bb72992",
-    "tag": "v2.4.0"
-  },
-  "v2.5.0": {
-    "path": "versions/v2.5.0",
-    "name": "v2.5.0",
-    "sha": "df2c17afdbb7c2a85887d5292f444f46c54be36f",
-    "tag": "v2.5.0"
-  },
-  "v3.0.0": {
-    "path": "versions/v3.0.0",
-    "name": "v3.0.0",
-    "sha": "eaa77c3d0245fbe2465e96ed864a29b807dbd732",
-    "tag": "v3.0.0"
-  },
-  "v3.0.1": {
-    "path": "versions/v3.0.1",
-    "name": "v3.0.1",
-    "sha": "5ca3308d48b670862d44103be72be24213ed30c7",
-    "tag": "v3.0.1"
-  },
-  "v4.0.0": {
-    "path": "versions/v4.0.0",
-    "name": "v4.0.0",
-    "sha": "d44a687abc93e6926f9e86e9b6422458a7d8fb2a",
-    "tag": "v4.0.0"
-  },
-  "v4.0.2": {
-    "path": "versions/v4.0.2",
-    "name": "v4.0.2",
-    "sha": "4016c2750a7b2dc413635afffd718029da563b8d",
-    "tag": "v4.0.2"
-  },
-  "v4.0.3": {
-    "path": "versions/v4.0.3",
-    "name": "v4.0.3",
-    "sha": "e557762d09904c7cd744111ffc0993106de75254",
-    "tag": "v4.0.3"
-  },
-  "v4.0.4": {
-    "path": "versions/v4.0.4",
-    "name": "v4.0.4",
-    "sha": "af36f6408d756008a9ee6dccaa4d87f56a99ee53",
-    "tag": "v4.0.4"
-  },
-  "v4.0.5": {
-    "path": "versions/v4.0.5",
-    "name": "v4.0.5",
-    "sha": "d091bac6f3feebeae3f517a870812a736a3d9b46",
-    "tag": "v4.0.5"
-  },
-  "v4.1.0": {
-    "path": "versions/v4.1.0",
-    "name": "v4.1.0",
-    "sha": "94cfd689e821d4f1ba10a96c646b9b9f47f7aa1c",
-    "tag": "v4.1.0"
-  },
-  "v5.0.0": {
-    "path": "versions/v5.0.0",
-    "name": "v5.0.0",
-    "sha": "65323d1c867d2a8da78c9dc49bb8caed58a6158c",
-    "tag": "v5.0.0"
-  },
-  "v5.1.0": {
-    "path": "versions/v5.1.0",
-    "name": "v5.1.0",
-    "sha": "b61649abdd0137e98a628335efec9b9067cf85fb",
-    "tag": "v5.1.0"
-  },
-  "${GITHUB_REF#refs/heads/}": {
-    "path": "versions/${GITHUB_REF#refs/heads/}",
-    "name": "${GITHUB_REF#refs/heads/}",
-    "sha": "1502a5d0037f58777b3542245aa62b76280d87ec",
-    "tag": null
+    "sha": "5233af483769d39db64f92173dcc0c1399c1eb69",
+    "tag": "v6.10.0"
   }
 }
