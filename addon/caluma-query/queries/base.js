@@ -44,6 +44,10 @@ export default class BaseQuery {
     `;
   }
 
+  get imports() {
+    return this.modelClass.imports.map((imp) => `# ${imp}`).join("\n");
+  }
+
   get modelClass() {
     const factory = getOwner(this).factoryFor(
       `caluma-query-model:${this.modelName}`

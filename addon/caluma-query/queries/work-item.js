@@ -6,6 +6,8 @@ export default class WorkItemQuery extends BaseQuery {
 
   get query() {
     return `
+      ${this.imports}
+
       query WorkItemQuery(
         $filter: [WorkItemFilterSetType]
         $order: [WorkItemOrderSetType]

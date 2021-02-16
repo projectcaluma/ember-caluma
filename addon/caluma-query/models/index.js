@@ -53,4 +53,6 @@ export default class CalumaQueryModel {
   }
 
   @uuidAttr id;
+
+  static imports = [];
 }

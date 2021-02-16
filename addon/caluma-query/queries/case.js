@@ -6,6 +6,8 @@ export default class CaseQuery extends BaseQuery {
 
   get query() {
     return `
+      ${this.imports}
+
       query CaseQuery(
         $filter: [CaseFilterSetType]
         $order: [CaseOrderSetType]
