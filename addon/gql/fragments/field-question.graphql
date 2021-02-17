@@ -38,11 +38,12 @@ fragment SimpleQuestion on Question {
     placeholder
   }
   ... on ChoiceQuestion {
-    choiceOptions: options(isArchived: false) {
+    choiceOptions: options {
       edges {
         node {
           slug
           label
+          isArchived
         }
       }
     }
@@ -51,11 +52,12 @@ fragment SimpleQuestion on Question {
     }
   }
   ... on MultipleChoiceQuestion {
-    multipleChoiceOptions: options(isArchived: false) {
+    multipleChoiceOptions: options {
       edges {
         node {
           slug
           label
+          isArchived
         }
       }
     }

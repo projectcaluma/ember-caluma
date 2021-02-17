@@ -364,16 +364,15 @@ export default Base.extend({
       const selected =
         (this.question.isMultipleChoice ? this.value : [this.value]) || [];
 
-      const options = this.question.options.map((option) => ({
-        ...option,
-        disabled: false,
-      }));
+      const options = this.question.options.filter(
+        (option) => !option.disabled || selected.includes(option.slug)
+      );
 
-      const hasInvalidSelected = !selected.every((slug) =>
+      const hasUnknownValue = !selected.every((slug) =>
         options.find((option) => option.slug === slug)
       );
 
-      if (this.question.isDynamic && hasInvalidSelected) {
+      if (this.question.isDynamic && hasUnknownValue) {
         if (!this._fetchUsedDynamicOptions.lastSuccessful) {
           // Fetch used dynamic options if not done yet
           this._fetchUsedDynamicOptions.perform();
