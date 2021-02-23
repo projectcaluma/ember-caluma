@@ -37,7 +37,7 @@
     "apollo-link-context": "^1.0.20",
     "broccoli-funnel": "^3.0.3",
     "broccoli-merge-trees": "^4.2.0",
-    "ember-apollo-client": "^2.2.0",
+    "ember-apollo-client": "^3.0.3",
     "ember-auto-import": "^1.7.0",
     "ember-changeset": "^3.12.0",
     "ember-changeset-validations": "^3.13.0",
