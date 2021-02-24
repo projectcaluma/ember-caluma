@@ -2,6 +2,7 @@ import { classify } from "@ember/string";
 import { singularize } from "ember-inflector";
 import { graphql } from "graphql";
 import { addMockFunctionsToSchema, makeExecutableSchema } from "graphql-tools";
+import moment from "moment";
 
 import { Mock } from "ember-caluma/mirage-graphql";
 import resolvers from "ember-caluma/mirage-graphql/resolvers";
@@ -28,6 +29,7 @@ export default function (server) {
       schema,
       mocks: {
         ...mocks,
+        Date: () => moment().format(moment.HTML5_FMT.DATE),
         JSONString: () => JSON.stringify({}),
         GenericScalar: () => ({}),
         Node: (_, { id }) => ({ __typename: atob(id).split(":")[0] }),

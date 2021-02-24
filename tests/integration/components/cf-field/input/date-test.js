@@ -32,7 +32,7 @@ module("Integration | Component | cf-field/input/date", function (hooks) {
     this.set("save", function (date_selected) {
       assert.deepEqual(
         date_selected,
-        moment(date_expected).format("YYYY-MM-DD")
+        moment(date_expected).format(moment.HTML5_FMT.DATE)
       );
     });
 

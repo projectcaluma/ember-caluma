@@ -1,3 +1,5 @@
+import moment from "moment";
+
 import { register } from "ember-caluma/mirage-graphql";
 import BaseMock from "ember-caluma/mirage-graphql/mocks/base";
 
@@ -98,7 +100,7 @@ export default class extends BaseMock {
   handleSaveDateAnswer(_, { input }) {
     return this._handleSaveDocumentAnswer(_, {
       ...input,
-      value: String(input.value),
+      value: moment(input.value).format(moment.HTML5_FMT.DATE),
       type: "DATE",
     });
   }
