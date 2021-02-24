@@ -9,12 +9,13 @@ on:
       - master
 
 env:
-  CI: true
+  NODE_VERSION: 14
 
 jobs:
   lint:
     name: Lint
     runs-on: [ubuntu-latest]
+    timeout-minutes: 5
 
     strategy:
       matrix:
@@ -22,9 +23,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
-          node-version: 10
+          node-version: ${{ env.NODE_VERSION }}
+
+      - uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            node-modules-${{ hashFiles('yarn.lock') }}
+            node-modules-
 
       - name: Install dependencies
         run: yarn install
@@ -36,18 +45,21 @@ jobs:
     name: Tests
     needs: [lint]
     runs-on: [ubuntu-latest]
+    timeout-minutes: 10
 
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
-          node-version: 10
+          node-version: ${{ env.NODE_VERSION }}
 
-      - name: Install dependencies (no lockfile)
-        run: yarn install --no-lockfile
-
-      - name: Run tests (floating dependencies)
-        run: yarn test:ember
+      - uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            node-modules-${{ hashFiles('yarn.lock') }}
+            node-modules-
 
       - name: Install dependencies
         run: yarn install
@@ -62,20 +74,49 @@ jobs:
         with:
           file: ./coverage/lcov.info
 
+  test-floating:
+    name: Floating Tests
+    needs: [lint]
+    runs-on: [ubuntu-latest]
+    timeout-minutes: 10
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Install dependencies
+        run: yarn install --no-lockfile
+
+      - name: Run tests
+        run: yarn test:ember
+
   test-browserstack:
     name: Browserstack Tests
-    needs: [test]
+    needs: [lint]
     runs-on: [ubuntu-latest]
+    timeout-minutes: 10
+
     if: github.event_name == 'push'
+
     env:
       BROWSERSTACK_USERNAME: caluma1
       BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
 
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
-          node-version: 10
+          node-version: ${{ env.NODE_VERSION }}
+
+      - uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            node-modules-${{ hashFiles('yarn.lock') }}
+            node-modules-
 
       - name: Install dependencies
         run: yarn install
@@ -95,10 +136,11 @@ jobs:
       - name: Disconnect from Browserstack
         run: yarn ember browserstack:disconnect
 
-  try-one:
-    name: Additional Tests
-    needs: [test]
+  test-compatibility:
+    name: Compatibility Tests
+    needs: [lint]
     runs-on: [ubuntu-latest]
+    timeout-minutes: 10
 
     strategy:
       matrix:
@@ -108,15 +150,32 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
-          node-version: 10
+          node-version: ${{ env.NODE_VERSION }}
+
+      - uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: node-modules-${{ hashFiles('yarn.lock') }}
+          restore-keys: |
+            node-modules-${{ hashFiles('yarn.lock') }}
+            node-modules-
 
       - name: Install dependencies
         run: yarn install
 
+      - uses: actions/cache@v2
+        with:
+          path: |
+            node-modules
+            package
+            yarn.lock
+          key: node-modules-${{ matrix.scenario }}-${{ hashFiles('yarn.lock') }}-${{ hashFiles('config/ember-try.js') }}
+          restore-keys: |
+            node-modules-${{ matrix.scenario }}-${{ hashFiles('yarn.lock') }}-${{ hashFiles('config/ember-try.js') }}
+            node-modules-${{ matrix.scenario }}-
+            node-modules-
+
       - name: Run tests
-        run: yarn ember try:one ${{ matrix.scenario }}
-        # Remove this once an ember version with this fix exists
-        # https://github.com/emberjs/ember.js/pull/19193
-        continue-on-error: true
+        run: yarn ember try:one ${{ matrix.scenario }} --skip-cleanup
