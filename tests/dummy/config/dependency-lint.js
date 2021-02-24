@@ -8,5 +8,8 @@ module.exports = {
 
     // ember-changeset-validations hasn't updated yet
     "ember-get-config": "0.2.4 || ^0.3.0",
+
+    // ember-cli-mirage hasn't updated yet
+    "ember-inflector": "3.0.1 || ^4.0.1",
   },
 };
