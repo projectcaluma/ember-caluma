@@ -94,6 +94,7 @@ caluma:
       allForms: "All forms"
       new: "New form"
       empty: "We did not find any forms. Click the button in the top right corner to create a new form right now!"
+      loadMore: "Load more forms"
 
       not-found: "No form with slug '{slug}' found"
 

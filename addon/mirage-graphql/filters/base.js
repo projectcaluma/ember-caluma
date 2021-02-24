@@ -16,6 +16,8 @@ export default class {
   }
 
   filter(records, filters) {
+    // flatten array of filters to find filter functions
+    filters = Array.isArray(filters) ? Object.assign(...filters) : filters;
     return this._getFilterFns(filters).reduce((recs, fn) => fn(recs), records);
   }
 

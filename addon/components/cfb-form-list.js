@@ -1,28 +1,42 @@
+import { action } from "@ember/object";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
-import { restartableTask } from "ember-concurrency";
+import { timeout } from "ember-concurrency";
+import { restartableTask } from "ember-concurrency-decorators";
 
-import formListQuery from "ember-caluma/gql/queries/form-list.graphql";
+import calumaQuery from "ember-caluma/caluma-query";
+import { allForms } from "ember-caluma/caluma-query/queries";
 
 export default class ComponentsCfbFormListComponent extends Component {
   @queryManager apollo;
+  @calumaQuery({ query: allForms, options: { pageSize: 20 } }) formsQuery;
 
   @tracked _filter = "active";
+  @tracked search = "";
 
   get filter() {
     return this._filter;
   }
   set filter(value) {
     this._filter = value;
-    this.forms.perform();
+    this.fetchForms.perform();
+  }
+
+  @action
+  searchForms(event) {
+    this.search = event.target.value;
+    this.fetchForms.perform();
+  }
+
+  @action
+  loadMoreForms() {
+    this.formsQuery.fetchMore();
   }
 
   @restartableTask
-  *forms() {
-    if (this.args.forms) {
-      return this.args.forms.perform();
-    }
+  *fetchForms() {
+    yield timeout(500);
 
     const filter = [];
 
@@ -37,13 +51,13 @@ export default class ComponentsCfbFormListComponent extends Component {
         break;
     }
 
-    return yield this.apollo.watchQuery(
-      {
-        query: formListQuery,
-        fetchPolicy: "cache-and-network",
-        variables: { filter, order: [{ attribute: "NAME", direction: "ASC" }] },
-      },
-      "allForms.edges"
-    );
+    if (this.search) {
+      filter.push({ search: this.search });
+    }
+
+    yield this.formsQuery.fetch({
+      filter,
+      order: [{ attribute: "NAME", direction: "ASC" }],
+    });
   }
 }
