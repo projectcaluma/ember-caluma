@@ -73,6 +73,11 @@ export default class extends BaseMock {
     return this.handleInterfaceType(...args);
   }
 
+  @register("DateQuestion")
+  handleDateQuestion(...args) {
+    return this.handleInterfaceType(...args);
+  }
+
   @register("SaveTextQuestionPayload")
   handleSaveTextQuestion(_, { input }) {
     return this.handleSavePayload.fn.call(this, _, {

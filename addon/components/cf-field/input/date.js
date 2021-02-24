@@ -10,7 +10,7 @@ export default Component.extend({
   actions: {
     onchange(date) {
       // Change Javascript date to ISO string if not null.
-      this.onSave(date ? moment(date).format("YYYY-MM-DD") : null);
+      this.onSave(date ? moment(date).format(moment.HTML5_FMT.DATE) : null);
     },
   },
 });
