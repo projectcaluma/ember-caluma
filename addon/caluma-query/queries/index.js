@@ -1,4 +1,5 @@
 import CaseQuery from "./case";
+import FormQuery from "./form";
 import WorkItemQuery from "./work-item";
 
 export function allWorkItems(options) {
@@ -9,4 +10,8 @@ export function allCases(options) {
   return new CaseQuery(options);
 }
 
-export default { allWorkItems, allCases };
+export function allForms(options) {
+  return new FormQuery(options);
+}
+
+export default { allWorkItems, allCases, allForms };

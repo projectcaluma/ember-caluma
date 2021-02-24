@@ -59,7 +59,29 @@ export default class {
       records = records.filter(({ id }) => ids && ids.includes(id));
     }
 
+    // add base64 encoded index as cursor to records
+    records = records.map((record, index) => ({
+      ...record,
+      _cursor: btoa(index),
+    }));
+
+    const lastCursor = records.slice(-1)[0]?._cursor;
+
+    // extract next page of records
+    if (vars.first) {
+      const cursorIndex = vars.after
+        ? records.findIndex((record) => record._cursor === vars.after) + 1
+        : 0;
+      records = records.slice(cursorIndex, cursorIndex + vars.first);
+    }
+
+    const endCursor = records.slice(-1)[0]?._cursor;
+    const hasNextPage = lastCursor !== endCursor;
+
     return {
+      pageInfo: () => {
+        return { hasNextPage, endCursor };
+      },
       edges: () =>
         new MockList(records.length, () => ({
           node: (r, v, _, meta) =>

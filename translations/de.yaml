@@ -94,6 +94,7 @@ caluma:
       allForms: "Alle Formulare"
       new: "Neues Formular"
       empty: "Wir haben keine Formulare gefunden. Klicken Sie den Knopf im der rechten oberen Ecke um ein Formular zu Erstellen!"
+      loadMore: "Mehr Formulare laden"
 
       not-found: "Kein Formular mit dem Slug '{slug}' gefunden"
 
