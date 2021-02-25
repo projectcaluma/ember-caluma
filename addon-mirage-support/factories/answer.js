@@ -86,8 +86,13 @@ export default Factory.extend({
       });
 
       if (answer.value === undefined) {
+        const date = faker.date.future();
         answer.update({
-          value: moment(faker.date.future()).format(moment.HTML5_FMT.DATE),
+          value: moment({
+            day: date.getUTCDate(),
+            month: date.getUTCMonth(),
+            year: date.getUTCFullYear(),
+          }).format(moment.HTML5_FMT.DATE),
         });
       }
     }

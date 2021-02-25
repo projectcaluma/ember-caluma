@@ -98,9 +98,18 @@ export default class extends BaseMock {
   @register("SaveDocumentDateAnswerPayload")
   @register("SaveDefaultDateAnswerPayload")
   handleSaveDateAnswer(_, { input }) {
+    const date = input.value;
+    const value = date
+      ? moment({
+          day: date.getUTCDate(),
+          month: date.getUTCMonth(),
+          year: date.getUTCFullYear(),
+        }).format(moment.HTML5_FMT.DATE)
+      : null;
+
     return this._handleSaveDocumentAnswer(_, {
       ...input,
-      value: moment(input.value).format(moment.HTML5_FMT.DATE),
+      value,
       type: "DATE",
     });
   }

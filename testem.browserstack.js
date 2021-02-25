@@ -16,8 +16,8 @@ module.exports = {
     "BS_Chrome_Current",
     "BS_Firefox_Current",
     "BS_Safari_Current",
-    // TODO: fix Edge and IE issues
-    // "BS_MS_Edge",
+    "BS_MS_Edge",
+    // TODO: fix IE 11 issues (test-selectors)
     // "BS_IE_11"
   ],
   launch_in_dev: [],

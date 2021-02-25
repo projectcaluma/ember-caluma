@@ -16,29 +16,33 @@ module("Integration | Component | cf-field/input/date", function (hooks) {
   });
 
   test("it computes the proper element id", async function (assert) {
-    await render(hbs`{{cf-field/input/date field=(hash pk="test-id")}}`);
+    await render(hbs`<CfField::input::date @field={{hash pk="test-id"}} />`);
 
     assert.dom("#test-id").exists();
   });
 
   test("it renders an input tag", async function (assert) {
-    await render(hbs`{{cf-field/input/date}}`);
+    await render(hbs`<CfField::input::date />`);
     assert.ok(this.element);
   });
 
   test("it triggers save when selecting a date", async function (assert) {
-    const date_expected = new Date(2013, 3, 28);
+    const expectedDate = new Date(Date.UTC(2013, 3, 28));
 
-    this.set("save", function (date_selected) {
+    this.set("save", function (selectedDate) {
       assert.deepEqual(
-        date_selected,
-        moment(date_expected).format(moment.HTML5_FMT.DATE)
+        selectedDate,
+        moment({
+          day: expectedDate.getUTCDate(),
+          month: expectedDate.getUTCMonth(),
+          year: expectedDate.getUTCFullYear(),
+        }).format(moment.HTML5_FMT.DATE)
       );
     });
 
-    await render(hbs`{{cf-field/input/date onSave=save}}`);
+    await render(hbs`<CfField::input::date @onSave={{this.save}} />`);
 
     await click("input");
-    await Interactor.selectDate(date_expected);
+    await Interactor.selectDate(expectedDate);
   });
 });
