@@ -5062,7 +5062,7 @@ browserslist@^4.0.0, browserslist@^4.12.0, browserslist@^4.14.5, browserslist@^4
     escalade "^3.1.1"
     node-releases "^1.1.70"
 
-browserstack-local@^1.4.2:
+browserstack-local@^1.4.5:
   version "1.4.8"
   resolved "https://registry.yarnpkg.com/browserstack-local/-/browserstack-local-1.4.8.tgz#07f74a19b324cf2de69ffe65f9c2baa3a2dd9a0e"
   integrity sha512-s+mc3gTOJwELdLWi4qFVKtGwMbb5JWsR+JxKlMaJkRJxoZ0gg3WREgPxAN0bm6iU5+S4Bi0sz0oxBRZT8BiNsQ==
@@ -5072,7 +5072,7 @@ browserstack-local@^1.4.2:
     ps-tree "=1.2.0"
     temp-fs "^0.9.9"
 
-browserstack@^1.5.3:
+browserstack@^1.6.0:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/browserstack/-/browserstack-1.6.1.tgz#e051f9733ec3b507659f395c7a4765a1b1e358b3"
   integrity sha512-GxtFjpIaKdbAyzHfFDKixKO8IBT7wR3NjbzrGc78nNs/Ciys9wU3/nBtsqsWv5nDSrdI5tz0peKuzCPuNXNUiw==
@@ -7066,15 +7066,14 @@ ember-cli-babel@^7.0.0, ember-cli-babel@^7.1.0, ember-cli-babel@^7.1.2, ember-cl
     rimraf "^3.0.1"
     semver "^5.5.0"
 
-ember-cli-browserstack@1.1.0:
+ember-cli-browserstack@anehx/ember-cli-browserstack#fix-pid-file:
   version "1.1.0"
-  resolved "https://registry.yarnpkg.com/ember-cli-browserstack/-/ember-cli-browserstack-1.1.0.tgz#1d2bcf84370c196dc0c091ee65d54193072dadfc"
-  integrity sha512-nSYHa5YP0RjthfMBpasLJt4bnodV2AgKR4KZ4DaFrboiW+FVfqNZ8MRLBrTfaH3NqDWofcnCQTfqriByAcqbRA==
+  resolved "https://codeload.github.com/anehx/ember-cli-browserstack/tar.gz/e7e93a480b84e9612ba9b1b1e3b86c7067c18825"
   dependencies:
-    browserstack "^1.5.3"
-    browserstack-local "^1.4.2"
+    browserstack "^1.6.0"
+    browserstack-local "^1.4.5"
     rsvp "^4.8.5"
-    yargs "^14.2.0"
+    yargs "^15.3.1"
 
 ember-cli-clipboard@^0.15.0:
   version "0.15.0"
@@ -17921,7 +17920,7 @@ yargs-parser@^7.0.0:
   dependencies:
     camelcase "^4.1.0"
 
-yargs@^14.2, yargs@^14.2.0, yargs@^14.2.3:
+yargs@^14.2, yargs@^14.2.3:
   version "14.2.3"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-14.2.3.tgz#1a1c3edced1afb2a2fea33604bc6d1d8d688a414"
   integrity sha512-ZbotRWhF+lkjijC/VhmOT9wSgyBQ7+zr13+YLkhfsSiTriYsMzkTUFP18pFhWwBeMa5gUc1MzbhrO6/VB7c9Xg==
@@ -17938,7 +17937,7 @@ yargs@^14.2, yargs@^14.2.0, yargs@^14.2.3:
     y18n "^4.0.0"
     yargs-parser "^15.0.1"
 
-yargs@^15.0.1, yargs@^15.1.0:
+yargs@^15.0.1, yargs@^15.1.0, yargs@^15.3.1:
   version "15.4.1"
   resolved "https://registry.yarnpkg.com/yargs/-/yargs-15.4.1.tgz#0d87a16de01aee9d8bec2bfbf74f67851730f4f8"
   integrity sha512-aePbxDmcYW++PaqBsJ+HYUFwCdv4LVvdnhBy78E57PIor8/OVvhMrADFFEDh8DHDFRv/O9i3lPhsENjO7QX0+A==
