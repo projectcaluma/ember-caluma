@@ -113,8 +113,6 @@ module("Integration | Component | cf-content", function (hooks) {
               .dom(`[name="${id}:Option:${slug}"][value="${slug}"]`)
               .isDisabled();
           });
-      } else if (question.type === "DATE") {
-        assert.dom(`[name="${id}"]`).hasAttribute("disabled");
       } else {
         assert.dom(`[name="${id}"]`).hasAttribute("readonly");
         assert.dom(`[name="${id}"]`).hasClass("uk-disabled");

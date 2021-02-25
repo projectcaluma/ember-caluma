@@ -12,7 +12,8 @@ module.exports = function (defaults) {
       plugins: ["@babel/plugin-proposal-object-rest-spread"],
     },
     "ember-cli-babel": {
-      includePolyfill: process.env.EMBER_ENV === "production",
+      includePolyfill:
+        Boolean(process.env.CI) || process.env.EMBER_ENV === "production",
     },
   });
 

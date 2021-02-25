@@ -1,9 +1,10 @@
-{{pikaday-wrapper
-  class="uk-input"
-  name=field.pk
-  id=field.pk
-  format="L"
-  onSelection=(action "onchange")
-  value=field.answer.value
-  disabled=disabled
-}}
+<PikadayWrapper
+  class={{concat "uk-input" (if @disabled " uk-disabled")}}
+  name={{@field.pk}}
+  id={{@field.pk}}
+  @format="L"
+  @onSelection={{this.onChange}}
+  @useUTC={{true}}
+  @value={{@field.answer.value}}
+  @readonly={{@disabled}}
+/>
