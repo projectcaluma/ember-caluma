@@ -186,9 +186,10 @@ export default Component.extend({
     return new Changeset(this.model, lookupValidator(validations));
   }),
 
-  prefix: computed("calumaOptions._namespace", function () {
-    const namespace = this.calumaOptions.getNamespace();
-    return namespace ? `${namespace}-` : "";
+  prefix: computed("calumaOptions.namespace", function () {
+    return this.calumaOptions.namespace
+      ? `${this.calumaOptions.namespace}-`
+      : "";
   }),
 
   requiredIsVisible: computed("changeset.{__typename,isRequired}", function () {

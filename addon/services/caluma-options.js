@@ -45,26 +45,6 @@ export default class CalumaOptionsService extends Service {
   }
 
   /**
-   * Sets the namespace.
-   *
-   * @method setNamespace
-   * @param {String} value The new namespace to set.
-   */
-  setNamespace(value) {
-    this.namespace = value;
-  }
-
-  /**
-   * Writes a value to the store.
-   *
-   * @method getNamespace
-   * @return {String} The current namespace.
-   */
-  getNamespace() {
-    return this.namespace;
-  }
-
-  /**
    * Registers a new component override.
    *
    * @method registerComponentOverride
