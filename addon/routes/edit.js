@@ -1,22 +1,22 @@
 import Route from "@ember/routing/route";
 import { inject as service } from "@ember/service";
 import { queryManager } from "ember-apollo-client";
-import { task } from "ember-concurrency";
+import { lastValue, task } from "ember-concurrency";
 import gql from "graphql-tag";
 
-import NavigationRouteMixin from "ember-caluma/mixins/navigation-route";
+import { navigationTitle } from "ember-caluma/decorators";
 
-export default class EditRoute extends Route.extend(NavigationRouteMixin) {
+export default class EditRoute extends Route {
   @service intl;
   @queryManager apollo;
 
-  get title() {
-    return this.fetchName.lastSuccessful?.value?.firstObject?.node.name;
-  }
+  @navigationTitle
+  @lastValue("fetchName")
+  title;
 
   @task
   *fetchName(slug) {
-    return yield this.apollo.watchQuery(
+    const [form] = yield this.apollo.watchQuery(
       {
         query: gql`
           query FormName($slug: String!) {
@@ -33,6 +33,8 @@ export default class EditRoute extends Route.extend(NavigationRouteMixin) {
       },
       "allForms.edges"
     );
+
+    return form?.node.name;
   }
 
   beforeModel() {

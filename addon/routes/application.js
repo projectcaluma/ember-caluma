@@ -2,11 +2,12 @@ import Route from "@ember/routing/route";
 import { inject as service } from "@ember/service";
 import { t } from "ember-intl";
 
-import NavigationRouteMixin from "ember-caluma/mixins/navigation-route";
+import { navigationTitle } from "ember-caluma/decorators";
 
-export default class ApplicationRoute extends Route.extend(
-  NavigationRouteMixin
-) {
+export default class ApplicationRoute extends Route {
   @service intl;
-  @t("caluma.form-builder.form.allForms") title;
+
+  @navigationTitle
+  @t("caluma.form-builder.form.allForms")
+  title;
 }
