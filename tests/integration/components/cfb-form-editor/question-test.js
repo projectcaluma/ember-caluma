@@ -111,7 +111,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
 
     // The namespace is not really needed for the test
     // but is there to maximize code coverage.
-    this.owner.lookup("service:caluma-options").setNamespace("Foo Bar");
+    this.owner.lookup("service:caluma-options").namespace = "Foo Bar";
 
     // edit question
     await render(
@@ -166,7 +166,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       assert.step("after-submit");
     });
 
-    this.owner.lookup("service:caluma-options").setNamespace("Foo Bar");
+    this.owner.lookup("service:caluma-options").namespace = "Foo Bar";
 
     await render(
       hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`

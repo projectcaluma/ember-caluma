@@ -55,7 +55,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
       assert.step("after-submit");
     });
 
-    this.owner.lookup("service:caluma-options").setNamespace("Foo Bar");
+    this.owner.lookup("service:caluma-options").namespace = "Foo Bar";
 
     this.server.create("form", {
       name: "Form 1",
@@ -138,7 +138,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
 
     // The namespace is not really needed for the test
     // but is there to maximize code coverage.
-    this.owner.lookup("service:caluma-options").setNamespace("Foo Bar");
+    this.owner.lookup("service:caluma-options").namespace = "Foo Bar";
 
     // edit form
     await render(

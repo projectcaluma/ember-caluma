@@ -55,9 +55,10 @@ export default Component.extend({
     );
   }).restartable(),
 
-  prefix: computed("calumaOptions._namespace", function () {
-    const namespace = this.calumaOptions.getNamespace();
-    return namespace ? `${namespace}-` : "";
+  prefix: computed("calumaOptions.namespace", function () {
+    return this.calumaOptions.namespace
+      ? `${this.calumaOptions.namespace}-`
+      : "";
   }),
 
   submit: task(function* (changeset) {
