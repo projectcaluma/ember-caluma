@@ -1,9 +1,9 @@
 import Controller from "@ember/controller";
+import { action } from "@ember/object";
 
-export default Controller.extend({
-  actions: {
-    afterSubmit(slug) {
-      this.transitionToRoute("edit.questions.edit", slug);
-    },
-  },
-});
+export default class EditQuestionsNewController extends Controller {
+  @action
+  afterSubmit(slug) {
+    this.transitionToRoute("edit.questions.edit", slug);
+  }
+}

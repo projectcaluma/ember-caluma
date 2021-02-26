@@ -6,8 +6,8 @@ import { task } from "ember-concurrency";
 
 import allFormatValidatorsQuery from "ember-caluma/gql/queries/all-format-validators.graphql";
 
-export default Service.extend({
-  apollo: queryManager(),
+export default class ValidatorService extends Service {
+  @queryManager() apollo;
 
   /**
    * Tests a value against one or multiple regular expressions.
@@ -28,7 +28,7 @@ export default Service.extend({
     }
 
     const validators =
-      this.get("validators.lastSuccessful.value") ||
+      this.validators.lastSuccessful?.value ||
       (await this.validators.perform());
 
     return slugs.map((slug) => {
@@ -45,9 +45,10 @@ export default Service.extend({
         }
       );
     });
-  },
+  }
 
-  validators: task(function* () {
+  @task
+  *validators() {
     const raw = yield this.apollo.query(
       { query: allFormatValidatorsQuery },
       "allFormatValidators.edges"
@@ -60,5 +61,5 @@ export default Service.extend({
         errorMsg: rawValidator.node.errorMsg,
       };
     });
-  }),
-});
+  }
+}

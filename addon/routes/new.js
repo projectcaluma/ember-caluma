@@ -4,8 +4,7 @@ import { t } from "ember-intl";
 
 import NavigationRouteMixin from "ember-caluma/mixins/navigation-route";
 
-export default Route.extend(NavigationRouteMixin, {
-  intl: service(),
-
-  title: t("caluma.form-builder.form.new"),
-});
+export default class NewRoute extends Route.extend(NavigationRouteMixin) {
+  @service intl;
+  @t("caluma.form-builder.form.new") title;
+}

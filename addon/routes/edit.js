@@ -1,4 +1,3 @@
-import { reads } from "@ember/object/computed";
 import Route from "@ember/routing/route";
 import { inject as service } from "@ember/service";
 import { queryManager } from "ember-apollo-client";
@@ -7,13 +6,16 @@ import gql from "graphql-tag";
 
 import NavigationRouteMixin from "ember-caluma/mixins/navigation-route";
 
-export default Route.extend(NavigationRouteMixin, {
-  intl: service(),
+export default class EditRoute extends Route.extend(NavigationRouteMixin) {
+  @service intl;
+  @queryManager apollo;
 
-  apollo: queryManager(),
+  get title() {
+    return this.fetchName.lastSuccessful?.value?.firstObject?.node.name;
+  }
 
-  title: reads("fetchName.lastSuccessful.value.firstObject.node.name"),
-  fetchName: task(function* (slug) {
+  @task
+  *fetchName(slug) {
     return yield this.apollo.watchQuery(
       {
         query: gql`
@@ -31,13 +33,15 @@ export default Route.extend(NavigationRouteMixin, {
       },
       "allForms.edges"
     );
-  }),
+  }
 
   beforeModel() {
     const { form_slug: slug } = this.paramsFor(this.routeName);
 
     return this.fetchName.perform(slug);
-  },
+  }
 
-  model: ({ form_slug }) => form_slug,
-});
+  model({ form_slug: slug }) {
+    return slug;
+  }
+}

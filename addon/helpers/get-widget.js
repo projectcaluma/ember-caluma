@@ -1,6 +1,5 @@
 import Helper from "@ember/component/helper";
 import { warn } from "@ember/debug";
-import { get } from "@ember/object";
 import { inject as service } from "@ember/service";
 
 /**
@@ -22,12 +21,12 @@ import { inject as service } from "@ember/service";
  * @param {Object} [options]
  * @param {String} [options.default]
  */
-export default Helper.extend({
-  calumaOptions: service(),
+export default class GetWidgetHelper extends Helper {
+  @service calumaOptions;
 
   compute(params, { default: defaultWidget = "cf-field/input" }) {
     for (const obj of params) {
-      const widget = obj && get(obj, "meta.widgetOverride");
+      const widget = obj?.meta?.widgetOverride;
       if (!widget) {
         continue;
       }
@@ -47,5 +46,5 @@ export default Helper.extend({
     }
 
     return defaultWidget;
-  },
-});
+  }
+}
