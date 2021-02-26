@@ -3,25 +3,19 @@ import faker from "faker";
 import moment from "moment";
 
 export default Factory.extend({
-  afterCreate(answer) {
+  afterCreate(answer, server) {
     if (!answer.question) {
       return;
     }
 
     if (["TEXT", "TEXTAREA"].includes(answer.question.type)) {
-      answer.update({
-        type: "STRING",
-      });
+      answer.update({ type: "STRING" });
 
       if (answer.value === undefined) {
-        answer.update({
-          value: faker.lorem.sentence(),
-        });
+        answer.update({ value: faker.lorem.sentence() });
       }
     } else if (answer.question.type === "INTEGER") {
-      answer.update({
-        type: "INTEGER",
-      });
+      answer.update({ type: "INTEGER" });
 
       if (answer.value === undefined) {
         answer.update({
@@ -32,9 +26,7 @@ export default Factory.extend({
         });
       }
     } else if (answer.question.type === "FLOAT") {
-      answer.update({
-        type: "FLOAT",
-      });
+      answer.update({ type: "FLOAT" });
 
       if (answer.value === undefined) {
         answer.update({
@@ -46,9 +38,7 @@ export default Factory.extend({
         });
       }
     } else if (answer.question.type === "MULTIPLE_CHOICE") {
-      answer.update({
-        type: "LIST",
-      });
+      answer.update({ type: "LIST" });
 
       if (answer.value === undefined) {
         answer.update({
@@ -58,9 +48,7 @@ export default Factory.extend({
         });
       }
     } else if (answer.question.type === "CHOICE") {
-      answer.update({
-        type: "STRING",
-      });
+      answer.update({ type: "STRING" });
 
       if (answer.value === undefined) {
         answer.update({
@@ -68,9 +56,7 @@ export default Factory.extend({
         });
       }
     } else if (answer.question.type === "FILE") {
-      answer.update({
-        type: "FILE",
-      });
+      answer.update({ type: "FILE" });
 
       if (answer.value === undefined) {
         answer.update({
@@ -81,9 +67,7 @@ export default Factory.extend({
         });
       }
     } else if (answer.question.type === "DATE") {
-      answer.update({
-        type: "DATE",
-      });
+      answer.update({ type: "DATE" });
 
       if (answer.value === undefined) {
         const date = faker.date.future();
@@ -93,6 +77,17 @@ export default Factory.extend({
             month: date.getUTCMonth(),
             year: date.getUTCFullYear(),
           }).format(moment.HTML5_FMT.DATE),
+        });
+      }
+    } else if (answer.question.type === "TABLE") {
+      answer.update({ type: "TABLE" });
+
+      if (answer.value === undefined) {
+        const rowForm = server.create("form");
+
+        answer.update({
+          rowForm,
+          value: [server.create("document", { form: rowForm })],
         });
       }
     }
