@@ -118,9 +118,8 @@ export default class {
     /* istanbul ignore next */
     if (!record) {
       // eslint-disable-next-line no-console
-      console.log(
-        `Did not find a record of type "${this.type}" in the store. Did you forget to create one?`,
-        { vars }
+      return Error(
+        `Did not find a record of type "${this.type}" in the store. Did you forget to create one?`
       );
     }
 

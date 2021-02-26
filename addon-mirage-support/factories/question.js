@@ -1,23 +1,11 @@
 import { Factory } from "ember-cli-mirage";
 import faker from "faker";
 
-const TYPES = [
-  "TEXT",
-  "TEXTAREA",
-  "INTEGER",
-  "FLOAT",
-  "MULTIPLE_CHOICE",
-  "CHOICE",
-  "TABLE",
-  "FILE",
-  "STATIC",
-  "DATE",
-];
-
 export default Factory.extend({
+  type: "TEXT",
+
   slug: (i) => `question-${i + 1}`,
   label: () => `${faker.lorem.sentence().replace(/\.$/, "")}?`,
-  type: faker.random.arrayElement(TYPES),
   isRequired: () => faker.random.boolean().toString(),
   isHidden: "false",
   isArchived: false,
