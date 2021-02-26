@@ -33,7 +33,7 @@
     "@apollo/client": "^3.3.11",
     "@ember/render-modifiers": "^1.0.2",
     "@glimmer/component": "1.0.3",
-    "@glimmer/tracking": "^1.0.1",
+    "@glimmer/tracking": "^1.0.4",
     "broccoli-funnel": "^3.0.3",
     "broccoli-merge-trees": "^4.2.0",
     "ember-apollo-client": "^3.0.3",
