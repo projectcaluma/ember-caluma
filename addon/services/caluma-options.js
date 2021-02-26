@@ -1,4 +1,3 @@
-import EmberObject from "@ember/object";
 import Service, { inject as service } from "@ember/service";
 
 import slugify from "ember-caluma/utils/slugify";
@@ -12,12 +11,11 @@ import slugify from "ember-caluma/utils/slugify";
  * @class CalumaOptionsService
  * @extends Ember.Service
  */
-export default Service.extend({
-  intl: service(),
+export default class CalumaOptionsService extends Service {
+  @service intl;
 
-  init(...args) {
-    this._super(...args);
-    this._overrides = EmberObject.create();
+  constructor(...args) {
+    super(...args);
 
     this.registerComponentOverride({
       label: this.intl.t(
@@ -31,27 +29,30 @@ export default Service.extend({
         "DynamicMultipleChoiceQuestion",
       ],
     });
-  },
+  }
 
-  /**
-   * The property where the namespace is stored.
-   * @property _namespace
-   * @private
-   */
-  _namespace: null,
+  _namespace = null;
+  _overrides = {};
+
+  get namespace() {
+    return this._namespace || null;
+  }
+
+  set namespace(value) {
+    this._namespace = value
+      ? slugify(String(value), { locale: this.intl.primaryLocale })
+      : null;
+  }
 
   /**
    * Sets the namespace.
    *
    * @method setNamespace
    * @param {String} value The new namespace to set.
-   * @return {Void}
    */
   setNamespace(value) {
-    this._namespace = value
-      ? slugify(String(value), { locale: this.intl.primaryLocale })
-      : null;
-  },
+    this.namespace = value;
+  }
 
   /**
    * Writes a value to the store.
@@ -60,8 +61,8 @@ export default Service.extend({
    * @return {String} The current namespace.
    */
   getNamespace() {
-    return this._namespace || null;
-  },
+    return this.namespace;
+  }
 
   /**
    * Registers a new component override.
@@ -75,7 +76,7 @@ export default Service.extend({
    */
   registerComponentOverride(override) {
     this._overrides[override.component] = override;
-  },
+  }
 
   /**
    * Unregisters a component override.
@@ -86,7 +87,7 @@ export default Service.extend({
    */
   unregisterComponentOverride(override) {
     delete this._overrides[override.component ? override.component : override];
-  },
+  }
 
   /**
    * Returns the registered overrides as an array.
@@ -96,5 +97,5 @@ export default Service.extend({
    */
   getComponentOverrides() {
     return Object.values(this._overrides);
-  },
-});
+  }
+}

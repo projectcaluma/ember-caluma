@@ -1,12 +1,14 @@
 import Controller from "@ember/controller";
+import { action } from "@ember/object";
 
-export default Controller.extend({
-  actions: {
-    newForm() {
-      this.transitionToRoute("new");
-    },
-    editForm({ slug }) {
-      this.transitionToRoute("edit", slug);
-    },
-  },
-});
+export default class IndexController extends Controller {
+  @action
+  newForm() {
+    this.transitionToRoute("new");
+  }
+
+  @action
+  editForm({ slug }) {
+    this.transitionToRoute("edit", slug);
+  }
+}
