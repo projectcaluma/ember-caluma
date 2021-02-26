@@ -1,31 +1,41 @@
-import { getOwner } from "@ember/application";
-import Component from "@ember/component";
 import { inject as service } from "@ember/service";
+import Component from "@glimmer/component";
 
-import layout from "../templates/components/cfb-navigation";
+export default class CfbNavigationComponent extends Component {
+  @service router;
+  @service("-routing") routing; // eslint-disable-line ember/no-private-routing-service
 
-export default Component.extend({
-  layout,
-  navigation: service(),
-  router: service(),
-  maxItems: 3,
-  tagName: "ul",
-  classNames: [
-    "uk-breadcrumb",
-    "uk-text-large",
-    "uk-width-1-1",
-    "uk-flex",
-    "uk-flex-nowrap",
-  ],
+  get _routes() {
+    const currentRoute = this.router.currentRouteName;
+    if (!currentRoute) return [];
 
-  actions: {
-    navigate([routeName, ...params]) {
-      const mountPoint = getOwner(this).mountPoint;
+    const routeParts = currentRoute.split(".");
+    return routeParts
+      .map((routeName, index) =>
+        this._lookupRoute(routeName, routeParts, index)
+      )
+      .filter((route) => route && route.__navigationTitleProperty);
+  }
 
-      this.router.transitionTo(
-        routeName === "application" ? mountPoint : `${mountPoint}.${routeName}`,
-        ...params
-      );
-    },
-  },
-});
+  get crumbs() {
+    return this._routes.map((route) => ({
+      routeName: route.routeName,
+      disabled: this.router.currentRouteName === route.fullRouteName,
+      title: route[route.__navigationTitleProperty],
+    }));
+  }
+
+  _lookupRoute(routeName, routeParts, index) {
+    const fullRouteName = [...routeParts.slice(0, index), routeName].join(".");
+
+    const engineInfo = this.routing.router._engineInfoByRoute[fullRouteName];
+
+    if (!engineInfo) {
+      return null;
+    }
+
+    return this.routing.router
+      ._getEngineInstance(engineInfo)
+      .lookup(`route:${engineInfo.localFullName}`);
+  }
+}
