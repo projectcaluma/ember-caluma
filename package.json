@@ -100,6 +100,7 @@
     "ember-disable-prototype-extensions": "1.1.3",
     "ember-engines": "0.8.16",
     "ember-export-application-global": "2.0.1",
+    "ember-intl-changeset-validations": "^3.0.0",
     "ember-load-initializers": "2.1.2",
     "ember-maybe-import-regenerator": "0.1.6",
     "ember-pikaday": "3.0.0",

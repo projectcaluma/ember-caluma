@@ -1,4 +1,4 @@
-import { get } from "@ember/object";
+import { get, computed } from "@ember/object";
 import { reads } from "@ember/object/computed";
 import { inject as service } from "@ember/service";
 import { queryManager } from "ember-apollo-client";
@@ -31,6 +31,7 @@ export default RenderComponent.extend({
   apollo: queryManager(),
 
   questionSlug: reads("model.slug"),
+  namespace: reads("model.namespace"),
 
   init(...args) {
     this._super(...args);
@@ -45,6 +46,7 @@ export default RenderComponent.extend({
               new Changeset(
                 {
                   slug: removeQuestionPrefix(edge.node.slug, this.questionSlug),
+                  namespace: this.prefix,
                   label: edge.node.label,
                   isArchived: edge.node.isArchived,
                   isNew: false,
@@ -55,7 +57,13 @@ export default RenderComponent.extend({
           )
         : [
             new Changeset(
-              { slug: "", label: "", isNew: true, linkSlug: true },
+              {
+                slug: "",
+                namespace: this.prefix,
+                label: "",
+                isNew: true,
+                linkSlug: true,
+              },
               lookupValidator(OptionValidations),
               OptionValidations
             ),
@@ -81,6 +89,7 @@ export default RenderComponent.extend({
                 removeQuestionPrefix(slug, this.questionSlug),
                 this.questionSlug
               ),
+              namespace: this.prefix,
               isArchived: Boolean(isArchived),
             },
           };
@@ -117,6 +126,12 @@ export default RenderComponent.extend({
     }
   }),
 
+  prefix: computed("namespace", "questionSlug", function () {
+    return this.questionSlug
+      ? `${this.namespace + this.questionSlug}-`
+      : this.namespace;
+  }),
+
   actions: {
     addRow() {
       this.set("optionRows", [
@@ -150,14 +165,19 @@ export default RenderComponent.extend({
       changeset.set("label", value);
 
       if (changeset.get("isNew") && changeset.get("linkSlug")) {
+        changeset.set("namespace", this.prefix);
         changeset.set(
           "slug",
-          slugify(value, { locale: this.intl.primaryLocale })
+          slugify(value, {
+            locale: this.intl.primaryLocale,
+            namespace: this.prefix,
+          })
         );
       }
     },
 
     updateSlug(value, changeset) {
+      changeset.set("namespace", this.prefix);
       changeset.set("slug", value);
       changeset.set("linkSlug", false);
     },
