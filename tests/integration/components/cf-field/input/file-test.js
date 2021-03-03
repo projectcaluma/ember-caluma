@@ -1,4 +1,4 @@
-import { render, triggerEvent } from "@ember/test-helpers";
+import { render, triggerEvent, waitUntil } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
@@ -17,7 +17,7 @@ module("Integration | Component | cf-field/input/file", function (hooks) {
   });
 
   test("it allows to upload a file", async function (assert) {
-    assert.expect(0);
+    assert.expect(6);
 
     this.set("field", {
       answer: {
@@ -27,7 +27,7 @@ module("Integration | Component | cf-field/input/file", function (hooks) {
     });
 
     this.set("onSave", (name) => ({
-      value: { uploadUrl: `/minio/upload/${name}` },
+      fileValue: { uploadUrl: `/minio/upload/${name}` },
     }));
 
     const payload_good = new File(["test"], "good.txt", { type: "text/plain" });
@@ -36,8 +36,29 @@ module("Integration | Component | cf-field/input/file", function (hooks) {
     await render(hbs`{{cf-field/input/file field=field onSave=onSave}}`);
 
     await triggerEvent("input[type=file]", "change", { files: [] });
+    assert.equal(this.field.answer.value.name, undefined);
+    assert.equal(this.field._errors, undefined);
+
     await triggerEvent("input[type=file]", "change", { files: [payload_fail] });
+    await waitUntil(() => this.field._errors[0].type === "uploadFailed", {
+      timeout: 2000,
+    });
+    assert.equal(this.field.answer.value.name, undefined);
+    assert.equal(this.field._errors[0].type, "uploadFailed");
+
+    this.set("field", {
+      answer: {
+        id: btoa("FileAnswer:1"),
+        value: {},
+      },
+    });
+
     await triggerEvent("input[type=file]", "change", { files: [payload_good] });
+    await waitUntil(() => this.field.answer.value.name === "good.txt", {
+      timeout: 2000,
+    });
+    assert.equal(this.field.answer.value.name, "good.txt");
+    assert.equal(this.field._errors, undefined);
   });
 
   test("it allows to download a file", async function (assert) {
