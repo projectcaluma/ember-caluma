@@ -39,20 +39,14 @@ export default Component.extend({
       const data = new FormData();
       data.append("file", file);
 
-      const request = new XMLHttpRequest();
-
-      request.addEventListener("error", (event) => reject(event));
-      request.addEventListener("abort", (event) => reject(event));
-      request.addEventListener("load", (event) => {
-        if (event.target.status === 200) {
-          resolve(event);
-        } else {
-          reject(event);
-        }
-      });
-
-      request.open("PUT", url);
-      request.send(file);
+      fetch(url, {
+        method: "PUT",
+        body: data,
+      })
+        .then((response) =>
+          response.ok ? resolve(response) : reject(response)
+        )
+        .catch((error) => reject(error));
     });
   },
 
@@ -88,7 +82,7 @@ export default Component.extend({
           name: file.name,
           downloadUrl: fileValue.downloadUrl,
         });
-      } catch (event) {
+      } catch (error) {
         await this.onSave(null);
         this.set("field._errors", [{ type: "uploadFailed" }]);
       } finally {
