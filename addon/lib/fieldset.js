@@ -23,7 +23,7 @@ export default Base.extend({
       "A collection of graphql answers `raw.answers` must be passed",
       this.raw &&
         this.raw.answers &&
-        (!this.raw.answers.lenght ||
+        (!this.raw.answers.length ||
           /Answer$/.test(this.raw.answers[0].__typename))
     );
 
