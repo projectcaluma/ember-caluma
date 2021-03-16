@@ -3,7 +3,7 @@ import Component from "@glimmer/component";
 
 export default class CfFieldInputFloatComponent extends Component {
   get isDisabled() {
-    return this.args.disabled || this.args.field.question.isCalculated;
+    return this.args.disabled || this.args.field?.question.isCalculated;
   }
 
   /**
