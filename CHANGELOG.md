@@ -1,3 +1,10 @@
+## [7.0.1](https://github.com/projectcaluma/ember-caluma/compare/v7.0.0...v7.0.1) (2021-03-16)
+
+
+### Bug Fixes
+
+* use concurrency decorators for compatibility ([083136a](https://github.com/projectcaluma/ember-caluma/commit/083136ab5776704e12abe256a6f871f2dd6252f2))
+
 # [7.0.0](https://github.com/projectcaluma/ember-caluma/compare/v6.10.2...v7.0.0) (2021-03-16)
 
 
