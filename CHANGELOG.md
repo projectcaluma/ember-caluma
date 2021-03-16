@@ -1,3 +1,10 @@
+## [7.0.2](https://github.com/projectcaluma/ember-caluma/compare/v7.0.1...v7.0.2) (2021-03-16)
+
+
+### Bug Fixes
+
+* **cfb:** fix jexl requiredness evaluation and refactor component ([745773c](https://github.com/projectcaluma/ember-caluma/commit/745773cb2e2dee0c30efecc2e710aa3201a37060))
+
 ## [7.0.1](https://github.com/projectcaluma/ember-caluma/compare/v7.0.0...v7.0.1) (2021-03-16)
 
 
