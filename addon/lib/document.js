@@ -221,12 +221,14 @@ export default Base.extend({
 
     if (field.question.__typename === "TableQuestion") {
       return field.value.map((doc) =>
-        doc.fields.reduce((obj, tableField) => {
-          return {
-            ...obj,
-            [tableField.question.slug]: tableField.value,
-          };
-        }, {})
+        doc.fields
+          .filter((field) => !field.hidden)
+          .reduce((obj, tableField) => {
+            return {
+              ...obj,
+              [tableField.question.slug]: tableField.value,
+            };
+          }, {})
       );
     }
 
