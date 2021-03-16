@@ -6,6 +6,7 @@ import { module, test } from "qunit";
 
 import data from "./data";
 
+import { getDependenciesFromJexl } from "ember-caluma/lib/dependencies";
 import { parseDocument } from "ember-caluma/lib/parsers";
 
 module("Unit | Library | field", function (hooks) {
@@ -431,6 +432,20 @@ module("Unit | Library | field", function (hooks) {
     assert.deepEqual(table.errors, [
       't:caluma.form.validation.table:("value":null)',
     ]);
+  });
+
+  module("dependencies", function () {
+    test("calculates mapby dependencies correctly", async function (assert) {
+      this.field = this.document.findField("json-dependency");
+
+      assert.deepEqual(
+        getDependenciesFromJexl(
+          this.field.document.jexl,
+          this.field.question.isHidden
+        ),
+        ["table", "table.table-form-question", "table.table-form-question-2"]
+      );
+    });
   });
 
   module("calculated", function (hooks) {

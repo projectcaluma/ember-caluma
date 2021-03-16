@@ -50,6 +50,7 @@ module("Unit | Library | document", function (hooks) {
       ["calculated", false],
       ["table", false],
       ["multiple-choice", false],
+      ["json-dependency", true],
     ]);
   });
 
@@ -67,6 +68,7 @@ module("Unit | Library | document", function (hooks) {
       ["calculated", false],
       ["table", false],
       ["multiple-choice", false],
+      ["json-dependency", true],
     ]);
   });
 
@@ -82,6 +84,7 @@ module("Unit | Library | document", function (hooks) {
       ["calculated", false],
       ["table", false],
       ["multiple-choice", false],
+      ["json-dependency", true],
     ]);
     await this.setFieldValue("question-1", "foo");
 
@@ -94,6 +97,7 @@ module("Unit | Library | document", function (hooks) {
       ["calculated", false],
       ["table", false],
       ["multiple-choice", false],
+      ["json-dependency", true],
     ]);
   });
 
@@ -214,6 +218,18 @@ module("Unit | Library | document", function (hooks) {
     assert.equal(
       await this.document.jexl.eval(expression, { values: [10] }),
       10
+    );
+  });
+
+  test("it stringifies correctly", async function (assert) {
+    assert.equal(
+      await this.document.jexl.eval(
+        '\'["test1","test2"]\' == value|stringify',
+        {
+          value: ["test1", "test2"],
+        }
+      ),
+      true
     );
   });
 

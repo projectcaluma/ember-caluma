@@ -6,7 +6,7 @@ import jexl from "jexl";
 
 import { decodeId } from "ember-caluma/helpers/decode-id";
 import Base from "ember-caluma/lib/base";
-import { intersects } from "ember-caluma/utils/jexl";
+import { intersects, mapby } from "ember-caluma/utils/jexl";
 
 const onlyNumbers = (nums) =>
   nums.filter((num) => !isNaN(num) && typeof num === "number");
@@ -122,9 +122,7 @@ export default Base.extend({
     const documentJexl = new jexl.Jexl();
 
     documentJexl.addTransform("answer", (slug) => this.findAnswer(slug));
-    documentJexl.addTransform("mapby", (arr, key) => {
-      return Array.isArray(arr) ? arr.map((obj) => obj[key]) : null;
-    });
+    documentJexl.addTransform("mapby", mapby);
     documentJexl.addBinaryOp("intersects", 20, intersects);
     documentJexl.addTransform("debug", (any, label = "JEXL Debug") => {
       // eslint-disable-next-line no-console
@@ -155,6 +153,7 @@ export default Base.extend({
       const nums = onlyNumbers(arr);
       return nums.length ? sum(nums) / nums.length : null;
     });
+    documentJexl.addTransform("stringify", (input) => JSON.stringify(input));
 
     return documentJexl;
   }),

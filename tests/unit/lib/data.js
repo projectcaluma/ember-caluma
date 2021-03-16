@@ -82,6 +82,15 @@ const form = {
                         __typename: "StringAnswer",
                       },
                     },
+                    {
+                      node: {
+                        question: {
+                          slug: "table-form-question-2",
+                        },
+                        stringValue: "test",
+                        __typename: "StringAnswer",
+                      },
+                    },
                   ],
                 },
               },
@@ -98,6 +107,16 @@ const form = {
           isHidden:
             "!('show-multiple-choice' in 'table'|answer|mapby('table-form-question'))",
           __typename: "MultipleChoiceQuestion",
+        },
+      },
+      {
+        node: {
+          slug: "json-dependency",
+          label: "Test JSON dependency",
+          isRequired: "false",
+          isHidden:
+            "!('[\"test1\",\"test2\"]' in 'table'|answer|mapby('table-form-question', 'table-form-question-2')|stringify)",
+          __typename: "TextQuestion",
         },
       },
     ],
@@ -161,6 +180,15 @@ const answers = {
                       __typename: "TextQuestion",
                     },
                   },
+                  {
+                    node: {
+                      slug: "table-form-question-2",
+                      label: "Question",
+                      isRequired: "false",
+                      isHidden: "false",
+                      __typename: "TextQuestion",
+                    },
+                  },
                 ],
               },
               __typename: "Form",
@@ -174,6 +202,16 @@ const answers = {
                       slug: "table-form-question",
                     },
                     stringValue: "show-multiple-choice",
+                    __typename: "StringAnswer",
+                  },
+                },
+                {
+                  node: {
+                    id: id("StringAnswer"),
+                    question: {
+                      slug: "table-form-question-2",
+                    },
+                    stringValue: "test",
                     __typename: "StringAnswer",
                   },
                 },

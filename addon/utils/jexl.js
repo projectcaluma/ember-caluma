@@ -1,6 +1,16 @@
 export const intersects = (left, right) =>
   (left || []).some((val) => (right || []).includes(val));
 
+export const mapby = (arr, ...keys) => {
+  if (!Array.isArray(arr)) {
+    return null;
+  }
+
+  return arr.map((obj) =>
+    keys.length > 1 ? keys.map((key) => obj[key]) : obj[keys[0]]
+  );
+};
+
 /**
  * Transform a JEXL expression into it's AST
  *
