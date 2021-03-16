@@ -76,7 +76,7 @@
           {{/if}}
         </div>
 
-        {{#if this.requiredIsVisible}}
+        {{#if this.requiredToggleVisible}}
           <div class="uk-width-auto uk-flex">
             {{f.input
               name="isRequired"
@@ -317,14 +317,14 @@
           class="jexl-textarea"
         }}
 
-        {{#if this.requiredIsVisible}}
+        {{#unless this.requiredIrrelevant}}
           <f.input
             @type="textarea"
             @label={{t "caluma.form-builder.question.isRequired"}}
             @name="isRequired"
-            class="jexl-textarea"
+            @class="jexl-textarea"
           />
-        {{/if}}
+        {{/unless}}
       {{/if}}
 
       <div class="uk-text-right">

@@ -1,43 +1,19 @@
-import Component from "@ember/component";
-import { computed } from "@ember/object";
-import { reads } from "@ember/object/computed";
-import { optional } from "ember-composable-helpers/helpers/optional";
-import { task } from "ember-concurrency";
+import Component from "@glimmer/component";
 import jexl from "jexl";
+import { v4 } from "uuid";
 
-import layout from "../../../templates/components/cfb-form-editor/question-list/item";
+export default class CfbFormEditorQuestionListItem extends Component {
+  constructor(...args) {
+    super(...args);
 
-export default Component.extend({
-  layout,
-  tagName: "li",
+    this.elementId = v4();
+  }
 
-  classNameBindings: [
-    "question.isArchived:cfb-form-editor__question-list__item__archived",
-  ],
-
-  sortable: true,
-  slug: reads("question.slug"),
-  archived: reads("question.isArchived"),
-
-  required: reads("_required.lastSuccessful.value"),
-  _required: computed("_requiredTask", "question.isRequired", function () {
-    const tsk = this._requiredTask;
-    tsk.perform();
-    return tsk;
-  }),
-  _requiredTask: task(function* () {
-    return yield jexl.eval(this.get("question.isRequired"));
-  }),
-
-  didInsertElement(...args) {
-    this._super(...args);
-
-    optional([this.get("on-register")])(this.elementId, this.slug);
-  },
-
-  willDestroyElement(...args) {
-    this._super(...args);
-
-    optional([this.get("on-unregister")])(this.elementId, this.slug);
-  },
-});
+  get required() {
+    try {
+      return jexl.evalSync(this.args.question?.isRequired);
+    } catch (error) {
+      return false;
+    }
+  }
+}

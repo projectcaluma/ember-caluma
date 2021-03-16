@@ -192,15 +192,24 @@ export default Component.extend({
       : "";
   }),
 
-  requiredIsVisible: computed("changeset.{__typename,isRequired}", function () {
-    const isRequired = this.changeset.get("isRequired");
-    const typename = this.changeset.get("__typename");
-
-    return (
-      (isRequired === "true" || isRequired === "false") &&
-      !["StaticQuestion", "CalculatedFloatQuestion"].includes(typename)
+  requiredIrrelevant: computed("changeset.__typename", function () {
+    return ["StaticQuestion", "CalculatedFloatQuestion"].includes(
+      this.changeset.__typename
     );
   }),
+
+  requiredToggleVisible: computed(
+    "changeset.isRequired",
+    "requiredIrrelevant",
+    function () {
+      // the required toggle is only shown if the JEXL is a simple boolean and
+      // it's not irrelevant since it's not a question that takes any input
+      return (
+        ["true", "false"].includes(this.changeset.isRequired) &&
+        !this.requiredIrrelevant
+      );
+    }
+  ),
 
   getInput(changeset) {
     const slug = ((!this.slug && this.prefix) || "") + changeset.get("slug");
@@ -214,7 +223,7 @@ export default Component.extend({
       isArchived: changeset.get("isArchived"),
     };
 
-    if (this.requiredIsVisible) {
+    if (!this.requiredIrrelevant) {
       Object.assign(input, {
         isRequired: changeset.get("isRequired"),
       });
