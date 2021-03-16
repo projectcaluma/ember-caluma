@@ -2,7 +2,7 @@ import { assert } from "@ember/debug";
 import Service from "@ember/service";
 import { isEmpty } from "@ember/utils";
 import { queryManager } from "ember-apollo-client";
-import { task } from "ember-concurrency";
+import { dropTask } from "ember-concurrency-decorators";
 
 import allFormatValidatorsQuery from "ember-caluma/gql/queries/all-format-validators.graphql";
 
@@ -47,7 +47,7 @@ export default class ValidatorService extends Service {
     });
   }
 
-  @task
+  @dropTask
   *validators() {
     const raw = yield this.apollo.query(
       { query: allFormatValidatorsQuery },
