@@ -28,10 +28,12 @@ export function getDependenciesFromJexl(jexl, expression) {
   return [
     ...new Set([
       ...answerTransforms.map((transform) => transform.args[0].value),
-      ...mapbyTransforms.map(
-        (transform) =>
-          `${transform.args[0].args[0].value}.${transform.args[1].value}`
-      ),
+      ...mapbyTransforms.flatMap((transform) => {
+        const parentKey = transform.args[0].args[0].value;
+        const childKeys = transform.args.slice(1).map(({ value }) => value);
+
+        return childKeys.map((key) => `${parentKey}.${key}`);
+      }),
     ]),
   ];
 }
