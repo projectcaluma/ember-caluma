@@ -92,49 +92,49 @@ jobs:
       - name: Run tests
         run: yarn test:ember
 
-  test-browserstack:
-    name: Browserstack Tests
-    needs: [lint]
-    runs-on: [ubuntu-latest]
-    timeout-minutes: 10
+  # test-browserstack:
+  #   name: Browserstack Tests
+  #   needs: [lint]
+  #   runs-on: [ubuntu-latest]
+  #   timeout-minutes: 10
 
-    if: github.event_name == 'push'
+  #   if: github.event_name == 'push'
 
-    env:
-      BROWSERSTACK_USERNAME: caluma1
-      BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
+  #   env:
+  #     BROWSERSTACK_USERNAME: caluma1
+  #     BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
 
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: ${{ env.NODE_VERSION }}
+  #   steps:
+  #     - uses: actions/checkout@v2
+  #     - uses: actions/setup-node@v2
+  #       with:
+  #         node-version: ${{ env.NODE_VERSION }}
 
-      - uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: node-modules-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            node-modules-${{ hashFiles('yarn.lock') }}
-            node-modules-
+  #     - uses: actions/cache@v2
+  #       with:
+  #         path: node_modules
+  #         key: node-modules-${{ hashFiles('yarn.lock') }}
+  #         restore-keys: |
+  #           node-modules-${{ hashFiles('yarn.lock') }}
+  #           node-modules-
 
-      - name: Install dependencies
-        run: yarn install
+  #     - name: Install dependencies
+  #       run: yarn install
 
-      - name: Connect to Browserstack
-        run: yarn ember browserstack:connect
+  #     - name: Connect to Browserstack
+  #       run: yarn ember browserstack:connect
 
-      - name: Run tests
-        run: yarn test:browserstack
-        env:
-          CI_JOB_ID: ${{ job.container.id }}
-          BROWSERSTACK_LOCAL_IDENTIFIER: ${{ job.container.id }}
+  #     - name: Run tests
+  #       run: yarn test:browserstack
+  #       env:
+  #         CI_JOB_ID: ${{ job.container.id }}
+  #         BROWSERSTACK_LOCAL_IDENTIFIER: ${{ job.container.id }}
 
-      - name: Collect test results
-        run: yarn ember browserstack:results
+  #     - name: Collect test results
+  #       run: yarn ember browserstack:results
 
-      - name: Disconnect from Browserstack
-        run: yarn ember browserstack:disconnect
+  #     - name: Disconnect from Browserstack
+  #       run: yarn ember browserstack:disconnect
 
   test-compatibility:
     name: Compatibility Tests
