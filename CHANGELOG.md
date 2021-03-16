@@ -1,3 +1,48 @@
+# [7.0.0](https://github.com/projectcaluma/ember-caluma/compare/v6.10.2...v7.0.0) (2021-03-16)
+
+
+### Bug Fixes
+
+* **date:** use UTC for dates to avoid timezone problems ([4d943dd](https://github.com/projectcaluma/ember-caluma/commit/4d943dd7672f007fa17bc55ea358ef61f2db7dd6))
+* **form:** display archived options if selected ([8b8e5c7](https://github.com/projectcaluma/ember-caluma/commit/8b8e5c76df840a0b8ca835434ba25f0ff03f4390))
+* **helper:** allow calling has-question-type with a nullish parameter ([67886fc](https://github.com/projectcaluma/ember-caluma/commit/67886fcc186aae4605c4bc9440ebee73c91947a0))
+
+
+### Features
+
+* **cfb:** implement search and pagination of forms ([b4400c5](https://github.com/projectcaluma/ember-caluma/commit/b4400c53986d719880259bd53a9fce45d0c89050))
+* **jexl:** improve mapby and add stringify transform ([9510e77](https://github.com/projectcaluma/ember-caluma/commit/9510e774057685e9d85564e6ed7595ef2324bca1))
+
+
+* chore(options)!: remove getNamespace and setNamespace methods ([613bf36](https://github.com/projectcaluma/ember-caluma/commit/613bf3657b7bff29f4e3329d0d87d27957507cb0))
+* chore(deps)!: drop support for older ember LTS version 2.20 ([018a689](https://github.com/projectcaluma/ember-caluma/commit/018a6899b9f835b59dbe1a115aaf4d432682d719))
+* chore(deps)!: update ember-apollo-client and migrate to apollo client v3 ([b914262](https://github.com/projectcaluma/ember-caluma/commit/b914262b5ced3a027d4fd8390c72aa0ade94e4a8))
+
+
+### BREAKING CHANGES
+
+* This removes the `getNamespace` and `setNamespace`
+methods on the options service and replaces them with real getters and
+setters:
+
+```js
+// before
+
+calumaOptions.setNamespace("Test Test");
+calumaOptions.getNamespace(); // "test-test"
+
+// after
+
+calumaOptions.namespace = "Test Test";
+calumaOptions.namespace; // "test-test"
+```
+* This removes guaranteed support for ember LTS 2.20 and
+adds guaranteed support for the newly active LTS 2.24
+* This updates `ember-apollo-client` and therefore
+`apollo-client` to v3. This introduces various breaking changes. Read
+the [migration guide](tests/dummy/app/templates/docs/migration.md) for
+further instructions.
+
 ## [6.10.2](https://github.com/projectcaluma/ember-caluma/compare/v6.10.1...v6.10.2) (2021-02-15)
 
 
