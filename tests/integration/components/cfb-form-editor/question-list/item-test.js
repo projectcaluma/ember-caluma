@@ -1,8 +1,17 @@
 import { render, settled } from "@ember/test-helpers";
+import { tracked } from "@glimmer/tracking";
 import { hbs } from "ember-cli-htmlbars";
 import { setupIntl } from "ember-intl/test-support";
 import { setupRenderingTest } from "ember-qunit";
 import { module, test } from "qunit";
+
+class Question {
+  @tracked isRequired = "true";
+
+  slug = "test-question";
+  label = "Test Question?";
+  __typename = "TextQuestion";
+}
 
 module(
   "Integration | Component | cfb-form-editor/question-list/item",
@@ -13,18 +22,15 @@ module(
     test("it renders", async function (assert) {
       assert.expect(6);
 
-      this.set("question", {
-        slug: "test-question",
-        label: "Test Question?",
-        isRequired: "true",
-        __typename: "TextQuestion",
-      });
-
+      this.question = new Question();
       this.set("mode", "reorder");
 
       await render(hbs`
-      {{cfb-form-editor/question-list/item question=question mode=mode}}
-    `);
+        <CfbFormEditor::QuestionList::Item
+          @question={{this.question}}
+          @mode={{this.mode}}
+        />
+      `);
 
       assert
         .dom("li")
@@ -33,7 +39,7 @@ module(
         );
       assert.dom(".cfb-form-editor__question-list__item__required").exists();
 
-      this.set("question.isRequired", "false");
+      this.question.isRequired = "false";
       await settled();
 
       assert
