@@ -5,12 +5,12 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
 import { optional } from "ember-composable-helpers/helpers/optional";
+import { timeout } from "ember-concurrency";
 import {
   enqueueTask,
   lastValue,
   restartableTask,
-  timeout,
-} from "ember-concurrency";
+} from "ember-concurrency-decorators";
 import UIkit from "uikit";
 import { v4 } from "uuid";
 

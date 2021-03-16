@@ -1,7 +1,7 @@
 import Route from "@ember/routing/route";
 import { inject as service } from "@ember/service";
 import { queryManager } from "ember-apollo-client";
-import { lastValue, task } from "ember-concurrency";
+import { lastValue, dropTask } from "ember-concurrency-decorators";
 import gql from "graphql-tag";
 
 import { navigationTitle } from "ember-caluma/decorators";
@@ -14,7 +14,7 @@ export default class EditRoute extends Route {
   @lastValue("fetchName")
   title;
 
-  @task
+  @dropTask
   *fetchName(slug) {
     const [form] = yield this.apollo.watchQuery(
       {

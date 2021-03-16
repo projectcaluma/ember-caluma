@@ -1,7 +1,7 @@
 import Route from "@ember/routing/route";
 import { inject as service } from "@ember/service";
 import { queryManager } from "ember-apollo-client";
-import { task, lastValue } from "ember-concurrency";
+import { lastValue, dropTask } from "ember-concurrency-decorators";
 import gql from "graphql-tag";
 
 import { navigationTitle } from "ember-caluma/decorators";
@@ -14,7 +14,7 @@ export default class EditQuestionsEditRoute extends Route {
   @lastValue("fetchLabel")
   title;
 
-  @task
+  @dropTask
   *fetchLabel(slug) {
     const [question] = yield this.apollo.query(
       {
