@@ -2,13 +2,13 @@
   "${GITHUB_REF#refs/heads/}": {
     "path": "versions/${GITHUB_REF#refs/heads/}",
     "name": "${GITHUB_REF#refs/heads/}",
-    "sha": "00fa437e565a7fc1efad00a99486aaf4365eef20",
-    "tag": "v7.0.2"
+    "sha": "b338578da09944fcf4d008123854b0bd03fa6ca2",
+    "tag": "v7.0.3"
   },
   "-latest": {
     "path": "",
     "name": "Latest",
-    "sha": "00fa437e565a7fc1efad00a99486aaf4365eef20",
-    "tag": "v7.0.2"
+    "sha": "b338578da09944fcf4d008123854b0bd03fa6ca2",
+    "tag": "v7.0.3"
   }
 }
