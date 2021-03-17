@@ -1,3 +1,10 @@
+## [7.0.3](https://github.com/projectcaluma/ember-caluma/compare/v7.0.2...v7.0.3) (2021-03-17)
+
+
+### Bug Fixes
+
+* **jexl:** remove hidden columns from table value in JEXL ([3e93019](https://github.com/projectcaluma/ember-caluma/commit/3e930193d2030292707e378e4ed0ae1942576d82))
+
 ## [7.0.2](https://github.com/projectcaluma/ember-caluma/compare/v7.0.1...v7.0.2) (2021-03-16)
 
 
