@@ -1333,26 +1333,26 @@
   dependencies:
     ember-cli-babel "^7.4.0"
 
-"@ember/test-helpers@^2.2.3":
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/@ember/test-helpers/-/test-helpers-2.2.3.tgz#237c2de48a9e85492374b91e825cb142675858cc"
-  integrity sha512-qpLz0wwHrY49JzmS2qznpEjrfZUhrWemgSXu48xgJAZnjXBa52libZgl7mzwnHmmo4YtUBgQtJSRPUp/coYFNA==
+"@ember/test-helpers@^2.2.4":
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/@ember/test-helpers/-/test-helpers-2.2.4.tgz#6e3619c86726f84d901ceff035342066605a3f15"
+  integrity sha512-/LADeLFJYGA9E3kwRR0L9OPRZG3nwM9ib3m98/xltG52kS4Ubni0uvyM1hqoZP8aahCEpj/RXU9FNYmrSogqwg==
   dependencies:
-    "@ember/test-waiters" "^2.4.0"
+    "@ember/test-waiters" "^2.4.2"
     broccoli-debug "^0.6.5"
     broccoli-funnel "^3.0.3"
-    ember-cli-babel "^7.23.1"
-    ember-cli-htmlbars "^5.2.0"
+    ember-cli-babel "^7.26.1"
+    ember-cli-htmlbars "^5.7.1"
     ember-destroyable-polyfill "^2.0.3"
 
-"@ember/test-waiters@^2.3.0", "@ember/test-waiters@^2.4.0":
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/@ember/test-waiters/-/test-waiters-2.4.1.tgz#e46bd7f1d28ff9a779c89acbbd2cc2df81235ca1"
-  integrity sha512-tad4/nKcQHrBZ50kPlZy9xkTpmPpQUaAKegb7lHBfxC+5GcHSGbc6wYM2I8bT9Vf96diWZgNT0a5jbpLSQwRRA==
+"@ember/test-waiters@^2.3.0", "@ember/test-waiters@^2.4.2":
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/@ember/test-waiters/-/test-waiters-2.4.2.tgz#28e38d00edc96bcdc8c42592933d8f1b4171d1a1"
+  integrity sha512-WNbprLvC5PsgjnoX0cWa5/2dP3sbDDLjc6JYNUfrFlmZfsuKU9/+Ioyi0V6cx9mzpWLdfkSZMW+bw/rItjPKVg==
   dependencies:
     calculate-cache-key-for-tree "^2.0.0"
-    ember-cli-babel "^7.21.0"
-    ember-cli-typescript "^3.1.4"
+    ember-cli-babel "^7.23.1"
+    ember-cli-typescript "^4.1.0"
     ember-cli-version-checker "^5.1.2"
     semver "^7.3.2"
 
