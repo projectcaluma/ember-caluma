@@ -1,3 +1,11 @@
+## [7.0.4](https://github.com/projectcaluma/ember-caluma/compare/v7.0.3...v7.0.4) (2021-03-24)
+
+
+### Bug Fixes
+
+* **field:** add all table columns as dependency if followed by stringify ([44bbf29](https://github.com/projectcaluma/ember-caluma/commit/44bbf29705c27928fb99fdfca4770db780201516))
+* **field:** fix field dependencies for optional property ([26e564e](https://github.com/projectcaluma/ember-caluma/commit/26e564e4a556d06db3508c65855d58ba43bf1e64))
+
 ## [7.0.3](https://github.com/projectcaluma/ember-caluma/compare/v7.0.2...v7.0.3) (2021-03-17)
 
 
