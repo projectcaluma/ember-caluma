@@ -505,7 +505,7 @@ export default Base.extend({
   _optionalNestedDependencyParents: nestedDependencyParents(
     "question.isRequired"
   ),
-  optionalDependencies: dependencies("question.isHidden", {
+  optionalDependencies: dependencies("question.isRequired", {
     nestedParentsPath: "_optionalNestedDependencyParents",
   }),
 
