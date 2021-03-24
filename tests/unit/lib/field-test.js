@@ -446,6 +446,32 @@ module("Unit | Library | field", function (hooks) {
         ),
         ["table", "table.table-form-question", "table.table-form-question-2"]
       );
+
+      assert.deepEqual(
+        [
+          ...new Set(
+            this.field.hiddenDependencies.map((field) => field.question.slug)
+          ),
+        ],
+        ["table", "table-form-question", "table-form-question-2"]
+      );
+    });
+
+    test("calculates optional dependencies correctly", async function (assert) {
+      this.field = this.document.findField("question-2");
+
+      assert.deepEqual(
+        getDependenciesFromJexl(
+          this.field.document.jexl,
+          this.field.question.isRequired
+        ),
+        ["question-1"]
+      );
+
+      assert.deepEqual(
+        this.field.optionalDependencies.map((field) => field.question.slug),
+        ["question-1"]
+      );
     });
 
     test("calculates dependencies correctly if the answer transform on a table is followed by a stringify transform", async function (assert) {
