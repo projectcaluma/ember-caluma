@@ -1,3 +1,4 @@
+import { set } from "@ember/object";
 import { settled } from "@ember/test-helpers";
 import ValidatorServiceStub from "dummy/tests/helpers/validator-service-stub";
 import { setupIntl } from "ember-intl/test-support";
@@ -445,6 +446,31 @@ module("Unit | Library | field", function (hooks) {
         ),
         ["table", "table.table-form-question", "table.table-form-question-2"]
       );
+    });
+
+    test("calculates dependencies correctly if the answer transform on a table is followed by a stringify transform", async function (assert) {
+      this.field = this.document.findField("json-dependency");
+
+      set(this.field.question, "isRequired", "'table'|answer|stringify == []");
+
+      assert.deepEqual(
+        getDependenciesFromJexl(
+          this.field.document.jexl,
+          this.field.question.isRequired
+        ),
+        ["table", "table.__all__"]
+      );
+
+      assert.deepEqual(
+        [
+          ...new Set(
+            this.field.optionalDependencies.map((field) => field.question.slug)
+          ),
+        ],
+        ["table", "table-form-question", "table-form-question-2"]
+      );
+
+      set(this.field.question, "isRequired", "false");
     });
   });
 

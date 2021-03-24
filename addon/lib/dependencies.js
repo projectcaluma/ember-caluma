@@ -24,6 +24,12 @@ export function getDependenciesFromJexl(jexl, expression) {
       transform.args[0].type === "FunctionCall" &&
       transform.args[0].name === "answer"
   );
+  const stringifyTransforms = allTransforms.filter(
+    (transform) =>
+      transform.name === "stringify" &&
+      transform.args[0].type === "FunctionCall" &&
+      transform.args[0].name === "answer"
+  );
 
   return [
     ...new Set([
@@ -34,6 +40,9 @@ export function getDependenciesFromJexl(jexl, expression) {
 
         return childKeys.map((key) => `${parentKey}.${key}`);
       }),
+      ...stringifyTransforms.map(
+        (transform) => `${transform.args[0].args[0].value}.__all__`
+      ),
     ]),
   ];
 }
@@ -118,12 +127,14 @@ export function dependencies(
 
           if (!onlyNestedParents && nestedSlug && field.value) {
             // Get the nested fields from the parents value (rows)
-            return [
-              field,
-              ...field.value.map((row) =>
-                findField(row, nestedSlug, expression)
-              ),
-            ];
+            const childFields =
+              nestedSlug === "__all__"
+                ? field.value.flatMap((row) => row.fields)
+                : field.value.map((row) =>
+                    findField(row, nestedSlug, expression)
+                  );
+
+            return [field, ...childFields];
           }
 
           return [field];
