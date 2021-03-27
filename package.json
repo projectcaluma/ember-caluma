@@ -93,7 +93,7 @@
     "ember-cli-sri": "2.1.1",
     "ember-cli-uglify": "3.0.0",
     "ember-cli-update": "^0.56.0",
-    "ember-data": "3.25.0",
+    "ember-data": "3.26.0",
     "ember-disable-prototype-extensions": "1.1.3",
     "ember-engines": "0.8.12",
     "ember-export-application-global": "2.0.1",
