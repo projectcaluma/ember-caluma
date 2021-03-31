@@ -1,3 +1,10 @@
+## [7.0.5](https://github.com/projectcaluma/ember-caluma/compare/v7.0.4...v7.0.5) (2021-03-31)
+
+
+### Bug Fixes
+
+* **label:** fix optional chaining ([2db71fa](https://github.com/projectcaluma/ember-caluma/commit/2db71fae949f661e24556f61637bca0d41a9ae49))
+
 ## [7.0.4](https://github.com/projectcaluma/ember-caluma/compare/v7.0.3...v7.0.4) (2021-03-24)
 
 
