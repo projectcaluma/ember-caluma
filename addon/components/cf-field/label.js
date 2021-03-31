@@ -6,6 +6,6 @@ export default class CfFieldLabelComponent extends Component {
       return false;
     }
 
-    return this.args?.field.optional;
+    return this.args.field?.optional;
   }
 }
