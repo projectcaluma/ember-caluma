@@ -23,8 +23,12 @@
   }
 }
 
-.jexl-textarea textarea {
-  font-family: monospace;
+.cfb-code-editor {
+  font-family: "Source Code Pro", monospace;
+  letter-spacing: normal;
+  height: 70px;
+  line-height: 16px;
+  tab-size: 4;
 }
 
 .cf-checkbox_label {
