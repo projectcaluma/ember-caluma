@@ -99,28 +99,31 @@
       {{/if}}
 
       {{#if (has-question-type f.model "static")}}
-        {{f.input
-          type="textarea"
-          label=(t "caluma.form-builder.question.staticContent")
-          name="staticContent"
-          class="uk-margin-remove-bottom"
-        }}
+        <div class="uk-margin">
+          <f.input
+            @label={{t "caluma.form-builder.question.staticContent"}}
+            @name="staticContent"
+            @renderComponent={{component "cfb-code-editor" language="markdown" className="uk-margin-remove-bottom"}}
+            class="uk-margin-remove-bottom"
+          />
+          <small class="uk-text-muted">
+            {{t "caluma.form-builder.question.supportsMarkdownPrefix"}}
+            <a target="_blank" rel="noopener noreferrer" href="https://www.markdownguide.org/basic-syntax">{{t "caluma.form-builder.question.markdown"}}</a>
+          </small>
+        </div>
+      {{/if}}
+
+      <div class="uk-margin">
+        <f.input
+           @label={{t "caluma.form-builder.question.infoText"}}
+           @name="infoText"
+           @renderComponent={{component "cfb-code-editor" language="markdown" className="uk-margin-remove-bottom"}}
+                                                                              />
         <small class="uk-text-muted">
           {{t "caluma.form-builder.question.supportsMarkdownPrefix"}}
           <a target="_blank" rel="noopener noreferrer" href="https://www.markdownguide.org/basic-syntax">{{t "caluma.form-builder.question.markdown"}}</a>
         </small>
-      {{/if}}
-
-      {{f.input
-        type="textarea"
-        label=(t "caluma.form-builder.question.infoText")
-        name="infoText"
-        class="uk-margin-remove-bottom"
-      }}
-      <small class="uk-text-muted">
-        {{t "caluma.form-builder.question.supportsMarkdownPrefix"}}
-        <a target="_blank" rel="noopener noreferrer" href="https://www.markdownguide.org/basic-syntax">{{t "caluma.form-builder.question.markdown"}}</a>
-      </small>
+      </div>
 
       {{#if (has-question-type f.model "text" "textarea" "integer" "float")}}
         {{f.input
@@ -310,19 +313,17 @@
         {{/uk-button}}
       </p>
       {{#if showAdvanced}}
-        {{f.input
-          type="textarea"
-          label=(t "caluma.form-builder.question.isHidden")
-          name="isHidden"
-          class="jexl-textarea"
-        }}
+        <f.input
+          @label={{t "caluma.form-builder.question.isHidden"}}
+          @name="isHidden"
+          @renderComponent={{component "cfb-code-editor" language="jexl"}}
+        />
 
         {{#unless this.requiredIrrelevant}}
           <f.input
-            @type="textarea"
             @label={{t "caluma.form-builder.question.isRequired"}}
             @name="isRequired"
-            @class="jexl-textarea"
+            @renderComponent={{component "cfb-code-editor" language="jexl"}}
           />
         {{/unless}}
       {{/if}}

@@ -36,6 +36,7 @@
     "@glimmer/tracking": "^1.0.4",
     "broccoli-funnel": "^3.0.3",
     "broccoli-merge-trees": "^4.2.0",
+    "codejar": "^3.4.0",
     "ember-apollo-client": "^3.1.0",
     "ember-auto-import": "^1.11.2",
     "ember-changeset": "^3.13.2",
@@ -62,6 +63,7 @@
     "lodash.clonedeep": "^4.5.0",
     "lodash.isequal": "^4.5.0",
     "moment": "^2.29.1",
+    "prismjs": "https://github.com/PrismJS/prism#7e51b99c86991b669435c51f80d6b16b9131fc6f",
     "proxy-polyfill": "^0.3.2",
     "sass": "^1.32.8",
     "slugify": "^1.5.0",
@@ -126,7 +128,8 @@
     "typeface-oxygen-mono": "1.1.13"
   },
   "//": {
-    "focus-trap": "Focus trap now throws an error if there is no tabbable element on initialization. This breaks the modal dialogs as they are hidden on initialization."
+    "focus-trap": "Focus trap now throws an error if there is no tabbable element on initialization. This breaks the modal dialogs as they are hidden on initialization.",
+    "prismjs": "The current release 1.23.0 doesn't include Jexl support yet. Once 1.24.0 has been released, use the npm release."
   },
   "resolutions": {
     "focus-trap": "6.2.1"

@@ -448,7 +448,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
   });
 
   test("it can create a static question", async function (assert) {
-    assert.expect(6);
+    assert.expect(5);
 
     this.server.create("form", { slug: "test-form" });
 
@@ -456,7 +456,6 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       assert.equal(question.__typename, "StaticQuestion");
       assert.equal(question.label, "Label");
       assert.equal(question.slug, "slug");
-      assert.equal(question.staticContent, "#bazz");
 
       assert.step("after-submit");
     });
@@ -468,7 +467,6 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     await fillIn("[name=__typename]", "StaticQuestion");
     await fillIn("[name=label]", "Label");
     await fillIn("[name=slug]", "slug");
-    await fillIn("[name=staticContent]", "#bazz");
 
     await click("button[type=submit]");
 

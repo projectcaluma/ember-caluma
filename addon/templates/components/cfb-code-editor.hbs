@@ -1,0 +1,13 @@
+<div>
+  {{component @labelComponent}}
+
+  <div
+    name={{@name}}
+    class={{concat "uk-textarea cfb-code-editor language-" @language}}
+    {{did-insert (action this.didInsertNode)}}
+    {{will-destroy (action this.willDestroyNode)}}
+  ></div>
+
+  {{component @hintComponent}}
+  {{component @errorComponent}}
+</div>
