@@ -30,7 +30,7 @@
     "update-possible-types": "node bin/fetch-possible-types.js && prettier --write addon/-private/fragment-types.js"
   },
   "dependencies": {
-    "@apollo/client": "^3.3.13",
+    "@apollo/client": "^3.3.14",
     "@ember/render-modifiers": "^1.0.2",
     "@glimmer/component": "1.0.4",
     "@glimmer/tracking": "^1.0.4",
