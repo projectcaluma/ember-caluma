@@ -56,10 +56,10 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: node_modules
-          key: node-modules-${{ hashFiles('yarn.lock') }}
+          key: node-modules-v2-${{ hashFiles('yarn.lock') }}
           restore-keys: |
-            node-modules-${{ hashFiles('yarn.lock') }}
-            node-modules-
+            node-modules-v2-${{ hashFiles('yarn.lock') }}
+            node-modules-v2-
 
       - name: Install dependencies
         run: yarn install
@@ -157,10 +157,10 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: node_modules
-          key: node-modules-${{ hashFiles('yarn.lock') }}
+          key: node-modules-v2-${{ hashFiles('yarn.lock') }}
           restore-keys: |
-            node-modules-${{ hashFiles('yarn.lock') }}
-            node-modules-
+            node-modules-v2-${{ hashFiles('yarn.lock') }}
+            node-modules-v2-
 
       - name: Install dependencies
         run: yarn install
