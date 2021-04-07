@@ -30,10 +30,10 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: node_modules
-          key: node-modules-${{ hashFiles('yarn.lock') }}
+          key: node-modules-v2-${{ hashFiles('yarn.lock') }}
           restore-keys: |
-            node-modules-${{ hashFiles('yarn.lock') }}
-            node-modules-
+            node-modules-v2-${{ hashFiles('yarn.lock') }}
+            node-modules-v2-
 
       - name: Install dependencies
         run: yarn install
@@ -171,11 +171,11 @@ jobs:
             node-modules
             package
             yarn.lock
-          key: node-modules-${{ matrix.scenario }}-${{ hashFiles('yarn.lock') }}-${{ hashFiles('config/ember-try.js') }}
+          key: node-modules-v2-${{ matrix.scenario }}-${{ hashFiles('yarn.lock') }}-${{ hashFiles('config/ember-try.js') }}
           restore-keys: |
-            node-modules-${{ matrix.scenario }}-${{ hashFiles('yarn.lock') }}-${{ hashFiles('config/ember-try.js') }}
-            node-modules-${{ matrix.scenario }}-
-            node-modules-
+            node-modules-v2-${{ matrix.scenario }}-${{ hashFiles('yarn.lock') }}-${{ hashFiles('config/ember-try.js') }}
+            node-modules-v2-${{ matrix.scenario }}-
+            node-modules-v2-
 
       - name: Run tests
         run: yarn ember try:one ${{ matrix.scenario }} --skip-cleanup
