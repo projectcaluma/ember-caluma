@@ -1,3 +1,10 @@
+## [7.0.6](https://github.com/projectcaluma/ember-caluma/compare/v7.0.5...v7.0.6) (2021-04-09)
+
+
+### Bug Fixes
+
+* **docs:** fix broken link to snippet ([9faea24](https://github.com/projectcaluma/ember-caluma/commit/9faea240c6cdae6aed179b7a2c3cb513ce506cef))
+
 ## [7.0.5](https://github.com/projectcaluma/ember-caluma/compare/v7.0.4...v7.0.5) (2021-03-31)
 
 
