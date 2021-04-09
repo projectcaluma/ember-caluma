@@ -42,4 +42,4 @@ include a polyfill for `Proxy` per default. If your app doesn't need that,
 you can opt-out by configuring `ember-caluma.includeProxyPolyfill` in your
 `ember-cli-build.js` file:
 
-{{docs-snippet name='usage/ember-cli-build.js'}}
+{{docs-snippet name='config/ember-cli-build.js'}}
