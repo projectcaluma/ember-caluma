@@ -52,7 +52,7 @@
     "ember-math-helpers": "^2.15.0",
     "ember-power-select": "^4.1.4",
     "ember-test-selectors": "^5.0.0",
-    "ember-uikit": "^2.2.2",
+    "ember-uikit": "^3.0.2",
     "ember-validated-form": "^3.0.2",
     "graphql": "^15.4.0",
     "graphql-iso-date": "^3.6.1",
