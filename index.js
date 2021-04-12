@@ -32,6 +32,8 @@ module.exports = EngineAddon.extend({
   included(...args) {
     this._super.included.apply(this, args);
 
+    this.import("node_modules/prismjs/themes/prism.css");
+
     if (this._getOptions().includeProxyPolyfill) {
       this.import("node_modules/proxy-polyfill/proxy.min.js");
     }

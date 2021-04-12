@@ -19,7 +19,6 @@ module.exports = function (defaults) {
 
   app.import("node_modules/typeface-oxygen/index.css");
   app.import("node_modules/typeface-oxygen-mono/index.css");
-  app.import("node_modules/prismjs/themes/prism.css");
 
   const oxygen = funnel("node_modules/typeface-oxygen/files", {
     include: ["*.woff", "*.woff2"],
