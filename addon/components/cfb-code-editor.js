@@ -3,8 +3,8 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { CodeJar } from "codejar";
 import Prism from "prismjs";
-import "prismjs/components/prism-jexl.min.js";
-import "prismjs/components/prism-markdown.min.js";
+import "prismjs/components/prism-jexl.js";
+import "prismjs/components/prism-markdown.js";
 
 export default class CfbCodeEditorComponent extends Component {
   editor;
