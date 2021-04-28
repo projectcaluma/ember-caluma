@@ -4,7 +4,7 @@ import faker from "faker";
 export default Factory.extend({
   createdAt: faker.date.past(),
   modifiedAt: faker.date.past(),
-  createdByUser: faker.random.uuid(),
+  createdByUser: faker.datatype.uuid(),
   uploadUrl: faker.internet.url(),
   downloadUrl: faker.internet.url(),
 

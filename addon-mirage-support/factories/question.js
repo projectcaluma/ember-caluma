@@ -6,7 +6,7 @@ export default Factory.extend({
 
   slug: (i) => `question-${i + 1}`,
   label: () => `${faker.lorem.sentence().replace(/\.$/, "")}?`,
-  isRequired: () => faker.random.boolean().toString(),
+  isRequired: () => faker.datatype.boolean().toString(),
   isHidden: "false",
   isArchived: false,
   meta: () => ({}),
@@ -15,19 +15,19 @@ export default Factory.extend({
     if (["TEXT", "TEXTAREA"].includes(question.type)) {
       if (question.maxLength === undefined) {
         question.update({
-          maxLength: faker.random.number({ min: 1, max: 255 }),
+          maxLength: faker.datatype.number({ min: 1, max: 255 }),
         });
       }
     } else if (["INTEGER", "FLOAT"].includes(question.type)) {
       if (question.minValue === undefined) {
         question.update({
-          minValue: faker.random.number({ min: 1, max: 100 }),
+          minValue: faker.datatype.number({ min: 1, max: 100 }),
         });
       }
 
       if (question.maxValue === undefined) {
         question.update({
-          maxValue: faker.random.number({
+          maxValue: faker.datatype.number({
             min: question.minValue + 1,
             max: 1000,
           }),

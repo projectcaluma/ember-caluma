@@ -19,7 +19,7 @@ export default Factory.extend({
 
       if (answer.value === undefined) {
         answer.update({
-          value: faker.random.number({
+          value: faker.datatype.number({
             min: answer.question.minValue,
             max: answer.question.maxValue,
           }),
@@ -30,7 +30,7 @@ export default Factory.extend({
 
       if (answer.value === undefined) {
         answer.update({
-          value: faker.random.number({
+          value: faker.datatype.number({
             min: answer.question.minValue,
             max: answer.question.maxValue,
             precision: 0.1,

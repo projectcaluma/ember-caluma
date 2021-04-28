@@ -4,7 +4,7 @@ import faker from "faker";
 const STATUS = ["READY", "CANCELED", "COMPLETED", "SKIPPED"];
 
 export default Factory.extend({
-  createdByUser: faker.random.uuid(),
+  createdByUser: faker.datatype.uuid(),
   createdAt: faker.date.past(),
   deadline: faker.date.future(),
   status: faker.random.arrayElement(STATUS),
