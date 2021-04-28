@@ -27,9 +27,11 @@ type AddWorkflowFlowPayload {
 interface Answer {
   id: ID
   createdAt: DateTime!
+  modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
-  modifiedAt: DateTime!
+  modifiedByUser: String
+  modifiedByGroup: String
   question: Question!
   meta: GenericScalar!
 }
@@ -67,6 +69,8 @@ input AnswerFilterSetType {
   search: String
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
   createdBefore: DateTime
   createdAfter: DateTime
   metaHasKey: String
@@ -138,6 +142,26 @@ enum AnswerOrdering {
   Created by group (descending)
   """
   CREATED_BY_GROUP_DESC
+
+  """
+  Modified by user
+  """
+  MODIFIED_BY_USER_ASC
+
+  """
+  Modified by user (descending)
+  """
+  MODIFIED_BY_USER_DESC
+
+  """
+  Modified by group
+  """
+  MODIFIED_BY_GROUP_ASC
+
+  """
+  Modified by group (descending)
+  """
+  MODIFIED_BY_GROUP_DESC
 }
 
 input AnswerOrderSetType {
@@ -156,6 +180,8 @@ type CalculatedFloatQuestion implements Question & Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
   slug: String!
   label: String!
 
@@ -186,6 +212,8 @@ type CalculatedFloatQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    modifiedByUser: String
+    modifiedByGroup: String
 
     """
     Only return entries created after the given DateTime (Exclusive)
@@ -243,6 +271,8 @@ type Case implements Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
 
   """
   The ID of the object.
@@ -285,6 +315,8 @@ type Case implements Node {
     order: [WorkItemOrderSetType]
     createdByUser: String
     createdByGroup: String
+    modifiedByUser: String
+    modifiedByGroup: String
 
     """
     Only return entries created after the given DateTime (Exclusive)
@@ -336,6 +368,8 @@ type Case implements Node {
     caseFamily: ID
     createdByUser: String
     createdByGroup: String
+    modifiedByUser: String
+    modifiedByGroup: String
 
     """
     Only return entries created after the given DateTime (Exclusive)
@@ -386,6 +420,8 @@ input CaseFilterSetType {
   workflow: ID
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
   createdBefore: DateTime
   createdAfter: DateTime
   metaHasKey: String
@@ -456,6 +492,26 @@ enum CaseOrdering {
   Created by group (descending)
   """
   CREATED_BY_GROUP_DESC
+
+  """
+  Modified by user
+  """
+  MODIFIED_BY_USER_ASC
+
+  """
+  Modified by user (descending)
+  """
+  MODIFIED_BY_USER_DESC
+
+  """
+  Modified by group
+  """
+  MODIFIED_BY_GROUP_ASC
+
+  """
+  Modified by group (descending)
+  """
+  MODIFIED_BY_GROUP_DESC
 }
 
 input CaseOrderSetType {
@@ -520,6 +576,8 @@ type ChoiceQuestion implements Question & Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
   slug: String!
   label: String!
 
@@ -551,6 +609,8 @@ type ChoiceQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    modifiedByUser: String
+    modifiedByGroup: String
 
     """
     Only return entries created after the given DateTime (Exclusive)
@@ -576,6 +636,8 @@ type ChoiceQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    modifiedByUser: String
+    modifiedByGroup: String
 
     """
     Only return entries created after the given DateTime (Exclusive)
@@ -606,6 +668,8 @@ type CompleteTaskFormTask implements Task & Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
   slug: String!
   name: String!
   description: String
@@ -633,6 +697,8 @@ type CompleteWorkflowFormTask implements Task & Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
   slug: String!
   name: String!
   description: String
@@ -830,6 +896,8 @@ type DateAnswer implements Answer & Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
 
   """
   The ID of the object.
@@ -846,6 +914,8 @@ type DateQuestion implements Question & Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
   slug: String!
   label: String!
 
@@ -877,6 +947,8 @@ type DateQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    modifiedByUser: String
+    modifiedByGroup: String
 
     """
     Only return entries created after the given DateTime (Exclusive)
@@ -995,6 +1067,8 @@ type Document implements Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
 
   """
   The ID of the object.
@@ -1034,6 +1108,8 @@ type Document implements Node {
     order: [AnswerOrderSetType]
     createdByUser: String
     createdByGroup: String
+    modifiedByUser: String
+    modifiedByGroup: String
 
     """
     Only return entries created after the given DateTime (Exclusive)
@@ -1050,6 +1126,9 @@ type Document implements Node {
   ): AnswerConnection
   case: Case
   workItem: WorkItem
+  modifiedContentAt: DateTime
+  modifiedContentByUser: String
+  modifiedContentByGroup: String
 }
 
 type DocumentConnection {
@@ -1087,6 +1166,8 @@ input DocumentFilterSetType {
   id: ID
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
   createdBefore: DateTime
   createdAfter: DateTime
   metaHasKey: String
@@ -1141,6 +1222,26 @@ enum DocumentOrdering {
   Created by group (descending)
   """
   CREATED_BY_GROUP_DESC
+
+  """
+  Modified by user
+  """
+  MODIFIED_BY_USER_ASC
+
+  """
+  Modified by user (descending)
+  """
+  MODIFIED_BY_USER_DESC
+
+  """
+  Modified by group
+  """
+  MODIFIED_BY_GROUP_ASC
+
+  """
+  Modified by group (descending)
+  """
+  MODIFIED_BY_GROUP_DESC
 }
 
 input DocumentOrderSetType {
@@ -1183,6 +1284,8 @@ type DynamicChoiceQuestion implements Question & Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
   slug: String!
   label: String!
 
@@ -1213,6 +1316,8 @@ type DynamicChoiceQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    modifiedByUser: String
+    modifiedByGroup: String
 
     """
     Only return entries created after the given DateTime (Exclusive)
@@ -1246,6 +1351,8 @@ type DynamicMultipleChoiceQuestion implements Question & Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
   slug: String!
   label: String!
 
@@ -1276,6 +1383,8 @@ type DynamicMultipleChoiceQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    modifiedByUser: String
+    modifiedByGroup: String
 
     """
     Only return entries created after the given DateTime (Exclusive)
@@ -1309,6 +1418,8 @@ type DynamicOption implements Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
 
   """
   The ID of the object.
@@ -1359,6 +1470,8 @@ type File implements Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
 
   """
   The ID of the object.
@@ -1376,6 +1489,8 @@ type FileAnswer implements Answer & Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
 
   """
   The ID of the object.
@@ -1392,6 +1507,8 @@ type FileQuestion implements Question & Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
   slug: String!
   label: String!
 
@@ -1422,6 +1539,8 @@ type FileQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    modifiedByUser: String
+    modifiedByGroup: String
 
     """
     Only return entries created after the given DateTime (Exclusive)
@@ -1448,6 +1567,8 @@ type FloatAnswer implements Answer & Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
 
   """
   The ID of the object.
@@ -1463,6 +1584,8 @@ type FloatQuestion implements Question & Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
   slug: String!
   label: String!
 
@@ -1495,6 +1618,8 @@ type FloatQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    modifiedByUser: String
+    modifiedByGroup: String
 
     """
     Only return entries created after the given DateTime (Exclusive)
@@ -1523,6 +1648,8 @@ type Flow implements Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
 
   """
   The ID of the object.
@@ -1564,6 +1691,8 @@ input FlowFilterSetType {
   task: ID
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
   createdBefore: DateTime
   createdAfter: DateTime
   invert: Boolean
@@ -1587,6 +1716,8 @@ type Form implements Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
   slug: String!
   name: String!
   description: String
@@ -1604,8 +1735,12 @@ type Form implements Node {
     isRequired: String
     isHidden: String
     isArchived: Boolean
+    subForm: ID
+    rowForm: ID
     createdByUser: String
     createdByGroup: String
+    modifiedByUser: String
+    modifiedByGroup: String
 
     """
     Only return entries created after the given DateTime (Exclusive)
@@ -1716,6 +1851,8 @@ input FormFilterSetType {
   isArchived: Boolean
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
   createdBefore: DateTime
   createdAfter: DateTime
   metaHasKey: String
@@ -1778,6 +1915,26 @@ enum FormOrdering {
   Created by group (descending)
   """
   CREATED_BY_GROUP_DESC
+
+  """
+  Modified by user
+  """
+  MODIFIED_BY_USER_ASC
+
+  """
+  Modified by user (descending)
+  """
+  MODIFIED_BY_USER_DESC
+
+  """
+  Modified by group
+  """
+  MODIFIED_BY_GROUP_ASC
+
+  """
+  Modified by group (descending)
+  """
+  MODIFIED_BY_GROUP_DESC
 }
 
 input FormOrderSetType {
@@ -1791,6 +1948,8 @@ type FormQuestion implements Question & Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
   slug: String!
   label: String!
 
@@ -1821,6 +1980,8 @@ type FormQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    modifiedByUser: String
+    modifiedByGroup: String
 
     """
     Only return entries created after the given DateTime (Exclusive)
@@ -1882,6 +2043,8 @@ type IntegerAnswer implements Answer & Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
 
   """
   The ID of the object.
@@ -1897,6 +2060,8 @@ type IntegerQuestion implements Question & Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
   slug: String!
   label: String!
 
@@ -1929,6 +2094,8 @@ type IntegerQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    modifiedByUser: String
+    modifiedByGroup: String
 
     """
     Only return entries created after the given DateTime (Exclusive)
@@ -1957,6 +2124,7 @@ enum JSONLookupMode {
   STARTSWITH
   CONTAINS
   ICONTAINS
+  IN
   GTE
   GT
   LTE
@@ -1982,6 +2150,8 @@ type ListAnswer implements Answer & Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
 
   """
   The ID of the object.
@@ -1997,6 +2167,8 @@ type MultipleChoiceQuestion implements Question & Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
   slug: String!
   label: String!
 
@@ -2028,6 +2200,8 @@ type MultipleChoiceQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    modifiedByUser: String
+    modifiedByGroup: String
 
     """
     Only return entries created after the given DateTime (Exclusive)
@@ -2058,6 +2232,8 @@ type MultipleChoiceQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    modifiedByUser: String
+    modifiedByGroup: String
 
     """
     Only return entries created after the given DateTime (Exclusive)
@@ -2206,6 +2382,8 @@ type Option implements Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
   slug: String!
   label: String!
   isArchived: Boolean!
@@ -2303,6 +2481,26 @@ enum OptionOrdering {
   Created by group (descending)
   """
   CREATED_BY_GROUP_DESC
+
+  """
+  Modified by user
+  """
+  MODIFIED_BY_USER_ASC
+
+  """
+  Modified by user (descending)
+  """
+  MODIFIED_BY_USER_DESC
+
+  """
+  Modified by group
+  """
+  MODIFIED_BY_GROUP_ASC
+
+  """
+  Modified by group (descending)
+  """
+  MODIFIED_BY_GROUP_DESC
 }
 
 """
@@ -2364,6 +2562,8 @@ type Query {
     order: [WorkflowOrderSetType]
     createdByUser: String
     createdByGroup: String
+    modifiedByUser: String
+    modifiedByGroup: String
 
     """
     Only return entries created after the given DateTime (Exclusive)
@@ -2397,6 +2597,8 @@ type Query {
     order: [TaskOrderSetType]
     createdByUser: String
     createdByGroup: String
+    modifiedByUser: String
+    modifiedByGroup: String
 
     """
     Only return entries created after the given DateTime (Exclusive)
@@ -2426,6 +2628,8 @@ type Query {
     order: [CaseOrderSetType]
     createdByUser: String
     createdByGroup: String
+    modifiedByUser: String
+    modifiedByGroup: String
 
     """
     Only return entries created after the given DateTime (Exclusive)
@@ -2485,6 +2689,8 @@ type Query {
     caseFamily: ID
     createdByUser: String
     createdByGroup: String
+    modifiedByUser: String
+    modifiedByGroup: String
 
     """
     Only return entries created after the given DateTime (Exclusive)
@@ -2521,6 +2727,8 @@ type Query {
     order: [FormOrderSetType]
     createdByUser: String
     createdByGroup: String
+    modifiedByUser: String
+    modifiedByGroup: String
 
     """
     Only return entries created after the given DateTime (Exclusive)
@@ -2551,10 +2759,14 @@ type Query {
     isRequired: String
     isHidden: String
     isArchived: Boolean
+    subForm: ID
+    rowForm: ID
     filter: [QuestionFilterSetType]
     order: [QuestionOrderSetType]
     createdByUser: String
     createdByGroup: String
+    modifiedByUser: String
+    modifiedByGroup: String
 
     """
     Only return entries created after the given DateTime (Exclusive)
@@ -2589,6 +2801,8 @@ type Query {
     order: [DocumentOrderSetType]
     createdByUser: String
     createdByGroup: String
+    modifiedByUser: String
+    modifiedByGroup: String
 
     """
     Only return entries created after the given DateTime (Exclusive)
@@ -2620,6 +2834,8 @@ type Query {
     filter: [DynamicOptionFilterSetType]
     createdByUser: String
     createdByGroup: String
+    modifiedByUser: String
+    modifiedByGroup: String
 
     """
     Only return entries created after the given DateTime (Exclusive)
@@ -2652,6 +2868,8 @@ interface Question {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
   slug: String!
   label: String!
   infoText: String
@@ -2675,6 +2893,8 @@ interface Question {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    modifiedByUser: String
+    modifiedByGroup: String
 
     """
     Only return entries created after the given DateTime (Exclusive)
@@ -2733,8 +2953,12 @@ input QuestionFilterSetType {
   isRequired: String
   isHidden: String
   isArchived: Boolean
+  subForm: ID
+  rowForm: ID
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
   createdBefore: DateTime
   createdAfter: DateTime
   metaHasKey: String
@@ -2817,6 +3041,26 @@ enum QuestionOrdering {
   Created by group (descending)
   """
   CREATED_BY_GROUP_DESC
+
+  """
+  Modified by user
+  """
+  MODIFIED_BY_USER_ASC
+
+  """
+  Modified by user (descending)
+  """
+  MODIFIED_BY_USER_DESC
+
+  """
+  Modified by group
+  """
+  MODIFIED_BY_GROUP_ASC
+
+  """
+  Modified by group (descending)
+  """
+  MODIFIED_BY_GROUP_DESC
 }
 
 input QuestionOrderSetType {
@@ -2925,7 +3169,6 @@ input SaveCalculatedFloatQuestionInput {
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
-  defaultAnswer: ID
   calcExpression: QuestionJexl
   clientMutationId: String
 }
@@ -2962,7 +3205,6 @@ input SaveChoiceQuestionInput {
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
-  defaultAnswer: ID
   options: [ID]!
   clientMutationId: String
 }
@@ -3053,7 +3295,6 @@ input SaveDateQuestionInput {
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
-  defaultAnswer: ID
   clientMutationId: String
 }
 
@@ -3254,7 +3495,6 @@ input SaveDynamicChoiceQuestionInput {
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
-  defaultAnswer: ID
   dataSource: String!
   clientMutationId: String
 }
@@ -3272,7 +3512,6 @@ input SaveDynamicMultipleChoiceQuestionInput {
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
-  defaultAnswer: ID
   dataSource: String!
   clientMutationId: String
 }
@@ -3290,7 +3529,6 @@ input SaveFileQuestionInput {
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
-  defaultAnswer: ID
   clientMutationId: String
 }
 
@@ -3307,7 +3545,6 @@ input SaveFloatQuestionInput {
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
-  defaultAnswer: ID
   minValue: Float
   maxValue: Float
   placeholder: String
@@ -3342,7 +3579,6 @@ input SaveFormQuestionInput {
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
-  defaultAnswer: ID
   subForm: ID!
   clientMutationId: String
 }
@@ -3360,7 +3596,6 @@ input SaveIntegerQuestionInput {
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
-  defaultAnswer: ID
   minValue: Int
   maxValue: Int
   placeholder: String
@@ -3380,7 +3615,6 @@ input SaveMultipleChoiceQuestionInput {
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
-  defaultAnswer: ID
   options: [ID]!
   clientMutationId: String
 }
@@ -3463,7 +3697,6 @@ input SaveTableQuestionInput {
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
-  defaultAnswer: ID
 
   """
   Form that represents rows of a TableQuestion
@@ -3485,7 +3718,6 @@ input SaveTextareaQuestionInput {
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
-  defaultAnswer: ID
   minLength: Int
   maxLength: Int
   placeholder: String
@@ -3506,7 +3738,6 @@ input SaveTextQuestionInput {
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
-  defaultAnswer: ID
   minLength: Int
   maxLength: Int
   placeholder: String
@@ -3601,6 +3832,8 @@ type SimpleTask implements Task & Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
   slug: String!
   name: String!
   description: String
@@ -3642,6 +3875,8 @@ enum SortableAnswerAttributes {
   MODIFIED_AT
   CREATED_BY_USER
   CREATED_BY_GROUP
+  MODIFIED_BY_USER
+  MODIFIED_BY_GROUP
   QUESTION
   VALUE
   DOCUMENT
@@ -3666,6 +3901,8 @@ enum SortableDocumentAttributes {
   MODIFIED_AT
   CREATED_BY_USER
   CREATED_BY_GROUP
+  MODIFIED_BY_USER
+  MODIFIED_BY_GROUP
   FORM
   SOURCE
 }
@@ -3675,6 +3912,8 @@ enum SortableFormAttributes {
   MODIFIED_AT
   CREATED_BY_USER
   CREATED_BY_GROUP
+  MODIFIED_BY_USER
+  MODIFIED_BY_GROUP
   SLUG
   NAME
   DESCRIPTION
@@ -3687,6 +3926,8 @@ enum SortableQuestionAttributes {
   MODIFIED_AT
   CREATED_BY_USER
   CREATED_BY_GROUP
+  MODIFIED_BY_USER
+  MODIFIED_BY_GROUP
   SLUG
   LABEL
   TYPE
@@ -3761,6 +4002,8 @@ type StaticQuestion implements Question & Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
   slug: String!
   label: String!
 
@@ -3792,6 +4035,8 @@ type StaticQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    modifiedByUser: String
+    modifiedByGroup: String
 
     """
     Only return entries created after the given DateTime (Exclusive)
@@ -3850,6 +4095,8 @@ type StringAnswer implements Answer & Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
 
   """
   The ID of the object.
@@ -3895,6 +4142,8 @@ type TableAnswer implements Answer & Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
 
   """
   The ID of the object.
@@ -3911,6 +4160,8 @@ type TableQuestion implements Question & Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
   slug: String!
   label: String!
 
@@ -3942,6 +4193,8 @@ type TableQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    modifiedByUser: String
+    modifiedByGroup: String
 
     """
     Only return entries created after the given DateTime (Exclusive)
@@ -4020,6 +4273,8 @@ input TaskFilterSetType {
   isArchived: Boolean
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
   createdBefore: DateTime
   createdAfter: DateTime
   metaHasKey: String
@@ -4102,6 +4357,26 @@ enum TaskOrdering {
   Created by group (descending)
   """
   CREATED_BY_GROUP_DESC
+
+  """
+  Modified by user
+  """
+  MODIFIED_BY_USER_ASC
+
+  """
+  Modified by user (descending)
+  """
+  MODIFIED_BY_USER_DESC
+
+  """
+  Modified by group
+  """
+  MODIFIED_BY_GROUP_ASC
+
+  """
+  Modified by group (descending)
+  """
+  MODIFIED_BY_GROUP_DESC
 }
 
 input TaskOrderSetType {
@@ -4155,6 +4430,8 @@ type TextareaQuestion implements Question & Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
   slug: String!
   label: String!
 
@@ -4193,6 +4470,8 @@ type TextareaQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    modifiedByUser: String
+    modifiedByGroup: String
 
     """
     Only return entries created after the given DateTime (Exclusive)
@@ -4221,6 +4500,8 @@ type TextQuestion implements Question & Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
   slug: String!
   label: String!
 
@@ -4259,6 +4540,8 @@ type TextQuestion implements Question & Node {
     isArchived: Boolean
     createdByUser: String
     createdByGroup: String
+    modifiedByUser: String
+    modifiedByGroup: String
 
     """
     Only return entries created after the given DateTime (Exclusive)
@@ -4318,6 +4601,8 @@ type Workflow implements Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
   slug: String!
   name: String!
   description: String
@@ -4359,6 +4644,8 @@ type Workflow implements Node {
     filter: [FlowFilterSetType]
     createdByUser: String
     createdByGroup: String
+    modifiedByUser: String
+    modifiedByGroup: String
 
     """
     Only return entries created after the given DateTime (Exclusive)
@@ -4408,6 +4695,8 @@ input WorkflowFilterSetType {
   isArchived: Boolean
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
   createdBefore: DateTime
   createdAfter: DateTime
   metaHasKey: String
@@ -4480,6 +4769,26 @@ enum WorkflowOrdering {
   Created by group (descending)
   """
   CREATED_BY_GROUP_DESC
+
+  """
+  Modified by user
+  """
+  MODIFIED_BY_USER_ASC
+
+  """
+  Modified by user (descending)
+  """
+  MODIFIED_BY_USER_DESC
+
+  """
+  Modified by group
+  """
+  MODIFIED_BY_GROUP_ASC
+
+  """
+  Modified by group (descending)
+  """
+  MODIFIED_BY_GROUP_DESC
 }
 
 input WorkflowOrderSetType {
@@ -4493,6 +4802,8 @@ type WorkItem implements Node {
   modifiedAt: DateTime!
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
 
   """
   The ID of the object.
@@ -4592,6 +4903,8 @@ input WorkItemFilterSetType {
   caseFamily: ID
   createdByUser: String
   createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
   createdBefore: DateTime
   createdAfter: DateTime
   metaHasKey: String
@@ -4671,6 +4984,26 @@ enum WorkItemOrdering {
   Created by group (descending)
   """
   CREATED_BY_GROUP_DESC
+
+  """
+  Modified by user
+  """
+  MODIFIED_BY_USER_ASC
+
+  """
+  Modified by user (descending)
+  """
+  MODIFIED_BY_USER_DESC
+
+  """
+  Modified by group
+  """
+  MODIFIED_BY_GROUP_ASC
+
+  """
+  Modified by group (descending)
+  """
+  MODIFIED_BY_GROUP_DESC
 }
 
 input WorkItemOrderSetType {

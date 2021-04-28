@@ -27,7 +27,7 @@
     "test:ember-compatibility": "ember try:each",
     "test:browserstack": "ember test --host=127.0.0.1 --test-port=7774 --config-file=testem.browserstack.js",
     "update-schema": "get-graphql-schema http://localhost:8000/graphql > addon/mirage-graphql/schema.graphql && prettier --write addon/mirage-graphql/schema.graphql",
-    "update-possible-types": "node bin/fetch-possible-types.js && prettier --write addon/-private/fragment-types.js"
+    "update-possible-types": "node bin/fetch-possible-types.js && prettier --write addon/-private/possible-types.js"
   },
   "dependencies": {
     "@apollo/client": "^3.3.15",
