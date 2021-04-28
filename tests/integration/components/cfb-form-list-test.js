@@ -71,7 +71,7 @@ module("Integration | Component | cfb-form-list", function (hooks) {
 
     assert.dom("[data-test-form-list-empty]").exists();
 
-    await click("[data-test-filter-archived]");
+    await click("[data-test-filter=archived]");
 
     assert.dom("[data-test-form-list]").exists();
     assert.dom("[data-test-form-list-item]").exists({ count: 1 });
