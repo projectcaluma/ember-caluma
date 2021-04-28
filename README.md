@@ -48,10 +48,16 @@ Cross-browser testing provided by:
 
 ### Running the dummy application
 
-- `ember serve`
+#### With a mocked [Mirage.js](https://github.com/miragejs/ember-cli-mirage) backend
+
+- `yarn start`
 - Visit the dummy application at [http://localhost:4200](http://localhost:4200).
 
-For more information on using ember-cli, visit [https://ember-cli.com/](https://ember-cli.com/).
+#### With a dockerized [Caluma](https://github.com/projectcaluma/caluma) backend
+
+- `docker-compose up -d`
+- `yarn start-proxy`
+- Visit the dummy application at [http://localhost:4200](http://localhost:4200).
 
 ### Updating the schema
 
