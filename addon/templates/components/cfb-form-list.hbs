@@ -5,22 +5,14 @@
 >
   <div class="uk-flex uk-flex-between">
     <div class="uk-button-group">
-      <UkButton
-        @on-click={{fn (mut this.filter) "active"}}
-        @label={{t "caluma.form-builder.form.active"}}
-        @class={{if (eq this.filter "active") "uk-button-primary" ""}}
-      />
-      <UkButton
-        data-test-filter-archived
-        @on-click={{fn (mut this.filter) "archived"}}
-        @label={{t "caluma.form-builder.form.archived"}}
-        @class={{if (eq this.filter "archived") "uk-button-primary" ""}}
-      />
-      <UkButton
-        @on-click={{fn (mut this.filter) "all"}}
-        @label={{t "caluma.form-builder.form.all"}}
-        @class={{if (eq this.filter "all") "uk-button-primary" ""}}
-      />
+      {{#each (array "active" "archived" "all") as |category|}}
+        <UkButton
+          data-test-filter={{category}}
+          @on-click={{fn this.setFilter "category" category}}
+          @label={{t (concat "caluma.form-builder.form." category)}}
+          @class={{if (eq this.category category) "uk-button-primary" ""}}
+        />
+      {{/each}}
     </div>
     <div>
       <UkButton
@@ -30,7 +22,7 @@
       />
     </div>
   </div>
-  <form class="uk-search uk-search-default uk-width-1-1 uk-margin-small-top">
+  <form class="uk-search uk-search-default uk-width-1-1 uk-margin-small-top" {{on "submit" this.submit}}>
     <span class="uk-search-icon-flip" uk-search-icon></span>
     <input
       data-test-form-search-input
@@ -38,7 +30,7 @@
       type="search"
       placeholder="{{t "caluma.form-builder.global.search"}}..."
       value={{this.search}}
-      {{on "input" this.searchForms}}
+      {{on "input" (fn this.setFilter "search")}}
     />
   </form>
   {{#if this.formsQuery.isLoading}}

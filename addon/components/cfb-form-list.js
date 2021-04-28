@@ -10,23 +10,36 @@ import { allForms } from "ember-caluma/caluma-query/queries";
 
 export default class ComponentsCfbFormListComponent extends Component {
   @queryManager apollo;
+
   @calumaQuery({ query: allForms, options: { pageSize: 20 } }) formsQuery;
 
-  @tracked _filter = "active";
+  @tracked category = "active";
   @tracked search = "";
 
   get filter() {
-    return this._filter;
+    const isArchived =
+      this.category === "active"
+        ? { isArchived: false }
+        : this.category === "archived"
+        ? { isArchived: true }
+        : null;
+
+    const search = this.search ? { search: this.search } : null;
+
+    return [isArchived, search].filter(Boolean) || null;
   }
-  set filter(value) {
-    this._filter = value;
+
+  @action
+  setFilter(name, eventOrValue) {
+    this[name] =
+      eventOrValue instanceof Event ? eventOrValue.target.value : eventOrValue;
+
     this.fetchForms.perform();
   }
 
   @action
-  searchForms(event) {
-    this.search = event.target.value;
-    this.fetchForms.perform();
+  submit(event) {
+    event.preventDefault();
   }
 
   @action
@@ -38,25 +51,8 @@ export default class ComponentsCfbFormListComponent extends Component {
   *fetchForms() {
     yield timeout(500);
 
-    const filter = [];
-
-    switch (this.filter) {
-      case "all":
-        break;
-      case "active":
-        filter.push({ isArchived: false });
-        break;
-      case "archived":
-        filter.push({ isArchived: true });
-        break;
-    }
-
-    if (this.search) {
-      filter.push({ search: this.search });
-    }
-
     yield this.formsQuery.fetch({
-      filter,
+      filter: this.filter,
       order: [{ attribute: "NAME", direction: "ASC" }],
     });
   }
