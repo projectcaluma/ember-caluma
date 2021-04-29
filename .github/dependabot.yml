@@ -1,0 +1,23 @@
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: daily
+    reviewers:
+      - anehx
+    versioning-strategy: increase
+    ignore:
+      # graphql-tools v5+ breaks generic mocking
+      - dependency-name: graphql-tools
+        versions:
+          - ">= 5"
+
+      # https://github.com/jasonmit/ember-cli-moment-shim/issues/183
+      - dependency-name: ember-cli-moment-shim
+        versions:
+          - "> 3.8.0"
+
+      - dependency-name: moment
+        versions:
+          - "> 2.24.0"
