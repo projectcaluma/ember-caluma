@@ -67,13 +67,40 @@ export default class DependentsTreeComponent extends Component {
 
     return {
       ...form,
-      parents: parentForms.map(parent => ({...parent, child: form})),
+      parents: parentForms.map(parent => ({...parent, childSlug: form.slug})),
     };
   }
 
+  flattenForms(root) {
+    let forms = [];
+    forms.push(root);
+    if (root.parents) {
+      const temp = root.parents.map(
+        x => this.flattenForms(x)
+      ).flat();
+      forms = forms.concat(temp);
+    }
+    return forms;
+  }
 
-  transformDependentsTree(root) {
+  getChild(form, forms) {
+    let child = forms.find(c => c.slug === form.childSlug);
+    if (child !== undefined) {
+      child = this.getChild(child, forms);
+    }
 
+    return {
+      name: form.name,
+      slug: form.slug,
+      child
+    }
+  }
+
+  getFormTree(res) {
+    const forms = this.flattenForms(res);
+    const outerForms = forms.filter(form => form.parents === undefined)
+
+    return outerForms.map(c => this.getChild(c, forms))
   }
 
   @task
@@ -83,8 +110,6 @@ export default class DependentsTreeComponent extends Component {
       slug: this.args.form.slug,
     }
     const res = yield this.buildDependentsTree(form);
-    console.log("Test");
-    console.log(res);
-    console.log(this.invertForm(res))
+    return this.getFormTree(res);
   }
 }

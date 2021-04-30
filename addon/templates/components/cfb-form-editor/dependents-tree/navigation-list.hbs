@@ -1,0 +1,8 @@
+<li class="uk-parent">
+  <LinkTo @route="edit.general" @model={{@form.slug}}>{{@form.name}}</LinkTo>
+  {{#if @form.child}}
+    <ul class="uk-nav-sub">
+      <CfbFormEditor::DependentsTree::NavigationList @form={{@form.child}} />
+    </ul>
+  {{/if}}
+</li>
