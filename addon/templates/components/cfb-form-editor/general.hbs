@@ -3,6 +3,7 @@
     {{uk-spinner ratio=2}}
   </div>
 {{else}}
+  <CfbFormEditor::DependentsTree @form={{data.lastSuccessful.value.firstObject.node}}  />
   {{#with data.lastSuccessful.value.firstObject.node as |model|}}
     {{#validated-form
       model=(changeset model validations)
@@ -26,8 +27,8 @@
           on-update=(action "updateSlug")
         }}
       {{else}}
-        {{#f.input 
-          name="slug" 
+        {{#f.input
+          name="slug"
           required=true
           disabled=slug
           label=(t "caluma.form-builder.question.slug")

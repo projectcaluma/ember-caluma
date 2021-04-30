@@ -1,0 +1,10 @@
+query getFormsWithQuestion($slugs: [String]!) {
+  forms: allForms(filter: [{ questions: $slugs }] ) {
+    edges {
+      node {
+        name
+        slug
+      }
+    }
+  }
+}

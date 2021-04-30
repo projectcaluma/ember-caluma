@@ -1,0 +1,9 @@
+query getQuestionsWithSubform($slug: ID!) {
+  questions: allQuestions(filter: [{ subForm: $slug }]) {
+    edges {
+      node {
+        slug
+      }
+    }
+  }
+}
