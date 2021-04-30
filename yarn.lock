@@ -7299,10 +7299,10 @@ ember-angle-bracket-invocation-polyfill@^3.0.0:
     ember-compatibility-helpers "^1.0.2"
     silent-error "^1.1.1"
 
-ember-apollo-client@^3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/ember-apollo-client/-/ember-apollo-client-3.1.0.tgz#13c98847334f807faedcb8780a186d0eda2bce2b"
-  integrity sha512-bM/+WetytrzI/ho9UBMVsSc7AwBoRaE7wzX6ctM+Y1Do2uujt6yNndo7Kzpd5LECK08bfTkkcZ44rwb4MNoLuA==
+ember-apollo-client@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/ember-apollo-client/-/ember-apollo-client-3.1.1.tgz#e5e2e46466d75e705a418d1bb85129cfd827582e"
+  integrity sha512-5qmKwdGO3d5I1wsw8RL8zRgLQS0ZGp5+HMMX57TdWTxH0DmZlSJ2q/jMwYNn4A2hzYEHjikMWQ8b6jSA6+20CA==
   dependencies:
     "@apollo/client" "^3.2.1"
     "@ember/test-waiters" "^2.3.0"
