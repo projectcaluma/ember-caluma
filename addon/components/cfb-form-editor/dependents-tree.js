@@ -71,18 +71,30 @@ export default class DependentsTreeComponent extends Component {
     };
   }
 
+  /**
+   * Flatt
+   * @param root
+   * @returns {*[]}
+   */
   flattenForms(root) {
-    let forms = [];
-    forms.push(root);
+    let forms = [root];
+    // Flatten root
     if (root.parents) {
-      const temp = root.parents.map(
-        x => this.flattenForms(x)
-      ).flat();
-      forms = forms.concat(temp);
+      const flattendForms = root.parents
+        .map(parent => this.flattenForms(parent))
+        .flat();
+      forms = forms.concat(flattendForms);
     }
+
     return forms;
   }
 
+  /**
+   * Get the child form of the form
+   * @param form for which the child should be fetched
+   * @param forms that are available
+   * @returns Object
+   */
   getChild(form, forms) {
     let child = forms.find(c => c.slug === form.childSlug);
     if (child !== undefined) {
@@ -96,11 +108,11 @@ export default class DependentsTreeComponent extends Component {
     }
   }
 
-  getFormTree(res) {
-    const forms = this.flattenForms(res);
-    const outerForms = forms.filter(form => form.parents === undefined)
-
-    return outerForms.map(c => this.getChild(c, forms))
+  getFormTree(forms) {
+    const flattendForms = this.flattenForms(forms);
+    // all forms that don't have a parent
+    const outerForms = flattendForms.filter(form => form.parents === undefined)
+    return outerForms.map(c => this.getChild(c, flattendForms))
   }
 
   @task

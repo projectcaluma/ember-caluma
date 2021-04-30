@@ -1,4 +1,5 @@
 <div {{did-insert (perform this.data)}}>
+  <h3>Dependents</h3>
   {{#unless data.isRunning}}
     <ul class="uk-nav">
       {{#each this.data.lastSuccessful.value as |form| }}
