@@ -1,0 +1,11 @@
+<UkButton
+  ...attributes
+  @type={{@type}}
+  @disabled={{@disabled}}
+  @active={{@active}}
+  @loading={{@loading}}
+  @color={{or @color "default"}}
+  @size={{@size}}
+  @title={{@title}}
+  @on-click={{perform this.mutate}}
+>{{t (concat "caluma.mutate-work-item." @mutation)}}</UkButton>

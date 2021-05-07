@@ -210,3 +210,8 @@ caluma:
 
       question:
         slug: "Eine Frage mit diesem Slug existiert bereits"
+
+  mutate-work-item:
+    complete: "Abschliessen"
+    skip: "Überspringen"
+    cancel: "Abbrechen"
