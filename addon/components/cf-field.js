@@ -29,9 +29,8 @@ export default Component.extend({
    * @param {String|Number|String[]} value
    */
   save: task(function* (value) {
-    const { environment } = getOwner(this).resolveRegistration(
-      "config:environment"
-    );
+    const { environment } =
+      getOwner(this).resolveRegistration("config:environment");
 
     /* istanbul ignore next */
     if (environment !== "test") {
