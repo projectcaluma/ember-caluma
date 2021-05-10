@@ -1628,10 +1628,10 @@
     "@embroider/macros" "0.36.0"
     ember-cli-babel "^7.22.1"
 
-"@eslint/eslintrc@^0.4.0":
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/@eslint/eslintrc/-/eslintrc-0.4.0.tgz#99cc0a0584d72f1df38b900fb062ba995f395547"
-  integrity sha512-2ZPCc+uNbjV5ERJr+aKSPRwZgKd2z11x0EgLvb1PURmUrn9QNRXFqje0Ldq454PfAVyaJYyrDvvIKSFP4NnBog==
+"@eslint/eslintrc@^0.4.1":
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/@eslint/eslintrc/-/eslintrc-0.4.1.tgz#442763b88cecbe3ee0ec7ca6d6dd6168550cbf14"
+  integrity sha512-5v7TDE9plVhvxQeWLXDTvFvJBdH6pEsdnl2g/dAptmuFEPedQ4Erq5rsDsX+mvAM610IhNaO2W5V1dOOnDKxkQ==
   dependencies:
     ajv "^6.12.4"
     debug "^4.1.1"
@@ -7372,15 +7372,15 @@ ember-changeset-validations@^3.14.2:
     ember-get-config "^0.2.4"
     ember-validators "^3.0.1"
 
-ember-changeset@^3.13.1, ember-changeset@^3.13.3:
-  version "3.13.3"
-  resolved "https://registry.yarnpkg.com/ember-changeset/-/ember-changeset-3.13.3.tgz#0e2749fa93d647eb8c616f7f9a9eb5f64ec00439"
-  integrity sha512-hQ0FjQl/M94h584hzCQu++8Vr/bzdogFw6y3+G4s++AsteahK0539REvDYDBr4YLxXxdKqFpsFkrbCn9JP2JPQ==
+ember-changeset@^3.13.1, ember-changeset@^3.13.4:
+  version "3.13.4"
+  resolved "https://registry.yarnpkg.com/ember-changeset/-/ember-changeset-3.13.4.tgz#8e79d34acc7e984bed01130ef7584613f001e73b"
+  integrity sha512-u+f12NQIO7JFijqe5rowiB3QqK7gGIodk2uxJqXmEIZWb70lnWLnsQJezuJq6imIMG3/wE5tunD9A8fEUe7qqQ==
   dependencies:
     "@glimmer/tracking" "^1.0.1"
     ember-auto-import "^1.5.2"
     ember-cli-babel "^7.19.0"
-    validated-changeset "~0.14.3"
+    validated-changeset "~0.14.4"
 
 ember-classic-decorator@^2.0.0:
   version "2.0.0"
@@ -9219,13 +9219,13 @@ eslint-visitor-keys@^2.0.0:
   resolved "https://registry.yarnpkg.com/eslint-visitor-keys/-/eslint-visitor-keys-2.0.0.tgz#21fdc8fbcd9c795cc0321f0563702095751511a8"
   integrity sha512-QudtT6av5WXels9WjIM7qz1XD1cWGvX4gGXvp/zBn9nXG02D0utdU3Em2m/QjTnrsk6bBjmCygl3rmj118msQQ==
 
-eslint@7.25.0:
-  version "7.25.0"
-  resolved "https://registry.yarnpkg.com/eslint/-/eslint-7.25.0.tgz#1309e4404d94e676e3e831b3a3ad2b050031eb67"
-  integrity sha512-TVpSovpvCNpLURIScDRB6g5CYu/ZFq9GfX2hLNIV4dSBKxIWojeDODvYl3t0k0VtMxYeR8OXPCFE5+oHMlGfhw==
+eslint@7.26.0:
+  version "7.26.0"
+  resolved "https://registry.yarnpkg.com/eslint/-/eslint-7.26.0.tgz#d416fdcdcb3236cd8f282065312813f8c13982f6"
+  integrity sha512-4R1ieRf52/izcZE7AlLy56uIHHDLT74Yzz2Iv2l6kDaYvEu9x+wMB5dZArVL8SYGXSYV2YAg70FcW5Y5nGGNIg==
   dependencies:
     "@babel/code-frame" "7.12.11"
-    "@eslint/eslintrc" "^0.4.0"
+    "@eslint/eslintrc" "^0.4.1"
     ajv "^6.10.0"
     chalk "^4.0.0"
     cross-spawn "^7.0.2"
@@ -15650,10 +15650,10 @@ prettier-linter-helpers@^1.0.0:
   dependencies:
     fast-diff "^1.1.2"
 
-prettier@2.2.1, prettier@^2.2.0:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.2.1.tgz#795a1a78dd52f073da0cd42b21f9c91381923ff5"
-  integrity sha512-PqyhM2yCjg/oKkFPtTGUojv7gnZAoG80ttl45O6x2Ug/rMJw4wcc9k6aaf2hibP7BGVCCM33gZoGjyvt9mm16Q==
+prettier@2.3.0, prettier@^2.2.0:
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.3.0.tgz#b6a5bf1284026ae640f17f7ff5658a7567fc0d18"
+  integrity sha512-kXtO4s0Lz/DW/IJ9QdWhAf7/NmPWQXkFr/r/WkR3vyI+0v8amTDxiaQSLzs8NBlytfLWX/7uQUMIW677yLKl4w==
 
 pretty-hrtime@^1.0.3:
   version "1.0.3"
@@ -19015,10 +19015,10 @@ validate-peer-dependencies@^1.1.0:
     resolve-package-path "^3.1.0"
     semver "^7.3.2"
 
-validated-changeset@~0.14.3:
-  version "0.14.3"
-  resolved "https://registry.yarnpkg.com/validated-changeset/-/validated-changeset-0.14.3.tgz#c17b6f493e1d03a13f9a5660e586175758151f90"
-  integrity sha512-D2WV7j4m8/wHW+pwFdhvVw9sPiq5r6edkSUTVcp9RadERC7dyubeoioZCo26y7TbGN0sPBzmjj9MDV0gS4r3cA==
+validated-changeset@~0.14.4:
+  version "0.14.4"
+  resolved "https://registry.yarnpkg.com/validated-changeset/-/validated-changeset-0.14.4.tgz#b8314a1fed15230901e12dec6ffb0eeea6edefbd"
+  integrity sha512-g0DFT5gbQcvz7r7QMCxbugAQU9kvjSgNlA9JtBM+RZzFE6B1RtW7EXOF7BA/PvAycqmONaqalFbCwA7Ih3l8UQ==
 
 vary@~1.1.2:
   version "1.1.2"
