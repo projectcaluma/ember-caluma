@@ -27,7 +27,8 @@
     "test:ember-compatibility": "ember try:each",
     "test:browserstack": "ember test --host=127.0.0.1 --test-port=7774 --config-file=testem.browserstack.js",
     "update-schema": "get-graphql-schema http://localhost:8000/graphql > addon/mirage-graphql/schema.graphql && prettier --write addon/mirage-graphql/schema.graphql",
-    "update-possible-types": "node bin/fetch-possible-types.js && prettier --write addon/-private/possible-types.js"
+    "update-possible-types": "node bin/fetch-possible-types.js && prettier --write addon/-private/possible-types.js",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@apollo/client": "^3.3.16",
@@ -117,6 +118,7 @@
     "faker": "5.5.3",
     "get-graphql-schema": "2.1.2",
     "husky": "6.0.0",
+    "lint-staged": "^11.0.0",
     "loader.js": "4.7.0",
     "node-fetch": "2.6.1",
     "npm-run-all": "4.1.5",
@@ -154,5 +156,10 @@
   },
   "release": {
     "extends": "@adfinis-sygroup/semantic-release-config"
+  },
+  "lint-staged": {
+    "*.js": "yarn lint:js --fix",
+    "*.hbs": "yarn lint:hbs --fix",
+    "*.{scss,graphql,json,md,yaml}": "prettier --write"
   }
 }

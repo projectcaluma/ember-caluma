@@ -23,16 +23,16 @@ services:
       #- MINIO_STORAGE_ENDPOINT=localhost:9000
 
   minio:
-      image: minio/minio:latest
-      volumes:
-        - minio_data:/data
-      ports:
-        - "9000:9000"
-      environment:
-        - MINIO_ACCESS_KEY=minio
-        - MINIO_SECRET_KEY=minio123
-        - MINIO_STORAGE_AUTO_CREATE_MEDIA_BUCKET=True
-      command: server data
+    image: minio/minio:latest
+    volumes:
+      - minio_data:/data
+    ports:
+      - "9000:9000"
+    environment:
+      - MINIO_ACCESS_KEY=minio
+      - MINIO_SECRET_KEY=minio123
+      - MINIO_STORAGE_AUTO_CREATE_MEDIA_BUCKET=True
+    command: server data
 
 volumes:
   dbdata:
