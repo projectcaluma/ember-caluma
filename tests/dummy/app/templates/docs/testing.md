@@ -17,7 +17,7 @@ so add the following lines to your `mirage/config.js`:
 
 import graphqlHandler from "ember-caluma/mirage-graphql";
 
-export default function() {
+export default function () {
   // ...
 
   this.post("/graphql", graphqlHandler(this), 200);
@@ -40,12 +40,12 @@ simply disable it in the options:
 ```js
 // ember-cli-build.js
 
-module.exports = function(defaults) {
+module.exports = function (defaults) {
   let app = new EmberApp(defaults, {
     // ..
     "ember-caluma": {
-      includeMirageConfig: false
-    }
+      includeMirageConfig: false,
+    },
   });
 
   // ..

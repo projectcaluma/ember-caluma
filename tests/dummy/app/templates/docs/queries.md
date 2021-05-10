@@ -19,9 +19,9 @@ export default class extends Controller {
 
   setup() {
     this.workItemsQuery.fetch({
-        filter: this.filter,
-        order: this.order,
-        queryOptions: this.queryOptions
+      filter: this.filter,
+      order: this.order,
+      queryOptions: this.queryOptions,
     });
   }
 
@@ -44,13 +44,13 @@ public methods:
 
 - `fetch` To initially fetch the first page of the query. This will reset all existing items in the query. `fetch` takes the following optional arguments:
 
-| Name           | Type              | Description                                                  |
-| -------------- | ----------------- | ------------------------------------------------------------ |
-| `filter`       | `String | Object` | According to the `gql` filter type defined in the query you're using. |
-| `order`        | `String | Object` | According to the `gql` order type defined in the query you're using. |
-| `queryOptions` | `Object`          | Pass options to `apollo.query`. For more information on what options exist, [see here](https://www.apollographql.com/docs/react/api/core/ApolloClient/#ApolloClient.query). |
+| Name           | Type     | Description                                                                                                                                                                 |
+| -------------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| `filter`       | `String  | Object`                                                                                                                                                                     | According to the `gql` filter type defined in the query you're using. |
+| `order`        | `String  | Object`                                                                                                                                                                     | According to the `gql` order type defined in the query you're using.  |
+| `queryOptions` | `Object` | Pass options to `apollo.query`. For more information on what options exist, [see here](https://www.apollographql.com/docs/react/api/core/ApolloClient/#ApolloClient.query). |
 
-- `fetchMore` This  will load the next page of your data.
+- `fetchMore` This will load the next page of your data.
 
 - Also, it exposes some helpful properties:
 
@@ -73,11 +73,11 @@ predefined filters, such as e.g `myWorkItems`.
 
 ### Options
 
-| Name           | Type                          | Description                                                  |
-| -------------- | ----------------------------- | ------------------------------------------------------------ |
-| `pageSize`     | `Number`                      | This defines the default page size which will be used for the query |
-| `processAll`   | `Function<Promise<Object[]>>` | A function that expects **all** items to be passed and returns a `Promise` that resolves into an array of `Object`s. This function will be used to process all items. |
-| `processNew`   | `Function<Promise<Object[]>>` | Identical to `processAll` but **only new** items (triggered by `loadMore`) will be processed |
+| Name           | Type                          | Description                                                                                                                                                                 |
+| -------------- | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `pageSize`     | `Number`                      | This defines the default page size which will be used for the query                                                                                                         |
+| `processAll`   | `Function<Promise<Object[]>>` | A function that expects **all** items to be passed and returns a `Promise` that resolves into an array of `Object`s. This function will be used to process all items.       |
+| `processNew`   | `Function<Promise<Object[]>>` | Identical to `processAll` but **only new** items (triggered by `loadMore`) will be processed                                                                                |
 | `queryOptions` | `Object`                      | Pass options to `apollo.query`. For more information on what options exist, [see here](https://www.apollographql.com/docs/react/api/core/ApolloClient/#ApolloClient.query). |
 
 ## Extending

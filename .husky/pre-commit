@@ -1,4 +1,8 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
+# lint commit message
 yarn commitlint --edit $1
+
+# lint staged files
+yarn lint-staged
