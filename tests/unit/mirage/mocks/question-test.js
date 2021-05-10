@@ -429,7 +429,7 @@ module("Unit | Mirage GraphQL Mock | question", function (hooks) {
 
     const res = await this.apollo.query({
       query: gql`
-        query($id: ID!) {
+        query ($id: ID!) {
           allDocuments(id: $id) {
             edges {
               node {

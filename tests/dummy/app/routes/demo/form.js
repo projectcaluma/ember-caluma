@@ -28,7 +28,7 @@ export default Route.extend({
       return await this.apollo.mutate(
         {
           mutation: gql`
-            mutation($input: SaveDocumentInput!) {
+            mutation ($input: SaveDocumentInput!) {
               saveDocument(input: $input) {
                 document {
                   id
