@@ -4,8 +4,6 @@ updates:
     directory: "/"
     schedule:
       interval: daily
-    reviewers:
-      - anehx
     versioning-strategy: increase
     ignore:
       # graphql-tools v5+ breaks generic mocking
