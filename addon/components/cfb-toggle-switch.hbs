@@ -1,14 +1,14 @@
-{{component labelComponent}}
+<@labelComponent />
 
 <div class="uk-form-controls">
-  {{uk-toggle-switch
-    value=value
-    size=size
-    name=name
-    disabled=disabled
-    on-toggle=(action "toggle")
-  }}
+  <UkToggleSwitch
+    @value={{@value}}
+    @size={{@size}}
+    @name={{@name}}
+    @disabled={{@disabled}}
+    @on-toggle={{@update}}
+  />
 </div>
 
-{{component hintComponent}}
-{{component errorComponent}}
+<@hintComponent />
+<@errorComponent />

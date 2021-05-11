@@ -1,11 +1,9 @@
-import Component from "@ember/component";
-import { next } from "@ember/runloop";
+import { action } from "@ember/object";
+import Component from "@glimmer/component";
 
-export default Component.extend({
-  classNames: ["uk-width-auto"],
-
-  didReceiveAttrs() {
-    this._super();
-    next(this.navigation, "goToNextItem");
-  },
-});
+export default class CfNavigationComponent extends Component {
+  @action
+  goToNextItem() {
+    this.args.navigation.goToNextItem();
+  }
+}
