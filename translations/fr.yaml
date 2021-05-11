@@ -75,6 +75,6 @@ caluma:
       restore: "Restaurer l'option"
 
   mutate-work-item:
-    complete: "Compléter"
-    skip: "Passer"
+    complete: "Terminer"
+    skip: "Sauter"
     cancel: "Annuler"
