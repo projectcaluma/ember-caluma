@@ -1,0 +1,16 @@
+<div uk-grid>
+  <div class="uk-text-left uk-width-1-2">
+    {{#if @navigation.previousItem}}
+      <LinkTo @query={{hash displayedForm=@navigation.previousItem.slug}} class="uk-button uk-button-default">
+        {{t "caluma.form.navigation.previous"}}
+      </LinkTo>
+    {{/if}}
+  </div>
+  <div class="uk-text-right uk-width-1-2">
+    {{#if @navigation.nextItem}}
+      <LinkTo @query={{hash displayedForm=@navigation.nextItem.slug}} class="uk-button uk-button-default">
+        {{t "caluma.form.navigation.next"}}
+      </LinkTo>
+    {{/if}}
+  </div>
+</div>

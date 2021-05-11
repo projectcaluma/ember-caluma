@@ -1,8 +1,6 @@
 import Component from "@ember/component";
 import { assert } from "@ember/debug";
 
-import layout from "../templates/components/cf-form";
-
 /**
  * Component to display a form for a whole document.
  *
@@ -13,7 +11,6 @@ import layout from "../templates/components/cf-form";
  * @class CfFormComponent
  */
 export default Component.extend({
-  layout,
   tagName: "form",
   attributeBindings: ["novalidate"],
   novalidate: "novalidate",

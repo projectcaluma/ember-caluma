@@ -1,7 +1,5 @@
 import Component from "@ember/component";
 
-import layout from "../../../templates/components/cf-field/input/checkbox";
-
 /**
  * Function to extract the option slug out of an input element. This is needed
  * since IE11 does not properly set the `value` attribute but sets the value to
@@ -31,8 +29,6 @@ const getSlug = ({ value, name }) => {
  * @argument {Field} field The field for this input type
  */
 export default Component.extend({
-  layout,
-
   actions: {
     /**
      * Update the value of the field with the slugs of the currently checked

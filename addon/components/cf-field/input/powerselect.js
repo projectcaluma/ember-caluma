@@ -4,8 +4,6 @@ import { computed } from "@ember/object";
 import { inject as service } from "@ember/service";
 import { queryManager } from "ember-apollo-client";
 
-import layout from "../../../templates/components/cf-field/input/powerselect";
-
 /**
  * Dropdown component for the single and multiple choice question type
  *
@@ -13,8 +11,6 @@ import layout from "../../../templates/components/cf-field/input/powerselect";
  * @argument {Field} field The field for this input type
  */
 export default Component.extend({
-  layout,
-
   tagName: "",
 
   intl: service(),

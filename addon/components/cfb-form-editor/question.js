@@ -12,8 +12,6 @@ import { optional } from "ember-composable-helpers/helpers/optional";
 import { task, timeout } from "ember-concurrency";
 import { all } from "rsvp";
 
-import layout from "../../templates/components/cfb-form-editor/question";
-
 import addFormQuestionMutation from "ember-caluma/gql/mutations/add-form-question.graphql";
 import removeDefaultAnswerMutation from "ember-caluma/gql/mutations/remove-default-answer.graphql";
 import saveCalculatedFloatQuestionMutation from "ember-caluma/gql/mutations/save-calculated-float-question.graphql";
@@ -71,7 +69,6 @@ const TYPES_ANSWER = {
 };
 
 export default Component.extend({
-  layout,
   validations,
 
   notification: service(),

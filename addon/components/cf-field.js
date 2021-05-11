@@ -2,8 +2,6 @@ import { getOwner } from "@ember/application";
 import Component from "@ember/component";
 import { task, timeout } from "ember-concurrency";
 
-import layout from "../templates/components/cf-field";
-
 /**
  * Component to display a label and input for a certain field of a document.
  *
@@ -17,7 +15,6 @@ import layout from "../templates/components/cf-field";
  * @argument {Field} field The field data model to render
  */
 export default Component.extend({
-  layout,
   classNames: ["uk-margin"],
   classNameBindings: ["field.hidden:uk-hidden"],
 
