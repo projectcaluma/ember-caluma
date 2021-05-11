@@ -1,0 +1,8 @@
+{
+  "engine": "ember-template-lint",
+  "filePath": "tests/dummy/app/templates/demo/form.hbs",
+  "ruleId": "no-curly-component-invocation",
+  "line": 2,
+  "column": 2,
+  "createdDate": 1621375200000
+}

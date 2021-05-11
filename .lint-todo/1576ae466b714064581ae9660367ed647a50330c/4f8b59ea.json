@@ -1,0 +1,8 @@
+{
+  "engine": "ember-template-lint",
+  "filePath": "tests/dummy/app/templates/demo/form.hbs",
+  "ruleId": "no-implicit-this",
+  "line": 2,
+  "column": 37,
+  "createdDate": 1621375200000
+}

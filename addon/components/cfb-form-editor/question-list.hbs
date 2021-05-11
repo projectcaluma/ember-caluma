@@ -1,4 +1,4 @@
-<div ...attributes {{did-insert (queue (fn this.setupUIkit) (perform this.questionTask))}}>
+<div ...attributes {{did-insert (queue this.setupUIkit (perform this.questionTask))}}>
   <div class="uk-text-center uk-margin">
     {{#if (includes this.mode (array "remove" "add"))}}
       <button

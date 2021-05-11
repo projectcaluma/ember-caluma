@@ -1,0 +1,8 @@
+{
+  "engine": "ember-template-lint",
+  "filePath": "addon/components/cf-content.hbs",
+  "ruleId": "no-curly-component-invocation",
+  "line": 2,
+  "column": 30,
+  "createdDate": 1621375200000
+}

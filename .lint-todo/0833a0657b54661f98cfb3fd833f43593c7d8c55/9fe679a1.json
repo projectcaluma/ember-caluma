@@ -1,0 +1,8 @@
+{
+  "engine": "ember-template-lint",
+  "filePath": "addon/components/cfb-jexl-boolean-toggle-switch.hbs",
+  "ruleId": "no-implicit-this",
+  "line": 2,
+  "column": 17,
+  "createdDate": 1621375200000
+}

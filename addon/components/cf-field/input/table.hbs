@@ -68,13 +68,8 @@
     </tfoot>
   </table>
 
-  {{#uk-modal
-    visible=(and showAddModal documentToEdit)
-    on-hide=(action "closeModal" "showAddModal")
-    btnClose=true
-    bgClose=false
-  as |modal|}}
-    {{#modal.body}}
+  <UkModal @visible={{and showAddModal documentToEdit}} @on-hide={{action "closeModal" "showAddModal"}} @btnClose={{true}} @bgClose={{false}} as |modal|>
+    <modal.body>
       {{#if documentToEdit}}
         {{cf-form-wrapper
           document=documentToEdit
@@ -82,37 +77,32 @@
           disabled=disabled
         }}
       {{/if}}
-    {{/modal.body}}
+    </modal.body>
 
     {{#unless disabled}}
-      {{#modal.footer class="uk-text-right"}}
+      <modal.footer @class="uk-text-right">
         {{uk-button
           label=(t "caluma.form.save")
           disabled=save.isRunning
           loading=save.isRunning
           on-click=(perform save)
         }}
-      {{/modal.footer}}
+      </modal.footer>
     {{/unless}}
-  {{/uk-modal}}
+  </UkModal>
 
-  {{#uk-modal
-    visible=(and showDeleteModal documentToDelete)
-    on-hide=(action "closeModal" "showDeleteModal")
-    btnClose=true
-    bgClose=false
-  as |modal|}}
-    {{#modal.body}}
+  <UkModal @visible={{and showDeleteModal documentToDelete}} @on-hide={{action "closeModal" "showDeleteModal"}} @btnClose={{true}} @bgClose={{false}} as |modal|>
+    <modal.body>
       {{t "caluma.form.deleteRow"}}
-    {{/modal.body}}
+    </modal.body>
 
-    {{#modal.footer class="uk-text-right"}}
+    <modal.footer @class="uk-text-right">
       {{uk-button
         label=(t "caluma.form.delete")
         disabled=deleteRow.isRunning
         loading=deleteRow.isRunning
         on-click=(perform deleteRow documentToDelete)
       }}
-    {{/modal.footer}}
-  {{/uk-modal}}
+    </modal.footer>
+  </UkModal>
 {{/with}}

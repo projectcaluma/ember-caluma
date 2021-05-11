@@ -19,7 +19,7 @@
 {{/unless}}
 
 {{#if (and downloadUrl downloadName)}}
-  {{#uk-button color="link" on-click=(action "download")}}
+  <UkButton @color="link" @on-click={{action "download"}}>
     {{downloadName}}
-  {{/uk-button}}
+  </UkButton>
 {{/if}}

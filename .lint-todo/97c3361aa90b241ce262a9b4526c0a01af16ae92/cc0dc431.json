@@ -1,0 +1,8 @@
+{
+  "engine": "ember-template-lint",
+  "filePath": "addon/templates/index.hbs",
+  "ruleId": "no-curly-component-invocation",
+  "line": 1,
+  "column": 0,
+  "createdDate": 1621375200000
+}

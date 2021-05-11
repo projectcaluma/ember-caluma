@@ -1,0 +1,8 @@
+{
+  "engine": "ember-template-lint",
+  "filePath": "addon/components/cf-field/input/file.hbs",
+  "ruleId": "no-action",
+  "line": 10,
+  "column": 15,
+  "createdDate": 1621375200000
+}
