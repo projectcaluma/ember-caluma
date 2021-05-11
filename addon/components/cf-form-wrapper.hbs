@@ -1,1 +1,8 @@
-{{component (get-widget fieldset.field.question fieldset.form default="cf-form") document=document fieldset=fieldset context=context disabled=disabled}}
+{{#let (component (get-widget @fieldset.field.question @fieldset.form default="cf-form")) as |FormComponent|}}
+  <FormComponent
+    @document={{@document}}
+    @fieldset={{@fieldset}}
+    @context={{@context}}
+    @disabled={{@disabled}}
+  />
+{{/let}}
