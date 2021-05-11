@@ -30,17 +30,44 @@ The text of the button is per default the mutation name, it can be overwritten w
 
 The WorkItemButton component has 5 parameters:
 
- - `mutation` The state mutation to be used either `complete`, `skip` or `cancel`.
- - `workItemId` Id of the work item which should be mutated.
- - `label` (Optional) Overwrites the button text.
- - `onSuccess`(Optional) Function to be called when the mutation succeeds.
- - `onError`(Optional) Function to be called when the mutation fails.
+- `mutation` The state mutation to be used either `complete`, `skip` or `cancel`.
+- `workItemId` Id of the work item which should be mutated.
+- `label` (Optional) Overwrites the button text.
+- `onSuccess`(Optional) Function to be called when the mutation succeeds.
+- `onError`(Optional) Function to be called when the mutation fails.
 
- Additionally there are many optional parameters for the underlying [UkButton](https://adfinis-sygroup.github.io/ember-uikit/#/docs/components/button) component, refer to the UkButton component documentation to see what exactly they do:
+Additionally there are many optional parameters for the underlying [UkButton](https://adfinis-sygroup.github.io/ember-uikit/#/docs/components/button) component, refer to the UkButton component documentation to see what exactly they do:
 
- - `type`
- - `disabled`
- - `loading` 
- - `color`
- - `size`
- - `title`
+- `type`
+- `disabled`
+- `loading`
+- `color`
+- `size`
+- `title`
+
+### TaskButton
+
+TaskButton uses the WorkItemButton as the foundation. Instead of passing a work item id, it taskes a task slug and graphql filters for the allWorkItems query and fetches the work item to be mutated.
+
+```hbs
+<TaskButton
+  @label="Lorem Ipsum"
+  @mutation="complete"
+  @taskSlug="some-task"
+  @filters="this.filters"
+/>
+
+<TaskButton @mutation="complete" @taskSlug="some-task" @filters="this.filters">
+  Lorem Ipsum
+</TaskButton>
+```
+
+The TaskButton component has 5 parameters:
+
+- `mutation` The state mutation to be used either `complete`, `skip` or `cancel`.
+- `taskSlug` Slug of the task.
+- `filters` Filters of the allWorkItems query.
+- `label` (Optional) Overwrites the button text.
+- `onError`(Optional) Function to be called when no work item was found.
+
+Additionally the [UkButton](https://adfinis-sygroup.github.io/ember-uikit/#/docs/components/button) parameters from the WorkItemButton still apply.

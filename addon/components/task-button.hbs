@@ -1,0 +1,21 @@
+<WorkItemButton
+  ...attributes
+  @mutation={{@mutation}}
+  @label={{@label}}
+  @workItemId={{this.workItemId}}
+  @type={{@type}}
+  @disabled={{@disabled}}
+  @active={{@active}}
+  @loading={{@loading}}
+  @color={{@color}}
+  @size={{@size}}
+  @title={{@title}}
+>
+  {{#if (has-block)}}
+    {{yield}}
+  {{else if @label}}
+    {{@label}}
+  {{else}}
+    {{t (concat "caluma.mutate-work-item." @mutation)}}
+  {{/if}}
+</WorkItemButton>
