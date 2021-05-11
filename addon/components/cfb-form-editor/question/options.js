@@ -7,8 +7,6 @@ import lookupValidator from "ember-changeset-validations";
 import { task } from "ember-concurrency";
 import RenderComponent from "ember-validated-form/components/validated-input/-themes/uikit/render";
 
-import layout from "../../../templates/components/cfb-form-editor/question/options";
-
 import saveChoiceQuestionMutation from "ember-caluma/gql/mutations/save-choice-question.graphql";
 import saveMultipleChoiceQuestionMutation from "ember-caluma/gql/mutations/save-multiple-choice-question.graphql";
 import slugify from "ember-caluma/utils/slugify";
@@ -28,8 +26,6 @@ const addQuestionPrefix = (slug, questionSlug) => {
 };
 
 export default RenderComponent.extend({
-  layout,
-
   intl: service(),
   notification: service(),
   apollo: queryManager(),

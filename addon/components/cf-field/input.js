@@ -1,8 +1,6 @@
 import Component from "@ember/component";
 import { computed, get } from "@ember/object";
 
-import layout from "../../templates/components/cf-field/input";
-
 const mapping = {
   MultipleChoiceQuestion: "checkbox",
   ChoiceQuestion: "radio",
@@ -17,7 +15,6 @@ const mapping = {
  * @class CfFieldInputComponent
  */
 export default Component.extend({
-  layout,
   classNames: ["uk-form-controls"],
 
   /**

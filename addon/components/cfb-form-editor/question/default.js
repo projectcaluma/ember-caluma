@@ -5,11 +5,8 @@ import { inject as service } from "@ember/service";
 import RenderComponent from "ember-validated-form/components/validated-input/-themes/uikit/render";
 
 import { TYPE_MAP } from "ember-caluma/lib/field";
-import layout from "ember-caluma/templates/components/cfb-form-editor/question/default";
 
 export default class CfbFormEditorQuestionDefault extends RenderComponent {
-  layout = layout;
-
   @service router;
 
   @computed("model.{id,__typename}")

@@ -3,13 +3,9 @@ import { computed } from "@ember/object";
 import { queryManager } from "ember-apollo-client";
 import { task } from "ember-concurrency";
 
-import layout from "../../../templates/components/cfb-form-editor/question/validation";
-
 import allFormatValidatorsQuery from "ember-caluma/gql/queries/all-format-validators.graphql";
 
 export default Component.extend({
-  layout,
-
   apollo: queryManager(),
 
   init(...args) {

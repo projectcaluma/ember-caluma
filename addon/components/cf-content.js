@@ -10,7 +10,6 @@ import { task } from "ember-concurrency";
 import getDocumentAnswersQuery from "ember-caluma/gql/queries/get-document-answers.graphql";
 import getDocumentFormsQuery from "ember-caluma/gql/queries/get-document-forms.graphql";
 import { parseDocument } from "ember-caluma/lib/parsers";
-import layout from "ember-caluma/templates/components/cf-content";
 
 /**
  * Component to render a form with navigation.
@@ -41,8 +40,6 @@ import layout from "ember-caluma/templates/components/cf-content";
  * @yield {CfPaginationComponent} content.pagination
  */
 export default Component.extend({
-  layout,
-
   router: service(),
   calumaStore: service(),
 

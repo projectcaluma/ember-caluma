@@ -7,7 +7,7 @@
     pagination=(component "cf-pagination" navigation=navigation)
     form=(component "cf-form-wrapper" document=document fieldset=fieldset context=context disabled=disabled)
   ) as |content|}}
-    {{#if hasBlock}}
+    {{#if (has-block)}}
       {{yield content}}
     {{else if (gt document.fieldsets.length 1)}}
       <div uk-grid>

@@ -8,7 +8,6 @@ import { optional } from "ember-composable-helpers/helpers/optional";
 import { task, timeout } from "ember-concurrency";
 import { v4 } from "uuid";
 
-import layout from "../../templates/components/cfb-form-editor/general";
 import validations from "../../validations/form";
 
 import saveFormMutation from "ember-caluma/gql/mutations/save-form.graphql";
@@ -17,7 +16,6 @@ import formEditorGeneralQuery from "ember-caluma/gql/queries/form-editor-general
 import slugify from "ember-caluma/utils/slugify";
 
 export default Component.extend({
-  layout,
   validations,
 
   notification: service(),

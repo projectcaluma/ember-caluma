@@ -5,15 +5,11 @@ import { inject as service } from "@ember/service";
 import { queryManager } from "ember-apollo-client";
 import { task, all } from "ember-concurrency";
 
-import layout from "../../../templates/components/cf-field/input/table";
-
 import removeDocumentMutation from "ember-caluma/gql/mutations/remove-document.graphql";
 import saveDocumentMutation from "ember-caluma/gql/mutations/save-document.graphql";
 import { parseDocument } from "ember-caluma/lib/parsers";
 
 export default Component.extend({
-  layout,
-
   notification: service(),
   intl: service(),
   calumaStore: service(),
