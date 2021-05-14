@@ -9,3 +9,4 @@ dummy:
     load: "Load"
     loadMore: "Load more"
     getWorkItems: "getWorkItems"
+  buttons: "Buttons"

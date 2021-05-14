@@ -1,9 +1,9 @@
 <UkButton
   ...attributes
   @type={{@type}}
-  @disabled={{or @loading this.mutate.isRunning}}
+  @disabled={{or @disabled @loading this.mutate.isRunning}}
   @active={{@active}}
-  @loading={{or @disabled @loading this.mutate.isRunning}}
+  @loading={{or @loading this.mutate.isRunning}}
   @color={{or @color "default"}}
   @size={{@size}}
   @title={{@title}}
