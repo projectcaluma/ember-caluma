@@ -1,3 +1,17 @@
+# [7.1.0](https://github.com/projectcaluma/ember-caluma/compare/v7.0.6...v7.1.0) (2021-05-17)
+
+
+### Bug Fixes
+
+* **form-builder:** fix refreshing of page when submitting search form ([5df89ec](https://github.com/projectcaluma/ember-caluma/commit/5df89ecedfae9594a9c9747848258bdcae08c79c))
+* **jexl:** fix edge case where field is not found ([769d6a8](https://github.com/projectcaluma/ember-caluma/commit/769d6a88fe7e3da8128424984045a909f5527e62))
+* feedback from code review ([fdd979e](https://github.com/projectcaluma/ember-caluma/commit/fdd979e53a5c7ce7c1cf3fa10f2d3d05a8dba092))
+
+
+### Features
+
+* **form builder:** add syntax highlighting for markdown and jexl ([155c2ce](https://github.com/projectcaluma/ember-caluma/commit/155c2ce056145dc1f839f0dec9bc29ffef77f50c))
+
 ## [7.0.6](https://github.com/projectcaluma/ember-caluma/compare/v7.0.5...v7.0.6) (2021-04-09)
 
 
