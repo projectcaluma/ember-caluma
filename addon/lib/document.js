@@ -216,7 +216,7 @@ export default Base.extend({
     const field = this.findField(slug);
 
     if (!field || field.hidden || [undefined, null].includes(field.value)) {
-      return field.question.isMultipleChoice ? [] : null;
+      return field?.question.isMultipleChoice ? [] : null;
     }
 
     if (field.question.__typename === "TableQuestion") {
