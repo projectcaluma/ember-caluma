@@ -107,7 +107,7 @@
     "ember-resolver": "8.0.2",
     "ember-source": "3.27.1",
     "ember-source-channel-url": "3.0.0",
-    "ember-template-lint": "2.21.0",
+    "ember-template-lint": "3.4.2",
     "ember-try": "1.4.0",
     "eslint": "7.26.0",
     "eslint-config-prettier": "8.3.0",
@@ -161,5 +161,8 @@
     "*.js": "yarn lint:js --fix",
     "*.hbs": "yarn lint:hbs --fix",
     "*.{scss,graphql,json,md,yaml}": "prettier --write"
+  },
+  "lintTodo": {
+    "daysToDecay": null
   }
 }

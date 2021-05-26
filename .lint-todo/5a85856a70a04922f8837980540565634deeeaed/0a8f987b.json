@@ -1,0 +1,8 @@
+{
+  "engine": "ember-template-lint",
+  "filePath": "addon/components/cfb-form-editor/general.hbs",
+  "ruleId": "no-curly-component-invocation",
+  "line": 17,
+  "column": 8,
+  "createdDate": 1621375200000
+}

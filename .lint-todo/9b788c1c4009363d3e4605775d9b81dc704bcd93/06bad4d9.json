@@ -1,0 +1,8 @@
+{
+  "engine": "ember-template-lint",
+  "filePath": "addon/components/cfb-form-editor/question/validation.hbs",
+  "ruleId": "no-implicit-this",
+  "line": 4,
+  "column": 13,
+  "createdDate": 1621375200000
+}

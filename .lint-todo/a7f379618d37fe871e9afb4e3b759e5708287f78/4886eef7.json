@@ -1,0 +1,8 @@
+{
+  "engine": "ember-template-lint",
+  "filePath": "addon/components/cfb-form-editor/question.hbs",
+  "ruleId": "no-implicit-this",
+  "line": 218,
+  "column": 22,
+  "createdDate": 1621375200000
+}

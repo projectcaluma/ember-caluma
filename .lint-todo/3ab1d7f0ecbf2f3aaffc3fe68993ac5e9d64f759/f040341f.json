@@ -1,0 +1,8 @@
+{
+  "engine": "ember-template-lint",
+  "filePath": "addon/components/cfb-label.hbs",
+  "ruleId": "no-implicit-this",
+  "line": 1,
+  "column": 20,
+  "createdDate": 1621375200000
+}

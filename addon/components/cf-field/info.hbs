@@ -8,12 +8,8 @@
   <span class="uk-hidden">{{t "caluma.form.info"}}</span>
 </button>
 
-{{#uk-modal
-  visible=showModal
-  stack=true
-  on-hide=(action (mut showModal) false)
-as |modal|}}
-  {{#modal.body}}
+<UkModal @visible={{showModal}} @stack={{true}} @on-hide={{action (mut showModal) false}} as |modal|>
+  <modal.body>
     {{markdown-to-html text openLinksInNewWindow=true}}
-  {{/modal.body}}
-{{/uk-modal}}
+  </modal.body>
+</UkModal>

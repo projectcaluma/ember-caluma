@@ -1,0 +1,8 @@
+{
+  "engine": "ember-template-lint",
+  "filePath": "addon/components/cfb-form-editor/question/options.hbs",
+  "ruleId": "no-action",
+  "line": 57,
+  "column": 37,
+  "createdDate": 1621375200000
+}

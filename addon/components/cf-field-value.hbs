@@ -1,7 +1,7 @@
 {{#if value.fileAnswerId}}
-  {{#uk-button color="link" on-click=(action "download" value.fileAnswerId)}}
+  <UkButton @color="link" @on-click={{action "download" value.fileAnswerId}}>
     {{value.label}}
-  {{/uk-button}}
+  </UkButton>
 {{else}}
   {{value.label}}
 {{/if}}

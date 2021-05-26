@@ -1,0 +1,8 @@
+{
+  "engine": "ember-template-lint",
+  "filePath": "addon/components/cf-field/input/checkbox.hbs",
+  "ruleId": "no-implicit-this",
+  "line": 7,
+  "column": 14,
+  "createdDate": 1621375200000
+}

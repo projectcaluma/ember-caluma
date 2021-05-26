@@ -1,0 +1,8 @@
+{
+  "engine": "ember-template-lint",
+  "filePath": "addon/components/cf-form.hbs",
+  "ruleId": "no-implicit-this",
+  "line": 1,
+  "column": 8,
+  "createdDate": 1621375200000
+}

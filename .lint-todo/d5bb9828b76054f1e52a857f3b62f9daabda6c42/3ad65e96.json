@@ -1,0 +1,8 @@
+{
+  "engine": "ember-template-lint",
+  "filePath": "addon/templates/edit.hbs",
+  "ruleId": "no-action",
+  "line": 1,
+  "column": 146,
+  "createdDate": 1621375200000
+}

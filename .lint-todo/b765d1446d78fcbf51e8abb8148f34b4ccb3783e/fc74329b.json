@@ -1,0 +1,8 @@
+{
+  "engine": "ember-template-lint",
+  "filePath": "addon/templates/edit/questions/new.hbs",
+  "ruleId": "no-action",
+  "line": 3,
+  "column": 18,
+  "createdDate": 1621375200000
+}

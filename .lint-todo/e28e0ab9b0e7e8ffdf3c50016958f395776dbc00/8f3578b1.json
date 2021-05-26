@@ -1,0 +1,8 @@
+{
+  "engine": "ember-template-lint",
+  "filePath": "addon/components/cf-field/input/powerselect.hbs",
+  "ruleId": "no-implicit-this",
+  "line": 10,
+  "column": 21,
+  "createdDate": 1621375200000
+}

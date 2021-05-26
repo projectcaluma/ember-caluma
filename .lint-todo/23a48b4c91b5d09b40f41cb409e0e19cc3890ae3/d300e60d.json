@@ -1,0 +1,8 @@
+{
+  "engine": "ember-template-lint",
+  "filePath": "addon/components/cfb-form-list.hbs",
+  "ruleId": "require-input-label",
+  "line": 27,
+  "column": 4,
+  "createdDate": 1621375200000
+}
