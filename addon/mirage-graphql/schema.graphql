@@ -210,6 +210,7 @@ type CalculatedFloatQuestion implements Question & Node {
     description: String
     isPublished: Boolean
     isArchived: Boolean
+    questions: [String]
     createdByUser: String
     createdByGroup: String
     modifiedByUser: String
@@ -607,6 +608,7 @@ type ChoiceQuestion implements Question & Node {
     description: String
     isPublished: Boolean
     isArchived: Boolean
+    questions: [String]
     createdByUser: String
     createdByGroup: String
     modifiedByUser: String
@@ -945,6 +947,7 @@ type DateQuestion implements Question & Node {
     description: String
     isPublished: Boolean
     isArchived: Boolean
+    questions: [String]
     createdByUser: String
     createdByGroup: String
     modifiedByUser: String
@@ -1314,6 +1317,7 @@ type DynamicChoiceQuestion implements Question & Node {
     description: String
     isPublished: Boolean
     isArchived: Boolean
+    questions: [String]
     createdByUser: String
     createdByGroup: String
     modifiedByUser: String
@@ -1381,6 +1385,7 @@ type DynamicMultipleChoiceQuestion implements Question & Node {
     description: String
     isPublished: Boolean
     isArchived: Boolean
+    questions: [String]
     createdByUser: String
     createdByGroup: String
     modifiedByUser: String
@@ -1537,6 +1542,7 @@ type FileQuestion implements Question & Node {
     description: String
     isPublished: Boolean
     isArchived: Boolean
+    questions: [String]
     createdByUser: String
     createdByGroup: String
     modifiedByUser: String
@@ -1616,6 +1622,7 @@ type FloatQuestion implements Question & Node {
     description: String
     isPublished: Boolean
     isArchived: Boolean
+    questions: [String]
     createdByUser: String
     createdByGroup: String
     modifiedByUser: String
@@ -1849,6 +1856,7 @@ input FormFilterSetType {
   description: String
   isPublished: Boolean
   isArchived: Boolean
+  questions: [String]
   createdByUser: String
   createdByGroup: String
   modifiedByUser: String
@@ -1978,6 +1986,7 @@ type FormQuestion implements Question & Node {
     description: String
     isPublished: Boolean
     isArchived: Boolean
+    questions: [String]
     createdByUser: String
     createdByGroup: String
     modifiedByUser: String
@@ -2092,6 +2101,7 @@ type IntegerQuestion implements Question & Node {
     description: String
     isPublished: Boolean
     isArchived: Boolean
+    questions: [String]
     createdByUser: String
     createdByGroup: String
     modifiedByUser: String
@@ -2160,6 +2170,12 @@ type ListAnswer implements Answer & Node {
   question: Question!
   value: [String]
   meta: GenericScalar!
+  selectedOptions(
+    before: String
+    after: String
+    first: Int
+    last: Int
+  ): SelectedOptionConnection
 }
 
 type MultipleChoiceQuestion implements Question & Node {
@@ -2198,6 +2214,7 @@ type MultipleChoiceQuestion implements Question & Node {
     description: String
     isPublished: Boolean
     isArchived: Boolean
+    questions: [String]
     createdByUser: String
     createdByGroup: String
     modifiedByUser: String
@@ -2723,6 +2740,7 @@ type Query {
     description: String
     isPublished: Boolean
     isArchived: Boolean
+    questions: [String]
     filter: [FormFilterSetType]
     order: [FormOrderSetType]
     createdByUser: String
@@ -2891,6 +2909,7 @@ interface Question {
     description: String
     isPublished: Boolean
     isArchived: Boolean
+    questions: [String]
     createdByUser: String
     createdByGroup: String
     modifiedByUser: String
@@ -3827,6 +3846,39 @@ enum SearchLookupMode {
   TEXT
 }
 
+type SelectedOption {
+  label: String!
+  slug: String!
+}
+
+type SelectedOptionConnection {
+  """
+  Pagination data for this connection.
+  """
+  pageInfo: PageInfo!
+
+  """
+  Contains the nodes in this connection.
+  """
+  edges: [SelectedOptionEdge]!
+  totalCount: Int
+}
+
+"""
+A Relay edge containing a `SelectedOption` and its cursor.
+"""
+type SelectedOptionEdge {
+  """
+  The item at the end of the edge
+  """
+  node: SelectedOption
+
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+}
+
 type SimpleTask implements Task & Node {
   createdAt: DateTime!
   modifiedAt: DateTime!
@@ -4033,6 +4085,7 @@ type StaticQuestion implements Question & Node {
     description: String
     isPublished: Boolean
     isArchived: Boolean
+    questions: [String]
     createdByUser: String
     createdByGroup: String
     modifiedByUser: String
@@ -4105,6 +4158,7 @@ type StringAnswer implements Answer & Node {
   question: Question!
   value: String
   meta: GenericScalar!
+  selectedOption: SelectedOption
 }
 
 input SuspendCaseInput {
@@ -4191,6 +4245,7 @@ type TableQuestion implements Question & Node {
     description: String
     isPublished: Boolean
     isArchived: Boolean
+    questions: [String]
     createdByUser: String
     createdByGroup: String
     modifiedByUser: String
@@ -4468,6 +4523,7 @@ type TextareaQuestion implements Question & Node {
     description: String
     isPublished: Boolean
     isArchived: Boolean
+    questions: [String]
     createdByUser: String
     createdByGroup: String
     modifiedByUser: String
@@ -4538,6 +4594,7 @@ type TextQuestion implements Question & Node {
     description: String
     isPublished: Boolean
     isArchived: Boolean
+    questions: [String]
     createdByUser: String
     createdByGroup: String
     modifiedByUser: String
