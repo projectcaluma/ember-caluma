@@ -1,92 +1,83 @@
-import Component from "@ember/component";
-import { computed } from "@ember/object";
-import { reads } from "@ember/object/computed";
+import { action, set } from "@ember/object";
 import { inject as service } from "@ember/service";
+import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
 
 import getFileAnswerInfoQuery from "ember-caluma/gql/queries/get-fileanswer-info.graphql";
 
-export default Component.extend({
-  tagName: "",
+export default class CfFieldInputFileComponent extends Component {
+  @service intl;
 
-  intl: service(),
+  @queryManager apollo;
 
-  apollo: queryManager(),
+  get downloadUrl() {
+    return this.args.field?.answer?.value?.downloadUrl;
+  }
 
-  downloadUrl: reads("field.answer.value.downloadUrl"),
-  downloadName: reads("field.answer.value.name"),
+  get downloadName() {
+    return this.args.field?.answer?.value?.name;
+  }
 
-  placeholder: computed("field.answer.value", function () {
-    return this.get("field.answer.value")
-      ? this.intl.t("caluma.form.changeFile")
-      : this.intl.t("caluma.form.selectFile");
-  }),
+  get placeholder() {
+    return this.intl.t(
+      this.args.field?.answer.value
+        ? "caluma.form.changeFile"
+        : "caluma.form.selectFile"
+    );
+  }
 
-  /**
-   * Promise wrapper around XHMLHttpRequest
-   *
-   * @param {File} file The file to upload.
-   * @param {String} url The MinIO uploadUrl
-   * @return {Promise<Event>} A promise resolving or rejecting with the event.
-   * @method _uploadFile
-   * @private
-   */
-  _uploadFile(file, url) {
-    return new Promise((resolve, reject) => {
+  @action
+  async download() {
+    const { downloadUrl } = await this.apollo.watchQuery(
+      {
+        query: getFileAnswerInfoQuery,
+        variables: { id: this.args.field.answer.id },
+        fetchPolicy: "cache-and-network",
+      },
+      "node.fileValue"
+    );
+
+    if (downloadUrl) {
+      window.open(downloadUrl, "_blank");
+    }
+  }
+
+  @action
+  async save({ target }) {
+    const file = target.files[0];
+
+    if (!file) {
+      return;
+    }
+
+    const { fileValue } = await this.args.onSave(file.name);
+
+    try {
       const data = new FormData();
       data.append("file", file);
 
-      fetch(url, {
+      const response = await fetch(fileValue.uploadUrl, {
         method: "PUT",
         body: data,
-      })
-        .then((response) =>
-          response.ok ? resolve(response) : reject(response)
-        )
-        .catch((error) => reject(error));
-    });
-  },
+      });
 
-  actions: {
-    async download() {
-      const { downloadUrl } = await this.apollo.watchQuery(
-        {
-          query: getFileAnswerInfoQuery,
-          variables: { id: this.field.answer.id },
-          fetchPolicy: "cache-and-network",
-        },
-        "node.fileValue"
-      );
-
-      if (downloadUrl) {
-        window.open(downloadUrl, "_blank");
-      }
-    },
-
-    async save({ target }) {
-      const file = target.files[0];
-
-      if (!file) {
-        return;
+      if (!response.ok) {
+        throw new Error();
       }
 
-      const { fileValue } = await this.onSave(file.name);
-
-      try {
-        await this._uploadFile(file, fileValue.uploadUrl);
-
-        this.set("field.answer.value", {
-          name: file.name,
-          downloadUrl: fileValue.downloadUrl,
-        });
-      } catch (error) {
-        await this.onSave(null);
-        this.set("field._errors", [{ type: "uploadFailed" }]);
-      } finally {
-        // eslint-disable-next-line require-atomic-updates
-        target.value = "";
-        target.parentNode.querySelector("[type=text]").value = "";
-      }
-    },
-  },
-});
+      // eslint-disable-next-line ember/classic-decorator-no-classic-methods
+      set(this.args.field.answer, "value", {
+        name: file.name,
+        downloadUrl: fileValue.downloadUrl,
+      });
+    } catch (error) {
+      await this.args.onSave(null);
+      // eslint-disable-next-line ember/classic-decorator-no-classic-methods
+      set(this.args.field, "_errors", [{ type: "uploadFailed" }]);
+    } finally {
+      // eslint-disable-next-line require-atomic-updates
+      target.value = "";
+      target.parentNode.querySelector("[type=text]").value = "";
+    }
+  }
+}
