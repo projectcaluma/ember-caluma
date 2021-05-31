@@ -1,3 +1,10 @@
+## [7.1.1](https://github.com/projectcaluma/ember-caluma/compare/v7.1.0...v7.1.1) (2021-05-31)
+
+
+### Bug Fixes
+
+* **tests:** update graphql schema to fix testing ([c928c07](https://github.com/projectcaluma/ember-caluma/commit/c928c079dbc4ea9b1b1ac6c0153c1a259722f456))
+
 # [7.1.0](https://github.com/projectcaluma/ember-caluma/compare/v7.0.6...v7.1.0) (2021-05-17)
 
 
