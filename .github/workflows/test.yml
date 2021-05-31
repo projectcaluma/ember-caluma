@@ -19,7 +19,7 @@ jobs:
 
     strategy:
       matrix:
-        target: [js, hbs, deps]
+        target: [js, hbs]
 
     steps:
       - uses: actions/checkout@v2

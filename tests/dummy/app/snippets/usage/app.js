@@ -2,7 +2,7 @@ const App = Application.extend({
   // ...
 
   engines: {
-    emberCaluma: {
+    "ember-caluma": {
       dependencies: {
         services: [
           "apollo", // ember-apollo-client for graphql
@@ -10,9 +10,9 @@ const App = Application.extend({
           "router", // ember router for navigation
           "intl", // ember-intl for i18n
           "caluma-options", // service to configure ember-caluma
-          "validator" // service for generic regex validation
-        ]
-      }
-    }
-  }
+          "validator", // service for generic regex validation
+        ],
+      },
+    },
+  },
 });
