@@ -1,4 +1,3 @@
-
 # compiled output
 /dist/
 /tmp/
@@ -34,6 +33,5 @@
 
 # custom
 /config/addon-docs.js
-/config/dependency-lint.js
 /config/deploy.js
 /docker-compose.yml
