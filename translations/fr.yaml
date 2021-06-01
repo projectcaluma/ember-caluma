@@ -78,3 +78,5 @@ caluma:
     complete: "Terminer"
     skip: "Sauter"
     cancel: "Annuler"
+    success: "Succès!"
+    error: "Oups, quelque chose a mal ..."
