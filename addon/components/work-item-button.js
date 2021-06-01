@@ -29,6 +29,7 @@ export default class WorkItemButtonComponent extends Component {
 
   @queryManager apollo;
 
+  @service notification;
   @service intl;
 
   cancelWorkItemMutation = cancelWorkItem;
@@ -37,9 +38,27 @@ export default class WorkItemButtonComponent extends Component {
 
   @dropTask
   *mutate() {
-    yield this.apollo.mutate({
-      mutation: this[`${this.args.mutation}WorkItemMutation`],
-      variables: { id: this.args.workItemId },
-    });
+    try {
+      yield this.apollo.mutate({
+        mutation: this[`${this.args.mutation}WorkItemMutation`],
+        variables: { id: this.args.workItemId },
+      });
+
+      if (this.args.onSuccess) {
+        this.args.onSuccess();
+      } else {
+        this.notification.success(
+          this.intl.t("caluma.mutate-work-item.success")
+        );
+      }
+    } catch (e) {
+      if (this.args.onError) {
+        this.args.onError(e);
+      } else {
+        // eslint-disable-next-line no-console
+        console.error(e);
+        this.notification.danger(this.intl.t("caluma.mutate-work-item.error"));
+      }
+    }
   }
 }

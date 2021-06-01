@@ -215,3 +215,5 @@ caluma:
     complete: "Complete"
     skip: "Skip"
     cancel: "Cancel"
+    success: "Work item state was successfully changed!"
+    error: "Ooops, something went wrong while changing the work item state..."
