@@ -10,17 +10,40 @@ module("Integration | Component | task-button", function (hooks) {
   setupIntl(hooks);
   setupMirage(hooks);
 
-  test("it renders default", async function (assert) {
-    await render(
-      hbs`<TaskButton @mutation="complete" @taskSlug="test" @filters=""/>`
+  hooks.beforeEach(function () {
+    this.server.post(
+      "graphql",
+      () => {
+        return {
+          data: {
+            allWorkItems: {
+              edges: [
+                {
+                  node: {
+                    id: "work-item-id",
+                    __typename: "WorkItem",
+                  },
+                  __typename: "WorkItemEdge",
+                },
+              ],
+              __typename: "WorkItemConnection",
+            },
+          },
+        };
+      },
+      200
     );
+  });
+
+  test("it renders default", async function (assert) {
+    await render(hbs`<TaskButton @mutation="complete" @task="test"/>`);
 
     assert.dom("button").hasText("t:caluma.mutate-work-item.complete:()");
   });
 
   test("it renders label", async function (assert) {
     await render(
-      hbs`<TaskButton @mutation="complete" @taskSlug="test" @label="Lorem Ipsum" @filters=""/>`
+      hbs`<TaskButton @mutation="complete" @task="test" @label="Lorem Ipsum"/>`
     );
 
     assert.dom("button").hasText("Lorem Ipsum");
@@ -28,7 +51,7 @@ module("Integration | Component | task-button", function (hooks) {
 
   test("it renders block", async function (assert) {
     await render(
-      hbs`<TaskButton @mutation="complete" @taskSlug="test" @filters="">Lorem Ipsum</TaskButton>`
+      hbs`<TaskButton @mutation="complete" @task="test">Lorem Ipsum</TaskButton>`
     );
 
     assert.dom("button").hasText("Lorem Ipsum");

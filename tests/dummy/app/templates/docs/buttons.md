@@ -53,21 +53,32 @@ TaskButton uses the WorkItemButton as the foundation. Instead of passing a work 
 <TaskButton
   @label="Lorem Ipsum"
   @mutation="complete"
-  @taskSlug="some-task"
-  @filters="this.filters"
+  @task="some-task"
+  @filters="(array"
+  (hash
+  myFilter="test"
+  ))
 />
 
-<TaskButton @mutation="complete" @taskSlug="some-task" @filters="this.filters">
+<TaskButton
+  @mutation="complete"
+  @task="some-task"
+  @filters="(array"
+  (hash
+  myFilter="test"
+  ))
+>
   Lorem Ipsum
 </TaskButton>
 ```
 
-The TaskButton component has 5 parameters:
+The TaskButton component has 6 parameters:
 
 - `mutation` The state mutation to be used either `complete`, `skip` or `cancel`.
-- `taskSlug` Slug of the task.
-- `filters` Filters of the allWorkItems query.
+- `task` Slug of the task.
+- `filters` (Optional) Filters of the allWorkItems query.
 - `label` (Optional) Overwrites the button text.
-- `onError`(Optional) Function to be called when no work item was found.
+- `onSuccess`(Optional) Will be passed to WorkItemButton onSuccess.
+- `onError`(Optional) Will be passed to WorkItemButton onError.
 
 Additionally the [UkButton](https://adfinis-sygroup.github.io/ember-uikit/#/docs/components/button) parameters from the WorkItemButton still apply.
