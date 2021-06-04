@@ -7721,7 +7721,7 @@ ember-auto-import@^1.10.1, ember-auto-import@^1.11.0, ember-auto-import@^1.11.2,
     walk-sync "^0.3.3"
     webpack "^4.43.0"
 
-ember-basic-dropdown@^3.0.17:
+ember-basic-dropdown@^3.0.18:
   version "3.0.18"
   resolved "https://registry.yarnpkg.com/ember-basic-dropdown/-/ember-basic-dropdown-3.0.18.tgz#d6bfeda47330e101efdb16a5387ab6252b48f658"
   integrity sha512-HC+DsOLBplML61LvndHgioR/zvTMNGV6mfSw76qsG+Jl0k2qw27quglCsEjdb4ZjcURJbFTvj69fK8KFvM3vxg==
@@ -8906,15 +8906,15 @@ ember-pikaday@3.0.0:
     ember-cli-moment-shim "^3.7.1"
     pikaday "^1.8.0"
 
-ember-power-select@^4.1.5:
-  version "4.1.5"
-  resolved "https://registry.yarnpkg.com/ember-power-select/-/ember-power-select-4.1.5.tgz#8bf4b77a5577972ac7793d7ac81580f79154d122"
-  integrity sha512-J/WJau0fXBl6VGocctUKElK2vJYMzUfk2AqD61ezGVLF65aobo8G4BJuQoIZJr6dl2++fuNWHjO5iz8dHEAVPQ==
+ember-power-select@^4.1.6:
+  version "4.1.6"
+  resolved "https://registry.yarnpkg.com/ember-power-select/-/ember-power-select-4.1.6.tgz#03e767a8e9d5d2fc301bec35644d15f53c006d79"
+  integrity sha512-dumnieoQrU7PvNhVQBn67ZqbbuotWPFHNdhm3wNBVQvkCndLE6WkRwRElGffMLnF4KGbqGCQyIUsxBUi/nM0wQ==
   dependencies:
     "@glimmer/component" "^1.0.2"
     "@glimmer/tracking" "^1.0.2"
     ember-assign-helper "^0.3.0"
-    ember-basic-dropdown "^3.0.17"
+    ember-basic-dropdown "^3.0.18"
     ember-cli-babel "^7.23.0"
     ember-cli-htmlbars "^5.3.1"
     ember-cli-typescript "^4.1.0"
