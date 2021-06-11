@@ -25,8 +25,8 @@ module("Integration | Component | cf-field", function (hooks) {
           label: "Test",
           isRequired: "true",
           isHidden: "false",
-          textMinLength: 1,
-          textMaxLength: 2,
+          textMinLength: 10,
+          textMaxLength: 20,
           meta: {},
           __typename: "TextQuestion",
         },
@@ -115,7 +115,7 @@ module("Integration | Component | cf-field", function (hooks) {
     assert
       .dom("span.validation-errors")
       .hasText(
-        't:caluma.form.validation.tooLong:("max":2,"min":1,"value":"Test")'
+        't:caluma.form.validation.tooShort:("max":20,"min":10,"value":"Test")'
       );
   });
 

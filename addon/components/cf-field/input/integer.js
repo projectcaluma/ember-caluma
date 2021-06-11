@@ -1,4 +1,5 @@
-import Component from "@ember/component";
+import { action } from "@ember/object";
+import Component from "@glimmer/component";
 
 /**
  * Input component for the integer question type
@@ -6,23 +7,7 @@ import Component from "@ember/component";
  * @class CfFieldInputIntegerComponent
  * @argument {Field} field The field for this input type
  */
-export default Component.extend({
-  tagName: "input",
-  classNames: ["uk-input"],
-  classNameBindings: ["field.isInvalid:uk-form-danger", "disabled:uk-disabled"],
-  attributeBindings: [
-    "type",
-    "step",
-    "disabled:readonly",
-    "field.pk:name",
-    "field.pk:id",
-    "field.answer.value:value",
-    "field.question.integerMinValue:min",
-    "field.question.integerMaxValue:max",
-  ],
-  type: "number",
-  step: 1,
-
+export default class CfFieldInputIntegerComponent extends Component {
   /**
    * Trigger save on input
    *
@@ -31,7 +16,10 @@ export default Component.extend({
    * @param {Object} e.target The target of the event
    * @param {String} e.target.value The current value of the field
    */
+  @action
   input({ target: { value } }) {
-    this.onSave(value === "" || isNaN(value) ? null : parseInt(value));
-  },
-});
+    const parsedValue = parseInt(value);
+
+    this.args.onSave(!isNaN(parsedValue) ? parsedValue : null);
+  }
+}

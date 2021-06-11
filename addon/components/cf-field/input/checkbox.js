@@ -1,4 +1,5 @@
-import Component from "@ember/component";
+import { action } from "@ember/object";
+import Component from "@glimmer/component";
 
 /**
  * Function to extract the option slug out of an input element. This is needed
@@ -28,20 +29,21 @@ const getSlug = ({ value, name }) => {
  * @class CfFieldInputCheckboxComponent
  * @argument {Field} field The field for this input type
  */
-export default Component.extend({
-  actions: {
-    /**
-     * Update the value of the field with the slugs of the currently checked
-     * boxes.
-     *
-     * @method update
-     */
-    update() {
-      const checkedBoxes = [
-        ...this.element.querySelectorAll("input[type=checkbox]:checked"),
-      ];
+export default class CfFieldInputCheckboxComponent extends Component {
+  /**
+   * Update the value of the field with the slugs of the currently checked
+   * boxes.
+   *
+   * @method update
+   */
+  @action
+  update({ target }) {
+    const checkedBoxes = [
+      ...target.parentNode.parentNode.querySelectorAll(
+        "input[type=checkbox]:checked"
+      ),
+    ];
 
-      this.onSave([...new Set(checkedBoxes.map(getSlug))]);
-    },
-  },
-});
+    this.args.onSave([...new Set(checkedBoxes.map(getSlug))]);
+  }
+}
