@@ -1,6 +1,10 @@
 import { getOwner } from "@ember/application";
-import Component from "@ember/component";
-import { task, timeout } from "ember-concurrency";
+import { set } from "@ember/object";
+import Component from "@glimmer/component";
+import { timeout } from "ember-concurrency";
+import { restartableTask } from "ember-concurrency-decorators";
+
+import { hasQuestionType } from "ember-caluma/helpers/has-question-type";
 
 /**
  * Component to display a label and input for a certain field of a document.
@@ -14,9 +18,20 @@ import { task, timeout } from "ember-concurrency";
  * @class CfFieldComponent
  * @argument {Field} field The field data model to render
  */
-export default Component.extend({
-  classNames: ["uk-margin"],
-  classNameBindings: ["field.hidden:uk-hidden"],
+export default class CfFieldComponent extends Component {
+  get visible() {
+    return (
+      !this.args.field?.hidden &&
+      !hasQuestionType(this.args.field?.question, "form")
+    );
+  }
+
+  get labelVisible() {
+    return (
+      !this.args.field?.question.meta.hideLabel &&
+      !hasQuestionType(this.args.field?.question, "static")
+    );
+  }
 
   /**
    * Task to save a field. This will set the passed value to the answer and
@@ -25,7 +40,8 @@ export default Component.extend({
    * @method save
    * @param {String|Number|String[]} value
    */
-  save: task(function* (value) {
+  @restartableTask
+  *save(value) {
     const { environment } =
       getOwner(this).resolveRegistration("config:environment");
 
@@ -34,14 +50,14 @@ export default Component.extend({
       yield timeout(500);
     }
 
-    this.set("field.answer.value", value);
+    set(this.args.field.answer, "value", value);
 
-    yield this.field.validate.perform();
+    yield this.args.field.validate.perform();
 
     try {
-      return yield this.field.save.unlinked().perform();
+      return yield this.args.field.save.unlinked().perform();
     } catch (e) {
       // that's ok
     }
-  }).restartable(),
-});
+  }
+}
