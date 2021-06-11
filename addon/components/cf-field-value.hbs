@@ -1,7 +1,9 @@
-{{#if value.fileAnswerId}}
-  {{#uk-button color="link" on-click=(action "download" value.fileAnswerId)}}
-    {{value.label}}
-  {{/uk-button}}
+{{#if this.value.fileAnswerId}}
+  <UkButton
+    @color="link"
+    @label={{this.value.label}}
+    @on-click={{fn this.download value.fileAnswerId}}
+  />
 {{else}}
   {{value.label}}
 {{/if}}

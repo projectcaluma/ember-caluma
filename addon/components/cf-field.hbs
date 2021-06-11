@@ -1,28 +1,40 @@
-{{#if (not (has-question-type @field.question "form"))}}
-  {{#if (and (not @field.question.meta.hideLabel) (not (has-question-type @field.question "static")))}}
-    <CfField::label @field={{@field}} />
-  {{/if}}
-  <div class="uk-flex">
-    <div class="uk-width-expand">
-      {{component (get-widget @field.question) field=@field disabled=@disabled context=@context onSave=(perform this.save)}}
-    </div>
-    {{#if @field.question.infoText}}
-      <CfField::info @text={{@field.question.infoText}} />
+{{#if this.visible}}
+  <div class="uk-margin">
+    {{#if this.labelVisible}}
+      <CfField::label @field={{@field}} />
     {{/if}}
-    <div
-      class="cf-field__icon uk-padding-remove-vertical uk-flex uk-flex-middle uk-flex-center"
-    >
-      {{#if @field.save.isRunning}}
-        <UkSpinner class="uk-animation-fade" />
-      {{else if (or field.save.last.isError field.isInvalid)}}
-        <UkIcon @icon="warning" class="uk-animation-fade uk-text-danger" />
-      {{else if @field.save.last.isSuccessful}}
-        <UkIcon @icon="check" class="uk-animation-fade uk-text-success" />
-      {{/if}}
-    </div>
-  </div>
 
-  {{#if @field.errors.length}}
-    <CfField::errors @field={{@field}} />
-  {{/if}}
+    <div class="uk-flex">
+      <div class="uk-width-expand">
+        {{#let (component (get-widget @field.question)) as |FieldComponent|}}
+          <FieldComponent
+            @field={{@field}}
+            @disabled={{@disabled}}
+            @context={{@context}}
+            @onSave={{perform this.save}}
+          />
+        {{/let}}
+      </div>
+
+      {{#if @field.question.infoText}}
+        <CfField::info @text={{@field.question.infoText}} />
+      {{/if}}
+
+      <div
+        class="cf-field__icon uk-padding-remove-vertical uk-flex uk-flex-middle uk-flex-center"
+      >
+        {{#if @field.save.isRunning}}
+          <UkSpinner class="uk-animation-fade" />
+        {{else if (or field.save.last.isError field.isInvalid)}}
+          <UkIcon @icon="warning" class="uk-animation-fade uk-text-danger" />
+        {{else if @field.save.last.isSuccessful}}
+          <UkIcon @icon="check" class="uk-animation-fade uk-text-success" />
+        {{/if}}
+      </div>
+    </div>
+
+    {{#if @field.errors.length}}
+      <CfField::errors @field={{@field}} />
+    {{/if}}
+  </div>
 {{/if}}
