@@ -1,0 +1,10 @@
+<textarea
+  class="uk-textarea {{if @field.isInvalid "uk-form-danger"}} {{if @disabled "uk-disabled"}}"
+  name={{@field.pk}}
+  id={{@field.pk}}
+  placeholder={{@field.question.placeholder}}
+  minlength={{@field.question.textareaMinLength}}
+  maxlength={{@field.question.textareaMaxLength}}
+  readonly={{@disabled}}
+  {{on "input" this.input}}
+>{{@field.answer.value}}</textarea>

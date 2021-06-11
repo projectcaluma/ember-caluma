@@ -2,7 +2,7 @@ import { action } from "@ember/object";
 import Component from "@glimmer/component";
 
 export default class CfFieldInputFloatComponent extends Component {
-  get isDisabled() {
+  get disabled() {
     return this.args.disabled || this.args.field?.question.isCalculated;
   }
 
@@ -14,11 +14,7 @@ export default class CfFieldInputFloatComponent extends Component {
    * @param {Object} e.target The target of the event
    * @param {String} e.target.value The current value of the field
    */
-  @action onInput({ target: { value } }) {
-    if (this.isDisabled) {
-      return;
-    }
-
+  @action input({ target: { value } }) {
     const parsedValue = parseFloat(value);
 
     this.args.onSave(!isNaN(parsedValue) ? parsedValue : null);

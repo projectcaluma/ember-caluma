@@ -1,8 +1,7 @@
 import { getOwner } from "@ember/application";
-import Component from "@ember/component";
-import { computed } from "@ember/object";
+import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
-import { queryManager } from "ember-apollo-client";
+import Component from "@glimmer/component";
 
 /**
  * Dropdown component for the single and multiple choice question type
@@ -10,48 +9,42 @@ import { queryManager } from "ember-apollo-client";
  * @class CfFieldInputPowerSelectComponent
  * @argument {Field} field The field for this input type
  */
-export default Component.extend({
-  tagName: "",
+export default class CfFieldInputPowerselectComponent extends Component {
+  @service intl;
 
-  intl: service(),
+  get multiple() {
+    return this.args.field?.question.isMultipleChoice;
+  }
 
-  apollo: queryManager(),
-
-  multiple: computed("field.question.__typename", function () {
-    return this.get("field.question.__typename").includes("Multiple");
-  }),
-
-  componentName: computed("multiple", function () {
+  get componentName() {
     return this.multiple ? "power-select-multiple" : "power-select";
-  }),
+  }
 
-  searchEnabled: computed("field.options.length", function () {
+  get searchEnabled() {
     const config = getOwner(this).resolveRegistration("config:environment");
     const { powerSelectEnableSearchLimit = 10 } = config["ember-caluma"] || {};
 
-    return this.get("field.options.length") > powerSelectEnableSearchLimit;
-  }),
+    return this.args.field?.options?.length > powerSelectEnableSearchLimit;
+  }
 
-  placeholder: computed("multiple", function () {
+  get placeholder() {
     const suffix = this.multiple ? "multiple" : "single";
-    const path = `caluma.form.power-select.placeholder-${suffix}`;
-    return this.intl.t(path);
-  }),
+    return this.intl.t(`caluma.form.power-select.placeholder-${suffix}`);
+  }
 
-  actions: {
-    change(choices) {
-      let value = null;
+  @action
+  change(choices) {
+    let value = null;
 
-      if (Array.isArray(choices)) {
-        value = choices.map((choice) => choice.slug);
-      } else if (choices !== null) {
-        value = choices.slug;
-      }
-      // ELSE will never be taken as long as we don't allow for empty
-      // selections in single choice fields. Empty selections must first be
-      // implemented/allowed by the backend.
+    if (Array.isArray(choices)) {
+      value = choices.map((choice) => choice.slug);
+    } else if (choices !== null) {
+      value = choices.slug;
+    }
+    // ELSE will never be taken as long as we don't allow for empty
+    // selections in single choice fields. Empty selections must first be
+    // implemented/allowed by the backend.
 
-      this.onSave(value);
-    },
-  },
-});
+    this.args.onSave(value);
+  }
+}
