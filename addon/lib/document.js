@@ -121,7 +121,9 @@ export default Base.extend({
   jexl: computed(function () {
     const documentJexl = new jexl.Jexl();
 
-    documentJexl.addTransform("answer", (slug) => this.findAnswer(slug));
+    documentJexl.addTransform("answer", (slug, defaultValue) =>
+      this.findAnswer(slug, defaultValue)
+    );
     documentJexl.addTransform("mapby", mapby);
     documentJexl.addBinaryOp("intersects", 20, intersects);
     documentJexl.addTransform("debug", (any, label = "JEXL Debug") => {
@@ -171,6 +173,9 @@ export default Base.extend({
       if (this.parentDocument) return this.parentDocument.jexlContext;
 
       return {
+        // JEXL interprets null in an expression as variable instead of a
+        // primitive. This resolves that issue.
+        null: null,
         form: this.rootForm.slug,
         info: {
           root: { form: this.rootForm.slug, formMeta: this.rootForm.meta },
@@ -210,13 +215,22 @@ export default Base.extend({
    * Find an answer for a given question slug
    *
    * @param {String} slug The slug of the question to find the answer for
+   * @param {*} defaultValue The value that will be returned if the question doesn't exist
    * @return {*} The answer to the given question
    */
-  findAnswer(slug) {
+  findAnswer(slug, defaultValue) {
     const field = this.findField(slug);
 
-    if (!field || field.hidden || [undefined, null].includes(field.value)) {
-      return field?.question.isMultipleChoice ? [] : null;
+    if (!field) {
+      if (defaultValue === undefined) {
+        throw new Error(`Field for question \`${slug}\` could not be found`);
+      }
+
+      return defaultValue;
+    }
+
+    if (field.hidden || [undefined, null].includes(field.value)) {
+      return field.question.isMultipleChoice ? [] : null;
     }
 
     if (field.question.__typename === "TableQuestion") {
