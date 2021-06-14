@@ -525,13 +525,26 @@ export default Base.extend({
     "hiddenDependencies.@each.{hidden,value}",
     "jexlContext",
     "question.isHidden",
+    "pk",
     function () {
-      return (
-        this.get("fieldset.field.hidden") ||
+      if (
+        this.fieldset.field?.hidden ||
         (this.hiddenDependencies.length &&
-          this.hiddenDependencies.every(fieldIsHidden)) ||
-        this.document.jexl.evalSync(this.question.isHidden, this.jexlContext)
-      );
+          this.hiddenDependencies.every(fieldIsHidden))
+      ) {
+        return true;
+      }
+
+      try {
+        return this.document.jexl.evalSync(
+          this.question.isHidden,
+          this.jexlContext
+        );
+      } catch (error) {
+        throw new Error(
+          `Error while evaluating \`isHidden\` expression on field \`${this.pk}\`: ${error.message}`
+        );
+      }
     }
   ),
 
@@ -551,13 +564,26 @@ export default Base.extend({
     "jexlContext",
     "optionalDependencies.@each.{hidden,value}",
     "question.isRequired",
+    "pk",
     function () {
-      return (
-        this.get("fieldset.field.hidden") ||
+      if (
+        this.fieldset.field?.hidden ||
         (this.optionalDependencies.length &&
-          this.optionalDependencies.every(fieldIsHidden)) ||
-        !this.document.jexl.evalSync(this.question.isRequired, this.jexlContext)
-      );
+          this.optionalDependencies.every(fieldIsHidden))
+      ) {
+        return true;
+      }
+
+      try {
+        return !this.document.jexl.evalSync(
+          this.question.isRequired,
+          this.jexlContext
+        );
+      } catch (error) {
+        throw new Error(
+          `Error while evaluating \`isRequired\` expression on field \`${this.pk}\`: ${error.message}`
+        );
+      }
     }
   ),
 

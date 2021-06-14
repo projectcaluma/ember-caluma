@@ -237,6 +237,7 @@ module("Unit | Library | document", function (hooks) {
     assert.expect(1);
 
     assert.deepEqual(this.document.jexlContext, {
+      null: null,
       form: "form",
       info: {
         root: { form: "form", formMeta: { "is-top-form": true, level: 0 } },

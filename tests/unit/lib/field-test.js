@@ -121,7 +121,7 @@ module("Unit | Library | field", function (hooks) {
     assert.deepEqual(field.optionalDependencies, [dependentField]);
   });
 
-  test("computes the correct Jexl context", async function (assert) {
+  test("computes the correct jexl context", async function (assert) {
     assert.expect(1);
 
     const field = this.document
@@ -129,6 +129,7 @@ module("Unit | Library | field", function (hooks) {
       .value[0].findField("table-form-question");
 
     assert.deepEqual(field.jexlContext, {
+      null: null,
       form: "form",
       info: {
         form: "table-form",
@@ -433,6 +434,34 @@ module("Unit | Library | field", function (hooks) {
     assert.deepEqual(table.errors, [
       't:caluma.form.validation.table:("value":null)',
     ]);
+  });
+
+  test("it can handle optional 'answer' transforms", async function (assert) {
+    assert.expect(4);
+
+    const field = this.addField({
+      question: {
+        __typename: "TextQuestion",
+        isHidden: "'nonexistent'|answer('default') == 'default'",
+        isRequired: "false",
+      },
+      answer: null,
+    });
+
+    assert.ok(field.hidden);
+
+    field.question.set("isHidden", "'nonexistent'|answer(null) == null");
+    assert.ok(field.hidden);
+
+    assert.throws(() => {
+      field.question.set("isHidden", "'nonexistent'|answer == null");
+      field.hidden;
+    }, /(Error while evaluating `isHidden` expression).*(Field for question `nonexistent` could not be found)/);
+
+    assert.throws(() => {
+      field.question.set("isRequired", "'nonexistent'|answer == null");
+      field.optional;
+    }, /(Error while evaluating `isRequired` expression).*(Field for question `nonexistent` could not be found)/);
   });
 
   module("dependencies", function () {

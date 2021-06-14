@@ -1,4 +1,3 @@
-import { assert } from "@ember/debug";
 import { computed, get } from "@ember/object";
 
 import { getAST, getTransforms } from "ember-caluma/utils/jexl";
@@ -45,25 +44,6 @@ export function getDependenciesFromJexl(jexl, expression) {
       ),
     ]),
   ];
-}
-
-/**
- * Find a certain field in a document or throw an informative error.
- *
- * @param {Document} document The document containing the field
- * @param {String} slug The question slug of the searched field
- * @param {String} expression The expression to append to the error message
- * @return {Field} The searched field
- */
-export function findField(document, slug, expression) {
-  const field = document.findField(slug);
-
-  assert(
-    `Field for question \`${slug}\` could not be found in the document \`${document.uuid}\`. Please verify that the jexl expression is correct: \`${expression}\`.`,
-    field
-  );
-
-  return field;
 }
 
 /**
@@ -123,16 +103,14 @@ export function dependencies(
             return null;
           }
 
-          const field = findField(this.document, fieldSlug, expression);
+          const field = this.document.findField(fieldSlug);
 
-          if (!onlyNestedParents && nestedSlug && field.value) {
+          if (!onlyNestedParents && nestedSlug && field?.value) {
             // Get the nested fields from the parents value (rows)
             const childFields =
               nestedSlug === "__all__"
                 ? field.value.flatMap((row) => row.fields)
-                : field.value.map((row) =>
-                    findField(row, nestedSlug, expression)
-                  );
+                : field.value.map((row) => row.findField(nestedSlug));
 
             return [field, ...childFields];
           }
