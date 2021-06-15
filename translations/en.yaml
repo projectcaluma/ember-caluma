@@ -126,6 +126,8 @@ caluma:
       rowForm: "Form to use for rows"
       subForm: "Form to use for entries"
       choose: "-- please choose --"
+      search-placeholder: "Type here to search forms"
+      search-empty: "Search didn't match any forms"
       columnsToDisplay: "Select columns to be shown"
       calcExpression: "Calculation formula"
 
