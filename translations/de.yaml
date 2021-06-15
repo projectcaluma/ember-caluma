@@ -98,6 +98,18 @@ caluma:
 
       not-found: "Kein Formular mit dem Slug '{slug}' gefunden"
 
+    question-list:
+      required:
+        label: "Erforderlich (JEXL)"
+        not-required: "Optional"
+        required: "Erforderlich"
+        conditional: "Bedingt erforderlich"
+      hidden:
+        label: "Versteckt (JEXL)"
+        not-hidden: "Sichtbar"
+        hidden: "Versteckt"
+        conditional: "Bedingt versteckt"
+
     question:
       label: "Label"
       slug: "Slug"

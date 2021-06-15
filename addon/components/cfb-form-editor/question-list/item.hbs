@@ -57,16 +57,33 @@
     </span>
 
     <span class="uk-position-relative uk-width-auto">
-      {{uk-badge
-        label=(t (concat "caluma.form-builder.question.types." @question.__typename))
+      {{#let 
+        (if this.required (if (eq this.required true) "required" "conditional") "not-required")
+        (if this.hidden (if (eq this.hidden true) "hidden" "conditional") "not-hidden")
+        as |requiredType hiddenType|
       }}
-      {{#if this.required}}
-        <span
-          title={{t "caluma.form-builder.question.isRequired"}}
-          class="uk-position-top-right cfb-form-editor__question-list__item__required"
-        >
-        </span>
-      {{/if}}
+        <UkBadge
+          uk-tooltip="title: {{if this.hidden (t (concat "caluma.form-builder.question-list.hidden." hiddenType))}}; pos: left"
+          class="{{if this.hidden (concat "cfb-form-editor__question-list__item__hidden-" hiddenType)}}"
+          @label={{t (concat "caluma.form-builder.question.types." @question.__typename)}}
+          title={{if this.hidden (t (concat "caluma.form-builder.question-list.hidden." hiddenType))}}
+        />
+        {{#if this.required}}
+          <span
+            uk-tooltip="title: {{t (concat "caluma.form-builder.question-list.required." requiredType)}}; pos: top-left"
+            title={{t (concat "caluma.form-builder.question-list.required." requiredType)}}
+            class="uk-position-top-right cfb-form-editor__question-list__item__required-{{requiredType}}"
+          >
+          </span>
+          {{#if (not (eq this.required true))}}
+            <span
+              uk-tooltip="title: {{t (concat "caluma.form-builder.question-list.required." requiredType)}}; pos: top-left"
+              title={{t (concat "caluma.form-builder.question-list.required." requiredType)}} 
+              class="uk-position-top-right cfb-form-editor__question-list__item__required-conditional-fill"
+            ></span>
+          {{/if}}
+        {{/if}}
+      {{/let}}
     </span>
   </div>
 </li>
