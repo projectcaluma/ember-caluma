@@ -98,6 +98,18 @@ caluma:
 
       not-found: "No form with slug '{slug}' found"
 
+    question-list:
+      required:
+        label: "Required (JEXL)"
+        not-required: "Optional"
+        required: "Required"
+        conditional: "Conditionally required"
+      hidden:
+        label: "Hidden (JEXL)"
+        not-hidden: "Visible"
+        hidden: "Hidden"
+        conditional: "Conditionally hidden"
+
     question:
       label: "Label"
       slug: "Slug"

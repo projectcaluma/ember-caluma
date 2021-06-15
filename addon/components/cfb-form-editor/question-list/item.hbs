@@ -69,13 +69,17 @@
 
     <span class="uk-position-relative uk-width-auto">
       <UkBadge
-        class="cfb-form-editor__question-list__item__type"
+        uk-tooltip="title: {{if this.hidden (t (concat "caluma.form-builder.question-list.hidden." this.hiddenType))}}; pos: left"
+        class="cfb-form-editor__question-list__item__type {{if this.hidden "cfb-form-editor__question-list__item__type--hidden"}}"
         @label={{t (concat "caluma.form-builder.question.types." @question.__typename)}}
+        title={{if this.hidden (t (concat "caluma.form-builder.question-list.hidden." this.hiddenType))}}
       />
       {{#if this.required}}
         <span
-          title={{t "caluma.form-builder.question.isRequired"}}
-          class="uk-position-top-right cfb-form-editor__question-list__item__required"
+          uk-tooltip="title: {{t (concat "caluma.form-builder.question-list.required." this.requiredType)}}; pos: top-left"
+          title={{t (concat "caluma.form-builder.question-list.required." this.requiredType)}}
+          class="uk-position-top-right cfb-form-editor__question-list__item__required 
+            cfb-form-editor__question-list__item__required--{{this.requiredType}}"
         >
         </span>
       {{/if}}
