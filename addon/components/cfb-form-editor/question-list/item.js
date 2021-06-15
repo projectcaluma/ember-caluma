@@ -15,8 +15,30 @@ export default class CfbFormEditorQuestionListItem extends Component {
     try {
       return jexl.evalSync(this.args.question?.isRequired);
     } catch (error) {
-      return false;
+      return this.args.question?.isRequired;
     }
+  }
+
+  get requiredType() {
+    const required = this.required;
+    return required === true
+      ? "required"
+      : required
+      ? "conditional"
+      : "not-required";
+  }
+
+  get hidden() {
+    try {
+      return jexl.evalSync(this.args.question?.isHidden);
+    } catch (error) {
+      return this.args.question?.isHidden;
+    }
+  }
+
+  get hiddenType() {
+    const hidden = this.hidden;
+    return hidden === true ? "hidden" : hidden ? "conditional" : "not-hidden";
   }
 
   get showFormLink() {
