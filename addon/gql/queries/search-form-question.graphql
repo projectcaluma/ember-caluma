@@ -9,6 +9,18 @@ query SearchFormQuestion($slug: String!, $search: String, $archived: Boolean) {
           edges {
             node {
               ...QuestionInfo
+              ... on FormQuestion {
+                subForm {
+                  slug
+                  name
+                }
+              }
+              ... on TableQuestion {
+                rowForm {
+                  slug
+                  name
+                }
+              }
             }
           }
         }
