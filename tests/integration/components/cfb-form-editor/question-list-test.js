@@ -58,6 +58,38 @@ module(
         .hasText("t:caluma.form-builder.global.empty-search:()");
     });
 
+    test("it links subforms in form questions", async function (assert) {
+      assert.expect(2);
+
+      const formQuestion = this.server.create("question", { type: "FORM" });
+      this.server.create("form", {
+        slug: "new-form",
+        questions: [formQuestion],
+      });
+
+      await render(hbs`<CfbFormEditor::QuestionList @form='new-form'/>`);
+
+      assert.dom("[data-test-link-subform]").exists();
+      assert.dom("[data-test-link-subform]").hasText(formQuestion.subForm.name);
+    });
+
+    test("it links rowforms in table questions", async function (assert) {
+      assert.expect(2);
+
+      const tableQuestion = this.server.create("question", { type: "TABLE" });
+      this.server.create("form", {
+        slug: "new-form",
+        questions: [tableQuestion],
+      });
+
+      await render(hbs`<CfbFormEditor::QuestionList @form='new-form'/>`);
+
+      assert.dom("[data-test-link-subform]").exists();
+      assert
+        .dom("[data-test-link-subform]")
+        .hasText(tableQuestion.rowForm.name);
+    });
+
     test("it can reorder questions", async function (assert) {
       assert.expect(2);
 

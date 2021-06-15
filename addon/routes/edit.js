@@ -16,7 +16,7 @@ export default class EditRoute extends Route {
 
   @dropTask
   *fetchName(slug) {
-    const [form] = yield this.apollo.watchQuery(
+    const [form] = yield this.apollo.query(
       {
         query: gql`
           query FormName($slug: String!) {

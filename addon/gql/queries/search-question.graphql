@@ -21,6 +21,18 @@ query SearchQuestion(
     edges {
       node {
         ...QuestionInfo
+        ... on FormQuestion {
+          subForm {
+            slug
+            name
+          }
+        }
+        ... on TableQuestion {
+          rowForm {
+            slug
+            name
+          }
+        }
       }
     }
   }

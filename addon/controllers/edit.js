@@ -24,4 +24,9 @@ export default class EditController extends Controller {
       this.transitionToRoute("edit.general");
     }
   }
+
+  @action
+  retrieveForm({ slug }) {
+    this.transitionToRoute("edit", slug);
+  }
 }
