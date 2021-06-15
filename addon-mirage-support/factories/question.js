@@ -45,8 +45,22 @@ export default Factory.extend({
       }
     } else if (question.type === "TABLE") {
       if (question.rowForm === undefined) {
+        const form = server.create("form");
         question.update({
-          rowForm: (i) => `subform-${i + 1}`,
+          rowForm: {
+            slug: form.slug,
+            name: form.name,
+          },
+        });
+      }
+    } else if (question.type === "FORM") {
+      if (question.subForm === undefined) {
+        const form = server.create("form");
+        question.update({
+          subForm: {
+            slug: form.slug,
+            name: form.name,
+          },
         });
       }
     } else if (question.type === "STATIC") {

@@ -1,4 +1,8 @@
-<div ...attributes {{did-insert (queue (fn this.setupUIkit) (perform this.questionTask))}}>
+<div 
+  ...attributes
+  {{did-insert (queue (fn this.setupUIkit) (perform this.questionTask))}}
+  {{did-update (perform this.questionTask) @form}}
+>
   <div class="uk-text-center uk-margin">
     {{#if (includes this.mode (array "remove" "add"))}}
       <button
@@ -74,6 +78,7 @@
           @on-edit-question={{@on-edit-question}}
           @on-remove-question={{perform this.removeQuestion}}
           @on-add-question={{perform this.addQuestion}}
+          @on-click-form={{@on-click-form}}
           @on-register={{this.registerChild}}
           @on-unregister={{this.unregisterChild}}
         />
