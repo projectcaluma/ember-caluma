@@ -7739,19 +7739,19 @@ ember-basic-dropdown@^3.0.18:
     ember-style-modifier "^0.6.0"
     ember-truth-helpers "^2.1.0 || ^3.0.0"
 
-ember-changeset-validations@^3.14.5:
-  version "3.14.5"
-  resolved "https://registry.yarnpkg.com/ember-changeset-validations/-/ember-changeset-validations-3.14.5.tgz#7d3afb6c41cd885dbb8077837937d36ccc36f3ba"
-  integrity sha512-EXhH98aOS9GNbuYQAHNq5cWYgiYdhqhgwgtZUuHZWhw+YJBhvcTu9ENMMKjjnuuj7WmFsbRbuIpUCrkamuv35g==
+ember-changeset-validations@^3.14.7:
+  version "3.14.7"
+  resolved "https://registry.yarnpkg.com/ember-changeset-validations/-/ember-changeset-validations-3.14.7.tgz#83ddc63173c1321053385b36c209050c047e5a8b"
+  integrity sha512-2d2r1JatkdSJ0M70lE79DWkjqp5Ha3VG8EY3YAynVRYmnLWZxIleV85Re2P155lfOIkmkQOo9HXPQzcXqY0qpw==
   dependencies:
-    ember-changeset "^3.13.6"
+    ember-changeset "^3.13.8"
     ember-cli-babel "^7.11.1"
     ember-cli-htmlbars "^4.0.5"
-    ember-get-config "^0.2.4"
+    ember-get-config "^0.3.0"
     ember-validators "^3.0.1"
-    validated-changeset "~0.14.5"
+    validated-changeset "~0.14.8"
 
-ember-changeset@^3.13.6, ember-changeset@^3.13.8:
+ember-changeset@^3.13.8:
   version "3.13.8"
   resolved "https://registry.yarnpkg.com/ember-changeset/-/ember-changeset-3.13.8.tgz#7f31e4dc170f75b57fc03fb278e2ba19bf6c5c04"
   integrity sha512-Lzuvs0SY3Vzu1IYQ3aCflipRYdtk0U8S85dlrPtdsWH2hzAhVk4fgXlbT4bVkO1ikxvJjrZSRLRNwia0fRJNxw==
@@ -7902,7 +7902,7 @@ ember-cli-babel@7.22.1:
     rimraf "^3.0.1"
     semver "^5.5.0"
 
-ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.11.0, ember-cli-babel@^6.3.0, ember-cli-babel@^6.6.0, ember-cli-babel@^6.8.1, ember-cli-babel@^6.8.2, ember-cli-babel@^6.9.2:
+ember-cli-babel@^6.0.0-beta.4, ember-cli-babel@^6.11.0, ember-cli-babel@^6.6.0, ember-cli-babel@^6.8.1, ember-cli-babel@^6.8.2, ember-cli-babel@^6.9.2:
   version "6.18.0"
   resolved "https://registry.yarnpkg.com/ember-cli-babel/-/ember-cli-babel-6.18.0.tgz#3f6435fd275172edeff2b634ee7b29ce74318957"
   integrity sha512-7ceC8joNYxY2wES16iIBlbPSxwKDBhYwC8drU3ZEvuPDMwVv1KzxCNu1fvxyFEBWhwaRNTUxSCsEVoTd9nosGA==
@@ -8713,14 +8713,6 @@ ember-get-config@, "ember-get-config@^0.2.4 || ^0.3.0", ember-get-config@^0.3.0:
   dependencies:
     broccoli-file-creator "^1.1.1"
     ember-cli-babel "^7.0.0"
-
-ember-get-config@^0.2.4:
-  version "0.2.4"
-  resolved "https://registry.yarnpkg.com/ember-get-config/-/ember-get-config-0.2.4.tgz#118492a2a03d73e46004ed777928942021fe1ecd"
-  integrity sha1-EYSSoqA9c+RgBO13eSiUICH+Hs0=
-  dependencies:
-    broccoli-file-creator "^1.1.1"
-    ember-cli-babel "^6.3.0"
 
 ember-getowner-polyfill@^2.0.1:
   version "2.2.0"
@@ -20028,7 +20020,7 @@ validate-peer-dependencies@^1.1.0:
     resolve-package-path "^3.1.0"
     semver "^7.3.2"
 
-validated-changeset@~0.14.5, validated-changeset@~0.14.8:
+validated-changeset@~0.14.8:
   version "0.14.10"
   resolved "https://registry.yarnpkg.com/validated-changeset/-/validated-changeset-0.14.10.tgz#6bd7c62d689b88af6894578775b2e0bf88910389"
   integrity sha512-A+z6cBuFnlZ8R75rKBJc7J20lyh9uemMflOdQEqzIMZUA40RwMA4LkjZJxdaUZSHvrnLoFMvPRhvZX0TFy0U/A==
