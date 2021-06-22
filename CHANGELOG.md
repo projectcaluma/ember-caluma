@@ -1,3 +1,18 @@
+# [7.2.0](https://github.com/projectcaluma/ember-caluma/compare/v7.1.1...v7.2.0) (2021-06-22)
+
+
+### Bug Fixes
+
+* **docs:** add user documentation for workitembutton ([47ef3e1](https://github.com/projectcaluma/ember-caluma/commit/47ef3e19ec0e6673d02de75e4da55caaf1d29036))
+* **work-item-button:** add docs and improve component ([71cb7a2](https://github.com/projectcaluma/ember-caluma/commit/71cb7a290f1152d6f178d2d29e2fe91bfe038f11))
+
+
+### Features
+
+* **jexl:** allow optional answer transforms with default value ([1ba4e7e](https://github.com/projectcaluma/ember-caluma/commit/1ba4e7e224f10026435251cd0d53ce35b111bf0a))
+* **work-item-button:** add success and error hooks ([8d50b15](https://github.com/projectcaluma/ember-caluma/commit/8d50b1553b5d73776bd02371c0dec9fdb3d74771))
+* add work item button component ([4daa9cf](https://github.com/projectcaluma/ember-caluma/commit/4daa9cfd477d4d5b5be2aa33446093fb075e4bbf))
+
 ## [7.1.1](https://github.com/projectcaluma/ember-caluma/compare/v7.1.0...v7.1.1) (2021-05-31)
 
 
