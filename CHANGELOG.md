@@ -1,3 +1,10 @@
+# [7.3.0](https://github.com/projectcaluma/ember-caluma/compare/v7.2.0...v7.3.0) (2021-06-25)
+
+
+### Features
+
+* add task button ([#1423](https://github.com/projectcaluma/ember-caluma/issues/1423)) ([823eff1](https://github.com/projectcaluma/ember-caluma/commit/823eff146dc1cea05cc44857f0850ba175aadced))
+
 # [7.2.0](https://github.com/projectcaluma/ember-caluma/compare/v7.1.1...v7.2.0) (2021-06-22)
 
 
