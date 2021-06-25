@@ -37,9 +37,10 @@ dropdown above modal dialogs as the default of z-index of `1010`
 # Build time configuration
 
 `ember-caluma` relies heavily on `ember-changeset` and
-`ember-changeset-validations` that use `Proxy`. Since we support IE11+ we
-include a polyfill for `Proxy` per default. If your app doesn't need that,
-you can opt-out by configuring `ember-caluma.includeProxyPolyfill` in your
+`ember-changeset-validations` that use `Proxy`.
+`ember-in-viewport` is also being used, which relies on `IntersectionObserver`.
+Since we support IE11+ we include a polyfill for `Proxy` and `IntersectionObserver` per default.
+If your app doesn't need that, you can opt-out by configuring `ember-caluma.includeProxyPolyfill` and `ember-caluma.includeIntersectionObserverPolyfill` in your
 `ember-cli-build.js` file:
 
 {{docs-snippet name='config/ember-cli-build.js'}}

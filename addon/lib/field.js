@@ -921,4 +921,15 @@ export default Base.extend({
   _validateFormQuestion() {
     return resolve(true);
   },
+
+  /**
+   * Dummy method for the validation of calculated float fields
+   *
+   * @method _validateCalculatedFloatQuestion
+   * @return {RSVP.Promise}
+   * @private
+   */
+  _validateCalculatedFloatQuestion() {
+    return resolve(true);
+  },
 });
