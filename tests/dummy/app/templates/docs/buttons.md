@@ -44,3 +44,41 @@ Additionally there are many optional parameters for the underlying [UkButton](ht
 - `color`
 - `size`
 - `title`
+
+### TaskButton
+
+TaskButton uses the WorkItemButton as the foundation. Instead of passing a work item id, it taskes a task slug and graphql filters for the allWorkItems query and fetches the work item to be mutated.
+
+```hbs
+<TaskButton
+  @label="Lorem Ipsum"
+  @mutation="complete"
+  @task="some-task"
+  @filters="(array"
+  (hash
+  myFilter="test"
+  ))
+/>
+
+<TaskButton
+  @mutation="complete"
+  @task="some-task"
+  @filters="(array"
+  (hash
+  myFilter="test"
+  ))
+>
+  Lorem Ipsum
+</TaskButton>
+```
+
+The TaskButton component has 6 parameters:
+
+- `mutation` The state mutation to be used either `complete`, `skip` or `cancel`.
+- `task` Slug of the task.
+- `filters` (Optional) Filters of the allWorkItems query.
+- `label` (Optional) Overwrites the button text.
+- `onSuccess`(Optional) Will be passed to WorkItemButton onSuccess.
+- `onError`(Optional) Will be passed to WorkItemButton onError.
+
+Additionally the [UkButton](https://adfinis-sygroup.github.io/ember-uikit/#/docs/components/button) parameters from the WorkItemButton still apply.
