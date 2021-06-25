@@ -7640,10 +7640,10 @@ ember-angle-bracket-invocation-polyfill@^3.0.0:
     ember-compatibility-helpers "^1.0.2"
     silent-error "^1.1.1"
 
-ember-apollo-client@^3.1.1:
-  version "3.1.1"
-  resolved "https://registry.yarnpkg.com/ember-apollo-client/-/ember-apollo-client-3.1.1.tgz#e5e2e46466d75e705a418d1bb85129cfd827582e"
-  integrity sha512-5qmKwdGO3d5I1wsw8RL8zRgLQS0ZGp5+HMMX57TdWTxH0DmZlSJ2q/jMwYNn4A2hzYEHjikMWQ8b6jSA6+20CA==
+ember-apollo-client@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/ember-apollo-client/-/ember-apollo-client-3.2.0.tgz#fea5f2ad285a65fa22dd2fc02a785f38dedd025a"
+  integrity sha512-wIlGpw6wrSUeJ6ONL2NH2/ld6mR6KB/KCoVt2vuTcvRl0FgEzJr/6IYxuR0xpuj2+PfpprVn1nrugpHukLDdBQ==
   dependencies:
     "@apollo/client" "^3.2.1"
     "@ember/test-waiters" "^2.3.0"
@@ -9088,10 +9088,10 @@ ember-template-recast@^5.0.1:
     tmp "^0.2.1"
     workerpool "^6.1.4"
 
-ember-test-selectors@^5.3.0:
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/ember-test-selectors/-/ember-test-selectors-5.3.0.tgz#1dee515e43e7beb7b7083a2fee2cdf808bf9de26"
-  integrity sha512-B9kkCTO39l+XXcp6eRnfZWHeeL3Ffxdux8chXHSwmAPYCc50KI8VW7mr1uy2ZcUMNP/o0sk7VrpA6x3lBkSvWQ==
+ember-test-selectors@^5.4.0:
+  version "5.4.0"
+  resolved "https://registry.yarnpkg.com/ember-test-selectors/-/ember-test-selectors-5.4.0.tgz#1572bcc1a7d0ab4566b8ab98974c0864cce2cb6b"
+  integrity sha512-HTvDFEjg6ZcimOFTe2oSL/iCaK9Nrxyj7IPwO3D91IHRQUKnwYST50OO+GtXw4m6tFlLrhso679AUwJ2Q9qM0Q==
   dependencies:
     calculate-cache-key-for-tree "^2.0.0"
     ember-cli-babel "^7.26.4"
@@ -9514,10 +9514,10 @@ eslint-module-utils@^2.6.1:
     debug "^3.2.7"
     pkg-dir "^2.0.0"
 
-eslint-plugin-ember@10.5.0:
-  version "10.5.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-ember/-/eslint-plugin-ember-10.5.0.tgz#f2a9e8286dcc026287501bcca4f587af1a7363f5"
-  integrity sha512-i9+zPBgVKH0Goe6/BCY06+Nzjf72vBzWerdtn5YzAXwVbX+O3fZHXKfTwtNS64o/4F+0HyJ356EisD1PuUQGLA==
+eslint-plugin-ember@10.5.1:
+  version "10.5.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-ember/-/eslint-plugin-ember-10.5.1.tgz#3ec65cb562b438c64aa28d772606dbb55705e037"
+  integrity sha512-6cubCQdsybN2DtuXnlkhqi3SemBk4ktjq2k4vcjFG8QLmrpmiS6sDwIZMM/TLI8f9QwZIjmewhwS4zB/77E47w==
   dependencies:
     "@ember-data/rfc395-data" "^0.0.4"
     css-tree "^1.0.0-alpha.39"
