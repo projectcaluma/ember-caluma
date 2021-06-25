@@ -34,7 +34,7 @@
     "@ember/render-modifiers": "^1.0.2",
     "@glimmer/component": "1.0.4",
     "@glimmer/tracking": "^1.0.4",
-    "broccoli-funnel": "^3.0.7",
+    "broccoli-funnel": "^3.0.8",
     "broccoli-merge-trees": "^4.2.0",
     "codejar": "^3.4.0",
     "ember-apollo-client": "^3.1.1",
