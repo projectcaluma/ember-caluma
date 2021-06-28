@@ -79,7 +79,7 @@
     "@ember/test-helpers": "^2.2.8",
     "babel-eslint": "10.1.0",
     "broccoli-asset-rev": "3.0.0",
-    "ember-cli": "3.26.1",
+    "ember-cli": "3.27.0",
     "ember-cli-addon-docs": "2.0.0",
     "ember-cli-addon-docs-yuidoc": "1.0.0",
     "ember-cli-browserstack": "anehx/ember-cli-browserstack#fix-pid-file",
