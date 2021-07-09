@@ -63,7 +63,7 @@
     "lodash.clonedeep": "^4.5.0",
     "lodash.isequal": "^4.5.0",
     "moment": "^2.29.1",
-    "prismjs": "https://github.com/PrismJS/prism#7e51b99c86991b669435c51f80d6b16b9131fc6f",
+    "prismjs": "^1.24.1",
     "proxy-polyfill": "^0.3.2",
     "sass": "^1.35.1",
     "slugify": "^1.5.3",
