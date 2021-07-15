@@ -10,6 +10,7 @@ const EngineAddon = require("ember-engines/lib/engine-addon");
 const DEFAULT_OPTIONS = {
   includeMirageConfig: true,
   includeProxyPolyfill: true,
+  includeIntersectionObserverPolyfill: true,
 };
 
 /* eslint-disable ember/avoid-leaking-state-in-ember-objects */
@@ -36,6 +37,12 @@ module.exports = EngineAddon.extend({
 
     if (this._getOptions().includeProxyPolyfill) {
       this.import("node_modules/proxy-polyfill/proxy.min.js");
+    }
+
+    if (this._getOptions().includeIntersectionObserverPolyfill) {
+      this.import(
+        "node_modules/intersection-observer/intersection-observer.js"
+      );
     }
   },
 
