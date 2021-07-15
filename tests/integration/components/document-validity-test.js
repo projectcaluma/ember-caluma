@@ -6,12 +6,19 @@ import { module, test } from "qunit";
 
 import data from "../../unit/lib/data";
 
+import { parseDocument } from "ember-caluma/lib/parsers";
+
 module("Integration | Component | document-validity", function (hooks) {
   setupRenderingTest(hooks);
   setupMirage(hooks);
 
   test("it checks validity", async function (assert) {
-    this.set("document", data);
+    this.set(
+      "document",
+      this.owner
+        .factoryFor("caluma-model:document")
+        .create({ raw: parseDocument(data) })
+    );
 
     await settled();
 

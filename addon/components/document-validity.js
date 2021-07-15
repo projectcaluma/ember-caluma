@@ -1,9 +1,6 @@
-import { getOwner } from "@ember/application";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { dropTask } from "ember-concurrency-decorators";
-
-import { parseDocument } from "ember-caluma/lib/parsers";
 
 /**
  * Component to check the validity of a document
@@ -29,12 +26,10 @@ export default class DocumentValidity extends Component {
 
   @dropTask
   *validate() {
-    const document = getOwner(this)
-      .factoryFor("caluma-model:document")
-      .create({ raw: parseDocument(this.args.document) });
+    yield Promise.all(
+      this.args.document.fields.map((field) => field.validate.perform())
+    );
 
-    yield Promise.all(document.fields.map((field) => field.validate.perform()));
-
-    this.isValid = document.fields.every((f) => f.isValid);
+    this.isValid = this.args.document.fields.every((f) => f.isValid);
   }
 }
