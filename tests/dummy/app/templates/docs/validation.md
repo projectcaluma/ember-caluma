@@ -6,8 +6,7 @@ Built in components to validate Caluma data.
 
 ### DocumentValidity
 
-By passing a document to this component checks the validity of all its questions.
-The document will only be validated after the component enters the viewport.
+This component validates the passed document for its validity as soon as it enters the viewport and will yield the validity status of the document.
 
 ```hbs
 <DocumentValidity @document={{this.calumaDocument}} as |isValid|>
