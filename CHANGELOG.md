@@ -1,3 +1,10 @@
+# [7.4.0](https://github.com/projectcaluma/ember-caluma/compare/v7.3.0...v7.4.0) (2021-07-16)
+
+
+### Features
+
+* add document validity check component ([#1448](https://github.com/projectcaluma/ember-caluma/issues/1448)) ([98ef13c](https://github.com/projectcaluma/ember-caluma/commit/98ef13c92edee11233c54f52fee1fe08fc762e15))
+
 # [7.3.0](https://github.com/projectcaluma/ember-caluma/compare/v7.2.0...v7.3.0) (2021-06-25)
 
 
