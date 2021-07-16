@@ -13,6 +13,7 @@ module.exports = {
         { name: "ember-cli-showdown" },
         { name: "ember-pikaday" },
         { name: "ember-composable-helpers" },
+        { name: "ember-in-viewport" },
       ],
     });
   },
