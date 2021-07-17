@@ -50,11 +50,27 @@
       <span class="uk-width-auto uk-margin-small-right uk-text-bold">{{@question.slug}}</span>
     {{/if}}
 
-    <span
-      class="uk-width-expand uk-margin-small-right uk-text-small uk-text-muted uk-text-truncate"
+{{#let
+  (has-question-type @question "form")
+  (has-question-type @question "table") as |isForm isTable|
+}}
+  <span
+    class="{{if (or isForm isTable) "uk-width-auto" "uk-width-expand"}}
+       uk-margin-small-right uk-text-small uk-text-muted uk-text-truncate"
+  >
+    {{@question.label}}
+  </span>
+  {{#if (or isForm isTable)}}
+    <span uk-icon="link" class="uk-flex-none"></span>
+    <a data-test-link-subform
+      href="#"
+      class="uk-width-expand uk-margin-small-right uk-text-small uk-text-truncate"
+      {{on "click" (fn (optional @on-retrieve-form) (or @question.subForm @question.rowForm))}}
     >
-      {{@question.label}}
-    </span>
+      {{or @question.subForm.name @question.rowForm.name}}
+    </a>
+  {{/if}}
+{{/let}}
 
     <span class="uk-position-relative uk-width-auto">
       {{uk-badge
