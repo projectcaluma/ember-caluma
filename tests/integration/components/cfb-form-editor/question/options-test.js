@@ -95,7 +95,10 @@ module(
     test("it can update", async function (assert) {
       assert.expect(4);
 
-      this.set("model", { slug: "prefix" });
+      this.set("model", {
+        slug: "prefix",
+        namespace: "",
+      });
       this.set("value", {
         edges: [{ node: { slug: "prefix-option-1", label: "Option 1" } }],
       });
@@ -126,6 +129,7 @@ module(
             {
               node: {
                 label: "Option #1",
+                namespace: "prefix-",
                 slug: "prefix-option-1",
                 isArchived: false,
               },
@@ -133,6 +137,7 @@ module(
             {
               node: {
                 label: "Option 2",
+                namespace: "prefix-",
                 slug: "prefix-x-option-2",
                 isArchived: false,
               },
@@ -181,6 +186,130 @@ module(
       assert
         .dom("[data-test-row=option-1] input[name=option-1-label]")
         .isNotDisabled();
+    });
+
+    test("it validates option slug length", async function (assert) {
+      assert.expect(2);
+
+      this.intl.setLocale("en");
+      this.set("model", {
+        slug: "",
+        namespace: "",
+      });
+      const prefix = "";
+
+      this.set("value", {
+        edges: [],
+      });
+
+      this.set("update", () => {});
+      this.set("setDirty", () => {});
+
+      await render(
+        hbs`<CfbFormEditor::Question::Options @model={{this.model}} @value={{this.value}} @update={{this.update}} @setDirty={{this.setDirty}}/>`
+      );
+
+      await fillIn(
+        "input[name=option-1-slug]",
+        "x".repeat(127 - prefix.length)
+      );
+      await click("input[name=option-1-label]");
+      assert.dom("input[name=option-1-slug] + span").doesNotExist();
+
+      await fillIn(
+        "input[name=option-1-slug]",
+        "x".repeat(127 - prefix.length + 1)
+      );
+      await click("input[name=option-1-label]");
+      assert.dom("input[name=option-1-slug] + span").hasText(
+        this.intl.t("validations.tooLong", {
+          description: "Slug",
+          max: 127 - prefix.length,
+        })
+      );
+    });
+
+    test("it validates option slug length with namespace", async function (assert) {
+      assert.expect(2);
+
+      this.intl.setLocale("en");
+      this.set("model", {
+        slug: "",
+        namespace: "test-namespace-",
+      });
+      const prefix = this.model.namespace;
+
+      this.set("value", {
+        edges: [],
+      });
+
+      this.set("update", () => {});
+      this.set("setDirty", () => {});
+
+      await render(
+        hbs`<CfbFormEditor::Question::Options @model={{this.model}} @value={{this.value}} @update={{this.update}} @setDirty={{this.setDirty}}/>`
+      );
+
+      await fillIn(
+        "input[name=option-1-slug]",
+        "x".repeat(127 - prefix.length)
+      );
+      await click("input[name=option-1-label]");
+      assert.dom("input[name=option-1-slug] + span").doesNotExist();
+
+      await fillIn(
+        "input[name=option-1-slug]",
+        "x".repeat(127 - prefix.length + 1)
+      );
+      await click("input[name=option-1-label]");
+      assert.dom("input[name=option-1-slug] + span").hasText(
+        this.intl.t("validations.tooLong", {
+          description: "Slug",
+          max: 127 - prefix.length,
+        })
+      );
+    });
+
+    test("it validates option slug length with namespace and question slug", async function (assert) {
+      assert.expect(2);
+
+      this.intl.setLocale("en");
+      this.set("model", {
+        slug: "test-question-slug",
+        namespace: "test-namespace-",
+      });
+
+      const prefix = `${this.model.namespace + this.model.slug}-`;
+
+      this.set("value", {
+        edges: [],
+      });
+
+      this.set("update", () => {});
+      this.set("setDirty", () => {});
+
+      await render(
+        hbs`<CfbFormEditor::Question::Options @model={{this.model}} @value={{this.value}} @update={{this.update}} @setDirty={{this.setDirty}}/>`
+      );
+
+      await fillIn(
+        "input[name=option-1-slug]",
+        "x".repeat(127 - prefix.length)
+      );
+      await click("input[name=option-1-label]");
+      assert.dom("input[name=option-1-slug] + span").doesNotExist();
+
+      await fillIn(
+        "input[name=option-1-slug]",
+        "x".repeat(127 - prefix.length + 1)
+      );
+      await click("input[name=option-1-label]");
+      assert.dom("input[name=option-1-slug] + span").hasText(
+        this.intl.t("validations.tooLong", {
+          description: "Slug",
+          max: 127 - prefix.length,
+        })
+      );
     });
   }
 );

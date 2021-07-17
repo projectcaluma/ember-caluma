@@ -99,6 +99,7 @@ export default Component.extend({
         {
           node: {
             label: "",
+            namespace: this.prefix,
             slug: "",
             description: "",
             isRequired: "false",
@@ -434,8 +435,12 @@ export default Component.extend({
       changeset.set("label", value);
 
       if (!this.slug && this.linkSlug) {
-        const slug = slugify(value, { locale: this.intl.primaryLocale });
+        const slug = slugify(value, {
+          locale: this.intl.primaryLocale,
+          namespace: this.prefix,
+        });
 
+        changeset.set("namespace", this.prefix);
         changeset.set("slug", slug);
 
         this.validateSlug.perform(this.prefix + slug, changeset);
@@ -443,6 +448,7 @@ export default Component.extend({
     },
 
     updateSlug(value, changeset) {
+      changeset.set("namespace", this.prefix);
       changeset.set("slug", value);
       this.set("linkSlug", false);
 

@@ -31,6 +31,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
   test("it validates", async function (assert) {
     assert.expect(2);
 
+    this.intl.setLocale("en");
     this.server.create("form", {
       name: "Test Name",
       slug: "test-slug",
@@ -43,7 +44,9 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
     await blur("input[name=name]");
 
     assert.dom("form button[type=submit]").isDisabled();
-    assert.dom("input[name=name] + span").hasText("Name can't be blank");
+    assert
+      .dom("input[name=name] + span")
+      .hasText(this.intl.t("validations.present", { description: "Name" }));
   });
 
   test("it prepends the slug with a namespace", async function (assert) {
@@ -211,5 +214,48 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
     assert
       .dom("input[name=slug] + span")
       .hasText("t:caluma.form-builder.validations.form.slug:()");
+  });
+
+  test("it validates the slug length with no namespace", async function (assert) {
+    assert.expect(2);
+
+    this.intl.setLocale("en");
+    await render(hbs`{{cfb-form-editor/general slug=null}}`);
+
+    await fillIn("input[name=slug]", "x".repeat(127));
+    await blur("input[name=slug]");
+
+    assert.dom("input[name=slug] + span").doesNotExist();
+
+    await fillIn("input[name=slug]", "x".repeat(128));
+    await blur("input[name=slug]");
+
+    assert
+      .dom("input[name=slug] + span")
+      .hasText(
+        this.intl.t("validations.tooLong", { description: "Slug", max: 127 })
+      );
+  });
+
+  test("it validates the slug length with namespace", async function (assert) {
+    assert.expect(2);
+
+    this.intl.setLocale("en");
+    this.owner.lookup("service:caluma-options").namespace = "Foo Bar";
+    await render(hbs`{{cfb-form-editor/general slug=null}}`);
+
+    await fillIn("input[name=slug]", "x".repeat(119));
+    await blur("input[name=slug]");
+
+    assert.dom(".cfb-prefixed + span").doesNotExist();
+
+    await fillIn("input[name=slug]", "x".repeat(120));
+    await blur("input[name=slug]");
+
+    assert
+      .dom(".cfb-prefixed + span")
+      .hasText(
+        this.intl.t("validations.tooLong", { description: "Slug", max: 119 })
+      );
   });
 });

@@ -35,6 +35,7 @@ export default Component.extend({
         {
           node: {
             name: "",
+            namespace: this.prefix,
             slug: "",
             description: "",
             isPublished: true,
@@ -130,7 +131,11 @@ export default Component.extend({
       changeset.set("name", value);
 
       if (!this.slug) {
-        const slug = slugify(value, { locale: this.intl.primaryLocale });
+        const slug = slugify(value, {
+          locale: this.intl.primaryLocale,
+          namespace: this.prefix,
+        });
+        changeset.set("namespace", this.prefix);
         changeset.set("slug", slug);
 
         this.validateSlug.perform(this.prefix + slug, changeset);
@@ -138,6 +143,7 @@ export default Component.extend({
     },
 
     updateSlug(value, changeset) {
+      changeset.set("namespace", this.prefix);
       changeset.set("slug", value);
 
       this.validateSlug.perform(this.prefix + value, changeset);
