@@ -1,4 +1,5 @@
-import Component from "@ember/component";
+import { action } from "@ember/object";
+import Component from "@glimmer/component";
 
 /**
  * Input component for the textarea question type
@@ -6,18 +7,7 @@ import Component from "@ember/component";
  * @class CfFieldInputTextareaComponent
  * @argument {Field} field The field for this input type
  */
-export default Component.extend({
-  tagName: "textarea",
-  classNames: ["uk-textarea"],
-  classNameBindings: ["field.isInvalid:uk-form-danger", "disabled:uk-disabled"],
-  attributeBindings: [
-    "disabled:readonly",
-    "field.pk:name",
-    "field.pk:id",
-    "field.answer.value:value",
-    "field.question.textareaMaxLength:maxlength",
-  ],
-
+export default class CfFieldInputTextareaComponent extends Component {
   /**
    * Trigger save on input
    *
@@ -26,7 +16,8 @@ export default Component.extend({
    * @param {Object} e.target The target of the event
    * @param {String} e.target.value The current value of the field
    */
+  @action
   input({ target: { value } }) {
-    this.onSave(value);
-  },
-});
+    this.args.onSave(value);
+  }
+}

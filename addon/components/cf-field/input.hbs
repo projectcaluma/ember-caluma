@@ -1,8 +1,11 @@
-{{#if type}}
-  {{component
-    (concat "cf-field/input/" type)
-    field=field
-    disabled=disabled
-    onSave=onSave
-  }}
+{{#if this.type}}
+  {{#let (component (concat "cf-field/input/" this.type)) as |InputComponent|}}
+    <div class="uk-form-controls">
+      <InputComponent
+        @field={{@field}}
+        @disabled={{@disabled}}
+        @onSave={{@onSave}}
+      />
+    </div>
+  {{/let}}
 {{/if}}

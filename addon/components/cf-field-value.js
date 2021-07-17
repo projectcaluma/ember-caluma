@@ -1,17 +1,15 @@
-import Component from "@ember/component";
-import { computed } from "@ember/object";
+import { action } from "@ember/object";
+import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
 import moment from "moment";
 
 import getFileAnswerInfoQuery from "ember-caluma/gql/queries/get-fileanswer-info.graphql";
 
-export default Component.extend({
-  apollo: queryManager(),
+export default class CfFieldValueComponent extends Component {
+  @queryManager apollo;
 
-  tagName: "span",
-
-  value: computed("field.{selected,answer.value}", function () {
-    const field = this.field;
+  get value() {
+    const field = this.args.field;
 
     switch (field.question.__typename) {
       case "ChoiceQuestion":
@@ -40,19 +38,18 @@ export default Component.extend({
           label: field.answer.value,
         };
     }
-  }),
+  }
 
-  actions: {
-    async download(fileAnswerId) {
-      const { downloadUrl } = await this.apollo.watchQuery(
-        {
-          query: getFileAnswerInfoQuery,
-          variables: { id: fileAnswerId },
-          fetchPolicy: "cache-and-network",
-        },
-        "node.fileValue"
-      );
-      window.open(downloadUrl, "_blank");
-    },
-  },
-});
+  @action
+  async download(fileAnswerId) {
+    const { downloadUrl } = await this.apollo.query(
+      {
+        query: getFileAnswerInfoQuery,
+        variables: { id: fileAnswerId },
+        fetchPolicy: "cache-and-network",
+      },
+      "node.fileValue"
+    );
+    window.open(downloadUrl, "_blank");
+  }
+}

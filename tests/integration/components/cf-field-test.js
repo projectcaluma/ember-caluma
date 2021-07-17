@@ -27,6 +27,7 @@ module("Integration | Component | cf-field", function (hooks) {
           isHidden: "false",
           textMinLength: 1,
           textMaxLength: 2,
+          meta: {},
           __typename: "TextQuestion",
         },
         {
@@ -42,6 +43,7 @@ module("Integration | Component | cf-field", function (hooks) {
           label: "Test3",
           isRequired: "true",
           isHidden: "false",
+          meta: {},
           formatValidators: ["email"],
           __typename: "TextQuestion",
         },
@@ -101,20 +103,6 @@ module("Integration | Component | cf-field", function (hooks) {
 
     assert.dom("input[type=text]").hasAttribute("readonly");
     assert.dom("input[type=text]").hasClass("uk-disabled");
-  });
-
-  test("it validates input", async function (assert) {
-    assert.expect(1);
-
-    await render(hbs`{{cf-field field=field}}`);
-
-    await fillIn("input", "Test");
-
-    assert
-      .dom("span.validation-errors")
-      .hasText(
-        't:caluma.form.validation.tooLong:("max":2,"min":1,"value":"Test")'
-      );
   });
 
   test("it hides the label", async function (assert) {

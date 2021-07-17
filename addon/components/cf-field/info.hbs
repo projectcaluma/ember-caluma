@@ -1,19 +1,21 @@
-<button
-  type="button"
-  class="uk-icon-button"
-  uk-icon="info"
-  title={{t "caluma.form.info"}}
-  {{action (mut showModal) true}}
->
-  <span class="uk-hidden">{{t "caluma.form.info"}}</span>
-</button>
+<div class="uk-margin-small-left uk-flex uk-flex-middle">
+  <button
+    type="button"
+    class="uk-icon-button"
+    uk-icon="info"
+    title={{t "caluma.form.info"}}
+    {{on "click" this.showModal}}
+  >
+    <span class="uk-hidden">{{t "caluma.form.info"}}</span>
+  </button>
 
-{{#uk-modal
-  visible=showModal
-  stack=true
-  on-hide=(action (mut showModal) false)
-as |modal|}}
-  {{#modal.body}}
-    {{markdown-to-html text openLinksInNewWindow=true}}
-  {{/modal.body}}
-{{/uk-modal}}
+  <UkModal
+    @visible={{@this.modalVisible}}
+    @stack={{true}}
+    @on-hide={{this.hideModal}}
+  as |modal|>
+    <modal.body>
+      {{markdown-to-html @text openLinksInNewWindow=true}}
+    </modal.body>
+  </UkModal>
+</div>

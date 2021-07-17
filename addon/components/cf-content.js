@@ -1,11 +1,10 @@
 import { getOwner } from "@ember/application";
-import Component from "@ember/component";
 import { assert } from "@ember/debug";
-import { computed } from "@ember/object";
-import { reads } from "@ember/object/computed";
+import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
+import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
-import { task } from "ember-concurrency";
+import { dropTask } from "ember-concurrency-decorators";
 
 import getDocumentAnswersQuery from "ember-caluma/gql/queries/get-document-answers.graphql";
 import getDocumentFormsQuery from "ember-caluma/gql/queries/get-document-forms.graphql";
@@ -16,20 +15,20 @@ import { parseDocument } from "ember-caluma/lib/parsers";
  *
  * This component can either be used the default way:
  * ```hbs
- * {{cf-content documentId="some-id"}}
+ * <CfContent @documentId="some-id" />
  * ```
  * Or it can be customized
  * ```hbs
- * {{#cf-content documentId="some-id" as |content|}}
+ * <CfContent @documentId="some-id" as |content|}}
  *   <div uk-grid>
- *     <div class="uk-width-1-2">{{content.navigation}}</div>
+ *     <div class="uk-width-1-2"><content.navigation /></div>
  *     <div class="uk-width-1-2">
- *       {{content.form}}</div>
+ *       <content.form />
  *       <hr>
- *       {{content.pagination}}
+ *       <content.pagination />
  *     </div>
  *   </div>
- * {{/cf-content}}
+ * </CfContent>
  * ```
  *
  * @class CfContentComponent
@@ -39,38 +38,17 @@ import { parseDocument } from "ember-caluma/lib/parsers";
  * @yield {CfNavigationComponent} content.navigation
  * @yield {CfPaginationComponent} content.pagination
  */
-export default Component.extend({
-  router: service(),
-  calumaStore: service(),
+export default class CfContentComponent extends Component {
+  @service router;
+  @service calumaStore;
 
-  apollo: queryManager(),
-
-  init(...args) {
-    this._super(...args);
-
-    assert(
-      "A `documentId` must be passed to `{{cf-content}}`",
-      this.documentId
-    );
-  },
-
-  willDestroy(...args) {
-    this._super(...args);
-
-    this._teardown();
-  },
-
-  _teardown() {
-    if (this.document) this.document.destroy();
-    if (this.navigation) this.navigation.destroy();
-  },
+  @queryManager apollo;
 
   /**
    * The uuid of the document to display
    *
    * @argument {String} documentId
    */
-  documentId: null,
 
   /**
    * Can be used to pass "context" information from the outside through
@@ -78,64 +56,61 @@ export default Component.extend({
    *
    * @argument {*} context
    */
-  context: null,
 
   /**
    * Whether the form renders in disabled state
    *
    * @argument {Boolean} disabled
    */
-  disabled: false,
 
   /**
    * The document to display
    *
    * @property {Document} document
    */
-  document: reads("data.lastSuccessful.value.document"),
-  navigation: reads("data.lastSuccessful.value.navigation"),
+  get document() {
+    return this.fetchData.lastSuccessful?.value.document;
+  }
 
-  fieldset: computed(
-    "document.{fieldsets.[],raw.form.slug}",
-    "router.currentRoute.queryParams.displayedForm",
-    function () {
-      if (!this.document) return;
+  get navigation() {
+    return this.fetchData.lastSuccessful?.value.navigation;
+  }
 
-      const slug =
-        this.get("router.currentRoute.queryParams.displayedForm") ||
-        this.get("document.raw.form.slug");
+  /**
+   * The currently displayed fieldset
+   *
+   * @property {Fieldset} fieldset
+   */
+  get fieldset() {
+    if (!this.document) return null;
 
-      const fieldset = this.document.fieldsets.find(
-        (fieldset) => fieldset.form.slug === slug
-      );
+    const slug =
+      this.router.currentRoute?.queryParams.displayedForm ||
+      this.document?.raw.form.slug;
 
-      assert(
-        `The fieldset \`${slug}\` does not exist in this document`,
-        fieldset
-      );
+    const fieldset = this.document.fieldsets.find(
+      (fieldset) => fieldset.form.slug === slug
+    );
 
-      return fieldset;
-    }
-  ),
+    assert(
+      `The fieldset \`${slug}\` does not exist in this document`,
+      fieldset
+    );
 
-  data: computed("dataTask", "documentId", function () {
-    const task = this.dataTask;
+    return fieldset;
+  }
 
-    task.perform();
+  @dropTask
+  *fetchData() {
+    this.teardown();
 
-    return task;
-  }),
-
-  dataTask: task(function* () {
-    yield this._teardown();
-
-    if (!this.documentId) return;
+    if (!this.args.documentId) return;
 
     const [answerDocument] = (yield this.apollo.query(
       {
         query: getDocumentAnswersQuery,
         fetchPolicy: "network-only",
-        variables: { id: this.documentId },
+        variables: { id: this.args.documentId },
       },
       "allDocuments.edges"
     )).map(({ node }) => node);
@@ -158,5 +133,11 @@ export default Component.extend({
       .create({ document });
 
     return { document, navigation };
-  }).drop(),
-});
+  }
+
+  @action
+  teardown() {
+    if (this.document) this.document.destroy();
+    if (this.navigation) this.navigation.destroy();
+  }
+}
