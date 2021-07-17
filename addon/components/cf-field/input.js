@@ -1,5 +1,4 @@
-import Component from "@ember/component";
-import { computed, get } from "@ember/object";
+import Component from "@glimmer/component";
 
 const mapping = {
   MultipleChoiceQuestion: "checkbox",
@@ -14,21 +13,19 @@ const mapping = {
  *
  * @class CfFieldInputComponent
  */
-export default Component.extend({
-  classNames: ["uk-form-controls"],
-
+export default class CfFieldInputComponent extends Component {
   /**
    * The input component type
    *
    * @property {String} type
    * @accessor
    */
-  type: computed("field.question.__typename", function () {
-    const typename = get(this, "field.question.__typename");
+  get type() {
+    const typename = this.args.field?.question.__typename;
 
     return (
       typename &&
       (mapping[typename] || typename.replace(/Question$/, "").toLowerCase())
     );
-  }).readOnly(),
-});
+  }
+}

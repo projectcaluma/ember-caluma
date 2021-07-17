@@ -6,6 +6,10 @@ import { dasherize } from "@ember/string";
 // to use in a template
 const parse = (raw) => dasherize(raw.replace("Question", ""));
 
-export default helper(function hasQuestionType([obj, ...expected]) {
+export function hasQuestionType(obj, ...expected) {
   return expected.map(parse).includes(parse(obj?.__typename || ""));
-});
+}
+
+export default helper(([obj, ...expected]) =>
+  hasQuestionType(obj, ...expected)
+);

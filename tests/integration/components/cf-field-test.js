@@ -27,6 +27,7 @@ module("Integration | Component | cf-field", function (hooks) {
           isHidden: "false",
           textMinLength: 1,
           textMaxLength: 2,
+          meta: {},
           __typename: "TextQuestion",
         },
         {
@@ -42,6 +43,7 @@ module("Integration | Component | cf-field", function (hooks) {
           label: "Test3",
           isRequired: "true",
           isHidden: "false",
+          meta: {},
           formatValidators: ["email"],
           __typename: "TextQuestion",
         },

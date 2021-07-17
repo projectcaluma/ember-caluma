@@ -1,1 +1,3 @@
-{{#each field.errors as |e i|}}{{if (gt i 0) ","}} {{e}}{{/each}}
+<span class="uk-text-small uk-text-danger validation-errors">
+  {{#each @field.errors as |e i|}}{{if (gt i 0) ","}} {{e}}{{/each}}
+</span>
