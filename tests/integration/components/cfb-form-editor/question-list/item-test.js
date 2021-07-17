@@ -7,6 +7,7 @@ import { module, test } from "qunit";
 
 class Question {
   @tracked isRequired = "true";
+  @tracked isHidden = "true";
 
   slug = "test-question";
   label = "Test Question?";
@@ -20,7 +21,7 @@ module(
     setupIntl(hooks);
 
     test("it renders", async function (assert) {
-      assert.expect(6);
+      assert.expect(19);
 
       this.question = new Question();
       this.set("mode", "reorder");
@@ -37,14 +38,69 @@ module(
         .hasText(
           "test-question Test Question? t:caluma.form-builder.question.types.TextQuestion:()"
         );
-      assert.dom(".cfb-form-editor__question-list__item__required").exists();
+
+      assert
+        .dom(".cfb-form-editor__question-list__item__required-required")
+        .exists();
+      assert
+        .dom(".cfb-form-editor__question-list__item__required-conditional")
+        .doesNotExist();
+      assert
+        .dom(".cfb-form-editor__question-list__item__required-conditional-fill")
+        .doesNotExist();
 
       this.question.isRequired = "false";
       await settled();
 
       assert
-        .dom(".cfb-form-editor__question-list__item__required")
+        .dom(".cfb-form-editor__question-list__item__required-required")
         .doesNotExist();
+      assert
+        .dom(".cfb-form-editor__question-list__item__required-conditional")
+        .doesNotExist();
+      assert
+        .dom(".cfb-form-editor__question-list__item__required-conditional-fill")
+        .doesNotExist();
+
+      this.question.isRequired = "1+2";
+      await settled();
+
+      assert
+        .dom(".cfb-form-editor__question-list__item__required-required")
+        .doesNotExist();
+      assert
+        .dom(".cfb-form-editor__question-list__item__required-conditional")
+        .exists();
+      assert
+        .dom(".cfb-form-editor__question-list__item__required-conditional-fill")
+        .exists();
+
+      assert
+        .dom(".cfb-form-editor__question-list__item__hidden-hidden")
+        .exists();
+      assert
+        .dom(".cfb-form-editor__question-list__item__hidden-conditional")
+        .doesNotExist();
+
+      this.question.isHidden = "false";
+      await settled();
+
+      assert
+        .dom(".cfb-form-editor__question-list__item__hidden-hidden")
+        .doesNotExist();
+      assert
+        .dom(".cfb-form-editor__question-list__item__hidden-conditional")
+        .doesNotExist();
+
+      this.question.isHidden = "1+2";
+      await settled();
+
+      assert
+        .dom(".cfb-form-editor__question-list__item__hidden-hidden")
+        .doesNotExist();
+      assert
+        .dom(".cfb-form-editor__question-list__item__hidden-conditional")
+        .exists();
 
       assert.dom("[data-test-sort-handle]").exists();
       this.set("mode", "remove");

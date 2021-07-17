@@ -13,7 +13,15 @@ export default class CfbFormEditorQuestionListItem extends Component {
     try {
       return jexl.evalSync(this.args.question?.isRequired);
     } catch (error) {
-      return false;
+      return this.args.question?.isRequired;
+    }
+  }
+
+  get hidden() {
+    try {
+      return jexl.evalSync(this.args.question?.isHidden);
+    } catch (error) {
+      return this.args.question?.isHidden;
     }
   }
 }

@@ -1,9 +1,21 @@
-.cfb-form-editor__question-list__item__required {
+.cfb-form-editor__question-list__item__required-required {
   transform: translate(0.15rem, -0.15rem);
   height: 0.7rem;
   width: 0.7rem;
   border: 0.1rem solid $global-background;
   background: $global-danger-background;
+  border-radius: 50%;
+}
+
+.cfb-form-editor__question-list__item__required-conditional {
+  @extend .cfb-form-editor__question-list__item__required-required;
+}
+
+.cfb-form-editor__question-list__item__required-conditional-fill {
+  transform: translate(-0.15rem, 0.1rem);
+  width: 0.2rem;
+  height: 0.2rem;
+  background: $global-background;
   border-radius: 50%;
 }
 
@@ -15,4 +27,25 @@
   .uk-badge {
     background-color: #808080;
   }
+}
+
+.cfb-form-editor__question-list__item__hidden-hidden {
+  background: repeating-linear-gradient(
+    -45deg,
+    #3799ad,
+    #3799ad 0% 15%,
+    #808080 15% 25%
+  );
+}
+
+.cfb-form-editor__question-list__item__hidden-conditional {
+  background: repeating-linear-gradient(
+    -45deg,
+    #3799ad,
+    #3799ad 15%,
+    #808080 15% 25%,
+    #3799ad 25% 35%,
+    #808080 35% 45%,
+    #3799ad 45% 100%
+  );
 }
