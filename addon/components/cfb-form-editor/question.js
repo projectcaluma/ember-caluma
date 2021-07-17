@@ -147,7 +147,7 @@ export default Component.extend({
     if (!forms.map) {
       return [];
     }
-    return forms.mapBy("node.slug").filter((slug) => slug !== this.form);
+    return forms.mapBy("node").filter((form) => form.slug !== this.form);
   }).restartable(),
 
   availableOverrides: computed("changeset.__typename", function () {
@@ -459,6 +459,14 @@ export default Component.extend({
       displayed.delete(value) || displayed.add(value);
 
       this.changeset.set("meta.columnsToDisplay", [...displayed]);
+    },
+
+    updateSubForm(value, changeset) {
+      changeset.set("subForm.slug", value.slug);
+    },
+
+    updateRowForm(value, changeset) {
+      changeset.set("rowForm.slug", value.slug);
     },
   },
 });

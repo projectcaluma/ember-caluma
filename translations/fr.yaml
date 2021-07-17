@@ -68,6 +68,8 @@ caluma:
   form-builder:
     question:
       defaultValue: "Valeur par défaut"
+      search-placeholder: "Tapez ici pour rechercher"
+      search-empty: "Pas de formulaires trouvés"
 
     options:
       delete: "Supprimer l'option"

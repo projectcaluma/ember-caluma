@@ -243,14 +243,38 @@
       {{/if}}
 
       {{#if (has-question-type f.model "table")}}
-        {{f.input
-          name="rowForm.slug"
-          type="select"
-          options=(or availableForms.lastSuccessful.value (array ))
-          required=true
-          includeBlank=(t "caluma.form-builder.question.choose")
-          label=(t "caluma.form-builder.question.rowForm")
-        }}
+        <f.input
+          @name="rowForm.slug"
+          @label={{t "caluma.form-builder.question.rowForm"}}
+          @required={{true}}
+          @on-update={{action "updateRowForm"}}
+          @value={{find-by "slug" (changeset-get f.model "rowForm.slug")
+            availableForms.lastSuccessful.value}}
+          as |fi|
+        >
+          <PowerSelect
+            @options={{or availableForms.lastSuccessful.value array}}
+            @selected={{fi.value}}
+            @placeholder={{t "caluma.form-builder.question.choose"}}
+            @onBlur={{fi.setDirty}}
+            @onChange={{queue fi.update (fn (mut fi.value))}}
+            @searchField="slug"
+            @searchEnabled={{true}}
+            @searchPlaceholder={{t "caluma.form-builder.question.search-placeholder"}}
+            @noMatchesMessage={{t "caluma.form-builder.question.search-empty"}}
+            as |form|
+          >
+            <span class="uk-width-auto uk-margin-small-right uk-text-truncate">
+              {{form.slug}}
+            </span>
+            <span
+              class="highlight-option uk-text-muted uk-width-expand 
+                uk-margin-small-right uk-text-small uk-text-truncate"
+            >
+              {{form.name}}
+            </span>
+          </PowerSelect>
+        </f.input>
 
         {{#f.input name="meta.columnsToDisplay" label=(t "caluma.form-builder.question.columnsToDisplay") as |fi|}}
           {{#each model.rowForm.questions.edges as |rowEdge|}}
@@ -272,14 +296,38 @@
       {{/if}}
 
       {{#if (has-question-type f.model "form")}}
-        {{f.input
-          name="subForm.slug"
-          type="select"
-          options=(or availableForms.lastSuccessful.value (array ))
-          required=true
-          includeBlank=(t "caluma.form-builder.question.choose")
-          label=(t "caluma.form-builder.question.subForm")
-        }}
+        <f.input
+          @name="subForm.slug"
+          @label={{t "caluma.form-builder.question.subForm"}}
+          @required={{true}}
+          @on-update={{action "updateSubForm"}}
+          @value={{find-by "slug" (changeset-get f.model "subForm.slug")
+            availableForms.lastSuccessful.value}}
+          as |fi|
+        >
+          <PowerSelect
+            @options={{or availableForms.lastSuccessful.value array}}
+            @selected={{fi.value}}
+            @placeholder={{t "caluma.form-builder.question.choose"}}
+            @onBlur={{fi.setDirty}}
+            @onChange={{queue fi.update (fn (mut fi.value))}}
+            @searchField="slug"
+            @searchEnabled={{true}}
+            @searchPlaceholder={{t "caluma.form-builder.question.search-placeholder"}}
+            @noMatchesMessage={{t "caluma.form-builder.question.search-empty"}}
+            as |form|
+          >
+            <span class="uk-width-auto uk-margin-small-right uk-text-truncate">
+              {{form.slug}}
+            </span>
+            <span
+              class="highlight-option uk-text-muted uk-width-expand 
+                uk-margin-small-right uk-text-small uk-text-truncate"
+            >
+              {{form.name}}
+            </span>
+          </PowerSelect>
+        </f.input>
       {{/if}}
 
       {{f.input

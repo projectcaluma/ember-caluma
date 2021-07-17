@@ -367,13 +367,13 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     assert.expect(6);
 
     this.server.create("form", { slug: "test-form" });
-    this.server.create("form", { slug: "subform" });
+    this.server.create("form", { slug: "rowform" });
 
     this.set("afterSubmit", (question) => {
       assert.equal(question.__typename, "TableQuestion");
       assert.equal(question.label, "Label");
       assert.equal(question.slug, "slug");
-      assert.ok(question.rowForm.slug);
+      assert.equal(question.rowForm.slug, "rowform");
 
       assert.step("after-submit");
     });
@@ -385,10 +385,54 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     await fillIn("[name=__typename]", "TableQuestion");
     await fillIn("[name=label]", "Label");
     await fillIn("[name=slug]", "slug");
-    await fillIn("[name=rowForm\\.slug]", "subform");
+    await click(".ember-power-select-trigger");
+    await click(".ember-power-select-option");
 
     await click("button[type=submit]");
 
+    assert.verifySteps(["after-submit"]);
+  });
+
+  test("it can search for forms in table question rowform", async function (assert) {
+    assert.expect(19);
+
+    this.server.create("form", { slug: "test-form" });
+    const forms = this.server.createList("form", 5);
+
+    this.set("afterSubmit", (question) => {
+      assert.equal(question.rowForm.slug, forms[0].slug);
+      assert.step("after-submit");
+    });
+
+    await render(
+      hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
+    );
+
+    await fillIn("[name=__typename]", "TableQuestion");
+    await fillIn("[name=label]", "Label");
+
+    assert
+      .dom(".ember-power-select-trigger")
+      .hasText("t:caluma.form-builder.question.choose:()");
+    await click(".ember-power-select-trigger");
+    const options = [
+      ...document.querySelectorAll(".ember-power-select-option"),
+    ];
+    assert.equal(options.length, forms.length);
+    forms.forEach((form, index) => {
+      assert.dom(options[index]).containsText(form.slug);
+      assert.dom(options[index]).containsText(form.name);
+    });
+
+    await fillIn(".ember-power-select-search-input", forms[0].slug);
+    assert.dom(".ember-power-select-option").exists({ count: 1 });
+    assert.dom(".ember-power-select-option").containsText(forms[0].slug);
+
+    await click(".ember-power-select-option");
+    assert.dom(".ember-power-select-trigger").containsText(forms[0].slug);
+    assert.dom(".ember-power-select-trigger").containsText(forms[0].name);
+
+    await click("button[type=submit]");
     assert.verifySteps(["after-submit"]);
   });
 
@@ -402,7 +446,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       assert.equal(question.__typename, "FormQuestion");
       assert.equal(question.label, "Label");
       assert.equal(question.slug, "slug");
-      assert.ok(question.subForm.slug);
+      assert.equal(question.subForm.slug, "subform");
 
       assert.step("after-submit");
     });
@@ -414,10 +458,54 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     await fillIn("[name=__typename]", "FormQuestion");
     await fillIn("[name=label]", "Label");
     await fillIn("[name=slug]", "slug");
-    await fillIn("[name=subForm\\.slug]", "subform");
+    await click(".ember-power-select-trigger");
+    await click(".ember-power-select-option");
 
     await click("button[type=submit]");
 
+    assert.verifySteps(["after-submit"]);
+  });
+
+  test("it can search for forms in form question subform", async function (assert) {
+    assert.expect(19);
+
+    this.server.create("form", { slug: "test-form" });
+    const forms = this.server.createList("form", 5);
+
+    this.set("afterSubmit", (question) => {
+      assert.equal(question.subForm.slug, forms[0].slug);
+      assert.step("after-submit");
+    });
+
+    await render(
+      hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
+    );
+
+    await fillIn("[name=__typename]", "FormQuestion");
+    await fillIn("[name=label]", "Label");
+
+    assert
+      .dom(".ember-power-select-trigger")
+      .hasText("t:caluma.form-builder.question.choose:()");
+    await click(".ember-power-select-trigger");
+    const options = [
+      ...document.querySelectorAll(".ember-power-select-option"),
+    ];
+    assert.equal(options.length, forms.length);
+    forms.forEach((form, index) => {
+      assert.dom(options[index]).containsText(form.slug);
+      assert.dom(options[index]).containsText(form.name);
+    });
+
+    await fillIn(".ember-power-select-search-input", forms[0].slug);
+    assert.dom(".ember-power-select-option").exists({ count: 1 });
+    assert.dom(".ember-power-select-option").containsText(forms[0].slug);
+
+    await click(".ember-power-select-option");
+    assert.dom(".ember-power-select-trigger").containsText(forms[0].slug);
+    assert.dom(".ember-power-select-trigger").containsText(forms[0].name);
+
+    await click("button[type=submit]");
     assert.verifySteps(["after-submit"]);
   });
 
