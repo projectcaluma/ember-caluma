@@ -36,12 +36,9 @@ export default Component.extend({
    */
   _uploadFile(file, url) {
     return new Promise((resolve, reject) => {
-      const data = new FormData();
-      data.append("file", file);
-
       fetch(url, {
         method: "PUT",
-        body: data,
+        body: file,
       })
         .then((response) =>
           response.ok ? resolve(response) : reject(response)
