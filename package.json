@@ -131,8 +131,7 @@
     "typeface-oxygen-mono": "1.1.13"
   },
   "//": {
-    "focus-trap": "Focus trap now throws an error if there is no tabbable element on initialization. This breaks the modal dialogs as they are hidden on initialization.",
-    "prismjs": "The current release 1.23.0 doesn't include Jexl support yet. Once 1.24.0 has been released, use the npm release."
+    "focus-trap": "Focus trap now throws an error if there is no tabbable element on initialization. This breaks the modal dialogs as they are hidden on initialization."
   },
   "resolutions": {
     "focus-trap": "6.2.1"
