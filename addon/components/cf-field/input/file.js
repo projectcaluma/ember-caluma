@@ -53,12 +53,9 @@ export default class CfFieldInputFileComponent extends Component {
     const { fileValue } = await this.args.onSave(file.name);
 
     try {
-      const data = new FormData();
-      data.append("file", file);
-
       const response = await fetch(fileValue.uploadUrl, {
         method: "PUT",
-        body: data,
+        body: file,
       });
 
       if (!response.ok) {
