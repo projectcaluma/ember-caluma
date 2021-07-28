@@ -45,6 +45,10 @@ export default class CfbFormEditorQuestionDefault extends RenderComponent {
       delete raw.options;
     }
 
+    if (this.model.__typename === "TableQuestion") {
+      raw.meta = { widgetOverride: "cfb-form-editor/question/default/table" };
+    }
+
     return raw;
   }
 
@@ -79,6 +83,26 @@ export default class CfbFormEditorQuestionDefault extends RenderComponent {
       ...(this.value?.content || this.value || newAnswer),
       question: this.question,
     };
+
+    if (answer?.tableValue?.length) {
+      answer.tableValue = answer.tableValue.map((doc) => ({
+        ...doc,
+        form: doc.form
+          ? {
+              ...doc.form,
+              questions: {
+                edges: doc.form.questions.edges.map((edge) => ({
+                  node: {
+                    ...edge.node,
+                    isHidden: "false",
+                    isRequired: "false",
+                  },
+                })),
+              },
+            }
+          : null,
+      }));
+    }
 
     const document = getOwner(this)
       .factoryFor("caluma-model:document")
