@@ -21,6 +21,10 @@ export default Component.extend({
   documentToEdit: null,
   documentToDelete: null,
 
+  parseDocument(raw) {
+    return parseDocument(raw);
+  },
+
   columnHeaders: computed(
     "field.question.{rowForm.questions.edges.@each,meta.columnsToDisplay.[]}",
     function () {
@@ -46,7 +50,10 @@ export default Component.extend({
 
     const newDocument = getOwner(this)
       .factoryFor("caluma-model:document")
-      .create({ raw: parseDocument(raw), parentDocument: this.field.document });
+      .create({
+        raw: this.parseDocument(raw),
+        parentDocument: this.field.document,
+      });
 
     this.setProperties({
       documentToEdit: newDocument,

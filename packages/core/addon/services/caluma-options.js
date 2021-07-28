@@ -34,6 +34,11 @@ export default class CalumaOptionsService extends Service {
       label: this.intl.t("caluma.form-builder.question.widgetOverrides.hidden"),
       component: "cf-field/input/hidden",
     });
+
+    this.registerComponentOverride({
+      component: "cfb-form-editor/question/default/table",
+      types: [],
+    });
   }
 
   _namespace = null;
