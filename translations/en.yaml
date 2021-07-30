@@ -163,6 +163,7 @@ caluma:
 
       widgetOverrides:
         powerselect: "Power Select"
+        hidden: "Hidden"
         dummy-one: "Dummy One"
         dummy-two: "Dummy Two"
 
