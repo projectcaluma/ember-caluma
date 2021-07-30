@@ -40,11 +40,11 @@ module("Integration | Component | cf-field/input/file", function (hooks) {
     assert.equal(this.field._errors, undefined);
 
     await triggerEvent("input[type=file]", "change", { files: [payload_fail] });
-    await waitUntil(() => this.field._errors[0].type === "uploadFailed", {
+    await waitUntil(() => this.field._errors?.[0]?.type === "uploadFailed", {
       timeout: 2000,
     });
     assert.equal(this.field.answer.value.name, undefined);
-    assert.equal(this.field._errors[0].type, "uploadFailed");
+    assert.equal(this.field._errors?.[0]?.type, "uploadFailed");
 
     this.set("field", {
       answer: {
