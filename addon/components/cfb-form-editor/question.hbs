@@ -228,19 +228,17 @@
         }}
       {{/if}}
 
-      {{#if (has-question-type f.model "choice" "multiple-choice" "dynamic-choice" "dynamic-multiple-choice")}}
-        <div data-test-hide-label>
-          {{f.input
-            name="meta.hideLabel"
-            required=true
-            label=(t "caluma.form-builder.question.hideLabel")
-            renderComponent=(component "cfb-toggle-switch" size="small")
-            class="uk-flex uk-flex-between uk-flex-column"
-            on-update=(changeset-set f.model "meta.hideLabel")
-            value=(changeset-get f.model "meta.hideLabel")
-          }}
-        </div>
-      {{/if}}
+      <div data-test-hide-label>
+        {{f.input
+          name="meta.hideLabel"
+          required=true
+          label=(t "caluma.form-builder.question.hideLabel")
+          renderComponent=(component "cfb-toggle-switch" size="small")
+          class="uk-flex uk-flex-between uk-flex-column"
+          on-update=(changeset-set f.model "meta.hideLabel")
+          value=(changeset-get f.model "meta.hideLabel")
+        }}
+      </div>
 
       {{#if (has-question-type f.model "table")}}
         <f.input

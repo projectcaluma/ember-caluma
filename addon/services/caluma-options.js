@@ -29,6 +29,11 @@ export default class CalumaOptionsService extends Service {
         "DynamicMultipleChoiceQuestion",
       ],
     });
+
+    this.registerComponentOverride({
+      label: this.intl.t("caluma.form-builder.question.widgetOverrides.hidden"),
+      component: "cf-field/input/hidden",
+    });
   }
 
   _namespace = null;
