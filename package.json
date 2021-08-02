@@ -53,7 +53,7 @@
     "ember-intl": "^5.7.0",
     "ember-math-helpers": "^2.16.0",
     "ember-power-select": "^4.1.6",
-    "ember-test-selectors": "^5.4.0",
+    "ember-test-selectors": "^6.0.0",
     "ember-uikit": "^3.0.2",
     "ember-validated-form": "^3.0.3",
     "graphql": "^15.5.1",
