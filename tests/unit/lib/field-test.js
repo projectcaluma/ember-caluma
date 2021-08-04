@@ -48,12 +48,12 @@ module("Unit | Library | field", function (hooks) {
     const answeredField = this.document.findField("question-1");
     const unansweredField = this.document.findField("question-3");
 
-    assert.equal(answeredField.isNew, false);
-    assert.equal(unansweredField.isNew, true);
+    assert.false(answeredField.isNew);
+    assert.true(unansweredField.isNew);
 
     answeredField.set("answer.value", null);
 
-    assert.equal(answeredField.isNew, true);
+    assert.true(answeredField.isNew);
   });
 
   test("can compute the question", async function (assert) {
@@ -84,10 +84,10 @@ module("Unit | Library | field", function (hooks) {
     const field = this.document.findField("question-2");
 
     dependsOnField.set("answer.value", "somevalue");
-    assert.equal(field.optional, true);
+    assert.true(field.optional);
 
     dependsOnField.set("answer.value", "require-question-2");
-    assert.equal(field.optional, false);
+    assert.false(field.optional);
   });
 
   test("it computes hidden", async function (assert) {
@@ -97,10 +97,10 @@ module("Unit | Library | field", function (hooks) {
     const field = this.document.findField("question-2");
 
     dependsOnField.set("answer.value", "somevalue");
-    assert.equal(field.hidden, true);
+    assert.true(field.hidden);
 
     dependsOnField.set("answer.value", "show-question-2");
-    assert.equal(field.hidden, false);
+    assert.false(field.hidden);
   });
 
   test("it computes hiddenDependencies based on 'answer' transform", async function (assert) {
@@ -179,8 +179,8 @@ module("Unit | Library | field", function (hooks) {
     field.question.set("isHidden", whitespaced);
     field.question.set("isRequired", whitespaced);
 
-    assert.equal(field.hidden, true);
-    assert.equal(field.optional, false);
+    assert.true(field.hidden);
+    assert.false(field.optional);
   });
 
   test("it can validate required fields", async function (assert) {

@@ -9,6 +9,8 @@ import { resolve } from "rsvp";
 module("Unit | Utility | and", function () {
   module("sync validators", function () {
     test("should work with an argument list", function (assert) {
+      assert.expect(3);
+
       const testCases = [
         {
           validators: [() => true, () => "this is an error message"],
@@ -45,6 +47,8 @@ module("Unit | Utility | and", function () {
     });
 
     test("should work with arbitrary nesting", function (assert) {
+      assert.expect(2);
+
       {
         const validators1 = [
           () => "first error",
@@ -91,6 +95,8 @@ module("Unit | Utility | and", function () {
 
   module("asnyc validators", function () {
     test("should work with an argument list", async function (assert) {
+      assert.expect(3);
+
       const testCases = [
         {
           validators: [
@@ -143,6 +149,8 @@ module("Unit | Utility | and", function () {
     });
 
     test("should work with arbitrary nesting", async function (assert) {
+      assert.expect(2);
+
       {
         const validators1 = [
           () => resolve("first error"),
@@ -199,6 +207,8 @@ module("Unit | Utility | and", function () {
     });
 
     test("should pass arguments to validators", function (assert) {
+      assert.expect(2);
+
       {
         const validators = [
           (key, newValue, oldValue, changes, object) => [

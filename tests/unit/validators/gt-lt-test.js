@@ -6,12 +6,12 @@ module("Unit | Validator | gt-lt", function () {
   test("it validates correctly", function (assert) {
     assert.expect(8);
 
-    assert.equal(validateGtLt()("key", 1, null, {}, {}), true);
-    assert.equal(validateGtLt()("key", null, null, {}, {}), true);
-    assert.equal(validateGtLt({ lt: "x" })("key", 1, null, {}, { x: 2 }), true);
-    assert.equal(validateGtLt({ gt: "x" })("key", 2, null, {}, { x: 1 }), true);
-    assert.equal(validateGtLt({ lt: "x" })("key", 1, null, {}, {}), true);
-    assert.equal(validateGtLt({ gt: "x" })("key", 2, null, {}, {}), true);
+    assert.true(validateGtLt()("key", 1, null, {}, {}));
+    assert.true(validateGtLt()("key", null, null, {}, {}));
+    assert.true(validateGtLt({ lt: "x" })("key", 1, null, {}, { x: 2 }));
+    assert.true(validateGtLt({ gt: "x" })("key", 2, null, {}, { x: 1 }));
+    assert.true(validateGtLt({ lt: "x" })("key", 1, null, {}, {}));
+    assert.true(validateGtLt({ gt: "x" })("key", 2, null, {}, {}));
     assert.equal(
       validateGtLt({ gt: "x" })("key", 1, null, {}, { x: 2 }),
       "Key must be greater than X"

@@ -6,7 +6,7 @@ module("Unit | Validator | slug", function () {
   test("it validates", function (assert) {
     assert.expect(1);
 
-    assert.equal(validateSlug()("test", "test-slug-valid-123"), true);
+    assert.true(validateSlug()("test", "test-slug-valid-123"));
   });
 
   test("it validates presence", function (assert) {
