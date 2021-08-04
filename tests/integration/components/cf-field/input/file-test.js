@@ -1,4 +1,4 @@
-import { render, triggerEvent, waitUntil } from "@ember/test-helpers";
+import { render, triggerEvent, waitUntil, click } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
@@ -62,6 +62,10 @@ module("Integration | Component | cf-field/input/file", function (hooks) {
   });
 
   test("it allows to download a file", async function (assert) {
+    assert.expect(4);
+
+    this.server.create("file");
+
     this.set("field", {
       answer: {
         id: btoa("FileAnswer:1"),
@@ -84,8 +88,7 @@ module("Integration | Component | cf-field/input/file", function (hooks) {
     assert.dom(".uk-button").exists();
     assert.dom(".uk-button").hasText(this.field.answer.value.name);
 
-    // Skip this part until the Mirage/GraphQL stuff is sorted out.
-    //await click(".uk-button");
+    await click(".uk-button");
 
     // Restore window.open
     // eslint-disable-next-line require-atomic-updates
