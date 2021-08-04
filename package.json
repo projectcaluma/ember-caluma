@@ -30,7 +30,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@apollo/client": "^3.3.21",
+    "@apollo/client": "^3.4.4",
     "@ember/render-modifiers": "^1.0.2",
     "@glimmer/component": "^1.0.4",
     "@glimmer/tracking": "^1.0.4",
@@ -53,8 +53,8 @@
     "ember-intl": "^5.7.0",
     "ember-math-helpers": "^2.16.0",
     "ember-power-select": "^4.1.6",
-    "ember-test-selectors": "^5.4.0",
-    "ember-uikit": "^3.0.2",
+    "ember-test-selectors": "^6.0.0",
+    "ember-uikit": "^4.0.0",
     "ember-validated-form": "^3.0.3",
     "graphql": "^15.5.1",
     "graphql-iso-date": "^3.6.1",
@@ -67,7 +67,7 @@
     "moment": "^2.29.1",
     "prismjs": "^1.24.1",
     "proxy-polyfill": "^0.3.2",
-    "sass": "^1.36.0",
+    "sass": "^1.37.5",
     "slugify": "^1.6.0",
     "uuid": "^8.3.2"
   },
@@ -78,7 +78,7 @@
     "@commitlint/config-conventional": "13.1.0",
     "@ember/jquery": "2.0.0",
     "@ember/optional-features": "2.0.0",
-    "@ember/test-helpers": "2.2.9",
+    "@ember/test-helpers": "2.3.0",
     "babel-eslint": "10.1.0",
     "broccoli-asset-rev": "3.0.0",
     "ember-cli": "3.27.0",
@@ -111,7 +111,7 @@
     "ember-source-channel-url": "3.0.0",
     "ember-template-lint": "2.21.0",
     "ember-try": "1.4.0",
-    "eslint": "7.31.0",
+    "eslint": "7.32.0",
     "eslint-plugin-ember": "10.5.1",
     "eslint-plugin-import": "2.23.4",
     "eslint-plugin-node": "11.1.0",
@@ -129,12 +129,6 @@
     "testem-failure-only-reporter": "0.0.1",
     "typeface-oxygen": "1.1.13",
     "typeface-oxygen-mono": "1.1.13"
-  },
-  "//": {
-    "focus-trap": "Focus trap now throws an error if there is no tabbable element on initialization. This breaks the modal dialogs as they are hidden on initialization."
-  },
-  "resolutions": {
-    "focus-trap": "6.2.1"
   },
   "engines": {
     "node": "10.* || >= 12"
