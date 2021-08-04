@@ -6,12 +6,11 @@ module("Unit | Validator | options", function () {
   test("it validates correctly", async function (assert) {
     assert.expect(4);
 
-    assert.equal(await validateOptions()(null, { edges: [] }), true);
-    assert.equal(
+    assert.true(await validateOptions()(null, { edges: [] }));
+    assert.true(
       await validateOptions()(null, {
         edges: [{ node: { slug: "test", label: "test" } }],
-      }),
-      true
+      })
     );
     assert.equal(
       await validateOptions()(null, {

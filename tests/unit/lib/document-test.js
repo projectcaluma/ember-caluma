@@ -102,6 +102,8 @@ module("Unit | Library | document", function (hooks) {
   });
 
   test("question jexl intersects operator", async function (assert) {
+    assert.expect(8);
+
     const tests = [
       ["[1,2] intersects [2,3]", true],
       ["[1,2] intersects [3,4]", false],
@@ -121,6 +123,8 @@ module("Unit | Library | document", function (hooks) {
   });
 
   test("question jexl mapby transform", async function (assert) {
+    assert.expect(5);
+
     const tests = [
       [[{ foo: "bar" }, { foo: "baz" }], "value|mapby('foo')", ["bar", "baz"]],
       [
@@ -222,14 +226,13 @@ module("Unit | Library | document", function (hooks) {
   });
 
   test("it stringifies correctly", async function (assert) {
-    assert.equal(
+    assert.true(
       await this.document.jexl.eval(
         '\'["test1","test2"]\' == value|stringify',
         {
           value: ["test1", "test2"],
         }
-      ),
-      true
+      )
     );
   });
 

@@ -27,6 +27,8 @@ module("Integration | Component | cf-field/input/date", function (hooks) {
   });
 
   test("it triggers save when selecting a date", async function (assert) {
+    assert.expect(1);
+
     const expectedDate = new Date(Date.UTC(2013, 3, 28));
 
     this.set("save", function (selectedDate) {
