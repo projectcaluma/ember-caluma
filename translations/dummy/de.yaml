@@ -4,6 +4,7 @@ dummy:
   usage: "Anwendung"
   testing: "Testen"
   migration: "Migration"
+  validation: "Validierung"
   queries:
     title: "Queries"
     load: "Laden"

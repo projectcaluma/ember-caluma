@@ -15,6 +15,7 @@ Router.map(function () {
     this.route("queries");
     this.route("migration");
     this.route("buttons");
+    this.route("validation");
   });
 
   this.route("demo", function () {
