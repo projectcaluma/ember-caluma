@@ -1,0 +1,41 @@
+# import * from '@projectcaluma/ember-form-builder/gql/fragments/question-info.graphql'
+
+query SearchQuestion(
+  $search: String
+  $excludeForms: [ID]
+  $pageSize: Int
+  $cursor: String
+) {
+  allQuestions(
+    filter: [
+      { search: $search }
+      { excludeForms: $excludeForms }
+      { isArchived: false }
+    ]
+    first: $pageSize
+    after: $cursor
+  ) {
+    pageInfo {
+      hasNextPage
+      endCursor
+    }
+    totalCount
+    edges {
+      node {
+        ...QuestionInfo
+        ... on FormQuestion {
+          subForm {
+            slug
+            name
+          }
+        }
+        ... on TableQuestion {
+          rowForm {
+            slug
+            name
+          }
+        }
+      }
+    }
+  }
+}

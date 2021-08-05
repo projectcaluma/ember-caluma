@@ -1,0 +1,15 @@
+# import * from '@projectcaluma/ember-form-builder/gql/fragments/question-info.graphql'
+
+mutation SaveTableQuestion($input: SaveTableQuestionInput!) {
+  saveTableQuestion(input: $input) {
+    question {
+      ...QuestionInfo
+      ... on TableQuestion {
+        rowForm {
+          slug
+        }
+      }
+    }
+    clientMutationId
+  }
+}

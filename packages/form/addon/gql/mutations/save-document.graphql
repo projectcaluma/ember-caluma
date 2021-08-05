@@ -1,0 +1,26 @@
+# import * from '@projectcaluma/ember-form/gql/fragments/field-answer.graphql'
+
+mutation ($input: SaveDocumentInput!) {
+  saveDocument(input: $input) {
+    document {
+      id
+      answers {
+        edges {
+          node {
+            ...FieldAnswer
+          }
+        }
+      }
+      form {
+        slug
+        questions {
+          edges {
+            node {
+              ...FieldQuestion
+            }
+          }
+        }
+      }
+    }
+  }
+}

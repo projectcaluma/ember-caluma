@@ -1,0 +1,9 @@
+# import * from '@projectcaluma/ember-form-builder/gql/fragments/field-answer.graphql'
+
+mutation ($input: SaveDefaultStringAnswerInput!) {
+  saveDefaultStringAnswer(input: $input) {
+    answer {
+      ...FieldAnswer
+    }
+  }
+}

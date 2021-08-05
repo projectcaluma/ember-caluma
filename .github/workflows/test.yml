@@ -30,10 +30,10 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: node_modules
-          key: node-modules-v2-${{ hashFiles('yarn.lock') }}
+          key: node-modules-${{ hashFiles('yarn.lock') }}
           restore-keys: |
-            node-modules-v2-${{ hashFiles('yarn.lock') }}
-            node-modules-v2-
+            node-modules-${{ hashFiles('yarn.lock') }}
+            node-modules-
 
       - name: Install dependencies
         run: yarn install
@@ -47,6 +47,15 @@ jobs:
     runs-on: [ubuntu-latest]
     timeout-minutes: 10
 
+    strategy:
+      matrix:
+        workspace:
+          - "@projectcaluma/ember-core"
+          - "@projectcaluma/ember-form"
+          - "@projectcaluma/ember-form-builder"
+          - "@projectcaluma/ember-testing"
+          - "@projectcaluma/ember-workflow"
+
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
@@ -56,29 +65,38 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: node_modules
-          key: node-modules-v2-${{ hashFiles('yarn.lock') }}
+          key: node-modules-${{ hashFiles('yarn.lock') }}
           restore-keys: |
-            node-modules-v2-${{ hashFiles('yarn.lock') }}
-            node-modules-v2-
+            node-modules-${{ hashFiles('yarn.lock') }}
+            node-modules-
 
       - name: Install dependencies
         run: yarn install
 
       - name: Run tests
-        run: yarn test:ember
-        env:
-          COVERAGE: true
+        run: yarn workspace ${{ matrix.workspace }} test:ember
+      #   env:
+      #     COVERAGE: true
 
-      - name: Upload coverage report to Codecov
-        uses: codecov/codecov-action@v1
-        with:
-          file: ./coverage/lcov.info
+      # - name: Upload coverage report to Codecov
+      #   uses: codecov/codecov-action@v1
+      #   with:
+      #     file: ./coverage/lcov.info
 
   test-floating:
     name: Floating Tests
     needs: [lint]
     runs-on: [ubuntu-latest]
     timeout-minutes: 10
+
+    strategy:
+      matrix:
+        workspace:
+          - "@projectcaluma/ember-core"
+          - "@projectcaluma/ember-form"
+          - "@projectcaluma/ember-form-builder"
+          - "@projectcaluma/ember-testing"
+          - "@projectcaluma/ember-workflow"
 
     steps:
       - uses: actions/checkout@v2
@@ -90,7 +108,7 @@ jobs:
         run: yarn install --no-lockfile
 
       - name: Run tests
-        run: yarn test:ember
+        run: yarn workspace ${{ matrix.workspace }} test:ember
 
   # test-browserstack:
   #   name: Browserstack Tests
@@ -144,8 +162,16 @@ jobs:
 
     strategy:
       matrix:
+        workspace:
+          - "@projectcaluma/ember-core"
+          - "@projectcaluma/ember-form"
+          - "@projectcaluma/ember-form-builder"
+          - "@projectcaluma/ember-testing"
+          - "@projectcaluma/ember-workflow"
         scenario:
-          - ember-lts-3.24
+          # We are a bit early to adopt this but we need to since ember-try has
+          # a problem with workspaces and LTS 3.24
+          - ember-lts-3.28
           - ember-release
 
     steps:
@@ -157,10 +183,10 @@ jobs:
       - uses: actions/cache@v2
         with:
           path: node_modules
-          key: node-modules-v2-${{ hashFiles('yarn.lock') }}
+          key: node-modules-${{ hashFiles('yarn.lock') }}
           restore-keys: |
-            node-modules-v2-${{ hashFiles('yarn.lock') }}
-            node-modules-v2-
+            node-modules-${{ hashFiles('yarn.lock') }}
+            node-modules-
 
       - name: Install dependencies
         run: yarn install
@@ -171,11 +197,11 @@ jobs:
             node-modules
             package
             yarn.lock
-          key: node-modules-v2-${{ matrix.scenario }}-${{ hashFiles('yarn.lock') }}-${{ hashFiles('config/ember-try.js') }}
+          key: node-modules-${{ matrix.scenario }}-${{ hashFiles('yarn.lock') }}-${{ hashFiles('config/ember-try.js') }}
           restore-keys: |
-            node-modules-v2-${{ matrix.scenario }}-${{ hashFiles('yarn.lock') }}-${{ hashFiles('config/ember-try.js') }}
-            node-modules-v2-${{ matrix.scenario }}-
-            node-modules-v2-
+            node-modules-${{ matrix.scenario }}-${{ hashFiles('yarn.lock') }}-${{ hashFiles('config/ember-try.js') }}
+            node-modules-${{ matrix.scenario }}-
+            node-modules-
 
       - name: Run tests
-        run: yarn ember try:one ${{ matrix.scenario }} --skip-cleanup
+        run: yarn workspace ${{ matrix.workspace }} ember try:one ${{ matrix.scenario }} --skip-cleanup

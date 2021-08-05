@@ -1,0 +1,15 @@
+# import * from '@projectcaluma/ember-form-builder/gql/fragments/question-info.graphql'
+
+mutation SaveDynamicMultipleChoiceQuestion(
+  $input: SaveDynamicMultipleChoiceQuestionInput!
+) {
+  saveDynamicMultipleChoiceQuestion(input: $input) {
+    question {
+      ...QuestionInfo
+      ... on DynamicMultipleChoiceQuestion {
+        dataSource
+      }
+    }
+    clientMutationId
+  }
+}

@@ -1,0 +1,29 @@
+query ($question: String!) {
+  allQuestions(filter: [{ slug: $question }], first: 1) {
+    edges {
+      node {
+        slug
+        ... on DynamicChoiceQuestion {
+          dynamicChoiceOptions: options {
+            edges {
+              node {
+                slug
+                label
+              }
+            }
+          }
+        }
+        ... on DynamicMultipleChoiceQuestion {
+          dynamicMultipleChoiceOptions: options {
+            edges {
+              node {
+                slug
+                label
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

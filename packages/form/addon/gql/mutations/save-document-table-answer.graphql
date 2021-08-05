@@ -1,0 +1,9 @@
+# import * from '@projectcaluma/ember-form/gql/fragments/field-answer.graphql'
+
+mutation ($input: SaveDocumentTableAnswerInput!) {
+  saveDocumentTableAnswer(input: $input) {
+    answer {
+      ...FieldAnswer
+    }
+  }
+}

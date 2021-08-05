@@ -1,0 +1,12 @@
+query AllFormatValidators {
+  allFormatValidators {
+    edges {
+      node {
+        slug
+        name
+        regex
+        errorMsg
+      }
+    }
+  }
+}

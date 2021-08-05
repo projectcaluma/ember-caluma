@@ -1,0 +1,65 @@
+caluma:
+  caluma-query:
+    work-item:
+      status:
+        READY: "Offen"
+        COMPLETED: "Erledigt"
+        CANCELED: "Abgebrochen"
+        SKIPPED: "Übersprungen"
+
+    case:
+      status:
+        RUNNING: "In Bearbeitung"
+        COMPLETED: "Abgeschlossen"
+        CANCELED: "Abgebrochen"
+  form:
+    optional: "Optional"
+    save: "Speichern"
+    delete: "Löschen"
+    edit: "Bearbeiten"
+    selectFile: "Klicken um Datei hochzuladen"
+    changeFile: "Klicken um andere Datei hochzuladen"
+    deleteRow: "Möchten Sie diese Zeile wirklich löschen?"
+    addRow: "Zeile hinzufügen"
+    optionNotAvailable: "Diese Option ist nicht mehr verfügbar"
+    info: "Mehr Informationen"
+
+    navigation:
+      next: "Weiter"
+      previous: "Zurück"
+      states:
+        untouched: "Nicht ausgefüllt"
+        unfinished: "Nicht vollständig ausgefüllt"
+        valid: "Korrekt ausgefüllt"
+        invalid: "Inkorrekt ausgefüllt"
+
+    notification:
+      table:
+        add:
+          success: "Eintrag wurde erfolgreich hinzugefügt."
+          error: "Hoppla, beim Hinzufügen des Eintrags ist etwas schief gelaufen ..."
+
+    power-select:
+      placeholder-single: "Wählen Sie eine Option aus"
+      placeholder-multiple: "Wählen Sie eine oder mehrere Optionen aus"
+      options-loading: "Lade Optionen..."
+      options-empty: "Keine Optionen vorhanden"
+      search-placeholder: "Hier tippen um zu suchen"
+      search-empty: "Keine Optionen gefunden"
+      null: "Keine Auswahl"
+
+    validation:
+      blank: "Dieses Feld darf nicht leer gelassen werden"
+      tooShort: "Dieses Feld muss mindestens {min} Zeichen enthalten"
+      tooLong: "In diesem Feld sind maximal {max} Zeichen erlaubt"
+      greaterThanOrEqualTo: "Die Eingabe in diesem Feld darf nicht kleiner als {gte} sein"
+      lessThanOrEqualTo: "Die Eingabe in diesem Feld darf nicht grösser als {lte} sein"
+      notAnInteger: "Bitte geben Sie eine ganze Zahl ein"
+      inclusion: "'{value}' ist kein gültiger Wert für dieses Feld"
+      uploadFailed: "Beim Hochladen ist ein Fehler aufgetreten."
+      format: "{errorMsg}"
+      table: "Mindestens eine Zeile der Tabelle wurde nicht korrekt ausgefüllt"
+
+    pikaday:
+      month-previous: "Vorheriger Monat"
+      month-next: "Nächster Monat"

@@ -1,0 +1,14 @@
+# import * from '@projectcaluma/ember-form-builder/gql/fragments/question-info.graphql'
+
+mutation SaveTextareaQuestion($input: SaveTextareaQuestionInput!) {
+  saveTextareaQuestion(input: $input) {
+    question {
+      ...QuestionInfo
+      ... on TextareaQuestion {
+        minLength
+        maxLength
+      }
+    }
+    clientMutationId
+  }
+}

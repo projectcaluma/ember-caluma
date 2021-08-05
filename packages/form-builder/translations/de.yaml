@@ -1,0 +1,162 @@
+caluma:
+  form-builder:
+    global:
+      save: "Speichern"
+      loading: "Laden"
+      cancel: "Abbrechen"
+      search: "Suchen"
+      optional: "Optional"
+
+      empty-search: "Keine Resultate gefunden. Passen Sie Ihre Suche an um bessere Resultate zu erhalten."
+
+      not-found:
+        title: "Du siehst verloren aus"
+        subtitle: "Die angefrage Seite existiert nicht!"
+        home: "Zurück zum Start"
+
+    form:
+      name: "Name"
+      slug: "Slug"
+      description: "Beschreibung"
+      isArchived: "Archiviert"
+      widgetOverride: "Spezialelement"
+      isPublished: "Publiziert"
+      archived: "Archivierte"
+      draft: "Entwurf"
+      active: "Aktive"
+      all: "Alle"
+
+      allForms: "Alle Formulare"
+      new: "Neues Formular"
+      empty: "Wir haben keine Formulare gefunden. Klicken Sie den Knopf im der rechten oberen Ecke um ein Formular zu Erstellen!"
+      loadMore: "Mehr Formulare laden"
+
+      not-found: "Kein Formular mit dem Slug '{slug}' gefunden"
+
+    question-list:
+      required:
+        label: "Erforderlich (JEXL)"
+        not-required: "Optional"
+        required: "Erforderlich"
+        conditional: "Bedingt erforderlich"
+      hidden:
+        label: "Versteckt (JEXL)"
+        not-hidden: "Sichtbar"
+        hidden: "Versteckt"
+        conditional: "Bedingt versteckt"
+
+    question:
+      label: "Label"
+      slug: "Slug"
+      type: "Typ"
+      isRequired: "Pflichtfeld"
+      staticContent: "Statischer Inhalt"
+      infoText: "Infotext"
+      placeholder: "Platzhalter"
+      isHidden: "Versteckt (JEXL)"
+      widgetOverride: "Anzeigetyp"
+      isArchived: "Archiviert"
+      type-disabled: "Der Fragetyp kann nach dem Erstellen einer Frage nicht mehr geändert werden, um korrupte Daten zu verhindern."
+      supportsMarkdownPrefix: "Dieses Feld unterstützt"
+      markdown: "Markdown"
+      dataSource: "Datenquelle"
+      formatValidators: "Validierung"
+      defaultValue: "Standardwert"
+
+      general: "Allgemein"
+      options: "Optionen"
+
+      min-value: "Minimaler Wert"
+      max-value: "Maximaler Wert"
+      min-length: "Minimale Länge"
+      max-length: "Maximale Länge"
+      rowForm: "Formular für Tabelleneinträge"
+      subForm: "Formular für Einträge"
+      choose: "-- bitte wählen --"
+      search-placeholder: "Hier tippen um zu suchen"
+      search-empty: "Keine Formulare gefunden"
+      columnsToDisplay: "Spalten zur Anzeige auswählen"
+      calcExpression: "Berechnungsformel"
+
+      new: "Neue Frage"
+
+      minor-info-title: "Wichtig!"
+      minor-info: "Das Anpassen einer Frage darf niemals die Bedeutung der Frage verändern, um die Daten konsistent zu halten."
+
+      remove: "Frage entfernen"
+      add: "Neue oder existierende Frage hinzufügen"
+      search: "Nach einer Frage (Label oder Slug) suchen,"
+      create: "oder eine neue Frage erstellen"
+      loadMore: "Mehr Fragen laden"
+
+      empty: "Sie haben noch keine Fragen hinzugefügt. Drücken Sie den obenstehenden Knopf um dies zu tun!"
+      advancedSettings: "Erweiterte Einstellungen"
+
+      types:
+        IntegerQuestion: "Ganze Zahl"
+        FloatQuestion: "Gleitkommazahl"
+        MultipleChoiceQuestion: "Mehrfachauswahl"
+        ChoiceQuestion: "Einzelauswahl"
+        TextQuestion: "Text"
+        TextareaQuestion: "Text (mehrzeilig)"
+        TableQuestion: "Tabelle"
+        FormQuestion: "Formular"
+        FileQuestion: "Datei"
+        StaticQuestion: "Nichtinteraktiver Inhalt"
+        DateQuestion: "Datum"
+        DynamicMultipleChoiceQuestion: "Dynamische Mehrfachauswahl"
+        DynamicChoiceQuestion: "Dynamische Einzelauswahl"
+        CalculatedFloatQuestion: "Berechnung (Gleitkommazahl)"
+
+      widgetOverrides:
+        powerselect: "Power Select"
+        hidden: "Versteckt"
+        dummy-one: "Dummy One"
+        dummy-two: "Dummy Two"
+
+      not-found: "Keine Frage mit dem Slug '{slug}' gefunden"
+
+      hideLabel: "Label verstecken"
+
+    options:
+      delete: "Option löschen"
+      archive: "Option archivieren (verstecken)"
+      restore: "Option wiederherstellen"
+
+    notification:
+      form:
+        save:
+          success: "Ihr Formular wurde erfolgreich gespeichert!"
+          error: "Hoppla, beim Speichern des Formulars ist etwas schief gelaufen..."
+
+        create:
+          success: "Ihr Formular wurde erfolgreich erstellt!"
+          error: "Hoppla, beim Erstellen des Formulars ist etwas schief gelaufen..."
+
+        reorder-questions:
+          success: "Ihre Fragen wurde erfolgreich sortiert!"
+          error: "Hoppla, beim Sortieren der Fragen ist etwas schief gelaufen..."
+
+        reorder-options:
+          success: "Ihre Optionen wurde erfolgreich sortiert!"
+          error: "Hoppla, beim Sortieren der Optionen ist etwas schief gelaufen..."
+
+        add-question:
+          success: "Die Frage wurde erfolgreich zu Ihrem Formular hinzugefügt!"
+          error: "Hoppla, beim Hinzufügen der Frage ist etwas schief gelaufen..."
+
+        remove-question:
+          success: "Die Frage wurde erfolgreich von Ihrem Formular entfernt!"
+          error: "Hoppla, beim Entfernen der Frage ist etwas schief gelaufen..."
+
+      question:
+        save:
+          success: "Ihre Frage wurde erfolgreich gespeichert!"
+          error: "Hoppla, beim Speichern der Frage ist etwas schief gelaufen..."
+
+    validations:
+      form:
+        slug: "Ein Formular mit diesem Slug existiert bereits"
+
+      question:
+        slug: "Eine Frage mit diesem Slug existiert bereits"

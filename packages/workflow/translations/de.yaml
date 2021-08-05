@@ -1,0 +1,10 @@
+caluma:
+  mutate-work-item:
+    complete: "Abschliessen"
+    skip: "Überspringen"
+    cancel: "Abbrechen"
+    success: "Der Status der Aufgabens wurde erfolgreich angepasst!"
+    error: "Hoppla, beim Speichern des Aufgabenstatus ist etwas schief gelaufen..."
+
+  task-button:
+    error: "Hoppla, keine Aufgabe wurde gefunden."

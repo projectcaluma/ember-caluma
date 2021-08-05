@@ -1,7 +1,21 @@
 "use strict";
 
 module.exports = {
-  extends: "@adfinis-sygroup/eslint-config/ember-addon",
+  root: true,
+  parser: "babel-eslint",
+  parserOptions: {
+    ecmaVersion: 2018,
+    sourceType: "module",
+    ecmaFeatures: {
+      legacyDecorators: true,
+    },
+  },
+  plugins: ["ember"],
+  extends: "@adfinis-sygroup/eslint-config",
+  env: {
+    es6: true,
+    browser: true,
+  },
   rules: {
     "ember/no-jquery": "error",
     // TODO: https://github.com/projectcaluma/ember-caluma/issues/529
@@ -17,12 +31,30 @@ module.exports = {
     "ember/no-component-lifecycle-hooks": "warn",
   },
   settings: {
-    "import/internal-regex": "^ember-caluma/",
+    "import/internal-regex": "^(@projectcaluma|ember-caluma)/",
   },
   overrides: [
-    ...require("@adfinis-sygroup/eslint-config/ember-addon").overrides,
+    // node files
     {
-      files: ["bin/*.js", "testem*.js"],
+      files: [
+        ".eslintrc.js",
+        ".prettierrc.js",
+        ".template-lintrc.js",
+        "config/*.js",
+        "packages/*/ember-cli-build.js",
+        "packages/*/index.js",
+        "packages/*/testem*.js",
+        "packages/*/blueprints/**/index.js",
+        "packages/*/config/*.js",
+        "packages/*/tests/dummy/config/*.js",
+        "packages/*/bin/*.js",
+      ],
+      excludedFiles: [
+        "packages/*/addon/**",
+        "packages/*/addon-test-support/**",
+        "packages/*/app/**",
+        "packages/*/tests/dummy/app/**",
+      ],
       parserOptions: {
         sourceType: "script",
       },
@@ -31,11 +63,12 @@ module.exports = {
         node: true,
       },
       plugins: ["node"],
-      rules: Object.assign(
-        {},
-        require("eslint-plugin-node").configs.recommended.rules,
-        { "prefer-const": ["error"] }
-      ),
+      extends: ["plugin:node/recommended"],
+    },
+    {
+      // Test files:
+      files: ["packages/*/tests/**/*-test.{js,ts}"],
+      extends: ["plugin:qunit/recommended"],
     },
   ],
 };

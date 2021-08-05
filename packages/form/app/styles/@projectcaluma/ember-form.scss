@@ -1,0 +1,23 @@
+@import "ember-uikit/variables-theme";
+
+@import "../cf-field";
+@import "../cf-navigation";
+
+@import "../uikit-overwrites";
+
+.cf-checkbox_label {
+  display: block;
+  position: relative;
+  padding-left: 26px;
+
+  .uk-checkbox {
+    position: absolute;
+    top: 0.25em;
+    left: 0;
+    margin: 0;
+  }
+
+  & + br {
+    display: none;
+  }
+}

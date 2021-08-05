@@ -1,0 +1,23 @@
+caluma:
+  form-builder:
+    question-list:
+      required:
+        label: "Obligatoire (JEXL)"
+        not-required: "Optionnel"
+        required: "Obligatoire"
+        conditional: "Conditionnellement obligatoire"
+      hidden:
+        label: "Caché (JEXL)"
+        not-hidden: "Visible"
+        hidden: "Caché"
+        conditional: "Conditionnellement caché"
+
+    question:
+      defaultValue: "Valeur par défaut"
+      search-placeholder: "Tapez ici pour rechercher"
+      search-empty: "Pas de formulaires trouvés"
+
+    options:
+      delete: "Supprimer l'option"
+      archive: "Archiver (masquer) l'option"
+      restore: "Restaurer l'option"
