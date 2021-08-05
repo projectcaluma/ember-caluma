@@ -1,1 +1,5 @@
-{{cfb-form-editor/question slug=model.questionSlug form=model.formSlug on-after-submit=(action "afterSubmit")}}
+<CfbFormEditor::Question
+  @slug={{@model.questionSlug}}
+  @form={{@model.formSlug}}
+  @on-after-submit={{this.afterSubmit}}
+/>
