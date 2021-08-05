@@ -3,7 +3,7 @@ import { action } from "@ember/object";
 
 export default class EditQuestionsNewController extends Controller {
   @action
-  afterSubmit(slug) {
+  afterSubmit({ slug }) {
     this.transitionToRoute("edit.questions.edit", slug);
   }
 }

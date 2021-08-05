@@ -1,4 +1,4 @@
-{{cfb-form-editor/question
-  form=model
-  on-after-submit=(action "afterSubmit" value="slug")
-}}
+<CfbFormEditor::Question
+  @form={{@model}}
+  @on-after-submit={{this.afterSubmit}}
+/>
