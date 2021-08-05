@@ -1,161 +1,55 @@
 {
-  "name": "ember-caluma",
-  "version": "8.0.0",
-  "description": "The Ember.js addon for Caluma",
-  "keywords": [
-    "ember-addon",
-    "ember-engine"
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "packages/*"
   ],
-  "license": "LGPL-3.0-or-later",
-  "author": "",
-  "repository": "github:projectcaluma/ember-caluma",
-  "homepage": "https://docs.caluma.io/ember-caluma",
-  "directories": {
-    "doc": "doc",
-    "test": "tests"
-  },
   "scripts": {
-    "build": "ember build --environment=production",
-    "lint": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*",
+    "lint": "npm-run-all --aggregate-output --continue-on-error --parallel \"lint:!(fix)\"",
+    "lint:fix": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*:fix",
     "lint:hbs": "ember-template-lint .",
-    "lint:js": "eslint .",
-    "start": "ember serve",
-    "start-proxy": "ember serve --proxy http://localhost:8000",
-    "test": "npm-run-all lint:* test:*",
-    "test:ember": "ember test",
-    "test:ember-compatibility": "ember try:each",
-    "test:browserstack": "ember test --host=127.0.0.1 --test-port=7774 --config-file=testem.browserstack.js",
-    "update-schema": "get-graphql-schema http://localhost:8000/graphql > addon/mirage-graphql/schema.graphql && prettier --write addon/mirage-graphql/schema.graphql",
-    "update-possible-types": "node bin/fetch-possible-types.js && prettier --write addon/-private/possible-types.js",
+    "lint:hbs:fix": "ember-template-lint . --fix",
+    "lint:js": "eslint . --cache",
+    "lint:js:fix": "eslint . --fix",
     "prepare": "husky install"
-  },
-  "dependencies": {
-    "@apollo/client": "^3.4.8",
-    "@ember/render-modifiers": "^1.0.2",
-    "@glimmer/component": "^1.0.4",
-    "@glimmer/tracking": "^1.0.4",
-    "broccoli-funnel": "^3.0.8",
-    "broccoli-merge-trees": "^4.2.0",
-    "codejar": "^3.5.0",
-    "ember-apollo-client": "^3.2.0",
-    "ember-auto-import": "^1.11.3",
-    "ember-changeset": "^3.14.1",
-    "ember-changeset-validations": "^3.16.0",
-    "ember-cli-babel": "^7.26.6",
-    "ember-cli-htmlbars": "^5.7.1",
-    "ember-cli-sass": "^10.0.1",
-    "ember-cli-showdown": "^4.5.0",
-    "ember-cli-string-helpers": "^6.1.0",
-    "ember-composable-helpers": "^4.5.0",
-    "ember-concurrency": "^2.1.2",
-    "ember-fetch": "^8.1.1",
-    "ember-in-viewport": "^3.10.2",
-    "ember-intl": "^5.7.0",
-    "ember-math-helpers": "^2.16.0",
-    "ember-power-select": "^4.1.6",
-    "ember-test-selectors": "^6.0.0",
-    "ember-uikit": "^4.0.0",
-    "ember-validated-form": "^3.0.3",
-    "graphql": "^15.5.1",
-    "graphql-iso-date": "^3.6.1",
-    "graphql-tag": "^2.12.5",
-    "graphql-tools": "^4.0.8",
-    "intersection-observer": "^0.12.0",
-    "jexl": "^2.3.0",
-    "lodash.clonedeep": "^4.5.0",
-    "lodash.isequal": "^4.5.0",
-    "moment": "^2.29.1",
-    "prismjs": "^1.24.1",
-    "proxy-polyfill": "^0.3.2",
-    "sass": "^1.38.0",
-    "slugify": "^1.6.0",
-    "uuid": "^8.3.2"
-  },
-  "devDependencies": {
-    "@adfinis-sygroup/eslint-config": "1.4.2",
-    "@adfinis-sygroup/semantic-release-config": "3.2.0",
-    "@commitlint/cli": "13.1.0",
-    "@commitlint/config-conventional": "13.1.0",
-    "@ember/jquery": "2.0.0",
-    "@ember/optional-features": "2.0.0",
-    "@ember/test-helpers": "2.4.1",
-    "babel-eslint": "10.1.0",
-    "broccoli-asset-rev": "3.0.0",
-    "ember-cli": "3.27.0",
-    "ember-cli-addon-docs": "3.0.0",
-    "ember-cli-addon-docs-yuidoc": "1.0.0",
-    "ember-cli-browserstack": "anehx/ember-cli-browserstack#fix-pid-file",
-    "ember-cli-code-coverage": "1.0.3",
-    "ember-cli-dependency-checker": "3.2.0",
-    "ember-cli-deploy": "1.0.2",
-    "ember-cli-deploy-build": "2.0.0",
-    "ember-cli-deploy-git": "1.3.4",
-    "ember-cli-deploy-git-ci": "1.0.1",
-    "ember-cli-inject-live-reload": "2.1.0",
-    "ember-cli-mirage": "2.2.0",
-    "ember-cli-moment-shim": "3.8.0",
-    "ember-cli-shims": "1.2.0",
-    "ember-cli-sri": "2.1.1",
-    "ember-cli-uglify": "3.0.0",
-    "ember-cli-update": "1.0.0",
-    "ember-data": "3.27.1",
-    "ember-disable-prototype-extensions": "1.1.3",
-    "ember-engines": "0.8.19",
-    "ember-export-application-global": "2.0.1",
-    "ember-load-initializers": "2.1.2",
-    "ember-maybe-import-regenerator": "0.1.6",
-    "ember-pikaday": "3.0.0",
-    "ember-qunit": "5.1.4",
-    "ember-resolver": "8.0.2",
-    "ember-source": "3.28.0",
-    "ember-source-channel-url": "3.0.0",
-    "ember-template-lint": "2.21.0",
-    "ember-try": "1.4.0",
-    "eslint": "7.32.0",
-    "eslint-config-prettier": "8.3.0",
-    "eslint-plugin-ember": "10.5.3",
-    "eslint-plugin-import": "2.24.1",
-    "eslint-plugin-node": "11.1.0",
-    "eslint-plugin-prettier": "3.4.0",
-    "eslint-plugin-qunit": "6.2.0",
-    "faker": "5.5.3",
-    "get-graphql-schema": "2.1.2",
-    "husky": "7.0.1",
-    "lint-staged": "11.1.2",
-    "loader.js": "4.7.0",
-    "node-fetch": "2.6.1",
-    "npm-run-all": "4.1.5",
-    "prettier": "2.3.2",
-    "qunit": "2.16.0",
-    "qunit-dom": "1.6.0",
-    "testem-failure-only-reporter": "0.0.1",
-    "typeface-oxygen": "1.1.13",
-    "typeface-oxygen-mono": "1.1.13"
-  },
-  "engines": {
-    "node": "10.* || >= 12"
-  },
-  "ember": {
-    "edition": "octane"
-  },
-  "ember-addon": {
-    "configPath": "tests/dummy/config",
-    "demoURL": "https://docs.caluma.io/ember-caluma",
-    "after": [
-      "ember-cli-mirage"
-    ]
   },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
     ]
   },
-  "release": {
-    "extends": "@adfinis-sygroup/semantic-release-config"
-  },
   "lint-staged": {
-    "*.js": "yarn lint:js --fix",
-    "*.hbs": "yarn lint:hbs --fix",
+    "*.js": "yarn lint:js:fix",
+    "*.hbs": "yarn lint:hbs:fix",
     "*.{scss,graphql,json,md,yaml}": "prettier --write"
+  },
+  "devDependencies": {
+    "@adfinis-sygroup/eslint-config": "1.4.2",
+    "@adfinis-sygroup/semantic-release-config": "3.2.0",
+    "@commitlint/cli": "13.1.0",
+    "@commitlint/config-conventional": "13.1.0",
+    "babel-eslint": "10.1.0",
+    "ember-template-lint": "2.21.0",
+    "eslint": "7.32.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-ember": "10.5.4",
+    "eslint-plugin-import": "2.24.2",
+    "eslint-plugin-node": "11.1.0",
+    "eslint-plugin-prettier": "4.0.0",
+    "eslint-plugin-qunit": "6.2.0",
+    "husky": "7.0.2",
+    "lint-staged": "11.1.2",
+    "npm-run-all": "4.1.5",
+    "prettier": "2.4.0",
+    "semantic-release-monorepo": "7.0.5"
+  },
+  "engines": {
+    "node": "10.* || >= 12"
+  },
+  "release": {
+    "extends": [
+      "@adfinis-sygroup/semantic-release-config",
+      "semantic-release-monorepo"
+    ]
   }
 }

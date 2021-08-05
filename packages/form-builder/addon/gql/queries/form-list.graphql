@@ -1,0 +1,11 @@
+# import * from '@projectcaluma/ember-form-builder/gql/fragments/form-info.graphql'
+
+query FormList($filter: [FormFilterSetType], $order: [FormOrderSetType]) {
+  allForms(filter: $filter, order: $order) {
+    edges {
+      node {
+        ...FormInfo
+      }
+    }
+  }
+}

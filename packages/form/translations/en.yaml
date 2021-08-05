@@ -1,0 +1,65 @@
+caluma:
+  caluma-query:
+    work-item:
+      status:
+        READY: "Pending"
+        COMPLETED: "Completed"
+        CANCELED: "Canceled"
+        SKIPPED: "Skipped"
+    case:
+      status:
+        RUNNING: "Pending"
+        COMPLETED: "Completed"
+        CANCELED: "Canceled"
+
+  form:
+    optional: "Optional"
+    save: "Save"
+    delete: "Delete"
+    edit: "Edit"
+    selectFile: "Click to upload a file"
+    changeFile: "Click to upload a different file"
+    deleteRow: "Do you really want to delete this row?"
+    addRow: "Add row"
+    optionNotAvailable: "This option is not available anymore"
+    info: "More information"
+
+    navigation:
+      next: "Next"
+      previous: "Previous"
+      states:
+        untouched: "Not filled in"
+        unfinished: "Not completely filled in"
+        valid: "Correctly filled in"
+        invalid: "Incorrectly filled in"
+
+    notification:
+      table:
+        add:
+          success: "Entry was added successfully!"
+          error: "Ooops, something went wrong while adding the entry..."
+
+    power-select:
+      placeholder-single: "Choose one option"
+      placeholder-multiple: "Choose one or more options"
+      options-loading: "Loading options..."
+      options-empty: "No options available"
+      search-placeholder: "Type here to search options"
+      search-empty: "Search didn't match any options"
+      null: "No selection"
+
+    validation:
+      blank: "This field can't be blank"
+      tooShort: "The value of this field can't be shorter than {min} characters"
+      tooLong: "The value of this field can't be longer than {max} characters"
+      greaterThanOrEqualTo: "The value of this field must be greater than or equal to {gte}"
+      lessThanOrEqualTo: "The value of this field must be less than or equal to {lte}"
+      notAnInteger: "The value of this field must be an integer"
+      inclusion: "'{value}' is not a valid value for this field"
+      uploadFailed: "An error occured during upload."
+      format: "{errorMsg}"
+      table: "At least one row of the table was not filled in correctly"
+
+    pikaday:
+      month-previous: "Previous month"
+      month-next: "Next month"

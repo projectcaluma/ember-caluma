@@ -1,0 +1,10 @@
+caluma:
+  mutate-work-item:
+    complete: "Terminer"
+    skip: "Sauter"
+    cancel: "Annuler"
+    success: "Succès!"
+    error: "Oups, quelque chose a mal ..."
+
+  task-button:
+    error: "Oups, aucune tâche n'a été trouvée."

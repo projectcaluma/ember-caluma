@@ -1,0 +1,10 @@
+caluma:
+  mutate-work-item:
+    complete: "Complete"
+    skip: "Skip"
+    cancel: "Cancel"
+    success: "Work item state was successfully changed!"
+    error: "Ooops, something went wrong while changing the work item state..."
+
+  task-button:
+    error: "Ooops, no work item was found."

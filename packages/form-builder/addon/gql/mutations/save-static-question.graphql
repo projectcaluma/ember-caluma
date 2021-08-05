@@ -1,0 +1,13 @@
+# import * from '@projectcaluma/ember-form-builder/gql/fragments/question-info.graphql'
+
+mutation SaveStaticQuestion($input: SaveStaticQuestionInput!) {
+  saveStaticQuestion(input: $input) {
+    question {
+      ...QuestionInfo
+      ... on StaticQuestion {
+        staticContent
+      }
+    }
+    clientMutationId
+  }
+}

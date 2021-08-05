@@ -1,0 +1,14 @@
+caluma:
+  caluma-query:
+    work-item:
+      status:
+        READY: "Offen"
+        COMPLETED: "Erledigt"
+        CANCELED: "Abgebrochen"
+        SKIPPED: "Übersprungen"
+
+    case:
+      status:
+        RUNNING: "In Bearbeitung"
+        COMPLETED: "Abgeschlossen"
+        CANCELED: "Abgebrochen"

@@ -1,0 +1,17 @@
+# import * from '@projectcaluma/ember-form-builder/gql/fragments/form-info.graphql'
+# import * from '@projectcaluma/ember-form-builder/gql/fragments/question-info.graphql'
+
+mutation AddFormQuestion($input: AddFormQuestionInput!, $search: String) {
+  addFormQuestion(input: $input) {
+    form {
+      ...FormInfo
+      questions(search: $search) {
+        edges {
+          node {
+            ...QuestionInfo
+          }
+        }
+      }
+    }
+  }
+}

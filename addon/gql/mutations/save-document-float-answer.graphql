@@ -1,9 +1,0 @@
-# import * from 'ember-caluma/gql/fragments/field-answer.graphql'
-
-mutation($input: SaveDocumentFloatAnswerInput!) {
-  saveDocumentFloatAnswer(input: $input) {
-    answer {
-      ...FieldAnswer
-    }
-  }
-}

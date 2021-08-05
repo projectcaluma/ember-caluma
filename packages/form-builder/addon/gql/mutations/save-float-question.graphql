@@ -1,0 +1,14 @@
+# import * from '@projectcaluma/ember-form-builder/gql/fragments/question-info.graphql'
+
+mutation SaveFloatQuestion($input: SaveFloatQuestionInput!) {
+  saveFloatQuestion(input: $input) {
+    question {
+      ...QuestionInfo
+      ... on FloatQuestion {
+        floatMinValue: minValue
+        floatMaxValue: maxValue
+      }
+    }
+    clientMutationId
+  }
+}

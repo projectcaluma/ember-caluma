@@ -1,0 +1,13 @@
+caluma:
+  caluma-query:
+    work-item:
+      status:
+        READY: "Pending"
+        COMPLETED: "Completed"
+        CANCELED: "Canceled"
+        SKIPPED: "Skipped"
+    case:
+      status:
+        RUNNING: "Pending"
+        COMPLETED: "Completed"
+        CANCELED: "Canceled"

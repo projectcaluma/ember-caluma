@@ -1,0 +1,66 @@
+caluma:
+  caluma-query:
+    work-item:
+      status:
+        READY: "En attente"
+        COMPLETED: "Terminé"
+        CANCELED: "Annulé"
+        SKIPPED: "Sauté"
+
+    case:
+      status:
+        RUNNING: "En cours"
+        COMPLETED: "Terminé"
+        CANCELED: "Annulé"
+
+  form:
+    optional: "optional"
+    save: "sauvegarder"
+    delete: "supprimer"
+    edit: "modifier"
+    selectFile: "cliquez pour télécharger le ficher"
+    changeFile: "cliquez pour télécharger un autre fichier"
+    deleteRow: "Voulez-vous supprimer cette ligne?"
+    addRow: "Ajouter une ligne"
+    optionNotAvailable: "Cette option n'est plus disponible"
+    info: "Plus d'informations"
+
+    navigation:
+      next: "suivante"
+      previous: "précédente"
+      states:
+        untouched: "non rempli"
+        unfinished: "pas complètement rempli"
+        valid: "rempli correctement"
+        invalid: "mal rempli"
+
+    notification:
+      table:
+        add:
+          success: "L'entrée a été ajoutée avec succès."
+          error: "Oups, quelque chose a mal tourné lors de l'ajout de l'entrée...."
+
+    power-select:
+      placeholder-single: "Sélectionnez une option"
+      placeholder-multiple: "Sélectionnez une ou plusieurs options"
+      options-loading: "chargez les options..."
+      options-empty: "Pas d'options disponibles"
+      search-placeholder: "Tapez ici pour rechercher"
+      search-empty: "Pas d'options trouvées"
+      null: "Aucune sélection"
+
+    validation:
+      blank: "Ce champ ne doit pas être laissé vide"
+      tooShort: "Ce champ doit contenir au moins {min} caractères"
+      tooLong: "Un maximum de {max} caractères est autorisé dans ce champ"
+      greaterThanOrEqualTo: "La valeur indiquée dans ce champ ne doit pas être inférieure à {gte} "
+      lessThanOrEqualTo: "L'entrée dans ce champ ne doit pas être supérieure à {lte} "
+      notAnInteger: "Veuillez entrer un nombre entier"
+      inclusion: "'{value}' n'est pas une valeur valide pour ce champ"
+      uploadFailed: "Une erreur s'est produite pendant le téléchargement."
+      format: "{errorMsg}"
+      table: "Au moins une ligne du tableau n'a pas été remplie correctement"
+
+    pikaday:
+      month-previous: "Mois précédent"
+      month-next: "Mois suivant"

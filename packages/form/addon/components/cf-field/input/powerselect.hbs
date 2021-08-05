@@ -1,0 +1,26 @@
+{{#let (component this.componentName) as |DynamicSelect|}}
+  <DynamicSelect
+    @options={{@field.options}}
+    @selected={{@field.selected}}
+    @disabled={{@disabled}}
+    @allowClear={{true}}
+    @preventScroll={{true}}
+    @searchEnabled={{this.searchEnabled}}
+    @searchField="label"
+    @triggerId={{@field.pk}}
+    @renderInPlace={{true}}
+    @placeholder={{this.placeholder}}
+    @loadingMessage={{t "caluma.form.power-select.options-loading"}}
+    @searchMessage={{t "caluma.form.power-select.options-empty"}}
+    @searchPlaceholder={{t "caluma.form.power-select.search-placeholder"}}
+    @noMatchesMessage={{t "caluma.form.power-select.search-empty"}}
+    @onChange={{this.change}}
+    as |option|
+  >
+    {{#if (and option.disabled (not @disabled))}}
+      <del class="uk-text-muted" title={{t "caluma.form.optionNotAvailable"}}>{{option.label}}</del>
+    {{else}}
+      {{option.label}}
+    {{/if}}
+  </DynamicSelect>
+{{/let}}

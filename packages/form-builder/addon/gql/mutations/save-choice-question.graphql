@@ -1,0 +1,20 @@
+# import * from '@projectcaluma/ember-form-builder/gql/fragments/question-info.graphql'
+
+mutation SaveChoiceQuestion($input: SaveChoiceQuestionInput!) {
+  saveChoiceQuestion(input: $input) {
+    question {
+      ...QuestionInfo
+      ... on ChoiceQuestion {
+        options {
+          edges {
+            node {
+              label
+              slug
+            }
+          }
+        }
+      }
+    }
+    clientMutationId
+  }
+}

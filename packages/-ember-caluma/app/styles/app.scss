@@ -1,0 +1,15 @@
+$global-primary-background: #3799ad;
+
+$global-font-family: "Oxygen", Helvetica, Arial, sans-serif;
+$base-code-font-family: "Oxygen Mono", monospace;
+
+$base-body-font-weight: 300;
+$base-heading-font-weight: 300;
+
+@import "ember-uikit";
+@import "@projectcaluma/ember-form";
+@import "@projectcaluma/ember-form-builder";
+
+body {
+  background-color: white;
+}

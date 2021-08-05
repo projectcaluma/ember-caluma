@@ -1,0 +1,28 @@
+@import "ember-uikit/variables-theme";
+
+@import "../cfb-form-editor/question-list/item";
+@import "../cfb-form-editor/question";
+@import "../cfb-navigation";
+@import "../cfb-powerselect";
+
+.cfb-pointer {
+  cursor: pointer;
+}
+
+.cfb-prefixed {
+  display: flex;
+
+  &-slug {
+    line-height: 40px;
+    padding-right: 10px;
+    white-space: nowrap;
+  }
+}
+
+.cfb-code-editor {
+  font-family: $base-code-font-family;
+  letter-spacing: normal;
+  height: 70px;
+  line-height: 16px;
+  tab-size: 4;
+}

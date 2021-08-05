@@ -1,0 +1,159 @@
+fragment SimpleQuestion on Question {
+  slug
+  label
+  isRequired
+  isHidden
+  meta
+  infoText
+  ... on TextQuestion {
+    textMinLength: minLength
+    textMaxLength: maxLength
+    textDefaultAnswer: defaultAnswer {
+      value
+    }
+    placeholder
+  }
+  ... on TextareaQuestion {
+    textareaMinLength: minLength
+    textareaMaxLength: maxLength
+    textareaDefaultAnswer: defaultAnswer {
+      value
+    }
+    placeholder
+  }
+  ... on IntegerQuestion {
+    integerMinValue: minValue
+    integerMaxValue: maxValue
+    integerDefaultAnswer: defaultAnswer {
+      value
+    }
+    placeholder
+  }
+  ... on FloatQuestion {
+    floatMinValue: minValue
+    floatMaxValue: maxValue
+    floatDefaultAnswer: defaultAnswer {
+      value
+    }
+    placeholder
+  }
+  ... on ChoiceQuestion {
+    choiceOptions: options {
+      edges {
+        node {
+          slug
+          label
+          isArchived
+        }
+      }
+    }
+    choiceDefaultAnswer: defaultAnswer {
+      value
+    }
+  }
+  ... on MultipleChoiceQuestion {
+    multipleChoiceOptions: options {
+      edges {
+        node {
+          slug
+          label
+          isArchived
+        }
+      }
+    }
+    multipleChoiceDefaultAnswer: defaultAnswer {
+      value
+    }
+  }
+  ... on DateQuestion {
+    dateDefaultAnswer: defaultAnswer {
+      value
+    }
+  }
+  ... on StaticQuestion {
+    staticContent
+  }
+  ... on CalculatedFloatQuestion {
+    calcExpression
+  }
+}
+
+fragment FieldTableQuestion on Question {
+  ... on TableQuestion {
+    rowForm {
+      slug
+      questions {
+        edges {
+          node {
+            ...SimpleQuestion
+          }
+        }
+      }
+    }
+    tableDefaultAnswer: defaultAnswer {
+      value {
+        id
+        answers {
+          edges {
+            node {
+              id
+              question {
+                slug
+              }
+              ... on StringAnswer {
+                stringValue: value
+              }
+              ... on IntegerAnswer {
+                integerValue: value
+              }
+              ... on FloatAnswer {
+                floatValue: value
+              }
+              ... on ListAnswer {
+                listValue: value
+              }
+              ... on DateAnswer {
+                dateValue: value
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment FieldQuestion on Question {
+  ...SimpleQuestion
+  ...FieldTableQuestion
+  ... on FormQuestion {
+    subForm {
+      slug
+      name
+      questions {
+        edges {
+          node {
+            # This part here limits our query to 2 level deep nested forms. This
+            # has to be solved in another way!
+            ...SimpleQuestion
+            ...FieldTableQuestion
+            ... on FormQuestion {
+              subForm {
+                slug
+                name
+                questions {
+                  edges {
+                    node {
+                      ...SimpleQuestion
+                      ...FieldTableQuestion
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

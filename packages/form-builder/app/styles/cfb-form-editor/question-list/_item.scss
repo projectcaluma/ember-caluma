@@ -1,0 +1,39 @@
+.cfb-form-editor__question-list__item__required {
+  transform: translate(0.15rem, -0.15rem);
+  height: 11px;
+  width: 11px;
+  border: 1px solid $global-background;
+  background: $global-danger-background;
+  border-radius: 50%;
+
+  &--conditional::after {
+    content: "";
+    transform: translate(3px, 3px);
+    width: 3px;
+    height: 3px;
+    background: $global-background;
+    border-radius: 50%;
+    display: block;
+  }
+}
+
+.cfb-form-editor__question-list__item__archived {
+  a {
+    color: #808080;
+  }
+
+  .uk-badge {
+    background-color: #808080;
+  }
+}
+
+.cfb-form-editor__question-list__item__type {
+  font-size: $global-small-font-size;
+  height: 22px;
+  border: 1px solid $badge-background;
+
+  &--hidden {
+    background-color: $global-background;
+    color: $global-color !important;
+  }
+}
