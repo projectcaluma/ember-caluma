@@ -1,8 +1,8 @@
 .cfb-form-editor__question-list__item__required {
   transform: translate(0.15rem, -0.15rem);
-  height: 0.7rem;
-  width: 0.7rem;
-  border: 0.1rem solid $global-background;
+  height: 11px;
+  width: 11px;
+  border: 1px solid $global-background;
   background: $global-danger-background;
   border-radius: 50%;
 }
@@ -15,4 +15,9 @@
   .uk-badge {
     background-color: #808080;
   }
+}
+
+.cfb-form-editor__question-list__item__type {
+  font-size: $global-small-font-size;
+  height: 22px;
 }
