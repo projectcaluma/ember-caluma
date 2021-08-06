@@ -39,8 +39,8 @@ export default class WorkItemButtonComponent extends Component {
   @dropTask
   *mutate() {
     try {
-      if (typeof this.args.willMutate === "function") {
-        const proceed = yield this.args.willMutate();
+      if (typeof this.args.beforeMutate === "function") {
+        const proceed = yield this.args.beforeMutate();
 
         if (proceed === false) return;
       }

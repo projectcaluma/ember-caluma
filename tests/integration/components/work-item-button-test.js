@@ -69,20 +69,20 @@ module("Integration | Component | work-item-button", function (hooks) {
     await click("button");
   });
 
-  test("it triggers willMutate hook", async function (assert) {
+  test("it triggers beforeMutate hook", async function (assert) {
     assert.expect(2);
 
-    this.willMutate = () => {
-      assert.step("willMutate");
+    this.beforeMutate = () => {
+      assert.step("beforeMutate");
       return false;
     };
 
     await render(
-      hbs`<WorkItemButton @mutation="complete" @workItemId="test" @willMutate={{this.willMutate}} />`
+      hbs`<WorkItemButton @mutation="complete" @workItemId="test" @beforeMutate={{this.beforeMutate}} />`
     );
 
     await click("button");
 
-    assert.verifySteps(["willMutate"]);
+    assert.verifySteps(["beforeMutate"]);
   });
 });
