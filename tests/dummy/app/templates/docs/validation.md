@@ -6,7 +6,9 @@ Built in components to validate Caluma data.
 
 ### DocumentValidity
 
-This component validates the passed document for its validity as soon as it enters the viewport and will yield the validity status of the document.
+This component validates the passed document for its validity as soon as it
+enters the viewport and will yield the validity status of the document and an
+action for manual validation.
 
 ```hbs
 <DocumentValidity @document={{this.calumaDocument}} as |isValid|>
@@ -16,8 +18,26 @@ This component validates the passed document for its validity as soon as it ente
 </DocumentValidity>
 ```
 
-The DocumentValidity component has one parameter:
+Or when triggered manually:
 
-- `document` The document to be validated.
+```hbs
+<DocumentValidity
+  @document={{this.calumaDocument}}
+  @validateOnEnter={{false}}
+  as |isValid validate|
+>
+  {{#if isValid}}
+    <p>The document is valid</p>
+  {{/if}}
+  <button {{on "click" validate}}>Validate!</button>
+</DocumentValidity>
+```
 
-The component yields `isValid` which represents the validity of all the questions in the document.
+The DocumentValidity component has two parameter:
+
+- `document` The caluma document to be validated.
+- `validateOnEnter` Whether the validate action should be triggered on entering the viewport.
+
+The component yields `isValid` which represents the validity of all the
+questions in the document and an action `validate` to trigger the validation
+manually.

@@ -2,7 +2,7 @@ import { assert } from "@ember/debug";
 import Service from "@ember/service";
 import { isEmpty } from "@ember/utils";
 import { queryManager } from "ember-apollo-client";
-import { dropTask } from "ember-concurrency-decorators";
+import { enqueueTask } from "ember-concurrency-decorators";
 
 import allFormatValidatorsQuery from "ember-caluma/gql/queries/all-format-validators.graphql";
 
@@ -29,6 +29,7 @@ export default class ValidatorService extends Service {
 
     const validators =
       this.validators.lastSuccessful?.value ||
+      (await this.validators.last)?.value ||
       (await this.validators.perform());
 
     return slugs.map((slug) => {
@@ -47,9 +48,9 @@ export default class ValidatorService extends Service {
     });
   }
 
-  @dropTask
+  @enqueueTask
   *validators() {
-    const raw = yield this.apollo.query(
+    const raw = yield this.apollo.watchQuery(
       { query: allFormatValidatorsQuery },
       "allFormatValidators.edges"
     );

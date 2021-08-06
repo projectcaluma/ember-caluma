@@ -1,35 +1,51 @@
+import { action } from "@ember/object";
 import Component from "@glimmer/component";
-import { tracked } from "@glimmer/tracking";
-import { dropTask } from "ember-concurrency-decorators";
 
 /**
  * Component to check the validity of a document
  *
  * ```hbs
- * <DocumentValidity @document={{this.calumaDocument}} as |isValid|>
+ * <DocumentValidity @document={{this.calumaDocument}} as |isValid validate|>
  *  {{#if isValid}}
  *    <p>The document is valid</p>
  *  {{/if}}
+ *  <button {{on "click" validate}}>Validate!</button>
  * </DocumentValidity>
  * ```
  *
  * @class DocumentValidity
  * @yield {Boolean} isValid
+ * @yield {Function} validate
  */
 export default class DocumentValidity extends Component {
   /**
    * The document to be validated
+   *
    * @argument {Document} document
    */
 
-  @tracked isValid = null;
+  /**
+   * Whether to validate the document on entering the viewport. Default is `true`.
+   *
+   * @argument {Boolean} validateOnEnter
+   */
 
-  @dropTask
-  *validate() {
-    yield Promise.all(
+  get isValid() {
+    return this.args.document.fields.every((f) => f.isValid);
+  }
+
+  get validateOnEnter() {
+    return this.args.validateOnEnter !== undefined
+      ? this.args.validateOnEnter
+      : true;
+  }
+
+  @action
+  async validate() {
+    await Promise.all(
       this.args.document.fields.map((field) => field.validate.perform())
     );
 
-    this.isValid = this.args.document.fields.every((f) => f.isValid);
+    return this.isValid;
   }
 }
