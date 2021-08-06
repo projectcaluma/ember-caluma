@@ -39,21 +39,27 @@ export default class WorkItemButtonComponent extends Component {
   @dropTask
   *mutate() {
     try {
+      if (typeof this.args.willMutate === "function") {
+        const proceed = yield this.args.willMutate();
+
+        if (proceed === false) return;
+      }
+
       yield this.apollo.mutate({
         mutation: this[`${this.args.mutation}WorkItemMutation`],
         variables: { id: this.args.workItemId },
       });
 
-      if (this.args.onSuccess) {
-        this.args.onSuccess();
+      if (typeof this.args.onSuccess === "function") {
+        yield this.args.onSuccess();
       } else {
         this.notification.success(
           this.intl.t("caluma.mutate-work-item.success")
         );
       }
     } catch (e) {
-      if (this.args.onError) {
-        this.args.onError(e);
+      if (typeof this.args.onError === "function") {
+        yield this.args.onError(e);
       } else {
         // eslint-disable-next-line no-console
         console.error(e);

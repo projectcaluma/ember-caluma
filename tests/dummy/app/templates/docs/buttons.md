@@ -35,6 +35,7 @@ The WorkItemButton component has 5 parameters:
 - `label` (Optional) Overwrites the button text.
 - `onSuccess`(Optional) Function to be called when the mutation succeeds.
 - `onError`(Optional) Function to be called when the mutation fails.
+- `willMutate`(Optional) Function to be called before the mutation is executed, if this function returns `false` the mutation is aborted.
 
 Additionally there are many optional parameters for the underlying [UkButton](https://adfinis-sygroup.github.io/ember-uikit/#/docs/components/button) component, refer to the UkButton component documentation to see what exactly they do:
 
@@ -80,5 +81,6 @@ The TaskButton component has 6 parameters:
 - `label` (Optional) Overwrites the button text.
 - `onSuccess`(Optional) Will be passed to WorkItemButton onSuccess.
 - `onError`(Optional) Will be passed to WorkItemButton onError.
+- `willMutate`(Optional) Will be passed to WorkItemButton willMutate.
 
 Additionally the [UkButton](https://adfinis-sygroup.github.io/ember-uikit/#/docs/components/button) parameters from the WorkItemButton still apply.
