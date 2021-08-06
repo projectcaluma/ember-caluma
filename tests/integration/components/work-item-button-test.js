@@ -68,4 +68,21 @@ module("Integration | Component | work-item-button", function (hooks) {
     this.set("mutation", mutation);
     await click("button");
   });
+
+  test("it triggers willMutate hook", async function (assert) {
+    assert.expect(2);
+
+    this.willMutate = () => {
+      assert.step("willMutate");
+      return false;
+    };
+
+    await render(
+      hbs`<WorkItemButton @mutation="complete" @workItemId="test" @willMutate={{this.willMutate}} />`
+    );
+
+    await click("button");
+
+    assert.verifySteps(["willMutate"]);
+  });
 });
