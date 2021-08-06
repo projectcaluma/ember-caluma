@@ -39,20 +39,17 @@ export default class TaskButtonComponent extends Component {
   @dropTask
   *fetchWorkItem() {
     try {
-      const res = yield this.apollo.query(
+      const response = yield this.apollo.query(
         {
           query: allWorkItems,
           variables: {
-            filter: [
-              { taskSlug: this.args.task },
-              ...(this.args.filters || []),
-            ],
+            filter: [{ task: this.args.task }, ...(this.args.filters || [])],
           },
         },
         "allWorkItems.edges"
       );
 
-      return res[0]?.node;
+      return response[0]?.node;
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e);
