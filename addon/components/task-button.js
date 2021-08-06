@@ -43,7 +43,11 @@ export default class TaskButtonComponent extends Component {
         {
           query: allWorkItems,
           variables: {
-            filter: [{ task: this.args.task }, ...(this.args.filters || [])],
+            filter: [
+              { task: this.args.task },
+              { status: "READY" },
+              ...(this.args.filters || []),
+            ],
           },
         },
         "allWorkItems.edges"
