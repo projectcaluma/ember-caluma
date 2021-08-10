@@ -34,7 +34,7 @@ module("Integration | Component | document-validity", function (hooks) {
     assert.expect(1);
 
     await render(hbs`
-      <DocumentValidity @document={{this.document}} as |isValid|>
+      <DocumentValidity @document={{this.document}} @validateOnEnter={{true}} as |isValid|>
         <p>
           {{#if isValid}}
             Valid
@@ -56,7 +56,7 @@ module("Integration | Component | document-validity", function (hooks) {
     this.makeInvalid();
 
     await render(hbs`
-      <DocumentValidity @document={{this.document}} @validateOnEnter={{false}} as |isValid validate|>
+      <DocumentValidity @document={{this.document}} as |isValid validate|>
         <p>
           {{#if isValid}}
             Valid

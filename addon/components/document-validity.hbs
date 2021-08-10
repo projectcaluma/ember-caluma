@@ -1,4 +1,4 @@
-{{#if this.validateOnEnter}}
+{{#if @validateOnEnter}}
   <div {{in-viewport onEnter=this.validate}}>
     {{yield this.isValid this.validate}}
   </div>
