@@ -25,19 +25,13 @@ export default class DocumentValidity extends Component {
    */
 
   /**
-   * Whether to validate the document on entering the viewport. Default is `true`.
+   * Whether to validate the document on entering the viewport. Default is `false`.
    *
    * @argument {Boolean} validateOnEnter
    */
 
   get isValid() {
     return this.args.document.fields.every((f) => f.isValid);
-  }
-
-  get validateOnEnter() {
-    return this.args.validateOnEnter !== undefined
-      ? this.args.validateOnEnter
-      : true;
   }
 
   @action
