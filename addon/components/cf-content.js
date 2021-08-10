@@ -31,6 +31,15 @@ import { parseDocument } from "ember-caluma/lib/parsers";
  * </CfContent>
  * ```
  *
+ * If you're rendering multi-page forms, the component also expects a query
+ * param `displayedForm`:
+ * ```js
+ * export default class FormController extends Controller {
+ *   queryParams = ["displayedForm"];
+ *   @tracked displayedForm;
+ *   ...
+ * ```
+ *
  * @class CfContentComponent
  * @yield {Object} content
  * @yield {Document} content.document
