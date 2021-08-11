@@ -5,6 +5,7 @@ dummy:
   testing: "Tester"
   migration: "Migration"
   validation: "Validation"
+  buttons: "Boutons"
   queries:
     title: "Queries"
     load: "Télécharger"
