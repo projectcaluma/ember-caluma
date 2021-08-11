@@ -1,3 +1,26 @@
+# [7.5.0](https://github.com/projectcaluma/ember-caluma/compare/v7.4.0...v7.5.0) (2021-08-11)
+
+
+### Bug Fixes
+
+* **cfb:** improve badge styling after uikit update ([6476b4a](https://github.com/projectcaluma/ember-caluma/commit/6476b4ae2441a9984ecebc1e5a65f9326df4199f))
+* **demo-app:** added required "validation" route to router and added corresponding translations. ([513e58a](https://github.com/projectcaluma/ember-caluma/commit/513e58ad093a601ce0f9a43b67959aeace082acb))
+* **file upload:** don't use formdata for minio upload ([52fde60](https://github.com/projectcaluma/ember-caluma/commit/52fde60364ca82435479046be35bc33c1f488fc9)), closes [#1287](https://github.com/projectcaluma/ember-caluma/issues/1287)
+* **info modal:** glimmer syntax ([b6b2b24](https://github.com/projectcaluma/ember-caluma/commit/b6b2b245fdda3a978b7c90f5833bac38345d73e3))
+* **task-button:** fix filter for fetching the task ([332c480](https://github.com/projectcaluma/ember-caluma/commit/332c4807e16ba0a51407016b31163238ac9fd4ce))
+* **task-button:** only render button if work item is ready ([f24191c](https://github.com/projectcaluma/ember-caluma/commit/f24191cec99502a301642113f727c2adb4f0e147))
+* add ember-in-viewport to blueprint ([57d1710](https://github.com/projectcaluma/ember-caluma/commit/57d1710cd4a47741517c8bf43122c8d284a2ffc1))
+
+
+### Features
+
+* **buttons:** add willMutate hook for work item and task buttons ([3672a52](https://github.com/projectcaluma/ember-caluma/commit/3672a52e788ad9e1dc6ac2c4e9960f99f4449cb7))
+* **cfb:** link sub- & rowforms in question list ([4034427](https://github.com/projectcaluma/ember-caluma/commit/4034427d2898e79d012ff9fcf5dbc7df6fdb5e41))
+* **cfb:** make sub- & rowforms searchable ([66e483f](https://github.com/projectcaluma/ember-caluma/commit/66e483fcb972b300b14394d5e7eac46eb79aa003))
+* **cfb:** mark conditionally required / hidden questions ([f91e07e](https://github.com/projectcaluma/ember-caluma/commit/f91e07e49cfcd33eb363f9be063d987584c4acc0))
+* **document-validity:** allow manual triggering of validation ([8388a0a](https://github.com/projectcaluma/ember-caluma/commit/8388a0a99a87e1eaa780b38f3c0ff0ea1ab3cd6f))
+* add widget override "hidden" ([cfa8122](https://github.com/projectcaluma/ember-caluma/commit/cfa81220326c0bda7b901a22dbe595c329f18c1a))
+
 # [7.4.0](https://github.com/projectcaluma/ember-caluma/compare/v7.3.0...v7.4.0) (2021-07-16)
 
 
