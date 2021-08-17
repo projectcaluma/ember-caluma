@@ -22,10 +22,10 @@
     "@semantic-release/release-notes-generator" "9.0.3"
     semantic-release "17.4.4"
 
-"@apollo/client@^3.2.1", "@apollo/client@^3.4.5":
-  version "3.4.5"
-  resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.4.5.tgz#c6bc27e8a66c9ad4e27183d33cbefbb9e06d5e69"
-  integrity sha512-arvzqyh+SmcJ9jGmdP1QhboTCq6YoowidqbDTigJ8LqA4jywOvgy3GMSPKUtyyxter12rQ+42cXjGI9+ZMVuyA==
+"@apollo/client@^3.2.1", "@apollo/client@^3.4.7":
+  version "3.4.7"
+  resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.4.7.tgz#63d7c3539cc45fe44ac9cb093a27641479a8d1ad"
+  integrity sha512-EmqGxXD8hr05cIFWJFwtGXifc+Lo8hTCEuiaQMtKknHszJfqIFXSxqP+H+eJnjfuoxH74aTSsZKtJlnE83Vt6w==
   dependencies:
     "@graphql-typed-document-node/core" "^3.0.0"
     "@wry/context" "^0.6.0"
@@ -1517,14 +1517,15 @@
     resolve "^1.8.1"
     semver "^7.3.2"
 
-"@embroider/macros@^0.43.0":
-  version "0.43.4"
-  resolved "https://registry.yarnpkg.com/@embroider/macros/-/macros-0.43.4.tgz#c85f33cc397149483dfead9bcea54100214dc8d5"
-  integrity sha512-KOHQZeAzliuTp8qhlq67vtNPdku4Sy9DFe+rhgAzuyfpXB+BLbhVQbSPU+NG+5t2J2i1dU464ectZFUxNmLzwg==
+"@embroider/macros@^0.43.5":
+  version "0.43.5"
+  resolved "https://registry.yarnpkg.com/@embroider/macros/-/macros-0.43.5.tgz#f846bb883482436611a58a3512c687d4f9fddfad"
+  integrity sha512-WmLa0T3dyG2XyN5Gr7k1RINDirFzAzh6CRvykRMcuahq1rCrav8ADrWgQzKpPWxdR6DgQCuoyimopJhLbYOpgQ==
   dependencies:
-    "@embroider/shared-internals" "0.43.4"
+    "@embroider/shared-internals" "0.43.5"
     assert-never "^1.2.1"
     ember-cli-babel "^7.26.6"
+    find-up "^5.0.0"
     lodash "^4.17.21"
     resolve "^1.20.0"
     semver "^7.3.2"
@@ -1555,10 +1556,10 @@
     semver "^7.3.2"
     typescript-memoize "^1.0.0-alpha.3"
 
-"@embroider/shared-internals@0.43.4":
-  version "0.43.4"
-  resolved "https://registry.yarnpkg.com/@embroider/shared-internals/-/shared-internals-0.43.4.tgz#ff99ed15efa6922191792700517b7aeb91884087"
-  integrity sha512-EPVw6x2Qo4S/Ff5vV8wijcCfCPexQWKpi32kOyVENLeFt5jtDTWBgLgBKHF/4yzNjneZZMaQ7znQaTaSh0AI6w==
+"@embroider/shared-internals@0.43.5":
+  version "0.43.5"
+  resolved "https://registry.yarnpkg.com/@embroider/shared-internals/-/shared-internals-0.43.5.tgz#4269208095452c23bfa4f08554fd8f7ed7b83a83"
+  integrity sha512-vydU3kRS5hH/hWOBHiHP06427d0C5t2p+UTPtbH09+Jlyj0WvvtgUfiNltEneY6jjpLXlqOfgs4LjsRdmBFksw==
   dependencies:
     ember-rfc176-data "^0.3.17"
     fs-extra "^9.1.0"
@@ -8311,12 +8312,12 @@ ember-element-helper@^0.5.2:
     ember-cli-babel "^7.17.2"
     ember-cli-htmlbars "^5.1.0"
 
-ember-engines@0.8.18:
-  version "0.8.18"
-  resolved "https://registry.yarnpkg.com/ember-engines/-/ember-engines-0.8.18.tgz#e20737c8f2397e9507c29ea5f69a3ac3cceebbe1"
-  integrity sha512-G1DYu4Cu2MWboDj0yst+VglU3tTPkbTNlS0iOAA/i05Y3hqd8jgf2DkCUyNMXKk54WG15dk+RfPsur/dWC6LpA==
+ember-engines@0.8.19:
+  version "0.8.19"
+  resolved "https://registry.yarnpkg.com/ember-engines/-/ember-engines-0.8.19.tgz#b5c4d3a0f332172e279f7f68bab357a88ce09497"
+  integrity sha512-8IYHbW2z1zNCM2biREf2mHuXNpQoKc5P3yilXvGDLb5V1hujftXo5Bem038YKufp3DxRRNOHIomFKxHvDduNGQ==
   dependencies:
-    "@embroider/macros" "^0.43.0"
+    "@embroider/macros" "^0.43.5"
     amd-name-resolver "1.3.1"
     babel-plugin-compact-reexports "^1.1.0"
     broccoli-babel-transpiler "^7.2.0"
@@ -9192,10 +9193,10 @@ eslint-module-utils@^2.6.1:
     debug "^3.2.7"
     pkg-dir "^2.0.0"
 
-eslint-plugin-ember@10.5.1:
-  version "10.5.1"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-ember/-/eslint-plugin-ember-10.5.1.tgz#3ec65cb562b438c64aa28d772606dbb55705e037"
-  integrity sha512-6cubCQdsybN2DtuXnlkhqi3SemBk4ktjq2k4vcjFG8QLmrpmiS6sDwIZMM/TLI8f9QwZIjmewhwS4zB/77E47w==
+eslint-plugin-ember@10.5.2:
+  version "10.5.2"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-ember/-/eslint-plugin-ember-10.5.2.tgz#4b6112994294beac8a7a64afcec6c5effd30c790"
+  integrity sha512-CCYuBFW6AB9/mKYUDfSriXVEQVrsCfxWEoFIChoFmUW5pdmu7Qd+AsdfNzw+2DX3U94fftKpnRMTMraFdbBWSw==
   dependencies:
     "@ember-data/rfc395-data" "^0.0.4"
     css-tree "^1.0.0-alpha.39"
