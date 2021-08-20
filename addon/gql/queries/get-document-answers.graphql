@@ -1,7 +1,7 @@
 # import * from 'ember-caluma/gql/fragments/field-answer.graphql'
 
-query($id: ID!) {
-  allDocuments(id: $id) {
+query ($id: ID!) {
+  allDocuments(filter: [{ id: $id }]) {
     edges {
       node {
         id

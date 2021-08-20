@@ -1,5 +1,5 @@
 query CheckQuestionSlug($slug: String!) {
-  allQuestions(slug: $slug) {
+  allQuestions(filter: [{ slug: $slug }]) {
     edges {
       node {
         slug

@@ -7,9 +7,11 @@ query SearchQuestion(
   $cursor: String
 ) {
   allQuestions(
-    search: $search
-    excludeForms: $excludeForms
-    isArchived: false
+    filter: [
+      { search: $search }
+      { excludeForms: $excludeForms }
+      { isArchived: false }
+    ]
     first: $pageSize
     after: $cursor
   ) {

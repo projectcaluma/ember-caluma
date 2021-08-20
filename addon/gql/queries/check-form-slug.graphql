@@ -1,5 +1,5 @@
 query CheckFormSlug($slug: String!) {
-  allForms(slug: $slug) {
+  allForms(filter: [{ slug: $slug }]) {
     edges {
       node {
         slug
