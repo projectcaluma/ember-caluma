@@ -1,3 +1,22 @@
+# [8.0.0](https://github.com/projectcaluma/ember-caluma/compare/v7.5.0...v8.0.0) (2021-08-20)
+
+
+### Bug Fixes
+
+* **gql:** replace deprecated filters and fix dynamic option filter ([e2e099a](https://github.com/projectcaluma/ember-caluma/commit/e2e099a16028dfe5192848e6a4cc4de07dc07b0e))
+
+
+### Features
+
+* **validation:** switch default for validateOnEnter ([ee57ed5](https://github.com/projectcaluma/ember-caluma/commit/ee57ed51c596c74989785ee1e8737dcc5d9a606f))
+
+
+### BREAKING CHANGES
+
+* **validation:** The `validateOnEnter` parameter for the
+`DocumentValidity` component is now `false` instead of `true` since this
+is the default use case.
+
 # [7.5.0](https://github.com/projectcaluma/ember-caluma/compare/v7.4.0...v7.5.0) (2021-08-11)
 
 
