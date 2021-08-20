@@ -30,7 +30,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@apollo/client": "^3.4.7",
+    "@apollo/client": "^3.4.8",
     "@ember/render-modifiers": "^1.0.2",
     "@glimmer/component": "^1.0.4",
     "@glimmer/tracking": "^1.0.4",
