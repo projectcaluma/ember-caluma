@@ -1,5 +1,5 @@
 query DataSource($name: String!) {
-  dataSource(name: $name) {
+  dataSource(filter: [{ name: $name }]) {
     edges {
       node {
         label

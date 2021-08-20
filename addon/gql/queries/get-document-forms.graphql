@@ -1,7 +1,7 @@
 # import * from 'ember-caluma/gql/fragments/field-question.graphql'
 
-query($slug: String!) {
-  allForms(slug: $slug) {
+query ($slug: String!) {
+  allForms(filter: [{ slug: $slug }]) {
     edges {
       node {
         slug

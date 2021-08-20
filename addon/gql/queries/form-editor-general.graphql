@@ -1,7 +1,7 @@
 # import * from 'ember-caluma/gql/fragments/form-info.graphql'
 
 query FormEditorGeneral($slug: String!) {
-  allForms(slug: $slug) {
+  allForms(filter: [{ slug: $slug }]) {
     edges {
       node {
         ...FormInfo

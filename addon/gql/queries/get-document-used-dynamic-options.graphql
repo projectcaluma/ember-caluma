@@ -1,6 +1,6 @@
 query GetDocumentUsedDynamicOptions($document: ID!, $question: ID!) {
   allUsedDynamicOptions(
-    filter: [{ document: $document, question: $question }]
+    filter: [{ document: $document }, { question: $question }]
   ) {
     edges {
       node {

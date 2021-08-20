@@ -3,7 +3,7 @@
 # import SimpleAnswer from 'ember-caluma/gql/fragments/field-answer.graphql'
 
 query FormEditorQuestion($slug: String!) {
-  allQuestions(slug: $slug) {
+  allQuestions(filter: [{ slug: $slug }]) {
     edges {
       node {
         ...QuestionInfo

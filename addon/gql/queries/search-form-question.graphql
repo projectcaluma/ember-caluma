@@ -1,7 +1,7 @@
 # import * from 'ember-caluma/gql/fragments/question-info.graphql'
 
 query SearchFormQuestion($slug: String!, $search: String, $archived: Boolean) {
-  allForms(slug: $slug) {
+  allForms(filter: [{ slug: $slug }]) {
     edges {
       node {
         slug
