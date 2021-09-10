@@ -1,9 +1,6 @@
-"use strict";
+import fs from "fs";
 
-const fs = require("fs");
-
-// eslint-disable-next-line node/no-unpublished-require
-const fetch = require("node-fetch");
+import fetch from "node-fetch";
 
 fetch("http://localhost:8000/graphql", {
   method: "POST",
@@ -38,7 +35,7 @@ fetch("http://localhost:8000/graphql", {
     });
 
     fs.writeFile(
-      "addon/-private/possible-types.js",
+      "packages/core/addon/-private/possible-types.js",
       `export default ${JSON.stringify(possibleTypes)}`,
       (err) => {
         if (err) {

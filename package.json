@@ -13,6 +13,9 @@
     "lint:hbs:fix": "ember-template-lint . --fix",
     "lint:js": "eslint . --cache",
     "lint:js:fix": "eslint . --fix",
+    "update-possible-types": "node bin/fetch-possible-types.mjs && prettier --write packages/core/addon/-private/possible-types.js",
+    "update-schema": "get-graphql-schema http://localhost:8000/graphql > packages/testing/addon/mirage-graphql/schema.graphql && prettier --write packages/testing/addon/mirage-graphql/schema.graphql",
+    "update-caluma": "npm-run-all --aggregate-output --continue-on-error --parallel update-possible-types update-schema",
     "prepare": "husky install"
   },
   "commitlint": {
@@ -42,6 +45,7 @@
     "eslint-plugin-qunit": "6.2.0",
     "husky": "7.0.2",
     "lint-staged": "11.1.2",
+    "node-fetch": "3.0.0",
     "npm-run-all": "4.1.5",
     "prettier": "2.4.0",
     "semantic-release-monorepo": "7.0.5"
