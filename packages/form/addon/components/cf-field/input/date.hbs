@@ -1,10 +1,25 @@
-<PikadayInput
-  class={{concat "uk-input" (if @disabled " uk-disabled")}}
-  name={{@field.pk}}
-  id={{@field.pk}}
-  @format="L"
-  @onSelection={{this.onChange}}
-  @useUTC={{true}}
-  @value={{@field.answer.value}}
-  @readonly={{@disabled}}
-/>
+{{#if @disabled}}
+  <input
+    class="uk-input uk-disabled"
+    type="text"
+    name={{@field.pk}}
+    id={{@field.pk}}
+    value={{format-date
+      @field.answer.value
+      day="2-digit"
+      month="2-digit"
+      year="numeric"
+    }}
+    readonly
+  />
+{{else}}
+  <PikadayInput
+    class="uk-input"
+    name={{@field.pk}}
+    id={{@field.pk}}
+    @format="L"
+    @onSelection={{this.onChange}}
+    @useUTC={{true}}
+    @value={{@field.answer.value}}
+  />
+{{/if}}
