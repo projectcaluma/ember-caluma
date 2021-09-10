@@ -1,6 +1,6 @@
 <div
   ...attributes
-  {{did-insert (queue (fn this.setupUIkit) (perform this.questionTask))}}
+  {{did-insert (queue this.setupUIkit (perform this.questionTask))}}
   {{did-update (perform this.questionTask) @form}}
 >
   <div class="uk-text-center uk-margin">
@@ -43,6 +43,7 @@
         class="uk-search-input"
         type="search"
         placeholder="{{t "caluma.form-builder.global.search"}}..."
+        aria-label="{{t "caluma.form-builder.global.search"}}"
         value={{this.search}}
         {{on "input" (fn (mut this.search))}}
       >
