@@ -17,7 +17,7 @@
   "dependencies": {
     "@apollo/client": "^3.4.10",
     "ember-apollo-client": "^3.2.0",
-    "ember-auto-import": "^1.11.3",
+    "ember-auto-import": "^2.2.0",
     "ember-changeset-validations": "^3.16.0",
     "ember-cli-babel": "^7.26.6",
     "ember-cli-htmlbars": "^5.7.1",
@@ -50,7 +50,7 @@
     "ember-load-initializers": "2.1.2",
     "ember-maybe-import-regenerator": "1.0.0",
     "ember-qunit": "5.1.4",
-    "ember-resolver": "8.0.2",
+    "ember-resolver": "8.0.3",
     "ember-source": "3.28.1",
     "ember-source-channel-url": "3.0.0",
     "ember-try": "1.4.0",
@@ -58,7 +58,8 @@
     "loader.js": "4.7.0",
     "node-fetch": "3.0.0",
     "qunit": "2.17.1",
-    "qunit-dom": "2.0.0"
+    "qunit-dom": "2.0.0",
+    "webpack": "5.52.0"
   },
   "engines": {
     "node": "10.* || >= 12"
