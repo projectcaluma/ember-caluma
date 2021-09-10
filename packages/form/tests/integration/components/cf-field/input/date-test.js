@@ -1,7 +1,7 @@
 import { click, render } from "@ember/test-helpers";
 import ValidatorServiceStub from "dummy/tests/helpers/validator-service-stub";
 import { hbs } from "ember-cli-htmlbars";
-import { setupIntl } from "ember-intl/test-support";
+import { setupIntl, setLocale } from "ember-intl/test-support";
 import { Interactor } from "ember-pikaday/test-support";
 import { setupRenderingTest } from "ember-qunit";
 import moment from "moment";
@@ -46,5 +46,23 @@ module("Integration | Component | cf-field/input/date", function (hooks) {
 
     await click("input");
     await Interactor.selectDate(expectedDate);
+  });
+
+  test("it renders disabled", async function (assert) {
+    setLocale("de");
+
+    this.field = { answer: { value: "2021-09-10" } };
+
+    await render(hbs`
+      <CfField::input::date
+        @disabled={{true}}
+        @field={{this.field}}
+      />
+    `);
+
+    assert.dom("input").hasAttribute("type", "text");
+    assert.dom("input").hasAttribute("readonly");
+    assert.dom("input").hasClass("uk-disabled");
+    assert.dom("input").hasValue("10.09.2021");
   });
 });
