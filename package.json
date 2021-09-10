@@ -5,6 +5,8 @@
     "packages/*"
   ],
   "scripts": {
+    "start": "yarn workspace ember-caluma start",
+    "start-proxy": "yarn workspace ember-caluma start-proxy",
     "lint": "npm-run-all --aggregate-output --continue-on-error --parallel \"lint:!(fix)\"",
     "lint:fix": "npm-run-all --aggregate-output --continue-on-error --parallel lint:*:fix",
     "lint:hbs": "ember-template-lint .",
@@ -29,7 +31,8 @@
     "@commitlint/cli": "13.1.0",
     "@commitlint/config-conventional": "13.1.0",
     "babel-eslint": "10.1.0",
-    "ember-template-lint": "2.21.0",
+    "ember-template-lint": "3.7.0",
+    "ember-template-lint-plugin-prettier": "2.0.1",
     "eslint": "7.32.0",
     "eslint-config-prettier": "8.3.0",
     "eslint-plugin-ember": "10.5.4",

@@ -1,6 +1,9 @@
 <li
   id={{this.elementId}}
-  class={{if @question.isArchived "cfb-form-editor__question-list__item__archived"}}
+  class={{if
+    @question.isArchived
+    "cfb-form-editor__question-list__item__archived"
+  }}
   {{did-insert (fn (optional @on-register) this.elementId @question.slug)}}
   {{will-destroy (fn (optional @on-unregister) this.elementId @question.slug)}}
   ...attributes
@@ -44,10 +47,14 @@
         {{on "click" (fn (optional @on-edit-question) @question)}}
       >
         {{@question.slug}}
-        {{#if @question.isArchived}}({{t "caluma.form-builder.question.isArchived"}}){{/if}}
+        {{#if @question.isArchived}}({{t
+            "caluma.form-builder.question.isArchived"
+          }}){{/if}}
       </a>
     {{else}}
-      <span class="uk-width-auto uk-margin-small-right uk-text-bold">{{@question.slug}}</span>
+      <span
+        class="uk-width-auto uk-margin-small-right uk-text-bold"
+      >{{@question.slug}}</span>
     {{/if}}
 
     <span
@@ -58,10 +65,16 @@
     </span>
     {{#if this.showFormLink}}
       <span uk-icon="link" class="uk-flex-none"></span>
-      <a data-test-link-subform
+      <a
+        data-test-link-subform
         href="#"
         class="uk-width-expand uk-margin-small-right uk-text-small uk-text-truncate"
-        {{on "click" (fn (optional @on-click-form) (or @question.subForm @question.rowForm))}}
+        {{on
+          "click"
+          (fn
+            (optional @on-click-form) (or @question.subForm @question.rowForm)
+          )
+        }}
       >
         {{or @question.subForm.name @question.rowForm.name}}
       </a>
@@ -69,17 +82,40 @@
 
     <span class="uk-position-relative uk-width-auto">
       <UkBadge
-        uk-tooltip="title: {{if this.hidden (t (concat "caluma.form-builder.question-list.hidden." this.hiddenType))}}; pos: left"
-        class="cfb-form-editor__question-list__item__type {{if this.hidden "cfb-form-editor__question-list__item__type--hidden"}}"
-        @label={{t (concat "caluma.form-builder.question.types." @question.__typename)}}
-        title={{if this.hidden (t (concat "caluma.form-builder.question-list.hidden." this.hiddenType))}}
+        uk-tooltip="title: {{if
+          this.hidden
+          (t
+            (concat "caluma.form-builder.question-list.hidden." this.hiddenType)
+          )
+        }}; pos: left"
+        class="cfb-form-editor__question-list__item__type
+          {{if
+            this.hidden
+            "cfb-form-editor__question-list__item__type--hidden"
+          }}"
+        @label={{t
+          (concat "caluma.form-builder.question.types." @question.__typename)
+        }}
+        title={{if
+          this.hidden
+          (t
+            (concat "caluma.form-builder.question-list.hidden." this.hiddenType)
+          )
+        }}
       />
       {{#if this.required}}
         <span
-          uk-tooltip="title: {{t (concat "caluma.form-builder.question-list.required." this.requiredType)}}; pos: top-left"
-          title={{t (concat "caluma.form-builder.question-list.required." this.requiredType)}}
-          class="uk-position-top-right cfb-form-editor__question-list__item__required
-            cfb-form-editor__question-list__item__required--{{this.requiredType}}"
+          uk-tooltip="title: {{t
+            (concat
+              "caluma.form-builder.question-list.required." this.requiredType
+            )
+          }}; pos: top-left"
+          title={{t
+            (concat
+              "caluma.form-builder.question-list.required." this.requiredType
+            )
+          }}
+          class="uk-position-top-right cfb-form-editor__question-list__item__required cfb-form-editor__question-list__item__required--{{this.requiredType}}"
         >
         </span>
       {{/if}}

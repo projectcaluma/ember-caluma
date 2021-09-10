@@ -1,11 +1,13 @@
 "use strict";
 
 module.exports = {
-  extends: "recommended",
-
+  extends: ["recommended", "ember-template-lint-plugin-prettier:recommended"],
+  plugins: ["ember-template-lint-plugin-prettier"],
   rules: {
-    // https://github.com/ember-template-lint/ember-template-lint/issues/509
-    "attribute-indentation": false,
     "no-bare-strings": true,
+    // needs to be resolved before ember v4
+    "no-implicit-this": "warn",
+    "no-action": "warn",
+    "no-curly-component-invocation": "warn",
   },
 };

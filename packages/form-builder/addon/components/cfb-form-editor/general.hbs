@@ -4,10 +4,11 @@
   </div>
 {{else}}
   {{#with data.lastSuccessful.value.firstObject.node as |model|}}
-    {{#validated-form
-      model=(changeset model validations)
-      on-submit=(perform submit)
-    as |f|}}
+    <ValidatedForm
+      @model={{changeset model validations}}
+      @on-submit={{perform submit}}
+      as |f|
+    >
       {{f.input
         type="text"
         label=(t "caluma.form-builder.form.name")
@@ -26,13 +27,14 @@
           on-update=(action "updateSlug")
         }}
       {{else}}
-        {{#f.input 
-          name="slug" 
-          required=true
-          disabled=slug
-          label=(t "caluma.form-builder.question.slug")
-          on-update=(action "updateSlug" value="target.value")
-        as |fi|}}
+        <f.input
+          @name="slug"
+          @required={{true}}
+          @disabled={{slug}}
+          @label={{t "caluma.form-builder.question.slug"}}
+          @on-update={{action "updateSlug" value="target.value"}}
+          as |fi|
+        >
           <div class="cfb-prefixed">
             <span class="cfb-prefixed-slug">{{prefix}}</span>
 
@@ -48,7 +50,7 @@
               isInvalid=fi.isInvalid
             }}
           </div>
-        {{/f.input}}
+        </f.input>
       {{/if}}
 
       {{f.input
@@ -80,8 +82,8 @@
           label=(t "caluma.form-builder.global.save")
         }}
       </div>
-    {{/validated-form}}
-  {{^}}
+    </ValidatedForm>
+  {{else}}
     <div
       class="uk-text-center uk-text-muted uk-padding uk-padding-remove-horizontal"
     >

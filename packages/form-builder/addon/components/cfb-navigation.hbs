@@ -1,7 +1,11 @@
 <ul class="uk-breadcrumb uk-text-large uk-width-1-1 uk-flex uk-flex-nowrap">
   {{#each this.crumbs as |crumb|}}
     <li class="uk-flex uk-flex-middle">
-      <LinkTo @route={{crumb.routeName}} class="uk-text-large uk-text-truncate cfb-navigation__item__link {{if crumb.disabled "uk-disabled"}}">
+      <LinkTo
+        @route={{crumb.routeName}}
+        class="uk-text-large uk-text-truncate cfb-navigation__item__link
+          {{if crumb.disabled "uk-disabled"}}"
+      >
         {{crumb.title}}
       </LinkTo>
     </li>

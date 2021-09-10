@@ -1,4 +1,9 @@
-{{#let (component (get-widget @fieldset.field.question @fieldset.form default="cf-form")) as |FormComponent|}}
+{{#let
+  (component
+    (get-widget @fieldset.field.question @fieldset.form default="cf-form")
+  )
+  as |FormComponent|
+}}
   <FormComponent
     @document={{@document}}
     @fieldset={{@fieldset}}

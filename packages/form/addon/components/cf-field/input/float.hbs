@@ -1,7 +1,9 @@
 <input
   type="number"
   step="0.001"
-  class="uk-input {{if @field.isInvalid "uk-form-danger"}} {{if this.disabled "uk-disabled"}}"
+  class="uk-input
+    {{if @field.isInvalid "uk-form-danger"}}
+    {{if this.disabled "uk-disabled"}}"
   readonly={{this.disabled}}
   name={{@field.pk}}
   id={{@field.pk}}
@@ -9,4 +11,4 @@
   min={{@field.question.floatMinValue}}
   max={{@field.question.floatMaxValue}}
   {{on "input" this.input}}
->
+/>

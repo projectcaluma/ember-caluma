@@ -13,7 +13,8 @@
     @visible={{this.modalVisible}}
     @stack={{true}}
     @on-hide={{this.hideModal}}
-  as |modal|>
+    as |modal|
+  >
     <modal.body>
       {{markdown-to-html @text openLinksInNewWindow=true}}
     </modal.body>

@@ -1,5 +1,5 @@
 {{#each @field.options as |option i|}}
-  {{#if (gt i 0)}}<br>{{/if}}
+  {{#if (gt i 0)}}<br />{{/if}}
   <label class="cf-checkbox_label {{if @field.isInvalid "uk-form-danger"}}">
     <input
       class="uk-checkbox uk-margin-small-right"
@@ -9,9 +9,12 @@
       checked={{includes option.slug @field.answer.value}}
       disabled={{@disabled}}
       {{on "change" this.update}}
-    >
+    />
     {{#if (and option.disabled (not @disabled))}}
-      <del class="uk-text-muted" title={{t "caluma.form.optionNotAvailable"}}>{{option.label}}</del>
+      <del
+        class="uk-text-muted"
+        title={{t "caluma.form.optionNotAvailable"}}
+      >{{option.label}}</del>
     {{else}}
       {{option.label}}
     {{/if}}

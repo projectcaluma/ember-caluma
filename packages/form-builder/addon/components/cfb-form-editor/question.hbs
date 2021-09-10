@@ -1,391 +1,439 @@
-{{#if data.isRunning}}
+{{#if this.data.isRunning}}
   <div class="uk-flex uk-flex-center uk-flex-middle uk-height-small">
-    {{uk-spinner ratio=2}}
+    <UkSpinner @ratio={{2}} />
   </div>
-{{else}}
-  {{#if model}}
-
-    {{#validated-form model=changeset on-submit=(perform submit) as |f|}}
-      {{#if (and f.model.isDirty slug)}}
-        <div class="uk-alert-warning uk-animation-fade" uk-alert>
-          <a href="#" class="uk-alert-close" uk-close></a>
-          <div uk-grid class="uk-grid-small">
-            <div class="uk-width-auto uk-flex uk-flex-middle">
-              {{uk-icon "warning" ratio=1.2}}
-            </div>
-            <div class="uk-width-expand">
-              <strong>{{t "caluma.form-builder.question.minor-info-title"}}</strong>
-              {{t "caluma.form-builder.question.minor-info"}}
-            </div>
+{{else if this.model}}
+  <ValidatedForm
+    @model={{this.changeset}}
+    @on-submit={{perform this.submit}}
+    as |f|
+  >
+    {{#if (and f.model.isDirty @slug)}}
+      <div class="uk-alert-warning uk-animation-fade" uk-alert>
+        <a href="#" class="uk-alert-close" uk-close></a>
+        <div uk-grid class="uk-grid-small">
+          <div class="uk-width-auto uk-flex uk-flex-middle">
+            <UkIcon @icon="warning" @ratio={{1.2}} />
+          </div>
+          <div class="uk-width-expand">
+            <strong>{{t
+                "caluma.form-builder.question.minor-info-title"
+              }}</strong>
+            {{t "caluma.form-builder.question.minor-info"}}
           </div>
         </div>
-      {{/if}}
+      </div>
+    {{/if}}
 
-      {{f.input
-        type="select"
-        options=possibleTypes
-        optionLabelPath="label"
-        optionTargetPath="value"
-        label=(t "caluma.form-builder.question.type")
-        hint=(t "caluma.form-builder.question.type-disabled")
-        name="__typename"
-        required=true
-        disabled=slug
-      }}
+    <f.input
+      @type="select"
+      @options={{this.possibleTypes}}
+      @optionLabelPath="label"
+      @optionTargetPath="value"
+      @label={{t "caluma.form-builder.question.type"}}
+      @hint={{t "caluma.form-builder.question.type-disabled"}}
+      @name="__typename"
+      @required={{true}}
+      @disabled={{@slug}}
+    />
 
-      {{f.input
-        label=(t "caluma.form-builder.question.label")
-        name="label"
-        required=true
-        on-update=(action "updateLabel")
-      }}
+    <f.input
+      @label={{t "caluma.form-builder.question.label"}}
+      @name="label"
+      @required={{true}}
+      @on-update={{action "updateLabel"}}
+    />
 
-      <div uk-grid class="uk-grid-small uk-margin">
-        <div class="uk-width-expand">
-          {{#if (or slug (not prefix))}}
-            {{f.input
-              label=(t "caluma.form-builder.question.slug")
-              name="slug"
-              required=true
-              disabled=slug
-              on-update=(action "updateSlug")
-            }}
-          {{else}}
-            {{#f.input
-              name="slug"
-              required=true
-              disabled=slug
-              label=(t "caluma.form-builder.question.slug")
-              on-update=(action "updateSlug" value="target.value")
-            as |fi|}}
-              <div class="cfb-prefixed">
-                <span class="cfb-prefixed-slug">{{prefix}}</span>
+    <div uk-grid class="uk-grid-small uk-margin">
+      <div class="uk-width-expand">
+        {{#if (or @slug (not this.prefix))}}
+          <f.input
+            @label={{t "caluma.form-builder.question.slug"}}
+            @name="slug"
+            @required={{true}}
+            @disabled={{@slug}}
+            @on-update={{action "updateSlug"}}
+          />
+        {{else}}
+          <f.input
+            @name="slug"
+            @required={{true}}
+            @disabled={{@slug}}
+            @label={{t "caluma.form-builder.question.slug"}}
+            @on-update={{action "updateSlug" value="target.value"}}
+            as |fi|
+          >
+            <div class="cfb-prefixed">
+              <span class="cfb-prefixed-slug">{{this.prefix}}</span>
 
-                {{validated-input/types/-themes/uikit/input
-                  model=fi.model
-                  name=fi.name
-                  value=fi.value
-                  update=fi.update
-                  setDirty=fi.setDirty
-                  inputId=fi.inputId
-                  isValid=fi.isValid
-                  isInvalid=fi.isInvalid
-                }}
-              </div>
-            {{/f.input}}
-          {{/if}}
-        </div>
-
-        {{#if this.requiredToggleVisible}}
-          <div class="uk-width-auto uk-flex">
-            {{f.input
-              name="isRequired"
-              label=(t "caluma.form-builder.question.isRequired")
-              required=true
-              renderComponent=(component "cfb-jexl-boolean-toggle-switch" size="small")
-              class="uk-flex uk-flex-between uk-flex-column"
-            }}
-          </div>
+              <ValidatedInput::types::-themes::uikit::input
+                @model={{fi.model}}
+                @name={{fi.name}}
+                @value={{fi.value}}
+                @update={{fi.update}}
+                @setDirty={{fi.setDirty}}
+                @inputId={{fi.inputId}}
+                @isValid={{fi.isValid}}
+                @isInvalid={{fi.isInvalid}}
+              />
+            </div>
+          </f.input>
         {{/if}}
       </div>
 
-      {{#if (has-question-type f.model "calculated-float")}}
-        <f.input
-          @type="textarea"
-          @label={{t "caluma.form-builder.question.calcExpression"}}
-          @name="calcExpression"
-          class="uk-margin-remove-bottom"
-        />
-      {{/if}}
-
-      {{#if (has-question-type f.model "static")}}
-        <div class="uk-margin">
+      {{#if this.requiredToggleVisible}}
+        <div class="uk-width-auto uk-flex">
           <f.input
-            @label={{t "caluma.form-builder.question.staticContent"}}
-            @name="staticContent"
-            @renderComponent={{component "cfb-code-editor" language="markdown" className="uk-margin-remove-bottom"}}
-            class="uk-margin-remove-bottom"
+            @name="isRequired"
+            @label={{t "caluma.form-builder.question.isRequired"}}
+            @required={{true}}
+            @renderComponent={{component
+              "cfb-jexl-boolean-toggle-switch"
+              size="small"
+            }}
+            class="uk-flex uk-flex-between uk-flex-column"
           />
-          <small class="uk-text-muted">
-            {{t "caluma.form-builder.question.supportsMarkdownPrefix"}}
-            <a target="_blank" rel="noopener noreferrer" href="https://www.markdownguide.org/basic-syntax">{{t "caluma.form-builder.question.markdown"}}</a>
-          </small>
         </div>
       {{/if}}
+    </div>
 
+    {{#if (has-question-type f.model "calculated-float")}}
+      <f.input
+        @type="textarea"
+        @label={{t "caluma.form-builder.question.calcExpression"}}
+        @name="calcExpression"
+        class="uk-margin-remove-bottom"
+      />
+    {{/if}}
+
+    {{#if (has-question-type f.model "static")}}
       <div class="uk-margin">
         <f.input
-           @label={{t "caluma.form-builder.question.infoText"}}
-           @name="infoText"
-           @renderComponent={{component "cfb-code-editor" language="markdown" className="uk-margin-remove-bottom"}}
-                                                                              />
+          @label={{t "caluma.form-builder.question.staticContent"}}
+          @name="staticContent"
+          @renderComponent={{component
+            "cfb-code-editor"
+            language="markdown"
+            className="uk-margin-remove-bottom"
+          }}
+          class="uk-margin-remove-bottom"
+        />
         <small class="uk-text-muted">
           {{t "caluma.form-builder.question.supportsMarkdownPrefix"}}
-          <a target="_blank" rel="noopener noreferrer" href="https://www.markdownguide.org/basic-syntax">{{t "caluma.form-builder.question.markdown"}}</a>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.markdownguide.org/basic-syntax"
+          >{{t "caluma.form-builder.question.markdown"}}</a>
         </small>
       </div>
+    {{/if}}
 
-      {{#if (has-question-type f.model "text" "textarea" "integer" "float")}}
-        {{f.input
-          name="placeholder"
-          label=(t "caluma.form-builder.question.placeholder")
+    <div class="uk-margin">
+      <f.input
+        @label={{t "caluma.form-builder.question.infoText"}}
+        @name="infoText"
+        @renderComponent={{component
+          "cfb-code-editor"
+          language="markdown"
+          className="uk-margin-remove-bottom"
         }}
-      {{/if}}
+      />
+      <small class="uk-text-muted">
+        {{t "caluma.form-builder.question.supportsMarkdownPrefix"}}
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://www.markdownguide.org/basic-syntax"
+        >{{t "caluma.form-builder.question.markdown"}}</a>
+      </small>
+    </div>
 
-      {{#if (and slug (has-question-type f.model "text" "textarea" "integer" "float" "choice" "multiple-choice" "date" "table"))}}
-        {{f.input
-          name="defaultAnswer"
-          label=(t "caluma.form-builder.question.defaultValue")
-          renderComponent=(component "cfb-form-editor/question/default")
-        }}
-      {{/if}}
+    {{#if (has-question-type f.model "text" "textarea" "integer" "float")}}
+      <f.input
+        @name="placeholder"
+        @label={{t "caluma.form-builder.question.placeholder"}}
+      />
+    {{/if}}
 
-      {{#if (has-question-type f.model "text" "textarea")}}
-        {{f.input
-          type="number"
-          name="minLength"
-          label=(t "caluma.form-builder.question.min-length")
-        }}
+    {{#if
+      (and
+        @slug
+        (has-question-type
+          f.model
+          "text"
+          "textarea"
+          "integer"
+          "float"
+          "choice"
+          "multiple-choice"
+          "date"
+          "table"
+        )
+      )
+    }}
+      <f.input
+        @name="defaultAnswer"
+        @label={{t "caluma.form-builder.question.defaultValue"}}
+        @renderComponent={{component "cfb-form-editor/question/default"}}
+      />
+    {{/if}}
 
-        {{f.input
-          type="number"
-          name="maxLength"
-          label=(t "caluma.form-builder.question.max-length")
-        }}
+    {{#if (has-question-type f.model "text" "textarea")}}
+      <f.input
+        @type="number"
+        @name="minLength"
+        @label={{t "caluma.form-builder.question.min-length"}}
+      />
 
-        {{f.input
-          name="meta.formatValidators"
-          label=(t "caluma.form-builder.question.formatValidators")
-          placeholder=(t "caluma.form-builder.question.choose")
-          required=false
-          renderComponent=(component "cfb-form-editor/question/validation")
-          on-update=(changeset-set f.model "meta.formatValidators")
-          value=(changeset-get f.model "meta.formatValidators")
-        }}
-      {{/if}}
+      <f.input
+        @type="number"
+        @name="maxLength"
+        @label={{t "caluma.form-builder.question.max-length"}}
+      />
 
-      {{#if (has-question-type f.model "float")}}
-        <div uk-grid class="uk-grid-small uk-child-width-1-2 uk-margin">
-          <div>
-            {{f.input
-              name="floatMinValue"
-              label=(t "caluma.form-builder.question.min-value")
-              renderComponent=(component "cfb-float-input")
-            }}
-          </div>
+      <f.input
+        @name="meta.formatValidators"
+        @label={{t "caluma.form-builder.question.formatValidators"}}
+        @placeholder={{t "caluma.form-builder.question.choose"}}
+        @required={{false}}
+        @renderComponent={{component "cfb-form-editor/question/validation"}}
+        @on-update={{changeset-set f.model "meta.formatValidators"}}
+        @value={{changeset-get f.model "meta.formatValidators"}}
+      />
+    {{/if}}
 
-          <div>
-            {{f.input
-              name="floatMaxValue"
-              label=(t "caluma.form-builder.question.max-value")
-              renderComponent=(component "cfb-float-input")
-            }}
-          </div>
+    {{#if (has-question-type f.model "float")}}
+      <div uk-grid class="uk-grid-small uk-child-width-1-2 uk-margin">
+        <div>
+          <f.input
+            @name="floatMinValue"
+            @label={{t "caluma.form-builder.question.min-value"}}
+            @renderComponent={{component "cfb-float-input"}}
+          />
         </div>
-      {{/if}}
 
-      {{#if (has-question-type f.model "integer")}}
-        <div uk-grid class="uk-grid-small uk-child-width-1-2 uk-margin">
-          <div>
-            {{f.input
-              type="number"
-              name="integerMinValue"
-              label=(t "caluma.form-builder.question.min-value")
-            }}
-          </div>
-
-          <div>
-            {{f.input
-              type="number"
-              name="integerMaxValue"
-              label=(t "caluma.form-builder.question.max-value")
-            }}
-          </div>
+        <div>
+          <f.input
+            @name="floatMaxValue"
+            @label={{t "caluma.form-builder.question.max-value"}}
+            @renderComponent={{component "cfb-float-input"}}
+          />
         </div>
-      {{/if}}
-
-      {{#if (has-question-type f.model "choice" "multiple-choice")}}
-        {{f.input
-          name="options"
-          label=(t "caluma.form-builder.question.options")
-          required=true
-          renderComponent=(component "cfb-form-editor/question/options")
-        }}
-      {{/if}}
-
-      {{#if (has-question-type f.model "dynamic-choice" "dynamic-multiple-choice")}}
-        {{f.input
-          name="dataSource"
-          type="select"
-          required=true
-          class="uk-flex uk-flex-betwten uk-flex-column"
-
-          label=(t "caluma.form-builder.question.dataSource")
-          options=(or availableDataSources.lastSuccessful.value (array ))
-          optionTargetPath="name"
-          optionLabelPath="info"
-          includeBlank=(t "caluma.form-builder.question.chooseRowForm")
-        }}
-      {{/if}}
-
-      <div data-test-hide-label>
-        {{f.input
-          name="meta.hideLabel"
-          required=true
-          label=(t "caluma.form-builder.question.hideLabel")
-          renderComponent=(component "cfb-toggle-switch" size="small")
-          class="uk-flex uk-flex-between uk-flex-column"
-          on-update=(changeset-set f.model "meta.hideLabel")
-          value=(changeset-get f.model "meta.hideLabel")
-        }}
       </div>
+    {{/if}}
 
-      {{#if (has-question-type f.model "table")}}
-        <f.input
-          @name="rowForm.slug"
-          @label={{t "caluma.form-builder.question.rowForm"}}
-          @required={{true}}
-          @on-update={{action "updateRowForm"}}
-          @value={{find-by "slug" (changeset-get f.model "rowForm.slug")
-            availableForms.lastSuccessful.value}}
-          as |fi|
-        >
-          <PowerSelect
-            @options={{or availableForms.lastSuccessful.value array}}
-            @selected={{fi.value}}
-            @placeholder={{t "caluma.form-builder.question.choose"}}
-            @onBlur={{fi.setDirty}}
-            @onChange={{queue fi.update (fn (mut fi.value))}}
-            @searchField="slug"
-            @searchEnabled={{true}}
-            @searchPlaceholder={{t "caluma.form-builder.question.search-placeholder"}}
-            @noMatchesMessage={{t "caluma.form-builder.question.search-empty"}}
-            as |form|
-          >
-            <span class="uk-width-auto uk-margin-small-right uk-text-truncate">
-              {{form.slug}}
-            </span>
-            <span
-              class="highlight-option uk-text-muted uk-width-expand 
-                uk-margin-small-right uk-text-small uk-text-truncate"
-            >
-              {{form.name}}
-            </span>
-          </PowerSelect>
-        </f.input>
+    {{#if (has-question-type f.model "integer")}}
+      <div uk-grid class="uk-grid-small uk-child-width-1-2 uk-margin">
+        <div>
+          <f.input
+            @type="number"
+            @name="integerMinValue"
+            @label={{t "caluma.form-builder.question.min-value"}}
+          />
+        </div>
 
-        {{#f.input name="meta.columnsToDisplay" label=(t "caluma.form-builder.question.columnsToDisplay") as |fi|}}
-          {{#each model.rowForm.questions.edges as |rowEdge|}}
-            {{#let rowEdge.node as |row|}}
-              <label class="cf-checkbox_label">
-                <input
-                  type="checkbox"
-                  value={{row.slug}}
-                  checked={{includes row.slug model.meta.columnsToDisplay}}
-                  onclick={{action "toggleColumnToDisplay" row.slug}}
-                  onfocusout={{fi.setDirty}}
-                  class="uk-checkbox uk-margin-small-right"
-                >
-                {{row.label}}
-              </label>
-            {{/let}}
-          {{/each}}
-        {{/f.input}}
-      {{/if}}
+        <div>
+          <f.input
+            @type="number"
+            @name="integerMaxValue"
+            @label={{t "caluma.form-builder.question.max-value"}}
+          />
+        </div>
+      </div>
+    {{/if}}
 
-      {{#if (has-question-type f.model "form")}}
-        <f.input
-          @name="subForm.slug"
-          @label={{t "caluma.form-builder.question.subForm"}}
-          @required={{true}}
-          @on-update={{action "updateSubForm"}}
-          @value={{find-by "slug" (changeset-get f.model "subForm.slug")
-            availableForms.lastSuccessful.value}}
-          as |fi|
-        >
-          <PowerSelect
-            @options={{or availableForms.lastSuccessful.value array}}
-            @selected={{fi.value}}
-            @placeholder={{t "caluma.form-builder.question.choose"}}
-            @onBlur={{fi.setDirty}}
-            @onChange={{queue fi.update (fn (mut fi.value))}}
-            @searchField="slug"
-            @searchEnabled={{true}}
-            @searchPlaceholder={{t "caluma.form-builder.question.search-placeholder"}}
-            @noMatchesMessage={{t "caluma.form-builder.question.search-empty"}}
-            as |form|
-          >
-            <span class="uk-width-auto uk-margin-small-right uk-text-truncate">
-              {{form.slug}}
-            </span>
-            <span
-              class="highlight-option uk-text-muted uk-width-expand 
-                uk-margin-small-right uk-text-small uk-text-truncate"
-            >
-              {{form.name}}
-            </span>
-          </PowerSelect>
-        </f.input>
-      {{/if}}
+    {{#if (has-question-type f.model "choice" "multiple-choice")}}
+      <f.input
+        @name="options"
+        @label={{t "caluma.form-builder.question.options"}}
+        @required={{true}}
+        @renderComponent={{component "cfb-form-editor/question/options"}}
+      />
+    {{/if}}
 
-      {{f.input
-        name="meta.widgetOverride"
-        label=(t "caluma.form-builder.question.widgetOverride")
+    {{#if
+      (has-question-type f.model "dynamic-choice" "dynamic-multiple-choice")
+    }}
+      <f.input
+        @name="dataSource"
+        @type="select"
+        @required={{true}}
+        @label={{t "caluma.form-builder.question.dataSource"}}
+        @options={{or this.availableDataSources.lastSuccessful.value array}}
+        @optionTargetPath="name"
+        @optionLabelPath="info"
+        @includeBlank={{t "caluma.form-builder.question.chooseRowForm"}}
+        class="uk-flex uk-flex-betwten uk-flex-column"
+      />
+    {{/if}}
+
+    <div data-test-hide-label>
+      <f.input
+        @name="meta.hideLabel"
+        @required={{true}}
+        @label={{t "caluma.form-builder.question.hideLabel"}}
+        @renderComponent={{component "cfb-toggle-switch" size="small"}}
+        @on-update={{changeset-set f.model "meta.hideLabel"}}
+        @value={{changeset-get f.model "meta.hideLabel"}}
         class="uk-flex uk-flex-between uk-flex-column"
+      />
+    </div>
 
-        type="select"
-        allowClear=true
-        optionTargetPath="component"
-        optionLabelPath="label"
-        options=availableOverrides
-      }}
+    {{#if (has-question-type f.model "table")}}
+      <f.input
+        @name="rowForm.slug"
+        @label={{t "caluma.form-builder.question.rowForm"}}
+        @required={{true}}
+        @on-update={{action "updateRowForm"}}
+        @value={{find-by
+          "slug"
+          (changeset-get f.model "rowForm.slug")
+          this.availableForms.lastSuccessful.value
+        }}
+        as |fi|
+      >
+        <PowerSelect
+          @options={{or this.availableForms.lastSuccessful.value array}}
+          @selected={{fi.value}}
+          @placeholder={{t "caluma.form-builder.question.choose"}}
+          @onBlur={{fi.setDirty}}
+          @onChange={{queue fi.update (fn (mut fi.value))}}
+          @searchField="slug"
+          @searchEnabled={{true}}
+          @searchPlaceholder={{t
+            "caluma.form-builder.question.search-placeholder"
+          }}
+          @noMatchesMessage={{t "caluma.form-builder.question.search-empty"}}
+          as |form|
+        >
+          <span class="uk-width-auto uk-margin-small-right uk-text-truncate">
+            {{form.slug}}
+          </span>
+          <span
+            class="highlight-option uk-text-muted uk-width-expand uk-margin-small-right uk-text-small uk-text-truncate"
+          >
+            {{form.name}}
+          </span>
+        </PowerSelect>
+      </f.input>
 
-      {{f.input
-        name="isArchived"
-        label=(t "caluma.form-builder.question.isArchived")
-        required=true
-        renderComponent=(component "cfb-toggle-switch" size="small")
-        class="uk-flex uk-flex-between uk-flex-column"
-      }}
+      <f.input
+        @name="meta.columnsToDisplay"
+        @label={{t "caluma.form-builder.question.columnsToDisplay"}}
+        as |fi|
+      >
+        {{#each this.model.rowForm.questions.edges as |rowEdge|}}
+          {{#let rowEdge.node as |row|}}
+            <label class="cf-checkbox_label">
+              <input
+                type="checkbox"
+                value={{row.slug}}
+                checked={{includes row.slug this.model.meta.columnsToDisplay}}
+                onclick={{action "toggleColumnToDisplay" row.slug}}
+                onfocusout={{fi.setDirty}}
+                class="uk-checkbox uk-margin-small-right"
+              />
+              {{row.label}}
+            </label>
+          {{/let}}
+        {{/each}}
+      </f.input>
+    {{/if}}
 
-      <p>
-        {{#uk-button color="link" on-click=(toggle-action "showAdvanced" this)}}
-          {{#if showAdvanced}}
-            {{uk-icon "triangle-down"}}
-          {{else}}
-            {{uk-icon "triangle-right"}}
-          {{/if}}
-          {{t "caluma.form-builder.question.advancedSettings"}}
-        {{/uk-button}}
-      </p>
-      {{#if showAdvanced}}
+    {{#if (has-question-type f.model "form")}}
+      <f.input
+        @name="subForm.slug"
+        @label={{t "caluma.form-builder.question.subForm"}}
+        @required={{true}}
+        @on-update={{action "updateSubForm"}}
+        @value={{find-by
+          "slug"
+          (changeset-get f.model "subForm.slug")
+          this.availableForms.lastSuccessful.value
+        }}
+        as |fi|
+      >
+        <PowerSelect
+          @options={{or this.availableForms.lastSuccessful.value array}}
+          @selected={{fi.value}}
+          @placeholder={{t "caluma.form-builder.question.choose"}}
+          @onBlur={{fi.setDirty}}
+          @onChange={{queue fi.update (fn (mut fi.value))}}
+          @searchField="slug"
+          @searchEnabled={{true}}
+          @searchPlaceholder={{t
+            "caluma.form-builder.question.search-placeholder"
+          }}
+          @noMatchesMessage={{t "caluma.form-builder.question.search-empty"}}
+          as |form|
+        >
+          <span class="uk-width-auto uk-margin-small-right uk-text-truncate">
+            {{form.slug}}
+          </span>
+          <span
+            class="highlight-option uk-text-muted uk-width-expand uk-margin-small-right uk-text-small uk-text-truncate"
+          >
+            {{form.name}}
+          </span>
+        </PowerSelect>
+      </f.input>
+    {{/if}}
+
+    <f.input
+      @name="meta.widgetOverride"
+      @label={{t "caluma.form-builder.question.widgetOverride"}}
+      @type="select"
+      @allowClear={{true}}
+      @optionTargetPath="component"
+      @optionLabelPath="label"
+      @options={{this.availableOverrides}}
+      class="uk-flex uk-flex-between uk-flex-column"
+    />
+
+    <f.input
+      @name="isArchived"
+      @label={{t "caluma.form-builder.question.isArchived"}}
+      @required={{true}}
+      @renderComponent={{component "cfb-toggle-switch" size="small"}}
+      class="uk-flex uk-flex-between uk-flex-column"
+    />
+
+    <p>
+      <UkButton @color="link" @on-click={{toggle-action "showAdvanced" this}}>
+        {{#if this.showAdvanced}}
+          <UkIcon @icon="triangle-down" />
+        {{else}}
+          <UkIcon @icon="triangle-right" />
+        {{/if}}
+        {{t "caluma.form-builder.question.advancedSettings"}}
+      </UkButton>
+    </p>
+    {{#if this.showAdvanced}}
+      <f.input
+        @label={{t "caluma.form-builder.question.isHidden"}}
+        @name="isHidden"
+        @renderComponent={{component "cfb-code-editor" language="jexl"}}
+      />
+
+      {{#unless this.requiredIrrelevant}}
         <f.input
-          @label={{t "caluma.form-builder.question.isHidden"}}
-          @name="isHidden"
+          @label={{t "caluma.form-builder.question.isRequired"}}
+          @name="isRequired"
           @renderComponent={{component "cfb-code-editor" language="jexl"}}
         />
+      {{/unless}}
+    {{/if}}
 
-        {{#unless this.requiredIrrelevant}}
-          <f.input
-            @label={{t "caluma.form-builder.question.isRequired"}}
-            @name="isRequired"
-            @renderComponent={{component "cfb-code-editor" language="jexl"}}
-          />
-        {{/unless}}
-      {{/if}}
-
-      <div class="uk-text-right">
-        {{f.submit
-          label=(t "caluma.form-builder.global.save")
-        }}
-      </div>
-    {{/validated-form}}
-  {{else}}
-    <div
-      class="uk-text-center uk-text-muted uk-padding uk-padding-remove-horizontal"
-    >
-      {{uk-icon "bolt" ratio=5}}
-      <p>{{t "caluma.form-builder.question.not-found" slug=slug}}</p>
+    <div class="uk-text-right">
+      <f.submit @label={{t "caluma.form-builder.global.save"}} />
     </div>
-  {{/if}}
+  </ValidatedForm>
+{{else}}
+  <div
+    class="uk-text-center uk-text-muted uk-padding uk-padding-remove-horizontal"
+  >
+    <UkIcon @icon="bolt" @ratio={{5}} />
+    <p>{{t "caluma.form-builder.question.not-found" slug=@slug}}</p>
+  </div>
 {{/if}}

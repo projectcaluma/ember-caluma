@@ -1,21 +1,16 @@
 {{#unless @disabled}}
-  <div
-    class="uk-width-1-1"
-    uk-form-custom="target: true">
+  <div class="uk-width-1-1" uk-form-custom="target: true">
 
     <input
       type="file"
       name={{@field.pk}}
       id={{@field.pk}}
       {{on "change" this.save}}
-    >
+    />
 
-    <input
-      class="uk-input"
-      type="text"
-      placeholder={{@placeholder}}
-      readonly
-    >
+    {{! label is in another component }}
+    {{! template-lint-disable require-input-label }}
+    <input class="uk-input" type="text" placeholder={{@placeholder}} readonly />
   </div>
 {{/unless}}
 
