@@ -7,7 +7,7 @@
     <div>
       {{#if @data.isRunning}}
         <div class="uk-flex uk-flex-center uk-flex-middle uk-height-small">
-          <UkSpinner @ratio={{2}}/>
+          <UkSpinner @ratio={{2}} />
         </div>
       {{else}}
         <CfbFormEditor::QuestionList
@@ -22,7 +22,7 @@
     </div>
   </div>
 {{else}}
-<span>
-  {{yield}}
-</span>
+  <span>
+    {{yield}}
+  </span>
 {{/if}}

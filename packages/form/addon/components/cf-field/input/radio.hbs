@@ -1,5 +1,5 @@
 {{#each @field.options as |option i|}}
-  {{#if (gt i 0)}}<br>{{/if}}
+  {{#if (gt i 0)}}<br />{{/if}}
   <label class={{if @field.isInvalid "uk-form-danger"}}>
     <input
       class="uk-radio uk-margin-small-right"
@@ -9,9 +9,12 @@
       checked={{eq option.slug @field.answer.value}}
       disabled={{@disabled}}
       {{on "change" (fn @onSave option.slug)}}
-    >
+    />
     {{#if (and option.disabled (not @disabled))}}
-      <del class="uk-text-muted" title={{t "caluma.form.optionNotAvailable"}}>{{option.label}}</del>
+      <del
+        class="uk-text-muted"
+        title={{t "caluma.form.optionNotAvailable"}}
+      >{{option.label}}</del>
     {{else}}
       {{option.label}}
     {{/if}}

@@ -1,5 +1,7 @@
 <textarea
-  class="uk-textarea {{if @field.isInvalid "uk-form-danger"}} {{if @disabled "uk-disabled"}}"
+  class="uk-textarea
+    {{if @field.isInvalid "uk-form-danger"}}
+    {{if @disabled "uk-disabled"}}"
   name={{@field.pk}}
   id={{@field.pk}}
   placeholder={{@field.question.placeholder}}

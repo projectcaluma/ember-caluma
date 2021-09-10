@@ -18,7 +18,10 @@
     as |option|
   >
     {{#if (and option.disabled (not @disabled))}}
-      <del class="uk-text-muted" title={{t "caluma.form.optionNotAvailable"}}>{{option.label}}</del>
+      <del
+        class="uk-text-muted"
+        title={{t "caluma.form.optionNotAvailable"}}
+      >{{option.label}}</del>
     {{else}}
       {{option.label}}
     {{/if}}

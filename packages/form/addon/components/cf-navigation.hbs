@@ -1,8 +1,12 @@
 <ul class="uk-tab uk-tab-left uk-width-auto" {{did-insert this.goToNextItem}}>
   {{#each @navigation.rootItems as |item|}}
-    <CfNavigationItem @item={{item}} @useAsHeading={{@useAsHeading}} @headingLevel={{@headingBaseLevel}} />
+    <CfNavigationItem
+      @item={{item}}
+      @useAsHeading={{@useAsHeading}}
+      @headingLevel={{@headingBaseLevel}}
+    />
     {{#unless item.fieldset.field}}
-      <hr class="uk-divider-small uk-margin-small">
+      <hr class="uk-divider-small uk-margin-small" />
     {{/unless}}
   {{/each}}
 </ul>

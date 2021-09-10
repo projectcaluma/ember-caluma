@@ -1,4 +1,7 @@
-<li class="cf-navigation__item uk-width-auto {{if (or @item.active @item.childrenActive) "uk-active"}}">
+<li
+  class="cf-navigation__item uk-width-auto
+    {{if (or @item.active @item.childrenActive) "uk-active"}}"
+>
   <LinkTo @query={{hash displayedForm=@item.slug}}>
     {{#if (and @useAsHeading this.active)}}
       <span
@@ -14,13 +17,19 @@
         {{@item.label}}
       </span>
     {{/if}}
-    <span class="cf-navigation__item__icon cf-navigation__item__icon--{{@item.state}} {{if @item.dirty "cf-navigation__item__icon--dirty"}}"></span>
+    <span
+      class="cf-navigation__item__icon cf-navigation__item__icon--{{@item.state}}
+        {{if @item.dirty "cf-navigation__item__icon--dirty"}}"
+    ></span>
   </LinkTo>
 
   {{#if @item.visibleChildren}}
     <ul class="uk-tab uk-tab-left uk-margin-left uk-width-auto">
       {{#each @item.visibleChildren as |child|}}
-        <CfNavigationItem @item={{child}} @headingLevel={{add @headingLevel 1}} />
+        <CfNavigationItem
+          @item={{child}}
+          @headingLevel={{add @headingLevel 1}}
+        />
       {{/each}}
     </ul>
   {{/if}}
