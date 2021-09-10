@@ -64,7 +64,7 @@
     "graphql": "15.5.3",
     "loader.js": "4.7.0",
     "moment": "2.29.1",
-    "sass": "1.39.0",
+    "sass": "1.39.2",
     "typeface-oxygen": "1.1.13",
     "typeface-oxygen-mono": "1.1.13",
     "webpack": "5.52.0"
