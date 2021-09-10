@@ -67,7 +67,7 @@
     "sass": "1.39.2",
     "typeface-oxygen": "1.1.13",
     "typeface-oxygen-mono": "1.1.13",
-    "webpack": "5.52.0"
+    "webpack": "5.52.1"
   },
   "ember": {
     "edition": "octane"
