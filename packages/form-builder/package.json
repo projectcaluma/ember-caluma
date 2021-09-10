@@ -10,7 +10,7 @@
   "repository": "github:projectcaluma/ember-caluma",
   "license": "LGPL-3.0-or-later",
   "scripts": {
-    "test": "npm-run-all lint test:*",
+    "test": "npm-run-all test:*",
     "test:ember": "ember test",
     "test:ember-compatibility": "ember try:each"
   },

@@ -9,10 +9,9 @@
   "repository": "github:projectcaluma/ember-caluma",
   "license": "LGPL-3.0-or-later",
   "scripts": {
-    "test": "npm-run-all lint test:*",
+    "test": "npm-run-all test:*",
     "test:ember": "ember test",
-    "test:ember-compatibility": "ember try:each",
-    "update-schema": "get-graphql-schema http://localhost:8000/graphql > addon/mirage-graphql/schema.graphql && prettier --write addon/mirage-graphql/schema.graphql"
+    "test:ember-compatibility": "ember try:each"
   },
   "dependencies": {
     "broccoli-funnel": "^3.0.8",
