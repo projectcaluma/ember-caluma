@@ -1,7 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu+Mono&family=Ubuntu:wght@300;500&display=swap");
+
 $global-primary-background: #3799ad;
 
-$global-font-family: "Oxygen", Helvetica, Arial, sans-serif;
-$base-code-font-family: "Oxygen Mono", monospace;
+$global-font-family: "Ubuntu", Helvetica, Arial, sans-serif;
+$base-code-font-family: "Ubuntu Mono", monospace;
 
 $base-body-font-weight: 300;
 $base-heading-font-weight: 300;
@@ -10,6 +12,26 @@ $base-heading-font-weight: 300;
 @import "@projectcaluma/ember-form";
 @import "@projectcaluma/ember-form-builder";
 
+:root {
+  --brand-primary: #3799ad;
+}
+
 body {
   background-color: white;
+}
+
+header > div > div > a:nth-last-child(3) {
+  display: none;
+}
+
+.docs-font-title,
+.docs-md__h1,
+.docs-md__h2,
+.docs-md__h3 {
+  font-family: $global-font-family;
+  font-weight: $base-heading-font-weight;
+
+  * {
+    font-weight: $base-heading-font-weight !important;
+  }
 }

@@ -6,6 +6,8 @@
     "ember-addon"
   ],
   "license": "LGPL-3.0-or-later",
+  "homepage": "https://docs.caluma.io/ember-caluma",
+  "repository": "github:projectcaluma/ember-caluma",
   "scripts": {
     "test": "npm-run-all test:*",
     "test:ember": "ember test",

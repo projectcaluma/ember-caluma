@@ -4817,19 +4817,6 @@ broccoli-funnel@2.0.1:
     symlink-or-copy "^1.0.0"
     walk-sync "^0.3.1"
 
-broccoli-funnel@3.0.8, broccoli-funnel@^3.0.0, broccoli-funnel@^3.0.1, broccoli-funnel@^3.0.3, broccoli-funnel@^3.0.5, broccoli-funnel@^3.0.6, broccoli-funnel@^3.0.8:
-  version "3.0.8"
-  resolved "https://registry.yarnpkg.com/broccoli-funnel/-/broccoli-funnel-3.0.8.tgz#f5b62e2763c3918026a15a3c833edc889971279b"
-  integrity sha512-ng4eIhPYiXqMw6SyGoxPHR3YAwEd2lr9FgBI1CyTbspl4txZovOsmzFkMkGAlu88xyvYXJqHiM2crfLa65T1BQ==
-  dependencies:
-    array-equal "^1.0.0"
-    broccoli-plugin "^4.0.7"
-    debug "^4.1.1"
-    fs-tree-diff "^2.0.1"
-    heimdalljs "^0.2.0"
-    minimatch "^3.0.0"
-    walk-sync "^2.0.2"
-
 broccoli-funnel@^2.0.0, broccoli-funnel@^2.0.1, broccoli-funnel@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/broccoli-funnel/-/broccoli-funnel-2.0.2.tgz#0edf629569bc10bd02cc525f74b9a38e71366a75"
@@ -4848,6 +4835,19 @@ broccoli-funnel@^2.0.0, broccoli-funnel@^2.0.1, broccoli-funnel@^2.0.2:
     rimraf "^2.4.3"
     symlink-or-copy "^1.0.0"
     walk-sync "^0.3.1"
+
+broccoli-funnel@^3.0.0, broccoli-funnel@^3.0.1, broccoli-funnel@^3.0.3, broccoli-funnel@^3.0.5, broccoli-funnel@^3.0.6, broccoli-funnel@^3.0.8:
+  version "3.0.8"
+  resolved "https://registry.yarnpkg.com/broccoli-funnel/-/broccoli-funnel-3.0.8.tgz#f5b62e2763c3918026a15a3c833edc889971279b"
+  integrity sha512-ng4eIhPYiXqMw6SyGoxPHR3YAwEd2lr9FgBI1CyTbspl4txZovOsmzFkMkGAlu88xyvYXJqHiM2crfLa65T1BQ==
+  dependencies:
+    array-equal "^1.0.0"
+    broccoli-plugin "^4.0.7"
+    debug "^4.1.1"
+    fs-tree-diff "^2.0.1"
+    heimdalljs "^0.2.0"
+    minimatch "^3.0.0"
+    walk-sync "^2.0.2"
 
 broccoli-graphql-filter@^1.0.0:
   version "1.0.0"
@@ -17290,16 +17290,6 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
-
-typeface-oxygen-mono@1.1.13:
-  version "1.1.13"
-  resolved "https://registry.yarnpkg.com/typeface-oxygen-mono/-/typeface-oxygen-mono-1.1.13.tgz#971bbdf030b7729d0aa768921be4fa0169905a34"
-  integrity sha512-TxELTMcgH9H9D5fI/5n8zGV+q9VOhi0MHft+YFKl+Y9CrUUtujhXeRp4XPMyjXzlwjTFuiRUYLxfrWEAT/ikpA==
-
-typeface-oxygen@1.1.13:
-  version "1.1.13"
-  resolved "https://registry.yarnpkg.com/typeface-oxygen/-/typeface-oxygen-1.1.13.tgz#05b33008227cca46a7bc4a0ee351672819ae352e"
-  integrity sha512-HvAveSoDs5qWT76zYH3rUU9prIqum3vzNQw6ONqcWykVMW4r3uXyGEj0MCBbdWyGNgnBe9b8be1JjpC4HWo3hA==
 
 typescript-memoize@^1.0.0-alpha.3, typescript-memoize@^1.0.1:
   version "1.0.1"
