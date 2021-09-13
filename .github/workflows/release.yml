@@ -6,9 +6,21 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+
+    strategy:
+      max-parallel: 1
+      matrix:
+        workspace:
+          - "@projectcaluma/ember-core"
+          - "@projectcaluma/ember-form"
+          - "@projectcaluma/ember-form-builder"
+          - "@projectcaluma/ember-testing"
+          - "@projectcaluma/ember-workflow"
+
     steps:
       - uses: actions/checkout@v2
         with:
+          ref: "master"
           fetch-depth: 0
           persist-credentials: false
       - uses: actions/setup-node@v2
@@ -24,8 +36,8 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Release on NPM
-        run: yarn semantic-release
+      - name: Release package
+        run: yarn workspace ${{ matrix.workspace }} semantic-release
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

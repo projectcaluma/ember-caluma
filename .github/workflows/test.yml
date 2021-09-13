@@ -161,6 +161,7 @@ jobs:
     timeout-minutes: 10
 
     strategy:
+      fail-fast: false
       matrix:
         workspace:
           - "@projectcaluma/ember-core"
