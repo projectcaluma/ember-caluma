@@ -1,6 +1,6 @@
 {
   "name": "@projectcaluma/ember-form-builder",
-  "version": "8.0.0",
+  "version": "9.0.0",
   "description": "Ember engine for building Caluma forms.",
   "keywords": [
     "ember-addon",
@@ -16,8 +16,8 @@
     "@ember/render-modifiers": "^1.0.2",
     "@glimmer/component": "^1.0.4",
     "@glimmer/tracking": "^1.0.4",
-    "@projectcaluma/ember-core": "8.0.0",
-    "@projectcaluma/ember-form": "8.0.0",
+    "@projectcaluma/ember-core": "9.0.0",
+    "@projectcaluma/ember-form": "9.0.0",
     "codejar": "^3.5.0",
     "ember-apollo-client": "^3.2.0",
     "ember-auto-import": "^2.2.0",
@@ -45,7 +45,7 @@
     "@ember/optional-features": "2.0.0",
     "@ember/test-helpers": "2.4.2",
     "@embroider/test-setup": "0.44.1",
-    "@projectcaluma/ember-testing": "8.0.0",
+    "@projectcaluma/ember-testing": "9.0.0",
     "broccoli-asset-rev": "3.0.0",
     "ember-cli": "3.28.0",
     "ember-cli-dependency-checker": "3.2.0",
