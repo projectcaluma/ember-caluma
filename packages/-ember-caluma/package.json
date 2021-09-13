@@ -2,9 +2,7 @@
   "name": "ember-caluma",
   "version": "0.0.0",
   "private": true,
-  "description": "The documentation of ember-caluma",
-  "homepage": "https://docs.caluma.io/ember-caluma",
-  "repository": "github:projectcaluma/ember-caluma",
+  "description": "Interactive documentation of ember-caluma",
   "license": "LGPL-3.0-or-later",
   "scripts": {
     "build": "ember build --environment=production",

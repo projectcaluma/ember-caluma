@@ -4,6 +4,8 @@
   "workspaces": [
     "packages/*"
   ],
+  "homepage": "https://docs.caluma.io/ember-caluma",
+  "repository": "github:projectcaluma/ember-caluma",
   "scripts": {
     "start": "yarn workspace ember-caluma start",
     "start-proxy": "yarn workspace ember-caluma start-proxy",

@@ -1,12 +1,10 @@
 {
   "name": "@projectcaluma/ember-testing",
   "version": "8.0.0",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "Ember addon for testing with Caluma addons.",
   "keywords": [
     "ember-addon"
   ],
-  "homepage": "https://docs.caluma.io/ember-caluma",
-  "repository": "github:projectcaluma/ember-caluma",
   "license": "LGPL-3.0-or-later",
   "scripts": {
     "test": "npm-run-all test:*",
