@@ -1,5 +1,4 @@
 import { getOwner } from "@ember/application";
-import { assert } from "@ember/debug";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
@@ -101,10 +100,11 @@ export default class CfContentComponent extends Component {
       (fieldset) => fieldset.form.slug === slug
     );
 
-    assert(
-      `The fieldset \`${slug}\` does not exist in this document`,
-      fieldset
-    );
+    if (!fieldset) {
+      this.router.replaceWith({
+        queryParams: { displayedForm: "" },
+      });
+    }
 
     return fieldset;
   }
