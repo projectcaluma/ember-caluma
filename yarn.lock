@@ -2226,6 +2226,66 @@
   dependencies:
     "@octokit/openapi-types" "^10.1.4"
 
+"@projectcaluma/ember-form-builder@9.0.0":
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/@projectcaluma/ember-form-builder/-/ember-form-builder-9.0.0.tgz#e043d0cab51c7aeac4c9634abe6bda0c1021edd8"
+  integrity sha512-OJCiToJyvr8i1vuUsHh2ZH9uWC5RXHS4wx8QtpCo1upg1p9PHegByhINgSUZ3Y3lDQ2swI2lOmiW1O2wJLUKkQ==
+  dependencies:
+    "@ember/render-modifiers" "^1.0.2"
+    "@glimmer/component" "^1.0.4"
+    "@glimmer/tracking" "^1.0.4"
+    "@projectcaluma/ember-core" "9.0.0"
+    "@projectcaluma/ember-form" "9.0.0"
+    codejar "^3.5.0"
+    ember-apollo-client "^3.2.0"
+    ember-auto-import "^2.2.0"
+    ember-changeset "^3.15.0"
+    ember-changeset-validations "^3.16.0"
+    ember-cli-babel "^7.26.6"
+    ember-cli-htmlbars "^5.7.1"
+    ember-composable-helpers "^4.5.0"
+    ember-concurrency "^2.1.2"
+    ember-concurrency-decorators "^2.0.3"
+    ember-fetch "^8.0.4"
+    ember-math-helpers "^2.16.0"
+    ember-pikaday "^3.0.0"
+    ember-power-select "^4.1.6"
+    ember-test-selectors "^6.0.0"
+    ember-uikit "^4.0.0"
+    ember-validated-form "^3.0.3"
+    graphql "^15.5.3"
+    graphql-tag "^2.12.5"
+    jexl "^2.3.0"
+    moment "^2.29.1"
+    prismjs "^1.24.1"
+
+"@projectcaluma/ember-form@9.0.0":
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/@projectcaluma/ember-form/-/ember-form-9.0.0.tgz#481d871345a1a97c4b07d1ac103b7d0688c980f4"
+  integrity sha512-qZLxhRkOAZdWNDMYZPBNW6wJSHmaYuO9M6Q9vdL38BlaVWZi0cBogZ9KgRh4iJRjck1oFpv9Hdd9KQT0ATC19w==
+  dependencies:
+    "@glimmer/component" "^1.0.4"
+    "@glimmer/tracking" "^1.0.4"
+    "@projectcaluma/ember-core" "9.0.0"
+    ember-apollo-client "^3.2.0"
+    ember-auto-import "^2.2.0"
+    ember-cli-babel "^7.26.6"
+    ember-cli-htmlbars "^5.7.1"
+    ember-cli-showdown "^4.5.0"
+    ember-composable-helpers "^4.5.0"
+    ember-fetch "^8.0.4"
+    ember-in-viewport "^3.10.2"
+    ember-intl "^5.7.0"
+    ember-math-helpers "^2.16.0"
+    ember-pikaday "^3.0.0"
+    ember-power-select "^4.1.6"
+    ember-uikit "^4.0.0"
+    graphql "^15.5.3"
+    jexl "^2.3.0"
+    lodash.clonedeep "^4.5.0"
+    lodash.isequal "^4.5.0"
+    moment "^2.29.1"
+
 "@semantic-release/changelog@5.0.1":
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/@semantic-release/changelog/-/changelog-5.0.1.tgz#50a84b63e5d391b7debfe021421589fa2bcdafe4"
@@ -7700,7 +7760,21 @@ ember-cli-sass@10.0.1:
     broccoli-sass-source-maps "^4.0.0"
     ember-cli-version-checker "^2.1.0"
 
-ember-cli-showdown@4.5.0, ember-cli-showdown@^4.5.0:
+ember-cli-showdown@6.0.0, ember-cli-showdown@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-showdown/-/ember-cli-showdown-6.0.0.tgz#04ba8d6590bfca461159a0181f63373b9b1de7b0"
+  integrity sha512-EwkvftojVjAXyMdRXU33YZyLAJEXD5E94D2z1J/P4O4KSg5nQzH27Pd3QEdL/tmlY0anLVKoIpom87YyTOUcuw==
+  dependencies:
+    broccoli-funnel "^2.0.0"
+    broccoli-source "^1.1.0"
+    broccoli-string-replace "^0.1.2"
+    ember-cli-babel "^7.26.6"
+    ember-cli-htmlbars "^5.7.1"
+    resolve "^1.8.1"
+    semver "^5.5.0"
+    showdown "^1.8.6"
+
+ember-cli-showdown@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/ember-cli-showdown/-/ember-cli-showdown-4.5.0.tgz#6ea0d28ced62fd5feb92799bc90d6a4857ceb5a7"
   integrity sha512-i1XXua2oOqJHGozLw+cXI2zjrfSaamH+qAKt8kLnKTjxDXO175bDUnBtrTR1uMH75S56iIkCBdCSyOMq5haB+g==
