@@ -44,7 +44,7 @@
         data-test-edit-question
         href="#"
         class="uk-width-auto uk-margin-small-right uk-text-bold"
-        {{on "click" (fn (optional @on-edit-question) @question)}}
+        {{on "click" (fn this.editQuestion @question)}}
       >
         {{@question.slug}}
         {{#if @question.isArchived}}({{t
@@ -71,9 +71,7 @@
         class="uk-width-expand uk-margin-small-right uk-text-small uk-text-truncate"
         {{on
           "click"
-          (fn
-            (optional @on-click-form) (or @question.subForm @question.rowForm)
-          )
+          (fn this.clickForm (or @question.subForm @question.rowForm))
         }}
       >
         {{or @question.subForm.name @question.rowForm.name}}
