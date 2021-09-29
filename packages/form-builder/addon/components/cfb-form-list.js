@@ -43,7 +43,9 @@ export default class ComponentsCfbFormListComponent extends Component {
   }
 
   @action
-  loadMoreForms() {
+  loadMoreForms(e) {
+    e.preventDefault();
+
     this.formsQuery.fetchMore();
   }
 

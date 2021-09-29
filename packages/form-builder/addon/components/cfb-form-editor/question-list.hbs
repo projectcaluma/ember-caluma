@@ -62,12 +62,7 @@
         <a
           href="#"
           data-test-new-question
-          {{on
-            "click"
-            (queue
-              (fn (optional @on-create-question)) (fn this.setMode "reorder")
-            )
-          }}
+          {{on "click" this.createNewQuestion}}
         >
           {{t "caluma.form-builder.question.create"}}
         </a>
@@ -105,8 +100,8 @@
       {{/each}}
       {{#if (and this.hasNextPage (eq this.mode "add"))}}
         <li class="uk-text-center cfb-pointer"><a
-            {{on "click" (perform this.questionTask)}}
             href="#"
+            {{on "click" (perform this.questionTask)}}
           >{{t "caluma.form-builder.question.loadMore"}}</a></li>
       {{/if}}
     {{/if}}

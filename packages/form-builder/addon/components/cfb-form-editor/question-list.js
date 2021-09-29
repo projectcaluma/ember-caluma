@@ -51,9 +51,7 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
   @lastValue("questionTask") questionTaskValue = [];
   @restartableTask
   *questionTask(event) {
-    if (event?.preventDefault) {
-      event.preventDefault();
-    }
+    event?.preventDefault?.();
 
     const mode = this.mode;
     const search = mode !== "reorder" ? this.search : "";
@@ -234,5 +232,13 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
   performSearch() {
     this._resetParameters();
     this.questionTask.perform();
+  }
+
+  @action
+  createNewQuestion(e) {
+    e.preventDefault();
+
+    this.args["on-create-question"]?.();
+    this.setMode("reorder");
   }
 }

@@ -1,3 +1,4 @@
+import { action } from "@ember/object";
 import { guidFor } from "@ember/object/internals";
 import Component from "@glimmer/component";
 import jexl from "jexl";
@@ -47,5 +48,17 @@ export default class CfbFormEditorQuestionListItem extends Component {
       this.args.mode === "reorder" &&
       (hasQuestionType(question, "form") || hasQuestionType(question, "table"))
     );
+  }
+
+  @action
+  editQuestion(question, e) {
+    e.preventDefault();
+    this.args["on-edit-question"]?.(question);
+  }
+
+  @action
+  clickForm(form, e) {
+    e.preventDefault();
+    this.args["on-click-form"]?.(form);
   }
 }
