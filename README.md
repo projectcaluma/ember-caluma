@@ -3,12 +3,10 @@
 [![Test](https://github.com/projectcaluma/ember-caluma/workflows/Test/badge.svg)](https://github.com/projectcaluma/ember-caluma/actions?query=workflow%3ATest)
 [![BrowserStack Status](https://automate.browserstack.com/badge.svg?badge_key=RFNMT2hyTnRjNVZkUitkWUl2d3BWK21KbnU3MU1tTGpHS2tOVHVCU1RrZz0tLXJjZ1J5VEZ6ZmtJWVpFdHpDRnREcFE9PQ==--3034affde596526379b7a0a19798a7ba1f79154c)](https://automate.browserstack.com/public-build/RFNMT2hyTnRjNVZkUitkWUl2d3BWK21KbnU3MU1tTGpHS2tOVHVCU1RrZz0tLXJjZ1J5VEZ6ZmtJWVpFdHpDRnREcFE9PQ==--3034affde596526379b7a0a19798a7ba1f79154c)
 [![Codecov](https://codecov.io/gh/projectcaluma/ember-caluma/branch/master/graph/badge.svg)](https://codecov.io/gh/projectcaluma/ember-caluma)
-[![npm](https://img.shields.io/npm/v/ember-caluma.svg)](https://www.npmjs.com/package/ember-caluma)
-[![Dependabot](https://badgen.net/dependabot/projectcaluma/ember-caluma/?icon=dependabot)](https://dependabot.com/)
 [![Code Style: Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![License: LGPL-3.0](https://img.shields.io/badge/License-LGPL--3.0-blue.svg)](https://spdx.org/licenses/LGPL-3.0-or-later.html)
 
-The Ember.js addon for [Caluma](https://caluma.io) - a collaborative form editing service.
+The Ember.js addons for [Caluma](https://caluma.io) - a collaborative form editing service.
 
 ## Browser support
 
