@@ -1,5 +1,5 @@
-import TableComponent from "ember-caluma/components/cf-field/input/table";
-import { parseDocument } from "ember-caluma/lib/parsers";
+import TableComponent from "@projectcaluma/ember-form/components/cf-field/input/table";
+import { parseDocument } from "@projectcaluma/ember-form/lib/parsers";
 
 export default class CfbFormEditorQuestionDefaultTableComponent extends TableComponent {
   parseDocument(raw) {
