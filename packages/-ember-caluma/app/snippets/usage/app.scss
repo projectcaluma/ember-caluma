@@ -2,5 +2,8 @@
 // custom variable definitions go here
 
 $modal-z-index: 1;
+
 @import "ember-uikit";
-@import "ember-caluma";
+
+@import "@projectcaluma/ember-form";
+@import "@projectcaluma/ember-form-builder";

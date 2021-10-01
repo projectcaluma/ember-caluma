@@ -1,12 +1,15 @@
 <DocsViewer as |viewer|>
 
   <viewer.nav as |nav|>
-    {{nav.item (t "dummy.usage") "docs.index"}}
-    {{nav.item (t "dummy.testing") "docs.testing"}}
-    {{nav.item (t "dummy.queries.title") "docs.queries"}}
-    {{nav.item (t "dummy.migration") "docs.migration"}}
-    {{nav.item (t "dummy.buttons") "docs.buttons"}}
-    {{nav.item (t "dummy.validation") "docs.validation"}}
+    {{nav.item "Usage" "docs.index"}}
+    {{nav.item "Queries" "docs.queries"}}
+    {{nav.item "Buttons" "docs.buttons"}}
+    {{nav.item "Validation" "docs.validation"}}
+    {{nav.item "Testing" "docs.testing"}}
+
+    {{nav.section "Migration"}}
+    {{nav.item "to v7" "docs.migration-v7"}}
+    {{nav.item "to v9" "docs.migration-v9"}}
   </viewer.nav>
 
   <viewer.main>

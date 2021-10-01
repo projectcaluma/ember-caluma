@@ -1,8 +1,8 @@
 # Queries
 
-`ember-caluma` provides a way to fetch certain models via a practical API.
-Currently, only fetching for `WorkItems` is supported - however, this will be
-extended in time.
+`@projectcaluma/ember-core` provides a way to fetch certain models via a
+practical API. Currently, only fetching for `WorkItems` is supported - however,
+this will be extended in time.
 
 ## Usage
 

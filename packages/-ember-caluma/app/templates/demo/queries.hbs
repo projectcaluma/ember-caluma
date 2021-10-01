@@ -1,19 +1,25 @@
-<h1>{{t "dummy.queries.title"}}</h1>
-
+{{! template-lint-disable no-bare-strings }}
 <button
   class="uk-button uk-button-default"
   type="button"
   {{on "click" this.load}}
->{{t "dummy.queries.load"}}</button>
+>Load</button>
 <button
   class="uk-button uk-button-default"
   type="button"
   {{on "click" this.loadMore}}
->{{t "dummy.queries.loadMore"}}</button>
+>Load more</button>
 
-<h2>{{t "dummy.queries.getWorkItems"}}</h2>
+<h2>getWorkItems</h2>
 
-<ul>
+isLoading:
+{{this.workItemQuery.isLoading}}<br />
+totalCount:
+{{this.workItemQuery.totalCount}}<br />
+hasNextPage:
+{{this.workItemQuery.hasNextPage}}<br />
+
+<ul class="uk-list uk-list-striped">
   {{#each this.workItemQuery.value as |workItem|}}
     <li>{{workItem.id}} - {{workItem.createdAt}} - {{workItem.status}}</li>
   {{/each}}

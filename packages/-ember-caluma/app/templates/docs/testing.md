@@ -1,12 +1,11 @@
 # Testing
 
-Per default, `ember-caluma` exposes models and factories for
+`@projectcaluma/ember-testing` exposes models and factories for
 `ember-cli-mirage` (if it is installed) into the host app. To use those
 factories you need to install mirage and faker.
 
 ```bash
-$ ember install ember-cli-mirage
-$ yarn add -D faker ember-auto-import
+$ ember install @projectcaluma/ember-testing
 ```
 
 Now you should be able to use the graphql endpoint in your test setup. To do
@@ -24,7 +23,8 @@ export default function () {
 }
 ```
 
-You can also generate all of the models `ember-caluma` provides in your test setup:
+You can also generate all of the models `@projectcaluma/ember-testing` provides
+in your test setup:
 
 ```js
 // available models are: answer, case, document, file, form, option, question,
