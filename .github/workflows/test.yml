@@ -75,13 +75,11 @@ jobs:
 
       - name: Run tests
         run: yarn workspace ${{ matrix.workspace }} test:ember
-      #   env:
-      #     COVERAGE: true
+        env:
+          COVERAGE: true
 
-      # - name: Upload coverage report to Codecov
-      #   uses: codecov/codecov-action@v1
-      #   with:
-      #     file: ./coverage/lcov.info
+      - name: Upload coverage report to Codecov
+        uses: codecov/codecov-action@v2
 
   test-floating:
     name: Floating Tests
