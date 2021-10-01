@@ -2,9 +2,9 @@ import Route from "@ember/routing/route";
 import { queryManager } from "ember-apollo-client";
 import gql from "graphql-tag";
 
-import { decodeId } from "ember-caluma/helpers/decode-id";
+import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 
-export default class DemoFormRoute extends Route {
+export default class DemoFormRenderingRoute extends Route {
   @queryManager apollo;
 
   async model() {

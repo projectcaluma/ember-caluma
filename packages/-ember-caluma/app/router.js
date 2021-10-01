@@ -13,13 +13,15 @@ Router.map(function () {
     this.route("usage");
     this.route("testing");
     this.route("queries");
-    this.route("migration");
     this.route("buttons");
     this.route("validation");
+
+    this.route("migration-v7");
+    this.route("migration-v9");
   });
 
   this.route("demo", function () {
-    this.route("form");
+    this.route("form-rendering");
     this.route("queries");
 
     this.mount("@projectcaluma/ember-form-builder", {

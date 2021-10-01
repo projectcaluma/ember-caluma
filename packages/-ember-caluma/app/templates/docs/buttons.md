@@ -1,6 +1,6 @@
 # Buttons
 
-`ember-caluma` provides buttons for mutating the state of work items.
+`@projectcaluma/ember-workflow` provides buttons for mutating the state of work items.
 
 ## Usage
 

@@ -1,4 +1,4 @@
-# Migration from v6 to v7
+# Migration to v7
 
 `ember-caluma` v7 upgrades `ember-apollo-client` to v3 which updated the
 apollo client to v3. This results in some indirect breaking changes.
@@ -10,11 +10,9 @@ since this is the new default. Whenever the consuming app imports any other
 graphql files (which is very realistic) the imports need to have `.graphql`
 as file extension:
 
-```js
-// your app file
-
-import someQuery from "yourapp/gql/queries/some-query"; // before
-import someQuery from "yourapp/gql/queries/some-query.graphql"; // after
+```diff
+- import someQuery from "yourapp/gql/queries/some-query";
++ import someQuery from "yourapp/gql/queries/some-query.graphql";
 ```
 
 Also, make sure the `keepGraphqlFileExtension` is not overriding the default:

@@ -2,7 +2,7 @@ const App = Application.extend({
   // ...
 
   engines: {
-    "ember-caluma": {
+    "@projectcaluma/ember-form-builder": {
       dependencies: {
         services: [
           "apollo", // ember-apollo-client for graphql
