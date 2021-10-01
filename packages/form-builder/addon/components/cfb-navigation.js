@@ -7,7 +7,7 @@ export default class CfbNavigationComponent extends Component {
   @service router;
 
   get _routes() {
-    const currentRoute = this.router.currentRouteName;
+    const currentRoute = `${this.router._mountPoint}.${this.router.currentRouteName}`;
     if (!currentRoute) return [];
 
     const routeParts = currentRoute.split(".");

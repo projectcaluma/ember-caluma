@@ -7,12 +7,12 @@ export default class EditController extends Controller {
 
   @action
   createQuestion() {
-    this.transitionToRoute("edit.questions.new");
+    this.router.transitionTo("edit.questions.new");
   }
 
   @action
   editQuestion({ slug }) {
-    this.transitionToRoute("edit.questions.edit", slug);
+    this.router.transitionTo("edit.questions.edit", slug);
   }
 
   @action
@@ -21,12 +21,12 @@ export default class EditController extends Controller {
       /edit\.questions\.edit$/.test(this.router.currentRouteName) &&
       new RegExp(`/${slug}$`).test(this.router.currentURL)
     ) {
-      this.transitionToRoute("edit.general");
+      this.router.transitionTo("edit.general");
     }
   }
 
   @action
   clickForm({ slug }) {
-    this.transitionToRoute("edit", slug);
+    this.router.transitionTo("edit", slug);
   }
 }
