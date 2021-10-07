@@ -328,7 +328,7 @@ export default Component.extend({
   }),
 
   saveDefaultAnswer: task(function* (question, changeset) {
-    const answer = changeset.get("defaultAnswer");
+    const answer = changeset.data.defaultAnswer;
 
     if (!answer) {
       return;

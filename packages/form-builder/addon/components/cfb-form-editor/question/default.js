@@ -2,6 +2,7 @@ import { getOwner } from "@ember/application";
 // eslint-disable-next-line ember/no-computed-properties-in-native-classes
 import { action, computed, get, set } from "@ember/object";
 import { inject as service } from "@ember/service";
+import { camelize } from "@ember/string";
 import RenderComponent from "ember-validated-form/components/validated-input/-themes/uikit/render";
 
 import { TYPE_MAP } from "@projectcaluma/ember-form/lib/field";
@@ -119,8 +120,15 @@ export default class CfbFormEditorQuestionDefault extends RenderComponent {
     return document.findField(this.question.slug);
   }
 
-  @action async onUpdate(value) {
-    set(this, "field.answer.value", value);
+  @action
+  async onUpdate(value) {
+    set(
+      this,
+      `field.answer.${camelize(
+        this.field.answer.__typename.replace(/Answer$/, "Value")
+      )}`,
+      value
+    );
 
     await this.field.validate.perform();
 
