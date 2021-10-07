@@ -11,9 +11,7 @@ module("Integration | Component | cf-field/input/float", function (hooks) {
   hooks.beforeEach(function () {
     this.set("field", {
       pk: "test-id",
-      answer: {
-        value: 1.045,
-      },
+      value: 1.045,
       question: {
         isCalculated: false,
         floatMinValue: 0.4,
