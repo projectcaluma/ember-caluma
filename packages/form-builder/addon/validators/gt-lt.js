@@ -10,9 +10,10 @@ export default function validateGtLt(options = { gt: null, lt: null }) {
     }
 
     const messages = getMessages();
+    const data = { ...content, ...changes };
 
     if (options.gt) {
-      const dependentValue = Object.assign(content, changes)[options.gt];
+      const dependentValue = data[options.gt];
 
       return dependentValue
         ? Number(newValue) > Number(dependentValue) ||
@@ -27,7 +28,7 @@ export default function validateGtLt(options = { gt: null, lt: null }) {
     }
 
     if (options.lt) {
-      const dependentValue = Object.assign(content, changes)[options.lt];
+      const dependentValue = data[options.lt];
 
       return dependentValue
         ? Number(newValue) < Number(dependentValue) ||
