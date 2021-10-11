@@ -26,8 +26,8 @@
     ]
   },
   "lint-staged": {
-    "*.js": "yarn lint:js:fix",
-    "*.hbs": "yarn lint:hbs:fix",
+    "*.js": "eslint --cache --fix",
+    "*.hbs": "ember-template-lint --fix",
     "*.{scss,graphql,json,md,yaml}": "prettier --write"
   },
   "devDependencies": {
