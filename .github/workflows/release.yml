@@ -16,6 +16,8 @@ jobs:
           - "@projectcaluma/ember-form-builder"
           - "@projectcaluma/ember-testing"
           - "@projectcaluma/ember-workflow"
+          # uncomment if first release is ready
+          # - "@projectcaluma/ember-distribution"
 
     steps:
       - uses: actions/checkout@v2
