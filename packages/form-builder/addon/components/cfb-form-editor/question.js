@@ -328,18 +328,17 @@ export default Component.extend({
   }),
 
   saveDefaultAnswer: task(function* (question, changeset) {
-    const answer = changeset.get("defaultAnswer");
-
-    if (!answer) {
+    if (!changeset.get("defaultAnswer")) {
       return;
     }
 
-    const valueKey = camelize(answer.__typename.replace(/Answer$/, "Value"));
-    const value = answer[valueKey];
+    const typename = changeset.get("defaultAnswer.__typename");
+    const valueKey = camelize(typename.replace(/Answer$/, "Value"));
+    const value = changeset.get(`defaultAnswer.${valueKey}`);
 
     // We need to map the UUIDs of the document's if the user didn't touch
     // the default answer and thus never triggered the onUpdate action.
-    if (answer.__typename === "TableAnswer" && typeof value[0] !== "string") {
+    if (typename === "TableAnswer" && typeof value[0] !== "string") {
       return;
     }
 
@@ -348,7 +347,7 @@ export default Component.extend({
     // Save or remove depending on the value.
     const mutation = !isAddMutation
       ? removeDefaultAnswerMutation
-      : TYPES_ANSWER[answer.__typename];
+      : TYPES_ANSWER[typename];
 
     const input = { question: question.slug };
 
