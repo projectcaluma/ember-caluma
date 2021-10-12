@@ -17316,11 +17316,11 @@ return regeneratorRuntime.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:
 case 4:case"end":return e.stop()}}),e)})))
 return function(t){return e.apply(this,arguments)}}()))
 case 2:case"end":return e.stop()}}),e)}))),saveDefaultAnswer:(0,p.task)(regeneratorRuntime.mark((function e(t,n){var i,r,a,o,u,s
-return regeneratorRuntime.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:if(i=n.get("defaultAnswer")){e.next=3
+return regeneratorRuntime.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:if(n.get("defaultAnswer")){e.next=2
 break}return e.abrupt("return")
-case 3:if(r=(0,l.camelize)(i.__typename.replace(/Answer$/,"Value")),a=i[r],"TableAnswer"!==i.__typename||"string"==typeof a[0]){e.next=7
+case 2:if(i=n.get("defaultAnswer.__typename"),r=(0,l.camelize)(i.replace(/Answer$/,"Value")),a=n.get("defaultAnswer.".concat(r)),"TableAnswer"!==i||"string"==typeof a[0]){e.next=7
 break}return e.abrupt("return")
-case 7:return o=null!==a&&0!==a.length,u=o?Z[i.__typename]:y.default,s={question:t.slug},o&&(s.value=a),e.next=13,this.apollo.mutate({mutation:u,variables:{input:s}})
+case 7:return o=null!==a&&0!==a.length,u=o?Z[i]:y.default,s={question:t.slug},o&&(s.value=a),e.next=13,this.apollo.mutate({mutation:u,variables:{input:s}})
 case 13:case"end":return e.stop()}}),e,this)}))),submit:(0,p.task)(regeneratorRuntime.mark((function e(t){var n,i,r
 return regeneratorRuntime.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:return e.prev=0,e.next=3,this.saveOptions.perform(t)
 case 3:return n=t.get("__typename"),i=this.getInput(t),e.next=7,this.apollo.mutate({mutation:X[n],variables:{input:i}},"save".concat(n,".question"))
