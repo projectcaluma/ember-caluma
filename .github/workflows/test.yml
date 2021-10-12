@@ -51,6 +51,7 @@ jobs:
       matrix:
         workspace:
           - "@projectcaluma/ember-core"
+          - "@projectcaluma/ember-distribution"
           - "@projectcaluma/ember-form"
           - "@projectcaluma/ember-form-builder"
           - "@projectcaluma/ember-testing"
@@ -91,6 +92,7 @@ jobs:
       matrix:
         workspace:
           - "@projectcaluma/ember-core"
+          - "@projectcaluma/ember-distribution"
           - "@projectcaluma/ember-form"
           - "@projectcaluma/ember-form-builder"
           - "@projectcaluma/ember-testing"
@@ -163,6 +165,7 @@ jobs:
       matrix:
         workspace:
           - "@projectcaluma/ember-core"
+          - "@projectcaluma/ember-distribution"
           - "@projectcaluma/ember-form"
           - "@projectcaluma/ember-form-builder"
           - "@projectcaluma/ember-testing"
