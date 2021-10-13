@@ -1,9 +1,9 @@
 #!/bin/bash
 
+name=$(node -p "require('./package.json').name")
+version=$(node -p "require('./package.json').version")
+
 for pkg in ../**/package.json
 do
-  name=$(node -p "require('$pkg').name")
-  version=$(node -p "require('$pkg').version")
-
-  sed -i "s#\"$name\": \".*\"#\"$name\": \"$version\"#g" package.json
+  sed -i "s#\"$name\": \".*\"#\"$name\": \"$version\"#g" $pkg
 done
