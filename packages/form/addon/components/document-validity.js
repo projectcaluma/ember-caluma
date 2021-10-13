@@ -40,6 +40,12 @@ export default class DocumentValidity extends Component {
       this.args.document.fields.map((field) => field.validate.perform())
     );
 
+    if (this.isValid) {
+      this.args.onValid?.();
+    } else {
+      this.args.onInvalid?.();
+    }
+
     return this.isValid;
   }
 }

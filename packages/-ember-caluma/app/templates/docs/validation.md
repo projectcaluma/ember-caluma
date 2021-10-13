@@ -37,6 +37,8 @@ The DocumentValidity component has two parameter:
 
 - `document` The caluma document to be validated.
 - `validateOnEnter` Whether the validate action should be triggered on entering the viewport.
+- `onValid` Callback action after successful validation
+- `onInvalid` Callback action after unsuccessful validation
 
 The component yields `isValid` which represents the validity of all the
 questions in the document and an action `validate` to trigger the validation

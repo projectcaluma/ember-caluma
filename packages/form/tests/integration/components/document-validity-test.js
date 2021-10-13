@@ -75,4 +75,30 @@ module("Integration | Component | document-validity", function (hooks) {
     await click("button");
     assert.dom("p").hasText("Valid");
   });
+
+  test("it triggers onValid and onInvalid callbacks", async function (assert) {
+    assert.expect(4);
+
+    this.onInvalid = () => assert.step("invalid");
+    this.onValid = () => assert.step("valid");
+
+    await render(hbs`
+      <DocumentValidity
+        @document={{this.document}}
+        @onValid={{this.onValid}}
+        @onInvalid={{this.onInvalid}}
+        as |isValid validate|
+      >
+        <button {{on "click" validate}}></button>
+      </DocumentValidity>
+    `);
+
+    this.makeInvalid();
+    await click("button");
+    await assert.verifySteps(["invalid"]);
+
+    this.makeValid();
+    await click("button");
+    await assert.verifySteps(["valid"]);
+  });
 });
