@@ -1,4 +1,4 @@
-# ![ember-caluma](https://user-images.githubusercontent.com/6150577/60805349-1e6f3080-a180-11e9-911f-874620aa72b1.png)
+# ![ember-caluma](https://user-images.githubusercontent.com/6150577/137114875-8b9edb83-92ba-4b3a-ba6e-2e5f86afdcc5.png)
 
 [![Test](https://github.com/projectcaluma/ember-caluma/workflows/Test/badge.svg)](https://github.com/projectcaluma/ember-caluma/actions?query=workflow%3ATest)
 [![BrowserStack Status](https://automate.browserstack.com/badge.svg?badge_key=RFNMT2hyTnRjNVZkUitkWUl2d3BWK21KbnU3MU1tTGpHS2tOVHVCU1RrZz0tLXJjZ1J5VEZ6ZmtJWVpFdHpDRnREcFE9PQ==--3034affde596526379b7a0a19798a7ba1f79154c)](https://automate.browserstack.com/public-build/RFNMT2hyTnRjNVZkUitkWUl2d3BWK21KbnU3MU1tTGpHS2tOVHVCU1RrZz0tLXJjZ1J5VEZ6ZmtJWVpFdHpDRnREcFE9PQ==--3034affde596526379b7a0a19798a7ba1f79154c)
