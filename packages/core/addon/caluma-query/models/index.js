@@ -1,49 +1,35 @@
+import cloneDeep from "lodash.clonedeep";
 import moment from "moment";
 
-export function uuidAttr(...args) {
-  const decorate = function (_, name) {
-    return {
-      get() {
-        return atob(this.raw[name]).split(":")[1];
-      },
-    };
+import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
+
+export function uuidAttr(target, name) {
+  return {
+    get() {
+      return decodeId(this.raw[name]);
+    },
   };
-
-  if (args.length === 3) {
-    return decorate(...args);
-  }
-
-  return decorate;
 }
 
-export function momentAttr(...args) {
-  const decorate = function (_, name) {
-    return {
-      get() {
-        const date = moment(this.raw[name]);
+export function momentAttr(target, name) {
+  return {
+    get() {
+      const date = moment(this.raw[name]);
 
-        return date.isValid() ? date : null;
-      },
-      set(value) {
-        if (value.isValid()) {
-          this.raw[name] = value.toISOString();
-        }
-
-        return value;
-      },
-    };
+      return date.isValid() ? date : null;
+    },
+    set(value) {
+      if (value.isValid()) {
+        this.raw[name] = value.toISOString();
+      }
+    },
   };
-
-  if (args.length === 3) {
-    return decorate(...args);
-  }
-
-  return decorate;
 }
 
 export default class CalumaQueryModel {
   constructor(raw) {
-    this.raw = raw;
+    // Deep clone the raw object to make sure it's mutable
+    this.raw = cloneDeep(raw);
 
     for (const [key, value] of Object.entries(raw)) {
       if (!(key in this)) {
