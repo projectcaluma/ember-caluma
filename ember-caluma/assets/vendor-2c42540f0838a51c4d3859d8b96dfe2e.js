@@ -9075,27 +9075,24 @@ var u,l,s,c=function(e){(function(e,t){if("function"!=typeof t&&null!==t)throw n
 e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&i(e,t)})(a,e)
 var t=r(a)
 function a(){return n(this,a),t.apply(this,arguments)}return a}(t.default)
-e.default=c,s="{\n    name\n    slug\n    description\n    isArchived\n    isPublished\n  }",(l="fragment")in(u=c)?Object.defineProperty(u,l,{value:s,enumerable:!0,configurable:!0,writable:!0}):u[l]=s})),define("@projectcaluma/ember-core/caluma-query/models/index",["exports","moment"],(function(e,t){"use strict"
-var n,i
-function r(e,t){return function(e){if(Array.isArray(e))return e}(e)||function(e,t){var n=null==e?null:"undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"]
+e.default=c,s="{\n    name\n    slug\n    description\n    isArchived\n    isPublished\n  }",(l="fragment")in(u=c)?Object.defineProperty(u,l,{value:s,enumerable:!0,configurable:!0,writable:!0}):u[l]=s})),define("@projectcaluma/ember-core/caluma-query/models/index",["exports","lodash.clonedeep","moment","@projectcaluma/ember-core/helpers/decode-id"],(function(e,t,n,i){"use strict"
+var r,a
+function o(e,t){return function(e){if(Array.isArray(e))return e}(e)||function(e,t){var n=null==e?null:"undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"]
 if(null==n)return
 var i,r,a=[],o=!0,u=!1
 try{for(n=n.call(e);!(o=(i=n.next()).done)&&(a.push(i.value),!t||a.length!==t);o=!0);}catch(l){u=!0,r=l}finally{try{o||null==n.return||n.return()}finally{if(u)throw r}}return a}(e,t)||function(e,t){if(!e)return
-if("string"==typeof e)return a(e,t)
+if("string"==typeof e)return u(e,t)
 var n=Object.prototype.toString.call(e).slice(8,-1)
 "Object"===n&&e.constructor&&(n=e.constructor.name)
 if("Map"===n||"Set"===n)return Array.from(e)
-if("Arguments"===n||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))return a(e,t)}(e,t)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function a(e,t){(null==t||t>e.length)&&(t=e.length)
+if("Arguments"===n||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))return u(e,t)}(e,t)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function u(e,t){(null==t||t>e.length)&&(t=e.length)
 for(var n=0,i=new Array(t);n<t;n++)i[n]=e[n]
-return i}function o(){var e=function(e,t){return{get:function(){return atob(this.raw[t]).split(":")[1]}}}
-return 3===arguments.length?e.apply(void 0,arguments):e}Object.defineProperty(e,"__esModule",{value:!0}),e.uuidAttr=o,e.momentAttr=function(){var e=function(e,n){return{get:function(){var e=(0,t.default)(this.raw[n])
-return e.isValid()?e:null},set:function(e){return e.isValid()&&(this.raw[n]=e.toISOString()),e}}}
-if(3===arguments.length)return e.apply(void 0,arguments)
-return e},e.default=void 0
-var u,l,s,c,d,f,p=(n=function e(t){var n,a,o,u;(function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")})(this,e),n=this,a="id",u=this,(o=i)&&Object.defineProperty(n,a,{enumerable:o.enumerable,configurable:o.configurable,writable:o.writable,value:o.initializer?o.initializer.call(u):void 0}),this.raw=t
-for(var l=0,s=Object.entries(t);l<s.length;l++){var c=r(s[l],2),d=c[0],f=c[1]
-d in this||(this[d]=f)}},u=n.prototype,l="id",s=[o],c={configurable:!0,enumerable:!0,writable:!0,initializer:null},f={},Object.keys(c).forEach((function(e){f[e]=c[e]})),f.enumerable=!!f.enumerable,f.configurable=!!f.configurable,("value"in f||f.initializer)&&(f.writable=!0),f=s.slice().reverse().reduce((function(e,t){return t(u,l,e)||e}),f),d&&void 0!==f.initializer&&(f.value=f.initializer?f.initializer.call(d):void 0,f.initializer=void 0),void 0===f.initializer&&(Object.defineProperty(u,l,f),f=null),i=f,n)
-e.default=p})),define("@projectcaluma/ember-core/caluma-query/models/work-item",["exports","@ember/service","@projectcaluma/ember-core/caluma-query/models/index"],(function(e,t,n){"use strict"
+return i}function l(e,t){return{get:function(){return(0,i.decodeId)(this.raw[t])}}}Object.defineProperty(e,"__esModule",{value:!0}),e.uuidAttr=l,e.momentAttr=function(e,t){return{get:function(){var e=(0,n.default)(this.raw[t])
+return e.isValid()?e:null},set:function(e){e.isValid()&&(this.raw[t]=e.toISOString())}}},e.default=void 0
+var s,c,d,f,p,m,h=(r=function e(n){var i,r,u,l;(function(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")})(this,e),i=this,r="id",l=this,(u=a)&&Object.defineProperty(i,r,{enumerable:u.enumerable,configurable:u.configurable,writable:u.writable,value:u.initializer?u.initializer.call(l):void 0}),this.raw=(0,t.default)(n)
+for(var s=0,c=Object.entries(n);s<c.length;s++){var d=o(c[s],2),f=d[0],p=d[1]
+f in this||(this[f]=p)}},s=r.prototype,c="id",d=[l],f={configurable:!0,enumerable:!0,writable:!0,initializer:null},m={},Object.keys(f).forEach((function(e){m[e]=f[e]})),m.enumerable=!!m.enumerable,m.configurable=!!m.configurable,("value"in m||m.initializer)&&(m.writable=!0),m=d.slice().reverse().reduce((function(e,t){return t(s,c,e)||e}),m),p&&void 0!==m.initializer&&(m.value=m.initializer?m.initializer.call(p):void 0,m.initializer=void 0),void 0===m.initializer&&(Object.defineProperty(s,c,m),m=null),a=m,r)
+e.default=h})),define("@projectcaluma/ember-core/caluma-query/models/work-item",["exports","@ember/service","@projectcaluma/ember-core/caluma-query/models/index"],(function(e,t,n){"use strict"
 var i,r,a,o,u,l,s,c
 function d(e,t,n,i){n&&Object.defineProperty(e,t,{enumerable:n.enumerable,configurable:n.configurable,writable:n.writable,value:n.initializer?n.initializer.call(i):void 0})}function f(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function p(e,t){for(var n=0;n<t.length;n++){var i=t[n]
 i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(e,i.key,i)}}function m(e,t){return m=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e},m(e,t)}function h(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
