@@ -60,7 +60,7 @@
     "ember-uikit": "4.0.0",
     "ember-validated-form": "3.0.3",
     "faker": "5.5.3",
-    "graphql": "15.6.0",
+    "graphql": "15.6.1",
     "loader.js": "4.7.0",
     "moment": "2.29.1",
     "sass": "1.42.1",
