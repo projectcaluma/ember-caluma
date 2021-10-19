@@ -16,14 +16,14 @@
     "@ember/optional-features": "2.0.0",
     "@glimmer/component": "1.0.4",
     "@glimmer/tracking": "1.0.4",
-    "@projectcaluma/ember-core": "9.0.2",
-    "@projectcaluma/ember-form": "9.1.0",
-    "@projectcaluma/ember-form-builder": "9.0.4",
+    "@projectcaluma/ember-core": "9.0.3",
+    "@projectcaluma/ember-form": "9.1.1",
+    "@projectcaluma/ember-form-builder": "9.0.5",
     "@projectcaluma/ember-testing": "9.0.0",
-    "@projectcaluma/ember-workflow": "9.0.1",
+    "@projectcaluma/ember-workflow": "9.0.2",
     "broccoli-asset-rev": "3.0.0",
     "ember-apollo-client": "3.2.0",
-    "ember-auto-import": "2.2.0",
+    "ember-auto-import": "2.2.3",
     "ember-changeset": "3.15.0",
     "ember-changeset-validations": "3.16.0",
     "ember-cli": "3.28.3",
@@ -60,11 +60,11 @@
     "ember-uikit": "4.0.0",
     "ember-validated-form": "3.0.3",
     "faker": "5.5.3",
-    "graphql": "15.6.0",
+    "graphql": "15.6.1",
     "loader.js": "4.7.0",
     "moment": "2.29.1",
     "sass": "1.43.2",
-    "webpack": "5.58.0"
+    "webpack": "5.58.2"
   },
   "ember": {
     "edition": "octane"
