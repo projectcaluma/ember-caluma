@@ -2,10 +2,10 @@
 # yarn lockfile v1
 
 
-"@adfinis-sygroup/eslint-config@1.4.2":
-  version "1.4.2"
-  resolved "https://registry.yarnpkg.com/@adfinis-sygroup/eslint-config/-/eslint-config-1.4.2.tgz#09822a71665830ac7514c85347bff1846fc0e340"
-  integrity sha512-91RdwCInlGWb927f7V0+Ur3DloP2g54xdrb3/Os3klHUHAsQj5wC2WZC5Of9Cd7Y/lEqLqaQTLE6Jy/Uk/reYA==
+"@adfinis-sygroup/eslint-config@1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@adfinis-sygroup/eslint-config/-/eslint-config-1.5.0.tgz#559ed9aef2311cb48a284b2f43d30c7e616e129a"
+  integrity sha512-BhHH00dJC5fJmz0lf16e355a1ecPzKR4hPpCcYUzzZWb5Ti1OkrAG0ZZxrF6gCIt+0DummdqgRUr74r/zdFNBg==
 
 "@adfinis-sygroup/semantic-release-config@3.2.0":
   version "3.2.0"
@@ -1615,10 +1615,10 @@
     semver "^7.3.5"
     typescript-memoize "^1.0.1"
 
-"@embroider/test-setup@0.45.0":
-  version "0.45.0"
-  resolved "https://registry.yarnpkg.com/@embroider/test-setup/-/test-setup-0.45.0.tgz#cce6a6ae4f4b19c16d5aa9ee277eb191dc9d917d"
-  integrity sha512-jXd3rEGeVxulLFC8LDCDEHIr4lrWYYoxhnFBs3YVcZJorLPbfh3sQPUKAqaiNQc6Ppw2kfEFs/NkJLw8r7816A==
+"@embroider/test-setup@0.47.0":
+  version "0.47.0"
+  resolved "https://registry.yarnpkg.com/@embroider/test-setup/-/test-setup-0.47.0.tgz#ea307583efaac227b71c5ad348fecac362637e0c"
+  integrity sha512-KadqpSno0qyhVW2VtXTU7i9OQHNT1tpcrQ+06sTaFmX275yGxHUTcSr//CV1ErtzejcVPvkGnRQIUKPRXZsNVA==
   dependencies:
     lodash "^4.17.21"
     resolve "^1.20.0"
@@ -8386,10 +8386,10 @@ ember-in-element-polyfill@^1.0.1:
     ember-cli-htmlbars "^5.3.1"
     ember-cli-version-checker "^5.1.2"
 
-ember-in-viewport@^3.10.2:
-  version "3.10.2"
-  resolved "https://registry.yarnpkg.com/ember-in-viewport/-/ember-in-viewport-3.10.2.tgz#78ad3d42ba94354fd05e7adb7a701da351041556"
-  integrity sha512-mOLqknUm+OjPqyYq9BO+h9RIcI3dhebPpfd8jM90/GXVv7jLNz1szq5nk0K0yZT861kY+dEjGLqLGqo1J4pSDQ==
+ember-in-viewport@^3.10.2, ember-in-viewport@^3.10.3:
+  version "3.10.3"
+  resolved "https://registry.yarnpkg.com/ember-in-viewport/-/ember-in-viewport-3.10.3.tgz#317472bb82bed11f7895821b799349c6a7406e81"
+  integrity sha512-hSX7p+G6hJjZaY2BAqzyuiMP7QIHzQ4g0+ZBnEwAa8GMbILFAtzPx5A4XEX8wY6dSzhHB9n9jkcWZdmaML6q8A==
   dependencies:
     ember-auto-import "^1.11.2"
     ember-cli-babel "^7.26.3"
@@ -8552,20 +8552,20 @@ ember-power-select@4.1.6, ember-power-select@^4.1.6:
     ember-text-measurer "^0.6.0"
     ember-truth-helpers "^2.1.0 || ^3.0.0"
 
-ember-qunit@5.1.4:
-  version "5.1.4"
-  resolved "https://registry.yarnpkg.com/ember-qunit/-/ember-qunit-5.1.4.tgz#bc69f963a0f5409ce33bee1e4d8146b1407147bf"
-  integrity sha512-L8L3TA5UYdsoJl9If88CU6Liu5Kr76uEpXimeJIyjoRX2kI57YWI2/76uiW7UU0qdYfvcmVazgd+MJGj9aB2JA==
+ember-qunit@5.1.5:
+  version "5.1.5"
+  resolved "https://registry.yarnpkg.com/ember-qunit/-/ember-qunit-5.1.5.tgz#24a7850f052be24189ff597dfc31b923e684c444"
+  integrity sha512-2cFA4oMygh43RtVcMaBrr086Tpdhgbn3fVZ2awLkzF/rnSN0D0PSRpd7hAD7OdBPerC/ZYRwzVyGXLoW/Zes4A==
   dependencies:
-    broccoli-funnel "^3.0.3"
+    broccoli-funnel "^3.0.8"
     broccoli-merge-trees "^3.0.2"
     common-tags "^1.8.0"
-    ember-auto-import "^1.10.1"
-    ember-cli-babel "^7.23.1"
+    ember-auto-import "^1.11.3"
+    ember-cli-babel "^7.26.6"
     ember-cli-test-loader "^3.0.0"
     resolve-package-path "^3.1.0"
     silent-error "^1.1.1"
-    validate-peer-dependencies "^1.1.0"
+    validate-peer-dependencies "^1.2.0"
 
 ember-resolver@8.0.3:
   version "8.0.3"
@@ -12319,10 +12319,10 @@ linkify-it@~1.2.0:
   dependencies:
     uc.micro "^1.0.1"
 
-lint-staged@11.2.0:
-  version "11.2.0"
-  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-11.2.0.tgz#6b9774a74b3eb4bef5c59fb6475bff84d6853008"
-  integrity sha512-0KIcRuO4HQS2Su7qWtjrfTXgSklvyIb9Fk9qVWRZkGHa5S81Vj6WBbs+ogQBvHUwLJYq1eQ4R+H82GSak4OM7w==
+lint-staged@11.2.3:
+  version "11.2.3"
+  resolved "https://registry.yarnpkg.com/lint-staged/-/lint-staged-11.2.3.tgz#fc3f4569cc4f46553309dfc1447b8aef69f744fb"
+  integrity sha512-Tfmhk8O2XFMD25EswHPv+OYhUjsijy5D7liTdxeXvhG2rsadmOLFtyj8lmlfoFFXY8oXWAIOKpoI+lJe1DB1mw==
   dependencies:
     cli-truncate "2.1.0"
     colorette "^1.4.0"
@@ -17855,7 +17855,7 @@ validate-npm-package-name@^3.0.0, validate-npm-package-name@~3.0.0:
   dependencies:
     builtins "^1.0.3"
 
-validate-peer-dependencies@^1.1.0:
+validate-peer-dependencies@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/validate-peer-dependencies/-/validate-peer-dependencies-1.2.0.tgz#22aab93c514f4fda457d36c80685e8b1160d2036"
   integrity sha512-nd2HUpKc6RWblPZQ2GDuI65sxJ2n/UqZwSBVtj64xlWjMx0m7ZB2m9b2JS3v1f+n9VWH/dd1CMhkHfP6pIdckA==
