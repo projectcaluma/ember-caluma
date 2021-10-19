@@ -30,7 +30,7 @@ module("Acceptance | question remove", function (hooks) {
       [data-test-remove-item]
     `);
 
-    assert.equal(currentURL(), "/test-form");
+    assert.strictEqual(currentURL(), "/test-form");
 
     await click("[data-test-cancel]");
 

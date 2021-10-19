@@ -19,6 +19,6 @@ module("Unit | Library | fieldset", function (hooks) {
       document: { pk: "Document:xxx-xxx" },
     });
 
-    assert.equal(fieldset.pk, "Document:xxx-xxx:Form:some-form");
+    assert.strictEqual(fieldset.pk, "Document:xxx-xxx:Form:some-form");
   });
 });

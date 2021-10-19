@@ -36,15 +36,15 @@ module("Integration | Component | cf-field/input/file", function (hooks) {
     await render(hbs`{{cf-field/input/file field=field onSave=onSave}}`);
 
     await triggerEvent("input[type=file]", "change", { files: [] });
-    assert.equal(this.field.answer.value.name, undefined);
-    assert.equal(this.field._errors, undefined);
+    assert.strictEqual(this.field.answer.value.name, undefined);
+    assert.strictEqual(this.field._errors, undefined);
 
     await triggerEvent("input[type=file]", "change", { files: [payload_fail] });
     await waitUntil(() => this.field._errors?.[0]?.type === "uploadFailed", {
       timeout: 2000,
     });
-    assert.equal(this.field.answer.value.name, undefined);
-    assert.equal(this.field._errors?.[0]?.type, "uploadFailed");
+    assert.strictEqual(this.field.answer.value.name, undefined);
+    assert.strictEqual(this.field._errors?.[0]?.type, "uploadFailed");
 
     this.set("field", {
       answer: {
@@ -57,8 +57,8 @@ module("Integration | Component | cf-field/input/file", function (hooks) {
     await waitUntil(() => this.field.answer.value.name === "good.txt", {
       timeout: 2000,
     });
-    assert.equal(this.field.answer.value.name, "good.txt");
-    assert.equal(this.field._errors, undefined);
+    assert.strictEqual(this.field.answer.value.name, "good.txt");
+    assert.strictEqual(this.field._errors, undefined);
   });
 
   test("it allows to download a file", async function (assert) {
@@ -80,7 +80,7 @@ module("Integration | Component | cf-field/input/file", function (hooks) {
     const window_open = window.open;
     window.open = (url, target) => {
       assert.ok(url.startsWith("http"), "The URL is an HTTP address");
-      assert.equal(target, "_blank", "Target for new window is _blank");
+      assert.strictEqual(target, "_blank", "Target for new window is _blank");
     };
 
     await render(hbs`{{cf-field/input/file field=field}}`);

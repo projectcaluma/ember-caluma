@@ -53,7 +53,7 @@ module("Integration | Component | cf-field/input/integer", function (hooks) {
   test("it triggers save on input", async function (assert) {
     assert.expect(1);
 
-    this.set("save", (value) => assert.equal(value, 1));
+    this.set("save", (value) => assert.strictEqual(value, 1));
 
     await render(hbs`{{cf-field/input/integer onSave=save}}`);
 
@@ -63,7 +63,7 @@ module("Integration | Component | cf-field/input/integer", function (hooks) {
   test("it does not allow non integer input", async function (assert) {
     assert.expect(1);
 
-    this.set("save", (value) => assert.equal(value, null));
+    this.set("save", (value) => assert.strictEqual(value, null));
 
     await render(hbs`{{cf-field/input/integer onSave=save}}`);
 

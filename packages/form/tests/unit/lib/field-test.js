@@ -39,7 +39,7 @@ module("Unit | Library | field", function (hooks) {
 
     const field = this.document.findField("question-1");
 
-    assert.equal(field.pk, `${this.document.pk}:Question:question-1`);
+    assert.strictEqual(field.pk, `${this.document.pk}:Question:question-1`);
   });
 
   test("computes isNew correctly", async function (assert) {
@@ -61,8 +61,8 @@ module("Unit | Library | field", function (hooks) {
 
     const field = this.document.findField("question-1");
 
-    assert.equal(field.question.slug, "question-1");
-    assert.equal(field.question.label, "Question 1");
+    assert.strictEqual(field.question.slug, "question-1");
+    assert.strictEqual(field.question.label, "Question 1");
   });
 
   test("can compute the answer", async function (assert) {
@@ -71,10 +71,10 @@ module("Unit | Library | field", function (hooks) {
     const field = this.document.findField("question-1");
     const fieldWithoutAnswer = this.document.findField("question-3");
 
-    assert.equal(field.answer.value, "test answer");
-    assert.equal(fieldWithoutAnswer.answer.value, null);
-    assert.equal(fieldWithoutAnswer.answer.__typename, "StringAnswer");
-    assert.equal(fieldWithoutAnswer.answer.id, null);
+    assert.strictEqual(field.answer.value, "test answer");
+    assert.strictEqual(fieldWithoutAnswer.answer.value, null);
+    assert.strictEqual(fieldWithoutAnswer.answer.__typename, "StringAnswer");
+    assert.strictEqual(fieldWithoutAnswer.answer.id, undefined);
   });
 
   test("it computes optional", async function (assert) {
@@ -542,24 +542,24 @@ module("Unit | Library | field", function (hooks) {
       assert.expect(1);
 
       // 1.1 + 5 * 100 = 501.1
-      assert.equal(this.calculated.value, 501.1);
+      assert.strictEqual(this.calculated.value, 501.1);
     });
 
     test("recalculates when a dependent value changes", async function (assert) {
       assert.expect(2);
 
       this.set("float.value", 2);
-      assert.equal(this.calculated.value, 502);
+      assert.strictEqual(this.calculated.value, 502);
 
       this.set("table.value", "test");
-      assert.equal(this.calculated.value, 100);
+      assert.strictEqual(this.calculated.value, 100);
     });
 
     test("recalculates when a dependent hidden state changes", async function (assert) {
       assert.expect(1);
 
       this.set("float.question.isHidden", "true");
-      assert.equal(this.calculated.value, null);
+      assert.strictEqual(this.calculated.value, null);
     });
   });
 });

@@ -14,7 +14,7 @@ module("Unit | Library | answer", function (hooks) {
       },
     });
 
-    assert.equal(answer.value, "test");
+    assert.strictEqual(answer.value, "test");
   });
 
   test("it computes a pk", async function (assert) {
@@ -26,7 +26,7 @@ module("Unit | Library | answer", function (hooks) {
       },
     });
 
-    assert.equal(newAnswer.pk, undefined);
+    assert.strictEqual(newAnswer.pk, undefined);
 
     const existingAnswer = this.owner.factoryFor("caluma-model:answer").create({
       raw: {
@@ -35,8 +35,8 @@ module("Unit | Library | answer", function (hooks) {
       },
     });
 
-    assert.equal(existingAnswer.uuid, "xxxx-xxxx");
-    assert.equal(existingAnswer.pk, "Answer:xxxx-xxxx");
+    assert.strictEqual(existingAnswer.uuid, "xxxx-xxxx");
+    assert.strictEqual(existingAnswer.pk, "Answer:xxxx-xxxx");
   });
 
   test("it generates documents for table answers", async function (assert) {
@@ -91,7 +91,7 @@ module("Unit | Library | answer", function (hooks) {
       },
     });
 
-    assert.equal(answer.value[0].pk, "Document:xxxx-xxxx");
+    assert.strictEqual(answer.value[0].pk, "Document:xxxx-xxxx");
     assert.deepEqual(answer.serializedValue, ["xxxx-xxxx"]);
 
     assert.deepEqual(

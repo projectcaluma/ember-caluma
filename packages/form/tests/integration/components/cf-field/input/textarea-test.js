@@ -49,7 +49,7 @@ module("Integration | Component | cf-field/input/textarea", function (hooks) {
   test("it triggers save on input", async function (assert) {
     assert.expect(1);
 
-    this.set("save", (value) => assert.equal(value, "Test"));
+    this.set("save", (value) => assert.strictEqual(value, "Test"));
 
     await render(hbs`{{cf-field/input/textarea onSave=save}}`);
 

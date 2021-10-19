@@ -20,7 +20,7 @@ module("Acceptance | form new", function (hooks) {
 
     await click("[data-test-new-form]");
 
-    assert.equal(currentURL(), "/new");
+    assert.strictEqual(currentURL(), "/new");
 
     await fillIn("input[name=name]", "Some Random Name");
     await fillIn("input[name=slug]", "testy-test-test");
@@ -28,6 +28,6 @@ module("Acceptance | form new", function (hooks) {
 
     await click("button[type=submit]");
 
-    assert.equal(currentURL(), "/testy-test-test");
+    assert.strictEqual(currentURL(), "/testy-test-test");
   });
 });

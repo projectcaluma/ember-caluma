@@ -117,7 +117,7 @@ module("Unit | Library | document", function (hooks) {
 
     await Promise.all(
       tests.map(async ([expression, result]) => {
-        assert.equal(await this.document.jexl.eval(expression), result);
+        assert.strictEqual(await this.document.jexl.eval(expression), result);
       })
     );
   });
@@ -151,22 +151,28 @@ module("Unit | Library | document", function (hooks) {
     const values = [10, 20, "notANumber", 30, null, undefined, true, {}];
     const expression = "values|min";
 
-    assert.equal(await this.document.jexl.eval(expression, { values }), 10);
+    assert.strictEqual(
+      await this.document.jexl.eval(expression, { values }),
+      10
+    );
   });
 
   test("it transforms correcty with Math.max", async function (assert) {
     const values = [10, 20, "notANumber", 30, null, undefined, true, {}];
     const expression = "values|max";
 
-    assert.equal(await this.document.jexl.eval(expression, { values }), 30);
+    assert.strictEqual(
+      await this.document.jexl.eval(expression, { values }),
+      30
+    );
   });
 
   test("it transforms correcty with Math.ceil", async function (assert) {
     const value = 1.8;
     const expression = "value|ceil";
 
-    assert.equal(await this.document.jexl.eval(expression, { value }), 2);
-    assert.equal(
+    assert.strictEqual(await this.document.jexl.eval(expression, { value }), 2);
+    assert.strictEqual(
       await this.document.jexl.eval(expression, { value: null }),
       null
     );
@@ -176,8 +182,8 @@ module("Unit | Library | document", function (hooks) {
     const value = 1.8;
     const expression = "value|floor";
 
-    assert.equal(await this.document.jexl.eval(expression, { value }), 1);
-    assert.equal(
+    assert.strictEqual(await this.document.jexl.eval(expression, { value }), 1);
+    assert.strictEqual(
       await this.document.jexl.eval(expression, { value: null }),
       null
     );
@@ -189,15 +195,15 @@ module("Unit | Library | document", function (hooks) {
     const expression = "value|round(places)";
     const expressionWithoutPlaces = "value|round";
 
-    assert.equal(
+    assert.strictEqual(
       await this.document.jexl.eval(expression, { value, places }),
       1.877
     );
-    assert.equal(
+    assert.strictEqual(
       await this.document.jexl.eval(expressionWithoutPlaces, { value, places }),
       2
     );
-    assert.equal(
+    assert.strictEqual(
       await this.document.jexl.eval(expression, { value: null, places: null }),
       null
     );
@@ -207,19 +213,25 @@ module("Unit | Library | document", function (hooks) {
     const values = [10, 20, "notANumber", 30, null, undefined, true, {}];
     const expression = "values|sum";
 
-    assert.equal(await this.document.jexl.eval(expression, { values }), 60);
+    assert.strictEqual(
+      await this.document.jexl.eval(expression, { values }),
+      60
+    );
   });
 
   test("it transforms correcty with avg transform", async function (assert) {
     const values = [10, 20, "notANumber", 30, null, undefined, true, {}];
     const expression = "values|avg";
 
-    assert.equal(await this.document.jexl.eval(expression, { values }), 20);
-    assert.equal(
+    assert.strictEqual(
+      await this.document.jexl.eval(expression, { values }),
+      20
+    );
+    assert.strictEqual(
       await this.document.jexl.eval(expression, { values: [] }),
       null
     );
-    assert.equal(
+    assert.strictEqual(
       await this.document.jexl.eval(expression, { values: [10] }),
       10
     );

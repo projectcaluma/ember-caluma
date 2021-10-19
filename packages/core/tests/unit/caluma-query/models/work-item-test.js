@@ -29,8 +29,8 @@ module("Unit | Caluma Query | Models | work-item", function (hooks) {
   test("can read basic model values", function (assert) {
     assert.expect(6);
 
-    assert.equal(this.model.id, UUID);
-    assert.equal(
+    assert.strictEqual(this.model.id, UUID);
+    assert.strictEqual(
       this.model.status,
       "t:caluma.caluma-query.work-item.status.COMPLETED:()"
     );
@@ -44,6 +44,6 @@ module("Unit | Caluma Query | Models | work-item", function (hooks) {
     assert.expect(1);
 
     this.model.deadline = moment.utc("2022-01-01");
-    assert.equal(this.model.raw.deadline, "2022-01-01T00:00:00.000Z");
+    assert.strictEqual(this.model.raw.deadline, "2022-01-01T00:00:00.000Z");
   });
 });

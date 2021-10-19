@@ -26,7 +26,7 @@ module("Acceptance | question add", function (hooks) {
       [data-test-add-item]
     `);
 
-    assert.equal(currentURL(), "/test-form/questions/test-question");
+    assert.strictEqual(currentURL(), "/test-form/questions/test-question");
 
     await click("[data-test-cancel]");
 

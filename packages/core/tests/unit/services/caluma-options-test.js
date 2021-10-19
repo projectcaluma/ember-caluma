@@ -17,7 +17,7 @@ module("Unit | Service | options", function (hooks) {
 
     service.set("foo", value);
 
-    assert.equal(service.get("foo"), value);
+    assert.strictEqual(service.get("foo"), value);
   });
 
   test("it allows for (un)registering of custom components", function (assert) {
@@ -37,6 +37,6 @@ module("Unit | Service | options", function (hooks) {
     service.registerComponentOverride(dummy);
     service.unregisterComponentOverride(dummy.component);
 
-    assert.equal(service._overrides, initial);
+    assert.deepEqual(service._overrides, initial);
   });
 });

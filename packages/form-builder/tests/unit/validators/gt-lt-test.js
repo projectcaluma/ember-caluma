@@ -12,11 +12,11 @@ module("Unit | Validator | gt-lt", function () {
     assert.true(validateGtLt({ gt: "x" })("key", 2, null, {}, { x: 1 }));
     assert.true(validateGtLt({ lt: "x" })("key", 1, null, {}, {}));
     assert.true(validateGtLt({ gt: "x" })("key", 2, null, {}, {}));
-    assert.equal(
+    assert.strictEqual(
       validateGtLt({ gt: "x" })("key", 1, null, {}, { x: 2 }),
       "Key must be greater than X"
     );
-    assert.equal(
+    assert.strictEqual(
       validateGtLt({ lt: "x" })("key", 2, null, {}, { x: 1 }),
       "Key must be less than X"
     );

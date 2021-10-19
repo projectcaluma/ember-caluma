@@ -113,7 +113,7 @@ module(
       assert.dom(".ember-power-select-option").exists({ count: 3 });
       await click(".ember-power-select-option:first-child");
 
-      assert.equal(this.singleChoiceField.answer.value, "option-1");
+      assert.strictEqual(this.singleChoiceField.answer.value, "option-1");
     });
 
     test("it renders (multiple)", async function (assert) {

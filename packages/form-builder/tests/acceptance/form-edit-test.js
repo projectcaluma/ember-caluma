@@ -20,13 +20,13 @@ module("Acceptance | form edit", function (hooks) {
 
     await click("[data-test-form-list-item=test-form] [data-test-edit-form]");
 
-    assert.equal(currentURL(), "/test-form");
+    assert.strictEqual(currentURL(), "/test-form");
 
     await fillIn("input[name=name]", "Some Random Name");
     await fillIn("textarea[name=description]", "Some Random Description");
 
     await click("button[type=submit]");
 
-    assert.equal(currentURL(), "/test-form");
+    assert.strictEqual(currentURL(), "/test-form");
   });
 });

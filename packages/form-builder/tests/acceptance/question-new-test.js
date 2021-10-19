@@ -21,7 +21,7 @@ module("Acceptance | question new", function (hooks) {
     await click("[data-test-add-question]");
     await click("[data-test-new-question]");
 
-    assert.equal(currentURL(), "/test-form/questions/new");
+    assert.strictEqual(currentURL(), "/test-form/questions/new");
 
     await fillIn("[name=label]", "Test Question 1?");
     await fillIn("[name=slug]", "testy-test-test");
@@ -29,7 +29,7 @@ module("Acceptance | question new", function (hooks) {
 
     await click("button[type=submit]");
 
-    assert.equal(currentURL(), "/test-form/questions/testy-test-test");
+    assert.strictEqual(currentURL(), "/test-form/questions/testy-test-test");
 
     assert.dom("[data-test-question-list-item=testy-test-test]").exists();
   });
