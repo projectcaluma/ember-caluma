@@ -28,12 +28,12 @@ module("Acceptance | question edit", function (hooks) {
       "[data-test-question-list-item=test-question] [data-test-edit-question]"
     );
 
-    assert.equal(currentURL(), "/test-form/questions/test-question");
+    assert.strictEqual(currentURL(), "/test-form/questions/test-question");
 
     await fillIn("[name=label]", "Test Question 1?");
 
     await click("button[type=submit]");
 
-    assert.equal(currentURL(), "/test-form");
+    assert.strictEqual(currentURL(), "/test-form");
   });
 });

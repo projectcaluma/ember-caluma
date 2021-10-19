@@ -31,7 +31,7 @@ module("Acceptance | navigation", function (hooks) {
     assert.dom("ul.uk-breadcrumb > li:nth-child(2) > a").hasText("New form");
 
     await click("ul.uk-breadcrumb > li:nth-child(1) > a");
-    assert.equal(currentURL(), "/");
+    assert.strictEqual(currentURL(), "/");
 
     await visit("/form-1");
 
@@ -39,7 +39,7 @@ module("Acceptance | navigation", function (hooks) {
     assert.dom("ul.uk-breadcrumb > li:nth-child(2) > a").hasText("Form #1");
 
     await click("ul.uk-breadcrumb > li:nth-child(1) > a");
-    assert.equal(currentURL(), "/");
+    assert.strictEqual(currentURL(), "/");
 
     await visit("/form-1/questions/new");
 
@@ -50,7 +50,7 @@ module("Acceptance | navigation", function (hooks) {
       .hasText("New question");
 
     await click("ul.uk-breadcrumb > li:nth-child(2) > a");
-    assert.equal(currentURL(), "/form-1");
+    assert.strictEqual(currentURL(), "/form-1");
 
     await visit("/form-1/questions/question-1");
 
@@ -59,6 +59,6 @@ module("Acceptance | navigation", function (hooks) {
     assert.dom("ul.uk-breadcrumb > li:nth-child(3) > a").hasText("Question #1");
 
     await click("ul.uk-breadcrumb > li:nth-child(2) > a");
-    assert.equal(currentURL(), "/form-1");
+    assert.strictEqual(currentURL(), "/form-1");
   });
 });

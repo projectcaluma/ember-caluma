@@ -39,7 +39,7 @@ module("Acceptance | question link form", function (hooks) {
     await click(
       `[data-test-question-list-item=${question.slug}] [data-test-link-subform]`
     );
-    assert.equal(currentURL(), `/${subForm.slug}`);
+    assert.strictEqual(currentURL(), `/${subForm.slug}`);
 
     assert
       .dom("[data-test-question-list-item]")
@@ -51,7 +51,7 @@ module("Acceptance | question link form", function (hooks) {
       assert.dom(questionList[index]).containsText(question.slug);
     });
 
-    assert.equal(
+    assert.strictEqual(
       document.querySelector("input[name='name']").value,
       subForm.name
     );
@@ -95,13 +95,13 @@ module("Acceptance | question link form", function (hooks) {
     await click(
       `[data-test-question-list-item=${question.slug}] [data-test-link-subform]`
     );
-    assert.equal(currentURL(), `/${rowform.slug}`);
+    assert.strictEqual(currentURL(), `/${rowform.slug}`);
 
     assert.dom("[data-test-question-list-item]").exists({ count: 1 });
     assert
       .dom("[data-test-question-list-item]")
       .containsText(rowformQuestion.slug);
-    assert.equal(
+    assert.strictEqual(
       document.querySelector("input[name='name']").value,
       rowform.name
     );

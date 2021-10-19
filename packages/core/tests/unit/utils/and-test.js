@@ -28,7 +28,7 @@ module("Unit | Utility | and", function () {
 
       for (const { validators, expected } of testCases) {
         const validationFn = and(...validators);
-        assert.equal(validationFn(), expected);
+        assert.strictEqual(validationFn(), expected);
       }
     });
 
@@ -73,7 +73,7 @@ module("Unit | Utility | and", function () {
           and(...validators3)
         );
 
-        assert.equal(validationFn(), "first error");
+        assert.strictEqual(validationFn(), "first error");
       }
 
       {
@@ -88,7 +88,7 @@ module("Unit | Utility | and", function () {
           and(...validators3)
         );
 
-        assert.equal(validationFn(), "leeroy jenkins");
+        assert.strictEqual(validationFn(), "leeroy jenkins");
       }
     });
   });
@@ -128,7 +128,7 @@ module("Unit | Utility | and", function () {
         testCases.map(async ({ validators, expected }) => {
           const validationFn = and(...validators);
           const result = await validationFn();
-          assert.equal(result, expected);
+          assert.strictEqual(result, expected);
         })
       );
     });
@@ -175,7 +175,7 @@ module("Unit | Utility | and", function () {
           and(...validators3)
         );
 
-        assert.equal(await validationFn(), "first error");
+        assert.strictEqual(await validationFn(), "first error");
       }
 
       {
@@ -202,7 +202,7 @@ module("Unit | Utility | and", function () {
           and(...validators3)
         );
 
-        assert.equal(await validationFn(), "leeroy jenkins");
+        assert.strictEqual(await validationFn(), "leeroy jenkins");
       }
     });
 

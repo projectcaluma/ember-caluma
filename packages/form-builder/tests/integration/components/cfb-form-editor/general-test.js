@@ -51,7 +51,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
 
     this.set("afterSubmit", (form) => {
       assert.ok(form);
-      assert.equal(form.slug, "foo-bar-form-2");
+      assert.strictEqual(form.slug, "foo-bar-form-2");
       assert.step("after-submit");
     });
 
@@ -80,7 +80,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
 
     this.set("afterSubmit", (form) => {
       assert.ok(form);
-      assert.equal(form.slug, "form-slug");
+      assert.strictEqual(form.slug, "form-slug");
       assert.step("after-submit");
     });
 
@@ -113,7 +113,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
 
     this.set("afterSubmit", (form) => {
       assert.ok(form);
-      assert.equal(form.name, "Test Name 1");
+      assert.strictEqual(form.name, "Test Name 1");
       assert.step("after-submit");
     });
 

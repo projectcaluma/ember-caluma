@@ -57,7 +57,7 @@ module("Integration | Component | cf-field/input/float", function (hooks) {
   test("it triggers save on input", async function (assert) {
     assert.expect(1);
 
-    this.set("save", (value) => assert.equal(value, 1.5));
+    this.set("save", (value) => assert.strictEqual(value, 1.5));
 
     await render(
       hbs`<CfField::input::float
@@ -72,7 +72,7 @@ module("Integration | Component | cf-field/input/float", function (hooks) {
   test("it does not allow non float input", async function (assert) {
     assert.expect(1);
 
-    this.set("save", (value) => assert.equal(value, null));
+    this.set("save", (value) => assert.strictEqual(value, null));
 
     await render(
       hbs`<CfField::input::float

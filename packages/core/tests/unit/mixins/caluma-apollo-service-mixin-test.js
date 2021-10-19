@@ -35,7 +35,7 @@ module("Unit | Mixin | caluma-apollo-service-mixin", function (hooks) {
 
     const cache = subject.cache();
 
-    assert.equal(
+    assert.strictEqual(
       cache.config.dataIdFromObject({
         slug: "test",
         __typename: "TestType",
@@ -43,7 +43,7 @@ module("Unit | Mixin | caluma-apollo-service-mixin", function (hooks) {
       "TestType:test"
     );
 
-    assert.equal(
+    assert.strictEqual(
       cache.config.dataIdFromObject({
         edges: [
           {
@@ -54,7 +54,7 @@ module("Unit | Mixin | caluma-apollo-service-mixin", function (hooks) {
           },
         ],
       }),
-      null
+      undefined
     );
   });
 });

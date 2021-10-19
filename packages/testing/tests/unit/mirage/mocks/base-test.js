@@ -29,7 +29,7 @@ module("Unit | Mirage GraphQL Mock | base", function (hooks) {
 
     Reflect.defineProperty(proto, "method2", { enumerable: true, value: {} });
 
-    assert.equal(Object.keys(x.getHandlers()).length, 3);
+    assert.strictEqual(Object.keys(x.getHandlers()).length, 3);
   });
 
   test("can query a single record", async function (assert) {
@@ -78,7 +78,7 @@ module("Unit | Mirage GraphQL Mock | base", function (hooks) {
       `,
     });
 
-    assert.equal(res.allForms.edges.length, 2);
+    assert.strictEqual(res.allForms.edges.length, 2);
     assert.deepEqual(res.allForms.edges[0].node, {
       name: "Test Form",
       slug: "test-form",
@@ -89,7 +89,7 @@ module("Unit | Mirage GraphQL Mock | base", function (hooks) {
   test("can create or update a record", async function (assert) {
     assert.expect(4);
 
-    assert.equal(this.server.db.forms.length, 1);
+    assert.strictEqual(this.server.db.forms.length, 1);
 
     const createRes = await this.apollo.mutate({
       mutation: gql`
@@ -110,7 +110,7 @@ module("Unit | Mirage GraphQL Mock | base", function (hooks) {
       },
     });
 
-    assert.equal(this.server.db.forms.length, 2);
+    assert.strictEqual(this.server.db.forms.length, 2);
     assert.deepEqual(createRes.saveForm.form, {
       name: "New Form!",
       slug: "new-slug",

@@ -60,7 +60,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
 
     this.set("afterSubmit", (question) => {
       assert.ok(question);
-      assert.equal(question.label, "Test Label 1");
+      assert.strictEqual(question.label, "Test Label 1");
       assert.step("after-submit");
     });
 
@@ -87,7 +87,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
 
     this.set("afterSubmit", (question) => {
       assert.ok(question);
-      assert.equal(question.meta.someMetaKey, "foobar");
+      assert.strictEqual(question.meta.someMetaKey, "foobar");
       assert.step("after-submit");
     });
 
@@ -162,7 +162,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     this.server.create("form", { slug: "test-form" });
 
     this.set("afterSubmit", (question) => {
-      assert.equal(question.slug, "foo-bar-slug");
+      assert.strictEqual(question.slug, "foo-bar-slug");
       assert.step("after-submit");
     });
 
@@ -187,11 +187,11 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     this.server.create("form", { slug: "test-form" });
 
     this.set("afterSubmit", (question) => {
-      assert.equal(question.__typename, "TextQuestion");
-      assert.equal(question.label, "Label");
-      assert.equal(question.slug, "slug");
-      assert.equal(question.minLength, 10);
-      assert.equal(question.maxLength, 20);
+      assert.strictEqual(question.__typename, "TextQuestion");
+      assert.strictEqual(question.label, "Label");
+      assert.strictEqual(question.slug, "slug");
+      assert.strictEqual(question.minLength, 10);
+      assert.strictEqual(question.maxLength, 20);
 
       assert.step("after-submit");
     });
@@ -217,11 +217,11 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     this.server.create("form", { slug: "test-form" });
 
     this.set("afterSubmit", (question) => {
-      assert.equal(question.__typename, "TextareaQuestion");
-      assert.equal(question.label, "Label");
-      assert.equal(question.slug, "slug");
-      assert.equal(question.minLength, 10);
-      assert.equal(question.maxLength, 20);
+      assert.strictEqual(question.__typename, "TextareaQuestion");
+      assert.strictEqual(question.label, "Label");
+      assert.strictEqual(question.slug, "slug");
+      assert.strictEqual(question.minLength, 10);
+      assert.strictEqual(question.maxLength, 20);
 
       assert.step("after-submit");
     });
@@ -247,11 +247,11 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     this.server.create("form", { slug: "test-form" });
 
     this.set("afterSubmit", (question) => {
-      assert.equal(question.__typename, "IntegerQuestion");
-      assert.equal(question.label, "Label");
-      assert.equal(question.slug, "slug");
-      assert.equal(question.integerMinValue, -20);
-      assert.equal(question.integerMaxValue, 20);
+      assert.strictEqual(question.__typename, "IntegerQuestion");
+      assert.strictEqual(question.label, "Label");
+      assert.strictEqual(question.slug, "slug");
+      assert.strictEqual(question.integerMinValue, -20);
+      assert.strictEqual(question.integerMaxValue, 20);
 
       assert.step("after-submit");
     });
@@ -277,11 +277,11 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     this.server.create("form", { slug: "test-form" });
 
     this.set("afterSubmit", (question) => {
-      assert.equal(question.__typename, "FloatQuestion");
-      assert.equal(question.label, "Label");
-      assert.equal(question.slug, "slug");
-      assert.equal(question.floatMinValue, -20);
-      assert.equal(question.floatMaxValue, 20);
+      assert.strictEqual(question.__typename, "FloatQuestion");
+      assert.strictEqual(question.label, "Label");
+      assert.strictEqual(question.slug, "slug");
+      assert.strictEqual(question.floatMinValue, -20);
+      assert.strictEqual(question.floatMaxValue, 20);
 
       assert.step("after-submit");
     });
@@ -307,11 +307,11 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     this.server.create("form", { slug: "test-form" });
 
     this.set("afterSubmit", (question) => {
-      assert.equal(question.__typename, "MultipleChoiceQuestion");
-      assert.equal(question.label, "Label");
-      assert.equal(question.slug, "slug");
-      assert.equal(question.options.edges[0].node.slug, "slug-option-1");
-      assert.equal(question.options.edges[0].node.label, "Option 1");
+      assert.strictEqual(question.__typename, "MultipleChoiceQuestion");
+      assert.strictEqual(question.label, "Label");
+      assert.strictEqual(question.slug, "slug");
+      assert.strictEqual(question.options.edges[0].node.slug, "slug-option-1");
+      assert.strictEqual(question.options.edges[0].node.label, "Option 1");
       assert.true(question.meta.hideLabel);
 
       assert.step("after-submit");
@@ -339,11 +339,11 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     this.server.create("form", { slug: "test-form" });
 
     this.set("afterSubmit", (question) => {
-      assert.equal(question.__typename, "ChoiceQuestion");
-      assert.equal(question.label, "Label");
-      assert.equal(question.slug, "slug");
-      assert.equal(question.options.edges[0].node.slug, "slug-option-1");
-      assert.equal(question.options.edges[0].node.label, "Option 1");
+      assert.strictEqual(question.__typename, "ChoiceQuestion");
+      assert.strictEqual(question.label, "Label");
+      assert.strictEqual(question.slug, "slug");
+      assert.strictEqual(question.options.edges[0].node.slug, "slug-option-1");
+      assert.strictEqual(question.options.edges[0].node.label, "Option 1");
 
       assert.step("after-submit");
     });
@@ -370,10 +370,10 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     this.server.create("form", { slug: "rowform" });
 
     this.set("afterSubmit", (question) => {
-      assert.equal(question.__typename, "TableQuestion");
-      assert.equal(question.label, "Label");
-      assert.equal(question.slug, "slug");
-      assert.equal(question.rowForm.slug, "rowform");
+      assert.strictEqual(question.__typename, "TableQuestion");
+      assert.strictEqual(question.label, "Label");
+      assert.strictEqual(question.slug, "slug");
+      assert.strictEqual(question.rowForm.slug, "rowform");
 
       assert.step("after-submit");
     });
@@ -400,7 +400,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     const forms = this.server.createList("form", 5);
 
     this.set("afterSubmit", (question) => {
-      assert.equal(question.rowForm.slug, forms[0].slug);
+      assert.strictEqual(question.rowForm.slug, forms[0].slug);
       assert.step("after-submit");
     });
 
@@ -418,7 +418,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     const options = [
       ...document.querySelectorAll(".ember-power-select-option"),
     ];
-    assert.equal(options.length, forms.length);
+    assert.strictEqual(options.length, forms.length);
     forms.forEach((form, index) => {
       assert.dom(options[index]).containsText(form.slug);
       assert.dom(options[index]).containsText(form.name);
@@ -443,10 +443,10 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     this.server.create("form", { slug: "subform" });
 
     this.set("afterSubmit", (question) => {
-      assert.equal(question.__typename, "FormQuestion");
-      assert.equal(question.label, "Label");
-      assert.equal(question.slug, "slug");
-      assert.equal(question.subForm.slug, "subform");
+      assert.strictEqual(question.__typename, "FormQuestion");
+      assert.strictEqual(question.label, "Label");
+      assert.strictEqual(question.slug, "slug");
+      assert.strictEqual(question.subForm.slug, "subform");
 
       assert.step("after-submit");
     });
@@ -473,7 +473,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     const forms = this.server.createList("form", 5);
 
     this.set("afterSubmit", (question) => {
-      assert.equal(question.subForm.slug, forms[0].slug);
+      assert.strictEqual(question.subForm.slug, forms[0].slug);
       assert.step("after-submit");
     });
 
@@ -491,7 +491,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     const options = [
       ...document.querySelectorAll(".ember-power-select-option"),
     ];
-    assert.equal(options.length, forms.length);
+    assert.strictEqual(options.length, forms.length);
     forms.forEach((form, index) => {
       assert.dom(options[index]).containsText(form.slug);
       assert.dom(options[index]).containsText(form.name);
@@ -515,9 +515,9 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     this.server.create("form", { slug: "test-form" });
 
     this.set("afterSubmit", (question) => {
-      assert.equal(question.__typename, "FileQuestion");
-      assert.equal(question.label, "Label");
-      assert.equal(question.slug, "slug");
+      assert.strictEqual(question.__typename, "FileQuestion");
+      assert.strictEqual(question.label, "Label");
+      assert.strictEqual(question.slug, "slug");
 
       assert.step("after-submit");
     });
@@ -541,9 +541,9 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     this.server.create("form", { slug: "test-form" });
 
     this.set("afterSubmit", (question) => {
-      assert.equal(question.__typename, "StaticQuestion");
-      assert.equal(question.label, "Label");
-      assert.equal(question.slug, "slug");
+      assert.strictEqual(question.__typename, "StaticQuestion");
+      assert.strictEqual(question.label, "Label");
+      assert.strictEqual(question.slug, "slug");
 
       assert.step("after-submit");
     });

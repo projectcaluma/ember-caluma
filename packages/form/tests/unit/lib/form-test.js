@@ -15,6 +15,6 @@ module("Unit | Library | form", function (hooks) {
       },
     });
 
-    assert.equal(form.pk, "Form:some-form");
+    assert.strictEqual(form.pk, "Form:some-form");
   });
 });

@@ -12,13 +12,13 @@ module("Unit | Validator | options", function () {
         edges: [{ node: { slug: "test", label: "test" } }],
       })
     );
-    assert.equal(
+    assert.strictEqual(
       await validateOptions()(null, {
         edges: [{ node: { slug: "test", label: "" } }],
       }),
       "Invalid options"
     );
-    assert.equal(
+    assert.strictEqual(
       await validateOptions()(null, {
         edges: [{ node: { slug: "", label: "test" } }],
       }),

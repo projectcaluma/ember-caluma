@@ -19,7 +19,7 @@ module("Integration | Component | cfb-code-editor", function (hooks) {
     // syntax highlighting creates child <span>s
     assert.dom("[name=editor] span").exists({ count: 2 });
 
-    assert.equal(this.element.textContent.trim(), "1 + 1");
+    assert.strictEqual(this.element.textContent.trim(), "1 + 1");
     assert.verifySteps(Array.from(Array(5)).map(() => "update"));
   });
 });

@@ -79,7 +79,7 @@ module("Integration | Component | cf-field/input/radio", function (hooks) {
   test("it triggers save on click", async function (assert) {
     assert.expect(1);
 
-    this.set("save", (value) => assert.equal(value, "option-1"));
+    this.set("save", (value) => assert.strictEqual(value, "option-1"));
 
     await render(hbs`
       <CfField::Input::Radio

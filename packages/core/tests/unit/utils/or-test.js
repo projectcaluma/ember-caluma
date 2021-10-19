@@ -28,7 +28,7 @@ module("Unit | Utility | or", function () {
 
       for (const { validators, expected } of testCases) {
         const validationFn = or(...validators);
-        assert.equal(validationFn(), expected);
+        assert.strictEqual(validationFn(), expected);
       }
     });
 
@@ -57,7 +57,7 @@ module("Unit | Utility | or", function () {
       ];
 
       const validationFn = or(...validators);
-      assert.equal(validationFn(), "third error");
+      assert.strictEqual(validationFn(), "third error");
     });
 
     test("should work with arbitrary nesting", function (assert) {
@@ -87,7 +87,7 @@ module("Unit | Utility | or", function () {
           or(...validators3)
         );
 
-        assert.equal(validationFn(), "ninth error");
+        assert.strictEqual(validationFn(), "ninth error");
       }
 
       {
@@ -146,7 +146,7 @@ module("Unit | Utility | or", function () {
         testCases.map(async ({ validators, expected }) => {
           const validationFn = or(...validators);
           const result = await validationFn();
-          assert.equal(result, expected);
+          assert.strictEqual(result, expected);
         })
       );
     });
@@ -208,7 +208,7 @@ module("Unit | Utility | or", function () {
           or(...validators3)
         );
 
-        assert.equal(await validationFn(), "ninth error");
+        assert.strictEqual(await validationFn(), "ninth error");
       }
 
       {

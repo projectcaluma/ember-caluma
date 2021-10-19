@@ -22,6 +22,6 @@ module("Unit | Library | question", function (hooks) {
       },
     });
 
-    assert.equal(question.pk, "Question:some-question");
+    assert.strictEqual(question.pk, "Question:some-question");
   });
 });
