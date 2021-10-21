@@ -50,6 +50,7 @@ jobs:
     strategy:
       matrix:
         workspace:
+          - "@projectcaluma/ember-analytics"
           - "@projectcaluma/ember-core"
           - "@projectcaluma/ember-distribution"
           - "@projectcaluma/ember-form"
@@ -91,6 +92,7 @@ jobs:
     strategy:
       matrix:
         workspace:
+          - "@projectcaluma/ember-analytics"
           - "@projectcaluma/ember-core"
           - "@projectcaluma/ember-distribution"
           - "@projectcaluma/ember-form"
@@ -164,6 +166,7 @@ jobs:
       fail-fast: false
       matrix:
         workspace:
+          - "@projectcaluma/ember-analytics"
           - "@projectcaluma/ember-core"
           - "@projectcaluma/ember-distribution"
           - "@projectcaluma/ember-form"
