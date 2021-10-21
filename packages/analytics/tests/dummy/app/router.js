@@ -7,9 +7,4 @@ export default class Router extends EmberRouter {
 }
 
 // eslint-disable-next-line array-callback-return
-Router.map(function () {
-  this.mount("@projectcaluma/ember-analytics", {
-    path: "/",
-    as: "analytics",
-  });
-});
+Router.map(function () {});
