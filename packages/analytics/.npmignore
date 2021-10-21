@@ -28,6 +28,7 @@
 /tests/
 /yarn-error.log
 /yarn.lock
+yarn.lock
 .gitkeep
 
 # ember-try
