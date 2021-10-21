@@ -88,4 +88,22 @@ export default class CalumaOptionsService extends Service {
   getComponentOverrides() {
     return Object.values(this._overrides);
   }
+
+  groupIdentifierProperty = "id";
+  groupNameProperty = "name";
+  resolveGroups(identifiers) {
+    return identifiers.map((identifier) => ({
+      [this.groupIdentifierProperty]: identifier,
+      [this.groupNameProperty]: identifier,
+    }));
+  }
+
+  userIdentifierProperty = "username";
+  userNameProperty = "fullName";
+  resolveUsers(identifiers) {
+    return identifiers.map((identifier) => ({
+      [this.userIdentifierProperty]: identifier,
+      [this.userNameProperty]: identifier,
+    }));
+  }
 }

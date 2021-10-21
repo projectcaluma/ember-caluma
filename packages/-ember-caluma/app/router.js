@@ -11,10 +11,11 @@ export default class Router extends AddonDocsRouter {
 Router.map(function () {
   docsRoute(this, function () {
     this.route("usage");
-    this.route("testing");
     this.route("queries");
     this.route("buttons");
     this.route("validation");
+    this.route("helpers");
+    this.route("testing");
 
     this.route("migration-v7");
     this.route("migration-v9");
