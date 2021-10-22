@@ -17,13 +17,15 @@ module.exports = async function () {
         },
       },
       {
+        // pin version to 3.28.1 since 3.28.2 produces errors in CI
+        // https://github.com/emberjs/ember.js/issues/19797
         name: "ember-lts-3.28",
         npm: {
           devDependencies: {
-            "ember-source": "~3.28.0",
+            "ember-source": "3.28.1",
           },
           resolutions: {
-            "ember-source": "~3.28.0",
+            "ember-source": "3.28.1",
           },
         },
       },
