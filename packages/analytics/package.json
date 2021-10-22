@@ -14,9 +14,23 @@
     "test:ember-compatibility": "ember try:each"
   },
   "dependencies": {
+    "@projectcaluma/ember-core": "9.0.3",
+    "ember-apollo-client": "^3.2.0",
     "ember-auto-import": "^2.4.2",
     "ember-cli-babel": "^7.26.11",
-    "ember-cli-htmlbars": "^6.1.0"
+    "ember-cli-htmlbars": "^6.0.1",
+    "ember-cli-showdown": "^6.0.0",
+    "ember-composable-helpers": "^4.5.0",
+    "ember-fetch": "^8.0.4",
+    "ember-in-viewport": "^3.10.3",
+    "ember-intl": "^5.7.0",
+    "ember-power-select": "^4.1.6",
+    "ember-uikit": "^4.0.0",
+    "graphql": "^15.6.1",
+    "jexl": "^2.3.0",
+    "lodash.clonedeep": "^4.5.0",
+    "lodash.isequal": "^4.5.0",
+    "moment": "^2.29.1"
   },
   "devDependencies": {
     "@ember/optional-features": "2.0.0",

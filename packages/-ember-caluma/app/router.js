@@ -25,6 +25,7 @@ Router.map(function () {
   this.route("demo", function () {
     this.route("form-rendering");
     this.route("queries");
+    this.route("analytics");
 
     this.mount("@projectcaluma/ember-form-builder", {
       path: "/form-builder",
