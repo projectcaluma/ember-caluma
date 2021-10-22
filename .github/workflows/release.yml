@@ -18,6 +18,8 @@ jobs:
           - "@projectcaluma/ember-workflow"
           # uncomment if first release is ready
           # - "@projectcaluma/ember-distribution"
+          # uncomment if first release is ready
+          # - "@projectcaluma/ember-analytics"
 
     steps:
       - uses: actions/checkout@v2
