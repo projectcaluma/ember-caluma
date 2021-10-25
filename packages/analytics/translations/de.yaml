@@ -1,0 +1,8 @@
+caluma:
+  create_report: Neuen Report erstellen
+  report_title: Auswertungsname
+  starting_point: Ausgangspunkt
+  field_selection: Feldauswahl
+  field: Feld
+  field_path: Pfad
+  add_field: Feld hinzufügen
