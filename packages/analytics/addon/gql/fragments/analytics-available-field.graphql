@@ -1,0 +1,6 @@
+fragment AvailableField on AvailableField {
+  id
+  label
+  isLeaf
+  sourcePath
+}

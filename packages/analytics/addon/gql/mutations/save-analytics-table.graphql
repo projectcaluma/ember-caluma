@@ -1,0 +1,9 @@
+# import * from '@projectcaluma/ember-analytics/gql/fragments/analytics-table.graphql'
+
+mutation SaveAnalyticsTable($input: SaveAnalyticsTableInput!) {
+  saveAnalyticsTable(input: $input) {
+    analyticsTable {
+      ...AnalyticsTable
+    }
+  }
+}

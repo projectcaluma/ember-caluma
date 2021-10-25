@@ -1,0 +1,22 @@
+# import * from '@projectcaluma/ember-analytics/gql/fragments/analytics-field.graphql'
+# import * from '@projectcaluma/ember-analytics/gql/fragments/analytics-available-field.graphql'
+
+fragment AnalyticsTable on AnalyticsTable {
+  id
+  slug
+  fields {
+    edges {
+      node {
+        ...AnalyticsField
+      }
+    }
+  }
+  availableFields {
+    edges {
+      node {
+        ...AvailableField
+      }
+    }
+  }
+  startingObject
+}

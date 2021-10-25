@@ -1,0 +1,9 @@
+# import * from '@projectcaluma/ember-analytics/gql/fragments/analytics-field.graphql'
+
+mutation SaveAnalyticsField($input: SaveAnalyticsFieldInput!) {
+  saveAnalyticsField(input: $input) {
+    analyticsField {
+      ...AnalyticsField
+    }
+  }
+}
