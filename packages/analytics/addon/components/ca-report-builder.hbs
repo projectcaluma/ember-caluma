@@ -2,11 +2,11 @@
   {{#if this.fetchData.isRunnig}}
     <div class="uk-text-center"><UkSpinner @ratio={{2}} /></div>
   {{else if this.analyticsTable}}
-    <ValidatedForm @on-submit={{perform this.submitField}} as |f|>
+    <ValidatedForm {{on "submit" this.submitField}} as |f|>
       <f.input
         @name="slug"
         @required={{true}}
-        @label={{t "caluma.report_title"}}
+        @label={{t "caluma.analytics.report_title"}}
       >
         <ValidatedInput::types::-themes::uikit::input />
       </f.input>
@@ -16,7 +16,7 @@
         @options={{this.availableStartingObjects}}
         @optionLabelPath="label"
         @optionTargetPath="value"
-        @label={{t "caluma.starting_point"}}
+        @label={{t "caluma.analytics.starting_point"}}
         @name="startingObject"
         @required={{true}}
       >
@@ -32,7 +32,7 @@
         </div>
       </f.input>
 
-      <f.input @label={{t "caluma.field_selection"}}>
+      <f.input @label={{t "caluma.analytics.field_selection"}}>
         <div class="uk-grid-small uk-child-width-1-5" uk-grid>
           <CaFieldSelect
             @options={{this.availableFields}}
@@ -51,7 +51,7 @@
         <f.submit>
           <UkButton
             class="uk-primary uk-margin-small-top"
-            @label={{t "caluma.add_field"}}
+            @label={{t "caluma.analytics.add_field"}}
           />
         </f.submit>
       </div>
@@ -64,14 +64,5 @@
       @onUpdate={{this.updateAnalyticsField}}
       @onUpdateFieldDescription={{this.updateAnalyticsField}}
     />
-    <button
-      data-test-delete-row
-      type="button"
-      class="uk-icon-button"
-      uk-icon="trash"
-      title={{t "caluma.delete"}}
-      {{action "deleteRow" row}}
-    >
-    </button>
   {{/if}}
 </div>

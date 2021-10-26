@@ -98,6 +98,7 @@ export default class CaReportBuilderComponent extends Component {
     e.preventDefault();
 
     this.saveAnalyticsField.perform(this.field);
+    this.fetchData.perform();
   }
 
   @action

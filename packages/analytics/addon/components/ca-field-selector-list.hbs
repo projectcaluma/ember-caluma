@@ -14,6 +14,14 @@
         />
       </div>
       <CaFieldDetails @field={{Field}} @onUpdate={{@updateFieldDescription}} />
+      <button
+        data-test-delete-field
+        type="button"
+        class="uk-icon-button"
+        uk-icon="trash"
+        title={{t "caluma.analytics.delete"}}
+        {{action "deleteRow" row}}
+      ></button>
       <hr />
     </li>
   {{/each}}

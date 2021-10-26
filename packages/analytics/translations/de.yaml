@@ -1,11 +1,13 @@
 caluma:
-  create_report: Neuen Report erstellen
-  report_title: Auswertungsname
-  starting_point: Ausgangspunkt
-  field_selection: Feldauswahl
-  field: Feld
-  field_path: Pfad
-  add_field: Feld hinzufügen
-  add_filter: Filter hinzufügen
-  alias: Alias
-  show_output: In Ausgabe anzeigen
+  analytics:
+    create_report: Neuen Report erstellen
+    report_title: Auswertungsname
+    starting_point: Ausgangspunkt
+    field_selection: Feldauswahl
+    field: Feld
+    field_path: Pfad
+    add_field: Feld hinzufügen
+    add_filter: Filter hinzufügen
+    alias: Alias
+    show_output: In Ausgabe anzeigen
+    delete: löschen
