@@ -21,8 +21,10 @@ export default class CaFieldSelectComponent extends Component {
   }
 
   get availableFields() {
+    /* TODO: this technique could be replace by fetching nested fields in the
+    selector component itself */
     return this.args.options.filter((field) => {
-      return field.sourcePath.startsWith(this.args.path);
+      return field.sourcePath.startsWith(`${this.args.path}.`);
     });
   }
 

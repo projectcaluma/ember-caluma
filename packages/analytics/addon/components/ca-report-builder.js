@@ -4,6 +4,7 @@ import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
 import { dropTask, enqueueTask } from "ember-concurrency-decorators";
 
+import removeAnalyticsFieldMutation from "@projectcaluma/ember-analytics/gql/mutations/remove-analytics-field.graphql";
 import saveAnalyticsFieldMutation from "@projectcaluma/ember-analytics/gql/mutations/save-analytics-field.graphql";
 import saveAnalyticsTableMutation from "@projectcaluma/ember-analytics/gql/mutations/save-analytics-table.graphql";
 import getAnalyticsTableQuery from "@projectcaluma/ember-analytics/gql/queries/get-analytics-table.graphql";
@@ -125,5 +126,19 @@ export default class CaReportBuilderComponent extends Component {
         },
       },
     });
+  }
+
+  @enqueueTask
+  *removeAnalyticsField({ id }) {
+    yield this.apollo.mutate({
+      mutation: removeAnalyticsFieldMutation,
+      fetchPolicy: "network-only",
+      variables: {
+        input: {
+          id,
+        },
+      },
+    });
+    this.fetchData.perform();
   }
 }

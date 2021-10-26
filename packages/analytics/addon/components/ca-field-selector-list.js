@@ -6,4 +6,9 @@ export default class CaFieldSelectorListComonent extends Component {
   updateFieldPath(id, alias, path) {
     this.args.onUpdate({ id, alias, dataSource: path });
   }
+
+  @action
+  removeField(id) {
+    this.args.onDelete({ id });
+  }
 }

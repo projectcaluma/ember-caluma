@@ -20,7 +20,7 @@
         class="uk-icon-button"
         uk-icon="trash"
         title={{t "caluma.analytics.delete"}}
-        {{action "deleteRow" row}}
+        {{on "click" (fn this.removeField Field.id)}}
       ></button>
       <hr />
     </li>
