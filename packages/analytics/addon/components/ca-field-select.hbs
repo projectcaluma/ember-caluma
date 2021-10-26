@@ -1,0 +1,22 @@
+{{! template-lint-disable no-bare-strings }}
+{{#if @child}}
+  <span class="uk-width-auto uk-text-center uk-margin-auto-vertical">⟹</span>
+{{/if}}
+<div>
+  <PowerSelect
+    @options={{@options}}
+    @selected={{this.selectedOption}}
+    @onChange={{this.update}}
+    as |option|
+  >
+    {{option.label}}
+  </PowerSelect>
+</div>
+{{#if isBranch}}
+  <CaFieldSelect
+    @child={{true}}
+    @options={{this.availableFields}}
+    @onSelect={{@onSelect}}
+    @path={{this.selectedPath}}
+  />
+{{/if}}

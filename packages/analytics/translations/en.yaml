@@ -6,3 +6,6 @@ caluma:
   field: Field
   field_path: Path
   add_field: Add field
+  add_filter: Add filter
+  alias: Alias
+  show_output: Show in output

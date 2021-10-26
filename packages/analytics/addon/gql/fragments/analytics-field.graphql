@@ -2,4 +2,5 @@ fragment AnalyticsField on AnalyticsField {
   id
   alias
   meta
+  dataSource
 }

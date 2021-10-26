@@ -1,0 +1,26 @@
+<div class="uk-grid-small uk-child-width-1-3" uk-grid>
+  <label
+    class="uk-width-auto uk-margin-right cf-checkbox_label
+      {{if @field.isInvalid "uk-form-danger"}}"
+  >
+    <Input
+      class="uk-checkbox uk-margin-small-right"
+      @type="checkbox"
+      name="show-in-output"
+      @checked={{@fieldSelector.showInOutput}}
+      {{on "change" this.setShowInOutput}}
+    />
+    {{t "caluma.show_output"}}
+  </label>
+
+  <Input
+    @type="text"
+    class="uk-input uk-child-width-expand"
+    name="'alias'"
+    id="'alias'"
+    @value={{@field.alias}}
+    placeholder={{t "calmuma.alias"}}
+  />
+
+  <CaFieldSelectorFilter />
+</div>

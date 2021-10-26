@@ -6,3 +6,6 @@ caluma:
   field: Feld
   field_path: Pfad
   add_field: Feld hinzufügen
+  add_filter: Filter hinzufügen
+  alias: Alias
+  show_output: In Ausgabe anzeigen

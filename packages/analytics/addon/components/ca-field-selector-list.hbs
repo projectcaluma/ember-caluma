@@ -1,0 +1,20 @@
+<ul>
+  {{#each @fields as |Field|}}
+    <li>
+      <div class="uk-grid-small uk-child-width-1-5" uk-grid>
+        <CaFieldSelect
+          @options={{@availableFields}}
+          @onSelect={{fn
+            this.updateFieldPath
+            Field.id
+            Field.alias
+            Field.dataSource
+          }}
+          @path={{Field.dataSource}}
+        />
+      </div>
+      <CaFieldDetails @field={{Field}} @onUpdate={{@updateFieldDescription}} />
+      <hr />
+    </li>
+  {{/each}}
+</ul>

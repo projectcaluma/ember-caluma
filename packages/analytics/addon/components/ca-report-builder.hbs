@@ -1,0 +1,77 @@
+<div ...attributes {{did-insert (perform this.fetchData)}}>
+  {{#if this.fetchData.isRunnig}}
+    <div class="uk-text-center"><UkSpinner @ratio={{2}} /></div>
+  {{else if this.analyticsTable}}
+    <ValidatedForm @on-submit={{perform this.submitField}} as |f|>
+      <f.input
+        @name="slug"
+        @required={{true}}
+        @label={{t "caluma.report_title"}}
+      >
+        <ValidatedInput::types::-themes::uikit::input />
+      </f.input>
+
+      <f.input
+        @type="select"
+        @options={{this.availableStartingObjects}}
+        @optionLabelPath="label"
+        @optionTargetPath="value"
+        @label={{t "caluma.starting_point"}}
+        @name="startingObject"
+        @required={{true}}
+      >
+        <div class="uk-child-width-auto">
+          <PowerSelect
+            @options={{this.availableStartingObjects}}
+            @selected={{this.startingObject}}
+            @onChange={{this.setStartObject}}
+            as |option|
+          >
+            {{option.label}}
+          </PowerSelect>
+        </div>
+      </f.input>
+
+      <f.input @label={{t "caluma.field_selection"}}>
+        <div class="uk-grid-small uk-child-width-1-5" uk-grid>
+          <CaFieldSelect
+            @options={{this.availableFields}}
+            @onSelect={{this.setFieldPath}}
+            @path=""
+          />
+        </div>
+        <CaFieldDetails
+          @field={{this.field}}
+          @onUpdate={{this.setFieldDescription}}
+        />
+      </f.input>
+      <CaFieldPath @value={{this.field.dataSource}} />
+
+      <div class="uk-text-left">
+        <f.submit>
+          <UkButton
+            class="uk-primary uk-margin-small-top"
+            @label={{t "caluma.add_field"}}
+          />
+        </f.submit>
+      </div>
+    </ValidatedForm>
+    <hr />
+    <CaFieldSelectorList
+      @tableId={{this.tableId}}
+      @availableFields={{this.availableFields}}
+      @fields={{this.analyticsFields}}
+      @onUpdate={{this.updateAnalyticsField}}
+      @onUpdateFieldDescription={{this.updateAnalyticsField}}
+    />
+    <button
+      data-test-delete-row
+      type="button"
+      class="uk-icon-button"
+      uk-icon="trash"
+      title={{t "caluma.delete"}}
+      {{action "deleteRow" row}}
+    >
+    </button>
+  {{/if}}
+</div>
