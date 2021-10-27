@@ -21,8 +21,7 @@ export default class CaReportBuilderComponent extends Component {
 
   @tracked analyticsTable;
   @tracked field;
-
-  _startingObject;
+  @tracked startingObject;
 
   constructor(...args) {
     super(...args);
@@ -46,13 +45,9 @@ export default class CaReportBuilderComponent extends Component {
     return [{ label: "Cases", value: "CASES" }];
   }
 
-  get startingObject() {
-    return this._startingObject;
-  }
-
   @action
-  setStartObject(value) {
-    this._startingObject = value;
+  setStartingObject(value) {
+    this.startingObject = value;
   }
 
   @action
