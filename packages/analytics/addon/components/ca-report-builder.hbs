@@ -8,7 +8,10 @@
         @required={{true}}
         @label={{t "caluma.analytics.report_title"}}
       >
-        <ValidatedInput::types::-themes::uikit::input />
+        <ValidatedInput::types::-themes::uikit::input
+          @value={{this.tableSlug}}
+          @onChange={{this.setTableSlug}}
+        />
       </f.input>
 
       <f.input

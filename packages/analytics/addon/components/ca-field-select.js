@@ -5,14 +5,25 @@ import { tracked } from "@glimmer/tracking";
 
 export default class CaFieldSelectComponent extends Component {
   @tracked selectedOption;
+  @tracked childPathSegment;
 
   constructor(...args) {
     super(...args);
 
-    this.findOptionForPath(this.args.path);
+    this.selectOptionForPath(this.firstPathSegment(this.args.path));
   }
 
-  findOptionForPath(path) {
+  firstPathSegment(path) {
+    if (path.indexOf(".") === -1) {
+      this.childPathSegment = "";
+      return path;
+    }
+    const delimiterIndex = path.indexOf(".");
+    this.childPathSegment = path.substring(delimiterIndex + 1);
+    return path.substring(0, delimiterIndex);
+  }
+
+  selectOptionForPath(path) {
     if (path && this.args.options && Array.isArray(this.args.options)) {
       this.selectedOption = this.args.options.find((field) => {
         return field.sourcePath === path;
