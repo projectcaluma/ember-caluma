@@ -11,3 +11,5 @@ caluma:
     alias: Alias
     show_output: Show in output
     delete: delete
+    notification:
+      field_exists: Field already exists!

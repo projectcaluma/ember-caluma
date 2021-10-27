@@ -1,4 +1,5 @@
 import { action } from "@ember/object";
+import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
@@ -22,11 +23,13 @@ const STATICAvailableStartingObjects = [{ label: "Cases", value: "CASES" }];
 
 export default class CaReportBuilderComponent extends Component {
   @queryManager apollo;
+  @service notification;
+  @service intl;
 
   @tracked analyticsTable;
   @tracked tableSlug = "Test";
   @tracked field;
-  @tracked _startingObject = STATICStartingObject;
+  @tracked startingObject = STATICStartingObject;
 
   constructor(...args) {
     super(...args);
@@ -50,17 +53,13 @@ export default class CaReportBuilderComponent extends Component {
     return STATICAvailableStartingObjects;
   }
 
-  get startingObject() {
-    return this._startingObject;
-  }
-
   get selectedPath() {
     return this.field.dataSource;
   }
 
   @action
   setStartingObject(value) {
-    this._startingObject = value;
+    this.startingObject = value;
   }
 
   @action
@@ -114,6 +113,16 @@ export default class CaReportBuilderComponent extends Component {
   @action
   submitField(e) {
     e.preventDefault();
+
+    if (
+      this.analyticsFields.find(
+        (existing) => existing.dataSource === this.field.dataSource
+      )
+    ) {
+      return this.notification.danger(
+        this.intl.t(`caluma.analytics.notification.field_exists`)
+      );
+    }
 
     this.saveAnalyticsField.perform(this.field);
     this.fetchData.perform();
