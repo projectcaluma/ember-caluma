@@ -14,7 +14,10 @@ export default class CaFieldSelectorFilterComponent extends Component {
   @action
   addFilter(event) {
     event.preventDefault();
-    this.filters = this.filters.concat(this.newFilterValue);
-    this.newFilterValue = "";
+    if (this.newFilterValue) {
+      this.filters = this.filters.concat(this.newFilterValue);
+      this.newFilterValue = "";
+      this.args.onUpdate(this.filters);
+    }
   }
 }

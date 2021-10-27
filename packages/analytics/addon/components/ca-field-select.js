@@ -14,6 +14,7 @@ export default class CaFieldSelectComponent extends Component {
   }
 
   firstPathSegment(path) {
+    if (!path) return;
     if (path.indexOf(".") === -1) {
       this.childPathSegment = "";
       return path;
@@ -39,15 +40,6 @@ export default class CaFieldSelectComponent extends Component {
     });
   }
 
-  get selectedPath() {
-    // TODO: if sourcePath always represents the "full" path the following is obsolete
-    // if(!this.args.path){
-    //   return this.selectedOption.sourcePath;
-    // }
-    // return [this.args.path,this.selectedOption.sourcePath].join(".");
-    return this.selectedOption.sourcePath;
-  }
-
   get isBranch() {
     return this.selectedOption ? !this.selectedOption.isLeaf : false;
   }
@@ -59,6 +51,6 @@ export default class CaFieldSelectComponent extends Component {
       this.args.onSelect
     );
     this.selectedOption = value;
-    this.args.onSelect(this.selectedPath);
+    this.args.onSelect(this.selectedOption.sourcePath);
   }
 }

@@ -14,12 +14,15 @@ class CaField {
   @tracked alias;
   @tracked filter;
   @tracked dataSource;
-  @tracked show;
+  @tracked show = true;
 }
 
 // TODO: make this dynamic
 const STATICStartingObject = { label: "Cases", value: "CASES" };
-const STATICAvailableStartingObjects = [{ label: "Cases", value: "CASES" }];
+const STATICAvailableStartingObjects = [
+  { label: "Test", value: "TEST" },
+  { label: "Cases", value: "CASES" },
+];
 
 export default class CaReportBuilderComponent extends Component {
   @queryManager apollo;
@@ -53,10 +56,6 @@ export default class CaReportBuilderComponent extends Component {
     return STATICAvailableStartingObjects;
   }
 
-  get selectedPath() {
-    return this.field.dataSource;
-  }
-
   @action
   setStartingObject(value) {
     this.startingObject = value;
@@ -68,9 +67,12 @@ export default class CaReportBuilderComponent extends Component {
   }
 
   @action
-  setFieldDescription({ alias, filter }) {
-    this.field.alias = alias;
-    this.field.filter = filter;
+  setFieldDescription(description) {
+    for (const [key, value] of Object.entries(description)) {
+      if (Object.keys(this.field).includes(key)) {
+        this.field[key] = value;
+      }
+    }
   }
 
   @action
@@ -141,6 +143,7 @@ export default class CaReportBuilderComponent extends Component {
   @enqueueTask
   *saveAnalyticsField({ id, alias, dataSource }) {
     // TODO: Add the "show" attribute when available
+    // TODO: Add the "filter" attribute when available
     yield this.apollo.mutate({
       mutation: saveAnalyticsFieldMutation,
       fetchPolicy: "network-only",

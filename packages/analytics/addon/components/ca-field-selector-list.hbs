@@ -13,7 +13,10 @@
           @path={{Field.dataSource}}
         />
       </div>
-      <CaFieldDetails @field={{Field}} @onUpdate={{@updateFieldDescription}} />
+      <CaFieldDetails
+        @field={{Field}}
+        @onUpdate={{fn this.updateFieldDescription Field}}
+      />
       <button
         data-test-delete-field
         type="button"

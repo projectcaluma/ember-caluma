@@ -27,6 +27,7 @@
           <PowerSelect
             @options={{this.availableStartingObjects}}
             @selected={{this.startingObject}}
+            @placeholder={{t "caluma.analytics.starting_point"}}
             @onChange={{this.setStartingObject}}
             as |option|
           >
@@ -40,7 +41,7 @@
           <CaFieldSelect
             @options={{this.availableFields}}
             @onSelect={{this.setFieldPath}}
-            @path=""
+            @path={{this.field.dataSource}}
           />
         </div>
         <CaFieldDetails
@@ -53,7 +54,7 @@
       <div class="uk-text-left">
         <f.submit>
           <UkButton
-            class="uk-primary uk-margin-small-top"
+            class="uk-button-primary uk-margin-small-top"
             @label={{t "caluma.analytics.add_field"}}
           />
         </f.submit>
@@ -65,7 +66,6 @@
       @availableFields={{this.availableFields}}
       @fields={{this.analyticsFields}}
       @onUpdate={{this.updateAnalyticsField}}
-      @onUpdateFieldDescription={{this.updateAnalyticsField}}
       @onDelete={{perform this.removeAnalyticsField}}
     />
   {{/if}}

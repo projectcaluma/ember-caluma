@@ -8,6 +8,11 @@ export default class CaFieldSelectorListComonent extends Component {
   }
 
   @action
+  updateFieldDescription(field, props) {
+    this.args.onUpdate({ ...field, ...props });
+  }
+
+  @action
   removeField(id) {
     this.args.onDelete({ id });
   }

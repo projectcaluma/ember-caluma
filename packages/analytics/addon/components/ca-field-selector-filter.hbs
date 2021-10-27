@@ -1,28 +1,33 @@
 {{! template-lint-disable no-bare-strings }}
-<div class="uk-input uk-border uk-width-expand" ...attributes>
+<div
+  class="uk-flex uk-flex-wrap uk-flex-wrap-middle uk-flex-middle uk-border uk-width-expand"
+  ...attributes
+>
   {{#each this.filters as |filter|}}
-    <div class="uk-badge uk-border-remove">
+    <span
+      class="uk-badge uk-margin-small-left uk-margin-small-right uk-margin-small-bottom"
+    >
       {{filter}}
       <button {{on "click" (fn this.removeFilter filter)}} type="button">
-        X
+        <span uk-icon="icon: close; ratio:0.5;"></span>
       </button>
-    </div>
+    </span>
   {{/each}}
 
-  <form class="uk-flex" {{on "submit" this.addFilter}}>
+  <form class="uk-flex uk-height-match" {{on "submit" this.addFilter}}>
     <Input
-      class="uk-input uk-form-small uk-width-1-2 uk-margin-small-right"
+      class="uk-input uk-width-1-2 uk-margin-small-right"
       autocomplete="off"
       name="tag"
       @type="text"
+      placeholder="Add filter"
       @value={{this.newFilterValue}}
       aria-label="Tag value"
     />
-    <button
-      class="uk-button uk-button-primary uk-button-small uk-width-1-2"
-      type="submit"
-    >
-      {{t "caluma.analytics.add_filter"}}
-    </button>
+    <UkButton
+      class="uk-button-primary uk-button-small uk-width-1-2"
+      @type="submit"
+      @label={{t "caluma.analytics.add_filter"}}
+    />
   </form>
 </div>
