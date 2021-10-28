@@ -553,8 +553,9 @@ export default Base.extend({
    *
    * The field is optional if:
    * - The form question field of the fieldset is hidden
-   * - All depending field (used in the expression) are hidden
+   * - All depending fields (used in the expression) are hidden
    * - The evaluated `question.isRequired` expression returns `false`
+   * - The question type is FormQuestion or CalculatedFloatQuestion
    *
    * @property {Boolean} optional
    */
@@ -568,6 +569,9 @@ export default Base.extend({
     function () {
       if (
         this.fieldset.field?.hidden ||
+        ["FormQuestion", "CalculatedFloatQuestion"].includes(
+          this.question.__typename
+        ) ||
         (this.optionalDependencies.length &&
           this.optionalDependencies.every(fieldIsHidden))
       ) {
