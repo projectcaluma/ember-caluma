@@ -1,0 +1,39 @@
+<ValidatedForm {{on "submit" this.newTable}} as |f|>
+  <f.input
+    @name="slug"
+    @required={{true}}
+    @label={{t "caluma.analytics.report_title"}}
+  >
+    <ValidatedInput::types::-themes::uikit::input
+      @value={{this.tableSlug}}
+      {{on "change" this.setTableSlug}}
+    />
+  </f.input>
+
+  <f.input
+    @type="select"
+    @options={{this.availableStartingObjects}}
+    @optionLabelPath="label"
+    @optionTargetPath="value"
+    @label={{t "caluma.analytics.starting_object"}}
+    @name="startingObject"
+    @required={{true}}
+  >
+    <div class="uk-child-width-auto">
+      <PowerSelect
+        @options={{this.availableStartingObjects}}
+        @selected={{this.startingObject}}
+        @placeholder={{t "caluma.analytics.starting_object"}}
+        @onChange={{this.setStartingObject}}
+        as |option|
+      >
+        {{option.label}}
+      </PowerSelect>
+    </div>
+  </f.input>
+  <UkButton class="uk-button-primary uk-margin-small" @type="submit">{{t
+      "caluma.analytics.list.new"
+    }}</UkButton>
+</ValidatedForm>
+<hr />
+<CaReportList @reports={{@model}} @itemRoute={{"demo.analytics.builder"}} />

@@ -25,7 +25,9 @@ Router.map(function () {
   this.route("demo", function () {
     this.route("form-rendering");
     this.route("queries");
-    this.route("analytics");
+    this.route("analytics", function () {
+      this.route("builder", { path: "/builder/:table_slug" });
+    });
 
     this.mount("@projectcaluma/ember-form-builder", {
       path: "/form-builder",
@@ -35,6 +37,9 @@ Router.map(function () {
     this.mount("@projectcaluma/ember-distribution", {
       path: "/distribution/:case",
       as: "distribution",
+    })
+    this.route("analytic", function () {
+      this.route("boulder");
     });
   });
 });

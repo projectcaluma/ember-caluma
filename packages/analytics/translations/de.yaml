@@ -1,8 +1,8 @@
 caluma:
   analytics:
-    create_report: Neuen Report erstellen
+    build_report: Auswertung bearbeiten
     report_title: Auswertungsname
-    starting_point: Ausgangspunkt
+    starting_object: Ausgangspunkt
     field_selection: Feldauswahl
     field: Feld
     field_path: Pfad
@@ -13,3 +13,6 @@ caluma:
     delete: löschen
     notification:
       field_exists: Feld existiert bereits!
+    list:
+      new: Neue Auswertung anlegen
+      list_title: Liste aller Auswertungen

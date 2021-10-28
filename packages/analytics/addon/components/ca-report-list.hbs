@@ -1,0 +1,20 @@
+<div ...attributes>
+  <table class="uk-table uk-table-divider uk-table-striped uk-table-hover">
+    <caption>{{t "caluma.analytics.list.list_title"}}</caption>
+    <thead>
+      <tr>
+        <th>{{t "caluma.analytics.report_title"}}</th>
+        <th>{{t "caluma.analytics.starting_object"}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each @reports as |report|}}
+        <CaReportList::CaReportListItem
+          @slug={{report.slug}}
+          @route={{@itemRoute}}
+          @startingObject={{report.startingObject}}
+        />
+      {{/each}}
+    </tbody>
+  </table>
+</div>

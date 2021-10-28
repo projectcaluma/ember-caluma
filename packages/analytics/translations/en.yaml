@@ -1,9 +1,9 @@
 caluma:
   analytics:
-    create_report: Create a new report
+    build_report: Edit report
     report_title: Report title
-    starting_point: Starting point
-    field_selection: Fieldselection
+    starting_object: Starting point
+    field_selection: Field selection
     field: Field
     field_path: Path
     add_field: Add field
@@ -13,3 +13,6 @@ caluma:
     delete: delete
     notification:
       field_exists: Field already exists!
+    list:
+      new: Create new report
+      list_title: All reports

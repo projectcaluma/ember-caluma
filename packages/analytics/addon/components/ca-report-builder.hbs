@@ -19,7 +19,7 @@
         @options={{this.availableStartingObjects}}
         @optionLabelPath="label"
         @optionTargetPath="value"
-        @label={{t "caluma.analytics.starting_point"}}
+        @label={{t "caluma.analytics.starting_object"}}
         @name="startingObject"
         @required={{true}}
       >
@@ -27,7 +27,7 @@
           <PowerSelect
             @options={{this.availableStartingObjects}}
             @selected={{this.startingObject}}
-            @placeholder={{t "caluma.analytics.starting_point"}}
+            @placeholder={{t "caluma.analytics.starting_object"}}
             @onChange={{this.setStartingObject}}
             as |option|
           >

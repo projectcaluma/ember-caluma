@@ -7,7 +7,6 @@ import { dropTask, enqueueTask } from "ember-concurrency-decorators";
 
 import removeAnalyticsFieldMutation from "@projectcaluma/ember-analytics/gql/mutations/remove-analytics-field.graphql";
 import saveAnalyticsFieldMutation from "@projectcaluma/ember-analytics/gql/mutations/save-analytics-field.graphql";
-import saveAnalyticsTableMutation from "@projectcaluma/ember-analytics/gql/mutations/save-analytics-table.graphql";
 import getAnalyticsTableQuery from "@projectcaluma/ember-analytics/gql/queries/get-analytics-table.graphql";
 
 class CaField {
@@ -30,13 +29,14 @@ export default class CaReportBuilderComponent extends Component {
   @service intl;
 
   @tracked analyticsTable;
-  @tracked tableSlug = "Test";
+  @tracked tableSlug;
   @tracked field;
   @tracked startingObject = STATICStartingObject;
 
   constructor(...args) {
     super(...args);
 
+    this.tableSlug = this.args.slug ?? "";
     this.field = new CaField();
   }
 
@@ -83,37 +83,21 @@ export default class CaReportBuilderComponent extends Component {
 
   @dropTask
   *fetchData() {
-    if (!this.args.slug) {
-      // create new table
-      this.analyticsTable = yield this.apollo.mutate(
-        {
-          mutation: saveAnalyticsTableMutation,
-          fetchPolicy: "network-only",
-          variables: {
-            input: {
-              name: this.tableSlug,
-              slug: this.tableSlug,
-              startingObject: this.startingObject.value,
-            },
-          },
-        },
-        "saveAnalyticsTable.analyticsTable"
-      );
-    } else {
-      // fetch table
+    if (this.args.slug) {
       this.analyticsTable = yield this.apollo.query(
         {
           query: getAnalyticsTableQuery,
-          fetchPolicy: "network-only",
+          // availableFields have the same ID, therefore we turned apollo caching off
+          fetchPolicy: "no-cache",
           variables: { slug: this.args.slug },
         },
-        "saveAnalyticsTable.analyticsTable"
+        "analyticsTable"
       );
     }
   }
 
   @action
-  submitField(e) {
+  async submitField(e) {
     e.preventDefault();
 
     if (
@@ -126,8 +110,8 @@ export default class CaReportBuilderComponent extends Component {
       );
     }
 
-    this.saveAnalyticsField.perform(this.field);
-    this.fetchData.perform();
+    await this.saveAnalyticsField.perform(this.field);
+    await this.fetchData.perform();
     this.resetFieldInputs();
   }
 
