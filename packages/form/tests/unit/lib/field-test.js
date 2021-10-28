@@ -220,6 +220,22 @@ module("Unit | Library | field", function (hooks) {
     assert.deepEqual(field.errors, []);
   });
 
+  test("it ignores required FormQuestion", async function (assert) {
+    assert.expect(1);
+
+    const field = this.addField({
+      question: {
+        __typename: "FormQuestion",
+        isHidden: "false",
+        isRequired: "true",
+      },
+      answer: null,
+    });
+
+    await field.validate.perform();
+    assert.deepEqual(field.errors, []);
+  });
+
   test("it can validate text fields", async function (assert) {
     assert.expect(2);
 
