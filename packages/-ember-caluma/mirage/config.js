@@ -22,5 +22,8 @@ export default function () {
     return new Response(200);
   });
 
+  this.get("/groups");
+  this.get("/users");
+
   this.passthrough();
 }

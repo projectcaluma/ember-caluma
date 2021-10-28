@@ -1,4 +1,7 @@
 export default function (server) {
+  server.createList("user", 5);
+  server.createList("group", 5);
+
   const form = server.create("form");
 
   server.create("question", {

@@ -35,3 +35,8 @@ header > div > div > a:nth-last-child(3) {
     font-weight: $base-heading-font-weight !important;
   }
 }
+
+pre.hljs {
+  margin: 0;
+  border: none;
+}
