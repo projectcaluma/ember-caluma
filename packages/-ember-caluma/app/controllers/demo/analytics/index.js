@@ -5,6 +5,7 @@ import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
 
 import saveAnalyticsTableMutation from "@projectcaluma/ember-analytics/gql/mutations/save-analytics-table.graphql";
+import slugify from "@projectcaluma/ember-core/utils/slugify";
 
 export default class DemoAnalyticsIndexController extends Controller {
   @service router;
@@ -25,7 +26,7 @@ export default class DemoAnalyticsIndexController extends Controller {
 
   @action
   setTableSlug({ target: input }) {
-    this.tableSlug = input.value;
+    this.tableSlug = slugify(input.value);
   }
 
   @action

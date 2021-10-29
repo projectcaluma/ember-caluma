@@ -2,7 +2,7 @@
   {{#if this.fetchData.isRunnig}}
     <div class="uk-text-center"><UkSpinner @ratio={{2}} /></div>
   {{else if this.analyticsTable}}
-    <ValidatedForm {{on "submit" this.submitField}} as |f|>
+    <ValidatedForm {{on "submit" this.submitTable}} as |f|>
       <f.input
         @name="slug"
         @required={{true}}
@@ -10,7 +10,7 @@
       >
         <ValidatedInput::types::-themes::uikit::input
           @value={{this.tableSlug}}
-          @onChange={{this.setTableSlug}}
+          {{on "change" this.setTableSlug}}
         />
       </f.input>
 
@@ -35,7 +35,8 @@
           </PowerSelect>
         </div>
       </f.input>
-
+    </ValidatedForm>
+    <ValidatedForm {{on "submit" this.submitField}} as |f|>
       <f.input @label={{t "caluma.analytics.field_selection"}}>
         <div class="uk-grid-small uk-child-width-1-5" uk-grid>
           <CaFieldSelect

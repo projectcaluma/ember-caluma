@@ -1,4 +1,4 @@
-import { action } from "@ember/object";
+import { action, computed, set } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
@@ -7,7 +7,9 @@ import { dropTask, enqueueTask } from "ember-concurrency-decorators";
 
 import removeAnalyticsFieldMutation from "@projectcaluma/ember-analytics/gql/mutations/remove-analytics-field.graphql";
 import saveAnalyticsFieldMutation from "@projectcaluma/ember-analytics/gql/mutations/save-analytics-field.graphql";
+import saveAnalyticsTableMutation from "@projectcaluma/ember-analytics/gql/mutations/save-analytics-table.graphql";
 import getAnalyticsTableQuery from "@projectcaluma/ember-analytics/gql/queries/get-analytics-table.graphql";
+import slugify from "@projectcaluma/ember-core/utils/slugify";
 
 class CaField {
   @tracked alias;
@@ -18,10 +20,7 @@ class CaField {
 
 // TODO: make this dynamic
 const STATICStartingObject = { label: "Cases", value: "CASES" };
-const STATICAvailableStartingObjects = [
-  { label: "Test", value: "TEST" },
-  { label: "Cases", value: "CASES" },
-];
+const STATICAvailableStartingObjects = [{ label: "Cases", value: "CASES" }];
 
 export default class CaReportBuilderComponent extends Component {
   @queryManager apollo;
@@ -29,14 +28,14 @@ export default class CaReportBuilderComponent extends Component {
   @service intl;
 
   @tracked analyticsTable;
-  @tracked tableSlug;
+  @tracked _tableSlug;
   @tracked field;
   @tracked startingObject = STATICStartingObject;
 
   constructor(...args) {
     super(...args);
 
-    this.tableSlug = this.args.slug ?? "";
+    this._tableSlug = this.args.slug ?? "";
     this.field = new CaField();
   }
 
@@ -56,14 +55,19 @@ export default class CaReportBuilderComponent extends Component {
     return STATICAvailableStartingObjects;
   }
 
-  @action
-  setStartingObject(value) {
-    this.startingObject = value;
+  @computed("analyticsTable.slug")
+  get tableSlug() {
+    return this.analyticsTable.slug;
   }
 
   @action
-  setTableSlug(value) {
-    this.tableSlug = value;
+  setTableSlug({ target: input }) {
+    set(this.analyticsTable, "slug", slugify(input.value));
+  }
+
+  @action
+  setStartingObject(obj) {
+    this.startingObject = obj;
   }
 
   @action
@@ -94,6 +98,34 @@ export default class CaReportBuilderComponent extends Component {
         "analyticsTable"
       );
     }
+  }
+
+  @dropTask
+  *updateTable() {
+    this.analyticsTable = yield this.apollo.mutate(
+      {
+        mutation: saveAnalyticsTableMutation,
+        fetchPolicy: "network-only",
+        variables: {
+          input: {
+            name: this.tableSlug,
+            slug: this.tableSlug,
+            startingObject: this.startingObject.value,
+          },
+        },
+      },
+      "analyticsTable"
+    );
+    // TODO: updating the slug means, we must update the URL query as well.
+    // which is not consitent if it happens in this component, huh?
+    // this.router.replaceWith
+  }
+
+  @action
+  async submitTable(e) {
+    e.preventDefault();
+
+    await this.updateTable.perform();
   }
 
   @action
