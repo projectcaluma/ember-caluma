@@ -116,16 +116,15 @@ export default class CaReportBuilderComponent extends Component {
       },
       "analyticsTable"
     );
-    // TODO: updating the slug means, we must update the URL query as well.
-    // which is not consitent if it happens in this component, huh?
-    // this.router.replaceWith
   }
 
   @action
   async submitTable(e) {
     e.preventDefault();
+    // TODO: updating the slug means, we must update the URL query as well.
+    // which is not consitent if it is triggered by this component, huh?
 
-    await this.updateTable.perform();
+    // await this.updateTable.perform();
   }
 
   @action

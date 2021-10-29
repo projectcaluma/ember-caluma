@@ -2,15 +2,12 @@
   {{#if this.fetchData.isRunnig}}
     <div class="uk-text-center"><UkSpinner @ratio={{2}} /></div>
   {{else if this.analyticsTable}}
-    <ValidatedForm {{on "submit" this.submitTable}} as |f|>
-      <f.input
-        @name="slug"
-        @required={{true}}
-        @label={{t "caluma.analytics.report_title"}}
-      >
+    <ValidatedForm as |f|>
+      <f.input @name="slug" @label={{t "caluma.analytics.report_title"}}>
         <ValidatedInput::types::-themes::uikit::input
           @value={{this.tableSlug}}
           {{on "change" this.setTableSlug}}
+          disabled
         />
       </f.input>
 
@@ -21,7 +18,6 @@
         @optionTargetPath="value"
         @label={{t "caluma.analytics.starting_object"}}
         @name="startingObject"
-        @required={{true}}
       >
         <div class="uk-child-width-auto">
           <PowerSelect
@@ -29,6 +25,7 @@
             @selected={{this.startingObject}}
             @placeholder={{t "caluma.analytics.starting_object"}}
             @onChange={{this.setStartingObject}}
+            @disabled={{true}}
             as |option|
           >
             {{option.label}}
