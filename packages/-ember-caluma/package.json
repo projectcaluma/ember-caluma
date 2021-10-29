@@ -63,7 +63,7 @@
     "graphql": "15.6.1",
     "loader.js": "4.7.0",
     "moment": "2.29.1",
-    "sass": "1.43.3",
+    "sass": "1.43.4",
     "webpack": "5.59.1"
   },
   "ember": {
