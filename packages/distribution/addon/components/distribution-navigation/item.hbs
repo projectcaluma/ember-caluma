@@ -1,0 +1,18 @@
+<li class={{if this.isActive "uk-active"}}>
+  <LinkTo @route="distribution.inquiry" @model={{this.model}}>
+    <div class="uk-flex uk-flex-middle uk-width-1-1">
+      <div class="uk-width-expand uk-text-truncate">
+        {{#if (eq @type "addressed")}}
+          {{group-name @inquiry.controllingGroups}}
+        {{else}}
+          {{group-name @inquiry.addressedGroups}}
+        {{/if}}
+      </div>
+
+      <DistributionNavigation::StatusIndicator
+        @inquiry={{@inquiry}}
+        @type={{@type}}
+      />
+    </div>
+  </LinkTo>
+</li>

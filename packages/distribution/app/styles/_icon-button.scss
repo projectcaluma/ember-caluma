@@ -1,0 +1,13 @@
+@import "ember-uikit/variables-theme";
+
+@for $i from 1 through 8 {
+  @each $side in "top", "right", "bottom", "left" {
+    .uk-icon-button--gutter-#{$side}-#{$i} > svg {
+      margin-#{$side}: #{$i}px !important;
+    }
+  }
+
+  .uk-icon-button--gutter-#{$i} > svg {
+    margin: #{$i}px;
+  }
+}

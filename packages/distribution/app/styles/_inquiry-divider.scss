@@ -1,0 +1,49 @@
+@import "ember-uikit/variables-theme";
+
+$size: 36px;
+$iconSize: $size * 0.6;
+
+$colors: (
+  muted: $text-muted-color,
+  emphasis: $text-emphasis-color,
+  success: $text-success-color,
+  danger: $text-danger-color,
+  warning: $text-warning-color,
+);
+
+.inquiry-divider {
+  &::before,
+  &::after {
+    content: "";
+    display: block;
+    height: 2px;
+    width: calc(50% - #{$size * 0.5});
+  }
+
+  &__icon {
+    width: $size;
+    height: $size;
+
+    border-radius: 50%;
+    border-width: 2px;
+    border-style: solid;
+
+    > svg {
+      width: $iconSize;
+      height: $iconSize;
+    }
+  }
+
+  @each $colorName, $color in $colors {
+    &.uk-text-#{$colorName} {
+      > .inquiry-divider__icon {
+        border-color: $color;
+      }
+
+      &::before,
+      &::after {
+        background-color: $color;
+      }
+    }
+  }
+}

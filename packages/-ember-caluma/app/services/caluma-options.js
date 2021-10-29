@@ -21,6 +21,8 @@ export default class CustomCalumaOptionsService extends CalumaOptionsService {
         component: "dummy-two",
       });
     }
+
+    this.currentGroupId = 1;
   }
 
   // BEGIN-SNIPPET caluma-options-service-query-if-not-cached.js

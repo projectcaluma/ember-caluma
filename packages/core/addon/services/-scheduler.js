@@ -76,4 +76,16 @@ export default class PrivateSchedulerService extends Service {
 
     once(this[typeResolverName], "perform");
   }
+
+  resolve(identifiers, type) {
+    const typeResolverName = camelize(`resolve-${type}`);
+
+    if (!this[type]) {
+      this[type] = { identifiers: new Set(), callbacks: new Set() };
+    }
+
+    identifiers.forEach((identifier) => this[type].identifiers.add(identifier));
+
+    return this[typeResolverName]?.perform();
+  }
 }

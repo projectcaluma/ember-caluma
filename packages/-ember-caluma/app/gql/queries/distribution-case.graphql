@@ -1,0 +1,9 @@
+query DistributionCase {
+  allCases(filter: [{ workflow: "distribution" }], first: 1) {
+    edges {
+      node {
+        id
+      }
+    }
+  }
+}

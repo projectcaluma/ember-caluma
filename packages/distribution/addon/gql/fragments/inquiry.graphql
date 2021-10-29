@@ -1,0 +1,85 @@
+fragment InquiryDeadlineDocument on Document {
+  id
+  deadline: answers(question: $deadlineQuestion) {
+    edges {
+      node {
+        id
+        ... on DateAnswer {
+          value
+        }
+      }
+    }
+  }
+}
+
+fragment InquiryStatusDocument on Document {
+  id
+  status: answers(question: $statusQuestion) {
+    edges {
+      node {
+        id
+        ... on StringAnswer {
+          value
+          selectedOption {
+            slug
+            label
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment InquiryDialog on WorkItem {
+  id
+  addressedGroups
+  controllingGroups
+  createdAt
+  closedAt
+  status
+  document {
+    ...InquiryDeadlineDocument
+    info: answers(question: $infoQuestion) {
+      edges {
+        node {
+          id
+          ... on StringAnswer {
+            value
+          }
+        }
+      }
+    }
+  }
+  childCase {
+    id
+    document {
+      ...InquiryStatusDocument
+      info: answers(question: $answerInfoQuestion) {
+        edges {
+          node {
+            id
+            ... on StringAnswer {
+              value
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+fragment Inquiry on WorkItem {
+  id
+  status
+  addressedGroups
+  controllingGroups
+  document @include(if: $includeNavigationData) {
+    ...InquiryDeadlineDocument
+  }
+  childCase @include(if: $includeNavigationData) {
+    id
+    document {
+      ...InquiryStatusDocument
+    }
+  }
+}

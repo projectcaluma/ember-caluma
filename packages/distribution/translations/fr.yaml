@@ -1,0 +1,13 @@
+caluma:
+  distribution:
+    types:
+      controlling: "Demandé"
+      addressed: "A répondre"
+      more: "Plus"
+
+    status:
+      draft: "Brouillon"
+      sent: "Envoyé"
+      positive: "Positif"
+      negative: "Negatif"
+      needs-interaction: "Action nécessaire"

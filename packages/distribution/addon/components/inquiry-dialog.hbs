@@ -1,0 +1,11 @@
+<section>
+  {{#if this.inquiries.isRunning}}
+    <div class="uk-padding uk-text-center">
+      <UkSpinner @ratio={{2}} />
+    </div>
+  {{else}}
+    {{#each this.inquiries.value as |inquiry|}}
+      <InquiryDialog::Inquiry @inquiry={{inquiry}} />
+    {{/each}}
+  {{/if}}
+</section>

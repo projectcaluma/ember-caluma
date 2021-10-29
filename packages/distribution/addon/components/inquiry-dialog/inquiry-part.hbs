@@ -1,0 +1,20 @@
+<p class="uk-flex uk-flex-middle uk-text-bold uk-margin-remove">
+  {{#if (eq @type "request")}}
+    {{svg-jar "arrow-redo-outline" height=24 class="uk-margin-small-right"}}
+    {{group-name @inquiry.controllingGroups}}
+  {{else if (eq @type "answer")}}
+    {{svg-jar "arrow-undo-outline" height=24 class="uk-margin-small-right"}}
+    {{group-name @inquiry.addressedGroups}}
+  {{/if}}
+</p>
+
+<ul class="uk-subnav uk-subnav-divider uk-margin-small-top">
+  <li>
+    <span>
+      {{format-date this.date}}
+      {{format-time this.date hour="2-digit" minute="2-digit"}}
+    </span>
+  </li>
+</ul>
+
+<p class="uk-margin-remove-bottom">{{this.info}}</p>

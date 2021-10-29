@@ -1,0 +1,28 @@
+#import InquiryDialog, InquiryDeadlineDocument, InquiryStatusDocument from '../fragments/inquiry.graphql'
+
+query InquiryDialog(
+  $task: ID!
+  $statusQuestion: ID!
+  $deadlineQuestion: ID!
+  $infoQuestion: ID!
+  $answerInfoQuestion: ID!
+  $from: [String]!
+  $to: [String]!
+  $caseId: ID!
+) {
+  allWorkItems(
+    filter: [
+      { case: $caseId }
+      { task: $task }
+      { controllingGroups: $from }
+      { addressedGroups: $to }
+    ]
+    order: [{ attribute: CREATED_AT, direction: DESC }]
+  ) {
+    edges {
+      node {
+        ...InquiryDialog
+      }
+    }
+  }
+}

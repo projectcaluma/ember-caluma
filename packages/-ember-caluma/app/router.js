@@ -29,5 +29,10 @@ Router.map(function () {
       path: "/form-builder",
       as: "form-builder",
     });
+
+    this.mount("@projectcaluma/ember-distribution", {
+      path: "/distribution",
+      as: "distribution",
+    });
   });
 });

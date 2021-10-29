@@ -1,0 +1,17 @@
+{{#if this.showDeadlineIndicator}}
+  <div
+    class="deadline-indicator uk-flex-uk-flex-middle uk-flex-center uk-margin-small-left uk-text-{{this.deadline.color}}"
+  >
+    {{svg-jar
+      "notifications-outline"
+      height=16
+      title=(format-date this.deadline.value)
+    }}
+  </div>
+{{/if}}
+
+<div
+  class="status-indicator uk-flex uk-flex-middle uk-flex-center uk-margin-small-left uk-text-{{this.status.color}}"
+>
+  {{svg-jar this.status.icon title=this.status.label}}
+</div>

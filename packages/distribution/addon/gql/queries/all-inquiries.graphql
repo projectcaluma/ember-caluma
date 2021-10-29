@@ -1,0 +1,55 @@
+#import Inquiry, InquiryDeadlineDocument, InquiryStatusDocument from '../fragments/inquiry.graphql'
+
+query AllInquiries(
+  $task: ID!
+  $statusQuestion: ID
+  $deadlineQuestion: ID
+  $currentGroup: String!
+  $caseId: ID!
+  $includeNavigationData: Boolean!
+) {
+  controlling: allWorkItems(
+    filter: [
+      { case: $caseId }
+      { task: $task }
+      { controllingGroups: [$currentGroup] }
+    ]
+    order: [{ attribute: CREATED_AT, direction: DESC }]
+  ) {
+    edges {
+      node {
+        ...Inquiry
+      }
+    }
+  }
+  addressed: allWorkItems(
+    filter: [
+      { case: $caseId }
+      { task: $task }
+      { addressedGroups: [$currentGroup] }
+    ]
+    order: [{ attribute: CREATED_AT, direction: DESC }]
+  ) {
+    edges {
+      node {
+        ...Inquiry
+      }
+    }
+  }
+  more: allWorkItems(
+    filter: [
+      { case: $caseId }
+      { task: $task }
+      { controllingGroups: [$currentGroup], invert: true }
+      { addressedGroups: [$currentGroup], invert: true }
+      { status: COMPLETED }
+    ]
+    order: [{ attribute: CREATED_AT, direction: DESC }]
+  ) {
+    edges {
+      node {
+        ...Inquiry
+      }
+    }
+  }
+}
