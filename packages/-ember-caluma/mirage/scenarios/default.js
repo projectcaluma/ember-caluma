@@ -1,6 +1,8 @@
+import distribution from "@projectcaluma/ember-testing/scenarios/distribution";
+
 export default function (server) {
   server.createList("user", 5);
-  server.createList("group", 5);
+  const groups = server.createList("group", 5);
 
   const form = server.create("form");
 
@@ -120,4 +122,6 @@ export default function (server) {
 
   server.createList("work-item", 50);
   server.createList("format-validator", 3);
+
+  distribution(server, groups);
 }

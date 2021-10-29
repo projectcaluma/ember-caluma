@@ -1,0 +1,31 @@
+@import "ember-uikit/variables-theme";
+
+$size: $global-small-font-size * 1.2;
+$iconSize: $global-small-font-size * 0.9;
+
+$colors: (
+  muted: $text-muted-color,
+  emphasis: $text-emphasis-color,
+  success: $text-success-color,
+  danger: $text-danger-color,
+  warning: $text-warning-color,
+);
+
+.status-indicator {
+  width: $size;
+  height: $size;
+  border-width: 1px;
+  border-style: solid;
+
+  > svg {
+    width: $iconSize;
+    height: $iconSize;
+  }
+
+  @each $colorName, $color in $colors {
+    &.uk-text-#{$colorName} {
+      color: darken($color, 20%);
+      border-color: $color;
+    }
+  }
+}

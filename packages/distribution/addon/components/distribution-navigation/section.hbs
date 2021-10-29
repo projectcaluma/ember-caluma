@@ -1,0 +1,24 @@
+<li class="uk-margin-small-bottom">
+  <a href="" class="uk-margin-small-bottom" {{on "click" this.toggle}}>
+    <span class="uk-width-expand">
+      {{t (concat "caluma.distribution.types." @type)}}
+    </span>
+    {{#if this.expanded}}
+      <UkIcon @icon="chevron-down" />
+    {{else}}
+      <UkIcon @icon="chevron-right" />
+    {{/if}}
+  </a>
+
+  {{#if (and @inquiries.length this.expanded)}}
+    <ul class="uk-tab uk-tab-left uk-margin-left">
+      {{#each this.inquiries as |inquiry|}}
+        <DistributionNavigation::Item @inquiry={{inquiry}} @type={{@type}} />
+      {{/each}}
+    </ul>
+
+    {{#if (eq @type "controlling")}}
+      <DistributionNavigation::Controls />
+    {{/if}}
+  {{/if}}
+</li>

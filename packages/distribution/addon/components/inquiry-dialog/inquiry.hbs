@@ -1,0 +1,13 @@
+<article class="uk-card uk-card-default uk-margin">
+  <div class="uk-card-body">
+    <InquiryDialog::InquiryDeadline @inquiry={{@inquiry}} />
+
+    {{#if this.hasAnswer}}
+      <InquiryDialog::InquiryPart @inquiry={{@inquiry}} @type="answer" />
+
+      <InquiryDialog::InquiryDivider @inquiry={{@inquiry}} />
+    {{/if}}
+
+    <InquiryDialog::InquiryPart @inquiry={{@inquiry}} @type="request" />
+  </div>
+</article>

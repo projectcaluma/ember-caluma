@@ -1,4 +1,5 @@
 import Service, { inject as service } from "@ember/service";
+import { tracked } from "@glimmer/tracking";
 
 import slugify from "@projectcaluma/ember-core/utils/slugify";
 
@@ -13,6 +14,8 @@ import slugify from "@projectcaluma/ember-core/utils/slugify";
  */
 export default class CalumaOptionsService extends Service {
   @service intl;
+
+  @tracked currentGroupId;
 
   constructor(...args) {
     super(...args);

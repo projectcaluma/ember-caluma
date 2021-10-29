@@ -3,6 +3,9 @@
   {{#header.link "demo.form-builder"}}Form builder{{/header.link}}
   {{#header.link "demo.form-rendering"}}Form rendering{{/header.link}}
   {{#header.link "demo.queries"}}Queries{{/header.link}}
+  {{#if this.showDistribution}}
+    <header.link @on-click={{this.goToDistribution}}>Distribution</header.link>
+  {{/if}}
 </DocsHeader>
 
 {{outlet}}
