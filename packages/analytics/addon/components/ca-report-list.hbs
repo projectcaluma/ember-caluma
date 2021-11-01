@@ -10,6 +10,7 @@
     <tbody>
       {{#each @reports as |report|}}
         <CaReportList::CaReportListItem
+          data-test-report-list-item
           @slug={{report.slug}}
           @route={{@itemRoute}}
           @startingObject={{report.startingObject}}

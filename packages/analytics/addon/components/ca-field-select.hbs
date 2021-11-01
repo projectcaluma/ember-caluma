@@ -1,12 +1,17 @@
 {{! template-lint-disable no-bare-strings }}
 {{#if @child}}
-  <span class="uk-width-auto uk-text-center uk-margin-auto-vertical">⟹</span>
+  <span
+    data-test-field-select-seperator
+    class="uk-width-auto uk-text-center uk-margin-auto-vertical"
+  >⟹</span>
 {{/if}}
-<div>
+<div ...attributes data-test-field-select-primary-selector={{not @child}}>
   <PowerSelect
-    @options={{@options}}
+    class={{this.selectedOption.value}}
+    @options={{this.options}}
     @selected={{this.selectedOption}}
     @onChange={{this.update}}
+    @onOpen={{this.fetchOptions}}
     as |option|
   >
     {{option.label}}
@@ -14,9 +19,11 @@
 </div>
 {{#if isBranch}}
   <CaFieldSelect
+    data-test-field-select-secondary-selector
     @child={{true}}
-    @options={{this.availableFields}}
     @onSelect={{@onSelect}}
-    @path={{this.childPathSegment}}
+    @parentPath={{this.fieldPath}}
+    @selectedPath={{@selectedPath}}
+    @slug={{@slug}}
   />
 {{/if}}

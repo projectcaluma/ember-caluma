@@ -47,10 +47,6 @@ export default class CaReportBuilderComponent extends Component {
     return this.analyticsTable.fields.edges.map((edge) => edge.node);
   }
 
-  get availableFields() {
-    return this.analyticsTable.availableFields.edges.map((edge) => edge.node);
-  }
-
   get availableStartingObjects() {
     return STATICAvailableStartingObjects;
   }
@@ -171,6 +167,7 @@ export default class CaReportBuilderComponent extends Component {
         },
       },
     });
+    this.fetchData.perform();
   }
 
   @enqueueTask

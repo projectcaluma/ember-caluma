@@ -37,9 +37,9 @@
       <f.input @label={{t "caluma.analytics.field_selection"}}>
         <div class="uk-grid-small uk-child-width-1-5" uk-grid>
           <CaFieldSelect
-            @options={{this.availableFields}}
             @onSelect={{this.setFieldPath}}
-            @path={{this.field.dataSource}}
+            @selectedPath={{this.field.dataSource}}
+            @slug={{@slug}}
           />
         </div>
         <CaFieldDetails
@@ -60,8 +60,7 @@
     </ValidatedForm>
     <hr />
     <CaFieldSelectorList
-      @tableId={{this.tableId}}
-      @availableFields={{this.availableFields}}
+      @slug={{@slug}}
       @fields={{this.analyticsFields}}
       @onUpdate={{this.updateAnalyticsField}}
       @onDelete={{perform this.removeAnalyticsField}}
