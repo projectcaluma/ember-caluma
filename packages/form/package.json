@@ -25,7 +25,7 @@
     "ember-composable-helpers": "^4.5.0",
     "ember-fetch": "^8.0.4",
     "ember-in-viewport": "^3.10.3",
-    "ember-intl": "^5.7.0",
+    "ember-intl": "^6.0.0",
     "ember-math-helpers": "^2.17.3",
     "ember-pikaday": "^3.0.0",
     "ember-power-select": "^4.1.6",
