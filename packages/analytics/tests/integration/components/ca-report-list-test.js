@@ -1,26 +1,28 @@
 import { render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
+import { setupIntl } from "ember-intl/test-support";
 import { setupRenderingTest } from "ember-qunit";
 import { module, test } from "qunit";
 
 module("Integration | Component | ca-report-list", function (hooks) {
   setupRenderingTest(hooks);
+  setupIntl(hooks);
 
   test("it renders", async function (assert) {
-    // Set any properties with this.set('myProperty', 'value');
-    // Handle any actions with this.set('myAction', function(val) { ... });
+    assert.expect(2);
 
-    await render(hbs`<CaReportList />`);
+    this.set("reports", [
+      { slug: "test1", startingObject: "CASES" },
+      { slug: "test2", startingObject: "CASES" },
+    ]);
 
-    assert.dom(this.element).hasText("");
+    this.set("itemRoute", "demo.builder");
 
-    // Template block usage:
-    await render(hbs`
-      <CaReportList>
-        template block text
-      </CaReportList>
-    `);
+    await render(
+      hbs`<CaReportList @reports={{this.reports}} @itemRoute={{this.itemRoute}}/>`
+    );
 
-    assert.dom(this.element).hasText("template block text");
+    assert.dom(this.element).containsText("t:caluma.analytics.list.list_title");
+    assert.dom("[data-test-report-list-item]").exists({ count: 2 });
   });
 });
