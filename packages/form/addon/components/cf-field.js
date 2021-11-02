@@ -29,8 +29,16 @@ export default class CfFieldComponent extends Component {
   get labelVisible() {
     return (
       !this.args.field?.question.meta.hideLabel &&
-      !hasQuestionType(this.args.field?.question, "static")
+      !hasQuestionType(this.args.field?.question, "static", "action-button")
     );
+  }
+
+  get infoTextVisible() {
+    return !hasQuestionType(this.args.field?.question, "action-button");
+  }
+
+  get saveIndicatorVisible() {
+    return !hasQuestionType(this.args.field?.question, "action-button");
   }
 
   /**

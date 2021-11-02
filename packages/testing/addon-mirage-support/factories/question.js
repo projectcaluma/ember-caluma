@@ -74,6 +74,16 @@ export default Factory.extend({
           staticContent: (i) => `static-${i + 1}`,
         });
       }
+    } else if (question.type === "ACTION_BUTTON") {
+      if (question.action === undefined) {
+        question.update({ action: "COMPLETE" });
+      }
+      if (question.color === undefined) {
+        question.update({ color: "PRIMARY" });
+      }
+      if (question.validateOnEnter === undefined) {
+        question.update({ validateOnEnter: false });
+      }
     }
   },
 });

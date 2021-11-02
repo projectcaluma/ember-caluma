@@ -4,4 +4,5 @@ export default Model.extend({
   form: belongsTo(),
   answers: hasMany(),
   case: belongsTo(),
+  workItem: belongsTo(),
 });

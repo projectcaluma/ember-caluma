@@ -83,6 +83,10 @@ export default Base.extend({
     return decodeId(this.raw.id);
   }),
 
+  workItemUuid: computed("raw.workItem.id", function () {
+    return this.raw.workItem ? decodeId(this.raw.workItem.id) : null;
+  }),
+
   /**
    * The root form of this document
    *

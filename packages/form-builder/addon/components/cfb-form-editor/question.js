@@ -16,6 +16,7 @@ import { hasQuestionType } from "@projectcaluma/ember-core/helpers/has-question-
 import slugify from "@projectcaluma/ember-core/utils/slugify";
 import addFormQuestionMutation from "@projectcaluma/ember-form-builder/gql/mutations/add-form-question.graphql";
 import removeDefaultAnswerMutation from "@projectcaluma/ember-form-builder/gql/mutations/remove-default-answer.graphql";
+import saveActionButtonQuestionMutation from "@projectcaluma/ember-form-builder/gql/mutations/save-action-button-question.graphql";
 import saveCalculatedFloatQuestionMutation from "@projectcaluma/ember-form-builder/gql/mutations/save-calculated-float-question.graphql";
 import saveChoiceQuestionMutation from "@projectcaluma/ember-form-builder/gql/mutations/save-choice-question.graphql";
 import saveDateQuestionMutation from "@projectcaluma/ember-form-builder/gql/mutations/save-date-question.graphql";
@@ -58,7 +59,12 @@ export const TYPES = {
   StaticQuestion: saveStaticQuestionMutation,
   DateQuestion: saveDateQuestionMutation,
   CalculatedFloatQuestion: saveCalculatedFloatQuestionMutation,
+  ActionButtonQuestion: saveActionButtonQuestionMutation,
 };
+
+const ACTIONS = ["COMPLETE", "SKIP"];
+
+const COLORS = ["PRIMARY", "SECONDARY", "DEFAULT"];
 
 const TYPES_ANSWER = {
   StringAnswer: saveDefaultStringAnswerMutation,
@@ -101,6 +107,10 @@ export default class CfbFormEditorQuestion extends Component {
             subForm: {},
             meta: {},
             dataSource: "",
+            // action button
+            action: ACTIONS[0],
+            color: COLORS[0],
+            validateOnEnter: false,
             __typename: Object.keys(TYPES)[0],
           },
         },
@@ -154,6 +164,20 @@ export default class CfbFormEditorQuestion extends Component {
     return Object.keys(TYPES).map((value) => ({
       value,
       label: this.intl.t(`caluma.form-builder.question.types.${value}`),
+    }));
+  }
+
+  get possibleActions() {
+    return ACTIONS.map((value) => ({
+      value,
+      label: this.intl.t(`caluma.form-builder.question.actions.${value}`),
+    }));
+  }
+
+  get possibleColors() {
+    return COLORS.map((value) => ({
+      value,
+      label: this.intl.t(`caluma.form-builder.question.colors.${value}`),
     }));
   }
 
@@ -289,6 +313,14 @@ export default class CfbFormEditorQuestion extends Component {
   _getCalculatedFloatQuestionInput(changeset) {
     return {
       calcExpression: changeset.get("calcExpression"),
+    };
+  }
+
+  _getActionButtonQuestionInput(changeset) {
+    return {
+      action: changeset.get("action"),
+      color: changeset.get("color"),
+      validateOnEnter: Boolean(changeset.get("validateOnEnter")),
     };
   }
 

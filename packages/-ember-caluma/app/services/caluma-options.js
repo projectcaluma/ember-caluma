@@ -12,17 +12,12 @@ export default class CustomCalumaOptionsService extends CalumaOptionsService {
 
     if (ENV.environment !== "production") {
       this.registerComponentOverride({
-        label: this.intl.t(
-          "caluma.form-builder.question.widgetOverrides.dummy-one"
-        ),
+        label: "Dummy One",
         component: "dummy-one",
         types: ["TextQuestion", "TextareaQuestion"],
       });
-
       this.registerComponentOverride({
-        label: this.intl.t(
-          "caluma.form-builder.question.widgetOverrides.dummy-two"
-        ),
+        label: "Dummy Two",
         component: "dummy-two",
       });
     }

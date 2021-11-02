@@ -107,12 +107,25 @@ caluma:
         DynamicMultipleChoiceQuestion: "Dynamic choices"
         DynamicChoiceQuestion: "Dynamic choice"
         CalculatedFloatQuestion: "Calculation (float)"
+        ActionButtonQuestion: "Action button"
+
+      confirmText: "Confirm text"
+      action: "Action"
+      color: "Color"
+      validateOnEnter: "Validate on entering the viewport"
+
+      actions:
+        COMPLETE: "Complete"
+        SKIP: "Skip"
+
+      colors:
+        PRIMARY: "Primary"
+        SECONDARY: "Secondary"
+        DEFAULT: "Default"
 
       widgetOverrides:
         powerselect: "Power Select"
         hidden: "Hidden"
-        dummy-one: "Dummy One"
-        dummy-two: "Dummy Two"
 
       not-found: "No question with slug '{slug}' found"
 

@@ -1,3 +1,6 @@
 {{#if @model}}
-  <CfContent @documentId={{@model}} />
+  <CfContent
+    @documentId={{@model}}
+    @context={{hash actionButtonOnSuccess=this.actionButtonOnSuccess}}
+  />
 {{/if}}

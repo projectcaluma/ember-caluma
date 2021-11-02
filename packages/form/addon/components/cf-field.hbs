@@ -16,21 +16,23 @@
         {{/let}}
       </div>
 
-      {{#if @field.question.infoText}}
+      {{#if (and @field.question.infoText this.infoTextVisible)}}
         <CfField::info @text={{@field.question.infoText}} />
       {{/if}}
 
-      <div
-        class="cf-field__icon uk-padding-remove-vertical uk-flex uk-flex-middle uk-flex-center"
-      >
-        {{#if @field.save.isRunning}}
-          <UkSpinner class="uk-animation-fade" />
-        {{else if (or @field.save.last.isError @field.isInvalid)}}
-          <UkIcon @icon="warning" class="uk-animation-fade uk-text-danger" />
-        {{else if @field.save.last.isSuccessful}}
-          <UkIcon @icon="check" class="uk-animation-fade uk-text-success" />
-        {{/if}}
-      </div>
+      {{#if this.saveIndicatorVisible}}
+        <div
+          class="cf-field__icon uk-padding-remove-vertical uk-flex uk-flex-middle uk-flex-center"
+        >
+          {{#if @field.save.isRunning}}
+            <UkSpinner class="uk-animation-fade" />
+          {{else if (or @field.save.last.isError @field.isInvalid)}}
+            <UkIcon @icon="warning" class="uk-animation-fade uk-text-danger" />
+          {{else if @field.save.last.isSuccessful}}
+            <UkIcon @icon="check" class="uk-animation-fade uk-text-success" />
+          {{/if}}
+        </div>
+      {{/if}}
     </div>
 
     {{#if @field.errors.length}}
