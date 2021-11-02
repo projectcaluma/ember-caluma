@@ -107,12 +107,25 @@ caluma:
         DynamicMultipleChoiceQuestion: "Dynamische Mehrfachauswahl"
         DynamicChoiceQuestion: "Dynamische Einzelauswahl"
         CalculatedFloatQuestion: "Berechnung (Gleitkommazahl)"
+        ActionButtonQuestion: "Aktionsbutton"
+
+      confirmText: "Bestätigungstext"
+      action: "Aktion"
+      color: "Farbe"
+      validateOnEnter: "Validierung beim Betreten des Fensters"
+
+      actions:
+        COMPLETE: "Abschliessen"
+        SKIP: "Überspringen"
+
+      colors:
+        PRIMARY: "Primär"
+        SECONDARY: "Sekundär"
+        DEFAULT: "Standard"
 
       widgetOverrides:
         powerselect: "Power Select"
         hidden: "Versteckt"
-        dummy-one: "Dummy One"
-        dummy-two: "Dummy Two"
 
       not-found: "Keine Frage mit dem Slug '{slug}' gefunden"
 

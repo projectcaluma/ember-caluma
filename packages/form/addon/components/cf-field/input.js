@@ -1,3 +1,4 @@
+import { dasherize } from "@ember/string";
 import Component from "@glimmer/component";
 
 const mapping = {
@@ -25,7 +26,7 @@ export default class CfFieldInputComponent extends Component {
 
     return (
       typename &&
-      (mapping[typename] || typename.replace(/Question$/, "").toLowerCase())
+      (mapping[typename] || dasherize(typename.replace(/Question$/, "")))
     );
   }
 }

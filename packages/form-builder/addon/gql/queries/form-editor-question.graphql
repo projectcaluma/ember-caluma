@@ -132,6 +132,11 @@ query FormEditorQuestion($slug: String!) {
         ... on CalculatedFloatQuestion {
           calcExpression
         }
+        ... on ActionButtonQuestion {
+          action
+          color
+          validateOnEnter
+        }
       }
     }
   }

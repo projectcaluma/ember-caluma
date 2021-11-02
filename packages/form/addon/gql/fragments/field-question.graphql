@@ -76,6 +76,11 @@ fragment SimpleQuestion on Question {
   ... on CalculatedFloatQuestion {
     calcExpression
   }
+  ... on ActionButtonQuestion {
+    action
+    color
+    validateOnEnter
+  }
 }
 
 fragment FieldTableQuestion on Question {

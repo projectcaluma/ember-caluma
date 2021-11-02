@@ -86,7 +86,9 @@
         {{#if
           (not
             (or
-              (has-question-type f.model "static" "calculated-float")
+              (has-question-type
+                f.model "static" "calculated-float" "action-button"
+              )
               (not (includes f.model.isRequired (array "true" "false")))
             )
           )
@@ -205,6 +207,27 @@
           @renderComponent={{component "cfb-form-editor/question/validation"}}
           @on-update={{changeset-set f.model "meta.formatValidators"}}
           @value={{changeset-get f.model "meta.formatValidators"}}
+        />
+      {{/if}}
+
+      {{#if (has-question-type f.model "action-button")}}
+        <f.input
+          @type="select"
+          @options={{this.possibleActions}}
+          @optionLabelPath="label"
+          @optionTargetPath="value"
+          @label={{t "caluma.form-builder.question.action"}}
+          @name="action"
+          @required={{true}}
+        />
+        <f.input
+          @type="select"
+          @options={{this.possibleColors}}
+          @optionLabelPath="label"
+          @optionTargetPath="value"
+          @label={{t "caluma.form-builder.question.color"}}
+          @name="color"
+          @required={{true}}
         />
       {{/if}}
 
@@ -428,6 +451,16 @@
       </UkButton>
 
       {{#if this.showAdvanced}}
+        {{#if (has-question-type f.model "action-button")}}
+          <f.input
+            @name="validateOnEnter"
+            @required={{true}}
+            @label={{t "caluma.form-builder.question.validateOnEnter"}}
+            @renderComponent={{component "cfb-toggle-switch" size="small"}}
+            class="uk-flex uk-flex-between uk-flex-column"
+          />
+        {{/if}}
+
         <div class="uk-margin">
           <f.input
             @label={{t "caluma.form-builder.question.isHidden"}}
@@ -436,7 +469,13 @@
           />
         </div>
 
-        {{#if (not (has-question-type f.model "static" "calculated-float"))}}
+        {{#if
+          (not
+            (has-question-type
+              f.model "static" "calculated-float" "action-button"
+            )
+          )
+        }}
           <div class="uk-margin">
             <f.input
               @label={{t "caluma.form-builder.question.isRequired"}}

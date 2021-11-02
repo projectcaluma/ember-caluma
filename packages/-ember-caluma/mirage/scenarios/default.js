@@ -13,14 +13,16 @@ export default function (server) {
   });
   server.create("question", {
     slug: "description",
-    label: "Describe yourself.",
+    label: "Describe yourself:",
     formIds: [form.id],
     type: "TEXTAREA",
-    maxLength: 255,
+    maxLength: 50,
+    minLength: 5,
   });
   server.create("question", {
     slug: "age",
     label: "What is your age?",
+    infoText: null,
     formIds: [form.id],
     type: "INTEGER",
     minValue: 0,
@@ -38,6 +40,7 @@ export default function (server) {
   server.create("question", {
     slug: "like-caluma",
     label: "Do you like Caluma?",
+    infoText: null,
     type: "CHOICE",
     formIds: [form.id],
     options: [
@@ -83,12 +86,26 @@ export default function (server) {
   server.create("question", {
     slug: "dummy",
     label: "Dummy widget",
+    isRequired: "false",
+    infoText: null,
     formIds: [form.id],
     type: "TEXT",
     meta: { widgetOverride: "dummy-one" },
   });
+  server.create("question", {
+    slug: "submit",
+    label: "Submit",
+    isRequired: "false",
+    infoText: "Do you really want to submit this form?",
+    formIds: [form.id],
+    type: "ACTION_BUTTON",
+    color: "SECONDARY",
+  });
 
-  server.create("document", { formId: form.id });
+  server.create("document", {
+    workItemId: server.create("work-item").id,
+    formId: form.id,
+  });
 
   server.createList("work-item", 20);
   server.createList("format-validator", 3);

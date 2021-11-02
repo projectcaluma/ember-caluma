@@ -8,6 +8,9 @@ query ($id: ID!) {
         form {
           slug
         }
+        workItem {
+          id
+        }
         answers {
           edges {
             node {

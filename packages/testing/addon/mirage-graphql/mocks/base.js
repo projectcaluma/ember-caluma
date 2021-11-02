@@ -119,15 +119,7 @@ export default class {
       this.serializer.deserialize(vars)
     );
 
-    /* istanbul ignore next */
-    if (!record) {
-      // eslint-disable-next-line no-console
-      return Error(
-        `Did not find a record of type "${this.type}" in the store. Did you forget to create one?`
-      );
-    }
-
-    return this.serializer.serialize(record);
+    return record && this.serializer.serialize(record);
   }
 
   @register("Save{type}Payload")

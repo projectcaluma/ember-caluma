@@ -7,7 +7,6 @@ export default {
     "WorkItem",
     "Flow",
     "DynamicOption",
-    "CalculatedFloatQuestion",
     "Option",
     "TextQuestion",
     "StringAnswer",
@@ -30,13 +29,14 @@ export default {
     "StaticQuestion",
     "FileAnswer",
     "File",
+    "CalculatedFloatQuestion",
+    "ActionButtonQuestion",
     "SimpleTask",
     "CompleteWorkflowFormTask",
     "CompleteTaskFormTask",
   ],
   Task: ["SimpleTask", "CompleteWorkflowFormTask", "CompleteTaskFormTask"],
   Question: [
-    "CalculatedFloatQuestion",
     "TextQuestion",
     "ChoiceQuestion",
     "MultipleChoiceQuestion",
@@ -50,6 +50,8 @@ export default {
     "FormQuestion",
     "FileQuestion",
     "StaticQuestion",
+    "CalculatedFloatQuestion",
+    "ActionButtonQuestion",
   ],
   Answer: [
     "StringAnswer",
@@ -60,4 +62,5 @@ export default {
     "TableAnswer",
     "FileAnswer",
   ],
+  DynamicQuestion: ["DynamicChoiceQuestion", "DynamicMultipleChoiceQuestion"],
 };

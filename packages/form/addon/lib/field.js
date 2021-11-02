@@ -936,4 +936,15 @@ export default Base.extend({
   _validateCalculatedFloatQuestion() {
     return resolve(true);
   },
+
+  /**
+   * Dummy method for the validation of work item button fields
+   *
+   * @method _validateActionButtonQuestion
+   * @return {RSVP.Promise}
+   * @private
+   */
+  _validateActionButtonQuestion() {
+    return resolve(true);
+  },
 });
