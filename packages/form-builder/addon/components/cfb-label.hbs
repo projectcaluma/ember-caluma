@@ -1,4 +1,12 @@
-{{label}}
-{{#unless required}}<span class="uk-text-muted uk-text-lowercase">({{t
-      "caluma.form-builder.global.optional"
-    }})</span>{{/unless}}
+<label
+  class="uk-form-label uk-flex uk-flex-between"
+  for={{@inputId}}
+  ...attributes
+>
+  {{yield}}{{@label}}
+  {{#unless @required}}
+    <span class="uk-text-muted uk-text-lowercase">
+      ({{t "caluma.form-builder.global.optional"}})
+    </span>
+  {{/unless}}
+</label>

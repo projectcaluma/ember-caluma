@@ -75,8 +75,8 @@ caluma:
       choose: "-- please choose --"
       search-placeholder: "Type here to search forms"
       search-empty: "Search didn't match any forms"
-      columnsToDisplay: "Select columns to be shown"
-      calcExpression: "Calculation formula"
+      columnsToDisplay: "Columns to be shown in the form"
+      calcExpression: "Calculation formula (JEXL)"
 
       new: "New question"
 

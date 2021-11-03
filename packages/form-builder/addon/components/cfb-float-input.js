@@ -1,5 +1,11 @@
-import RenderComponent from "ember-validated-form/components/validated-input/-themes/uikit/render";
+import { action } from "@ember/object";
+import Component from "@glimmer/component";
 
-export default RenderComponent.extend({
-  inputComponent: "cfb-float-input/input",
-});
+export default class CfbFloatInput extends Component {
+  @action
+  onUpdate(event) {
+    event.preventDefault();
+    this.args.update(event.target.value);
+    this.args.setDirty();
+  }
+}

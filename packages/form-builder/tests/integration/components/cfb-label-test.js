@@ -13,7 +13,7 @@ module("Integration | Component | cfb-label", function (hooks) {
 
     this.set("required", true);
 
-    await render(hbs`{{cfb-label label='Test' required=required}}`);
+    await render(hbs`<CfbLabel @label='Test' @required={{this.required}}/>`);
 
     assert.dom("label").hasText("Test");
 

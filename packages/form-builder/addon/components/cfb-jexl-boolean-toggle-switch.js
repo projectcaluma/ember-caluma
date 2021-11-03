@@ -1,12 +1,13 @@
-import { computed } from "@ember/object";
-import RenderComponent from "ember-validated-form/components/validated-input/-themes/uikit/render";
+import { action } from "@ember/object";
+import Component from "@glimmer/component";
 
-export default RenderComponent.extend({
-  boolValue: computed.equal("value", "true"),
+export default class CfbJexlBooleanToggleSwitch extends Component {
+  get boolValue() {
+    return this.args.value === "true";
+  }
 
-  actions: {
-    toggle(boolValue) {
-      this.update(String(boolValue));
-    },
-  },
-});
+  @action
+  toggle(boolValue) {
+    this.args.update(String(boolValue));
+  }
+}

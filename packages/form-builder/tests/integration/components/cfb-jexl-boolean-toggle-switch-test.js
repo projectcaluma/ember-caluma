@@ -16,12 +16,12 @@ module(
       this.set("value", "false");
 
       await render(hbs`
-      {{cfb-jexl-boolean-toggle-switch
-        name='test'
-        value=value
-        update=(action (mut value))
-      }}
-    `);
+        <CfbJexlBooleanToggleSwitch
+          @name='test'
+          @value={{this.value}}
+          @update={{fn (mut value)}}
+        />
+      `);
 
       assert.dom("input[name=test]").isNotChecked();
 
@@ -44,12 +44,12 @@ module(
       });
 
       await render(hbs`
-      {{cfb-jexl-boolean-toggle-switch
-        name='test'
-        value=value
-        update=(action update)
-      }}
-    `);
+        <CfbJexlBooleanToggleSwitch
+          @name='test'
+          @value={{this.value}}
+          @update={{this.update}}
+        />
+      `);
 
       assert.dom("input[name=test]").isNotChecked();
 

@@ -1,19 +1,17 @@
 import { getOwner } from "@ember/application";
-// eslint-disable-next-line ember/no-computed-properties-in-native-classes
-import { action, computed, get, set } from "@ember/object";
+import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
-import RenderComponent from "ember-validated-form/components/validated-input/-themes/uikit/render";
+import Component from "@glimmer/component";
 
 import { TYPE_MAP } from "@projectcaluma/ember-form/lib/field";
 
-export default class CfbFormEditorQuestionDefault extends RenderComponent {
+export default class CfbFormEditorQuestionDefault extends Component {
   @service router;
 
-  @computed("model.{id,__typename}")
   get question() {
     const raw = {
-      ...this.model.get("data"),
-      ...this.model.get("change"),
+      ...this.args.model.get("data"),
+      ...this.args.model.get("change"),
       // While we want the real value, typename, etc. of the question,
       // the question should never be required or hidden in the form-builder.
       // We need to set a value here as no value will lead to a Jexl error.
@@ -31,13 +29,13 @@ export default class CfbFormEditorQuestionDefault extends RenderComponent {
 
     if (
       ["ChoiceQuestion", "MultipleChoiceQuestion"].includes(
-        this.model.__typename
+        this.args.model.__typename
       )
     ) {
       // Use Power Select for choice questions to save space.
       raw.meta = { widgetOverride: "cf-field/input/powerselect" };
 
-      const key = this.model.__typename
+      const key = this.args.model.__typename
         .replace(/^./, (match) => match.toLowerCase())
         .replace("Question", "Options");
 
@@ -45,42 +43,33 @@ export default class CfbFormEditorQuestionDefault extends RenderComponent {
       delete raw.options;
     }
 
-    if (this.model.__typename === "TableQuestion") {
+    if (this.args.model.__typename === "TableQuestion") {
       raw.meta = { widgetOverride: "cfb-form-editor/question/default/table" };
     }
 
     return raw;
   }
 
-  // This @computed decorator is important. Otherwise, Ember will - under some
-  // circumstances - enter the getter method multiple times and throw an error.
-  @computed(
-    "model.{__typename,slug}",
-    "question",
-    "question.slug",
-    "router.currentRoute.attributes.formSlug",
-    "value.content"
-  )
   get field() {
     const rootForm = {
       slug:
         // There is no currentRoute in the integration tests.
-        get(this, "router.currentRoute.attributes.formSlug") || "dv-form",
+        this.router?.currentRoute?.attributes?.formSlug || "dv-form",
       meta: {},
       questions: [this.question],
       __typename: "Form",
     };
 
     const newAnswer = {
-      id: btoa(`Answer:dv-answer-${this.model.slug}`),
-      __typename: TYPE_MAP[this.model.__typename],
+      id: btoa(`Answer:dv-answer-${this.args.model.slug}`),
+      __typename: TYPE_MAP[this.args.model.__typename],
     };
 
     // The value depends on where it comes from. If there is a default value
     // present on load the `value.content` will be set. After an update through
     // this component the value will be a POJO on `value`.
     const answer = {
-      ...(this.value?.content || this.value || newAnswer),
+      ...(this.args._value?.content || this.args._value || newAnswer),
       question: this.question,
     };
 
@@ -108,7 +97,7 @@ export default class CfbFormEditorQuestionDefault extends RenderComponent {
       .factoryFor("caluma-model:document")
       .create({
         raw: {
-          id: btoa(`Document:dv-document-${this.model.slug}`),
+          id: btoa(`Document:dv-document-${this.args.model.slug}`),
           rootForm,
           forms: [rootForm],
           answers: [answer],
@@ -119,12 +108,13 @@ export default class CfbFormEditorQuestionDefault extends RenderComponent {
     return document.findField(this.question.slug);
   }
 
-  @action async onUpdate(value) {
-    set(this, "field.answer.value", value);
+  @action
+  async onUpdate(value) {
+    this.field.answer.value = value;
 
     await this.field.validate.perform();
 
-    this.update({
+    this.args.update({
       [this.field.answer._valueKey]: this.field.answer.serializedValue,
       __typename: this.field.answer.__typename,
       id: this.field.answer.id,
@@ -132,9 +122,9 @@ export default class CfbFormEditorQuestionDefault extends RenderComponent {
 
     if (this.field.errors.length > 0) {
       // The errors must be pushed after calling update.
-      this.model.pushErrors(this.name, ...this.field.errors);
+      this.args.model.pushErrors(this.args.name, ...this.field.errors);
     }
 
-    this.setDirty();
+    this.args.setDirty();
   }
 }

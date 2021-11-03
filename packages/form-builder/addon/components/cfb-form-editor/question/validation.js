@@ -1,44 +1,35 @@
-import Component from "@ember/component";
-import { computed } from "@ember/object";
+import { action } from "@ember/object";
+import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
-import { task } from "ember-concurrency";
+import { dropTask } from "ember-concurrency";
 
 import allFormatValidatorsQuery from "@projectcaluma/ember-form-builder/gql/queries/all-format-validators.graphql";
 
-export default Component.extend({
-  apollo: queryManager(),
+export default class CfbFormEditorQuestionValidation extends Component {
+  @queryManager apollo;
 
-  init(...args) {
-    this._super(...args);
-
-    this.availableFormatValidators.perform();
-  },
-
-  availableFormatValidators: task(function* () {
+  @dropTask
+  *availableFormatValidators() {
     const formatValidators = yield this.apollo.watchQuery(
       { query: allFormatValidatorsQuery, fetchPolicy: "cache-and-network" },
       "allFormatValidators.edges"
     );
     return formatValidators.map((edge) => edge.node);
-  }).drop(),
+  }
 
-  validators: computed(
-    "availableFormatValidators.lastSuccessful.value.[]",
-    function () {
-      return this.get("availableFormatValidators.lastSuccessful.value") || [];
-    }
-  ),
+  get validators() {
+    return this.availableFormatValidators?.lastSuccessful?.value || [];
+  }
 
-  selected: computed("value.[]", "validators.@each.slug", function () {
+  get selected() {
     return this.validators.filter((validator) =>
-      (this.value || []).includes(validator.slug)
+      (this.args.value || []).includes(validator.slug)
     );
-  }),
+  }
 
-  actions: {
-    updateValidators(value) {
-      this.update(value.map((validator) => validator.slug));
-      this.setDirty();
-    },
-  },
-});
+  @action
+  updateValidators(value) {
+    this.args.update(value.map((validator) => validator.slug));
+    this.args.setDirty();
+  }
+}

@@ -1,35 +1,30 @@
 import { getOwner } from "@ember/application";
 import { A } from "@ember/array";
-import Component from "@ember/component";
-import { computed } from "@ember/object";
+import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
+import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
 import { optional } from "ember-composable-helpers/helpers/optional";
-import { task, timeout } from "ember-concurrency";
+import { timeout, restartableTask, dropTask } from "ember-concurrency";
 
-import validations from "../../validations/form";
+import FormValidations from "../../validations/form";
 
 import slugify from "@projectcaluma/ember-core/utils/slugify";
 import saveFormMutation from "@projectcaluma/ember-form-builder/gql/mutations/save-form.graphql";
 import checkFormSlugQuery from "@projectcaluma/ember-form-builder/gql/queries/check-form-slug.graphql";
 import formEditorGeneralQuery from "@projectcaluma/ember-form-builder/gql/queries/form-editor-general.graphql";
 
-export default Component.extend({
-  validations,
+export default class CfbFormEditorGeneral extends Component {
+  @service notification;
+  @service intl;
+  @service calumaOptions;
+  @queryManager apollo;
 
-  notification: service(),
-  intl: service(),
-  calumaOptions: service(),
+  Validations = FormValidations;
 
-  apollo: queryManager(),
-
-  didReceiveAttrs() {
-    this._super();
-    this.data.perform();
-  },
-
-  data: task(function* () {
-    if (!this.slug) {
+  @restartableTask
+  *data() {
+    if (!this.args.slug) {
       return A([
         {
           node: {
@@ -45,22 +40,24 @@ export default Component.extend({
     return yield this.apollo.watchQuery(
       {
         query: formEditorGeneralQuery,
-        variables: { slug: this.slug },
+        variables: { slug: this.args.slug },
         fetchPolicy: "cache-and-network",
       },
       "allForms.edges"
     );
-  }).restartable(),
+  }
 
-  prefix: computed("calumaOptions.namespace", function () {
+  get prefix() {
     return this.calumaOptions.namespace
       ? `${this.calumaOptions.namespace}-`
       : "";
-  }),
+  }
 
-  submit: task(function* (changeset) {
+  @dropTask
+  *submit(changeset) {
     try {
-      const slug = ((!this.slug && this.prefix) || "") + changeset.get("slug");
+      const slug =
+        ((!this.args.slug && this.prefix) || "") + changeset.get("slug");
 
       const form = yield this.apollo.mutate(
         {
@@ -81,24 +78,25 @@ export default Component.extend({
       this.notification.success(
         this.intl.t(
           `caluma.form-builder.notification.form.${
-            this.slug ? "save" : "create"
+            this.args.slug ? "save" : "create"
           }.success`
         )
       );
 
-      optional([this.get("on-after-submit")])(form);
+      optional([this.args["on-after-submit"]])(form);
     } catch (e) {
       this.notification.danger(
         this.intl.t(
           `caluma.form-builder.notification.form.${
-            this.slug ? "save" : "create"
+            this.args.slug ? "save" : "create"
           }.error`
         )
       );
     }
-  }).drop(),
+  }
 
-  validateSlug: task(function* (slug, changeset) {
+  @restartableTask
+  *validateSlug(slug, changeset) {
     /* istanbul ignore next */
     if (
       getOwner(this).resolveRegistration("config:environment").environment !==
@@ -121,24 +119,24 @@ export default Component.extend({
         this.intl.t("caluma.form-builder.validations.form.slug")
       );
     }
-  }).restartable(),
+  }
 
-  actions: {
-    updateName(value, changeset) {
-      changeset.set("name", value);
+  @action
+  updateName(value, changeset) {
+    changeset.set("name", value);
 
-      if (!this.slug) {
-        const slug = slugify(value, { locale: this.intl.primaryLocale });
-        changeset.set("slug", slug);
+    if (!this.args.slug) {
+      const slug = slugify(value, { locale: this.intl.primaryLocale });
+      changeset.set("slug", slug);
 
-        this.validateSlug.perform(this.prefix + slug, changeset);
-      }
-    },
+      this.validateSlug.perform(this.prefix + slug, changeset);
+    }
+  }
 
-    updateSlug(value, changeset) {
-      changeset.set("slug", value);
+  @action
+  updateSlug(value, changeset) {
+    changeset.set("slug", value);
 
-      this.validateSlug.perform(this.prefix + value, changeset);
-    },
-  },
-});
+    this.validateSlug.perform(this.prefix + value, changeset);
+  }
+}

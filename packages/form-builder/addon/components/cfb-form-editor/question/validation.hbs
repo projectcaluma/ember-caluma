@@ -1,14 +1,16 @@
-{{component labelComponent}}
+<div class="uk-margin" {{did-insert (perform this.availableFormatValidators)}}>
+  {{component @labelComponent}}
 
-<PowerSelectMultiple
-  @selected={{selected}}
-  @placeholder={{placeholder}}
-  @options={{validators}}
-  @onChange={{action "updateValidators"}}
-  as |item|
->
-  {{item.name}}
-</PowerSelectMultiple>
+  <PowerSelectMultiple
+    @selected={{this.selected}}
+    @placeholder={{this.placeholder}}
+    @options={{this.validators}}
+    @onChange={{this.updateValidators}}
+    as |item|
+  >
+    {{item.name}}
+  </PowerSelectMultiple>
 
-{{component hintComponent}}
-{{component errorComponent}}
+  {{component @hintComponent}}
+  {{component @errorComponent}}
+</div>

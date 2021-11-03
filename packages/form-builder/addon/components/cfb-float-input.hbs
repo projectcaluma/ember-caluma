@@ -1,0 +1,14 @@
+{{component @labelComponent}}
+
+<input
+  class="uk-input"
+  name={{@name}}
+  ...attributes
+  step="any"
+  type="number"
+  value={{@value}}
+  {{on "change" this.onUpdate}}
+/>
+
+{{component @hintComponent}}
+{{component @errorComponent}}

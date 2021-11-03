@@ -58,7 +58,6 @@
     "ember-source": "3.28.4",
     "ember-truth-helpers": "3.0.0",
     "ember-uikit": "4.0.0",
-    "ember-validated-form": "3.0.3",
     "faker": "5.5.3",
     "graphql": "15.6.1",
     "loader.js": "4.7.0",
