@@ -1,91 +1,89 @@
-{{component labelComponent}}
+<div class="uk-margin">
+  {{component @labelComponent}}
 
-<UkSortable
-  @handle=".uk-sortable-handle"
-  @on-moved={{action "_handleMoved"}}
-  @tagName="ul"
-  class="uk-list uk-list-divider uk-margin-remove-bottom uk-margin-small-top"
->
-  {{#each this.optionRows as |row i|}}
-    <li data-test-row={{concat "option-" (add i 1)}}>
-      <ValidatedForm @model={{row}} as |f|>
-        <div
-          uk-grid
-          class="uk-grid-small uk-flex uk-flex-middle"
-          id={{row.slug}}
-        >
-          {{#if (not (and row.isNew (gt this.optionRows.length 1)))}}
-            <span
-              data-test-sort-handle
-              uk-icon="menu"
-              class="uk-sortable-handle"
-              role="button"
-            ></span>
-          {{/if}}
-          <div class="uk-width-auto">
-            {{#if (and row.isNew (gt this.optionRows.length 1))}}
+  <UkSortable
+    @handle=".uk-sortable-handle"
+    @on-moved={{this._handleMoved}}
+    @tagName="ul"
+    class="uk-list uk-list-divider uk-margin-remove-bottom uk-margin-small-top"
+  >
+    {{#each this.optionRows as |row i|}}
+      <li data-test-row={{concat "option-" (add i 1)}}>
+        <ValidatedForm @model={{row}} as |f|>
+          <div
+            uk-grid
+            class="uk-grid-small uk-flex uk-flex-middle"
+            id={{row.slug}}
+          >
+            {{#if (not (and row.isNew (gt this.optionRows.length 1)))}}
+              <span
+                data-test-sort-handle
+                uk-icon="menu"
+                class="uk-sortable-handle"
+                role="button"
+              ></span>
+            {{/if}}
+            <div class="uk-width-auto">
+              {{#if (and row.isNew (gt this.optionRows.length 1))}}
+                <button
+                  data-test-delete-row
+                  type="button"
+                  class="uk-icon-button"
+                  uk-icon="trash"
+                  title={{t "caluma.form-builder.options.delete"}}
+                  {{on "click" (fn this.deleteRow row)}}
+                >
+                </button>
+              {{/if}}
               <button
-                data-test-delete-row
+                data-test-archive-row
                 type="button"
                 class="uk-icon-button"
-                uk-icon="trash"
-                title={{t "caluma.form-builder.options.delete"}}
-                {{action "deleteRow" row}}
+                uk-icon={{if row.isArchived "plus" "close"}}
+                title={{t
+                  (concat
+                    "caluma.form-builder.options."
+                    (if row.isArchived "restore" "archive")
+                  )
+                }}
+                {{on "click" (fn this.toggleRowArchived row)}}
               >
               </button>
-            {{/if}}
-            <button
-              data-test-archive-row
-              type="button"
-              class="uk-icon-button"
-              uk-icon={{if row.isArchived "plus" "close"}}
-              title={{t
-                (concat
-                  "caluma.form-builder.options."
-                  (if row.isArchived "restore" "archive")
-                )
-              }}
-              {{action "toggleRowArchived" row}}
-            >
-            </button>
+            </div>
+            <div class="uk-width-expand">
+              <f.input
+                @name="label"
+                @inputName={{concat "option-" (add i 1) "-label"}}
+                @required={{true}}
+                @disabled={{row.isArchived}}
+                @on-update={{this.updateLabel}}
+              />
+            </div>
+            <div class="uk-width-1-4">
+              <f.input
+                @name="slug"
+                @inputName={{concat "option-" (add i 1) "-slug"}}
+                @required={{true}}
+                @disabled={{not row.isNew}}
+                @on-update={{this.updateSlug}}
+              />
+            </div>
           </div>
-          <div class="uk-width-expand">
-            <f.input
-              @name="label"
-              @inputName={{concat "option-" (add i 1) "-label"}}
-              @required={{true}}
-              @disabled={{row.isArchived}}
-              @on-update={{action
-                (queue (action "updateLabel") (action "update"))
-              }}
-            />
-          </div>
-          <div class="uk-width-1-4">
-            <f.input
-              @name="slug"
-              @inputName={{concat "option-" (add i 1) "-slug"}}
-              @required={{true}}
-              @disabled={{not row.isNew}}
-              @on-update={{action
-                (queue (action "updateSlug") (action "update"))
-              }}
-            />
-          </div>
-        </div>
-      </ValidatedForm>
+        </ValidatedForm>
+      </li>
+    {{/each}}
+    <li class="uk-text-center">
+      <button
+        data-test-add-row
+        type="button"
+        class="uk-icon-button"
+        uk-icon="plus"
+        {{on "click" this.addRow}}
+      >
+      </button>
     </li>
-  {{/each}}
-  <li class="uk-text-center">
-    <button
-      data-test-add-row
-      type="button"
-      class="uk-icon-button"
-      uk-icon="plus"
-      {{action "addRow"}}
-    >
-    </button>
-  </li>
-</UkSortable>
+  </UkSortable>
 
-{{component hintComponent}}
-{{component errorComponent}}
+  {{component @hintComponent}}
+  {{component @errorComponent}}
+</div>

@@ -1,10 +1,12 @@
-{{cfb-toggle-switch
-  labelComponent=labelComponent
-  hintComponent=hintComponent
-  errorComponent=errorComponent
-  value=boolValue
-  size=size
-  name=name
-  disabled=disabled
-  update=(action "toggle")
-}}
+<CfbToggleSwitch
+  @labelComponent={{@labelComponent}}
+  @hintComponent={{@hintComponent}}
+  @errorComponent={{@errorComponent}}
+  @disabled={{@disabled}}
+  @size={{@size}}
+  @name={{@name}}
+  @value={{this.boolValue}}
+  @update={{this.toggle}}
+  @noMargin={{true}}
+  class="uk-flex uk-flex-middle uk-height-1-1"
+/>

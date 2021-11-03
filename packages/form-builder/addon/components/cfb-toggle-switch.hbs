@@ -1,14 +1,16 @@
-<@labelComponent />
+<div class="uk-flex uk-flex-column {{unless @noMargin "uk-margin"}}">
+  <@labelComponent />
 
-<div class="uk-form-controls">
-  <UkToggleSwitch
-    @value={{@value}}
-    @size={{@size}}
-    @name={{@name}}
-    @disabled={{@disabled}}
-    @on-toggle={{@update}}
-  />
+  <div class="uk-form-controls" ...attributes>
+    <UkToggleSwitch
+      @value={{@value}}
+      @size={{@size}}
+      @name={{@name}}
+      @disabled={{@disabled}}
+      @on-toggle={{@update}}
+    />
+  </div>
+
+  <@hintComponent />
+  <@errorComponent />
 </div>
-
-<@hintComponent />
-<@errorComponent />

@@ -19,7 +19,7 @@ module(
     test("it renders all available validators", async function (assert) {
       assert.expect(2);
 
-      await render(hbs`{{cfb-form-editor/question/validation}}`);
+      await render(hbs`<CfbFormEditor::Question::Validation/>`);
 
       await click(".ember-power-select-trigger");
 

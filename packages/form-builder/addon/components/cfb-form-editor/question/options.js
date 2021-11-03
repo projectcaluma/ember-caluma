@@ -1,11 +1,11 @@
-import { get } from "@ember/object";
-import { reads } from "@ember/object/computed";
+import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
+import Component from "@glimmer/component";
+import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
-import Changeset from "ember-changeset";
+import { Changeset } from "ember-changeset";
 import lookupValidator from "ember-changeset-validations";
 import { task } from "ember-concurrency";
-import RenderComponent from "ember-validated-form/components/validated-input/-themes/uikit/render";
 
 import slugify from "@projectcaluma/ember-core/utils/slugify";
 import saveChoiceQuestionMutation from "@projectcaluma/ember-form-builder/gql/mutations/save-choice-question.graphql";
@@ -25,46 +25,49 @@ const addQuestionPrefix = (slug, questionSlug) => {
   return `${questionSlug}-${slug}`;
 };
 
-export default RenderComponent.extend({
-  intl: service(),
-  notification: service(),
-  apollo: queryManager(),
+export default class CfbFormEditorQuestionOptions extends Component {
+  @tracked _optionRows;
 
-  questionSlug: reads("model.slug"),
+  @service intl;
+  @service notification;
+  @queryManager apollo;
 
-  init(...args) {
-    this._super(...args);
+  constructor(...args) {
+    super(...args);
 
-    const value = this.value;
-
-    this.set(
-      "optionRows",
-      get(value, "edges.length")
-        ? value.edges.map(
-            (edge) =>
-              new Changeset(
-                {
-                  slug: removeQuestionPrefix(edge.node.slug, this.questionSlug),
-                  label: edge.node.label,
-                  isArchived: edge.node.isArchived,
-                  isNew: false,
-                },
-                lookupValidator(OptionValidations),
-                OptionValidations
-              )
-          )
-        : [
+    this._optionRows = this.args.value?.edges?.length
+      ? this.args.value.edges.map(
+          (edge) =>
             new Changeset(
-              { slug: "", label: "", isNew: true, linkSlug: true },
+              {
+                slug: removeQuestionPrefix(edge.node.slug, this.questionSlug),
+                label: edge.node.label,
+                isArchived: edge.node.isArchived,
+                isNew: false,
+              },
               lookupValidator(OptionValidations),
               OptionValidations
-            ),
-          ]
-    );
-  },
+            )
+        )
+      : [
+          new Changeset(
+            { slug: "", label: "", isNew: true, linkSlug: true },
+            lookupValidator(OptionValidations),
+            OptionValidations
+          ),
+        ];
+  }
+
+  get questionSlug() {
+    return this.args.model.slug;
+  }
+
+  get optionRows() {
+    return this._optionRows;
+  }
 
   _update() {
-    this.update({
+    this.args.update({
       edges: this.optionRows
         .filter((row) => !row.isNew || row.isDirty)
         .map((row) => {
@@ -87,17 +90,18 @@ export default RenderComponent.extend({
         }),
     });
 
-    this.setDirty();
-  },
+    this.args.setDirty();
+  }
 
-  reorderOptions: task(function* (slugs) {
+  @task
+  *reorderOptions(slugs) {
     try {
       yield this.apollo.mutate({
-        mutation: TYPES[this.model.__typename],
+        mutation: TYPES[this.args.model.__typename],
         variables: {
           input: {
             slug: this.questionSlug,
-            label: this.model.label,
+            label: this.args.model.label,
             options: slugs,
           },
         },
@@ -115,66 +119,70 @@ export default RenderComponent.extend({
         )
       );
     }
-  }),
+  }
 
-  actions: {
-    addRow() {
-      this.set("optionRows", [
-        ...this.optionRows,
-        new Changeset(
-          { slug: "", label: "", isNew: true, linkSlug: true },
-          lookupValidator(OptionValidations),
-          OptionValidations
-        ),
-      ]);
+  @action
+  addRow() {
+    this._optionRows = [
+      ...this.optionRows,
+      new Changeset(
+        { slug: "", label: "", isNew: true, linkSlug: true },
+        lookupValidator(OptionValidations),
+        OptionValidations
+      ),
+    ];
 
-      this._update();
-    },
+    this._update();
+  }
 
-    deleteRow(row) {
-      this.set(
-        "optionRows",
-        this.optionRows.filter((r) => r !== row)
+  @action
+  deleteRow(row) {
+    this._optionRows = this.optionRows.filter((r) => r !== row);
+
+    this._update();
+  }
+
+  @action
+  toggleRowArchived(row) {
+    row.set("isArchived", !row.get("isArchived"));
+
+    this._update();
+  }
+
+  @action
+  updateLabel(value, changeset) {
+    changeset.set("label", value);
+
+    if (changeset.get("isNew") && changeset.get("linkSlug")) {
+      changeset.set(
+        "slug",
+        slugify(value, { locale: this.intl.primaryLocale })
       );
+    }
+    this._update();
+  }
 
-      this._update();
-    },
+  @action
+  updateSlug(value, changeset) {
+    changeset.set("slug", value);
+    changeset.set("linkSlug", false);
+    this._update();
+  }
 
-    toggleRowArchived(row) {
-      row.set("isArchived", !row.get("isArchived"));
+  @action
+  update() {
+    this._update();
+  }
 
-      this._update();
-    },
+  @action
+  _handleMoved({ detail: [sortable] }) {
+    // Remove last element as it is the add row button
+    const options = [...sortable.$el.children].slice(0, -1);
 
-    updateLabel(value, changeset) {
-      changeset.set("label", value);
-
-      if (changeset.get("isNew") && changeset.get("linkSlug")) {
-        changeset.set(
-          "slug",
-          slugify(value, { locale: this.intl.primaryLocale })
-        );
-      }
-    },
-
-    updateSlug(value, changeset) {
-      changeset.set("slug", value);
-      changeset.set("linkSlug", false);
-    },
-
-    update() {
-      this._update();
-    },
-
-    _handleMoved({ detail: [sortable] }) {
-      // Remove last element as it is the add row button
-      const options = [...sortable.$el.children].slice(0, -1);
-
-      this.reorderOptions.perform(
-        options.map((option) =>
-          addQuestionPrefix(option.firstElementChild.id, this.questionSlug)
-        )
-      );
-    },
-  },
-});
+    this.reorderOptions.perform(
+      options.map((option) =>
+        addQuestionPrefix(option.firstElementChild.id, this.questionSlug)
+      )
+    );
+  }
+}

@@ -75,8 +75,8 @@ caluma:
       choose: "-- bitte wählen --"
       search-placeholder: "Hier tippen um zu suchen"
       search-empty: "Keine Formulare gefunden"
-      columnsToDisplay: "Spalten zur Anzeige auswählen"
-      calcExpression: "Berechnungsformel"
+      columnsToDisplay: "Spalten zur Anzeige im Formular"
+      calcExpression: "Berechnungsformel (JEXL)"
 
       new: "Neue Frage"
 

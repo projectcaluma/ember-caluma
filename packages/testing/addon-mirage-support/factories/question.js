@@ -18,6 +18,11 @@ export default Factory.extend({
           maxLength: faker.datatype.number({ min: 1, max: 255 }),
         });
       }
+      if (question.minLength === undefined) {
+        question.update({
+          minLength: faker.datatype.number({ min: 1, max: 10 }),
+        });
+      }
     } else if (["INTEGER", "FLOAT"].includes(question.type)) {
       if (question.minValue === undefined) {
         question.update({

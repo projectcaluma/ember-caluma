@@ -6,10 +6,8 @@ import jexl from "jexl";
 import { hasQuestionType } from "@projectcaluma/ember-core/helpers/has-question-type";
 
 export default class CfbFormEditorQuestionListItem extends Component {
-  constructor(...args) {
-    super(...args);
-
-    this.elementId = guidFor(this);
+  get elementId() {
+    return guidFor(this);
   }
 
   get required() {

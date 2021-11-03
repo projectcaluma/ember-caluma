@@ -20,7 +20,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
       description: "Test Description",
     });
 
-    await render(hbs`{{cfb-form-editor/general slug='test-slug'}}`);
+    await render(hbs`<CfbFormEditor::General @slug='test-slug' />`);
 
     assert.dom("input[name=name]").hasValue("Test Name");
     assert.dom("input[name=slug]").hasValue("test-slug");
@@ -37,7 +37,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
       description: "Test Description",
     });
 
-    await render(hbs`{{cfb-form-editor/general slug='test-slug'}}`);
+    await render(hbs`<CfbFormEditor::General @slug='test-slug' />`);
 
     await fillIn("input[name=name]", "");
     await blur("input[name=name]");
@@ -63,12 +63,13 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
     });
 
     await render(
-      hbs`{{cfb-form-editor/general on-after-submit=(action afterSubmit)}}`
+      hbs`<CfbFormEditor::General @on-after-submit={{this.afterSubmit}} />`
     );
 
     await fillIn("input[name=name]", "Form 1");
     assert.dom("button[type=submit]").isDisabled();
 
+    // TODO: WHY IS THAT SHIT NOT FOUND BY THE TESTSUITE????
     await fillIn("input[name=slug]", "form-2");
 
     await click("button[type=submit]");
@@ -85,7 +86,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
     });
 
     await render(
-      hbs`{{cfb-form-editor/general on-after-submit=(action afterSubmit)}}`
+      hbs`<CfbFormEditor::General @on-after-submit={{this.afterSubmit}} />`
     );
 
     assert.dom("input[name=slug]").isNotDisabled();
@@ -118,7 +119,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
     });
 
     await render(
-      hbs`{{cfb-form-editor/general slug='test-slug' on-after-submit=(action afterSubmit)}}`
+      hbs`<CfbFormEditor::General @slug='test-slug' @on-after-submit={{this.afterSubmit}} />`
     );
 
     await fillIn("input[name=name]", "Test Name 1");
@@ -142,10 +143,10 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
 
     // edit form
     await render(
-      hbs`{{cfb-form-editor/general
-        slug='test-form'
-        on-after-submit=(action afterSubmit)
-      }}`
+      hbs`<CfbFormEditor::General
+        @slug='test-form'
+        @on-after-submit={{this.afterSubmit}}
+      />`
     );
 
     this.server.post("/graphql", () => graphqlError("saveForm"), 200);
@@ -153,7 +154,9 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
 
     // new form
     await render(
-      hbs`{{cfb-form-editor/general slug=null on-after-submit=(action afterSubmit)}}`
+      hbs`<CfbFormEditor::General
+        @slug={{null}}
+        @on-after-submit={{this.afterSubmit}}/>`
     );
 
     // Slug validation must be valid
@@ -177,7 +180,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
       data: { allForms: { edges: [], __typename: "FormEdges" } },
     }));
 
-    await render(hbs`{{cfb-form-editor/general slug='test-slug'}}`);
+    await render(hbs`<CfbFormEditor::General @slug='test-slug'/>`);
 
     assert
       .dom("p")
@@ -190,7 +193,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
     this.server.create("form", { slug: "test-slug" });
     this.server.create("form", { slug: "other-test-slug" });
 
-    await render(hbs`{{cfb-form-editor/general slug=null}}`);
+    await render(hbs`<CfbFormEditor::General @slug={{null}} />`);
 
     await fillIn("input[name=slug]", "test-slug");
     await blur("input[name=slug]");

@@ -25,7 +25,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       type: "TEXT",
     });
 
-    await render(hbs`{{cfb-form-editor/question slug='test-slug'}}`);
+    await render(hbs`<CfbFormEditor::Question @slug='test-slug'/>`);
 
     assert.dom("[name=label]").hasValue("Test Label");
     assert.dom("[name=slug]").hasValue("test-slug");
@@ -41,7 +41,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       type: "TEXT",
     });
 
-    await render(hbs`{{cfb-form-editor/question slug='test-slug'}}`);
+    await render(hbs`<CfbFormEditor::Question @slug='test-slug'/>`);
 
     await fillIn("[name=label]", "");
     await blur("[name=label]");
@@ -65,7 +65,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     });
 
     await render(
-      hbs`{{cfb-form-editor/question slug='test-slug' on-after-submit=(action afterSubmit)}}`
+      hbs`<CfbFormEditor::Question @slug='test-slug' @on-after-submit={{this.afterSubmit}}/>`
     );
 
     await fillIn("[name=label]", "Test Label 1");
@@ -92,7 +92,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     });
 
     await render(
-      hbs`{{cfb-form-editor/question slug='test-slug' on-after-submit=(action afterSubmit)}}`
+      hbs`<CfbFormEditor::Question @slug='test-slug' @on-after-submit={{this.afterSubmit}}/>`
     );
 
     await fillIn("[name=label]", "Test Label 1");
@@ -115,10 +115,10 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
 
     // edit question
     await render(
-      hbs`{{cfb-form-editor/question
-        slug='foo-bar-test-slug'
-        on-after-submit=(action afterSubmit)
-      }}`
+      hbs`<CfbFormEditor::Question
+        @slug='foo-bar-test-slug'
+        @on-after-submit={{this.afterSubmit}}
+      />`
     );
 
     this.server.post("/graphql", () => graphqlError("saveQuestion"), 200);
@@ -140,7 +140,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       },
     }));
 
-    await render(hbs`{{cfb-form-editor/question slug='test-slug'}}`);
+    await render(hbs`<CfbFormEditor::Question @slug='test-slug'/>`);
 
     assert
       .dom("p")
@@ -150,7 +150,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
   test("it suggests a slug", async function (assert) {
     assert.expect(1);
 
-    await render(hbs`{{cfb-form-editor/question slug=null}}`);
+    await render(hbs`<CfbFormEditor::Question @slug={{null}}/>`);
 
     await fillIn("input[name=label]", "Test Label 123");
     assert.dom("input[name=slug]").hasValue("test-label-123");
@@ -169,7 +169,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     this.owner.lookup("service:caluma-options").namespace = "Foo Bar";
 
     await render(
-      hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
+      hbs`<CfbFormEditor::Question @form='test-form' @on-after-submit={{this.afterSubmit}}/>`
     );
 
     await fillIn("[name=__typename]", "TextQuestion");
@@ -197,7 +197,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     });
 
     await render(
-      hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
+      hbs`<CfbFormEditor::Question @form='test-form' @on-after-submit={{this.afterSubmit}}/>`
     );
 
     await fillIn("[name=__typename]", "TextQuestion");
@@ -227,7 +227,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     });
 
     await render(
-      hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
+      hbs`<CfbFormEditor::Question @form='test-form' @on-after-submit={{this.afterSubmit}}/>`
     );
 
     await fillIn("[name=__typename]", "TextareaQuestion");
@@ -257,7 +257,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     });
 
     await render(
-      hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
+      hbs`<CfbFormEditor::Question @form='test-form' @on-after-submit={{this.afterSubmit}}/>`
     );
 
     await fillIn("[name=__typename]", "IntegerQuestion");
@@ -287,7 +287,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     });
 
     await render(
-      hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
+      hbs`<CfbFormEditor::Question @form='test-form' @on-after-submit={{this.afterSubmit}}/>`
     );
 
     await fillIn("[name=__typename]", "FloatQuestion");
@@ -318,7 +318,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     });
 
     await render(
-      hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
+      hbs`<CfbFormEditor::Question @form='test-form' @on-after-submit={{this.afterSubmit}}/>`
     );
 
     await fillIn("[name=__typename]", "MultipleChoiceQuestion");
@@ -326,7 +326,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     await fillIn("[name=slug]", "slug");
     await fillIn("[name=option-1-label]", "Option 1");
     await fillIn("[name=option-1-slug]", "option-1");
-    await click("[data-test-hide-label] div div span input");
+    await click(`[name="meta.hideLabel"]`);
 
     await click("button[type=submit]");
 
@@ -349,7 +349,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     });
 
     await render(
-      hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
+      hbs`<CfbFormEditor::Question @form='test-form' @on-after-submit={{this.afterSubmit}}/>`
     );
 
     await fillIn("[name=__typename]", "ChoiceQuestion");
@@ -379,7 +379,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     });
 
     await render(
-      hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
+      hbs`<CfbFormEditor::Question @form='test-form' @on-after-submit={{this.afterSubmit}}/>`
     );
 
     await fillIn("[name=__typename]", "TableQuestion");
@@ -405,7 +405,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     });
 
     await render(
-      hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
+      hbs`<CfbFormEditor::Question @form='test-form' @on-after-submit={{this.afterSubmit}}/>`
     );
 
     await fillIn("[name=__typename]", "TableQuestion");
@@ -452,7 +452,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     });
 
     await render(
-      hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
+      hbs`<CfbFormEditor::Question @form='test-form' @on-after-submit={{this.afterSubmit}}/>`
     );
 
     await fillIn("[name=__typename]", "FormQuestion");
@@ -478,7 +478,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     });
 
     await render(
-      hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
+      hbs`<CfbFormEditor::Question @form='test-form' @on-after-submit={{this.afterSubmit}}/>`
     );
 
     await fillIn("[name=__typename]", "FormQuestion");
@@ -523,7 +523,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     });
 
     await render(
-      hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
+      hbs`<CfbFormEditor::Question @form='test-form' @on-after-submit={{this.afterSubmit}}/>`
     );
 
     await fillIn("[name=__typename]", "FileQuestion");
@@ -549,9 +549,10 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     });
 
     await render(
-      hbs`{{cfb-form-editor/question form='test-form' on-after-submit=(action afterSubmit)}}`
+      hbs`<CfbFormEditor::Question @form='test-form' @on-after-submit={{this.afterSubmit}}/>`
     );
 
+    // await selectChoose("[name=__typename]", "StaticQuestion");
     await fillIn("[name=__typename]", "StaticQuestion");
     await fillIn("[name=label]", "Label");
     await fillIn("[name=slug]", "slug");
@@ -567,7 +568,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     this.server.create("question", { slug: "test-slug" });
     this.server.create("question", { slug: "other-test-slug" });
 
-    await render(hbs`{{cfb-form-editor/question slug=null}}`);
+    await render(hbs`<CfbFormEditor::Question @slug={{null}}/>`);
 
     await fillIn("input[name=slug]", "test-slug");
     await blur("input[name=slug]");
@@ -592,7 +593,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
   test("it auto-suggests the slug if it has not been manually changed", async function (assert) {
     assert.expect(3);
 
-    await render(hbs`{{cfb-form-editor/question slug=null}}`);
+    await render(hbs`<CfbFormEditor::Question @slug={{null}}/>`);
 
     await fillIn("input[name=label]", "Foo Bar");
     await blur("input[name=label]");
@@ -613,7 +614,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
   test("it allows to select format-validators", async function (assert) {
     assert.expect(1);
 
-    await render(hbs`{{cfb-form-editor/question}}`);
+    await render(hbs`<CfbFormEditor::Question/>`);
     await selectChoose(
       ".ember-power-select-trigger",
       ".ember-power-select-option"
