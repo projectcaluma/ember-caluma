@@ -18,6 +18,8 @@ caluma:
     save: "sauvegarder"
     delete: "supprimer"
     edit: "modifier"
+    cancel: "annuler"
+    close: "fermer"
     selectFile: "cliquez pour télécharger le ficher"
     changeFile: "cliquez pour télécharger un autre fichier"
     deleteRow: "Voulez-vous supprimer cette ligne?"

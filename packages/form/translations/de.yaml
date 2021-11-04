@@ -17,6 +17,8 @@ caluma:
     save: "Speichern"
     delete: "Löschen"
     edit: "Bearbeiten"
+    cancel: "Abbrechen"
+    close: "Schliessen"
     selectFile: "Klicken um Datei hochzuladen"
     changeFile: "Klicken um andere Datei hochzuladen"
     deleteRow: "Möchten Sie diese Zeile wirklich löschen?"
