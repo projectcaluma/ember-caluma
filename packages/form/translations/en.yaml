@@ -17,6 +17,8 @@ caluma:
     save: "Save"
     delete: "Delete"
     edit: "Edit"
+    cancel: "Cancel"
+    close: "Close"
     selectFile: "Click to upload a file"
     changeFile: "Click to upload a different file"
     deleteRow: "Do you really want to delete this row?"

@@ -1,125 +1,124 @@
-{{#with field.question.rowForm.questions.edges as |questions|}}
-  <table class="uk-table">
-    <thead>
+<table class="uk-table uk-table-divider">
+  <thead>
+    <tr>
+      {{#each this.columns as |column|}}
+        <th>{{column.label}}</th>
+      {{/each}}
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each @field.answer.value as |document|}}
       <tr>
-        {{#each columnHeaders as |edge|}}
-          <th>{{edge.node.label}}</th>
+        {{#each this.columns as |column|}}
+          <td>
+            <CfFieldValue
+              @field={{find-by "question.slug" column.slug document.fields}}
+            />
+          </td>
         {{/each}}
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      {{#each field.answer.value as |document|}}
-        <tr>
-          {{#if field.question.meta.columnsToDisplay.length}}
-            {{#each document.fields as |answerField|}}
-              {{#if
-                (includes
-                  answerField.answer.question.slug
-                  field.question.meta.columnsToDisplay
-                )
-              }}
-                <td>{{cf-field-value field=answerField}}</td>
-              {{/if}}
-            {{/each}}
-          {{else}}
-            {{#each (take 4 document.fields) as |field|}}
-              <td>{{cf-field-value field=field}}</td>
-            {{/each}}
-          {{/if}}
-          <td class="uk-text-right">
+        <td class="uk-table-middle">
+          <div class="uk-flex uk-flex-middle uk-flex-right">
+            {{#if (includes false (map-by "isValid" document.fields))}}
+              <UkIcon
+                @icon="warning"
+                class="uk-animation-fade uk-text-danger"
+              />
+            {{/if}}
             <button
               data-test-edit-row
               type="button"
-              class="uk-icon-button"
-              uk-icon="pencil"
+              class="uk-button-link uk-flex-inline uk-margin-small-left"
               title={{t "caluma.form.edit"}}
-              {{action "editRow" document}}
+              {{on "click" (fn this.edit document)}}
             >
+              <UkIcon @icon="pencil" />
               <span class="uk-hidden">{{t "caluma.form.edit"}}</span>
             </button>
-            {{#unless disabled}}
+            {{#unless @disabled}}
               <button
                 data-test-delete-row
                 type="button"
-                class="uk-icon-button"
-                uk-icon="trash"
+                class="uk-button-link uk-flex-inline uk-margin-small-left"
                 title={{t "caluma.form.delete"}}
-                {{action "deleteRow" document}}
+                {{on "click" (fn (perform this.delete) document)}}
               >
+                <UkIcon @icon="trash" />
                 <span class="uk-hidden">{{t "caluma.form.delete"}}</span>
               </button>
             {{/unless}}
-          </td>
-        </tr>
-      {{/each}}
-    </tbody>
+          </div>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+  {{#unless @disabled}}
     <tfoot>
-      {{#unless disabled}}
-        <tr>
-          <td colspan={{add (count-keys questions) 1}} class="uk-text-center">
-            <button
-              type="button"
-              class="uk-button uk-button-default uk-button-small"
-              title={{t "caluma.form.addRow"}}
-              {{on "click" (perform addRow)}}
-            >
-              <UkIcon @icon="plus" />
-              <span class="uk-hidden">{{t "caluma.form.addRow"}}</span>
-            </button>
-          </td>
-        </tr>
-      {{/unless}}
+      <tr>
+        <td colspan={{add this.columns.length 1}} class="uk-text-center">
+          <UkButton
+            @size="small"
+            @color="default"
+            @on-click={{perform this.add}}
+            data-test-add-row
+          >
+            <UkIcon @icon="plus" />
+            <span class="uk-hidden">{{t "caluma.form.addRow"}}</span>
+          </UkButton>
+        </td>
+      </tr>
     </tfoot>
-  </table>
+  {{/unless}}
+</table>
 
+{{#if this.documentToEdit}}
   <UkModal
-    @visible={{and showAddModal documentToEdit}}
-    @on-hide={{action "closeModal" "showAddModal"}}
-    @btnClose={{true}}
+    @visible={{this.showAddModal}}
+    @on-hide={{perform this.closeModal}}
     @bgClose={{false}}
     as |modal|
   >
     <modal.body>
-      {{#if documentToEdit}}
-        {{cf-form-wrapper
-          document=documentToEdit
-          fieldset=(object-at 0 documentToEdit.fieldsets)
-          disabled=disabled
-        }}
-      {{/if}}
-    </modal.body>
-
-    {{#unless disabled}}
-      <modal.footer @class="uk-text-right">
-        {{uk-button
-          label=(t "caluma.form.save")
-          disabled=save.isRunning
-          loading=save.isRunning
-          on-click=(perform save)
-        }}
-      </modal.footer>
-    {{/unless}}
-  </UkModal>
-
-  <UkModal
-    @visible={{and showDeleteModal documentToDelete}}
-    @on-hide={{action "closeModal" "showDeleteModal"}}
-    @btnClose={{true}}
-    @bgClose={{false}}
-    as |modal|
-  >
-    <modal.body>
-      {{t "caluma.form.deleteRow"}}
+      <CfFormWrapper
+        @document={{this.documentToEdit}}
+        @fieldset={{object-at 0 this.documentToEdit.fieldsets}}
+        @disabled={{@disabled}}
+      />
     </modal.body>
 
     <modal.footer @class="uk-text-right">
-      {{uk-button
-        label=(t "caluma.form.delete")
-        disabled=deleteRow.isRunning
-        loading=deleteRow.isRunning
-        on-click=(perform deleteRow documentToDelete)
-      }}
+      {{#if @disabled}}
+        <UkButton
+          @label={{t "caluma.form.close"}}
+          @color="primary"
+          @on-click={{perform this.close}}
+          @disabled={{this.close.isRunning}}
+          @loading={{this.close.isRunning}}
+          data-test-close
+        />
+      {{else}}
+        <UkButton
+          @label={{t "caluma.form.cancel"}}
+          @on-click={{perform this.close}}
+          @disabled={{this.close.isRunning}}
+          @loading={{this.close.isRunning}}
+          data-test-cancel
+        />
+        <DocumentValidity
+          @document={{this.documentToEdit}}
+          as |isValid validate|
+        >
+          <UkButton
+            @label={{t "caluma.form.save"}}
+            @color="primary"
+            @type="submit"
+            @disabled={{or this.save.isRunning (not isValid)}}
+            @loading={{this.save.isRunning}}
+            @on-click={{fn (perform this.save) validate}}
+            data-test-save
+          />
+        </DocumentValidity>
+      {{/if}}
     </modal.footer>
   </UkModal>
-{{/with}}
+{{/if}}

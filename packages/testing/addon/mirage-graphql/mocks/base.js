@@ -134,23 +134,38 @@ export default class {
   handleSavePayload(_, { input: { clientMutationId, slug, id, ...args } }) {
     const identifier = slug ? { slug } : { id };
 
+    const relKeys = this.server.schema.modelFor(
+      this.type.toLowerCase()
+    ).foreignKeys;
+
+    const parsedArgs = Object.entries(args).reduce((parsed, [key, value]) => {
+      const re = new RegExp(`${camelize(key)}Id(s)?`);
+      const relKey = relKeys.find((k) => re.test(k));
+
+      return {
+        ...parsed,
+        [relKey ?? key]: value,
+      };
+    }, {});
+
     const obj = this.filter.find(this.collection, identifier);
     const res = obj
-      ? this.collection.update(obj.id, args)
+      ? this.collection.update(obj.id, parsedArgs)
       : this.collection.insert(
           this.serializer.deserialize(
             this.server.build(dasherize(this.type), {
               ...identifier,
-              ...args,
+              ...parsedArgs,
             })
           )
         );
 
-    const x = {
-      [camelize(this.type)]: this.serializer.serialize(res),
+    return {
+      [camelize(this.type)]: this.serializer.serialize({
+        ...relKeys.reduce((rels, key) => ({ ...rels, [key]: null })),
+        ...res,
+      }),
       clientMutationId,
     };
-
-    return x;
   }
 }

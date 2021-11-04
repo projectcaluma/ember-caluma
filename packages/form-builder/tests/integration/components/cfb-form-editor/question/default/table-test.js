@@ -9,12 +9,15 @@ module(
     setupRenderingTest(hooks);
 
     test("it renders", async function (assert) {
-      // Set any properties with this.set('myProperty', 'value');
-      // Handle any actions with this.set('myAction', function(val) { ... });
+      this.field = {
+        question: { meta: {}, rowForm: { questions: { edges: [] } } },
+      };
 
-      await render(hbs`<CfbFormEditor::Question::Default::Table />`);
+      await render(
+        hbs`<CfbFormEditor::Question::Default::Table @field={{this.field}} />`
+      );
 
-      assert.dom(this.element).hasText("");
+      assert.dom(this.element).exists();
     });
   }
 );
