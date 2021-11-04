@@ -86,7 +86,7 @@
         {{#if
           (not
             (or
-              (has-question-type "static" "calculated-float")
+              (has-question-type f.model "static" "calculated-float")
               (not (includes f.model.isRequired (array "true" "false")))
             )
           )
@@ -436,7 +436,7 @@
           />
         </div>
 
-        {{#if (not (has-question-type "static" "calculated-float"))}}
+        {{#if (not (has-question-type f.model "static" "calculated-float"))}}
           <div class="uk-margin">
             <f.input
               @label={{t "caluma.form-builder.question.isRequired"}}
