@@ -1,5 +1,6 @@
 import { action } from "@ember/object";
 import Component from "@glimmer/component";
+import { restartableTask } from "ember-concurrency-decorators";
 
 /**
  * Component to check the validity of a document
@@ -34,10 +35,12 @@ export default class DocumentValidity extends Component {
     return this.args.document.fields.every((f) => f.isValid);
   }
 
-  @action
-  async validate() {
-    await Promise.all(
-      this.args.document.fields.map((field) => field.validate.perform())
+  @restartableTask
+  *_validate() {
+    yield Promise.all(
+      this.args.document.fields.map((field) =>
+        field.validate.linked().perform()
+      )
     );
 
     if (this.isValid) {
@@ -47,5 +50,10 @@ export default class DocumentValidity extends Component {
     }
 
     return this.isValid;
+  }
+
+  @action
+  validate() {
+    return this._validate.perform();
   }
 }
