@@ -41,9 +41,16 @@ export default function (server) {
     type: "CHOICE",
     formIds: [form.id],
     options: [
-      server.create("option", { label: "Yes" }),
-      server.create("option", { label: "Hell yes" }),
-      server.create("option", { label: "Certainly", isArchived: true }),
+      server.create("option", { slug: "like-caluma-yes", label: "Yes" }),
+      server.create("option", {
+        slug: "like-caluma-hell-yes",
+        label: "Hell yes",
+      }),
+      server.create("option", {
+        slug: "like-caluma-certainly",
+        label: "Certainly",
+        isArchived: true,
+      }),
     ],
   });
   server.create("question", {
@@ -53,9 +60,18 @@ export default function (server) {
     type: "MULTIPLE_CHOICE",
     isHidden: "'height'|answer > 1.6",
     options: [
-      server.create("option", { label: "Moms fault" }),
-      server.create("option", { label: "Dads fault" }),
-      server.create("option", { label: "Not enough vegetables" }),
+      server.create("option", {
+        slug: "short-reason-moms-fault",
+        label: "Moms fault",
+      }),
+      server.create("option", {
+        slug: "short-reason-dads-fault",
+        label: "Dads fault",
+      }),
+      server.create("option", {
+        slug: "short-reason-not-enough-vegetables",
+        label: "Not enough vegetables",
+      }),
     ],
   });
   server.create("question", {
