@@ -181,7 +181,10 @@ export default class CfbFormEditorQuestionOptions extends Component {
 
     this.reorderOptions.perform(
       options.map((option) =>
-        addQuestionPrefix(option.firstElementChild.id, this.questionSlug)
+        addQuestionPrefix(
+          option.firstElementChild.firstElementChild.id,
+          this.questionSlug
+        )
       )
     );
   }
