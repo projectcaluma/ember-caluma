@@ -3,6 +3,7 @@ import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
 
+import removeAnswerMutation from "@projectcaluma/ember-form/gql/mutations/remove-answer.graphql";
 import getFileAnswerInfoQuery from "@projectcaluma/ember-form/gql/queries/get-fileanswer-info.graphql";
 
 export default class CfFieldInputFileComponent extends Component {
@@ -20,7 +21,7 @@ export default class CfFieldInputFileComponent extends Component {
 
   get placeholder() {
     return this.intl.t(
-      this.args.field?.answer.value
+      this.args.field?.answer?.value
         ? "caluma.form.changeFile"
         : "caluma.form.selectFile"
     );
@@ -75,6 +76,24 @@ export default class CfFieldInputFileComponent extends Component {
       // eslint-disable-next-line require-atomic-updates
       target.value = "";
       target.parentNode.querySelector("[type=text]").value = "";
+    }
+  }
+
+  @action
+  async delete() {
+    try {
+      await this.apollo.mutate({
+        mutation: removeAnswerMutation,
+        variables: {
+          input: {
+            answer: this.args.field.answer.uuid,
+          },
+        },
+      });
+
+      await this.args.onSave(null);
+    } catch (error) {
+      set(this.args.field, "_errors", [{ type: "deleteFailed" }]);
     }
   }
 }

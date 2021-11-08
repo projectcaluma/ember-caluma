@@ -1,0 +1,7 @@
+mutation RemoveAnswer($input: RemoveAnswerInput!) {
+  removeAnswer(input: $input) {
+    answer {
+      id
+    }
+  }
+}
