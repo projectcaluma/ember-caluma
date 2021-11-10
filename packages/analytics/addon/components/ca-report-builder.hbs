@@ -33,6 +33,7 @@
         </div>
       </f.input>
     </ValidatedForm>
+    <hr />
     <ValidatedForm {{on "submit" this.submitField}} as |f|>
       <f.input @label={{t "caluma.analytics.field_selection"}}>
         <div class="uk-grid-small uk-child-width-1-5" uk-grid>
@@ -47,18 +48,22 @@
           @onUpdate={{this.setFieldDescription}}
         />
       </f.input>
-      <CaFieldPath @value={{this.field.dataSource}} />
-
+      <f.input @name="field_path" @label={{t "caluma.analytics.field_path"}}>
+        <ValidatedInput::types::-themes::uikit::input
+          @value={{this.field.dataSource}}
+          disabled
+        />
+      </f.input>
       <div class="uk-text-left">
-        <f.submit>
-          <UkButton
-            class="uk-button-primary uk-margin-small-top"
-            @label={{t "caluma.analytics.add_field"}}
-          />
+        <f.submit @class="uk-margin-small-top">
+          <UkButton class="uk-button-primary uk-flex uk-flex-middle">
+            <UkIcon @icon="plus" />
+            {{t "caluma.analytics.add_field"}}
+          </UkButton>
         </f.submit>
       </div>
     </ValidatedForm>
-    <hr />
+    <hr class="uk-divider-icon" />
     <CaFieldSelectorList
       @slug={{@slug}}
       @fields={{this.analyticsFields}}

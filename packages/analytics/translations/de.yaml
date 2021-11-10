@@ -5,7 +5,7 @@ caluma:
     starting_object: Ausgangspunkt
     field_selection: Feldauswahl
     field: Feld
-    field_path: Pfad
+    field_path: Generierter Pfad
     add_field: Feld hinzufügen
     add_filter: Filter hinzufügen
     alias: Alias

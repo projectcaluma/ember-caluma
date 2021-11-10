@@ -1,26 +1,29 @@
-<ul>
-  {{#each @fields as |Field|}}
-    <li>
-      <div class="uk-grid-small uk-child-width-1-5" uk-grid>
-        <CaFieldSelect
-          @onSelect={{fn this.updateFieldPath Field.id Field.alias}}
-          @selectedPath={{Field.dataSource}}
-          @slug={{@slug}}
-        />
-      </div>
-      <CaFieldDetails
-        @field={{Field}}
-        @onUpdate={{fn this.updateFieldDescription Field}}
-      />
-      <button
-        data-test-delete-field
-        type="button"
-        class="uk-icon-button"
-        uk-icon="trash"
-        title={{t "caluma.analytics.delete"}}
-        {{on "click" (fn this.removeField Field.id)}}
-      ></button>
-      <hr />
-    </li>
-  {{/each}}
-</ul>
+<table class="uk-table uk-table-divider uk-table-striped uk-table-hover">
+  <tbody>
+    {{#each @fields as |Field|}}
+      <tr>
+        <td class="uk-margin-small-top uk-margin-small-bottom">
+          <div class="uk-grid-small uk-child-width-1-5" uk-grid>
+            <CaFieldSelect
+              @onSelect={{fn this.updateFieldPath Field.id Field.alias}}
+              @selectedPath={{Field.dataSource}}
+              @slug={{@slug}}
+            />
+          </div>
+          <CaFieldDetails
+            @field={{Field}}
+            @onUpdate={{fn this.updateFieldDescription Field}}
+          />
+          <button
+            data-test-delete-field
+            type="button"
+            class="uk-icon-button"
+            uk-icon="trash"
+            title={{t "caluma.analytics.delete"}}
+            {{on "click" (fn this.removeField Field.id)}}
+          ></button>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>

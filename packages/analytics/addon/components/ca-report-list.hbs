@@ -9,12 +9,15 @@
     </thead>
     <tbody>
       {{#each @reports as |report|}}
-        <CaReportList::CaReportListItem
-          data-test-report-list-item
-          @slug={{report.slug}}
-          @route={{@itemRoute}}
-          @startingObject={{report.startingObject}}
-        />
+        <tr>
+          <td>
+            <LinkTo
+              @route="{{@itemRoute}}"
+              @model={{report.slug}}
+            >{{report.slug}}</LinkTo>
+          </td>
+          <td>{{report.startingObject}}</td>
+        </tr>
       {{/each}}
     </tbody>
   </table>

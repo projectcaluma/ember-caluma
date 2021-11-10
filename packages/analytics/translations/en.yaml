@@ -5,7 +5,7 @@ caluma:
     starting_object: Starting point
     field_selection: Field selection
     field: Field
-    field_path: Path
+    field_path: Generated path
     add_field: Add field
     add_filter: Add filter
     alias: Alias
