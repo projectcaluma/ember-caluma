@@ -13,6 +13,7 @@ caluma:
     delete: löschen
     notification:
       field_exists: Feld existiert bereits!
+      field_invalid: Die Angaben zum Feld sind fehlerhaft.
     list:
       new: Neue Auswertung anlegen
       list_title: Liste aller Auswertungen

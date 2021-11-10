@@ -3,19 +3,21 @@ import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
+import { Changeset } from "ember-changeset";
 import { dropTask, enqueueTask } from "ember-concurrency-decorators";
 
 import removeAnalyticsFieldMutation from "@projectcaluma/ember-analytics/gql/mutations/remove-analytics-field.graphql";
 import saveAnalyticsFieldMutation from "@projectcaluma/ember-analytics/gql/mutations/save-analytics-field.graphql";
 import saveAnalyticsTableMutation from "@projectcaluma/ember-analytics/gql/mutations/save-analytics-table.graphql";
 import getAnalyticsTableQuery from "@projectcaluma/ember-analytics/gql/queries/get-analytics-table.graphql";
+import Validations from "@projectcaluma/ember-analytics/validations/field";
 import slugify from "@projectcaluma/ember-core/utils/slugify";
 
 class CaField {
-  @tracked alias;
-  @tracked filter;
-  @tracked dataSource;
-  @tracked show = true;
+  alias;
+  filter;
+  dataSource;
+  show = true;
 }
 
 // TODO: make this dynamic
@@ -29,14 +31,16 @@ export default class CaReportBuilderComponent extends Component {
 
   @tracked analyticsTable;
   @tracked _tableSlug;
-  @tracked field;
+  // @tracked field;
   @tracked startingObject = STATICStartingObject;
 
   constructor(...args) {
     super(...args);
 
     this._tableSlug = this.args.slug ?? "";
-    this.field = new CaField();
+    // TODO: Check if this changeset thingy is working fine
+    this.field = Changeset(new CaField(), Validations);
+    this.field.snapshot();
   }
 
   get tableId() {
@@ -69,16 +73,19 @@ export default class CaReportBuilderComponent extends Component {
   @action
   setFieldDescription(description) {
     for (const [key, value] of Object.entries(description)) {
-      if (Object.keys(this.field).includes(key)) {
-        this.field[key] = value;
+      if (Object.keys(this.field.data).includes(key)) {
+        this.field.set(key, value);
       }
     }
   }
 
   @action
   setFieldPath(path) {
-    this.field.dataSource = path;
-    this.field.alias = path ? path.substring(path.lastIndexOf(".") + 1) : "";
+    this.field.set("dataSource", path);
+    this.field.set(
+      "alias",
+      path ? path.substring(path.lastIndexOf(".") + 1) : ""
+    );
   }
 
   @dropTask
@@ -126,18 +133,23 @@ export default class CaReportBuilderComponent extends Component {
   @action
   async submitField(e) {
     e.preventDefault();
-
+    if (this.field.isInvalid) {
+      return this.notification.danger(
+        this.intl.t(`caluma.analytics.notification.field_invalid`)
+      );
+    }
     if (
       this.analyticsFields.find(
-        (existing) => existing.dataSource === this.field.dataSource
+        (existing) => existing.dataSource === this.field.get("dataSource")
       )
     ) {
       return this.notification.danger(
         this.intl.t(`caluma.analytics.notification.field_exists`)
       );
     }
+    await this.field.save();
 
-    await this.saveAnalyticsField.perform(this.field);
+    await this.saveAnalyticsField.perform(this.field.data);
     await this.fetchData.perform();
     this.resetFieldInputs();
   }
@@ -185,6 +197,6 @@ export default class CaReportBuilderComponent extends Component {
   }
 
   resetFieldInputs() {
-    this.field = new CaField();
+    this.field.restore();
   }
 }
