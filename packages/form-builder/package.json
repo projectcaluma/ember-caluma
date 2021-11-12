@@ -39,7 +39,7 @@
     "ember-uikit": "^4.0.0",
     "ember-validated-form": "^5.0.0",
     "graphql": "^15.6.1",
-    "graphql-tag": "^2.12.5",
+    "graphql-tag": "^2.12.6",
     "jexl": "^2.3.0",
     "moment": "^2.29.1",
     "prismjs": "^1.25.0"
