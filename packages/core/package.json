@@ -31,7 +31,7 @@
     "lodash.clonedeep": "^4.5.0",
     "moment": "^2.29.1",
     "proxy-polyfill": "^0.3.2",
-    "slugify": "^1.6.1"
+    "slugify": "^1.6.2"
   },
   "devDependencies": {
     "@ember/optional-features": "2.0.0",
