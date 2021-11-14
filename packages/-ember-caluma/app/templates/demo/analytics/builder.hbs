@@ -1,2 +1,6 @@
 <h2>{{t "caluma.analytics.build_report"}}</h2>
-<CaReportBuilder @slug={{@model}} />
+<CaReportBuilder
+  @on-add={{this.createTable}}
+  @starting-objects={{this.availableStartingObjects}}
+  @slug={{@model}}
+/>

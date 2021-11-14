@@ -20,49 +20,44 @@ class CaField {
   show = true;
 }
 
-// TODO: make this dynamic
-const STATICStartingObject = { label: "Cases", value: "CASES" };
-const STATICAvailableStartingObjects = [{ label: "Cases", value: "CASES" }];
-
 export default class CaReportBuilderComponent extends Component {
   @queryManager apollo;
   @service notification;
   @service intl;
 
-  @tracked analyticsTable;
   @tracked _tableSlug;
-  // @tracked field;
-  @tracked startingObject = STATICStartingObject;
+  @tracked analyticsTable;
+  @tracked startingObject;
 
   constructor(...args) {
     super(...args);
 
     this._tableSlug = this.args.slug ?? "";
+    this.startingObject = this.args["starting-objects"][0].value;
     // TODO: Check if this changeset thingy is working fine
     this.field = Changeset(new CaField(), Validations);
-    this.field.snapshot();
+    this._snapshot = this.field.snapshot();
   }
 
   get tableId() {
-    return this.analyticsTable.id;
+    return this.analyticsTable?.id;
   }
 
   get analyticsFields() {
-    return this.analyticsTable.fields.edges.map((edge) => edge.node);
-  }
-
-  get availableStartingObjects() {
-    return STATICAvailableStartingObjects;
+    return this.analyticsTable?.fields.edges.map((edge) => edge.node);
   }
 
   @computed("analyticsTable.slug")
   get tableSlug() {
-    return this.analyticsTable.slug;
+    return this.analyticsTable?.slug || this._tableSlug;
   }
 
   @action
-  setTableSlug({ target: input }) {
-    set(this.analyticsTable, "slug", slugify(input.value));
+  setTableSlug(value) {
+    this._tableSlug = value;
+    if (this.analyticsTable) {
+      set(this.analyticsTable, "slug", slugify(value));
+    }
   }
 
   @action
@@ -122,17 +117,14 @@ export default class CaReportBuilderComponent extends Component {
   }
 
   @action
-  async submitTable(e) {
-    e.preventDefault();
+  async submitTable() {
     // TODO: updating the slug means, we must update the URL query as well.
     // which is not consitent if it is triggered by this component, huh?
-
     // await this.updateTable.perform();
   }
 
   @action
-  async submitField(e) {
-    e.preventDefault();
+  async submitField() {
     if (this.field.isInvalid) {
       return this.notification.danger(
         this.intl.t(`caluma.analytics.notification.field_invalid`)
@@ -150,7 +142,6 @@ export default class CaReportBuilderComponent extends Component {
     await this.field.save();
 
     await this.saveAnalyticsField.perform(this.field.data);
-    await this.fetchData.perform();
     this.resetFieldInputs();
   }
 
@@ -197,6 +188,6 @@ export default class CaReportBuilderComponent extends Component {
   }
 
   resetFieldInputs() {
-    this.field.restore();
+    this.field.restore(this._snapshot);
   }
 }

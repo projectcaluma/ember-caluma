@@ -1,6 +1,6 @@
 caluma:
   analytics:
-    build_report: Auswertung bearbeiten
+    build_report: Auswertung erstellen
     report_title: Auswertungsname
     starting_object: Ausgangspunkt
     field_selection: Feldauswahl

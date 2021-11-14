@@ -1,6 +1,6 @@
 caluma:
   analytics:
-    build_report: Edit report
+    build_report: Create report
     report_title: Report title
     starting_object: Starting point
     field_selection: Field selection
