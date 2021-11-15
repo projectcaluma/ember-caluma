@@ -8,7 +8,9 @@ import slugify from "@projectcaluma/ember-core/utils/slugify";
 
 export default class DemoAnalyticsBuilderController extends Controller {
   @queryManager apollo;
+  @service notification;
   @service router;
+  @service intl;
 
   get availableStartingObjects() {
     // TODO: Replace with dynamic list

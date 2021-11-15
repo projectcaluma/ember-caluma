@@ -4,13 +4,19 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
 import { Changeset } from "ember-changeset";
-import { dropTask, enqueueTask } from "ember-concurrency-decorators";
+import lookupValidator from "ember-changeset-validations";
+import {
+  dropTask,
+  enqueueTask,
+  restartableTask,
+} from "ember-concurrency-decorators";
 
 import removeAnalyticsFieldMutation from "@projectcaluma/ember-analytics/gql/mutations/remove-analytics-field.graphql";
+import removeAnalyticsTableMutation from "@projectcaluma/ember-analytics/gql/mutations/remove-analytics-table.graphql";
 import saveAnalyticsFieldMutation from "@projectcaluma/ember-analytics/gql/mutations/save-analytics-field.graphql";
 import saveAnalyticsTableMutation from "@projectcaluma/ember-analytics/gql/mutations/save-analytics-table.graphql";
 import getAnalyticsTableQuery from "@projectcaluma/ember-analytics/gql/queries/get-analytics-table.graphql";
-import Validations from "@projectcaluma/ember-analytics/validations/field";
+import FieldValidations from "@projectcaluma/ember-analytics/validations/field";
 import slugify from "@projectcaluma/ember-core/utils/slugify";
 
 class CaField {
@@ -24,6 +30,7 @@ export default class CaReportBuilderComponent extends Component {
   @queryManager apollo;
   @service notification;
   @service intl;
+  @service router;
 
   @tracked _tableSlug;
   @tracked analyticsTable;
@@ -33,10 +40,15 @@ export default class CaReportBuilderComponent extends Component {
     super(...args);
 
     this._tableSlug = this.args.slug ?? "";
-    this.startingObject = this.args["starting-objects"][0].value;
+    this.startingObject = this.args["starting-objects"]
+      ? this.args["starting-objects"][0].value
+      : undefined;
     // TODO: Check if this changeset thingy is working fine
-    this.field = Changeset(new CaField(), Validations);
-    this._snapshot = this.field.snapshot();
+    this.field = Changeset(
+      new CaField(),
+      lookupValidator(FieldValidations),
+      FieldValidations
+    );
   }
 
   get tableId() {
@@ -47,16 +59,17 @@ export default class CaReportBuilderComponent extends Component {
     return this.analyticsTable?.fields.edges.map((edge) => edge.node);
   }
 
-  @computed("analyticsTable.slug")
+  @computed("analyticsTable.slug", "_tableSlug")
   get tableSlug() {
     return this.analyticsTable?.slug || this._tableSlug;
   }
 
   @action
   setTableSlug(value) {
-    this._tableSlug = value;
+    const slug = slugify(value);
+    this._tableSlug = slug;
     if (this.analyticsTable) {
-      set(this.analyticsTable, "slug", slugify(value));
+      set(this.analyticsTable, "slug", slug);
     }
   }
 
@@ -72,6 +85,7 @@ export default class CaReportBuilderComponent extends Component {
         this.field.set(key, value);
       }
     }
+    this.field.validate();
   }
 
   @action
@@ -86,15 +100,22 @@ export default class CaReportBuilderComponent extends Component {
   @dropTask
   *fetchData() {
     if (this.args.slug) {
-      this.analyticsTable = yield this.apollo.query(
-        {
-          query: getAnalyticsTableQuery,
-          // availableFields have the same ID, therefore we turned apollo caching off
-          fetchPolicy: "no-cache",
-          variables: { slug: this.args.slug },
-        },
-        "analyticsTable"
-      );
+      try {
+        this.analyticsTable = yield this.apollo.query(
+          {
+            query: getAnalyticsTableQuery,
+            // TODO: availableFields have the same ID, therefore we turned apollo caching off
+            fetchPolicy: "no-cache",
+            variables: { slug: this.args.slug },
+          },
+          "analyticsTable"
+        );
+      } catch (e) {
+        this.notification.danger(
+          this.intl.t(`caluma.analytics.notification.table_not_found`)
+        );
+        this.router.transitionTo(this.args["analytics-route"]);
+      }
     }
   }
 
@@ -125,19 +146,23 @@ export default class CaReportBuilderComponent extends Component {
 
   @action
   async submitField() {
+    this.field.validate();
+
     if (this.field.isInvalid) {
-      return this.notification.danger(
+      this.notification.danger(
         this.intl.t(`caluma.analytics.notification.field_invalid`)
       );
+      return;
     }
     if (
       this.analyticsFields.find(
         (existing) => existing.dataSource === this.field.get("dataSource")
       )
     ) {
-      return this.notification.danger(
+      this.notification.danger(
         this.intl.t(`caluma.analytics.notification.field_exists`)
       );
+      return;
     }
     await this.field.save();
 
@@ -187,7 +212,33 @@ export default class CaReportBuilderComponent extends Component {
     this.fetchData.perform();
   }
 
+  @restartableTask
+  *createTable() {
+    if (this.tableSlug.trim() === "new") {
+      this.notification.danger(
+        this.intl.t("caluma.analytics.notification.table_title_invalid")
+      );
+      return;
+    }
+    yield this.args["on-add"](this.tableSlug, this.startingObject);
+  }
+
+  @dropTask
+  *deleteTable() {
+    yield this.apollo.mutate({
+      mutation: removeAnalyticsTableMutation,
+      fetchPolicy: "network-only",
+      variables: {
+        input: {
+          slug: this.analyticsTable.slug,
+        },
+      },
+    });
+    this.router.transitionTo(this.args["analytics-route"]);
+  }
+
   resetFieldInputs() {
-    this.field.restore(this._snapshot);
+    const props = ["alias", "filter", "dataSource", "show"];
+    props.forEach((prop) => this.field.set(prop, undefined));
   }
 }

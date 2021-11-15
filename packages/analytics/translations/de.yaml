@@ -1,19 +1,24 @@
 caluma:
   analytics:
-    build_report: Auswertung erstellen
+    sections:
+      build_report: Auswertung erstellen
+      field_selection: Feldauswahl
+      table_preview: Vorschau
     report_title: Auswertungsname
     starting_object: Ausgangspunkt
-    field_selection: Feldauswahl
     field: Feld
     field_path: Generierter Pfad
     add_field: Feld hinzufügen
     add_filter: Filter hinzufügen
     alias: Alias
     show_output: In Ausgabe anzeigen
-    delete: löschen
+    delete: Auswertung löschen
+    delete_field: Feld löschen
     notification:
       field_exists: Feld existiert bereits!
       field_invalid: Die Angaben zum Feld sind fehlerhaft.
+      table_not_found: Die angegebene Auswertung konnte nicht gefunden werden.
+      table_title_invalid: Der gewählte Titel ist nicht zulässig.
     list:
       new: Neue Auswertung anlegen
       list_title: Liste aller Auswertungen

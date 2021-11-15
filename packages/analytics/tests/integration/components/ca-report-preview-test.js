@@ -4,13 +4,15 @@ import { setupIntl } from "ember-intl/test-support";
 import { setupRenderingTest } from "ember-qunit";
 import { module, test } from "qunit";
 
-module("Integration | Component | ca-field-selector-list", function (hooks) {
+module("Integration | Component | ca-report-preview", function (hooks) {
   setupRenderingTest(hooks);
   setupIntl(hooks);
 
   test("it renders", async function (assert) {
-    await render(hbs`<CaFieldSelectorList />`);
+    await render(hbs`<CaReportPreview />`);
 
-    assert.dom(this.element).hasText("");
+    assert
+      .dom(this.element)
+      .hasText("t:caluma.analytics.sections.table_preview:()");
   });
 });

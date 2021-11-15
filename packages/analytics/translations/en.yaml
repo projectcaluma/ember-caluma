@@ -1,19 +1,24 @@
 caluma:
   analytics:
-    build_report: Create report
+    sections:
+      build_report: Create report
+      field_selection: Field selection
+      table_preview: Preview
     report_title: Report title
     starting_object: Starting point
-    field_selection: Field selection
     field: Field
     field_path: Generated path
     add_field: Add field
     add_filter: Add filter
     alias: Alias
     show_output: Show in output
-    delete: delete
+    delete: delete table
+    delete_field: delete field
     notification:
       field_exists: Field already exists!
       field_invalid: Please fix invalid field inputs.
+      table_not_found: The requested report was not found.
+      table_title_invalid: The choosen title for the table is not allowed.
     list:
       new: Create new report
       list_title: All reports

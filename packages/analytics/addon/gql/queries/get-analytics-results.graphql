@@ -1,0 +1,9 @@
+# import * from '@projectcaluma/ember-analytics/gql/fragments/analytics-table-result.graphql'
+
+query GetAnalyticsResults($slug: String!) {
+  analyticsTable(slug: $slug) {
+    resultData {
+      ...ResultData
+    }
+  }
+}
