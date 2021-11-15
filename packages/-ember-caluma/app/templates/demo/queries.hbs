@@ -1,26 +1,43 @@
 {{! template-lint-disable no-bare-strings }}
-<button
-  class="uk-button uk-button-default"
-  type="button"
-  {{on "click" this.load}}
->Load</button>
-<button
-  class="uk-button uk-button-default"
-  type="button"
-  {{on "click" this.loadMore}}
->Load more</button>
+<code>isLoading: {{this.workItemQuery.isLoading}}</code>
+<br />
+<code>hasNextPage: {{this.workItemQuery.hasNextPage}}</code>
+<br />
+<code>totalCount: {{this.workItemQuery.totalCount}}</code>
 
-<h2>getWorkItems</h2>
+<div class="uk-margin">
+  <label for="status" class="uk-form-label">Status</label>
+  <div class="uk-form-controls">
+    <select id="status" class="uk-select" {{on "change" this.updateStatus}}>
+      <option></option>
+      {{#each this.possibleStatus as |s|}}
+        <option value={{s}} selected={{eq this.status s}}>{{t
+            (concat "caluma.caluma-query.work-item.status." s)
+          }}</option>
+      {{/each}}
+    </select>
+  </div>
+</div>
 
-isLoading:
-{{this.workItemQuery.isLoading}}<br />
-totalCount:
-{{this.workItemQuery.totalCount}}<br />
-hasNextPage:
-{{this.workItemQuery.hasNextPage}}<br />
-
-<ul class="uk-list uk-list-striped">
+<ul
+  class="uk-list uk-list-striped"
+  {{did-insert this.load}}
+  {{did-update this.load this.status}}
+>
   {{#each this.workItemQuery.value as |workItem|}}
-    <li>{{workItem.id}} - {{workItem.createdAt}} - {{workItem.status}}</li>
+    <li>
+      {{workItem.name}}
+      <span class="uk-text-meta">{{workItem.createdAt}}</span>
+      <UkLabel @label={{workItem.status}} />
+    </li>
   {{/each}}
+  {{#if this.workItemQuery.hasNextPage}}
+    <li>
+      <button
+        class="uk-button uk-button-link"
+        type="button"
+        {{on "click" this.loadMore}}
+      >Load more</button>
+    </li>
+  {{/if}}
 </ul>

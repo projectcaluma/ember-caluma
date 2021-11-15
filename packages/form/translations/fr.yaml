@@ -1,18 +1,4 @@
 caluma:
-  caluma-query:
-    work-item:
-      status:
-        READY: "En attente"
-        COMPLETED: "Terminé"
-        CANCELED: "Annulé"
-        SKIPPED: "Sauté"
-
-    case:
-      status:
-        RUNNING: "En cours"
-        COMPLETED: "Terminé"
-        CANCELED: "Annulé"
-
   form:
     optional: "optional"
     save: "sauvegarder"

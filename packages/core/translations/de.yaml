@@ -6,9 +6,10 @@ caluma:
         COMPLETED: "Erledigt"
         CANCELED: "Abgebrochen"
         SKIPPED: "Übersprungen"
-
+        SUSPENDED: "Pausiert"
     case:
       status:
         RUNNING: "In Bearbeitung"
         COMPLETED: "Abgeschlossen"
         CANCELED: "Abgebrochen"
+        SUSPENDED: "Pausiert"

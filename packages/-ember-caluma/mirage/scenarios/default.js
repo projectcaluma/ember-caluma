@@ -107,6 +107,6 @@ export default function (server) {
     formId: form.id,
   });
 
-  server.createList("work-item", 20);
+  server.createList("work-item", 50);
   server.createList("format-validator", 3);
 }
