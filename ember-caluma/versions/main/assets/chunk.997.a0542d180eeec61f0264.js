@@ -1,4 +1,4 @@
-/*! For license information please see chunk.997.c9294fbdff3a21cac6d6.js.LICENSE.txt */
+/*! For license information please see chunk.997.a0542d180eeec61f0264.js.LICENSE.txt */
 (self.webpackChunk_ember_auto_import_=self.webpackChunk_ember_auto_import_||[]).push([[997],{13429:function(e,a,n){"use strict"
 n.d(a,{R:function(){return o}})
 var t=n(2985),r=n(86593),i=n(62541),o=function(){function e(){this.getFragmentDoc=(0,r.re)(i.Yk)}return e.prototype.batch=function(e){var a="string"==typeof e.optimistic?e.optimistic:!1===e.optimistic?null:void 0
@@ -1794,7 +1794,7 @@ n.r(a),n.d(a,{gql:function(){return p},resetCaches:function(){return h},disableF
 var t=n(2985),r=n(56795)
 function i(e){return i="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e},i(e)}var o=new Map,s=new Map,l=!0,u=!1
 function c(e){return e.replace(/[\s,]+/g," ").trim()}function d(e){var a,n,d,p=c(e)
-if(!o.has(p)){var h=(0,r.Qc)(e,{experimentalFragmentVariables:u})
+if(!o.has(p)){var h=(0,r.Qc)(e,{experimentalFragmentVariables:u,allowLegacyFragmentVariables:u})
 if(!h||"Document"!==h.kind)throw new Error("Not a valid GraphQL document.")
 o.set(p,function(e){var a=new Set(e.definitions)
 a.forEach((function(e){e.loc&&delete e.loc,Object.keys(e).forEach((function(n){var t=e[n]
