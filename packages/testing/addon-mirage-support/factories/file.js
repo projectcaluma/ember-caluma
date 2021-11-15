@@ -2,11 +2,11 @@ import { Factory } from "ember-cli-mirage";
 import faker from "faker";
 
 export default Factory.extend({
-  createdAt: faker.date.past(),
-  modifiedAt: faker.date.past(),
-  createdByUser: faker.datatype.uuid(),
-  uploadUrl: faker.internet.url(),
-  downloadUrl: faker.internet.url(),
+  createdAt: () => faker.date.past(),
+  modifiedAt: () => faker.date.past(),
+  createdByUser: () => faker.datatype.uuid(),
+  uploadUrl: () => faker.internet.url(),
+  downloadUrl: () => faker.internet.url(),
 
   afterCreate(file) {
     /*

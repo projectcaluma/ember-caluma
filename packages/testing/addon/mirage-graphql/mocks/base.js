@@ -69,6 +69,7 @@ export default class {
       _cursor: btoa(index),
     }));
 
+    const totalCount = records.length;
     const lastCursor = records.slice(-1)[0]?._cursor;
 
     // extract next page of records
@@ -86,6 +87,7 @@ export default class {
       pageInfo: () => {
         return { hasNextPage, endCursor };
       },
+      totalCount,
       edges: () =>
         new MockList(records.length, () => ({
           node: (r, v, _, meta) =>
