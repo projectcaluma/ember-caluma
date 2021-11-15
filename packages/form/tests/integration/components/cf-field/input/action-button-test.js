@@ -1,6 +1,8 @@
 import { click, settled, render, waitFor } from "@ember/test-helpers";
+import { tracked } from "@glimmer/tracking";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
+import { restartableTask } from "ember-concurrency-decorators";
 import { setupRenderingTest } from "ember-qunit";
 import { module, test } from "qunit";
 import UIkit from "uikit";
@@ -18,12 +20,14 @@ module(
         document: {
           workItemUuid: this.server.create("work-item").id,
           fields: [
-            {
-              isValid: true,
-              validate: {
-                perform: () => Promise.resolve(assert.step("validate")),
-              },
-            },
+            new (class {
+              @tracked isValid = true;
+
+              @restartableTask
+              *validate() {
+                yield assert.step("validate");
+              }
+            })(),
           ],
         },
         question: {
