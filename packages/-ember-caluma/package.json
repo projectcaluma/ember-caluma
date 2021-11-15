@@ -51,7 +51,7 @@
     "ember-fetch": "8.1.1",
     "ember-intl": "5.7.0",
     "ember-load-initializers": "2.1.2",
-    "ember-math-helpers": "2.17.3",
+    "ember-math-helpers": "2.18.0",
     "ember-maybe-import-regenerator": "1.0.0",
     "ember-pikaday": "3.0.0",
     "ember-power-select": "4.1.6",
