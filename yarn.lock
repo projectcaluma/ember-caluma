@@ -2532,110 +2532,6 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
-"@projectcaluma/ember-core@9.0.3":
-  version "9.0.3"
-  resolved "https://registry.yarnpkg.com/@projectcaluma/ember-core/-/ember-core-9.0.3.tgz#45a8a92b631409ac18da6fafb5297abd634e20f6"
-  integrity sha512-5nwBOhfibmV9awS3I0cy070nXAhaD91o+r02KzGByodA0lyvbr13cToDEYlhO+sP6eDNZM2MXrOo5CW6YISqZA==
-  dependencies:
-    "@apollo/client" "^3.4.16"
-    ember-apollo-client "^3.2.0"
-    ember-auto-import "^2.2.0"
-    ember-changeset-validations "^3.16.0"
-    ember-cli-babel "^7.26.6"
-    ember-cli-htmlbars "^5.7.1"
-    ember-concurrency "^2.1.2"
-    ember-concurrency-decorators "^2.0.3"
-    ember-fetch "^8.0.4"
-    ember-intl "^5.7.0"
-    graphql "^15.6.0"
-    graphql-tag "^2.12.5"
-    intersection-observer "^0.12.0"
-    jexl "^2.3.0"
-    lodash.clonedeep "^4.5.0"
-    moment "^2.29.1"
-    proxy-polyfill "^0.3.2"
-    slugify "^1.6.1"
-
-"@projectcaluma/ember-form-builder@9.0.6":
-  version "9.0.6"
-  resolved "https://registry.yarnpkg.com/@projectcaluma/ember-form-builder/-/ember-form-builder-9.0.6.tgz#7c5475036c310667d295728819f80f66bec749db"
-  integrity sha512-wkk4RA3/bNbMyqZG5DCHPQHH4N6VDA+rwmD0PWi+Alz9JKffMMuEYq212qwAM1hJZickv++0jhfaBZbxaaGI/g==
-  dependencies:
-    "@ember/render-modifiers" "^2.0.0"
-    "@glimmer/component" "^1.0.4"
-    "@glimmer/tracking" "^1.0.4"
-    "@projectcaluma/ember-core" "9.1.0"
-    "@projectcaluma/ember-form" "9.1.2"
-    codejar "^3.5.0"
-    ember-apollo-client "^3.2.0"
-    ember-auto-import "^2.2.3"
-    ember-changeset "^3.15.0"
-    ember-changeset-validations "^3.16.0"
-    ember-cli-babel "^7.26.6"
-    ember-cli-htmlbars "^6.0.0"
-    ember-composable-helpers "^4.5.0"
-    ember-concurrency "^2.2.0"
-    ember-concurrency-decorators "^2.0.3"
-    ember-engines-router-service "^0.3.0"
-    ember-fetch "^8.0.4"
-    ember-math-helpers "^2.17.3"
-    ember-pikaday "^3.0.0"
-    ember-power-select "^4.1.6"
-    ember-test-selectors "^6.0.0"
-    ember-uikit "^4.0.0"
-    ember-validated-form "^5.0.0"
-    graphql "^15.6.1"
-    graphql-tag "^2.12.5"
-    jexl "^2.3.0"
-    moment "^2.29.1"
-    prismjs "^1.25.0"
-
-"@projectcaluma/ember-form@9.1.2":
-  version "9.1.2"
-  resolved "https://registry.yarnpkg.com/@projectcaluma/ember-form/-/ember-form-9.1.2.tgz#0854777d72bd758363b90a17dd0684ed81f2118a"
-  integrity sha512-5fYpt88b/1D9fNQ78naoEy8BZHGbVD0BKGO0eGCjzCwldG85krM+6z3t3/eH0yP2kREZuk6HNpTFoNOqlalNsg==
-  dependencies:
-    "@glimmer/component" "^1.0.4"
-    "@glimmer/tracking" "^1.0.4"
-    "@projectcaluma/ember-core" "9.1.0"
-    ember-apollo-client "^3.2.0"
-    ember-auto-import "^2.2.3"
-    ember-cli-babel "^7.26.6"
-    ember-cli-htmlbars "^6.0.0"
-    ember-cli-showdown "^6.0.0"
-    ember-composable-helpers "^4.5.0"
-    ember-fetch "^8.0.4"
-    ember-in-viewport "^3.10.3"
-    ember-intl "^5.7.0"
-    ember-math-helpers "^2.17.3"
-    ember-pikaday "^3.0.0"
-    ember-power-select "^4.1.6"
-    ember-uikit "^4.0.0"
-    graphql "^15.6.1"
-    jexl "^2.3.0"
-    lodash.clonedeep "^4.5.0"
-    lodash.isequal "^4.5.0"
-    moment "^2.29.1"
-
-"@projectcaluma/ember-workflow@9.0.2":
-  version "9.0.2"
-  resolved "https://registry.yarnpkg.com/@projectcaluma/ember-workflow/-/ember-workflow-9.0.2.tgz#afab4e7a117586f41469d8ce8df12484d4bf3422"
-  integrity sha512-pjpOXzYqfAonxtLTrTxWREubTt7CMvtamyqY1jTWRWGaKrUvDdFPSHtZ45XaFTxKu4IIEWJ6NH9QoMszPg2mPA==
-  dependencies:
-    "@ember/render-modifiers" "^2.0.0"
-    "@glimmer/component" "^1.0.4"
-    "@glimmer/tracking" "^1.0.4"
-    "@projectcaluma/ember-core" "9.0.3"
-    ember-apollo-client "^3.2.0"
-    ember-auto-import "^2.2.0"
-    ember-cli-babel "^7.26.6"
-    ember-cli-htmlbars "^5.7.1"
-    ember-fetch "^8.0.4"
-    ember-truth-helpers "^3.0.0"
-    ember-uikit "^4.0.0"
-    graphql "^15.6.0"
-    moment "^2.29.1"
-
 "@semantic-release/changelog@5.0.1":
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/@semantic-release/changelog/-/changelog-5.0.1.tgz#50a84b63e5d391b7debfe021421589fa2bcdafe4"
@@ -8499,7 +8395,7 @@ ember-concurrency-decorators@^2.0.0, ember-concurrency-decorators@^2.0.3:
     ember-cli-htmlbars "^4.3.1"
     ember-cli-typescript "^3.1.4"
 
-"ember-concurrency@>=1.0.0 <3", ember-concurrency@^2.0.0, ember-concurrency@^2.1.2, ember-concurrency@^2.2.0:
+"ember-concurrency@>=1.0.0 <3", ember-concurrency@^2.0.0, ember-concurrency@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/ember-concurrency/-/ember-concurrency-2.2.0.tgz#0acfb8ca855e0fdfa4c543be150028299a89ba32"
   integrity sha512-Ns1MH6t08oJqfeWQ4EMxyf6bLsXM87SbUPwGNUsg7idpikvkGr1PWqtvU6qxDTv1mA4Vrwdhv0I9yxN0ShH9Bg==
@@ -10920,7 +10816,7 @@ graphql-iso-date@^3.6.1:
   resolved "https://registry.yarnpkg.com/graphql-iso-date/-/graphql-iso-date-3.6.1.tgz#bd2d0dc886e0f954cbbbc496bbf1d480b57ffa96"
   integrity sha512-AwFGIuYMJQXOEAgRlJlFL4H1ncFM8n8XmoVDTNypNOZyQ8LFDG2ppMFlsS862BSTCDcSUfHp8PD3/uJhv7t59Q==
 
-graphql-tag@2.12.6, graphql-tag@^2.10.0, graphql-tag@^2.12.3, graphql-tag@^2.12.5, graphql-tag@^2.12.6:
+graphql-tag@2.12.6, graphql-tag@^2.10.0, graphql-tag@^2.12.3, graphql-tag@^2.12.6:
   version "2.12.6"
   resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.12.6.tgz#d441a569c1d2537ef10ca3d1633b48725329b5f1"
   integrity sha512-FdSNcu2QQcWnM2VNvSCCDCVS5PpPqpzgFT8+GXzqJuoDd0CBncxCY278u4mhRO7tMgo2JjgJA5aZ+nWSQ/Z+xg==
@@ -10949,11 +10845,6 @@ graphql@^14.0.2:
   integrity sha512-l0xWZpoPKpppFzMfvVyFmp9vLN7w/ZZJPefUicMCepfJeQ8sMcztloGYY9DfjVPo6tIUDzU5Hw3MUbIjj9AVVA==
   dependencies:
     iterall "^1.2.2"
-
-graphql@^15.6.0:
-  version "15.7.2"
-  resolved "https://registry.yarnpkg.com/graphql/-/graphql-15.7.2.tgz#85ab0eeb83722977151b3feb4d631b5f2ab287ef"
-  integrity sha512-AnnKk7hFQFmU/2I9YSQf3xw44ctnSFCfp3zE0N6W174gqe9fWG/2rKaKxROK7CcI3XtERpjEKFqts8o319Kf7A==
 
 growly@^1.3.0:
   version "1.3.0"
@@ -16617,7 +16508,7 @@ slice-ansi@^4.0.0:
     astral-regex "^2.0.0"
     is-fullwidth-code-point "^3.0.0"
 
-slugify@^1.6.1, slugify@^1.6.2:
+slugify@^1.6.2:
   version "1.6.2"
   resolved "https://registry.yarnpkg.com/slugify/-/slugify-1.6.2.tgz#4cb97220a2278e1b86fb017c6da668e6a865354c"
   integrity sha512-XMtI8qD84LwCpthLMBHlIhcrj10cgA+U/Ot8G6FD6uFuWZtMfKK75JO7l81nzpFJsPlsW6LT+VKqWQJW3+6New==
