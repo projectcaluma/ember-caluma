@@ -19,14 +19,6 @@ export default class CfFieldInputFileComponent extends Component {
     return this.args.field?.answer?.value?.name;
   }
 
-  get placeholder() {
-    return this.intl.t(
-      this.args.field?.answer?.value
-        ? "caluma.form.changeFile"
-        : "caluma.form.selectFile"
-    );
-  }
-
   @action
   async download() {
     const { downloadUrl } = await this.apollo.watchQuery(
@@ -75,7 +67,6 @@ export default class CfFieldInputFileComponent extends Component {
     } finally {
       // eslint-disable-next-line require-atomic-updates
       target.value = "";
-      target.parentNode.querySelector("[type=text]").value = "";
     }
   }
 

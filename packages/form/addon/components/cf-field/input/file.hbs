@@ -1,34 +1,32 @@
-{{#unless @disabled}}
-  <div uk-grid>
-    <div class="uk-width-expand" uk-form-custom="target: true">
+<div class="uk-flex-middle uk-grid-divider uk-grid-column-small" uk-grid>
+  <div uk-form-custom="target: true">
 
-      <input
-        type="file"
-        name={{@field.pk}}
-        id={{@field.pk}}
-        {{on "change" this.save}}
-      />
-
-      {{! label is in another component }}
-      {{! template-lint-disable require-input-label }}
-      <input
-        class="uk-input"
-        type="text"
-        placeholder={{this.placeholder}}
-        disabled
+    <input
+      type="file"
+      name={{@field.pk}}
+      id={{@field.pk}}
+      disabled={{@disabled}}
+      {{on "change" this.save}}
+    />
+    <UkButton @color="primary" @disabled={{@disabled}}>
+      {{t "caluma.form.selectFile"}}
+    </UkButton>
+  </div>
+  {{#if (and this.downloadUrl this.downloadName)}}
+    <div>
+      <UkButton
+        data-test-download-link
+        @color="link"
+        @on-click={{this.download}}
+      >
+        {{this.downloadName}}
+      </UkButton>
+      <UkIcon
+        class="uk-icon-button uk-margin-small-left"
+        role="button"
+        @icon="trash"
+        {{on "click" this.delete}}
       />
     </div>
-
-    {{#if this.downloadName}}
-      <div class="uk-flex uk-flex-middle uk-width-auto">
-        <UkIcon @icon="trash" role="button" {{on "click" this.delete}} />
-      </div>
-    {{/if}}
-  </div>
-{{/unless}}
-
-{{#if (and this.downloadUrl this.downloadName)}}
-  <UkButton @color="link" @on-click={{this.download}}>
-    {{this.downloadName}}
-  </UkButton>
-{{/if}}
+  {{/if}}
+</div>

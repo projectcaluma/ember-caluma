@@ -79,16 +79,18 @@ module("Integration | Component | cf-field/input/file", function (hooks) {
     // Hijack window.open
     const window_open = window.open;
     window.open = (url, target) => {
-      assert.ok(url.startsWith("http"), "The URL is an HTTP address");
+      assert.ok(url.startsWith("http"), "The URL is a HTTP address");
       assert.strictEqual(target, "_blank", "Target for new window is _blank");
     };
 
-    await render(hbs`{{cf-field/input/file field=field}}`);
+    await render(hbs`<CfField::Input::File @field={{this.field}} />`);
 
-    assert.dom(".uk-button").exists();
-    assert.dom(".uk-button").hasText(this.field.answer.value.name);
+    assert.dom("[data-test-download-link]").exists();
+    assert
+      .dom("[data-test-download-link]")
+      .hasText(this.field.answer.value.name);
 
-    await click(".uk-button");
+    await click("[data-test-download-link]");
 
     // Restore window.open
     // eslint-disable-next-line require-atomic-updates
