@@ -17,7 +17,7 @@
     "@apollo/client": "^3.4.16",
     "@glimmer/tracking": "^1.0.4",
     "ember-apollo-client": "^3.2.0",
-    "ember-auto-import": "^2.2.3",
+    "ember-auto-import": "^2.2.4",
     "ember-changeset-validations": "^3.16.0",
     "ember-cli-babel": "^7.26.6",
     "ember-cli-htmlbars": "^6.0.0",

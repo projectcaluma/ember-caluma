@@ -24,7 +24,7 @@
     "@projectcaluma/ember-workflow": "9.0.3",
     "broccoli-asset-rev": "3.0.0",
     "ember-apollo-client": "3.2.0",
-    "ember-auto-import": "2.2.3",
+    "ember-auto-import": "2.2.4",
     "ember-changeset": "3.15.0",
     "ember-changeset-validations": "3.16.0",
     "ember-cli": "3.28.3",
