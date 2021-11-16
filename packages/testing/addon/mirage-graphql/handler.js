@@ -30,6 +30,7 @@ export default function (server) {
       mocks: {
         ...mocks,
         Date: () => moment().format(moment.HTML5_FMT.DATE),
+        DateTime: () => moment().format(),
         JSONString: () => JSON.stringify({}),
         GenericScalar: () => ({}),
         Node: (_, { id }) => ({ __typename: atob(id).split(":")[0] }),
