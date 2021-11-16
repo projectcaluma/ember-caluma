@@ -38,9 +38,9 @@ export default class DocumentValidity extends Component {
   @restartableTask
   *_validate() {
     yield Promise.all(
-      this.args.document.fields.map((field) =>
-        field.validate.linked().perform()
-      )
+      this.args.document.fields.map((field) => {
+        return field.validate.linked().perform();
+      })
     );
 
     if (this.isValid) {
