@@ -564,7 +564,7 @@ export default Base.extend({
     "fieldset.field.hidden",
     "jexlContext",
     "optionalDependencies.@each.{hidden,value}",
-    "question.isRequired",
+    "question.{__typename,isRequired}",
     "pk",
     function () {
       if (

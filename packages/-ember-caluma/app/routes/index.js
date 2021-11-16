@@ -1,6 +1,6 @@
 import Route from "@ember/routing/route";
 import { queryManager } from "ember-apollo-client";
-import gql from "graphql-tag";
+import { gql } from "graphql-tag";
 
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 

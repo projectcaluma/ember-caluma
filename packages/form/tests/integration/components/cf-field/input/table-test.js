@@ -1,4 +1,4 @@
-import { waitFor, click, fillIn, render } from "@ember/test-helpers";
+import { waitFor, click, fillIn, render, scrollTo } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";

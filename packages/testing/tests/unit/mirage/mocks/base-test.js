@@ -1,6 +1,6 @@
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupTest } from "ember-qunit";
-import gql from "graphql-tag";
+import { gql } from "graphql-tag";
 import { module, test } from "qunit";
 
 import BaseMock from "@projectcaluma/ember-testing/mirage-graphql/mocks/base";

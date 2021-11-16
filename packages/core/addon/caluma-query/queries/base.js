@@ -8,7 +8,7 @@ import {
   restartableTask,
   task,
 } from "ember-concurrency-decorators";
-import gql from "graphql-tag";
+import { gql } from "graphql-tag";
 
 export default class BaseQuery {
   @queryManager apollo;
