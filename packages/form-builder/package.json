@@ -1,6 +1,6 @@
 {
   "name": "@projectcaluma/ember-form-builder",
-  "version": "9.0.7",
+  "version": "9.1.0",
   "description": "Ember engine for building Caluma forms.",
   "keywords": [
     "ember-addon",
@@ -18,8 +18,8 @@
     "@ember/render-modifiers": "^2.0.0",
     "@glimmer/component": "^1.0.4",
     "@glimmer/tracking": "^1.0.4",
-    "@projectcaluma/ember-core": "9.1.0",
-    "@projectcaluma/ember-form": "9.2.0",
+    "@projectcaluma/ember-core": "9.2.0",
+    "@projectcaluma/ember-form": "9.3.0",
     "codejar": "^3.5.0",
     "ember-apollo-client": "^3.2.0",
     "ember-auto-import": "^2.2.3",
