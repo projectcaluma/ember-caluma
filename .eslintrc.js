@@ -1,58 +1,29 @@
 "use strict";
 
 module.exports = {
-  root: true,
-  parser: "babel-eslint",
-  parserOptions: {
-    ecmaVersion: 2018,
-    sourceType: "module",
-    ecmaFeatures: {
-      legacyDecorators: true,
-    },
-  },
-  plugins: ["ember"],
-  extends: "@adfinis-sygroup/eslint-config",
-  env: {
-    es6: true,
-    browser: true,
-  },
+  extends: "@adfinis-sygroup/eslint-config/ember-addon",
   rules: {
-    "ember/no-jquery": "error",
+    "ember/no-observers": "warn",
     // TODO: https://github.com/projectcaluma/ember-caluma/issues/529
     "ember/no-mixins": "warn",
     "ember/no-new-mixins": "warn",
-    "ember/no-observers": "warn",
-    // TODO: This needs to be done seperately
+    // TODO: Update @projectcaluma/ember-form lib layer to native classes
     "ember/no-get": "warn",
-    "ember/no-classic-components": "warn",
     "ember/no-classic-classes": "warn",
-    "ember/require-tagless-components": "warn",
-    "ember/no-actions-hash": "warn",
-    "ember/no-component-lifecycle-hooks": "warn",
   },
   settings: {
     "import/internal-regex": "^(@projectcaluma|ember-caluma)/",
   },
   overrides: [
-    // node files
     {
       files: [
-        ".eslintrc.js",
-        ".prettierrc.js",
-        ".template-lintrc.js",
-        "config/*.js",
-        "packages/*/ember-cli-build.js",
-        "packages/*/index.js",
-        "packages/*/testem*.js",
-        "packages/*/blueprints/**/index.js",
-        "packages/*/config/*.js",
-        "packages/*/tests/dummy/config/*.js",
-      ],
-      excludedFiles: [
-        "packages/*/addon/**",
-        "packages/*/addon-test-support/**",
-        "packages/*/app/**",
-        "packages/*/tests/dummy/app/**",
+        "./config/*.js",
+        "./packages/*/ember-cli-build.js",
+        "./packages/*/index.js",
+        "./packages/*/testem.js",
+        "./packages/*/blueprints/**/index.js",
+        "./packages/*/config/**/*.js",
+        "./packages/*/tests/dummy/config/**/*.js",
       ],
       parserOptions: {
         sourceType: "script",
@@ -63,11 +34,6 @@ module.exports = {
       },
       plugins: ["node"],
       extends: ["plugin:node/recommended"],
-    },
-    {
-      // Test files:
-      files: ["packages/*/tests/**/*-test.{js,ts}"],
-      extends: ["plugin:qunit/recommended"],
     },
   ],
 };

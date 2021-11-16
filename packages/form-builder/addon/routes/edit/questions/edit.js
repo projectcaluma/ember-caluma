@@ -2,7 +2,7 @@ import Route from "@ember/routing/route";
 import { inject as service } from "@ember/service";
 import { queryManager } from "ember-apollo-client";
 import { lastValue, dropTask } from "ember-concurrency-decorators";
-import gql from "graphql-tag";
+import { gql } from "graphql-tag";
 
 import { navigationTitle } from "@projectcaluma/ember-form-builder/decorators";
 
