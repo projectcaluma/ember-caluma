@@ -40,10 +40,10 @@
     "@ember/optional-features": "2.0.0",
     "@ember/test-helpers": "2.6.0",
     "@embroider/test-setup": "0.47.2",
-    "@projectcaluma/ember-testing": "9.0.0",
+    "@projectcaluma/ember-testing": "9.1.0",
     "@projectcaluma/ember-workflow": "9.0.3",
     "broccoli-asset-rev": "3.0.0",
-    "ember-cli": "3.28.3",
+    "ember-cli": "3.28.4",
     "ember-cli-code-coverage": "1.0.3",
     "ember-cli-dependency-checker": "3.2.0",
     "ember-cli-inject-live-reload": "2.1.0",
@@ -65,10 +65,10 @@
     "qunit": "2.17.2",
     "qunit-dom": "2.0.0",
     "uuid": "8.3.2",
-    "webpack": "5.64.0"
+    "webpack": "5.64.1"
   },
   "engines": {
-    "node": "10.* || >= 12"
+    "node": "12.* || 14.* || >= 16"
   },
   "ember": {
     "edition": "octane"
