@@ -2,17 +2,18 @@ import { getOwner, setOwner } from "@ember/application";
 import { assert } from "@ember/debug";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
+import {
+  enqueueTask,
+  lastValue,
+  restartableTask,
+  task,
+} from "ember-concurrency-decorators";
 import gql from "graphql-tag";
 
 export default class BaseQuery {
   @queryManager apollo;
 
   @tracked items = [];
-
-  @tracked totalCount = 0;
-  @tracked hasNextPage = true;
-
-  @tracked isLoading = true;
 
   constructor({
     pageSize = null,
@@ -21,17 +22,13 @@ export default class BaseQuery {
     queryOptions = {},
   }) {
     this.pageSize = pageSize;
-    this.cursor = null;
-
     this.processNew = processNew;
     this.processAll = processAll;
     this.queryOptions = queryOptions;
   }
 
   get query() {
-    assert("`query` must be implemented on the model");
-
-    return "";
+    return assert("`query` must be implemented on the model");
   }
 
   get pagination() {
@@ -52,51 +49,20 @@ export default class BaseQuery {
     return factory.class;
   }
 
-  fetch({ filter = [], order = [], queryOptions = {} } = {}) {
-    this.items = [];
-    this.totalCount = 0;
-    this.hasNextPage = true;
-    this.cursor = null;
-
-    this.filter = filter;
-    this.order = order;
-    this.queryOptions = { ...(this.queryOptions ?? {}), ...queryOptions };
-
-    return this.fetchMore();
+  get isLoading() {
+    return this._fetch.isRunning || this._fetchMore.isRunning;
   }
 
-  async fetchMore() {
-    if (this.hasNextPage) {
-      this.isLoading = true;
+  get totalCount() {
+    return this._data?.[this.dataKey].totalCount;
+  }
 
-      const data = await this.apollo.query({
-        query: gql`
-          ${this.query}
-        `,
-        variables: {
-          filter: this.filter,
-          order: this.order,
-          pageSize: this.pageSize,
-          cursor: this.cursor,
-        },
-        fetchPolicy: "network-only",
-        ...this.queryOptions,
-      });
+  get hasNextPage() {
+    return this._data?.[this.dataKey].pageInfo.hasNextPage;
+  }
 
-      this.cursor = data[this.dataKey].pageInfo.endCursor;
-
-      this.hasNextPage = data[this.dataKey].pageInfo.hasNextPage;
-      this.totalCount = data[this.dataKey].totalCount;
-
-      const rawItems = data[this.dataKey].edges.map(({ node }) => node);
-
-      this.items = await this.processAll([
-        ...this.items,
-        ...(await this.processNew(rawItems)),
-      ]);
-
-      this.isLoading = false;
-    }
+  get cursor() {
+    return this._data?.[this.dataKey].pageInfo.endCursor;
   }
 
   get value() {
@@ -111,5 +77,60 @@ export default class BaseQuery {
 
       return instance;
     });
+  }
+
+  fetch(...args) {
+    return this._fetch.perform(...args);
+  }
+
+  fetchMore(...args) {
+    return this._fetchMore.perform(...args);
+  }
+
+  @restartableTask
+  *_fetch({ filter = [], order = [], queryOptions = {} } = {}) {
+    yield this._fetchPage.cancelAll({ resetState: true });
+
+    this.items = [];
+
+    this.filter = filter;
+    this.order = order;
+    this.queryOptions = { ...(this.queryOptions ?? {}), ...queryOptions };
+
+    return yield this._fetchPage.linked().perform();
+  }
+
+  @enqueueTask
+  *_fetchMore() {
+    if (!this._data) return;
+
+    return yield this._fetchPage.linked().perform();
+  }
+
+  @lastValue("_fetchPage") _data;
+  @task
+  *_fetchPage() {
+    const data = yield this.apollo.query({
+      query: gql`
+        ${this.query}
+      `,
+      variables: {
+        filter: this.filter,
+        order: this.order,
+        pageSize: this.pageSize,
+        cursor: this.cursor,
+      },
+      fetchPolicy: "network-only",
+      ...this.queryOptions,
+    });
+
+    this.items = yield this.processAll([
+      ...this.items,
+      ...(yield this.processNew(
+        data[this.dataKey].edges.map(({ node }) => node)
+      )),
+    ]);
+
+    return data;
   }
 }
