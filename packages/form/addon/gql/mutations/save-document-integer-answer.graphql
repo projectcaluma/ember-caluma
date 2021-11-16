@@ -1,6 +1,6 @@
-# import * from '@projectcaluma/ember-form/gql/fragments/field-answer.graphql'
+#import * from '../fragments/field.graphql'
 
-mutation ($input: SaveDocumentIntegerAnswerInput!) {
+mutation SaveDocumentIntegerAnswer($input: SaveDocumentIntegerAnswerInput!) {
   saveDocumentIntegerAnswer(input: $input) {
     answer {
       ...FieldAnswer

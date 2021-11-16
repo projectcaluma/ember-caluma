@@ -1,5 +1,0 @@
-mutation ArchiveForm($input: ArchiveFormInput!) {
-  archiveForm(input: $input) {
-    clientMutationId
-  }
-}

@@ -1,4 +1,4 @@
-# import * from '@projectcaluma/ember-form-builder/gql/fragments/question-info.graphql'
+#import QuestionInfo from '../fragments/question-info.graphql'
 
 mutation SaveFileQuestion($input: SaveFileQuestionInput!) {
   saveFileQuestion(input: $input) {

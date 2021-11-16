@@ -1,9 +1,0 @@
-query AllWorkItems($filter: [WorkItemFilterSetType]!) {
-  allWorkItems(filter: $filter) {
-    edges {
-      node {
-        id
-      }
-    }
-  }
-}
