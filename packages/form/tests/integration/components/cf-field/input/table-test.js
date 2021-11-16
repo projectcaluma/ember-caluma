@@ -1,4 +1,4 @@
-import { waitFor, settled, click, fillIn, render } from "@ember/test-helpers";
+import { waitFor, click, fillIn, render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
@@ -279,7 +279,7 @@ module("Integration | Component | cf-field/input/table", function (hooks) {
       await click("[data-test-save]");
       assert.dom("[data-test-save]").isDisabled();
       await fillIn(input, "Test");
-      await settled();
+      await scrollTo("[data-test-save]", 0, 0);
       assert.dom("[data-test-save]").isEnabled();
 
       await click("[data-test-save]");
@@ -302,7 +302,7 @@ module("Integration | Component | cf-field/input/table", function (hooks) {
       await waitFor(input);
 
       await fillIn(input, "Test");
-      await settled();
+      await scrollTo("[data-test-save]", 0, 0);
       await click("[data-test-save]");
 
       assert

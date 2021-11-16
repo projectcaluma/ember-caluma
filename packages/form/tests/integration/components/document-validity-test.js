@@ -1,5 +1,5 @@
 import { set } from "@ember/object";
-import { render, settled, click } from "@ember/test-helpers";
+import { render, click, scrollTo } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupRenderingTest } from "ember-qunit";
@@ -45,8 +45,8 @@ module("Integration | Component | document-validity", function (hooks) {
       </DocumentValidity>
     `);
 
-    // eslint-disable-next-line
-    await settled();
+    await scrollTo("p", 0, 0);
+
     assert.dom("p").hasText("Valid");
   });
 
