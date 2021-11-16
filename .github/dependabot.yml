@@ -14,3 +14,13 @@ updates:
       - dependency-name: graphql-tools
         versions:
           - ">= 5"
+      # We're not ready yet
+      - dependency-name: ember-source
+        versions:
+          - ">= 4"
+      - dependency-name: ember-cli
+        versions:
+          - ">= 4"
+      - dependency-name: ember-data
+        versions:
+          - ">= 4"
