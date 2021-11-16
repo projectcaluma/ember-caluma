@@ -36,7 +36,6 @@
     "@commitlint/cli": "15.0.0",
     "@commitlint/config-conventional": "15.0.0",
     "@graphql-eslint/eslint-plugin": "2.5.0",
-    "@semantic-release/exec": "^6.0.2",
     "babel-eslint": "10.1.0",
     "ember-template-lint": "3.13.0",
     "ember-template-lint-plugin-prettier": "3.0.1",
@@ -66,12 +65,6 @@
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
       "@semantic-release/npm",
-      [
-        "@semantic-release/exec",
-        {
-          "prepareCmd": "../../bin/update-peers.sh"
-        }
-      ],
       "@semantic-release/github",
       "@semantic-release/git"
     ]
