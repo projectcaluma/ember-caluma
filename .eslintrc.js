@@ -15,6 +15,7 @@ module.exports = {
     "import/internal-regex": "^(@projectcaluma|ember-caluma)/",
   },
   overrides: [
+    // Customization for workspace
     {
       files: [
         "./config/*.js",
@@ -34,6 +35,16 @@ module.exports = {
       },
       plugins: ["node"],
       extends: ["plugin:node/recommended"],
+    },
+    // GraphQL
+    {
+      files: ["*.graphql"],
+      excludedFiles: "./packages/testing/addon/mirage-graphql/schema.graphql",
+      extends: "plugin:@graphql-eslint/recommended",
+      parserOptions: {
+        operations: "./packages/**/addon/gql/**/*.graphql",
+        schema: "./packages/testing/addon/mirage-graphql/schema.graphql",
+      },
     },
   ],
 };

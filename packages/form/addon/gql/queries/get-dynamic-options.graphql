@@ -1,4 +1,4 @@
-query ($question: String!) {
+query GetDynamicOptions($question: String!) {
   allQuestions(filter: [{ slug: $question }], first: 1) {
     edges {
       node {

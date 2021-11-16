@@ -1,6 +1,6 @@
-# import * from '@projectcaluma/ember-form/gql/fragments/field-question.graphql'
+#import FieldQuestion, FieldTableQuestion, SimpleQuestion from '../fragments/field.graphql'
 
-query ($slug: String!) {
+query GetDocumentForms($slug: String!) {
   allForms(filter: [{ slug: $slug }]) {
     edges {
       node {

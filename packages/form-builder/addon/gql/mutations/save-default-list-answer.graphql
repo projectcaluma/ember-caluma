@@ -1,9 +1,5 @@
-# import * from '@projectcaluma/ember-form-builder/gql/fragments/field-answer.graphql'
-
-mutation ($input: SaveDefaultListAnswerInput!) {
+mutation SaveDefaultListAnswer($input: SaveDefaultListAnswerInput!) {
   saveDefaultListAnswer(input: $input) {
-    answer {
-      ...FieldAnswer
-    }
+    clientMutationId
   }
 }

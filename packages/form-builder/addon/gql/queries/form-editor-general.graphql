@@ -1,4 +1,4 @@
-# import * from '@projectcaluma/ember-form-builder/gql/fragments/form-info.graphql'
+#import FormInfo from '../fragments/form-info.graphql'
 
 query FormEditorGeneral($slug: String!) {
   allForms(filter: [{ slug: $slug }]) {

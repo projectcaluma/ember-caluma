@@ -3,7 +3,7 @@ import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
 import { dropTask } from "ember-concurrency";
 
-import allFormatValidatorsQuery from "@projectcaluma/ember-form-builder/gql/queries/all-format-validators.graphql";
+import allFormatValidatorsQuery from "@projectcaluma/ember-core/gql/queries/all-format-validators.graphql";
 
 export default class CfbFormEditorQuestionValidation extends Component {
   @queryManager apollo;

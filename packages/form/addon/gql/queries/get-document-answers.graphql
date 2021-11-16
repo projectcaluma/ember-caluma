@@ -1,6 +1,6 @@
-# import * from '@projectcaluma/ember-form/gql/fragments/field-answer.graphql'
+#import * from '../fragments/field.graphql'
 
-query ($id: ID!) {
+query GetDocumentAnswers($id: ID!) {
   allDocuments(filter: [{ id: $id }]) {
     edges {
       node {
