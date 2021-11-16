@@ -2532,6 +2532,110 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
+"@projectcaluma/ember-core@9.1.0":
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/@projectcaluma/ember-core/-/ember-core-9.1.0.tgz#bbb6911252065b72428b88518dd9e05e1c345c36"
+  integrity sha512-3VacvXE6OLj2K4npDujvL7tRzKZWOO1QAJ8CxDqydkK43nk8eVbj0Qzbn3cdBzkQ/W7tCyqR7grKln0s/J/sFQ==
+  dependencies:
+    "@apollo/client" "^3.4.16"
+    ember-apollo-client "^3.2.0"
+    ember-auto-import "^2.2.3"
+    ember-changeset-validations "^3.16.0"
+    ember-cli-babel "^7.26.6"
+    ember-cli-htmlbars "^6.0.0"
+    ember-concurrency "^2.2.0"
+    ember-concurrency-decorators "^2.0.3"
+    ember-fetch "^8.0.4"
+    ember-intl "^5.7.0"
+    graphql "^15.6.1"
+    graphql-tag "^2.12.5"
+    intersection-observer "^0.12.0"
+    jexl "^2.3.0"
+    lodash.clonedeep "^4.5.0"
+    moment "^2.29.1"
+    proxy-polyfill "^0.3.2"
+    slugify "^1.6.1"
+
+"@projectcaluma/ember-form-builder@9.0.7":
+  version "9.0.7"
+  resolved "https://registry.yarnpkg.com/@projectcaluma/ember-form-builder/-/ember-form-builder-9.0.7.tgz#677efd89b84f65a9f109dad532453e6a7b117b4b"
+  integrity sha512-6SUmDI4nnmHZGgjf76PJvShog9EGEbDkOh9FoLJnf47NulpDTlbT6/TdF48mWAPbwBY5Kn8icjNysLachThHuA==
+  dependencies:
+    "@ember/render-modifiers" "^2.0.0"
+    "@glimmer/component" "^1.0.4"
+    "@glimmer/tracking" "^1.0.4"
+    "@projectcaluma/ember-core" "9.1.0"
+    "@projectcaluma/ember-form" "9.2.0"
+    codejar "^3.5.0"
+    ember-apollo-client "^3.2.0"
+    ember-auto-import "^2.2.3"
+    ember-changeset "^3.15.0"
+    ember-changeset-validations "^3.16.0"
+    ember-cli-babel "^7.26.6"
+    ember-cli-htmlbars "^6.0.0"
+    ember-composable-helpers "^4.5.0"
+    ember-concurrency "^2.2.0"
+    ember-concurrency-decorators "^2.0.3"
+    ember-engines-router-service "^0.3.0"
+    ember-fetch "^8.0.4"
+    ember-math-helpers "^2.17.3"
+    ember-pikaday "^3.0.0"
+    ember-power-select "^4.1.6"
+    ember-test-selectors "^6.0.0"
+    ember-uikit "^4.0.0"
+    ember-validated-form "^5.0.0"
+    graphql "^15.6.1"
+    graphql-tag "^2.12.5"
+    jexl "^2.3.0"
+    moment "^2.29.1"
+    prismjs "^1.25.0"
+
+"@projectcaluma/ember-form@9.2.0":
+  version "9.2.0"
+  resolved "https://registry.yarnpkg.com/@projectcaluma/ember-form/-/ember-form-9.2.0.tgz#9d055cc8459d231a20646705e197a02984ba462b"
+  integrity sha512-I5Dh2pXxaSGqntRXZ3bNe1BqKgZOTplxM15UK+AY66sd4Uk3idXS2aDZnPu5XYpu60dM0sbs8cH7q+HmFSZIdw==
+  dependencies:
+    "@glimmer/component" "^1.0.4"
+    "@glimmer/tracking" "^1.0.4"
+    "@projectcaluma/ember-core" "9.1.0"
+    ember-apollo-client "^3.2.0"
+    ember-auto-import "^2.2.3"
+    ember-cli-babel "^7.26.6"
+    ember-cli-htmlbars "^6.0.0"
+    ember-cli-showdown "^6.0.0"
+    ember-composable-helpers "^4.5.0"
+    ember-fetch "^8.0.4"
+    ember-in-viewport "^3.10.3"
+    ember-intl "^5.7.0"
+    ember-math-helpers "^2.17.3"
+    ember-pikaday "^3.0.0"
+    ember-power-select "^4.1.6"
+    ember-uikit "^4.0.0"
+    graphql "^15.6.1"
+    jexl "^2.3.0"
+    lodash.clonedeep "^4.5.0"
+    lodash.isequal "^4.5.0"
+    moment "^2.29.1"
+
+"@projectcaluma/ember-testing@9.0.0":
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/@projectcaluma/ember-testing/-/ember-testing-9.0.0.tgz#453d542dc6b6c2f43e55906d1cc4ee8076cee00c"
+  integrity sha512-DTB1/K7CTEHPlRrnXF6RpeqCZiUgA571Oj3UAIcOUSMjLwCeFpQwEfY0UeGUXA3jSgV4Jxjxj+pEavcoa5W3fg==
+  dependencies:
+    broccoli-funnel "^3.0.8"
+    broccoli-merge-trees "^4.2.0"
+    ember-apollo-client "^3.2.0"
+    ember-auto-import "^2.2.0"
+    ember-cli-babel "^7.26.6"
+    ember-cli-htmlbars "^5.7.1"
+    ember-cli-mirage "^2.2.0"
+    ember-fetch "^8.0.4"
+    faker "^5.5.3"
+    graphql "^15.5.3"
+    graphql-iso-date "^3.6.1"
+    graphql-tools "^4.0.8"
+    moment "^2.29.1"
+
 "@semantic-release/changelog@5.0.1":
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/@semantic-release/changelog/-/changelog-5.0.1.tgz#50a84b63e5d391b7debfe021421589fa2bcdafe4"
@@ -8240,10 +8344,10 @@ ember-cli-version-checker@^5.1.0, ember-cli-version-checker@^5.1.1, ember-cli-ve
     semver "^7.3.4"
     silent-error "^1.1.1"
 
-ember-cli@3.28.3:
-  version "3.28.3"
-  resolved "https://registry.yarnpkg.com/ember-cli/-/ember-cli-3.28.3.tgz#3384c3fb018b58111e30efed15a2f6a9b66b84c3"
-  integrity sha512-DddAQAddbyaOU4NAjTt8g+FoCCK/F00kbj9pcHO1lfAUpIUS9JPBoWxxZ3qO08mUNXi50pdQSPVVRWzN7mNz2g==
+ember-cli@3.28.4:
+  version "3.28.4"
+  resolved "https://registry.yarnpkg.com/ember-cli/-/ember-cli-3.28.4.tgz#784cfeaf5319e409edc3e03e5d99bcfcf18f9e53"
+  integrity sha512-bRQpZqx1YctDNR7gb5CXfXYkZtieMh4F6v6bZtu+Da8jWTKoGizG1LXsG/Bhs96USPjlZZsErkSBo6qiGjJlcA==
   dependencies:
     "@babel/core" "^7.13.8"
     "@babel/plugin-transform-modules-amd" "^7.12.1"
@@ -8620,7 +8724,7 @@ ember-load-initializers@2.1.2:
     ember-cli-babel "^7.13.0"
     ember-cli-typescript "^2.0.2"
 
-ember-math-helpers@2.18.0, ember-math-helpers@^2.18.0:
+ember-math-helpers@2.18.0, ember-math-helpers@^2.17.3, ember-math-helpers@^2.18.0:
   version "2.18.0"
   resolved "https://registry.yarnpkg.com/ember-math-helpers/-/ember-math-helpers-2.18.0.tgz#e11f2050d6f9f1df328528f4d9cf91af4294a09e"
   integrity sha512-i7eYer/4mJK+PhAy9RA/kFAV6WXFMRCGgIE8cAjifZYlwQ8IsKsqP2PjerCeL28wcQzT3b3KIOI5Xmh1O7zsuQ==
@@ -10724,7 +10828,7 @@ graphql-iso-date@^3.6.1:
   resolved "https://registry.yarnpkg.com/graphql-iso-date/-/graphql-iso-date-3.6.1.tgz#bd2d0dc886e0f954cbbbc496bbf1d480b57ffa96"
   integrity sha512-AwFGIuYMJQXOEAgRlJlFL4H1ncFM8n8XmoVDTNypNOZyQ8LFDG2ppMFlsS862BSTCDcSUfHp8PD3/uJhv7t59Q==
 
-graphql-tag@2.12.6, graphql-tag@^2.10.0, graphql-tag@^2.12.3, graphql-tag@^2.12.6:
+graphql-tag@2.12.6, graphql-tag@^2.10.0, graphql-tag@^2.12.3, graphql-tag@^2.12.5, graphql-tag@^2.12.6:
   version "2.12.6"
   resolved "https://registry.yarnpkg.com/graphql-tag/-/graphql-tag-2.12.6.tgz#d441a569c1d2537ef10ca3d1633b48725329b5f1"
   integrity sha512-FdSNcu2QQcWnM2VNvSCCDCVS5PpPqpzgFT8+GXzqJuoDd0CBncxCY278u4mhRO7tMgo2JjgJA5aZ+nWSQ/Z+xg==
@@ -10753,6 +10857,11 @@ graphql@^14.0.2:
   integrity sha512-l0xWZpoPKpppFzMfvVyFmp9vLN7w/ZZJPefUicMCepfJeQ8sMcztloGYY9DfjVPo6tIUDzU5Hw3MUbIjj9AVVA==
   dependencies:
     iterall "^1.2.2"
+
+graphql@^15.5.3:
+  version "15.7.2"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-15.7.2.tgz#85ab0eeb83722977151b3feb4d631b5f2ab287ef"
+  integrity sha512-AnnKk7hFQFmU/2I9YSQf3xw44ctnSFCfp3zE0N6W174gqe9fWG/2rKaKxROK7CcI3XtERpjEKFqts8o319Kf7A==
 
 growly@^1.3.0:
   version "1.3.0"
@@ -16317,7 +16426,7 @@ slice-ansi@^5.0.0:
     ansi-styles "^6.0.0"
     is-fullwidth-code-point "^4.0.0"
 
-slugify@^1.6.2:
+slugify@^1.6.1, slugify@^1.6.2:
   version "1.6.2"
   resolved "https://registry.yarnpkg.com/slugify/-/slugify-1.6.2.tgz#4cb97220a2278e1b86fb017c6da668e6a865354c"
   integrity sha512-XMtI8qD84LwCpthLMBHlIhcrj10cgA+U/Ot8G6FD6uFuWZtMfKK75JO7l81nzpFJsPlsW6LT+VKqWQJW3+6New==
