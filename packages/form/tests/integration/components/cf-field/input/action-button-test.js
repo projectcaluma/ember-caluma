@@ -1,4 +1,4 @@
-import { click, settled, render, waitFor } from "@ember/test-helpers";
+import { click, render, waitFor, scrollTo } from "@ember/test-helpers";
 import { tracked } from "@glimmer/tracking";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
@@ -74,7 +74,7 @@ module(
       await render(hbs`<CfField::Input::ActionButton @field={{this.field}} />`);
 
       // wait for the button to enter the viewport which triggers the validation
-      await settled();
+      await scrollTo("button", 0, 0);
 
       assert.verifySteps(["validate"]);
     });
@@ -93,7 +93,7 @@ module(
       await render(hbs`<CfField::Input::ActionButton @field={{this.field}} />`);
 
       // wait for the button to enter the viewport which triggers the validation
-      await settled();
+      await scrollTo("button", 0, 0);
 
       assert.verifySteps([]);
     });
