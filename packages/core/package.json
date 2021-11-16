@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.4.16",
+    "@glimmer/tracking": "^1.0.4",
     "ember-apollo-client": "^3.2.0",
     "ember-auto-import": "^2.2.3",
     "ember-changeset-validations": "^3.16.0",
@@ -35,8 +36,10 @@
   },
   "devDependencies": {
     "@ember/optional-features": "2.0.0",
+    "@ember/render-modifiers": "2.0.0",
     "@ember/test-helpers": "2.6.0",
     "@embroider/test-setup": "0.47.2",
+    "@glimmer/component": "1.0.4",
     "@projectcaluma/ember-testing": "9.0.0",
     "broccoli-asset-rev": "3.0.0",
     "ember-cli": "3.28.3",
