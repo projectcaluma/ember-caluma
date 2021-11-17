@@ -20,7 +20,7 @@ module("Integration | Component | ca-report-builder", function (hooks) {
     this.set("slug", "test");
   });
 
-  test("it renders", async function (assert) {
+  test("it renders the builder without existing table", async function (assert) {
     await render(hbs`
       <CaReportBuilder
         @slug="new"
@@ -31,9 +31,15 @@ module("Integration | Component | ca-report-builder", function (hooks) {
     assert.dom("[data-test-analytics-table-new]").exists();
   });
 
-  todo("it loads existing table from slug", async function (assert) {
+  todo("it renders with existing table from slug", async function (assert) {
     assert.dom("[data-test-analytics-table-existing]").exists();
   });
   todo("it can delete analytics table", async function () {});
-  todo("it show ", async function () {});
+  todo("it can create new tables", async function () {});
+  todo("it is possible to create new fields", async function () {});
+  todo("it is not possible to create invalid fields", async function () {});
+  todo(
+    "the field object will reset after submitting a new field",
+    async function () {}
+  );
 });
