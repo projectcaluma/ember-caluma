@@ -290,9 +290,9 @@ function v(){var e
 s(this,v)
 for(var t=arguments.length,r=new Array(t),n=0;n<t;n++)r[n]=arguments[n]
 return f(h(e=g.call.apply(g,[this].concat(r))),"apollo",a,h(e)),e}return t=v,r=[{key:"model",value:(y=regeneratorRuntime.mark((function e(){var t,r
-return regeneratorRuntime.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:return e.next=2,this.apollo.query({fetchPolicy:"network-only",query:(0,n.default)(i||(i=c(['\n          query {\n            allDocuments(form: "formular-1") {\n              edges {\n                node {\n                  id\n                }\n              }\n            }\n          }\n        '])))},"allDocuments.edges")
+return regeneratorRuntime.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:return e.next=2,this.apollo.query({fetchPolicy:"network-only",query:(0,n.gql)(i||(i=c(['\n          query {\n            allDocuments(form: "formular-1") {\n              edges {\n                node {\n                  id\n                }\n              }\n            }\n          }\n        '])))},"allDocuments.edges")
 case 2:if((r=e.sent).length){e.next=7
-break}return e.next=6,this.apollo.mutate({mutation:(0,n.default)(l||(l=c(["\n            mutation ($input: SaveDocumentInput!) {\n              saveDocument(input: $input) {\n                document {\n                  id\n                }\n              }\n            }\n          "]))),variables:{input:{form:"formular-1"}}},"saveDocument.document.id")
+break}return e.next=6,this.apollo.mutate({mutation:(0,n.gql)(l||(l=c(["\n            mutation ($input: SaveDocumentInput!) {\n              saveDocument(input: $input) {\n                document {\n                  id\n                }\n              }\n            }\n          "]))),variables:{input:{form:"formular-1"}}},"saveDocument.document.id")
 case 6:return e.abrupt("return",e.sent)
 case 7:return e.abrupt("return",(0,o.decodeId)(null===(t=r[0])||void 0===t?void 0:t.node.id))
 case 8:case"end":return e.stop()}}),e,this)})),j=function(){var e=this,t=arguments
@@ -336,7 +336,7 @@ function j(){var e
 d(this,j)
 for(var t=arguments.length,r=new Array(t),n=0;n<t;n++)r[n]=arguments[n]
 return c(b(e=h.call.apply(h,[this].concat(r))),"apollo",a,b(e)),e}return t=j,r=[{key:"model",value:(p=regeneratorRuntime.mark((function e(){var t,r
-return regeneratorRuntime.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:return e.next=2,this.apollo.query({query:(0,n.default)(i||(u=['\n          query {\n            allDocuments(form: "main", orderBy: CREATED_AT_DESC) {\n              edges {\n                node {\n                  id\n                }\n              }\n            }\n          }\n        '],a=void 0,a||(a=u.slice(0)),i=Object.freeze(Object.defineProperties(u,{raw:{value:Object.freeze(a)}}))))},"allDocuments.edges")
+return regeneratorRuntime.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:return e.next=2,this.apollo.query({query:(0,n.gql)(i||(u=['\n          query {\n            allDocuments(form: "main", orderBy: CREATED_AT_DESC) {\n              edges {\n                node {\n                  id\n                }\n              }\n            }\n          }\n        '],a=void 0,a||(a=u.slice(0)),i=Object.freeze(Object.defineProperties(u,{raw:{value:Object.freeze(a)}}))))},"allDocuments.edges")
 case 2:return r=e.sent,e.abrupt("return",(0,o.decodeId)(null===(t=r[0])||void 0===t?void 0:t.node.id))
 case 4:case"end":return e.stop()}var u,a}),e,this)})),y=function(){var e=this,t=arguments
 return new Promise((function(r,n){var o=p.apply(e,t)
