@@ -41,7 +41,7 @@ module("Unit | Mirage GraphQL Mock | task", function (hooks) {
       name: this.task.name,
       id: window.btoa(`${__typename}:${this.task.id}`),
       createdByUser: this.task.createdByUser,
-      createdAt: this.task.createdAt.toISOString(),
+      createdAt: this.task.createdAt,
     });
   });
 });

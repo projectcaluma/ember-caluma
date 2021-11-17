@@ -50,7 +50,7 @@ module("Unit | Mirage GraphQL Mock | work item", function (hooks) {
       id: window.btoa(`WorkItem:${this.workItem.id}`),
       status: this.workItem.status,
       createdByUser: this.workItem.createdByUser,
-      createdAt: this.workItem.createdAt.toISOString(),
+      createdAt: this.workItem.createdAt,
       task: {
         __typename: `${classify(this.workItem.task.type.toLowerCase())}Task`,
         name: this.workItem.task.name,

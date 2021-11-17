@@ -1,9 +1,10 @@
 import { Factory } from "ember-cli-mirage";
 import faker from "faker";
+import moment from "moment";
 
 export default Factory.extend({
-  createdAt: () => faker.date.past(),
-  modifiedAt: () => faker.date.past(),
+  createdAt: () => moment(faker.date.past()).utc().format(),
+  modifiedAt: () => moment(faker.date.past()).utc().format(),
   createdByUser: () => faker.datatype.uuid(),
   uploadUrl: () => faker.internet.url(),
   downloadUrl: () => faker.internet.url(),

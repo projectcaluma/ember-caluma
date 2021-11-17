@@ -42,7 +42,7 @@ module("Unit | Mirage GraphQL Mock | case", function (hooks) {
       __typename: "Case",
       id: window.btoa(`Case:${this.case.id}`),
       createdByUser: this.case.createdByUser,
-      createdAt: this.case.createdAt.toISOString(),
+      createdAt: this.case.createdAt,
     });
   });
 });

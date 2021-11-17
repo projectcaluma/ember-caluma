@@ -1,5 +1,6 @@
 import { Factory } from "ember-cli-mirage";
 import faker from "faker";
+import moment from "moment";
 
 const TYPES = ["SIMPLE", "COMPLETE_WORKFLOW_FORM", "COMPLETE_TASK_FORM"];
 
@@ -8,5 +9,5 @@ export default Factory.extend({
   slug: (i) => `task-${i + 1}`,
   type: () => faker.random.arrayElement(TYPES),
   createdByUser: () => faker.datatype.uuid(),
-  createdAt: () => faker.date.past(),
+  createdAt: () => moment(faker.date.past()).utc().format(),
 });
