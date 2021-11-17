@@ -12,20 +12,14 @@ export default class CaFieldSelectComponent extends Component {
   @tracked _selectedOption;
   @tracked options;
 
-  constructor(...args) {
-    super(...args);
-
+  get selectedOption() {
     if (this.currentPathSegment) {
       const option = {
         label: this.capitalize(this.currentPathSegment),
         value: this.currentPathSegment,
       };
-      this.options = [option];
       this._selectedOption = option;
     }
-  }
-
-  get selectedOption() {
     return this._selectedOption;
   }
 
@@ -54,10 +48,14 @@ export default class CaFieldSelectComponent extends Component {
   }
 
   get isBranch() {
-    if (this.fetchedFor) {
+    if (this.fetchedFor === this.args.parentPath) {
       return this._selectedOption ? !this._selectedOption.isLeaf : false;
     }
     return this.hasRemainingPath;
+  }
+
+  get isRoot() {
+    return !this.args.parentPath;
   }
 
   @action
@@ -73,7 +71,10 @@ export default class CaFieldSelectComponent extends Component {
 
   @action
   async fetchOptions() {
-    if (!this.fetchedFor || this.fetchedFor !== this.currentPathSegment) {
+    if (
+      !this.fetchedFor ||
+      (!this.isRoot && this.fetchedFor !== this.args.parentPath)
+    ) {
       const options = await this.apollo.query(
         {
           query: getAvailableFieldsForFieldQuery,
@@ -85,7 +86,7 @@ export default class CaFieldSelectComponent extends Component {
         },
         "analyticsTable.availableFields"
       );
-      this.fetchedFor = this.currentPathSegment;
+      this.fetchedFor = this.isRoot ? true : this.args.parentPath;
       this.options = options.edges.map((edge) => edge.node);
     }
   }

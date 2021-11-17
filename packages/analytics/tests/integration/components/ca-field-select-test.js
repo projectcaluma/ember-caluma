@@ -1,9 +1,9 @@
 import { render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
+import { selectChoose } from "ember-power-select/test-support";
 import { setupRenderingTest } from "ember-qunit";
 import { module, test, todo } from "qunit";
-// import { selectChoose } from 'ember-power-select/test-support'
 
 module("Integration | Component | ca-field-select", function (hooks) {
   setupRenderingTest(hooks);
@@ -53,11 +53,12 @@ module("Integration | Component | ca-field-select", function (hooks) {
   });
 
   test("it updates child selectors when path changes", async function (assert) {
-    assert.expect(4);
+    assert.expect(6);
     this.set("path", "grandpa.father.son");
 
     await render(hbs`<CaFieldSelect
       @selectedPath={{this.path}}
+      @parentPath=""
       @onSelect={{this.update}}
     />`);
 
@@ -75,21 +76,30 @@ module("Integration | Component | ca-field-select", function (hooks) {
     assert
       .dom("[data-test-field-select-secondary-selector]")
       .exists({ count: 1 });
+
+    this.set("path", "nanny");
+    assert
+      .dom("[data-test-field-select-primary-selector]")
+      .exists({ count: 1 });
+    assert.dom("[data-test-field-select-secondary-selector]").doesNotExist();
   });
 
   todo("fetches options on dropdown open", async function () {});
 
   todo(
     "it triggers the update function on selection change",
-    async function () {
-      // assert.expect(1);
-      // this.set("path", "grandpa.father.son");
-      // await render(hbs`<CaFieldSelect
-      //   @selectedPath={{this.path}}
-      //   @onSelect={{this.update}}
-      //   @class="grandpa"
-      // />`);
-      // selectChoose('.grandpa', 'nanny')
+    async function (assert) {
+      assert.expect(2);
+
+      this.set("path", "grandpa.father.son");
+
+      await render(hbs`<CaFieldSelect
+        @selectedPath={{this.path}}
+        @onSelect={{this.update}}
+      />`);
+      selectChoose(".ember-power-select-trigger", "father");
+
+      assert.verifySteps(["selection"]);
     }
   );
 });
