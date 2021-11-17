@@ -6,7 +6,7 @@
 >
   <div>
     {{#each this.filters as |filter|}}
-      <span class="uk-label uk-margin-small-left uk-margin-small-right">
+      <span class="uk-label uk-margin-small-right">
         {{filter}}
         <button {{on "click" (fn this.removeFilter filter)}} type="button">
           <span uk-icon="icon: close; ratio:0.5;"></span>
@@ -20,15 +20,15 @@
     {{on "submit" this.addFilter}}
   >
     <Input
-      class="uk-input uk-width-1-2 uk-margin-small-right"
+      class="uk-input uk-width-2-3 uk-margin-small-right"
       autocomplete="off"
       name="tag"
-      placeholder="Add filter"
+      placeholder={{t "caluma.analytics.filter_placeholder"}}
       @value={{this.newFilterValue}}
-      aria-label="Tag value"
+      aria-label="filter expression"
     />
     <UkButton
-      class="uk-button-default uk-button-small uk-width-1-2"
+      class="uk-button-default uk-button-small uk-width-1-3"
       @type="submit"
       @label={{t "caluma.analytics.add_filter"}}
     />

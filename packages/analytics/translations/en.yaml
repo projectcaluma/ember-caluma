@@ -10,7 +10,9 @@ caluma:
     field_path: Generated path
     add_field: Add field
     add_filter: Add filter
+    filter_placeholder: Filter expression
     alias: Alias
+    alias_translation: Translation for alias
     show_output: Show in output
     delete: delete table
     delete_field: delete field

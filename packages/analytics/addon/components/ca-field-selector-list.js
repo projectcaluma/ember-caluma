@@ -1,7 +1,7 @@
 import { action } from "@ember/object";
 import Component from "@glimmer/component";
 
-export default class CaFieldSelectorListComonent extends Component {
+export default class CaFieldSelectorListComponent extends Component {
   @action
   updateFieldPath(id, alias, selection) {
     this.args.onUpdate({ id, alias, dataSource: selection });

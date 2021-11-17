@@ -43,7 +43,6 @@ export default class CaReportBuilderComponent extends Component {
     this.startingObject = this.args["starting-objects"]
       ? this.args["starting-objects"][0].value
       : undefined;
-    // TODO: Check if this changeset thingy is working fine
     this.field = Changeset(
       new CaField(),
       lookupValidator(FieldValidations),
@@ -76,16 +75,6 @@ export default class CaReportBuilderComponent extends Component {
   @action
   setStartingObject(obj) {
     this.startingObject = obj;
-  }
-
-  @action
-  setFieldDescription(description) {
-    for (const [key, value] of Object.entries(description)) {
-      if (Object.keys(this.field.data).includes(key)) {
-        this.field.set(key, value);
-      }
-    }
-    this.field.validate();
   }
 
   @action
@@ -164,23 +153,23 @@ export default class CaReportBuilderComponent extends Component {
       );
       return;
     }
-    await this.field.save();
 
-    await this.saveAnalyticsField.perform(this.field.data);
+    await this.saveAnalyticsField.perform(this.field.pendingData);
     this.resetFieldInputs();
   }
 
   @action
-  updateAnalyticsField({ id, alias, dataSource }) {
-    this.saveAnalyticsField.perform({
-      id,
-      alias,
-      dataSource,
-    });
+  updateAnalyticsField(field) {
+    this.saveAnalyticsField.perform(field);
   }
 
   @enqueueTask
-  *saveAnalyticsField({ id, alias, dataSource }) {
+  *saveAnalyticsField({
+    id,
+    alias,
+    dataSource /* , alias_translation , show, filter */,
+  }) {
+    // TODO: Add the "alias_translation" attribute when available
     // TODO: Add the "show" attribute when available
     // TODO: Add the "filter" attribute when available
     yield this.apollo.mutate({
@@ -238,7 +227,6 @@ export default class CaReportBuilderComponent extends Component {
   }
 
   resetFieldInputs() {
-    const props = ["alias", "filter", "dataSource", "show"];
-    props.forEach((prop) => this.field.set(prop, undefined));
+    this.field.rollback();
   }
 }

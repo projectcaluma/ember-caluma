@@ -10,7 +10,9 @@ caluma:
     field_path: Generierter Pfad
     add_field: Feld hinzufügen
     add_filter: Filter hinzufügen
+    filter_placeholder: Filter-Operator
     alias: Alias
+    alias_translation: Alias Übersetzung
     show_output: In Ausgabe anzeigen
     delete: Auswertung löschen
     delete_field: Feld löschen

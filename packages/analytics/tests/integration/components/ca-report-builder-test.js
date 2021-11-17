@@ -32,7 +32,28 @@ module("Integration | Component | ca-report-builder", function (hooks) {
   });
 
   todo("it renders with existing table from slug", async function (assert) {
+    await render(hbs`
+      <CaReportBuilder
+        @slug="new"
+        @on-add={{this.onAdd}}
+        @starting-objects={{this.startingObjects}}
+      />`);
+
     assert.dom("[data-test-analytics-table-existing]").exists();
+  });
+
+  todo("the form for creating new fields works", async function (assert) {
+    await render(hbs`
+      <CaReportBuilder
+        @slug="new"
+        @on-add={{this.onAdd}}
+        @starting-objects={{this.startingObjects}}
+      />`);
+
+    assert.dom("input[name=alias]").exists({ count: 1 });
+    // assert.dom("input[name=alias]").("test");
+    assert.dom("input[name=show]").isNotChecked();
+    assert.dom("[data-test-selector-filter]").exists();
   });
   todo("it can delete analytics table", async function () {});
   todo("it can create new tables", async function () {});

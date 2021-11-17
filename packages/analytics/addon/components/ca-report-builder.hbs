@@ -63,13 +63,14 @@
       </div>
       <br />
       <hr />
+
       <h3>{{t "caluma.analytics.sections.field_selection"}}</h3>
       <ValidatedForm
         @model={{this.field}}
         @on-submit={{this.submitField}}
         as |f|
       >
-        <f.input @label={{t "caluma.analytics.field"}}>
+        <f.input @name="dataSource" @label={{t "caluma.analytics.field"}}>
           <div class="uk-grid-small uk-child-width-1-5" uk-grid>
             <CaFieldSelect
               @onSelect={{this.setFieldPath}}
@@ -77,32 +78,64 @@
               @slug={{@slug}}
             />
           </div>
-          <CaFieldDetails
-            @field={{this.field}}
-            @onUpdate={{this.setFieldDescription}}
-          />
         </f.input>
-        <f.input
-          @name="field_path"
-          @label={{t "caluma.analytics.field_path"}}
-          @value={{this.field.dataSource}}
-          @disabled={{true}}
-        />
-        <f.submit @class="uk-margin-small-top" @disabled={{f.loading}}>
+        <div class="uk-flex uk-margin-small-top">
+          <div class="uk-margin-right">
+            <f.input
+              @name="alias"
+              @type="text"
+              @label={{t "caluma.analytics.alias"}}
+              @placeholder={{t "caluma.analytics.alias"}}
+            />
+          </div>
+          <div class="uk-margin-right">
+            <f.input
+              @name="alias_translation"
+              @type="text"
+              @label={{t "caluma.analytics.alias_translation"}}
+              @placeholder={{t "caluma.analytics.alias_translation"}}
+            />
+          </div>
+        </div>
+        <div class="uk-flex">
+          <div class="uk-margin-right">
+            <f.input
+              @class="uk-width-auto uk-text-middle"
+              @name="show"
+              @label={{t "caluma.analytics.show_output"}}
+              @required={{true}}
+              @renderComponent={{component "ca-toggle-switch" size="small"}}
+            />
+          </div>
+          <CaFieldSelectorFilter @onUpdate={{@onUpdate}} />
+        </div>
+        <div>
+          <f.input
+            @name="field_path"
+            @label={{t "caluma.analytics.field_path"}}
+            @value={{this.field.dataSource}}
+            @disabled={{true}}
+          />
+        </div>
+        <f.submit @disabled={{f.loading}}>
           <div class="uk-flex uk-flex-middle">
             <UkIcon @icon="plus" />
             {{t "caluma.analytics.add_field"}}
           </div>
         </f.submit>
       </ValidatedForm>
+
       <hr class="uk-divider-icon" />
+
       <CaFieldSelectorList
         @slug={{@slug}}
         @fields={{this.analyticsFields}}
         @onUpdate={{this.updateAnalyticsField}}
         @onDelete={{perform this.removeAnalyticsField}}
       />
+
       <hr class="uk-divider-icon" />
+
       <CaReportPreview @slug={{@slug}} />
     {{/if}}
   </div>
