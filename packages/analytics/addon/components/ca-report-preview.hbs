@@ -1,4 +1,14 @@
 <div {{did-insert (perform this.fetchData)}}>
   <h3>{{t "caluma.analytics.sections.table_preview"}}</h3>
+  <button
+    class="uk-button uk-button-primary"
+    type="button"
+    {{on "click" (perform this.fetchData)}}
+  >{{t "caluma.analytics.preview.refresh"}}</button>
+  <button
+    class="uk-button uk-button-secondary"
+    type="button"
+    {{on "click" this.download}}
+  >{{t "caluma.analytics.preview.download"}}</button>
   <div>{{this.resultData}}</div>
 </div>

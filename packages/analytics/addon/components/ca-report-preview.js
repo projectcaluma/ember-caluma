@@ -39,4 +39,19 @@ export default class CaReportPreviewComponent extends Component {
       }
     }
   }
+
+  download() {
+    // TODO: when download query is available
+    // const { downloadUrl } = await this.apollo.watchQuery(
+    //   {
+    //     query: getFileAnswerInfoQuery,
+    //     variables: { id: this.args.field.answer.id },
+    //     fetchPolicy: "cache-and-network",
+    //   },
+    //   "node.fileValue"
+    // );
+    // if (downloadUrl) {
+    //   window.open(downloadUrl, "_blank");
+    // }
+  }
 }

@@ -22,3 +22,6 @@ caluma:
     list:
       new: Create new report
       list_title: All reports
+    preview:
+      refresh: Refresh preview
+      download: Download report

@@ -22,3 +22,6 @@ caluma:
     list:
       new: Neue Auswertung anlegen
       list_title: Liste aller Auswertungen
+    preview:
+      refresh: Vorschau aktualisieren
+      download: Auswertung herunterladen
