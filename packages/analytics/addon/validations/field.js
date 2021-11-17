@@ -10,7 +10,7 @@ export default {
   alias: [
     validatePresence(true),
     validateLength({ max: 100 }),
-    validateFormat({ regex: /^[a-z0-9-]+$/ }),
+    validateFormat({ regex: /[\w\d\s]*/ }),
   ],
   dataSource: [validatePresence(true), validateLength({ max: 1024 })],
   filter: validateFilter(),
