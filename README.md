@@ -16,7 +16,7 @@ The Ember.js addons for [Caluma](https://caluma.io) - a collaborative form editi
 
 ## Compatibility
 
-`ember-caluma` is guaranteed to work with the **last LTS version** of Ember.js (currently 3.24).
+`ember-caluma` is guaranteed to work with the **last LTS version** of Ember.js (currently 3.28).
 
 ## Documentation
 
@@ -36,9 +36,9 @@ You can find the interactive documentation [here](https://docs.caluma.io/ember-c
 
 ### Running tests
 
-- `ember test` – Runs the test suite on the current Ember version
-- `ember test --server` – Runs the test suite in "watch mode"
-- `ember try:each` – Runs the test suite against multiple Ember versions
+- `yarn workspace @projectcaluma/ember-[package] ember test` – Runs the test suite on the current Ember version
+- `yarn workspace @projectcaluma/ember-[package] ember test --server` – Runs the test suite in "watch mode"
+- `yarn workspace @projectcaluma/ember-[package] ember try:each` – Runs the test suite against multiple Ember versions
 
 Cross-browser testing provided by:
 
@@ -62,6 +62,7 @@ Cross-browser testing provided by:
 The addon includes a mirage server for mocking Caluma's GraphQL API, which is generated from the GraphQL schema definition. If the upstream GraphQL schema changed you can update the addon by running
 
 ```bash
+docker-compose up -d
 yarn update-schema
 yarn update-possible-types
 ```
