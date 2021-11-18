@@ -3,8 +3,8 @@ import { MockList } from "graphql-tools";
 
 import {
   Filter,
-  Serializer,
   register,
+  serialize,
 } from "@projectcaluma/ember-testing/mirage-graphql";
 
 export default class {
@@ -15,7 +15,6 @@ export default class {
     this.server = server;
 
     this.filter = new Filter(type, collection, db, server, ...args);
-    this.serializer = new Serializer(type, collection, db, server, ...args);
   }
 
   getHandlers() {
@@ -52,10 +51,7 @@ export default class {
 
   @register("{type}Connection")
   handleConnection(root, vars) {
-    let records = this.filter.filter(
-      this.collection,
-      this.serializer.deserialize(vars)
-    );
+    let records = this.filter.filter(this.collection, vars);
 
     const relKey = `${camelize(this.type)}Ids`;
     if (root && Object.prototype.hasOwnProperty.call(root, relKey)) {
@@ -91,7 +87,7 @@ export default class {
       edges: () =>
         new MockList(records.length, () => ({
           node: (r, v, _, meta) =>
-            this.serializer.serialize(records[meta.path.prev.key]),
+            serialize(records[meta.path.prev.key], this.type),
         })),
     };
   }
@@ -116,12 +112,9 @@ export default class {
       vars = { id: root[`${camelize(this.type)}Id`] };
     }
 
-    const record = this.filter.find(
-      this.collection,
-      this.serializer.deserialize(vars)
-    );
+    const record = this.filter.find(this.collection, vars);
 
-    return record && this.serializer.serialize(record);
+    return record && serialize(record, this.type);
   }
 
   @register("Save{type}Payload")
@@ -146,19 +139,20 @@ export default class {
     const res = obj
       ? this.collection.update(obj.id, parsedArgs)
       : this.collection.insert(
-          this.serializer.deserialize(
-            this.server.build(dasherize(this.type), {
-              ...identifier,
-              ...parsedArgs,
-            })
-          )
+          this.server.build(dasherize(this.type), {
+            ...identifier,
+            ...parsedArgs,
+          })
         );
 
     return {
-      [camelize(this.type)]: this.serializer.serialize({
-        ...relKeys.reduce((rels, key) => ({ ...rels, [key]: null })),
-        ...res,
-      }),
+      [camelize(this.type)]: serialize(
+        {
+          ...relKeys.reduce((rels, key) => ({ ...rels, [key]: null })),
+          ...res,
+        },
+        this.type
+      ),
       clientMutationId,
     };
   }
