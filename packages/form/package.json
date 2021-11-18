@@ -28,7 +28,7 @@
     "ember-intl": "^5.7.0",
     "ember-math-helpers": "^2.18.0",
     "ember-pikaday": "^3.0.0",
-    "ember-power-select": "^4.1.6",
+    "ember-power-select": "^4.1.7",
     "ember-uikit": "^4.0.0",
     "graphql": "^15.6.1",
     "jexl": "^2.3.0",
