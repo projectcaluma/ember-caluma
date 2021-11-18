@@ -52,6 +52,7 @@ caluma:
       isRequired: "Pflichtfeld"
       staticContent: "Statischer Inhalt"
       infoText: "Infotext"
+      confirmationText: "Bestätigungstext"
       placeholder: "Platzhalter"
       isHidden: "Versteckt (JEXL)"
       widgetOverride: "Anzeigetyp"
