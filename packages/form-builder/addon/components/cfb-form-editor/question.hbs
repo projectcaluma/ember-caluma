@@ -136,25 +136,33 @@
         </div>
       {{/if}}
 
-      <div class="uk-margin">
+      {{#if (has-question-type f.model "action-button")}}
         <f.input
-          @label={{t "caluma.form-builder.question.infoText"}}
+          @label={{t "caluma.form-builder.question.confirmationText"}}
           @name="infoText"
-          @renderComponent={{component
-            "cfb-code-editor"
-            language="markdown"
-            className="uk-margin-remove-bottom"
-          }}
+          @type="textarea"
         />
-        <small class="uk-text-muted">
-          {{t "caluma.form-builder.question.supportsMarkdownPrefix"}}
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://www.markdownguide.org/basic-syntax"
-          >{{t "caluma.form-builder.question.markdown"}}</a>
-        </small>
-      </div>
+      {{else}}
+        <div class="uk-margin">
+          <f.input
+            @label={{t "caluma.form-builder.question.infoText"}}
+            @name="infoText"
+            @renderComponent={{component
+              "cfb-code-editor"
+              language="markdown"
+              className="uk-margin-remove-bottom"
+            }}
+          />
+          <small class="uk-text-muted">
+            {{t "caluma.form-builder.question.supportsMarkdownPrefix"}}
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://www.markdownguide.org/basic-syntax"
+            >{{t "caluma.form-builder.question.markdown"}}</a>
+          </small>
+        </div>
+      {{/if}}
 
       {{#if (has-question-type f.model "text" "textarea" "integer" "float")}}
         <f.input
@@ -295,14 +303,16 @@
         />
       {{/if}}
 
-      <f.input
-        @name="meta.hideLabel"
-        @required={{true}}
-        @label={{t "caluma.form-builder.question.hideLabel"}}
-        @renderComponent={{component "cfb-toggle-switch" size="small"}}
-        @on-update={{changeset-set f.model "meta.hideLabel"}}
-        @value={{changeset-get f.model "meta.hideLabel"}}
-      />
+      {{#if (not (has-question-type f.model "action-button"))}}
+        <f.input
+          @name="meta.hideLabel"
+          @required={{true}}
+          @label={{t "caluma.form-builder.question.hideLabel"}}
+          @renderComponent={{component "cfb-toggle-switch" size="small"}}
+          @on-update={{changeset-set f.model "meta.hideLabel"}}
+          @value={{changeset-get f.model "meta.hideLabel"}}
+        />
+      {{/if}}
 
       {{#if (has-question-type f.model "table")}}
         <div class="uk-margin">
