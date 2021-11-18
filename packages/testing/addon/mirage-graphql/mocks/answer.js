@@ -1,6 +1,9 @@
 import moment from "moment";
 
-import { register } from "@projectcaluma/ember-testing/mirage-graphql";
+import {
+  register,
+  deserialize,
+} from "@projectcaluma/ember-testing/mirage-graphql";
 import BaseMock from "@projectcaluma/ember-testing/mirage-graphql/mocks/base";
 
 export default class extends BaseMock {
@@ -33,8 +36,9 @@ export default class extends BaseMock {
     if (res.answer.documentId) {
       const doc = this.db.documents.findBy({ id: res.answer.documentId });
 
+      const { id } = deserialize(res.answer);
       this.db.documents.update(doc.id, {
-        answerIds: [...new Set([...(doc.answerIds || []), res.answer.id])],
+        answerIds: [...new Set([...(doc.answerIds || []), id])],
       });
     }
 

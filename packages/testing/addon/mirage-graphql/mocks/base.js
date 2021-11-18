@@ -5,6 +5,7 @@ import {
   Filter,
   register,
   serialize,
+  deserialize,
 } from "@projectcaluma/ember-testing/mirage-graphql";
 
 export default class {
@@ -51,7 +52,7 @@ export default class {
 
   @register("{type}Connection")
   handleConnection(root, vars) {
-    let records = this.filter.filter(this.collection, vars);
+    let records = this.filter.filter(this.collection, deserialize(vars));
 
     const relKey = `${camelize(this.type)}Ids`;
     if (root && Object.prototype.hasOwnProperty.call(root, relKey)) {
@@ -112,7 +113,7 @@ export default class {
       vars = { id: root[`${camelize(this.type)}Id`] };
     }
 
-    const record = this.filter.find(this.collection, vars);
+    const record = this.filter.find(this.collection, deserialize(vars));
 
     return record && serialize(record, this.type);
   }
@@ -139,16 +140,19 @@ export default class {
     const res = obj
       ? this.collection.update(obj.id, parsedArgs)
       : this.collection.insert(
-          this.server.build(dasherize(this.type), {
-            ...identifier,
-            ...parsedArgs,
-          })
+          this.server.build(
+            dasherize(this.type),
+            deserialize({
+              ...identifier,
+              ...parsedArgs,
+            })
+          )
         );
 
     return {
       [camelize(this.type)]: serialize(
         {
-          ...relKeys.reduce((rels, key) => ({ ...rels, [key]: null })),
+          ...relKeys.reduce((rels, key) => ({ ...rels, [key]: null }), {}),
           ...res,
         },
         this.type

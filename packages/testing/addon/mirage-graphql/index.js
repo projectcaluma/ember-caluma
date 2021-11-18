@@ -41,6 +41,18 @@ export const serialize = (deserialized = {}, type) => {
   };
 };
 
+export const deserialize = (serialized) => {
+  let decodedId = serialized.id;
+
+  try {
+    decodedId = atob(serialized.id).split(":")[1] || serialized.id;
+  } catch (e) {
+    // this is expected most times
+  }
+
+  return { ...serialized, ...(decodedId ? { id: decodedId } : {}) };
+};
+
 export const Filter = function (type, ...args) {
   return new (importTypeOrBase("./filters", type))(type, ...args);
 };
