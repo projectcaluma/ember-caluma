@@ -103,7 +103,18 @@ export default function (server) {
   });
 
   server.create("document", {
-    workItemId: server.create("work-item").id,
+    // Switch `caseId` with `workItemId` to test behaviour with a document
+    // directly attached to a work item instead of a case workItemId:
+    // server.create("work-item").id,
+    caseId: server.create("case", {
+      workItemIds: [
+        server.create("work-item", {
+          taskId: server.create("task", {
+            type: "COMPLETE_WORKFLOW_FORM",
+          }).id,
+        }).id,
+      ],
+    }).id,
     formId: form.id,
   });
 

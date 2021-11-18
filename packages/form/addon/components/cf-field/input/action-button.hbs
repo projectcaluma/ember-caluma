@@ -5,7 +5,7 @@
     as |isValid validate|
   >
     <WorkItemButton
-      @workItemId={{@field.document.workItemUuid}}
+      @workItemId={{this.workItem}}
       @mutation={{this.action}}
       @label={{@field.question.label}}
       @disabled={{and (not-eq isValid null) (not isValid)}}
