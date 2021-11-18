@@ -1,13 +1,12 @@
 import { MockList } from "graphql-tools";
 
 import {
-  Serializer,
   Filter,
   register,
+  serialize,
 } from "@projectcaluma/ember-testing/mirage-graphql";
 import BaseMock from "@projectcaluma/ember-testing/mirage-graphql/mocks/base";
 
-const questionSerializer = new Serializer("Question");
 const questionFilter = new Filter("Question");
 
 export default class extends BaseMock {
@@ -28,12 +27,12 @@ export default class extends BaseMock {
 
     return {
       form: {
-        ...this.serializer.serialize(res),
+        ...serialize(res, this.type),
         questions: {
           edges: () =>
             new MockList(questions.length, () => ({
               node: (r, v, _, meta) =>
-                questionSerializer.serialize(questions[meta.path.prev.key]),
+                serialize(questions[meta.path.prev.key], "Question"),
             })),
         },
       },
@@ -64,12 +63,12 @@ export default class extends BaseMock {
 
     return {
       form: {
-        ...this.serializer.serialize(res),
+        ...serialize(res, this.type),
         questions: {
           edges: () =>
             new MockList(questions.length, () => ({
               node: (r, v, _, meta) =>
-                questionSerializer.serialize(questions[meta.path.prev.key]),
+                serialize(questions[meta.path.prev.key], "Question"),
             })),
         },
       },
@@ -100,12 +99,12 @@ export default class extends BaseMock {
 
     return {
       form: {
-        ...this.serializer.serialize(res),
+        ...serialize(res, this.type),
         questions: {
           edges: () =>
             new MockList(questions.length, () => ({
               node: (r, v, _, meta) =>
-                questionSerializer.serialize(questions[meta.path.prev.key]),
+                serialize(questions[meta.path.prev.key], "Question"),
             })),
         },
       },

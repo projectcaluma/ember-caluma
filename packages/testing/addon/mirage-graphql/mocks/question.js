@@ -1,32 +1,15 @@
-import { classify } from "@ember/string";
 import { MockList } from "graphql-tools";
 
 import {
   Filter,
-  Serializer,
   register,
+  serialize,
 } from "@projectcaluma/ember-testing/mirage-graphql";
 import BaseMock from "@projectcaluma/ember-testing/mirage-graphql/mocks/base";
 
 const optionFilter = new Filter("Option");
-const optionSerializer = new Serializer("Option");
 
 export default class extends BaseMock {
-  @register("Question")
-  handleQuestion(root, ...args) {
-    const questionId =
-      root.questionId || (root.node && root.node(root, ...args).id);
-    let __typename = root.__typename;
-
-    if (questionId) {
-      __typename = `${classify(
-        this.collection.findBy({ id: questionId }).type.toLowerCase()
-      )}Question`;
-    }
-
-    return { __typename };
-  }
-
   handleInterfaceType(root, vars, _, meta) {
     return this.handle.fn.call(
       this,
@@ -133,7 +116,7 @@ export default class extends BaseMock {
         edges: () =>
           new MockList(options.length, () => ({
             node: (r, v, _, meta) =>
-              optionSerializer.serialize(options[meta.path.prev.key]),
+              serialize(options[meta.path.prev.key], "Option"),
           })),
       },
     });
@@ -157,7 +140,7 @@ export default class extends BaseMock {
         edges: () =>
           new MockList(options.length, () => ({
             node: (r, v, _, meta) =>
-              optionSerializer.serialize(options[meta.path.prev.key]),
+              serialize(options[meta.path.prev.key], "Option"),
           })),
       },
     });

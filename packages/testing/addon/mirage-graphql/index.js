@@ -1,4 +1,4 @@
-import { dasherize } from "@ember/string";
+import { dasherize, classify } from "@ember/string";
 import require from "require";
 
 const importTypeOrBase = (path, type) => {
@@ -28,8 +28,17 @@ export const register = (tpl) => (target, name, descriptor) => {
   return descriptor;
 };
 
-export const Serializer = function (type, ...args) {
-  return new (importTypeOrBase("./serializers", type))(type, ...args);
+export const serialize = (deserialized = {}, type) => {
+  const __typename = [deserialized.type?.toLowerCase(), type]
+    .filter(Boolean)
+    .map(classify)
+    .join("");
+
+  return {
+    ...deserialized,
+    id: btoa(`${__typename}:${deserialized.id}`),
+    __typename,
+  };
 };
 
 export const Filter = function (type, ...args) {
