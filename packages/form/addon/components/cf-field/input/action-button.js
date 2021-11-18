@@ -23,6 +23,13 @@ export default class CfFieldInputActionButtonComponent extends Component {
     );
   }
 
+  get workItem() {
+    return (
+      this.args.context?.actionButtonWorkItemId ||
+      this.args.field.document.workItemUuid
+    );
+  }
+
   get action() {
     return this.args.field.question.action.toLowerCase();
   }

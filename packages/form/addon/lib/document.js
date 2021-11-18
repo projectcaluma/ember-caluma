@@ -83,9 +83,21 @@ export default Base.extend({
     return decodeId(this.raw.id);
   }),
 
-  workItemUuid: computed("raw.workItem.id", function () {
-    return this.raw.workItem ? decodeId(this.raw.workItem.id) : null;
-  }),
+  workItemUuid: computed(
+    "raw.{workItem.id,case.workItems.edges.[]}",
+    function () {
+      // The document is either directly attached to a work item (via
+      // CompleteTaskFormTask) or it's the case document and therefore
+      // indirectly attached to a work item (via CompleteWorkflowFormTask)
+      const rawId =
+        this.raw.workItem?.id ||
+        this.raw.case?.workItems.edges.find(
+          (edge) => edge.node.task.__typename === "CompleteWorkflowFormTask"
+        )?.node.id;
+
+      return rawId ? decodeId(rawId) : null;
+    }
+  ),
 
   /**
    * The root form of this document

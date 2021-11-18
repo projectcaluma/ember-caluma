@@ -11,6 +11,19 @@ query GetDocumentAnswers($id: ID!) {
         workItem {
           id
         }
+        case {
+          id
+          workItems {
+            edges {
+              node {
+                id
+                task {
+                  id
+                }
+              }
+            }
+          }
+        }
         answers {
           edges {
             node {
