@@ -9,7 +9,7 @@ import validateFilter from "@projectcaluma/ember-analytics/validators/filter";
 export default {
   alias: [
     validatePresence(true),
-    validateLength({ max: 100 }),
+    validateLength({ min: 1, max: 100 }),
     validateFormat({ regex: /[\w\d\s]*/ }),
   ],
   dataSource: [validatePresence(true), validateLength({ max: 1024 })],

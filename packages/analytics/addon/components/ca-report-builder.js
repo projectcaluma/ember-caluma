@@ -1,4 +1,4 @@
-import { action, computed, set } from "@ember/object";
+import { action, set } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
@@ -58,7 +58,6 @@ export default class CaReportBuilderComponent extends Component {
     return this.analyticsTable?.fields.edges.map((edge) => edge.node);
   }
 
-  @computed("analyticsTable.slug", "_tableSlug")
   get tableSlug() {
     return this.analyticsTable?.slug || this._tableSlug;
   }
@@ -108,7 +107,7 @@ export default class CaReportBuilderComponent extends Component {
     }
   }
 
-  @dropTask
+  @restartableTask
   *updateTable() {
     this.analyticsTable = yield this.apollo.mutate(
       {
@@ -184,7 +183,6 @@ export default class CaReportBuilderComponent extends Component {
         },
       },
     });
-    this.fetchData.perform();
   }
 
   @enqueueTask
@@ -201,7 +199,7 @@ export default class CaReportBuilderComponent extends Component {
     this.fetchData.perform();
   }
 
-  @restartableTask
+  @dropTask
   *createTable() {
     if (this.tableSlug.trim() === "new") {
       this.notification.danger(
