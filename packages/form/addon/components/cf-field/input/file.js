@@ -82,7 +82,7 @@ export default class CfFieldInputFileComponent extends Component {
         },
       });
 
-      await this.args.onSave(null);
+      await this.args.onDelete();
     } catch (error) {
       set(this.args.field, "_errors", [{ type: "deleteFailed" }]);
     }

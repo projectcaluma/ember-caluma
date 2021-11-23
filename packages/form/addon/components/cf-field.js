@@ -68,4 +68,17 @@ export default class CfFieldComponent extends Component {
       // that's ok
     }
   }
+
+  /**
+   * Delete the value of the input. This will call validation but no endpoints for
+   * deleting any resources. This has to be done by the calling function.
+   *
+   * @method delete
+   */
+  @restartableTask
+  *delete() {
+    set(this.args.field.answer, "value", null);
+
+    yield this.args.field.validate.perform();
+  }
 }
