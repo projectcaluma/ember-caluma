@@ -50,7 +50,7 @@ export default class extends BaseMock {
   handleSaveDocumentStringAnswer(_, { input }) {
     return this._handleSaveDocumentAnswer(_, {
       ...input,
-      value: String(input.value),
+      value: input.value ? String(input.value) : null,
       type: "STRING",
     });
   }
@@ -60,7 +60,7 @@ export default class extends BaseMock {
   handleSaveIntegerAnswer(_, { input }) {
     return this._handleSaveDocumentAnswer(_, {
       ...input,
-      value: parseInt(input.value),
+      value: input.value ? parseInt(input.value) : null,
       type: "INTEGER",
     });
   }
@@ -70,7 +70,7 @@ export default class extends BaseMock {
   handleSaveFloatAnswer(_, { input }) {
     return this._handleSaveDocumentAnswer(_, {
       ...input,
-      value: parseFloat(input.value),
+      value: input.value ? parseFloat(input.value) : null,
       type: "FLOAT",
     });
   }
@@ -80,7 +80,7 @@ export default class extends BaseMock {
   handleSaveListAnswer(_, { input }) {
     return this._handleSaveDocumentAnswer(_, {
       ...input,
-      value: [...input.value].map(String),
+      value: input.value ? [...input.value].map(String) : null,
       type: "LIST",
     });
   }
@@ -89,7 +89,7 @@ export default class extends BaseMock {
   handleSaveFileAnswer(_, { input }) {
     return this._handleSaveDocumentAnswer(_, {
       ...input,
-      value: { metadata: { object_name: input.value } },
+      value: input.value ? { metadata: { object_name: input.value } } : null,
       type: "FILE",
     });
   }
