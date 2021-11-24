@@ -1,3 +1,5 @@
+import { camelize } from "@ember/string";
+
 export default class {
   constructor(type, collection, db) {
     this.type = type;
@@ -5,35 +7,60 @@ export default class {
     this.db = db;
   }
 
-  _getFilterFns(filters) {
-    return Object.entries(filters).map(([name, value]) => {
-      const fn = this[name];
+  _getFilterFns(rawFilters) {
+    const filters = Array.isArray(rawFilters)
+      ? // new format
+        rawFilters.map((filter) => {
+          const entries = Object.entries(filter);
+          const key = entries[0][0];
+          const value = entries[0][1];
+          const options = entries
+            .slice(1)
+            .reduce((opts, [k, v]) => ({ ...opts, [k]: v }), {});
+
+          return { key, value, options };
+        })
+      : // old format
+        Object.entries(rawFilters).map(([key, value]) => ({
+          key,
+          value,
+        }));
+
+    return filters.map(({ key, value, options = {} }) => {
+      const fn = this[key];
 
       return typeof fn === "function"
-        ? (records) => fn.call(this, records, value)
+        ? (records) => fn.call(this, records, value, options)
         : (records) => records;
     });
   }
 
-  filter(records, filters) {
-    // flatten array of filters to find filter functions
-    const filterObj = Array.isArray(filters)
-      ? filters.length
-        ? Object.assign(...filters)
-        : {}
-      : filters;
+  sort(records, order) {
+    if (!order) return records;
 
-    return this._getFilterFns(filterObj).reduce(
+    return records.sort((a, b) => {
+      return (
+        order
+          .map((o) => {
+            const attr = camelize(o.attribute.toLowerCase());
+            const direction = o.direction === "ASC" ? -1 : 1;
+
+            return (b[attr] - a[attr]) * direction;
+          })
+          .find((result) => result !== 0) ?? 0
+      );
+    });
+  }
+
+  filter(records, filters) {
+    return this._getFilterFns(filters.filter ?? filters).reduce(
       (recs, fn) => fn(recs),
-      records
+      this.sort(records, filters?.order)
     );
   }
 
   find(records, filters) {
-    return (
-      this._getFilterFns(filters).reduce((recs, fn) => fn(recs), records)[0] ||
-      null
-    );
+    return this.filter(records, filters)[0] || null;
   }
 
   slug(records, value) {
