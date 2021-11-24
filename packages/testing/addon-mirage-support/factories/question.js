@@ -2,6 +2,10 @@ import { Factory } from "ember-cli-mirage";
 import faker from "faker";
 
 export default Factory.extend({
+  id() {
+    return this.slug;
+  },
+
   type: "TEXT",
 
   slug: (i) => `question-${i + 1}`,

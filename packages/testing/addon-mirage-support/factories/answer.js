@@ -3,6 +3,8 @@ import faker from "faker";
 import moment from "moment";
 
 export default Factory.extend({
+  id: () => faker.datatype.uuid(),
+
   afterCreate(answer, server) {
     if (!answer.question) {
       return;
