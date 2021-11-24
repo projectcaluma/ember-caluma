@@ -2,6 +2,7 @@ import { assert } from "@ember/debug";
 import { once } from "@ember/runloop";
 import Service, { inject as service } from "@ember/service";
 import { camelize } from "@ember/string";
+import { task } from "ember-concurrency";
 import { pluralize } from "ember-inflector";
 
 /**
@@ -9,23 +10,22 @@ import { pluralize } from "ember-inflector";
  *
  * @function typeResolver
  * @param {"group"|"user"} type The type of the objects to resolve
- * @returns {Function} The decorator function that returns a method descriptor to resolve the requested objects
+ * @returns {Function} The decorator function that returns an enqueued task to resolve the requested objects
  */
 function typeResolver(type) {
-  return function () {
-    return {
-      async value() {
-        const methodName = camelize(`resolve-${pluralize(type)}`);
-        const result = await this.calumaOptions[methodName]?.([
-          ...this[type].identifiers,
-        ]);
+  return task(function* () {
+    const identifiers = [...this[type].identifiers];
+    const callbacks = [...this[type].callbacks];
 
-        this[type].callbacks.forEach((callback) => callback(result));
+    this[type] = undefined;
 
-        this[type] = undefined;
-      },
-    };
-  };
+    if (!identifiers.length) return;
+
+    const methodName = camelize(`resolve-${pluralize(type)}`);
+    const result = yield this.calumaOptions[methodName]?.(identifiers);
+
+    callbacks.forEach((callback) => callback(result));
+  }).enqueue();
 }
 
 export default class PrivateSchedulerService extends Service {
@@ -72,6 +72,10 @@ export default class PrivateSchedulerService extends Service {
       typeResolverName in this
     );
 
-    once(this, typeResolverName);
+    once(this, "performResolve", typeResolverName);
+  }
+
+  performResolve(typeResolverName) {
+    return this[typeResolverName].perform();
   }
 }
