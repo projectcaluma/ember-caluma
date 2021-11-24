@@ -20,6 +20,8 @@ export default class PrivateResolver extends Helper {
       ? identifiers[0]
       : identifiers;
 
+    if (!identifier) return null;
+
     // The parameter for the helper changed so we need to recompute and store
     // the new parameter to remember it at the next computation
     if (identifier !== this._identifier) {
