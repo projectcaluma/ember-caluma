@@ -1,4 +1,5 @@
 import { camelize, dasherize } from "@ember/string";
+import { singularize } from "ember-inflector";
 import { MockList } from "graphql-tools";
 
 import {
@@ -51,10 +52,10 @@ export default class {
   }
 
   @register("{type}Connection")
-  handleConnection(root, vars) {
+  handleConnection(root, vars, _, { fieldName }) {
     let records = this.filter.filter(this.collection, deserialize(vars));
 
-    const relKey = `${camelize(this.type)}Ids`;
+    const relKey = `${singularize(fieldName)}Ids`;
     if (root && Object.prototype.hasOwnProperty.call(root, relKey)) {
       const ids = root[relKey];
       records = records.filter(({ id }) => ids && ids.includes(id));
@@ -94,23 +95,27 @@ export default class {
   }
 
   @register("{type}")
-  handle(root, vars) {
+  handle(root, vars, _, { fieldName }) {
     // If the parent node already resolved this branch in the graph, return it
     // directly without mocking it
+
     if (
       root &&
-      Object.prototype.hasOwnProperty.call(root, camelize(this.type))
+      fieldName !== "node" &&
+      Object.prototype.hasOwnProperty.call(root, fieldName)
     ) {
-      return root[camelize(this.type)];
+      return root[fieldName];
     }
 
     // If the parent node provides an ID for this relation, filter our mock data
     // with that given ID
+    const relKey = `${fieldName}Id`;
     if (
       root &&
-      Object.prototype.hasOwnProperty.call(root, `${camelize(this.type)}Id`)
+      fieldName !== "node" &&
+      Object.prototype.hasOwnProperty.call(root, relKey)
     ) {
-      vars = { id: root[`${camelize(this.type)}Id`] };
+      vars = { id: root[relKey] };
     }
 
     const record = this.filter.find(this.collection, deserialize(vars));
