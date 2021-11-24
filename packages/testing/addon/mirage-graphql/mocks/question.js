@@ -10,61 +10,6 @@ import BaseMock from "@projectcaluma/ember-testing/mirage-graphql/mocks/base";
 const optionFilter = new Filter("Option");
 
 export default class extends BaseMock {
-  handleInterfaceType(root, vars, _, meta) {
-    return this.handle.fn.call(
-      this,
-      root,
-      { ...vars, id: root.questionId },
-      _,
-      meta
-    );
-  }
-
-  @register("TextQuestion")
-  handleTextQuestion(...args) {
-    return this.handleInterfaceType(...args);
-  }
-
-  @register("TextareaQuestion")
-  handleTextareaQuestion(...args) {
-    return this.handleInterfaceType(...args);
-  }
-
-  @register("IntegerQuestion")
-  handleIntegerQuestion(...args) {
-    return this.handleInterfaceType(...args);
-  }
-
-  @register("FloatQuestion")
-  handleFloatQuestion(...args) {
-    return this.handleInterfaceType(...args);
-  }
-
-  @register("MultipleChoiceQuestion")
-  handleMultipleChoiceQuestion(...args) {
-    return this.handleInterfaceType(...args);
-  }
-
-  @register("ChoiceQuestion")
-  handleChoiceQuestion(...args) {
-    return this.handleInterfaceType(...args);
-  }
-
-  @register("FileQuestion")
-  handleFileQuestion(...args) {
-    return this.handleInterfaceType(...args);
-  }
-
-  @register("StaticQuestion")
-  handleStaticQuestion(...args) {
-    return this.handleInterfaceType(...args);
-  }
-
-  @register("DateQuestion")
-  handleDateQuestion(...args) {
-    return this.handleInterfaceType(...args);
-  }
-
   @register("SaveTextQuestionPayload")
   handleSaveTextQuestion(_, { input }) {
     return this.handleSavePayload.fn.call(this, _, {

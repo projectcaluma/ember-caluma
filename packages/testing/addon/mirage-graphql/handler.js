@@ -1,11 +1,14 @@
 import { classify } from "@ember/string";
 import { singularize } from "ember-inflector";
 import { graphql } from "graphql";
+import {
+  GraphQLDate as Date,
+  GraphQLDateTime as DateTime,
+} from "graphql-iso-date";
 import { addMockFunctionsToSchema, makeExecutableSchema } from "graphql-tools";
 
 import { Mock } from "@projectcaluma/ember-testing/mirage-graphql";
-import resolvers from "@projectcaluma/ember-testing/mirage-graphql/resolvers";
-import rawSchema from "@projectcaluma/ember-testing/mirage-graphql/schema.graphql";
+import typeDefs from "@projectcaluma/ember-testing/mirage-graphql/schema.graphql";
 
 export default function (server) {
   return function ({ db }, request) {
@@ -17,8 +20,16 @@ export default function (server) {
     }, {});
 
     const schema = makeExecutableSchema({
-      typeDefs: rawSchema,
-      resolvers,
+      typeDefs,
+      resolvers: {
+        Date,
+        DateTime,
+        GenericScalar: {
+          serialize(value) {
+            return typeof value === "string" ? JSON.parse(value) : value;
+          },
+        },
+      },
       resolverValidationOptions: { requireResolversForResolveType: false },
     });
 
