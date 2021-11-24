@@ -72,10 +72,6 @@ export default class PrivateSchedulerService extends Service {
       typeResolverName in this
     );
 
-    once(this, "performResolve", typeResolverName);
-  }
-
-  performResolve(typeResolverName) {
-    return this[typeResolverName].perform();
+    once(this[typeResolverName], "perform");
   }
 }

@@ -1,5 +1,4 @@
 import { inject as service } from "@ember/service";
-import { enqueueTask } from "ember-concurrency-decorators";
 
 import CalumaOptionsService from "@projectcaluma/ember-core/services/caluma-options";
 import ENV from "ember-caluma/config/environment";
@@ -25,8 +24,7 @@ export default class CustomCalumaOptionsService extends CalumaOptionsService {
   }
 
   // BEGIN-SNIPPET caluma-options-service-query-if-not-cached.js
-  @enqueueTask
-  *queryIfNotCached(identifiers, type) {
+  async queryIfNotCached(identifiers, type) {
     const cachedIdentifiers = this.store
       .peekAll(type)
       .map((obj) => String(obj[this[`${type}IdentifierProperty`]]));
@@ -35,7 +33,7 @@ export default class CustomCalumaOptionsService extends CalumaOptionsService {
     );
 
     if (uncachedIdentifiers.length) {
-      yield this.store.query(type, { id: String(uncachedIdentifiers) });
+      await this.store.query(type, { id: String(uncachedIdentifiers) });
     }
 
     return this.store.peekAll(type);
@@ -44,14 +42,14 @@ export default class CustomCalumaOptionsService extends CalumaOptionsService {
 
   // BEGIN-SNIPPET caluma-options-service-groups.js
   resolveGroups(identifiers) {
-    return this.queryIfNotCached.perform(identifiers, "group");
+    return this.queryIfNotCached(identifiers, "group");
   }
   // END-SNIPPET
 
   // BEGIN-SNIPPET caluma-options-service-users.js
   userIdentifierProperty = "id";
   resolveUsers(identifiers) {
-    return this.queryIfNotCached.perform(identifiers, "user");
+    return this.queryIfNotCached(identifiers, "user");
   }
   // END-SNIPPET
 }
