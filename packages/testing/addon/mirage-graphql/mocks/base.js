@@ -1,4 +1,4 @@
-import { camelize, dasherize } from "@ember/string";
+import { camelize, dasherize, classify } from "@ember/string";
 import { singularize } from "ember-inflector";
 import { MockList } from "graphql-tools";
 
@@ -8,6 +8,46 @@ import {
   serialize,
   deserialize,
 } from "@projectcaluma/ember-testing/mirage-graphql";
+
+export const ANSWER_TYPES = [
+  "DATE",
+  "FILE",
+  "FLOAT",
+  "INTEGER",
+  "LIST",
+  "STRING",
+  "TABLE",
+];
+
+export const QUESTION_TYPES = [
+  "ACTION_BUTTON",
+  "CALCULATED_FLOAT",
+  "CHOICE",
+  "DATE",
+  "DYNAMIC_CHOICE",
+  "DYNAMIC_MULTIPLE_CHOICE",
+  "FILE",
+  "FLOAT",
+  "FORM",
+  "INTEGER",
+  "MULTIPLE_CHOICE",
+  "STATIC",
+  "TABLE",
+  "TEXT",
+  "TEXTAREA",
+];
+
+export const TASK_TYPES = [
+  "SIMPLE",
+  "COMPLETE_WORKFLOW_FORM",
+  "COMPLETE_TASK_FORM",
+];
+
+export const TYPE_MAPPING = {
+  Answer: ANSWER_TYPES,
+  Question: QUESTION_TYPES,
+  Task: TASK_TYPES,
+};
 
 export default class {
   constructor(type, collection, db, server, ...args) {
@@ -20,6 +60,7 @@ export default class {
   }
 
   getHandlers() {
+    const types = TYPE_MAPPING[this.type];
     const handlers = (target) => {
       const proto = Reflect.getPrototypeOf(target);
       const res = Object.values(proto);
@@ -38,10 +79,26 @@ export default class {
           ...handlers,
           // Mocks can have multiple handlers per type.
           ...handler.__handlerFor.reduce((targets, target) => {
+            const handlerName = target.replace(/\{type\}/, this.type);
+            const baseHandlerName = handlerName.replace(/\{subtype\}/, "");
+            const fn = (...args) => handler.fn.apply(this, args);
+
+            const newHandlers = types
+              ? types.reduce(
+                  (typeHandlers, type) => ({
+                    ...typeHandlers,
+                    [handlerName.replace(
+                      /\{subtype\}/,
+                      classify(type.toLowerCase())
+                    )]: fn,
+                  }),
+                  {}
+                )
+              : { [baseHandlerName]: fn };
+
             return {
               ...targets,
-              [target.replace(/\{type\}/, this.type)]: (...args) =>
-                handler.fn.apply(this, args),
+              ...newHandlers,
             };
           }, {}),
         };
@@ -94,11 +151,10 @@ export default class {
     };
   }
 
-  @register("{type}")
+  @register("{subtype}{type}")
   handle(root, vars, _, { fieldName }) {
     // If the parent node already resolved this branch in the graph, return it
     // directly without mocking it
-
     if (
       root &&
       fieldName !== "node" &&
@@ -123,7 +179,7 @@ export default class {
     return record && serialize(record, this.type);
   }
 
-  @register("Save{type}Payload")
+  @register("Save{subtype}{type}Payload")
   handleSavePayload(_, { input: { clientMutationId, slug, id, ...args } }) {
     const identifier = slug ? { slug } : { id };
 
