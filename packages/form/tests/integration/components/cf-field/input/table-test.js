@@ -273,7 +273,7 @@ module("Integration | Component | cf-field/input/table", function (hooks) {
 
       await click("[data-test-add-row]");
 
-      const input = `input[name="Document:4:Question:${this.rowQuestion.slug}"]`;
+      const input = `input[name$=":Question:${this.rowQuestion.slug}"]`;
       await waitFor(input);
 
       await click("[data-test-save]");
@@ -298,7 +298,7 @@ module("Integration | Component | cf-field/input/table", function (hooks) {
 
       await click("[data-test-edit-row]");
 
-      const input = `input[name="Document:1:Question:${this.rowQuestion.slug}"]`;
+      const input = `input[name$=":Question:${this.rowQuestion.slug}"]`;
       await waitFor(input);
 
       await fillIn(input, "Test");

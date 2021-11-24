@@ -2,6 +2,7 @@ import { Factory } from "ember-cli-mirage";
 import faker from "faker";
 
 export default Factory.extend({
+  id: () => faker.datatype.uuid(),
   createdAt: () => faker.date.past(),
   modifiedAt: () => faker.date.past(),
   createdByUser: () => faker.datatype.uuid(),

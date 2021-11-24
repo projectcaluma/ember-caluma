@@ -4,6 +4,7 @@ import faker from "faker";
 const STATUS = ["READY", "CANCELED", "COMPLETED", "SKIPPED", "SUSPENDED"];
 
 export default Factory.extend({
+  id: () => faker.datatype.uuid(),
   name: () => faker.lorem.words(5),
   createdByUser: () => faker.datatype.uuid(),
   createdAt: () => faker.date.past(),
