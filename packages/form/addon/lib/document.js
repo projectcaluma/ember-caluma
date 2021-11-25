@@ -246,7 +246,7 @@ export default Base.extend({
     }
 
     if (field.hidden || [undefined, null].includes(field.value)) {
-      return field.question.isMultipleChoice ? [] : null;
+      return defaultValue ?? field.question.isMultipleChoice ? [] : null;
     }
 
     if (field.question.__typename === "TableQuestion") {

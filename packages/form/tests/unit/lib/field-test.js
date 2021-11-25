@@ -453,7 +453,7 @@ module("Unit | Library | field", function (hooks) {
   });
 
   test("it can handle optional 'answer' transforms", async function (assert) {
-    assert.expect(4);
+    assert.expect(5);
 
     const field = this.addField({
       question: {
@@ -467,6 +467,9 @@ module("Unit | Library | field", function (hooks) {
     assert.ok(field.hidden);
 
     field.question.set("isHidden", "'nonexistent'|answer(null) == null");
+    assert.ok(field.hidden);
+
+    field.question.set("answer", { value: null });
     assert.ok(field.hidden);
 
     assert.throws(() => {
