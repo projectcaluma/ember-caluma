@@ -21,7 +21,7 @@
     "@projectcaluma/ember-form": "10.0.0",
     "@projectcaluma/ember-form-builder": "10.0.0",
     "@projectcaluma/ember-testing": "9.1.0",
-    "@projectcaluma/ember-workflow": "9.0.3",
+    "@projectcaluma/ember-workflow": "10.0.0",
     "broccoli-asset-rev": "3.0.0",
     "ember-apollo-client": "3.2.0",
     "ember-auto-import": "2.2.4",
