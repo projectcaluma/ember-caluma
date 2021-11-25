@@ -52,7 +52,7 @@ jobs:
         name: Push changes to main
         with:
           default_author: github_actions
-          message: "chore(deps): update ${{ matrix.workspace }}"
+          message: "chore(deps): update ${{ matrix.workspace }} [skip ci]"
           add: "./packages/*/package.json"
           branch: main
           push: true
