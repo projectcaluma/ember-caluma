@@ -1,6 +1,6 @@
 {
   "name": "@projectcaluma/ember-form-builder",
-  "version": "10.0.0",
+  "version": "10.0.1",
   "description": "Ember engine for building Caluma forms.",
   "keywords": [
     "ember-addon",
