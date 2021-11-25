@@ -19,7 +19,7 @@
     "@projectcaluma/ember-analytics": "0.0.0",
     "@projectcaluma/ember-core": "10.0.0",
     "@projectcaluma/ember-form": "10.0.0",
-    "@projectcaluma/ember-form-builder": "9.1.0",
+    "@projectcaluma/ember-form-builder": "10.0.0",
     "@projectcaluma/ember-testing": "9.1.0",
     "@projectcaluma/ember-workflow": "9.0.3",
     "broccoli-asset-rev": "3.0.0",
