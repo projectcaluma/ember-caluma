@@ -9159,7 +9159,7 @@ break}return e.abrupt("return")
 case 2:return e.next=4,this._fetchPage.linked().perform()
 case 4:return e.abrupt("return",e.sent)
 case 5:case"end":return e.stop()}}),e,this)}))},{key:"_fetchPage",value:regeneratorRuntime.mark((function e(){var t
-return regeneratorRuntime.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:return e.next=2,this.apollo.query(v({query:(0,a.gql)(f||(n=["\n        ","\n      "],r=void 0,r||(r=n.slice(0)),f=Object.freeze(Object.defineProperties(n,{raw:{value:Object.freeze(r)}}))),this.query),variables:{filter:this.filter,order:this.order,pageSize:this.pageSize,cursor:this.cursor},fetchPolicy:"network-only"},this.queryOptions))
+return regeneratorRuntime.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:return e.next=2,this.apollo.query(v({query:(0,a.default)(f||(n=["\n        ","\n      "],r=void 0,r||(r=n.slice(0)),f=Object.freeze(Object.defineProperties(n,{raw:{value:Object.freeze(r)}}))),this.query),variables:{filter:this.filter,order:this.order,pageSize:this.pageSize,cursor:this.cursor},fetchPolicy:"network-only"},this.queryOptions))
 case 2:return t=e.sent,e.t0=this,e.t1=[],e.t2=p(this.items),e.t3=p,e.next=9,this.processNew(t[this.dataKey].edges.map((function(e){return e.node})))
 case 9:return e.t4=e.sent,e.t5=(0,e.t3)(e.t4),e.t6=e.t1.concat.call(e.t1,e.t2,e.t5),e.next=14,e.t0.processAll.call(e.t0,e.t6)
 case 14:return this.items=e.sent,e.abrupt("return",t)
@@ -9263,7 +9263,7 @@ function c(){var e
 f(this,c)
 for(var t=arguments.length,n=new Array(t),r=0;r<t;r++)n[r]=arguments[r]
 return d(y(e=a.call.apply(a,[this].concat(n))),"scheduler",u,y(e)),d(y(e),"calumaOptions",l,y(e)),g(y(e),"_identifier",null),g(y(e),"_value",null),g(y(e),"_settled",!1),e}return t=c,(i=[{key:"resolverType",get:function(){return(0,n.assert)("`resolverType` needs to be defined")}},{key:"compute",value:function(e){var t,n=this,i=s(e,1)[0],o=Array.isArray(i)?i[0]:i
-return o?(o!==this._identifier&&(this._settled=!1,this._identifier=o),this._settled?null===(t=this._value)||void 0===t?void 0:t[this.calumaOptions["".concat(this.resolverType,"NameProperty")]]:(this.scheduler.resolveOnce(o,this.resolverType,(function(e){return(0,r.run)(n,"resolve",e)})),this._value)):null}},{key:"resolve",value:function(e){this._value=e,this._settled=!0,this.recompute()}}])&&p(t.prototype,i),o&&p(t,o),c}(t.default),u=k(a.prototype,"scheduler",[o],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),l=k(a.prototype,"calumaOptions",[i.inject],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),a)
+return o!==this._identifier&&(this._settled=!1,this._identifier=o),this._settled?null===(t=this._value)||void 0===t?void 0:t[this.calumaOptions["".concat(this.resolverType,"NameProperty")]]:(this.scheduler.resolveOnce(o,this.resolverType,(function(e){return(0,r.run)(n,"resolve",e)})),this._value)}},{key:"resolve",value:function(e){this._value=e,this._settled=!0,this.recompute()}}])&&p(t.prototype,i),o&&p(t,o),c}(t.default),u=k(a.prototype,"scheduler",[o],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),l=k(a.prototype,"calumaOptions",[i.inject],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),a)
 e.default=w})),define("@projectcaluma/ember-core/helpers/count-keys",["exports","@ember/component/helper"],(function(e,t){"use strict"
 function n(e,t){return function(e){if(Array.isArray(e))return e}(e)||function(e,t){var n=null==e?null:"undefined"!=typeof Symbol&&e[Symbol.iterator]||e["@@iterator"]
 if(null==n)return
@@ -9388,42 +9388,43 @@ t&&(r=r.filter((function(t){return Object.getOwnPropertyDescriptor(e,t).enumerab
 t%2?a(Object(n),!0).forEach((function(t){l(e,t,n[t])})):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(n)):a(Object(n)).forEach((function(t){Object.defineProperty(e,t,Object.getOwnPropertyDescriptor(n,t))}))}return e}function l(e,t,n){return t in e?Object.defineProperty(e,t,{value:n,enumerable:!0,configurable:!0,writable:!0}):e[t]=n,e}Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var s=r.default.create({intl:(0,i.inject)(),cache:function(){return new t.InMemoryCache({possibleTypes:o.default,dataIdFromObject:function(e){return(0,t.defaultDataIdFromObject)(u(u({},e),{},{_id:e.slug||e._id}))}})},link:function(){var e=this,t=this._super.apply(this,arguments),r=(0,n.setContext)((function(t,n){return u(u({},n),{},{headers:u(u({},n.headers),{},{language:e.intl.primaryLocale,"accept-language":e.intl.primaryLocale})})}))
 return r.concat(t)}})
-e.default=s})),define("@projectcaluma/ember-core/services/-scheduler",["exports","@ember/debug","@ember/runloop","@ember/service","@ember/string","ember-concurrency","ember-inflector"],(function(e,t,n,r,i,o,a){"use strict"
-var u,l,s,c,d,f
-function p(e,t,n,r){n&&Object.defineProperty(e,t,{enumerable:n.enumerable,configurable:n.configurable,writable:n.writable,value:n.initializer?n.initializer.call(r):void 0})}function m(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function h(e,t){for(var n=0;n<t.length;n++){var r=t[n]
-r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}function v(e,t){return v=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e},v(e,t)}function y(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
+e.default=s})),define("@projectcaluma/ember-core/services/-scheduler",["exports","@ember/debug","@ember/runloop","@ember/service","@ember/string","ember-inflector"],(function(e,t,n,r,i,o){"use strict"
+var a,u,l,s,c,d
+function f(e,t,n,r){n&&Object.defineProperty(e,t,{enumerable:n.enumerable,configurable:n.configurable,writable:n.writable,value:n.initializer?n.initializer.call(r):void 0})}function p(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function m(e,t){for(var n=0;n<t.length;n++){var r=t[n]
+r.enumerable=r.enumerable||!1,r.configurable=!0,"value"in r&&(r.writable=!0),Object.defineProperty(e,r.key,r)}}function h(e,t){return h=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e},h(e,t)}function v(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
 if(Reflect.construct.sham)return!1
 if("function"==typeof Proxy)return!0
 try{return Boolean.prototype.valueOf.call(Reflect.construct(Boolean,[],(function(){}))),!0}catch(e){return!1}}()
-return function(){var n,r=k(e)
-if(t){var i=k(this).constructor
+return function(){var n,r=g(e)
+if(t){var i=g(this).constructor
 n=Reflect.construct(r,arguments,i)}else n=r.apply(this,arguments)
-return b(this,n)}}function b(e,t){if(t&&("object"===_typeof(t)||"function"==typeof t))return t
+return y(this,n)}}function y(e,t){if(t&&("object"===_typeof(t)||"function"==typeof t))return t
 if(void 0!==t)throw new TypeError("Derived constructors may only return object or undefined")
-return g(e)}function g(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called")
-return e}function k(e){return k=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)},k(e)}function w(e,t,n,r,i){var o={}
-return Object.keys(r).forEach((function(e){o[e]=r[e]})),o.enumerable=!!o.enumerable,o.configurable=!!o.configurable,("value"in o||o.initializer)&&(o.writable=!0),o=n.slice().reverse().reduce((function(n,r){return r(e,t,n)||n}),o),i&&void 0!==o.initializer&&(o.value=o.initializer?o.initializer.call(i):void 0,o.initializer=void 0),void 0===o.initializer&&(Object.defineProperty(e,t,o),o=null),o}function N(e){return function(e){if(Array.isArray(e))return _(e)}(e)||function(e){if("undefined"!=typeof Symbol&&null!=e[Symbol.iterator]||null!=e["@@iterator"])return Array.from(e)}(e)||function(e,t){if(!e)return
-if("string"==typeof e)return _(e,t)
+return b(e)}function b(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called")
+return e}function g(e){return g=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)},g(e)}function k(e,t,n,r,i){var o={}
+return Object.keys(r).forEach((function(e){o[e]=r[e]})),o.enumerable=!!o.enumerable,o.configurable=!!o.configurable,("value"in o||o.initializer)&&(o.writable=!0),o=n.slice().reverse().reduce((function(n,r){return r(e,t,n)||n}),o),i&&void 0!==o.initializer&&(o.value=o.initializer?o.initializer.call(i):void 0,o.initializer=void 0),void 0===o.initializer&&(Object.defineProperty(e,t,o),o=null),o}function w(e){return function(e){if(Array.isArray(e))return N(e)}(e)||function(e){if("undefined"!=typeof Symbol&&null!=e[Symbol.iterator]||null!=e["@@iterator"])return Array.from(e)}(e)||function(e,t){if(!e)return
+if("string"==typeof e)return N(e,t)
 var n=Object.prototype.toString.call(e).slice(8,-1)
 "Object"===n&&e.constructor&&(n=e.constructor.name)
 if("Map"===n||"Set"===n)return Array.from(e)
-if("Arguments"===n||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))return _(e,t)}(e)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function _(e,t){(null==t||t>e.length)&&(t=e.length)
+if("Arguments"===n||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n))return N(e,t)}(e)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function N(e,t){(null==t||t>e.length)&&(t=e.length)
 for(var n=0,r=new Array(t);n<t;n++)r[n]=e[n]
-return r}function S(e){return(0,o.task)(regeneratorRuntime.mark((function t(){var n,r,o,u,l,s
-return regeneratorRuntime.wrap((function(t){for(;;)switch(t.prev=t.next){case 0:if(o=N(this[e].identifiers),u=N(this[e].callbacks),this[e]=void 0,o.length){t.next=5
-break}return t.abrupt("return")
-case 5:return l=(0,i.camelize)("resolve-".concat((0,a.pluralize)(e))),t.next=8,null===(n=(r=this.calumaOptions)[l])||void 0===n?void 0:n.call(r,o)
-case 8:s=t.sent,u.forEach((function(e){return e(s)}))
-case 10:case"end":return t.stop()}}),t,this)}))).enqueue()}Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
-var O=(u=S("group"),l=S("user"),s=function(e){(function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function")
-e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&v(e,t)})(u,e)
-var t,r,o,a=y(u)
+return r}function _(e,t,n,r,i,o,a){try{var u=e[o](a),l=u.value}catch(s){return void n(s)}u.done?t(l):Promise.resolve(l).then(r,i)}function S(e){return function(){return{value:function(){var t,n=this
+return(t=regeneratorRuntime.mark((function t(){var r,a,u,l
+return regeneratorRuntime.wrap((function(t){for(;;)switch(t.prev=t.next){case 0:return u=(0,i.camelize)("resolve-".concat((0,o.pluralize)(e))),t.next=3,null===(r=(a=n.calumaOptions)[u])||void 0===r?void 0:r.call(a,w(n[e].identifiers))
+case 3:l=t.sent,n[e].callbacks.forEach((function(e){return e(l)})),n[e]=void 0
+case 6:case"end":return t.stop()}}),t)})),function(){var e=this,n=arguments
+return new Promise((function(r,i){var o=t.apply(e,n)
+function a(e){_(o,r,i,a,u,"next",e)}function u(e){_(o,r,i,a,u,"throw",e)}a(void 0)}))})()}}}}Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
+var O=(a=S("group"),u=S("user"),l=function(e){(function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function")
+e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&h(e,t)})(u,e)
+var t,r,o,a=v(u)
 function u(){var e
-m(this,u)
+p(this,u)
 for(var t=arguments.length,n=new Array(t),r=0;r<t;r++)n[r]=arguments[r]
-return p(g(e=a.call.apply(a,[this].concat(n))),"calumaOptions",c,g(e)),p(g(e),"resolveGroup",d,g(e)),p(g(e),"resolveUser",f,g(e)),e}return t=u,(r=[{key:"resolveOnce",value:function(e,t,r){var o=this
+return f(b(e=a.call.apply(a,[this].concat(n))),"calumaOptions",s,b(e)),f(b(e),"resolveGroup",c,b(e)),f(b(e),"resolveUser",d,b(e)),e}return t=u,(r=[{key:"resolveOnce",value:function(e,t,r){var o=this
 this[t]||(this[t]={identifiers:new Set,callbacks:new Set}),this[t].identifiers.add(e),this[t].callbacks.add((function(n){r(n.find((function(n){return String(n[o.calumaOptions["".concat(t,"IdentifierProperty")]])===String(e)})))}))
-var a=(0,i.camelize)("resolve-".concat(t));(0,n.once)(this[a],"perform")}}])&&h(t.prototype,r),o&&h(t,o),u}(r.default),c=w(s.prototype,"calumaOptions",[r.inject],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),d=w(s.prototype,"resolveGroup",[u],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),f=w(s.prototype,"resolveUser",[l],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),s)
+var a=(0,i.camelize)("resolve-".concat(t));(0,n.once)(this,a)}}])&&m(t.prototype,r),o&&m(t,o),u}(r.default),s=k(l.prototype,"calumaOptions",[r.inject],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),c=k(l.prototype,"resolveGroup",[a],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),d=k(l.prototype,"resolveUser",[u],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),l)
 e.default=O})),define("@projectcaluma/ember-core/services/caluma-options",["exports","@ember/service","@projectcaluma/ember-core/utils/slugify"],(function(e,t,n){"use strict"
 var r,i
 function o(e,t,n,r){n&&Object.defineProperty(e,t,{enumerable:n.enumerable,configurable:n.configurable,writable:n.writable,value:n.initializer?n.initializer.call(r):void 0})}function a(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function u(e,t){for(var n=0;n<t.length;n++){var r=t[n]
