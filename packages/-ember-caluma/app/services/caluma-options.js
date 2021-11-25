@@ -33,7 +33,9 @@ export default class CustomCalumaOptionsService extends CalumaOptionsService {
     );
 
     if (uncachedIdentifiers.length) {
-      await this.store.query(type, { id: String(uncachedIdentifiers) });
+      await this.store.query(type, {
+        filter: { id: String(uncachedIdentifiers) },
+      });
     }
 
     return this.store.peekAll(type);

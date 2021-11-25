@@ -22,8 +22,8 @@ export default function () {
     return new Response(200);
   });
 
-  this.get("/groups");
-  this.get("/users");
+  this.get("/groups", { coalesce: true });
+  this.get("/users", { coalesce: true });
 
   this.passthrough();
 }
