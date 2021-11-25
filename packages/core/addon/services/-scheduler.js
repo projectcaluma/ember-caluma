@@ -24,7 +24,9 @@ function typeResolver(type) {
     const methodName = camelize(`resolve-${pluralize(type)}`);
     const result = yield this.calumaOptions[methodName]?.(identifiers);
 
-    callbacks.forEach((callback) => callback(result));
+    yield Promise.all(callbacks.map((callback) => callback(result)));
+
+    return result;
   }).enqueue();
 }
 
