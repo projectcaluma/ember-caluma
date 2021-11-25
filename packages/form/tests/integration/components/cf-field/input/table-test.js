@@ -280,6 +280,7 @@ module("Integration | Component | cf-field/input/table", function (hooks) {
       assert.dom("[data-test-save]").isDisabled();
       await fillIn(input, "Test");
       await scrollTo("[data-test-save]", 0, 0);
+      await waitFor("[data-test-save]:enabled");
       assert.dom("[data-test-save]").isEnabled();
 
       await click("[data-test-save]");
@@ -303,6 +304,7 @@ module("Integration | Component | cf-field/input/table", function (hooks) {
 
       await fillIn(input, "Test");
       await scrollTo("[data-test-save]", 0, 0);
+      await waitFor("[data-test-save]:enabled");
       await click("[data-test-save]");
 
       assert

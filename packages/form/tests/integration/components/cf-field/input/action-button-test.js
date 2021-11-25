@@ -75,6 +75,7 @@ module(
 
       // wait for the button to enter the viewport which triggers the validation
       await scrollTo("button", 0, 0);
+      await waitFor("button:enabled");
 
       assert.verifySteps(["validate"]);
     });
@@ -94,6 +95,7 @@ module(
 
       // wait for the button to enter the viewport which triggers the validation
       await scrollTo("button", 0, 0);
+      await waitFor("button:enabled");
 
       assert.verifySteps([]);
     });
