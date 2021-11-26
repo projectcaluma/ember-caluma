@@ -1,9 +1,10 @@
 # We can not symlink this file so an exact copy exists in another package:
-# packages/form/addon/gql/fragments/field.graphql
+# packages/form-builder/addon/gql/fragments/field.graphql
 #
 # When changing this file the other must also receive the same changes.
 
 fragment SimpleQuestion on Question {
+  id
   slug
   label
   isRequired
@@ -14,6 +15,7 @@ fragment SimpleQuestion on Question {
     textMinLength: minLength
     textMaxLength: maxLength
     textDefaultAnswer: defaultAnswer {
+      id
       value
     }
     placeholder
@@ -22,6 +24,7 @@ fragment SimpleQuestion on Question {
     textareaMinLength: minLength
     textareaMaxLength: maxLength
     textareaDefaultAnswer: defaultAnswer {
+      id
       value
     }
     placeholder
@@ -30,6 +33,7 @@ fragment SimpleQuestion on Question {
     integerMinValue: minValue
     integerMaxValue: maxValue
     integerDefaultAnswer: defaultAnswer {
+      id
       value
     }
     placeholder
@@ -38,6 +42,7 @@ fragment SimpleQuestion on Question {
     floatMinValue: minValue
     floatMaxValue: maxValue
     floatDefaultAnswer: defaultAnswer {
+      id
       value
     }
     placeholder
@@ -46,6 +51,7 @@ fragment SimpleQuestion on Question {
     choiceOptions: options {
       edges {
         node {
+          id
           slug
           label
           isArchived
@@ -53,6 +59,7 @@ fragment SimpleQuestion on Question {
       }
     }
     choiceDefaultAnswer: defaultAnswer {
+      id
       value
     }
   }
@@ -60,6 +67,7 @@ fragment SimpleQuestion on Question {
     multipleChoiceOptions: options {
       edges {
         node {
+          id
           slug
           label
           isArchived
@@ -67,11 +75,13 @@ fragment SimpleQuestion on Question {
       }
     }
     multipleChoiceDefaultAnswer: defaultAnswer {
+      id
       value
     }
   }
   ... on DateQuestion {
     dateDefaultAnswer: defaultAnswer {
+      id
       value
     }
   }
@@ -89,8 +99,10 @@ fragment SimpleQuestion on Question {
 }
 
 fragment FieldTableQuestion on Question {
+  id
   ... on TableQuestion {
     rowForm {
+      id
       slug
       questions {
         edges {
@@ -101,6 +113,7 @@ fragment FieldTableQuestion on Question {
       }
     }
     tableDefaultAnswer: defaultAnswer {
+      id
       value {
         id
         answers {
@@ -108,6 +121,7 @@ fragment FieldTableQuestion on Question {
             node {
               id
               question {
+                id
                 slug
               }
               ... on StringAnswer {
@@ -134,10 +148,12 @@ fragment FieldTableQuestion on Question {
 }
 
 fragment FieldQuestion on Question {
+  id
   ...SimpleQuestion
   ...FieldTableQuestion
   ... on FormQuestion {
     subForm {
+      id
       slug
       name
       questions {
@@ -145,10 +161,12 @@ fragment FieldQuestion on Question {
           node {
             # This part here limits our query to 2 level deep nested forms. This
             # has to be solved in another way!
+            id
             ...SimpleQuestion
             ...FieldTableQuestion
             ... on FormQuestion {
               subForm {
+                id
                 slug
                 name
                 questions {
@@ -171,6 +189,7 @@ fragment FieldQuestion on Question {
 fragment SimpleAnswer on Answer {
   id
   question {
+    id
     slug
   }
   ... on StringAnswer {
@@ -187,6 +206,7 @@ fragment SimpleAnswer on Answer {
   }
   ... on FileAnswer {
     fileValue: value {
+      id
       uploadUrl
       downloadUrl
       metadata
@@ -199,11 +219,13 @@ fragment SimpleAnswer on Answer {
 }
 
 fragment FieldAnswer on Answer {
+  id
   ...SimpleAnswer
   ... on TableAnswer {
     tableValue: value {
       id
       form {
+        id
         slug
         questions {
           edges {

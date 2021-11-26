@@ -5,8 +5,8 @@ import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
 import { dropTask } from "ember-concurrency-decorators";
 
-import getDocumentAnswersQuery from "@projectcaluma/ember-form/gql/queries/get-document-answers.graphql";
-import getDocumentFormsQuery from "@projectcaluma/ember-form/gql/queries/get-document-forms.graphql";
+import getDocumentAnswersQuery from "@projectcaluma/ember-form/gql/queries/document-answers.graphql";
+import getDocumentFormsQuery from "@projectcaluma/ember-form/gql/queries/document-forms.graphql";
 import { parseDocument } from "@projectcaluma/ember-form/lib/parsers";
 
 /**

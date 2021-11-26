@@ -5,6 +5,7 @@ mutation SaveCalculatedFloatQuestion(
 ) {
   saveCalculatedFloatQuestion(input: $input) {
     question {
+      id
       ...QuestionInfo
       ... on CalculatedFloatQuestion {
         calcExpression

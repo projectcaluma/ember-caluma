@@ -3,9 +3,11 @@
 mutation SaveTableQuestion($input: SaveTableQuestionInput!) {
   saveTableQuestion(input: $input) {
     question {
+      id
       ...QuestionInfo
       ... on TableQuestion {
         rowForm {
+          id
           slug
         }
       }

@@ -3,6 +3,7 @@
 mutation SaveActionButtonQuestion($input: SaveActionButtonQuestionInput!) {
   saveActionButtonQuestion(input: $input) {
     question {
+      id
       ...QuestionInfo
       ... on ActionButtonQuestion {
         action

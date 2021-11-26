@@ -3,6 +3,7 @@
 mutation SaveFloatQuestion($input: SaveFloatQuestionInput!) {
   saveFloatQuestion(input: $input) {
     question {
+      id
       ...QuestionInfo
       ... on FloatQuestion {
         floatMinValue: minValue

@@ -5,6 +5,7 @@ mutation SaveDynamicMultipleChoiceQuestion(
 ) {
   saveDynamicMultipleChoiceQuestion(input: $input) {
     question {
+      id
       ...QuestionInfo
       ... on DynamicMultipleChoiceQuestion {
         dataSource

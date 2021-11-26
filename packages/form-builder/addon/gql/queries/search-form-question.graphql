@@ -4,19 +4,23 @@ query SearchFormQuestion($slug: String!, $search: String, $archived: Boolean) {
   allForms(filter: [{ slug: $slug }]) {
     edges {
       node {
+        id
         slug
         questions(search: $search, isArchived: $archived) {
           edges {
             node {
+              id
               ...QuestionInfo
               ... on FormQuestion {
                 subForm {
+                  id
                   slug
                   name
                 }
               }
               ... on TableQuestion {
                 rowForm {
+                  id
                   slug
                   name
                 }

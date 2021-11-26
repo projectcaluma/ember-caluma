@@ -1,7 +1,8 @@
-query GetDynamicOptions($question: String!) {
+query DynamicOptions($question: String!) {
   allQuestions(filter: [{ slug: $question }], first: 1) {
     edges {
       node {
+        id
         slug
         ... on DynamicChoiceQuestion {
           dynamicChoiceOptions: options {

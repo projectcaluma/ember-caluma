@@ -1,8 +1,9 @@
-query GetFileAnswerInfo($id: ID!) {
+query FileAnswerInfo($id: ID!) {
   node(id: $id) {
     id
     ... on FileAnswer {
       fileValue: value {
+        id
         uploadUrl
         downloadUrl
         metadata

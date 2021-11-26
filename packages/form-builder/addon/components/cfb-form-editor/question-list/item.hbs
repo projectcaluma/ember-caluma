@@ -58,7 +58,7 @@
     {{/if}}
 
     <span
-      class="{{if this.showFormLink "uk-width-auto" "uk-width-expand"}}
+      class="{{if this.showFormLink 'uk-width-auto' 'uk-width-expand'}}
         uk-margin-small-right uk-text-small uk-text-muted uk-text-truncate"
     >
       {{@question.label}}
@@ -83,13 +83,13 @@
         uk-tooltip="title: {{if
           this.hidden
           (t
-            (concat "caluma.form-builder.question-list.hidden." this.hiddenType)
+            (concat 'caluma.form-builder.question-list.hidden.' this.hiddenType)
           )
         }}; pos: left"
         class="cfb-form-editor__question-list__item__type
           {{if
             this.hidden
-            "cfb-form-editor__question-list__item__type--hidden"
+            'cfb-form-editor__question-list__item__type--hidden'
           }}"
         @label={{t
           (concat "caluma.form-builder.question.types." @question.__typename)
@@ -105,7 +105,7 @@
         <span
           uk-tooltip="title: {{t
             (concat
-              "caluma.form-builder.question-list.required." this.requiredType
+              'caluma.form-builder.question-list.required.' this.requiredType
             )
           }}; pos: top-left"
           title={{t

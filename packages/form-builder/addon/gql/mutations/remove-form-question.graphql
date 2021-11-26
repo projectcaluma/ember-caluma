@@ -4,10 +4,12 @@
 mutation RemoveFormQuestion($input: RemoveFormQuestionInput!, $search: String) {
   removeFormQuestion(input: $input) {
     form {
+      id
       ...FormInfo
       questions(search: $search) {
         edges {
           node {
+            id
             ...QuestionInfo
           }
         }

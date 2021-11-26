@@ -3,6 +3,7 @@
 mutation SaveDynamicChoiceQuestion($input: SaveDynamicChoiceQuestionInput!) {
   saveDynamicChoiceQuestion(input: $input) {
     question {
+      id
       ...QuestionInfo
       ... on DynamicChoiceQuestion {
         dataSource

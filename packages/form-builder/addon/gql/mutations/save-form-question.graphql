@@ -3,9 +3,11 @@
 mutation SaveFormQuestion($input: SaveFormQuestionInput!) {
   saveFormQuestion(input: $input) {
     question {
+      id
       ...QuestionInfo
       ... on FormQuestion {
         subForm {
+          id
           slug
         }
       }

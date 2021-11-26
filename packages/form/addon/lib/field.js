@@ -19,7 +19,7 @@ import saveDocumentIntegerAnswerMutation from "@projectcaluma/ember-form/gql/mut
 import saveDocumentListAnswerMutation from "@projectcaluma/ember-form/gql/mutations/save-document-list-answer.graphql";
 import saveDocumentStringAnswerMutation from "@projectcaluma/ember-form/gql/mutations/save-document-string-answer.graphql";
 import saveDocumentTableAnswerMutation from "@projectcaluma/ember-form/gql/mutations/save-document-table-answer.graphql";
-import getDocumentUsedDynamicOptionsQuery from "@projectcaluma/ember-form/gql/queries/get-document-used-dynamic-options.graphql";
+import getDocumentUsedDynamicOptionsQuery from "@projectcaluma/ember-form/gql/queries/document-used-dynamic-options.graphql";
 import Base from "@projectcaluma/ember-form/lib/base";
 import {
   nestedDependencyParents,
