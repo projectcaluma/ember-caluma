@@ -4,7 +4,7 @@ import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
 
 import removeAnswerMutation from "@projectcaluma/ember-form/gql/mutations/remove-answer.graphql";
-import getFileAnswerInfoQuery from "@projectcaluma/ember-form/gql/queries/get-fileanswer-info.graphql";
+import getFileAnswerInfoQuery from "@projectcaluma/ember-form/gql/queries/fileanswer-info.graphql";
 
 export default class CfFieldInputFileComponent extends Component {
   @service intl;

@@ -1,6 +1,6 @@
 {{#each @field.options as |option i|}}
   {{#if (gt i 0)}}<br />{{/if}}
-  <label class="cf-checkbox_label {{if @field.isInvalid "uk-form-danger"}}">
+  <label class="cf-checkbox_label {{if @field.isInvalid 'uk-form-danger'}}">
     <input
       class="uk-checkbox uk-margin-small-right"
       type="checkbox"

@@ -2,6 +2,7 @@ query CheckFormSlug($slug: String!) {
   allForms(filter: [{ slug: $slug }]) {
     edges {
       node {
+        id
         slug
       }
     }

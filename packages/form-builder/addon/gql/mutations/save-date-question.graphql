@@ -3,6 +3,7 @@
 mutation SaveDateQuestion($input: SaveDateQuestionInput!) {
   saveDateQuestion(input: $input) {
     question {
+      id
       ...QuestionInfo
     }
     clientMutationId

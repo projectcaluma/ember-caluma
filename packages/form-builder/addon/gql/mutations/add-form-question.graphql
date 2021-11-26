@@ -4,10 +4,12 @@
 mutation AddFormQuestion($input: AddFormQuestionInput!, $search: String) {
   addFormQuestion(input: $input) {
     form {
+      id
       ...FormInfo
       questions(search: $search) {
         edges {
           node {
+            id
             ...QuestionInfo
           }
         }

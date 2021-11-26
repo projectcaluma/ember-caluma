@@ -3,7 +3,7 @@ import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
 import moment from "moment";
 
-import getFileAnswerInfoQuery from "@projectcaluma/ember-form/gql/queries/get-fileanswer-info.graphql";
+import getFileAnswerInfoQuery from "@projectcaluma/ember-form/gql/queries/fileanswer-info.graphql";
 
 export default class CfFieldValueComponent extends Component {
   @queryManager apollo;

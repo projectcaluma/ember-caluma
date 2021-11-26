@@ -1,11 +1,12 @@
 #import * from '../fragments/field.graphql'
 
-query GetDocumentAnswers($id: ID!) {
+query DocumentAnswers($id: ID!) {
   allDocuments(filter: [{ id: $id }]) {
     edges {
       node {
         id
         form {
+          id
           slug
         }
         workItem {

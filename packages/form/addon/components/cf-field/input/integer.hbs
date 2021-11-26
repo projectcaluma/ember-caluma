@@ -2,8 +2,8 @@
   type="number"
   step="1"
   class="uk-input
-    {{if @field.isInvalid "uk-form-danger"}}
-    {{if @disabled "uk-disabled"}}"
+    {{if @field.isInvalid 'uk-form-danger'}}
+    {{if @disabled 'uk-disabled'}}"
   name={{@field.pk}}
   id={{@field.pk}}
   value={{@field.answer.value}}

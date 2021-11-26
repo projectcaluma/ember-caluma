@@ -1,6 +1,7 @@
 mutation SaveOption($input: SaveOptionInput!) {
   saveOption(input: $input) {
     option {
+      id
       label
       slug
     }

@@ -1,6 +1,6 @@
 #import * from '../fragments/field.graphql'
 
-mutation saveDocumentTableAnswer($input: SaveDocumentTableAnswerInput!) {
+mutation SaveDocumentTableAnswer($input: SaveDocumentTableAnswerInput!) {
   saveDocumentTableAnswer(input: $input) {
     answer {
       ...FieldAnswer

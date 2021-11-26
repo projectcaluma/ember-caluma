@@ -2,6 +2,7 @@ query CheckQuestionSlug($slug: String!) {
   allQuestions(filter: [{ slug: $slug }]) {
     edges {
       node {
+        id
         slug
       }
     }

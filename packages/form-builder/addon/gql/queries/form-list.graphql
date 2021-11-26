@@ -4,6 +4,7 @@ query FormList($filter: [FormFilterSetType], $order: [FormOrderSetType]) {
   allForms(filter: $filter, order: $order) {
     edges {
       node {
+        id
         ...FormInfo
       }
     }

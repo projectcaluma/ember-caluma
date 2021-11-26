@@ -1,4 +1,5 @@
 fragment QuestionInfo on Question {
+  id
   slug
   label
   isRequired

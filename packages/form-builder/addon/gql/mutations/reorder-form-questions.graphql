@@ -7,10 +7,12 @@ mutation ReorderFormQuestions(
 ) {
   reorderFormQuestions(input: $input) {
     form {
+      id
       ...FormInfo
       questions(search: $search) {
         edges {
           node {
+            id
             ...QuestionInfo
           }
         }

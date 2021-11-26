@@ -3,6 +3,7 @@
 mutation SaveTextareaQuestion($input: SaveTextareaQuestionInput!) {
   saveTextareaQuestion(input: $input) {
     question {
+      id
       ...QuestionInfo
       ... on TextareaQuestion {
         minLength

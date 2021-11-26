@@ -3,6 +3,7 @@
 mutation SaveStaticQuestion($input: SaveStaticQuestionInput!) {
   saveStaticQuestion(input: $input) {
     question {
+      id
       ...QuestionInfo
       ... on StaticQuestion {
         staticContent

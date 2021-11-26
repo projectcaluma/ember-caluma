@@ -40,10 +40,13 @@ module.exports = {
     {
       files: ["*.graphql"],
       excludedFiles: "./packages/testing/addon/mirage-graphql/schema.graphql",
-      extends: "plugin:@graphql-eslint/recommended",
+      extends: "plugin:@graphql-eslint/operations-recommended",
       parserOptions: {
         operations: "./packages/**/addon/gql/**/*.graphql",
         schema: "./packages/testing/addon/mirage-graphql/schema.graphql",
+      },
+      rules: {
+        "@graphql-eslint/selection-set-depth": ["off"],
       },
     },
   ],

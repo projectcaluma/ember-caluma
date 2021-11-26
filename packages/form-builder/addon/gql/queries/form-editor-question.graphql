@@ -5,6 +5,7 @@ query FormEditorQuestion($slug: String!) {
   allQuestions(filter: [{ slug: $slug }]) {
     edges {
       node {
+        id
         ...QuestionInfo
         ... on IntegerQuestion {
           integerMaxValue: maxValue
@@ -52,6 +53,7 @@ query FormEditorQuestion($slug: String!) {
           options {
             edges {
               node {
+                id
                 label
                 slug
                 isArchived
@@ -67,6 +69,7 @@ query FormEditorQuestion($slug: String!) {
           options {
             edges {
               node {
+                id
                 label
                 slug
                 isArchived
@@ -86,10 +89,12 @@ query FormEditorQuestion($slug: String!) {
         }
         ... on TableQuestion {
           rowForm {
+            id
             slug
             questions {
               edges {
                 node {
+                  id
                   slug
                   label
                 }
@@ -101,6 +106,7 @@ query FormEditorQuestion($slug: String!) {
             tableValue: value {
               id
               form {
+                id
                 slug
                 questions {
                   edges {
@@ -122,6 +128,7 @@ query FormEditorQuestion($slug: String!) {
         }
         ... on FormQuestion {
           subForm {
+            id
             slug
           }
         }

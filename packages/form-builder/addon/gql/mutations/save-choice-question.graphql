@@ -3,11 +3,13 @@
 mutation SaveChoiceQuestion($input: SaveChoiceQuestionInput!) {
   saveChoiceQuestion(input: $input) {
     question {
+      id
       ...QuestionInfo
       ... on ChoiceQuestion {
         options {
           edges {
             node {
+              id
               label
               slug
             }

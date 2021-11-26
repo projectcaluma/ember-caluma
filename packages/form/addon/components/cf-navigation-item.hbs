@@ -1,6 +1,6 @@
 <li
   class="cf-navigation__item uk-width-auto
-    {{if (or @item.active @item.childrenActive) "uk-active"}}"
+    {{if (or @item.active @item.childrenActive) 'uk-active'}}"
 >
   <LinkTo @query={{hash displayedForm=@item.slug}}>
     {{#if (and @useAsHeading this.active)}}
@@ -19,7 +19,7 @@
     {{/if}}
     <span
       class="cf-navigation__item__icon cf-navigation__item__icon--{{@item.state}}
-        {{if @item.dirty "cf-navigation__item__icon--dirty"}}"
+        {{if @item.dirty 'cf-navigation__item__icon--dirty'}}"
     ></span>
   </LinkTo>
 

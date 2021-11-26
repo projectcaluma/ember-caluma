@@ -22,15 +22,18 @@ query SearchQuestion(
     totalCount
     edges {
       node {
+        id
         ...QuestionInfo
         ... on FormQuestion {
           subForm {
+            id
             slug
             name
           }
         }
         ... on TableQuestion {
           rowForm {
+            id
             slug
             name
           }

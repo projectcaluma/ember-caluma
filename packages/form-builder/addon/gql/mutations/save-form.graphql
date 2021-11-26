@@ -3,6 +3,7 @@
 mutation SaveForm($input: SaveFormInput!) {
   saveForm(input: $input) {
     form {
+      id
       ...FormInfo
     }
     clientMutationId
