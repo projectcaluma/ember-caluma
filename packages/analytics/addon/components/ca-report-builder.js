@@ -183,6 +183,7 @@ export default class CaReportBuilderComponent extends Component {
         },
       },
     });
+    this.fetchData.perform();
   }
 
   @enqueueTask
