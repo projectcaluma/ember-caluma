@@ -6,14 +6,19 @@
     class="uk-width-auto uk-text-center uk-margin-auto-vertical"
   ></span>
 {{/if}}
-<div ...attributes data-test-field-select-primary-selector={{not @child}}>
+<div
+  ...attributes
+  {{did-update (perform this.fetchOptions) @parentPath}}
+  data-test-field-select-primary-selector={{not @child}}
+>
   <PowerSelect
     class={{this.selectedOption.value}}
     @options={{this.options}}
     @selected={{this.selectedOption}}
     @onChange={{this.update}}
     @triggerId={{this.fieldPath}}
-    @onOpen={{this.fetchOptions}}
+    @onOpen={{this.fetchOptions.perform}}
+    @loadingMessage="Loading..."
     as |option|
   >
     {{option.label}}

@@ -1,8 +1,9 @@
 import { assert } from "@ember/debug";
-import { action } from "@ember/object";
+import { action, set } from "@ember/object";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
+import { restartableTask } from "ember-concurrency-decorators";
 
 import getAvailableFieldsForFieldQuery from "@projectcaluma/ember-analytics/gql/queries/get-available-fields-for-field.graphql";
 
@@ -13,14 +14,10 @@ export default class CaFieldSelectComponent extends Component {
   @tracked options;
 
   get selectedOption() {
-    if (this.currentPathSegment) {
-      const option = {
-        label: this.capitalize(this.currentPathSegment),
-        value: this.currentPathSegment,
-      };
-      this._selectedOption = option;
+    if (!this.currentPathSegment) {
+      return {};
     }
-    return this._selectedOption;
+    return { ...this._selectedOption, ...{ value: this.currentPathSegment } };
   }
 
   get currentPathSegment() {
@@ -48,7 +45,10 @@ export default class CaFieldSelectComponent extends Component {
   }
 
   get isBranch() {
-    if (this.fetchedFor === this.args.parentPath) {
+    if (
+      (this.isRoot && this.fetchedFor === "_root_") ||
+      this.fetchedFor === this.args.parentPath
+    ) {
       return this._selectedOption ? !this._selectedOption.isLeaf : false;
     }
     return this.hasRemainingPath;
@@ -64,18 +64,17 @@ export default class CaFieldSelectComponent extends Component {
       "A listener for updates on CaFieldSelectComponent has to be set.",
       this.args.onSelect
     );
-
-    this._selectedOption = value;
+    set(this, "_selectedOption", value);
     this.args.onSelect(this._selectedOption.sourcePath);
   }
 
-  @action
-  async fetchOptions() {
+  @restartableTask
+  *fetchOptions() {
     if (
       !this.fetchedFor ||
       (!this.isRoot && this.fetchedFor !== this.args.parentPath)
     ) {
-      const options = await this.apollo.query(
+      const options = yield this.apollo.query(
         {
           query: getAvailableFieldsForFieldQuery,
           fetchPolicy: "no-cache",
@@ -86,7 +85,7 @@ export default class CaFieldSelectComponent extends Component {
         },
         "analyticsTable.availableFields"
       );
-      this.fetchedFor = this.isRoot ? true : this.args.parentPath;
+      this.fetchedFor = this.isRoot ? "_root_" : this.args.parentPath;
       this.options = options.edges.map((edge) => edge.node);
     }
   }
