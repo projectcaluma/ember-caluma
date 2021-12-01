@@ -28,6 +28,25 @@ export default function config() {
                 "inquiry-answer-status-needs-interaction":
                   INQUIRY_STATUS.NEEDS_INTERACTION,
               },
+              buttons: {
+                "compose-inquiry-answer": {
+                  color: "primary",
+                  label: "caluma.distribution.answer.release-for-review",
+                },
+                "confirm-inquiry-answer": {
+                  color: "primary",
+                  label: "caluma.distribution.answer.confirm",
+                },
+                "revise-inquiry-answer": {
+                  color: "default",
+                  label: "caluma.distribution.answer.revise",
+                },
+                "adjust-inquiry-answer": {
+                  color: "primary",
+                  label:
+                    "caluma.distribution.answer.release-adjustment-for-review",
+                },
+              },
             },
           },
         },

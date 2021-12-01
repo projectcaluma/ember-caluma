@@ -12,8 +12,8 @@ module(
     setupRenderingTest(hooks);
     setupIntl(hooks);
 
-    test("it renders", async function (assert) {
-      const createdAt = moment.utc({
+    hooks.beforeEach(function () {
+      this.createdAt = moment.utc({
         day: 1,
         month: 0,
         year: 2021,
@@ -21,7 +21,7 @@ module(
         minute: 1,
       });
 
-      const closedAt = moment.utc({
+      this.closedAt = moment.utc({
         day: 1,
         month: 0,
         year: 2022,
@@ -32,11 +32,14 @@ module(
       this.inquiry = inquiry({
         remark: "Question?",
         reason: "Answer!",
-        createdAt: createdAt.format(),
-        closedAt: closedAt.format(),
+        createdAt: this.createdAt.format(),
+        closedAt: this.closedAt.format(),
       });
-      this.type = "request";
 
+      this.type = "request";
+    });
+
+    test("it renders", async function (assert) {
       await render(
         hbs`<InquiryDialog::InquiryPart @inquiry={{this.inquiry}} @type={{this.type}} />`
       );
@@ -47,16 +50,63 @@ module(
         intl.formatTime(value, { hour: "2-digit", minute: "2-digit" });
 
       assert.dom("p:nth-of-type(1)").containsText("controlling");
-      assert.dom("ul.uk-subnav > li").containsText(date(createdAt));
-      assert.dom("ul.uk-subnav > li").containsText(time(createdAt));
+      assert
+        .dom("ul.uk-subnav > li:nth-of-type(1)")
+        .containsText(date(this.createdAt));
+      assert
+        .dom("ul.uk-subnav > li:nth-of-type(1)")
+        .containsText(time(this.createdAt));
       assert.dom("p:nth-of-type(2)").hasText("Question?");
 
       this.set("type", "answer");
 
       assert.dom("p:nth-of-type(1)").containsText("addressed");
-      assert.dom("ul.uk-subnav > li").containsText(date(closedAt));
-      assert.dom("ul.uk-subnav > li").containsText(time(closedAt));
+      assert
+        .dom("ul.uk-subnav > li:nth-of-type(1)")
+        .containsText(date(this.closedAt));
+      assert
+        .dom("ul.uk-subnav > li:nth-of-type(1)")
+        .containsText(time(this.closedAt));
       assert.dom("p:nth-of-type(2)").hasText("Answer!");
+    });
+
+    test("it renders a link for editing the inquiry when permitted", async function (assert) {
+      await render(
+        hbs`<InquiryDialog::InquiryPart @inquiry={{this.inquiry}} @type={{this.type}} />`
+      );
+
+      assert.dom("ul.uk-subnav > li:nth-of-type(2)").doesNotExist();
+
+      this.owner.lookup("service:caluma-options").currentGroupId =
+        "controlling";
+
+      assert.dom("ul.uk-subnav > li:nth-of-type(2)").doesNotExist();
+
+      await this.inquiry.setSuspended();
+
+      assert
+        .dom("ul.uk-subnav > li:nth-of-type(2)")
+        .hasText("t:caluma.distribution.edit.link:()");
+    });
+
+    test("it renders a link for answering the inquiry when permitted", async function (assert) {
+      await this.inquiry.setSuspended();
+
+      await render(
+        hbs`<InquiryDialog::InquiryPart @inquiry={{this.inquiry}} @type={{this.type}} />`
+      );
+
+      assert.dom("ul.uk-subnav > li:nth-of-type(2)").doesNotExist();
+
+      this.owner.lookup("service:caluma-options").currentGroupId = "addressed";
+
+      assert.dom("ul.uk-subnav > li:nth-of-type(2)").doesNotExist();
+
+      await this.inquiry.setReady();
+
+      assert
+        .dom("ul.uk-subnav > li:nth-of-type(2)")
+        .hasText("t:caluma.distribution.answer.link:()");
     });
   }
 );

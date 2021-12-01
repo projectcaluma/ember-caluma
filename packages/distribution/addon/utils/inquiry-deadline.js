@@ -24,10 +24,10 @@ function decorator(
       const deadline = moment.utc(value);
       const now = moment.utc();
 
-      const isOverdue = now.isAfter(deadline, "day");
-      const isWarning = now
-        .add(this.config.warningPeriod, "days")
-        .isAfter(deadline, "day");
+      const isOverdue = !isAnswered && now.isAfter(deadline, "day");
+      const isWarning =
+        !isAnswered &&
+        now.add(this.config.warningPeriod, "days").isAfter(deadline, "day");
 
       return {
         value,

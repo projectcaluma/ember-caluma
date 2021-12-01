@@ -1,0 +1,36 @@
+#import InquiryStatusDocument from '../fragments/inquiry.graphql'
+
+mutation CompleteInquiryWorkItem(
+  $workItem: ID!
+  $statusQuestion: ID!
+  $buttonTasks: [String]!
+) {
+  completeWorkItem(input: { id: $workItem }) {
+    workItem {
+      id
+      status
+      case {
+        id
+        document {
+          id
+          ...InquiryStatusDocument
+        }
+        workItems(tasks: $buttonTasks, status: READY) {
+          edges {
+            node {
+              id
+              task {
+                id
+                slug
+              }
+            }
+          }
+        }
+        parentWorkItem {
+          id
+          status
+        }
+      }
+    }
+  }
+}

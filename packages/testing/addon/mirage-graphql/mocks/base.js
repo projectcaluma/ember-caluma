@@ -1,5 +1,5 @@
 import { camelize, dasherize, classify } from "@ember/string";
-import { singularize } from "ember-inflector";
+import { singularize, pluralize } from "ember-inflector";
 import { MockList } from "graphql-tools";
 
 import {
@@ -50,13 +50,16 @@ export const TYPE_MAPPING = {
 };
 
 export default class {
-  constructor(type, collection, db, server, ...args) {
+  constructor(type, db, server) {
     this.type = type;
-    this.collection = collection;
     this.db = db;
     this.server = server;
 
-    this.filter = new Filter(type, collection, db, server, ...args);
+    this.filter = new Filter(type, db);
+  }
+
+  get collection() {
+    return this.db[pluralize(camelize(this.type))];
   }
 
   getHandlers() {
@@ -184,7 +187,7 @@ export default class {
     const identifier = slug ? { slug } : { id };
 
     const relKeys = this.server.schema.modelFor(
-      this.type.toLowerCase()
+      camelize(this.type)
     ).foreignKeys;
 
     const parsedArgs = Object.entries(args).reduce((parsed, [key, value]) => {

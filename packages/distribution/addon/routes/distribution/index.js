@@ -3,7 +3,7 @@ import { inject as service } from "@ember/service";
 import { queryManager } from "ember-apollo-client";
 
 import config from "@projectcaluma/ember-distribution/config";
-import allInquiriesQuery from "@projectcaluma/ember-distribution/gql/queries/all-inquiries.graphql";
+import inquiryNavigationQuery from "@projectcaluma/ember-distribution/gql/queries/inquiry-navigation.graphql";
 import uniqueByGroups from "@projectcaluma/ember-distribution/utils/unique-by-groups";
 
 export default class DistributionIndexRoute extends Route {
@@ -16,7 +16,7 @@ export default class DistributionIndexRoute extends Route {
 
   async redirect(model) {
     const response = await this.apollo.query({
-      query: allInquiriesQuery,
+      query: inquiryNavigationQuery,
       variables: {
         caseId: model,
         task: this.config.inquiry.task,

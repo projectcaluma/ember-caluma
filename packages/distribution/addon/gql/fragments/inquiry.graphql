@@ -37,6 +37,10 @@ fragment InquiryDialog on WorkItem {
   createdAt
   closedAt
   status
+  task {
+    id
+    slug
+  }
   document {
     ...InquiryDeadlineDocument
     info: answers(question: $infoQuestion) {

@@ -1,0 +1,18 @@
+query InquiryEdit($inquiry: ID!) {
+  allWorkItems(filter: [{ id: $inquiry }]) {
+    edges {
+      node {
+        id
+        status
+        controllingGroups
+        task {
+          id
+          slug
+        }
+        document {
+          id
+        }
+      }
+    }
+  }
+}

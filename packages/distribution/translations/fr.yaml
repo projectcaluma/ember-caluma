@@ -1,5 +1,23 @@
 caluma:
   distribution:
+    edit:
+      title: "Modifier la demande"
+      link: "Modifier"
+
+      send: "Envoyer"
+      send-error: "Erreur lors de l'envoi de la demande"
+
+    answer:
+      title: "Répondre à la demande"
+      link: "Répondre"
+
+      release-for-review: "Valider pour vérification"
+      release-adjustment-for-review: "Valider la révision pour vérification"
+      confirm: "Confirmer"
+      revise: "Réviser"
+
+      complete-error: "Erreur lors de la clôture de la tâche"
+
     types:
       controlling: "Demandé"
       addressed: "A répondre"

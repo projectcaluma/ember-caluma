@@ -1,5 +1,23 @@
 caluma:
   distribution:
+    edit:
+      title: "Anfrage bearbeiten"
+      link: "Bearbeiten"
+
+      send: "Senden"
+      send-error: "Fehler beim Senden der Anfrage"
+
+    answer:
+      title: "Anfrage beantworten"
+      link: "Beantworten"
+
+      release-for-review: "Zur Kontrolle freigeben"
+      release-adjustment-for-review: "Anpassung zur Kontrolle freigeben"
+      confirm: "Bestätigen"
+      revise: "Überarbeiten"
+
+      complete-error: "Fehler beim Abschliessen der Aufgabe"
+
     types:
       controlling: "Angefordert"
       addressed: "Zu beantworten"

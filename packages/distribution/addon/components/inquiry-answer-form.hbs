@@ -1,0 +1,46 @@
+<CfContent
+  @documentId={{decode-id this.inquiry.childCase.document.id}}
+  @disabled={{cannot "edit answer form of inquiry" this.inquiry}}
+  @loading={{this._inquiry.isRunning}}
+  as |content|
+>
+  <h1 class="uk-flex uk-flex-middle">
+    {{t "caluma.distribution.answer.title"}}
+    {{#if (eq this.inquiry.status "RUNNING")}}
+      <UkLabel
+        class="uk-margin-left"
+        @label={{t "caluma.distribution.status.draft"}}
+      />
+    {{/if}}
+  </h1>
+
+  <content.form />
+
+  {{#each this.buttons as |buttonConfig|}}
+    {{#if buttonConfig.isFormButton}}
+      <DocumentValidity @document={{content.document}} as |isValid validate|>
+        <UkButton
+          @type="submit"
+          @color={{buttonConfig.color}}
+          @disabled={{or (not isValid) this.completeWorkItem.isRunning}}
+          @on-click={{fn
+            (perform this.completeWorkItem)
+            buttonConfig.workItemId
+            validate
+          }}
+        >{{buttonConfig.label}}</UkButton>
+      </DocumentValidity>
+    {{else}}
+      <UkButton
+        @type="button"
+        @color={{buttonConfig.color}}
+        @disabled={{this.completeWorkItem.isRunning}}
+        @on-click={{fn
+          (perform this.completeWorkItem)
+          buttonConfig.workItemId
+          null
+        }}
+      >{{buttonConfig.label}}</UkButton>
+    {{/if}}
+  {{/each}}
+</CfContent>

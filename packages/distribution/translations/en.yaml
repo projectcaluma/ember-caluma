@@ -1,5 +1,23 @@
 caluma:
   distribution:
+    edit:
+      title: "Edit inquiry"
+      link: "Edit"
+
+      send: "Send"
+      send-error: "Error while sending the inquiry"
+
+    answer:
+      title: "Answer inquiry"
+      link: "Answer"
+
+      release-for-review: "Release for review"
+      release-adjustment-for-review: "Release adjustment for review"
+      confirm: "Confirm"
+      revise: "Revise"
+
+      complete-error: "Error while completing the work item"
+
     types:
       controlling: "Requested"
       addressed: "To answer"

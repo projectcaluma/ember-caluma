@@ -1,14 +1,20 @@
 import BaseFilter from "@projectcaluma/ember-testing/mirage-graphql/filters/base";
 
 export default class extends BaseFilter {
-  status(records, value) {
-    return records.filter(({ status }) => status === value);
+  status(records, value, { invert = false }) {
+    return records.filter(({ status }) => invert !== (status === value));
+  }
+
+  tasks(records, value) {
+    const taskIds = this.db.tasks
+      .filter(({ slug }) => value.includes(slug))
+      .map(({ id }) => id);
+
+    return records.filter(({ taskId }) => taskIds.includes(taskId));
   }
 
   task(records, value) {
-    const task = this.db.tasks.findBy({ slug: value });
-
-    return records.filter((record) => record.taskId === task?.id);
+    return this.tasks(records, [value]);
   }
 
   controllingGroups(records, value, { invert = false }) {
