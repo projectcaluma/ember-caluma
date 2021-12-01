@@ -1,0 +1,8 @@
+mutation ResumeWorkItem($workItem: ID!) {
+  resumeWorkItem(input: { id: $workItem }) {
+    workItem {
+      id
+      status
+    }
+  }
+}

@@ -19,6 +19,8 @@ class StubInquiry {
     return this.controllingGroups[0];
   }
 
+  task = { slug: "inquiry" };
+
   constructor({
     deadline = moment.utc().add(5, "days").format(),
     status = { value: "inquiry-answer-status-positive", label: "Positive" },

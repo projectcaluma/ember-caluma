@@ -15,21 +15,39 @@ module("Unit | config", function (hooks) {
     setOwner(cls, this.owner);
 
     assert.deepEqual(cls.config, {
+      warningPeriod: 3,
       inquiry: {
-        answer: {
-          infoQuestion: "inquiry-answer-reason",
-          statusMapping: {
-            "inquiry-answer-status-needs-interaction": "needs-interaction",
-            "inquiry-answer-status-negative": "negative",
-            "inquiry-answer-status-positive": "positive",
-          },
-          statusQuestion: "inquiry-answer-status",
-        },
+        task: "inquiry",
         deadlineQuestion: "inquiry-deadline",
         infoQuestion: "inquiry-remark",
-        task: "inquiry",
+        answer: {
+          statusQuestion: "inquiry-answer-status",
+          infoQuestion: "inquiry-answer-reason",
+          statusMapping: {
+            "inquiry-answer-status-positive": "positive",
+            "inquiry-answer-status-negative": "negative",
+            "inquiry-answer-status-needs-interaction": "needs-interaction",
+          },
+          buttons: {
+            "compose-inquiry-answer": {
+              color: "primary",
+              label: "caluma.distribution.answer.release-for-review",
+            },
+            "confirm-inquiry-answer": {
+              color: "primary",
+              label: "caluma.distribution.answer.confirm",
+            },
+            "revise-inquiry-answer": {
+              color: "default",
+              label: "caluma.distribution.answer.revise",
+            },
+            "adjust-inquiry-answer": {
+              color: "primary",
+              label: "caluma.distribution.answer.release-adjustment-for-review",
+            },
+          },
+        },
       },
-      warningPeriod: 3,
     });
 
     this.owner.lookup("service:caluma-options").distribution = {
@@ -47,24 +65,42 @@ module("Unit | config", function (hooks) {
     };
 
     assert.deepEqual(cls.config, {
+      warningPeriod: 1,
       inquiry: {
+        task: "inquiry",
+        deadlineQuestion: "inquiry-deadline",
+        infoQuestion: "inquiry-remark",
         answer: {
+          statusQuestion: "q1",
           infoQuestion: "inquiry-answer-reason",
           statusMapping: {
-            "inquiry-answer-status-needs-interaction": "needs-interaction",
-            "inquiry-answer-status-negative": "negative",
             "inquiry-answer-status-positive": "positive",
+            "inquiry-answer-status-negative": "negative",
+            "inquiry-answer-status-needs-interaction": "needs-interaction",
             "q1-a1": "needs-interaction",
             "q1-a2": "negative",
             "q1-a3": "positive",
           },
-          statusQuestion: "q1",
+          buttons: {
+            "compose-inquiry-answer": {
+              color: "primary",
+              label: "caluma.distribution.answer.release-for-review",
+            },
+            "confirm-inquiry-answer": {
+              color: "primary",
+              label: "caluma.distribution.answer.confirm",
+            },
+            "revise-inquiry-answer": {
+              color: "default",
+              label: "caluma.distribution.answer.revise",
+            },
+            "adjust-inquiry-answer": {
+              color: "primary",
+              label: "caluma.distribution.answer.release-adjustment-for-review",
+            },
+          },
         },
-        deadlineQuestion: "inquiry-deadline",
-        infoQuestion: "inquiry-remark",
-        task: "inquiry",
       },
-      warningPeriod: 1,
     });
   });
 });

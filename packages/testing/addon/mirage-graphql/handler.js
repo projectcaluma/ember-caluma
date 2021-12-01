@@ -14,7 +14,7 @@ export default function (server) {
   return function ({ db }, request) {
     const mocks = db._collections.reduce((m, { name }) => {
       const cls = classify(singularize(name));
-      const mock = new Mock(cls, db[name], db, server);
+      const mock = new Mock(cls, db, server);
 
       return { ...m, ...mock.getHandlers() };
     }, {});

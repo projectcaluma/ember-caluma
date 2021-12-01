@@ -8,12 +8,16 @@ export function createBlueprint(server) {
   server.create("question", {
     slug: "inquiry-remark",
     label: "Remark",
+    isRequired: "true",
+    maxLength: 9999,
+    minLength: 0,
     formIds: [inquiryForm.id],
     type: "TEXTAREA",
   });
   server.create("question", {
     slug: "inquiry-deadline",
     label: "Deadline",
+    isRequired: "true",
     formIds: [inquiryForm.id],
     type: "DATE",
   });
@@ -22,6 +26,8 @@ export function createBlueprint(server) {
     slug: "inquiry-answer-status",
     type: "CHOICE",
     formIds: [inquiryAnswerForm.id],
+    isRequired: "true",
+    label: "Status",
     options: [
       server.create("option", {
         slug: "inquiry-answer-status-positive",
@@ -39,12 +45,28 @@ export function createBlueprint(server) {
   });
   server.create("question", {
     slug: "inquiry-answer-reason",
+    isRequired: "true",
+    maxLength: 9999,
+    minLength: 0,
     label: "Reason",
     type: "TEXTAREA",
     formIds: [inquiryAnswerForm.id],
   });
 
+  server.create("workflow", { slug: "distribution" });
+  server.create("workflow", { slug: "inquiry" });
+
   server.create("task", { slug: "inquiry" });
+  server.create("task", {
+    slug: "compose-inquiry-answer",
+    type: "COMPLETE_WORKFLOW_FORM",
+  });
+  server.create("task", { slug: "confirm-inquiry-answer" });
+  server.create("task", { slug: "revise-inquiry-answer" });
+  server.create("task", {
+    slug: "adjust-inquiry-answer",
+    type: "COMPLETE_WORKFLOW_FORM",
+  });
 }
 
 export function createInquiry(
@@ -53,27 +75,22 @@ export function createInquiry(
   { from, to, remark, deadline },
   workItemAttrs = {}
 ) {
-  const form = server.schema.forms.findBy({ slug: "inquiry" });
-  const document = server.create("document", { form });
+  const document = server.create("document", { formId: "inquiry" });
 
   server.create("answer", {
     document,
-    question: server.schema.questions.findBy({
-      slug: "inquiry-remark",
-    }),
+    questionId: "inquiry-remark",
     value: remark ?? faker.lorem.paragraph(),
   });
 
   server.create("answer", {
     document,
-    question: server.schema.questions.findBy({
-      slug: "inquiry-deadline",
-    }),
+    questionId: "inquiry-deadline",
     value: deadline ?? faker.date.future(),
   });
 
   return server.create("work-item", {
-    task: server.schema.tasks.findBy({ slug: "inquiry" }),
+    taskId: "inquiry",
     document,
     status: "SUSPENDED",
     case: distributionCase,
@@ -84,15 +101,20 @@ export function createInquiry(
 }
 
 export function sendInquiry(server, { inquiry }) {
-  inquiry.update({
-    status: "READY",
-    childCase: server.create("case", {
-      status: "RUNNING",
-      document: server.create("document", {
-        form: server.schema.forms.findBy({ slug: "inquiry-answer" }),
-      }),
-    }),
+  const childCase = server.create("case", {
+    status: "RUNNING",
+    workflowId: "inquiry",
+    document: server.create("document", { formId: "inquiry-answer" }),
   });
+
+  server.create("work-item", {
+    taskId: "compose-inquiry-answer",
+    status: "READY",
+    case: childCase,
+    addressedGroups: inquiry.addressedGroups,
+  });
+
+  inquiry.update({ status: "READY", childCase });
 
   return inquiry;
 }
@@ -104,32 +126,74 @@ export function answerInquiry(server, { inquiry, status, reason }) {
 
   server.create("answer", {
     document: inquiry.childCase.document,
-    question: server.schema.questions.findBy({
-      slug: "inquiry-answer-status",
-    }),
+    questionId: "inquiry-answer-status",
     value: status,
   });
 
   server.create("answer", {
     document: inquiry.childCase.document,
-    question: server.schema.questions.findBy({
-      slug: "inquiry-answer-reason",
-    }),
+    questionId: "inquiry-answer-reason",
     value: reason ?? faker.lorem.paragraph(),
   });
 
-  inquiry.update({ status: "COMPLETED" });
-  inquiry.childCase.update({
-    status: "COMPLETED",
-    closedAt: faker.date.recent(),
+  inquiry.childCase.workItems
+    .filter((workItem) => workItem.taskId === "compose-inquiry-answer")
+    .update({ status: "COMPLETED" });
+  server.create("work-item", {
+    taskId: "confirm-inquiry-answer",
+    status: "READY",
+    case: inquiry.childCase,
+    addressedGroups: inquiry.addressedGroups,
+  });
+  server.create("work-item", {
+    taskId: "revise-inquiry-answer",
+    status: "READY",
+    case: inquiry.childCase,
+    addressedGroups: inquiry.addressedGroups,
   });
 
   return inquiry;
 }
 
+export function confirmInquiry({ inquiry }) {
+  inquiry.update({ status: "COMPLETED" });
+  inquiry.childCase.update({
+    status: "COMPLETED",
+    closedAt: faker.date.recent(),
+  });
+  inquiry.childCase.workItems
+    .filter((workItem) => workItem.taskId === "confirm-inquiry-answer")
+    .update({ status: "COMPLETED" });
+  inquiry.childCase.workItems
+    .filter((workItem) => workItem.taskId === "revise-inquiry-answer")
+    .update({ status: "CANCELED" });
+
+  return inquiry;
+}
+
+export function reviseInquiry(server, { inquiry }) {
+  server.create("work-item", {
+    taskId: "adjust-inquiry-answer",
+    status: "READY",
+    case: inquiry.childCase,
+    addressedGroups: inquiry.addressedGroups,
+  });
+  inquiry.childCase.workItems
+    .filter((workItem) => workItem.taskId === "confirm-inquiry-answer")
+    .update({ status: "CANCELED" });
+  inquiry.childCase.workItems
+    .filter((workItem) => workItem.taskId === "revise-inquiry-answer")
+    .update({ status: "COMPLETED" });
+
+  return inquiry;
+}
+
 export default function (server, groups) {
+  createBlueprint(server);
+
   const distributionCase = server.create("case", {
-    workflow: server.create("workflow", { slug: "distribution" }),
+    status: "RUNNING",
+    workflowId: "distribution",
   });
 
   const g = groups[0];
@@ -141,8 +205,8 @@ export default function (server, groups) {
   const create = (...args) => createInquiry(server, distributionCase, ...args);
   const send = (...args) => sendInquiry(server, ...args);
   const answer = (...args) => answerInquiry(server, ...args);
-
-  createBlueprint(server);
+  const confirm = (...args) => confirmInquiry(...args);
+  const revise = (...args) => reviseInquiry(server, ...args);
 
   // controlling
   create({ from: g, to: g1 });
@@ -153,24 +217,31 @@ export default function (server, groups) {
       deadline: faker.date.past(),
     }),
   });
-  answer({
-    inquiry: create({
-      from: g,
-      to: g3,
-      deadline: faker.date.past(),
+  confirm({
+    inquiry: answer({
+      inquiry: create({
+        from: g,
+        to: g3,
+        deadline: faker.date.past(),
+      }),
+      status: "inquiry-answer-status-needs-interaction",
     }),
-    status: "inquiry-answer-status-needs-interaction",
   });
+
   // "override" third controlling inquiry
-  answer({
-    inquiry: create({ from: g, to: g3 }, { createdAt: faker.date.recent() }),
-    status: "inquiry-answer-status-positive",
+  confirm({
+    inquiry: answer({
+      inquiry: create({ from: g, to: g3 }, { createdAt: faker.date.recent() }),
+      status: "inquiry-answer-status-positive",
+    }),
   });
 
   // addressed
-  answer({
-    inquiry: create({ from: g2, to: g }),
-    status: "inquiry-answer-status-needs-interaction",
+  confirm({
+    inquiry: answer({
+      inquiry: create({ from: g2, to: g }),
+      status: "inquiry-answer-status-needs-interaction",
+    }),
   });
   // "override" first addressed inquiry
   send({
@@ -183,18 +254,34 @@ export default function (server, groups) {
       { createdAt: faker.date.recent() }
     ),
   });
+  confirm({
+    inquiry: answer({
+      inquiry: create({ from: g4, to: g }),
+      status: "inquiry-answer-status-negative",
+    }),
+  });
   answer({
-    inquiry: create({ from: g4, to: g }),
-    status: "inquiry-answer-status-negative",
+    inquiry: create({ from: g3, to: g }),
+    status: "inquiry-answer-status-positive",
+  });
+  revise({
+    inquiry: answer({
+      inquiry: create({ from: g1, to: g }),
+      status: "inquiry-answer-status-needs-interaction",
+    }),
   });
 
   // more
-  answer({
-    inquiry: create({ from: g2, to: g3 }),
-    status: "inquiry-answer-status-needs-interaction",
+  confirm({
+    inquiry: answer({
+      inquiry: create({ from: g2, to: g3 }),
+      status: "inquiry-answer-status-needs-interaction",
+    }),
   });
-  answer({
-    inquiry: create({ from: g3, to: g4 }),
-    status: "inquiry-answer-status-positive",
+  confirm({
+    inquiry: answer({
+      inquiry: create({ from: g3, to: g4 }),
+      status: "inquiry-answer-status-positive",
+    }),
   });
 }

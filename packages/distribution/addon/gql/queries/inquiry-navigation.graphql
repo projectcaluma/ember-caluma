@@ -1,6 +1,6 @@
 #import Inquiry, InquiryDeadlineDocument, InquiryStatusDocument from '../fragments/inquiry.graphql'
 
-query AllInquiries(
+query InquiryNavigation(
   $task: ID!
   $statusQuestion: ID
   $deadlineQuestion: ID
@@ -27,6 +27,7 @@ query AllInquiries(
       { case: $caseId }
       { task: $task }
       { addressedGroups: [$currentGroup] }
+      { status: SUSPENDED, invert: true }
     ]
     order: [{ attribute: CREATED_AT, direction: DESC }]
   ) {

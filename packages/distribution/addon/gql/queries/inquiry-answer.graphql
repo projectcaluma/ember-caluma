@@ -1,0 +1,33 @@
+query InquiryAnswer($inquiry: ID!, $buttonTasks: [String]!) {
+  allWorkItems(filter: [{ id: $inquiry }]) {
+    edges {
+      node {
+        id
+        status
+        addressedGroups
+        task {
+          id
+          slug
+        }
+        childCase {
+          id
+          status
+          document {
+            id
+          }
+          workItems(tasks: $buttonTasks, status: READY) {
+            edges {
+              node {
+                id
+                task {
+                  id
+                  slug
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

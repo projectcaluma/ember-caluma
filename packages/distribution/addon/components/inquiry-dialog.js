@@ -11,7 +11,11 @@ export default class InquiryDialogComponent extends Component {
 
   @queryManager apollo;
 
-  inquiries = useTask(this, this.fetchDialog, () => [
+  get inquiries() {
+    return this._inquiries.value?.allWorkItems.edges.map((edge) => edge.node);
+  }
+
+  _inquiries = useTask(this, this.fetchDialog, () => [
     this.args.from,
     this.args.to,
     this.args.caseId,
@@ -20,7 +24,7 @@ export default class InquiryDialogComponent extends Component {
 
   @dropTask
   *fetchDialog() {
-    const response = yield this.apollo.query({
+    return yield this.apollo.watchQuery({
       query: inquiryDialogQuery,
       variables: {
         from: this.args.from,
@@ -34,7 +38,5 @@ export default class InquiryDialogComponent extends Component {
         includeNavigationData: true,
       },
     });
-
-    return response.allWorkItems.edges.map((edge) => edge.node);
   }
 }

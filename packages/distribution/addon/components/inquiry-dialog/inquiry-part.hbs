@@ -15,6 +15,26 @@
       {{format-time this.date hour="2-digit" minute="2-digit"}}
     </span>
   </li>
+  {{#if (can "edit inquiry" @inquiry)}}
+    <li>
+      <LinkTo
+        @route="distribution.inquiry.detail.index"
+        @model={{decode-id @inquiry.id}}
+      >
+        {{t "caluma.distribution.edit.link"}}
+      </LinkTo>
+    </li>
+  {{/if}}
+  {{#if (can "answer inquiry" @inquiry)}}
+    <li>
+      <LinkTo
+        @route="distribution.inquiry.detail.answer"
+        @model={{decode-id @inquiry.id}}
+      >
+        {{t "caluma.distribution.answer.link"}}
+      </LinkTo>
+    </li>
+  {{/if}}
 </ul>
 
 <p class="uk-margin-remove-bottom">{{this.info}}</p>

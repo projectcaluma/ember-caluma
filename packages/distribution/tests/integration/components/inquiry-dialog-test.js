@@ -7,6 +7,7 @@ import { module, test } from "qunit";
 
 import {
   answerInquiry,
+  confirmInquiry,
   createBlueprint,
   createInquiry,
   sendInquiry,
@@ -34,16 +35,20 @@ module("Integration | Component | inquiry-dialog", function (hooks) {
         to: { id: "group2" },
       }),
     });
-    answerInquiry(this.server, {
-      inquiry: createInquiry(this.server, distributionCase, {
-        from: { id: "group1" },
-        to: { id: "group2" },
+    confirmInquiry({
+      inquiry: answerInquiry(this.server, {
+        inquiry: createInquiry(this.server, distributionCase, {
+          from: { id: "group1" },
+          to: { id: "group2" },
+        }),
       }),
     });
-    answerInquiry(this.server, {
-      inquiry: createInquiry(this.server, distributionCase, {
-        from: { id: "group1" },
-        to: { id: "group2" },
+    confirmInquiry({
+      inquiry: answerInquiry(this.server, {
+        inquiry: createInquiry(this.server, distributionCase, {
+          from: { id: "group1" },
+          to: { id: "group2" },
+        }),
       }),
     });
   });

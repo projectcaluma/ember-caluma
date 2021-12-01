@@ -1,9 +1,8 @@
 import { camelize } from "@ember/string";
 
 export default class {
-  constructor(type, collection, db) {
+  constructor(type, db) {
     this.type = type;
-    this.collection = collection;
     this.db = db;
   }
 

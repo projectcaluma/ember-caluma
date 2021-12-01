@@ -34,7 +34,7 @@ module("Integration | Component | distribution-navigation", function (hooks) {
 
     assert.dom("aside > ul").exists();
     assert.dom("aside > ul > li > ul").exists({ count: 3 });
-    assert.dom("aside > ul > li > ul > li").exists({ count: 7 });
+    assert.dom("aside > ul > li > ul > li").exists({ count: 9 });
 
     assert
       .dom("aside > ul > li:nth-of-type(1) > a")

@@ -1,0 +1,27 @@
+<CfContent
+  @documentId={{decode-id this.inquiry.document.id}}
+  @disabled={{cannot "edit inquiry" this.inquiry}}
+  @loading={{this._inquiry.isRunning}}
+  as |content|
+>
+  <h1 class="uk-flex uk-flex-middle">
+    {{t "caluma.distribution.edit.title"}}
+    {{#if (eq this.inquiry.status "RUNNING")}}
+      <UkLabel
+        class="uk-margin-left"
+        @label={{t "caluma.distribution.status.draft"}}
+      />
+    {{/if}}
+  </h1>
+
+  <content.form />
+
+  <DocumentValidity @document={{content.document}} as |isValid validate|>
+    <UkButton
+      @type="submit"
+      @color="primary"
+      @disabled={{or (not isValid) this.send.isRunning}}
+      @on-click={{perform this.send validate}}
+    >{{t "caluma.distribution.edit.send"}}</UkButton>
+  </DocumentValidity>
+</CfContent>

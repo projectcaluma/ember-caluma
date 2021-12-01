@@ -7751,6 +7751,15 @@ ember-cached-decorator-polyfill@^0.1.4:
     ember-cli-babel "^7.21.0"
     ember-cli-babel-plugin-helpers "^1.1.1"
 
+ember-can@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/ember-can/-/ember-can-4.1.0.tgz#af3bb7838eab381e56977772dbb75bf5e16e77a9"
+  integrity sha512-8s0bR+rmwQ/A4kj6E7AaIAlsPs/oenQVOVgfiUTdbZO2ek57PFWMoSg6mWxDKbozoW2fSEgdhcBv/eaSflh9lQ==
+  dependencies:
+    ember-cli-babel "^7.26.6"
+    ember-cli-htmlbars "^6.0.0"
+    ember-inflector "^4.0.2"
+
 ember-changeset-validations@3.16.0, ember-changeset-validations@^3.16.0:
   version "3.16.0"
   resolved "https://registry.yarnpkg.com/ember-changeset-validations/-/ember-changeset-validations-3.16.0.tgz#f1785e2ce3bad80dcb42681b0a782eae72b40127"
@@ -7820,7 +7829,7 @@ ember-cli-addon-docs@4.2.1:
     ember-fetch "^8.1.1"
     ember-get-config "^0.5.0"
     ember-keyboard "^7.0.0-beta.0"
-    ember-modal-dialog "github:yapplabs/ember-modal-dialog#76b74f1c4b791fed5b084836c3b1c8c54836ac71"
+    ember-modal-dialog yapplabs/ember-modal-dialog#76b74f1c4b791fed5b084836c3b1c8c54836ac71
     ember-responsive "^4.0.2"
     ember-router-generator "^2.0.0"
     ember-router-scroll "^4.1.2"
@@ -8798,9 +8807,8 @@ ember-maybe-in-element@^2.0.3:
     ember-cli-version-checker "^5.1.1"
     ember-in-element-polyfill "^1.0.1"
 
-"ember-modal-dialog@github:yapplabs/ember-modal-dialog#76b74f1c4b791fed5b084836c3b1c8c54836ac71":
+ember-modal-dialog@yapplabs/ember-modal-dialog#76b74f1c4b791fed5b084836c3b1c8c54836ac71:
   version "4.0.0-alpha.1"
-  uid "76b74f1c4b791fed5b084836c3b1c8c54836ac71"
   resolved "https://codeload.github.com/yapplabs/ember-modal-dialog/tar.gz/76b74f1c4b791fed5b084836c3b1c8c54836ac71"
   dependencies:
     "@embroider/macros" "^0.43.5"
