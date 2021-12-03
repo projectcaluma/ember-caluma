@@ -1,5 +1,13 @@
 {
   "bundles": {
+    "@projectcaluma/ember-distribution": {
+      "assets": [
+        {
+          "uri": "/engines-dist/@projectcaluma/ember-distribution/config/environment-835e0ed8f5be698e49575e1cbd34ed69.js",
+          "type": "js"
+        }
+      ]
+    },
     "@projectcaluma/ember-form-builder": {
       "assets": [
         {
