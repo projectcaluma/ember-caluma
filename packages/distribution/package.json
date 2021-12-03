@@ -31,7 +31,7 @@
     "ember-resources": "^4.0.1",
     "ember-svg-jar": "^2.3.3",
     "ember-uikit": "^4.0.0",
-    "graphql": "^15.6.1",
+    "graphql": "^16.0.1",
     "ionicons": "^6.0.0",
     "lodash.merge": "^4.6.2",
     "moment": "^2.29.1"

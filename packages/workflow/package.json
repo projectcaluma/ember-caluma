@@ -25,7 +25,7 @@
     "ember-fetch": "^8.0.4",
     "ember-truth-helpers": "^3.0.0",
     "ember-uikit": "^4.0.0",
-    "graphql": "^15.6.1",
+    "graphql": "^16.0.1",
     "moment": "^2.29.1"
   },
   "devDependencies": {
