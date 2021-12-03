@@ -7524,7 +7524,7 @@ ember-auto-import@2.2.4, ember-auto-import@^2.2.0, ember-auto-import@^2.2.3, emb
     typescript-memoize "^1.0.0-alpha.3"
     walk-sync "^0.3.3"
 
-ember-auto-import@^1.11.2, ember-auto-import@^1.11.3, ember-auto-import@^1.2.19, ember-auto-import@^1.5.3, ember-auto-import@^1.6.0:
+ember-auto-import@^1.11.3, ember-auto-import@^1.2.19, ember-auto-import@^1.5.3, ember-auto-import@^1.6.0:
   version "1.12.0"
   resolved "https://registry.yarnpkg.com/ember-auto-import/-/ember-auto-import-1.12.0.tgz#52246b04891090e2608244e65c4c6af7710df12b"
   integrity sha512-fzMGnyHGfUNFHchpLbJ98Vs/c5H2wZBMR9r/XwW+WOWPisZDGLUPPyhJQsSREPoUQ+o8GvyLaD/rkrKqW8bmgw==
@@ -8535,14 +8535,14 @@ ember-in-element-polyfill@^1.0.1:
     ember-cli-htmlbars "^5.3.1"
     ember-cli-version-checker "^5.1.2"
 
-ember-in-viewport@^3.10.3:
-  version "3.10.3"
-  resolved "https://registry.yarnpkg.com/ember-in-viewport/-/ember-in-viewport-3.10.3.tgz#317472bb82bed11f7895821b799349c6a7406e81"
-  integrity sha512-hSX7p+G6hJjZaY2BAqzyuiMP7QIHzQ4g0+ZBnEwAa8GMbILFAtzPx5A4XEX8wY6dSzhHB9n9jkcWZdmaML6q8A==
+ember-in-viewport@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/ember-in-viewport/-/ember-in-viewport-4.0.0.tgz#e27e4e439094c816fbcfa9bf6712f51a02d971d7"
+  integrity sha512-woEBMovlmRD8nV634GIqalOQV6AnmxleRE6XaWrKNmHMEHcg/IkmivWct+LdVFHCkSXi+kC36eiD/G9TVXo3eQ==
   dependencies:
-    ember-auto-import "^1.11.2"
-    ember-cli-babel "^7.26.3"
-    ember-modifier "^2.1.0"
+    ember-auto-import "^2.2.3"
+    ember-cli-babel "^7.26.6"
+    ember-modifier "^2.1.2 || ^3.0.0"
     fast-deep-equal "^2.0.1"
     intersection-observer-admin "~0.3.2"
     raf-pool "~0.1.4"
