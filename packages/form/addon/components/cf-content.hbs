@@ -1,6 +1,6 @@
 {{#if @documentId}}
   <div {{did-insert (perform this.fetchData)}} {{will-destroy this.teardown}}>
-    {{#if this.fetchData.isRunning}}
+    {{#if this.loading}}
       <div class="uk-text-center"><UkSpinner @ratio={{2}} /></div>
     {{else if this.document}}
       {{#let
