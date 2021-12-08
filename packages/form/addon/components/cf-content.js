@@ -72,6 +72,14 @@ export default class CfContentComponent extends Component {
    */
 
   /**
+   * Whether the form should be displayed as loading, this can be used to
+   * indicate a loading state if the application calling this component is
+   * loading additional data.
+   *
+   * @argument {Boolean} loading
+   */
+
+  /**
    * The document to display
    *
    * @property {Document} document
@@ -82,6 +90,10 @@ export default class CfContentComponent extends Component {
 
   get navigation() {
     return this.fetchData.lastSuccessful?.value.navigation;
+  }
+
+  get loading() {
+    return this.args.loading || this.fetchData.isRunning;
   }
 
   /**
