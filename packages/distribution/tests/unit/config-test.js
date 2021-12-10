@@ -14,42 +14,6 @@ module("Unit | config", function (hooks) {
 
     setOwner(cls, this.owner);
 
-    assert.deepEqual(cls.config, {
-      warningPeriod: 3,
-      inquiry: {
-        task: "inquiry",
-        deadlineQuestion: "inquiry-deadline",
-        infoQuestion: "inquiry-remark",
-        answer: {
-          statusQuestion: "inquiry-answer-status",
-          infoQuestion: "inquiry-answer-reason",
-          statusMapping: {
-            "inquiry-answer-status-positive": "positive",
-            "inquiry-answer-status-negative": "negative",
-            "inquiry-answer-status-needs-interaction": "needs-interaction",
-          },
-          buttons: {
-            "compose-inquiry-answer": {
-              color: "primary",
-              label: "caluma.distribution.answer.release-for-review",
-            },
-            "confirm-inquiry-answer": {
-              color: "primary",
-              label: "caluma.distribution.answer.confirm",
-            },
-            "revise-inquiry-answer": {
-              color: "default",
-              label: "caluma.distribution.answer.revise",
-            },
-            "adjust-inquiry-answer": {
-              color: "primary",
-              label: "caluma.distribution.answer.release-adjustment-for-review",
-            },
-          },
-        },
-      },
-    });
-
     this.owner.lookup("service:caluma-options").distribution = {
       warningPeriod: 1,
       inquiry: {
