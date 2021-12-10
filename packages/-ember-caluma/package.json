@@ -65,7 +65,7 @@
     "loader.js": "4.7.0",
     "moment": "2.29.1",
     "sass": "1.44.0",
-    "webpack": "5.64.4"
+    "webpack": "5.65.0"
   },
   "ember": {
     "edition": "octane"
