@@ -1,5 +1,7 @@
 <div class="uk-text-center uk-margin-small-top">
-  <IconButton @icon="plus" @onClick={{this.noop}} />
+  {{#if this.canCreate}}
+    <IconButton @route="distribution.new" @icon="plus" />
+  {{/if}}
   <IconButton
     @icon="paper-plane-outline"
     @fromSvgJar={{true}}
@@ -9,9 +11,11 @@
     @gutterBottom={{4}}
     @onClick={{this.noop}}
   />
-  <IconButton
-    @icon="lock-closed-outline"
-    @fromSvgJar={{true}}
-    @onClick={{this.noop}}
-  />
+  {{#if this.canComplete}}
+    <IconButton
+      @icon="lock-closed-outline"
+      @fromSvgJar={{true}}
+      @onClick={{this.noop}}
+    />
+  {{/if}}
 </div>

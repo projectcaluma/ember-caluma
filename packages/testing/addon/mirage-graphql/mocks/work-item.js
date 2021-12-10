@@ -1,8 +1,11 @@
+import moment from "moment";
+
 import {
   register,
   deserialize,
 } from "@projectcaluma/ember-testing/mirage-graphql";
 import BaseMock from "@projectcaluma/ember-testing/mirage-graphql/mocks/base";
+import { createInquiry } from "@projectcaluma/ember-testing/scenarios/distribution";
 
 export default class extends BaseMock {
   @register("ResumeWorkItemPayload")
@@ -62,6 +65,36 @@ export default class extends BaseMock {
         caseId,
         status: "READY",
         taskId: "adjust-inquiry-answer",
+      });
+    } else if (taskId === "create-inquiry") {
+      const { addressed_groups: groups } = JSON.parse(input.context);
+
+      groups.forEach((group) => {
+        createInquiry(
+          this.server,
+          workItem.case,
+          {
+            to: { id: group },
+            from: { id: workItem.addressedGroups[0] },
+            remark: "",
+            deadline: moment().add(30, "days").toDate(),
+          },
+          {
+            createdAt: new Date(),
+          }
+        );
+
+        this.server.create("work-item", {
+          taskId: "create-inquiry",
+          status: "READY",
+          addressedGroups: [group],
+        });
+      });
+
+      this.server.create("work-item", {
+        taskId: "create-inquiry",
+        status: "READY",
+        addressedGroups: workItem.addressedGroups,
       });
     }
 

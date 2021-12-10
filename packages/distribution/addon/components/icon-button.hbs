@@ -1,15 +1,20 @@
-<button
-  type="button"
-  class="uk-icon-button
-    {{if @gutter (concat 'uk-icon-button--gutter-' @gutter)}}
-    {{if @gutterTop (concat 'uk-icon-button--gutter-top-' @gutterTop)}}
-    {{if @gutterRight (concat 'uk-icon-button--gutter-right-' @gutterRight)}}
-    {{if @gutterBottom (concat 'uk-icon-button--gutter-bottom-' @gutterBottom)}}
-    {{if @gutterLeft (concat 'uk-icon-button--gutter-left-' @gutterLeft)}}
-    "
-  uk-icon={{unless @fromSvgJar @icon}}
-  ...attributes
-  {{on "click" @onClick}}
->
-  {{#if @fromSvgJar}}{{svg-jar @icon width="20" height="20"}}{{/if}}
-</button>
+{{#if @route}}
+  <LinkTo
+    @route={{@route}}
+    class={{this.class}}
+    uk-icon={{unless @fromSvgJar @icon}}
+    ...attributes
+  >
+    {{#if @fromSvgJar}}{{svg-jar @icon width="20" height="20"}}{{/if}}
+  </LinkTo>
+{{else}}
+  <button
+    type="button"
+    class={{this.class}}
+    uk-icon={{unless @fromSvgJar @icon}}
+    ...attributes
+    {{on "click" @onClick}}
+  >
+    {{#if @fromSvgJar}}{{svg-jar @icon width="20" height="20"}}{{/if}}
+  </button>
+{{/if}}

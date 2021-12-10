@@ -18,6 +18,17 @@ caluma:
 
       complete-error: "Erreur lors de la clôture de la tâche"
 
+    new:
+      title: "Nouvelle demande"
+      search: "Chercher..."
+      suggestions: "Propositions"
+      empty: "Aucune services n'a été trouvée"
+      groups: "{count} {count, plural, =1 {service} other {services}}"
+      selected: "{count, plural, =1 {sélectionné} other {sélectionnés}}"
+      reset: "Réinitialiser"
+      create-draft: "Créer un brouillon"
+      error: "Error lors de la création {count, plural, =1 {de la demande} other {des demandes}}"
+
     types:
       controlling: "Demandé"
       addressed: "A répondre"

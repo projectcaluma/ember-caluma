@@ -11,3 +11,8 @@ dummy:
     load: "Load"
     loadMore: "Load more"
     getWorkItems: "getWorkItems"
+
+  types:
+    federal: "Federal"
+    private: "Private"
+    others: "Others"

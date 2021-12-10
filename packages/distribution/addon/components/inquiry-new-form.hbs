@@ -1,0 +1,110 @@
+<h1>{{t "caluma.distribution.new.title"}}</h1>
+
+{{#if this.selectedGroups.length}}
+  <div class="uk-flex uk-flex-middle">
+    <div class="uk-width-expand">
+      <button type="button" class="uk-link uk-text-light">
+        {{t "caluma.distribution.new.groups" count=this.selectedGroups.length}}
+      </button>
+      <div uk-dropdown class="uk-width-auto">
+        <ul
+          class="uk-list uk-list-bullet uk-margin-remove uk-padding-remove"
+          data-test-selected-groups
+        >
+          {{#each this.selectedGroups as |identifier|}}
+            <li class="uk-text-nowrap">{{group-name identifier}}</li>
+          {{/each}}
+        </ul>
+      </div>
+      {{t "caluma.distribution.new.selected" count=this.selectedGroups.length}}
+    </div>
+    <div>
+      <UkButton
+        @color="default"
+        @label={{t "caluma.distribution.new.reset"}}
+        @on-click={{this.clearSelectedGroups}}
+        data-test-reset
+      />
+      <UkButton
+        @color="primary"
+        @label={{t "caluma.distribution.new.create-draft"}}
+        @type="submit"
+        @loading={{this.submit.isRunning}}
+        @disabled={{this.submit.isRunning}}
+        @on-click={{perform this.submit}}
+        data-test-submit
+      />
+    </div>
+  </div>
+  <hr />
+{{/if}}
+
+<div class="uk-margin-bottom uk-button-group">
+  {{#each-in this.config.new.types as |slug config|}}
+    {{#unless config.disabled}}
+      <UkButton
+        data-test-type={{slug}}
+        @label={{t config.label}}
+        @color={{if (includes slug @selectedTypes) "primary" "default"}}
+        @on-click={{fn this.updateSelectedTypes slug}}
+      />
+    {{/unless}}
+  {{/each-in}}
+</div>
+
+<div class="uk-search uk-search-default uk-width-1-1">
+  <span class="uk-search-icon-flip" uk-search-icon></span>
+  <input
+    placeholder={{t "caluma.distribution.new.search"}}
+    aria-label={{t "caluma.distribution.new.search"}}
+    class="uk-search-input"
+    type="search"
+    value={{@search}}
+    data-test-search
+    {{on "input" (perform this.updateSearch)}}
+  />
+</div>
+
+{{#if this.groups.isRunning}}
+  <div class="uk-text-center uk-margin">
+    <UkSpinner @ratio={{2}} />
+  </div>
+{{else if this.groups.value.length}}
+  <ul class="uk-list uk-list-striped">
+    {{#each this.groups.value as |group|}}
+      {{! template-lint-disable require-presentational-children }}
+      <li
+        role="checkbox"
+        class="uk-flex uk-flex-between uk-flex-middle"
+        data-test-group={{group.identifier}}
+        {{on "click" (fn this.updateSelectedGroups group.identifier)}}
+      >
+        {{! template-lint-disable no-nested-interactive }}
+        <label for="group-{{group.identifier}}">
+          <input
+            type="checkbox"
+            class="uk-checkbox uk-margin-small-right"
+            checked={{includes group.identifier this.selectedGroups}}
+            id="group-{{group.identifier}}"
+          />
+          {{group-name group.identifier}}
+        </label>
+        {{#if group.config.icon}}
+          {{svg-jar
+            group.config.icon
+            width="20"
+            height="20"
+            class=(concat "uk-text-" group.config.iconColor)
+          }}
+        {{/if}}
+      </li>
+    {{/each}}
+  </ul>
+{{else}}
+  <div class="uk-text-center">
+    <UkIcon @icon="search" @ratio={{10}} class="uk-margin-top" />
+    <p class="uk-text-muted">
+      {{t "caluma.distribution.new.empty"}}
+    </p>
+  </div>
+{{/if}}
