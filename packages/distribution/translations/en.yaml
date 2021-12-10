@@ -18,6 +18,17 @@ caluma:
 
       complete-error: "Error while completing the work item"
 
+    new:
+      title: "New inquiry"
+      search: "Search..."
+      suggestions: "Suggestions"
+      empty: "No groups were found"
+      groups: "{count} {count, plural, =1 {group} other {groups}}"
+      selected: "{count, plural, other {selected}}"
+      reset: "Reset"
+      create-draft: "Create draft"
+      error: "Error while creating the {count, plural, =1 {inquiry} other {inquiries}}"
+
     types:
       controlling: "Requested"
       addressed: "To answer"

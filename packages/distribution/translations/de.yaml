@@ -18,6 +18,17 @@ caluma:
 
       complete-error: "Fehler beim Abschliessen der Aufgabe"
 
+    new:
+      title: "Neue Anfrage"
+      search: "Suchen..."
+      suggestions: "Empfehlungen"
+      empty: "Es wurden keine Stellen gefunden"
+      groups: "{count} {count, plural, =1 {Stelle} other {Stellen}}"
+      selected: "{count, plural, other {ausgewählt}}"
+      reset: "Zurücksetzen"
+      create-draft: "Entwurf erstellen"
+      error: "Fehler beim Erstellen der {count, plural, =1 {Anfragen} other {Anfrage}}"
+
     types:
       controlling: "Angefordert"
       addressed: "Zu beantworten"

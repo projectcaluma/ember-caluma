@@ -1,0 +1,37 @@
+query ControlWorkItems(
+  $createTask: ID!
+  $completeTask: ID!
+  $caseId: ID!
+  $currentGroup: String!
+) {
+  create: allWorkItems(
+    filter: [
+      { case: $caseId }
+      { task: $createTask }
+      { status: READY }
+      { addressedGroups: [$currentGroup] }
+    ]
+    first: 1
+  ) {
+    edges {
+      node {
+        id
+      }
+    }
+  }
+  complete: allWorkItems(
+    filter: [
+      { case: $caseId }
+      { task: $completeTask }
+      { status: READY }
+      { addressedGroups: [$currentGroup] }
+    ]
+    first: 1
+  ) {
+    edges {
+      node {
+        id
+      }
+    }
+  }
+}

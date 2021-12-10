@@ -4,6 +4,12 @@ export default function (server) {
   server.createList("user", 5);
   const groups = server.createList("group", 5);
 
+  ["suggestions", "federal", "private", "others"].forEach((name) => {
+    server.createList("group", 5, {
+      type: server.create("group-type", { name }),
+    });
+  });
+
   const form = server.create("form");
 
   server.create("question", {

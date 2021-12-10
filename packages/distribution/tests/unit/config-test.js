@@ -29,23 +29,17 @@ module("Unit | config", function (hooks) {
     };
 
     assert.deepEqual(cls.config, {
-      warningPeriod: 1,
+      controls: {
+        completeTask: "complete-distribution",
+        createTask: "create-inquiry",
+      },
       inquiry: {
-        task: "inquiry",
-        deadlineQuestion: "inquiry-deadline",
-        infoQuestion: "inquiry-remark",
         answer: {
-          statusQuestion: "q1",
-          infoQuestion: "inquiry-answer-reason",
-          statusMapping: {
-            "inquiry-answer-status-positive": "positive",
-            "inquiry-answer-status-negative": "negative",
-            "inquiry-answer-status-needs-interaction": "needs-interaction",
-            "q1-a1": "needs-interaction",
-            "q1-a2": "negative",
-            "q1-a3": "positive",
-          },
           buttons: {
+            "adjust-inquiry-answer": {
+              color: "primary",
+              label: "caluma.distribution.answer.release-adjustment-for-review",
+            },
             "compose-inquiry-answer": {
               color: "primary",
               label: "caluma.distribution.answer.release-for-review",
@@ -58,13 +52,33 @@ module("Unit | config", function (hooks) {
               color: "default",
               label: "caluma.distribution.answer.revise",
             },
-            "adjust-inquiry-answer": {
-              color: "primary",
-              label: "caluma.distribution.answer.release-adjustment-for-review",
-            },
+          },
+          infoQuestion: "inquiry-answer-reason",
+          statusMapping: {
+            "inquiry-answer-status-needs-interaction": "needs-interaction",
+            "inquiry-answer-status-negative": "negative",
+            "inquiry-answer-status-positive": "positive",
+            "q1-a1": "needs-interaction",
+            "q1-a2": "negative",
+            "q1-a3": "positive",
+          },
+          statusQuestion: "q1",
+        },
+        deadlineQuestion: "inquiry-deadline",
+        infoQuestion: "inquiry-remark",
+        task: "inquiry",
+      },
+      new: {
+        defaultTypes: ["suggestions"],
+        types: {
+          suggestions: {
+            icon: "bulb-outline",
+            iconColor: "warning",
+            label: "caluma.distribution.new.suggestions",
           },
         },
       },
+      warningPeriod: 1,
     });
   });
 });

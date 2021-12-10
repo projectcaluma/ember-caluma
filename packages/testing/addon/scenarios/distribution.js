@@ -56,6 +56,8 @@ export function createBlueprint(server) {
   server.create("workflow", { slug: "distribution" });
   server.create("workflow", { slug: "inquiry" });
 
+  server.create("task", { slug: "create-inquiry" });
+  server.create("task", { slug: "complete-distribution" });
   server.create("task", { slug: "inquiry" });
   server.create("task", {
     slug: "compose-inquiry-answer",
@@ -188,13 +190,31 @@ export function reviseInquiry(server, { inquiry }) {
   return inquiry;
 }
 
-export default function (server, groups) {
-  createBlueprint(server);
-
+export function createCase(server, { group }) {
   const distributionCase = server.create("case", {
     status: "RUNNING",
     workflowId: "distribution",
   });
+
+  server.create("work-item", {
+    case: distributionCase,
+    taskId: "create-inquiry",
+    status: "READY",
+    addressedGroups: [group.id],
+  });
+
+  server.create("work-item", {
+    case: distributionCase,
+    taskId: "complete-distribution",
+    status: "READY",
+    addressedGroups: [group.id],
+  });
+
+  return distributionCase;
+}
+
+export default function (server, groups) {
+  createBlueprint(server);
 
   const g = groups[0];
   const g1 = groups[1];
@@ -207,6 +227,14 @@ export default function (server, groups) {
   const answer = (...args) => answerInquiry(server, ...args);
   const confirm = (...args) => confirmInquiry(...args);
   const revise = (...args) => reviseInquiry(server, ...args);
+
+  const distributionCase = createCase(server, { group: g1 });
+
+  server.create("work-item", {
+    taskId: "create-inquiry",
+    status: "READY",
+    addressedGroups: [g.id],
+  });
 
   // controlling
   create({ from: g, to: g1 });

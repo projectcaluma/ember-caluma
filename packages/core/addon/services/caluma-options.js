@@ -1,3 +1,4 @@
+import { assert } from "@ember/debug";
 import Service, { inject as service } from "@ember/service";
 import { tracked } from "@glimmer/tracking";
 
@@ -108,5 +109,11 @@ export default class CalumaOptionsService extends Service {
       [this.userIdentifierProperty]: identifier,
       [this.userNameProperty]: identifier,
     }));
+  }
+
+  fetchTypedGroups(/* types, search */) {
+    assert(
+      "`fetchTypedGroups` must be implemented on the Caluma options service"
+    );
   }
 }

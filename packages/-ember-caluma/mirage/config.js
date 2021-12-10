@@ -22,8 +22,21 @@ export default function () {
     return new Response(200);
   });
 
-  this.get("/groups", { coalesce: true });
   this.get("/users", { coalesce: true });
+
+  this.get("/groups", ({ groups }, request) => {
+    const ids = request.queryParams["filter[id]"];
+    const search = request.queryParams["filter[search]"];
+    const types = request.queryParams["filter[types]"];
+
+    return groups.all().filter((group) => {
+      return (
+        (!ids || ids.split(",").includes(group.id)) &&
+        (!search || group.name.toLowerCase().includes(search.toLowerCase())) &&
+        (!types || types.split(",").includes(group.type?.name))
+      );
+    });
+  });
 
   this.passthrough();
 }

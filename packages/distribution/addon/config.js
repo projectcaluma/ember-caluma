@@ -1,5 +1,6 @@
 import { getOwner } from "@ember/application";
 import merge from "lodash.merge";
+import { cached } from "tracked-toolbox";
 
 export const INQUIRY_STATUS = {
   DRAFT: "draft",
@@ -9,11 +10,15 @@ export const INQUIRY_STATUS = {
   NEEDS_INTERACTION: "needs-interaction",
 };
 
-export default function config() {
-  return {
+export default function config(target, property) {
+  return cached(target, property, {
     get() {
       return merge(
         {
+          controls: {
+            createTask: "create-inquiry",
+            completeTask: "complete-distribution",
+          },
           warningPeriod: 3,
           inquiry: {
             task: "inquiry",
@@ -49,9 +54,19 @@ export default function config() {
               },
             },
           },
+          new: {
+            defaultTypes: ["suggestions"],
+            types: {
+              suggestions: {
+                label: "caluma.distribution.new.suggestions",
+                icon: "bulb-outline",
+                iconColor: "warning",
+              },
+            },
+          },
         },
         getOwner(this).lookup("service:calumaOptions")?.distribution ?? {}
       );
     },
-  };
+  });
 }

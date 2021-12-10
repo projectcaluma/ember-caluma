@@ -1,5 +1,6 @@
-import Model, { attr } from "@ember-data/model";
+import Model, { attr, belongsTo } from "@ember-data/model";
 
 export default class GroupModel extends Model {
   @attr name;
+  @belongsTo("groupType") type;
 }
