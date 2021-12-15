@@ -1380,15 +1380,6 @@
     ember-cli-babel "^7.26.6"
     ember-modifier-manager-polyfill "^1.2.0"
 
-"@ember/render-modifiers@^2.0.2":
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com/@ember/render-modifiers/-/render-modifiers-2.0.2.tgz#a5a84c7d1481ac4936ba03695ba98776f1274afd"
-  integrity sha512-TURKkO+ihsgVAw1gql/76DILs2VbJZGWeB4pUsGFxFEeC8SFRD9N58Wlh+uJS3Q8vg6oZZa16dw1rFiTv0q43Q==
-  dependencies:
-    "@embroider/macros" ">= 0.48.1 < 2.0.0-alpha.1"
-    ember-cli-babel "^7.26.6"
-    ember-modifier-manager-polyfill "^1.2.0"
-
 "@ember/string@^3.0.0":
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/@ember/string/-/string-3.0.0.tgz#e3a3cc7874c9f64eadfdac644d8b1238721ce289"
@@ -8384,7 +8375,17 @@ ember-compatibility-helpers@^1.1.2, ember-compatibility-helpers@^1.2.0, ember-co
     fs-extra "^9.1.0"
     semver "^5.4.1"
 
-ember-composable-helpers@4.5.0, ember-composable-helpers@^4.4.1, ember-composable-helpers@^4.5.0:
+ember-composable-helpers@5.0.0, ember-composable-helpers@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/ember-composable-helpers/-/ember-composable-helpers-5.0.0.tgz#055bab3a3e234ab2917499b1465e968c253ca885"
+  integrity sha512-gyUrjiSju4QwNrsCLbBpP0FL6VDFZaELNW7Kbcp60xXhjvNjncYgzm4zzYXhT+i1lLA6WEgRZ3lOGgyBORYD0w==
+  dependencies:
+    "@babel/core" "^7.0.0"
+    broccoli-funnel "2.0.1"
+    ember-cli-babel "^7.26.3"
+    resolve "^1.10.0"
+
+ember-composable-helpers@^4.4.1:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/ember-composable-helpers/-/ember-composable-helpers-4.5.0.tgz#94febbdf4348e64f45f7a6f993f326e32540a61e"
   integrity sha512-XjpDLyVPsLCy6kd5dIxZonOECCO6AA5sY5Hr6tYUbJg3s5ghFAiFWaNcYraYC+fL2yPJQAswwpfwGlQORUJZkw==
