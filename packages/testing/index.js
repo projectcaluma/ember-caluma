@@ -15,6 +15,6 @@ module.exports = {
       destDir: "mirage",
     });
 
-    return mergeTrees([appTree, mirageTree]);
+    return mergeTrees([appTree, mirageTree].filter(Boolean));
   },
 };
