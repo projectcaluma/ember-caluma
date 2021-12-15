@@ -19,7 +19,7 @@
     "@glimmer/component": "^1.0.4",
     "@glimmer/tracking": "^1.0.4",
     "@projectcaluma/ember-core": "^10.1.0",
-    "@projectcaluma/ember-form": "^10.0.2",
+    "@projectcaluma/ember-form": "^10.0.3",
     "codejar": "^3.5.0",
     "ember-apollo-client": "^3.2.0",
     "ember-auto-import": "^2.2.3",
