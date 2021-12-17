@@ -9,9 +9,7 @@ module("Acceptance | question reorder", function (hooks) {
   setupMirage(hooks);
   setupIntl(hooks);
 
-  // for some reason, the triggerEvent action does not do what it did before and
-  // causes this test to fail - therefore we skip it and hope for the best.
-  test.todo("can reorder questions", async function (assert) {
+  test("can reorder questions", async function (assert) {
     assert.expect(2);
 
     const questions = this.server.createList("question", 4);

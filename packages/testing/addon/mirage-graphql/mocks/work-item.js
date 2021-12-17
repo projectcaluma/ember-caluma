@@ -7,27 +7,25 @@ import BaseMock from "@projectcaluma/ember-testing/mirage-graphql/mocks/base";
 export default class extends BaseMock {
   @register("ResumeWorkItemPayload")
   handleResumeWorkItem(_, { input }) {
-    const { id } = deserialize(input);
-
-    this.db.workItems.update(id, { status: "READY" });
-
-    return this.handleSavePayload.fn.call(this, _, { input });
+    return this.handleSavePayload.fn.call(this, _, {
+      input: { id: input.id, status: "READY" },
+    });
   }
 
   @register("SuspendWorkItemPayload")
   handleSuspendWorkItem(_, { input }) {
-    const { id } = deserialize(input);
-
-    this.db.workItems.update(id, { status: "SUSPENDED" });
-
-    return this.handleSavePayload.fn.call(this, _, { input });
+    return this.handleSavePayload.fn.call(this, _, {
+      input: { id: input.id, status: "SUSPENDED" },
+    });
   }
 
   @register("CompleteWorkItemPayload")
   handleCompleteWorkItem(_, { input }) {
     const { id } = deserialize(input);
 
-    const workItem = this.db.workItems.find(id);
+    const workItem = this.collection.find(id);
+
+    const taskId = workItem.taskId;
     const caseId = workItem.caseId;
 
     /**
@@ -37,11 +35,7 @@ export default class extends BaseMock {
      * complex implementation of backend logic which is why we keep this static
      * for now.
      */
-    if (
-      ["adjust-inquiry-answer", "compose-inquiry-answer"].includes(
-        workItem.taskId
-      )
-    ) {
+    if (["adjust-inquiry-answer", "compose-inquiry-answer"].includes(taskId)) {
       this.server.create("work-item", {
         caseId,
         status: "READY",
@@ -52,21 +46,18 @@ export default class extends BaseMock {
         status: "READY",
         taskId: "revise-inquiry-answer",
       });
-    } else if (workItem.taskId === "confirm-inquiry-answer") {
-      this.db.workItems.update(
-        { caseId, taskId: "revise-inquiry-answer" },
-        { status: "CANCELED" }
-      );
-      this.db.workItems.update(
-        { childCaseId: caseId },
-        { status: "COMPLETED" }
-      );
-      this.db.cases.update(caseId, { status: "COMPLETED" });
-    } else if (workItem.taskId === "revise-inquiry-answer") {
-      this.db.workItems.update(
-        { caseId, taskId: "confirm-inquiry-answer" },
-        { status: "CANCELED" }
-      );
+    } else if (taskId === "confirm-inquiry-answer") {
+      this.collection
+        .findBy({ caseId, taskId: "revise-inquiry-answer" })
+        .update({ status: "CANCELED" });
+      this.collection
+        .findBy({ childCaseId: caseId })
+        .update({ status: "COMPLETED" });
+      this.schema.cases.find(caseId).update({ status: "COMPLETED" });
+    } else if (taskId === "revise-inquiry-answer") {
+      this.collection
+        .findBy({ caseId, taskId: "confirm-inquiry-answer" })
+        .update({ status: "CANCELED" });
       this.server.create("work-item", {
         caseId,
         status: "READY",
@@ -74,8 +65,8 @@ export default class extends BaseMock {
       });
     }
 
-    this.db.workItems.update(id, { status: "COMPLETED" });
-
-    return this.handleSavePayload.fn.call(this, _, { input });
+    return this.handleSavePayload.fn.call(this, _, {
+      input: { id: input.id, status: "COMPLETED" },
+    });
   }
 }

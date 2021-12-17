@@ -19,7 +19,7 @@ module("Unit | Mirage GraphQL Mock | base", function (hooks) {
   });
 
   test("ignores unregistered methods", function (assert) {
-    const x = new BaseMock("x");
+    const x = new BaseMock("x", this.server);
     const proto = Reflect.getPrototypeOf(x);
 
     Reflect.defineProperty(proto, "method1", {

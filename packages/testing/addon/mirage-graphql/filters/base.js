@@ -1,9 +1,8 @@
 import { camelize } from "@ember/string";
 
 export default class {
-  constructor(type, db) {
+  constructor(type) {
     this.type = type;
-    this.db = db;
   }
 
   _getFilterFns(rawFilters) {

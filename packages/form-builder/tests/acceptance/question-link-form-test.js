@@ -16,10 +16,7 @@ module("Acceptance | question link form", function (hooks) {
     const subForm = this.server.create("form", { questions });
     const question = this.server.create("question", {
       type: "FORM",
-      subForm: {
-        slug: subForm.slug,
-        name: subForm.name,
-      },
+      subForm,
     });
     const form = this.server.create("form", { questions: [] });
 
@@ -70,16 +67,13 @@ module("Acceptance | question link form", function (hooks) {
     assert.expect(8);
 
     this.server.create("document");
-    const rowformQuestion = this.server.create("question", { type: "TABLE" });
-    const rowform = this.server.create("form", {
-      questions: [rowformQuestion],
+    const rowFormQuestion = this.server.create("question", { type: "TABLE" });
+    const rowForm = this.server.create("form", {
+      questions: [rowFormQuestion],
     });
     const question = this.server.create("question", {
       type: "TABLE",
-      rowForm: {
-        slug: rowform.slug,
-        name: rowform.name,
-      },
+      rowForm,
     });
     const form = this.server.create("form", { questions: [question] });
 
@@ -87,7 +81,7 @@ module("Acceptance | question link form", function (hooks) {
     await click("[data-test-add-question]");
     assert
       .dom(
-        `[data-test-question-list-item=${rowformQuestion.slug}] [data-test-link-subform]`
+        `[data-test-question-list-item=${rowFormQuestion.slug}] [data-test-link-subform]`
       )
       .doesNotExist();
 
@@ -95,15 +89,15 @@ module("Acceptance | question link form", function (hooks) {
     await click(
       `[data-test-question-list-item=${question.slug}] [data-test-link-subform]`
     );
-    assert.strictEqual(currentURL(), `/${rowform.slug}`);
+    assert.strictEqual(currentURL(), `/${rowForm.slug}`);
 
     assert.dom("[data-test-question-list-item]").exists({ count: 1 });
     assert
       .dom("[data-test-question-list-item]")
-      .containsText(rowformQuestion.slug);
+      .containsText(rowFormQuestion.slug);
     assert.strictEqual(
       document.querySelector("input[name='name']").value,
-      rowform.name
+      rowForm.name
     );
 
     assert
@@ -111,9 +105,9 @@ module("Acceptance | question link form", function (hooks) {
       .exists({ count: 2 });
     assert
       .dom(".uk-breadcrumb :nth-child(2) .cfb-navigation__item__link")
-      .hasAttribute("href", `/${rowform.slug}`);
+      .hasAttribute("href", `/${rowForm.slug}`);
     assert
       .dom(".uk-breadcrumb :nth-child(2) .cfb-navigation__item__link")
-      .hasText(rowform.name);
+      .hasText(rowForm.name);
   });
 });

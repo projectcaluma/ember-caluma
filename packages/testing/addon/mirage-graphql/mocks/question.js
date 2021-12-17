@@ -1,13 +1,5 @@
-import { MockList } from "graphql-tools";
-
-import {
-  Filter,
-  register,
-  serialize,
-} from "@projectcaluma/ember-testing/mirage-graphql";
+import { register } from "@projectcaluma/ember-testing/mirage-graphql";
 import BaseMock from "@projectcaluma/ember-testing/mirage-graphql/mocks/base";
-
-const optionFilter = new Filter("Option");
 
 export default class extends BaseMock {
   @register("SaveTextQuestionPayload")
@@ -47,50 +39,26 @@ export default class extends BaseMock {
 
   @register("SaveChoiceQuestionPayload")
   handleSaveChoiceQuestion(_, { input }) {
-    const options = input.options.map((slug) =>
-      optionFilter.find(this.db.options, { slug })
-    );
-    const optionIds = options.map(({ id }) => String(id));
-
-    const res = this.handleSavePayload.fn.call(this, _, {
-      input: { ...input, options, optionIds, type: "CHOICE" },
-    });
-
-    Object.assign(res.question, {
-      options: {
-        edges: () =>
-          new MockList(options.length, () => ({
-            node: (r, v, _, meta) =>
-              serialize(options[meta.path.prev.key], "Option"),
-          })),
+    return this.handleSavePayload.fn.call(this, _, {
+      input: {
+        ...input,
+        optionIds: input.options,
+        options: undefined,
+        type: "CHOICE",
       },
     });
-
-    return res;
   }
 
   @register("SaveMultipleChoiceQuestionPayload")
   handleSaveMultipleChoiceQuestion(_, { input }) {
-    const options = input.options.map((slug) =>
-      optionFilter.find(this.db.options, { slug })
-    );
-    const optionIds = options.map(({ id }) => String(id));
-
-    const res = this.handleSavePayload.fn.call(this, _, {
-      input: { ...input, options, optionIds, type: "MULTIPLE_CHOICE" },
-    });
-
-    Object.assign(res.question, {
-      options: {
-        edges: () =>
-          new MockList(options.length, () => ({
-            node: (r, v, _, meta) =>
-              serialize(options[meta.path.prev.key], "Option"),
-          })),
+    return this.handleSavePayload.fn.call(this, _, {
+      input: {
+        ...input,
+        optionIds: input.options,
+        options: undefined,
+        type: "MULTIPLE_CHOICE",
       },
     });
-
-    return res;
   }
 
   @register("SaveTableQuestionPayload")
@@ -98,7 +66,8 @@ export default class extends BaseMock {
     return this.handleSavePayload.fn.call(this, _, {
       input: {
         ...input,
-        ...(input.rowForm ? { rowForm: { slug: input.rowForm } } : {}),
+        rowFormId: input.rowForm,
+        rowForm: undefined,
         type: "TABLE",
       },
     });
@@ -109,7 +78,8 @@ export default class extends BaseMock {
     return this.handleSavePayload.fn.call(this, _, {
       input: {
         ...input,
-        ...(input.subForm ? { subForm: { slug: input.subForm } } : {}),
+        subFormId: input.subForm,
+        subForm: undefined,
         type: "FORM",
       },
     });
