@@ -5,27 +5,23 @@ export default class extends BaseFilter {
     return records.filter(({ status }) => invert !== (status === value));
   }
 
-  tasks(records, value) {
-    const taskIds = this.db.tasks
-      .filter(({ slug }) => value.includes(slug))
-      .map(({ id }) => id);
-
-    return records.filter(({ taskId }) => taskIds.includes(taskId));
+  tasks(records, value, { invert = false }) {
+    return records.filter((record) => invert !== value.includes(record.taskId));
   }
 
-  task(records, value) {
-    return this.tasks(records, [value]);
+  task(records, value, { invert = false }) {
+    return this.tasks(records, [value], { invert });
   }
 
   controllingGroups(records, value, { invert = false }) {
     return records.filter((record) =>
-      value.every((g) => invert !== record.controllingGroups.includes(g))
+      value.every((g) => invert !== record.controllingGroups?.includes(g))
     );
   }
 
   addressedGroups(records, value, { invert = false }) {
     return records.filter((record) =>
-      value.every((g) => invert !== record.addressedGroups.includes(g))
+      value.every((g) => invert !== record.addressedGroups?.includes(g))
     );
   }
 }

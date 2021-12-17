@@ -12,10 +12,8 @@ export default class extends BaseFilter {
   }
 
   excludeForms(records, value) {
-    const forms = this.db.forms.filter(({ slug }) => value.includes(slug));
-
     return records.filter(
-      ({ formIds }) => !forms.some(({ id }) => (formIds || []).includes(id))
+      ({ formIds }) => !value.some((id) => (formIds || []).includes(id))
     );
   }
 }

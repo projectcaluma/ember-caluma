@@ -148,6 +148,7 @@ module("Integration | Component | cf-field/input/table", function (hooks) {
       this.tableAnswer = this.server.create("answer", {
         documentId: this.document.id,
         questionId: this.tableQuestion.id,
+        value: [],
       });
 
       const data = {

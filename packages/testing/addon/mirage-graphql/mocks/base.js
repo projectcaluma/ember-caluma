@@ -1,5 +1,6 @@
 import { camelize, dasherize, classify } from "@ember/string";
 import { singularize, pluralize } from "ember-inflector";
+import faker from "faker";
 import { MockList } from "graphql-tools";
 
 import {
@@ -50,16 +51,16 @@ export const TYPE_MAPPING = {
 };
 
 export default class {
-  constructor(type, db, server) {
+  constructor(type, server) {
     this.type = type;
-    this.db = db;
     this.server = server;
+    this.schema = server.schema;
 
-    this.filter = new Filter(type, db);
+    this.filter = new Filter(type);
   }
 
   get collection() {
-    return this.db[pluralize(camelize(this.type))];
+    return this.schema[pluralize(camelize(this.type))];
   }
 
   getHandlers() {
@@ -113,17 +114,22 @@ export default class {
 
   @register("{type}Connection")
   handleConnection(root, vars, _, { fieldName }) {
-    let records = this.filter.filter(this.collection, deserialize(vars));
+    let records = this.filter.filter(
+      this.collection.all().models,
+      deserialize(vars)
+    );
 
     const relKey = `${singularize(fieldName)}Ids`;
     if (root && Object.prototype.hasOwnProperty.call(root, relKey)) {
       const ids = root[relKey];
-      records = records.filter(({ id }) => ids && ids.includes(id));
+      records = records
+        .filter(({ id }) => ids && ids.includes(id))
+        .sort((a, b) => ids.indexOf(a.id) - ids.indexOf(b.id));
     }
 
     // add base64 encoded index as cursor to records
     records = records.map((record, index) => ({
-      ...record,
+      ...record.toJSON(),
       _cursor: btoa(index),
     }));
 
@@ -177,18 +183,19 @@ export default class {
       vars = { id: root[relKey] };
     }
 
-    const record = this.filter.find(this.collection, deserialize(vars));
+    const record = this.collection.findBy(deserialize(vars));
 
-    return record && serialize(record, this.type);
+    return record && serialize(record.toJSON(), this.type);
   }
 
   @register("Save{subtype}{type}Payload")
-  handleSavePayload(_, { input: { clientMutationId, slug, id, ...args } }) {
+  handleSavePayload(
+    _,
+    { input: { clientMutationId = faker.datatype.uuid(), slug, id, ...args } }
+  ) {
     const identifier = slug ? { slug } : { id };
 
-    const relKeys = this.server.schema.modelFor(
-      camelize(this.type)
-    ).foreignKeys;
+    const relKeys = this.schema.modelFor(camelize(this.type)).foreignKeys;
 
     const parsedArgs = Object.entries(args).reduce((parsed, [key, value]) => {
       const re = new RegExp(`${camelize(key)}Id(s)?`);
@@ -196,14 +203,14 @@ export default class {
 
       return {
         ...parsed,
-        [relKey ?? key]: value,
+        ...(value === undefined ? {} : { [relKey ?? key]: value }),
       };
     }, {});
 
-    const obj = this.filter.find(this.collection, identifier);
+    const obj = this.collection.findBy(identifier);
     const res = obj
-      ? this.collection.update(obj.id, parsedArgs)
-      : this.collection.insert(
+      ? obj.update(deserialize(parsedArgs))
+      : this.collection.create(
           this.server.build(
             dasherize(this.type),
             deserialize({
@@ -214,13 +221,7 @@ export default class {
         );
 
     return {
-      [camelize(this.type)]: serialize(
-        {
-          ...relKeys.reduce((rels, key) => ({ ...rels, [key]: null }), {}),
-          ...res,
-        },
-        this.type
-      ),
+      [camelize(this.type)]: serialize(res.toJSON(), this.type),
       clientMutationId,
     };
   }

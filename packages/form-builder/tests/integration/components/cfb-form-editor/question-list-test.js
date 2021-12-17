@@ -61,7 +61,10 @@ module(
     test("it links subforms in form questions", async function (assert) {
       assert.expect(2);
 
-      const formQuestion = this.server.create("question", { type: "FORM" });
+      const formQuestion = this.server.create("question", {
+        type: "FORM",
+        subForm: this.server.create("form"),
+      });
       this.server.create("form", {
         slug: "new-form",
         questions: [formQuestion],
@@ -76,7 +79,10 @@ module(
     test("it links rowforms in table questions", async function (assert) {
       assert.expect(2);
 
-      const tableQuestion = this.server.create("question", { type: "TABLE" });
+      const tableQuestion = this.server.create("question", {
+        type: "TABLE",
+        rowForm: this.server.create("form"),
+      });
       this.server.create("form", {
         slug: "new-form",
         questions: [tableQuestion],
@@ -90,9 +96,7 @@ module(
         .hasText(tableQuestion.rowForm.name);
     });
 
-    // for some reason, the triggerEvent action does not do what it did before and
-    // causes this test to fail - therefore we skip it and hope for the best.
-    test.todo("it can reorder questions", async function (assert) {
+    test("it can reorder questions", async function (assert) {
       assert.expect(2);
 
       const question = this.server.create("question", {

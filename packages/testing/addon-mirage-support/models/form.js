@@ -1,5 +1,5 @@
 import { Model, hasMany } from "ember-cli-mirage";
 
 export default Model.extend({
-  questions: hasMany(),
+  questions: hasMany({ inverse: "forms" }),
 });
