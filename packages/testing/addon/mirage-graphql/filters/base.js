@@ -10,16 +10,18 @@ export default class {
   _getFilterFns(rawFilters) {
     const filters = Array.isArray(rawFilters)
       ? // new format
-        rawFilters.map((filter) => {
-          const entries = Object.entries(filter);
-          const key = entries[0][0];
-          const value = entries[0][1];
-          const options = entries
-            .slice(1)
-            .reduce((opts, [k, v]) => ({ ...opts, [k]: v }), {});
+        rawFilters
+          .filter((filter) => Object.keys(filter).length !== 0) // filter out empty filters
+          .map((filter) => {
+            const entries = Object.entries(filter);
+            const key = entries[0][0];
+            const value = entries[0][1];
+            const options = entries
+              .slice(1)
+              .reduce((opts, [k, v]) => ({ ...opts, [k]: v }), {});
 
-          return { key, value, options };
-        })
+            return { key, value, options };
+          })
       : // old format
         Object.entries(rawFilters).map(([key, value]) => ({
           key,
