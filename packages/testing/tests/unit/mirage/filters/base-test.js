@@ -42,4 +42,15 @@ module("Unit | Mirage GraphQL Filter | base", function (hooks) {
       this.collection
     );
   });
+
+  test("does not fail if an empty filter is passed in", async function (assert) {
+    assert.expect(1);
+
+    assert.deepEqual(
+      this.filter.filter(this.collection, {
+        filter: [{}],
+      }),
+      this.collection
+    );
+  });
 });
