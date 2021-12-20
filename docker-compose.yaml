@@ -1,7 +1,7 @@
 version: "3"
 services:
   db:
-    image: postgres:9.4
+    image: postgres:latest
     environment:
       - POSTGRES_USER=caluma
       - POSTGRES_PASSWORD=caluma
@@ -9,7 +9,7 @@ services:
       - dbdata:/var/lib/postgresql/data
 
   caluma:
-    image: projectcaluma/caluma:latest
+    image: ghcr.io/projectcaluma/caluma:dev
     ports:
       - "8000:8000"
     depends_on:
@@ -20,7 +20,7 @@ services:
       - ENV=docker
       - LANGUAGE_CODE=en
       - LANGUAGES=en
-      #- MINIO_STORAGE_ENDPOINT=localhost:9000
+      - MINIO_STORAGE_ENDPOINT=localhost:9000
 
   minio:
     image: minio/minio:latest
