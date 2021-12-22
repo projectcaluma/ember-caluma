@@ -1,4 +1,3 @@
-import { set } from "@ember/object";
 import { settled } from "@ember/test-helpers";
 import ValidatorServiceStub from "dummy/tests/helpers/validator-service-stub";
 import { setupIntl } from "ember-intl/test-support";
@@ -19,18 +18,20 @@ module("Unit | Library | field", function (hooks) {
 
     this.set(
       "document",
-      this.owner
-        .factoryFor("caluma-model:document")
-        .create({ raw: parseDocument(data) })
+      new (this.owner.factoryFor("caluma-model:document").class)({
+        raw: parseDocument(data),
+        owner: this.owner,
+      })
     );
 
     await settled();
 
     this.addField = (raw) =>
-      this.owner.factoryFor("caluma-model:field").create({
+      new (this.owner.factoryFor("caluma-model:field").class)({
         raw,
         fieldset: this.document.fieldsets[0],
         document: this.document,
+        owner: this.owner,
       });
   });
 
@@ -51,7 +52,7 @@ module("Unit | Library | field", function (hooks) {
     assert.false(answeredField.isNew);
     assert.true(unansweredField.isNew);
 
-    answeredField.set("answer.value", null);
+    answeredField.answer.value = null;
 
     assert.true(answeredField.isNew);
   });
@@ -62,7 +63,7 @@ module("Unit | Library | field", function (hooks) {
     const field = this.document.findField("question-1");
 
     assert.strictEqual(field.question.slug, "question-1");
-    assert.strictEqual(field.question.label, "Question 1");
+    assert.strictEqual(field.question.raw.label, "Question 1");
   });
 
   test("can compute the answer", async function (assert) {
@@ -73,7 +74,10 @@ module("Unit | Library | field", function (hooks) {
 
     assert.strictEqual(field.answer.value, "test answer");
     assert.strictEqual(fieldWithoutAnswer.answer.value, null);
-    assert.strictEqual(fieldWithoutAnswer.answer.__typename, "StringAnswer");
+    assert.strictEqual(
+      fieldWithoutAnswer.answer.raw.__typename,
+      "StringAnswer"
+    );
     assert.strictEqual(fieldWithoutAnswer.answer.id, undefined);
   });
 
@@ -83,10 +87,10 @@ module("Unit | Library | field", function (hooks) {
     const dependsOnField = this.document.findField("question-1");
     const field = this.document.findField("question-2");
 
-    dependsOnField.set("answer.value", "somevalue");
+    dependsOnField.answer.value = "somevalue";
     assert.true(field.optional);
 
-    dependsOnField.set("answer.value", "require-question-2");
+    dependsOnField.answer.value = "require-question-2";
     assert.false(field.optional);
   });
 
@@ -96,10 +100,10 @@ module("Unit | Library | field", function (hooks) {
     const dependsOnField = this.document.findField("question-1");
     const field = this.document.findField("question-2");
 
-    dependsOnField.set("answer.value", "somevalue");
+    dependsOnField.answer.value = "somevalue";
     assert.true(field.hidden);
 
-    dependsOnField.set("answer.value", "show-question-2");
+    dependsOnField.answer.value = "show-question-2";
     assert.false(field.hidden);
   });
 
@@ -109,7 +113,10 @@ module("Unit | Library | field", function (hooks) {
     const field = this.document.findField("question-2");
     const dependentField = this.document.findField("question-1");
 
-    assert.deepEqual(field.hiddenDependencies, [dependentField]);
+    assert.deepEqual(
+      field.hiddenDependencies.map((dep) => dep.pk),
+      [dependentField.pk]
+    );
   });
 
   test("it computes optionalDependencies based on 'answer' transform", async function (assert) {
@@ -118,7 +125,10 @@ module("Unit | Library | field", function (hooks) {
     const field = this.document.findField("question-2");
     const dependentField = this.document.findField("question-1");
 
-    assert.deepEqual(field.optionalDependencies, [dependentField]);
+    assert.deepEqual(
+      field.optionalDependencies.map((dep) => dep.pk),
+      [dependentField.pk]
+    );
   });
 
   test("computes the correct jexl context", async function (assert) {
@@ -165,19 +175,23 @@ module("Unit | Library | field", function (hooks) {
     const field = this.document.findField("table");
 
     assert.ok(field.isDefault);
-    field.answer.value[0].fields[0].value = "some other value";
+    field.answer.value[0].fields[0].answer.value = "some other value";
     assert.notOk(field.isDefault);
   });
 
   test("it can handle newlines in Jexl expressions", async function (assert) {
     assert.expect(2);
 
-    const field = this.document.findField("question-2");
-
     const whitespaced = "(\n  1 == 1\r    &&\r    2 == 2\n)";
-
-    field.question.set("isHidden", whitespaced);
-    field.question.set("isRequired", whitespaced);
+    const field = this.addField({
+      question: {
+        __typename: "TextQuestion",
+        isHidden: whitespaced,
+        isRequired: whitespaced,
+        meta: {},
+      },
+      answer: null,
+    });
 
     assert.true(field.hidden);
     assert.false(field.optional);
@@ -191,6 +205,7 @@ module("Unit | Library | field", function (hooks) {
         __typename: "TextQuestion",
         isHidden: "false",
         isRequired: "true",
+        meta: {},
       },
       answer: {
         stringValue: "",
@@ -212,6 +227,7 @@ module("Unit | Library | field", function (hooks) {
         __typename: "TextQuestion",
         isHidden: "false",
         isRequired: "false",
+        meta: {},
       },
       answer: null,
     });
@@ -228,6 +244,7 @@ module("Unit | Library | field", function (hooks) {
         __typename: "FormQuestion",
         isHidden: "false",
         isRequired: "true",
+        meta: {},
       },
       answer: null,
     });
@@ -245,6 +262,7 @@ module("Unit | Library | field", function (hooks) {
         textMaxLength: 4,
         isHidden: "false",
         isRequired: "true",
+        meta: {},
         __typename: "TextQuestion",
       },
       answer: {
@@ -253,13 +271,13 @@ module("Unit | Library | field", function (hooks) {
       },
     });
 
-    field.set("answer.value", "Testx");
+    field.answer.value = "Testx";
     await field.validate.perform();
     assert.deepEqual(field.errors, [
       't:caluma.form.validation.tooLong:("max":4,"min":2,"value":"Testx")',
     ]);
 
-    field.set("answer.value", "x");
+    field.answer.value = "x";
     await field.validate.perform();
     assert.deepEqual(field.errors, [
       't:caluma.form.validation.tooShort:("max":4,"min":2,"value":"x")',
@@ -275,6 +293,7 @@ module("Unit | Library | field", function (hooks) {
         textareaMaxLength: 4,
         isHidden: "false",
         isRequired: "true",
+        meta: {},
         __typename: "TextareaQuestion",
       },
       answer: {
@@ -283,13 +302,13 @@ module("Unit | Library | field", function (hooks) {
       },
     });
 
-    field.set("answer.value", "Testx");
+    field.answer.value = "Testx";
     await field.validate.perform();
     assert.deepEqual(field.errors, [
       't:caluma.form.validation.tooLong:("max":4,"min":2,"value":"Testx")',
     ]);
 
-    field.set("answer.value", "x");
+    field.answer.value = "x";
     await field.validate.perform();
     assert.deepEqual(field.errors, [
       't:caluma.form.validation.tooShort:("max":4,"min":2,"value":"x")',
@@ -305,6 +324,7 @@ module("Unit | Library | field", function (hooks) {
         integerMaxValue: 2,
         isHidden: "false",
         isRequired: "true",
+        meta: {},
         __typename: "IntegerQuestion",
       },
       answer: {
@@ -313,19 +333,19 @@ module("Unit | Library | field", function (hooks) {
       },
     });
 
-    field.set("answer.integerValue", 1);
+    field.answer.value = 1;
     await field.validate.perform();
     assert.deepEqual(field.errors, [
       't:caluma.form.validation.greaterThanOrEqualTo:("gte":2,"integer":true,"lte":2,"value":1)',
     ]);
 
-    field.set("answer.integerValue", 3);
+    field.answer.value = 3;
     await field.validate.perform();
     assert.deepEqual(field.errors, [
       't:caluma.form.validation.lessThanOrEqualTo:("gte":2,"integer":true,"lte":2,"value":3)',
     ]);
 
-    field.set("answer.integerValue", 1.5);
+    field.answer.value = 1.5;
     await field.validate.perform();
     assert.deepEqual(field.errors, [
       't:caluma.form.validation.notAnInteger:("gte":2,"integer":true,"lte":2,"value":1.5)',
@@ -341,6 +361,7 @@ module("Unit | Library | field", function (hooks) {
         floatMaxValue: 2.5,
         isHidden: "false",
         isRequired: "true",
+        meta: {},
         __typename: "FloatQuestion",
       },
       answer: {
@@ -352,15 +373,14 @@ module("Unit | Library | field", function (hooks) {
     await field.validate.perform();
     assert.deepEqual(field.errors, []);
 
-    field.set("answer.floatValue", 1.4);
+    field.answer.value = 1.4;
 
     await field.validate.perform();
     assert.deepEqual(field.errors, [
       't:caluma.form.validation.greaterThanOrEqualTo:("gte":1.5,"lte":2.5,"value":1.4)',
     ]);
 
-    field.set("answer.floatValue", 2.6);
-
+    field.answer.value = 2.6;
     await field.validate.perform();
     assert.deepEqual(field.errors, [
       't:caluma.form.validation.lessThanOrEqualTo:("gte":1.5,"lte":2.5,"value":2.6)',
@@ -383,6 +403,7 @@ module("Unit | Library | field", function (hooks) {
         },
         isHidden: "false",
         isRequired: "true",
+        meta: {},
         __typename: "ChoiceQuestion",
       },
       answer: {
@@ -391,7 +412,7 @@ module("Unit | Library | field", function (hooks) {
       },
     });
 
-    field.set("answer.value", "invalid-option");
+    field.answer.value = "invalid-option";
     await field.validate.perform();
     assert.deepEqual(field.errors, [
       't:caluma.form.validation.inclusion:("allowBlank":true,"in":["option-1"],"value":"invalid-option")',
@@ -414,6 +435,7 @@ module("Unit | Library | field", function (hooks) {
         },
         isHidden: "false",
         isRequired: "true",
+        meta: {},
         __typename: "MultipleChoiceQuestion",
       },
       answer: {
@@ -422,13 +444,13 @@ module("Unit | Library | field", function (hooks) {
       },
     });
 
-    field.set("answer.listValue", ["option-1", "invalid-option"]);
+    field.answer.value = ["option-1", "invalid-option"];
     await field.validate.perform();
     assert.deepEqual(field.errors, [
       't:caluma.form.validation.inclusion:("in":["option-1"],"value":"invalid-option")',
     ]);
 
-    field.set("answer.listValue", ["invalid-option", "other-invalid-option"]);
+    field.answer.value = ["invalid-option", "other-invalid-option"];
     await field.validate.perform();
     assert.deepEqual(field.errors, [
       't:caluma.form.validation.inclusion:("in":["option-1"],"value":"invalid-option")',
@@ -445,7 +467,7 @@ module("Unit | Library | field", function (hooks) {
     await table.validate.perform();
     assert.deepEqual(table.errors, []);
 
-    row.findField("table-form-question").set("answer.value", null);
+    row.findField("table-form-question").answer.value = null;
     await table.validate.perform();
     assert.deepEqual(table.errors, [
       't:caluma.form.validation.table:("value":null)',
@@ -455,31 +477,52 @@ module("Unit | Library | field", function (hooks) {
   test("it can handle optional 'answer' transforms", async function (assert) {
     assert.expect(5);
 
-    const field = this.addField({
+    const field1 = this.addField({
       question: {
         __typename: "TextQuestion",
+        slug: "optional-transform-1",
         isHidden: "'nonexistent'|answer('default') == 'default'",
         isRequired: "false",
+        meta: {},
       },
       answer: null,
     });
 
-    assert.ok(field.hidden);
+    assert.ok(field1.hidden);
 
-    field.question.set("isHidden", "'nonexistent'|answer(null) == null");
-    assert.ok(field.hidden);
+    const field2 = this.addField({
+      question: {
+        __typename: "TextQuestion",
+        slug: "optional-transform-2",
+        isHidden: "'nonexistent'|answer(null) == null",
+        isRequired: "false",
+        meta: {},
+      },
+      answer: null,
+    });
 
-    field.question.set("answer", { value: null });
-    assert.ok(field.hidden);
+    assert.ok(field2.hidden);
+
+    field2.question.answer = { value: null };
+    assert.ok(field2.hidden);
+
+    const field3 = this.addField({
+      question: {
+        __typename: "TextQuestion",
+        slug: "optional-transform-3",
+        isHidden: "'nonexistent'|answer == null",
+        isRequired: "'nonexistent'|answer == null",
+        meta: {},
+      },
+      answer: null,
+    });
 
     assert.throws(() => {
-      field.question.set("isHidden", "'nonexistent'|answer == null");
-      field.hidden;
+      field3.hidden;
     }, /(Error while evaluating `isHidden` expression).*(Field for question `nonexistent` could not be found)/);
 
     assert.throws(() => {
-      field.question.set("isRequired", "'nonexistent'|answer == null");
-      field.optional;
+      field3.optional;
     }, /(Error while evaluating `isRequired` expression).*(Field for question `nonexistent` could not be found)/);
   });
 
@@ -490,7 +533,7 @@ module("Unit | Library | field", function (hooks) {
       assert.deepEqual(
         getDependenciesFromJexl(
           this.field.document.jexl,
-          this.field.question.isHidden
+          this.field.question.raw.isHidden
         ),
         ["table", "table.table-form-question", "table.table-form-question-2"]
       );
@@ -511,7 +554,7 @@ module("Unit | Library | field", function (hooks) {
       assert.deepEqual(
         getDependenciesFromJexl(
           this.field.document.jexl,
-          this.field.question.isRequired
+          this.field.question.raw.isRequired
         ),
         ["question-1"]
       );
@@ -523,28 +566,28 @@ module("Unit | Library | field", function (hooks) {
     });
 
     test("calculates dependencies correctly if the answer transform on a table is followed by a stringify transform", async function (assert) {
-      this.field = this.document.findField("json-dependency");
-
-      set(this.field.question, "isRequired", "'table'|answer|stringify == []");
+      const field = this.addField({
+        question: {
+          __typename: "TextQuestion",
+          isHidden: "false",
+          isRequired: "'table'|answer|stringify == []",
+          meta: {},
+        },
+        answer: null,
+      });
 
       assert.deepEqual(
         getDependenciesFromJexl(
-          this.field.document.jexl,
-          this.field.question.isRequired
+          field.document.jexl,
+          field.question.raw.isRequired
         ),
         ["table", "table.__all__"]
       );
 
       assert.deepEqual(
-        [
-          ...new Set(
-            this.field.optionalDependencies.map((field) => field.question.slug)
-          ),
-        ],
+        [...new Set(field.optionalDependencies.map((f) => f.question.slug))],
         ["table", "table-form-question", "table-form-question-2"]
       );
-
-      set(this.field.question, "isRequired", "false");
     });
   });
 
@@ -567,17 +610,17 @@ module("Unit | Library | field", function (hooks) {
     test("recalculates when a dependent value changes", async function (assert) {
       assert.expect(2);
 
-      this.set("float.value", 2);
+      this.float.answer.value = 2;
       assert.strictEqual(this.calculated.value, 502);
 
-      this.set("table.value", "test");
+      this.table.answer.value = "test";
       assert.strictEqual(this.calculated.value, 100);
     });
 
     test("recalculates when a dependent hidden state changes", async function (assert) {
       assert.expect(1);
 
-      this.set("float.question.isHidden", "true");
+      this.document.findField("question-1").answer.value = "hide-float";
       assert.strictEqual(this.calculated.value, null);
     });
   });

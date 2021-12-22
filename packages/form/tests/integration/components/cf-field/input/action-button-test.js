@@ -31,11 +31,13 @@ module(
           ],
         },
         question: {
-          label: "Submit",
-          infoText: "Really?",
-          action: "COMPLETE",
-          color: "SECONDARY",
-          validateOnEnter: false,
+          raw: {
+            label: "Submit",
+            infoText: "Really?",
+            action: "COMPLETE",
+            color: "SECONDARY",
+            validateOnEnter: false,
+          },
         },
       };
 
@@ -57,7 +59,7 @@ module(
       await render(hbs`<CfField::Input::ActionButton @field={{this.field}} />`);
       assert.dom("button.uk-button-secondary").hasAttribute("type", "submit");
 
-      this.field.question.action = "SKIP";
+      this.field.question.raw.action = "SKIP";
       await render(hbs`<CfField::Input::ActionButton @field={{this.field}} />`);
       assert.dom("button.uk-button-secondary").hasAttribute("type", "button");
     });
@@ -69,7 +71,7 @@ module(
       await click("button.uk-button-secondary");
       assert.verifySteps(["validate"]);
 
-      this.field.question.validateOnEnter = true;
+      this.field.question.raw.validateOnEnter = true;
 
       await render(hbs`<CfField::Input::ActionButton @field={{this.field}} />`);
 
@@ -81,7 +83,7 @@ module(
     });
 
     test("does not validate if action is skip", async function (assert) {
-      this.field.question.action = "skip";
+      this.field.question.raw.action = "skip";
 
       await render(hbs`<CfField::Input::ActionButton @field={{this.field}} />`);
 
@@ -89,7 +91,7 @@ module(
       await click("button.uk-button-secondary");
       assert.verifySteps([]);
 
-      this.field.question.validateOnEnter = true;
+      this.field.question.raw.validateOnEnter = true;
 
       await render(hbs`<CfField::Input::ActionButton @field={{this.field}} />`);
 

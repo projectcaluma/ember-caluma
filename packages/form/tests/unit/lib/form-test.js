@@ -7,12 +7,13 @@ module("Unit | Library | form", function (hooks) {
   test("it computes a pk", async function (assert) {
     assert.expect(1);
 
-    const form = this.owner.factoryFor("caluma-model:form").create({
+    const form = new (this.owner.factoryFor("caluma-model:form").class)({
       raw: {
         slug: "some-form",
         name: "Some Form",
         __typename: "Form",
       },
+      owner: this.owner,
     });
 
     assert.strictEqual(form.pk, "Form:some-form");

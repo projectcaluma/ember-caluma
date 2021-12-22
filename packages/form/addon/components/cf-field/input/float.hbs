@@ -8,7 +8,7 @@
   name={{@field.pk}}
   id={{@field.pk}}
   value={{@field.value}}
-  min={{@field.question.floatMinValue}}
-  max={{@field.question.floatMaxValue}}
+  min={{@field.question.raw.floatMinValue}}
+  max={{@field.question.raw.floatMaxValue}}
   {{on "input" this.input}}
 />

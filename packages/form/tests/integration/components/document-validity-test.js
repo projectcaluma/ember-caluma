@@ -1,5 +1,4 @@
-import { set } from "@ember/object";
-import { render, click, scrollTo } from "@ember/test-helpers";
+import { render, click, scrollTo, settled } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupRenderingTest } from "ember-qunit";
@@ -14,19 +13,21 @@ module("Integration | Component | document-validity", function (hooks) {
   setupMirage(hooks);
 
   hooks.beforeEach(function () {
-    this.document = this.owner
-      .factoryFor("caluma-model:document")
-      .create({ raw: parseDocument(data) });
+    this.document = new (this.owner.factoryFor("caluma-model:document").class)({
+      raw: parseDocument(data),
+      owner: this.owner,
+    });
 
     this.field = this.document.fields[0];
 
-    this.makeInvalid = () => {
-      set(this.field.question, "isRequired", "true");
-      set(this.field.answer, "value", "");
+    this.makeInvalid = async () => {
+      this.field.answer.value = "";
+      await settled();
     };
 
-    this.makeValid = () => {
-      set(this.field.question, "isRequired", "false");
+    this.makeValid = async () => {
+      this.field.answer.value = "Test";
+      await settled();
     };
   });
 
@@ -53,7 +54,7 @@ module("Integration | Component | document-validity", function (hooks) {
   test("it can be triggered manually", async function (assert) {
     assert.expect(3);
 
-    this.makeInvalid();
+    await this.makeInvalid();
 
     await render(hbs`
       <DocumentValidity @document={{this.document}} as |isValid validate|>
@@ -71,7 +72,7 @@ module("Integration | Component | document-validity", function (hooks) {
     assert.dom("p").hasText("Valid");
     await click("button");
     assert.dom("p").hasText("Invalid");
-    this.makeValid();
+    await this.makeValid();
     await click("button");
     assert.dom("p").hasText("Valid");
   });
@@ -93,11 +94,11 @@ module("Integration | Component | document-validity", function (hooks) {
       </DocumentValidity>
     `);
 
-    this.makeInvalid();
+    await this.makeInvalid();
     await click("button");
     await assert.verifySteps(["invalid"]);
 
-    this.makeValid();
+    await this.makeValid();
     await click("button");
     await assert.verifySteps(["valid"]);
   });

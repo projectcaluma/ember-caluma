@@ -1,9 +1,10 @@
 import { getOwner } from "@ember/application";
-import { action } from "@ember/object";
+import { destroy, registerDestructor } from "@ember/destroyable";
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
 import { dropTask } from "ember-concurrency-decorators";
+import { useTask } from "ember-resources";
 
 import getDocumentAnswersQuery from "@projectcaluma/ember-form/gql/queries/document-answers.graphql";
 import getDocumentFormsQuery from "@projectcaluma/ember-form/gql/queries/document-forms.graphql";
@@ -62,7 +63,7 @@ export default class CfContentComponent extends Component {
    * Can be used to pass "context" information from the outside through
    * to custom overrides.
    *
-   * @argument {*} context
+   * @argument {Object} context
    */
 
   /**
@@ -85,15 +86,26 @@ export default class CfContentComponent extends Component {
    * @property {Document} document
    */
   get document() {
-    return this.fetchData.lastSuccessful?.value.document;
+    return this.data.value?.document;
   }
 
+  /**
+   * The navigation to display
+   *
+   * @property {Document} document
+   */
   get navigation() {
-    return this.fetchData.lastSuccessful?.value.navigation;
+    return this.data.value?.navigation;
   }
 
+  /**
+   * Whether the component is in a loading state. This can be overwritten by
+   * passing `loading` as an argument
+   *
+   * @property {Boolean} loading
+   */
   get loading() {
-    return this.args.loading || this.fetchData.isRunning;
+    return this.args.loading || this.data.isRunning;
   }
 
   /**
@@ -121,9 +133,12 @@ export default class CfContentComponent extends Component {
     return fieldset;
   }
 
+  data = useTask(this, this.fetchData, () => [this.args.documentId]);
+
   @dropTask
   *fetchData() {
-    this.teardown();
+    if (this.document) destroy(this.document);
+    if (this.navigation) destroy(this.navigation);
 
     if (!this.args.documentId) return;
 
@@ -145,20 +160,20 @@ export default class CfContentComponent extends Component {
       "allForms.edges"
     )).map(({ node }) => node);
 
-    const document = getOwner(this)
-      .factoryFor("caluma-model:document")
-      .create({ raw: parseDocument({ ...answerDocument, form }) });
+    const owner = getOwner(this);
+    const Document = owner.factoryFor("caluma-model:document").class;
+    const Navigation = owner.factoryFor("caluma-model:navigation").class;
 
-    const navigation = getOwner(this)
-      .factoryFor("caluma-model:navigation")
-      .create({ document });
+    const raw = parseDocument({ ...answerDocument, form });
+
+    const document = new Document({ raw, owner });
+    const navigation = new Navigation({ document, owner });
+
+    registerDestructor(this, () => {
+      destroy(document);
+      destroy(navigation);
+    });
 
     return { document, navigation };
-  }
-
-  @action
-  teardown() {
-    if (this.document) this.document.destroy();
-    if (this.navigation) this.navigation.destroy();
   }
 }

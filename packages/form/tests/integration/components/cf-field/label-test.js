@@ -34,9 +34,9 @@ module("Integration | Component | cf-field/label", function (hooks) {
       forms: [form],
     };
 
-    const document = this.owner
-      .factoryFor("caluma-model:document")
-      .create({ raw });
+    const document = new (this.owner.factoryFor("caluma-model:document").class)(
+      { raw, owner: this.owner }
+    );
     this.set("field", document.fields[0]);
   });
 
@@ -56,7 +56,7 @@ module("Integration | Component | cf-field/label", function (hooks) {
 
     assert.dom("label").hasText("Test");
 
-    this.set("field.question.isRequired", "false");
+    this.set("field.question.raw.isRequired", "false");
 
     assert.dom("label").hasText("Test (t:caluma.form.optional:())");
   });

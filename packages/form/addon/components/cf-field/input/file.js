@@ -1,7 +1,8 @@
-import { action, set } from "@ember/object";
+import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
+import fetch from "fetch";
 
 import removeAnswerMutation from "@projectcaluma/ember-form/gql/mutations/remove-answer.graphql";
 import getFileAnswerInfoQuery from "@projectcaluma/ember-form/gql/queries/fileanswer-info.graphql";
@@ -24,7 +25,7 @@ export default class CfFieldInputFileComponent extends Component {
     const { downloadUrl } = await this.apollo.watchQuery(
       {
         query: getFileAnswerInfoQuery,
-        variables: { id: this.args.field.answer.id },
+        variables: { id: this.args.field.answer.raw.id },
         fetchPolicy: "cache-and-network",
       },
       "node.fileValue"
@@ -55,15 +56,13 @@ export default class CfFieldInputFileComponent extends Component {
         throw new Error();
       }
 
-      // eslint-disable-next-line ember/classic-decorator-no-classic-methods
-      set(this.args.field.answer, "value", {
+      this.args.field.answer.value = {
         name: file.name,
         downloadUrl: fileValue.downloadUrl,
-      });
+      };
     } catch (error) {
       await this.args.onSave(null);
-      // eslint-disable-next-line ember/classic-decorator-no-classic-methods
-      set(this.args.field, "_errors", [{ type: "uploadFailed" }]);
+      this.args.field._errors = [{ type: "uploadFailed" }];
     } finally {
       // eslint-disable-next-line require-atomic-updates
       target.value = "";
@@ -84,7 +83,7 @@ export default class CfFieldInputFileComponent extends Component {
 
       await this.args.onSave(null);
     } catch (error) {
-      set(this.args.field, "_errors", [{ type: "deleteFailed" }]);
+      this.args.field._errors = [{ type: "deleteFailed" }];
     }
   }
 }

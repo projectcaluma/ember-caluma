@@ -37,13 +37,13 @@ export default class CfFieldInputTableComponent extends Component {
   }
 
   get questions() {
-    return this.args.field.question.rowForm.questions.edges.map(
+    return this.args.field.question.raw.rowForm.questions.edges.map(
       (edge) => edge.node
     );
   }
 
   get columns() {
-    const config = this.args.field.question.meta.columnsToDisplay;
+    const config = this.args.field.question.raw.meta.columnsToDisplay;
 
     if (config?.length) {
       return this.questions.filter((question) =>
@@ -59,17 +59,19 @@ export default class CfFieldInputTableComponent extends Component {
     const raw = yield this.apollo.mutate(
       {
         mutation: saveDocumentMutation,
-        variables: { input: { form: this.args.field.question.rowForm.slug } },
+        variables: {
+          input: { form: this.args.field.question.raw.rowForm.slug },
+        },
       },
       "saveDocument.document"
     );
 
-    const newDocument = getOwner(this)
-      .factoryFor("caluma-model:document")
-      .create({
-        raw: this.parseDocument(raw),
-        parentDocument: this.args.field.document,
-      });
+    const owner = getOwner(this);
+    const newDocument = new (owner.factoryFor("caluma-model:document").class)({
+      raw: this.parseDocument(raw),
+      parentDocument: this.args.field.document,
+      owner,
+    });
 
     this.documentToEditIsNew = true;
     this.documentToEdit = newDocument;

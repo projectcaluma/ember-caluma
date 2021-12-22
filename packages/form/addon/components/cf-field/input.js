@@ -22,7 +22,7 @@ export default class CfFieldInputComponent extends Component {
    * @accessor
    */
   get type() {
-    const typename = this.args.field?.question.__typename;
+    const typename = this.args.field?.question.raw.__typename;
 
     return (
       typename &&

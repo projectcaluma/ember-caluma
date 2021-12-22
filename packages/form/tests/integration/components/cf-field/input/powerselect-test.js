@@ -48,7 +48,9 @@ module(
         questions: [singleChoice, multipleChoice],
       };
 
-      const document = this.owner.factoryFor("caluma-model:document").create({
+      const document = new (this.owner.factoryFor(
+        "caluma-model:document"
+      ).class)({
         raw: {
           __typename: "Document",
           id: btoa("Document:xxxx-xxxx"),
@@ -56,6 +58,7 @@ module(
           forms: [form],
           answers: [],
         },
+        owner: this.owner,
       });
 
       this.setProperties({

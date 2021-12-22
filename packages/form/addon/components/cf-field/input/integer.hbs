@@ -7,9 +7,9 @@
   name={{@field.pk}}
   id={{@field.pk}}
   value={{@field.answer.value}}
-  min={{@field.question.integerMinValue}}
-  max={{@field.question.integerMaxValue}}
-  placeholder={{@field.question.placeholder}}
+  min={{@field.question.raw.integerMinValue}}
+  max={{@field.question.raw.integerMaxValue}}
+  placeholder={{@field.question.raw.placeholder}}
   readonly={{@disabled}}
   {{on "input" this.input}}
 />

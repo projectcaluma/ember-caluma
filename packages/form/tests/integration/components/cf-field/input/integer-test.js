@@ -25,8 +25,10 @@ module("Integration | Component | cf-field/input/integer", function (hooks) {
             value=3
           )
           question=(hash
-            integerMinValue=1
-            integerMaxValue=5
+            raw=(hash
+              integerMinValue=1
+              integerMaxValue=5
+            )
           )
         )
       }}

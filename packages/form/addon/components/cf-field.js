@@ -28,7 +28,7 @@ export default class CfFieldComponent extends Component {
 
   get labelVisible() {
     return (
-      !this.args.field?.question.meta.hideLabel &&
+      !this.args.field?.question.raw.meta.hideLabel &&
       !hasQuestionType(this.args.field?.question, "static", "action-button")
     );
   }

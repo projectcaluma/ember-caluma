@@ -15,7 +15,9 @@ module("Integration | Component | cf-field/input", function (hooks) {
       {{cf-field/input
         field=(hash
           question=(hash
-            __typename="TextQuestion"
+            raw=(hash
+              __typename="TextQuestion"
+            )
           )
           answer=(hash
             value="Test"
@@ -35,7 +37,9 @@ module("Integration | Component | cf-field/input", function (hooks) {
       {{cf-field/input
         field=(hash
           question=(hash
-            __typename="TextareaQuestion"
+            raw=(hash
+              __typename="TextareaQuestion"
+            )
           )
           answer=(hash
             value="Test"
@@ -55,7 +59,9 @@ module("Integration | Component | cf-field/input", function (hooks) {
       {{cf-field/input
         field=(hash
           question=(hash
-            __typename="IntegerQuestion"
+            raw=(hash
+              __typename="IntegerQuestion"
+            )
           )
           answer=(hash
             value=5
@@ -75,7 +81,9 @@ module("Integration | Component | cf-field/input", function (hooks) {
       {{cf-field/input
         field=(hash
           question=(hash
-            __typename="FloatQuestion"
+            raw=(hash
+              __typename="FloatQuestion"
+            )
           )
           value=0.55
         )
@@ -99,7 +107,9 @@ module("Integration | Component | cf-field/input", function (hooks) {
             (hash slug="option-1")
           )
           question=(hash
-            __typename="RadioQuestion"
+            raw=(hash
+              __typename="RadioQuestion"
+            )
           )
           answer=(hash
             value="option-1"
@@ -122,7 +132,9 @@ module("Integration | Component | cf-field/input", function (hooks) {
             (hash slug="option-1")
           )
           question=(hash
-            __typename="MultipleChoiceQuestion"
+            raw=(hash
+              __typename="MultipleChoiceQuestion"
+            )
           )
           answer=(hash
             value=(array "option-1")
@@ -143,7 +155,9 @@ module("Integration | Component | cf-field/input", function (hooks) {
         disabled=true
         field=(hash
           question=(hash
-            __typename="TextQuestion"
+            raw=(hash
+              __typename="TextQuestion"
+            )
           )
         )
       }}

@@ -7,11 +7,13 @@ module("Unit | Library | answer", function (hooks) {
   test("it works", async function (assert) {
     assert.expect(1);
 
-    const answer = this.owner.factoryFor("caluma-model:answer").create({
+    const answer = new (this.owner.factoryFor("caluma-model:answer").class)({
       raw: {
         __typename: "StringAnswer",
         stringValue: "test",
       },
+      field: {},
+      owner: this.owner,
     });
 
     assert.strictEqual(answer.value, "test");
@@ -20,19 +22,25 @@ module("Unit | Library | answer", function (hooks) {
   test("it computes a pk", async function (assert) {
     assert.expect(3);
 
-    const newAnswer = this.owner.factoryFor("caluma-model:answer").create({
+    const newAnswer = new (this.owner.factoryFor("caluma-model:answer").class)({
       raw: {
         __typename: "StringAnswer",
       },
+      field: {},
+      owner: this.owner,
     });
 
-    assert.strictEqual(newAnswer.pk, undefined);
+    assert.strictEqual(newAnswer.pk, null);
 
-    const existingAnswer = this.owner.factoryFor("caluma-model:answer").create({
+    const existingAnswer = new (this.owner.factoryFor(
+      "caluma-model:answer"
+    ).class)({
       raw: {
         __typename: "StringAnswer",
         id: btoa("Answer:xxxx-xxxx"),
       },
+      field: {},
+      owner: this.owner,
     });
 
     assert.strictEqual(existingAnswer.uuid, "xxxx-xxxx");
@@ -42,7 +50,7 @@ module("Unit | Library | answer", function (hooks) {
   test("it generates documents for table answers", async function (assert) {
     assert.expect(3);
 
-    const answer = this.owner.factoryFor("caluma-model:answer").create({
+    const answer = new (this.owner.factoryFor("caluma-model:answer").class)({
       field: {
         document: {
           jexlContext: {
@@ -89,6 +97,7 @@ module("Unit | Library | answer", function (hooks) {
           },
         ],
       },
+      owner: this.owner,
     });
 
     assert.strictEqual(answer.value[0].pk, "Document:xxxx-xxxx");

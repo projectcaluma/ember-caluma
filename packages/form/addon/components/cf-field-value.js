@@ -11,7 +11,7 @@ export default class CfFieldValueComponent extends Component {
   get value() {
     const field = this.args.field;
 
-    switch (field.question.__typename) {
+    switch (field.questionType) {
       case "ChoiceQuestion":
       case "DynamicChoiceQuestion": {
         return field.selected;
@@ -23,8 +23,8 @@ export default class CfFieldValueComponent extends Component {
       case "FileQuestion": {
         const answerValue = field.answer.value;
         return {
-          fileAnswerId: answerValue && field.answer.id,
-          label: answerValue && answerValue.name,
+          fileAnswerId: answerValue && field.answer.raw.id,
+          label: answerValue?.name,
         };
       }
       case "DateQuestion": {
@@ -34,22 +34,17 @@ export default class CfFieldValueComponent extends Component {
       }
 
       default:
-        return {
-          label: field.answer.value,
-        };
+        return { label: field.answer.value };
     }
   }
 
   @action
-  async download(fileAnswerId) {
+  async download(id) {
     const { downloadUrl } = await this.apollo.query(
-      {
-        query: getFileAnswerInfoQuery,
-        variables: { id: fileAnswerId },
-        fetchPolicy: "cache-and-network",
-      },
+      { query: getFileAnswerInfoQuery, variables: { id } },
       "node.fileValue"
     );
+
     window.open(downloadUrl, "_blank");
   }
 }
