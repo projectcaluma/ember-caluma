@@ -92,18 +92,17 @@ export default class CfbFormEditorQuestionDefault extends Component {
           : null,
       }));
     }
-
-    const document = getOwner(this)
-      .factoryFor("caluma-model:document")
-      .create({
-        raw: {
-          id: btoa(`Document:dv-document-${this.args.model.slug}`),
-          rootForm,
-          forms: [rootForm],
-          answers: [answer],
-          __typename: "Document",
-        },
-      });
+    const owner = getOwner(this);
+    const document = new (owner.factoryFor("caluma-model:document").class)({
+      raw: {
+        id: btoa(`Document:dv-document-${this.args.model.slug}`),
+        rootForm,
+        forms: [rootForm],
+        answers: [answer],
+        __typename: "Document",
+      },
+      owner,
+    });
 
     return document.findField(this.question.slug);
   }
