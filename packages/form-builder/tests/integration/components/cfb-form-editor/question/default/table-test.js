@@ -10,7 +10,7 @@ module(
 
     test("it renders", async function (assert) {
       this.field = {
-        question: { meta: {}, rowForm: { questions: { edges: [] } } },
+        question: { raw: { meta: {}, rowForm: { questions: { edges: [] } } } },
       };
 
       await render(
