@@ -19,6 +19,7 @@ Router.map(function () {
 
     this.route("migration-v7");
     this.route("migration-v9");
+    this.route("migration-v11");
   });
 
   this.route("demo", function () {
