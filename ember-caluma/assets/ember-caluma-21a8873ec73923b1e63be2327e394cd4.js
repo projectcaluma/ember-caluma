@@ -55,7 +55,7 @@ if(void 0!==t)throw new TypeError("Derived constructors may only return object o
 return g(e)}function g(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called")
 return e}function j(e){return j=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)},j(e)}function v(e,t,r,n,o){var u={}
 return Object.keys(n).forEach((function(e){u[e]=n[e]})),u.enumerable=!!u.enumerable,u.configurable=!!u.configurable,("value"in u||u.initializer)&&(u.writable=!0),u=r.slice().reverse().reduce((function(r,n){return n(e,t,r)||r}),u),o&&void 0!==u.initializer&&(u.value=u.initializer?u.initializer.call(o):void 0,u.initializer=void 0),void 0===u.initializer&&(Object.defineProperty(e,t,u),u=null),u}Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
-var _=(l=function(e){(function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function")
+var O=(l=function(e){(function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function")
 e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&b(e,t)})(j,e)
 var t,r,n,o,l,h=y(j)
 function j(){var e
@@ -67,7 +67,7 @@ case 2:r=e.sent,n=null===(t=r.allCases.edges[0])||void 0===t?void 0:t.node.id,(o
 case 6:case"end":return e.stop()}}),e,this)})),l=function(){var e=this,t=arguments
 return new Promise((function(r,n){var u=o.apply(e,t)
 function i(e){f(u,r,n,i,a,"next",e)}function a(e){f(u,r,n,i,a,"throw",e)}i(void 0)}))},function(){return l.apply(this,arguments)})}],r&&p(t.prototype,r),n&&p(t,n),j}(t.default),c=v(l.prototype,"router",[n.inject],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),d=v(l.prototype,"apollo",[o.queryManager],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),v(l.prototype,"goToDistribution",[r.action],Object.getOwnPropertyDescriptor(l.prototype,"goToDistribution"),l.prototype),l)
-e.default=_})),define("ember-caluma/controllers/demo/form-rendering",["exports","@ember/controller","@ember/object","@ember/service"],(function(e,t,r,n){var o,u
+e.default=O})),define("ember-caluma/controllers/demo/form-rendering",["exports","@ember/controller","@ember/object","@ember/service"],(function(e,t,r,n){var o,u
 function i(e,t,r,n){r&&Object.defineProperty(e,t,{enumerable:r.enumerable,configurable:r.configurable,writable:r.writable,value:r.initializer?r.initializer.call(n):void 0})}function a(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function l(e,t){for(var r=0;r<t.length;r++){var n=t[r]
 n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}function c(e,t){return c=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e},c(e,t)}function d(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
 if(Reflect.construct.sham)return!1
@@ -79,16 +79,16 @@ r=Reflect.construct(n,arguments,o)}else r=n.apply(this,arguments)
 return f(this,r)}}function f(e,t){if(t&&("object"===_typeof(t)||"function"==typeof t))return t
 if(void 0!==t)throw new TypeError("Derived constructors may only return object or undefined")
 return s(e)}function s(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called")
-return e}function m(e){return m=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)},m(e)}function p(e,t,r,n,o){var u={}
+return e}function m(e){return m=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)},m(e)}function p(e,t,r){return t in e?Object.defineProperty(e,t,{value:r,enumerable:!0,configurable:!0,writable:!0}):e[t]=r,e}function b(e,t,r,n,o){var u={}
 return Object.keys(n).forEach((function(e){u[e]=n[e]})),u.enumerable=!!u.enumerable,u.configurable=!!u.configurable,("value"in u||u.initializer)&&(u.writable=!0),u=r.slice().reverse().reduce((function(r,n){return n(e,t,r)||r}),u),o&&void 0!==u.initializer&&(u.value=u.initializer?u.initializer.call(o):void 0,u.initializer=void 0),void 0===u.initializer&&(Object.defineProperty(e,t,u),u=null),u}Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
-var b=(o=function(e){(function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function")
+var y=(o=function(e){(function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function")
 e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&c(e,t)})(f,e)
 var t,r,n,o=d(f)
 function f(){var e
 a(this,f)
 for(var t=arguments.length,r=new Array(t),n=0;n<t;n++)r[n]=arguments[n]
-return i(s(e=o.call.apply(o,[this].concat(r))),"notification",u,s(e)),e}return t=f,(r=[{key:"actionButtonOnSuccess",value:function(){this.notification.success("Successfully submitted the form!")}}])&&l(t.prototype,r),n&&l(t,n),f}(t.default),u=p(o.prototype,"notification",[n.inject],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),p(o.prototype,"actionButtonOnSuccess",[r.action],Object.getOwnPropertyDescriptor(o.prototype,"actionButtonOnSuccess"),o.prototype),o)
-e.default=b})),define("ember-caluma/controllers/demo/queries",["exports","@ember/controller","@ember/object","@glimmer/tracking","@projectcaluma/ember-core/caluma-query","@projectcaluma/ember-core/caluma-query/queries"],(function(e,t,r,n,o,u){var i,a,l,c
+return i(s(e=o.call.apply(o,[this].concat(r))),"notification",u,s(e)),p(s(e),"queryParams",["displayedForm"]),e}return t=f,(r=[{key:"actionButtonOnSuccess",value:function(){this.notification.success("Successfully submitted the form!")}}])&&l(t.prototype,r),n&&l(t,n),f}(t.default),u=b(o.prototype,"notification",[n.inject],{configurable:!0,enumerable:!0,writable:!0,initializer:null}),b(o.prototype,"actionButtonOnSuccess",[r.action],Object.getOwnPropertyDescriptor(o.prototype,"actionButtonOnSuccess"),o.prototype),o)
+e.default=y})),define("ember-caluma/controllers/demo/queries",["exports","@ember/controller","@ember/object","@glimmer/tracking","@projectcaluma/ember-core/caluma-query","@projectcaluma/ember-core/caluma-query/queries"],(function(e,t,r,n,o,u){var i,a,l,c
 function d(e,t,r,n){r&&Object.defineProperty(e,t,{enumerable:r.enumerable,configurable:r.configurable,writable:r.writable,value:r.initializer?r.initializer.call(n):void 0})}function f(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function s(e,t){for(var r=0;r<t.length;r++){var n=t[r]
 n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}function m(e,t){return m=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e},m(e,t)}function p(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
 if(Reflect.construct.sham)return!1
@@ -310,7 +310,7 @@ return y(this,r)}}function y(e,t){if(t&&("object"===_typeof(t)||"function"==type
 if(void 0!==t)throw new TypeError("Derived constructors may only return object or undefined")
 return h(e)}function h(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called")
 return e}function g(e){return g=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)},g(e)}Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
-var j,v,_,O,P,x,w=(u=function(e){(function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function")
+var j,v,O,_,P,x,w=(u=function(e){(function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function")
 e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&p(e,t)})(v,e)
 var t,r,u,y,g,j=b(v)
 function v(){var e
@@ -324,7 +324,7 @@ case 6:return e.abrupt("return",e.sent)
 case 7:return e.abrupt("return",(0,o.decodeId)(null===(t=r[0])||void 0===t?void 0:t.node.id))
 case 8:case"end":return e.stop()}}),e,this)})),g=function(){var e=this,t=arguments
 return new Promise((function(r,n){var o=y.apply(e,t)
-function u(e){d(o,r,n,u,i,"next",e)}function i(e){d(o,r,n,u,i,"throw",e)}u(void 0)}))},function(){return g.apply(this,arguments)})}],r&&m(t.prototype,r),u&&m(t,u),v}(t.default),j=u.prototype,v="apollo",_=[r.queryManager],O={configurable:!0,enumerable:!0,writable:!0,initializer:null},x={},Object.keys(O).forEach((function(e){x[e]=O[e]})),x.enumerable=!!x.enumerable,x.configurable=!!x.configurable,("value"in x||x.initializer)&&(x.writable=!0),x=_.slice().reverse().reduce((function(e,t){return t(j,v,e)||e}),x),P&&void 0!==x.initializer&&(x.value=x.initializer?x.initializer.call(P):void 0,x.initializer=void 0),void 0===x.initializer&&(Object.defineProperty(j,v,x),x=null),i=x,u)
+function u(e){d(o,r,n,u,i,"next",e)}function i(e){d(o,r,n,u,i,"throw",e)}u(void 0)}))},function(){return g.apply(this,arguments)})}],r&&m(t.prototype,r),u&&m(t,u),v}(t.default),j=u.prototype,v="apollo",O=[r.queryManager],_={configurable:!0,enumerable:!0,writable:!0,initializer:null},x={},Object.keys(_).forEach((function(e){x[e]=_[e]})),x.enumerable=!!x.enumerable,x.configurable=!!x.configurable,("value"in x||x.initializer)&&(x.writable=!0),x=O.slice().reverse().reduce((function(e,t){return t(j,v,e)||e}),x),P&&void 0!==x.initializer&&(x.value=x.initializer?x.initializer.call(P):void 0,x.initializer=void 0),void 0===x.initializer&&(Object.defineProperty(j,v,x),x=null),i=x,u)
 e.default=w})),define("ember-caluma/routes/demo/queries",["exports","@ember/routing/route"],(function(e,t){function r(e,t){for(var r=0;r<t.length;r++){var n=t[r]
 n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}function n(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){return o=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e},o(e,t)}function u(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
 if(Reflect.construct.sham)return!1
@@ -358,7 +358,7 @@ return p(this,r)}}function p(e,t){if(t&&("object"===_typeof(t)||"function"==type
 if(void 0!==t)throw new TypeError("Derived constructors may only return object or undefined")
 return b(e)}function b(e){if(void 0===e)throw new ReferenceError("this hasn't been initialised - super() hasn't been called")
 return e}function y(e){return y=Object.setPrototypeOf?Object.getPrototypeOf:function(e){return e.__proto__||Object.getPrototypeOf(e)},y(e)}Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
-var h,g,j,v,_,O,P=(u=function(e){(function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function")
+var h,g,j,v,O,_,P=(u=function(e){(function(e,t){if("function"!=typeof t&&null!==t)throw new TypeError("Super expression must either be null or a function")
 e.prototype=Object.create(t&&t.prototype,{constructor:{value:e,writable:!0,configurable:!0}}),t&&s(e,t)})(g,e)
 var t,r,u,p,y,h=m(g)
 function g(){var e
@@ -369,7 +369,7 @@ return regeneratorRuntime.wrap((function(e){for(;;)switch(e.prev=e.next){case 0:
 case 2:return r=e.sent,e.abrupt("return",(0,o.decodeId)(null===(t=r[0])||void 0===t?void 0:t.node.id))
 case 4:case"end":return e.stop()}var u,i}),e,this)})),y=function(){var e=this,t=arguments
 return new Promise((function(r,n){var o=p.apply(e,t)
-function u(e){l(o,r,n,u,i,"next",e)}function i(e){l(o,r,n,u,i,"throw",e)}u(void 0)}))},function(){return y.apply(this,arguments)})}],r&&f(t.prototype,r),u&&f(t,u),g}(t.default),h=u.prototype,g="apollo",j=[r.queryManager],v={configurable:!0,enumerable:!0,writable:!0,initializer:null},O={},Object.keys(v).forEach((function(e){O[e]=v[e]})),O.enumerable=!!O.enumerable,O.configurable=!!O.configurable,("value"in O||O.initializer)&&(O.writable=!0),O=j.slice().reverse().reduce((function(e,t){return t(h,g,e)||e}),O),_&&void 0!==O.initializer&&(O.value=O.initializer?O.initializer.call(_):void 0,O.initializer=void 0),void 0===O.initializer&&(Object.defineProperty(h,g,O),O=null),i=O,u)
+function u(e){l(o,r,n,u,i,"next",e)}function i(e){l(o,r,n,u,i,"throw",e)}u(void 0)}))},function(){return y.apply(this,arguments)})}],r&&f(t.prototype,r),u&&f(t,u),g}(t.default),h=u.prototype,g="apollo",j=[r.queryManager],v={configurable:!0,enumerable:!0,writable:!0,initializer:null},_={},Object.keys(v).forEach((function(e){_[e]=v[e]})),_.enumerable=!!_.enumerable,_.configurable=!!_.configurable,("value"in _||_.initializer)&&(_.writable=!0),_=j.slice().reverse().reduce((function(e,t){return t(h,g,e)||e}),_),O&&void 0!==_.initializer&&(_.value=_.initializer?_.initializer.call(O):void 0,_.initializer=void 0),void 0===_.initializer&&(Object.defineProperty(h,g,_),_=null),i=_,u)
 e.default=P})),define("ember-caluma/serializers/-addon-docs",["exports","ember-cli-addon-docs/serializers/-addon-docs"],(function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t.default}})})),define("ember-caluma/serializers/-default",["exports","@ember-data/serializer/json"],(function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t.default}})})),define("ember-caluma/serializers/-json-api",["exports","@ember-data/serializer/json-api"],(function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t.default}})})),define("ember-caluma/serializers/-rest",["exports","@ember-data/serializer/rest"],(function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t.default}})})),define("ember-caluma/serializers/application",["exports","@ember-data/serializer/json-api"],(function(e,t){function r(e,t){for(var r=0;r<t.length;r++){var n=t[r]
 n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}function n(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}function o(e,t){return o=Object.setPrototypeOf||function(e,t){return e.__proto__=t,e},o(e,t)}function u(e){var t=function(){if("undefined"==typeof Reflect||!Reflect.construct)return!1
 if(Reflect.construct.sham)return!1
