@@ -13,9 +13,11 @@ module("Integration | Component | cf-field/input/float", function (hooks) {
       pk: "test-id",
       value: 1.045,
       question: {
-        isCalculated: false,
-        floatMinValue: 0.4,
-        floatMaxValue: 1.4,
+        raw: {
+          isCalculated: false,
+          floatMinValue: 0.4,
+          floatMaxValue: 1.4,
+        },
       },
     });
   });

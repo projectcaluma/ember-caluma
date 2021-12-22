@@ -12,15 +12,18 @@ module("Unit | Library | question", function (hooks) {
   test("it computes a pk", async function (assert) {
     assert.expect(1);
 
-    const question = this.owner.factoryFor("caluma-model:question").create({
-      raw: {
-        slug: "some-question",
-        label: "Test",
-        isRequired: "true",
-        isHidden: "false",
-        __typename: "TextQuestion",
-      },
-    });
+    const question = new (this.owner.factoryFor("caluma-model:question").class)(
+      {
+        raw: {
+          slug: "some-question",
+          label: "Test",
+          isRequired: "true",
+          isHidden: "false",
+          __typename: "TextQuestion",
+        },
+        owner: this.owner,
+      }
+    );
 
     assert.strictEqual(question.pk, "Question:some-question");
   });

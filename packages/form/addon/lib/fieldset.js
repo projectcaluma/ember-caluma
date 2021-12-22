@@ -1,7 +1,7 @@
 import { getOwner } from "@ember/application";
 import { assert } from "@ember/debug";
-import { computed, get, defineProperty } from "@ember/object";
-import { inject as service } from "@ember/service";
+import { associateDestroyableChild } from "@ember/destroyable";
+import { cached } from "tracked-toolbox";
 
 import Base from "@projectcaluma/ember-form/lib/base";
 
@@ -10,103 +10,102 @@ import Base from "@projectcaluma/ember-form/lib/base";
  *
  * @class Fieldset
  */
-export default Base.extend({
-  calumaStore: service(),
+export default class Fieldset extends Base {
+  constructor({ document, raw, ...args }) {
+    assert("`document` must be passed as an argument", document);
 
-  init(...args) {
     assert(
       "A graphql form `raw.form` must be passed",
-      this.raw && this.raw.form && this.raw.form.__typename === "Form"
+      raw?.form?.__typename === "Form"
     );
-
     assert(
       "A collection of graphql answers `raw.answers` must be passed",
-      this.raw &&
-        this.raw.answers &&
-        (!this.raw.answers.length ||
-          /Answer$/.test(this.raw.answers[0].__typename))
+      raw?.answers?.every((answer) => /Answer$/.test(answer.__typename))
     );
 
-    defineProperty(this, "pk", {
-      writable: false,
-      value: `${this.document.pk}:Form:${this.raw.form.slug}`,
-    });
+    super({ raw, ...args });
 
-    this._super(...args);
+    this.document = document;
 
-    this.set("fields", []);
+    this.pushIntoStore();
 
     this._createForm();
     this._createFields();
-  },
-
-  willDestroy(...args) {
-    this._super(...args);
-
-    const fields = this.fields;
-    this.set("fields", []);
-    fields.forEach((field) => field.destroy());
-  },
+  }
 
   _createForm() {
+    const owner = getOwner(this);
+
     const form =
       this.calumaStore.find(`Form:${this.raw.form.slug}`) ||
-      getOwner(this)
-        .factoryFor("caluma-model:form")
-        .create({ raw: this.raw.form });
+      new (owner.factoryFor("caluma-model:form").class)({
+        raw: this.raw.form,
+        owner,
+      });
 
-    this.set("form", form);
-  },
+    this.form = form;
+  }
 
   _createFields() {
+    const owner = getOwner(this);
+
     const fields = this.raw.form.questions.map((question) => {
-      return (
+      return associateDestroyableChild(
+        this,
         this.calumaStore.find(
           `${this.document.pk}:Question:${question.slug}`
         ) ||
-        getOwner(this)
-          .factoryFor("caluma-model:field")
-          .create({
+          new (owner.factoryFor("caluma-model:field").class)({
             raw: {
               question,
               answer: this.raw.answers.find(
-                (answer) => get(answer, "question.slug") === question.slug
+                (answer) => answer?.question?.slug === question.slug
               ),
             },
             fieldset: this,
+            owner,
           })
       );
     });
 
-    this.set("fields", fields);
-  },
+    this.fields = fields;
+  }
+
+  /**
+   * The primary key of the fieldset. Consists of the document and form primary
+   * keys.
+   *
+   * @property {String} pk
+   */
+  @cached
+  get pk() {
+    return `${this.document.pk}:Form:${this.raw.form.slug}`;
+  }
 
   /**
    * The field for this fieldset. A fieldset has a `field` if there is a form
    * question pointing to the fieldsets form in the document.
    *
    * @property {Field} field
-   * @accessor
    */
-  field: computed("form.slug", "document.fields.[]", function () {
+  @cached
+  get field() {
     return this.document.fields
       .filter((field) => field.questionType === "FormQuestion")
-      .find((field) => field.question.subForm.slug === this.form.slug);
-  }),
+      .find((field) => field.question.raw.subForm.slug === this.form.slug);
+  }
 
   /**
    * The form for this fieldset
    *
    * @property {Form} form
-   * @accessor
    */
-  form: null,
+  form = null;
 
   /**
    * The fields in this fieldset
    *
    * @property {Field[]} fields
-   * @accessor
    */
-  fields: null,
-});
+  fields = [];
+}

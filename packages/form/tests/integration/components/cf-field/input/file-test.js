@@ -1,4 +1,5 @@
-import { render, triggerEvent, waitUntil, click } from "@ember/test-helpers";
+import { render, triggerEvent, click } from "@ember/test-helpers";
+import { tracked } from "@glimmer/tracking";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
@@ -19,46 +20,41 @@ module("Integration | Component | cf-field/input/file", function (hooks) {
   test("it allows to upload a file", async function (assert) {
     assert.expect(6);
 
-    this.set("field", {
-      answer: {
-        id: btoa("FileAnswer:1"),
+    this.field = new (class {
+      answer = {
+        raw: {
+          id: btoa("FileAnswer:1"),
+        },
         value: {},
-      },
-    });
+      };
+      @tracked _errors = [];
+    })();
 
-    this.set("onSave", (name) => ({
+    this.onSave = (name) => ({
       fileValue: { uploadUrl: `/minio/upload/${name}` },
-    }));
+    });
 
     const payload_good = new File(["test"], "good.txt", { type: "text/plain" });
     const payload_fail = new File(["test"], "fail.txt", { type: "text/plain" });
 
-    await render(hbs`{{cf-field/input/file field=field onSave=onSave}}`);
+    await render(
+      hbs`<CfField::Input::File @field={{this.field}} @onSave={{this.onSave}} />`
+    );
 
     await triggerEvent("input[type=file]", "change", { files: [] });
     assert.strictEqual(this.field.answer.value.name, undefined);
-    assert.strictEqual(this.field._errors, undefined);
+    assert.deepEqual(this.field._errors, []);
 
     await triggerEvent("input[type=file]", "change", { files: [payload_fail] });
-    await waitUntil(() => this.field._errors?.[0]?.type === "uploadFailed", {
-      timeout: 2000,
-    });
     assert.strictEqual(this.field.answer.value.name, undefined);
-    assert.strictEqual(this.field._errors?.[0]?.type, "uploadFailed");
+    assert.deepEqual(this.field._errors, [{ type: "uploadFailed" }]);
 
-    this.set("field", {
-      answer: {
-        id: btoa("FileAnswer:1"),
-        value: {},
-      },
-    });
+    // reset errors
+    this.field._errors = [];
 
     await triggerEvent("input[type=file]", "change", { files: [payload_good] });
-    await waitUntil(() => this.field.answer.value.name === "good.txt", {
-      timeout: 2000,
-    });
     assert.strictEqual(this.field.answer.value.name, "good.txt");
-    assert.strictEqual(this.field._errors, undefined);
+    assert.deepEqual(this.field._errors, []);
   });
 
   test("it allows to download a file", async function (assert) {
@@ -66,15 +62,17 @@ module("Integration | Component | cf-field/input/file", function (hooks) {
 
     this.server.create("file");
 
-    this.set("field", {
+    this.field = {
       answer: {
-        id: btoa("FileAnswer:1"),
+        raw: {
+          id: btoa("FileAnswer:1"),
+        },
         value: {
           downloadUrl: "/minio/download/good.txt",
           name: "good.txt",
         },
       },
-    });
+    };
 
     // Hijack window.open
     const window_open = window.open;

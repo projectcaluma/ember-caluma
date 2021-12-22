@@ -20,11 +20,17 @@ module("Integration | Component | cf-field/input/table", function (hooks) {
           {
             fields: [
               {
-                question: { __typename: "TextQuestion", slug: "first-name" },
+                question: {
+                  raw: { __typename: "TextQuestion" },
+                  slug: "first-name",
+                },
                 answer: { value: "Max" },
               },
               {
-                question: { __typename: "TextQuestion", slug: "last-name" },
+                question: {
+                  raw: { __typename: "TextQuestion" },
+                  slug: "last-name",
+                },
                 answer: { value: "Muster" },
               },
             ],
@@ -32,11 +38,17 @@ module("Integration | Component | cf-field/input/table", function (hooks) {
           {
             fields: [
               {
-                question: { __typename: "TextQuestion", slug: "first-name" },
+                question: {
+                  raw: { __typename: "TextQuestion" },
+                  slug: "first-name",
+                },
                 answer: { value: "Bea" },
               },
               {
-                question: { __typename: "TextQuestion", slug: "last-name" },
+                question: {
+                  raw: { __typename: "TextQuestion" },
+                  slug: "last-name",
+                },
                 answer: { value: "Beispiel" },
               },
             ],
@@ -44,13 +56,15 @@ module("Integration | Component | cf-field/input/table", function (hooks) {
         ],
       },
       question: {
-        meta: {},
-        rowForm: {
-          questions: {
-            edges: [
-              { node: { slug: "first-name", label: "First name" } },
-              { node: { slug: "last-name", label: "Last name" } },
-            ],
+        raw: {
+          meta: {},
+          rowForm: {
+            questions: {
+              edges: [
+                { node: { slug: "first-name", label: "First name" } },
+                { node: { slug: "last-name", label: "Last name" } },
+              ],
+            },
           },
         },
       },
@@ -72,7 +86,7 @@ module("Integration | Component | cf-field/input/table", function (hooks) {
   });
 
   test("it displays only configured columns", async function (assert) {
-    this.field.question.meta.columnsToDisplay = ["last-name"];
+    this.field.question.raw.meta.columnsToDisplay = ["last-name"];
 
     await render(hbs`<CfField::Input::Table @field={{this.field}} />`);
 
@@ -248,9 +262,9 @@ module("Integration | Component | cf-field/input/table", function (hooks) {
         __typename: "Document",
       };
 
-      this.calumaDocument = this.owner
-        .factoryFor("caluma-model:document")
-        .create({ raw: parseDocument(data) });
+      this.calumaDocument = new (this.owner.factoryFor(
+        "caluma-model:document"
+      ).class)({ raw: parseDocument(data), owner: this.owner });
 
       this.field = this.calumaDocument.fields[0];
 

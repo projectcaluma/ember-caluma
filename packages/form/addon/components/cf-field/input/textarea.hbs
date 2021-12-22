@@ -4,9 +4,9 @@
     {{if @disabled 'uk-disabled'}}"
   name={{@field.pk}}
   id={{@field.pk}}
-  placeholder={{@field.question.placeholder}}
-  minlength={{@field.question.textareaMinLength}}
-  maxlength={{@field.question.textareaMaxLength}}
+  placeholder={{@field.question.raw.placeholder}}
+  minlength={{@field.question.raw.textareaMinLength}}
+  maxlength={{@field.question.raw.textareaMaxLength}}
   readonly={{@disabled}}
   {{on "input" this.input}}
 >{{@field.answer.value}}</textarea>

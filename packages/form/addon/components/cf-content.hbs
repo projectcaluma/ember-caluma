@@ -1,44 +1,41 @@
 {{#if @documentId}}
-  <div {{did-insert (perform this.fetchData)}} {{will-destroy this.teardown}}>
-    {{#if this.loading}}
-      <div class="uk-text-center"><UkSpinner @ratio={{2}} /></div>
-    {{else if this.document}}
-      {{#let
-        (hash
-          document=this.document
-          navigation=(component
-            "cf-navigation"
-            navigation=this.navigation
-            useAsHeading=(or @useAsHeading false)
-            headingBaseLevel=(or @headingBaseLevel 1)
-          )
-          pagination=(component "cf-pagination" navigation=this.navigation)
-          form=(component
-            "cf-form-wrapper"
-            document=this.document
-            fieldset=this.fieldset
-            context=@context
-            disabled=@disabled
-          )
+  {{#if this.loading}}
+    <div class="uk-text-center"><UkSpinner @ratio={{2}} /></div>
+  {{else if this.document}}
+    {{#let
+      (hash
+        document=this.document
+        navigation=(component
+          "cf-navigation"
+          navigation=this.navigation
+          useAsHeading=(or @useAsHeading false)
+          headingBaseLevel=(or @headingBaseLevel 1)
         )
-        as |content|
-      }}
-        {{#if (has-block)}}
-          {{yield content}}
-        {{else if (gt this.document.fieldsets.length 1)}}
-          <div uk-grid>
-            <div class="uk-width-1-1 uk-width-1-3@m"><content.navigation
-              /></div>
-            <div class="uk-width-1-1 uk-width-2-3@m">
-              <content.form />
-              <hr />
-              <content.pagination />
-            </div>
+        pagination=(component "cf-pagination" navigation=this.navigation)
+        form=(component
+          "cf-form-wrapper"
+          document=this.document
+          fieldset=this.fieldset
+          context=@context
+          disabled=@disabled
+        )
+      )
+      as |content|
+    }}
+      {{#if (has-block)}}
+        {{yield content}}
+      {{else if (gt this.document.fieldsets.length 1)}}
+        <div uk-grid>
+          <div class="uk-width-1-1 uk-width-1-3@m"><content.navigation /></div>
+          <div class="uk-width-1-1 uk-width-2-3@m">
+            <content.form />
+            <hr />
+            <content.pagination />
           </div>
-        {{else}}
-          <content.form />
-        {{/if}}
-      {{/let}}
-    {{/if}}
-  </div>
+        </div>
+      {{else}}
+        <content.form />
+      {{/if}}
+    {{/let}}
+  {{/if}}
 {{/if}}

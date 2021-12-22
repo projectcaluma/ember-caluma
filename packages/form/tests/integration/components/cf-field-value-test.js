@@ -9,95 +9,104 @@ module("Integration | Component | cf-field-value", function (hooks) {
   setupIntl(hooks);
 
   test("it renders multiple choice questions", async function (assert) {
-    this.set("field", {
+    this.field = {
       selected: [
         { slug: "option-a", label: "A" },
         { slug: "option-b", label: "B" },
       ],
+      questionType: "MultipleChoiceQuestion",
       question: {
-        __typename: "MultipleChoiceQuestion",
-        multipleChoiceOptions: {
-          edges: [
-            {
-              node: {
-                slug: "option-a",
-                label: "A",
+        raw: {
+          __typename: "MultipleChoiceQuestion",
+          multipleChoiceOptions: {
+            edges: [
+              {
+                node: {
+                  slug: "option-a",
+                  label: "A",
+                },
               },
-            },
-            {
-              node: {
-                slug: "option-b",
-                label: "B",
+              {
+                node: {
+                  slug: "option-b",
+                  label: "B",
+                },
               },
-            },
-            {
-              node: {
-                slug: "option-c",
-                label: "C",
+              {
+                node: {
+                  slug: "option-c",
+                  label: "C",
+                },
               },
-            },
-          ],
+            ],
+          },
         },
       },
       answer: {
         value: ["option-a", "option-b"],
       },
-    });
+    };
 
-    await render(hbs`{{cf-field-value field=field}}`);
+    await render(hbs`<CfFieldValue @field={{this.field}} />`);
 
     assert.dom(this.element).hasText("A, B");
   });
 
   test("it renders choice questions", async function (assert) {
-    this.set("field", {
+    this.field = {
       selected: { slug: "option-c", label: "C" },
+      questionType: "ChoiceQuestion",
       question: {
-        __typename: "ChoiceQuestion",
-        choiceOptions: {
-          edges: [
-            {
-              node: {
-                slug: "option-a",
-                label: "A",
+        raw: {
+          __typename: "ChoiceQuestion",
+          choiceOptions: {
+            edges: [
+              {
+                node: {
+                  slug: "option-a",
+                  label: "A",
+                },
               },
-            },
-            {
-              node: {
-                slug: "option-b",
-                label: "B",
+              {
+                node: {
+                  slug: "option-b",
+                  label: "B",
+                },
               },
-            },
-            {
-              node: {
-                slug: "option-c",
-                label: "C",
+              {
+                node: {
+                  slug: "option-c",
+                  label: "C",
+                },
               },
-            },
-          ],
+            ],
+          },
         },
       },
       answer: {
         value: "option-c",
       },
-    });
+    };
 
-    await render(hbs`{{cf-field-value field=field}}`);
+    await render(hbs`<CfFieldValue @field={{this.field}} />`);
 
     assert.dom(this.element).hasText("C");
   });
 
   test("it renders text questions", async function (assert) {
-    this.set("field", {
+    this.field = {
+      questionType: "TextQuestion",
       question: {
-        __typename: "TextQuestion",
+        raw: {
+          __typename: "TextQuestion",
+        },
       },
       answer: {
         value: "foo",
       },
-    });
+    };
 
-    await render(hbs`{{cf-field-value field=field}}`);
+    await render(hbs`<CfFieldValue @field={{this.field}} />`);
 
     assert.dom(this.element).hasText("foo");
   });

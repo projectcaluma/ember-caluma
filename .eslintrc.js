@@ -3,13 +3,9 @@
 module.exports = {
   extends: "@adfinis-sygroup/eslint-config/ember-addon",
   rules: {
-    "ember/no-observers": "warn",
     // TODO: https://github.com/projectcaluma/ember-caluma/issues/529
     "ember/no-mixins": "warn",
     "ember/no-new-mixins": "warn",
-    // TODO: Update @projectcaluma/ember-form lib layer to native classes
-    "ember/no-get": "warn",
-    "ember/no-classic-classes": "warn",
   },
   settings: {
     "import/internal-regex": "^(@projectcaluma|ember-caluma)/",

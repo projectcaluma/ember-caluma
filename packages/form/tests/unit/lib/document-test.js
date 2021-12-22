@@ -14,7 +14,7 @@ module("Unit | Library | document", function (hooks) {
     this.owner.register("service:validator", ValidatorServiceStub);
 
     this.set("setFieldValue", async (slug, value) => {
-      this.document.findField(slug).set("answer.value", value);
+      this.document.findField(slug).answer.value = value;
 
       await settled();
     });
@@ -25,9 +25,10 @@ module("Unit | Library | document", function (hooks) {
 
     this.set(
       "document",
-      this.owner
-        .factoryFor("caluma-model:document")
-        .create({ raw: parseDocument(data) })
+      new (this.owner.factoryFor("caluma-model:document").class)({
+        raw: parseDocument(data),
+        owner: this.owner,
+      })
     );
 
     await settled();

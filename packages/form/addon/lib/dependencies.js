@@ -1,4 +1,5 @@
-import { computed, get } from "@ember/object";
+import { get } from "@ember/object";
+import { cached } from "tracked-toolbox";
 
 import { getAST, getTransforms } from "@projectcaluma/ember-core/utils/jexl";
 
@@ -47,79 +48,43 @@ export function getDependenciesFromJexl(jexl, expression) {
 }
 
 /**
- * Computed property to get all nested dependency parents of an expression. A
- * nested dependency parent would be a table field that is used with a mapby
- * transform in the JEXL expression.
- *
- * E.g: 'foo'|answer in 'bar'|answer|mapby('column') where 'bar' would be a
- * nested dependency parent.
- *
- * Those need to be extracted seperately since the overall dependencies need to
- * depend on the values of the nested dependency parents to recompute
- * correctly.
+ * Getter to extract all fields used in an expression.
  *
  * @param {String} expressionPath The path of the expression
- * @return {Field[]} Returns an array of nested dependency parent fields
+ * @return {Field[]} An array of all dependency fields
  */
-export function nestedDependencyParents(expressionPath) {
-  return dependencies(expressionPath, { onlyNestedParents: true });
-}
+export function dependencies(expressionPath) {
+  return function (target, key) {
+    return cached(target, key, {
+      get() {
+        const expression = get(this, expressionPath);
 
-/**
- * Computed property to get all dependencies of an expression.
- *
- * @param {String} expressionPath The path of the expression
- * @param {Object} options
- * @param {Boolean} options.onlyNestedParents Only include nested parent fields
- * @param {String} options.nestedParentsPath Path of the nested parent fields to trigger recomputation
- * @return {Field[]} Returns an array of all dependency fields
- */
-export function dependencies(
-  expressionPath,
-  { onlyNestedParents = false, nestedParentsPath = null } = {}
-) {
-  // If there are nested parents we need to recompute the property if their
-  // values change
-  const nestedTriggers = nestedParentsPath
-    ? [`${nestedParentsPath}.@each.value`]
-    : [];
+        if (!expression) return [];
 
-  return computed(
-    "document.{jexl,fields.[]}",
-    expressionPath,
-    ...nestedTriggers,
-    function () {
-      const expression = get(this, expressionPath);
+        const slugs = getDependenciesFromJexl(this.document.jexl, expression);
 
-      if (!expression) return [];
+        return slugs
+          .flatMap((slug) => {
+            const [fieldSlug, nestedSlug = null] = slug.split(".");
 
-      const slugs = getDependenciesFromJexl(this.document.jexl, expression);
+            const field = this.document.findField(fieldSlug);
 
-      return slugs
-        .flatMap((slug) => {
-          const [fieldSlug, nestedSlug = null] = slug.split(".");
+            if (nestedSlug && field?.value) {
+              // Get the nested fields from the parents value (rows)
+              const childFields =
+                nestedSlug === "__all__"
+                  ? field.value.flatMap((row) => row.fields)
+                  : field.value.map((row) => row.findField(nestedSlug));
 
-          if (onlyNestedParents && !nestedSlug) {
-            return null;
-          }
+              return [field, ...childFields];
+            }
 
-          const field = this.document.findField(fieldSlug);
-
-          if (!onlyNestedParents && nestedSlug && field?.value) {
-            // Get the nested fields from the parents value (rows)
-            const childFields =
-              nestedSlug === "__all__"
-                ? field.value.flatMap((row) => row.fields)
-                : field.value.map((row) => row.findField(nestedSlug));
-
-            return [field, ...childFields];
-          }
-
-          return [field];
-        })
-        .filter(Boolean);
-    }
-  );
+            return [field];
+          })
+          .filter(Boolean);
+      },
+    });
+  };
 }
 
 export default dependencies;

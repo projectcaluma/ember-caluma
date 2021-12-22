@@ -1,35 +1,44 @@
-import { getOwner } from "@ember/application";
+import { setOwner } from "@ember/application";
 import { assert } from "@ember/debug";
-import EmberObject from "@ember/object";
+import { registerDestructor } from "@ember/destroyable";
 import { inject as service } from "@ember/service";
 
-export default EmberObject.extend({
-  calumaStore: service(),
+export default class Base {
+  @service calumaStore;
 
-  init(...args) {
-    this._super(...args);
+  constructor({ raw, owner }) {
+    assert("`owner` must be passed as an argument", owner);
 
-    assert("Owner must be injected", getOwner(this));
+    assert("A primary key `pk` must be defined on the object", "pk" in this);
 
-    // answers don't need a pk if they are new
-    if (!/Answer$/.test(this.get("raw.__typename"))) {
-      assert("A primary key `pk` must be passed", this.pk);
-      assert(
-        "The primary key `pk` must be readonly",
-        !Object.getOwnPropertyDescriptor(this, "pk").writable
-      );
+    setOwner(this, owner);
+
+    if (raw) {
+      this.raw = raw;
     }
 
+    registerDestructor(this, () => {
+      if (this.pk) {
+        this.calumaStore.delete(this.pk);
+      }
+    });
+  }
+
+  /**
+   * The raw data of the object
+   *
+   * @property {Object} raw
+   */
+  raw = {};
+
+  /**
+   * Push the object into the caluma store
+   *
+   * @method pushIntoStore
+   */
+  pushIntoStore() {
     if (this.pk) {
       this.calumaStore.push(this);
     }
-  },
-
-  willDestroy(...args) {
-    this._super(...args);
-
-    if (this.pk) {
-      this.calumaStore.delete(this.pk);
-    }
-  },
-});
+  }
+}

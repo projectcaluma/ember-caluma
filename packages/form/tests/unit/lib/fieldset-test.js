@@ -7,17 +7,20 @@ module("Unit | Library | fieldset", function (hooks) {
   test("it computes a pk", async function (assert) {
     assert.expect(1);
 
-    const fieldset = this.owner.factoryFor("caluma-model:fieldset").create({
-      raw: {
-        form: {
-          __typename: "Form",
-          slug: "some-form",
-          questions: [],
+    const fieldset = new (this.owner.factoryFor("caluma-model:fieldset").class)(
+      {
+        raw: {
+          form: {
+            __typename: "Form",
+            slug: "some-form",
+            questions: [],
+          },
+          answers: [],
         },
-        answers: [],
-      },
-      document: { pk: "Document:xxx-xxx" },
-    });
+        document: { pk: "Document:xxx-xxx" },
+        owner: this.owner,
+      }
+    );
 
     assert.strictEqual(fieldset.pk, "Document:xxx-xxx:Form:some-form");
   });

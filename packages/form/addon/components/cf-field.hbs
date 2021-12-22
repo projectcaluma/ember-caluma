@@ -16,8 +16,8 @@
         {{/let}}
       </div>
 
-      {{#if (and @field.question.infoText this.infoTextVisible)}}
-        <CfField::info @text={{@field.question.infoText}} />
+      {{#if (and @field.question.raw.infoText this.infoTextVisible)}}
+        <CfField::info @text={{@field.question.raw.infoText}} />
       {{/if}}
 
       {{#if this.saveIndicatorVisible}}

@@ -7,7 +7,7 @@
     <WorkItemButton
       @workItemId={{this.workItem}}
       @mutation={{this.action}}
-      @label={{@field.question.label}}
+      @label={{@field.question.raw.label}}
       @disabled={{and (not-eq isValid null) (not isValid)}}
       @color={{this.color}}
       @beforeMutate={{fn this.beforeMutate validate}}

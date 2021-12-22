@@ -1,8 +1,8 @@
 import { getOwner } from "@ember/application";
 import { assert } from "@ember/debug";
-import { computed, defineProperty } from "@ember/object";
-import { inject as service } from "@ember/service";
+import { associateDestroyableChild } from "@ember/destroyable";
 import jexl from "jexl";
+import { cached } from "tracked-toolbox";
 
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 import { intersects, mapby } from "@projectcaluma/ember-core/utils/jexl";
@@ -17,124 +17,123 @@ const sum = (nums) => nums.reduce((num, base) => base + num, 0);
  *
  * @class Document
  */
-export default Base.extend({
-  calumaStore: service(),
-
-  init(...args) {
+export default class Document extends Base {
+  constructor({ raw, parentDocument, ...args }) {
     assert(
       "A graphql document `raw` must be passed",
-      this.raw && this.raw.__typename === "Document"
+      raw?.__typename === "Document"
     );
 
-    defineProperty(this, "pk", {
-      writable: false,
-      value: `Document:${decodeId(this.raw.id)}`,
-    });
+    super({ raw, ...args });
 
-    this._super(...args);
+    this.parentDocument = parentDocument;
 
-    this.set("fieldsets", []);
+    this.pushIntoStore();
 
     this._createRootForm();
     this._createFieldsets();
-  },
+  }
 
   _createRootForm() {
-    const rootForm =
-      this.calumaStore.find(`Form:${this.raw.rootForm.slug}`) ||
-      getOwner(this)
-        .factoryFor("caluma-model:form")
-        .create({ raw: this.raw.rootForm });
+    const owner = getOwner(this);
 
-    this.set("rootForm", rootForm);
-  },
+    this.rootForm =
+      this.calumaStore.find(`Form:${this.raw.rootForm.slug}`) ||
+      new (owner.factoryFor("caluma-model:form").class)({
+        raw: this.raw.rootForm,
+        owner,
+      });
+  }
 
   _createFieldsets() {
-    const fieldsets = this.raw.forms.map((form) => {
-      return (
+    const owner = getOwner(this);
+
+    this.fieldsets = this.raw.forms.map((form) => {
+      return associateDestroyableChild(
+        this,
         this.calumaStore.find(`${this.pk}:Form:${form.slug}`) ||
-        getOwner(this)
-          .factoryFor("caluma-model:fieldset")
-          .create({
+          new (owner.factoryFor("caluma-model:fieldset").class)({
             raw: { form, answers: this.raw.answers },
             document: this,
+            owner,
           })
       );
     });
-
-    this.set("fieldsets", fieldsets);
-  },
-
-  willDestroy(...args) {
-    this._super(...args);
-
-    const fieldsets = this.fieldsets;
-    this.set("fieldsets", []);
-    fieldsets.forEach((fieldset) => fieldset.destroy());
-  },
+  }
 
   /**
-   * The uuid of the document
+   * The parent document of this document. If this is set, the document is most
+   * likely a table row.
    *
-   * @property {String} uuid
-   * @accessor
+   * @property {Document} parentDocument
    */
-  uuid: computed("raw.id", function () {
-    return decodeId(this.raw.id);
-  }),
-
-  workItemUuid: computed(
-    "raw.{workItem.id,case.workItems.edges.[]}",
-    function () {
-      // The document is either directly attached to a work item (via
-      // CompleteTaskFormTask) or it's the case document and therefore
-      // indirectly attached to a work item (via CompleteWorkflowFormTask)
-      const rawId =
-        this.raw.workItem?.id ||
-        this.raw.case?.workItems.edges.find(
-          (edge) => edge.node.task.__typename === "CompleteWorkflowFormTask"
-        )?.node.id;
-
-      return rawId ? decodeId(rawId) : null;
-    }
-  ),
+  parentDocument = null;
 
   /**
    * The root form of this document
    *
    * @property {Form} rootForm
-   * @accessor
    */
-  rootForm: null,
+  rootForm = null;
 
   /**
    * The fieldsets of this document
    *
    * @property {Fieldset[]} fieldsets
-   * @accessor
    */
-  fieldsets: null,
+  fieldsets = [];
+
+  /**
+   * The primary key of the document.
+   *
+   * @property {String} pk
+   */
+  @cached
+  get pk() {
+    return `Document:${this.uuid}`;
+  }
+
+  /**
+   * The uuid of the document
+   *
+   * @property {String} uuid
+   */
+  @cached
+  get uuid() {
+    return decodeId(this.raw.id);
+  }
+
+  @cached
+  get workItemUuid() {
+    // The document is either directly attached to a work item (via
+    // CompleteTaskFormTask) or it's the case document and therefore
+    // indirectly attached to a work item (via CompleteWorkflowFormTask)
+    const rawId =
+      this.raw.workItem?.id ||
+      this.raw.case?.workItems.edges.find(
+        (edge) => edge.node.task.__typename === "CompleteWorkflowFormTask"
+      )?.node.id;
+
+    return rawId ? decodeId(rawId) : null;
+  }
 
   /**
    * All fields of all fieldsets of this document
    *
    * @property {Field[]} fields
-   * @accessor
    */
-  fields: computed("fieldsets.@each.fields", function () {
-    return this.fieldsets.reduce(
-      (fields, fieldset) => [...fields, ...fieldset.fields],
-      []
-    );
-  }),
+  @cached
+  get fields() {
+    return this.fieldsets.flatMap((fieldset) => fieldset.fields);
+  }
 
   /**
    * The JEXL object for evaluating jexl expressions on this document
    *
    * @property {JEXL} jexl
-   * @accessor
    */
-  jexl: computed(function () {
+  @cached
+  get jexl() {
     const documentJexl = new jexl.Jexl();
 
     documentJexl.addTransform("answer", (slug, defaultValue) =>
@@ -174,31 +173,29 @@ export default Base.extend({
     documentJexl.addTransform("stringify", (input) => JSON.stringify(input));
 
     return documentJexl;
-  }),
+  }
 
   /**
    * The JEXL context object for passing to the evaluation of jexl expessions
    *
    * @property {Object} jexlContext
-   * @accessor
    */
-  jexlContext: computed(
-    "rootForm.{slug,meta}",
-    "parentDocument.jexlContext",
-    function () {
-      if (this.parentDocument) return this.parentDocument.jexlContext;
-
-      return {
+  get jexlContext() {
+    return (
+      this.parentDocument?.jexlContext ?? {
         // JEXL interprets null in an expression as variable instead of a
         // primitive. This resolves that issue.
         null: null,
         form: this.rootForm.slug,
         info: {
-          root: { form: this.rootForm.slug, formMeta: this.rootForm.meta },
+          root: {
+            form: this.rootForm.slug,
+            formMeta: this.rootForm.raw.meta,
+          },
         },
-      };
-    }
-  ),
+      }
+    );
+  }
 
   /**
    * Object representation of a document. The question slug as key and the
@@ -215,9 +212,9 @@ export default Base.extend({
    * answer.
    *
    * @property {Object} flatAnswerMap
-   * @accessor
    */
-  flatAnswerMap: computed("fields.@each.{question,value}", function () {
+  @cached
+  get flatAnswerMap() {
     return this.fields.reduce(
       (answerMap, field) => ({
         ...answerMap,
@@ -225,7 +222,7 @@ export default Base.extend({
       }),
       {}
     );
-  }),
+  }
 
   /**
    * Find an answer for a given question slug
@@ -249,7 +246,7 @@ export default Base.extend({
       return defaultValue ?? field.question.isMultipleChoice ? [] : null;
     }
 
-    if (field.question.__typename === "TableQuestion") {
+    if (field.question.isTable) {
       return field.value.map((doc) =>
         doc.fields
           .filter((field) => !field.hidden)
@@ -263,7 +260,7 @@ export default Base.extend({
     }
 
     return field.value;
-  },
+  }
 
   /**
    * Find a field in the document by a given question slug
@@ -272,9 +269,8 @@ export default Base.extend({
    * @return {Field} The wanted field
    */
   findField(slug) {
-    return [
-      ...this.fields,
-      ...(this.parentDocument ? this.parentDocument.fields : []),
-    ].find((field) => field.question.slug === slug);
-  },
-});
+    return [...this.fields, ...(this.parentDocument?.fields ?? [])].find(
+      (field) => field.question.slug === slug
+    );
+  }
+}

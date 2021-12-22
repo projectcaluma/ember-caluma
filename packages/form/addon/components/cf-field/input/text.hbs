@@ -6,9 +6,9 @@
   name={{@field.pk}}
   id={{@field.pk}}
   value={{@field.answer.value}}
-  placeholder={{@field.question.placeholder}}
+  placeholder={{@field.question.raw.placeholder}}
   readonly={{@disabled}}
-  minlength={{@field.question.textMinLength}}
-  maxlength={{@field.question.textMaxLength}}
+  minlength={{@field.question.raw.textMinLength}}
+  maxlength={{@field.question.raw.textMaxLength}}
   {{on "input" this.input}}
 />

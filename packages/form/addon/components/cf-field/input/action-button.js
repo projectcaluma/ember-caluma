@@ -31,34 +31,36 @@ export default class CfFieldInputActionButtonComponent extends Component {
   }
 
   get action() {
-    return this.args.field.question.action.toLowerCase();
+    return this.args.field.question.raw.action.toLowerCase();
   }
 
   get color() {
-    return this.args.field.question.color.toLowerCase();
+    return this.args.field.question.raw.color.toLowerCase();
   }
 
   get type() {
-    return this.args.field.question.action === "COMPLETE" ? "submit" : "button";
+    return this.args.field.question.raw.action === "COMPLETE"
+      ? "submit"
+      : "button";
   }
 
   get validateOnEnter() {
     return (
-      this.args.field.question.action === "COMPLETE" &&
-      this.args.field.question.validateOnEnter
+      this.args.field.question.raw.action === "COMPLETE" &&
+      this.args.field.question.raw.validateOnEnter
     );
   }
 
   @action
   async beforeMutate(validateFn) {
     if (
-      this.args.field.question.action === "COMPLETE" &&
+      this.args.field.question.raw.action === "COMPLETE" &&
       !(await validateFn())
     ) {
       return false;
     }
 
-    const confirmText = this.args.field.question.infoText;
+    const confirmText = this.args.field.question.raw.infoText;
 
     return !confirmText || confirm(confirmText);
   }

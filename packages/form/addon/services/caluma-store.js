@@ -3,7 +3,11 @@ import { set } from "@ember/object";
 import Service from "@ember/service";
 
 export default class CalumaStoreService extends Service {
-  _store = [];
+  constructor(...args) {
+    super(...args);
+
+    this._store = new Map();
+  }
 
   push(obj) {
     assert(
@@ -11,7 +15,7 @@ export default class CalumaStoreService extends Service {
       obj.pk
     );
 
-    const existing = this._store.find((i) => i.pk === obj.pk);
+    const existing = this._store.get(obj.pk);
 
     if (existing) {
       debug(
@@ -23,22 +27,22 @@ export default class CalumaStoreService extends Service {
       return existing;
     }
 
-    this._store = [...this._store.filter((i) => i.pk !== obj.pk), obj];
+    this._store.set(obj.pk, obj);
 
     return obj;
   }
 
   find(pk) {
-    return this._store.find((i) => i.pk === pk) || null;
+    return this._store.get(pk) || null;
   }
 
   delete(pk) {
-    this._store = this._store.filter((i) => i.pk !== pk);
+    this._store.delete(pk);
   }
 
   clear() {
     this._store.forEach((obj) => obj.destroy());
 
-    this._store = [];
+    this._store.clear();
   }
 }

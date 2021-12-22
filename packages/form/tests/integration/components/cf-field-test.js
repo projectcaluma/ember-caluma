@@ -50,23 +50,26 @@ module("Integration | Component | cf-field", function (hooks) {
       ],
     };
 
-    const document = this.owner.factoryFor("caluma-model:document").create({
-      raw: {
-        __typename: "Document",
-        id: window.btoa("Document:1"),
-        answers: [
-          {
-            stringValue: "Test",
-            question: {
-              slug: "question-1",
+    const document = new (this.owner.factoryFor("caluma-model:document").class)(
+      {
+        raw: {
+          __typename: "Document",
+          id: window.btoa("Document:1"),
+          answers: [
+            {
+              stringValue: "Test",
+              question: {
+                slug: "question-1",
+              },
+              __typename: "StringAnswer",
             },
-            __typename: "StringAnswer",
-          },
-        ],
-        rootForm: form,
-        forms: [form],
-      },
-    });
+          ],
+          rootForm: form,
+          forms: [form],
+        },
+        owner: this.owner,
+      }
+    );
 
     this.set("field", document.fields[0]);
     this.set("errorField", document.fields[1]);

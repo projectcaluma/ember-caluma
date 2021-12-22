@@ -1,5 +1,5 @@
 import { assert } from "@ember/debug";
-import { defineProperty } from "@ember/object";
+import { cached } from "tracked-toolbox";
 
 import Base from "@projectcaluma/ember-form/lib/base";
 
@@ -8,20 +8,32 @@ import Base from "@projectcaluma/ember-form/lib/base";
  *
  * @class Form
  */
-export default Base.extend({
-  init(...args) {
-    assert(
-      "A graphql form `raw` must be passed",
-      this.raw && this.raw.__typename === "Form"
-    );
+export default class Form extends Base {
+  constructor({ raw, ...args }) {
+    assert("A graphql form `raw` must be passed", raw?.__typename === "Form");
 
-    defineProperty(this, "pk", {
-      writable: false,
-      value: `Form:${this.raw.slug}`,
-    });
+    super({ raw, ...args });
 
-    this._super(...args);
+    this.pushIntoStore();
+  }
 
-    this.setProperties(this.raw);
-  },
-});
+  /**
+   * The primary key of the form.
+   *
+   * @property {String} pk
+   */
+  @cached
+  get pk() {
+    return `Form:${this.slug}`;
+  }
+
+  /**
+   * The slug of the form
+   *
+   * @property {String} slug
+   */
+  @cached
+  get slug() {
+    return this.raw.slug;
+  }
+}
