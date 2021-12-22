@@ -7,7 +7,9 @@ import { dasherize } from "@ember/string";
 const parse = (raw) => dasherize(raw.replace("Question", ""));
 
 export function hasQuestionType(obj, ...expected) {
-  return expected.map(parse).includes(parse(obj?.__typename || ""));
+  return expected
+    .map(parse)
+    .includes(parse((obj?.raw?.__typename ?? obj?.__typename) || ""));
 }
 
 export default helper(([obj, ...expected]) =>
