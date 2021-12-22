@@ -15,7 +15,7 @@ module("Integration | Helper | get-widget", function (hooks) {
     });
 
     await render(
-      hbs`{{get-widget (hash meta=(hash widgetOverride="some-component"))}}`
+      hbs`{{get-widget (hash raw=(hash meta=(hash widgetOverride="some-component")))}}`
     );
 
     assert.dom(this.element).hasText("some-component");
@@ -56,8 +56,8 @@ module("Integration | Helper | get-widget", function (hooks) {
     await render(
       hbs`{{get-widget
         null
-        (hash meta=(hash widgetOverride="some-invalid-component"))
-        (hash meta=(hash widgetOverride="some-component"))
+        (hash raw=(hash meta=(hash widgetOverride="some-invalid-component")))
+        (hash raw=(hash meta=(hash widgetOverride="some-component")))
       }}`
     );
 

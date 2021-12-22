@@ -26,7 +26,7 @@ export default class GetWidgetHelper extends Helper {
 
   compute(params, { default: defaultWidget = "cf-field/input" }) {
     for (const obj of params) {
-      const widget = obj?.meta?.widgetOverride;
+      const widget = obj?.raw?.meta?.widgetOverride;
       if (!widget) {
         continue;
       }

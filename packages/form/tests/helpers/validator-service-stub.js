@@ -1,7 +1,7 @@
 import Service from "@ember/service";
 
-export default Service.extend({
+export default class ValidatorServiceStub extends Service {
   async validate() {
     return [true];
-  },
-});
+  }
+}
