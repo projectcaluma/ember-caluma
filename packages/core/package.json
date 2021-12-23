@@ -39,7 +39,7 @@
     "@ember/optional-features": "2.0.0",
     "@ember/render-modifiers": "2.0.2",
     "@ember/test-helpers": "2.6.0",
-    "@embroider/test-setup": "0.48.1",
+    "@embroider/test-setup": "0.49.0",
     "@glimmer/component": "1.0.4",
     "@projectcaluma/ember-testing": "10.1.0",
     "broccoli-asset-rev": "3.0.0",
