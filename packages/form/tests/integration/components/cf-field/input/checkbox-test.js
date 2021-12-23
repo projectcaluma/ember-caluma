@@ -1,4 +1,5 @@
-import { render, click } from "@ember/test-helpers";
+import { render, click, settled } from "@ember/test-helpers";
+import { tracked } from "@glimmer/tracking";
 import { hbs } from "ember-cli-htmlbars";
 import { setupIntl } from "ember-intl/test-support";
 import { setupRenderingTest } from "ember-qunit";
@@ -80,35 +81,37 @@ module("Integration | Component | cf-field/input/checkbox", function (hooks) {
   test("it triggers save on click", async function (assert) {
     assert.expect(3);
 
-    this.set("value", []);
-    this.set("save", (value) => this.set("value", value));
+    this.field = new (class {
+      @tracked value = [];
+      options = [
+        { slug: "option-1", label: "Option 1" },
+        { slug: "option-2", label: "Option 2" },
+      ];
+      question = {
+        __typename: "MultipleChoiceQuestion",
+      };
+    })();
+
+    this.save = async (value) => {
+      this.field.value = value;
+      await settled();
+    };
 
     await render(hbs`
       <CfField::Input::Checkbox
         @onSave={{this.save}}
-        @field={{hash
-          answer=(hash
-            value=value
-          )
-          options=(array
-            (hash slug="option-1" label="Option 1")
-            (hash slug="option-2" label="Option 2")
-          )
-          question=(hash
-            __typename="MultipleChoiceQuestion"
-          )
-        }}
+        @field={{this.field}}
       />
     `);
 
     await click("label:nth-of-type(1) input");
-    assert.deepEqual(this.value, ["option-1"]);
+    assert.deepEqual(this.field.value, ["option-1"]);
 
     await click("label:nth-of-type(2) input");
-    assert.deepEqual(this.value, ["option-1", "option-2"]);
+    assert.deepEqual(this.field.value, ["option-1", "option-2"]);
 
     await click("label:nth-of-type(1) input");
-    assert.deepEqual(this.value, ["option-2"]);
+    assert.deepEqual(this.field.value, ["option-2"]);
   });
 
   test("it renders disabled options", async function (assert) {

@@ -78,7 +78,7 @@ module("Integration | Component | cf-content", function (hooks) {
         // checkbox options have their option slug postfixed to the name in
         // order to support IE11
         answer.value.forEach((v) => {
-          assert.dom(`[name="${id}:Option:${v}"][value="${v}"]`).isChecked();
+          assert.dom(`[name="${id}"][value="${v}"]`).isChecked();
         });
       } else if (answer.type === "DATE") {
         assert
@@ -109,9 +109,7 @@ module("Integration | Component | cf-content", function (hooks) {
         options
           .filter((option) => !option.isArchived)
           .forEach(({ slug }) => {
-            assert
-              .dom(`[name="${id}:Option:${slug}"][value="${slug}"]`)
-              .isDisabled();
+            assert.dom(`[name="${id}"][value="${slug}"]`).isDisabled();
           });
       } else {
         assert.dom(`[name="${id}"]`).hasAttribute("readonly");
@@ -208,10 +206,10 @@ module("Integration | Component | cf-content", function (hooks) {
       `[name="Document:${document.id}:Question:radio-question"][value="radio-question-option-2"]`
     );
     await click(
-      `[name="Document:${document.id}:Question:checkbox-question:Option:checkbox-question-option-1"][value="checkbox-question-option-1"]`
+      `[name="Document:${document.id}:Question:checkbox-question"][value="checkbox-question-option-1"]`
     );
     await click(
-      `[name="Document:${document.id}:Question:checkbox-question:Option:checkbox-question-option-2"][value="checkbox-question-option-2"]`
+      `[name="Document:${document.id}:Question:checkbox-question"][value="checkbox-question-option-2"]`
     );
     await fillIn(
       `[name="Document:${document.id}:Question:date-question"]`,

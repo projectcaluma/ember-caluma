@@ -18,8 +18,6 @@ module.exports = {
     "BS_Firefox_Current",
     "BS_Safari_Current",
     "BS_MS_Edge",
-    // TODO: fix IE 11 issues (test-selectors)
-    // "BS_IE_11"
   ],
   launch_in_dev: [],
   launchers: {
@@ -93,25 +91,6 @@ module.exports = {
         "latest",
         "-t",
         "1200",
-        "--u",
-        "<url>",
-        ...project,
-      ],
-      protocol: "browser",
-    },
-    BS_IE_11: {
-      exe: "node_modules/.bin/browserstack-launch",
-      args: [
-        "--os",
-        "Windows",
-        "--osv",
-        "10",
-        "--b",
-        "ie",
-        "--bv",
-        "11.0",
-        "-t",
-        "1500",
         "--u",
         "<url>",
         ...project,

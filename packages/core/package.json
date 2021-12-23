@@ -29,11 +29,9 @@
     "ember-resources": "^4.1.3",
     "graphql": "^15.6.1",
     "graphql-tag": "^2.12.6",
-    "intersection-observer": "^0.12.0",
     "jexl": "^2.3.0",
     "lodash.clonedeep": "^4.5.0",
     "moment": "^2.29.1",
-    "proxy-polyfill": "^0.3.2",
     "slugify": "^1.6.4"
   },
   "devDependencies": {
