@@ -9,10 +9,6 @@ module.exports = function (defaults) {
     "ember-cli-addon-docs": {
       documentingAddonAt: "../form",
     },
-    "ember-cli-babel": {
-      includePolyfill:
-        Boolean(process.env.CI) || process.env.EMBER_ENV === "production",
-    },
   });
 
   return app.toTree();
