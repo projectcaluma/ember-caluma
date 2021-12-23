@@ -1,7 +1,7 @@
-const App = Application.extend({
+export default class App extends Application {
   // ...
 
-  engines: {
+  engines = {
     "@projectcaluma/ember-form-builder": {
       dependencies: {
         services: [
@@ -13,5 +13,5 @@ const App = Application.extend({
         ],
       },
     },
-  },
-});
+  };
+}

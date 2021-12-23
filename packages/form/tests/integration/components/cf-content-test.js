@@ -75,8 +75,6 @@ module("Integration | Component | cf-content", function (hooks) {
         const test = question.isArchived ? "isNotChecked" : "isChecked";
         assert.dom(`[name="${id}"][value="${answer.value}"]`)[test]();
       } else if (question.type === "MULTIPLE_CHOICE") {
-        // checkbox options have their option slug postfixed to the name in
-        // order to support IE11
         answer.value.forEach((v) => {
           assert.dom(`[name="${id}"][value="${v}"]`).isChecked();
         });
