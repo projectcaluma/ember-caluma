@@ -1,17 +1,17 @@
-import { action } from "@ember/object";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
-import { queryManager } from "ember-apollo-client";
 import { timeout } from "ember-concurrency";
 import { restartableTask } from "ember-concurrency-decorators";
 
-import calumaQuery from "@projectcaluma/ember-core/caluma-query";
+import { useCalumaQuery } from "@projectcaluma/ember-core/caluma-query";
 import { allForms } from "@projectcaluma/ember-core/caluma-query/queries";
 
 export default class ComponentsCfbFormListComponent extends Component {
-  @queryManager apollo;
-
-  @calumaQuery({ query: allForms, options: { pageSize: 20 } }) formsQuery;
+  formsQuery = useCalumaQuery(this, allForms, () => ({
+    options: { pageSize: 20 },
+    filter: this.filter,
+    order: [{ attribute: "NAME", direction: "ASC" }],
+  }));
 
   @tracked category = "active";
   @tracked search = "";
@@ -29,33 +29,11 @@ export default class ComponentsCfbFormListComponent extends Component {
     return [isArchived, search].filter(Boolean) || null;
   }
 
-  @action
-  setFilter(name, eventOrValue) {
-    this[name] =
-      eventOrValue instanceof Event ? eventOrValue.target.value : eventOrValue;
-
-    this.fetchForms.perform();
-  }
-
-  @action
-  submit(event) {
-    event.preventDefault();
-  }
-
-  @action
-  loadMoreForms(e) {
-    e.preventDefault();
-
-    this.formsQuery.fetchMore();
-  }
-
   @restartableTask
-  *fetchForms() {
+  *setFilter(name, eventOrValue) {
     yield timeout(500);
 
-    yield this.formsQuery.fetch({
-      filter: this.filter,
-      order: [{ attribute: "NAME", direction: "ASC" }],
-    });
+    this[name] =
+      eventOrValue instanceof Event ? eventOrValue.target.value : eventOrValue;
   }
 }

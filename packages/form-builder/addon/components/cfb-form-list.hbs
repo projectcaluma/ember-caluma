@@ -1,76 +1,73 @@
-<div
-  ...attributes
-  {{did-insert (perform this.fetchForms)}}
-  {{did-update (perform this.fetchForms)}}
->
-  <div class="uk-flex uk-flex-between">
-    <div class="uk-button-group">
-      {{#each (array "active" "archived" "all") as |category|}}
-        <UkButton
-          data-test-filter={{category}}
-          @on-click={{fn this.setFilter "category" category}}
-          @label={{t (concat "caluma.form-builder.form." category)}}
-          @class={{if (eq this.category category) "uk-button-primary" ""}}
-        />
-      {{/each}}
-    </div>
-    <div>
+<div class="uk-flex uk-flex-between">
+  <div class="uk-button-group">
+    {{#each (array "active" "archived" "all") as |category|}}
       <UkButton
-        data-test-new-form
-        @on-click={{optional @on-new-form}}
-        @label={{t "caluma.form-builder.form.new"}}
+        data-test-filter={{category}}
+        @on-click={{fn (perform this.setFilter) "category" category}}
+        @label={{t (concat "caluma.form-builder.form." category)}}
+        @class={{if (eq this.category category) "uk-button-primary" ""}}
       />
-    </div>
+    {{/each}}
   </div>
-  <form
-    class="uk-search uk-search-default uk-width-1-1 uk-margin-small-top"
-    {{on "submit" this.submit}}
-  >
-    <span class="uk-search-icon-flip" uk-search-icon></span>
-    <input
-      data-test-form-search-input
-      class="uk-search-input"
-      type="search"
-      placeholder="{{t 'caluma.form-builder.global.search'}}..."
-      aria-label="{{t 'caluma.form-builder.global.search'}}"
-      value={{this.search}}
-      {{on "input" (fn this.setFilter "search")}}
+  <div>
+    <UkButton
+      data-test-new-form
+      @on-click={{optional @on-new-form}}
+      @label={{t "caluma.form-builder.form.new"}}
     />
-  </form>
-  {{#if this.formsQuery.isLoading}}
-    <div class="uk-height-small uk-flex uk-flex-center uk-flex-middle">
-      <UkSpinner ratio="2" />
-    </div>
-  {{else if this.formsQuery.value.length}}
-    <ul data-test-form-list class="uk-list uk-list-divider uk-list-large">
-      {{#each this.formsQuery.value key="id" as |item|}}
-        <CfbFormList::Item
-          data-test-form-list-item={{item.slug}}
-          @item={{item}}
-          @on-edit-form={{@on-edit-form}}
-        />
-      {{/each}}
-      {{#if this.formsQuery.hasNextPage}}
-        <li class="uk-text-center cfb-pointer">
-          <a
-            data-test-form-loader-button
-            href="#"
-            {{on "click" this.loadMoreForms}}
-          >
-            {{t "caluma.form-builder.form.loadMore"}}
-          </a>
-        </li>
-      {{/if}}
-    </ul>
-  {{else}}
-    <div
-      data-test-form-list-empty
-      class="uk-padding-large uk-padding-remove-horizontal uk-text-center"
-    >
-      <UkIcon @icon="search" @ratio={{10}} />
-      <p class="uk-text-muted">
-        {{t "caluma.form-builder.form.empty"}}
-      </p>
-    </div>
-  {{/if}}
+  </div>
 </div>
+
+<div class="uk-search uk-search-default uk-width-1-1 uk-margin-top">
+  <span class="uk-search-icon-flip" uk-search-icon></span>
+  <input
+    data-test-form-search-input
+    class="uk-search-input"
+    type="search"
+    placeholder="{{t 'caluma.form-builder.global.search'}}..."
+    aria-label="{{t 'caluma.form-builder.global.search'}}"
+    value={{this.search}}
+    {{on "input" (fn (perform this.setFilter) "search")}}
+  />
+</div>
+
+{{#if this.formsQuery.value.length}}
+  <ul data-test-form-list class="uk-list uk-list-divider uk-list-large">
+    {{#each this.formsQuery.value key="id" as |item|}}
+      <CfbFormList::Item
+        data-test-form-list-item={{item.slug}}
+        @item={{item}}
+        @on-edit-form={{@on-edit-form}}
+      />
+    {{/each}}
+    {{#if this.formsQuery.isLoading}}
+      <li class="uk-text-center">
+        <UkSpinner />
+      </li>
+    {{else if this.formsQuery.hasNextPage}}
+      <li class="uk-text-center cfb-pointer">
+        <a
+          data-test-form-loader-button
+          href="#"
+          {{on "click" this.formsQuery.fetchMore}}
+        >
+          {{t "caluma.form-builder.form.loadMore"}}
+        </a>
+      </li>
+    {{/if}}
+  </ul>
+{{else if this.formsQuery.isLoading}}
+  <div class="uk-height-small uk-flex uk-flex-center uk-flex-middle">
+    <UkSpinner @ratio={{2}} />
+  </div>
+{{else}}
+  <div
+    data-test-form-list-empty
+    class="uk-padding-large uk-padding-remove-horizontal uk-text-center"
+  >
+    <UkIcon @icon="search" @ratio={{10}} />
+    <p class="uk-text-muted">
+      {{t "caluma.form-builder.form.empty"}}
+    </p>
+  </div>
+{{/if}}
