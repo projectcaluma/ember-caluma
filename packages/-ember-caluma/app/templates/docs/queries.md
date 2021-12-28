@@ -1,10 +1,9 @@
 # Queries
 
 `@projectcaluma/ember-core` provides a way to fetch certain models via a
-practical API. Currently, only fetching for `WorkItems` is supported - however,
-this will be extended in time.
+practical API.
 
-## Usage
+## Usage with the @calumaQuery decorator
 
 To initialize such a query, simply inject it with the `calumaQuery` decorator:
 
@@ -65,8 +64,9 @@ public methods:
 
 For now, we only have the following two queries:
 
-- `allWorkItems`
 - `allCases`
+- `allForms`
+- `allWorkItems`
 
 However, this will be extended in time. The idea of it is to add queries with
 predefined filters, such as e.g `myWorkItems`.
@@ -79,6 +79,48 @@ predefined filters, such as e.g `myWorkItems`.
 | `processAll`   | `Function<Promise<Object[]>>` | A function that expects **all** items to be passed and returns a `Promise` that resolves into an array of `Object`s. This function will be used to process all items.       |
 | `processNew`   | `Function<Promise<Object[]>>` | Identical to `processAll` but **only new** items (triggered by `loadMore`) will be processed                                                                                |
 | `queryOptions` | `Object`                      | Pass options to `apollo.query`. For more information on what options exist, [see here](https://www.apollographql.com/docs/react/api/core/ApolloClient/#ApolloClient.query). |
+
+## Usage with ember-resources
+
+If you're a fan of the wonderful `ember-resources` addon like we are, you can
+also use the caluma queries directly as a resource:
+
+```js
+import Controller from "@ember/controller";
+import { useCalumaQuery } from "@projectcaluma/ember-core/caluma-query";
+import { allWorkItems } from "@projectcaluma/ember-core/caluma-query/queries";
+
+export default class extends Controller {
+  workItemsQuery = useCalumaQuery(this, allWorkItems, () => ({
+    options: { pageSize: 10 },
+    queryOptions: this.queryOptions,
+    // Those will be passed to the queries `.fetch` and `.fetchMore` methods
+    filter: this.filter,
+    order: this.order,
+  }));
+}
+```
+
+```hbs
+{{#if this.workItemsQuery.isLoading}}
+  Loading...
+{{else if this.workItemsQuery.value}}
+  <ul>
+    {{#each this.workItemsQuery.value as |workItem|}}
+      <li>{{workItem.id}}</li>
+    {{/each}}
+  </ul>
+  {{#if this.workItemsQuery.hasNextPage}}
+    <button {{on "click" this.workItemsQuery.fetchMore}}>Load more</button>
+  {{/if}}
+{{else}}
+  No work items found!
+{{/if}}
+```
+
+This has the benefit that the query will automatically fetch again if any of the
+passed arguments (including the options) change. The [known limitations](#known-limitations)
+do not apply to this usage which is a big plus of using this method.
 
 ## Extending
 
