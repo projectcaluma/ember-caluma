@@ -19,11 +19,22 @@
   </div>
 </div>
 
-<ul
-  class="uk-list uk-list-striped"
-  {{did-insert this.load}}
-  {{did-update this.load this.status}}
->
+<div class="uk-margin">
+  <label for="pageSize" class="uk-form-label">Page size</label>
+  <div class="uk-form-controls">
+    <div class="uk-button-group">
+      {{#each this.possiblePageSizes as |size|}}
+        <UkButton
+          @label={{size}}
+          @color={{if (eq this.pageSize size) "primary" "default"}}
+          @on-click={{fn (mut this.pageSize) size}}
+        />
+      {{/each}}
+    </div>
+  </div>
+</div>
+
+<ul class="uk-list uk-list-striped">
   {{#each this.workItemQuery.value as |workItem|}}
     <li>
       {{workItem.name}}
@@ -31,8 +42,10 @@
       <UkLabel @label={{workItem.status}} />
     </li>
   {{/each}}
-  {{#if this.workItemQuery.hasNextPage}}
-    <li>
+  {{#if this.workItemQuery.isLoading}}
+    <li class="uk-text-center"><UkSpinner /></li>
+  {{else if this.workItemQuery.hasNextPage}}
+    <li class="uk-text-center">
       <button
         class="uk-button uk-button-link"
         type="button"
