@@ -1,11 +1,11 @@
 import { getOwner } from "@ember/application";
-import { A } from "@ember/array";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
 import { optional } from "ember-composable-helpers/helpers/optional";
 import { timeout, restartableTask, dropTask } from "ember-concurrency";
+import { useTask } from "ember-resources";
 
 import FormValidations from "../../validations/form";
 
@@ -22,10 +22,16 @@ export default class CfbFormEditorGeneral extends Component {
 
   Validations = FormValidations;
 
+  get data() {
+    return this._data.value?.[0]?.node;
+  }
+
+  _data = useTask(this, this.fetchData, () => [this.args.slug]);
+
   @restartableTask
-  *data() {
+  *fetchData() {
     if (!this.args.slug) {
-      return A([
+      return [
         {
           node: {
             name: "",
@@ -34,7 +40,7 @@ export default class CfbFormEditorGeneral extends Component {
             isPublished: true,
           },
         },
-      ]);
+      ];
     }
 
     return yield this.apollo.watchQuery(

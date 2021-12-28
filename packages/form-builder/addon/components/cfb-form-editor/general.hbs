@@ -1,98 +1,91 @@
-<div
-  {{did-insert (perform this.data)}}
-  {{did-update (perform this.data) @slug}}
->
-  {{#if this.data.isRunning}}
-    <div class="uk-flex uk-flex-center uk-flex-middle uk-height-small">
-      <UkSpinner ratio="2" />
-    </div>
-  {{else}}
-    {{#with this.data.lastSuccessful.value.firstObject.node as |model|}}
-      <ValidatedForm
-        @model={{changeset model this.Validations}}
-        @on-submit={{perform this.submit}}
-        as |f|
-      >
-        <f.input
-          @type="text"
-          @label={{t "caluma.form-builder.form.name"}}
-          @name="name"
-          @required={{true}}
-          @on-update={{this.updateName}}
-        />
+{{#if this._data.isRunning}}
+  <div class="uk-flex uk-flex-center uk-flex-middle uk-height-small">
+    <UkSpinner ratio="2" />
+  </div>
+{{else if this.data}}
+  <ValidatedForm
+    @model={{changeset this.data this.Validations}}
+    @on-submit={{perform this.submit}}
+    as |f|
+  >
+    <f.input
+      @type="text"
+      @label={{t "caluma.form-builder.form.name"}}
+      @name="name"
+      @required={{true}}
+      @on-update={{this.updateName}}
+    />
 
-        {{#if (or @slug (not this.prefix))}}
+    {{#if (or @slug (not this.prefix))}}
+      <f.input
+        @type="text"
+        @name="slug"
+        @label={{t "caluma.form-builder.form.slug"}}
+        @required={{true}}
+        @disabled={{@slug}}
+        @on-update={{this.updateSlug}}
+      />
+    {{else}}
+      <f.input
+        @name="slug"
+        @required={{true}}
+        @disabled={{@slug}}
+        @label={{t "caluma.form-builder.question.slug"}}
+        @on-update={{this.updateSlug value="target.value"}}
+        as |fi|
+      >
+        <div class="cfb-prefixed">
+          <span class="cfb-prefixed-slug">{{this.prefix}}</span>
           <f.input
             @type="text"
-            @name="slug"
-            @label={{t "caluma.form-builder.form.slug"}}
-            @required={{true}}
-            @disabled={{@slug}}
-            @on-update={{this.updateSlug}}
-          />
-        {{else}}
-          <f.input
-            @name="slug"
-            @required={{true}}
-            @disabled={{@slug}}
-            @label={{t "caluma.form-builder.question.slug"}}
-            @on-update={{this.updateSlug value="target.value"}}
-            as |fi|
-          >
-            <div class="cfb-prefixed">
-              <span class="cfb-prefixed-slug">{{this.prefix}}</span>
-              <f.input
-                @type="text"
-                @model={{fi.model}}
-                @name={{fi.name}}
-                @value={{fi.value}}
-                @update={{fi.update}}
-                @setDirty={{fi.setDirty}}
-                @inputId={{fi.inputId}}
-                @isValid={{fi.isValid}}
-                @isInvalid={{fi.isInvalid}}
-              />
-            </div>
-          </f.input>
-        {{/if}}
-
-        <f.input
-          @name="description"
-          @type="textarea"
-          @label={{t "caluma.form-builder.form.description"}}
-          @rows="4"
-        />
-
-        <f.input
-          class="uk-flex uk-flex-between uk-flex-column"
-          @name="isArchived"
-          @label={{t "caluma.form-builder.form.isArchived"}}
-          @required={{true}}
-          @renderComponent={{component "cfb-toggle-switch" size="small"}}
-        />
-
-        <f.input
-          class="uk-flex uk-flex-between uk-flex-column"
-          @name="isPublished"
-          @label={{t "caluma.form-builder.form.isPublished"}}
-          @required={{true}}
-          @renderComponent={{component "cfb-toggle-switch" size="small"}}
-        />
-
-        <div class="uk-text-right">
-          <f.submit
-            @disabled={{or f.loading f.model.isInvalid}}
-            @label={{t "caluma.form-builder.global.save"}}
+            @model={{fi.model}}
+            @name={{fi.name}}
+            @value={{fi.value}}
+            @update={{fi.update}}
+            @setDirty={{fi.setDirty}}
+            @inputId={{fi.inputId}}
+            @isValid={{fi.isValid}}
+            @isInvalid={{fi.isInvalid}}
           />
         </div>
-      </ValidatedForm>
-    {{else}}
-      <div
-        class="uk-text-center uk-text-muted uk-padding uk-padding-remove-horizontal"
-      >
-        {{uk-icon "bolt" ratio=5}}
-        <p>{{t "caluma.form-builder.form.not-found" slug=@slug}}</p>
-      </div>
-    {{/with}}
-  {{/if}}
-</div>
+      </f.input>
+    {{/if}}
+
+    <f.input
+      @name="description"
+      @type="textarea"
+      @label={{t "caluma.form-builder.form.description"}}
+      @rows="4"
+    />
+
+    <f.input
+      class="uk-flex uk-flex-between uk-flex-column"
+      @name="isArchived"
+      @label={{t "caluma.form-builder.form.isArchived"}}
+      @required={{true}}
+      @renderComponent={{component "cfb-toggle-switch" size="small"}}
+    />
+
+    <f.input
+      class="uk-flex uk-flex-between uk-flex-column"
+      @name="isPublished"
+      @label={{t "caluma.form-builder.form.isPublished"}}
+      @required={{true}}
+      @renderComponent={{component "cfb-toggle-switch" size="small"}}
+    />
+
+    <div class="uk-text-right">
+      <f.submit
+        @disabled={{or f.loading f.model.isInvalid}}
+        @label={{t "caluma.form-builder.global.save"}}
+      />
+    </div>
+  </ValidatedForm>
+{{else}}
+  <div
+    class="uk-text-center uk-text-muted uk-padding uk-padding-remove-horizontal"
+  >
+    {{uk-icon "bolt" ratio=5}}
+    <p>{{t "caluma.form-builder.form.not-found" slug=@slug}}</p>
+  </div>
+{{/if}}
