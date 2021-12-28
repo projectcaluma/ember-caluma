@@ -2306,16 +2306,15 @@
     "@glimmer/interfaces" "^0.42.2"
     "@glimmer/util" "^0.42.2"
 
-"@graphql-eslint/eslint-plugin@3.2.0":
-  version "3.2.0"
-  resolved "https://registry.yarnpkg.com/@graphql-eslint/eslint-plugin/-/eslint-plugin-3.2.0.tgz#2c65b9fe222745f8e02435513f0bad72b96eff78"
-  integrity sha512-1+hClKoKjziFPH1fADadNfV4QY7ctXBYZwDxtovh72mxw7YQaXZVKs6J8k5gIuZ6nvcneaTUCjCVgVoYChmVCQ==
+"@graphql-eslint/eslint-plugin@3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@graphql-eslint/eslint-plugin/-/eslint-plugin-3.3.0.tgz#17becf8a167ec796b3377f64094828b1a4c0973a"
+  integrity sha512-uCh2mzWXLiqZ5vF0NYMSVMuF9Lh6Zd5XHUzkdRztqcKZ0QeKp4AGSekyGeh30Ftm5RNIYm2R45She279iGWybw==
   dependencies:
     "@babel/code-frame" "7.16.0"
     "@graphql-tools/code-file-loader" "7.2.3"
     "@graphql-tools/graphql-tag-pluck" "7.1.4"
-    "@graphql-tools/import" "6.6.2"
-    "@graphql-tools/utils" "8.5.4"
+    "@graphql-tools/utils" "8.5.5"
     graphql-config "4.1.0"
     graphql-depth-limit "1.1.0"
     lodash.lowercase "4.3.0"
@@ -2375,7 +2374,7 @@
     "@graphql-tools/utils" "^8.5.1"
     tslib "~2.3.0"
 
-"@graphql-tools/import@6.6.2", "@graphql-tools/import@^6.5.7":
+"@graphql-tools/import@^6.5.7":
   version "6.6.2"
   resolved "https://registry.yarnpkg.com/@graphql-tools/import/-/import-6.6.2.tgz#2d1dabfee82ccebcd5e26d05f427cd1da91b2bf1"
   integrity sha512-XBAw4GBaTwwA736VPTe5vKOS/FCVXpi0ofSeOa2AKedD4JEViAYx4Al3MPpmi2sIVumIOV7wGwHgX7HAgG5RdQ==
@@ -2447,10 +2446,17 @@
     value-or-promise "1.0.11"
     ws "8.3.0"
 
-"@graphql-tools/utils@8.5.4", "@graphql-tools/utils@^8.5.1", "@graphql-tools/utils@^8.5.3":
+"@graphql-tools/utils@8.5.4":
   version "8.5.4"
   resolved "https://registry.yarnpkg.com/@graphql-tools/utils/-/utils-8.5.4.tgz#9dadbd2fad2115ab5cde546d1353e41ef3d139a0"
   integrity sha512-ViupMJH590be75tCiyHs/wgJ2KPbWMzc+jopen6P6MliHWoqRlGWMMvYQE1hDj25v4fxObCVq20maQCow0T9nQ==
+  dependencies:
+    tslib "~2.3.0"
+
+"@graphql-tools/utils@8.5.5", "@graphql-tools/utils@^8.5.1", "@graphql-tools/utils@^8.5.3":
+  version "8.5.5"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/utils/-/utils-8.5.5.tgz#019ddb99719feb19602afdb537c06e463df674a9"
+  integrity sha512-y7zRXWIUI73X+9/rf/0KzrNFMlpRKFfzLiwdbIeWwgLs+NV9vfUOoVkX8luXX6LwQxhSypHATMiwZGM2ro/wJA==
   dependencies:
     tslib "~2.3.0"
 
