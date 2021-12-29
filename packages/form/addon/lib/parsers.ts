@@ -1,6 +1,6 @@
 import { assert } from "@ember/debug";
 
-export const parseDocument = (response) => {
+export const parseDocument = (response): RawDocument => {
   assert(
     "The passed document must be a GraphQL document",
     response.__typename === "Document"
@@ -11,12 +11,14 @@ export const parseDocument = (response) => {
   return {
     ...response,
     rootForm: parseForm(response.form),
-    answers: response.answers.edges.map(({ node }) => parseAnswer(node)),
+    answers: response.answers.edges.map(
+      ({ node }: { node: RawAnswer }) => node
+    ),
     forms: parseFormTree(response.form),
   };
 };
 
-export const parseForm = (response) => {
+export const parseForm = (response): RawForm => {
   assert(
     "The passed form must be a GraphQL form",
     response.__typename === "Form"
@@ -24,11 +26,13 @@ export const parseForm = (response) => {
 
   return {
     ...response,
-    questions: response.questions.edges.map(({ node }) => parseQuestion(node)),
+    questions: response.questions.edges.map(
+      ({ node }: { node: RawQuestion }) => node
+    ),
   };
 };
 
-export const parseFormTree = (response) => {
+export const parseFormTree = (response): RawForm[] => {
   const form = parseForm(response);
 
   return [
@@ -42,28 +46,8 @@ export const parseFormTree = (response) => {
   ];
 };
 
-export const parseAnswer = (response) => {
-  assert(
-    "The passed answer must be a GraphQL answer",
-    /Answer$/.test(response.__typename)
-  );
-
-  return { ...response };
-};
-
-export const parseQuestion = (response) => {
-  assert(
-    "The passed question must be a GraphQL question",
-    /Question$/.test(response.__typename)
-  );
-
-  return { ...response };
-};
-
 export default {
   parseDocument,
   parseForm,
   parseFormTree,
-  parseAnswer,
-  parseQuestion,
 };

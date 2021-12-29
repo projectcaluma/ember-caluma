@@ -1,16 +1,20 @@
 import { getOwner } from "@ember/application";
-import { assert } from "@ember/debug";
 import { associateDestroyableChild } from "@ember/destroyable";
-import jexl from "jexl";
+import { Jexl } from "jexl";
 import { cached } from "tracked-toolbox";
 
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 import { intersects, mapby } from "@projectcaluma/ember-core/utils/jexl";
 import Base from "@projectcaluma/ember-form/lib/base";
+import Field from "@projectcaluma/ember-form/lib/field";
+import Fieldset from "@projectcaluma/ember-form/lib/fieldset";
+import Form from "@projectcaluma/ember-form/lib/form";
 
-const onlyNumbers = (nums) =>
-  nums.filter((num) => !isNaN(num) && typeof num === "number");
-const sum = (nums) => nums.reduce((num, base) => base + num, 0);
+const onlyNumbers = (nums: unknown[]): number[] =>
+  nums.filter((num): num is number => typeof num === "number" && !isNaN(num));
+
+const sum = (nums: number[]): number =>
+  nums.reduce((num, base) => base + num, 0);
 
 /**
  * Object which represents a document
@@ -18,41 +22,53 @@ const sum = (nums) => nums.reduce((num, base) => base + num, 0);
  * @class Document
  */
 export default class Document extends Base {
-  constructor({ raw, parentDocument, ...args }) {
-    assert(
-      "A graphql document `raw` must be passed",
-      raw?.__typename === "Document"
-    );
+  constructor({
+    parentDocument,
+    raw,
+    owner,
+  }: {
+    parentDocument?: Document;
+    raw: RawDocument;
+    owner: unknown;
+  }) {
+    super({ owner });
 
-    super({ raw, ...args });
-
+    this.raw = raw;
     this.parentDocument = parentDocument;
 
     this.pushIntoStore();
 
-    this._createRootForm();
-    this._createFieldsets();
+    this.rootForm = this._createRootForm();
+    this.fieldsets = this._createFieldsets();
   }
 
-  _createRootForm() {
-    const owner = getOwner(this);
+  _createRootForm(): Form {
+    const existing = this.calumaStore.find(
+      `Form:${this.raw.rootForm.slug}`
+    ) as Form | null;
 
-    this.rootForm =
-      this.calumaStore.find(`Form:${this.raw.rootForm.slug}`) ||
-      new (owner.factoryFor("caluma-model:form").class)({
-        raw: this.raw.rootForm,
-        owner,
-      });
+    if (existing) return existing;
+
+    const owner = getOwner(this);
+    const klass = owner.factoryFor("caluma-model:form").class as typeof Form;
+
+    return new klass({ raw: this.raw.rootForm, owner });
   }
 
-  _createFieldsets() {
+  _createFieldsets(): Fieldset[] {
     const owner = getOwner(this);
+    const klass = owner.factoryFor("caluma-model:fieldset")
+      .class as typeof Fieldset;
 
-    this.fieldsets = this.raw.forms.map((form) => {
+    return this.raw.forms.map((form) => {
+      const existing = this.calumaStore.find(
+        `${this.pk}:Form:${form.slug}`
+      ) as Fieldset;
+
       return associateDestroyableChild(
         this,
-        this.calumaStore.find(`${this.pk}:Form:${form.slug}`) ||
-          new (owner.factoryFor("caluma-model:fieldset").class)({
+        existing ??
+          new klass({
             raw: { form, answers: this.raw.answers },
             document: this,
             owner,
@@ -62,49 +78,44 @@ export default class Document extends Base {
   }
 
   /**
+   * The raw data of the document
+   */
+  readonly raw: RawDocument;
+
+  /**
    * The parent document of this document. If this is set, the document is most
    * likely a table row.
-   *
-   * @property {Document} parentDocument
    */
-  parentDocument = null;
+  readonly parentDocument?: Document;
 
   /**
    * The root form of this document
-   *
-   * @property {Form} rootForm
    */
-  rootForm = null;
+  readonly rootForm: Form;
 
   /**
    * The fieldsets of this document
-   *
-   * @property {Fieldset[]} fieldsets
    */
-  fieldsets = [];
+  readonly fieldsets: Fieldset[];
 
   /**
    * The primary key of the document.
-   *
-   * @property {String} pk
    */
   @cached
-  get pk() {
+  get pk(): string {
     return `Document:${this.uuid}`;
   }
 
   /**
    * The uuid of the document
-   *
-   * @property {String} uuid
    */
   @cached
-  get uuid() {
+  get uuid(): string {
     return decodeId(this.raw.id);
   }
 
   @cached
-  get workItemUuid() {
+  get workItemUuid(): string | null {
     // The document is either directly attached to a work item (via
     // CompleteTaskFormTask) or it's the case document and therefore
     // indirectly attached to a work item (via CompleteWorkflowFormTask)
@@ -119,68 +130,68 @@ export default class Document extends Base {
 
   /**
    * All fields of all fieldsets of this document
-   *
-   * @property {Field[]} fields
    */
   @cached
-  get fields() {
+  get fields(): Field[] {
     return this.fieldsets.flatMap((fieldset) => fieldset.fields);
   }
 
   /**
    * The JEXL object for evaluating jexl expressions on this document
-   *
-   * @property {JEXL} jexl
    */
   @cached
-  get jexl() {
-    const documentJexl = new jexl.Jexl();
+  get jexl(): Jexl {
+    const documentJexl = new Jexl();
 
-    documentJexl.addTransform("answer", (slug, defaultValue) =>
+    documentJexl.addTransform("answer", (slug: string, defaultValue: unknown) =>
       this.findAnswer(slug, defaultValue)
     );
     documentJexl.addTransform("mapby", mapby);
     documentJexl.addBinaryOp("intersects", 20, intersects);
-    documentJexl.addTransform("debug", (any, label = "JEXL Debug") => {
-      // eslint-disable-next-line no-console
-      console.debug(`${label}:`, any);
-      return any;
-    });
-    documentJexl.addTransform("min", (arr) => {
+    documentJexl.addTransform(
+      "debug",
+      (unknown: unknown, label: string = "JEXL Debug") => {
+        // eslint-disable-next-line no-console
+        console.debug(`${label}:`, unknown);
+        return unknown;
+      }
+    );
+    documentJexl.addTransform("min", (arr: unknown[]) => {
       const nums = onlyNumbers(arr);
       return nums.length ? Math.min(...nums) : null;
     });
-    documentJexl.addTransform("max", (arr) => {
+    documentJexl.addTransform("max", (arr: unknown[]) => {
       const nums = onlyNumbers(arr);
       return nums.length ? Math.max(...nums) : null;
     });
-    documentJexl.addTransform("round", (num, places = 0) =>
+    documentJexl.addTransform("round", (num: unknown, places: number = 0) =>
       !onlyNumbers([num]).length
         ? null
-        : Math.round(num * Math.pow(10, places)) / Math.pow(10, places)
+        : Math.round((num as number) * Math.pow(10, places)) /
+          Math.pow(10, places)
     );
-    documentJexl.addTransform("ceil", (num) =>
-      !onlyNumbers([num]).length ? null : Math.ceil(num)
+    documentJexl.addTransform("ceil", (num: unknown) =>
+      !onlyNumbers([num]).length ? null : Math.ceil(num as number)
     );
-    documentJexl.addTransform("floor", (num) =>
-      !onlyNumbers([num]).length ? null : Math.floor(num)
+    documentJexl.addTransform("floor", (num: unknown) =>
+      !onlyNumbers([num]).length ? null : Math.floor(num as number)
     );
-    documentJexl.addTransform("sum", (arr) => sum(onlyNumbers(arr)));
-    documentJexl.addTransform("avg", (arr) => {
+    documentJexl.addTransform("sum", (arr: unknown[]) => sum(onlyNumbers(arr)));
+    documentJexl.addTransform("avg", (arr: unknown[]) => {
       const nums = onlyNumbers(arr);
       return nums.length ? sum(nums) / nums.length : null;
     });
-    documentJexl.addTransform("stringify", (input) => JSON.stringify(input));
+    documentJexl.addTransform("stringify", (input: unknown) =>
+      JSON.stringify(input)
+    );
 
     return documentJexl;
   }
 
   /**
    * The JEXL context object for passing to the evaluation of jexl expessions
-   *
-   * @property {Object} jexlContext
    */
-  get jexlContext() {
+  get jexlContext(): DocumentJexlContext {
     return (
       this.parentDocument?.jexlContext ?? {
         // JEXL interprets null in an expression as variable instead of a
@@ -210,11 +221,9 @@ export default class Document extends Base {
    *
    * This is needed for comparing a table row with the table questions default
    * answer.
-   *
-   * @property {Object} flatAnswerMap
    */
   @cached
-  get flatAnswerMap() {
+  get flatAnswerMap(): Record<string, unknown> {
     return this.fields.reduce(
       (answerMap, field) => ({
         ...answerMap,
@@ -226,12 +235,8 @@ export default class Document extends Base {
 
   /**
    * Find an answer for a given question slug
-   *
-   * @param {String} slug The slug of the question to find the answer for
-   * @param {*} defaultValue The value that will be returned if the question doesn't exist
-   * @return {*} The answer to the given question
    */
-  findAnswer(slug, defaultValue) {
+  findAnswer(slug: string, defaultValue: unknown): unknown {
     const field = this.findField(slug);
 
     if (!field) {
@@ -242,12 +247,12 @@ export default class Document extends Base {
       return defaultValue;
     }
 
-    if (field.hidden || [undefined, null].includes(field.value)) {
+    if (field.hidden || field.value === undefined || field.value === null) {
       return defaultValue ?? field.question.isMultipleChoice ? [] : null;
     }
 
     if (field.question.isTable) {
-      return field.value.map((doc) =>
+      return (field.value as Document[]).map((doc) =>
         doc.fields
           .filter((field) => !field.hidden)
           .reduce((obj, tableField) => {
@@ -264,11 +269,8 @@ export default class Document extends Base {
 
   /**
    * Find a field in the document by a given question slug
-   *
-   * @param {String} slug The slug of the wanted field
-   * @return {Field} The wanted field
    */
-  findField(slug) {
+  findField(slug: string): Field | undefined {
     return [...this.fields, ...(this.parentDocument?.fields ?? [])].find(
       (field) => field.question.slug === slug
     );

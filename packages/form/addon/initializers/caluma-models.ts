@@ -1,14 +1,15 @@
+import Application from "@ember/application";
+
 import Answer from "@projectcaluma/ember-form/lib/answer";
 import Document from "@projectcaluma/ember-form/lib/document";
 import Field from "@projectcaluma/ember-form/lib/field";
 import Fieldset from "@projectcaluma/ember-form/lib/fieldset";
 import Form from "@projectcaluma/ember-form/lib/form";
-import Navigation, {
-  NavigationItem,
-} from "@projectcaluma/ember-form/lib/navigation";
+import Navigation from "@projectcaluma/ember-form/lib/navigation";
+import NavigationItem from "@projectcaluma/ember-form/lib/navigation-item";
 import Question from "@projectcaluma/ember-form/lib/question";
 
-export function initialize(application) {
+export function initialize(application: Application) {
   application.register("caluma-model:document", Document);
   application.register("caluma-model:question", Question);
   application.register("caluma-model:form", Form);
@@ -19,6 +20,4 @@ export function initialize(application) {
   application.register("caluma-model:navigation-item", NavigationItem);
 }
 
-export default {
-  initialize,
-};
+export default { initialize };

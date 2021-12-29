@@ -1,24 +1,25 @@
-import EmberObject from "@ember/object";
+import ApplicationInstance from "@ember/application/instance";
 import { inject as service } from "@ember/service";
+import IntlService from "ember-intl/services/intl";
 import moment from "moment";
 
-class Translations extends EmberObject {
-  @service intl;
+class Translations {
+  @service declare intl: IntlService;
 
-  get previousMonth() {
+  get previousMonth(): string {
     return this.intl.t("caluma.form.pikaday.month-previous");
   }
 
-  get nextMonth() {
+  get nextMonth(): string {
     return this.intl.t("caluma.form.pikaday.month-next");
   }
 
-  months = moment.localeData().months();
-  weekdays = moment.localeData().weekdays();
-  weekdaysShort = moment.localeData().weekdaysShort();
+  months: string[] = moment.localeData().months();
+  weekdays: string[] = moment.localeData().weekdays();
+  weekdaysShort: string[] = moment.localeData().weekdaysShort();
 }
 
-export function initialize(applicationInstance) {
+export function initialize(applicationInstance: ApplicationInstance) {
   applicationInstance.register("pikaday-i18n:main", Translations, {
     singleton: true,
   });

@@ -1,64 +1,55 @@
-import { assert } from "@ember/debug";
 import { camelize } from "@ember/string";
-import { queryManager } from "ember-apollo-client";
-import { dropTask, lastValue } from "ember-concurrency";
+import { queryManager, ApolloQueryManager } from "ember-apollo-client";
+import { dropTask, lastValue, TaskGenerator } from "ember-concurrency";
 import { cached } from "tracked-toolbox";
 
 import getDynamicOptions from "@projectcaluma/ember-form/gql/queries/dynamic-options.graphql";
 import Base from "@projectcaluma/ember-form/lib/base";
 
-const getValue = (answer) => {
+const getValue = (answer: RawAnswer): unknown => {
   return answer[camelize(answer.__typename.replace(/Answer$/, "Value"))];
 };
 
 /**
  * Object which represents a question in context of a field
- *
- * @class Question
  */
 export default class Question extends Base {
-  @queryManager apollo;
+  @queryManager declare apollo: ApolloQueryManager;
 
-  constructor({ raw, ...args }) {
-    assert(
-      "A graphql question `raw` must be passed",
-      /Question$/.test(raw?.__typename)
-    );
+  constructor({ raw, owner }: { raw: RawQuestion; owner: unknown }) {
+    super({ owner });
 
-    super({ raw, ...args });
+    this.raw = raw;
 
     this.pushIntoStore();
   }
 
   /**
+   * The raw data of the question
+   */
+  readonly raw: RawQuestion;
+
+  /**
    * The primary key of the question.
-   *
-   * @property {String} pk
    */
   @cached
-  get pk() {
+  get pk(): string {
     return `Question:${this.slug}`;
   }
 
   /**
    * The slug of the question.
-   *
-   * @property {String} slug
    */
   @cached
-  get slug() {
+  get slug(): string {
     return this.raw.slug;
   }
 
   /**
    * Load all dynamic options for this question
-   *
-   * @method loadDynamicOptions.perform
-   * @return {Object[]} The dynamic options
-   * @public
    */
   @dropTask
-  *loadDynamicOptions() {
+  *loadDynamicOptions(): TaskGenerator<OptionConnection | undefined> {
     if (!this.isDynamic) return;
 
     const [question] = yield this.apollo.query(
@@ -71,70 +62,64 @@ export default class Question extends Base {
     );
 
     return (
-      question.node.dynamicChoiceOptions ||
-      question.node.dynamicMultipleChoiceOptions
+      (question.node.dynamicChoiceOptions as OptionConnection) ??
+      (question.node.dynamicMultipleChoiceOptions as OptionConnection)
     );
   }
 
-  @lastValue("loadDynamicOptions") dynamicChoiceOptions;
-  @lastValue("loadDynamicOptions") dynamicMultipleChoiceOptions;
+  @lastValue("loadDynamicOptions") dynamicChoiceOptions:
+    | OptionConnection
+    | undefined;
+  @lastValue("loadDynamicOptions") dynamicMultipleChoiceOptions:
+    | OptionConnection
+    | undefined;
 
   /**
    * Whether the question is a single choice question
-   *
-   * @property {Boolean} isChoice
    */
-  get isChoice() {
+  get isChoice(): boolean {
     return /(Dynamic)?ChoiceQuestion/.test(this.raw.__typename);
   }
 
   /**
    * Whether the question is a multiple choice question
-   *
-   * @property {Boolean} isMultipleChoice
    */
-  get isMultipleChoice() {
+  get isMultipleChoice(): boolean {
     return /(Dynamic)?MultipleChoiceQuestion/.test(this.raw.__typename);
   }
 
   /**
    * Whether the question is a dynamic single or multiple choice question
-   *
-   * @property {Boolean} isDynamic
    */
-  get isDynamic() {
+  get isDynamic(): boolean {
     return /Dynamic(Multiple)?ChoiceQuestion/.test(this.raw.__typename);
   }
 
   /**
    * Whether the question is a table question
-   *
-   * @property {Boolean} isTable
    */
-  get isTable() {
+  get isTable(): boolean {
     return this.raw.__typename === "TableQuestion";
   }
 
   /**
    * Whether the question is a calculated question
-   *
-   * @property {Boolean} isCalculated
    */
-  get isCalculated() {
+  get isCalculated(): boolean {
     return this.raw.__typename === "CalculatedFloatQuestion";
   }
 
   /**
    * All valid options for this question
-   *
-   * @property {Object[]} options
    */
   @cached
-  get options() {
-    if (!this.isChoice && !this.isMultipleChoice) return null;
+  get options(): Option[] {
+    if (!this.isChoice && !this.isMultipleChoice) return [];
 
     const key = camelize(this.raw.__typename.replace(/Question$/, "Options"));
-    const raw = this.isDynamic ? this[key] : this.raw[key];
+    const raw = this.isDynamic
+      ? this.dynamicChoiceOptions ?? this.dynamicMultipleChoiceOptions
+      : (this.raw[key] as OptionConnection | undefined);
 
     return (raw?.edges || []).map(({ node: { label, slug, isArchived } }) => ({
       label,
@@ -145,11 +130,9 @@ export default class Question extends Base {
 
   /**
    * The default value of the question
-   *
-   * @property {String|Number|String[]|Object[]} defaultValue
    */
   @cached
-  get defaultValue() {
+  get defaultValue(): string | number | string[] | RawDocument[] {
     const key = camelize(
       this.raw.__typename.replace(/Question$/, "DefaultAnswer")
     );
@@ -157,17 +140,19 @@ export default class Question extends Base {
     const value = this.raw[key]?.value;
 
     if (this.isTable && value) {
-      return value.map((defaultDocument) => {
-        return defaultDocument.answers.edges.reduce(
-          (defaultMap, { node: answer }) => {
-            return {
-              ...defaultMap,
-              [answer.question.slug]: getValue(answer),
-            };
-          },
-          {}
-        );
-      });
+      return value.map(
+        (defaultDocument: { answers: { edges: { node: RawAnswer }[] } }) => {
+          return defaultDocument.answers.edges.reduce(
+            (defaultMap: Record<string, unknown>, { node: answer }) => {
+              return {
+                ...defaultMap,
+                [answer.question.slug]: getValue(answer),
+              };
+            },
+            {}
+          );
+        }
+      );
     }
 
     return value;
