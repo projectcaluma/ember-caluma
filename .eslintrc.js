@@ -2,11 +2,6 @@
 
 module.exports = {
   extends: "@adfinis-sygroup/eslint-config/ember-addon",
-  rules: {
-    // TODO: https://github.com/projectcaluma/ember-caluma/issues/529
-    "ember/no-mixins": "warn",
-    "ember/no-new-mixins": "warn",
-  },
   settings: {
     "import/internal-regex": "^(@projectcaluma|ember-caluma)/",
   },

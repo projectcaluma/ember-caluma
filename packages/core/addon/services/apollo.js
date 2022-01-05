@@ -1,12 +1,12 @@
 import { InMemoryCache, defaultDataIdFromObject } from "@apollo/client/cache";
 import { setContext } from "@apollo/client/link/context";
-import Mixin from "@ember/object/mixin";
 import { inject as service } from "@ember/service";
+import ApolloService from "ember-apollo-client/services/apollo";
 
 import possibleTypes from "@projectcaluma/ember-core/-private/possible-types";
 
-export default Mixin.create({
-  intl: service(),
+export default class CalumaApolloService extends ApolloService {
+  @service intl;
 
   cache() {
     return new InMemoryCache({
@@ -17,10 +17,10 @@ export default Mixin.create({
           _id: obj.slug || obj._id,
         }),
     });
-  },
+  }
 
-  link(...args) {
-    const httpLink = this._super(...args);
+  link() {
+    const httpLink = super.link();
 
     const localeLink = setContext((request, context) => ({
       ...context,
@@ -32,5 +32,5 @@ export default Mixin.create({
     }));
 
     return localeLink.concat(httpLink);
-  },
-});
+  }
+}
