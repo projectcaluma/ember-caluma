@@ -22,7 +22,7 @@ mounted in `app/router.js`:
 
 {{docs-snippet name='router.js'}}
 
-Then pass the needed services for the form builder:
+Then pass the needed services for the form builder in `app/app.js`:
 
 {{docs-snippet name='app.js'}}
 
