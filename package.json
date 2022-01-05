@@ -35,7 +35,7 @@
     "@adfinis-sygroup/semantic-release-config": "3.2.1",
     "@commitlint/cli": "16.0.1",
     "@commitlint/config-conventional": "16.0.0",
-    "@graphql-eslint/eslint-plugin": "3.3.0",
+    "@graphql-eslint/eslint-plugin": "3.6.0",
     "babel-eslint": "10.1.0",
     "ember-template-lint": "3.15.0",
     "ember-template-lint-plugin-prettier": "3.0.1",
