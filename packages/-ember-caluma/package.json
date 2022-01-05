@@ -60,7 +60,7 @@
     "ember-source": "3.28.8",
     "ember-truth-helpers": "3.0.0",
     "ember-uikit": "4.0.0",
-    "faker": "5.5.3",
+    "faker": "6.6.6",
     "graphql": "15.7.2",
     "loader.js": "4.7.0",
     "moment": "2.29.1",

@@ -23,7 +23,7 @@
     "ember-cli-mirage": "^2.2.0",
     "ember-fetch": "^8.0.4",
     "ember-inflector": "^4.0.2",
-    "faker": "^5.5.3",
+    "faker": "^6.6.6",
     "graphql": "^15.6.1",
     "graphql-iso-date": "^3.6.1",
     "graphql-tools": "^4.0.8",
