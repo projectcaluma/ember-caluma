@@ -126,3 +126,64 @@ The only property that can still be accessed directly for convenience is the
   {{@field.question.raw.meta.custom}}
 </p>
 ```
+
+## Removal of CalumaApolloServiceMixin
+
+The `CalumaApolloServiceMixin` was removed since mixins will be deprecated.
+Instead, `@projectcaluma/ember-core` will directly override the apollo service.
+If the consuming app further configured the service (with e.g. authorization) it
+will need to directly extend the service from caluma:
+
+**Before:**
+
+```js
+import { inject as service } from "@ember/service";
+import CalumaApolloServiceMixin from "@projectcaluma/ember-core/mixins/caluma-apollo-service-mixin";
+import ApolloService from "ember-apollo-client/services/apollo";
+
+export default class CustomApolloService extends ApolloService.extend(
+  CalumaApolloServiceMixin,
+  {}
+) {
+  @service session;
+
+  link() {
+    const httpLink = super.link();
+
+    const authMiddleware = setContext((request, context) => ({
+      ...context,
+      headers: {
+        authorization: `Bearer ${this.session.authorized.token}`,
+        ...context.headers,
+      },
+    }));
+
+    return authMiddleware.concat(httpLink);
+  }
+}
+```
+
+**After:**
+
+```js
+import { inject as service } from "@ember/service";
+import CalumaApolloService from "@projectcaluma/ember-core/services/apollo";
+
+export default class CustomApolloService extends CalumaApolloService {
+  @service session;
+
+  link() {
+    const httpLink = super.link();
+
+    const authMiddleware = setContext((request, context) => ({
+      ...context,
+      headers: {
+        authorization: `Bearer ${this.session.authorized.token}`,
+        ...context.headers,
+      },
+    }));
+
+    return authMiddleware.concat(httpLink);
+  }
+}
+```

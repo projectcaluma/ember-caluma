@@ -16,13 +16,6 @@ ember install @projectcaluma/ember-form
 
 # Usage
 
-To use any `@projectcaluma` package you need to customize the apollo service in
-order to support [fragments on unions and interfaces](https://www.apollographql.com/docs/react/advanced/fragments.html#fragment-matcher).
-Create a new service `app/services/apollo.js` and extend the apollo service with
-the provided mixin:
-
-{{docs-snippet name='apollo.js'}}
-
 To make `@projectcaluma/ember-form-builder` work a few steps must be followed.
 The form builder is a [routable engine](http://ember-engines.com) which must be
 mounted in `app/router.js`:
