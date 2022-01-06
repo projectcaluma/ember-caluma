@@ -6673,7 +6673,7 @@ this._pushedUpdates[t.definition.kind].push(e)}this._willSyncRemote||(this._will
 if(l.meta&&(i.meta=l.meta),void 0!==l.data?(s=!0,o?(null===l.data&&(l.data=[]),e.update({op:"replaceRelatedRecords",record:a,field:t.field,value:l.data.map((t=>e.store.identifierCache.getOrCreateRecordIdentifier(t)))},!0)):e.update({op:"replaceRelatedRecord",record:a,field:t.field,value:l.data?e.store.identifierCache.getOrCreateRecordIdentifier(l.data):null},!0)):!1!==n.isAsync||r.hasReceivedData||(s=!0,o?e.update({op:"replaceRelatedRecords",record:a,field:t.field,value:[]},!0):e.update({op:"replaceRelatedRecord",record:a,field:t.field,value:null},!0)),l.links){var u=i.links
 if(i.links=l.links,l.links.related){var c=S(l.links.related),p=u&&u.related?S(u.related):null,f=p?p.href:null
 c&&c.href&&c.href!==f&&(d=!0)}}if(i.state.hasFailedLoadAttempt=!1,s){var h=null===l.data||Array.isArray(l.data)&&0===l.data.length
-i.state.hasReceivedData=!0,i.state.isStale=!1,i.state.hasDematerializedInverse=!1,i.state.isEmpty=h}else!d||!o&&i.state.hasReceivedData&&0!==i.transactionRef?i.state.isStale=!1:(i.state.isStale=!0,m(i)?i.notifyHasManyChange():i.notifyBelongsToChange())})(this,e)
+i.state.hasReceivedData=!0,i.state.isStale=!1,i.state.hasDematerializedInverse=!1,i.state.isEmpty=h}else d&&(o||!i.state.hasReceivedData||0===i.transactionRef?(i.state.isStale=!0,m(i)?i.notifyHasManyChange():i.notifyBelongsToChange()):i.state.isStale=!1)})(this,e)
 break
 case"deleteRecord":var i=e.record,n=this.identifiers.get(i)
 n&&(Object.keys(n).forEach((e=>{var t=n[e]
@@ -7154,7 +7154,9 @@ this.hasRecord&&this._record._notifyProperties(t),this.send("pushedData")}setDir
 if(this._recordData.getAttr(e)!==t){this._recordData.setDirtyAttribute(e,t)
 var i=this._recordData.isAttrDirty(e)
 this.send("didSetProperty",{name:e,isDirty:i})}return t}get isDestroyed(){return this._isDestroyed}get hasRecord(){return!!this._record}createSnapshot(e){return new ge(e||{},this.identifier,this.store)}hasChangedAttributes(){return!!this.__recordData&&this._recordData.hasChangedAttributes()}changedAttributes(){return this.__recordData?this._recordData.changedAttributes():{}}adapterWillCommit(){this._recordData.willCommit(),this.send("willCommit")}adapterDidDirty(){this.send("becomeDirty")}send(e,t){var i=this.currentState
-return i[e]||this._unhandledEvent(i,e,t),i[e](this,t)}notifyHasManyChange(e){this.hasRecord&&this.store._notificationManager.notify(this.identifier,"relationships",e)}notifyBelongsToChange(e){this.hasRecord&&this.store._notificationManager.notify(this.identifier,"relationships",e)}notifyPropertyChange(e){this.hasRecord&&this.store._notificationManager.notify(this.identifier,"property",e)}notifyStateChange(e){this.hasRecord&&this.store._notificationManager.notify(this.identifier,"state"),e&&"isDeletionCommitted"!==e||this.store.recordArrayManager.recordDidChange(this.identifier)}didCreateRecord(){this._recordData.clientDidCreate()}rollbackAttributes(){this.store._backburner.join((()=>{var e=this._recordData.rollbackAttributes()
+return i[e]||this._unhandledEvent(i,e,t),i[e](this,t)}notifyHasManyChange(e){if(this.hasRecord){var t=this._manyArrayCache[e],i=!!this._relationshipPromisesCache[e]
+if(t&&i)return
+this.store._notificationManager.notify(this.identifier,"relationships",e)}}notifyBelongsToChange(e){this.hasRecord&&this.store._notificationManager.notify(this.identifier,"relationships",e)}notifyPropertyChange(e){this.hasRecord&&this.store._notificationManager.notify(this.identifier,"property",e)}notifyStateChange(e){this.hasRecord&&this.store._notificationManager.notify(this.identifier,"state"),e&&"isDeletionCommitted"!==e||this.store.recordArrayManager.recordDidChange(this.identifier)}didCreateRecord(){this._recordData.clientDidCreate()}rollbackAttributes(){this.store._backburner.join((()=>{var e=this._recordData.rollbackAttributes()
 r.get(this,"isError")&&this.didCleanError(),this.send("rolledBack"),this._record&&e&&e.length>0&&this._record._notifyProperties(e)}))}transitionTo(e){var t,i,n,r,a=function(e){return yt[e]||(yt[e]=Nt(e)[0])}(e),o=this.currentState,l=`${o.stateName}->${e}`
 do{o.exit&&o.exit(this),o=o.parentState}while(!o[a])
 var s=kt[l]
@@ -10112,7 +10114,7 @@ e.registerOptionsForType("serializer",{singleton:!1}),e.registerOptionsForType("
 Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t.default}})})),define("ember-data/transform",["exports","@ember-data/serializer/transform"],(function(e,t){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"default",{enumerable:!0,get:function(){return t.default}})})),define("ember-data/version",["exports"],(function(e){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
-e.default="3.28.6"})),define("ember-element-helper/helpers/-element",["exports","@ember/component/helper","@ember/debug","@ember/component"],(function(e,t,i,n){"use strict"
+e.default="3.28.7"})),define("ember-element-helper/helpers/-element",["exports","@ember/component/helper","@ember/debug","@ember/component"],(function(e,t,i,n){"use strict"
 function r(){}Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 const a=n.default.extend(),o=n.default.extend()
 var l=t.default.extend({init(){this._super(...arguments),this.tagName=r,this.componentClass=null},compute(e,t){let n=e[0]
