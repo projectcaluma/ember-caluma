@@ -24,3 +24,7 @@ updates:
       - dependency-name: ember-data
         versions:
           - ">= 4"
+      # faker.js is not maintained and released a broken version
+      - dependency-name: faker
+        versions:
+          - "6.6.6"
