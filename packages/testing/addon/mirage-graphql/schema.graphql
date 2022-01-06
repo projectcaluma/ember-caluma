@@ -362,11 +362,6 @@ type Case implements Node {
   id: ID!
 
   """
-  Stores a path to the given object
-  """
-  path: [String]!
-
-  """
   Time when case has either been canceled or completed
   """
   closedAt: DateTime
@@ -1163,11 +1158,6 @@ type Document implements Node {
   The ID of the object.
   """
   id: ID!
-
-  """
-  Stores a path to the given object
-  """
-  path: [String]!
   form: Form!
 
   """
@@ -4078,7 +4068,6 @@ enum SortableDocumentAttributes {
   CREATED_BY_GROUP
   MODIFIED_BY_USER
   MODIFIED_BY_GROUP
-  PATH
   FORM
   SOURCE
 }
@@ -4990,11 +4979,6 @@ type WorkItem implements Node {
   The ID of the object.
   """
   id: ID!
-
-  """
-  Stores a path to the given object
-  """
-  path: [String]!
 
   """
   Will be set from Task, if not provided.
