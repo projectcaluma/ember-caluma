@@ -5,12 +5,12 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
 import { optional } from "ember-composable-helpers/helpers/optional";
-import { timeout } from "ember-concurrency";
 import {
+  timeout,
   enqueueTask,
   lastValue,
   restartableTask,
-} from "ember-concurrency-decorators";
+} from "ember-concurrency";
 import UIkit from "uikit";
 
 import addFormQuestionMutation from "@projectcaluma/ember-form-builder/gql/mutations/add-form-question.graphql";

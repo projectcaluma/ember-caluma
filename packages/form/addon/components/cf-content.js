@@ -3,7 +3,7 @@ import { destroy, registerDestructor } from "@ember/destroyable";
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
-import { dropTask } from "ember-concurrency-decorators";
+import { dropTask } from "ember-concurrency";
 import { useTask } from "ember-resources";
 
 import getDocumentAnswersQuery from "@projectcaluma/ember-form/gql/queries/document-answers.graphql";

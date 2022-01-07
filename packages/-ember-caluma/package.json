@@ -61,7 +61,7 @@
     "ember-truth-helpers": "3.0.0",
     "ember-uikit": "4.0.0",
     "faker": "5.5.3",
-    "graphql": "15.7.2",
+    "graphql": "15.8.0",
     "loader.js": "4.7.0",
     "moment": "2.29.1",
     "sass": "1.46.0",

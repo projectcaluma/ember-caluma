@@ -1,7 +1,7 @@
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
-import { lastValue, dropTask } from "ember-concurrency-decorators";
+import { lastValue, dropTask } from "ember-concurrency";
 
 import allWorkItems from "@projectcaluma/ember-workflow/gql/queries/all-work-items.graphql";
 
