@@ -55,11 +55,5 @@
   },
   "engines": {
     "node": "10.* || >= 12"
-  },
-  "release": {
-    "extends": [
-      "@adfinis-sygroup/semantic-release-config",
-      "semantic-release-monorepo"
-    ]
   }
 }

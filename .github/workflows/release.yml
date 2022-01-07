@@ -23,7 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
         with:
-          ref: "main"
+          ref: ${{ github.event.ref }}
           fetch-depth: 0
           token: ${{ secrets.GH_TOKEN }}
       - uses: actions/setup-node@v2
@@ -49,10 +49,10 @@ jobs:
         run: ./bin/update-versions.sh ${{ matrix.workspace }}
 
       - uses: EndBug/add-and-commit@v7
-        name: Push changes to main
+        name: Push changes to ${{ github.event.ref }}
         with:
           default_author: github_actions
           message: "fix(deps): update ${{ matrix.workspace }} [skip ci]"
           add: "./packages/*/package.json"
-          branch: main
+          branch: ${{ github.event.ref }}
           push: true

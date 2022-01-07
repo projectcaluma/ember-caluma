@@ -9,6 +9,7 @@ module.exports = {
     // Customization for workspace
     {
       files: [
+        "./release.config.js",
         "./config/*.js",
         "./packages/*/ember-cli-build.js",
         "./packages/*/index.js",
