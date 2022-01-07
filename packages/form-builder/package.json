@@ -43,7 +43,7 @@
     "graphql-tag": "^2.12.6",
     "jexl": "^2.3.0",
     "moment": "^2.29.1",
-    "prismjs": "^1.25.0"
+    "prismjs": "^1.26.0"
   },
   "devDependencies": {
     "@ember/optional-features": "2.0.0",
