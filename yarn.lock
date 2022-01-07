@@ -9040,14 +9040,6 @@ ember-modifier@^2.1.0:
     ember-cli-typescript "^4.2.1"
     ember-compatibility-helpers "^1.2.5"
 
-ember-one-way-select@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/ember-one-way-select/-/ember-one-way-select-4.0.1.tgz#f16c614b5b23fa4677686ed762a3839e5ee3adf2"
-  integrity sha512-B1Li794T1lmg7/d+PSQMnfPTCnDA+FBYD+UOpdIZ9oqMrX0NtQLeERzNVqOR7MbsDAvMkvQFV3YSIVQOuKJjhg==
-  dependencies:
-    ember-cli-babel "^7.22.1"
-    ember-cli-htmlbars "^5.3.1"
-
 ember-pikaday@3.0.0, ember-pikaday@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/ember-pikaday/-/ember-pikaday-3.0.0.tgz#c80c215174cc103fd9324188e00e21f4fc00c9e0"
@@ -9349,15 +9341,14 @@ ember-uikit@4.0.0, ember-uikit@^4.0.0:
     ember-toggle "^7.1.1"
     uikit "^3.6.21"
 
-ember-validated-form@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/ember-validated-form/-/ember-validated-form-5.0.0.tgz#fadb0d07b20e76ceca55265f8d7e2a061c9d329d"
-  integrity sha512-4W83aZhVAKDNnLFpZ7Iu94socgrDXT/smqsuU7IgwjqM4lbWTPxyQSDQmHfi0odD/kGAqDeWjw/m6OEqbSEFAA==
+ember-validated-form@^5.1.1:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/ember-validated-form/-/ember-validated-form-5.1.1.tgz#0615d0739dd014435d0b125a292d2ab9a53865b9"
+  integrity sha512-c0psGUBXCsZ/tTcXtYe20koqvj6LiO5Uq4DXDsrn/K6arx88SryFlew+flHS0DTkqn+80XaPBmy/H+KyuuYAAQ==
   dependencies:
     ember-auto-import "^2.2.0"
     ember-cli-babel "^7.26.6"
     ember-cli-htmlbars "^5.7.1"
-    ember-one-way-select "^4.0.1"
     ember-truth-helpers "^3.0.0"
 
 ember-validators@~4.0.0:
