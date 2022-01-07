@@ -7802,6 +7802,15 @@ ember-auto-import@^1.11.3, ember-auto-import@^1.2.19, ember-auto-import@^1.5.3, 
     walk-sync "^0.3.3"
     webpack "^4.43.0"
 
+ember-autoresize-modifier@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/ember-autoresize-modifier/-/ember-autoresize-modifier-0.5.0.tgz#205384b6530bf3c896a6fd75bbfd941f632a585f"
+  integrity sha512-uRPxTo9Dyz21myE9FCqJFy8T8IsT5DwiNg+n9prhuLGMRG3y3KtzemKSTjQliPSZkBGON19uek6h/Olrc6wLug==
+  dependencies:
+    ember-cli-babel "^7.26.6"
+    ember-cli-htmlbars "^6.0.0"
+    ember-modifier "^3.0.0"
+
 "ember-basic-dropdown@^3.1.0 || ^4.0.2":
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/ember-basic-dropdown/-/ember-basic-dropdown-4.0.2.tgz#7d633cecc0118e4814a98d727adf7dfaafe847e7"

@@ -9,4 +9,5 @@
   maxlength={{@field.question.raw.textareaMaxLength}}
   readonly={{@disabled}}
   {{on "input" this.input}}
+  {{autoresize mode="height"}}
 >{{@field.answer.value}}</textarea>
