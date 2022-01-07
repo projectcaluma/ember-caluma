@@ -54,5 +54,4 @@ jobs:
           default_author: github_actions
           message: "fix(deps): update ${{ matrix.workspace }} [skip ci]"
           add: "./packages/*/package.json"
-          branch: ${{ github.event.ref }}
           push: true
