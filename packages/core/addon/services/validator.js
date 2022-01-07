@@ -2,7 +2,7 @@ import { assert } from "@ember/debug";
 import Service from "@ember/service";
 import { isEmpty } from "@ember/utils";
 import { queryManager } from "ember-apollo-client";
-import { enqueueTask } from "ember-concurrency-decorators";
+import { enqueueTask } from "ember-concurrency";
 
 import allFormatValidatorsQuery from "@projectcaluma/ember-core/gql/queries/all-format-validators.graphql";
 

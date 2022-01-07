@@ -1,7 +1,6 @@
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
-import { timeout } from "ember-concurrency";
-import { restartableTask } from "ember-concurrency-decorators";
+import { timeout, restartableTask } from "ember-concurrency";
 
 import { useCalumaQuery } from "@projectcaluma/ember-core/caluma-query";
 import { allForms } from "@projectcaluma/ember-core/caluma-query/queries";

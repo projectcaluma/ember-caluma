@@ -1,8 +1,7 @@
 import { getOwner } from "@ember/application";
 import { set } from "@ember/object";
 import Component from "@glimmer/component";
-import { timeout } from "ember-concurrency";
-import { restartableTask } from "ember-concurrency-decorators";
+import { timeout, restartableTask } from "ember-concurrency";
 
 import { hasQuestionType } from "@projectcaluma/ember-core/helpers/has-question-type";
 

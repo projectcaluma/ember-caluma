@@ -4,7 +4,7 @@ import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
-import { dropTask } from "ember-concurrency-decorators";
+import { dropTask } from "ember-concurrency";
 import UIkit from "uikit";
 
 import removeDocumentMutation from "@projectcaluma/ember-form/gql/mutations/remove-document.graphql";

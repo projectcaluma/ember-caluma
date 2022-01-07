@@ -7,7 +7,7 @@ import {
   lastValue,
   restartableTask,
   task,
-} from "ember-concurrency-decorators";
+} from "ember-concurrency";
 import { gql } from "graphql-tag";
 
 export default class BaseQuery {

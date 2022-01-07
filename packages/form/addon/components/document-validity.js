@@ -1,6 +1,6 @@
 import { action } from "@ember/object";
 import Component from "@glimmer/component";
-import { restartableTask } from "ember-concurrency-decorators";
+import { restartableTask } from "ember-concurrency";
 
 /**
  * Component to check the validity of a document
