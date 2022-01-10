@@ -12,6 +12,7 @@ module.exports = {
         { name: "ember-math-helpers" },
         { name: "ember-pikaday" },
         { name: "ember-power-select" },
+        { name: "ember-autoresize-modifier" },
       ],
     });
   },
