@@ -51,6 +51,34 @@ module("Integration | Component | cf-field/input/radio", function (hooks) {
     assert.dom("label:nth-of-type(1) input[type=radio]").isChecked();
   });
 
+  test("it renders options of a radio field vertically", async function (assert) {
+    assert.expect(1);
+
+    await render(hbs`
+      <CfField::Input::Radio
+        @onSave={{this.noop}}
+        @field={{hash
+          options=(array
+            (hash slug="option-1" label="Option 1")
+            (hash slug="option-2" label="Option 2")
+          )
+          question=(hash
+            __typename="ChoiceQuestion"
+          )
+          raw=(hash
+            question=(hash
+              meta=(hash
+                vertical=true
+              )
+            )
+          )
+        }}
+      />
+    `);
+
+    assert.dom("label.uk-margin-large-right").exists();
+  });
+
   test("it can be disabled", async function (assert) {
     assert.expect(3);
 

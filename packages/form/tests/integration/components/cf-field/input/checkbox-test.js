@@ -54,6 +54,34 @@ module("Integration | Component | cf-field/input/checkbox", function (hooks) {
     assert.dom("label:nth-of-type(2) input[type=checkbox]").isChecked();
   });
 
+  test("it renders options of a checkbox field vertically", async function (assert) {
+    assert.expect(1);
+
+    await render(hbs`
+      <CfField::Input::Checkbox
+        @field={{hash
+          options=(array
+            (hash slug="option-1" label="Option 1")
+            (hash slug="option-2" label="Option 2")
+          )
+          raw=(hash
+            question=(hash
+              __typename="MultipleChoiceQuestion"
+              meta=(hash
+                vertical=true
+              )
+            )
+          )
+          answer=(hash
+              value=(array "option-1")
+          )
+        }}
+      />
+    `);
+
+    assert.dom("label.uk-margin-large-right").exists();
+  });
+
   test("it can be disabled", async function (assert) {
     assert.expect(3);
 
@@ -89,6 +117,11 @@ module("Integration | Component | cf-field/input/checkbox", function (hooks) {
       ];
       question = {
         __typename: "MultipleChoiceQuestion",
+        raw: {
+          meta: {
+            vertical: false,
+          },
+        },
       };
     })();
 
