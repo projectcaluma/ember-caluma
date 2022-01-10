@@ -1,5 +1,4 @@
 import { inject as service } from "@ember/service";
-import fetch from "fetch";
 
 import CalumaOptionsService from "@projectcaluma/ember-core/services/caluma-options";
 import ENV from "ember-caluma/config/environment";
@@ -72,38 +71,15 @@ export default class CustomCalumaOptionsService extends CalumaOptionsService {
   // END-SNIPPET
 
   async fetchTypedGroups(types, search) {
-    // TODO: find out why this causes an infinite loop
-    //
-    // const response = await this.store.query("group", {
-    //   filter: { types: String(types), search },
-    //   include: "type",
-    // });
-    //
-    // return types.reduce(
-    //   (all, type) => ({
-    //     ...all,
-    //     [type]: response.filter((group) => group.get("type.name") === type),
-    //   }),
-    //   {}
-    // );
-
-    const response = await fetch(
-      `/groups?filter[types]=${String(
-        types
-      )}&filter[search]=${search}&include=type`
-    ).then((res) => res.json());
-    const ids = response.data.map(({ id }) => String(id));
-
-    this.store.pushPayload(response);
+    const response = await this.store.query("group", {
+      filter: { types: String(types), search },
+      include: "type",
+    });
 
     return types.reduce(
       (all, type) => ({
         ...all,
-        [type]: this.store
-          .peekAll("group")
-          .filter(
-            (group) => ids.includes(group.id) && group.get("type.name") === type
-          ),
+        [type]: response.filter((group) => group.get("type.name") === type),
       }),
       {}
     );

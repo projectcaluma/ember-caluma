@@ -133,6 +133,9 @@ export default class InquiryNewFormComponent extends Component {
 
   @task
   *fetchGroups(types, search) {
+    // https://github.com/ember-cli/eslint-plugin-ember/issues/1413
+    yield Promise.resolve();
+
     const typedGroups = yield this.calumaOptions.fetchTypedGroups(
       types,
       search
