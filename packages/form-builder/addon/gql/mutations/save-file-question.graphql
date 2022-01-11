@@ -5,6 +5,9 @@ mutation SaveFileQuestion($input: SaveFileQuestionInput!) {
     question {
       id
       ...QuestionInfo
+      ... on FileQuestion {
+        hintText
+      }
     }
     clientMutationId
   }
