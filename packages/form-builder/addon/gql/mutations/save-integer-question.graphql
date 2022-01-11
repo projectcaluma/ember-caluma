@@ -8,6 +8,7 @@ mutation SaveIntegerQuestion($input: SaveIntegerQuestionInput!) {
       ... on IntegerQuestion {
         integerMinValue: minValue
         integerMaxValue: maxValue
+        hintText
       }
     }
     clientMutationId

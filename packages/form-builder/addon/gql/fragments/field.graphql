@@ -19,6 +19,7 @@ fragment SimpleQuestion on Question {
       value
     }
     placeholder
+    hintText
   }
   ... on TextareaQuestion {
     textareaMinLength: minLength
@@ -28,6 +29,7 @@ fragment SimpleQuestion on Question {
       value
     }
     placeholder
+    hintText
   }
   ... on IntegerQuestion {
     integerMinValue: minValue
@@ -37,6 +39,7 @@ fragment SimpleQuestion on Question {
       value
     }
     placeholder
+    hintText
   }
   ... on FloatQuestion {
     floatMinValue: minValue
@@ -46,6 +49,7 @@ fragment SimpleQuestion on Question {
       value
     }
     placeholder
+    hintText
   }
   ... on ChoiceQuestion {
     choiceOptions: options {
@@ -62,6 +66,7 @@ fragment SimpleQuestion on Question {
       id
       value
     }
+    hintText
   }
   ... on MultipleChoiceQuestion {
     multipleChoiceOptions: options {
@@ -78,18 +83,24 @@ fragment SimpleQuestion on Question {
       id
       value
     }
+    hintText
   }
   ... on DateQuestion {
     dateDefaultAnswer: defaultAnswer {
       id
       value
     }
+    hintText
   }
   ... on StaticQuestion {
     staticContent
   }
   ... on CalculatedFloatQuestion {
     calcExpression
+    hintText
+  }
+  ... on FileQuestion {
+    hintText
   }
   ... on ActionButtonQuestion {
     action
@@ -112,6 +123,7 @@ fragment FieldTableQuestion on Question {
         }
       }
     }
+    hintText
     tableDefaultAnswer: defaultAnswer {
       id
       value {

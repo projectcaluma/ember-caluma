@@ -164,6 +164,13 @@
         </div>
       {{/if}}
 
+      {{#if (not (has-question-type f.model "action-button" "static" "form"))}}
+        <f.input
+          @name="hintText"
+          @label={{t "caluma.form-builder.question.hintText"}}
+        />
+      {{/if}}
+
       {{#if (has-question-type f.model "text" "textarea" "integer" "float")}}
         <f.input
           @name="placeholder"

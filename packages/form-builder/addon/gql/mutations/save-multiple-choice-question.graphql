@@ -15,6 +15,7 @@ mutation SaveMultipleChoiceQuestion($input: SaveMultipleChoiceQuestionInput!) {
             }
           }
         }
+        hintText
       }
     }
     clientMutationId

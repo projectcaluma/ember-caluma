@@ -18,6 +18,7 @@ export default function (server) {
     formIds: [form.id],
     type: "TEXT",
     maxLength: null,
+    hintText: null,
   });
   server.create("question", {
     slug: "description",
@@ -26,6 +27,7 @@ export default function (server) {
     type: "TEXTAREA",
     maxLength: 50,
     minLength: 5,
+    hintText: null,
   });
   server.create("question", {
     slug: "age",
@@ -35,6 +37,7 @@ export default function (server) {
     type: "INTEGER",
     minValue: 0,
     maxValue: null,
+    hintText: null,
   });
   server.create("question", {
     slug: "height",
@@ -44,11 +47,13 @@ export default function (server) {
     minValue: 0,
     maxValue: null,
     isHidden: "'age'|answer < 18",
+    hintText: null,
   });
   server.create("question", {
     slug: "like-caluma",
     label: "Do you like Caluma?",
     infoText: null,
+    hintText: "Please express your enthusiasm.",
     type: "CHOICE",
     formIds: [form.id],
     options: [
@@ -70,6 +75,7 @@ export default function (server) {
     formIds: [form.id],
     type: "MULTIPLE_CHOICE",
     isHidden: "'height'|answer > 1.6",
+    hintText: null,
     options: [
       server.create("option", {
         slug: "short-reason-moms-fault",
@@ -90,6 +96,7 @@ export default function (server) {
     label: "When?",
     formIds: [form.id],
     type: "DATE",
+    hintText: null,
   });
   server.create("question", {
     slug: "email",
@@ -115,6 +122,7 @@ export default function (server) {
     formIds: [form.id],
     type: "TEXT",
     meta: { widgetOverride: "dummy-one" },
+    hintText: null,
   });
   server.create("question", {
     slug: "submit",

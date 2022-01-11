@@ -46,6 +46,15 @@ export default class CfFieldComponent extends Component {
     return !hasQuestionType(this.args.field?.question, "action-button");
   }
 
+  get hintTextVisible() {
+    return !hasQuestionType(
+      this.args.field?.question,
+      "action-button",
+      "static",
+      "form"
+    );
+  }
+
   get saveIndicatorVisible() {
     return !hasQuestionType(this.args.field?.question, "action-button");
   }
