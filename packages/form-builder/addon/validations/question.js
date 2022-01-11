@@ -16,6 +16,12 @@ export default {
   label: and(validatePresence(true), validateLength({ max: 1024 })),
   slug: validateSlug(),
 
+  hintText: or(
+    validateType("FormQuestion", true),
+    validateType("StaticQuestion", true),
+    validateType("FileQuestion", true),
+    validateLength({ max: 1024, allowBlank: true })
+  ),
   integerMinValue: or(
     validateType("IntegerQuestion", false),
     and(

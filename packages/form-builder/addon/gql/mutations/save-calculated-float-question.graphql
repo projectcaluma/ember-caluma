@@ -9,6 +9,7 @@ mutation SaveCalculatedFloatQuestion(
       ...QuestionInfo
       ... on CalculatedFloatQuestion {
         calcExpression
+        hintText
       }
     }
     clientMutationId

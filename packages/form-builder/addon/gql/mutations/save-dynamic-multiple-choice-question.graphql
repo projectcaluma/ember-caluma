@@ -9,6 +9,7 @@ mutation SaveDynamicMultipleChoiceQuestion(
       ...QuestionInfo
       ... on DynamicMultipleChoiceQuestion {
         dataSource
+        hintText
       }
     }
     clientMutationId

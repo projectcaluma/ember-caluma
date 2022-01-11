@@ -238,6 +238,7 @@ export default class CfbFormEditorQuestion extends Component {
       minValue: parseInt(changeset.get("integerMinValue")),
       maxValue: parseInt(changeset.get("integerMaxValue")),
       placeholder: changeset.get("placeholder"),
+      hintText: changeset.get("hintText"),
     };
   }
 
@@ -246,6 +247,7 @@ export default class CfbFormEditorQuestion extends Component {
       minValue: parseFloat(changeset.get("floatMinValue")),
       maxValue: parseFloat(changeset.get("floatMaxValue")),
       placeholder: changeset.get("placeholder"),
+      hintText: changeset.get("hintText"),
     };
   }
 
@@ -257,6 +259,7 @@ export default class CfbFormEditorQuestion extends Component {
       formatValidators: changeset
         .get("formatValidators")
         ?.edges.map((edge) => edge.node.slug),
+      hintText: changeset.get("hintText"),
     };
   }
 
@@ -268,36 +271,48 @@ export default class CfbFormEditorQuestion extends Component {
       formatValidators: changeset
         .get("formatValidators")
         ?.edges.map((edge) => edge.node.slug),
+      hintText: changeset.get("hintText"),
+    };
+  }
+
+  _getDateQuestionInput(changeset) {
+    return {
+      hintText: changeset.get("hintText"),
     };
   }
 
   _getMultipleChoiceQuestionInput(changeset) {
     return {
       options: changeset.get("options.edges").map(({ node: { slug } }) => slug),
+      hintText: changeset.get("hintText"),
     };
   }
 
   _getChoiceQuestionInput(changeset) {
     return {
       options: changeset.get("options.edges").map(({ node: { slug } }) => slug),
+      hintText: changeset.get("hintText"),
     };
   }
 
   _getDynamicMultipleChoiceQuestionInput(changeset) {
     return {
       dataSource: changeset.get("dataSource"),
+      hintText: changeset.get("hintText"),
     };
   }
 
   _getDynamicChoiceQuestionInput(changeset) {
     return {
       dataSource: changeset.get("dataSource"),
+      hintText: changeset.get("hintText"),
     };
   }
 
   _getTableQuestionInput(changeset) {
     return {
       rowForm: changeset.get("rowForm.slug"),
+      hintText: changeset.get("hintText"),
     };
   }
 
@@ -316,6 +331,13 @@ export default class CfbFormEditorQuestion extends Component {
   _getCalculatedFloatQuestionInput(changeset) {
     return {
       calcExpression: changeset.get("calcExpression"),
+      hintText: changeset.get("hintText"),
+    };
+  }
+
+  _getFileQuestionInput(changeset) {
+    return {
+      hintText: changeset.get("hintText"),
     };
   }
 

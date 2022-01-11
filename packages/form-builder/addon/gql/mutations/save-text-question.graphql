@@ -8,6 +8,7 @@ mutation SaveTextQuestion($input: SaveTextQuestionInput!) {
       ... on TextQuestion {
         minLength
         maxLength
+        hintText
       }
     }
     clientMutationId

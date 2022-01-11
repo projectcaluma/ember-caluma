@@ -64,6 +64,10 @@
       {{/if}}
     </div>
 
+    {{#if (and @field.question.raw.hintText this.hintTextVisible)}}
+      <CfField::hint @field={{@field}} />
+    {{/if}}
+
     {{#if @field.errors.length}}
       <CfField::errors @field={{@field}} />
     {{/if}}

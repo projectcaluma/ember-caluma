@@ -10,6 +10,7 @@ mutation SaveTableQuestion($input: SaveTableQuestionInput!) {
           id
           slug
         }
+        hintText
       }
     }
     clientMutationId
