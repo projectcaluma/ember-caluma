@@ -1,7 +1,11 @@
 import { getOwner } from "@ember/application";
 import { assert } from "@ember/debug";
-import { associateDestroyableChild } from "@ember/destroyable";
-import { later, once } from "@ember/runloop";
+import {
+  associateDestroyableChild,
+  registerDestructor,
+} from "@ember/destroyable";
+import { action } from "@ember/object";
+import { next, cancel, once } from "@ember/runloop";
 import { inject as service } from "@ember/service";
 import { cached } from "tracked-toolbox";
 
@@ -300,7 +304,18 @@ export class Navigation extends Base {
 
     this._createItems();
 
-    this.router.on("routeDidChange", this, "goToNextItemIfNonNavigable");
+    const transitionHandler = () => {
+      this._timer = next(this, "goToNextItemIfNonNavigable");
+    };
+
+    // go to next item in next run loop, this is necessary when the user clicks
+    // on a non navigable item in the navigation
+    this.router.on("routeDidChange", this, transitionHandler);
+
+    registerDestructor(this, () => {
+      cancel(this._timer);
+      this.router.off("routeDidChange", this, transitionHandler);
+    });
   }
 
   /**
@@ -399,31 +414,29 @@ export class Navigation extends Base {
   }
 
   /**
-   * Observer which transitions to the next navigable item if the current item
-   * is not navigable.
+   * Replace the current item with the next navigable item if the current item
+   * is not navigable. This makes sure that only one transition per runloop
+   * happens.
    *
    * @method goToNextItemIfNonNavigable
    */
+  @action
   goToNextItemIfNonNavigable() {
-    if (!this.nextItem?.slug || this.currentItem?.navigable) {
+    if (this.currentItem?.navigable) {
       return;
     }
 
-    later(this, () => once(this, "goToNextItem"));
+    once(this, "_transitionToNextItem");
   }
 
   /**
-   * Replace the current item with the next navigable item
+   * Transition to next item or start (empty displayed form).
    *
-   * @method goToNextItem
+   * @method _transitionToNextItem
    */
-  goToNextItem() {
-    if (!this.nextItem?.slug || this.currentItem?.navigable) {
-      return;
-    }
-
+  _transitionToNextItem() {
     this.router.replaceWith({
-      queryParams: { displayedForm: this.nextItem.slug },
+      queryParams: { displayedForm: this.nextItem?.slug ?? "" },
     });
   }
 }
