@@ -1,7 +1,7 @@
 version: "3"
 services:
   db:
-    image: postgres:latest
+    image: postgres:14-alpine
     environment:
       - POSTGRES_USER=caluma
       - POSTGRES_PASSWORD=caluma
@@ -9,7 +9,7 @@ services:
       - dbdata:/var/lib/postgresql/data
 
   caluma:
-    image: ghcr.io/projectcaluma/caluma:dev
+    image: ghcr.io/projectcaluma/caluma:7.15.0
     ports:
       - "8000:8000"
     depends_on:

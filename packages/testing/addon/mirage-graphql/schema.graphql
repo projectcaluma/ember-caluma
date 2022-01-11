@@ -80,6 +80,7 @@ input AddWorkflowFlowInput {
   workflow: ID!
   tasks: [ID]!
   next: FlowJexl!
+  redoable: FlowJexl
   clientMutationId: String
 }
 
@@ -273,6 +274,7 @@ type CalculatedFloatQuestion implements Question & Node {
   isHidden: QuestionJexl!
   isArchived: Boolean!
   infoText: String
+  hintText: String
   meta: GenericScalar!
   source: Question
   forms(
@@ -670,6 +672,7 @@ type ChoiceQuestion implements Question & Node {
   isHidden: QuestionJexl!
   isArchived: Boolean!
   infoText: String
+  hintText: String
   meta: GenericScalar!
   source: Question
   defaultAnswer: StringAnswer
@@ -1009,6 +1012,7 @@ type DateQuestion implements Question & Node {
   isHidden: QuestionJexl!
   isArchived: Boolean!
   infoText: String
+  hintText: String
   meta: GenericScalar!
   source: Question
   defaultAnswer: DateAnswer
@@ -1380,6 +1384,7 @@ type DynamicChoiceQuestion implements Question & DynamicQuestion & Node {
   isHidden: QuestionJexl!
   isArchived: Boolean!
   infoText: String
+  hintText: String
   meta: GenericScalar!
   source: Question
   forms(
@@ -1448,6 +1453,7 @@ type DynamicMultipleChoiceQuestion implements Question & DynamicQuestion & Node 
   isHidden: QuestionJexl!
   isArchived: Boolean!
   infoText: String
+  hintText: String
   meta: GenericScalar!
   source: Question
   forms(
@@ -1559,6 +1565,7 @@ interface DynamicQuestion {
     last: Int
   ): DataSourceDataConnection
   dataSource: String!
+  hintText: String
 }
 
 type File implements Node {
@@ -1615,6 +1622,7 @@ type FileQuestion implements Question & Node {
   isHidden: QuestionJexl!
   isArchived: Boolean!
   infoText: String
+  hintText: String
   meta: GenericScalar!
   source: Question
   forms(
@@ -1694,6 +1702,7 @@ type FloatQuestion implements Question & Node {
   isArchived: Boolean!
   placeholder: String
   infoText: String
+  hintText: String
   meta: GenericScalar!
   source: Question
   defaultAnswer: FloatAnswer
@@ -2173,6 +2182,7 @@ type IntegerQuestion implements Question & Node {
   isArchived: Boolean!
   placeholder: String
   infoText: String
+  hintText: String
   meta: GenericScalar!
   source: Question
   defaultAnswer: IntegerAnswer
@@ -2286,6 +2296,7 @@ type MultipleChoiceQuestion implements Question & Node {
   isHidden: QuestionJexl!
   isArchived: Boolean!
   infoText: String
+  hintText: String
   meta: GenericScalar!
   source: Question
   defaultAnswer: ListAnswer
@@ -2385,6 +2396,7 @@ type Mutation {
   cancelWorkItem(input: CancelWorkItemInput!): CancelWorkItemPayload
   suspendWorkItem(input: SuspendWorkItemInput!): SuspendWorkItemPayload
   resumeWorkItem(input: ResumeWorkItemInput!): ResumeWorkItemPayload
+  redoWorkItem(input: RedoWorkItemInput!): RedoWorkItemPayload
   saveWorkItem(input: SaveWorkItemInput!): SaveWorkItemPayload
   createWorkItem(input: CreateWorkItemInput!): CreateWorkItemPayload
   saveForm(input: SaveFormInput!): SaveFormPayload
@@ -3183,6 +3195,21 @@ input QuestionOrderSetType {
   direction: AscDesc
 }
 
+input RedoWorkItemInput {
+  id: ID!
+
+  """
+  Provide extra context for dynamic jexl transforms and events
+  """
+  context: JSONString
+  clientMutationId: String
+}
+
+type RedoWorkItemPayload {
+  workItem: WorkItem
+  clientMutationId: String
+}
+
 input RemoveAnswerInput {
   answer: ID!
   clientMutationId: String
@@ -3302,6 +3329,7 @@ input SaveCalculatedFloatQuestionInput {
   meta: JSONString
   isArchived: Boolean
   calcExpression: QuestionJexl
+  hintText: String
   clientMutationId: String
 }
 
@@ -3338,6 +3366,7 @@ input SaveChoiceQuestionInput {
   meta: JSONString
   isArchived: Boolean
   options: [ID]!
+  hintText: String
   clientMutationId: String
 }
 
@@ -3427,6 +3456,7 @@ input SaveDateQuestionInput {
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
+  hintText: String
   clientMutationId: String
 }
 
@@ -3529,7 +3559,6 @@ input SaveDocumentFileAnswerInput {
   document: ID!
   meta: JSONString
   value: String
-  valueId: ID
   clientMutationId: String
 }
 
@@ -3628,6 +3657,7 @@ input SaveDynamicChoiceQuestionInput {
   meta: JSONString
   isArchived: Boolean
   dataSource: String!
+  hintText: String
   clientMutationId: String
 }
 
@@ -3645,6 +3675,7 @@ input SaveDynamicMultipleChoiceQuestionInput {
   meta: JSONString
   isArchived: Boolean
   dataSource: String!
+  hintText: String
   clientMutationId: String
 }
 
@@ -3661,6 +3692,7 @@ input SaveFileQuestionInput {
   isHidden: QuestionJexl
   meta: JSONString
   isArchived: Boolean
+  hintText: String
   clientMutationId: String
 }
 
@@ -3680,6 +3712,7 @@ input SaveFloatQuestionInput {
   minValue: Float
   maxValue: Float
   placeholder: String
+  hintText: String
   clientMutationId: String
 }
 
@@ -3731,6 +3764,7 @@ input SaveIntegerQuestionInput {
   minValue: Int
   maxValue: Int
   placeholder: String
+  hintText: String
   clientMutationId: String
 }
 
@@ -3748,6 +3782,7 @@ input SaveMultipleChoiceQuestionInput {
   meta: JSONString
   isArchived: Boolean
   options: [ID]!
+  hintText: String
   clientMutationId: String
 }
 
@@ -3834,6 +3869,7 @@ input SaveTableQuestionInput {
   Form that represents rows of a TableQuestion
   """
   rowForm: ID!
+  hintText: String
   clientMutationId: String
 }
 
@@ -3853,6 +3889,7 @@ input SaveTextareaQuestionInput {
   minLength: Int
   maxLength: Int
   placeholder: String
+  hintText: String
   formatValidators: [String]
   clientMutationId: String
 }
@@ -3873,6 +3910,7 @@ input SaveTextQuestionInput {
   minLength: Int
   maxLength: Int
   placeholder: String
+  hintText: String
   formatValidators: [String]
   clientMutationId: String
 }
@@ -4101,6 +4139,7 @@ enum SortableQuestionAttributes {
   IS_ARCHIVED
   PLACEHOLDER
   INFO_TEXT
+  HINT_TEXT
   CALC_EXPRESSION
 }
 
@@ -4254,6 +4293,11 @@ enum Status {
   Work item is suspended.
   """
   SUSPENDED
+
+  """
+  Work item has been marked for redo.
+  """
+  REDO
 }
 
 type StringAnswer implements Answer & Node {
@@ -4339,6 +4383,7 @@ type TableQuestion implements Question & Node {
   isHidden: QuestionJexl!
   isArchived: Boolean!
   infoText: String
+  hintText: String
   meta: GenericScalar!
   source: Question
   defaultAnswer: TableAnswer
@@ -4611,6 +4656,7 @@ type TextareaQuestion implements Question & Node {
   isArchived: Boolean!
   placeholder: String
   infoText: String
+  hintText: String
   meta: GenericScalar!
   source: Question
   formatValidators(
@@ -4682,6 +4728,7 @@ type TextQuestion implements Question & Node {
   isArchived: Boolean!
   placeholder: String
   infoText: String
+  hintText: String
   meta: GenericScalar!
   source: Question
   formatValidators(
@@ -5000,20 +5047,8 @@ type WorkItem implements Node {
   task: Task!
   status: WorkItemStatus!
   meta: GenericScalar
-
-  """
-  Offer work item to be processed by a group of users, such are not committed to process it though.
-  """
   addressedGroups: [String]!
-
-  """
-  List of groups this work item is assigned to for controlling.
-  """
   controllingGroups: [String]!
-
-  """
-  Users responsible to undertake given work item.
-  """
   assignedUsers: [String]!
   case: Case!
 
@@ -5213,6 +5248,11 @@ enum WorkItemStatus {
   Work item is suspended.
   """
   SUSPENDED
+
+  """
+  Work item has been marked for redo.
+  """
+  REDO
 }
 
 """
@@ -5243,4 +5283,9 @@ enum WorkItemStatusArgument {
   Work item is suspended.
   """
   SUSPENDED
+
+  """
+  Work item has been marked for redo.
+  """
+  REDO
 }

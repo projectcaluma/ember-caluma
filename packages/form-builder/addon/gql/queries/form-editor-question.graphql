@@ -11,6 +11,7 @@ query FormEditorQuestion($slug: String!) {
           integerMaxValue: maxValue
           integerMinValue: minValue
           placeholder
+          hintText
           defaultAnswer {
             id
             integerValue: value
@@ -20,6 +21,7 @@ query FormEditorQuestion($slug: String!) {
           floatMaxValue: maxValue
           floatMinValue: minValue
           placeholder
+          hintText
           defaultAnswer {
             id
             floatValue: value
@@ -29,6 +31,7 @@ query FormEditorQuestion($slug: String!) {
           minLength
           maxLength
           placeholder
+          hintText
           defaultAnswer {
             id
             stringValue: value
@@ -52,12 +55,14 @@ query FormEditorQuestion($slug: String!) {
               }
             }
           }
+          hintText
           defaultAnswer {
             id
             stringValue: value
           }
         }
         ... on DateQuestion {
+          hintText
           defaultAnswer {
             id
             dateValue: value
@@ -74,6 +79,7 @@ query FormEditorQuestion($slug: String!) {
               }
             }
           }
+          hintText
           defaultAnswer {
             id
             listValue: value
@@ -90,6 +96,7 @@ query FormEditorQuestion($slug: String!) {
               }
             }
           }
+          hintText
           defaultAnswer {
             id
             stringValue: value
@@ -97,9 +104,11 @@ query FormEditorQuestion($slug: String!) {
         }
         ... on DynamicMultipleChoiceQuestion {
           dataSource
+          hintText
         }
         ... on DynamicChoiceQuestion {
           dataSource
+          hintText
         }
         ... on TableQuestion {
           rowForm {
@@ -115,6 +124,7 @@ query FormEditorQuestion($slug: String!) {
               }
             }
           }
+          hintText
           defaultAnswer {
             id
             tableValue: value {
@@ -151,6 +161,10 @@ query FormEditorQuestion($slug: String!) {
         }
         ... on CalculatedFloatQuestion {
           calcExpression
+          hintText
+        }
+        ... on FileQuestion {
+          hintText
         }
         ... on ActionButtonQuestion {
           action
