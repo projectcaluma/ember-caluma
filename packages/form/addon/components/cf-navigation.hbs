@@ -1,4 +1,7 @@
-<ul class="uk-tab uk-tab-left uk-width-auto" {{did-insert this.goToNextItem}}>
+<ul
+  class="uk-tab uk-tab-left uk-width-auto"
+  {{did-insert @navigation.goToNextItemIfNonNavigable}}
+>
   {{#each @navigation.rootItems as |item|}}
     <CfNavigationItem
       @item={{item}}

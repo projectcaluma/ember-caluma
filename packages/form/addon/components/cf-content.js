@@ -120,17 +120,9 @@ export default class CfContentComponent extends Component {
       this.router.currentRoute?.queryParams.displayedForm ||
       this.document?.raw.form.slug;
 
-    const fieldset = this.document.fieldsets.find(
+    return this.document.fieldsets.find(
       (fieldset) => fieldset.form.slug === slug
     );
-
-    if (!fieldset) {
-      this.router.replaceWith({
-        queryParams: { displayedForm: "" },
-      });
-    }
-
-    return fieldset;
   }
 
   data = useTask(this, this.fetchData, () => [this.args.documentId]);
