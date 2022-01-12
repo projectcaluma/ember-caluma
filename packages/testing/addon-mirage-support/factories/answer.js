@@ -1,5 +1,5 @@
-import { Factory } from "ember-cli-mirage";
-import faker from "faker";
+import faker from "@faker-js/faker";
+import { Factory } from "miragejs";
 import moment from "moment";
 
 export default Factory.extend({

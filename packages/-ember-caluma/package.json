@@ -14,6 +14,7 @@
   "devDependencies": {
     "@ember/jquery": "2.0.0",
     "@ember/optional-features": "2.0.0",
+    "@faker-js/faker": "6.0.0-alpha.3",
     "@glimmer/component": "1.0.4",
     "@glimmer/tracking": "1.0.4",
     "@projectcaluma/ember-analytics": "0.0.0",
@@ -25,9 +26,9 @@
     "@projectcaluma/ember-workflow": "11.0.0-beta.1",
     "broccoli-asset-rev": "3.0.0",
     "ember-apollo-client": "3.2.0",
-    "ember-auto-import": "2.2.4",
-    "ember-changeset": "3.15.0",
-    "ember-changeset-validations": "3.16.0",
+    "ember-auto-import": "2.3.0",
+    "ember-changeset": "4.0.0-beta.1",
+    "ember-changeset-validations": "4.0.0-beta.2",
     "ember-cli": "3.28.5",
     "ember-cli-addon-docs": "4.2.1",
     "ember-cli-babel": "7.26.11",
@@ -38,7 +39,7 @@
     "ember-cli-deploy-git-ci": "1.0.1",
     "ember-cli-htmlbars": "6.0.1",
     "ember-cli-inject-live-reload": "2.1.0",
-    "ember-cli-mirage": "2.2.0",
+    "ember-cli-mirage": "2.3.1",
     "ember-cli-moment-shim": "3.8.0",
     "ember-cli-sass": "10.0.1",
     "ember-cli-showdown": "6.0.1",
@@ -60,12 +61,12 @@
     "ember-source": "3.28.8",
     "ember-truth-helpers": "3.0.0",
     "ember-uikit": "4.0.0",
-    "faker": "5.5.3",
     "graphql": "15.8.0",
     "loader.js": "4.7.0",
+    "miragejs": "0.1.43",
     "moment": "2.29.1",
-    "sass": "1.47.0",
-    "webpack": "5.65.0"
+    "sass": "1.48.0",
+    "webpack": "5.66.0"
   },
   "ember": {
     "edition": "octane"

@@ -1,4 +1,4 @@
-import faker from "faker";
+import faker from "@faker-js/faker";
 import moment from "moment";
 
 export function createBlueprint(server) {

@@ -1,4 +1,4 @@
-import Response from "ember-cli-mirage/response";
+import { Response } from "miragejs";
 
 import graphqlHandler from "@projectcaluma/ember-testing/mirage-graphql";
 

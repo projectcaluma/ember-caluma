@@ -4,7 +4,7 @@ import {
   validateFormat,
 } from "ember-changeset-validations/validators";
 
-import and from "@projectcaluma/ember-core/utils/and";
+import and from "@projectcaluma/ember-form-builder/utils/and";
 
 const validateSlug = () =>
   and(
