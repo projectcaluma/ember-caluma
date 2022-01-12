@@ -1,12 +1,14 @@
 "use strict";
 
 // eslint-disable-next-line node/no-unpublished-require
-const EngineAddon = require("ember-engines/lib/engine-addon");
+const { buildEngine } = require("ember-engines/lib/engine-addon");
 
-/* eslint-disable ember/avoid-leaking-state-in-ember-objects */
-module.exports = EngineAddon.extend({
+module.exports = buildEngine({
   name: require("./package.json").name,
-  lazyLoading: false,
+
+  lazyLoading: {
+    enabled: false,
+  },
 
   included(...args) {
     this._super.included.apply(this, args);

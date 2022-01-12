@@ -6,16 +6,13 @@ import config from "./config/environment";
 
 const { modulePrefix } = config;
 
-/* eslint-disable ember/avoid-leaking-state-in-ember-objects */
-const Eng = Engine.extend({
-  modulePrefix,
-  Resolver,
+export default class FormBuilderEngine extends Engine {
+  modulePrefix = modulePrefix;
+  Resolver = Resolver;
 
-  dependencies: {
+  dependencies = {
     services: ["apollo", "notification", "intl", "caluma-options", "validator"],
-  },
-});
+  };
+}
 
-loadInitializers(Eng, modulePrefix);
-
-export default Eng;
+loadInitializers(FormBuilderEngine, modulePrefix);

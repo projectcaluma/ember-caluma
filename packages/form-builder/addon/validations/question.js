@@ -7,8 +7,8 @@ import {
 import validateGtLt from "../validators/gt-lt";
 import validateOptions from "../validators/options";
 
-import and from "@projectcaluma/ember-core/utils/and";
-import or from "@projectcaluma/ember-core/utils/or";
+import and from "@projectcaluma/ember-form-builder/utils/and";
+import or from "@projectcaluma/ember-form-builder/utils/or";
 import validateSlug from "@projectcaluma/ember-form-builder/validators/slug";
 import validateType from "@projectcaluma/ember-form-builder/validators/type";
 
