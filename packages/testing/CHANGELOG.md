@@ -1,3 +1,10 @@
+# [@projectcaluma/ember-testing-v10.2.0-beta.2](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-testing-v10.2.0-beta.1...@projectcaluma/ember-testing-v10.2.0-beta.2) (2022-01-18)
+
+
+### Features
+
+* **distribution:** add mask for creating new inquiries ([c90c5e7](https://github.com/projectcaluma/ember-caluma/commit/c90c5e72dd300899f2d209216d0b893968ce6b20))
+
 # [@projectcaluma/ember-testing-v10.2.0-beta.1](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-testing-v10.1.0...@projectcaluma/ember-testing-v10.2.0-beta.1) (2022-01-07)
 
 
