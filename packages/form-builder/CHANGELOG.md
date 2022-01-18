@@ -1,3 +1,10 @@
+# [@projectcaluma/ember-form-builder-v11.0.0-beta.2](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-builder-v11.0.0-beta.1...@projectcaluma/ember-form-builder-v11.0.0-beta.2) (2022-01-18)
+
+
+### Bug Fixes
+
+* **deps:** update @projectcaluma/ember-testing [skip ci] ([371d144](https://github.com/projectcaluma/ember-caluma/commit/371d1440a69cad682c1274ddbaeb46deef62376d))
+
 # [@projectcaluma/ember-form-builder-v11.0.0-beta.1](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-builder-v10.0.3...@projectcaluma/ember-form-builder-v11.0.0-beta.1) (2022-01-07)
 
 
