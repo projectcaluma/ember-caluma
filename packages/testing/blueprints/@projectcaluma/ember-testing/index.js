@@ -5,10 +5,7 @@ module.exports = {
 
   afterInstall() {
     return this.addAddonsToProject({
-      packages: [
-        { name: "@projectcaluma/ember-core" },
-        { name: "ember-cli-mirage" },
-      ],
+      packages: [{ name: "ember-cli-mirage" }],
     }).then(() => this.addPackagesToProject([{ name: "faker" }]));
   },
 };
