@@ -62,7 +62,7 @@
  */
 
 /*!
-* focus-trap 6.7.1
+* focus-trap 6.7.2
 * @license MIT, https://github.com/focus-trap/focus-trap/blob/master/LICENSE
 */
 
@@ -86,7 +86,7 @@ OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
 PERFORMANCE OF THIS SOFTWARE.
 ***************************************************************************** */
 
-/*! UIkit 3.9.4 | https://www.getuikit.com | (c) 2014 - 2021 YOOtheme | MIT License */
+/*! UIkit 3.10.0 | https://www.getuikit.com | (c) 2014 - 2022 YOOtheme | MIT License */
 
 /*! tether 1.4.7 */
 
