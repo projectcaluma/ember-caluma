@@ -14,6 +14,9 @@ updates:
       - dependency-name: graphql-tools
         versions:
           - ">= 5"
+      - dependency-name: graphql
+        versions:
+          - ">= 16"
       # We're not ready yet
       - dependency-name: ember-source
         versions:
@@ -24,7 +27,7 @@ updates:
       - dependency-name: ember-data
         versions:
           - ">= 4"
-      # faker.js is not maintained and released a broken version
-      - dependency-name: faker
+      # https://github.com/ember-cli/ember-cli/issues/9307
+      - dependency-name: eslint
         versions:
-          - "6.6.6"
+          - ">= 8"
