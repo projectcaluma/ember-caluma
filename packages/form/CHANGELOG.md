@@ -1,3 +1,20 @@
+# [@projectcaluma/ember-form-v11.0.0-beta.2](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.1...@projectcaluma/ember-form-v11.0.0-beta.2) (2022-01-18)
+
+
+### Bug Fixes
+
+* **deps:** update @projectcaluma/ember-testing [skip ci] ([371d144](https://github.com/projectcaluma/ember-caluma/commit/371d1440a69cad682c1274ddbaeb46deef62376d))
+* **deps:** update @projectcaluma/ember-workflow [skip ci] ([e1232c8](https://github.com/projectcaluma/ember-caluma/commit/e1232c8d6929360b30a5c2a6777203f24255da94))
+* **form:** fix dependencies for ember-autoresize-modifier ([242007a](https://github.com/projectcaluma/ember-caluma/commit/242007a9b5010fc99824b7f03d8102095904403f))
+* **form:** fix styling of table buttons ([ec44fef](https://github.com/projectcaluma/ember-caluma/commit/ec44feffd2571b0492102d6a2c2926fa0476a91c))
+* **form:** fix transition to next navigable item if current is not ([850ff55](https://github.com/projectcaluma/ember-caluma/commit/850ff55564d26c2e8b5842acfd9500a0caa19864))
+
+
+### Features
+
+* **form:** add vertical option for checkbox and radio questions ([ca778ab](https://github.com/projectcaluma/ember-caluma/commit/ca778ab4ead7107a44688e8b3c5a034769f9dba4))
+* **form:** enable autoresize for textarea questions ([428820f](https://github.com/projectcaluma/ember-caluma/commit/428820f2bdf842ebeb0393a70c5556ceceab9e4e))
+
 # [@projectcaluma/ember-form-v11.0.0-beta.1](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v10.0.3...@projectcaluma/ember-form-v11.0.0-beta.1) (2022-01-07)
 
 
