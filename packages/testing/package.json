@@ -24,7 +24,7 @@
     "ember-cli-mirage": "^2.3.1",
     "ember-fetch": "^8.1.1",
     "ember-inflector": "^4.0.2",
-    "graphql": "^15.8.0",
+    "graphql": "^16.2.0",
     "graphql-iso-date": "^3.6.1",
     "graphql-tools": "^4.0.8",
     "miragejs": "^0.1.43",

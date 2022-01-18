@@ -36,7 +36,7 @@
     "ember-svg-jar": "^2.3.4",
     "ember-test-selectors": "^6.0.0",
     "ember-uikit": "^4.0.0",
-    "graphql": "^15.8.0",
+    "graphql": "^16.2.0",
     "ionicons": "^6.0.0",
     "lodash.merge": "^4.6.2",
     "moment": "^2.29.1",
