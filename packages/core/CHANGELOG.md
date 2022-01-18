@@ -1,3 +1,15 @@
+# [@projectcaluma/ember-core-v11.0.0-beta.2](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-core-v11.0.0-beta.1...@projectcaluma/ember-core-v11.0.0-beta.2) (2022-01-18)
+
+
+### Bug Fixes
+
+* **deps:** update @projectcaluma/ember-testing [skip ci] ([371d144](https://github.com/projectcaluma/ember-caluma/commit/371d1440a69cad682c1274ddbaeb46deef62376d))
+
+
+### Features
+
+* **distribution:** add mask for creating new inquiries ([c90c5e7](https://github.com/projectcaluma/ember-caluma/commit/c90c5e72dd300899f2d209216d0b893968ce6b20))
+
 # [@projectcaluma/ember-core-v11.0.0-beta.1](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-core-v10.1.0...@projectcaluma/ember-core-v11.0.0-beta.1) (2022-01-07)
 
 
