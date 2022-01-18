@@ -12,10 +12,15 @@
  */
 
 import fs from "fs";
-import { cwd, exit } from "process";
+import { argv, cwd, exit } from "process";
 
 import { execa } from "execa";
 import semver from "semver";
+import parseArgs from "minimist";
+
+const args = parseArgs(argv.slice(2));
+const dryRun = args["dry-run"] ?? false;
+const git = args["git"] ?? true;
 
 const pkgPath = `${cwd()}/package.json`;
 const pkg = await import(pkgPath);
@@ -77,7 +82,9 @@ await new Promise((resolve) => {
   });
 });
 
-await execa("yarn", ["install"]);
+if (!dryRun) {
+  await execa("yarn", ["install"]);
+}
 
 // if there is a major release in the updates, we need to define our update as
 // major as well
@@ -95,17 +102,19 @@ const body = isBreaking
 
 const msg = `chore(cross-deps): update cross dependencies\n\n${body}`;
 
-// commit changes as github actions bot
-await execa("git", [
-  "config",
-  "--local",
-  "user.email",
-  "github-actions[bot]@users.noreply.github.com",
-]);
-await execa("git", ["config", "--local", "user.name", "github-actions[bot]"]);
-await execa("git", ["add", "./package.json", "../../yarn.lock"]);
-await execa("git", ["commit", "-m", msg]);
-await execa("git", ["push"]);
+if (!dryRun && git) {
+  // commit changes as github actions bot
+  await execa("git", [
+    "config",
+    "--local",
+    "user.email",
+    "github-actions[bot]@users.noreply.github.com",
+  ]);
+  await execa("git", ["config", "--local", "user.name", "github-actions[bot]"]);
+  await execa("git", ["add", "./package.json", "../../yarn.lock"]);
+  await execa("git", ["commit", "-m", msg]);
+  await execa("git", ["push"]);
+}
 
 // eslint-disable-next-line no-console
 console.log(`Packages updated with commit message:\n\n${msg}`);
