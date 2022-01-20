@@ -23,7 +23,7 @@
           @type="submit"
           @color={{buttonConfig.color}}
           @disabled={{or (not isValid) this.completeWorkItem.isRunning}}
-          @on-click={{fn
+          @onClick={{fn
             (perform this.completeWorkItem)
             buttonConfig.workItemId
             validate
@@ -35,7 +35,7 @@
         @type="button"
         @color={{buttonConfig.color}}
         @disabled={{this.completeWorkItem.isRunning}}
-        @on-click={{fn
+        @onClick={{fn
           (perform this.completeWorkItem)
           buttonConfig.workItemId
           null

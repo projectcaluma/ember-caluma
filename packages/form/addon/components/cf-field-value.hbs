@@ -2,7 +2,7 @@
   <UkButton
     @color="link"
     @label={{this.value.label}}
-    @on-click={{fn this.download this.value.fileAnswerId}}
+    @onClick={{fn this.download this.value.fileAnswerId}}
   />
 {{else}}
   {{this.value.label}}

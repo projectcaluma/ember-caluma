@@ -7,6 +7,7 @@ module.exports = {
     return this.addAddonsToProject({
       packages: [
         { name: "@projectcaluma/ember-core" },
+        { name: "ember-composable-helpers" },
         { name: "ember-truth-helpers" },
       ],
     });
