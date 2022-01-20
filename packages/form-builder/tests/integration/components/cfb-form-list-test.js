@@ -34,9 +34,9 @@ module("Integration | Component | cfb-form-list", function (hooks) {
 
     this.server.create("form", { id: 1, slug: "form-1" });
 
-    this.set("on-edit-form", () => assert.step("edit-form"));
+    this.set("onEditForm", () => assert.step("edit-form"));
 
-    await render(hbs`<CfbFormList @on-edit-form={{this.on-edit-form}}/>`);
+    await render(hbs`<CfbFormList @onEditForm={{this.onEditForm}}/>`);
 
     await click(`[data-test-form-list-item=form-1] [data-test-edit-form]`);
 
@@ -48,9 +48,9 @@ module("Integration | Component | cfb-form-list", function (hooks) {
 
     this.server.create("form", { slug: "" });
 
-    this.set("on-new-form", () => assert.step("new-form"));
+    this.set("onNewForm", () => assert.step("new-form"));
 
-    await render(hbs`<CfbFormList @on-new-form={{this.on-new-form}}/>`);
+    await render(hbs`<CfbFormList @onNewForm={{this.onNewForm}}/>`);
 
     await click("[data-test-new-form]");
 

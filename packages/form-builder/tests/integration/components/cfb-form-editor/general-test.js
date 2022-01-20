@@ -63,7 +63,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
     });
 
     await render(
-      hbs`<CfbFormEditor::General @on-after-submit={{this.afterSubmit}} />`
+      hbs`<CfbFormEditor::General @onAfterSubmit={{this.afterSubmit}} />`
     );
 
     await fillIn("input[name=name]", "Form 1");
@@ -86,7 +86,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
     });
 
     await render(
-      hbs`<CfbFormEditor::General @on-after-submit={{this.afterSubmit}} />`
+      hbs`<CfbFormEditor::General @onAfterSubmit={{this.afterSubmit}} />`
     );
 
     assert.dom("input[name=slug]").isNotDisabled();
@@ -119,7 +119,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
     });
 
     await render(
-      hbs`<CfbFormEditor::General @slug='test-slug' @on-after-submit={{this.afterSubmit}} />`
+      hbs`<CfbFormEditor::General @slug='test-slug' @onAfterSubmit={{this.afterSubmit}} />`
     );
 
     await fillIn("input[name=name]", "Test Name 1");
@@ -145,7 +145,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
     await render(
       hbs`<CfbFormEditor::General
         @slug='test-form'
-        @on-after-submit={{this.afterSubmit}}
+        @onAfterSubmit={{this.afterSubmit}}
       />`
     );
 
@@ -156,7 +156,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
     await render(
       hbs`<CfbFormEditor::General
         @slug={{null}}
-        @on-after-submit={{this.afterSubmit}}/>`
+        @onAfterSubmit={{this.afterSubmit}}/>`
     );
 
     // Slug validation must be valid

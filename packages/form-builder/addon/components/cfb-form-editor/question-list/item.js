@@ -51,12 +51,12 @@ export default class CfbFormEditorQuestionListItem extends Component {
   @action
   editQuestion(question, e) {
     e.preventDefault();
-    this.args["on-edit-question"]?.(question);
+    this.args.onEditQuestion?.(question);
   }
 
   @action
   clickForm(form, e) {
     e.preventDefault();
-    this.args["on-click-form"]?.(form);
+    this.args.onClickForm?.(form);
   }
 }

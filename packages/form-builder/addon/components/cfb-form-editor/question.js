@@ -8,7 +8,6 @@ import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
 import Changeset from "ember-changeset";
 import lookupValidator from "ember-changeset-validations";
-import { optional } from "ember-composable-helpers/helpers/optional";
 import { dropTask, restartableTask, task, timeout } from "ember-concurrency";
 import { all } from "rsvp";
 
@@ -406,7 +405,7 @@ export default class CfbFormEditorQuestion extends Component {
         this.intl.t("caluma.form-builder.notification.question.save.success")
       );
 
-      optional([this.args["on-after-submit"]])(question);
+      this.args.onAfterSubmit?.(question);
     } catch (e) {
       // eslint-disable-next-line no-console
       console.error(e);
