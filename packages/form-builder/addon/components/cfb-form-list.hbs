@@ -3,7 +3,7 @@
     {{#each (array "active" "archived" "all") as |category|}}
       <UkButton
         data-test-filter={{category}}
-        @on-click={{fn (perform this.setFilter) "category" category}}
+        @onClick={{fn (perform this.setFilter) "category" category}}
         @label={{t (concat "caluma.form-builder.form." category)}}
         @class={{if (eq this.category category) "uk-button-primary" ""}}
       />
@@ -12,7 +12,7 @@
   <div>
     <UkButton
       data-test-new-form
-      @on-click={{optional @on-new-form}}
+      @onClick={{optional @on-new-form}}
       @label={{t "caluma.form-builder.form.new"}}
     />
   </div>

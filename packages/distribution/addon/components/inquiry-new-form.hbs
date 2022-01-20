@@ -22,7 +22,7 @@
       <UkButton
         @color="default"
         @label={{t "caluma.distribution.new.reset"}}
-        @on-click={{this.clearSelectedGroups}}
+        @onClick={{this.clearSelectedGroups}}
         data-test-reset
       />
       <UkButton
@@ -31,7 +31,7 @@
         @type="submit"
         @loading={{this.submit.isRunning}}
         @disabled={{this.submit.isRunning}}
-        @on-click={{perform this.submit}}
+        @onClick={{perform this.submit}}
         data-test-submit
       />
     </div>
@@ -46,7 +46,7 @@
         data-test-type={{slug}}
         @label={{t config.label}}
         @color={{if (includes slug @selectedTypes) "primary" "default"}}
-        @on-click={{fn this.updateSelectedTypes slug}}
+        @onClick={{fn this.updateSelectedTypes slug}}
       />
     {{/unless}}
   {{/each-in}}

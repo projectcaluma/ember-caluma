@@ -27,7 +27,7 @@
         <UkButton
           @label={{size}}
           @color={{if (eq this.pageSize size) "primary" "default"}}
-          @on-click={{fn (mut this.pageSize) size}}
+          @onClick={{fn (mut this.pageSize) size}}
         />
       {{/each}}
     </div>

@@ -59,7 +59,7 @@
           <UkButton
             @size="small"
             @color="default"
-            @on-click={{perform this.add}}
+            @onClick={{perform this.add}}
             data-test-add-row
           >
             <UkIcon @icon="plus" />
@@ -74,7 +74,7 @@
 {{#if this.documentToEdit}}
   <UkModal
     @visible={{this.showAddModal}}
-    @on-hide={{perform this.closeModal}}
+    @onHide={{perform this.close}}
     @bgClose={{false}}
     as |modal|
   >
@@ -91,7 +91,7 @@
         <UkButton
           @label={{t "caluma.form.close"}}
           @color="primary"
-          @on-click={{perform this.close}}
+          @onClick={{perform this.close}}
           @disabled={{this.close.isRunning}}
           @loading={{this.close.isRunning}}
           data-test-close
@@ -99,7 +99,7 @@
       {{else}}
         <UkButton
           @label={{t "caluma.form.cancel"}}
-          @on-click={{perform this.close}}
+          @onClick={{perform this.close}}
           @disabled={{this.close.isRunning}}
           @loading={{this.close.isRunning}}
           data-test-cancel
@@ -114,7 +114,7 @@
             @type="submit"
             @disabled={{or this.save.isRunning (not isValid)}}
             @loading={{this.save.isRunning}}
-            @on-click={{fn (perform this.save) validate}}
+            @onClick={{fn (perform this.save) validate}}
             data-test-save
           />
         </DocumentValidity>

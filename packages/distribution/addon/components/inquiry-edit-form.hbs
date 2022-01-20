@@ -21,7 +21,7 @@
       @type="submit"
       @color="primary"
       @disabled={{or (not isValid) this.send.isRunning}}
-      @on-click={{perform this.send validate}}
+      @onClick={{perform this.send validate}}
     >{{t "caluma.distribution.edit.send"}}</UkButton>
   </DocumentValidity>
 </CfContent>
