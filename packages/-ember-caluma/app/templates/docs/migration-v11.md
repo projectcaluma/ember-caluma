@@ -1,12 +1,56 @@
 # Migration from v9 / v10 to v11
 
+## General
+
+- Internet Explorer is not supported anymore
+- All `@projectcaluma/ember-*` packages now require `ember-uikit` v5+
+- The helpers `and` and `or` from `@projectcaluma/ember-core/utils/` were moved
+  to `@projectcaluma/ember-form-builder/utils/`
+
+### Camelized action names
+
+_This is only relevant if the consuming app used components of the form builder
+directly instead of using the engine._
+
+The exposed form builder components now expect camelized instead of dasherized
+actions. This concerns the following actions:
+
+- `CfbFormEditor`
+  - `on-edit-question` => `onEditQuestion`
+  - `on-create-question` => `onCreateQuestion`
+  - `on-after-add-question` => `onAfterAddQuestion`
+  - `on-after-remove-question` => `onAfterRemoveQuestion`
+  - `on-click-form` => `onClickForm`
+- `CfbFormEditor::General`
+  - `on-after-submit` => `onAfterSubmit`
+- `CfbFormEditor::Question`
+  - `on-after-submit` => `onAfterSubmit`
+- `CfbFormEditor::QuestionList`
+  - `on-edit-question` => `onEditQuestion`
+  - `on-create-question` => `onCreateQuestion`
+  - `on-after-add-question` => `onAfterAddQuestion`
+  - `on-after-remove-question` => `onAfterRemoveQuestion`
+  - `on-click-form` => `onClickForm`
+- `CfbFormEditor::QuestionList::Item`
+  - `on-edit-question` => `onEditQuestion`
+  - `on-remove-question` => `onRemoveQuestion`
+  - `on-add-question` => `onAddQuestion`
+  - `on-click-form` => `onClickForm`
+  - `on-register` => `onRegister`
+  - `on-unregister` => `onUnregister`
+- `CfbFormList`
+  - `on-new-form` => `onNewForm`
+  - `on-edit-form` => `onEditForm`
+
+## Form library refactoring
+
 The new version v11 bears some breaking changes concerning the library layer of
 the form rendering. In v11 the form library layer was completely rewritten with
 native classes and proper tracking instead of the deprecated `EmberObject` with
 computed properties. To adapt the new version, some patterns need to be
 addressed if the consuming app customized the form rendering.
 
-## Creating form library models
+### Creating form library models
 
 _This is only relevant if the consuming app manually created instances of form
 library models._
@@ -34,7 +78,7 @@ const Document = owner.factoryFor("caluma-model:document").class;
 const document = new Document({ raw, owner });
 ```
 
-## Customizing form library models
+### Customizing form library models
 
 _This is only relevant if the consuming app customized form library models._
 
@@ -88,7 +132,7 @@ export default class CustomField extends Field {
 }
 ```
 
-## Accessing properties of form library models
+### Accessing properties of form library models
 
 _This is likely to be relevant if the consuming app used the library layer
 internally or if it provided custom widgets._
@@ -127,7 +171,7 @@ The only property that can still be accessed directly for convenience is the
 </p>
 ```
 
-## Removal of CalumaApolloServiceMixin
+### Removal of CalumaApolloServiceMixin
 
 The `CalumaApolloServiceMixin` was removed since mixins will be deprecated.
 Instead, `@projectcaluma/ember-core` will directly override the apollo service.
