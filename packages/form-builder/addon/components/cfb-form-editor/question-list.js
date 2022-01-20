@@ -4,7 +4,6 @@ import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
-import { optional } from "ember-composable-helpers/helpers/optional";
 import {
   timeout,
   enqueueTask,
@@ -148,7 +147,7 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
 
       this.questionTask.perform();
 
-      optional([this.args["on-after-add-question"]])(question);
+      this.args.onAfterAddQuestion?.(question);
     } catch (e) {
       this.notification.danger(
         this.intl.t("caluma.form-builder.notification.form.add-question.error")
@@ -176,7 +175,7 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
         )
       );
 
-      optional([this.args["on-after-remove-question"]])(question);
+      this.args.onAfterRemoveQuestion?.(question);
     } catch (e) {
       this.notification.danger(
         this.intl.t(
@@ -238,7 +237,7 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
   createNewQuestion(e) {
     e.preventDefault();
 
-    this.args["on-create-question"]?.();
+    this.args.onCreateQuestion?.();
     this.setMode("reorder");
   }
 }

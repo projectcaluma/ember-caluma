@@ -76,12 +76,12 @@
           data-test-question-list-item={{item.node.slug}}
           @mode={{this.mode}}
           @question={{item.node}}
-          @on-edit-question={{@on-edit-question}}
-          @on-remove-question={{perform this.removeQuestion}}
-          @on-add-question={{perform this.addQuestion}}
-          @on-click-form={{@on-click-form}}
-          @on-register={{this.registerChild}}
-          @on-unregister={{this.unregisterChild}}
+          @onEditQuestion={{@onEditQuestion}}
+          @onRemoveQuestion={{perform this.removeQuestion}}
+          @onAddQuestion={{perform this.addQuestion}}
+          @onClickForm={{@onClickForm}}
+          @onRegister={{this.registerChild}}
+          @onUnregister={{this.unregisterChild}}
         />
       {{else}}
         <li

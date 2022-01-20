@@ -22,7 +22,7 @@ module("Integration | Component | cfb-form-list/item", function (hooks) {
     assert.dom("li > span:nth-child(2)").hasText("Test");
   });
 
-  test("it can trigger on-edit-form action", async function (assert) {
+  test("it can trigger onEditForm action", async function (assert) {
     this.set("form", {
       slug: "test",
       name: "Test",
@@ -32,7 +32,7 @@ module("Integration | Component | cfb-form-list/item", function (hooks) {
     this.set("editForm", () => assert.step("edit-form"));
 
     await render(
-      hbs`<CfbFormList::Item @item={{this.form}} @on-edit-form={{this.editForm}}/>`
+      hbs`<CfbFormList::Item @item={{this.form}} @onEditForm={{this.editForm}}/>`
     );
 
     await click("[data-test-edit-form]");

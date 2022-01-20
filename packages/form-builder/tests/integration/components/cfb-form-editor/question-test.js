@@ -65,7 +65,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     });
 
     await render(
-      hbs`<CfbFormEditor::Question @slug='test-slug' @on-after-submit={{this.afterSubmit}}/>`
+      hbs`<CfbFormEditor::Question @slug='test-slug' @onAfterSubmit={{this.afterSubmit}}/>`
     );
 
     await fillIn("[name=label]", "Test Label 1");
@@ -92,7 +92,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     });
 
     await render(
-      hbs`<CfbFormEditor::Question @slug='test-slug' @on-after-submit={{this.afterSubmit}}/>`
+      hbs`<CfbFormEditor::Question @slug='test-slug' @onAfterSubmit={{this.afterSubmit}}/>`
     );
 
     await fillIn("[name=label]", "Test Label 1");
@@ -117,7 +117,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     await render(
       hbs`<CfbFormEditor::Question
         @slug='foo-bar-test-slug'
-        @on-after-submit={{this.afterSubmit}}
+        @onAfterSubmit={{this.afterSubmit}}
       />`
     );
 
@@ -169,7 +169,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     this.owner.lookup("service:caluma-options").namespace = "Foo Bar";
 
     await render(
-      hbs`<CfbFormEditor::Question @form='test-form' @on-after-submit={{this.afterSubmit}}/>`
+      hbs`<CfbFormEditor::Question @form='test-form' @onAfterSubmit={{this.afterSubmit}}/>`
     );
 
     await fillIn("[name=__typename]", "TextQuestion");
@@ -197,7 +197,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     });
 
     await render(
-      hbs`<CfbFormEditor::Question @form='test-form' @on-after-submit={{this.afterSubmit}}/>`
+      hbs`<CfbFormEditor::Question @form='test-form' @onAfterSubmit={{this.afterSubmit}}/>`
     );
 
     await fillIn("[name=__typename]", "TextQuestion");
@@ -227,7 +227,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     });
 
     await render(
-      hbs`<CfbFormEditor::Question @form='test-form' @on-after-submit={{this.afterSubmit}}/>`
+      hbs`<CfbFormEditor::Question @form='test-form' @onAfterSubmit={{this.afterSubmit}}/>`
     );
 
     await fillIn("[name=__typename]", "TextareaQuestion");
@@ -257,7 +257,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     });
 
     await render(
-      hbs`<CfbFormEditor::Question @form='test-form' @on-after-submit={{this.afterSubmit}}/>`
+      hbs`<CfbFormEditor::Question @form='test-form' @onAfterSubmit={{this.afterSubmit}}/>`
     );
 
     await fillIn("[name=__typename]", "IntegerQuestion");
@@ -287,7 +287,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     });
 
     await render(
-      hbs`<CfbFormEditor::Question @form='test-form' @on-after-submit={{this.afterSubmit}}/>`
+      hbs`<CfbFormEditor::Question @form='test-form' @onAfterSubmit={{this.afterSubmit}}/>`
     );
 
     await fillIn("[name=__typename]", "FloatQuestion");
@@ -318,7 +318,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     });
 
     await render(
-      hbs`<CfbFormEditor::Question @form='test-form' @on-after-submit={{this.afterSubmit}}/>`
+      hbs`<CfbFormEditor::Question @form='test-form' @onAfterSubmit={{this.afterSubmit}}/>`
     );
 
     await fillIn("[name=__typename]", "MultipleChoiceQuestion");
@@ -349,7 +349,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     });
 
     await render(
-      hbs`<CfbFormEditor::Question @form='test-form' @on-after-submit={{this.afterSubmit}}/>`
+      hbs`<CfbFormEditor::Question @form='test-form' @onAfterSubmit={{this.afterSubmit}}/>`
     );
 
     await fillIn("[name=__typename]", "ChoiceQuestion");
@@ -379,7 +379,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     });
 
     await render(
-      hbs`<CfbFormEditor::Question @form='test-form' @on-after-submit={{this.afterSubmit}}/>`
+      hbs`<CfbFormEditor::Question @form='test-form' @onAfterSubmit={{this.afterSubmit}}/>`
     );
 
     await fillIn("[name=__typename]", "TableQuestion");
@@ -405,7 +405,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     });
 
     await render(
-      hbs`<CfbFormEditor::Question @form='test-form' @on-after-submit={{this.afterSubmit}}/>`
+      hbs`<CfbFormEditor::Question @form='test-form' @onAfterSubmit={{this.afterSubmit}}/>`
     );
 
     await fillIn("[name=__typename]", "TableQuestion");
@@ -452,7 +452,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     });
 
     await render(
-      hbs`<CfbFormEditor::Question @form='test-form' @on-after-submit={{this.afterSubmit}}/>`
+      hbs`<CfbFormEditor::Question @form='test-form' @onAfterSubmit={{this.afterSubmit}}/>`
     );
 
     await fillIn("[name=__typename]", "FormQuestion");
@@ -478,7 +478,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     });
 
     await render(
-      hbs`<CfbFormEditor::Question @form='test-form' @on-after-submit={{this.afterSubmit}}/>`
+      hbs`<CfbFormEditor::Question @form='test-form' @onAfterSubmit={{this.afterSubmit}}/>`
     );
 
     await fillIn("[name=__typename]", "FormQuestion");
@@ -523,7 +523,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     });
 
     await render(
-      hbs`<CfbFormEditor::Question @form='test-form' @on-after-submit={{this.afterSubmit}}/>`
+      hbs`<CfbFormEditor::Question @form='test-form' @onAfterSubmit={{this.afterSubmit}}/>`
     );
 
     await fillIn("[name=__typename]", "FileQuestion");
@@ -549,7 +549,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     });
 
     await render(
-      hbs`<CfbFormEditor::Question @form='test-form' @on-after-submit={{this.afterSubmit}}/>`
+      hbs`<CfbFormEditor::Question @form='test-form' @onAfterSubmit={{this.afterSubmit}}/>`
     );
 
     // await selectChoose("[name=__typename]", "StaticQuestion");

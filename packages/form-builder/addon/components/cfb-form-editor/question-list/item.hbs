@@ -4,8 +4,8 @@
     @question.isArchived
     "cfb-form-editor__question-list__item__archived"
   }}
-  {{did-insert (fn (optional @on-register) this.elementId @question.slug)}}
-  {{will-destroy (fn (optional @on-unregister) this.elementId @question.slug)}}
+  {{did-insert (fn (optional @onRegister) this.elementId @question.slug)}}
+  {{will-destroy (fn (optional @onUnregister) this.elementId @question.slug)}}
   ...attributes
 >
   <div class="uk-flex uk-flex-middle">
@@ -24,7 +24,7 @@
           data-test-remove-item
           uk-icon="minus"
           class="cfb-pointer uk-text-danger"
-          {{on "click" (fn (optional @on-remove-question) @question)}}
+          {{on "click" (fn (optional @onRemoveQuestion) @question)}}
         >
         </i>
       {{else if (eq @mode "add")}}
@@ -33,7 +33,7 @@
           data-test-add-item
           uk-icon="plus"
           class="cfb-pointer uk-text-success"
-          {{on "click" (fn (optional @on-add-question) @question)}}
+          {{on "click" (fn (optional @onAddQuestion) @question)}}
         >
         </i>
       {{/if}}

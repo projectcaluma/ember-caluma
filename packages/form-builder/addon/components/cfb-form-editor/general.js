@@ -3,7 +3,6 @@ import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
-import { optional } from "ember-composable-helpers/helpers/optional";
 import { timeout, restartableTask, dropTask } from "ember-concurrency";
 import { useTask } from "ember-resources";
 
@@ -89,7 +88,7 @@ export default class CfbFormEditorGeneral extends Component {
         )
       );
 
-      optional([this.args["on-after-submit"]])(form);
+      this.args.onAfterSubmit?.(form);
     } catch (e) {
       this.notification.danger(
         this.intl.t(

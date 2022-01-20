@@ -12,7 +12,7 @@
   <div>
     <UkButton
       data-test-new-form
-      @onClick={{optional @on-new-form}}
+      @onClick={{optional @onNewForm}}
       @label={{t "caluma.form-builder.form.new"}}
     />
   </div>
@@ -37,7 +37,7 @@
       <CfbFormList::Item
         data-test-form-list-item={{item.slug}}
         @item={{item}}
-        @on-edit-form={{@on-edit-form}}
+        @onEditForm={{@onEditForm}}
       />
     {{/each}}
     {{#if this.formsQuery.isLoading}}
