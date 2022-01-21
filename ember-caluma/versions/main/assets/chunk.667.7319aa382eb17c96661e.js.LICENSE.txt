@@ -66,11 +66,6 @@
 * @license MIT, https://github.com/focus-trap/focus-trap/blob/master/LICENSE
 */
 
-/*!
-* tabbable 5.2.1
-* @license MIT, https://github.com/focus-trap/tabbable/blob/master/LICENSE
-*/
-
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
 
