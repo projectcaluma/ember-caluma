@@ -7386,7 +7386,7 @@ ember-assign-helper@^0.4.0:
     ember-cli-babel "^7.26.0"
     ember-cli-htmlbars "^6.0.0"
 
-ember-auto-import@2.4.0, ember-auto-import@^2.2.0, ember-auto-import@^2.2.3, ember-auto-import@^2.2.4, ember-auto-import@^2.3.0, ember-auto-import@^2.4.0:
+ember-auto-import@2.4.0, ember-auto-import@^2.2.0, ember-auto-import@^2.2.3, ember-auto-import@^2.2.4, ember-auto-import@^2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/ember-auto-import/-/ember-auto-import-2.4.0.tgz#91c4797f08315728086e35af954cb60bd23c14bc"
   integrity sha512-BwF6iTaoSmT2vJ9NEHEGRBCh2+qp+Nlaz/Q7roqNSxl5oL5iMRwenPnHhOoBPTYZvPhcV/KgXR5e+pBQ107plQ==
@@ -8395,7 +8395,7 @@ ember-gesture-modifiers@^3.0.0:
     ember-cli-htmlbars "^6.0.1"
     ember-modifier "^3.0.0"
 
-ember-get-config@, ember-get-config@^1.0.1:
+ember-get-config@, ember-get-config@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/ember-get-config/-/ember-get-config-1.0.2.tgz#f8349a132763008bad37d46d53c8250a0e18d464"
   integrity sha512-G8sPknLvHEk0o8yrfs0+1WSeIPy1zOLxMJSm+ESYXy8MTnvxOFX127JSA7CcYmBq21GrDEIe0TL1Y+4cN9tEng==
@@ -8833,12 +8833,11 @@ ember-try@2.0.0:
     rimraf "^3.0.2"
     walk-sync "^2.2.0"
 
-ember-uikit@5.0.0-beta.3, ember-uikit@^5.0.0-beta.3:
-  version "5.0.0-beta.3"
-  resolved "https://registry.yarnpkg.com/ember-uikit/-/ember-uikit-5.0.0-beta.3.tgz#83e7d9200a62fb8f5bbd932f3c6d574d00067e49"
-  integrity sha512-LTySNydjMYXKPGoqoQYZ/scZE3gd4yRPSznYpl1hNNHaRizVL2ZmdrNaSFKelzSg3co41igGbuUGpndXDbVcDA==
+ember-uikit@5.0.0-beta.4, ember-uikit@^5.0.0-beta.4:
+  version "5.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/ember-uikit/-/ember-uikit-5.0.0-beta.4.tgz#3795f2b9e89edb0740f448d235c534d970dfe88e"
+  integrity sha512-BFP5wfvt1ElM3LVguP/BwlsLsVbWvMZx4qdWbKEV8MQDAyh6vRVOFThoiT/MRqUsh9GDR0mF5o93e2WRtYuhKQ==
   dependencies:
-    "@ember/legacy-built-in-components" "^0.4.0"
     "@ember/render-modifiers" "^2.0.3"
     "@embroider/util" "^1.0.0"
     "@glimmer/component" "^1.0.4"
@@ -8846,11 +8845,11 @@ ember-uikit@5.0.0-beta.3, ember-uikit@^5.0.0-beta.3:
     broccoli-funnel "^3.0.8"
     broccoli-merge-trees "^4.2.0"
     broccoli-stew "^3.0.0"
-    ember-auto-import "^2.3.0"
+    ember-auto-import "^2.4.0"
     ember-cli-babel "^7.26.11"
     ember-cli-htmlbars "^6.0.1"
     ember-focus-trap "^1.0.0"
-    ember-get-config "^1.0.1"
+    ember-get-config "^1.0.2"
     ember-modifier "^3.0.0"
     ember-toggle "^9.0.2"
     uikit "^3.10.1"
