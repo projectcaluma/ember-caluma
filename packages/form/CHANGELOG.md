@@ -1,3 +1,16 @@
+# [@projectcaluma/ember-form-v11.0.0-beta.3](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.2...@projectcaluma/ember-form-v11.0.0-beta.3) (2022-01-24)
+
+
+### chore
+
+* **deps:** update ember-uikit to v5 beta ([6568d39](https://github.com/projectcaluma/ember-caluma/commit/6568d398216d33b44da5b659830ca3c200dd7012))
+
+
+### BREAKING CHANGES
+
+* **deps:** All `@projectcaluma/ember-*` packages now require
+`ember-uikit` v5+.
+
 # [@projectcaluma/ember-form-v11.0.0-beta.2](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.1...@projectcaluma/ember-form-v11.0.0-beta.2) (2022-01-18)
 
 
