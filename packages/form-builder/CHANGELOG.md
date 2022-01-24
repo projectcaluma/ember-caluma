@@ -1,3 +1,19 @@
+# [@projectcaluma/ember-form-builder-v11.0.0-beta.3](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-builder-v11.0.0-beta.2...@projectcaluma/ember-form-builder-v11.0.0-beta.3) (2022-01-24)
+
+
+### chore
+
+* **deps:** update ember-uikit to v5 beta ([6568d39](https://github.com/projectcaluma/ember-caluma/commit/6568d398216d33b44da5b659830ca3c200dd7012))
+* **form-builder:** rename actions from dasherized to camelized ([6a79484](https://github.com/projectcaluma/ember-caluma/commit/6a7948435f1e38e1f8b9cca82d1e091742afcc08))
+
+
+### BREAKING CHANGES
+
+* **form-builder:** All previously dasherized expected actions are now
+camelized. E.g `@on-add-question` becomes `@onAddQuestion`.
+* **deps:** All `@projectcaluma/ember-*` packages now require
+`ember-uikit` v5+.
+
 # [@projectcaluma/ember-form-builder-v11.0.0-beta.2](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-builder-v11.0.0-beta.1...@projectcaluma/ember-form-builder-v11.0.0-beta.2) (2022-01-18)
 
 
