@@ -1,7 +1,12 @@
-import config from "../config/environment";
+import { createServer } from "miragejs";
 
 import graphqlHandler from "@projectcaluma/ember-testing/mirage-graphql";
 
-export default function () {
-  this.post(config.apollo.apiURL, graphqlHandler(this), 200);
+export default function makeServer(config) {
+  return createServer({
+    ...config,
+    routes() {
+      this.post("/graphql/", graphqlHandler(this), 200);
+    },
+  });
 }
