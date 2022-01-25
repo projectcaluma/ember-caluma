@@ -1,4 +1,4 @@
-import faker from "@faker-js/faker";
+import { faker } from "@faker-js/faker";
 import { Factory } from "miragejs";
 
 const STATUS = ["RUNNING", "COMPLETED", "CANCELED", "SUSPENDED"];
