@@ -221,7 +221,9 @@ export default class CfbFormEditorQuestion extends Component {
       isArchived: changeset.get("isArchived"),
     };
 
-    if (!hasQuestionType(changeset, "static", "calculated-float")) {
+    if (
+      !hasQuestionType(changeset, "static", "calculated-float", "action-button")
+    ) {
       Object.assign(input, {
         isRequired: changeset.get("isRequired"),
       });
