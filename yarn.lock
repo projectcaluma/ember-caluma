@@ -8873,28 +8873,7 @@ ember-try@2.0.0:
     rimraf "^3.0.2"
     walk-sync "^2.2.0"
 
-ember-uikit@5.0.0-beta.5:
-  version "5.0.0-beta.5"
-  resolved "https://registry.yarnpkg.com/ember-uikit/-/ember-uikit-5.0.0-beta.5.tgz#096ff7085dd93ca732c79588bde2b99c4aa296b3"
-  integrity sha512-EbbTIHDA2JB0y1N8NR6LgRre9eN85UwYODaAGcyQNYBlISFycm7CQo12f2Ii1dCr0F3/EzDj3QJLXJybZx+U1A==
-  dependencies:
-    "@ember/render-modifiers" "^2.0.3"
-    "@embroider/util" "^1.0.0"
-    "@glimmer/component" "^1.0.4"
-    "@glimmer/tracking" "^1.0.4"
-    broccoli-funnel "^3.0.8"
-    broccoli-merge-trees "^4.2.0"
-    broccoli-stew "^3.0.0"
-    ember-auto-import "^2.4.0"
-    ember-cli-babel "^7.26.11"
-    ember-cli-htmlbars "^6.0.1"
-    ember-focus-trap "^1.0.0"
-    ember-get-config "^1.0.2"
-    ember-modifier "^3.0.0"
-    ember-toggle "^9.0.2"
-    uikit "^3.10.1"
-
-ember-uikit@^5.0.0-beta.5:
+ember-uikit@5.0.0-beta.6, ember-uikit@^5.0.0-beta.6:
   version "5.0.0-beta.6"
   resolved "https://registry.yarnpkg.com/ember-uikit/-/ember-uikit-5.0.0-beta.6.tgz#598a6413de0aaaf48f85370d143c5fc7269b9c0e"
   integrity sha512-XTnhWA/BfEyUqo/W6x9QxAVLj4Rer8eFXeJDDlZkwWZmoFJ5L5dhPRqm/ZSvVZQOLYiJLPL5SZbe8RRWXdRV/w==
