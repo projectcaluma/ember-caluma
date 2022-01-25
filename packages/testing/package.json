@@ -14,7 +14,7 @@
     "test:ember-compatibility": "ember try:each"
   },
   "dependencies": {
-    "@faker-js/faker": "^6.0.0-alpha.3",
+    "@faker-js/faker": "^6.0.0-alpha.5",
     "broccoli-funnel": "^3.0.8",
     "broccoli-merge-trees": "^4.2.0",
     "ember-apollo-client": "^3.2.0",
