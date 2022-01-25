@@ -1,5 +1,5 @@
 import { camelize, dasherize, classify } from "@ember/string";
-import faker from "@faker-js/faker";
+import { faker } from "@faker-js/faker";
 import { singularize, pluralize } from "ember-inflector";
 import { MockList } from "graphql-tools";
 
