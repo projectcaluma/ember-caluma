@@ -8360,6 +8360,7 @@ ember-engines-router-service@^0.3.0:
 
 ember-engines@0.8.20, "ember-engines@https://gitpkg.now.sh/anehx/ember-engines/packages/ember-engines?c08f7650ffc4b723e8ba1143d7498e58bc1e4b78":
   version "0.8.20"
+  uid "0defff12268ae3580b7d2ead8c8779827b267219"
   resolved "https://gitpkg.now.sh/anehx/ember-engines/packages/ember-engines?c08f7650ffc4b723e8ba1143d7498e58bc1e4b78#0defff12268ae3580b7d2ead8c8779827b267219"
   dependencies:
     "@embroider/macros" "^1.0.0"
@@ -8904,7 +8905,15 @@ ember-validated-form@^5.1.1:
     ember-cli-htmlbars "^5.7.1"
     ember-truth-helpers "^3.0.0"
 
-ember-validators@^4.0.1, ember-validators@~4.0.0:
+ember-validators@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/ember-validators/-/ember-validators-4.1.0.tgz#3cde6fd3aa39ee533245f53608e41b607e3502e0"
+  integrity sha512-o/Csg60IENVSK2jh2QMA9GqT1ItWD+8OlllJ+IVdPshObQx8YK9M02x2iqjAbHLN02WMwjwQ41rmCU9Ghd/uiQ==
+  dependencies:
+    "@embroider/macros" "^1.0.0"
+    ember-cli-babel "^7.26.11"
+
+ember-validators@~4.0.0:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/ember-validators/-/ember-validators-4.0.1.tgz#13beefdf185b00efd1b60e51b21380686d8994ba"
   integrity sha512-QVHzzYQn17Ikz8EZVxEtjKRyr6fmwSUbjYpxjcuoZKN5Ub1jjU2LzPOXT6FJQet691UlBs35e6EjPkBOb+xOuA==
