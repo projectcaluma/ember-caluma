@@ -22,11 +22,11 @@ export default class CfFieldInputFileComponent extends Component {
 
   @action
   async download() {
-    const { downloadUrl } = await this.apollo.watchQuery(
+    const { downloadUrl } = await this.apollo.query(
       {
         query: getFileAnswerInfoQuery,
         variables: { id: this.args.field.answer.raw.id },
-        fetchPolicy: "cache-and-network",
+        fetchPolicy: "network-only",
       },
       "node.fileValue"
     );
