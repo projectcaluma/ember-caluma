@@ -41,10 +41,16 @@ export default class CfFieldValueComponent extends Component {
   @action
   async download(id) {
     const { downloadUrl } = await this.apollo.query(
-      { query: getFileAnswerInfoQuery, variables: { id } },
+      {
+        query: getFileAnswerInfoQuery,
+        variables: { id },
+        fetchPolicy: "network-only",
+      },
       "node.fileValue"
     );
 
-    window.open(downloadUrl, "_blank");
+    if (downloadUrl) {
+      window.open(downloadUrl, "_blank");
+    }
   }
 }
