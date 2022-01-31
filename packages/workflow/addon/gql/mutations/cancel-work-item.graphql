@@ -1,5 +1,8 @@
 mutation CancelWorkItem($id: ID!) {
   cancelWorkItem(input: { id: $id }) {
-    clientMutationId
+    workItem {
+      id
+      status
+    }
   }
 }
