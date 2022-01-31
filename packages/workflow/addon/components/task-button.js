@@ -1,7 +1,8 @@
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
-import { lastValue, dropTask } from "ember-concurrency";
+import { dropTask } from "ember-concurrency";
+import { useTask } from "ember-resources";
 
 import allWorkItems from "@projectcaluma/ember-workflow/gql/queries/all-work-items.graphql";
 
@@ -34,20 +35,19 @@ export default class TaskButtonComponent extends Component {
   @service notification;
   @service intl;
 
-  @lastValue("fetchWorkItem") workItem;
+  workItem = useTask(this, this.fetchWorkItem, () => [
+    this.args.task,
+    this.args.filters,
+  ]);
 
   @dropTask
-  *fetchWorkItem() {
+  *fetchWorkItem(task, filters) {
     try {
       const response = yield this.apollo.query(
         {
           query: allWorkItems,
           variables: {
-            filter: [
-              { task: this.args.task },
-              { status: "READY" },
-              ...(this.args.filters || []),
-            ],
+            filter: [{ task }, { status: "READY" }, ...(filters ?? [])],
           },
         },
         "allWorkItems.edges"
