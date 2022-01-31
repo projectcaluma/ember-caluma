@@ -1473,13 +1473,12 @@
     ember-auto-import "^2.2.0"
     semver "^7.3.5"
 
-"@embroider/addon-shim@^0.49.0":
-  version "0.49.0"
-  resolved "https://registry.yarnpkg.com/@embroider/addon-shim/-/addon-shim-0.49.0.tgz#96f9262c8e243a4a6e3032e2f4d8735b1b8fc343"
-  integrity sha512-J7WNrC8NvNfSrb1wUzANO7PtRzeINRTdQDRqD0mzFHCxgkRmI8r1qYrL/+LA6H2J+2XGVnQuevbpJTO1LE4jQQ==
+"@embroider/addon-shim@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@embroider/addon-shim/-/addon-shim-1.0.0.tgz#e56327dd46ccbf87f82729614bafd07b88cb298c"
+  integrity sha512-RkUkQDe56M/15pA7rAL9mTdxYnw/MukQYM2JcJ+9x8mTjkFc6mRnuHVdjVt/r6mUw9YG6FvN3G5nIadsDdXTyQ==
   dependencies:
-    "@embroider/shared-internals" "^0.49.0"
-    ember-auto-import "^2.2.0"
+    "@embroider/shared-internals" "^1.0.0"
     semver "^7.3.5"
 
 "@embroider/macros@1.0.0", "@embroider/macros@>= 0.48.1 < 2.0.0-alpha.1", "@embroider/macros@>=0.42.3 <=0.47.*", "@embroider/macros@^0.41.0", "@embroider/macros@^0.43.5", "@embroider/macros@^0.47.1", "@embroider/macros@^0.47.2", "@embroider/macros@^0.50.0 || ^1.0.0", "@embroider/macros@^1.0.0":
@@ -1515,19 +1514,6 @@
   integrity sha512-6Q73QXGUQianIb3xRpMNl8VMECSatA1NhjXxeIyYzwKraWhhMBpXvysLpbJ8ib1rQe1ajmkoDdXgT5pAnVMXrg==
   dependencies:
     babel-import-util "^0.2.0"
-    ember-rfc176-data "^0.3.17"
-    fs-extra "^9.1.0"
-    lodash "^4.17.21"
-    resolve-package-path "^4.0.1"
-    semver "^7.3.5"
-    typescript-memoize "^1.0.1"
-
-"@embroider/shared-internals@^0.49.0":
-  version "0.49.0"
-  resolved "https://registry.yarnpkg.com/@embroider/shared-internals/-/shared-internals-0.49.0.tgz#c9e179b33b3e036b064e72b69639e48d53984229"
-  integrity sha512-uCDB2rw45xinctS5JOTsl7DF6yxlMc3RlZF/jkNeiGUrphCr0T1CMnUSnQvDAWkdMjvTuOEIWFb/e56h2NBWvw==
-  dependencies:
-    babel-import-util "^1.1.0"
     ember-rfc176-data "^0.3.17"
     fs-extra "^9.1.0"
     lodash "^4.17.21"
@@ -8224,7 +8210,6 @@ ember-engines-router-service@^0.3.0:
 
 ember-engines@0.8.20, "ember-engines@https://gitpkg.now.sh/anehx/ember-engines/packages/ember-engines?c08f7650ffc4b723e8ba1143d7498e58bc1e4b78":
   version "0.8.20"
-  uid "0defff12268ae3580b7d2ead8c8779827b267219"
   resolved "https://gitpkg.now.sh/anehx/ember-engines/packages/ember-engines?c08f7650ffc4b723e8ba1143d7498e58bc1e4b78#0defff12268ae3580b7d2ead8c8779827b267219"
   dependencies:
     "@embroider/macros" "^1.0.0"
@@ -8271,13 +8256,12 @@ ember-fetch@8.1.1, ember-fetch@^8.1.1:
     node-fetch "^2.6.1"
     whatwg-fetch "^3.6.2"
 
-ember-focus-trap@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/ember-focus-trap/-/ember-focus-trap-1.0.0.tgz#13a6447d73f545da37d5b4a8fdf031d475a915c9"
-  integrity sha512-UurkJyw+/h6E9n6Wdu4m7ayfU5E6sF4fPTTKDwWhoi/u6UTY+5UjjYmZu4lQZ9oe6wbk8FJZBKSEeK8xOqqMig==
+ember-focus-trap@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/ember-focus-trap/-/ember-focus-trap-1.0.1.tgz#a99565f6ce55d500b92a0965e79e3ad04219f157"
+  integrity sha512-ZUyq5ZkIuXp+ng9rCMkqBh36/V95PltL7iljStkma4+651xlAy3Z84L9WOu/uOJyVpNUxii8RJBbAySHV6c+RQ==
   dependencies:
-    "@embroider/addon-shim" "^0.49.0"
-    ember-auto-import "^2.2.4"
+    "@embroider/addon-shim" "^1.0.0"
     focus-trap "^6.7.1"
 
 ember-gesture-modifiers@^3.0.0:
@@ -8738,10 +8722,10 @@ ember-try@2.0.0:
     rimraf "^3.0.2"
     walk-sync "^2.2.0"
 
-ember-uikit@5.0.0-beta.7, ember-uikit@^5.0.0-beta.7:
-  version "5.0.0-beta.7"
-  resolved "https://registry.yarnpkg.com/ember-uikit/-/ember-uikit-5.0.0-beta.7.tgz#8e0372edff3732297f09d1fded27eb9c33fc95cb"
-  integrity sha512-7RvBXWHMGtPoM4vnvxkf+8hIGr2nK/cPh1Usj4XFYjF4SiA6KHQ7rpuPBBnRSZniCj4g2alLOyKHeHMP45a4dA==
+ember-uikit@5.0.0-beta.9, ember-uikit@^5.0.0-beta.9:
+  version "5.0.0-beta.9"
+  resolved "https://registry.yarnpkg.com/ember-uikit/-/ember-uikit-5.0.0-beta.9.tgz#5edea3ff07bbaf11ca0581809400ceefb3fbf17a"
+  integrity sha512-MJla3aTExXsstcV0mB9LgCKcVrXlXZwXd6aePNbZPLsAyYkqD8dPB4/7hvnTvry5de5qQzGFikpGHc+GGij+KQ==
   dependencies:
     "@ember/render-modifiers" "^2.0.3"
     "@embroider/util" "^1.0.0"
@@ -8753,7 +8737,7 @@ ember-uikit@5.0.0-beta.7, ember-uikit@^5.0.0-beta.7:
     ember-auto-import "^2.4.0"
     ember-cli-babel "^7.26.11"
     ember-cli-htmlbars "^6.0.1"
-    ember-focus-trap "^1.0.0"
+    ember-focus-trap "^1.0.1"
     ember-get-config "^1.0.2"
     ember-modifier "^3.1.0"
     ember-toggle "^9.0.2"
