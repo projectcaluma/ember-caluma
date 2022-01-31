@@ -1,28 +1,26 @@
-<div {{did-insert (perform this.fetchWorkItem)}}>
-  {{#if this.workItem}}
-    <WorkItemButton
-      ...attributes
-      @mutation={{@mutation}}
-      @label={{@label}}
-      @workItemId={{this.workItem.id}}
-      @type={{@type}}
-      @disabled={{@disabled}}
-      @active={{@active}}
-      @loading={{@loading}}
-      @color={{@color}}
-      @size={{@size}}
-      @title={{@title}}
-      @onSuccess={{@onSuccess}}
-      @onError={{@onError}}
-      @beforeMutate={{@beforeMutate}}
-    >
-      {{#if (has-block)}}
-        {{yield}}
-      {{else if @label}}
-        {{@label}}
-      {{else}}
-        {{t (concat "caluma.mutate-work-item." @mutation)}}
-      {{/if}}
-    </WorkItemButton>
-  {{/if}}
-</div>
+{{#if this.workItem.value}}
+  <WorkItemButton
+    ...attributes
+    @mutation={{@mutation}}
+    @label={{@label}}
+    @workItemId={{decode-id this.workItem.value.id}}
+    @type={{@type}}
+    @disabled={{@disabled}}
+    @active={{@active}}
+    @loading={{@loading}}
+    @color={{@color}}
+    @size={{@size}}
+    @title={{@title}}
+    @onSuccess={{@onSuccess}}
+    @onError={{@onError}}
+    @beforeMutate={{@beforeMutate}}
+  >
+    {{#if (has-block)}}
+      {{yield}}
+    {{else if @label}}
+      {{@label}}
+    {{else}}
+      {{t (concat "caluma.mutate-work-item." @mutation)}}
+    {{/if}}
+  </WorkItemButton>
+{{/if}}
