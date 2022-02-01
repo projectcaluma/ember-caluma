@@ -1,3 +1,4 @@
+import { getOwner } from "@ember/application";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { timeout, restartableTask } from "ember-concurrency";
@@ -30,7 +31,12 @@ export default class ComponentsCfbFormListComponent extends Component {
 
   @restartableTask
   *setFilter(name, eventOrValue) {
-    yield timeout(500);
+    const { environment } =
+      getOwner(this).resolveRegistration("config:environment");
+
+    if (environment !== "test") {
+      yield timeout(500);
+    }
 
     this[name] =
       eventOrValue instanceof Event ? eventOrValue.target.value : eventOrValue;

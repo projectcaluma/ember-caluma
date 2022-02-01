@@ -1,3 +1,4 @@
+import { getOwner } from "@ember/application";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
@@ -62,7 +63,12 @@ export default class InquiryNewFormComponent extends Component {
   *updateSearch(e) {
     e.preventDefault();
 
-    yield timeout(500);
+    const { environment } =
+      getOwner(this).resolveRegistration("config:environment");
+
+    if (environment !== "test") {
+      yield timeout(500);
+    }
 
     this.args.onChangeSearch(e.target.value);
   }

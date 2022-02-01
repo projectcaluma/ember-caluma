@@ -419,11 +419,11 @@ export default class CfbFormEditorQuestion extends Component {
 
   @restartableTask
   *validateSlug(slug, changeset) {
+    const { environment } =
+      getOwner(this).resolveRegistration("config:environment");
+
     /* istanbul ignore next */
-    if (
-      getOwner(this).resolveRegistration("config:environment").environment !==
-      "test"
-    ) {
+    if (environment !== "test") {
       yield timeout(500);
     }
 
