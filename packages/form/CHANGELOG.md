@@ -1,3 +1,10 @@
+# [@projectcaluma/ember-form-v11.0.0-beta.4](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.3...@projectcaluma/ember-form-v11.0.0-beta.4) (2022-02-01)
+
+
+### Bug Fixes
+
+* **form:** fix closing of info modal ([b46095a](https://github.com/projectcaluma/ember-caluma/commit/b46095aa3b31bc1b2035a0818778edaa8fd9c745))
+
 # [@projectcaluma/ember-form-v11.0.0-beta.3](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.2...@projectcaluma/ember-form-v11.0.0-beta.3) (2022-01-24)
 
 
