@@ -1,6 +1,7 @@
 import { action } from "@ember/object";
 import Component from "@glimmer/component";
 import { restartableTask } from "ember-concurrency";
+import { cached } from "tracked-toolbox";
 
 /**
  * Component to check the validity of a document
@@ -31,12 +32,26 @@ export default class DocumentValidity extends Component {
    * @argument {Boolean} validateOnEnter
    */
 
+  @cached
   get isValid() {
-    return this.args.document.fields.every((f) => f.isValid);
+    return this.args.document.fields
+      .filter((f) => !f.hidden)
+      .every((f) => f.isValid);
   }
 
   @restartableTask
   *_validate() {
+    const saveTasks = this.args.document.fields
+      .flatMap((field) => [
+        ...[...(field._components ?? [])].map((c) => c.save.last),
+        field.save?.last,
+      ])
+      .filter(Boolean);
+
+    // Wait until all currently running save tasks in the UI and in the field
+    // itself are finished
+    yield Promise.all(saveTasks);
+
     for (const field of this.args.document.fields) {
       yield field.validate.linked().perform();
     }

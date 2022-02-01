@@ -1,5 +1,9 @@
 {{#if this.visible}}
-  <div class="uk-margin">
+  <div
+    class="uk-margin"
+    {{did-insert this.registerComponent}}
+    {{will-destroy this.unregisterComponent}}
+  >
     {{#if this.labelVisible}}
       <CfField::label @field={{@field}} />
     {{/if}}

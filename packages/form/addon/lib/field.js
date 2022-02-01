@@ -153,6 +153,16 @@ export default class Field extends Base {
   @tracked _errors = [];
 
   /**
+   * Currently rendered field components that use this field. This is used in
+   * the document validity component to await all current save tasks before
+   * validating.
+   *
+   * @property {Set} _components
+   * @private
+   */
+  _components = new Set();
+
+  /**
    * The primary key of the field. Consists of the document and question primary
    * keys.
    *
