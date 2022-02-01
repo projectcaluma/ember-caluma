@@ -1,6 +1,6 @@
 {
   "name": "@projectcaluma/ember-distribution",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-beta.2",
   "description": "Ember engine for the Caluma distribution module.",
   "keywords": [
     "ember-addon",
