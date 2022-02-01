@@ -2230,70 +2230,6 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
-"@projectcaluma/ember-form-builder@11.0.0-beta.3":
-  version "11.0.0-beta.3"
-  resolved "https://registry.yarnpkg.com/@projectcaluma/ember-form-builder/-/ember-form-builder-11.0.0-beta.3.tgz#c7ff936507677c01cceb42a54a1174c548181ae5"
-  integrity sha512-OsbyUCZy184vosFl2wPLbwga3LHzM4xAr7H+ule6ns81YXm4SN4z4nJclisJfDcr0SxsyLhoGqAvaBoifNgMCA==
-  dependencies:
-    "@ember/render-modifiers" "^2.0.3"
-    "@glimmer/component" "^1.0.4"
-    "@glimmer/tracking" "^1.0.4"
-    "@projectcaluma/ember-core" "^11.0.0-beta.2"
-    "@projectcaluma/ember-form" "^11.0.0-beta.3"
-    codejar "^3.5.0"
-    ember-apollo-client "^3.2.0"
-    ember-auto-import "^2.4.0"
-    ember-changeset "^4.0.0-beta.1"
-    ember-changeset-validations "^4.0.0-beta.2"
-    ember-cli-babel "^7.26.11"
-    ember-cli-htmlbars "^6.0.1"
-    ember-composable-helpers "^5.0.0"
-    ember-concurrency "^2.2.0"
-    ember-engines-router-service "^0.3.0"
-    ember-fetch "^8.1.1"
-    ember-math-helpers "^2.18.0"
-    ember-pikaday "^3.0.0"
-    ember-power-select "^5.0.3"
-    ember-resources "^4.1.3"
-    ember-test-selectors "^6.0.0"
-    ember-uikit "^5.0.0-beta.3"
-    ember-validated-form "^5.1.1"
-    graphql "^15.8.0"
-    graphql-tag "^2.12.6"
-    jexl "^2.3.0"
-    moment "^2.29.1"
-    prismjs "^1.26.0"
-
-"@projectcaluma/ember-form@11.0.0-beta.3":
-  version "11.0.0-beta.3"
-  resolved "https://registry.yarnpkg.com/@projectcaluma/ember-form/-/ember-form-11.0.0-beta.3.tgz#bf1f247e59a14f9e7bc38c757883fc4761e0ad48"
-  integrity sha512-shnNm46Zmc3m96X9uvwV/O7C0999Ec4D31/bq9f1zUtbIUKmBweezVFtGlkJtp2+T8BGrds0DbnxO7Qnhnvvqw==
-  dependencies:
-    "@glimmer/component" "^1.0.4"
-    "@glimmer/tracking" "^1.0.4"
-    "@projectcaluma/ember-core" "^11.0.0-beta.2"
-    ember-apollo-client "^3.2.0"
-    ember-auto-import "^2.4.0"
-    ember-autoresize-modifier "^0.5.0"
-    ember-cli-babel "^7.26.11"
-    ember-cli-htmlbars "^6.0.1"
-    ember-cli-showdown "^6.0.1"
-    ember-composable-helpers "^5.0.0"
-    ember-fetch "^8.1.1"
-    ember-in-viewport "^4.0.0"
-    ember-intl "^5.7.2"
-    ember-math-helpers "^2.18.0"
-    ember-pikaday "^3.0.0"
-    ember-power-select "^5.0.3"
-    ember-resources "^4.1.3"
-    ember-uikit "^5.0.0-beta.3"
-    ember-validators "^4.0.1"
-    graphql "^15.8.0"
-    jexl "^2.3.0"
-    lodash.isequal "^4.5.0"
-    moment "^2.29.1"
-    tracked-toolbox "^1.2.3"
-
 "@projectcaluma/ember-workflow@11.0.0-beta.2":
   version "11.0.0-beta.2"
   resolved "https://registry.yarnpkg.com/@projectcaluma/ember-workflow/-/ember-workflow-11.0.0-beta.2.tgz#917264b46ce4e024ba4ae27386ad3c96fa0da584"
@@ -8429,7 +8365,7 @@ ember-load-initializers@2.1.2:
     ember-cli-babel "^7.13.0"
     ember-cli-typescript "^2.0.2"
 
-ember-math-helpers@2.18.1, ember-math-helpers@^2.18.0, ember-math-helpers@^2.18.1:
+ember-math-helpers@2.18.1, ember-math-helpers@^2.18.1:
   version "2.18.1"
   resolved "https://registry.yarnpkg.com/ember-math-helpers/-/ember-math-helpers-2.18.1.tgz#7e64a0ac4ab604e2c7b88c77c7751be2e5e24aa8"
   integrity sha512-CWLnGHqxDW++l7dvZXDs7gq9CL6XL6tXIQC8nurxyeFbrm0BQ9kWxd3sLVyhGoRUMjrPTHisbD75xj191U/yRw==
@@ -8556,7 +8492,7 @@ ember-resolver@8.0.3:
     ember-cli-version-checker "^5.1.2"
     resolve "^1.20.0"
 
-ember-resources@^4.1.3, ember-resources@^4.2.0:
+ember-resources@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/ember-resources/-/ember-resources-4.2.0.tgz#6a999f0e812181e0c57a50e2090360b61372017a"
   integrity sha512-ItUOiov4cSPvavA7pG+sl3QZ8GG5D1Fss2Vyv6ychbD+CEiNtXWoBFvV6dfdPZ6GENU8Si8mHoLIcBTgK6BayA==
@@ -8815,7 +8751,7 @@ ember-validated-form@^5.1.1:
     ember-cli-htmlbars "^5.7.1"
     ember-truth-helpers "^3.0.0"
 
-ember-validators@^4.0.1, ember-validators@^4.1.0:
+ember-validators@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/ember-validators/-/ember-validators-4.1.0.tgz#3cde6fd3aa39ee533245f53608e41b607e3502e0"
   integrity sha512-o/Csg60IENVSK2jh2QMA9GqT1ItWD+8OlllJ+IVdPshObQx8YK9M02x2iqjAbHLN02WMwjwQ41rmCU9Ghd/uiQ==
