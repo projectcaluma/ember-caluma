@@ -1,3 +1,11 @@
+# [@projectcaluma/ember-form-v11.0.0-beta.5](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.4...@projectcaluma/ember-form-v11.0.0-beta.5) (2022-02-01)
+
+
+### Bug Fixes
+
+* **document-validity:** wait to validate until the UI has finished saving values ([9ec5330](https://github.com/projectcaluma/ember-caluma/commit/9ec5330905046604f95ab42985a29a5e0dc369a4))
+* **form:** use component save task instead of field for loading indicator ([6de510d](https://github.com/projectcaluma/ember-caluma/commit/6de510d19a3608b7cd40092908d562a152ef03bd))
+
 # [@projectcaluma/ember-form-v11.0.0-beta.4](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.3...@projectcaluma/ember-form-v11.0.0-beta.4) (2022-02-01)
 
 
