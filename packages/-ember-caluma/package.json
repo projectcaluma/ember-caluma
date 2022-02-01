@@ -65,8 +65,8 @@
     "loader.js": "4.7.0",
     "miragejs": "0.1.43",
     "moment": "2.29.1",
-    "sass": "1.49.0",
-    "webpack": "5.67.0"
+    "sass": "1.49.4",
+    "webpack": "5.68.0"
   },
   "ember": {
     "edition": "octane"
