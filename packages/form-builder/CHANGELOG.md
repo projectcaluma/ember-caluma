@@ -1,3 +1,10 @@
+# [@projectcaluma/ember-form-builder-v11.0.0-beta.4](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-builder-v11.0.0-beta.3...@projectcaluma/ember-form-builder-v11.0.0-beta.4) (2022-02-01)
+
+
+### Bug Fixes
+
+* **form-builder:** omit isRequired property when saving action buttons ([27fb4ff](https://github.com/projectcaluma/ember-caluma/commit/27fb4ff9e394a4c9491c33374f1b088fd09274d3))
+
 # [@projectcaluma/ember-form-builder-v11.0.0-beta.3](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-builder-v11.0.0-beta.2...@projectcaluma/ember-form-builder-v11.0.0-beta.3) (2022-01-24)
 
 
