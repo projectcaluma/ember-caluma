@@ -1,3 +1,11 @@
+# [@projectcaluma/ember-workflow-v11.0.0-beta.3](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-workflow-v11.0.0-beta.2...@projectcaluma/ember-workflow-v11.0.0-beta.3) (2022-02-01)
+
+
+### Bug Fixes
+
+* **task-button:** remove wrapping div around task button ([50746ec](https://github.com/projectcaluma/ember-caluma/commit/50746ecda69f46f9d72631778fb4fa37f123159c))
+* **work-item-button:** update status of work item in cache after mutation ([d8c1e2a](https://github.com/projectcaluma/ember-caluma/commit/d8c1e2a4db8cf3d3bb5891be705782c6e39c8e60))
+
 # [@projectcaluma/ember-workflow-v11.0.0-beta.2](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-workflow-v11.0.0-beta.1...@projectcaluma/ember-workflow-v11.0.0-beta.2) (2022-01-24)
 
 
