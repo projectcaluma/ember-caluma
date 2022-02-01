@@ -13,10 +13,16 @@ jobs:
       max-parallel: 1
       matrix:
         workspace:
-          - "@projectcaluma/ember-core"
-          - "@projectcaluma/ember-form"
-          - "@projectcaluma/ember-form-builder"
+          # Testing requires no other packages but is required in every package
           - "@projectcaluma/ember-testing"
+          # Core is required in all packages but testing
+          - "@projectcaluma/ember-core"
+          # Form is required in form-builder and workflow
+          - "@projectcaluma/ember-form"
+          # Form builder is not required anywhere
+          - "@projectcaluma/ember-form-builder"
+          # Workflow is a required as devDependency in form which will be
+          # updated later in the update only job
           - "@projectcaluma/ember-workflow"
 
     steps:
@@ -102,6 +108,10 @@ jobs:
           # Remove this line and add it to release or release-beta-only job if
           # the first beta or stable release is ready
           - "@projectcaluma/ember-analytics"
+          # The devDependency to `@projectcaluma/ember-workflow` needs to be
+          # updated since we have a circular dependency there
+          - "@projectcaluma/ember-form"
+          # The docs app needs to have all packages up-to-date
           - "ember-caluma"
 
     steps:
