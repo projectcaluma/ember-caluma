@@ -24,11 +24,11 @@
         <div
           class="cf-field__icon uk-padding-remove-vertical uk-flex uk-flex-middle uk-flex-center"
         >
-          {{#if @field.save.isRunning}}
+          {{#if this.save.isRunning}}
             <UkSpinner class="uk-animation-fade" />
-          {{else if (or @field.save.last.isError @field.isInvalid)}}
+          {{else if (or this.save.last.isError @field.isInvalid)}}
             <UkIcon @icon="warning" class="uk-animation-fade uk-text-danger" />
-          {{else if @field.save.last.isSuccessful}}
+          {{else if this.save.last.isSuccessful}}
             <UkIcon @icon="check" class="uk-animation-fade uk-text-success" />
           {{/if}}
         </div>
