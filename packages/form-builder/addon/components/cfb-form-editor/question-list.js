@@ -1,3 +1,4 @@
+import { getOwner } from "@ember/application";
 import { action } from "@ember/object";
 import { run } from "@ember/runloop";
 import { inject as service } from "@ember/service";
@@ -55,7 +56,10 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
     const mode = this.mode;
     const search = mode !== "reorder" ? this.search : "";
 
-    if (search) {
+    const { environment } =
+      getOwner(this).resolveRegistration("config:environment");
+
+    if (search && environment !== "test") {
       yield timeout(500);
     }
 
