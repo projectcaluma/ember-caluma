@@ -1,9 +1,24 @@
-{{#if this.value.fileAnswerId}}
-  <UkButton
-    @color="link"
-    @label={{this.value.label}}
-    @onClick={{fn this.download this.value.fileAnswerId}}
-  />
+{{#if (has-question-type @field.question "choice" "dynamic-choice")}}
+  {{@field.selected.label}}
+{{else if (has-question-type
+  @field.question "multiple-choice" "multiple-dynamic-choice"
+)}}
+  {{#each @field.selected as |opt i|}}{{if (gt i 0) ", "}}{{opt.label}}{{/each}}
+{{else if (has-question-type @field.question "date")}}
+  {{format-date
+    @field.answer.value
+    day="2-digit"
+    month="2-digit"
+    year="numeric"
+  }}
+{{else if (has-question-type @field.question "file")}}
+  {{#if @field.answer.value}}
+    <UkButton
+      @color="link"
+      @label={{@field.answer.value.name}}
+      @onClick={{fn this.download @field.answer.raw.id}}
+    />
+  {{/if}}
 {{else}}
-  {{this.value.label}}
+  {{@field.answer.value}}
 {{/if}}

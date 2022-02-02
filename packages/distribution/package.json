@@ -40,7 +40,6 @@
     "ionicons": "^6.0.1",
     "lodash.merge": "^4.6.2",
     "luxon": "^2.3.0",
-    "moment": "^2.29.1",
     "tracked-toolbox": "^1.2.3"
   },
   "devDependencies": {

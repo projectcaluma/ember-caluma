@@ -52,6 +52,16 @@ configured in the form builder. To fix this issue all `meta.formatValidators`
 must be moved to the `formatValidators` property. Also, the `validator` service
 was dropped and can be removed from the form builder engine dependencies.
 
+### Removal of moment
+
+Moment is now in maintenance mode and it's advised to not use it anymore. In v11
+all traces of moment were removed and replaced with `luxon`, `ember-intl` or
+plain JS dates. `ember-pikaday` was also updated to the latest version which
+enables us to use pikaday without moment. However, the host app now needs to
+opt-in to use the default styles of pikaday: https://github.com/adopted-ember-addons/ember-pikaday#styles
+
+Other than that, there should be no changes necessary.
+
 ## Form library refactoring
 
 The new version v11 bears some breaking changes concerning the library layer of
