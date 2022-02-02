@@ -31,7 +31,11 @@ export default class CfFieldComponent extends Component {
   get visible() {
     return (
       !this.args.field?.hidden &&
-      !hasQuestionType(this.args.field?.question, "form")
+      !hasQuestionType(this.args.field?.question, "form") &&
+      !(
+        hasQuestionType(this.args.field?.question, "action-button") &&
+        this.args.disabled
+      )
     );
   }
 
