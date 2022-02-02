@@ -6,14 +6,6 @@ export default class CfFieldInputDateComponent extends Component {
   @action
   onChange(date) {
     // Change Javascript date to ISO string if not null.
-    this.args.onSave(
-      date
-        ? moment({
-            day: date.getUTCDate(),
-            month: date.getUTCMonth(),
-            year: date.getUTCFullYear(),
-          }).format(moment.HTML5_FMT.DATE)
-        : null
-    );
+    this.args.onSave(date ? moment(date).format(moment.HTML5_FMT.DATE) : null);
   }
 }

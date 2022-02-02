@@ -2,6 +2,7 @@ import { render, fillIn, click } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
+import { Interactor as Pikaday } from "ember-pikaday/test-support";
 import { setupRenderingTest } from "ember-qunit";
 import moment from "moment";
 import { module, test } from "qunit";
@@ -79,9 +80,7 @@ module("Integration | Component | cf-content", function (hooks) {
           assert.dom(`[name="${id}"][value="${v}"]`).isChecked();
         });
       } else if (answer.type === "DATE") {
-        assert
-          .dom(`[name="${id}"]`)
-          .hasValue(moment(answer.value).format("DD.MM.YYYY"));
+        assert.dom(`[name="${id}"]`).hasValue(moment(answer.value).format("L"));
       } else {
         assert.dom(`[name="${id}"]`).hasValue(String(answer.value));
       }
@@ -182,7 +181,7 @@ module("Integration | Component | cf-content", function (hooks) {
 
     this.set("documentId", document.id);
 
-    await render(hbs`{{cf-content documentId=documentId}}`);
+    await render(hbs`<CfContent @documentId={{this.documentId}} />`);
 
     await fillIn(
       `[name="Document:${document.id}:Question:text-question"]`,
@@ -209,10 +208,8 @@ module("Integration | Component | cf-content", function (hooks) {
     await click(
       `[name="Document:${document.id}:Question:checkbox-question"][value="checkbox-question-option-2"]`
     );
-    await fillIn(
-      `[name="Document:${document.id}:Question:date-question"]`,
-      "25.03.2019"
-    );
+    await click(`[name="Document:${document.id}:Question:date-question"]`);
+    await Pikaday.selectDate(new Date(2019, 2, 25)); // month is zero based
     // The following answers are commented-out as we currently have a
     // problem with GraphQL/Mirage and I didn't want to skip everything.
     /*

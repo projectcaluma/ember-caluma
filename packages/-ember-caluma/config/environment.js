@@ -26,10 +26,6 @@ module.exports = function (environment) {
       // when it is created
     },
 
-    moment: {
-      includeLocales: ["de", "en", "fr"],
-    },
-
     "ember-caluma": {
       powerSelectEnableSearchLimit: 2,
     },
