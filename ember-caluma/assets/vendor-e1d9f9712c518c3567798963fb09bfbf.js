@@ -7905,7 +7905,7 @@ const r=(0,i.createTemplateFactory)({id:"mT2MrCyv",block:'[[[42,[28,[37,1],[[28,
 var a=(0,t.setComponentTemplate)(r,(0,n.default)())
 e.default=a})),define("@projectcaluma/ember-form/components/cf-field/input/static",["exports","@ember/component","@ember/template-factory","@ember/component/template-only"],(function(e,t,i,n){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
-const r=(0,i.createTemplateFactory)({id:"jwdSL8ug",block:'[[[8,[39,0],null,[["@markdown","@openLinksInNewWindow"],[[30,1,["question","staticContent"]],true]],null]],["@field"],false,["markdown-to-html"]]',moduleName:"@projectcaluma/ember-form/components/cf-field/input/static.hbs",isStrictMode:!1})
+const r=(0,i.createTemplateFactory)({id:"/LI9p9ER",block:'[[[8,[39,0],null,[["@markdown","@openLinksInNewWindow"],[[30,1,["question","raw","staticContent"]],true]],null]],["@field"],false,["markdown-to-html"]]',moduleName:"@projectcaluma/ember-form/components/cf-field/input/static.hbs",isStrictMode:!1})
 var a=(0,t.setComponentTemplate)(r,(0,n.default)())
 e.default=a})),define("@projectcaluma/ember-form/components/cf-field/input/table",["exports","@ember/component","@ember/template-factory","@ember/application","@ember/object","@ember/service","@glimmer/component","@glimmer/tracking","ember-apollo-client","ember-concurrency","uikit","@projectcaluma/ember-form/gql/mutations/remove-document.graphql","@projectcaluma/ember-form/gql/mutations/save-document.graphql","@projectcaluma/ember-form/lib/parsers"],(function(e,t,i,n,r,a,o,l,s,d,u,c,m,p){"use strict"
 var f,h,v,g,b,k,y,w
