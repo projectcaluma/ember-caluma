@@ -1,4 +1,4 @@
-<table class="uk-table uk-table-divider">
+<table class="uk-table uk-table-divider uk-margin-remove-vertical">
   <thead>
     <tr>
       {{#each this.columns as |column|}}
@@ -25,27 +25,27 @@
                 class="uk-animation-fade uk-text-danger"
               />
             {{/if}}
-            <button
-              data-test-edit-row
-              type="button"
-              class="uk-button uk-button-link uk-flex-inline uk-margin-small-left"
+            <UkButton
+              @color="link"
+              @onClick={{fn this.edit document}}
               title={{t "caluma.form.edit"}}
-              {{on "click" (fn this.edit document)}}
+              class="uk-flex-inline uk-margin-small-left"
+              data-test-edit-row
             >
               <UkIcon @icon="pencil" />
-              <span class="uk-hidden">{{t "caluma.form.edit"}}</span>
-            </button>
+              <span hidden>{{t "caluma.form.edit"}}</span>
+            </UkButton>
             {{#unless @disabled}}
-              <button
-                data-test-delete-row
-                type="button"
-                class="uk-button uk-button-link uk-flex-inline uk-margin-small-left"
+              <UkButton
+                @color="link"
+                @onClick={{fn (perform this.delete) document}}
                 title={{t "caluma.form.delete"}}
-                {{on "click" (fn (perform this.delete) document)}}
+                class="uk-flex-inline uk-margin-small-left"
+                data-test-delete-row
               >
                 <UkIcon @icon="trash" />
-                <span class="uk-hidden">{{t "caluma.form.delete"}}</span>
-              </button>
+                <span hidden>{{t "caluma.form.delete"}}</span>
+              </UkButton>
             {{/unless}}
           </div>
         </td>
@@ -57,12 +57,13 @@
       <tr>
         <td colspan={{add this.columns.length 1}} class="uk-text-center">
           <UkButton
-            @size="small"
+            @color="link"
             @onClick={{perform this.add}}
+            title={{t "caluma.form.addRow"}}
             data-test-add-row
           >
             <UkIcon @icon="plus" />
-            <span class="uk-hidden">{{t "caluma.form.addRow"}}</span>
+            <span hidden>{{t "caluma.form.addRow"}}</span>
           </UkButton>
         </td>
       </tr>
@@ -85,7 +86,7 @@
       />
     </modal.body>
 
-    <modal.footer @class="uk-text-right">
+    <modal.footer class="uk-text-right">
       {{#if @disabled}}
         <UkButton
           @label={{t "caluma.form.close"}}
