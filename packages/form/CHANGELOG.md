@@ -1,3 +1,12 @@
+# [@projectcaluma/ember-form-v11.0.0-beta.6](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.5...@projectcaluma/ember-form-v11.0.0-beta.6) (2022-02-02)
+
+
+### Bug Fixes
+
+* **action-button:** hide field wrapper if action button is not displayed ([1d4b701](https://github.com/projectcaluma/ember-caluma/commit/1d4b701af35d48d072001f3295b905b1065daffe))
+* render static questions ([28fff94](https://github.com/projectcaluma/ember-caluma/commit/28fff9487e4ad3153fe267db4b66208ad858aaac))
+* **table:** fix styling of table fields ([30c5903](https://github.com/projectcaluma/ember-caluma/commit/30c590389ed82c37ebf666f1484501c66ca8f0bb))
+
 # [@projectcaluma/ember-form-v11.0.0-beta.5](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.4...@projectcaluma/ember-form-v11.0.0-beta.5) (2022-02-01)
 
 
