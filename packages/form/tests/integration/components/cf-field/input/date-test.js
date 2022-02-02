@@ -1,9 +1,8 @@
 import { click, render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupIntl, setLocale } from "ember-intl/test-support";
-import { Interactor } from "ember-pikaday/test-support";
+import { Interactor as Pikaday } from "ember-pikaday/test-support";
 import { setupRenderingTest } from "ember-qunit";
-import moment from "moment";
 import { module, test } from "qunit";
 
 module("Integration | Component | cf-field/input/date", function (hooks) {
@@ -24,27 +23,16 @@ module("Integration | Component | cf-field/input/date", function (hooks) {
   test("it triggers save when selecting a date", async function (assert) {
     assert.expect(1);
 
-    const expectedDate = new Date(Date.UTC(2013, 3, 28));
-
-    this.set("save", function (selectedDate) {
-      assert.deepEqual(
-        selectedDate,
-        moment({
-          day: expectedDate.getUTCDate(),
-          month: expectedDate.getUTCMonth(),
-          year: expectedDate.getUTCFullYear(),
-        }).format(moment.HTML5_FMT.DATE)
-      );
-    });
+    this.save = (value) => assert.strictEqual(value, "2013-04-28");
 
     await render(hbs`<CfField::input::date @onSave={{this.save}} />`);
 
     await click("input");
-    await Interactor.selectDate(expectedDate);
+    await Pikaday.selectDate(new Date(2013, 3, 28)); // month is zero based
   });
 
   test("it renders disabled", async function (assert) {
-    setLocale("de");
+    setLocale(["de-ch", "de"]);
 
     this.field = { answer: { value: "2021-09-10" } };
 

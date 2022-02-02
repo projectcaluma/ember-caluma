@@ -13,13 +13,16 @@
     readonly
   />
 {{else}}
-  <PikadayInput
+  <input
     class="uk-input"
+    type="text"
     name={{@field.pk}}
     id={{@field.pk}}
-    @format="L"
-    @onSelection={{this.onChange}}
-    @useUTC={{true}}
-    @value={{@field.answer.value}}
+    {{pikaday
+      toString=this.formatDate
+      i18n=this.pikadayTranslations
+      value=@field.answer.value
+      onSelect=this.onChange
+    }}
   />
 {{/if}}
