@@ -5,7 +5,7 @@
         data-test-filter={{category}}
         @onClick={{fn (perform this.setFilter) "category" category}}
         @label={{t (concat "caluma.form-builder.form." category)}}
-        @class={{if (eq this.category category) "uk-button-primary" ""}}
+        @color={{if (eq this.category category) "primary"}}
       />
     {{/each}}
   </div>
