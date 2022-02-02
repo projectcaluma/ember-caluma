@@ -1,3 +1,10 @@
+# [@projectcaluma/ember-form-builder-v11.0.0-beta.5](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-builder-v11.0.0-beta.4...@projectcaluma/ember-form-builder-v11.0.0-beta.5) (2022-02-02)
+
+
+### Bug Fixes
+
+* **form-builder:** fix active filter in form list ([87a1016](https://github.com/projectcaluma/ember-caluma/commit/87a1016eb646436f04f7e6e891502f329fd8e8a0))
+
 # [@projectcaluma/ember-form-builder-v11.0.0-beta.4](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-builder-v11.0.0-beta.3...@projectcaluma/ember-form-builder-v11.0.0-beta.4) (2022-02-01)
 
 
