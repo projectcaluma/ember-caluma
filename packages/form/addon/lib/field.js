@@ -113,6 +113,7 @@ export default class Field extends Base {
 
       answer = new Answer({
         raw: {
+          id: null,
           __typename: answerType,
           question: { slug: this.raw.question.slug },
           [camelize(answerType.replace(/Answer$/, "Value"))]: null,
