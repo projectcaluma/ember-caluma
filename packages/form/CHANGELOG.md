@@ -1,3 +1,11 @@
+# [@projectcaluma/ember-form-v11.0.0-beta.8](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.7...@projectcaluma/ember-form-v11.0.0-beta.8) (2022-02-03)
+
+
+### Bug Fixes
+
+* dye file upload button in default color ([ad9e1b8](https://github.com/projectcaluma/ember-caluma/commit/ad9e1b8ed18c8228c495142af1bbe1f2c219c088))
+* **form:** fix isNew state of answers without backend object ([c10129f](https://github.com/projectcaluma/ember-caluma/commit/c10129ffe76d7751cd0105c71fc4ba010323e2e4))
+
 # [@projectcaluma/ember-form-v11.0.0-beta.7](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.6...@projectcaluma/ember-form-v11.0.0-beta.7) (2022-02-03)
 
 
