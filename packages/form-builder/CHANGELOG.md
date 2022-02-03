@@ -1,3 +1,18 @@
+# [@projectcaluma/ember-form-builder-v11.0.0-beta.6](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-builder-v11.0.0-beta.5...@projectcaluma/ember-form-builder-v11.0.0-beta.6) (2022-02-03)
+
+
+### Bug Fixes
+
+* **validation:** sync format validator validation with backend ([ee66968](https://github.com/projectcaluma/ember-caluma/commit/ee66968230b9f0e4c5a4df8bdb3f8e58b44b5b82))
+
+
+### BREAKING CHANGES
+
+* **validation:** Use the `formatValidators` property of the backend to store and read
+format validators instead of the `meta.formatValidators` so the backend
+validates as well. For more information on how to migrate check the
+migration guide to v11.
+
 # [@projectcaluma/ember-form-builder-v11.0.0-beta.5](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-builder-v11.0.0-beta.4...@projectcaluma/ember-form-builder-v11.0.0-beta.5) (2022-02-02)
 
 
