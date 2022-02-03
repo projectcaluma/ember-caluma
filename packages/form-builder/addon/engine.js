@@ -11,7 +11,7 @@ export default class FormBuilderEngine extends Engine {
   Resolver = Resolver;
 
   dependencies = {
-    services: ["apollo", "notification", "intl", "caluma-options", "validator"],
+    services: ["apollo", "notification", "intl", "caluma-options"],
   };
 }
 

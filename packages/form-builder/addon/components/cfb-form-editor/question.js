@@ -106,6 +106,7 @@ export default class CfbFormEditorQuestion extends Component {
             subForm: {},
             meta: {},
             dataSource: "",
+            formatValidators: null,
             // action button
             action: ACTIONS[0],
             color: COLORS[0],
@@ -258,6 +259,9 @@ export default class CfbFormEditorQuestion extends Component {
       minLength: parseInt(changeset.get("minLength")),
       maxLength: parseInt(changeset.get("maxLength")),
       placeholder: changeset.get("placeholder"),
+      formatValidators: changeset
+        .get("formatValidators")
+        ?.edges.map((edge) => edge.node.slug),
     };
   }
 
@@ -266,6 +270,9 @@ export default class CfbFormEditorQuestion extends Component {
       minLength: parseInt(changeset.get("minLength")),
       maxLength: parseInt(changeset.get("maxLength")),
       placeholder: changeset.get("placeholder"),
+      formatValidators: changeset
+        .get("formatValidators")
+        ?.edges.map((edge) => edge.node.slug),
     };
   }
 

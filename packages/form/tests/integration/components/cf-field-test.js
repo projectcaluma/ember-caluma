@@ -11,10 +11,17 @@ module("Integration | Component | cf-field", function (hooks) {
   setupIntl(hooks);
 
   hooks.beforeEach(function () {
-    this.validator = this.server.create("format-validator", {
-      slug: "email",
-      regex: "/@/",
-    });
+    const formatValidators = {
+      edges: [
+        {
+          node: {
+            slug: "email",
+            regex: "@",
+            errorMsg: "Invalid email",
+          },
+        },
+      ],
+    };
 
     const form = {
       __typename: "Form",
@@ -35,7 +42,8 @@ module("Integration | Component | cf-field", function (hooks) {
           label: "Test2",
           isRequired: "true",
           isHidden: "false",
-          meta: { formatValidators: ["email"] },
+          meta: {},
+          formatValidators,
           __typename: "TextQuestion",
         },
         {
@@ -44,7 +52,7 @@ module("Integration | Component | cf-field", function (hooks) {
           isRequired: "true",
           isHidden: "false",
           meta: {},
-          formatValidators: ["email"],
+          formatValidators,
           __typename: "TextQuestion",
         },
       ],
@@ -140,7 +148,7 @@ module("Integration | Component | cf-field", function (hooks) {
     assert
       .dom("span.validation-errors")
       .hasText(
-        `t:caluma.form.validation.format:("errorMsg":"${this.validator.errorMsg}","value":"Test")`
+        `t:caluma.form.validation.format:("errorMsg":"Invalid email","value":"Test")`
       );
   });
 

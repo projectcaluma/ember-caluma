@@ -3,6 +3,7 @@ import { assert } from "@ember/debug";
 import { associateDestroyableChild } from "@ember/destroyable";
 import { inject as service } from "@ember/service";
 import { camelize } from "@ember/string";
+import { isEmpty } from "@ember/utils";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
 import { restartableTask, lastValue, dropTask } from "ember-concurrency";
@@ -63,7 +64,6 @@ const fieldIsHiddenOrEmpty = (field) => {
  */
 export default class Field extends Base {
   @service intl;
-  @service validator;
 
   @queryManager apollo;
 
@@ -629,6 +629,35 @@ export default class Field extends Base {
   }
 
   /**
+   * Validate the value against the regexes of the given format validators.
+   *
+   * @method _validateFormatValidators
+   * @return {Array<Boolean|Object>} An array of error objects or `true`
+   * @private
+   */
+  _validateFormatValidators() {
+    const validators =
+      this.question.raw.formatValidators?.edges.map((edge) => edge.node) ?? [];
+    const value = this.answer.value;
+
+    if (isEmpty(value)) {
+      // empty values should not be validated since they are handled by the
+      // requiredness validation
+      return validators.map(() => true);
+    }
+
+    return validators.map((validator) => {
+      return (
+        new RegExp(validator.regex).test(value) || {
+          type: "format",
+          context: { errorMsg: validator.errorMsg },
+          value,
+        }
+      );
+    });
+  }
+
+  /**
    * Method to validate if a question is required or not.
    *
    * @method _validateRequired
@@ -647,15 +676,12 @@ export default class Field extends Base {
    * predefined by the question.
    *
    * @method _validateTextQuestion
-   * @return {Promise<Boolean|Object>} A promise which resolves into an object if invalid or true if valid
+   * @return {Array<Boolean|Object>} An array of error objects or `true`
    * @private
    */
-  async _validateTextQuestion() {
+  _validateTextQuestion() {
     return [
-      ...(await this.validator.validate(
-        this.answer.value,
-        this.question.raw.meta.formatValidators ?? []
-      )),
+      ...this._validateFormatValidators(),
       validate("length", this.answer.value, {
         min: this.question.raw.textMinLength || 0,
         max: this.question.raw.textMaxLength || Number.POSITIVE_INFINITY,
@@ -668,15 +694,12 @@ export default class Field extends Base {
    * than predefined by the question.
    *
    * @method _validateTextareaQuestion
-   * @return {Promise<Boolean|Object>} A promise which resolves into an object if invalid or true if valid
+   * @return {Array<Boolean|Object>} An array of error objects or `true`
    * @private
    */
-  async _validateTextareaQuestion() {
+  _validateTextareaQuestion() {
     return [
-      ...(await this.validator.validate(
-        this.answer.value,
-        this.question.raw.meta.formatValidators ?? []
-      )),
+      ...this._validateFormatValidators(),
       validate("length", this.answer.value, {
         min: this.question.raw.textareaMinLength || 0,
         max: this.question.raw.textareaMaxLength || Number.POSITIVE_INFINITY,

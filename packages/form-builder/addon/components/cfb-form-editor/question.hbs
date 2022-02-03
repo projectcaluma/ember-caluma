@@ -207,13 +207,13 @@
         />
 
         <f.input
-          @name="meta.formatValidators"
+          @name="formatValidators"
           @label={{t "caluma.form-builder.question.formatValidators"}}
           @placeholder={{t "caluma.form-builder.question.choose"}}
           @required={{false}}
           @renderComponent={{component "cfb-form-editor/question/validation"}}
-          @on-update={{changeset-set f.model "meta.formatValidators"}}
-          @value={{changeset-get f.model "meta.formatValidators"}}
+          @on-update={{changeset-set f.model "formatValidators"}}
+          @value={{changeset-get f.model "formatValidators"}}
         />
       {{/if}}
 

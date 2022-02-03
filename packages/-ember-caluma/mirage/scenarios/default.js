@@ -92,6 +92,22 @@ export default function (server) {
     type: "DATE",
   });
   server.create("question", {
+    slug: "email",
+    label: "Email",
+    isRequired: "false",
+    formIds: [form.id],
+    type: "TEXT",
+    placeholder: "test@caluma.io",
+    formatValidators: [
+      server.create("format-validator", {
+        slug: "email",
+        name: "Email",
+        regex: "(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$)",
+        errorMsg: "Please enter a valid email address",
+      }),
+    ],
+  });
+  server.create("question", {
     slug: "dummy",
     label: "Dummy widget",
     isRequired: "false",
@@ -127,7 +143,6 @@ export default function (server) {
   });
 
   server.createList("work-item", 50);
-  server.createList("format-validator", 3);
 
   distribution(server, groups);
 }

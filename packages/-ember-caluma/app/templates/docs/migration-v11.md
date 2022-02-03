@@ -42,6 +42,16 @@ actions. This concerns the following actions:
   - `on-new-form` => `onNewForm`
   - `on-edit-form` => `onEditForm`
 
+## Format validators
+
+Format validators were previously stored and read from the
+`meta.formatValidators` property on textarea and text questions. However, the
+backend uses an own property `formatValidators` to store and read them. This
+means that format validators didn't work in the backend if the form was
+configured in the form builder. To fix this issue all `meta.formatValidators`
+must be moved to the `formatValidators` property. Also, the `validator` service
+was dropped and can be removed from the form builder engine dependencies.
+
 ## Form library refactoring
 
 The new version v11 bears some breaking changes concerning the library layer of

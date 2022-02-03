@@ -33,11 +33,25 @@ query FormEditorQuestion($slug: String!) {
             id
             stringValue: value
           }
+          formatValidators {
+            edges {
+              node {
+                slug
+              }
+            }
+          }
         }
         ... on TextareaQuestion {
           minLength
           maxLength
           placeholder
+          formatValidators {
+            edges {
+              node {
+                slug
+              }
+            }
+          }
           defaultAnswer {
             id
             stringValue: value
