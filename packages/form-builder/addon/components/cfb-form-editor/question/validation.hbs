@@ -1,9 +1,9 @@
-<div class="uk-margin" {{did-insert (perform this.availableFormatValidators)}}>
+<div class="uk-margin">
   {{component @labelComponent}}
 
   <PowerSelectMultiple
     @selected={{this.selected}}
-    @placeholder={{this.placeholder}}
+    @placeholder={{@placeholder}}
     @options={{this.validators}}
     @onChange={{this.updateValidators}}
     @renderInPlace={{true}}

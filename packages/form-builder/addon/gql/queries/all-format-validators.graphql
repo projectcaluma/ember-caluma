@@ -4,8 +4,6 @@ query AllFormatValidators {
       node {
         slug
         name
-        regex
-        errorMsg
       }
     }
   }

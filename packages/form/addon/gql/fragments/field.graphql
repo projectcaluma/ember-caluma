@@ -19,6 +19,15 @@ fragment SimpleQuestion on Question {
       value
     }
     placeholder
+    formatValidators {
+      edges {
+        node {
+          slug
+          regex
+          errorMsg
+        }
+      }
+    }
   }
   ... on TextareaQuestion {
     textareaMinLength: minLength
@@ -28,6 +37,15 @@ fragment SimpleQuestion on Question {
       value
     }
     placeholder
+    formatValidators {
+      edges {
+        node {
+          slug
+          regex
+          errorMsg
+        }
+      }
+    }
   }
   ... on IntegerQuestion {
     integerMinValue: minValue

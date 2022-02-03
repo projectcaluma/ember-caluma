@@ -1,5 +1,4 @@
 import { settled } from "@ember/test-helpers";
-import ValidatorServiceStub from "dummy/tests/helpers/validator-service-stub";
 import { setupTest } from "ember-qunit";
 import { module, test, skip } from "qunit";
 
@@ -11,8 +10,6 @@ module("Unit | Library | document", function (hooks) {
   setupTest(hooks);
 
   hooks.beforeEach(async function () {
-    this.owner.register("service:validator", ValidatorServiceStub);
-
     this.set("setFieldValue", async (slug, value) => {
       this.document.findField(slug).answer.value = value;
 

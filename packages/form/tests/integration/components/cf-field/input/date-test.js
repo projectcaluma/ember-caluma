@@ -1,5 +1,4 @@
 import { click, render } from "@ember/test-helpers";
-import ValidatorServiceStub from "dummy/tests/helpers/validator-service-stub";
 import { hbs } from "ember-cli-htmlbars";
 import { setupIntl, setLocale } from "ember-intl/test-support";
 import { Interactor } from "ember-pikaday/test-support";
@@ -10,10 +9,6 @@ import { module, test } from "qunit";
 module("Integration | Component | cf-field/input/date", function (hooks) {
   setupRenderingTest(hooks);
   setupIntl(hooks);
-
-  hooks.beforeEach(function () {
-    this.owner.register("service:validator", ValidatorServiceStub);
-  });
 
   test("it computes the proper element id", async function (assert) {
     await render(hbs`<CfField::input::date @field={{hash pk="test-id"}} />`);

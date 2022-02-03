@@ -6,4 +6,5 @@ export default Model.extend({
   subForm: belongsTo("form", { inverse: null }),
   rowForm: belongsTo("form", { inverse: null }),
   defaultAnswer: belongsTo("answer", { inverse: null }),
+  formatValidators: hasMany(),
 });

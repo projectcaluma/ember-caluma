@@ -1,5 +1,4 @@
 import { render } from "@ember/test-helpers";
-import ValidatorServiceStub from "dummy/tests/helpers/validator-service-stub";
 import { hbs } from "ember-cli-htmlbars";
 import { setupIntl } from "ember-intl/test-support";
 import { setupRenderingTest } from "ember-qunit";
@@ -10,8 +9,6 @@ module("Integration | Component | cf-field/label", function (hooks) {
   setupIntl(hooks);
 
   hooks.beforeEach(function () {
-    this.owner.register("service:validator", ValidatorServiceStub);
-
     const form = {
       slug: "some-form",
       __typename: "Form",

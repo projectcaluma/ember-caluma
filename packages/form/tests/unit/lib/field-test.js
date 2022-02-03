@@ -1,5 +1,4 @@
 import { settled } from "@ember/test-helpers";
-import ValidatorServiceStub from "dummy/tests/helpers/validator-service-stub";
 import { setupIntl } from "ember-intl/test-support";
 import { setupTest } from "ember-qunit";
 import { module, test } from "qunit";
@@ -14,8 +13,6 @@ module("Unit | Library | field", function (hooks) {
   setupIntl(hooks);
 
   hooks.beforeEach(async function () {
-    this.owner.register("service:validator", ValidatorServiceStub);
-
     this.set(
       "document",
       new (this.owner.factoryFor("caluma-model:document").class)({

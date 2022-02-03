@@ -11,13 +11,7 @@ export default class App extends Application {
   engines = {
     "@projectcaluma/ember-form-builder": {
       dependencies: {
-        services: [
-          "apollo",
-          "notification",
-          "intl",
-          "caluma-options",
-          "validator",
-        ],
+        services: ["apollo", "notification", "intl", "caluma-options"],
       },
     },
   };
