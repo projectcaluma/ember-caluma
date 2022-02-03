@@ -16,7 +16,7 @@
   "dependencies": {
     "@glimmer/component": "^1.0.4",
     "@glimmer/tracking": "^1.0.4",
-    "@projectcaluma/ember-core": "^11.0.0-beta.2",
+    "@projectcaluma/ember-core": "^11.0.0-beta.3",
     "ember-apollo-client": "^3.2.0",
     "ember-auto-import": "^2.4.0",
     "ember-autoresize-modifier": "^0.5.0",
@@ -45,7 +45,7 @@
     "@ember/test-helpers": "2.6.0",
     "@embroider/test-setup": "1.0.0",
     "@faker-js/faker": "6.0.0-alpha.5",
-    "@projectcaluma/ember-testing": "10.2.0-beta.2",
+    "@projectcaluma/ember-testing": "11.0.0-beta.1",
     "@projectcaluma/ember-workflow": "11.0.0-beta.3",
     "broccoli-asset-rev": "3.0.0",
     "ember-cli": "3.28.5",
