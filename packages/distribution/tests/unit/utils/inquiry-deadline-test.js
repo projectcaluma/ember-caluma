@@ -2,7 +2,7 @@ import { setOwner } from "@ember/application";
 import { tracked } from "@glimmer/tracking";
 import inquiry from "dummy/tests/helpers/inquiry";
 import { setupTest } from "ember-qunit";
-import moment from "moment";
+import { DateTime } from "luxon";
 import { module, test } from "qunit";
 
 import config from "@projectcaluma/ember-distribution/config";
@@ -35,14 +35,16 @@ module("Unit | Utility | inquiry-deadline", function (hooks) {
     assert.strictEqual(this.obj.deadline.isOverdue, false);
     assert.strictEqual(this.obj.deadline.isWarning, false);
 
-    await this.obj.inquiry.setDeadline(moment.utc().add(2, "days").format());
+    await this.obj.inquiry.setDeadline(
+      DateTime.now().plus({ days: 2 }).toISODate()
+    );
 
     assert.strictEqual(this.obj.deadline.color, "warning");
     assert.strictEqual(this.obj.deadline.isOverdue, false);
     assert.strictEqual(this.obj.deadline.isWarning, true);
 
     await this.obj.inquiry.setDeadline(
-      moment.utc().subtract(2, "days").format()
+      DateTime.now().minus({ days: 2 }).toISODate()
     );
 
     assert.strictEqual(this.obj.deadline.color, "danger");

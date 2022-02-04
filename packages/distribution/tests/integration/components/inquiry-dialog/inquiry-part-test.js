@@ -3,7 +3,7 @@ import inquiry from "dummy/tests/helpers/inquiry";
 import { hbs } from "ember-cli-htmlbars";
 import { setupIntl } from "ember-intl/test-support";
 import { setupRenderingTest } from "ember-qunit";
-import moment from "moment";
+import { DateTime } from "luxon";
 import { module, test } from "qunit";
 
 module(
@@ -13,17 +13,17 @@ module(
     setupIntl(hooks);
 
     hooks.beforeEach(function () {
-      this.createdAt = moment.utc({
+      this.createdAt = DateTime.fromObject({
         day: 1,
-        month: 0,
+        month: 1,
         year: 2021,
         hour: 0,
         minute: 1,
       });
 
-      this.closedAt = moment.utc({
+      this.closedAt = DateTime.fromObject({
         day: 1,
-        month: 0,
+        month: 1,
         year: 2022,
         hour: 0,
         minute: 1,
@@ -32,8 +32,8 @@ module(
       this.inquiry = inquiry({
         remark: "Question?",
         reason: "Answer!",
-        createdAt: this.createdAt.format(),
-        closedAt: this.closedAt.format(),
+        createdAt: this.createdAt.toISO(),
+        closedAt: this.closedAt.toISO(),
       });
 
       this.type = "request";
@@ -45,9 +45,12 @@ module(
       );
 
       const intl = this.owner.lookup("service:intl");
-      const date = (value) => intl.formatDate(value);
+      const date = (value) => intl.formatDate(value.toJSDate());
       const time = (value) =>
-        intl.formatTime(value, { hour: "2-digit", minute: "2-digit" });
+        intl.formatTime(value.toJSDate(), {
+          hour: "2-digit",
+          minute: "2-digit",
+        });
 
       assert.dom("p:nth-of-type(1)").containsText("controlling");
       assert
