@@ -29,7 +29,6 @@
     "graphql-tag": "^2.12.6",
     "jexl": "^2.3.0",
     "lodash.clonedeep": "^4.5.0",
-    "moment": "^2.29.1",
     "slugify": "^1.6.5"
   },
   "devDependencies": {

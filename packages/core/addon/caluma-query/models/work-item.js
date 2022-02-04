@@ -1,16 +1,16 @@
 import { inject as service } from "@ember/service";
 
 import CalumaQueryModel, {
-  momentAttr,
+  dateAttr,
 } from "@projectcaluma/ember-core/caluma-query/models/index";
 
 export default class WorkItemModel extends CalumaQueryModel {
   @service intl;
 
-  @momentAttr createdAt;
-  @momentAttr modifiedAt;
-  @momentAttr closedAt;
-  @momentAttr deadline;
+  @dateAttr createdAt;
+  @dateAttr modifiedAt;
+  @dateAttr closedAt;
+  @dateAttr deadline;
 
   get status() {
     return this.intl.t(

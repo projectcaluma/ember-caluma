@@ -42,7 +42,7 @@ actions. This concerns the following actions:
   - `on-new-form` => `onNewForm`
   - `on-edit-form` => `onEditForm`
 
-## Format validators
+### Format validators
 
 Format validators were previously stored and read from the
 `meta.formatValidators` property on textarea and text questions. However, the
