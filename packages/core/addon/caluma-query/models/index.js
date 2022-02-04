@@ -1,5 +1,4 @@
 import cloneDeep from "lodash.clonedeep";
-import moment from "moment";
 
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 
@@ -11,15 +10,15 @@ export function uuidAttr(target, name) {
   };
 }
 
-export function momentAttr(target, name) {
+export function dateAttr(target, name) {
   return {
     get() {
-      const date = moment(this.raw[name]);
+      const date = new Date(this.raw[name]);
 
-      return date.isValid() ? date : null;
+      return !isNaN(date) ? date : null;
     },
     set(value) {
-      if (value.isValid()) {
+      if (!isNaN(value)) {
         this.raw[name] = value.toISOString();
       }
     },

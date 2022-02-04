@@ -10,6 +10,6 @@ module.exports = {
         { name: "ember-intl" },
         { name: "ember-uikit" },
       ],
-    }).then(() => this.addPackagesToProject([{ name: "moment" }]));
+    });
   },
 };

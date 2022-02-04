@@ -1,7 +1,6 @@
 import { setOwner } from "@ember/application";
 import { setupIntl } from "ember-intl/test-support";
 import { setupTest } from "ember-qunit";
-import moment from "moment";
 import { module, test } from "qunit";
 
 import WorkItemModel from "@projectcaluma/ember-core/caluma-query/models/work-item";
@@ -27,23 +26,24 @@ module("Unit | Caluma Query | Models | work-item", function (hooks) {
   });
 
   test("can read basic model values", function (assert) {
-    assert.expect(6);
+    assert.expect(10);
 
     assert.strictEqual(this.model.id, UUID);
     assert.strictEqual(
       this.model.status,
       "t:caluma.caluma-query.work-item.status.COMPLETED:()"
     );
-    assert.ok(this.model.createdAt.isValid());
-    assert.ok(this.model.closedAt.isValid());
-    assert.ok(this.model.modifiedAt.isValid());
-    assert.ok(this.model.deadline.isValid());
+
+    ["createdAt", "closedAt", "modifiedAt", "deadline"].forEach((attr) => {
+      assert.true(this.model[attr] instanceof Date);
+      assert.false(isNaN(this.model[attr]));
+    });
   });
 
-  test("can write moment values", function (assert) {
+  test("can write date values", function (assert) {
     assert.expect(1);
 
-    this.model.deadline = moment.utc("2022-01-01");
+    this.model.deadline = new Date(Date.UTC(2022, 0, 1));
     assert.strictEqual(this.model.raw.deadline, "2022-01-01T00:00:00.000Z");
   });
 });
