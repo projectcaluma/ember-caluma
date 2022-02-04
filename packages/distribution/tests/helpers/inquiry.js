@@ -1,6 +1,6 @@
 import { settled } from "@ember/test-helpers";
 import { tracked } from "@glimmer/tracking";
-import moment from "moment";
+import { DateTime } from "luxon";
 
 class StubInquiry {
   @tracked status;
@@ -22,15 +22,15 @@ class StubInquiry {
   task = { slug: "inquiry" };
 
   constructor({
-    deadline = moment.utc().add(5, "days").format(),
+    deadline = DateTime.now().plus({ days: 5 }).toISODate(),
     status = { value: "inquiry-answer-status-positive", label: "Positive" },
     workItemStatus = "COMPLETED",
     remark = "Remark",
     reason = "Reason",
     addressedGroups = ["addressed"],
     controllingGroups = ["controlling"],
-    createdAt = moment.utc().subtract(5, "days").format(),
-    closedAt = moment.utc().format(),
+    createdAt = DateTime.now().minus({ days: 5 }).toISO(),
+    closedAt = DateTime.now().toISO(),
   }) {
     this.status = workItemStatus;
     this.addressedGroups = addressedGroups;
@@ -84,13 +84,7 @@ class StubInquiry {
   }
 
   async setDeadline(value) {
-    const formatted = moment.isMoment(value)
-      ? moment.format()
-      : value instanceof Date
-      ? value.toISOString()
-      : value;
-
-    this.document.deadline.edges[0].node.value = formatted;
+    this.document.deadline.edges[0].node.value = value;
 
     await settled();
   }

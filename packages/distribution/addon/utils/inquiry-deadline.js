@@ -1,6 +1,6 @@
 import { assert } from "@ember/debug";
 import { get } from "@ember/object";
-import moment from "moment";
+import { DateTime } from "luxon";
 
 import { createDecorator } from "@projectcaluma/ember-distribution/-private/decorator";
 
@@ -21,13 +21,12 @@ function decorator(
       const value = inquiry.document?.deadline.edges[0]?.node.value;
       const isAnswered = inquiry.status === "COMPLETED";
 
-      const deadline = moment.utc(value);
-      const now = moment.utc();
+      const deadline = DateTime.fromISO(value).startOf("day");
+      const now = DateTime.now().startOf("day");
 
-      const isOverdue = !isAnswered && now.isAfter(deadline, "day");
+      const isOverdue = !isAnswered && now > deadline;
       const isWarning =
-        !isAnswered &&
-        now.add(this.config.warningPeriod, "days").isAfter(deadline, "day");
+        !isAnswered && now.plus({ days: this.config.warningPeriod }) > deadline;
 
       return {
         value,

@@ -2,7 +2,7 @@ import { render } from "@ember/test-helpers";
 import inquiry from "dummy/tests/helpers/inquiry";
 import { hbs } from "ember-cli-htmlbars";
 import { setupRenderingTest } from "ember-qunit";
-import moment from "moment";
+import { DateTime } from "luxon";
 import { module, test } from "qunit";
 
 module(
@@ -27,8 +27,8 @@ module(
     test("it renders an indicator if deadline is overdue or in warning period", async function (assert) {
       await this.inquiry.setReady();
 
-      const warningDeadline = moment.utc().add(2, "days");
-      const overdueDeadline = moment.utc().subtract(2, "days");
+      const warningDeadline = DateTime.now().plus({ days: 2 });
+      const overdueDeadline = DateTime.now().minus({ days: 2 });
 
       await render(
         hbs`<DistributionNavigation::StatusIndicator @inquiry={{this.inquiry}} @type={{this.type}} />`
@@ -36,21 +36,21 @@ module(
 
       assert.dom(".deadline-indicator").doesNotExist();
 
-      await this.inquiry.setDeadline(warningDeadline.format());
+      await this.inquiry.setDeadline(warningDeadline.toISODate());
 
       const intl = this.owner.lookup("service:intl");
 
       assert.dom(".deadline-indicator.uk-text-warning").exists();
       assert
         .dom(".deadline-indicator > svg > title")
-        .hasText(intl.formatDate(warningDeadline.toDate()));
+        .hasText(intl.formatDate(warningDeadline.toJSDate()));
 
-      await this.inquiry.setDeadline(overdueDeadline.format());
+      await this.inquiry.setDeadline(overdueDeadline.toISODate());
 
       assert.dom(".deadline-indicator.uk-text-danger").exists();
       assert
         .dom(".deadline-indicator > svg > title")
-        .hasText(intl.formatDate(overdueDeadline.toDate()));
+        .hasText(intl.formatDate(overdueDeadline.toJSDate()));
     });
   }
 );
