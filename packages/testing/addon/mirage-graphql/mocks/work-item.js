@@ -1,4 +1,4 @@
-import moment from "moment";
+import { DateTime } from "luxon";
 
 import {
   register,
@@ -77,7 +77,7 @@ export default class extends BaseMock {
             to: { id: group },
             from: { id: workItem.addressedGroups[0] },
             remark: "",
-            deadline: moment().add(30, "days").toDate(),
+            deadline: DateTime.now().plus({ days: 30 }).toJSDate(),
           },
           {
             createdAt: new Date(),

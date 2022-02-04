@@ -1,4 +1,4 @@
-import moment from "moment";
+import { DateTime } from "luxon";
 
 import { register } from "@projectcaluma/ember-testing/mirage-graphql";
 import BaseMock from "@projectcaluma/ember-testing/mirage-graphql/mocks/base";
@@ -74,13 +74,7 @@ export default class extends BaseMock {
   @register("SaveDefaultDateAnswerPayload")
   handleSaveDateAnswer(_, { input }) {
     const date = input.value;
-    const value = date
-      ? moment({
-          day: date.getUTCDate(),
-          month: date.getUTCMonth(),
-          year: date.getUTCFullYear(),
-        }).format(moment.HTML5_FMT.DATE)
-      : null;
+    const value = date ? DateTime.fromJSDate(date).toISODate() : null;
 
     return this._handleSaveDocumentAnswer(_, {
       ...input,

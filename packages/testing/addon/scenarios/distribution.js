@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import moment from "moment";
+import { DateTime } from "luxon";
 
 export function createBlueprint(server) {
   const inquiryForm = server.create("form", { slug: "inquiry" });
@@ -277,7 +277,7 @@ export default function (server, groups) {
       {
         from: g2,
         to: g,
-        deadline: moment.utc().add(2, "days").toDate(),
+        deadline: DateTime.now().plus({ days: 2 }).toJSDate(),
       },
       { createdAt: faker.date.recent() }
     ),
