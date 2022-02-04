@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
+import { DateTime } from "luxon";
 import { Factory } from "miragejs";
-import moment from "moment";
 
 export default Factory.extend({
   id: () => faker.datatype.uuid(),
@@ -73,13 +73,7 @@ export default Factory.extend({
 
       if (answer.value === undefined) {
         const date = faker.date.future();
-        answer.update({
-          value: moment({
-            day: date.getUTCDate(),
-            month: date.getUTCMonth(),
-            year: date.getUTCFullYear(),
-          }).format(moment.HTML5_FMT.DATE),
-        });
+        answer.update({ value: DateTime.fromJSDate(date).toISODate() });
       }
     } else if (answer.question.type === "TABLE") {
       answer.update({ type: "TABLE" });
