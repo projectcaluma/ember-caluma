@@ -26,7 +26,7 @@
     "ember-intl": "^5.7.2",
     "ember-resources": "^4.2.0",
     "ember-truth-helpers": "^3.0.0",
-    "ember-uikit": "^5.0.0-beta.11",
+    "ember-uikit": "^5.0.0",
     "graphql": "^15.8.0"
   },
   "devDependencies": {

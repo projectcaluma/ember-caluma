@@ -8164,6 +8164,7 @@ ember-engines-router-service@^0.3.0:
 
 ember-engines@0.8.20, "ember-engines@https://gitpkg.now.sh/anehx/ember-engines/packages/ember-engines?c08f7650ffc4b723e8ba1143d7498e58bc1e4b78":
   version "0.8.20"
+  uid "0defff12268ae3580b7d2ead8c8779827b267219"
   resolved "https://gitpkg.now.sh/anehx/ember-engines/packages/ember-engines?c08f7650ffc4b723e8ba1143d7498e58bc1e4b78#0defff12268ae3580b7d2ead8c8779827b267219"
   dependencies:
     "@embroider/macros" "^1.0.0"
@@ -8227,7 +8228,7 @@ ember-gesture-modifiers@^3.0.0:
     ember-cli-htmlbars "^6.0.1"
     ember-modifier "^3.0.0"
 
-ember-get-config@, ember-get-config@^1.0.2:
+ember-get-config@:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/ember-get-config/-/ember-get-config-1.0.2.tgz#f8349a132763008bad37d46d53c8250a0e18d464"
   integrity sha512-G8sPknLvHEk0o8yrfs0+1WSeIPy1zOLxMJSm+ESYXy8MTnvxOFX127JSA7CcYmBq21GrDEIe0TL1Y+4cN9tEng==
@@ -8620,7 +8621,7 @@ ember-text-measurer@^0.6.0:
     ember-cli-babel "^7.19.0"
     ember-cli-htmlbars "^4.3.1"
 
-ember-toggle@^9.0.2:
+ember-toggle@^9.0.3:
   version "9.0.3"
   resolved "https://registry.yarnpkg.com/ember-toggle/-/ember-toggle-9.0.3.tgz#c82e37ea32b87dc545356a91df07396e8fd2b273"
   integrity sha512-DxcQZ6HYq0NSRCkHqX77N8XiaIRZPjipDj68FVibPcW3puEFZwJnJgDu9eKmGcZWQvxpge5gzbloiwpJ7xib1A==
@@ -8665,10 +8666,10 @@ ember-try@2.0.0:
     rimraf "^3.0.2"
     walk-sync "^2.2.0"
 
-ember-uikit@5.0.0-beta.11, ember-uikit@^5.0.0-beta.11:
-  version "5.0.0-beta.11"
-  resolved "https://registry.yarnpkg.com/ember-uikit/-/ember-uikit-5.0.0-beta.11.tgz#3189a59d0cba07d35c4b5cca2a08214cd32331e9"
-  integrity sha512-F/O2xR0zYtAHKuDFKZKTG/pKWWB17fCyexYWwHn5z2XtjWnNjh919Q3n2EcE1H5d94tgBKrDHA2wNtw5Z9kCXQ==
+ember-uikit@5.0.0, ember-uikit@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/ember-uikit/-/ember-uikit-5.0.0.tgz#0191e14be521d651484217e81d1b245d6ab43eff"
+  integrity sha512-/mgZBZUIW+YHzXag9VkykgSYscpLNAf51vSVM7DRnkBRuoEgSqecWVZ3tFZjtZtde4wIjm5DnjQx/ovQvG6uxA==
   dependencies:
     "@ember/render-modifiers" "^2.0.4"
     "@embroider/util" "^1.0.0"
@@ -8681,9 +8682,8 @@ ember-uikit@5.0.0-beta.11, ember-uikit@^5.0.0-beta.11:
     ember-cli-babel "^7.26.11"
     ember-cli-htmlbars "^6.0.1"
     ember-focus-trap "^1.0.1"
-    ember-get-config "^1.0.2"
     ember-modifier "^3.1.0"
-    ember-toggle "^9.0.2"
+    ember-toggle "^9.0.3"
     uikit "^3.10.1"
 
 ember-validated-form@^5.1.1:

@@ -32,7 +32,7 @@
     "ember-pikaday": "^3.0.0",
     "ember-power-select": "^5.0.3",
     "ember-resources": "^4.2.0",
-    "ember-uikit": "^5.0.0-beta.11",
+    "ember-uikit": "^5.0.0",
     "ember-validators": "^4.1.0",
     "graphql": "^15.8.0",
     "jexl": "^2.3.0",
