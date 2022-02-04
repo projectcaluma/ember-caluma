@@ -7219,7 +7219,7 @@ ember-assign-helper@^0.4.0:
     ember-cli-babel "^7.26.0"
     ember-cli-htmlbars "^6.0.0"
 
-ember-auto-import@2.4.0, ember-auto-import@^2.2.0, ember-auto-import@^2.2.3, ember-auto-import@^2.2.4, ember-auto-import@^2.3.0, ember-auto-import@^2.4.0:
+ember-auto-import@2.4.0, ember-auto-import@^2.2.3, ember-auto-import@^2.2.4, ember-auto-import@^2.3.0, ember-auto-import@^2.4.0:
   version "2.4.0"
   resolved "https://registry.yarnpkg.com/ember-auto-import/-/ember-auto-import-2.4.0.tgz#91c4797f08315728086e35af954cb60bd23c14bc"
   integrity sha512-BwF6iTaoSmT2vJ9NEHEGRBCh2+qp+Nlaz/Q7roqNSxl5oL5iMRwenPnHhOoBPTYZvPhcV/KgXR5e+pBQ107plQ==
@@ -8686,12 +8686,12 @@ ember-uikit@5.0.0, ember-uikit@^5.0.0:
     ember-toggle "^9.0.3"
     uikit "^3.10.1"
 
-ember-validated-form@^5.1.1:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/ember-validated-form/-/ember-validated-form-5.1.1.tgz#0615d0739dd014435d0b125a292d2ab9a53865b9"
-  integrity sha512-c0psGUBXCsZ/tTcXtYe20koqvj6LiO5Uq4DXDsrn/K6arx88SryFlew+flHS0DTkqn+80XaPBmy/H+KyuuYAAQ==
+ember-validated-form@^5.2.0:
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/ember-validated-form/-/ember-validated-form-5.2.0.tgz#7437ad71070bcf0201186ff504e95491522c7ce0"
+  integrity sha512-arjGCG2naPlsuNKtJoQRssqPah12Fg+R/5F3eXj1wpAxTqcAG/lKGSQ2FBYYphWF5NB0q/F+AQhdKtuDX9ZqDQ==
   dependencies:
-    ember-auto-import "^2.2.0"
+    ember-auto-import "^2.4.0"
     ember-cli-babel "^7.26.6"
     ember-cli-htmlbars "^5.7.1"
     ember-truth-helpers "^3.0.0"
