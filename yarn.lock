@@ -1446,6 +1446,14 @@
     ember-cli-version-checker "^5.1.2"
     semver "^7.3.5"
 
+"@embroider/addon-shim@^0.50.2":
+  version "0.50.2"
+  resolved "https://registry.yarnpkg.com/@embroider/addon-shim/-/addon-shim-0.50.2.tgz#9be2ed8cee1086cef63c5baecf8dde8dcdacc24e"
+  integrity sha512-a+pFlXZPovcCNFo05HxXBW9ole43mPyFZnkhvZlLF0f1sHEn9j0sD1Ld2BM/NCERmHcYz9eXQnX1FPNLCDoGEA==
+  dependencies:
+    "@embroider/shared-internals" "^0.50.2"
+    semver "^7.3.5"
+
 "@embroider/addon-shim@^1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@embroider/addon-shim/-/addon-shim-1.0.0.tgz#e56327dd46ccbf87f82729614bafd07b88cb298c"
@@ -1472,6 +1480,19 @@
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@embroider/shared-internals/-/shared-internals-1.0.0.tgz#b081708ac79e4582f17ba0f3e3796e6612a8976c"
   integrity sha512-Vx3dmejJxI5MG/qC7or3EUZY0AZBSBNOAR50PYotX3LxUSb4lAm5wISPnFbwEY4bbo2VhL/6XtWjMv8ZMcaP+g==
+  dependencies:
+    babel-import-util "^1.1.0"
+    ember-rfc176-data "^0.3.17"
+    fs-extra "^9.1.0"
+    lodash "^4.17.21"
+    resolve-package-path "^4.0.1"
+    semver "^7.3.5"
+    typescript-memoize "^1.0.1"
+
+"@embroider/shared-internals@^0.50.2":
+  version "0.50.2"
+  resolved "https://registry.yarnpkg.com/@embroider/shared-internals/-/shared-internals-0.50.2.tgz#567c5451db31a1f3edc2f64376ce5a0dcaaabacb"
+  integrity sha512-l3SKn1YdxTFBjY3ylYTLHxFY0dG2XxIsjbtZt7Mm6QyZFssWBDg3oWYwBoUpkw/ysjNJf8IcI7reXhB23WXwDw==
   dependencies:
     babel-import-util "^1.1.0"
     ember-rfc176-data "^0.3.17"
@@ -7637,7 +7658,7 @@ ember-cli-htmlbars@^3.0.1:
     json-stable-stringify "^1.0.1"
     strip-bom "^3.0.0"
 
-ember-cli-htmlbars@^4.2.2, ember-cli-htmlbars@^4.3.1:
+ember-cli-htmlbars@^4.3.1:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-4.5.0.tgz#d299e4f7eba6f30dc723ee086906cc550beb252e"
   integrity sha512-bYJpK1pqFu9AadDAGTw05g2LMNzY8xTCIqQm7dMJmKEoUpLRFbPf4SfHXrktzDh7Q5iggl6Skzf1M0bPlIxARw==
@@ -7719,7 +7740,7 @@ ember-cli-mirage@2.4.0, ember-cli-mirage@^2.4.0:
     lodash-es "^4.17.11"
     miragejs "^0.1.43"
 
-ember-cli-moment-shim@3.8.0, ember-cli-moment-shim@^3.7.1:
+ember-cli-moment-shim@3.8.0:
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/ember-cli-moment-shim/-/ember-cli-moment-shim-3.8.0.tgz#dc61bbac9dce4963394e60dd42726d4ba38e2bc1"
   integrity sha512-dN5ImjrjZevEqB7xhwFXaPWwxdKGSFiR1kqy9gDVB+A5EGnhCL1uveKugcyJE/MICVhXUAHBUu6G2LFWEPF2YA==
@@ -8383,15 +8404,13 @@ ember-modifier-manager-polyfill@^1.2.0:
     ember-cli-typescript "^4.2.1"
     ember-compatibility-helpers "^1.2.5"
 
-ember-pikaday@3.0.0, ember-pikaday@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/ember-pikaday/-/ember-pikaday-3.0.0.tgz#c80c215174cc103fd9324188e00e21f4fc00c9e0"
-  integrity sha512-qn8qOadxA/afFraiEKjrRnkzNDWcbs+vBzcEhBs+Jr8KHd7Bjv4BFzgEe9r1euDXZsurYUN2z1gbyQ++rB4rCQ==
+ember-pikaday@4.0.0, ember-pikaday@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/ember-pikaday/-/ember-pikaday-4.0.0.tgz#7fbf58087abcdaa0cdc66aa22f3ef0496038eaec"
+  integrity sha512-YEKvINhIBLb03F6BJ5newJZKo0IVx03ISEjZNVtE8NW+kOVRBcWZeIREf2p28YRukilKcQBDgqUBj5MwKSr46w==
   dependencies:
-    ember-cli-babel "^7.17.2"
-    ember-cli-htmlbars "^4.2.2"
-    ember-cli-moment-shim "^3.7.1"
-    pikaday "^1.8.0"
+    "@embroider/addon-shim" "^0.50.2"
+    ember-modifier "^3.0.0"
 
 ember-power-select@5.0.3, ember-power-select@^5.0.3:
   version "5.0.3"
@@ -14489,11 +14508,6 @@ pify@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/pify/-/pify-4.0.1.tgz#4b2cd25c50d598735c50292224fd8c6df41e3231"
   integrity sha512-uB80kBFb/tfd68bVleG9T5GGsGPjJrLAUpR5PZIrhBnIaRTQRjqdJSsIKkOP6OAIFbj7GOrcudc5pNjZ+geV2g==
-
-pikaday@^1.8.0:
-  version "1.8.2"
-  resolved "https://registry.yarnpkg.com/pikaday/-/pikaday-1.8.2.tgz#72cc73fab7ccc068cbdf7dcaa1ce400fcfd894e3"
-  integrity sha512-TNtsE+34BIax3WtkB/qqu5uepV1McKYEgvL3kWzU7aqPCpMEN6rBF3AOwu4WCwAealWlBGobXny/9kJb49C1ew==
 
 pinkie-promise@^2.0.0:
   version "2.0.1"
