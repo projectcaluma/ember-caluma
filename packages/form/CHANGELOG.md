@@ -1,3 +1,18 @@
+# [@projectcaluma/ember-form-v11.0.0-beta.9](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.8...@projectcaluma/ember-form-v11.0.0-beta.9) (2022-02-07)
+
+
+### Bug Fixes
+
+* **action-button:** only hide action button visually if disabled ([e292f09](https://github.com/projectcaluma/ember-caluma/commit/e292f093c33efd0b99a73674f8f83de5f496bf40))
+* **deps:** remove moment altogether and update ember-pikday ([b2f7fa2](https://github.com/projectcaluma/ember-caluma/commit/b2f7fa28fa076897addd36e5964c926c671508ff))
+* **form:** change file download actions to query and network-only ([aa4458e](https://github.com/projectcaluma/ember-caluma/commit/aa4458e944263f0f00ba1684a4f7bbfa83d2efea))
+
+
+### BREAKING CHANGES
+
+* **deps:** The host app now needs to opt-in to use the default
+pikaday styles: https://github.com/adopted-ember-addons/ember-pikaday#styles
+
 # [@projectcaluma/ember-form-v11.0.0-beta.8](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.7...@projectcaluma/ember-form-v11.0.0-beta.8) (2022-02-03)
 
 
