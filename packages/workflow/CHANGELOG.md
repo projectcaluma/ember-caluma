@@ -1,3 +1,10 @@
+# [@projectcaluma/ember-workflow-v11.0.0-beta.4](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-workflow-v11.0.0-beta.3...@projectcaluma/ember-workflow-v11.0.0-beta.4) (2022-02-07)
+
+
+### Bug Fixes
+
+* **work-item-button:** always fetch work item from network ([1a6bea7](https://github.com/projectcaluma/ember-caluma/commit/1a6bea7837899cc96e120b7cb0d6da3fb26d373e))
+
 # [@projectcaluma/ember-workflow-v11.0.0-beta.3](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-workflow-v11.0.0-beta.2...@projectcaluma/ember-workflow-v11.0.0-beta.3) (2022-02-01)
 
 
