@@ -1,0 +1,1 @@
+define("@projectcaluma/ember-form-builder/config/environment",(function(){return{default:{modulePrefix:"@projectcaluma/ember-form-builder","ember-validated-form":{theme:"uikit",defaults:{label:"cfb-label"}},APP:{}}}}))
