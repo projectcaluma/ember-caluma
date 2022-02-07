@@ -2366,6 +2366,27 @@
     miragejs "^0.1.43"
     moment "^2.29.1"
 
+"@projectcaluma/ember-workflow@11.0.0-beta.3":
+  version "11.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/@projectcaluma/ember-workflow/-/ember-workflow-11.0.0-beta.3.tgz#aa5834af4bba6ca86178630599455442ba65e2f1"
+  integrity sha512-ZugtSNc5G9urSYSNKxVCkAhQf0kccQcVwsANc5yKgkVKrikhJinXn/OclxrWuvW3qnK7wALQJQsPOMSE8VvXJg==
+  dependencies:
+    "@ember/render-modifiers" "^2.0.3"
+    "@glimmer/component" "^1.0.4"
+    "@glimmer/tracking" "^1.0.4"
+    "@projectcaluma/ember-core" "^11.0.0-beta.2"
+    ember-apollo-client "^3.2.0"
+    ember-auto-import "^2.4.0"
+    ember-cli-babel "^7.26.11"
+    ember-cli-htmlbars "^6.0.1"
+    ember-composable-helpers "^5.0.0"
+    ember-fetch "^8.1.1"
+    ember-resources "^4.2.0"
+    ember-truth-helpers "^3.0.0"
+    ember-uikit "^5.0.0-beta.9"
+    graphql "^15.8.0"
+    moment "^2.29.1"
+
 "@semantic-release/changelog@^6.0.1":
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/@semantic-release/changelog/-/changelog-6.0.1.tgz#8dd0334fd8c7d50cda747d2591e4f18f816b3c9c"
@@ -8838,7 +8859,7 @@ ember-try@2.0.0:
     rimraf "^3.0.2"
     walk-sync "^2.2.0"
 
-ember-uikit@5.0.0, ember-uikit@^5.0.0, ember-uikit@^5.0.0-beta.11:
+ember-uikit@5.0.0, ember-uikit@^5.0.0, ember-uikit@^5.0.0-beta.11, ember-uikit@^5.0.0-beta.9:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/ember-uikit/-/ember-uikit-5.0.0.tgz#0191e14be521d651484217e81d1b245d6ab43eff"
   integrity sha512-/mgZBZUIW+YHzXag9VkykgSYscpLNAf51vSVM7DRnkBRuoEgSqecWVZ3tFZjtZtde4wIjm5DnjQx/ovQvG6uxA==
