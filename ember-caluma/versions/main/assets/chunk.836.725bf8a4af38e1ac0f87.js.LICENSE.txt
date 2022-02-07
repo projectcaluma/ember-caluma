@@ -1,5 +1,13 @@
 /*!
- * clipboard.js v2.0.9
+ * Pikaday
+ *
+ * Copyright © 2014 David Bushell | BSD & MIT license | https://github.com/Pikaday/Pikaday
+ * 
+ * Packaging modified by Edward Faulkner for easier integration with ES-module build tooling.
+ */
+
+/*!
+ * clipboard.js v2.0.10
  * https://clipboardjs.com/
  *
  * Licensed MIT © Zeno Rocha
@@ -131,7 +139,3 @@ PERFORMANCE OF THIS SOFTWARE.
  * Copyright (C) 2020 Oliver Nightingale
  * @license MIT
  */
-
-//! moment.js
-
-//! moment.js locale configuration
