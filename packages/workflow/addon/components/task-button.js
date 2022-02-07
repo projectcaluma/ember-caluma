@@ -46,6 +46,7 @@ export default class TaskButtonComponent extends Component {
       const response = yield this.apollo.query(
         {
           query: allWorkItems,
+          fetchPolicy: "network-only",
           variables: {
             filter: [{ task }, { status: "READY" }, ...(filters ?? [])],
           },
