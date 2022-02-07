@@ -1,3 +1,16 @@
+# [@projectcaluma/ember-form-builder-v11.0.0-beta.7](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-builder-v11.0.0-beta.6...@projectcaluma/ember-form-builder-v11.0.0-beta.7) (2022-02-07)
+
+
+### Bug Fixes
+
+* **deps:** remove moment altogether and update ember-pikday ([b2f7fa2](https://github.com/projectcaluma/ember-caluma/commit/b2f7fa28fa076897addd36e5964c926c671508ff))
+
+
+### BREAKING CHANGES
+
+* **deps:** The host app now needs to opt-in to use the default
+pikaday styles: https://github.com/adopted-ember-addons/ember-pikaday#styles
+
 # [@projectcaluma/ember-form-builder-v11.0.0-beta.6](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-builder-v11.0.0-beta.5...@projectcaluma/ember-form-builder-v11.0.0-beta.6) (2022-02-03)
 
 
