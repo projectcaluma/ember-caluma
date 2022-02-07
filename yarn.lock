@@ -2256,6 +2256,29 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
+"@projectcaluma/ember-core@11.0.0-beta.3":
+  version "11.0.0-beta.3"
+  resolved "https://registry.yarnpkg.com/@projectcaluma/ember-core/-/ember-core-11.0.0-beta.3.tgz#68916f0c8f7d6994879cd304946f583099234537"
+  integrity sha512-iLDCjilCqnOWTF9Q8wWsw1nT3tk7eql9h8pHmrirOBSHMzD5khMrus476FKKvdc56No3J5NygA7t4KT85Ff6Hg==
+  dependencies:
+    "@apollo/client" "^3.5.8"
+    "@glimmer/tracking" "^1.0.4"
+    ember-apollo-client "^3.2.0"
+    ember-auto-import "^2.4.0"
+    ember-cli-babel "^7.26.11"
+    ember-cli-htmlbars "^6.0.1"
+    ember-concurrency "^2.2.0"
+    ember-fetch "^8.1.1"
+    ember-inflector "^4.0.2"
+    ember-intl "^5.7.2"
+    ember-resources "^4.2.0"
+    graphql "^15.8.0"
+    graphql-tag "^2.12.6"
+    jexl "^2.3.0"
+    lodash.clonedeep "^4.5.0"
+    moment "^2.29.1"
+    slugify "^1.6.5"
+
 "@projectcaluma/ember-testing@11.0.0-beta.1":
   version "11.0.0-beta.1"
   resolved "https://registry.yarnpkg.com/@projectcaluma/ember-testing/-/ember-testing-11.0.0-beta.1.tgz#903021837a3b06c3760c841caea74fea6a5ef772"
@@ -8460,7 +8483,7 @@ ember-resolver@8.0.3:
     ember-cli-version-checker "^5.1.2"
     resolve "^1.20.0"
 
-ember-resources@^4.3.1:
+ember-resources@^4.2.0, ember-resources@^4.3.1:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/ember-resources/-/ember-resources-4.3.1.tgz#099ba6100d7e3d704fc1bad7e6a85690a02e88c1"
   integrity sha512-xt7WohaicQwmfFOMEnMkEH28cOBuOV+rLGKrEaUqvk21fnagQg8aDlhX82FlqirsH5nurvoVB7f3ddIUQHxAEw==
