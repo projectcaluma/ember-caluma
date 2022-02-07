@@ -2279,6 +2279,41 @@
     moment "^2.29.1"
     slugify "^1.6.5"
 
+"@projectcaluma/ember-form-builder@11.0.0-beta.6":
+  version "11.0.0-beta.6"
+  resolved "https://registry.yarnpkg.com/@projectcaluma/ember-form-builder/-/ember-form-builder-11.0.0-beta.6.tgz#81040d32b05a4e977c63ce440f32351e8b2cf1d1"
+  integrity sha512-2Cly0fpDCt4eHQUmtuDK8xvsGVK49dzM59spV9C0mHnW/ET/4z1Lm3tubMdjMxSfTIBlDtAHuttPvSexNS6l1A==
+  dependencies:
+    "@ember/render-modifiers" "^2.0.4"
+    "@glimmer/component" "^1.0.4"
+    "@glimmer/tracking" "^1.0.4"
+    "@projectcaluma/ember-core" "^11.0.0-beta.3"
+    "@projectcaluma/ember-form" "^11.0.0-beta.7"
+    codejar "^3.5.0"
+    ember-apollo-client "^3.2.0"
+    ember-auto-import "^2.4.0"
+    ember-changeset "^4.0.0-beta.2"
+    ember-changeset-validations "^4.0.0-beta.2"
+    ember-cli-babel "^7.26.11"
+    ember-cli-htmlbars "^6.0.1"
+    ember-composable-helpers "^5.0.0"
+    ember-concurrency "^2.2.0"
+    ember-engines-router-service "^0.3.0"
+    ember-fetch "^8.1.1"
+    ember-intl "^5.7.2"
+    ember-math-helpers "^2.18.1"
+    ember-pikaday "^3.0.0"
+    ember-power-select "^5.0.3"
+    ember-resources "^4.2.0"
+    ember-test-selectors "^6.0.0"
+    ember-uikit "^5.0.0-beta.11"
+    ember-validated-form "^5.1.1"
+    graphql "^15.8.0"
+    graphql-tag "^2.12.6"
+    jexl "^2.3.0"
+    moment "^2.29.1"
+    prismjs "^1.26.0"
+
 "@projectcaluma/ember-form@11.0.0-beta.8":
   version "11.0.0-beta.8"
   resolved "https://registry.yarnpkg.com/@projectcaluma/ember-form/-/ember-form-11.0.0-beta.8.tgz#531faf33c97696d65ebc2402f09e3b8420a7d724"
@@ -8823,7 +8858,7 @@ ember-uikit@5.0.0, ember-uikit@^5.0.0, ember-uikit@^5.0.0-beta.11:
     ember-toggle "^9.0.3"
     uikit "^3.10.1"
 
-ember-validated-form@^5.2.0:
+ember-validated-form@^5.1.1, ember-validated-form@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/ember-validated-form/-/ember-validated-form-5.2.0.tgz#7437ad71070bcf0201186ff504e95491522c7ce0"
   integrity sha512-arjGCG2naPlsuNKtJoQRssqPah12Fg+R/5F3eXj1wpAxTqcAG/lKGSQ2FBYYphWF5NB0q/F+AQhdKtuDX9ZqDQ==
