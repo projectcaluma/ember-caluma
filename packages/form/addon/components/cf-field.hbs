@@ -1,6 +1,10 @@
 {{#if this.visible}}
   <div
-    class="uk-margin"
+    class="uk-margin
+      {{if
+        (and @disabled (has-question-type @field.question 'action-button'))
+        'uk-hidden'
+      }}"
     {{did-insert this.registerComponent}}
     {{will-destroy this.unregisterComponent}}
   >

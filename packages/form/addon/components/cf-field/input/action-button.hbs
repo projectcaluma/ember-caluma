@@ -1,19 +1,18 @@
-{{#unless @disabled}}
-  <DocumentValidity
-    @document={{@field.document}}
-    @validateOnEnter={{this.validateOnEnter}}
-    as |isValid validate|
-  >
-    <WorkItemButton
-      @workItemId={{this.workItem}}
-      @mutation={{this.action}}
-      @label={{@field.question.raw.label}}
-      @disabled={{and (not-eq isValid null) (not isValid)}}
-      @color={{this.color}}
-      @beforeMutate={{fn this.beforeMutate validate}}
-      @onSuccess={{this.onSuccess}}
-      @onError={{this.onError}}
-      @type={{this.type}}
-    />
-  </DocumentValidity>
-{{/unless}}
+<DocumentValidity
+  @document={{@field.document}}
+  @validateOnEnter={{this.validateOnEnter}}
+  as |isValid validate|
+>
+  <WorkItemButton
+    @workItemId={{this.workItem}}
+    @mutation={{this.action}}
+    @label={{@field.question.raw.label}}
+    @disabled={{or (and (not-eq isValid null) (not isValid)) @disabled}}
+    @color={{this.color}}
+    @beforeMutate={{fn this.beforeMutate validate}}
+    @onSuccess={{this.onSuccess}}
+    @onError={{this.onError}}
+    @type={{this.type}}
+    class={{if @disabled "uk-hidden"}}
+  />
+</DocumentValidity>
