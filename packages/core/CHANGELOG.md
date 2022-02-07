@@ -1,3 +1,17 @@
+# [@projectcaluma/ember-core-v11.0.0-beta.4](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-core-v11.0.0-beta.3...@projectcaluma/ember-core-v11.0.0-beta.4) (2022-02-07)
+
+
+### Bug Fixes
+
+* **core:** remove usage of moment and remove momentAttr for models ([92f3651](https://github.com/projectcaluma/ember-caluma/commit/92f365114900fe9f9ad5b49c9e9eed97b25991b5))
+
+
+### BREAKING CHANGES
+
+* **core:** The `momentAttr` decorator for models was replaced with
+a `dateAttr` that returns a plain JS date object. Predefined date
+attributes on models are now JS dates instead of moment objects.
+
 # [@projectcaluma/ember-core-v11.0.0-beta.3](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-core-v11.0.0-beta.2...@projectcaluma/ember-core-v11.0.0-beta.3) (2022-02-03)
 
 
