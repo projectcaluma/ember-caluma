@@ -2279,6 +2279,35 @@
     moment "^2.29.1"
     slugify "^1.6.5"
 
+"@projectcaluma/ember-distribution@1.0.0-beta.2":
+  version "1.0.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@projectcaluma/ember-distribution/-/ember-distribution-1.0.0-beta.2.tgz#de0396e88802315f9e35266ead41b90f873643d7"
+  integrity sha512-6cFY0dCOLC0VC8m9K3IFuXP7SGNzGuspCdLFzkhnxKVR6FEOqusPv5OFjyq8KTxgHDySK0wg+We0dzjKlUMb/g==
+  dependencies:
+    "@glimmer/component" "^1.0.4"
+    "@glimmer/tracking" "^1.0.4"
+    "@projectcaluma/ember-core" "^11.0.0-beta.2"
+    "@projectcaluma/ember-form" "^11.0.0-beta.3"
+    "@projectcaluma/ember-workflow" "^11.0.0-beta.2"
+    ember-apollo-client "^3.2.0"
+    ember-auto-import "^2.4.0"
+    ember-can "^4.1.0"
+    ember-cli-babel "^7.26.11"
+    ember-cli-htmlbars "^6.0.1"
+    ember-concurrency "^2.2.0"
+    ember-engines-router-service "^0.3.0"
+    ember-fetch "^8.1.1"
+    ember-intl "^5.7.2"
+    ember-resources "^4.1.3"
+    ember-svg-jar "^2.3.4"
+    ember-test-selectors "^6.0.0"
+    ember-uikit "^5.0.0-beta.3"
+    graphql "^15.8.0"
+    ionicons "^6.0.1"
+    lodash.merge "^4.6.2"
+    moment "^2.29.1"
+    tracked-toolbox "^1.2.3"
+
 "@projectcaluma/ember-form-builder@11.0.0-beta.6":
   version "11.0.0-beta.6"
   resolved "https://registry.yarnpkg.com/@projectcaluma/ember-form-builder/-/ember-form-builder-11.0.0-beta.6.tgz#81040d32b05a4e977c63ce440f32351e8b2cf1d1"
@@ -8630,7 +8659,7 @@ ember-resolver@8.0.3:
     ember-cli-version-checker "^5.1.2"
     resolve "^1.20.0"
 
-ember-resources@^4.2.0, ember-resources@^4.3.1:
+ember-resources@^4.1.3, ember-resources@^4.2.0, ember-resources@^4.3.1:
   version "4.3.1"
   resolved "https://registry.yarnpkg.com/ember-resources/-/ember-resources-4.3.1.tgz#099ba6100d7e3d704fc1bad7e6a85690a02e88c1"
   integrity sha512-xt7WohaicQwmfFOMEnMkEH28cOBuOV+rLGKrEaUqvk21fnagQg8aDlhX82FlqirsH5nurvoVB7f3ddIUQHxAEw==
@@ -8859,7 +8888,7 @@ ember-try@2.0.0:
     rimraf "^3.0.2"
     walk-sync "^2.2.0"
 
-ember-uikit@5.0.0, ember-uikit@^5.0.0, ember-uikit@^5.0.0-beta.11, ember-uikit@^5.0.0-beta.9:
+ember-uikit@5.0.0, ember-uikit@^5.0.0, ember-uikit@^5.0.0-beta.11, ember-uikit@^5.0.0-beta.3, ember-uikit@^5.0.0-beta.9:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/ember-uikit/-/ember-uikit-5.0.0.tgz#0191e14be521d651484217e81d1b245d6ab43eff"
   integrity sha512-/mgZBZUIW+YHzXag9VkykgSYscpLNAf51vSVM7DRnkBRuoEgSqecWVZ3tFZjtZtde4wIjm5DnjQx/ovQvG6uxA==
