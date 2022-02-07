@@ -1,3 +1,17 @@
+# [@projectcaluma/ember-distribution-v1.0.0-beta.3](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-distribution-v1.0.0-beta.2...@projectcaluma/ember-distribution-v1.0.0-beta.3) (2022-02-07)
+
+
+### Bug Fixes
+
+* **deps:** remove moment altogether and update ember-pikday ([b2f7fa2](https://github.com/projectcaluma/ember-caluma/commit/b2f7fa28fa076897addd36e5964c926c671508ff))
+* **distribution:** replace moment with luxon ([80f6b9a](https://github.com/projectcaluma/ember-caluma/commit/80f6b9a984113a5870a1a9ffbcc8e1700cb33190))
+
+
+### BREAKING CHANGES
+
+* **deps:** The host app now needs to opt-in to use the default
+pikaday styles: https://github.com/adopted-ember-addons/ember-pikaday#styles
+
 # [@projectcaluma/ember-distribution-v1.0.0-beta.2](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-distribution-v1.0.0-beta.1...@projectcaluma/ember-distribution-v1.0.0-beta.2) (2022-02-01)
 
 
