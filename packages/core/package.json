@@ -38,7 +38,7 @@
     "@embroider/test-setup": "1.0.0",
     "@faker-js/faker": "6.0.0-alpha.5",
     "@glimmer/component": "1.0.4",
-    "@projectcaluma/ember-testing": "11.0.0-beta.1",
+    "@projectcaluma/ember-testing": "11.0.0-beta.2",
     "broccoli-asset-rev": "3.0.0",
     "ember-cli": "3.28.5",
     "ember-cli-code-coverage": "1.0.3",
