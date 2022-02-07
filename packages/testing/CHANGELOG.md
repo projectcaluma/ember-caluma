@@ -1,3 +1,10 @@
+# [@projectcaluma/ember-testing-v11.0.0-beta.2](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-testing-v11.0.0-beta.1...@projectcaluma/ember-testing-v11.0.0-beta.2) (2022-02-07)
+
+
+### Bug Fixes
+
+* **testing:** replace moment with luxon ([893c6f4](https://github.com/projectcaluma/ember-caluma/commit/893c6f4a907a65f5e55eab72c09b7703c780a3a5))
+
 # [@projectcaluma/ember-testing-v11.0.0-beta.1](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-testing-v10.2.0-beta.2...@projectcaluma/ember-testing-v11.0.0-beta.1) (2022-02-03)
 
 
