@@ -8439,12 +8439,13 @@ ember-resolver@8.0.3:
     ember-cli-version-checker "^5.1.2"
     resolve "^1.20.0"
 
-ember-resources@^4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/ember-resources/-/ember-resources-4.3.0.tgz#9211b10703b2f8286fd92da1b7069fac43ffcc10"
-  integrity sha512-uxgDGW8N1rMBOlgU8MsNREt7y011b+vVeSUI1K0i1EudoBPHuM0kv+7thv1Nj6Gm5ejbAVfJovAKByqqPwutaQ==
+ember-resources@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.yarnpkg.com/ember-resources/-/ember-resources-4.3.1.tgz#099ba6100d7e3d704fc1bad7e6a85690a02e88c1"
+  integrity sha512-xt7WohaicQwmfFOMEnMkEH28cOBuOV+rLGKrEaUqvk21fnagQg8aDlhX82FlqirsH5nurvoVB7f3ddIUQHxAEw==
   dependencies:
     "@embroider/addon-shim" "^1.0.0"
+    "@embroider/macros" "^1.0.0"
 
 ember-responsive@^4.0.2:
   version "4.0.2"
