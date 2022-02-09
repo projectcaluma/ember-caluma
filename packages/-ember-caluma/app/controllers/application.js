@@ -24,7 +24,7 @@ export default class ApplicationController extends Controller {
     const id = rawId ? decodeId(rawId) : null;
 
     if (id) {
-      this.router.transitionTo("demo.distribution.distribution", id);
+      this.router.transitionTo("demo.distribution", id);
     }
   }
 }

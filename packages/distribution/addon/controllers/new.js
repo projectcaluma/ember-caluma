@@ -3,7 +3,7 @@ import { dedupeTracked, cached } from "tracked-toolbox";
 
 import config from "@projectcaluma/ember-distribution/config";
 
-export default class DistributionNewController extends Controller {
+export default class NewController extends Controller {
   @config config;
 
   queryParams = ["types", "search"];

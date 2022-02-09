@@ -112,7 +112,7 @@ module("Integration | Component | inquiry-new-form", function (hooks) {
   test("it can create new inquiries", async function (assert) {
     this.owner.lookup("service:router").transitionTo = (routeName, model) => {
       assert.step("redirect");
-      assert.strictEqual(routeName, "distribution.inquiry");
+      assert.strictEqual(routeName, "inquiry");
       assert.deepEqual(model, { from: "1", to: "3" });
     };
 

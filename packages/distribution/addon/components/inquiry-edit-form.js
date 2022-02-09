@@ -43,7 +43,7 @@ export default class InquiryEditFormComponent extends Component {
         variables: { workItem: this.args.inquiry },
       });
 
-      yield this.router.transitionTo("distribution.inquiry.index");
+      yield this.router.transitionTo("inquiry.index");
     } catch (error) {
       this.notification.danger(
         this.intl.t("caluma.distribution.edit.send-error")

@@ -6,7 +6,7 @@ import config from "@projectcaluma/ember-distribution/config";
 import inquiryNavigationQuery from "@projectcaluma/ember-distribution/gql/queries/inquiry-navigation.graphql";
 import uniqueByGroups from "@projectcaluma/ember-distribution/utils/unique-by-groups";
 
-export default class DistributionIndexRoute extends Route {
+export default class IndexRoute extends Route {
   @service router;
   @service calumaOptions;
 
@@ -35,7 +35,7 @@ export default class DistributionIndexRoute extends Route {
     }, {});
 
     if (models.length) {
-      return this.router.replaceWith("distribution.inquiry", models[0]);
+      return this.router.replaceWith("inquiry", models[0]);
     }
   }
 }

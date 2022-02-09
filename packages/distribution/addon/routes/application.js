@@ -1,6 +1,6 @@
 import Route from "@ember/routing/route";
 
-export default class DistributionRoute extends Route {
+export default class ApplicationRoute extends Route {
   model(params) {
     return params.case;
   }
