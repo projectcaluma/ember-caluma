@@ -65,7 +65,7 @@ export default class InquiryAnswerFormComponent extends Component {
         },
       });
 
-      yield this.router.transitionTo("distribution.inquiry.index");
+      yield this.router.transitionTo("inquiry.index");
     } catch (error) {
       this.notification.danger(
         this.intl.t("caluma.distribution.answer.complete-error")

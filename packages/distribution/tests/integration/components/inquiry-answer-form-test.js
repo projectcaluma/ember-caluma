@@ -33,7 +33,7 @@ module("Integration | Component | inquiry-answer-form", function (hooks) {
     });
 
     this.owner.lookup("service:router").transitionTo = (routeName) => {
-      assert.strictEqual(routeName, "distribution.inquiry.index");
+      assert.strictEqual(routeName, "inquiry.index");
       assert.step("transition");
     };
   });

@@ -124,7 +124,7 @@ export default class InquiryNewFormComponent extends Component {
       );
 
       // transition to last added inquiry
-      this.router.transitionTo("distribution.inquiry", {
+      this.router.transitionTo("inquiry", {
         from: navigationData[0].node.controllingGroups[0],
         to: navigationData[0].node.addressedGroups[0],
       });

@@ -32,7 +32,7 @@ Router.map(function () {
     });
 
     this.mount("@projectcaluma/ember-distribution", {
-      path: "/distribution",
+      path: "/distribution/:case",
       as: "distribution",
     });
   });

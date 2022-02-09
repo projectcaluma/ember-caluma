@@ -44,7 +44,7 @@ module("Integration | Component | inquiry-edit-form", function (hooks) {
     assert.expect(4);
 
     this.owner.lookup("service:router").transitionTo = (routeName) => {
-      assert.strictEqual(routeName, "distribution.inquiry.index");
+      assert.strictEqual(routeName, "inquiry.index");
       assert.step("transition");
     };
 

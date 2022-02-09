@@ -12,6 +12,6 @@ export default class DistributionNavigationItemComponent extends Component {
   }
 
   get isActive() {
-    return this.router.isActive("distribution.inquiry", this.model);
+    return this.router.isActive("inquiry", this.model);
   }
 }
