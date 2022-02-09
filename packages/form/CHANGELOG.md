@@ -1,3 +1,10 @@
+# [@projectcaluma/ember-form-v11.0.0-beta.10](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.9...@projectcaluma/ember-form-v11.0.0-beta.10) (2022-02-09)
+
+
+### Bug Fixes
+
+* **form:** always trigger data fetching in cf-content ([3fab675](https://github.com/projectcaluma/ember-caluma/commit/3fab675fca0559cd4164d4d62b44b9d9b74e4a5c))
+
 # [@projectcaluma/ember-form-v11.0.0-beta.9](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.8...@projectcaluma/ember-form-v11.0.0-beta.9) (2022-02-07)
 
 
