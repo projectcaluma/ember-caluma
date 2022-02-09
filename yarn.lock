@@ -2260,37 +2260,6 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
-"@projectcaluma/ember-form@11.0.0-beta.9":
-  version "11.0.0-beta.9"
-  resolved "https://registry.yarnpkg.com/@projectcaluma/ember-form/-/ember-form-11.0.0-beta.9.tgz#b85b05d2b8dcfc655ba6f41f77ff93723f3df09e"
-  integrity sha512-ln7KXXG1xfJFwuWyKfxN7X/gTwQDwbRr/P2h8W2llvrL26HC7anFT7jvILgb57EH+Z4aqzVQLPtQg9NXGeO8kA==
-  dependencies:
-    "@glimmer/component" "^1.0.4"
-    "@glimmer/tracking" "^1.0.4"
-    "@projectcaluma/ember-core" "^11.0.0-beta.4"
-    ember-apollo-client "^3.2.0"
-    ember-auto-import "^2.4.0"
-    ember-autoresize-modifier "^0.5.0"
-    ember-cli-babel "^7.26.11"
-    ember-cli-htmlbars "^6.0.1"
-    ember-cli-showdown "^6.0.1"
-    ember-composable-helpers "^5.0.0"
-    ember-concurrency "^2.2.0"
-    ember-fetch "^8.1.1"
-    ember-in-viewport "^4.0.0"
-    ember-intl "^5.7.2"
-    ember-math-helpers "^2.18.1"
-    ember-pikaday "^4.0.0"
-    ember-power-select "^5.0.3"
-    ember-resources "^4.3.1"
-    ember-uikit "^5.0.0"
-    ember-validators "^4.1.0"
-    graphql "^15.8.0"
-    jexl "^2.3.0"
-    lodash.isequal "^4.5.0"
-    luxon "^2.3.0"
-    tracked-toolbox "^1.2.3"
-
 "@semantic-release/changelog@^6.0.1":
   version "6.0.1"
   resolved "https://registry.yarnpkg.com/@semantic-release/changelog/-/changelog-6.0.1.tgz#8dd0334fd8c7d50cda747d2591e4f18f816b3c9c"
@@ -8133,7 +8102,7 @@ ember-concurrency-decorators@^2.0.0:
     ember-cli-htmlbars "^4.3.1"
     ember-cli-typescript "^3.1.4"
 
-"ember-concurrency@>=1.0.0 <3", ember-concurrency@^2.0.0, ember-concurrency@^2.2.0, ember-concurrency@^2.2.1:
+"ember-concurrency@>=1.0.0 <3", ember-concurrency@^2.0.0, ember-concurrency@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/ember-concurrency/-/ember-concurrency-2.2.1.tgz#4ed2e167036d00f7142312bc93c16f13ed9a259c"
   integrity sha512-a4283Yq+jimxqoD5YaxQu7cXePHKqkNQfsT4fs0nYTz5PYbUd6wzUtelp6k8R1JTNPwDdxyVvUgu7yYoC8Sk5A==
@@ -8736,7 +8705,7 @@ ember-validated-form@^5.2.0:
     ember-cli-htmlbars "^5.7.1"
     ember-truth-helpers "^3.0.0"
 
-ember-validators@^4.1.0, ember-validators@^4.1.2:
+ember-validators@^4.1.2:
   version "4.1.2"
   resolved "https://registry.yarnpkg.com/ember-validators/-/ember-validators-4.1.2.tgz#e70c0ac80f6b66c8288ffe5860c96e81bf621691"
   integrity sha512-aNyJW52eWvWhdcRfnb0pGYSDuQU4i4XjA682aDG1ocmz7eUEDw7bXXvKEYGtVsPTtPLtUPvTtaH9mXKpMG+1xA==
