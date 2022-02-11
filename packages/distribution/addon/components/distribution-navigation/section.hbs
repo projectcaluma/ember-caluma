@@ -10,12 +10,14 @@
     {{/if}}
   </a>
 
-  {{#if (and @inquiries.length this.expanded)}}
-    <ul class="uk-tab uk-tab-left uk-margin-left">
-      {{#each this.inquiries as |inquiry|}}
-        <DistributionNavigation::Item @inquiry={{inquiry}} @type={{@type}} />
-      {{/each}}
-    </ul>
+  {{#if this.expanded}}
+    {{#if @inquiries.length}}
+      <ul class="uk-tab uk-tab-left uk-margin-left">
+        {{#each this.inquiries as |inquiry|}}
+          <DistributionNavigation::Item @inquiry={{inquiry}} @type={{@type}} />
+        {{/each}}
+      </ul>
+    {{/if}}
 
     {{#if (eq @type "controlling")}}
       <DistributionNavigation::Controls @caseId={{@caseId}} />
