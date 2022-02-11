@@ -1,5 +1,8 @@
 caluma:
   distribution:
+    empty: "Es gibt noch keine Anfragen."
+    create: "Erstellen Sie die Erste jetzt!"
+
     edit:
       title: "Anfrage bearbeiten"
       link: "Bearbeiten"

@@ -10,7 +10,6 @@ import { useTask } from "ember-resources";
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 import config from "@projectcaluma/ember-distribution/config";
 import createInquiryMutation from "@projectcaluma/ember-distribution/gql/mutations/create-inquiry.graphql";
-import controlWorkItemsQuery from "@projectcaluma/ember-distribution/gql/queries/control-work-items.graphql";
 import inquiryNavigationQuery from "@projectcaluma/ember-distribution/gql/queries/inquiry-navigation.graphql";
 
 const toggle = (value, array) => {
@@ -26,6 +25,7 @@ export default class InquiryNewFormComponent extends Component {
   @service notification;
   @service intl;
   @service router;
+  @service("caluma-distribution-controls") controls;
 
   @queryManager apollo;
 
@@ -80,26 +80,16 @@ export default class InquiryNewFormComponent extends Component {
     if (!this.selectedGroups.length) return;
 
     try {
-      // get create inquiry work item to complete, this will not trigger a
-      // network request since it's already fetch in the controls
-      const controlsData = yield this.apollo.watchQuery(
-        {
-          query: controlWorkItemsQuery,
-          variables: {
-            caseId: this.args.caseId,
-            currentGroup: String(this.calumaOptions.currentGroupId),
-            createTask: this.config.controls.createTask,
-            completeTask: this.config.controls.completeTask,
-          },
-        },
-        "create.edges"
+      // get create inquiry work item to complete
+      const createId = decodeId(
+        this.controls.workItems.value?.create.edges[0].node.id
       );
 
       // create new inquiries
       yield this.apollo.mutate({
         mutation: createInquiryMutation,
         variables: {
-          id: decodeId(controlsData[0].node.id),
+          id: createId,
           context: JSON.stringify({
             addressed_groups: this.selectedGroups.map(String),
           }),

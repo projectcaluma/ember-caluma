@@ -1,5 +1,8 @@
 caluma:
   distribution:
+    empty: "There are no inquiries yet."
+    create: "Create the first one now!"
+
     edit:
       title: "Edit inquiry"
       link: "Edit"
