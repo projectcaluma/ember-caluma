@@ -1472,11 +1472,11 @@
     semver "^7.3.5"
 
 "@embroider/macros@1.2.0", "@embroider/macros@^0.41.0", "@embroider/macros@^0.47.1", "@embroider/macros@^0.50.0 || ^1.0.0", "@embroider/macros@^1.0.0", "@embroider/macros@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@embroider/macros/-/macros-1.1.0.tgz#4e11a8a38be9ac20f20c9a09a8df7e97b47ede13"
-  integrity sha512-YwOKpgRjoFee7DMHFvAaE8xZVdlft0wcwGGsqW4oqiisfoHaf3YIpCDNy7aYFm9CoZseq827mxyjejxiOEmJaQ==
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@embroider/macros/-/macros-1.2.0.tgz#9a2d99225fba6dcb69e795cddad9f4948c2a2b6b"
+  integrity sha512-WD2V3OKXZB73OymI/zC2+MbqIYaAskhjtSOVVY6yG6kWILyVsJ6+fcbNHEnZyGqs4sm0TvHVJfevmA2OXV8Pww==
   dependencies:
-    "@embroider/shared-internals" "1.1.0"
+    "@embroider/shared-internals" "1.2.0"
     assert-never "^1.2.1"
     babel-import-util "^1.1.0"
     ember-cli-babel "^7.26.6"
@@ -1533,11 +1533,11 @@
     resolve "^1.20.0"
 
 "@embroider/util@^0.39.1 || ^0.40.0 || ^0.41.0", "@embroider/util@^0.47.2", "@embroider/util@^1.0.0", "@embroider/util@^1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@embroider/util/-/util-1.1.0.tgz#f4a90ee47bc59bed7b63c6f44dc5ae1ae73f9951"
-  integrity sha512-8bch0JkaLEajXNRmFJNaGNWyWeXMRrrFTaojV4V7Q0RQ5HrZyO2VUD+L9m+RZgz749wEjaeCp2uTkIfSNnZtWA==
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@embroider/util/-/util-1.2.0.tgz#8aa8413252ca4a566cb482b46be3b41997f36ea2"
+  integrity sha512-uWgEAhMWghljnYxwsSKZkrB3tY9avJlkJoHvjN+ZazwP/5EfsB7Ck++2WEfIOBOOPEoQr1MYHVlvr+hIMwLrVw==
   dependencies:
-    "@embroider/macros" "1.1.0"
+    "@embroider/macros" "1.2.0"
     broccoli-funnel "^3.0.5"
     ember-cli-babel "^7.23.1"
 
@@ -8188,6 +8188,7 @@ ember-engines-router-service@^0.3.0:
 
 ember-engines@0.8.20, "ember-engines@https://gitpkg.now.sh/anehx/ember-engines/packages/ember-engines?c08f7650ffc4b723e8ba1143d7498e58bc1e4b78":
   version "0.8.20"
+  uid "0defff12268ae3580b7d2ead8c8779827b267219"
   resolved "https://gitpkg.now.sh/anehx/ember-engines/packages/ember-engines?c08f7650ffc4b723e8ba1143d7498e58bc1e4b78#0defff12268ae3580b7d2ead8c8779827b267219"
   dependencies:
     "@embroider/macros" "^1.0.0"
@@ -8709,10 +8710,10 @@ ember-uikit@5.0.0, ember-uikit@^5.0.0:
     ember-toggle "^9.0.3"
     uikit "^3.10.1"
 
-ember-validated-form@^5.2.0:
-  version "5.2.0"
-  resolved "https://registry.yarnpkg.com/ember-validated-form/-/ember-validated-form-5.2.0.tgz#7437ad71070bcf0201186ff504e95491522c7ce0"
-  integrity sha512-arjGCG2naPlsuNKtJoQRssqPah12Fg+R/5F3eXj1wpAxTqcAG/lKGSQ2FBYYphWF5NB0q/F+AQhdKtuDX9ZqDQ==
+ember-validated-form@^5.2.2:
+  version "5.2.2"
+  resolved "https://registry.yarnpkg.com/ember-validated-form/-/ember-validated-form-5.2.2.tgz#00428ab14dd2c4db192afb977dee284404a04cda"
+  integrity sha512-G5YNddhMgchhNfwrvEO4rM/dZPnUM1eGJGwHsUgh+EjDKwv+XCPA9toEmU0PQtMVDG3qKYqZfKQgSwNmlh25wQ==
   dependencies:
     ember-auto-import "^2.4.0"
     ember-cli-babel "^7.26.6"
