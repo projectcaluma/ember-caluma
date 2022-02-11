@@ -24,6 +24,11 @@ module(
 
       this.case = createCase(this.server, { group: { id: "1" } });
       this.owner.lookup("service:caluma-options").currentGroupId = 1;
+      Object.defineProperty(
+        this.owner.lookup("service:caluma-distribution-controls"),
+        "caseId",
+        { value: this.case.id }
+      );
     });
 
     test("it renders", async function (assert) {
@@ -68,8 +73,7 @@ module(
       assert.dom("ul > li:nth-of-type(2) > a").containsText("addressed2");
       assert.dom("ul > li:nth-of-type(3) > a").containsText("addressed3");
 
-      assert.dom("a[uk-icon=plus]").exists({ count: 1 });
-      assert.dom("button").exists({ count: 2 });
+      assert.dom("a[uk-icon=plus]").exists();
 
       this.set("type", "more");
 

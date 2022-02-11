@@ -1,0 +1,8 @@
+<div class="uk-text-center">
+  <p class="uk-text-muted">{{t "caluma.distribution.empty"}}</p>
+  {{#if (can "create inquiry of distribution")}}
+    <LinkTo @route="new" class="uk-margin-top">
+      {{t "caluma.distribution.create"}}
+    </LinkTo>
+  {{/if}}
+</div>
