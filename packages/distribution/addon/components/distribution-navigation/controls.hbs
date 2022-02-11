@@ -1,17 +1,19 @@
 <div class="uk-text-center uk-margin-small-top">
-  {{#if this.canCreate}}
+  {{#if (can "create inquiry of distribution")}}
     <IconButton @route="new" @icon="plus" />
   {{/if}}
-  <IconButton
-    @icon="paper-plane-outline"
-    @fromSvgJar={{true}}
-    @gutterTop={{4}}
-    @gutterRight={{6}}
-    @gutterLeft={{4}}
-    @gutterBottom={{4}}
-    @onClick={{this.noop}}
-  />
-  {{#if this.canComplete}}
+  {{#if (can "send inquiries of distribution")}}
+    <IconButton
+      @icon="paper-plane-outline"
+      @fromSvgJar={{true}}
+      @gutterTop={{4}}
+      @gutterRight={{6}}
+      @gutterLeft={{4}}
+      @gutterBottom={{4}}
+      @onClick={{this.noop}}
+    />
+  {{/if}}
+  {{#if (can "complete distribution")}}
     <IconButton
       @icon="lock-closed-outline"
       @fromSvgJar={{true}}

@@ -58,6 +58,11 @@ module("Integration | Component | inquiry-new-form", function (hooks) {
         return { ...retval, [type]: recs.filter((rec) => re.test(rec.name)) };
       }, {});
     };
+    Object.defineProperty(
+      this.owner.lookup("service:caluma-distribution-controls"),
+      "caseId",
+      { value: this.case.id }
+    );
   });
 
   test("it renders", async function (assert) {

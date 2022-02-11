@@ -228,13 +228,7 @@ export default function (server, groups) {
   const confirm = (...args) => confirmInquiry(...args);
   const revise = (...args) => reviseInquiry(server, ...args);
 
-  const distributionCase = createCase(server, { group: g1 });
-
-  server.create("work-item", {
-    taskId: "create-inquiry",
-    status: "READY",
-    addressedGroups: [g.id],
-  });
+  const distributionCase = createCase(server, { group: g });
 
   // controlling
   create({ from: g, to: g1 });

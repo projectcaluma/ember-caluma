@@ -13,20 +13,23 @@ module("Integration | Component | distribution-navigation", function (hooks) {
   setupIntl(hooks);
 
   hooks.beforeEach(function () {
-    const groups = [
+    distribution(this.server, [
       { id: "group1" },
       { id: "group2" },
       { id: "group3" },
       { id: "group4" },
       { id: "group5" },
-    ];
-
-    distribution(this.server, groups);
+    ]);
 
     this.caseId = this.server.db.cases[0].id;
 
     this.owner.lookup("service:caluma-options").currentGroupId = "group1";
     this.owner.lookup("service:router").isActive = () => true;
+    Object.defineProperty(
+      this.owner.lookup("service:caluma-distribution-controls"),
+      "caseId",
+      { value: this.caseId }
+    );
   });
 
   test("it renders navigation with 3 sections", async function (assert) {

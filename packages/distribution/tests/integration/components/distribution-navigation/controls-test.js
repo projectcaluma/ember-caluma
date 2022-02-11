@@ -4,10 +4,7 @@ import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupRenderingTest } from "ember-qunit";
 import { module, test } from "qunit";
 
-import {
-  createBlueprint,
-  createCase,
-} from "@projectcaluma/ember-testing/scenarios/distribution";
+import distribution from "@projectcaluma/ember-testing/scenarios/distribution";
 
 module(
   "Integration | Component | distribution-navigation/controls",
@@ -16,43 +13,30 @@ module(
     setupMirage(hooks);
 
     hooks.beforeEach(function () {
-      createBlueprint(this.server);
+      distribution(this.server, [
+        { id: "group1" },
+        { id: "group2" },
+        { id: "group3" },
+        { id: "group4" },
+        { id: "group5" },
+      ]);
 
-      this.case = createCase(this.server, { group: { id: "1" } });
-      this.owner.lookup("service:caluma-options").currentGroupId = 1;
+      this.caseId = this.server.db.cases[0].id;
+      this.owner.lookup("service:caluma-options").currentGroupId = "group1";
+      Object.defineProperty(
+        this.owner.lookup("service:caluma-distribution-controls"),
+        "caseId",
+        { value: this.caseId }
+      );
     });
 
     test("it renders", async function (assert) {
       await render(
-        hbs`<DistributionNavigation::Controls @caseId={{this.case.id}} />`
+        hbs`<DistributionNavigation::Controls @caseId={{this.caseId}} />`
       );
 
-      assert.dom("a[uk-icon=plus]").exists();
       assert.dom("button").exists({ count: 2 });
-    });
-
-    test("it doesn't render a create link if no assigned work item exists", async function (assert) {
-      this.server.schema.workItems
-        .findBy({ taskId: "create-inquiry" })
-        .destroy();
-
-      await render(
-        hbs`<DistributionNavigation::Controls @caseId={{this.case.id}} />`
-      );
-
-      assert.dom("a[uk-icon=plus]").doesNotExist();
-    });
-
-    test("it doesn't render a complete button if no assigned work item exists", async function (assert) {
-      this.server.schema.workItems
-        .findBy({ taskId: "complete-distribution" })
-        .destroy();
-
-      await render(
-        hbs`<DistributionNavigation::Controls @caseId={{this.case.id}} />`
-      );
-
-      assert.dom("button").exists({ count: 1 });
+      assert.dom("a").exists({ count: 1 });
     });
   }
 );
