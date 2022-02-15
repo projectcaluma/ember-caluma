@@ -1,9 +1,11 @@
-<section>
-  {{#if this._inquiries.isRunning}}
-    <div class="uk-text-center"><UkSpinner @ratio={{2}} /></div>
-  {{else}}
+{{#if this._inquiries.isRunning}}
+  <div class="uk-text-center"><UkSpinner @ratio={{2}} /></div>
+{{else if this.inquiries.length}}
+  <section>
     {{#each this.inquiries as |inquiry|}}
       <InquiryDialog::Inquiry @inquiry={{inquiry}} />
     {{/each}}
-  {{/if}}
-</section>
+  </section>
+{{else}}
+  <Notfound />
+{{/if}}
