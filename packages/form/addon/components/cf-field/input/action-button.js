@@ -38,12 +38,6 @@ export default class CfFieldInputActionButtonComponent extends Component {
     return this.args.field.question.raw.color.toLowerCase();
   }
 
-  get type() {
-    return this.args.field.question.raw.action === "COMPLETE"
-      ? "submit"
-      : "button";
-  }
-
   get validateOnEnter() {
     return (
       this.args.field.question.raw.action === "COMPLETE" &&

@@ -55,9 +55,9 @@ module(
       assert.dom("button.uk-button-secondary").exists();
     });
 
-    test("renders a submit button for complete actions", async function (assert) {
+    test("renders a button for complete actions", async function (assert) {
       await render(hbs`<CfField::Input::ActionButton @field={{this.field}} />`);
-      assert.dom("button.uk-button-secondary").hasAttribute("type", "submit");
+      assert.dom("button.uk-button-secondary").hasAttribute("type", "button");
 
       this.field.question.raw.action = "SKIP";
       await render(hbs`<CfField::Input::ActionButton @field={{this.field}} />`);
