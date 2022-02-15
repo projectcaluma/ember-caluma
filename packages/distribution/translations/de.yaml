@@ -43,3 +43,9 @@ caluma:
       positive: "Positiv"
       negative: "Negativ"
       needs-interaction: "Aktion erforderlich"
+
+    notfound:
+      title: "404"
+      subtitle: "Seite nicht gefunden!"
+      back: "Zurück zur"
+      link: "Startseite"

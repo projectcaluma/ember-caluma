@@ -7,4 +7,5 @@ export default buildRoutes(function () {
       this.route("answer");
     });
   });
+  this.route("notfound", { path: "/*path" });
 });
