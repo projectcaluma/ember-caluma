@@ -2267,6 +2267,37 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
+"@projectcaluma/ember-form@11.0.0-beta.10":
+  version "11.0.0-beta.10"
+  resolved "https://registry.yarnpkg.com/@projectcaluma/ember-form/-/ember-form-11.0.0-beta.10.tgz#023b7397c20e5a5db29d6bd1d34d23934ea9ffb4"
+  integrity sha512-Q869PeBWdZ6OSfEnYlNj0wkjDDEsc2OHX5R5JcvPBajd/k1OdjussIAHFwHr0X6zsoMjSWUwMA5cT79lSSN0cQ==
+  dependencies:
+    "@glimmer/component" "^1.0.4"
+    "@glimmer/tracking" "^1.0.4"
+    "@projectcaluma/ember-core" "^11.0.0-beta.4"
+    ember-apollo-client "^3.2.0"
+    ember-auto-import "^2.4.0"
+    ember-autoresize-modifier "^0.5.0"
+    ember-cli-babel "^7.26.11"
+    ember-cli-htmlbars "^6.0.1"
+    ember-cli-showdown "^6.0.1"
+    ember-composable-helpers "^5.0.0"
+    ember-concurrency "^2.2.1"
+    ember-fetch "^8.1.1"
+    ember-in-viewport "^4.0.0"
+    ember-intl "^5.7.2"
+    ember-math-helpers "^2.18.1"
+    ember-pikaday "^4.0.0"
+    ember-power-select "^5.0.3"
+    ember-resources "^4.3.1"
+    ember-uikit "^5.0.0"
+    ember-validators "^4.1.2"
+    graphql "^15.8.0"
+    jexl "^2.3.0"
+    lodash.isequal "^4.5.0"
+    luxon "^2.3.0"
+    tracked-toolbox "^1.2.3"
+
 "@projectcaluma/ember-testing@11.0.0-beta.2":
   version "11.0.0-beta.2"
   resolved "https://registry.yarnpkg.com/@projectcaluma/ember-testing/-/ember-testing-11.0.0-beta.2.tgz#096576897b007efd6d0608868e799c0e1e38a1b0"
