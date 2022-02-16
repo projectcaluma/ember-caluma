@@ -14,6 +14,13 @@
  */
 
 /*!
+ * isobject <https://github.com/jonschlinkert/isobject>
+ *
+ * Copyright (c) 2014-2015, Jon Schlinkert.
+ * Licensed under the MIT License.
+ */
+
+/*!
  * lunr.Builder
  * Copyright (C) 2020 Oliver Nightingale
  */
@@ -91,6 +98,8 @@ PERFORMANCE OF THIS SOFTWARE.
 
 /*! UIkit 3.11.1 | https://www.getuikit.com | (c) 2014 - 2022 YOOtheme | MIT License */
 
+/*! https://mths.be/he v1.2.0 by @mathias | MIT license */
+
 /*! tether 1.4.7 */
 
 /**
@@ -132,6 +141,12 @@ PERFORMANCE OF THIS SOFTWARE.
  * @author Lea Verou <https://lea.verou.me>
  * @namespace
  * @public
+ */
+
+/**
+ * line-column - Convert efficiently index to/from line-column in a string
+ * @module  lineColumn
+ * @license MIT
  */
 
 /**
