@@ -1,17 +1,17 @@
 <DocsViewer as |viewer|>
 
   <viewer.nav as |nav|>
-    {{nav.item "Usage" "docs.index"}}
-    {{nav.item "Queries" "docs.queries"}}
-    {{nav.item "Buttons" "docs.buttons"}}
-    {{nav.item "Validation" "docs.validation"}}
-    {{nav.item "Helpers" "docs.helpers"}}
-    {{nav.item "Testing" "docs.testing"}}
+    <nav.item @label="Usage" @route="docs.index" />
+    <nav.item @label="Queries" @route="docs.queries" />
+    <nav.item @label="Buttons" @route="docs.buttons" />
+    <nav.item @label="Validation" @route="docs.validation" />
+    <nav.item @label="Helpers" @route="docs.helpers" />
+    <nav.item @label="Testing" @route="docs.testing" />
 
-    {{nav.section "Migration"}}
-    {{nav.item "to v7" "docs.migration-v7"}}
-    {{nav.item "to v9" "docs.migration-v9"}}
-    {{nav.item "to v11" "docs.migration-v11"}}
+    <nav.section @label="Migration" />
+    <nav.item @label="to v7" @route="docs.migration-v7" />
+    <nav.item @label="to v9" @route="docs.migration-v9" />
+    <nav.item @label="to v11" @route="docs.migration-v11" />
   </viewer.nav>
 
   <viewer.main>

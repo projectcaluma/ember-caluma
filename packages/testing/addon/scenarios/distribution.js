@@ -192,6 +192,7 @@ export function reviseInquiry(server, { inquiry }) {
 
 export function createCase(server, { group }) {
   const distributionCase = server.create("case", {
+    id: "4222ab21-9c89-47de-98be-d62a8ed0ebeb",
     status: "RUNNING",
     workflowId: "distribution",
   });
@@ -239,19 +240,25 @@ export default function (server, groups) {
   // controlling
   create({ from: g, to: g1 });
   send({
-    inquiry: create({
-      from: g,
-      to: g2,
-      deadline: faker.date.past(),
-    }),
+    inquiry: create(
+      {
+        from: g,
+        to: g2,
+        deadline: faker.date.past(),
+      },
+      { id: "6bbdc36a-3174-4578-93d4-0cb84d3dab97" }
+    ),
   });
   confirm({
     inquiry: answer({
-      inquiry: create({
-        from: g,
-        to: g3,
-        deadline: faker.date.past(),
-      }),
+      inquiry: create(
+        {
+          from: g,
+          to: g3,
+          deadline: faker.date.past(),
+        },
+        { id: "88999388-daf2-4a18-b7e2-50373d082331" }
+      ),
       status: "inquiry-answer-status-needs-interaction",
     }),
   });
@@ -259,7 +266,13 @@ export default function (server, groups) {
   // "override" third controlling inquiry
   confirm({
     inquiry: answer({
-      inquiry: create({ from: g, to: g3 }, { createdAt: faker.date.recent() }),
+      inquiry: create(
+        { from: g, to: g3 },
+        {
+          id: "75d56729-5518-469d-ae66-188a5c32d59d",
+          createdAt: faker.date.recent(),
+        }
+      ),
       status: "inquiry-answer-status-positive",
     }),
   });
@@ -267,7 +280,10 @@ export default function (server, groups) {
   // addressed
   confirm({
     inquiry: answer({
-      inquiry: create({ from: g2, to: g }),
+      inquiry: create(
+        { from: g2, to: g },
+        { id: "e907584c-a38a-488e-80f7-bab6bb22f303" }
+      ),
       status: "inquiry-answer-status-needs-interaction",
     }),
   });
@@ -279,22 +295,34 @@ export default function (server, groups) {
         to: g,
         deadline: DateTime.now().plus({ days: 2 }).toJSDate(),
       },
-      { createdAt: faker.date.recent() }
+      {
+        id: "4889435d-f310-472f-808b-7b20936c40fc",
+        createdAt: faker.date.recent(),
+      }
     ),
   });
   confirm({
     inquiry: answer({
-      inquiry: create({ from: g4, to: g }),
+      inquiry: create(
+        { from: g4, to: g },
+        { id: "4c5dbcc3-f42a-4c25-8d06-f85bd17edbf2" }
+      ),
       status: "inquiry-answer-status-negative",
     }),
   });
   answer({
-    inquiry: create({ from: g3, to: g }),
+    inquiry: create(
+      { from: g3, to: g },
+      { id: "3f7eea45-251d-4934-81fd-27c78bbca88c" }
+    ),
     status: "inquiry-answer-status-positive",
   });
   revise({
     inquiry: answer({
-      inquiry: create({ from: g1, to: g }),
+      inquiry: create(
+        { from: g1, to: g },
+        { id: "dd07b1a4-91e6-4411-a4ea-445637690577" }
+      ),
       status: "inquiry-answer-status-needs-interaction",
     }),
   });
@@ -302,13 +330,19 @@ export default function (server, groups) {
   // more
   confirm({
     inquiry: answer({
-      inquiry: create({ from: g2, to: g3 }),
+      inquiry: create(
+        { from: g2, to: g3 },
+        { id: "4f374860-28b3-465b-be5f-5e501a39fe8b" }
+      ),
       status: "inquiry-answer-status-needs-interaction",
     }),
   });
   confirm({
     inquiry: answer({
-      inquiry: create({ from: g3, to: g4 }),
+      inquiry: create(
+        { from: g3, to: g4 },
+        { id: "16eebfae-55c5-4d31-ad48-7ed5578a22a2" }
+      ),
       status: "inquiry-answer-status-positive",
     }),
   });
