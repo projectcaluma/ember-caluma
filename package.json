@@ -44,7 +44,7 @@
     "eslint-plugin-node": "11.1.0",
     "eslint-plugin-prettier": "4.0.0",
     "eslint-plugin-qunit": "7.2.0",
-    "execa": "6.0.0",
+    "execa": "6.1.0",
     "get-graphql-schema": "2.1.2",
     "husky": "7.0.4",
     "lint-staged": "12.3.4",
