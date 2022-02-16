@@ -7,6 +7,10 @@ on:
     tags:
       - v[0-9]+.[0-9]+.[0-9]+
 
+concurrency:
+  group: deploy
+  cancel-in-progress: true
+
 jobs:
   deploy:
     name: Deploy
