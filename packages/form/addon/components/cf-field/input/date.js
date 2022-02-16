@@ -4,6 +4,9 @@ import Component from "@glimmer/component";
 import { DateTime, Info } from "luxon";
 import { cached } from "tracked-toolbox";
 
+// put the last element to the front of the array
+const shift = (array) => [...array.slice(-1), ...array.slice(0, -1)];
+
 export default class CfFieldInputDateComponent extends Component {
   @service intl;
 
@@ -30,8 +33,8 @@ export default class CfFieldInputDateComponent extends Component {
       previousMonth: this.intl.t("caluma.form.pikaday.month-previous"),
       nextMonth: this.intl.t("caluma.form.pikaday.month-next"),
       months: Info.months("long", { locale }),
-      weekdays: Info.weekdays("long", { locale }),
-      weekdaysShort: Info.weekdays("short", { locale }),
+      weekdays: shift(Info.weekdays("long", { locale })),
+      weekdaysShort: shift(Info.weekdays("short", { locale })),
     };
   }
 }

@@ -19,6 +19,7 @@
     name={{@field.pk}}
     id={{@field.pk}}
     {{pikaday
+      firstDay=1
       toString=this.formatDate
       i18n=this.pikadayTranslations
       value=@field.answer.value
