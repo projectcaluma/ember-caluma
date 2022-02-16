@@ -2267,6 +2267,40 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
+"@projectcaluma/ember-form-builder@11.0.0-beta.7":
+  version "11.0.0-beta.7"
+  resolved "https://registry.yarnpkg.com/@projectcaluma/ember-form-builder/-/ember-form-builder-11.0.0-beta.7.tgz#bd977bb5d44eab16afdabe7eb84223917d7ff933"
+  integrity sha512-t4N1Vjerh/emVpiniUZnxA7/4UUgWWZYv3/cm4e+pEsAjyMc1GHw8MdDIYkAZG5rrbNHohgnioxzZCBeZASRyQ==
+  dependencies:
+    "@ember/render-modifiers" "^2.0.4"
+    "@glimmer/component" "^1.0.4"
+    "@glimmer/tracking" "^1.0.4"
+    "@projectcaluma/ember-core" "^11.0.0-beta.4"
+    "@projectcaluma/ember-form" "^11.0.0-beta.9"
+    codejar "^3.5.0"
+    ember-apollo-client "^3.2.0"
+    ember-auto-import "^2.4.0"
+    ember-changeset "^4.0.0-beta.2"
+    ember-changeset-validations "^4.0.0-beta.2"
+    ember-cli-babel "^7.26.11"
+    ember-cli-htmlbars "^6.0.1"
+    ember-composable-helpers "^5.0.0"
+    ember-concurrency "^2.2.0"
+    ember-engines-router-service "^0.3.0"
+    ember-fetch "^8.1.1"
+    ember-intl "^5.7.2"
+    ember-math-helpers "^2.18.1"
+    ember-pikaday "^4.0.0"
+    ember-power-select "^5.0.3"
+    ember-resources "^4.3.1"
+    ember-test-selectors "^6.0.0"
+    ember-uikit "^5.0.0"
+    ember-validated-form "^5.2.0"
+    graphql "^15.8.0"
+    graphql-tag "^2.12.6"
+    jexl "^2.3.0"
+    prismjs "^1.26.0"
+
 "@projectcaluma/ember-form@11.0.0-beta.10":
   version "11.0.0-beta.10"
   resolved "https://registry.yarnpkg.com/@projectcaluma/ember-form/-/ember-form-11.0.0-beta.10.tgz#023b7397c20e5a5db29d6bd1d34d23934ea9ffb4"
@@ -7496,7 +7530,7 @@ ember-changeset-validations@4.0.0-beta.2, ember-changeset-validations@^4.0.0-bet
     ember-validators "~4.0.0"
     validated-changeset "~1.1.0"
 
-ember-changeset@4.0.0-beta.4, ember-changeset@^4.0.0-beta.1, ember-changeset@^4.0.0-beta.4:
+ember-changeset@4.0.0-beta.4, ember-changeset@^4.0.0-beta.1, ember-changeset@^4.0.0-beta.2, ember-changeset@^4.0.0-beta.4:
   version "4.0.0-beta.4"
   resolved "https://registry.yarnpkg.com/ember-changeset/-/ember-changeset-4.0.0-beta.4.tgz#53d1af57cf5c6decedc6f1e31e9428289a78b8bf"
   integrity sha512-uAHFwly1bQk/koVs18uPnfHD1kFJo1Is1O3ocz7d30ekCtnOBWOzISZsIX/+muxtTVsDeH9JYdbQ9mO+jepM/w==
@@ -8198,7 +8232,7 @@ ember-concurrency-decorators@^2.0.0:
     ember-cli-htmlbars "^4.3.1"
     ember-cli-typescript "^3.1.4"
 
-"ember-concurrency@>=1.0.0 <3", ember-concurrency@^2.0.0, ember-concurrency@^2.2.1:
+"ember-concurrency@>=1.0.0 <3", ember-concurrency@^2.0.0, ember-concurrency@^2.2.0, ember-concurrency@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/ember-concurrency/-/ember-concurrency-2.2.1.tgz#4ed2e167036d00f7142312bc93c16f13ed9a259c"
   integrity sha512-a4283Yq+jimxqoD5YaxQu7cXePHKqkNQfsT4fs0nYTz5PYbUd6wzUtelp6k8R1JTNPwDdxyVvUgu7yYoC8Sk5A==
@@ -8785,7 +8819,7 @@ ember-uikit@5.0.0, ember-uikit@^5.0.0:
     ember-toggle "^9.0.3"
     uikit "^3.10.1"
 
-ember-validated-form@^5.2.2:
+ember-validated-form@^5.2.0, ember-validated-form@^5.2.2:
   version "5.2.2"
   resolved "https://registry.yarnpkg.com/ember-validated-form/-/ember-validated-form-5.2.2.tgz#00428ab14dd2c4db192afb977dee284404a04cda"
   integrity sha512-G5YNddhMgchhNfwrvEO4rM/dZPnUM1eGJGwHsUgh+EjDKwv+XCPA9toEmU0PQtMVDG3qKYqZfKQgSwNmlh25wQ==
