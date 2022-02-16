@@ -1,3 +1,10 @@
+# [@projectcaluma/ember-testing-v11.0.0-beta.3](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-testing-v11.0.0-beta.2...@projectcaluma/ember-testing-v11.0.0-beta.3) (2022-02-16)
+
+
+### Features
+
+* **distribution:** add index page when no inquiries exist ([689089c](https://github.com/projectcaluma/ember-caluma/commit/689089c8f28146a33346f382fe69e7ca1b588d97))
+
 # [@projectcaluma/ember-testing-v11.0.0-beta.2](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-testing-v11.0.0-beta.1...@projectcaluma/ember-testing-v11.0.0-beta.2) (2022-02-07)
 
 
