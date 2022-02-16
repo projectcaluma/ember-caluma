@@ -1,3 +1,19 @@
+# [@projectcaluma/ember-distribution-v1.0.0-beta.4](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-distribution-v1.0.0-beta.3...@projectcaluma/ember-distribution-v1.0.0-beta.4) (2022-02-16)
+
+
+### Bug Fixes
+
+* **distribution:** show controls if no inquiries exist yet ([5c73b6d](https://github.com/projectcaluma/ember-caluma/commit/5c73b6d0a870fd0e34d96af3fa34095733fe9fd9))
+* **pikaday:** add pikaday modifier reexport in engines ([c13d302](https://github.com/projectcaluma/ember-caluma/commit/c13d3021bb8fe82e1245a60182af01287c507697))
+
+
+### Features
+
+* **distribution:** add config variable to stack the UI ([2ad285a](https://github.com/projectcaluma/ember-caluma/commit/2ad285a24bf5fb45d15fe237e3f420dd1f1d94f2))
+* **distribution:** add index page when no inquiries exist ([689089c](https://github.com/projectcaluma/ember-caluma/commit/689089c8f28146a33346f382fe69e7ca1b588d97))
+* **distribution:** add proper 404 handling ([73e62e6](https://github.com/projectcaluma/ember-caluma/commit/73e62e671a9425fc549d7057dd653d1dc59883aa))
+* **distribution:** remove distribution top level route ([6f396da](https://github.com/projectcaluma/ember-caluma/commit/6f396daf2881f07cdddaac6c7ca784db2b8777d3))
+
 # [@projectcaluma/ember-distribution-v1.0.0-beta.3](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-distribution-v1.0.0-beta.2...@projectcaluma/ember-distribution-v1.0.0-beta.3) (2022-02-07)
 
 
