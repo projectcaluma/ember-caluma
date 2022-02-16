@@ -27,7 +27,7 @@
     "broccoli-asset-rev": "3.0.0",
     "ember-apollo-client": "3.2.0",
     "ember-auto-import": "2.4.0",
-    "ember-changeset": "4.0.0-beta.4",
+    "ember-changeset": "4.0.0-beta.5",
     "ember-changeset-validations": "4.0.0-beta.2",
     "ember-cli": "3.28.5",
     "ember-cli-addon-docs": "ember-learn/ember-cli-addon-docs#667701d60650cf7af51611dbff9abf1879776421",
