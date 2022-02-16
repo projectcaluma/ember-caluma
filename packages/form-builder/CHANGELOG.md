@@ -1,3 +1,10 @@
+# [@projectcaluma/ember-form-builder-v11.0.0-beta.8](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-builder-v11.0.0-beta.7...@projectcaluma/ember-form-builder-v11.0.0-beta.8) (2022-02-16)
+
+
+### Bug Fixes
+
+* **pikaday:** add pikaday modifier reexport in engines ([c13d302](https://github.com/projectcaluma/ember-caluma/commit/c13d3021bb8fe82e1245a60182af01287c507697))
+
 # [@projectcaluma/ember-form-builder-v11.0.0-beta.7](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-builder-v11.0.0-beta.6...@projectcaluma/ember-form-builder-v11.0.0-beta.7) (2022-02-07)
 
 
