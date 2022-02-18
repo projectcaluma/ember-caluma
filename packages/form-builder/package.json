@@ -45,7 +45,7 @@
     "graphql": "^15.8.0",
     "graphql-tag": "^2.12.6",
     "jexl": "^2.3.0",
-    "prismjs": "^1.26.0"
+    "prismjs": "^1.27.0"
   },
   "//": "TODO: remove ember-data when https://github.com/ember-engines/ember-engines/pull/794 is released",
   "devDependencies": {
