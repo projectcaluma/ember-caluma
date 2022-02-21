@@ -15,7 +15,7 @@ export default function config(target, property) {
     get() {
       return merge(
         {
-          ui: { stack: false },
+          ui: { stack: false, small: false },
           controls: {
             createTask: "create-inquiry",
             completeTask: "complete-distribution",

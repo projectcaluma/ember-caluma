@@ -1,4 +1,7 @@
-<article class="uk-card uk-card-default uk-margin">
+<article
+  class="uk-card uk-card-default uk-margin
+    {{if this.config.ui.small 'uk-card-small'}}"
+>
   <div class="uk-card-body">
     <InquiryDialog::InquiryDeadline @inquiry={{@inquiry}} />
 

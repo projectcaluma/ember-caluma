@@ -3,6 +3,9 @@
 $size: 36px;
 $iconSize: $size * 0.6;
 
+$sizeSmall: 24px;
+$iconSizeSmall: $sizeSmall * 0.6;
+
 $colors: (
   muted: $text-muted-color,
   emphasis: $text-emphasis-color,
@@ -44,6 +47,25 @@ $colors: (
       &::after {
         background-color: $color;
       }
+    }
+  }
+}
+.inquiry-divider--small {
+  &::before,
+  &::after {
+    height: 1px;
+    width: calc(50% - #{$sizeSmall * 0.5});
+  }
+
+  .inquiry-divider__icon {
+    width: $sizeSmall;
+    height: $sizeSmall;
+
+    border-width: 1px;
+
+    > svg {
+      width: $iconSizeSmall;
+      height: $iconSizeSmall;
     }
   }
 }

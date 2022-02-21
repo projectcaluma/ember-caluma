@@ -1,6 +1,10 @@
 import Component from "@glimmer/component";
 
+import config from "@projectcaluma/ember-distribution/config";
+
 export default class InquiryDialogInquiryPartComponent extends Component {
+  @config config;
+
   get date() {
     const key = this.args.type === "request" ? "createdAt" : "closedAt";
 
