@@ -11,6 +11,7 @@ import inquiryEditQuery from "@projectcaluma/ember-distribution/gql/queries/inqu
 export default class InquiryEditFormComponent extends Component {
   @service notification;
   @service router;
+  @service intl;
 
   @config config;
 

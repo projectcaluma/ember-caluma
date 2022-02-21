@@ -8,7 +8,14 @@
   {{/if}}
 </p>
 
-<ul class="uk-subnav uk-subnav-divider uk-margin-small-top">
+<ul
+  class="uk-subnav uk-subnav-divider
+    {{if
+      this.config.ui.small
+      'uk-margin-remove-top uk-margin-small-bottom'
+      'uk-margin-small-top'
+    }}"
+>
   <li>
     <span>
       {{format-date this.date}}
@@ -31,4 +38,6 @@
   {{/if}}
 </ul>
 
-<p class="uk-margin-remove-bottom">{{this.info}}</p>
+{{#if this.info}}
+  <p class="uk-margin-remove">{{this.info}}</p>
+{{/if}}
