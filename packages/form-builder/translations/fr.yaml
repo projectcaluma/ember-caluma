@@ -1,9 +1,42 @@
 caluma:
   form-builder:
+    global:
+      save: "Enregistrer"
+      loading: "Télécharger"
+      cancel: "Annuler"
+      search: "Chercher"
+      optional: "Facultatif"
+
+      empty-search: "Aucun résultat trouvé. Adaptez votre recherche pour obtenir de meilleurs résultats."
+
+      not-found:
+        title: "Vous avez l'air perdu"
+        subtitle: "La page demandée n'existe pas !"
+        home: "Retour au départ"
+
+    form:
+      name: "Nom"
+      slug: "Slug"
+      description: "Description"
+      isArchived: "Archivé"
+      widgetOverride: "Élément spécial"
+      isPublished: "Publié"
+      archived: "Archivés"
+      draft: "Brouillon"
+      active: "Actifs"
+      all: "Tous"
+
+      allForms: "Tous les formulaires"
+      new: "Nouveau formulaire"
+      empty: "Nous n'avons trouvé aucun formulaire. Cliquez sur le bouton dans le coin supérieur droit pour créer un formulaire !"
+      loadMore: "Télécharger plus de formulaires"
+
+      not-found: "Aucun formulaire trouvé avec le slug '{slug}'"
+
     question-list:
       required:
         label: "Obligatoire (JEXL)"
-        not-required: "Optionnel"
+        not-required: "Facultatif"
         required: "Obligatoire"
         conditional: "Conditionnellement obligatoire"
       hidden:
@@ -13,11 +46,131 @@ caluma:
         conditional: "Conditionnellement caché"
 
     question:
+      label: "Étiquette"
+      slug: "Slug"
+      type: "Type"
+      isRequired: "Champ obligatoire"
+      staticContent: "Contenu statique"
+      infoText: "Texte d'information"
+      confirmationText: "Texte de confirmation"
+      placeholder: "Caractère générique"
+      isHidden: "Caché (JEXL)"
+      widgetOverride: "Type d'affichage"
+      isArchived: "Archivé"
+      type-disabled: "Le type de question ne peut pas être modifié après la création d'une question afin d'éviter les données corrompues."
+      supportsMarkdownPrefix: "Ce champ supporte"
+      markdown: "Markdown"
+      dataSource: "Source des données"
+      formatValidators: "Validation"
       defaultValue: "Valeur par défaut"
+
+      general: "Général"
+      options: "Options"
+
+      min-value: "Valeur minimale"
+      max-value: "Valeur maximale"
+      min-length: "Longueur minimale"
+      max-length: "Longueur maximale"
+      rowForm: "Formulaire pour les entrées de tableau"
+      subForm: "Formulaire pour les entrées"
+      choose: "-- veuillez choisir --"
       search-placeholder: "Tapez ici pour rechercher"
       search-empty: "Pas de formulaires trouvés"
+      columnsToDisplay: "Colonnes à afficher dans le formulaire"
+      calcExpression: "Formule de calcul (JEXL)"
+
+      new: "Nouvelle question"
+
+      minor-info-title: "Important !"
+      minor-info: "L'adaptation d'une question ne doit jamais modifier le sens de la question afin de maintenir la cohérence des données."
+
+      remove: "Supprimer la question"
+      add: "Ajouter une question nouvelle ou existante"
+      search: "Chercher une question (étiquette ou slug)"
+      create: "ou créer une nouvelle question"
+      loadMore: "Télécharger plus de questions"
+
+      empty: "Vous n'avez pas encore ajouté de questions. Appuyez sur le bouton ci-dessus pour le faire !"
+      advancedSettings: "Paramètres avancés"
+
+      types:
+        IntegerQuestion: "Nombre entier"
+        FloatQuestion: "Nombre à virgule flottante"
+        MultipleChoiceQuestion: "Sélection multiple"
+        ChoiceQuestion: "Sélection individuel"
+        TextQuestion: "Texte"
+        TextareaQuestion: "Texte (plusieurs lignes)"
+        TableQuestion: "Tableau"
+        FormQuestion: "Formulaire"
+        FileQuestion: "Fichier"
+        StaticQuestion: "Contenu non interactif"
+        DateQuestion: "Date"
+        DynamicMultipleChoiceQuestion: "Sélection multiple dynamique"
+        DynamicChoiceQuestion: "Sélection individuel dynamique"
+        CalculatedFloatQuestion: "Calcul (nombre à virgule flottante)"
+        ActionButtonQuestion: "Bouton d'action"
+
+      confirmText: "Texte de confirmation"
+      action: "Action"
+      color: "Couleur"
+      validateOnEnter: "Validation lors de l'entrée dans la fenêtre"
+
+      actions:
+        COMPLETE: "Conclure"
+        SKIP: "Sauter"
+
+      colors:
+        PRIMARY: "Primaire"
+        SECONDARY: "Secondaire"
+        DEFAULT: "Défaut"
+
+      widgetOverrides:
+        powerselect: "Power Select"
+        hidden: "Caché"
+
+      not-found: "Aucune question trouvée avec le slug '{slug}'"
+
+      hideLabel: "Cacher l'étiquette"
 
     options:
       delete: "Supprimer l'option"
       archive: "Archiver (masquer) l'option"
       restore: "Restaurer l'option"
+
+    notification:
+      form:
+        save:
+          success: "Votre formulaire a été enregistré avec succès !"
+          error: "Oups, quelque chose s'est mal passé lors de l'enregistrement du formulaire..."
+
+        create:
+          success: "Votre formulaire a été créé avec succès !"
+          error: "Oups, quelque chose s'est mal passé lors de la création du formulaire..."
+
+        reorder-questions:
+          success: "Vos questions ont été triées avec succès !"
+          error: "Oups, quelque chose s'est mal passé lors du tri des questions..."
+
+        reorder-options:
+          success: "Vos options ont été triées avec succès !"
+          error: "Oups, quelque chose s'est mal passé lors du tri des options..."
+
+        add-question:
+          success: "La question a été ajoutée avec succès à votre formulaire !"
+          error: "Oups, quelque chose s'est mal passé lors de l'ajout de la question..."
+
+        remove-question:
+          success: "La question a été supprimée avec succès de votre formulaire !"
+          error: "Oups, quelque chose s'est mal passé lors de la suppression de la question..."
+
+      question:
+        save:
+          success: "Votre question a été enregistrée avec succès !"
+          error: "Oups, quelque chose s'est mal passé lors de l'enregistrement de la question..."
+
+    validations:
+      form:
+        slug: "Un formulaire avec ce slug existe déjà"
+
+      question:
+        slug: "Une question avec ce slug existe déjà"
