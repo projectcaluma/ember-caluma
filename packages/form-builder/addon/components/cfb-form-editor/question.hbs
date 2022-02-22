@@ -140,6 +140,7 @@
           @label={{t "caluma.form-builder.question.confirmationText"}}
           @name="infoText"
           @type="textarea"
+          {{autoresize mode="height"}}
         />
       {{else}}
         <div class="uk-margin">
@@ -437,7 +438,6 @@
         @optionTargetPath="component"
         @optionLabelPath="label"
         @options={{this.availableOverrides}}
-        class="uk-flex uk-flex-between uk-flex-column"
       />
 
       <f.input
@@ -445,7 +445,6 @@
         @label={{t "caluma.form-builder.question.isArchived"}}
         @required={{true}}
         @renderComponent={{component "cfb-toggle-switch" size="small"}}
-        class="uk-flex uk-flex-between uk-flex-column"
       />
 
       <UkButton
@@ -468,7 +467,6 @@
             @required={{true}}
             @label={{t "caluma.form-builder.question.validateOnEnter"}}
             @renderComponent={{component "cfb-toggle-switch" size="small"}}
-            class="uk-flex uk-flex-between uk-flex-column"
           />
         {{/if}}
 
