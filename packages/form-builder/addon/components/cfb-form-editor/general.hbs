@@ -55,11 +55,10 @@
       @name="description"
       @type="textarea"
       @label={{t "caluma.form-builder.form.description"}}
-      @rows="4"
+      {{autoresize mode="height"}}
     />
 
     <f.input
-      class="uk-flex uk-flex-between uk-flex-column"
       @name="isArchived"
       @label={{t "caluma.form-builder.form.isArchived"}}
       @required={{true}}
@@ -67,7 +66,6 @@
     />
 
     <f.input
-      class="uk-flex uk-flex-between uk-flex-column"
       @name="isPublished"
       @label={{t "caluma.form-builder.form.isPublished"}}
       @required={{true}}

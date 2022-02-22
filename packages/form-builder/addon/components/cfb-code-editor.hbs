@@ -2,9 +2,10 @@
 
 <div
   name={{@name}}
-  class={{concat "uk-textarea cfb-code-editor language-" @language}}
+  class="uk-textare cfb-code-editor {{concat 'language-' @language}}"
   {{did-insert this.didInsertNode}}
   {{will-destroy this.willDestroyNode}}
+  {{autoresize mode="height"}}
 ></div>
 
 {{component @hintComponent}}

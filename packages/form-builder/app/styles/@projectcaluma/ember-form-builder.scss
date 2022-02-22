@@ -22,7 +22,7 @@
 .cfb-code-editor {
   font-family: $base-code-font-family;
   letter-spacing: normal;
-  height: 70px;
+  min-height: 70px;
   line-height: 16px;
   tab-size: 4;
 }
