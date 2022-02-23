@@ -1,3 +1,10 @@
+# [@projectcaluma/ember-form-builder-v11.0.0-beta.9](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-builder-v11.0.0-beta.8...@projectcaluma/ember-form-builder-v11.0.0-beta.9) (2022-02-23)
+
+
+### Features
+
+* **form-builder:** autoresize textareas and code editor ([edf0871](https://github.com/projectcaluma/ember-caluma/commit/edf08710ebe0c7d372efa0d37bd0f3589c188dba))
+
 # [@projectcaluma/ember-form-builder-v11.0.0-beta.8](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-builder-v11.0.0-beta.7...@projectcaluma/ember-form-builder-v11.0.0-beta.8) (2022-02-16)
 
 
