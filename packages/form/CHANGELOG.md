@@ -1,3 +1,10 @@
+# [@projectcaluma/ember-form-v11.0.0-beta.12](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.11...@projectcaluma/ember-form-v11.0.0-beta.12) (2022-02-23)
+
+
+### Bug Fixes
+
+* **form:** fix textarea size in tables ([efba737](https://github.com/projectcaluma/ember-caluma/commit/efba737f0a6314225a851ee0c57c2c506403bc06))
+
 # [@projectcaluma/ember-form-v11.0.0-beta.11](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.10...@projectcaluma/ember-form-v11.0.0-beta.11) (2022-02-16)
 
 
