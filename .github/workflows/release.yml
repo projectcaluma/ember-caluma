@@ -128,6 +128,8 @@ jobs:
           fetch-depth: 0
           token: ${{ secrets.GH_TOKEN }}
       - uses: actions/setup-node@v2
+        with:
+          node-version: ${{ env.NODE_VERSION }}
 
       - uses: actions/cache@v2
         with:
