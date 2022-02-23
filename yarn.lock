@@ -1453,7 +1453,7 @@
     "@embroider/shared-internals" "^0.50.2"
     semver "^7.3.5"
 
-"@embroider/addon-shim@^1.0.0":
+"@embroider/addon-shim@^1.0.0", "@embroider/addon-shim@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@embroider/addon-shim/-/addon-shim-1.2.0.tgz#ed936e5dc76a50dc041075bc37e0f910772cb6ee"
   integrity sha512-GnhJWjvOWRU87eZrswO8/CmAWbyeG48B5/3Ana0reUzxpoTJHnkrBHdDcnrOYshF4YPgWmAMEkJVCXyjM1joNA==
@@ -1461,7 +1461,7 @@
     "@embroider/shared-internals" "^1.2.0"
     semver "^7.3.5"
 
-"@embroider/macros@1.2.0", "@embroider/macros@^0.41.0", "@embroider/macros@^0.50.0 || ^1.0.0", "@embroider/macros@^1.0.0", "@embroider/macros@^1.1.0":
+"@embroider/macros@1.2.0", "@embroider/macros@^0.41.0", "@embroider/macros@^0.50.0 || ^1.0.0", "@embroider/macros@^1.0.0", "@embroider/macros@^1.1.0", "@embroider/macros@^1.2.0":
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/@embroider/macros/-/macros-1.2.0.tgz#9a2d99225fba6dcb69e795cddad9f4948c2a2b6b"
   integrity sha512-WD2V3OKXZB73OymI/zC2+MbqIYaAskhjtSOVVY6yG6kWILyVsJ6+fcbNHEnZyGqs4sm0TvHVJfevmA2OXV8Pww==
@@ -8471,13 +8471,14 @@ ember-resolver@8.0.3:
     ember-cli-version-checker "^5.1.2"
     resolve "^1.20.0"
 
-ember-resources@^4.3.1:
-  version "4.3.1"
-  resolved "https://registry.yarnpkg.com/ember-resources/-/ember-resources-4.3.1.tgz#099ba6100d7e3d704fc1bad7e6a85690a02e88c1"
-  integrity sha512-xt7WohaicQwmfFOMEnMkEH28cOBuOV+rLGKrEaUqvk21fnagQg8aDlhX82FlqirsH5nurvoVB7f3ddIUQHxAEw==
+ember-resources@^4.3.3:
+  version "4.3.3"
+  resolved "https://registry.yarnpkg.com/ember-resources/-/ember-resources-4.3.3.tgz#572d1b41023ece27d8d853e2d83b9616ffc39277"
+  integrity sha512-TIJKiV0sQ7shN5J7fAKgvr6/bycp55Oe/AkxIlJ7Qj8L45gSD+FOLs7BDGJA4MVOIVUVDP0sAjBthAdqXd4Djg==
   dependencies:
-    "@embroider/addon-shim" "^1.0.0"
-    "@embroider/macros" "^1.0.0"
+    "@ember/test-waiters" "^3.0.0"
+    "@embroider/addon-shim" "^1.2.0"
+    "@embroider/macros" "^1.2.0"
 
 ember-responsive@^4.0.2:
   version "4.0.2"
@@ -8592,10 +8593,10 @@ ember-template-lint-plugin-prettier@4.0.0:
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
-ember-template-lint@4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/ember-template-lint/-/ember-template-lint-4.1.0.tgz#4aeb0a66ac7b9d1fe771942881ace8c536e028c9"
-  integrity sha512-5KmOfCj0nezy6azsxcaDLDUzGvl3SBWi0skzEzEbQOfmvv3K+CmhuA20aDLZbV+tH/OqTaT7pP/N619i0jUzzg==
+ember-template-lint@4.2.0:
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/ember-template-lint/-/ember-template-lint-4.2.0.tgz#13ce814c414a07c2dfe8185067261ab3b1317317"
+  integrity sha512-zuTo280sMarKwL92748fjMfBYogdN8AikbLPD+/csFbYA99HreG3DzgYj61uEjYaymA7nbyDmVYxfDTH9bHZAg==
   dependencies:
     "@lint-todo/utils" "^12.0.1"
     aria-query "^5.0.0"
@@ -8790,7 +8791,7 @@ end-of-stream@^1.0.0, end-of-stream@^1.1.0:
   dependencies:
     once "^1.4.0"
 
-engine.io-parser@~5.0.0:
+engine.io-parser@~5.0.3:
   version "5.0.3"
   resolved "https://registry.yarnpkg.com/engine.io-parser/-/engine.io-parser-5.0.3.tgz#ca1f0d7b11e290b4bfda251803baea765ed89c09"
   integrity sha512-BtQxwF27XUNnSafQLvDi0dQ8s3i6VgzSoQMJacpIcGNrlUdfHSKbgm3jmjCVvQluGzqwujQMPAoMai3oYSTurg==
@@ -8798,9 +8799,9 @@ engine.io-parser@~5.0.0:
     "@socket.io/base64-arraybuffer" "~1.0.2"
 
 engine.io@~6.1.0:
-  version "6.1.2"
-  resolved "https://registry.yarnpkg.com/engine.io/-/engine.io-6.1.2.tgz#e7b9d546d90c62246ffcba4d88594be980d3855a"
-  integrity sha512-v/7eGHxPvO2AWsksyx2PUsQvBafuvqs0jJJQ0FdmJG1b9qIvgSbqDRGwNhfk2XHaTTbTXiC4quRE8Q9nRjsrQQ==
+  version "6.1.3"
+  resolved "https://registry.yarnpkg.com/engine.io/-/engine.io-6.1.3.tgz#f156293d011d99a3df5691ac29d63737c3302e6f"
+  integrity sha512-rqs60YwkvWTLLnfazqgZqLa/aKo+9cueVfEi/dZ8PyGyaf8TLOxj++4QMIgeG3Gn0AhrWiFXvghsoY9L9h25GA==
   dependencies:
     "@types/cookie" "^0.4.1"
     "@types/cors" "^2.8.12"
@@ -8810,7 +8811,7 @@ engine.io@~6.1.0:
     cookie "~0.4.1"
     cors "~2.8.5"
     debug "~4.3.1"
-    engine.io-parser "~5.0.0"
+    engine.io-parser "~5.0.3"
     ws "~8.2.3"
 
 enhanced-resolve@^4.0.0, enhanced-resolve@^4.5.0:
@@ -10009,9 +10010,9 @@ fs-extra@^0.30.0:
     rimraf "^2.2.8"
 
 fs-extra@^10.0.0:
-  version "10.0.0"
-  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-10.0.0.tgz#9ff61b655dde53fb34a82df84bb214ce802e17c1"
-  integrity sha512-C5owb14u9eJwizKGdchcDUQeFtlSHHthBk8pbX9Vc1PFZrLombudjDnNns88aYslCyF6IY5SUw3Roz6xShcEIQ==
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/fs-extra/-/fs-extra-10.0.1.tgz#27de43b4320e833f6867cc044bfce29fdf0ef3b8"
+  integrity sha512-NbdoVMZso2Lsrn/QwLXOy6rm0ufY2zEOKCDzJR/0kBsb0E6qed0P3iYK+Ath3BfvXEeu4JhEtXLgILx5psUfag==
   dependencies:
     graceful-fs "^4.2.0"
     jsonfile "^6.0.1"
