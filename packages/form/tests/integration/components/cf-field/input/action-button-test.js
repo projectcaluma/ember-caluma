@@ -18,7 +18,9 @@ module(
 
       this.field = {
         document: {
-          workItemUuid: this.server.create("work-item").id,
+          workItemUuid: this.server.create("work-item", {
+            case: this.server.create("case"),
+          }).id,
           fields: [
             new (class {
               @tracked isValid = true;

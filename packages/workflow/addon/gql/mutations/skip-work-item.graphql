@@ -3,6 +3,10 @@ mutation SkipWorkItem($id: ID!) {
     workItem {
       id
       status
+      case {
+        id
+        status
+      }
     }
   }
 }
