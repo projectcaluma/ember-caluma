@@ -3,6 +3,10 @@ mutation CompleteWorkItem($id: ID!) {
     workItem {
       id
       status
+      case {
+        id
+        status
+      }
     }
   }
 }
