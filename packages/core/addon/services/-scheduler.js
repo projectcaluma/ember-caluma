@@ -2,6 +2,7 @@ import { assert } from "@ember/debug";
 import { once } from "@ember/runloop";
 import Service, { inject as service } from "@ember/service";
 import { camelize } from "@ember/string";
+import { tracked } from "@glimmer/tracking";
 import { task } from "ember-concurrency";
 import { pluralize } from "ember-inflector";
 
@@ -14,24 +15,45 @@ import { pluralize } from "ember-inflector";
  */
 function typeResolver(type) {
   return task(function* () {
-    const identifiers = [...this[type].identifiers];
-    const callbacks = [...this[type].callbacks];
+    const identifiers = [...(this[type]?.identifiers ?? [])];
+    const callbacks = [...(this[type]?.callbacks ?? [])];
 
     this[type] = undefined;
 
     if (!identifiers.length) return;
 
+    const cached = this[`${type}Cache`];
+    const uncachedIdentifiers = identifiers.filter(
+      (identifier) =>
+        !cached
+          .map((resolved) =>
+            String(resolved[this.calumaOptions[`${type}IdentifierProperty`]])
+          )
+          .includes(String(identifier))
+    );
+
     const methodName = camelize(`resolve-${pluralize(type)}`);
-    const result = yield this.calumaOptions[methodName]?.(identifiers);
+    const result = uncachedIdentifiers.length
+      ? yield this.calumaOptions[methodName]?.(uncachedIdentifiers)
+      : [];
 
-    yield Promise.all(callbacks.map((callback) => callback(result)));
+    const allResults = [...cached, ...(result?.toArray?.() ?? result ?? [])];
 
-    return result;
+    if (result?.length) {
+      this[`${type}Cache`] = allResults;
+    }
+
+    yield Promise.all(callbacks.map((callback) => callback(allResults)));
+
+    return allResults;
   }).enqueue();
 }
 
 export default class PrivateSchedulerService extends Service {
   @service calumaOptions;
+
+  @tracked groupCache = [];
+  @tracked userCache = [];
 
   @typeResolver("group") resolveGroup;
   @typeResolver("user") resolveUser;

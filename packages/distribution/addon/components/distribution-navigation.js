@@ -20,10 +20,15 @@ export default class DistributionNavigationComponent extends Component {
   @tracked groups = [];
 
   get inquiries() {
-    const findGroupName = (ids) =>
-      this.groups.find((g) =>
-        ids.includes(g[this.calumaOptions.groupIdentifierProperty])
-      )?.[this.calumaOptions.groupNameProperty];
+    const findGroupName = (identifiers) => {
+      const group = this.scheduler.groupCache.find((group) =>
+        identifiers
+          .map(String)
+          .includes(String(group[this.calumaOptions.groupIdentifierProperty]))
+      );
+
+      return group?.[this.calumaOptions.groupNameProperty] ?? "";
+    };
 
     return Object.entries(this._inquiries.value || []).reduce(
       (inquiries, [key, objects]) => {
@@ -74,7 +79,7 @@ export default class DistributionNavigationComponent extends Component {
       ),
     ];
 
-    this.groups = yield this.scheduler.resolve(groupIds, "group");
+    yield this.scheduler.resolve(groupIds, "group");
 
     return response;
   }

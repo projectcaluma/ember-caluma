@@ -7,12 +7,16 @@ import { module, test } from "qunit";
 module("Integration | Helper | group-name", function (hooks) {
   setupRenderingTest(hooks);
 
-  test("it computes the group name with a synchronous resolver", async function (assert) {
-    assert.expect(4);
+  test("it computes the identifier per default", async function (assert) {
+    assert.expect(1);
 
     await render(hbs`{{group-name 1}} - {{group-name 2}}`);
 
     assert.dom(this.element).hasText("1 - 2");
+  });
+
+  test("it computes the group name with a synchronous resolver", async function (assert) {
+    assert.expect(3);
 
     this.owner.lookup("service:caluma-options").resolveGroups = function (
       identifiers
