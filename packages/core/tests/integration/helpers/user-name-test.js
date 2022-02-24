@@ -12,12 +12,16 @@ module("Integration | Helper | user-name", function (hooks) {
     this.uuid2 = "b55dd49e-ab21-48ae-8ecf-c9f82ee710c5";
   });
 
-  test("it computes the users fullName with a synchronous resolver", async function (assert) {
-    assert.expect(4);
+  test("it computes the identifier per default", async function (assert) {
+    assert.expect(1);
 
     await render(hbs`{{user-name this.uuid1}} - {{user-name this.uuid2}}`);
 
     assert.dom(this.element).hasText(`${this.uuid1} - ${this.uuid2}`);
+  });
+
+  test("it computes the users fullName with a synchronous resolver", async function (assert) {
+    assert.expect(3);
 
     this.owner.lookup("service:caluma-options").resolveUsers = function (
       identifiers
