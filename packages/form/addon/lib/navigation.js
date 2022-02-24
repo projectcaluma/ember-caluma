@@ -232,7 +232,9 @@ export class NavigationItem extends Base {
   @cached
   get visibleFields() {
     return this.fieldset.fields.filter(
-      (f) => f.questionType !== "FormQuestion" && !f.hidden
+      (f) =>
+        !["FormQuestion", "StaticQuestion"].includes(f.questionType) &&
+        !f.hidden
     );
   }
 
