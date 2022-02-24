@@ -114,10 +114,14 @@ export default class InquiryNewFormComponent extends Component {
       );
 
       // transition to last added inquiry
-      this.router.transitionTo("inquiry", {
-        from: navigationData[0].node.controllingGroups[0],
-        to: navigationData[0].node.addressedGroups[0],
-      });
+      this.router.transitionTo(
+        "inquiry.detail.index",
+        {
+          from: navigationData[0].node.controllingGroups[0],
+          to: navigationData[0].node.addressedGroups[0],
+        },
+        decodeId(navigationData[0].node.id)
+      );
     } catch (e) {
       this.notification.danger(
         this.intl.t("caluma.distribution.new.error", {
