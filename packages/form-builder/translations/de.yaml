@@ -21,9 +21,8 @@ caluma:
       isArchived: "Archiviert"
       widgetOverride: "Spezialelement"
       isPublished: "Publiziert"
-      archived: "Archivierte"
       draft: "Entwurf"
-      active: "Aktive"
+      active: "Aktiv"
       all: "Alle"
 
       allForms: "Alle Formulare"

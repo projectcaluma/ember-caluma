@@ -9,5 +9,6 @@ export default Factory.extend({
   slug: (i) => `form-${i + 1}`,
   description: () => faker.lorem.paragraph(),
   isArchived: false,
+  isPublished: true,
   meta: () => ({}),
 });
