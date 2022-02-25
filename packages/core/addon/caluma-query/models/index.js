@@ -13,9 +13,10 @@ export function uuidAttr(target, name) {
 export function dateAttr(target, name) {
   return {
     get() {
-      const date = new Date(this.raw[name]);
+      const raw = this.raw[name];
+      const date = raw ? new Date(raw) : null;
 
-      return !isNaN(date) ? date : null;
+      return raw && !isNaN(date) ? date : null;
     },
     set(value) {
       if (!isNaN(value)) {
