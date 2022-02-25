@@ -21,7 +21,6 @@ caluma:
       isArchived: "Archived"
       widgetOverride: "Custom widget"
       isPublished: "Published"
-      archived: "Archived"
       draft: "Draft"
       active: "Active"
       all: "All"

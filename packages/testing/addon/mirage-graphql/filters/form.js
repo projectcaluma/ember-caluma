@@ -5,6 +5,10 @@ export default class extends BaseFilter {
     return records.filter(({ isArchived }) => isArchived === value);
   }
 
+  isPublished(records, value) {
+    return records.filter(({ isPublished }) => isPublished === value);
+  }
+
   search(records, value) {
     const re = new RegExp(`.*${value}.*`, "i");
 

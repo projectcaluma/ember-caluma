@@ -1,8 +1,8 @@
-import { visit, typeIn, click, fillIn } from "@ember/test-helpers";
+import { visit, click, fillIn, currentURL } from "@ember/test-helpers";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
 import { setupApplicationTest } from "ember-qunit";
-import { module, test, skip } from "qunit";
+import { module, test } from "qunit";
 
 module("Acceptance | form list", function (hooks) {
   setupApplicationTest(hooks);
@@ -20,7 +20,7 @@ module("Acceptance | form list", function (hooks) {
   });
 
   test("can search forms", async function (assert) {
-    assert.expect(3);
+    assert.expect(5);
 
     this.server.createList("form", 5);
     this.server.create("form", { name: "Test", slug: "test" });
@@ -29,12 +29,14 @@ module("Acceptance | form list", function (hooks) {
 
     assert.dom("[data-test-form-list-item]").exists({ count: 6 });
 
-    await typeIn("[data-test-form-search-input]", "test");
+    await fillIn("[data-test-form-search-input]", "test");
 
+    assert.strictEqual(currentURL(), "/?search=test");
     assert.dom("[data-test-form-list-item]").exists({ count: 1 });
 
     await fillIn("[data-test-form-search-input]", "");
 
+    assert.strictEqual(currentURL(), "/");
     assert.dom("[data-test-form-list-item]").exists({ count: 6 });
   });
 
@@ -68,7 +70,7 @@ module("Acceptance | form list", function (hooks) {
 
     assert.dom("[data-test-form-list-item]").exists({ count: 20 });
 
-    await typeIn("[data-test-form-search-input]", "form");
+    await fillIn("[data-test-form-search-input]", "form");
 
     assert.dom("[data-test-form-list-item]").exists({ count: 20 });
 
@@ -77,26 +79,5 @@ module("Acceptance | form list", function (hooks) {
     assert.dom("[data-test-form-list-item]").exists({ count: 25 });
 
     assert.dom("[data-test-form-loader-button]").doesNotExist();
-  });
-
-  skip("can search substrings", async function (assert) {
-    assert.expect(3);
-
-    this.server.createList("form", 3);
-    this.server.create("form", { name: "Fo 1", slug: "fo-1" });
-    this.server.create("form", { name: "Fo 2", slug: "fo-2" });
-    this.server.create("form", { name: "Test", slug: "test" });
-
-    await visit("/");
-
-    assert.dom("[data-test-form-list-item]").exists({ count: 6 });
-
-    await typeIn("[data-test-form-search-input]", "fo");
-
-    assert.dom("[data-test-form-list-item]").exists({ count: 5 });
-
-    await typeIn("[data-test-form-search-input]", "rm");
-
-    assert.dom("[data-test-form-list-item]").exists({ count: 3 });
   });
 });

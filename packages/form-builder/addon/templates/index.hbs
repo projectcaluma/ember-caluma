@@ -1,1 +1,8 @@
-<CfbFormList @onNewForm={{this.newForm}} @onEditForm={{this.editForm}} />
+<CfbFormList
+  @search={{this.search}}
+  @category={{this.category}}
+  @onNewForm={{this.newForm}}
+  @onEditForm={{this.editForm}}
+  @onUpdateSearch={{fn (mut this.search)}}
+  @onUpdateCategory={{fn (mut this.category)}}
+/>

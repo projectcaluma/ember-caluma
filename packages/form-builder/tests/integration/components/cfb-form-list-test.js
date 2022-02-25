@@ -10,12 +10,21 @@ module("Integration | Component | cfb-form-list", function (hooks) {
   setupMirage(hooks);
   setupIntl(hooks);
 
+  hooks.before(function () {
+    this.noop = () => {};
+  });
+
   test("it renders blockless", async function (assert) {
     assert.expect(2);
 
     this.server.createList("form", 5);
 
-    await render(hbs`<CfbFormList/>`);
+    await render(hbs`
+      <CfbFormList
+        @onUpdateSearch={{this.noop}}
+        @onUpdateCategory={{this.noop}}
+      />
+    `);
 
     assert.dom("[data-test-form-list]").exists();
     assert.dom("[data-test-form-list-item]").exists({ count: 5 });
@@ -24,7 +33,12 @@ module("Integration | Component | cfb-form-list", function (hooks) {
   test("it displays an empty state", async function (assert) {
     assert.expect(1);
 
-    await render(hbs`<CfbFormList/>`);
+    await render(hbs`
+      <CfbFormList
+        @onUpdateSearch={{this.noop}}
+        @onUpdateCategory={{this.noop}}
+      />
+    `);
 
     assert.dom("[data-test-form-list-empty]").exists();
   });
@@ -36,7 +50,13 @@ module("Integration | Component | cfb-form-list", function (hooks) {
 
     this.set("onEditForm", () => assert.step("edit-form"));
 
-    await render(hbs`<CfbFormList @onEditForm={{this.onEditForm}}/>`);
+    await render(hbs`
+      <CfbFormList
+        @onUpdateSearch={{this.noop}}
+        @onUpdateCategory={{this.noop}}
+        @onEditForm={{this.onEditForm}}
+      />
+    `);
 
     await click(`[data-test-form-list-item=form-1] [data-test-edit-form]`);
 
@@ -50,7 +70,13 @@ module("Integration | Component | cfb-form-list", function (hooks) {
 
     this.set("onNewForm", () => assert.step("new-form"));
 
-    await render(hbs`<CfbFormList @onNewForm={{this.onNewForm}}/>`);
+    await render(hbs`
+      <CfbFormList
+        @onUpdateSearch={{this.noop}}
+        @onUpdateCategory={{this.noop}}
+        @onNewForm={{this.onNewForm}}
+      />
+    `);
 
     await click("[data-test-new-form]");
 
@@ -60,6 +86,8 @@ module("Integration | Component | cfb-form-list", function (hooks) {
   test("it displays archived forms", async function (assert) {
     assert.expect(3);
 
+    this.category = "active";
+
     this.server.create("form", {
       id: 1,
       slug: "form-1",
@@ -67,7 +95,13 @@ module("Integration | Component | cfb-form-list", function (hooks) {
       isArchived: true,
     });
 
-    await render(hbs`<CfbFormList/>`);
+    await render(hbs`
+      <CfbFormList
+        @category={{this.category}}
+        @onUpdateSearch={{this.noop}}
+        @onUpdateCategory={{fn (mut this.category)}}
+      />
+    `);
 
     assert.dom("[data-test-form-list-empty]").exists();
 

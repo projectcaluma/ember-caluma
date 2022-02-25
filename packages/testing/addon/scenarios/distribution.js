@@ -2,8 +2,16 @@ import { faker } from "@faker-js/faker";
 import { DateTime } from "luxon";
 
 export function createBlueprint(server) {
-  const inquiryForm = server.create("form", { slug: "inquiry" });
-  const inquiryAnswerForm = server.create("form", { slug: "inquiry-answer" });
+  const inquiryForm = server.create("form", {
+    name: "Inquiry",
+    slug: "inquiry",
+    isPublished: false,
+  });
+  const inquiryAnswerForm = server.create("form", {
+    name: "Inquiry answer",
+    slug: "inquiry-answer",
+    isPublished: false,
+  });
 
   server.create("question", {
     slug: "inquiry-remark",
