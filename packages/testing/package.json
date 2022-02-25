@@ -27,7 +27,7 @@
     "graphql": "^15.8.0",
     "graphql-iso-date": "^3.6.1",
     "graphql-tools": "^4.0.8",
-    "luxon": "^2.3.0",
+    "luxon": "^2.3.1",
     "miragejs": "^0.1.43"
   },
   "devDependencies": {
