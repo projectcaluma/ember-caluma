@@ -14,7 +14,10 @@
 
     <div class="uk-flex">
       <div class="uk-width-expand">
-        {{#let (component (get-widget @field.question)) as |FieldComponent|}}
+        {{#let
+          (component (ensure-safe-component (get-widget @field.question)))
+          as |FieldComponent|
+        }}
           <FieldComponent
             @field={{@field}}
             @disabled={{@disabled}}

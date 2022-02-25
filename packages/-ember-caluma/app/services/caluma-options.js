@@ -1,7 +1,8 @@
 import { inject as service } from "@ember/service";
 
 import CalumaOptionsService from "@projectcaluma/ember-core/services/caluma-options";
-import ENV from "ember-caluma/config/environment";
+import DummyOneComponent from "ember-caluma/components/dummy-one";
+import DummyTwoComponent from "ember-caluma/components/dummy-two";
 
 export default class CustomCalumaOptionsService extends CalumaOptionsService {
   @service intl;
@@ -10,17 +11,17 @@ export default class CustomCalumaOptionsService extends CalumaOptionsService {
   constructor(...args) {
     super(...args);
 
-    if (ENV.environment !== "production") {
-      this.registerComponentOverride({
-        label: "Dummy One",
-        component: "dummy-one",
-        types: ["TextQuestion", "TextareaQuestion"],
-      });
-      this.registerComponentOverride({
-        label: "Dummy Two",
-        component: "dummy-two",
-      });
-    }
+    this.registerComponentOverride({
+      label: "Dummy One",
+      component: "dummy-one",
+      componentClass: DummyOneComponent,
+      types: ["TextQuestion", "TextareaQuestion"],
+    });
+    this.registerComponentOverride({
+      label: "Dummy Two",
+      component: "dummy-two",
+      componentClass: DummyTwoComponent,
+    });
 
     this.currentGroupId = 1;
   }
