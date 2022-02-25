@@ -43,6 +43,7 @@ caluma:
       lessThanOrEqualTo: "Die Eingabe in diesem Feld darf nicht grösser als {lte} sein"
       notAnInteger: "Bitte geben Sie eine ganze Zahl ein"
       inclusion: "'{value}' ist kein gültiger Wert für dieses Feld"
+      deleteFailed: "Beim Löschen ist ein Fehler aufgetreten."
       uploadFailed: "Beim Hochladen ist ein Fehler aufgetreten."
       format: "{errorMsg}"
       table: "Mindestens eine Zeile der Tabelle wurde nicht korrekt ausgefüllt"
