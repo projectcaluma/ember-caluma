@@ -44,6 +44,7 @@ caluma:
       lessThanOrEqualTo: "The value of this field must be less than or equal to {lte}"
       notAnInteger: "The value of this field must be an integer"
       inclusion: "'{value}' is not a valid value for this field"
+      deleteFailed: "An error occured during deletion."
       uploadFailed: "An error occured during upload."
       format: "{errorMsg}"
       table: "At least one row of the table was not filled in correctly"

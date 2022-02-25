@@ -44,6 +44,7 @@ caluma:
       lessThanOrEqualTo: "L'entrée dans ce champ ne doit pas être supérieure à {lte} "
       notAnInteger: "Veuillez entrer un nombre entier"
       inclusion: "'{value}' n'est pas une valeur valide pour ce champ"
+      deleteFailed: "Une erreur est survenue lors de la suppression."
       uploadFailed: "Une erreur s'est produite pendant le téléchargement."
       format: "{errorMsg}"
       table: "Au moins une ligne du tableau n'a pas été remplie correctement"
