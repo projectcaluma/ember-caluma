@@ -1,8 +1,8 @@
-import { getOwner } from "@ember/application";
 import { A } from "@ember/array";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import { camelize } from "@ember/string";
+import { macroCondition, isTesting } from "@embroider/macros";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
@@ -426,11 +426,10 @@ export default class CfbFormEditorQuestion extends Component {
 
   @restartableTask
   *validateSlug(slug, changeset) {
-    const { environment } =
-      getOwner(this).resolveRegistration("config:environment");
-
     /* istanbul ignore next */
-    if (environment !== "test") {
+    if (macroCondition(isTesting())) {
+      // no timeout
+    } else {
       yield timeout(500);
     }
 

@@ -1,4 +1,4 @@
-import { getOwner } from "@ember/application";
+import { macroCondition, isTesting } from "@embroider/macros";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { timeout, restartableTask } from "ember-concurrency";
@@ -31,10 +31,10 @@ export default class ComponentsCfbFormListComponent extends Component {
 
   @restartableTask
   *setFilter(name, eventOrValue) {
-    const { environment } =
-      getOwner(this).resolveRegistration("config:environment");
-
-    if (environment !== "test") {
+    /* istanbul ignore next */
+    if (macroCondition(isTesting())) {
+      // no timeout
+    } else {
       yield timeout(500);
     }
 

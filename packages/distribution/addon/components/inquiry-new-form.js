@@ -1,6 +1,6 @@
-import { getOwner } from "@ember/application";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
+import { macroCondition, isTesting } from "@embroider/macros";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
@@ -63,10 +63,10 @@ export default class InquiryNewFormComponent extends Component {
   *updateSearch(e) {
     e.preventDefault();
 
-    const { environment } =
-      getOwner(this).resolveRegistration("config:environment");
-
-    if (environment !== "test") {
+    /* istanbul ignore next */
+    if (macroCondition(isTesting())) {
+      // no timeout
+    } else {
       yield timeout(500);
     }
 
