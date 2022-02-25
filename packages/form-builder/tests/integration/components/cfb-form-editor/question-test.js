@@ -413,7 +413,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
 
     assert
       .dom(".ember-power-select-trigger")
-      .hasText("t:caluma.form-builder.question.choose:()");
+      .hasText("t:caluma.form-builder.question.no-selection:()");
     await click(".ember-power-select-trigger");
     const options = [
       ...document.querySelectorAll(".ember-power-select-option"),
@@ -486,7 +486,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
 
     assert
       .dom(".ember-power-select-trigger")
-      .hasText("t:caluma.form-builder.question.choose:()");
+      .hasText("t:caluma.form-builder.question.no-selection:()");
     await click(".ember-power-select-trigger");
     const options = [
       ...document.querySelectorAll(".ember-power-select-option"),

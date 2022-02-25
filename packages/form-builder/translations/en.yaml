@@ -72,7 +72,7 @@ caluma:
       max-length: "Maximum length"
       rowForm: "Form to use for rows"
       subForm: "Form to use for entries"
-      choose: "-- please choose --"
+      no-selection: "No selection"
       search-placeholder: "Type here to search forms"
       search-empty: "Search didn't match any forms"
       columnsToDisplay: "Columns to be shown in the form"

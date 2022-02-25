@@ -210,7 +210,7 @@
         <f.input
           @name="formatValidators"
           @label={{t "caluma.form-builder.question.formatValidators"}}
-          @placeholder={{t "caluma.form-builder.question.choose"}}
+          @placeholder={{t "caluma.form-builder.question.no-selection"}}
           @required={{false}}
           @renderComponent={{component "cfb-form-editor/question/validation"}}
           @on-update={{changeset-set f.model "formatValidators"}}
@@ -299,7 +299,7 @@
           @options={{or this.availableDataSources.lastSuccessful.value array}}
           @optionTargetPath="name"
           @optionLabelPath="info"
-          @includeBlank={{t "caluma.form-builder.question.choose"}}
+          @prompt={{t "caluma.form-builder.question.no-selection"}}
         />
       {{/if}}
 
@@ -331,7 +331,7 @@
             <PowerSelect
               @options={{or this.availableForms.lastSuccessful.value array}}
               @selected={{fi.value}}
-              @placeholder={{t "caluma.form-builder.question.choose"}}
+              @placeholder={{t "caluma.form-builder.question.no-selection"}}
               @onBlur={{fi.setDirty}}
               @onChange={{fi.update}}
               @searchField="slug"
@@ -406,7 +406,7 @@
           <PowerSelect
             @options={{or this.availableForms.lastSuccessful.value array}}
             @selected={{fi.value}}
-            @placeholder={{t "caluma.form-builder.question.choose"}}
+            @placeholder={{t "caluma.form-builder.question.no-selection"}}
             @onBlur={{fi.setDirty}}
             @onChange={{fi.update}}
             @searchField="slug"
@@ -438,6 +438,7 @@
         @optionTargetPath="component"
         @optionLabelPath="label"
         @options={{this.availableOverrides}}
+        @prompt={{t "caluma.form-builder.question.no-selection"}}
       />
 
       <f.input

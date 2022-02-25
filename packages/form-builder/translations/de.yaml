@@ -72,7 +72,7 @@ caluma:
       max-length: "Maximale Länge"
       rowForm: "Formular für Tabelleneinträge"
       subForm: "Formular für Einträge"
-      choose: "-- bitte wählen --"
+      no-selection: "Keine Auswahl"
       search-placeholder: "Hier tippen um zu suchen"
       search-empty: "Keine Formulare gefunden"
       columnsToDisplay: "Spalten zur Anzeige im Formular"

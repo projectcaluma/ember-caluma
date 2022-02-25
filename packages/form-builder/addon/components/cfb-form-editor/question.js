@@ -183,16 +183,10 @@ export default class CfbFormEditorQuestion extends Component {
 
   get availableOverrides() {
     const type = this.changeset.get("__typename");
-    const overrides = this.calumaOptions
-      .getComponentOverrides()
-      .filter((override) => {
-        return !override.types || override.types.includes(type);
-      });
 
-    return [
-      { label: this.intl.t("caluma.form.power-select.null"), component: "" },
-      ...overrides,
-    ];
+    return this.calumaOptions.getComponentOverrides().filter((override) => {
+      return !override.types || override.types.includes(type);
+    });
   }
 
   get model() {
