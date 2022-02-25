@@ -1,7 +1,7 @@
-import { getOwner } from "@ember/application";
 import { action } from "@ember/object";
 import { run } from "@ember/runloop";
 import { inject as service } from "@ember/service";
+import { macroCondition, isTesting } from "@embroider/macros";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
@@ -56,11 +56,13 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
     const mode = this.mode;
     const search = mode !== "reorder" ? this.search : "";
 
-    const { environment } =
-      getOwner(this).resolveRegistration("config:environment");
-
-    if (search && environment !== "test") {
-      yield timeout(500);
+    /* istanbul ignore next */
+    if (macroCondition(isTesting())) {
+      // no timeout
+    } else {
+      if (search) {
+        yield timeout(500);
+      }
     }
 
     if (mode === "add" && this.hasNextPage) {

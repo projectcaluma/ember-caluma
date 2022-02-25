@@ -1,5 +1,5 @@
-import { getOwner } from "@ember/application";
 import { action } from "@ember/object";
+import { macroCondition, isTesting } from "@embroider/macros";
 import Component from "@glimmer/component";
 import { timeout, restartableTask } from "ember-concurrency";
 
@@ -60,11 +60,10 @@ export default class CfFieldComponent extends Component {
    */
   @restartableTask
   *save(value) {
-    const { environment } =
-      getOwner(this).resolveRegistration("config:environment");
-
     /* istanbul ignore next */
-    if (environment !== "test") {
+    if (macroCondition(isTesting())) {
+      // no timeout
+    } else {
       yield timeout(500);
     }
 
