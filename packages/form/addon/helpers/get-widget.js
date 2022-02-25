@@ -1,6 +1,15 @@
 import Helper from "@ember/component/helper";
 import { warn } from "@ember/debug";
 import { inject as service } from "@ember/service";
+import { ensureSafeComponent } from "@embroider/util";
+
+import InputComponent from "@projectcaluma/ember-form/components/cf-field/input";
+import FormComponent from "@projectcaluma/ember-form/components/cf-form";
+
+const DEFAULT_WIDGETS = {
+  "cf-field/input": InputComponent,
+  "cf-form": FormComponent,
+};
 
 /**
  * Helper for getting the right widget.
@@ -42,9 +51,14 @@ export default class GetWidgetHelper extends Helper {
         { id: "ember-caluma.unregistered-override" }
       );
 
-      if (override) return widget;
+      if (override) {
+        return ensureSafeComponent(
+          override.componentClass ?? override.component,
+          this
+        );
+      }
     }
 
-    return defaultWidget;
+    return ensureSafeComponent(DEFAULT_WIDGETS[defaultWidget], this);
   }
 }

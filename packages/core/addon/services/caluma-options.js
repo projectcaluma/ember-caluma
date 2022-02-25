@@ -18,33 +18,6 @@ export default class CalumaOptionsService extends Service {
 
   @tracked currentGroupId;
 
-  constructor(...args) {
-    super(...args);
-
-    this.registerComponentOverride({
-      label: this.intl.t(
-        "caluma.form-builder.question.widgetOverrides.powerselect"
-      ),
-      component: "cf-field/input/powerselect",
-      types: [
-        "ChoiceQuestion",
-        "MultipleChoiceQuestion",
-        "DynamicChoiceQuestion",
-        "DynamicMultipleChoiceQuestion",
-      ],
-    });
-
-    this.registerComponentOverride({
-      label: this.intl.t("caluma.form-builder.question.widgetOverrides.hidden"),
-      component: "cf-field/input/hidden",
-    });
-
-    this.registerComponentOverride({
-      component: "cfb-form-editor/question/default/table",
-      types: [],
-    });
-  }
-
   _namespace = null;
   _overrides = {};
 
