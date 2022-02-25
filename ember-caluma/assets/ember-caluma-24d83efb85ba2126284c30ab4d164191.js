@@ -96,7 +96,7 @@ var n=r.Factory.extend({id:()=>t.faker.datatype.uuid()})
 e.default=n})),define("ember-caluma/mirage/factories/file",["exports","@faker-js/faker","miragejs"],(function(e,t,r){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var n=r.Factory.extend({id:()=>t.faker.datatype.uuid(),createdAt:()=>t.faker.date.past(),modifiedAt:()=>t.faker.date.past(),createdByUser:()=>t.faker.datatype.uuid(),uploadUrl:()=>t.faker.internet.url(),downloadUrl:()=>t.faker.internet.url(),afterCreate(e){e.metadata||e.update({metadata:{}}),e.metadata.object_name||e.update({metadata:{object_name:t.faker.helpers.slugify()}})}})
 e.default=n})),define("ember-caluma/mirage/factories/form",["exports","@faker-js/faker","miragejs"],(function(e,t,r){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
-var n=r.Factory.extend({id(){return this.slug},name:e=>`Form #${e+1}`,slug:e=>`form-${e+1}`,description:()=>t.faker.lorem.paragraph(),isArchived:!1,meta:()=>({})})
+var n=r.Factory.extend({id(){return this.slug},name:e=>`Form #${e+1}`,slug:e=>`form-${e+1}`,description:()=>t.faker.lorem.paragraph(),isArchived:!1,isPublished:!0,meta:()=>({})})
 e.default=n})),define("ember-caluma/mirage/factories/format-validator",["exports","@faker-js/faker","miragejs"],(function(e,t,r){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var n=r.Factory.extend({id(){return this.slug},name:e=>`Validator #${e+1}`,slug:e=>`validator-${e+1}`,errorMsg:()=>t.faker.lorem.paragraph(),regex:"/asdf/"})
 e.default=n})),define("ember-caluma/mirage/factories/group-type",["exports","@faker-js/faker","miragejs"],(function(e,t,r){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
