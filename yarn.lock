@@ -8472,10 +8472,10 @@ ember-resolver@8.0.3:
     ember-cli-version-checker "^5.1.2"
     resolve "^1.20.0"
 
-ember-resources@^4.3.3:
-  version "4.3.3"
-  resolved "https://registry.yarnpkg.com/ember-resources/-/ember-resources-4.3.3.tgz#572d1b41023ece27d8d853e2d83b9616ffc39277"
-  integrity sha512-TIJKiV0sQ7shN5J7fAKgvr6/bycp55Oe/AkxIlJ7Qj8L45gSD+FOLs7BDGJA4MVOIVUVDP0sAjBthAdqXd4Djg==
+ember-resources@^4.4.0:
+  version "4.4.0"
+  resolved "https://registry.yarnpkg.com/ember-resources/-/ember-resources-4.4.0.tgz#a3b85a0269c3523ba32a2a5ab15472c8e90a6a41"
+  integrity sha512-bMk3qdD7sgG33VY3Znri6z2p/XneITuT02zgFROS9flvUE124rnW/m9ND/fySt5EOE8URhS3IZ6MImIgI1dyCg==
   dependencies:
     "@ember/test-waiters" "^3.0.0"
     "@embroider/addon-shim" "^1.2.0"
