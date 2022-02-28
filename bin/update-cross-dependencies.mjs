@@ -57,6 +57,7 @@ async function getUpdates(dependencies, dev = false) {
 const updates = {
   ...(await getUpdates(pkg.default.devDependencies, true)),
   ...(await getUpdates(pkg.default.dependencies)),
+  ...(await getUpdates(pkg.default.peerDependencies)),
 };
 
 if (!Object.keys(updates).length) {
