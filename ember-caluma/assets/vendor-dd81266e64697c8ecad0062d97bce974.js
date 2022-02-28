@@ -7088,8 +7088,8 @@ Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 class i extends t.default{}var n,r,a
 e.default=i,a="{\n    name\n    slug\n    description\n    isArchived\n    isPublished\n  }",(r="fragment")in(n=i)?Object.defineProperty(n,r,{value:a,enumerable:!0,configurable:!0,writable:!0}):n[r]=a})),define("@projectcaluma/ember-core/caluma-query/models/index",["exports","lodash.clonedeep","@projectcaluma/ember-core/helpers/decode-id"],(function(e,t,i){"use strict"
 var n,r
-function a(e,t){return{get(){return(0,i.decodeId)(this.raw[t])}}}Object.defineProperty(e,"__esModule",{value:!0}),e.dateAttr=function(e,t){return{get(){const e=new Date(this.raw[t])
-return isNaN(e)?null:e},set(e){isNaN(e)||(this.raw[t]=e.toISOString())}}},e.default=void 0,e.uuidAttr=a
+function a(e,t){return{get(){return(0,i.decodeId)(this.raw[t])}}}Object.defineProperty(e,"__esModule",{value:!0}),e.dateAttr=function(e,t){return{get(){const e=this.raw[t],i=e?new Date(e):null
+return e&&!isNaN(i)?i:null},set(e){isNaN(e)||(this.raw[t]=e.toISOString())}}},e.default=void 0,e.uuidAttr=a
 let o=(n=class{constructor(e){var i,n,a,o
 i=this,n="id",o=this,(a=r)&&Object.defineProperty(i,n,{enumerable:a.enumerable,configurable:a.configurable,writable:a.writable,value:a.initializer?a.initializer.call(o):void 0}),this.raw=(0,t.default)(e)
 for(const[t,r]of Object.entries(e))t in this||(this[t]=r)}},l=n.prototype,s="id",d=[a],u={configurable:!0,enumerable:!0,writable:!0,initializer:null},m={},Object.keys(u).forEach((function(e){m[e]=u[e]})),m.enumerable=!!m.enumerable,m.configurable=!!m.configurable,("value"in m||m.initializer)&&(m.writable=!0),m=d.slice().reverse().reduce((function(e,t){return t(l,s,e)||e}),m),c&&void 0!==m.initializer&&(m.value=m.initializer?m.initializer.call(c):void 0,m.initializer=void 0),void 0===m.initializer&&(Object.defineProperty(l,s,m),m=null),r=m,n)
