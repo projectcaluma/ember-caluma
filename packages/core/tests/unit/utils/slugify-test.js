@@ -27,5 +27,6 @@ module("Unit | Utility | slugify", function (/*hooks*/) {
 
   test("it converts umlauts correctly", function (assert) {
     assert.strictEqual(slugify("äöü", { locale: "de" }), "aeoeue");
+    assert.strictEqual(slugify("äöü", { locale: "de-ch" }), "aeoeue");
   });
 });
