@@ -5,7 +5,7 @@ import { t } from "ember-intl";
 import getAllAnalyticsTableQuery from "@projectcaluma/ember-analytics/gql/queries/get-all-analytics-tables.graphql";
 import { navigationTitle } from "@projectcaluma/ember-form-builder/decorators";
 
-export default class DemoAnalyticsRoute extends Route {
+export default class ReportsIndexRoute extends Route {
   @queryManager apollo;
 
   @navigationTitle

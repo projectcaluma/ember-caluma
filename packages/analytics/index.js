@@ -1,8 +1,12 @@
 "use strict";
+const { buildEngine } = require("ember-engines/lib/engine-addon");
 
-module.exports = {
+module.exports = buildEngine({
   name: require("./package").name,
-  included(...args) {
-    this._super.included.apply(this, args);
+  lazyLoading: {
+    enabled: false,
   },
-};
+  include: function () {
+    this._super.included.apply(this, arguments);
+  },
+});

@@ -1,11 +1,18 @@
-{{#if (or (not @slug) (eq @slug "new"))}}
-  <div data-test-analytics-table-new>
-    <ValidatedForm @on-submit={{perform this.createTable}} as |f|>
+<div
+  data-test-analytics-table-existing
+  ...attributes
+  {{did-insert (perform this.fetchData)}}
+>
+  {{#if this.fetchData.isRunnig}}
+    <div class="uk-text-center"><UkSpinner @ratio={{1}} /></div>
+  {{else if this.analyticsTable}}
+    <ValidatedForm as |f|>
       <f.input
         @name="slug"
         @label={{t "caluma.analytics.report_title"}}
-        @required={{true}}
         @on-update={{this.setTableSlug}}
+        @disabled={{true}}
+        @value={{this.tableSlug}}
       />
       <f.input
         @type="select"
@@ -15,128 +22,80 @@
         @optionTargetPath="value"
         @optionValuePath="label"
         @value={{this.startingObject}}
-        @on-update={{this.setStartingObject}}
-      />
-      <f.submit
-        class="uk-margin-small"
-        @lable={{t "caluma.analytics.list.new"}}
+        @disabled={{true}}
       />
     </ValidatedForm>
-  </div>
-{{else}}
-  <div
-    data-test-analytics-table-existing
-    ...attributes
-    {{did-insert (perform this.fetchData)}}
-  >
-    {{#if this.fetchData.isRunnig}}
-      <div class="uk-text-center"><UkSpinner @ratio={{1}} /></div>
-    {{else if this.analyticsTable}}
-      <ValidatedForm as |f|>
-        <f.input
-          @name="slug"
-          @label={{t "caluma.analytics.report_title"}}
-          @on-update={{this.setTableSlug}}
-          @disabled={{true}}
-          @value={{this.tableSlug}}
-        />
-        <f.input
-          @type="select"
-          @name="startingObject"
-          @label={{t "caluma.analytics.starting_object"}}
-          @options={{@starting-objects}}
-          @optionTargetPath="value"
-          @optionValuePath="label"
-          @value={{this.startingObject}}
-          @disabled={{true}}
-        />
-      </ValidatedForm>
-      <div class="uk-align-right">
-        <button
-          data-test-delete-field
-          type="button"
-          class="uk-icon-button"
-          uk-icon="trash"
-          title={{t "caluma.analytics.delete"}}
-          {{on "click" (perform this.deleteTable)}}
-        ></button>
-      </div>
-      <br />
-      <hr />
+    <div class="uk-align-right">
+      <button
+        data-test-delete-field
+        type="button"
+        class="uk-icon-button"
+        uk-icon="trash"
+        title={{t "caluma.analytics.delete"}}
+        {{on "click" (perform this.deleteTable)}}
+      ></button>
+    </div>
+    <br />
+    <hr />
 
-      <h3>{{t "caluma.analytics.sections.field_selection"}}</h3>
-      <ValidatedForm
-        @model={{this.field}}
-        @on-submit={{this.submitField}}
-        as |f|
-      >
-        <f.input @name="dataSource" @label={{t "caluma.analytics.field"}}>
-          <div class="uk-grid-small uk-child-width-1-5" uk-grid>
-            <CaFieldSelect
-              @onSelect={{this.setFieldPath}}
-              @selectedPath={{this.field.dataSource}}
-              @slug={{@slug}}
-            />
-          </div>
-        </f.input>
-        <div class="uk-flex uk-margin-small-top">
-          <div class="uk-margin-right">
+    <ValidatedForm @model={{this.field}} @on-submit={{this.submitField}} as |f|>
+      <div class="uk-flex uk-flex-between uk-flex-middle">
+        <h3>{{t "caluma.analytics.sections.field_selection"}}</h3>
+        <div class="uk-flex uk-flex-middle">
+          <div class="uk-margin-right uk-flex uk-flex-middle">
             <f.input
-              @name="alias"
-              @type="text"
-              @label={{t "caluma.analytics.alias"}}
-              @placeholder={{t "caluma.analytics.alias"}}
-            />
-          </div>
-          <div class="uk-margin-right">
-            <f.input
-              @name="alias_translation"
-              @type="text"
-              @label={{t "caluma.analytics.alias_translation"}}
-              @placeholder={{t "caluma.analytics.alias_translation"}}
-            />
-          </div>
-        </div>
-        <div class="uk-flex">
-          <div class="uk-margin-right">
-            <f.input
-              @class="uk-width-auto uk-text-middle"
               @name="show"
               @label={{t "caluma.analytics.show_output"}}
               @required={{true}}
               @renderComponent={{component "ca-toggle-switch" size="small"}}
             />
           </div>
-          <CaFieldSelectorFilter @onUpdate={{@onUpdate}} />
-        </div>
-        <div>
-          <f.input
-            @name="field_path"
-            @label={{t "caluma.analytics.field_path"}}
-            @value={{this.field.dataSource}}
-            @disabled={{true}}
+          <UkButton
+            @color="secondary"
+            @label={{t "caluma.analytics.add_filter"}}
           />
         </div>
-        <f.submit @disabled={{f.loading}}>
-          <div class="uk-flex uk-flex-middle">
-            <UkIcon @icon="plus" />
-            {{t "caluma.analytics.add_field"}}
-          </div>
-        </f.submit>
-      </ValidatedForm>
 
-      <hr class="uk-divider-icon" />
+        {{!--<CaFieldSelectorFilter @onUpdate={{@onUpdate}} />--}}
+      </div>
 
-      <CaFieldSelectorList
-        @slug={{@slug}}
-        @fields={{this.analyticsFields}}
-        @onUpdate={{this.updateAnalyticsField}}
-        @onDelete={{perform this.removeAnalyticsField}}
-      />
-
-      <hr class="uk-divider-icon" />
-
-      <CaReportPreview @slug={{@slug}} />
-    {{/if}}
-  </div>
-{{/if}}
+      <f.input @name="dataSource" @label={{t "caluma.analytics.field"}}>
+        <div class="uk-grid-small uk-child-width-1-5" uk-grid>
+          <CaFieldSelect
+            @onSelect={{this.setFieldPath}}
+            @selectedPath={{this.field.dataSource}}
+            @slug={{@slug}}
+          />
+        </div>
+      </f.input>
+      <div class="uk-flex">
+        <div class="uk-width-1 uk-margin-right">
+          <f.input
+            @name="alias"
+            @type="text"
+            @label={{t "caluma.analytics.alias"}}
+            @value={{this.field.alias}}
+            @placeholder={{t "caluma.analytics.alias"}}
+          />
+        </div>
+        <div class="uk-width-medium">
+          <f.input
+            @name="aggregation"
+            @type="select"
+            @label={{t "caluma.analytics.aggregation"}}
+            @value={{this.field.aggregation}}
+            @placeholder={{t "caluma.analytics.aggregation"}}
+            @options={{array "Sum" "Count"}}
+            class="uk-width-small"
+          />
+        </div>
+      </div>
+      <f.submit @disabled={{f.loading}}>
+        <div class="uk-flex uk-flex-middle">
+          <UkIcon @icon="plus" />
+          {{t "caluma.analytics.add_field"}}
+        </div>
+      </f.submit>
+    </ValidatedForm>
+  {{/if}}
+</div>

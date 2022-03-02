@@ -1,0 +1,25 @@
+<h2>{{t "caluma.analytics.sections.build_report"}}</h2>
+<div data-test-analytics-table-new>
+  <ValidatedForm @on-submit={{perform this.createTable}} as |f|>
+    <f.input
+      @name="slug"
+      @label={{t "caluma.analytics.report_title"}}
+      @required={{true}}
+      @on-update={{this.setTableSlug}}
+    />
+    <f.input
+      @type="select"
+      @name="startingObject"
+      @label={{t "caluma.analytics.starting_object"}}
+      @options={{@starting-objects}}
+      @optionTargetPath="value"
+      @optionValuePath="label"
+      @value={{this.startingObject}}
+      @on-update={{this.setStartingObject}}
+    />
+    <f.submit
+      class="uk-margin-small"
+      @lable={{t "caluma.analytics.list.new"}}
+    />
+  </ValidatedForm>
+</div>

@@ -6,7 +6,7 @@ import { queryManager } from "ember-apollo-client";
 import saveAnalyticsTableMutation from "@projectcaluma/ember-analytics/gql/mutations/save-analytics-table.graphql";
 import slugify from "@projectcaluma/ember-core/utils/slugify";
 
-export default class DemoAnalyticsBuilderController extends Controller {
+export default class ReportsEditController extends Controller {
   @queryManager apollo;
   @service notification;
   @service router;
@@ -36,7 +36,7 @@ export default class DemoAnalyticsBuilderController extends Controller {
         },
         "saveAnalyticsTable.analyticsTable"
       );
-      this.router.transitionTo("demo.analytics.builder", slug);
+      this.router.transitionTo("reports.edit", slug);
     }
   }
 }

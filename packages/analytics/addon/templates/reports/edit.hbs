@@ -1,0 +1,19 @@
+<h2>{{t "caluma.analytics.sections.edit_report"}}</h2>
+<CaReportBuilder
+  @on-add={{this.createTable}}
+  @starting-objects={{this.availableStartingObjects}}
+  @slug={{@model}}
+/>
+<hr class="uk-divider-icon" />
+<div class="uk-flex uk-flex-between uk-flex-middle uk-margin-bottom">
+  <ul
+    uk-tab
+    class="uk-width-expand uk-margin-remove-bottom uk-margin-medium-right"
+  >
+    <li class="uk-active"><LinkTo @route="reports.edit.index">Created Questions</LinkTo></li>
+    <li><LinkTo @route="reports.edit.preview">Table Preview</LinkTo></li>
+  </ul>
+  <UkButton @color="primary" @size="small">Download datareport</UkButton>
+</div>
+
+{{outlet}}

@@ -102,7 +102,7 @@ export default class CaReportBuilderComponent extends Component {
         this.notification.danger(
           this.intl.t(`caluma.analytics.notification.table_not_found`)
         );
-        this.router.transitionTo(this.args["analytics-route"]);
+        this.router.transitionTo("reports");
       }
     }
   }
@@ -222,7 +222,7 @@ export default class CaReportBuilderComponent extends Component {
         },
       },
     });
-    this.router.transitionTo(this.args["analytics-route"]);
+    this.router.transitionTo("reports");
   }
 
   resetFieldInputs() {

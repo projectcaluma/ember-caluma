@@ -1,6 +1,7 @@
 caluma:
   analytics:
     sections:
+      edit_report: Edit report
       build_report: Create a new report
       field_selection: Fieldselection
       table_preview: Preview
@@ -27,3 +28,4 @@ caluma:
     preview:
       refresh: Refresh preview
       download: Download report
+    aggregation: Aggregation
