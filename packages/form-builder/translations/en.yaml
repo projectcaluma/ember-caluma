@@ -62,6 +62,7 @@ caluma:
       dataSource: "Data source"
       formatValidators: "Validation"
       defaultValue: "Default value"
+      meta: "Meta information"
 
       general: "General"
       options: "Options"
