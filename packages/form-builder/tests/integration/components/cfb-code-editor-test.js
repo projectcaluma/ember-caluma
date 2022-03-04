@@ -1,4 +1,4 @@
-import { render, typeIn, focus } from "@ember/test-helpers";
+import { render, typeIn, fillIn, settled } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupRenderingTest } from "ember-qunit";
 import { module, test } from "qunit";
@@ -6,20 +6,65 @@ import { module, test } from "qunit";
 module("Integration | Component | cfb-code-editor", function (hooks) {
   setupRenderingTest(hooks);
 
-  test("it renders", async function (assert) {
-    this.set("update", () => assert.step("update"));
+  test("it updates value", async function (assert) {
+    await render(hbs`
+      <CfbCodeEditor
+        @name="editor"
+        @language="jexl"
+        @update={{fn (mut this.value)}}
+        @setDirty={{fn (mut this.dirty) true}}
+      />
+    `);
 
-    await render(
-      hbs`<CfbCodeEditor @name="editor" @language="jexl" @update={{this.update}} />`
-    );
-    await focus("[name=editor]");
     // use `typeIn` because codejar listens to keydown event
     await typeIn("[name=editor]", "1 + 1");
 
     // syntax highlighting creates child <span>s
     assert.dom("[name=editor] span").exists({ count: 2 });
 
-    assert.strictEqual(this.element.textContent.trim(), "1 + 1");
-    assert.verifySteps(Array.from(Array(5)).map(() => "update"));
+    assert.dom(this.element).hasText("1 + 1");
+    assert.strictEqual(this.value, "1 + 1");
+    assert.true(this.dirty);
+  });
+
+  test("it updates value on change from outside", async function (assert) {
+    this.value = "true";
+
+    await render(hbs`
+      <CfbCodeEditor
+        @name="editor"
+        @value={{this.value}}
+        @language="jexl"
+        @update={{fn (mut this.value)}}
+        @setDirty={{fn (mut this.dirty) true}}
+      />
+    `);
+
+    assert.dom(this.element).hasText("true");
+
+    this.set("value", "false");
+    await settled();
+
+    assert.dom(this.element).hasText("false");
+  });
+
+  test("it updates json data", async function (assert) {
+    this.value = {};
+
+    await render(hbs`
+      <CfbCodeEditor
+        @name="editor"
+        @value={{this.value}}
+        @language="json"
+        @update={{fn (mut this.value)}}
+        @setDirty={{fn (mut this.dirty) true}}
+      />
+    `);
+
+    await fillIn("[name=editor]", `{"bar":"baz"}`);
+    await typeIn("[name=editor]", " ");
+
+    assert.deepEqual(this.value, { bar: "baz" });
+    assert.true(this.dirty);
   });
 });

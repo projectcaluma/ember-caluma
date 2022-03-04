@@ -501,6 +501,14 @@
             />
           </div>
         {{/if}}
+
+        <div class="uk-margin">
+          <f.input
+            @label={{t "caluma.form-builder.question.meta"}}
+            @name="meta"
+            @renderComponent={{component "cfb-code-editor" language="json"}}
+          />
+        </div>
       {{/if}}
 
       <div class="uk-text-right">

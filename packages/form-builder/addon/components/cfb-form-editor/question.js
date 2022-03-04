@@ -9,7 +9,6 @@ import { queryManager } from "ember-apollo-client";
 import Changeset from "ember-changeset";
 import lookupValidator from "ember-changeset-validations";
 import { dropTask, restartableTask, task, timeout } from "ember-concurrency";
-import { all } from "rsvp";
 
 import { hasQuestionType } from "@projectcaluma/ember-core/helpers/has-question-type";
 import slugify from "@projectcaluma/ember-core/utils/slugify";
@@ -207,12 +206,14 @@ export default class CfbFormEditorQuestion extends Component {
     const slug =
       ((!this.args.slug && this.prefix) || "") + changeset.get("slug");
 
+    const rawMeta = changeset.get("meta");
+
     const input = {
       slug,
       label: changeset.get("label"),
       isHidden: changeset.get("isHidden"),
       infoText: changeset.get("infoText"),
-      meta: JSON.stringify(changeset.get("meta").unwrap()),
+      meta: JSON.stringify(rawMeta?.unwrap?.() ?? rawMeta),
       isArchived: changeset.get("isArchived"),
     };
 
@@ -350,7 +351,7 @@ export default class CfbFormEditorQuestion extends Component {
 
   @task
   *saveOptions(changeset) {
-    yield all(
+    yield Promise.all(
       (changeset.get("options.edges") || []).map(async ({ node: option }) => {
         const { label, slug, isArchived } = option;
 
