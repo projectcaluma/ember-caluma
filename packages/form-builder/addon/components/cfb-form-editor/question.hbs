@@ -303,7 +303,7 @@
           @type="select"
           @required={{true}}
           @label={{t "caluma.form-builder.question.dataSource"}}
-          @options={{or this.availableDataSources.lastSuccessful.value array}}
+          @options={{or this.availableDataSources.lastSuccessful.value (array)}}
           @optionTargetPath="name"
           @optionLabelPath="info"
           @prompt={{t "caluma.form-builder.question.no-selection"}}
@@ -336,7 +336,7 @@
             as |fi|
           >
             <PowerSelect
-              @options={{or this.availableForms.lastSuccessful.value array}}
+              @options={{or this.availableForms.lastSuccessful.value (array)}}
               @selected={{fi.value}}
               @placeholder={{t "caluma.form-builder.question.no-selection"}}
               @onBlur={{fi.setDirty}}
@@ -411,7 +411,7 @@
           as |fi|
         >
           <PowerSelect
-            @options={{or this.availableForms.lastSuccessful.value array}}
+            @options={{or this.availableForms.lastSuccessful.value (array)}}
             @selected={{fi.value}}
             @placeholder={{t "caluma.form-builder.question.no-selection"}}
             @onBlur={{fi.setDirty}}
