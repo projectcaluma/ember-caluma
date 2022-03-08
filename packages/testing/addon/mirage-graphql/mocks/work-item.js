@@ -20,6 +20,13 @@ export default class WorkItemMock extends BaseMock {
     });
   }
 
+  @register("CancelWorkItemPayload")
+  handleCancelWorkItem(_, { input }) {
+    return this.handleSavePayload.fn.call(this, _, {
+      input: { id: input.id, status: "CANCELED" },
+    });
+  }
+
   @register("CompleteWorkItemPayload")
   handleCompleteWorkItem(_, { input }) {
     const { id } = deserialize(input);
