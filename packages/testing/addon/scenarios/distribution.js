@@ -110,6 +110,12 @@ export function createInquiry(
   });
 }
 
+export function withdrawInquiry(server, { inquiry }) {
+  inquiry.update({ status: "CANCELED" });
+
+  return inquiry;
+}
+
 export function sendInquiry(server, { inquiry }) {
   const childCase = server.create("case", {
     status: "RUNNING",
@@ -232,6 +238,7 @@ export default function (server, groups) {
   const g4 = groups[4];
 
   const create = (...args) => createInquiry(server, distributionCase, ...args);
+  const withdraw = (...args) => withdrawInquiry(server, ...args);
   const send = (...args) => sendInquiry(server, ...args);
   const answer = (...args) => answerInquiry(server, ...args);
   const confirm = (...args) => confirmInquiry(...args);
@@ -241,6 +248,12 @@ export default function (server, groups) {
 
   // controlling
   create({ from: g, to: g1 });
+  withdraw({
+    inquiry: create(
+      { from: g, to: g2 },
+      { id: "4afed640-07a6-4eb9-82a7-b5e961391370" }
+    ),
+  });
   send({
     inquiry: create(
       {
@@ -277,6 +290,14 @@ export default function (server, groups) {
       ),
       status: "inquiry-answer-status-positive",
     }),
+  });
+
+  // withdrawn inquiry, should not be visible anywhere
+  withdraw({
+    inquiry: create(
+      { from: g, to: g4 },
+      { id: "7360fa66-83d2-4f6a-b489-5db46f6fd670" }
+    ),
   });
 
   // addressed
