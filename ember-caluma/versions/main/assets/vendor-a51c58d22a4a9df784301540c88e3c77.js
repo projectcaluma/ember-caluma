@@ -7042,9 +7042,7 @@ return a(0,e,t,{named:{},positional:[]})},i=(0,t.default)(require("@glimmer/runt
 let{isCurriedComponentDefinition:n,CurriedComponentDefinition:r,curry:a,CurriedValue:o}=i
 e.isCurriedComponentDefinition=n,n||(e.isCurriedComponentDefinition=n=function(e){return e instanceof o})})),define("@embroider/util/index",["exports","@ember/debug","@ember/application","@embroider/util/ember-private-api","@ember/component/helper"],(function(e,t,i,n,r){"use strict"
 function a(e,t){return"string"==typeof e?function(e,t){let r=(0,i.getOwner)(t)
-return(0,n.lookupCurriedComponentDefinition)(e,r)}(e,t):(0,n.isCurriedComponentDefinition)(e)||null==e?e:function(e,t){let r=(0,i.getOwner)(t),a=function(e,t){let i=t.lookup("service:-ensure-registered")
-return i.register(e,t)}(e,r)
-return(0,n.lookupCurriedComponentDefinition)(a,r)}(e,t)}Object.defineProperty(e,"__esModule",{value:!0}),e.EnsureSafeComponentHelper=void 0,e.ensureSafeComponent=a
+return(0,n.lookupCurriedComponentDefinition)(e,r)}(e,t):(0,n.isCurriedComponentDefinition)(e)||null==e?e:e}Object.defineProperty(e,"__esModule",{value:!0}),e.EnsureSafeComponentHelper=void 0,e.ensureSafeComponent=a
 class o extends r.default{compute(e){let[t]=e
 return a(t,this)}}e.EnsureSafeComponentHelper=o})),define("@embroider/util/services/ensure-registered",["exports","@ember/service","@ember/application"],(function(e,t,i){"use strict"
 function n(e,t,i){return t in e?Object.defineProperty(e,t,{value:i,enumerable:!0,configurable:!0,writable:!0}):e[t]=i,e}Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
