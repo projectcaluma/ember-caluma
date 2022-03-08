@@ -1,0 +1,8 @@
+mutation WithdrawInquiry($workItem: ID!) {
+  cancelWorkItem(input: { id: $workItem }) {
+    workItem {
+      id
+      status
+    }
+  }
+}

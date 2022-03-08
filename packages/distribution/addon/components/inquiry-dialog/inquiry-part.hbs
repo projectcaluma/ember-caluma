@@ -28,6 +28,11 @@
         {{t "caluma.distribution.edit.link"}}
       </LinkTo>
     </li>
+    <li>
+      <a href="" {{on "click" (perform this.withdraw)}} data-test-withdraw>
+        {{t "caluma.distribution.withdraw.link"}}
+      </a>
+    </li>
   {{/if}}
   {{#if (can "answer inquiry" @inquiry)}}
     <li>

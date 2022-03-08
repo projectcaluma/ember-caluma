@@ -52,3 +52,9 @@ caluma:
       subtitle: "Seite nicht gefunden!"
       back: "Zurück zur"
       link: "Startseite"
+
+    withdraw:
+      link: "Zurückziehen"
+      confirm: "Wollen Sie die Anfrage wirklich zurückziehen?"
+      error: "Fehler beim Zurückziehen der Anfrage"
+      status: "Zurückgezogen"
