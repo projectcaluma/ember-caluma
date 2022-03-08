@@ -52,3 +52,9 @@ caluma:
       subtitle: "Page non trouvée !"
       back: "Retour à"
       link: "la page d'accueil"
+
+    withdraw:
+      link: "Retirer"
+      confirm: "Voulez-vous vraiment retirer la demande ?"
+      error: "Erreur lors du retrait de la demande"
+      status: "Retirée"

@@ -7,4 +7,8 @@ export default class InquiryDialogInquiryDeadlineComponent extends Component {
   @config config;
 
   @inquiryDeadline deadline;
+
+  get isWithdrawn() {
+    return this.args.inquiry.status === "CANCELED";
+  }
 }

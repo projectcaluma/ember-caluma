@@ -13,6 +13,7 @@ query InquiryNavigation(
       { case: $caseId }
       { task: $task }
       { controllingGroups: [$currentGroup] }
+      { status: CANCELED, invert: true }
     ]
     order: [{ attribute: CREATED_AT, direction: DESC }]
   ) {
@@ -28,6 +29,7 @@ query InquiryNavigation(
       { task: $task }
       { addressedGroups: [$currentGroup] }
       { status: SUSPENDED, invert: true }
+      { status: CANCELED, invert: true }
     ]
     order: [{ attribute: CREATED_AT, direction: DESC }]
   ) {

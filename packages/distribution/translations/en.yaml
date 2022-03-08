@@ -52,3 +52,9 @@ caluma:
       subtitle: "Page not found!"
       back: "Go back to the"
       link: "landing page"
+
+    withdraw:
+      link: "Withdraw"
+      confirm: "Do you really want to withdraw the inquiry?"
+      error: "Error while withdrawing the inquiry"
+      status: "Withdrawn"

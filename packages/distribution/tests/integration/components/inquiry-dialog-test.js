@@ -1,4 +1,5 @@
-import { render } from "@ember/test-helpers";
+import { click, render } from "@ember/test-helpers";
+import confirm from "dummy/tests/helpers/confirm";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
@@ -23,21 +24,23 @@ module("Integration | Component | inquiry-dialog", function (hooks) {
 
     this.owner.lookup("service:caluma-options").currentGroupId = "group1";
 
-    const distributionCase = this.server.create("case", {
+    this.distributionCase = this.server.create("case", {
       workflow: this.server.create("workflow", { slug: "distribution" }),
     });
 
-    this.caseId = distributionCase.id;
+    this.caseId = this.distributionCase.id;
+  });
 
+  test("it renders", async function (assert) {
     sendInquiry(this.server, {
-      inquiry: createInquiry(this.server, distributionCase, {
+      inquiry: createInquiry(this.server, this.distributionCase, {
         from: { id: "group1" },
         to: { id: "group2" },
       }),
     });
     confirmInquiry({
       inquiry: answerInquiry(this.server, {
-        inquiry: createInquiry(this.server, distributionCase, {
+        inquiry: createInquiry(this.server, this.distributionCase, {
           from: { id: "group1" },
           to: { id: "group2" },
         }),
@@ -45,20 +48,52 @@ module("Integration | Component | inquiry-dialog", function (hooks) {
     });
     confirmInquiry({
       inquiry: answerInquiry(this.server, {
-        inquiry: createInquiry(this.server, distributionCase, {
+        inquiry: createInquiry(this.server, this.distributionCase, {
           from: { id: "group1" },
           to: { id: "group2" },
         }),
       }),
     });
-  });
 
-  test("it renders", async function (assert) {
     await render(
       hbs`<InquiryDialog @from="group1" @to="group2" @caseId={{this.caseId}} />`
     );
 
     assert.dom("article").exists({ count: 3 });
     assert.dom(".inquiry-divider").exists({ count: 2 });
+  });
+
+  test("it can withdraw an inquiry", async function (assert) {
+    assert.expect(4);
+
+    createInquiry(this.server, this.distributionCase, {
+      from: { id: "group1" },
+      to: { id: "group2" },
+    });
+    createInquiry(this.server, this.distributionCase, {
+      from: { id: "group1" },
+      to: { id: "group2" },
+    });
+
+    await render(
+      hbs`<InquiryDialog @from="group1" @to="group2" @caseId={{this.caseId}} />`
+    );
+
+    await click("[data-test-withdraw]");
+    await confirm();
+
+    assert
+      .dom(".uk-position-top-right")
+      .containsText("t:caluma.distribution.withdraw.status:()");
+
+    this.owner.lookup("service:router").transitionTo = (route) => {
+      assert.strictEqual(route, "index");
+      assert.step("transition");
+    };
+
+    await click("[data-test-withdraw]");
+    await confirm();
+
+    assert.verifySteps(["transition"]);
   });
 });

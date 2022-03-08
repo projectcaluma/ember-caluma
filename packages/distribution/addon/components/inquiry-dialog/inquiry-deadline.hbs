@@ -6,9 +6,22 @@
         'uk-margin-top uk-margin-right'
         'uk-margin-medium-top uk-margin-medium-right'
       }}
-      uk-flex-inline uk-flex-middle uk-text-{{this.deadline.color}}"
+      {{if
+        this.isWithdrawn
+        'uk-text-muted'
+        (concat 'uk-text-' this.deadline.color)
+      }}
+      uk-flex-inline uk-flex-middle"
   >
-    {{svg-jar "alarm-outline" height=26 class="uk-margin-small-right"}}
-    {{format-date this.deadline.value}}
+    {{svg-jar
+      (if this.isWithdrawn "ban-outline" "alarm-outline")
+      height=26
+      class="uk-margin-small-right"
+    }}
+    {{#if this.isWithdrawn}}
+      {{t "caluma.distribution.withdraw.status"}}
+    {{else}}
+      {{format-date this.deadline.value}}
+    {{/if}}
   </div>
 {{/if}}
