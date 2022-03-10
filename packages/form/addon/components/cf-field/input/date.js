@@ -17,6 +17,15 @@ export default class CfFieldInputDateComponent extends Component {
   }
 
   @action
+  parseDate(value) {
+    const date = DateTime.fromFormat(value, "D", {
+      locale: this.intl.primaryLocale,
+    });
+
+    return date.isValid ? date.toJSDate() : null;
+  }
+
+  @action
   formatDate(date) {
     return this.intl.formatDate(date, {
       day: "2-digit",
