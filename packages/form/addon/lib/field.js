@@ -83,18 +83,12 @@ export default class Field extends Base {
   _createQuestion() {
     const owner = getOwner(this);
 
-    const question =
+    this.question =
       this.calumaStore.find(`Question:${this.raw.question.slug}`) ||
       new (owner.factoryFor("caluma-model:question").class)({
         raw: this.raw.question,
         owner,
       });
-
-    if (question.isDynamic) {
-      question.loadDynamicOptions.perform();
-    }
-
-    this.question = question;
   }
 
   _createAnswer() {
@@ -783,8 +777,6 @@ export default class Field extends Base {
    * @private
    */
   async _validateDynamicChoiceQuestion() {
-    await this.question.loadDynamicOptions.perform();
-
     return validate("inclusion", this.answer.value, {
       in: (this.options || []).map(({ slug }) => slug),
     });
@@ -804,8 +796,6 @@ export default class Field extends Base {
     if (!value) {
       return true;
     }
-
-    await this.question.loadDynamicOptions.perform();
 
     return value.map((value) => {
       return validate("inclusion", value, {

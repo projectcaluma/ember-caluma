@@ -1,7 +1,8 @@
 import { assert } from "@ember/debug";
 import { camelize } from "@ember/string";
 import { queryManager } from "ember-apollo-client";
-import { dropTask, lastValue } from "ember-concurrency";
+import { dropTask } from "ember-concurrency";
+import { useTask } from "ember-resources";
 import { cached } from "tracked-toolbox";
 
 import getDynamicOptions from "@projectcaluma/ember-form/gql/queries/dynamic-options.graphql";
@@ -71,13 +72,20 @@ export default class Question extends Base {
     );
 
     return (
-      question.node.dynamicChoiceOptions ||
+      question.node.dynamicChoiceOptions ??
       question.node.dynamicMultipleChoiceOptions
     );
   }
 
-  @lastValue("loadDynamicOptions") dynamicChoiceOptions;
-  @lastValue("loadDynamicOptions") dynamicMultipleChoiceOptions;
+  dynamicOptions = useTask(this, this.loadDynamicOptions, () => []);
+
+  get dynamicChoiceOptions() {
+    return this.dynamicOptions.value ?? [];
+  }
+
+  get dynamicMultipleChoiceOptions() {
+    return this.dynamicOptions.value ?? [];
+  }
 
   /**
    * Whether the question is a single choice question
