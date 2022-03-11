@@ -1,3 +1,10 @@
+# [@projectcaluma/ember-testing-v11.0.0-beta.4](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-testing-v11.0.0-beta.3...@projectcaluma/ember-testing-v11.0.0-beta.4) (2022-03-11)
+
+
+### Features
+
+* **form-builder:** add new categories published and unpublished ([52c1c1d](https://github.com/projectcaluma/ember-caluma/commit/52c1c1deaf15991e595e042f643889be64b425a0))
+
 # [@projectcaluma/ember-testing-v11.0.0-beta.3](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-testing-v11.0.0-beta.2...@projectcaluma/ember-testing-v11.0.0-beta.3) (2022-02-16)
 
 
