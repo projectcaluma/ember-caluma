@@ -41,7 +41,7 @@
     "ember-power-select": "^5.0.4",
     "ember-resources": "^4.4.0",
     "ember-test-selectors": "^6.0.0",
-    "ember-uikit": "^5.0.0",
+    "ember-uikit": "^5.1.0",
     "ember-validated-form": "^5.3.0",
     "graphql": "^15.8.0",
     "graphql-tag": "^2.12.6",
