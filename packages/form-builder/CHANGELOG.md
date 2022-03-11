@@ -1,3 +1,17 @@
+# [@projectcaluma/ember-form-builder-v11.0.0-beta.10](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-builder-v11.0.0-beta.9...@projectcaluma/ember-form-builder-v11.0.0-beta.10) (2022-03-11)
+
+
+### Bug Fixes
+
+* **form-builder:** fix typo in class for code editor ([b00014c](https://github.com/projectcaluma/ember-caluma/commit/b00014c9c7fd737f15fe3592daf85ba2ab89ab23))
+
+
+### Features
+
+* **form-builder:** add field for editing meta ([9176862](https://github.com/projectcaluma/ember-caluma/commit/91768623f98cfa438ee9f758a951e01da72ceb5d))
+* **form-builder:** add new categories published and unpublished ([52c1c1d](https://github.com/projectcaluma/ember-caluma/commit/52c1c1deaf15991e595e042f643889be64b425a0))
+* **form:** support passing component override classes ([9409c7c](https://github.com/projectcaluma/ember-caluma/commit/9409c7cb5901dcdffec1c0294046da64b74b9922))
+
 # [@projectcaluma/ember-form-builder-v11.0.0-beta.9](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-builder-v11.0.0-beta.8...@projectcaluma/ember-form-builder-v11.0.0-beta.9) (2022-02-23)
 
 
