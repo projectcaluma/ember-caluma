@@ -8209,6 +8209,7 @@ ember-engines-router-service@^0.3.0:
 
 ember-engines@0.8.20, "ember-engines@https://gitpkg.now.sh/ember-engines/ember-engines/packages/ember-engines?4d8a7607ed690053f6e8ab4f35f9dfa543a3697f":
   version "0.8.20"
+  uid dba02df86d214d12a4123f6967aebbd23d0b145b
   resolved "https://gitpkg.now.sh/ember-engines/ember-engines/packages/ember-engines?4d8a7607ed690053f6e8ab4f35f9dfa543a3697f#dba02df86d214d12a4123f6967aebbd23d0b145b"
   dependencies:
     "@embroider/macros" "^1.3.0"
@@ -8703,13 +8704,13 @@ ember-try@2.0.0:
     rimraf "^3.0.2"
     walk-sync "^2.2.0"
 
-ember-uikit@5.0.0, ember-uikit@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/ember-uikit/-/ember-uikit-5.0.0.tgz#0191e14be521d651484217e81d1b245d6ab43eff"
-  integrity sha512-/mgZBZUIW+YHzXag9VkykgSYscpLNAf51vSVM7DRnkBRuoEgSqecWVZ3tFZjtZtde4wIjm5DnjQx/ovQvG6uxA==
+ember-uikit@5.1.0, ember-uikit@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/ember-uikit/-/ember-uikit-5.1.0.tgz#b847a9cff6d21c54daed027e1fff881f9344cd7b"
+  integrity sha512-K3ONx0c5eI5JQtz8OCpZf8w88itb43dn5NgzQ0WDtKbhzLnbSJzCuahUAXOW0O9MsTyzz1wSeelzyI+hRYOKsQ==
   dependencies:
     "@ember/render-modifiers" "^2.0.4"
-    "@embroider/util" "^1.0.0"
+    "@embroider/util" "^1.5.0"
     "@glimmer/component" "^1.0.4"
     "@glimmer/tracking" "^1.0.4"
     broccoli-funnel "^3.0.8"
@@ -8721,7 +8722,7 @@ ember-uikit@5.0.0, ember-uikit@^5.0.0:
     ember-focus-trap "^1.0.1"
     ember-modifier "^3.1.0"
     ember-toggle "^9.0.3"
-    uikit "^3.10.1"
+    uikit "^3.11.1"
 
 ember-validated-form@^5.3.0:
   version "5.3.0"
@@ -17532,7 +17533,7 @@ uglify-js@^3.1.4:
   resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.15.2.tgz#1ed2c976f448063b1f87adb68c741be79959f951"
   integrity sha512-peeoTk3hSwYdoc9nrdiEJk+gx1ALCtTjdYuKSXMTDqq7n1W7dHPqWDdSi+BPL0ni2YMeHD7hKUSdbj3TZauY2A==
 
-uikit@^3.10.1:
+uikit@^3.11.1:
   version "3.11.1"
   resolved "https://registry.yarnpkg.com/uikit/-/uikit-3.11.1.tgz#3f0b47f4b2e7610375c5f7cdbf550d086c81e22f"
   integrity sha512-nUUtvE/wZe+oFF+8WLGlvsdHg1KI75SHHEhf5FcSVFG1AHEJkqOKhPhgU6FQLporAiPTsapzURN/bP765gI2bA==
