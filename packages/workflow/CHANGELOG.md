@@ -1,3 +1,10 @@
+# [@projectcaluma/ember-workflow-v11.0.0-beta.5](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-workflow-v11.0.0-beta.4...@projectcaluma/ember-workflow-v11.0.0-beta.5) (2022-03-11)
+
+
+### Bug Fixes
+
+* **workflow:** return case status on complete / skip work-item mutation ([524453c](https://github.com/projectcaluma/ember-caluma/commit/524453c1189b4375ca792fca7d35056b916696f8))
+
 # [@projectcaluma/ember-workflow-v11.0.0-beta.4](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-workflow-v11.0.0-beta.3...@projectcaluma/ember-workflow-v11.0.0-beta.4) (2022-02-07)
 
 
