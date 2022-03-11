@@ -26,7 +26,7 @@
     "@projectcaluma/ember-testing": "11.0.0-beta.4",
     "@projectcaluma/ember-workflow": "11.0.0-beta.5",
     "broccoli-asset-rev": "3.0.0",
-    "ember-apollo-client": "3.2.0",
+    "ember-apollo-client": "3.2.1",
     "ember-auto-import": "2.4.0",
     "ember-changeset": "4.0.0-beta.5",
     "ember-changeset-validations": "4.0.0-beta.3",
