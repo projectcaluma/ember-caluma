@@ -1,3 +1,10 @@
+# [@projectcaluma/ember-form-v11.0.0-beta.14](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.13...@projectcaluma/ember-form-v11.0.0-beta.14) (2022-03-11)
+
+
+### Bug Fixes
+
+* **form:** make sure table controls are always visible ([8cd97d2](https://github.com/projectcaluma/ember-caluma/commit/8cd97d204539f2e84b9baf9841591460bddf145a))
+
 # [@projectcaluma/ember-form-v11.0.0-beta.13](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.12...@projectcaluma/ember-form-v11.0.0-beta.13) (2022-03-11)
 
 
