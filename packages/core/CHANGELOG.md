@@ -1,3 +1,17 @@
+# [@projectcaluma/ember-core-v11.0.0-beta.5](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-core-v11.0.0-beta.4...@projectcaluma/ember-core-v11.0.0-beta.5) (2022-03-11)
+
+
+### Bug Fixes
+
+* **core:** ensure only language code of the locale is passed to slugify ([02e4506](https://github.com/projectcaluma/ember-caluma/commit/02e45064b9171de85af5b9e1a890d5207a6ec252))
+* **core:** handle null values in raw dates ([9c73d0b](https://github.com/projectcaluma/ember-caluma/commit/9c73d0b3853b154b5edc84bcf2c1227ffb825116)), closes [#1826](https://github.com/projectcaluma/ember-caluma/issues/1826)
+* **distribution:** fix sorting after group names in navigation ([2299d3b](https://github.com/projectcaluma/ember-caluma/commit/2299d3b0e265204ab6747dbdc6a8b64fc22f247f))
+
+
+### Features
+
+* **form:** support passing component override classes ([9409c7c](https://github.com/projectcaluma/ember-caluma/commit/9409c7cb5901dcdffec1c0294046da64b74b9922))
+
 # [@projectcaluma/ember-core-v11.0.0-beta.4](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-core-v11.0.0-beta.3...@projectcaluma/ember-core-v11.0.0-beta.4) (2022-02-07)
 
 
