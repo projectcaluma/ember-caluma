@@ -21,7 +21,7 @@
     "@projectcaluma/ember-analytics": "0.0.0",
     "@projectcaluma/ember-core": "11.0.0-beta.5",
     "@projectcaluma/ember-distribution": "1.0.0-beta.5",
-    "@projectcaluma/ember-form": "11.0.0-beta.13",
+    "@projectcaluma/ember-form": "11.0.0-beta.14",
     "@projectcaluma/ember-form-builder": "11.0.0-beta.10",
     "@projectcaluma/ember-testing": "11.0.0-beta.4",
     "@projectcaluma/ember-workflow": "11.0.0-beta.5",
