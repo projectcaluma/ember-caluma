@@ -2321,6 +2321,36 @@
     lodash.clonedeep "^4.5.0"
     slugify "^1.6.5"
 
+"@projectcaluma/ember-distribution@1.0.0-beta.4":
+  version "1.0.0-beta.4"
+  resolved "https://registry.yarnpkg.com/@projectcaluma/ember-distribution/-/ember-distribution-1.0.0-beta.4.tgz#6fd2a8588d5d627c21432f3a3b404020da27af60"
+  integrity sha512-XEoIxHeuBl6CogY2He0gLn3/ZNnUb0wY0vWY9qpXeTLCC+NkakXOZXEf/rvVkmUoDDTCf+KFBPDXfxfJyM6PnQ==
+  dependencies:
+    "@glimmer/component" "^1.0.4"
+    "@glimmer/tracking" "^1.0.4"
+    "@projectcaluma/ember-core" "^11.0.0-beta.4"
+    "@projectcaluma/ember-form" "^11.0.0-beta.11"
+    "@projectcaluma/ember-workflow" "^11.0.0-beta.4"
+    ember-apollo-client "^3.2.0"
+    ember-auto-import "^2.4.0"
+    ember-can "^4.1.0"
+    ember-cli-babel "^7.26.11"
+    ember-cli-htmlbars "^6.0.1"
+    ember-concurrency "^2.2.1"
+    ember-engines-router-service "^0.3.0"
+    ember-fetch "^8.1.1"
+    ember-intl "^5.7.2"
+    ember-pikaday "^4.0.0"
+    ember-resources "^4.3.1"
+    ember-svg-jar "^2.3.4"
+    ember-test-selectors "^6.0.0"
+    ember-uikit "^5.0.0"
+    graphql "^15.8.0"
+    ionicons "^6.0.1"
+    lodash.merge "^4.6.2"
+    luxon "^2.3.0"
+    tracked-toolbox "^1.2.3"
+
 "@projectcaluma/ember-form-builder@11.0.0-beta.9":
   version "11.0.0-beta.9"
   resolved "https://registry.yarnpkg.com/@projectcaluma/ember-form-builder/-/ember-form-builder-11.0.0-beta.9.tgz#466e271b20e76b8825c571b51fa929069284ab59"
