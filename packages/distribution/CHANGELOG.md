@@ -1,3 +1,11 @@
+# [@projectcaluma/ember-distribution-v1.0.0-beta.5](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-distribution-v1.0.0-beta.4...@projectcaluma/ember-distribution-v1.0.0-beta.5) (2022-03-11)
+
+
+### Bug Fixes
+
+* **distribution:** fix sorting after group names in navigation ([2299d3b](https://github.com/projectcaluma/ember-caluma/commit/2299d3b0e265204ab6747dbdc6a8b64fc22f247f))
+* **distribution:** redirect to edit form after inquiry creation ([0a2c404](https://github.com/projectcaluma/ember-caluma/commit/0a2c40404fdb1258fb8d51a2809a03b335c7c78a))
+
 # [@projectcaluma/ember-distribution-v1.0.0-beta.4](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-distribution-v1.0.0-beta.3...@projectcaluma/ember-distribution-v1.0.0-beta.4) (2022-02-16)
 
 
