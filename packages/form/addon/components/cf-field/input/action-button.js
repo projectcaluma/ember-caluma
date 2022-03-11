@@ -1,17 +1,7 @@
 import { assert } from "@ember/debug";
 import { action } from "@ember/object";
 import Component from "@glimmer/component";
-import UIkit from "uikit";
-
-async function confirm(text) {
-  try {
-    await UIkit.modal.confirm(text);
-
-    return true;
-  } catch (error) {
-    return false;
-  }
-}
+import { confirm } from "ember-uikit";
 
 export default class CfFieldInputActionButtonComponent extends Component {
   constructor(...args) {

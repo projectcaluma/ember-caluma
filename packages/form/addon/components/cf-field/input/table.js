@@ -5,21 +5,11 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
 import { dropTask } from "ember-concurrency";
-import UIkit from "uikit";
+import { confirm } from "ember-uikit";
 
 import removeDocumentMutation from "@projectcaluma/ember-form/gql/mutations/remove-document.graphql";
 import saveDocumentMutation from "@projectcaluma/ember-form/gql/mutations/save-document.graphql";
 import { parseDocument } from "@projectcaluma/ember-form/lib/parsers";
-
-async function confirm(text) {
-  try {
-    await UIkit.modal.confirm(text);
-
-    return true;
-  } catch (error) {
-    return false;
-  }
-}
 
 export default class CfFieldInputTableComponent extends Component {
   @service notification;
