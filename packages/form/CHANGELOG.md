@@ -1,3 +1,18 @@
+# [@projectcaluma/ember-form-v11.0.0-beta.13](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.12...@projectcaluma/ember-form-v11.0.0-beta.13) (2022-03-11)
+
+
+### Bug Fixes
+
+* **form:** don't refetch dynamic options on validation ([27061c6](https://github.com/projectcaluma/ember-caluma/commit/27061c67f0562508f558305247cb51d615fa36b0))
+* **form:** fix input in date fields ([cf54bf5](https://github.com/projectcaluma/ember-caluma/commit/cf54bf5542e35fd7dbe293a9e22288afae6a517a))
+* **navigation:** exclude static questions from visible fields ([6ebd085](https://github.com/projectcaluma/ember-caluma/commit/6ebd085098df71fab693dec5282ea4b81d5b9836))
+* **workflow:** return case status on complete / skip work-item mutation ([524453c](https://github.com/projectcaluma/ember-caluma/commit/524453c1189b4375ca792fca7d35056b916696f8))
+
+
+### Features
+
+* **form:** support passing component override classes ([9409c7c](https://github.com/projectcaluma/ember-caluma/commit/9409c7cb5901dcdffec1c0294046da64b74b9922))
+
 # [@projectcaluma/ember-form-v11.0.0-beta.12](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.11...@projectcaluma/ember-form-v11.0.0-beta.12) (2022-02-23)
 
 
