@@ -29,7 +29,7 @@
               @color="link"
               @onClick={{fn this.edit document}}
               title={{t "caluma.form.edit"}}
-              class="uk-flex-inline uk-margin-small-left"
+              class="uk-flex-inline uk-margin-small-left table-controls"
               data-test-edit-row
             >
               <UkIcon @icon="pencil" />
@@ -40,7 +40,7 @@
                 @color="link"
                 @onClick={{fn (perform this.delete) document}}
                 title={{t "caluma.form.delete"}}
-                class="uk-flex-inline uk-margin-small-left"
+                class="uk-flex-inline uk-margin-small-left table-controls"
                 data-test-delete-row
               >
                 <UkIcon @icon="trash" />

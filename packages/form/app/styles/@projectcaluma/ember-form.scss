@@ -5,6 +5,11 @@
 
 @import "../uikit-overwrites";
 
+.table-controls > .uk-icon {
+  min-height: 20px;
+  min-width: 20px;
+}
+
 .cf-checkbox_label {
   display: block;
   position: relative;
