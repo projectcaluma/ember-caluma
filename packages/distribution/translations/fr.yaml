@@ -2,6 +2,9 @@ caluma:
   distribution:
     empty: "Aucune demande n'a encore été créée."
     start: "Lancer"
+    send: "Envoyer les demandes ouvertes"
+    send-confirm: "Voulez-vous vraiment envoyer toutes les demandes ouvertes ?"
+    send-error: "Erreur lors de l'envoi des demandes ouvertes"
 
     edit:
       title: "Modifier la demande"

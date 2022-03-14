@@ -4,13 +4,16 @@
   {{/if}}
   {{#if (can "send inquiries of distribution")}}
     <IconButton
+      @title={{t "caluma.distribution.send"}}
       @icon="paper-plane-outline"
       @fromSvgJar={{true}}
       @gutterTop={{4}}
       @gutterRight={{6}}
       @gutterLeft={{4}}
       @gutterBottom={{4}}
-      @onClick={{this.noop}}
+      @onClick={{perform this.sendInquiries}}
+      @loading={{this.sendInquiries.isRunning}}
+      data-test-send-pending-inquiries
     />
   {{/if}}
   {{#if (can "complete distribution")}}

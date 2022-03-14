@@ -2,6 +2,9 @@ caluma:
   distribution:
     empty: "No inquiries have been created yet."
     start: "Start"
+    send: "Send pending inquiries"
+    send-confirm: "Do you really want to send all pending inquiries?"
+    send-error: "Error while sending pending inquiries"
 
     edit:
       title: "Edit inquiry"
