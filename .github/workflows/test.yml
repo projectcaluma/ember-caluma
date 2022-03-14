@@ -26,7 +26,7 @@ jobs:
         target: [js, hbs]
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ env.NODE_VERSION }}
@@ -66,7 +66,7 @@ jobs:
           - "@projectcaluma/ember-workflow"
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ env.NODE_VERSION }}
@@ -111,7 +111,7 @@ jobs:
           - "@projectcaluma/ember-workflow"
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ env.NODE_VERSION }}
@@ -135,7 +135,7 @@ jobs:
   #     BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
 
   #   steps:
-  #     - uses: actions/checkout@v2
+  #     - uses: actions/checkout@v3
   #     - uses: actions/setup-node@v2
   #       with:
   #         node-version: ${{ env.NODE_VERSION }}
@@ -191,7 +191,7 @@ jobs:
           - ember-release
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ env.NODE_VERSION }}
