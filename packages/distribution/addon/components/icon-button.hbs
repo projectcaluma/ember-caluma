@@ -1,20 +1,27 @@
 {{#if @route}}
-  <LinkTo
-    @route={{@route}}
-    class={{this.class}}
-    uk-icon={{unless @fromSvgJar @icon}}
-    ...attributes
-  >
-    {{#if @fromSvgJar}}{{svg-jar @icon width="20" height="20"}}{{/if}}
+  <LinkTo @route={{@route}} class={{this.class}} title={{@title}} ...attributes>
+    {{#if @loading}}
+      <UkSpinner @ratio={{0.6}} />
+    {{else if @fromSvgJar}}
+      {{svg-jar @icon title=@title width="20" height="20"}}
+    {{else}}
+      <UkIcon @icon={{@icon}} />
+    {{/if}}
   </LinkTo>
 {{else}}
   <button
     type="button"
     class={{this.class}}
-    uk-icon={{unless @fromSvgJar @icon}}
+    title={{@title}}
     ...attributes
     {{on "click" @onClick}}
   >
-    {{#if @fromSvgJar}}{{svg-jar @icon width="20" height="20"}}{{/if}}
+    {{#if @loading}}
+      <UkSpinner @ratio={{0.6}} />
+    {{else if @fromSvgJar}}
+      {{svg-jar @icon title=@title width="20" height="20"}}
+    {{else}}
+      <UkIcon @icon={{@icon}} />
+    {{/if}}
   </button>
 {{/if}}
