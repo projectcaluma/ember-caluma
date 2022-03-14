@@ -13,7 +13,7 @@ module("Integration | Component | icon-button", function (hooks) {
   test("it renders uikit icon buttons", async function (assert) {
     await render(hbs`<IconButton @icon="plus" @onClick={{this.onClick}} />`);
 
-    assert.dom("button.uk-icon-button > svg").exists();
+    assert.dom("button.uk-icon-button > [uk-icon][icon=plus] > svg").exists();
   });
 
   test("it renders icon buttons from svg-jar", async function (assert) {
