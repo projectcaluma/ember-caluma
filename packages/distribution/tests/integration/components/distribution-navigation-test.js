@@ -25,11 +25,9 @@ module("Integration | Component | distribution-navigation", function (hooks) {
 
     this.owner.lookup("service:caluma-options").currentGroupId = "group1";
     this.owner.lookup("service:router").isActive = () => true;
-    Object.defineProperty(
-      this.owner.lookup("service:caluma-distribution-controls"),
-      "caseId",
-      { value: this.caseId }
-    );
+    Object.defineProperty(this.owner.lookup("service:distribution"), "caseId", {
+      value: this.caseId,
+    });
   });
 
   test("it renders navigation with 3 sections", async function (assert) {

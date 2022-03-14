@@ -4,7 +4,7 @@ import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupTest } from "ember-qunit";
 import { module, test } from "qunit";
 
-import CalumaDistributionControlsService from "@projectcaluma/ember-distribution/services/caluma-distribution-controls";
+import DistributionService from "@projectcaluma/ember-distribution/services/distribution";
 import {
   createBlueprint,
   createCase,
@@ -21,15 +21,15 @@ module("Unit | Ability | distribution", function (hooks) {
     this.case = createCase(this.server, { group: { id: "1" } });
     this.owner.lookup("service:caluma-options").currentGroupId = 1;
     this.owner.register(
-      "service:caluma-distribution-controls",
-      class extends CalumaDistributionControlsService {
+      "service:distribution",
+      class DistributionServiceMock extends DistributionService {
         @tracked caseId;
       }
     );
-    this.controls = this.owner.lookup("service:caluma-distribution-controls");
 
-    this.controls.caseId = this.case.id;
-    await this.controls.workItems;
+    const service = this.owner.lookup("service:distribution");
+    service.caseId = this.case.id;
+    await service.controls;
   });
 
   test("it computes send inquiries permission", async function (assert) {
