@@ -15,7 +15,7 @@ module("Integration | Component | inquiry-new-form", function (hooks) {
   setupIntl(hooks);
   setupMirage(hooks);
 
-  hooks.beforeEach(function () {
+  hooks.beforeEach(async function () {
     createBlueprint(this.server);
 
     this.case = createCase(this.server, { group: { id: "1" } });
@@ -58,11 +58,11 @@ module("Integration | Component | inquiry-new-form", function (hooks) {
         return { ...retval, [type]: recs.filter((rec) => re.test(rec.name)) };
       }, {});
     };
-    Object.defineProperty(
-      this.owner.lookup("service:caluma-distribution-controls"),
-      "caseId",
-      { value: this.case.id }
-    );
+
+    const distribution = this.owner.lookup("service:distribution");
+
+    Object.defineProperty(distribution, "caseId", { value: this.case.id });
+    await distribution.navigation;
   });
 
   test("it renders", async function (assert) {

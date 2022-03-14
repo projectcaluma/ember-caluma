@@ -24,9 +24,11 @@ module(
       this.caseId = this.server.db.cases[0].id;
       this.owner.lookup("service:caluma-options").currentGroupId = "group1";
       Object.defineProperty(
-        this.owner.lookup("service:caluma-distribution-controls"),
+        this.owner.lookup("service:distribution"),
         "caseId",
-        { value: this.caseId }
+        {
+          value: this.caseId,
+        }
       );
     });
 

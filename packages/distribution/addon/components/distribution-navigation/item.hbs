@@ -3,9 +3,9 @@
     <div class="uk-flex uk-flex-middle uk-width-1-1">
       <div class="uk-width-expand uk-text-truncate">
         {{#if (eq @type "addressed")}}
-          {{group-name @inquiry.controllingGroups}}
+          {{@inquiry.controllingGroupName}}
         {{else}}
-          {{group-name @inquiry.addressedGroups}}
+          {{@inquiry.addressedGroupName}}
         {{/if}}
       </div>
 
