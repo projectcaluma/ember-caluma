@@ -2,6 +2,9 @@ caluma:
   distribution:
     empty: "Es wurden noch keine Anfragen erstellt."
     start: "Starten"
+    send: "Offene Anfragen versenden"
+    send-confirm: "Wollen Sie wirklich alle offenen Anfragen versenden?"
+    send-error: "Fehler beim Versenden der offenen Anfragen"
 
     edit:
       title: "Anfrage bearbeiten"

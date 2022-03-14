@@ -1,4 +1,5 @@
-import { render } from "@ember/test-helpers";
+import { render, click } from "@ember/test-helpers";
+import confirm from "dummy/tests/helpers/confirm";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupRenderingTest } from "ember-qunit";
@@ -39,6 +40,27 @@ module(
 
       assert.dom("button").exists({ count: 2 });
       assert.dom("a").exists({ count: 1 });
+    });
+
+    test("it can send all pending inquiries", async function (assert) {
+      const workItems = this.server.schema.workItems.where({
+        caseId: this.caseId,
+        taskId: "inquiry",
+        status: "SUSPENDED",
+        controllingGroups: ["group1"],
+      });
+
+      await render(
+        hbs`<DistributionNavigation::Controls @caseId={{this.case.id}} />`
+      );
+
+      await click("[data-test-send-pending-inquiries]");
+      await confirm();
+
+      workItems.reload();
+      assert.true(
+        workItems.models.every((workItem) => workItem.status === "READY")
+      );
     });
   }
 );
