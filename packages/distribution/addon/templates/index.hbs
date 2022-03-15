@@ -1,8 +1,11 @@
-<div class="uk-text-center">
-  <p class="uk-text-muted">{{t "caluma.distribution.empty"}}</p>
+<div class="uk-text-center uk-text-muted">
+  {{svg-jar "distribution" class="uk-inline" width=200}}
+  <p class="uk-margin-medium uk-margin-remove-horizontal">
+    {{t "caluma.distribution.empty"}}
+  </p>
   {{#if (can "create inquiry of distribution")}}
-    <LinkTo @route="new" class="uk-margin-top">
-      {{t "caluma.distribution.create"}}
+    <LinkTo @route="new" class="uk-button uk-button-primary">
+      {{t "caluma.distribution.start"}}
     </LinkTo>
   {{/if}}
 </div>

@@ -3,20 +3,21 @@
 // eslint-disable-next-line node/no-unpublished-require
 const { buildEngine } = require("ember-engines/lib/engine-addon");
 
-const ioniconsBase = require
-  .resolve("ionicons")
-  .split("/")
-  .slice(0, -1)
-  .join("/");
+const name = require("./package").name;
+
+const ioniconAssets = [
+  ...require.resolve("ionicons").split("/").slice(0, -1),
+  "svg",
+].join("/");
+
+const publicAssets = [
+  ...require.resolve(name).split("/").slice(0, -1),
+  "public",
+  "assets",
+].join("/");
 
 module.exports = buildEngine({
-  name: require("./package").name,
-
-  lazyLoading: {
-    enabled: false,
-  },
-
-  svgJar: {
-    sourceDirs: [`${ioniconsBase}/svg`],
-  },
+  name,
+  lazyLoading: { enabled: false },
+  svgJar: { sourceDirs: [ioniconAssets, publicAssets] },
 });
