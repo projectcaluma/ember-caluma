@@ -1,7 +1,7 @@
 caluma:
   distribution:
-    empty: "Il n'y a pas encore de demande."
-    create: "Créez la première maintenant !"
+    empty: "Aucune demande n'a encore été créée."
+    start: "Lancer"
 
     edit:
       title: "Modifier la demande"
