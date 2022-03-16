@@ -22,7 +22,7 @@
     "@glimmer/component": "^1.0.4",
     "@glimmer/tracking": "^1.0.4",
     "@projectcaluma/ember-core": "^11.0.0-beta.5",
-    "@projectcaluma/ember-form": "^11.0.0-beta.14",
+    "@projectcaluma/ember-form": "^11.0.0-beta.15",
     "@projectcaluma/ember-workflow": "^11.0.0-beta.5",
     "ember-apollo-client": "^3.2.1",
     "ember-auto-import": "^2.4.0",
