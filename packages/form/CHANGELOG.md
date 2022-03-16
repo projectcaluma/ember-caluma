@@ -1,3 +1,10 @@
+# [@projectcaluma/ember-form-v11.0.0-beta.15](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.14...@projectcaluma/ember-form-v11.0.0-beta.15) (2022-03-16)
+
+
+### Bug Fixes
+
+* **form:** make sure dynamic options are loaded before validating ([2713b37](https://github.com/projectcaluma/ember-caluma/commit/2713b3718b64f9111ca3e7bec2a6c60fafcb183a))
+
 # [@projectcaluma/ember-form-v11.0.0-beta.14](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.13...@projectcaluma/ember-form-v11.0.0-beta.14) (2022-03-11)
 
 
