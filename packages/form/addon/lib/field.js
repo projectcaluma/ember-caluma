@@ -777,6 +777,8 @@ export default class Field extends Base {
    * @private
    */
   async _validateDynamicChoiceQuestion() {
+    await this.question.dynamicOptions;
+
     return validate("inclusion", this.answer.value, {
       in: (this.options || []).map(({ slug }) => slug),
     });
@@ -796,6 +798,8 @@ export default class Field extends Base {
     if (!value) {
       return true;
     }
+
+    await this.question.dynamicOptions;
 
     return value.map((value) => {
       return validate("inclusion", value, {
