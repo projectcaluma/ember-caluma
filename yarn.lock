@@ -29,7 +29,7 @@
   dependencies:
     "@jridgewell/trace-mapping" "^0.3.0"
 
-"@apollo/client@^3.2.1", "@apollo/client@^3.5.10":
+"@apollo/client@^3.5.10":
   version "3.5.10"
   resolved "https://registry.yarnpkg.com/@apollo/client/-/client-3.5.10.tgz#43463108a6e07ae602cca0afc420805a19339a71"
   integrity sha512-tL3iSpFe9Oldq7gYikZK1dcYxp1c01nlSwtsMz75382HcI6fvQXyFXUCJTTK3wgO2/ckaBvRGw7VqjFREdVoRw==
@@ -1424,7 +1424,7 @@
     ember-cli-htmlbars "^5.7.1"
     ember-destroyable-polyfill "^2.0.3"
 
-"@ember/test-waiters@^3.0.0", "@ember/test-waiters@~3.0.0":
+"@ember/test-waiters@^3.0.0", "@ember/test-waiters@~3.0.1":
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/@ember/test-waiters/-/test-waiters-3.0.1.tgz#c3416dd6dcb0e3c0434e815e1de144d848ad74b1"
   integrity sha512-LqV55mMiSuhAAWfbJdJf0bxHc22A/CiG8TKyZwpcSv4A1GJIpdlTvqHCrlcdV6T30+L0/uyj14upC3ayWmV0CQ==
@@ -1661,7 +1661,7 @@
     "@handlebars/parser" "~2.0.0"
     simple-html-tokenizer "^0.5.11"
 
-"@glimmer/tracking@1.0.4", "@glimmer/tracking@^1.0.0", "@glimmer/tracking@^1.0.2", "@glimmer/tracking@^1.0.4":
+"@glimmer/tracking@1.0.4", "@glimmer/tracking@^1.0.0", "@glimmer/tracking@^1.0.4":
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/@glimmer/tracking/-/tracking-1.0.4.tgz#f1bc1412fe5e2236d0f8d502994a8f88af1bbb21"
   integrity sha512-F+oT8I55ba2puSGIzInmVrv/8QA2PcK1VD+GWgFMhF6WC97D+uZX7BFg+a3s/2N4FVBq5KHE+QxZzgazM151Yw==
@@ -7240,17 +7240,18 @@ elliptic@^6.5.3:
     minimalistic-assert "^1.0.1"
     minimalistic-crypto-utils "^1.0.1"
 
-ember-apollo-client@3.2.1, ember-apollo-client@^3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/ember-apollo-client/-/ember-apollo-client-3.2.1.tgz#725042fd448d8712c260b79c79fcdab54e5d8674"
-  integrity sha512-Le36X8fkeElLeDlRiepbxH4KRG4Yf9aTf1LYsJusAfPaQtl+4P39eZAYCrGLZqCr8jrLg/c/lu99YAObXdEJ3g==
+ember-apollo-client@4.0.1, ember-apollo-client@^4.0.1:
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/ember-apollo-client/-/ember-apollo-client-4.0.1.tgz#41847647f2fc11ace35a085a87a5f1cddb93175a"
+  integrity sha512-IGEoXvX8aB9zBotw5uxA1g0tD+T//QjzTR0zG2SsSueh/cCkzWf6wduB0r0wYS8ckbO4z/RlocBApXStUhdI/A==
   dependencies:
-    "@apollo/client" "^3.2.1"
-    "@ember/test-waiters" "~3.0.0"
-    "@glimmer/tracking" "^1.0.2"
+    "@apollo/client" "^3.5.10"
+    "@ember/test-waiters" "~3.0.1"
+    "@embroider/macros" "^1.5.0"
+    "@glimmer/tracking" "^1.0.4"
     broccoli-graphql-filter "^1.0.0"
-    ember-auto-import "^1.6.0"
-    ember-cli-babel "^7.22.1"
+    ember-auto-import "^2.4.0"
+    ember-cli-babel "^7.26.11"
 
 "ember-app-scheduler@^5.1.2 || ^6.0.0 || ^7.0.0":
   version "7.0.1"
@@ -7322,7 +7323,7 @@ ember-auto-import@2.4.0, ember-auto-import@^2.2.3, ember-auto-import@^2.3.0, emb
     typescript-memoize "^1.0.0-alpha.3"
     walk-sync "^3.0.0"
 
-ember-auto-import@^1.11.3, ember-auto-import@^1.2.19, ember-auto-import@^1.5.3, ember-auto-import@^1.6.0:
+ember-auto-import@^1.11.3, ember-auto-import@^1.2.19, ember-auto-import@^1.5.3:
   version "1.12.1"
   resolved "https://registry.yarnpkg.com/ember-auto-import/-/ember-auto-import-1.12.1.tgz#09967bd35cd56ac45f413c48deabf7cfb3a785f6"
   integrity sha512-Jm0vWKNAy/wYMrdSQIrG8sRsvarIRHZ2sS/CGhMdMqVKJR48AhGU7NgPJ5SIlO/+seL2VSO+dtv7aEOEIaT6BA==
@@ -8201,6 +8202,7 @@ ember-engines-router-service@^0.3.0:
 
 ember-engines@0.8.20, "ember-engines@https://gitpkg.now.sh/ember-engines/ember-engines/packages/ember-engines?4d8a7607ed690053f6e8ab4f35f9dfa543a3697f":
   version "0.8.20"
+  uid dba02df86d214d12a4123f6967aebbd23d0b145b
   resolved "https://gitpkg.now.sh/ember-engines/ember-engines/packages/ember-engines?4d8a7607ed690053f6e8ab4f35f9dfa543a3697f#dba02df86d214d12a4123f6967aebbd23d0b145b"
   dependencies:
     "@embroider/macros" "^1.3.0"
