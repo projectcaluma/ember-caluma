@@ -7240,10 +7240,10 @@ elliptic@^6.5.3:
     minimalistic-assert "^1.0.1"
     minimalistic-crypto-utils "^1.0.1"
 
-ember-apollo-client@4.0.1, ember-apollo-client@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/ember-apollo-client/-/ember-apollo-client-4.0.1.tgz#41847647f2fc11ace35a085a87a5f1cddb93175a"
-  integrity sha512-IGEoXvX8aB9zBotw5uxA1g0tD+T//QjzTR0zG2SsSueh/cCkzWf6wduB0r0wYS8ckbO4z/RlocBApXStUhdI/A==
+ember-apollo-client@4.0.2, ember-apollo-client@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/ember-apollo-client/-/ember-apollo-client-4.0.2.tgz#2f7ec52fc88c48930cd4090f9d9c1808f33e9d3b"
+  integrity sha512-Rhp6Tx6pZPL8h2GFtq6rRGBbnmNUi/dpteDhzPgNNS40MqUb721xHcChX4Td2hb3LlkcRT3d/e5WYxmaG2mu5A==
   dependencies:
     "@apollo/client" "^3.5.10"
     "@ember/test-waiters" "~3.0.1"
