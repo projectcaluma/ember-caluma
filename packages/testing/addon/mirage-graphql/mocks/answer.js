@@ -1,9 +1,9 @@
 import { DateTime } from "luxon";
 
-import { register } from "@projectcaluma/ember-testing/mirage-graphql";
 import BaseMock from "@projectcaluma/ember-testing/mirage-graphql/mocks/base";
+import register from "@projectcaluma/ember-testing/mirage-graphql/register";
 
-export default class extends BaseMock {
+export default class AnswerMock extends BaseMock {
   _handleSaveDocumentAnswer(
     _,
     { question: questionId, document: documentId, value, type }

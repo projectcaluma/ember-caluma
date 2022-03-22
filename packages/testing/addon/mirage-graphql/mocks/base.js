@@ -3,12 +3,10 @@ import { faker } from "@faker-js/faker";
 import { singularize, pluralize } from "ember-inflector";
 import { MockList } from "graphql-tools";
 
-import {
-  Filter,
-  register,
-  serialize,
-  deserialize,
-} from "@projectcaluma/ember-testing/mirage-graphql";
+import deserialize from "@projectcaluma/ember-testing/mirage-graphql/deserialize";
+import createFilter from "@projectcaluma/ember-testing/mirage-graphql/filters";
+import register from "@projectcaluma/ember-testing/mirage-graphql/register";
+import serialize from "@projectcaluma/ember-testing/mirage-graphql/serialize";
 
 export const ANSWER_TYPES = [
   "DATE",
@@ -50,13 +48,13 @@ export const TYPE_MAPPING = {
   Task: TASK_TYPES,
 };
 
-export default class {
+export default class BaseMock {
   constructor(type, server) {
     this.type = type;
     this.server = server;
     this.schema = server.schema;
 
-    this.filter = new Filter(type);
+    this.filter = createFilter(type);
   }
 
   get collection() {

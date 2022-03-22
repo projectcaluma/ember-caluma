@@ -1,13 +1,11 @@
 import { DateTime } from "luxon";
 
-import {
-  register,
-  deserialize,
-} from "@projectcaluma/ember-testing/mirage-graphql";
+import deserialize from "@projectcaluma/ember-testing/mirage-graphql/deserialize";
 import BaseMock from "@projectcaluma/ember-testing/mirage-graphql/mocks/base";
+import register from "@projectcaluma/ember-testing/mirage-graphql/register";
 import { createInquiry } from "@projectcaluma/ember-testing/scenarios/distribution";
 
-export default class extends BaseMock {
+export default class WorkItemMock extends BaseMock {
   @register("ResumeWorkItemPayload")
   handleResumeWorkItem(_, { input }) {
     return this.handleSavePayload.fn.call(this, _, {

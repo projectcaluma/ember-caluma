@@ -1,64 +1,60 @@
-import { dasherize, classify } from "@ember/string";
-import require from "require";
+import { classify } from "@ember/string";
+import { singularize } from "ember-inflector";
+import { graphql } from "graphql";
+import {
+  GraphQLDate as Date,
+  GraphQLDateTime as DateTime,
+} from "graphql-iso-date";
+import { addMockFunctionsToSchema, makeExecutableSchema } from "graphql-tools";
 
-const importTypeOrBase = (path, type) => {
-  try {
-    return require(`${path}/${dasherize(type)}`).default;
-  } catch (e) {
-    return require(`${path}/base`).default;
-  }
-};
+import createMock from "@projectcaluma/ember-testing/mirage-graphql/mocks";
+import typeDefs from "@projectcaluma/ember-testing/mirage-graphql/schema.graphql";
 
-export const register = (tpl) => (target, name, descriptor) => {
-  if (descriptor.value.__isHandler) {
-    descriptor.value.__handlerFor.push(tpl);
-    return descriptor;
-  }
+export default function createGraphqlHandler(server) {
+  return function graphqlHandler({ db }, request) {
+    const mocks = db._collections.reduce((m, { name }) => {
+      const cls = classify(singularize(name));
+      const mock = createMock(cls, server);
 
-  descriptor.writable = false;
-  descriptor.enumerable = true;
+      return { ...m, ...mock.getHandlers() };
+    }, {});
 
-  descriptor.value = {
-    __isHandler: true,
-    // Mocks can have multiple handlers per type.
-    __handlerFor: [tpl],
-    fn: descriptor.value,
+    const schema = makeExecutableSchema({
+      typeDefs,
+      resolvers: {
+        Date,
+        DateTime,
+        GenericScalar: {
+          serialize(value) {
+            return typeof value === "string" ? JSON.parse(value) : value;
+          },
+        },
+      },
+      resolverValidationOptions: { requireResolversForResolveType: false },
+    });
+
+    const { query, variables } = JSON.parse(request.requestBody);
+
+    addMockFunctionsToSchema({
+      schema,
+      mocks: {
+        ...mocks,
+        JSONString: () => JSON.stringify({}),
+        GenericScalar: () => ({}),
+        Node: (_, { id }) => ({ __typename: atob(id).split(":")[0] }),
+        SelectedOption: ({ value }) => {
+          const option = server.schema.options.findBy({ slug: value });
+
+          return {
+            slug: value,
+            label: option.label,
+            __typename: "SelectedOption",
+          };
+        },
+      },
+      preserveResolvers: false,
+    });
+
+    return graphql(schema, query, null, null, variables);
   };
-
-  return descriptor;
-};
-
-export const serialize = (deserialized = {}, type) => {
-  const __typename = [deserialized.type?.toLowerCase(), type]
-    .filter(Boolean)
-    .map(classify)
-    .join("");
-
-  return {
-    ...deserialized,
-    id: btoa(`${__typename}:${deserialized.id}`),
-    __typename,
-  };
-};
-
-export const deserialize = (serialized) => {
-  let decodedId = serialized.id;
-
-  try {
-    decodedId = atob(serialized.id).split(":")[1] || serialized.id;
-  } catch (e) {
-    // this is expected most times
-  }
-
-  return { ...serialized, ...(decodedId ? { id: decodedId } : {}) };
-};
-
-export const Filter = function (type, ...args) {
-  return new (importTypeOrBase("./filters", type))(type, ...args);
-};
-
-export const Mock = function (type, ...args) {
-  return new (importTypeOrBase("./mocks", type))(type, ...args);
-};
-
-export { default } from "./handler";
+}

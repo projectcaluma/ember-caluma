@@ -1,6 +1,6 @@
 import BaseFilter from "@projectcaluma/ember-testing/mirage-graphql/filters/base";
 
-export default class extends BaseFilter {
+export default class WorkItemFilter extends BaseFilter {
   status(records, value, { invert = false }) {
     return records.filter(({ status }) => invert !== (status === value));
   }

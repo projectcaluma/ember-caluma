@@ -1,7 +1,7 @@
-import { register } from "@projectcaluma/ember-testing/mirage-graphql";
 import BaseMock from "@projectcaluma/ember-testing/mirage-graphql/mocks/base";
+import register from "@projectcaluma/ember-testing/mirage-graphql/register";
 
-export default class extends BaseMock {
+export default class QuestionMock extends BaseMock {
   @register("SaveTextQuestionPayload")
   handleSaveTextQuestion(_, { input }) {
     return this.handleSavePayload.fn.call(this, _, {
