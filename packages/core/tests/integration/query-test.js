@@ -1,3 +1,4 @@
+import { setComponentTemplate } from "@ember/component";
 import { action } from "@ember/object";
 import { render, click } from "@ember/test-helpers";
 import Component from "@glimmer/component";
@@ -31,20 +32,23 @@ class QueryComponent extends Component {
   }
 }
 
-const template = hbs`
-  <button id="toggle" type="button" {{on "click" this.toggle}}>toggle</button>
-  <ul
-    {{did-insert this.fetch}}
-    {{did-update this.fetch this.status}}
-  >
-    {{#each this.query.value as |item|}}
-      <li>{{item.id}}</li>
-    {{/each}}
-  </ul>
-  {{#if this.query.hasNextPage}}
-    <button id="more" type="button" {{on "click" this.more}}>more</button>
-  {{/if}}
-`;
+setComponentTemplate(
+  hbs`
+    <button id="toggle" type="button" {{on "click" this.toggle}}>toggle</button>
+    <ul
+      {{did-insert this.fetch}}
+      {{did-update this.fetch this.status}}
+    >
+      {{#each this.query.value as |item|}}
+        <li>{{item.id}}</li>
+      {{/each}}
+    </ul>
+    {{#if this.query.hasNextPage}}
+      <button id="more" type="button" {{on "click" this.more}}>more</button>
+    {{/if}}
+  `,
+  QueryComponent
+);
 
 module("Integration | Caluma Query", function (hooks) {
   setupRenderingTest(hooks);
@@ -54,14 +58,13 @@ module("Integration | Caluma Query", function (hooks) {
     this.server.createList("work-item", 8, { status: "READY" });
     this.server.createList("work-item", 3, { status: "COMPLETED" });
 
-    this.owner.register("component:query", QueryComponent);
-    this.owner.register("template:components/query", template);
+    this.queryComponent = QueryComponent;
   });
 
   test("fetches on render", async function (assert) {
     assert.expect(1);
 
-    await render(hbs`<Query />`);
+    await render(hbs`<this.queryComponent />`);
 
     assert.dom("ul > li").exists({ count: 5 });
   });
@@ -69,7 +72,7 @@ module("Integration | Caluma Query", function (hooks) {
   test("can fetch more", async function (assert) {
     assert.expect(4);
 
-    await render(hbs`<Query />`);
+    await render(hbs`<this.queryComponent />`);
 
     assert.dom("ul > li").exists({ count: 5 });
     assert.dom("#more").exists();
@@ -83,7 +86,7 @@ module("Integration | Caluma Query", function (hooks) {
   test("triggers fetch on status change", async function (assert) {
     assert.expect(2);
 
-    await render(hbs`<Query />`);
+    await render(hbs`<this.queryComponent />`);
 
     assert.dom("ul > li").exists({ count: 5 });
 
