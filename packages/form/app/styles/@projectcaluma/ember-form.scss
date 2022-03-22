@@ -9,20 +9,3 @@
   min-height: 20px;
   min-width: 20px;
 }
-
-.cf-checkbox_label {
-  display: block;
-  position: relative;
-  padding-left: 26px;
-
-  .uk-checkbox {
-    position: absolute;
-    top: 0.25em;
-    left: 0;
-    margin: 0;
-  }
-
-  & + br {
-    display: none;
-  }
-}
