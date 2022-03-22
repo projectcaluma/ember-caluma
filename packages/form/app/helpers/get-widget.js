@@ -1,4 +1,1 @@
-export {
-  default,
-  getWidget,
-} from "@projectcaluma/ember-form/helpers/get-widget";
+export { default } from "@projectcaluma/ember-form/helpers/get-widget";
