@@ -108,7 +108,7 @@ module("Integration | Component | cf-field/input", function (hooks) {
           )
           question=(hash
             raw=(hash
-              __typename="RadioQuestion"
+              __typename="ChoiceQuestion"
             )
           )
           answer=(hash
