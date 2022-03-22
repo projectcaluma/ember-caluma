@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.5.10",
+    "@ember/string": "^3.0.0",
     "@glimmer/tracking": "^1.0.4",
     "ember-apollo-client": "^4.0.2",
     "ember-auto-import": "^2.4.0",
