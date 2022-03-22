@@ -1,6 +1,6 @@
 import { camelize } from "@ember/string";
 
-export default class {
+export default class BaseFilter {
   constructor(type) {
     this.type = type;
   }

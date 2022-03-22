@@ -1,6 +1,6 @@
 import BaseFilter from "@projectcaluma/ember-testing/mirage-graphql/filters/base";
 
-export default class extends BaseFilter {
+export default class FormFilter extends BaseFilter {
   isArchived(records, value) {
     return records.filter(({ isArchived }) => isArchived === value);
   }

@@ -1,6 +1,6 @@
 import BaseFilter from "@projectcaluma/ember-testing/mirage-graphql/filters/base";
 
-export default class extends BaseFilter {
+export default class AnswerFilter extends BaseFilter {
   questions(records, value, { invert = false }) {
     return records.filter(
       (record) => invert !== value.includes(record.questionId)
