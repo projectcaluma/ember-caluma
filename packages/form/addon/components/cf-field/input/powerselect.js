@@ -1,7 +1,10 @@
 import { getOwner } from "@ember/application";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
+import { ensureSafeComponent } from "@embroider/util";
 import Component from "@glimmer/component";
+import PowerSelectComponent from "ember-power-select/components/power-select";
+import PowerSelectMultipleComponent from "ember-power-select/components/power-select-multiple";
 
 /**
  * Dropdown component for the single and multiple choice question type
@@ -16,8 +19,11 @@ export default class CfFieldInputPowerselectComponent extends Component {
     return this.args.field?.question.isMultipleChoice;
   }
 
-  get componentName() {
-    return this.multiple ? "power-select-multiple" : "power-select";
+  get selectComponent() {
+    return ensureSafeComponent(
+      this.multiple ? PowerSelectMultipleComponent : PowerSelectComponent,
+      this
+    );
   }
 
   get searchEnabled() {
