@@ -3,8 +3,14 @@ caluma:
     complete: "Terminer"
     skip: "Sauter"
     cancel: "Annuler"
-    success: "Succès!"
-    error: "Oups, quelque chose a mal ..."
+    success:
+      complete: "La tâche a été terminée avec succès !"
+      skip: "La tâche a été sautée avec succès !"
+      cancel: "La tâche a été annulée avec succès !"
+    error:
+      complete: "Oups, quelque chose s'est mal passé lors de la clôture de la tâche..."
+      skip: "Oups, quelque chose s'est mal passé lors du saut de la tâche..."
+      cancel: "Oups, quelque chose s'est mal passé lors de l'annulation de la tâche"
 
   task-button:
-    error: "Oups, aucune tâche n'a été trouvée."
+    error: "Erreur lors du chargement de la tâche"

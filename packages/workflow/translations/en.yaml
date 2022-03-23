@@ -3,8 +3,14 @@ caluma:
     complete: "Complete"
     skip: "Skip"
     cancel: "Cancel"
-    success: "Work item state was successfully changed!"
-    error: "Ooops, something went wrong while changing the work item state..."
+    success:
+      complete: "Work item was successfully completed!"
+      skip: "Work item was successfully skipped!"
+      cancel: "Work item was successfully canceled!"
+    error:
+      complete: "Ooops, something went wrong while completing the work item..."
+      skip: "Ooops, something went wrong while skipping the work item..."
+      cancel: "Ooops, something went wrong while canceling the work item..."
 
   task-button:
-    error: "Ooops, no work item was found."
+    error: "Error while fetching the work item"

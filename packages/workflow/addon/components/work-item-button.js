@@ -54,7 +54,7 @@ export default class WorkItemButtonComponent extends Component {
         yield this.args.onSuccess();
       } else {
         this.notification.success(
-          this.intl.t("caluma.mutate-work-item.success")
+          this.intl.t(`caluma.mutate-work-item.success.${this.args.mutation}`)
         );
       }
     } catch (e) {
@@ -63,7 +63,9 @@ export default class WorkItemButtonComponent extends Component {
       } else {
         // eslint-disable-next-line no-console
         console.error(e);
-        this.notification.danger(this.intl.t("caluma.mutate-work-item.error"));
+        this.notification.danger(
+          this.intl.t(`caluma.mutate-work-item.error.${this.args.mutation}`)
+        );
       }
     }
   }

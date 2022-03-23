@@ -3,8 +3,14 @@ caluma:
     complete: "Abschliessen"
     skip: "Überspringen"
     cancel: "Abbrechen"
-    success: "Der Status der Aufgabens wurde erfolgreich angepasst!"
-    error: "Hoppla, beim Speichern des Aufgabenstatus ist etwas schief gelaufen..."
+    success:
+      complete: "Die Aufgabe wurde erfolgreich abgeschlossen!"
+      skip: "Die Aufgabe wurde erfolgreich übersprungen!"
+      cancel: "Die Aufgabe wurde erfolgreich abgebrochen!"
+    error:
+      complete: "Hoppla, beim Abschliessen der Aufgabe ist etwas schief gelaufen..."
+      skip: "Hoppla, beim Überspringen der Aufgabe ist etwas schief gelaufen..."
+      cancel: "Hoppla, beim Abbrechen der Aufgabe ist etwas schief gelaufen..."
 
   task-button:
-    error: "Hoppla, keine Aufgabe wurde gefunden."
+    error: "Fehler beim Laden der Aufgabe"
