@@ -2265,6 +2265,28 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
+"@projectcaluma/ember-core@11.0.0-beta.5":
+  version "11.0.0-beta.5"
+  resolved "https://registry.yarnpkg.com/@projectcaluma/ember-core/-/ember-core-11.0.0-beta.5.tgz#204995928a146a5a5d35e7ba79e60aa81dba218d"
+  integrity sha512-aV2EoyujfJayD34C3FnVfyUUK+ApcvJznj8Ist+gCbWLZwroC/+Qd1CasRDHa2kt9yWH67E0CYQQpjTjZVlKYQ==
+  dependencies:
+    "@apollo/client" "^3.5.10"
+    "@glimmer/tracking" "^1.0.4"
+    ember-apollo-client "^3.2.0"
+    ember-auto-import "^2.4.0"
+    ember-cli-babel "^7.26.11"
+    ember-cli-htmlbars "^6.0.1"
+    ember-concurrency "^2.2.1"
+    ember-fetch "^8.1.1"
+    ember-inflector "^4.0.2"
+    ember-intl "^5.7.2"
+    ember-resources "^4.4.0"
+    graphql "^15.8.0"
+    graphql-tag "^2.12.6"
+    jexl "^2.3.0"
+    lodash.clonedeep "^4.5.0"
+    slugify "^1.6.5"
+
 "@projectcaluma/ember-testing@11.0.0-beta.4":
   version "11.0.0-beta.4"
   resolved "https://registry.yarnpkg.com/@projectcaluma/ember-testing/-/ember-testing-11.0.0-beta.4.tgz#a6c1d2e2a70b7302d91e5ed472695db951533c0a"
