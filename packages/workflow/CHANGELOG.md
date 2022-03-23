@@ -1,3 +1,10 @@
+# [@projectcaluma/ember-workflow-v11.0.0-beta.6](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-workflow-v11.0.0-beta.5...@projectcaluma/ember-workflow-v11.0.0-beta.6) (2022-03-23)
+
+
+### Bug Fixes
+
+* **workflow:** fix error and success messages for buttons ([9f348cc](https://github.com/projectcaluma/ember-caluma/commit/9f348ccc1c81a2dfdbce220340d2bd977a3be618))
+
 # [@projectcaluma/ember-workflow-v11.0.0-beta.5](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-workflow-v11.0.0-beta.4...@projectcaluma/ember-workflow-v11.0.0-beta.5) (2022-03-11)
 
 
