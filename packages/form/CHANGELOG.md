@@ -1,3 +1,12 @@
+# [@projectcaluma/ember-form-v11.0.0-beta.16](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.15...@projectcaluma/ember-form-v11.0.0-beta.16) (2022-03-23)
+
+
+### Bug Fixes
+
+* **embroider:** add missing dependency on @ember/string ([3a6e6bb](https://github.com/projectcaluma/ember-caluma/commit/3a6e6bb39a8c1a40a2ae00b3d4ea00606a755e25))
+* **embroider:** fix dynamic component usage ([1cf0f6e](https://github.com/projectcaluma/ember-caluma/commit/1cf0f6e2914651bbb0ec70d1f7485fd9db90c9b5))
+* **embroider:** remove obsolete export for getWidget helper function ([94fb461](https://github.com/projectcaluma/ember-caluma/commit/94fb461aaa7cac6af9f5612b8f34ad047a2b67bb))
+
 # [@projectcaluma/ember-form-v11.0.0-beta.15](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.14...@projectcaluma/ember-form-v11.0.0-beta.15) (2022-03-16)
 
 
