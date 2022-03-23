@@ -1,3 +1,17 @@
+# [@projectcaluma/ember-testing-v11.0.0-beta.5](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-testing-v11.0.0-beta.4...@projectcaluma/ember-testing-v11.0.0-beta.5) (2022-03-23)
+
+
+### Bug Fixes
+
+* **embroider:** add missing dependency on @ember/string ([3a6e6bb](https://github.com/projectcaluma/ember-caluma/commit/3a6e6bb39a8c1a40a2ae00b3d4ea00606a755e25))
+* **embroider:** use factory function instead of dynamic importing ([91459e7](https://github.com/projectcaluma/ember-caluma/commit/91459e7add66139a1f268b6c74dbabd9fa486158))
+
+
+### Features
+
+* **testing:** add handler for canceling work items ([51c8024](https://github.com/projectcaluma/ember-caluma/commit/51c80240234fffa36a44a68a695ee7dbf074f1a9))
+* **testing:** extend distribution scenario with withdrawn inquiries ([a190f0f](https://github.com/projectcaluma/ember-caluma/commit/a190f0f7ccceeca2944b1647320c738d81d44733))
+
 # [@projectcaluma/ember-testing-v11.0.0-beta.4](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-testing-v11.0.0-beta.3...@projectcaluma/ember-testing-v11.0.0-beta.4) (2022-03-11)
 
 
