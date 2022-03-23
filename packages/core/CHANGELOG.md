@@ -1,3 +1,10 @@
+# [@projectcaluma/ember-core-v11.0.0-beta.6](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-core-v11.0.0-beta.5...@projectcaluma/ember-core-v11.0.0-beta.6) (2022-03-23)
+
+
+### Bug Fixes
+
+* **embroider:** add missing dependency on @ember/string ([3a6e6bb](https://github.com/projectcaluma/ember-caluma/commit/3a6e6bb39a8c1a40a2ae00b3d4ea00606a755e25))
+
 # [@projectcaluma/ember-core-v11.0.0-beta.5](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-core-v11.0.0-beta.4...@projectcaluma/ember-core-v11.0.0-beta.5) (2022-03-11)
 
 
