@@ -2287,6 +2287,41 @@
     lodash.clonedeep "^4.5.0"
     slugify "^1.6.5"
 
+"@projectcaluma/ember-form-builder@11.0.0-beta.10":
+  version "11.0.0-beta.10"
+  resolved "https://registry.yarnpkg.com/@projectcaluma/ember-form-builder/-/ember-form-builder-11.0.0-beta.10.tgz#7c89f5e807602d0d3b97f71231b91f7abb36d142"
+  integrity sha512-B9GbGcJ+brJEXli5D9k6oNN4pcnGsS/2JuvaKIT3eS5kCHkHzuK//khEDvs8pOIPcAsWVaYhREQ7LzqL56xqbA==
+  dependencies:
+    "@ember/render-modifiers" "^2.0.4"
+    "@embroider/macros" "^1.5.0"
+    "@glimmer/component" "^1.0.4"
+    "@glimmer/tracking" "^1.0.4"
+    "@projectcaluma/ember-core" "^11.0.0-beta.5"
+    "@projectcaluma/ember-form" "^11.0.0-beta.13"
+    codejar "^3.5.0"
+    ember-apollo-client "^3.2.0"
+    ember-auto-import "^2.4.0"
+    ember-changeset "^4.0.0-beta.5"
+    ember-changeset-validations "^4.0.0-beta.3"
+    ember-cli-babel "^7.26.11"
+    ember-cli-htmlbars "^6.0.1"
+    ember-composable-helpers "^5.0.0"
+    ember-concurrency "^2.2.1"
+    ember-engines-router-service "^0.3.0"
+    ember-fetch "^8.1.1"
+    ember-intl "^5.7.2"
+    ember-math-helpers "^2.18.1"
+    ember-pikaday "^4.0.0"
+    ember-power-select "^5.0.4"
+    ember-resources "^4.4.0"
+    ember-test-selectors "^6.0.0"
+    ember-uikit "^5.0.0"
+    ember-validated-form "^5.3.0"
+    graphql "^15.8.0"
+    graphql-tag "^2.12.6"
+    jexl "^2.3.0"
+    prismjs "^1.27.0"
+
 "@projectcaluma/ember-form@11.0.0-beta.15":
   version "11.0.0-beta.15"
   resolved "https://registry.yarnpkg.com/@projectcaluma/ember-form/-/ember-form-11.0.0-beta.15.tgz#aa058c8cfd1129f1dc24781fa39a71c581b4080d"
@@ -8783,7 +8818,7 @@ ember-try@2.0.0:
     rimraf "^3.0.2"
     walk-sync "^2.2.0"
 
-ember-uikit@5.1.1, ember-uikit@^5.1.0, ember-uikit@^5.1.1:
+ember-uikit@5.1.1, ember-uikit@^5.0.0, ember-uikit@^5.1.0, ember-uikit@^5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/ember-uikit/-/ember-uikit-5.1.1.tgz#0cc7bd965ad5fba3a48b6e4954ae2da38519fe76"
   integrity sha512-cGaPtkEz637q4eUGGchVyGjZPZyxVF76zfncMzEHxMrZVHIyjaltFHGDh0RUtY3weWe2NcV+4pysFx3+Tg7UVQ==
