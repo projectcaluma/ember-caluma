@@ -1,3 +1,10 @@
+# [@projectcaluma/ember-form-builder-v11.0.0-beta.11](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-builder-v11.0.0-beta.10...@projectcaluma/ember-form-builder-v11.0.0-beta.11) (2022-03-23)
+
+
+### Bug Fixes
+
+* **embroider:** add missing dependency on @ember/string ([3a6e6bb](https://github.com/projectcaluma/ember-caluma/commit/3a6e6bb39a8c1a40a2ae00b3d4ea00606a755e25))
+
 # [@projectcaluma/ember-form-builder-v11.0.0-beta.10](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-builder-v11.0.0-beta.9...@projectcaluma/ember-form-builder-v11.0.0-beta.10) (2022-03-11)
 
 
