@@ -2287,6 +2287,38 @@
     lodash.clonedeep "^4.5.0"
     slugify "^1.6.5"
 
+"@projectcaluma/ember-form@11.0.0-beta.15":
+  version "11.0.0-beta.15"
+  resolved "https://registry.yarnpkg.com/@projectcaluma/ember-form/-/ember-form-11.0.0-beta.15.tgz#aa058c8cfd1129f1dc24781fa39a71c581b4080d"
+  integrity sha512-RJUXqKvxI5MvWkg7tIxMKgb8e72FvxsU5vHoaldGD0RsgdAITDoJyU++vXBvF+iZYkVvQkIFSTz0+s5iQtFolg==
+  dependencies:
+    "@embroider/macros" "^1.5.0"
+    "@glimmer/component" "^1.0.4"
+    "@glimmer/tracking" "^1.0.4"
+    "@projectcaluma/ember-core" "^11.0.0-beta.5"
+    ember-apollo-client "^3.2.1"
+    ember-auto-import "^2.4.0"
+    ember-autoresize-modifier "^0.5.0"
+    ember-cli-babel "^7.26.11"
+    ember-cli-htmlbars "^6.0.1"
+    ember-cli-showdown "^6.0.1"
+    ember-composable-helpers "^5.0.0"
+    ember-concurrency "^2.2.1"
+    ember-fetch "^8.1.1"
+    ember-in-viewport "^4.0.0"
+    ember-intl "^5.7.2"
+    ember-math-helpers "^2.18.1"
+    ember-pikaday "^4.0.0"
+    ember-power-select "^5.0.4"
+    ember-resources "^4.4.0"
+    ember-uikit "^5.1.0"
+    ember-validators "^4.1.2"
+    graphql "^15.8.0"
+    jexl "^2.3.0"
+    lodash.isequal "^4.5.0"
+    luxon "^2.3.1"
+    tracked-toolbox "^1.2.3"
+
 "@projectcaluma/ember-testing@11.0.0-beta.4":
   version "11.0.0-beta.4"
   resolved "https://registry.yarnpkg.com/@projectcaluma/ember-testing/-/ember-testing-11.0.0-beta.4.tgz#a6c1d2e2a70b7302d91e5ed472695db951533c0a"
@@ -7296,7 +7328,7 @@ ember-apollo-client@4.0.2, ember-apollo-client@^4.0.2:
     ember-auto-import "^2.4.0"
     ember-cli-babel "^7.26.11"
 
-ember-apollo-client@^3.2.0:
+ember-apollo-client@^3.2.0, ember-apollo-client@^3.2.1:
   version "3.2.1"
   resolved "https://registry.yarnpkg.com/ember-apollo-client/-/ember-apollo-client-3.2.1.tgz#725042fd448d8712c260b79c79fcdab54e5d8674"
   integrity sha512-Le36X8fkeElLeDlRiepbxH4KRG4Yf9aTf1LYsJusAfPaQtl+4P39eZAYCrGLZqCr8jrLg/c/lu99YAObXdEJ3g==
@@ -8751,7 +8783,7 @@ ember-try@2.0.0:
     rimraf "^3.0.2"
     walk-sync "^2.2.0"
 
-ember-uikit@5.1.1, ember-uikit@^5.1.1:
+ember-uikit@5.1.1, ember-uikit@^5.1.0, ember-uikit@^5.1.1:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/ember-uikit/-/ember-uikit-5.1.1.tgz#0cc7bd965ad5fba3a48b6e4954ae2da38519fe76"
   integrity sha512-cGaPtkEz637q4eUGGchVyGjZPZyxVF76zfncMzEHxMrZVHIyjaltFHGDh0RUtY3weWe2NcV+4pysFx3+Tg7UVQ==
