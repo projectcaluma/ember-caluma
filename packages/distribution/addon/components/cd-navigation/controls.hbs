@@ -1,0 +1,26 @@
+<div class="uk-text-center uk-margin-small-top">
+  {{#if (can "create inquiry of distribution")}}
+    <CdIconButton @route="new" @icon="plus" />
+  {{/if}}
+  {{#if (can "send inquiries of distribution")}}
+    <CdIconButton
+      @title={{t "caluma.distribution.send"}}
+      @icon="paper-plane-outline"
+      @fromSvgJar={{true}}
+      @gutterTop={{4}}
+      @gutterRight={{6}}
+      @gutterLeft={{4}}
+      @gutterBottom={{4}}
+      @onClick={{perform this.sendInquiries}}
+      @loading={{this.sendInquiries.isRunning}}
+      data-test-send-pending-inquiries
+    />
+  {{/if}}
+  {{#if (can "complete distribution")}}
+    <CdIconButton
+      @icon="lock-closed-outline"
+      @fromSvgJar={{true}}
+      @onClick={{this.noop}}
+    />
+  {{/if}}
+</div>

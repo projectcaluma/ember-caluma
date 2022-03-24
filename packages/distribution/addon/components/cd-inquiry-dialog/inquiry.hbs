@@ -1,0 +1,16 @@
+<article
+  class="uk-card uk-card-default uk-margin
+    {{if this.config.ui.small 'uk-card-small'}}"
+>
+  <div class="uk-card-body">
+    <CdInquiryDialog::InquiryDeadline @inquiry={{@inquiry}} />
+
+    {{#if this.hasAnswer}}
+      <CdInquiryDialog::InquiryPart @inquiry={{@inquiry}} @type="answer" />
+
+      <CdInquiryDialog::InquiryDivider @inquiry={{@inquiry}} />
+    {{/if}}
+
+    <CdInquiryDialog::InquiryPart @inquiry={{@inquiry}} @type="request" />
+  </div>
+</article>
