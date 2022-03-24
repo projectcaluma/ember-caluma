@@ -1,3 +1,16 @@
+# [@projectcaluma/ember-distribution-v1.0.0-beta.6](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-distribution-v1.0.0-beta.5...@projectcaluma/ember-distribution-v1.0.0-beta.6) (2022-03-24)
+
+
+### Bug Fixes
+
+* **embroider:** add missing dependency on @ember/string ([3a6e6bb](https://github.com/projectcaluma/ember-caluma/commit/3a6e6bb39a8c1a40a2ae00b3d4ea00606a755e25))
+
+
+### Features
+
+* **distribution:** add functionality to send all pending inquiries ([d769953](https://github.com/projectcaluma/ember-caluma/commit/d769953d5a0ea196943426c8499ba87b77a42e61))
+* **distribution:** add functionality to withdraw an inquiry ([c278895](https://github.com/projectcaluma/ember-caluma/commit/c2788957c0fb228c167ca9236fda4850717f5817))
+
 # [@projectcaluma/ember-distribution-v1.0.0-beta.5](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-distribution-v1.0.0-beta.4...@projectcaluma/ember-distribution-v1.0.0-beta.5) (2022-03-11)
 
 
