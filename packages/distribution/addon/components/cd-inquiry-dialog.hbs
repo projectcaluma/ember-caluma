@@ -1,0 +1,11 @@
+{{#if this._inquiries.isRunning}}
+  <div class="uk-text-center"><UkSpinner @ratio={{2}} /></div>
+{{else if this.inquiries.length}}
+  <section>
+    {{#each this.inquiries as |inquiry|}}
+      <CdInquiryDialog::Inquiry @inquiry={{inquiry}} />
+    {{/each}}
+  </section>
+{{else}}
+  <CdNotfound />
+{{/if}}

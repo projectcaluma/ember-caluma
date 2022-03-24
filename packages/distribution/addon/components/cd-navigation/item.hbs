@@ -1,0 +1,15 @@
+<li class={{if this.isActive "uk-active"}}>
+  <LinkTo @route="inquiry" @model={{this.model}}>
+    <div class="uk-flex uk-flex-middle uk-width-1-1">
+      <div class="uk-width-expand uk-text-truncate">
+        {{#if (eq @type "addressed")}}
+          {{@inquiry.controllingGroupName}}
+        {{else}}
+          {{@inquiry.addressedGroupName}}
+        {{/if}}
+      </div>
+
+      <CdNavigation::StatusIndicator @inquiry={{@inquiry}} @type={{@type}} />
+    </div>
+  </LinkTo>
+</li>
