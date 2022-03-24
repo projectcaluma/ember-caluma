@@ -84,7 +84,7 @@ await new Promise((resolve) => {
 });
 
 if (!dryRun) {
-  await execa("yarn", ["install"]);
+  await execa("yarn", ["install", "--pure-lockfile"]);
 }
 
 // if there is a major release in the updates, we need to define our update as
