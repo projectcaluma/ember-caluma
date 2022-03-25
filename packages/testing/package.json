@@ -19,7 +19,7 @@
     "broccoli-funnel": "^3.0.8",
     "broccoli-merge-trees": "^4.2.0",
     "ember-apollo-client": "^4.0.2",
-    "ember-auto-import": "^2.4.0",
+    "ember-auto-import": "^2.4.1",
     "ember-cli-babel": "^7.26.11",
     "ember-cli-htmlbars": "^6.0.1",
     "ember-cli-mirage": "^3.0.0-alpha.2",

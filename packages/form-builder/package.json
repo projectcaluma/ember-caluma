@@ -27,7 +27,7 @@
     "@projectcaluma/ember-form": "^11.0.0-beta.16",
     "codejar": "^3.5.0",
     "ember-apollo-client": "^4.0.2",
-    "ember-auto-import": "^2.4.0",
+    "ember-auto-import": "^2.4.1",
     "ember-changeset": "^4.0.0",
     "ember-changeset-validations": "^4.0.0",
     "ember-cli-babel": "^7.26.11",
