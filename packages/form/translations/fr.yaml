@@ -12,6 +12,10 @@ caluma:
     optionNotAvailable: "Cette option n'est plus disponible"
     info: "Plus d'informations"
 
+    error:
+      intro: "Oh non, quelque chose a mal tourné de notre côté. Votre réponse n'a pas pu être sauvegardée."
+      details: "Détails techniques :"
+
     navigation:
       next: "suivante"
       previous: "précédente"
