@@ -73,12 +73,6 @@ export default class CfFieldComponent extends Component {
 
     yield this.args.field.validate.perform();
 
-    try {
-      // Save the new field value unlinked so the fields save task is not
-      // aborted when this component is destroyed
-      return yield this.args.field.save.unlinked().perform();
-    } catch (e) {
-      // The component was destroyed before the fields save task was finished
-    }
+    return yield this.args.field.save.unlinked().perform();
   }
 }

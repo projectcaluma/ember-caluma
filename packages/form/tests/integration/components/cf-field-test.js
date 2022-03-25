@@ -11,6 +11,49 @@ module("Integration | Component | cf-field", function (hooks) {
   setupIntl(hooks);
 
   hooks.beforeEach(function () {
+    const formatValidator = this.server.create("format-validator", {
+      slug: "email",
+      regex: "@",
+      errorMsg: "Invalid email",
+    });
+    const form = this.server.create("form", { slug: "some-form" });
+    const question = this.server.create("question", {
+      type: "TEXT",
+      slug: "question-1",
+      label: "Test",
+      isRequired: "true",
+      isHidden: "false",
+      minLength: 10,
+      maxLength: 20,
+      formIds: [form.id],
+    });
+    this.server.create("question", {
+      type: "TEXT",
+      slug: "question-2",
+      label: "Test2",
+      isRequired: "true",
+      isHidden: "false",
+      formIds: [form.id],
+      formatValidatorIds: [formatValidator.id],
+    });
+    this.server.create("question", {
+      type: "TEXT",
+      slug: "question-3",
+      label: "Test3",
+      isRequired: "true",
+      isHidden: "false",
+      minLength: 10,
+      maxLength: 20,
+      formIds: [form.id],
+      formatValidatorIds: [formatValidator.id],
+    });
+    const document = this.server.create("document", { formId: form.id });
+    this.server.create("answer", {
+      questionId: question.id,
+      documentId: document.id,
+      value: "Test",
+    });
+
     const formatValidators = {
       edges: [
         {
@@ -23,7 +66,7 @@ module("Integration | Component | cf-field", function (hooks) {
       ],
     };
 
-    const form = {
+    const rawForm = {
       __typename: "Form",
       slug: "some-form",
       questions: [
@@ -58,36 +101,36 @@ module("Integration | Component | cf-field", function (hooks) {
       ],
     };
 
-    const document = new (this.owner.factoryFor("caluma-model:document").class)(
-      {
-        raw: {
-          __typename: "Document",
-          id: window.btoa("Document:1"),
-          answers: [
-            {
-              stringValue: "Test",
-              question: {
-                slug: "question-1",
-              },
-              __typename: "StringAnswer",
+    const rawDocument = new (this.owner.factoryFor(
+      "caluma-model:document"
+    ).class)({
+      raw: {
+        __typename: "Document",
+        id: window.btoa(`Document:${document.id}`),
+        answers: [
+          {
+            stringValue: "Test",
+            question: {
+              slug: "question-1",
             },
-          ],
-          rootForm: form,
-          forms: [form],
-        },
-        owner: this.owner,
-      }
-    );
+            __typename: "StringAnswer",
+          },
+        ],
+        rootForm: rawForm,
+        forms: [rawForm],
+      },
+      owner: this.owner,
+    });
 
-    this.set("field", document.fields[0]);
-    this.set("errorField", document.fields[1]);
-    this.set("emailField", document.fields[2]);
+    this.field = rawDocument.fields[0];
+    this.errorField = rawDocument.fields[1];
+    this.emailField = rawDocument.fields[2];
   });
 
   test("it allows deleting existing input", async function (assert) {
     assert.expect(1);
 
-    await render(hbs`{{cf-field field=field}}`);
+    await render(hbs`<CfField @field={{this.field}} />`);
     this.set("field.answer.value", "Test");
 
     await fillIn("input", "");
@@ -97,7 +140,7 @@ module("Integration | Component | cf-field", function (hooks) {
   test("it renders", async function (assert) {
     assert.expect(5);
 
-    await render(hbs`{{cf-field field=field}}`);
+    await render(hbs`<CfField @field={{this.field}} />`);
 
     assert.dom(".uk-margin").exists();
     assert.dom(".uk-form-label").exists();
@@ -110,7 +153,7 @@ module("Integration | Component | cf-field", function (hooks) {
   test("it renders disabled fields", async function (assert) {
     assert.expect(2);
 
-    await render(hbs`{{cf-field field=field disabled=true}}`);
+    await render(hbs`<CfField @field={{this.field}} @disabled={{true}} />`);
 
     assert.dom("input[type=text]").hasAttribute("readonly");
     assert.dom("input[type=text]").hasClass("uk-disabled");
@@ -119,7 +162,7 @@ module("Integration | Component | cf-field", function (hooks) {
   test("it validates input", async function (assert) {
     assert.expect(1);
 
-    await render(hbs`{{cf-field field=field}}`);
+    await render(hbs`<CfField @field={{this.field}} />`);
 
     await fillIn("input", "Test");
 
@@ -133,7 +176,7 @@ module("Integration | Component | cf-field", function (hooks) {
   test("it hides the label", async function (assert) {
     this.set("field.meta", { hideLabel: true });
 
-    await render(hbs`{{cf-field field=field}}`);
+    await render(hbs`<CfField @field={{this.field}} />`);
 
     assert.dom("uk-text-bold").doesNotExist();
   });
@@ -141,7 +184,7 @@ module("Integration | Component | cf-field", function (hooks) {
   test("it shows error message", async function (assert) {
     assert.expect(1);
 
-    await render(hbs`{{cf-field field=errorField}}`);
+    await render(hbs`<CfField @field={{this.errorField}} />`);
 
     await fillIn("input", "Test");
 
@@ -155,7 +198,7 @@ module("Integration | Component | cf-field", function (hooks) {
   test("it saves the valid email address", async function (assert) {
     assert.expect(1);
 
-    await render(hbs`{{cf-field field=emailField}}`);
+    await render(hbs`<CfField @field={{this.emailField}} />`);
 
     await fillIn("input", "test@test.com");
 
