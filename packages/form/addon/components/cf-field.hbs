@@ -38,7 +38,25 @@
           {{#if this.save.isRunning}}
             <UkSpinner class="uk-animation-fade" />
           {{else if (or this.save.last.isError @field.isInvalid)}}
-            <UkIcon @icon="warning" class="uk-animation-fade uk-text-danger" />
+            <div class="uk-flex-inline">
+              <UkIcon
+                @icon="warning"
+                class="uk-animation-fade uk-text-danger"
+              />
+              {{#if this.save.last.error}}
+                <div uk-dropdown="pos: bottom-left" class="uk-padding-small">
+                  <div class="uk-alert uk-alert-danger uk-margin-small">
+                    {{t "caluma.form.error.intro"}}
+                  </div>
+                  <p class="uk-text-meta uk-margin-small">
+                    {{t "caluma.form.error.details"}}
+                  </p>
+                  <pre class="uk-margin-remove">
+                    {{~format-graphql-error this.save.last.error~}}
+                  </pre>
+                </div>
+              {{/if}}
+            </div>
           {{else if this.save.last.isSuccessful}}
             <UkIcon @icon="check" class="uk-animation-fade uk-text-success" />
           {{/if}}
