@@ -1,11 +1,9 @@
 import { classify } from "@ember/string";
 import { singularize } from "ember-inflector";
 import { graphql } from "graphql";
-import {
-  GraphQLDate as Date,
-  GraphQLDateTime as DateTime,
-} from "graphql-iso-date";
+import { GraphQLDate, GraphQLDateTime } from "graphql-iso-date";
 import { addMockFunctionsToSchema, makeExecutableSchema } from "graphql-tools";
+import { DateTime } from "luxon";
 
 import createMock from "@projectcaluma/ember-testing/mirage-graphql/mocks";
 import typeDefs from "@projectcaluma/ember-testing/mirage-graphql/schema.graphql";
@@ -22,8 +20,8 @@ export default function createGraphqlHandler(server) {
     const schema = makeExecutableSchema({
       typeDefs,
       resolvers: {
-        Date,
-        DateTime,
+        Date: GraphQLDate,
+        DateTime: GraphQLDateTime,
         GenericScalar: {
           serialize(value) {
             return typeof value === "string" ? JSON.parse(value) : value;
@@ -40,6 +38,7 @@ export default function createGraphqlHandler(server) {
       mocks: {
         ...mocks,
         JSONString: () => JSON.stringify({}),
+        DateTime: DateTime.now().toISO(),
         GenericScalar: () => ({}),
         Node: (_, { id }) => ({ __typename: atob(id).split(":")[0] }),
         SelectedOption: ({ value }) => {
