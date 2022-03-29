@@ -8179,17 +8179,23 @@ const[r,a,o]=i
 const l=new WeakMap,s=o.get
 o.get=function(){return l.has(this)||l.set(this,(0,t.createCache)(s.bind(this))),(0,t.getValue)(l.get(this))}}})),define("ember-can/ability",["exports","@ember/object","@ember/string"],(function(e,t,i){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
-class n extends t.default{parseProperty(e){return(0,i.camelize)(`can-${e}`)}getAbility(e){return this.get(this.parseProperty(e))}}e.default=n})),define("ember-can/computed",["exports","@ember/object","@ember/application","@ember/debug"],(function(e,t,i,n){"use strict"
-Object.defineProperty(e,"__esModule",{value:!0}),e.ability=function(e,n){return n=n||e,(0,t.computed)(n,(function(){return(0,i.getOwner)(this).lookup("service:abilities").abilityFor(e,(0,t.get)(this,n))})).readOnly()}})),define("ember-can/helpers/can",["exports","@ember/component/helper","@ember/service","@ember/object/observers","@ember/object"],(function(e,t,i,n,r){"use strict"
-var a,o,l
-function s(e,t,i){return t in e?Object.defineProperty(e,t,{value:i,enumerable:!0,configurable:!0,writable:!0}):e[t]=i,e}Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
-let d=(a=(0,i.inject)("abilities"),o=class extends t.default{constructor(){var e,t,i,n
-super(...arguments),e=this,t="abilities",n=this,(i=l)&&Object.defineProperty(e,t,{enumerable:i.enumerable,configurable:i.configurable,writable:i.writable,value:i.initializer?i.initializer.call(n):void 0}),s(this,"ability",void 0),s(this,"propertyName",void 0)}compute(e,t){let[i,n]=e,{abilityName:a,propertyName:o}=this.abilities.parse(i),l=this.abilities.abilityFor(a,n,t)
-return o=l.parseProperty(o),this._removeAbilityObserver(),this._addAbilityObserver(l,o),(0,r.get)(l,o)}destroy(){return this._removeAbilityObserver(),super.destroy(...arguments)}_addAbilityObserver(e,t){(0,r.setProperties)(this,{ability:e,propertyName:t}),(0,n.addObserver)(this,`ability.${t}`,this,"recompute")}_removeAbilityObserver(){(0,n.removeObserver)(this,`ability.${this.propertyName}`,this,"recompute"),this.ability&&this.ability.destroy(),(0,r.setProperties)(this,{ability:null,propertyName:null})}},u=o.prototype,c="abilities",m=[a],p={configurable:!0,enumerable:!0,writable:!0,initializer:null},h={},Object.keys(p).forEach((function(e){h[e]=p[e]})),h.enumerable=!!h.enumerable,h.configurable=!!h.configurable,("value"in h||h.initializer)&&(h.writable=!0),h=m.slice().reverse().reduce((function(e,t){return t(u,c,e)||e}),h),f&&void 0!==h.initializer&&(h.value=h.initializer?h.initializer.call(f):void 0,h.initializer=void 0),void 0===h.initializer&&(Object.defineProperty(u,c,h),h=null),l=h,o)
-var u,c,m,p,f,h
-e.default=d})),define("ember-can/helpers/cannot",["exports","ember-can/helpers/can"],(function(e,t){"use strict"
+class n extends t.default{parseProperty(e){return(0,i.camelize)(`can-${e}`)}getAbility(e,i,n){const r=(0,t.get)(this,this.parseProperty(e))
+return"function"==typeof r?r.call(this,i,n):r}}e.default=n})),define("ember-can/computed",["exports","@ember/object","@ember/application","@ember/debug"],(function(e,t,i,n){"use strict"
+Object.defineProperty(e,"__esModule",{value:!0}),e.ability=function(e,n){return n=n||e,(0,t.computed)(n,(function(){return(0,i.getOwner)(this).lookup("service:abilities").abilityFor(e,(0,t.get)(this,n))})).readOnly()}})),define("ember-can/helpers/can",["exports","@ember/component/helper","@ember/service"],(function(e,t,i){"use strict"
+var n,r,a
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
-class i extends t.default{compute(){return!super.compute(...arguments)}}e.default=i})),define("ember-can/index",["exports","ember-can/ability"],(function(e,t){"use strict"
+let o=(n=(0,i.inject)("abilities"),r=class extends t.default{constructor(){var e,t,i,n
+super(...arguments),e=this,t="abilities",n=this,(i=a)&&Object.defineProperty(e,t,{enumerable:i.enumerable,configurable:i.configurable,writable:i.writable,value:i.initializer?i.initializer.call(n):void 0})}compute(e){let[t,i]=e,n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{}
+return this.abilities.can(t,i,n)}},l=r.prototype,s="abilities",d=[n],u={configurable:!0,enumerable:!0,writable:!0,initializer:null},m={},Object.keys(u).forEach((function(e){m[e]=u[e]})),m.enumerable=!!m.enumerable,m.configurable=!!m.configurable,("value"in m||m.initializer)&&(m.writable=!0),m=d.slice().reverse().reduce((function(e,t){return t(l,s,e)||e}),m),c&&void 0!==m.initializer&&(m.value=m.initializer?m.initializer.call(c):void 0,m.initializer=void 0),void 0===m.initializer&&(Object.defineProperty(l,s,m),m=null),a=m,r)
+var l,s,d,u,c,m
+e.default=o})),define("ember-can/helpers/cannot",["exports","@ember/component/helper","@ember/service"],(function(e,t,i){"use strict"
+var n,r,a
+Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
+let o=(n=(0,i.inject)("abilities"),r=class extends t.default{constructor(){var e,t,i,n
+super(...arguments),e=this,t="abilities",n=this,(i=a)&&Object.defineProperty(e,t,{enumerable:i.enumerable,configurable:i.configurable,writable:i.writable,value:i.initializer?i.initializer.call(n):void 0})}compute(e){let[t,i]=e,n=arguments.length>1&&void 0!==arguments[1]?arguments[1]:{}
+return this.abilities.cannot(t,i,n)}},l=r.prototype,s="abilities",d=[n],u={configurable:!0,enumerable:!0,writable:!0,initializer:null},m={},Object.keys(u).forEach((function(e){m[e]=u[e]})),m.enumerable=!!m.enumerable,m.configurable=!!m.configurable,("value"in m||m.initializer)&&(m.writable=!0),m=d.slice().reverse().reduce((function(e,t){return t(l,s,e)||e}),m),c&&void 0!==m.initializer&&(m.value=m.initializer?m.initializer.call(c):void 0,m.initializer=void 0),void 0===m.initializer&&(Object.defineProperty(l,s,m),m=null),a=m,r)
+var l,s,d,u,c,m
+e.default=o})),define("ember-can/index",["exports","ember-can/ability"],(function(e,t){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),Object.defineProperty(e,"Ability",{enumerable:!0,get:function(){return t.default}})})),define("ember-can/initializers/setup-ember-can",["exports","ember-resolver"],(function(e,t){"use strict"
 function i(){}Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0,e.initialize=i,t.default.reopen({init(){this._super(...arguments),this.set("pluralizedTypes.ability","abilities")}})
 var n={initialize:i}
@@ -8198,7 +8204,7 @@ Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 class o extends t.default{parse(e){return(0,a.default)(e)}abilityFor(e,t){let i=arguments.length>2&&void 0!==arguments[2]?arguments[2]:{},n=(0,r.getOwner)(this).factoryFor(`ability:${e}`)
 void 0!==t&&(i={model:t,...i})
 let a=n.create(i)
-return a}valueFor(e,t,i,n){let r=this.abilityFor(t,i,n),a=r.getAbility(e)
+return a}valueFor(e,t,i,n){let r=this.abilityFor(t,i,n),a=r.getAbility(e,i,n)
 return r.destroy(),a}can(e,t,i){let{propertyName:n,abilityName:r}=this.parse(e)
 return!!this.valueFor(n,r,t,i)}cannot(e,t,i){return!this.can(e,t,i)}}e.default=o})),define("ember-can/services/can",["exports","ember-can/services/abilities","@ember/debug"],(function(e,t,i){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
