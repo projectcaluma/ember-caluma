@@ -2,11 +2,14 @@ import { action } from "@ember/object";
 import { addObserver } from "@ember/object/observers";
 import Component from "@glimmer/component";
 import { CodeJar } from "codejar";
-import Prism from "prismjs";
+import hljs from "highlight.js/lib/core";
+import json from "highlight.js/lib/languages/json";
+import markdown from "highlight.js/lib/languages/markdown";
+import jexl from "highlightjs-jexl/src/languages/jexl";
 
-import "prismjs/components/prism-json.js";
-import "prismjs/components/prism-jexl.js";
-import "prismjs/components/prism-markdown.js";
+hljs.registerLanguage("json", json);
+hljs.registerLanguage("markdown", markdown);
+hljs.registerLanguage("jexl", jexl);
 
 export default class CfbCodeEditorComponent extends Component {
   _editor = null;
@@ -54,7 +57,7 @@ export default class CfbCodeEditorComponent extends Component {
 
   @action
   didInsertNode(element) {
-    this._editor = CodeJar(element, (editor) => Prism.highlightElement(editor));
+    this._editor = CodeJar(element, (editor) => hljs.highlightElement(editor));
     this._editor.onUpdate(this.onUpdate);
 
     this.updateCode();
