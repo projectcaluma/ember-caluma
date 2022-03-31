@@ -46,8 +46,9 @@
     "ember-validated-form": "^5.3.0",
     "graphql": "^15.8.0",
     "graphql-tag": "^2.12.6",
-    "jexl": "^2.3.0",
-    "prismjs": "^1.27.0"
+    "highlight.js": "^11.5.0",
+    "highlightjs-jexl": "^0.0.5",
+    "jexl": "^2.3.0"
   },
   "//": "TODO: remove ember-data when https://github.com/ember-engines/ember-engines/pull/794 is released",
   "devDependencies": {

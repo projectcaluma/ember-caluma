@@ -9,10 +9,4 @@ module.exports = buildEngine({
   lazyLoading: {
     enabled: false,
   },
-
-  included(...args) {
-    this._super.included.apply(this, args);
-
-    this.import("node_modules/prismjs/themes/prism.css");
-  },
 });
