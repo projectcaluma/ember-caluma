@@ -1703,10 +1703,10 @@
   dependencies:
     babel-plugin-debug-macros "^0.3.4"
 
-"@graphql-eslint/eslint-plugin@3.10.0":
-  version "3.10.0"
-  resolved "https://registry.yarnpkg.com/@graphql-eslint/eslint-plugin/-/eslint-plugin-3.10.0.tgz#7c8010922ab155b0e66000fe59b51439f408895d"
-  integrity sha512-5Js2326ZJD6yh/7Lfd0LawtIrZyI9TUFn/5ZCXm9EEWqqDUwstwlgMDv1GfJMwjtkzU7mVcEBcESW4qs8pGNjA==
+"@graphql-eslint/eslint-plugin@3.10.1":
+  version "3.10.1"
+  resolved "https://registry.yarnpkg.com/@graphql-eslint/eslint-plugin/-/eslint-plugin-3.10.1.tgz#b68daa776b83fb320613519c311a674fcf36bfbf"
+  integrity sha512-yhRb1zThg3Pe/Q8SbTiw7yIjObcinYAYpdav2VFe1Uuhj+ShVpTE6BpmcmmLlqTjlmbzbjgYkDRDaG2+DcjeqQ==
   dependencies:
     "@babel/code-frame" "7.16.7"
     "@graphql-tools/code-file-loader" "^7.2.8"
@@ -8181,8 +8181,9 @@ ember-engines-router-service@^0.3.0:
     ember-cli-babel "^7.18.0"
     ember-cli-htmlbars "^5.1.1"
 
-ember-engines@0.8.20:
+ember-engines@0.8.20, "ember-engines@https://gitpkg.now.sh/ember-engines/ember-engines/packages/ember-engines?4d8a7607ed690053f6e8ab4f35f9dfa543a3697f":
   version "0.8.20"
+  uid dba02df86d214d12a4123f6967aebbd23d0b145b
   resolved "https://gitpkg.now.sh/ember-engines/ember-engines/packages/ember-engines?4d8a7607ed690053f6e8ab4f35f9dfa543a3697f#dba02df86d214d12a4123f6967aebbd23d0b145b"
   dependencies:
     "@embroider/macros" "^1.3.0"
