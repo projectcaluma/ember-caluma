@@ -1703,10 +1703,10 @@
   dependencies:
     babel-plugin-debug-macros "^0.3.4"
 
-"@graphql-eslint/eslint-plugin@3.10.0":
-  version "3.10.0"
-  resolved "https://registry.yarnpkg.com/@graphql-eslint/eslint-plugin/-/eslint-plugin-3.10.0.tgz#7c8010922ab155b0e66000fe59b51439f408895d"
-  integrity sha512-5Js2326ZJD6yh/7Lfd0LawtIrZyI9TUFn/5ZCXm9EEWqqDUwstwlgMDv1GfJMwjtkzU7mVcEBcESW4qs8pGNjA==
+"@graphql-eslint/eslint-plugin@3.10.1":
+  version "3.10.1"
+  resolved "https://registry.yarnpkg.com/@graphql-eslint/eslint-plugin/-/eslint-plugin-3.10.1.tgz#b68daa776b83fb320613519c311a674fcf36bfbf"
+  integrity sha512-yhRb1zThg3Pe/Q8SbTiw7yIjObcinYAYpdav2VFe1Uuhj+ShVpTE6BpmcmmLlqTjlmbzbjgYkDRDaG2+DcjeqQ==
   dependencies:
     "@babel/code-frame" "7.16.7"
     "@graphql-tools/code-file-loader" "^7.2.8"
