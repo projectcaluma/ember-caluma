@@ -23,7 +23,7 @@
     "@ember/test-helpers": "2.6.0",
     "@embroider/test-setup": "1.5.0",
     "@glimmer/component": "1.0.4",
-    "@glimmer/tracking": "1.0.4",
+    "@glimmer/tracking": "1.1.0",
     "broccoli-asset-rev": "3.0.0",
     "ember-cli": "3.28.5",
     "ember-cli-code-coverage": "1.0.3",

@@ -21,7 +21,7 @@
     "@ember/string": "^3.0.0",
     "@embroider/macros": "^1.5.0",
     "@glimmer/component": "^1.0.4",
-    "@glimmer/tracking": "^1.0.4",
+    "@glimmer/tracking": "^1.1.0",
     "@projectcaluma/ember-core": "^11.0.0-beta.6",
     "@projectcaluma/ember-form": "^11.0.0-beta.16",
     "@projectcaluma/ember-workflow": "^11.0.0-beta.6",
