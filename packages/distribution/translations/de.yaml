@@ -4,7 +4,12 @@ caluma:
     start: "Starten"
     send: "Offene Anfragen versenden"
     send-confirm: "Wollen Sie wirklich alle offenen Anfragen versenden?"
+    complete-confirm:
+      "Es gibt noch <b>{count} offene {count, plural, =1 {Anfrage} other {Anfragen}}</b>
+      in der aktuellen Zirkulation. Wenn Sie die Zirkulation abschliessen, werden
+      alle verbleibenden offenen Anfragen abgebrochen. Möchten Sie fortfahren?"
     send-error: "Fehler beim Versenden der offenen Anfragen"
+    complete-error: "Fehler beim Abschliessen der Zirkulation"
 
     edit:
       title: "Anfrage bearbeiten"

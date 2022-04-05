@@ -2,6 +2,7 @@ import { render, click } from "@ember/test-helpers";
 import confirm from "dummy/tests/helpers/confirm";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
+import { setupIntl } from "ember-intl/test-support";
 import { setupRenderingTest } from "ember-qunit";
 import { module, test } from "qunit";
 
@@ -10,6 +11,7 @@ import distribution from "@projectcaluma/ember-testing/scenarios/distribution";
 module("Integration | Component | cd-navigation/controls", function (hooks) {
   setupRenderingTest(hooks);
   setupMirage(hooks);
+  setupIntl(hooks);
 
   hooks.beforeEach(function () {
     distribution(this.server, [
@@ -50,6 +52,46 @@ module("Integration | Component | cd-navigation/controls", function (hooks) {
     workItems.reload();
     assert.true(
       workItems.models.every((workItem) => workItem.status === "READY")
+    );
+  });
+
+  test("it can complete the current distribution", async function (assert) {
+    await assert.expect(3);
+
+    const completeDistribution = this.server.schema.workItems.where({
+      caseId: this.caseId,
+      taskId: "complete-distribution",
+    }).models[0];
+
+    const readyWorkItems = this.server.schema.workItems.where({
+      caseId: this.caseId,
+      taskId: "inquiry",
+      status: "READY",
+    });
+    const suspendedWorkItems = this.server.schema.workItems.where({
+      caseId: this.caseId,
+      taskId: "inquiry",
+      status: "SUSPENDED",
+    });
+
+    await render(hbs`<CdNavigation::Controls @caseId={{this.caseId}} />`);
+
+    await click("[data-test-complete-distribution]");
+    await confirm();
+
+    completeDistribution.reload();
+    readyWorkItems.reload();
+    suspendedWorkItems.reload();
+
+    assert.true(completeDistribution.status === "COMPLETED");
+    assert.true(
+      readyWorkItems.models.every((workItem) => workItem.status === "CANCELED")
+    );
+
+    assert.true(
+      suspendedWorkItems.models.every(
+        (workItem) => workItem.status === "CANCELED"
+      )
     );
   });
 });

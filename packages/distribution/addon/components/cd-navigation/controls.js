@@ -1,4 +1,3 @@
-import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
@@ -7,16 +6,61 @@ import { confirm } from "ember-uikit";
 import { gql } from "graphql-tag";
 
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
+import config from "@projectcaluma/ember-distribution/config";
+import completeWorkItemMutation from "@projectcaluma/ember-distribution/gql/mutations/complete-work-item.graphql";
+import incompleteInquiriesQuery from "@projectcaluma/ember-distribution/gql/queries/incomplete-inquiries.graphql";
 
 export default class CdNavigationControlsComponent extends Component {
   @service distribution;
   @service intl;
+  @service notification;
+  @service router;
 
   @queryManager apollo;
+  @config config;
 
-  @action
-  noop(e) {
-    e.preventDefault();
+  @dropTask
+  *completeDistribution() {
+    try {
+      const incompleteInquiries = yield this.apollo.query(
+        {
+          query: incompleteInquiriesQuery,
+          variables: {
+            caseId: this.args.caseId,
+            task: this.config.inquiry.task,
+          },
+        },
+        "allWorkItems.totalCount"
+      );
+
+      if (
+        incompleteInquiries > 0 &&
+        !(yield confirm(
+          this.intl.t("caluma.distribution.complete-confirm", {
+            count: incompleteInquiries,
+          })
+        ))
+      ) {
+        return;
+      }
+
+      const completeDistributionWorkItem =
+        this.distribution.controls.value.complete.edges?.[0]?.node.id;
+
+      yield this.apollo.mutate({
+        mutation: completeWorkItemMutation,
+        variables: {
+          workItem: completeDistributionWorkItem,
+        },
+      });
+
+      yield this.distribution.refetch();
+      this.router.transitionTo("index");
+    } catch (e) {
+      this.notification.danger(
+        this.intl.t("caluma.distribution.complete-error")
+      );
+    }
   }
 
   @dropTask

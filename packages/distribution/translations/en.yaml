@@ -4,7 +4,13 @@ caluma:
     start: "Start"
     send: "Send pending inquiries"
     send-confirm: "Do you really want to send all pending inquiries?"
+    complete-confirm:
+      "There {count, plural, =1 {is} other {are}} <b>{count} pending
+      {count, plural, =1 {inquiry} other {inquiries}}</b> on the current
+      distribution. Completing the distribution will cause all remaining
+      pending inquiries to be canceled. Would you like to continue?"
     send-error: "Error while sending pending inquiries"
+    complete-error: "Error while completing distribution"
 
     edit:
       title: "Edit inquiry"
