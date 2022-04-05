@@ -20,7 +20,9 @@
     <CdIconButton
       @icon="lock-closed-outline"
       @fromSvgJar={{true}}
-      @onClick={{this.noop}}
+      @onClick={{perform this.completeDistribution}}
+      @loading={{this.completeDistribution.isRunning}}
+      data-test-complete-distribution
     />
   {{/if}}
 </div>

@@ -1,0 +1,8 @@
+mutation CompleteWorkItem($workItem: ID!) {
+  completeWorkItem(input: { id: $workItem }) {
+    workItem {
+      id
+      status
+    }
+  }
+}

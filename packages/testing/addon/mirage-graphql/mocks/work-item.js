@@ -101,6 +101,14 @@ export default class WorkItemMock extends BaseMock {
         status: "READY",
         addressedGroups: workItem.addressedGroups,
       });
+    } else if (taskId === "complete-distribution") {
+      this.collection
+        .where({ caseId, status: "READY" })
+        .update({ status: "CANCELED" });
+
+      this.collection
+        .where({ caseId, status: "SUSPENDED" })
+        .update({ status: "CANCELED" });
     }
 
     return this.handleSavePayload.fn.call(this, _, {
