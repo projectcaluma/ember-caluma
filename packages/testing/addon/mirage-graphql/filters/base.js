@@ -29,7 +29,7 @@ export default class BaseFilter {
     return filters.map(({ key, value, options = {} }) => {
       const fn = this[key];
 
-      return typeof fn === "function"
+      return typeof fn === "function" && ![null, undefined].includes(value)
         ? (records) => fn.call(this, records, value, options)
         : (records) => records;
     });
@@ -53,7 +53,7 @@ export default class BaseFilter {
   }
 
   filter(records, filters) {
-    return this._getFilterFns(filters.filter ?? filters).reduce(
+    return this._getFilterFns(filters?.filter ?? filters ?? []).reduce(
       (recs, fn) => fn(recs),
       this.sort(records, filters?.order)
     );
