@@ -1,3 +1,16 @@
+# [@projectcaluma/ember-distribution-v1.0.0-beta.7](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-distribution-v1.0.0-beta.6...@projectcaluma/ember-distribution-v1.0.0-beta.7) (2022-04-07)
+
+
+### Bug Fixes
+
+* **distribution:** fix status indicator and deadline styling for firefox ([358acb1](https://github.com/projectcaluma/ember-caluma/commit/358acb1f8e23b425bd6e223dc5873e516710ef12))
+* **distribution:** make sure distribution components are prefixed ([d7d98ec](https://github.com/projectcaluma/ember-caluma/commit/d7d98ec291f937f384e2521d4d89c363d8e34f02))
+
+
+### Features
+
+* **distribution:** enable completing the distribution ([beabe61](https://github.com/projectcaluma/ember-caluma/commit/beabe61bd34025c4785c1e1ba60c59babb3eb6ab))
+
 # [@projectcaluma/ember-distribution-v1.0.0-beta.6](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-distribution-v1.0.0-beta.5...@projectcaluma/ember-distribution-v1.0.0-beta.6) (2022-03-24)
 
 
