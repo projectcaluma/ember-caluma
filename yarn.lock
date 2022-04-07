@@ -2246,6 +2246,40 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
+"@projectcaluma/ember-form@11.0.0-beta.16":
+  version "11.0.0-beta.16"
+  resolved "https://registry.yarnpkg.com/@projectcaluma/ember-form/-/ember-form-11.0.0-beta.16.tgz#76e3c3022c629046a27fbe1b6d9080fe6e4305a1"
+  integrity sha512-sEiy0Py4odBMGpa9fSq3QcIYR9u8N3OVWzirx2At75HhmpwApLhAL4p7Fbdri/mLI5I6c+0Zpj5HK4kN1Y8Sjg==
+  dependencies:
+    "@ember/string" "^3.0.0"
+    "@embroider/macros" "^1.5.0"
+    "@embroider/util" "^1.5.0"
+    "@glimmer/component" "^1.0.4"
+    "@glimmer/tracking" "^1.0.4"
+    "@projectcaluma/ember-core" "^11.0.0-beta.6"
+    ember-apollo-client "^4.0.2"
+    ember-auto-import "^2.4.0"
+    ember-autoresize-modifier "^0.5.0"
+    ember-cli-babel "^7.26.11"
+    ember-cli-htmlbars "^6.0.1"
+    ember-cli-showdown "^6.0.1"
+    ember-composable-helpers "^5.0.0"
+    ember-concurrency "^2.2.1"
+    ember-fetch "^8.1.1"
+    ember-in-viewport "^4.0.0"
+    ember-intl "^5.7.2"
+    ember-math-helpers "^2.18.1"
+    ember-pikaday "^4.0.0"
+    ember-power-select "^5.0.4"
+    ember-resources "^4.4.0"
+    ember-uikit "^5.1.1"
+    ember-validators "^4.1.2"
+    graphql "^15.8.0"
+    jexl "^2.3.0"
+    lodash.isequal "^4.5.0"
+    luxon "^2.3.1"
+    tracked-toolbox "^1.2.3"
+
 "@projectcaluma/ember-testing@11.0.0-beta.5":
   version "11.0.0-beta.5"
   resolved "https://registry.yarnpkg.com/@projectcaluma/ember-testing/-/ember-testing-11.0.0-beta.5.tgz#996d59119bd68e0a98fd2af5c442581bea733bde"
@@ -8286,7 +8320,7 @@ ember-in-element-polyfill@^1.0.1:
     ember-cli-htmlbars "^5.3.1"
     ember-cli-version-checker "^5.1.2"
 
-ember-in-viewport@^4.0.2:
+ember-in-viewport@^4.0.0, ember-in-viewport@^4.0.2:
   version "4.0.2"
   resolved "https://registry.yarnpkg.com/ember-in-viewport/-/ember-in-viewport-4.0.2.tgz#09243f6921cc0b62d7ea0d399e349466a45b26f3"
   integrity sha512-Uor/fSk53/wASJDpnXEP6RQFeEIjC5uGt64I7tjtr6aPT/jLRg0SKKRuImqUbbsHHoBDWUbkxzryexTda6LhCA==
