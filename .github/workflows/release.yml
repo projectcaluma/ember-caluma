@@ -49,7 +49,7 @@ jobs:
             yarn-
 
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --pure-lockfile
 
       - name: Update cross dependencies
         run: yarn workspace ${{ matrix.workspace }} node --experimental-json-modules ../../bin/update-cross-dependencies.mjs
@@ -95,7 +95,7 @@ jobs:
             yarn-
 
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --pure-lockfile
 
       - name: Update cross dependencies
         run: yarn workspace ${{ matrix.workspace }} node --experimental-json-modules ../../bin/update-cross-dependencies.mjs
@@ -145,7 +145,7 @@ jobs:
             yarn-
 
       - name: Install dependencies
-        run: yarn install
+        run: yarn install --pure-lockfile
 
       - name: Update cross dependencies
         run: yarn workspace ${{ matrix.workspace }} node --experimental-json-modules ../../bin/update-cross-dependencies.mjs

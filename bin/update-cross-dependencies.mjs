@@ -112,7 +112,7 @@ if (!dryRun && git) {
     "github-actions[bot]@users.noreply.github.com",
   ]);
   await execa("git", ["config", "--local", "user.name", "github-actions[bot]"]);
-  await execa("git", ["add", "./package.json", "../../yarn.lock"]);
+  await execa("git", ["add", "./package.json"]);
   await execa("git", ["commit", "-m", msg]);
   await execa("git", ["push"]);
 }
