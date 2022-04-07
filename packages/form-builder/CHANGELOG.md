@@ -1,3 +1,25 @@
+# [@projectcaluma/ember-form-builder-v11.0.0-beta.12](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-builder-v11.0.0-beta.11...@projectcaluma/ember-form-builder-v11.0.0-beta.12) (2022-04-07)
+
+
+### Bug Fixes
+
+* **form-builder:** replace prismjs with highlight.js ([b92732c](https://github.com/projectcaluma/ember-caluma/commit/b92732c4586b2978dda80ad3643b6bd58c9605cb))
+
+
+### Features
+
+* **cf-field:** add optional hints for form fields ([d847fbf](https://github.com/projectcaluma/ember-caluma/commit/d847fbffa376ea60971fb9e91aff8bf54ce77d50))
+
+
+### BREAKING CHANGES
+
+* **cf-field:** Question hints requires Caluma >= v7.15.0
+
+Add option to create hints for certain question types. These
+are displayed below the input field and can be used to provide
+short, informative messages. Hints are available for all question
+types except for form, static and action button questions.
+
 # [@projectcaluma/ember-form-builder-v11.0.0-beta.11](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-builder-v11.0.0-beta.10...@projectcaluma/ember-form-builder-v11.0.0-beta.11) (2022-03-23)
 
 
