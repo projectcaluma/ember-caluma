@@ -1,3 +1,26 @@
+# [@projectcaluma/ember-form-v11.0.0-beta.17](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.16...@projectcaluma/ember-form-v11.0.0-beta.17) (2022-04-07)
+
+
+### Bug Fixes
+
+* **form:** fix error status indicator for backend errors ([03fc27e](https://github.com/projectcaluma/ember-caluma/commit/03fc27e0626edf3a6f774c41d25485158ee6a99d)), closes [#1877](https://github.com/projectcaluma/ember-caluma/issues/1877)
+
+
+### Features
+
+* **cf-field:** add optional hints for form fields ([d847fbf](https://github.com/projectcaluma/ember-caluma/commit/d847fbffa376ea60971fb9e91aff8bf54ce77d50))
+* **form:** show technical details of backend errors in UI ([c34cda6](https://github.com/projectcaluma/ember-caluma/commit/c34cda691f78623f41da1f9d75a39efce7e0ff0f))
+
+
+### BREAKING CHANGES
+
+* **cf-field:** Question hints requires Caluma >= v7.15.0
+
+Add option to create hints for certain question types. These
+are displayed below the input field and can be used to provide
+short, informative messages. Hints are available for all question
+types except for form, static and action button questions.
+
 # [@projectcaluma/ember-form-v11.0.0-beta.16](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.15...@projectcaluma/ember-form-v11.0.0-beta.16) (2022-03-23)
 
 
