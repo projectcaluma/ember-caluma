@@ -1,3 +1,21 @@
+# [@projectcaluma/ember-testing-v11.0.0-beta.6](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-testing-v11.0.0-beta.5...@projectcaluma/ember-testing-v11.0.0-beta.6) (2022-04-07)
+
+
+### Features
+
+* **cf-field:** add optional hints for form fields ([d847fbf](https://github.com/projectcaluma/ember-caluma/commit/d847fbffa376ea60971fb9e91aff8bf54ce77d50))
+* **distribution:** enable completing the distribution ([beabe61](https://github.com/projectcaluma/ember-caluma/commit/beabe61bd34025c4785c1e1ba60c59babb3eb6ab))
+
+
+### BREAKING CHANGES
+
+* **cf-field:** Question hints requires Caluma >= v7.15.0
+
+Add option to create hints for certain question types. These
+are displayed below the input field and can be used to provide
+short, informative messages. Hints are available for all question
+types except for form, static and action button questions.
+
 # [@projectcaluma/ember-testing-v11.0.0-beta.5](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-testing-v11.0.0-beta.4...@projectcaluma/ember-testing-v11.0.0-beta.5) (2022-03-23)
 
 
