@@ -1532,7 +1532,7 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@faker-js/faker@6.1.2", "@faker-js/faker@^6.1.2":
+"@faker-js/faker@6.1.2", "@faker-js/faker@^6.0.0", "@faker-js/faker@^6.1.2":
   version "6.1.2"
   resolved "https://registry.yarnpkg.com/@faker-js/faker/-/faker-6.1.2.tgz#7093ea65e6d78eae388918a46968c083366bd621"
   integrity sha512-QSvmexHCxeRUk1/yKmoEDaWB5Hohjvtim5g2JJwy8S/l0L4b3y/GxSpE6vN4SBoVGGahEQW21uqyRr7EofI35A==
@@ -2245,6 +2245,28 @@
   integrity sha512-s1zLBjWhdEI2zwaoSgyOFoKSl109CUcVBCc7biPJ3aAf6LGLU6szDvi31JPU7bxfla2lqfhjbbg/5DdFNxOwHw==
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
+
+"@projectcaluma/ember-testing@11.0.0-beta.5":
+  version "11.0.0-beta.5"
+  resolved "https://registry.yarnpkg.com/@projectcaluma/ember-testing/-/ember-testing-11.0.0-beta.5.tgz#996d59119bd68e0a98fd2af5c442581bea733bde"
+  integrity sha512-ZNs2G/pk/c4my0l04FQR5R49dxDYdTUh5ZoAHKyu2PNyuMHLo3XOgFNVzCqM/WMEhI01SWNfbZnaaac6TbMkyQ==
+  dependencies:
+    "@ember/string" "^3.0.0"
+    "@faker-js/faker" "^6.0.0"
+    broccoli-funnel "^3.0.8"
+    broccoli-merge-trees "^4.2.0"
+    ember-apollo-client "^4.0.2"
+    ember-auto-import "^2.4.0"
+    ember-cli-babel "^7.26.11"
+    ember-cli-htmlbars "^6.0.1"
+    ember-cli-mirage "^3.0.0-alpha.2"
+    ember-fetch "^8.1.1"
+    ember-inflector "^4.0.2"
+    graphql "^15.8.0"
+    graphql-iso-date "^3.6.1"
+    graphql-tools "^4.0.8"
+    luxon "^2.3.1"
+    miragejs "^0.1.43"
 
 "@semantic-release/changelog@^6.0.1":
   version "6.0.1"
@@ -8183,7 +8205,6 @@ ember-engines-router-service@^0.3.0:
 
 ember-engines@0.8.20, "ember-engines@https://gitpkg.now.sh/ember-engines/ember-engines/packages/ember-engines?4d8a7607ed690053f6e8ab4f35f9dfa543a3697f":
   version "0.8.20"
-  uid dba02df86d214d12a4123f6967aebbd23d0b145b
   resolved "https://gitpkg.now.sh/ember-engines/ember-engines/packages/ember-engines?4d8a7607ed690053f6e8ab4f35f9dfa543a3697f#dba02df86d214d12a4123f6967aebbd23d0b145b"
   dependencies:
     "@embroider/macros" "^1.3.0"
