@@ -2246,6 +2246,42 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
+"@projectcaluma/ember-form-builder@11.0.0-beta.11":
+  version "11.0.0-beta.11"
+  resolved "https://registry.yarnpkg.com/@projectcaluma/ember-form-builder/-/ember-form-builder-11.0.0-beta.11.tgz#5fb74554bbc7ef8ff1b4ae111159f27b9f85f255"
+  integrity sha512-On1ppvEYvJYRdehEQ/gklBEbb3KomKCABGZlyJUoMRtomEYI+aZT9WxCUeSLRjkL2zRBJsvPAQuG/d0KNKcObA==
+  dependencies:
+    "@ember/render-modifiers" "^2.0.4"
+    "@ember/string" "^3.0.0"
+    "@embroider/macros" "^1.5.0"
+    "@glimmer/component" "^1.0.4"
+    "@glimmer/tracking" "^1.0.4"
+    "@projectcaluma/ember-core" "^11.0.0-beta.6"
+    "@projectcaluma/ember-form" "^11.0.0-beta.16"
+    codejar "^3.5.0"
+    ember-apollo-client "^4.0.2"
+    ember-auto-import "^2.4.0"
+    ember-changeset "^4.0.0"
+    ember-changeset-validations "^4.0.0"
+    ember-cli-babel "^7.26.11"
+    ember-cli-htmlbars "^6.0.1"
+    ember-composable-helpers "^5.0.0"
+    ember-concurrency "^2.2.1"
+    ember-engines-router-service "^0.3.0"
+    ember-fetch "^8.1.1"
+    ember-intl "^5.7.2"
+    ember-math-helpers "^2.18.1"
+    ember-pikaday "^4.0.0"
+    ember-power-select "^5.0.4"
+    ember-resources "^4.4.0"
+    ember-test-selectors "^6.0.0"
+    ember-uikit "^5.1.1"
+    ember-validated-form "^5.3.0"
+    graphql "^15.8.0"
+    graphql-tag "^2.12.6"
+    jexl "^2.3.0"
+    prismjs "^1.27.0"
+
 "@projectcaluma/ember-form@11.0.0-beta.16":
   version "11.0.0-beta.16"
   resolved "https://registry.yarnpkg.com/@projectcaluma/ember-form/-/ember-form-11.0.0-beta.16.tgz#76e3c3022c629046a27fbe1b6d9080fe6e4305a1"
@@ -6112,7 +6148,7 @@ code-point-at@^1.0.0:
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
   integrity sha1-DQcLTQQ6W+ozovGkDi7bPZpMz3c=
 
-codejar@^3.6.0:
+codejar@^3.5.0, codejar@^3.6.0:
   version "3.6.0"
   resolved "https://registry.yarnpkg.com/codejar/-/codejar-3.6.0.tgz#be491d4db4d723da24f1bcd735ecad09e0f6c36d"
   integrity sha512-30iPkdz4Y3d2qVMpMKsvEREtfUBH6JHvW2aWeoCBR67DUoZqSQLIvcAlLWZuTG7i7DonJkbCqkBnJPPhbj+J6w==
@@ -14839,6 +14875,11 @@ printf@^0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/printf/-/printf-0.6.1.tgz#b9afa3d3b55b7f2e8b1715272479fc756ed88650"
   integrity sha512-is0ctgGdPJ5951KulgfzvHGwJtZ5ck8l042vRkV6jrkpBzTmb/lueTqguWHy2JfVA+RY6gFVlaZgUS0j7S/dsw==
+
+prismjs@^1.27.0:
+  version "1.27.0"
+  resolved "https://registry.yarnpkg.com/prismjs/-/prismjs-1.27.0.tgz#bb6ee3138a0b438a3653dd4d6ce0cc6510a45057"
+  integrity sha512-t13BGPUlFDR7wRB5kQDG4jjl7XeuH6jbJGt11JHPL96qwsEHNX2+68tFXqc1/k+/jALsbSWJKUOT/hcYAZ5LkA==
 
 private@^0.1.6, private@^0.1.8:
   version "0.1.8"
