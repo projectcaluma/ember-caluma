@@ -2246,6 +2246,39 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
+"@projectcaluma/ember-distribution@1.0.0-beta.6":
+  version "1.0.0-beta.6"
+  resolved "https://registry.yarnpkg.com/@projectcaluma/ember-distribution/-/ember-distribution-1.0.0-beta.6.tgz#125eaf301eeaa388805d0d181f42c941aafd7eb0"
+  integrity sha512-ouytfbUzjEEBw9kZnNq8cvX4e6vsjVir18cLo1Lj6nw+d8pPmTlnV/eHARW67pHmQw0NGB39MQfKUOfJB8wQeQ==
+  dependencies:
+    "@ember/string" "^3.0.0"
+    "@embroider/macros" "^1.5.0"
+    "@glimmer/component" "^1.0.4"
+    "@glimmer/tracking" "^1.0.4"
+    "@projectcaluma/ember-core" "^11.0.0-beta.6"
+    "@projectcaluma/ember-form" "^11.0.0-beta.16"
+    "@projectcaluma/ember-workflow" "^11.0.0-beta.6"
+    ember-apollo-client "^4.0.2"
+    ember-auto-import "^2.4.0"
+    ember-can "^4.1.0"
+    ember-cli-babel "^7.26.11"
+    ember-cli-htmlbars "^6.0.1"
+    ember-concurrency "^2.2.1"
+    ember-engines-router-service "^0.3.0"
+    ember-fetch "^8.1.1"
+    ember-intl "^5.7.2"
+    ember-pikaday "^4.0.0"
+    ember-resources "^4.4.0"
+    ember-svg-jar "^2.3.4"
+    ember-test-selectors "^6.0.0"
+    ember-uikit "^5.1.1"
+    graphql "^15.8.0"
+    graphql-tag "^2.12.6"
+    ionicons "^6.0.1"
+    lodash.merge "^4.6.2"
+    luxon "^2.3.1"
+    tracked-toolbox "^1.2.3"
+
 "@projectcaluma/ember-form-builder@11.0.0-beta.11":
   version "11.0.0-beta.11"
   resolved "https://registry.yarnpkg.com/@projectcaluma/ember-form-builder/-/ember-form-builder-11.0.0-beta.11.tgz#5fb74554bbc7ef8ff1b4ae111159f27b9f85f255"
@@ -7479,7 +7512,7 @@ ember-cached-decorator-polyfill@^0.1.4:
     ember-cli-babel "^7.21.0"
     ember-cli-babel-plugin-helpers "^1.1.1"
 
-ember-can@^4.2.0:
+ember-can@^4.1.0, ember-can@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/ember-can/-/ember-can-4.2.0.tgz#08bfec3b2b57aad3dc6e4dc36fe9692bd1794dab"
   integrity sha512-hiaWZspmI4zWeWmmFWgyw1+yEStSo6edGRHHUXCUPR+vBoqlT/hEfmndlfDGso2GFP8IV59DORMVY0KReMcO+w==
