@@ -17,7 +17,7 @@ export default class App extends Application {
     },
     "@projectcaluma/ember-distribution": {
       dependencies: {
-        services: ["apollo", "notification", "intl", "caluma-options"],
+        services: ["apollo", "notification", "intl", "caluma-options", "store"],
       },
     },
   };

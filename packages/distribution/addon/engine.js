@@ -11,7 +11,13 @@ export default class DistributionEngine extends Engine {
   Resolver = Resolver;
 
   dependencies = {
-    services: ["apollo", "notification", "intl", "caluma-options"],
+    services: [
+      "apollo",
+      "notification",
+      "intl",
+      "caluma-options",
+      "store", // this is just in case that a custom form widget uses the store
+    ],
   };
 }
 
