@@ -1,3 +1,10 @@
+# [@projectcaluma/ember-distribution-v1.0.0-beta.8](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-distribution-v1.0.0-beta.7...@projectcaluma/ember-distribution-v1.0.0-beta.8) (2022-04-11)
+
+
+### Bug Fixes
+
+* **distribution:** inject store into distribution engine ([2e00d7f](https://github.com/projectcaluma/ember-caluma/commit/2e00d7f0707b7a36e6955d91baa340ce2af7e413))
+
 # [@projectcaluma/ember-distribution-v1.0.0-beta.7](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-distribution-v1.0.0-beta.6...@projectcaluma/ember-distribution-v1.0.0-beta.7) (2022-04-07)
 
 
