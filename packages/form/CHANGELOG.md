@@ -1,3 +1,10 @@
+# [@projectcaluma/ember-form-v11.0.0-beta.18](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.17...@projectcaluma/ember-form-v11.0.0-beta.18) (2022-04-13)
+
+
+### Bug Fixes
+
+* **form:** fix error formatting for older browsers ([9e34876](https://github.com/projectcaluma/ember-caluma/commit/9e3487625ccb73918b32fdf787054bab9114162f))
+
 # [@projectcaluma/ember-form-v11.0.0-beta.17](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.16...@projectcaluma/ember-form-v11.0.0-beta.17) (2022-04-07)
 
 
