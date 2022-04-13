@@ -3,7 +3,7 @@ import { helper } from "@ember/component/helper";
 export function formatGraphqlErrorObject(error) {
   try {
     const path = error.path.join(".");
-    const { line, column } = error.locations.at(-1);
+    const { line, column } = error.locations[error.locations.length - 1];
 
     return `${path}:${line}:${column}: ${error.message}`;
   } catch (e) {
