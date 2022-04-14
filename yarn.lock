@@ -994,10 +994,10 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/runtime@^7.10.2", "@babel/runtime@^7.8.4":
-  version "7.17.2"
-  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.17.2.tgz#66f68591605e59da47523c631416b18508779941"
-  integrity sha512-hzeyJyMA1YGdJTuWU0e/j4wKXrU4OMFvY2MSlaI9B7VQb0r5cxTE3EAIS2Q7Tn2RIcDkRvTA/v2JsAEhxe99uw==
+"@babel/runtime@^7.10.2", "@babel/runtime@^7.17.8", "@babel/runtime@^7.8.4":
+  version "7.17.9"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.17.9.tgz#d19fbf802d01a8cb6cf053a64e472d42c434ba72"
+  integrity sha512-lSiBBvodq29uShpWGNbgFdKYNiFDo5/HIYsaCEY9ff4sb10x9jizo2+pRrSyF4jKZCXqgzuqBOQKbUm90gQwJg==
   dependencies:
     regenerator-runtime "^0.13.4"
 
@@ -8448,12 +8448,12 @@ ember-resolver@8.0.3:
     ember-cli-version-checker "^5.1.2"
     resolve "^1.20.0"
 
-ember-resources@^4.4.0:
-  version "4.4.0"
-  resolved "https://registry.yarnpkg.com/ember-resources/-/ember-resources-4.4.0.tgz#a3b85a0269c3523ba32a2a5ab15472c8e90a6a41"
-  integrity sha512-bMk3qdD7sgG33VY3Znri6z2p/XneITuT02zgFROS9flvUE124rnW/m9ND/fySt5EOE8URhS3IZ6MImIgI1dyCg==
+ember-resources@^4.6.1:
+  version "4.6.1"
+  resolved "https://registry.yarnpkg.com/ember-resources/-/ember-resources-4.6.1.tgz#8543ccd1db9b30c21ba15d47ca6cf8f6c010bec9"
+  integrity sha512-rNygTAQY9cDymNcZTbEwDyU+ZHZwe2UtCZiIvy6k5zy1oN4rn9kbF1hKwbD0M6zAz/BN4XP3lFWOtjXgmLkHfg==
   dependencies:
-    "@ember/test-waiters" "^3.0.0"
+    "@babel/runtime" "^7.17.8"
     "@embroider/addon-shim" "^1.2.0"
     "@embroider/macros" "^1.2.0"
 
