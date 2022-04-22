@@ -2,5 +2,6 @@ fragment AvailableField on AvailableField {
   id
   label
   isLeaf
+  isValue
   sourcePath
 }

@@ -3,4 +3,6 @@ fragment AnalyticsField on AnalyticsField {
   alias
   meta
   dataSource
+  function
+  showOutput
 }

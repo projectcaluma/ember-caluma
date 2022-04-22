@@ -1,0 +1,70 @@
+{{#if this.showForm}}
+  <ValidatedForm @model={{this.field}} @on-submit={{this.submitField}} as |f|>
+    <div class="uk-flex uk-flex-between uk-flex-middle">
+      <h3>{{t "caluma.analytics.sections.field_selection"}}</h3>
+      <div class="uk-flex uk-flex-middle">
+        <div class="uk-margin-right uk-flex uk-flex-middle">
+          <f.input
+            @name="showOutput"
+            @label={{t "caluma.analytics.show_output"}}
+            @required={{true}}
+            @renderComponent={{component
+              "ca-toggle-switch"
+              value=f.model.showOutput
+              size="small"
+              onToggle=(mut f.model.showOutput)
+            }}
+          />
+        </div>
+      </div>
+    </div>
+
+    <f.input @name="dataSource" @label={{t "caluma.analytics.field"}}>
+      <div class="uk-grid-small uk-child-width-1-5" uk-grid>
+        <CaFieldSelect
+          @onSelect={{this.setFieldPath}}
+          @selectedPath={{this.field.dataSource}}
+          @slug={{@analyticsTable.slug}}
+        />
+      </div>
+    </f.input>
+    <div class="uk-flex">
+      <div class="uk-width-1 uk-margin-right">
+        <f.input
+          @name="alias"
+          @type="text"
+          @label={{t "caluma.analytics.alias"}}
+          @placeholder={{t "caluma.analytics.alias"}}
+        />
+      </div>
+      <div class="uk-width-medium">
+        <f.input
+          @name="aggregateFunction"
+          @type="select"
+          @label={{t "caluma.analytics.aggregation"}}
+          @options={{this.config.analytics.functionChoices}}
+          class="uk-width-small"
+        />
+      </div>
+    </div>
+    <div class="uk-flex uk-flex-right">
+      <f.button
+        @disabled={{f.loading}}
+        class="uk-margin-small-right"
+        {{on "click" this.toggleForm}}
+      >
+        {{t "caluma.analytics.cancel"}}
+      </f.button>
+
+      <f.submit @disabled={{f.loading}}>
+        {{t "caluma.analytics.add_field"}}
+      </f.submit>
+    </div>
+  </ValidatedForm>
+{{else}}
+  <div class="uk-flex uk-flex-right">
+    <UkButton @color="primary" {{on "click" this.toggleForm}}>
+      {{t "caluma.analytics.add_field"}}
+    </UkButton>
+  </div>
+{{/if}}

@@ -6,7 +6,7 @@ module.exports = buildEngine({
   lazyLoading: {
     enabled: false,
   },
-  include: function () {
+  include() {
     this._super.included.apply(this, arguments);
   },
 });

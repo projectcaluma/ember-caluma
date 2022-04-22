@@ -1,7 +1,5 @@
 mutation RemoveAnalyticsTable($input: RemoveAnalyticsTableInput!) {
   removeAnalyticsTable(input: $input) {
-    analyticsTable {
-      id
-    }
+    clientMutationId
   }
 }

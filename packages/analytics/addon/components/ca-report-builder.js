@@ -3,28 +3,18 @@ import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
-import { Changeset } from "ember-changeset";
-import lookupValidator from "ember-changeset-validations";
 import {
   dropTask,
   enqueueTask,
   restartableTask,
+  lastValue,
 } from "ember-concurrency-decorators";
+import { useTask, useResource } from "ember-resources";
 
-import removeAnalyticsFieldMutation from "@projectcaluma/ember-analytics/gql/mutations/remove-analytics-field.graphql";
 import removeAnalyticsTableMutation from "@projectcaluma/ember-analytics/gql/mutations/remove-analytics-table.graphql";
-import saveAnalyticsFieldMutation from "@projectcaluma/ember-analytics/gql/mutations/save-analytics-field.graphql";
 import saveAnalyticsTableMutation from "@projectcaluma/ember-analytics/gql/mutations/save-analytics-table.graphql";
 import getAnalyticsTableQuery from "@projectcaluma/ember-analytics/gql/queries/get-analytics-table.graphql";
-import FieldValidations from "@projectcaluma/ember-analytics/validations/field";
-import slugify from "@projectcaluma/ember-core/utils/slugify";
-
-class CaField {
-  alias;
-  filter;
-  dataSource;
-  show = true;
-}
+import FetchAnalyticsTableResource from "@projectcaluma/ember-analytics/resources/analytics-table";
 
 export default class CaReportBuilderComponent extends Component {
   @queryManager apollo;
@@ -32,200 +22,71 @@ export default class CaReportBuilderComponent extends Component {
   @service intl;
   @service router;
 
-  @tracked _tableSlug;
-  @tracked analyticsTable;
-  @tracked startingObject;
-
-  constructor(...args) {
-    super(...args);
-
-    this._tableSlug = this.args.slug ?? "";
-    this.startingObject = this.args["starting-objects"]
-      ? this.args["starting-objects"][0].value
-      : undefined;
-    this.field = Changeset(
-      new CaField(),
-      lookupValidator(FieldValidations),
-      FieldValidations
-    );
+  get isNew() {
+    return !this.args.analyticsTable?.id;
   }
 
-  get tableId() {
-    return this.analyticsTable?.id;
+  get formDisabled() {
+    return !this.isNew;
   }
 
-  get analyticsFields() {
-    return this.analyticsTable?.fields.edges.map((edge) => edge.node);
-  }
-
-  get tableSlug() {
-    return this.analyticsTable?.slug || this._tableSlug;
-  }
-
-  @action
-  setTableSlug(value) {
-    const slug = slugify(value);
-    this._tableSlug = slug;
-    if (this.analyticsTable) {
-      set(this.analyticsTable, "slug", slug);
-    }
-  }
-
-  @action
-  setStartingObject(obj) {
-    this.startingObject = obj;
-  }
-
-  @action
-  setFieldPath(path) {
-    this.field.set("dataSource", path);
-    this.field.set(
-      "alias",
-      path ? path.substring(path.lastIndexOf(".") + 1) : ""
-    );
-  }
-
-  @dropTask
-  *fetchData() {
-    if (this.args.slug) {
-      try {
-        this.analyticsTable = yield this.apollo.query(
-          {
-            query: getAnalyticsTableQuery,
-            // TODO: availableFields have the same ID, therefore we turned apollo caching off
-            fetchPolicy: "no-cache",
-            variables: { slug: this.args.slug },
-          },
-          "analyticsTable"
-        );
-      } catch (e) {
-        this.notification.danger(
-          this.intl.t(`caluma.analytics.notification.table_not_found`)
-        );
-        this.router.transitionTo("reports");
-      }
-    }
-  }
-
-  @restartableTask
-  *updateTable() {
-    this.analyticsTable = yield this.apollo.mutate(
-      {
-        mutation: saveAnalyticsTableMutation,
-        fetchPolicy: "network-only",
-        variables: {
-          input: {
-            name: this.tableSlug,
-            slug: this.tableSlug,
-            startingObject: this.startingObject.value,
-          },
-        },
-      },
-      "analyticsTable"
-    );
-  }
-
-  @action
-  async submitTable() {
-    // TODO: updating the slug means, we must update the URL query as well.
-    // which is not consitent if it is triggered by this component, huh?
-    // await this.updateTable.perform();
-  }
-
-  @action
-  async submitField() {
-    this.field.validate();
-
-    if (this.field.isInvalid) {
-      this.notification.danger(
-        this.intl.t(`caluma.analytics.notification.field_invalid`)
-      );
-      return;
-    }
-    if (
-      this.analyticsFields.find(
-        (existing) => existing.dataSource === this.field.get("dataSource")
-      )
-    ) {
-      this.notification.danger(
-        this.intl.t(`caluma.analytics.notification.field_exists`)
-      );
-      return;
-    }
-
-    await this.saveAnalyticsField.perform(this.field.pendingData);
-    this.resetFieldInputs();
-  }
-
-  @action
-  updateAnalyticsField(field) {
-    this.saveAnalyticsField.perform(field);
-  }
-
-  @enqueueTask
-  *saveAnalyticsField({
-    id,
-    alias,
-    dataSource /* , alias_translation , show, filter */,
-  }) {
-    // TODO: Add the "alias_translation" attribute when available
-    // TODO: Add the "show" attribute when available
-    // TODO: Add the "filter" attribute when available
-    yield this.apollo.mutate({
-      mutation: saveAnalyticsFieldMutation,
-      fetchPolicy: "network-only",
-      variables: {
-        input: {
-          table: this.tableId,
-          id,
-          alias,
-          dataSource,
-        },
-      },
-    });
-    this.fetchData.perform();
-  }
-
-  @enqueueTask
-  *removeAnalyticsField({ id }) {
-    yield this.apollo.mutate({
-      mutation: removeAnalyticsFieldMutation,
-      fetchPolicy: "network-only",
-      variables: {
-        input: {
-          id,
-        },
-      },
-    });
-    this.fetchData.perform();
+  get startingObjects() {
+    // TODO: Replace with dynamic list
+    // return this.args.startingObjects;
+    return [{ label: "Cases", value: "CASES" }];
   }
 
   @dropTask
   *createTable() {
-    if (this.tableSlug.trim() === "new") {
-      this.notification.danger(
-        this.intl.t("caluma.analytics.notification.table_title_invalid")
+    try {
+      this.args.analyticsTable.execute();
+      const data = this.args.analyticsTable.data;
+      const input = {
+        slug: data.slug,
+        name: data.name,
+        startingObject: data.startingObject,
+      };
+      const answer = yield this.apollo.mutate(
+        {
+          mutation: saveAnalyticsTableMutation,
+          fetchPolicy: "network-only",
+          variables: {
+            input,
+          },
+        },
+        "saveAnalyticsTable.analyticsTable"
       );
-      return;
+      yield this.args.onAdd?.(
+        this.args.analyticsTable.slug,
+        this.args.analyticsTable.startingObject
+      );
+      this.router.transitionTo("reports.edit", data.slug);
+    } catch (error) {
+      console.error(error);
+      this.notification.danger(
+        this.intl.t(`caluma.analytics.notification.create_error`)
+      );
     }
-    yield this.args["on-add"](this.tableSlug, this.startingObject);
   }
 
   @dropTask
   *deleteTable() {
-    yield this.apollo.mutate({
-      mutation: removeAnalyticsTableMutation,
-      fetchPolicy: "network-only",
-      variables: {
-        input: {
-          slug: this.analyticsTable.slug,
+    try {
+      yield this.apollo.mutate({
+        mutation: removeAnalyticsTableMutation,
+        fetchPolicy: "network-only",
+        variables: {
+          input: {
+            slug: this.args.analyticsTable.slug,
+          },
         },
-      },
-    });
-    this.router.transitionTo("reports");
-  }
-
-  resetFieldInputs() {
-    this.field.rollback();
+      });
+      this.router.transitionTo("reports");
+    } catch (error) {
+      console.error(error);
+      this.notification.danger(
+        this.intl.t(`caluma.analytics.notification.delete_error`)
+      );
+    }
   }
 }

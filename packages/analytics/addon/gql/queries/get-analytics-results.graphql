@@ -5,5 +5,13 @@ query GetAnalyticsResults($slug: String!) {
     resultData {
       ...ResultData
     }
+    fields {
+      edges {
+        node {
+          alias
+          function
+        }
+      }
+    }
   }
 }

@@ -1,1 +1,1 @@
-export { default } from '@projectcaluma/ember-analytics/controllers/reports/index';
+export { default } from "@projectcaluma/ember-analytics/controllers/reports/index";

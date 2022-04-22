@@ -6,6 +6,6 @@ export default class ReportsIndexController extends Controller {
 
   @action
   createTable() {
-    this.router.transitionTo("demo.analytics.builder", "new");
+    this.router.transitionTo("reports.new");
   }
 }

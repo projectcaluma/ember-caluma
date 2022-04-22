@@ -1,30 +1,70 @@
-<table class="uk-table uk-table-divider uk-table-striped uk-table-hover">
+<table class="uk-table uk-table-divider uk-table-hover">
+  <thead>
+    <tr>
+      <th>Question</th>
+      <th>Display Title</th>
+      <th>Aggregation</th>
+      <th class="uk-text-center">Shown in ouput</th>
+      <th>Filter</th>
+      <th></th>
+    </tr>
+  </thead>
   <tbody>
-    {{#each @fields as |Field|}}
-      <tr>
-        <td class="uk-margin-small-top uk-margin-small-bottom">
-          <div class="uk-grid-small uk-child-width-1-5" uk-grid>
-            <CaFieldSelect
-              @onSelect={{fn this.updateFieldPath Field.id Field.alias}}
-              @selectedPath={{Field.dataSource}}
-              @slug={{@slug}}
+    {{#each this.fields as |field|}}
+      {{#let (fn this.updateField field) as |update|}}
+        <tr>
+          <td>
+            {{field.dataSource}}
+          </td>
+          <td>
+            <CaFieldSelectorList::CaFieldAliasInput
+              @value={{field.alias}}
+              @onSave={{fn update "alias"}}
             />
-          </div>
-          <CaFieldDetails
-            class="uk-margin-small-top"
-            @field={{Field}}
-            @onUpdate={{fn this.updateFieldDescription Field}}
-          />
-          <button
-            data-test-delete-field
-            type="button"
-            class="uk-icon-button"
-            uk-icon="trash"
-            title={{t "caluma.analytics.delete_field"}}
-            {{on "click" (fn this.removeField Field.id)}}
-          ></button>
-        </td>
-      </tr>
+          </td>
+          <td>
+            <PowerSelect
+              @onChange={{fn update "function"}}
+              @options={{this.config.analytics.functionChoices}}
+              @selected={{field.function}}
+              as |function|
+            >
+              {{function}}
+            </PowerSelect>
+          </td>
+          <td class="uk-flex uk-flex-center uk-flex-middle">
+            <UkToggleSwitch
+              @value={{field.showOutput}}
+              @size="small"
+              @onToggle={{fn update "showOutput"}}
+            />
+          </td>
+          <td>
+            {{#if field.filters}}
+              <UkButton>Edit {{field.filters}}</UkButton>
+            {{else}}
+              <UkButton>Add filters</UkButton>
+            {{/if}}
+          </td>
+          <td>
+            <button
+              data-test-delete-field
+              type="button"
+              class="uk-icon-button"
+              uk-icon="trash"
+              title={{t "caluma.analytics.delete_field"}}
+              {{on "click" (perform this.removeAnalyticsField field.id)}}
+            ></button>
+          </td>
+        </tr>
+      {{/let}}
+    {{else}}
+      <td colspan="5">
+        <h3 class="uk-flex uk-flex-center uk-flex-middle">
+          <UkIcon @icon="search" @ratio="1.5" class="uk-margin-small-right" />
+          {{t "calma.analytics.empty"}}
+        </h3>
+      </td>
     {{/each}}
   </tbody>
 </table>

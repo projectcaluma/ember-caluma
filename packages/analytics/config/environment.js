@@ -8,5 +8,9 @@ module.exports = function (environment) {
     "ember-validated-form": {
       theme: "uikit",
     },
+
+    analytics: {
+      functionChoices: ["VALUE", "SUM", "COUNT", "AVG", "MAX", "MIN"],
+    },
   };
 };

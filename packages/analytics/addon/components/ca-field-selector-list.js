@@ -1,19 +1,79 @@
+import { getOwner } from "@ember/application";
 import { action } from "@ember/object";
+import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
+import { tracked } from "@glimmer/tracking";
+import { queryManager, getObservable } from "ember-apollo-client";
+import { enqueueTask, dropTask, timeout } from "ember-concurrency";
+
+import removeAnalyticsFieldMutation from "@projectcaluma/ember-analytics/gql/mutations/remove-analytics-field.graphql";
+import saveAnalyticsFieldMutation from "@projectcaluma/ember-analytics/gql/mutations/save-analytics-field.graphql";
 
 export default class CaFieldSelectorListComponent extends Component {
-  @action
-  updateFieldPath(id, alias, selection) {
-    this.args.onUpdate({ id, alias, dataSource: selection });
+  @queryManager apollo;
+  @service notification;
+  @service intl;
+
+  get fields() {
+    return (
+      this.args.analyticsTable?.fields?.edges?.map((edge) => edge.node) ?? []
+    );
+  }
+
+  constructor(...args) {
+    super(...args);
+
+    this.config = getOwner(this).resolveRegistration("config:environment");
   }
 
   @action
-  updateFieldDescription(field, props) {
-    this.args.onUpdate({ ...field, ...props });
+  async updateField(field, key, value) {
+    const requiredInput = {
+      id: field.id,
+      alias: field.alias,
+      dataSource: field.dataSource,
+      function: field.function,
+      table: this.args.analyticsTable.id,
+    };
+    await this.saveAnalyticsField.perform({
+      ...requiredInput,
+      [key]: value,
+    });
   }
 
-  @action
-  removeField(id) {
-    this.args.onDelete({ id });
+  @enqueueTask
+  *saveAnalyticsField(input) {
+    try {
+      yield this.apollo.mutate({
+        mutation: saveAnalyticsFieldMutation,
+        variables: { input },
+      });
+      this.debouncedNotification.perform(this.intl.t("ohye"));
+    } catch (error) {
+      console.error(error);
+      this.debouncedNotification.perform(this.intl.t("ohno"), "danger");
+    }
+  }
+
+  @dropTask
+  *debouncedNotification(message, type = "success") {
+    yield timeout(1000);
+    this.notification[type](message);
+  }
+
+  @enqueueTask
+  *removeAnalyticsField(id) {
+    try {
+      yield this.apollo.mutate({
+        mutation: removeAnalyticsFieldMutation,
+        variables: { input: { id } },
+      });
+      this.notification.success(this.intl.t("ohyes"));
+      const observableQuery = getObservable(this.args.analyticsTable);
+      yield observableQuery.refetch();
+    } catch (error) {
+      console.error(error);
+      this.notification.danger(this.intl.t("ohno"));
+    }
   }
 }

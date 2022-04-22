@@ -1,10 +1,11 @@
 caluma:
   analytics:
     sections:
-      edit_report: Edit report
-      build_report: Create report
+      edit_report: Edit report {slug}
+      create_report: Create report
       field_selection: Field selection
       table_preview: Preview
+    back: Back to the list
     report_title: Report title
     starting_object: Starting point
     field: Field
@@ -22,6 +23,9 @@ caluma:
       field_invalid: Please fix invalid field inputs.
       table_not_found: The requested report was not found.
       table_title_invalid: The choosen title for the table is not allowed.
+      delete_error: An error occured while deleting the report.
+      create_error: An error occured while creating the report
+      fetch_error: An error occured while loading the report.
     list:
       new: Create new report
       list_title: All reports

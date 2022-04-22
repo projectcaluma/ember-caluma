@@ -1,10 +1,11 @@
 caluma:
   analytics:
     sections:
-      edit_report: Auswertung bearbeiten
-      build_report: Auswertung erstellen
+      edit_report: Auswertung {slug} bearbeiten
+      create_report: Auswertung erstellen
       field_selection: Feldauswahl
       table_preview: Vorschau
+    back: Zurück zur Liste
     report_title: Auswertungsname
     starting_object: Ausgangspunkt
     field: Feld
@@ -21,7 +22,10 @@ caluma:
       field_exists: Feld existiert bereits!
       field_invalid: Die Angaben zum Feld sind fehlerhaft.
       table_not_found: Die angegebene Auswertung konnte nicht gefunden werden.
-      table_title_invalid: Der gewählte Titel ist nicht zulässig.
+      table_title_invalid: Der gewählte Titel ist nicht zulässsig.
+      delete_error: Beim Löschen ist ein Fehler aufgetreten.
+      create_error: Beim Erstellen ist ein Fehler aufgetreten.
+      fetch_error: Beim Laden der Daten ist ein Fehler aufgetreten.
     list:
       new: Neue Auswertung anlegen
       list_title: Liste aller Auswertungen

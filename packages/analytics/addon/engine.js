@@ -1,5 +1,4 @@
 import Engine from "@ember/engine";
-
 import loadInitializers from "ember-load-initializers";
 import Resolver from "ember-resolver";
 

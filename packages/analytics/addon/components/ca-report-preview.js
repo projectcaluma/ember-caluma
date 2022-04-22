@@ -3,45 +3,59 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 // import { computed } from "@ember/object";
 import { queryManager } from "ember-apollo-client";
-import { dropTask } from "ember-concurrency-decorators";
+import { task } from "ember-concurrency";
+import { useTask, getObservable } from "ember-resources";
 
 import getAnalyticsResultsQuery from "@projectcaluma/ember-analytics/gql/queries/get-analytics-results.graphql";
 
 export default class CaReportPreviewComponent extends Component {
   @queryManager apollo;
   @service notification;
+  @service intl;
 
-  @tracked _resultData;
+  @tracked data = useTask(this, this.fetchData, () => [this.args.slug]);
 
-  // @computed("resultdata.records")
-  get resultData() {
-    if (!this._resultData) return [];
-    //TODO: unpack result records
-    return [];
+  get observableQuery() {
+    return getObservable(this.data.value);
   }
 
-  @dropTask
+  @task
   *fetchData() {
     if (this.args.slug) {
       try {
-        this._resultData = yield this.apollo.query(
+        const result = yield this.apollo.watchQuery(
           {
             query: getAnalyticsResultsQuery,
-            fetchPolicy: "network-only",
+            fetchPolicy: "cache-and-network",
             variables: {
               slug: this.args.slug,
             },
           },
-          "analyticsTable.ResultData"
+          "analyticsTable"
         );
-      } catch (e) {
-        this.notification.danger(e);
+        const headings = result.fields.edges.map(({ node }) => node);
+        return {
+          fields: result.resultData.records.edges.map(({ node }) =>
+            headings.map(({alias}) =>
+              node.edges
+                .map(({ node }) => node)
+                .find((node) => node.alias === alias)
+            )
+          ),
+          headings,
+        };
+      } catch (error) {
+        console.error(error);
+        this.notification.danger(this.intl.t("caluma.analytics.error_preview"));
       }
     }
+    return null;
   }
 
   download() {
+    alert("TODO");
     // TODO: when download query is available
+    //
     // const { downloadUrl } = await this.apollo.watchQuery(
     //   {
     //     query: getFileAnswerInfoQuery,

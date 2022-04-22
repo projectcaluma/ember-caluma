@@ -81,6 +81,7 @@ export default class CaFieldSelectComponent extends Component {
           variables: {
             slug: this.args.slug,
             prefix: this.args.parentPath ?? "",
+            // depth: 1
           },
         },
         "analyticsTable.availableFields"

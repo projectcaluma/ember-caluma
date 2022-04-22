@@ -4,6 +4,7 @@
 fragment AnalyticsTable on AnalyticsTable {
   id
   slug
+  name
   fields {
     edges {
       node {
