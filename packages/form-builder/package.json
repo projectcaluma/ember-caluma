@@ -55,7 +55,7 @@
     "@ember/optional-features": "2.0.0",
     "@ember/test-helpers": "2.7.0",
     "@embroider/test-setup": "1.6.0",
-    "@faker-js/faker": "6.1.2",
+    "@faker-js/faker": "6.2.0",
     "@projectcaluma/ember-testing": "11.0.0-beta.6",
     "broccoli-asset-rev": "3.0.0",
     "ember-autoresize-modifier": "^0.5.0",
