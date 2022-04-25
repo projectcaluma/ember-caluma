@@ -34,7 +34,7 @@
     "ember-math-helpers": "^2.18.1",
     "ember-pikaday": "^4.0.0",
     "ember-power-select": "^5.0.4",
-    "ember-resources": "^4.6.3",
+    "ember-resources": "^4.6.4",
     "ember-uikit": "^5.1.1",
     "ember-validators": "^4.1.2",
     "graphql": "^15.8.0",
