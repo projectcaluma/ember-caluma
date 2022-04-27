@@ -59,7 +59,7 @@ module(
       assert
         .dom("ul.uk-subnav > li:nth-of-type(1)")
         .containsText(time(this.createdAt));
-      assert.dom("p:nth-of-type(2)").hasText("Question?");
+      assert.dom("[data-test-inquiry-request]").hasText("Question?");
 
       this.set("type", "answer");
 
@@ -70,7 +70,7 @@ module(
       assert
         .dom("ul.uk-subnav > li:nth-of-type(1)")
         .containsText(time(this.closedAt));
-      assert.dom("p:nth-of-type(2)").hasText("Answer!");
+      assert.dom("[data-test-inquiry-answer]").hasText("Answer!");
     });
 
     test("it renders a link for editing the inquiry when permitted", async function (assert) {

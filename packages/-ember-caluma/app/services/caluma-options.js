@@ -26,18 +26,21 @@ export default class CustomCalumaOptionsService extends CalumaOptionsService {
     this.currentGroupId = 1;
   }
 
-  get distribution() {
-    return {
-      new: {
-        defaultTypes: ["suggestions", "private"],
-        types: {
-          federal: { label: "dummy.types.federal" },
-          private: { label: "dummy.types.private" },
-          others: { label: "dummy.types.others" },
-        },
+  distribution = {
+    inquiry: {
+      answer: {
+        infoQuestions: ["inquiry-answer-reason", "inquiry-answer-hint"],
       },
-    };
-  }
+    },
+    new: {
+      defaultTypes: ["suggestions", "private"],
+      types: {
+        federal: { label: "dummy.types.federal" },
+        private: { label: "dummy.types.private" },
+        others: { label: "dummy.types.others" },
+      },
+    },
+  };
 
   // BEGIN-SNIPPET caluma-options-service-query-if-not-cached.js
   async queryIfNotCached(identifiers, type) {

@@ -1,8 +1,18 @@
-<div uk-grid class={{if this.config.ui.stack "uk-grid-small"}}>
-  <div class={{if this.config.ui.stack "uk-width-1-1" "uk-width-1-3"}}>
-    <CdNavigation @caseId={{@model}} />
+{{#if
+  (or
+    this.distribution.navigation.isRunning this.distribution.controls.isRunning
+  )
+}}
+  <div class="uk-text-center">
+    <UkSpinner @ratio={{2}} />
   </div>
-  <div class={{if this.config.ui.stack "uk-width-1-1" "uk-width-2-3"}}>
-    {{outlet}}
+{{else}}
+  <div uk-grid class={{if this.config.ui.stack "uk-grid-small"}}>
+    <div class={{if this.config.ui.stack "uk-width-1-1" "uk-width-1-3"}}>
+      <CdNavigation @caseId={{@model}} />
+    </div>
+    <div class={{if this.config.ui.stack "uk-width-1-1" "uk-width-2-3"}}>
+      {{outlet}}
+    </div>
   </div>
-</div>
+{{/if}}

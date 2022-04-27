@@ -1,0 +1,8 @@
+<p class="cd-truncated" ...attributes>
+  {{~this.displayedText~}}
+  {{#if this.truncate}}
+    <a href="" {{on "click" this.toggleExpand}}>
+      {{~t (concat "caluma.distribution." (if this.expand "less" "more"))~}}
+    </a>
+  {{/if}}
+</p>

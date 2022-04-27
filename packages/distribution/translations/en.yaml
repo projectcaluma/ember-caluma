@@ -12,6 +12,9 @@ caluma:
     send-error: "Error while sending pending inquiries"
     complete-error: "Error while completing distribution"
 
+    more: "more"
+    less: "less"
+
     edit:
       title: "Edit inquiry"
       link: "Edit"

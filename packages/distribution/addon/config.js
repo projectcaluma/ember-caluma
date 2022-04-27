@@ -27,7 +27,7 @@ export default function config(target, property) {
             infoQuestion: "inquiry-remark",
             answer: {
               statusQuestion: "inquiry-answer-status",
-              infoQuestion: "inquiry-answer-reason",
+              infoQuestions: ["inquiry-answer-reason"],
               statusMapping: {
                 "inquiry-answer-status-positive": INQUIRY_STATUS.POSITIVE,
                 "inquiry-answer-status-negative": INQUIRY_STATUS.NEGATIVE,

@@ -17,6 +17,6 @@ module("Integration | Component | cd-inquiry-dialog/inquiry", function (hooks) {
     assert.dom(".uk-position-top-right").exists();
     assert.dom(".inquiry-divider").exists();
     assert.dom(".uk-subnav").exists({ count: 2 });
-    assert.dom("p").exists({ count: 4 });
+    assert.dom("p").exists({ count: 5 });
   });
 });

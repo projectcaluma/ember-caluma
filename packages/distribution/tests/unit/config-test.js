@@ -53,7 +53,7 @@ module("Unit | config", function (hooks) {
               label: "caluma.distribution.answer.revise",
             },
           },
-          infoQuestion: "inquiry-answer-reason",
+          infoQuestions: ["inquiry-answer-reason"],
           statusMapping: {
             "inquiry-answer-status-needs-interaction": "needs-interaction",
             "inquiry-answer-status-negative": "negative",

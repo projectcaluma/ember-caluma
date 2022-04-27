@@ -1,4 +1,4 @@
-<p class="uk-flex uk-flex-middle uk-text-bold uk-margin-remove">
+<p class="uk-flex uk-flex-middle uk-text-large uk-margin-remove">
   {{#if (eq @type "request")}}
     {{svg-jar "arrow-redo-outline" height=24 class="uk-margin-small-right"}}
     {{group-name @inquiry.controllingGroups}}
@@ -43,6 +43,33 @@
   {{/if}}
 </ul>
 
-{{#if this.info}}
-  <p class="uk-margin-remove">{{this.info}}</p>
-{{/if}}
+<div class="uk-margin-remove-last-child">
+  {{#if this.requestInfo}}
+    <CdTruncated
+      data-test-inquiry-request
+      @text={{this.requestInfo}}
+      @length={{500}}
+    />
+  {{else if this.answerInfo}}
+    {{#each this.answerInfo as |info|}}
+      <div class="uk-margin">
+        <p
+          class="uk-text-bolder
+            {{if
+              this.config.ui.small
+              'uk-margin-remove'
+              'uk-margin-small-bottom'
+            }}"
+        >
+          {{info.question}}
+        </p>
+        <CdTruncated
+          data-test-inquiry-answer
+          class="uk-margin-remove"
+          @text={{info.value}}
+          @length={{200}}
+        />
+      </div>
+    {{/each}}
+  {{/if}}
+</div>

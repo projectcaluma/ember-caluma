@@ -37,7 +37,7 @@ export default class CdInquiryDialogComponent extends Component {
         infoQuestion: this.config.inquiry.infoQuestion,
         deadlineQuestion: this.config.inquiry.deadlineQuestion,
         statusQuestion: this.config.inquiry.answer.statusQuestion,
-        answerInfoQuestion: this.config.inquiry.answer.infoQuestion,
+        answerInfoQuestions: this.config.inquiry.answer.infoQuestions,
         includeNavigationData: true,
       },
     });

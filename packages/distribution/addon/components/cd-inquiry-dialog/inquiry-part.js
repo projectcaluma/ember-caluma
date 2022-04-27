@@ -1,4 +1,5 @@
 import { inject as service } from "@ember/service";
+import { isEmpty } from "@ember/utils";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
 import { dropTask } from "ember-concurrency";
@@ -23,15 +24,21 @@ export default class CdInquiryDialogInquiryPartComponent extends Component {
     return this.args.inquiry[key];
   }
 
-  get info() {
-    const document =
-      this.args.type === "request"
-        ? this.args.inquiry.document
-        : this.args.type === "answer"
-        ? this.args.inquiry.childCase.document
-        : null;
+  get requestInfo() {
+    return this.args.type === "request"
+      ? this.args.inquiry.document.info.edges[0]?.node.value
+      : null;
+  }
 
-    return document.info.edges[0]?.node.value;
+  get answerInfo() {
+    return this.args.type === "answer"
+      ? this.args.inquiry.childCase.document.info.edges
+          .filter((edge) => !isEmpty(edge.node.value))
+          .map((edge) => ({
+            question: edge.node.question.label,
+            value: edge.node.value,
+          }))
+      : null;
   }
 
   @dropTask
