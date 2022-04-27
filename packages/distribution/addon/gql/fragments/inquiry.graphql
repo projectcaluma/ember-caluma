@@ -58,10 +58,14 @@ fragment InquiryDialog on WorkItem {
     id
     document {
       ...InquiryStatusDocument
-      info: answers(question: $answerInfoQuestion) {
+      info: answers(questions: $answerInfoQuestions) {
         edges {
           node {
             id
+            question {
+              id
+              label
+            }
             ... on StringAnswer {
               value
             }

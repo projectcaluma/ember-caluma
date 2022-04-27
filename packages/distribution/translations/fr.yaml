@@ -11,6 +11,9 @@ caluma:
     send-error: "Erreur lors de l'envoi des demandes ouvertes"
     complete-error: "Erreur lors de la terminaison de la distribution"
 
+    more: "plus"
+    less: "moins"
+
     edit:
       title: "Modifier la demande"
       link: "Modifier"

@@ -60,6 +60,15 @@ export function createBlueprint(server) {
     type: "TEXTAREA",
     formIds: [inquiryAnswerForm.id],
   });
+  server.create("question", {
+    slug: "inquiry-answer-hint",
+    isRequired: "false",
+    maxLength: 9999,
+    minLength: 0,
+    label: "Hint",
+    type: "TEXTAREA",
+    formIds: [inquiryAnswerForm.id],
+  });
 
   server.create("workflow", { slug: "distribution" });
   server.create("workflow", { slug: "inquiry" });
@@ -135,7 +144,7 @@ export function sendInquiry(server, { inquiry }) {
   return inquiry;
 }
 
-export function answerInquiry(server, { inquiry, status, reason }) {
+export function answerInquiry(server, { inquiry, status, reason, hint }) {
   if (inquiry.status !== "READY") {
     inquiry = sendInquiry(server, { inquiry });
   }
@@ -149,7 +158,12 @@ export function answerInquiry(server, { inquiry, status, reason }) {
   server.create("answer", {
     document: inquiry.childCase.document,
     questionId: "inquiry-answer-reason",
-    value: reason ?? faker.lorem.paragraph(),
+    value: reason ?? faker.lorem.paragraphs(3, "\n\n"),
+  });
+  server.create("answer", {
+    document: inquiry.childCase.document,
+    questionId: "inquiry-answer-hint",
+    value: hint ?? faker.lorem.paragraph(),
   });
 
   inquiry.childCase.workItems

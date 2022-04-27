@@ -74,6 +74,7 @@ class StubInquiry {
           edges: [
             {
               node: new (class {
+                question = { label: "Reason" };
                 @tracked value = reason;
               })(),
             },

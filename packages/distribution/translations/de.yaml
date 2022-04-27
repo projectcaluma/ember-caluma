@@ -11,6 +11,9 @@ caluma:
     send-error: "Fehler beim Versenden der offenen Anfragen"
     complete-error: "Fehler beim Abschliessen der Zirkulation"
 
+    more: "mehr"
+    less: "weniger"
+
     edit:
       title: "Anfrage bearbeiten"
       link: "Bearbeiten"

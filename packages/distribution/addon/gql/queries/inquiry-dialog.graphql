@@ -5,7 +5,7 @@ query InquiryDialog(
   $statusQuestion: ID!
   $deadlineQuestion: ID!
   $infoQuestion: ID!
-  $answerInfoQuestion: ID!
+  $answerInfoQuestions: [ID]!
   $from: [String]!
   $to: [String]!
   $caseId: ID!
