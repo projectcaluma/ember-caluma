@@ -1,9 +1,9 @@
 import Controller from "@ember/controller";
+import { inject as service } from "@ember/service";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
-import { useTask } from "ember-resources";
 import { task } from "ember-concurrency";
-import { inject as service } from "@ember/service";
+import { useTask } from "ember-resources";
 
 import getAnalyticsTable from "@projectcaluma/ember-analytics/tasks/get-analytics-table";
 

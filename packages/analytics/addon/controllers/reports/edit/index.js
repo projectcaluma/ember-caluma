@@ -1,12 +1,12 @@
 import Controller from "@ember/controller";
+import { inject as service } from "@ember/service";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
-import { useTask } from "ember-resources";
 import { task, dropTask } from "ember-concurrency";
-import { inject as service } from "@ember/service";
+import { useTask } from "ember-resources";
 
-import getAnalyticsTable from "@projectcaluma/ember-analytics/tasks/get-analytics-table";
 import removeAnalyticsTableMutation from "@projectcaluma/ember-analytics/gql/mutations/remove-analytics-table.graphql";
+import getAnalyticsTable from "@projectcaluma/ember-analytics/tasks/get-analytics-table";
 
 export default class ReportsEditIndexController extends Controller {
   @service intl;

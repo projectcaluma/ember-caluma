@@ -1,5 +1,5 @@
 query getAggregateFunctionValues {
-  __type (name: "AggregateFunction"){
+  __type(name: "AggregateFunction") {
     enumValues {
       name
     }

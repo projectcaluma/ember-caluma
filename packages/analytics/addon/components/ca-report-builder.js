@@ -1,17 +1,9 @@
-import { action, set } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
-import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
-import {
-  dropTask,
-  enqueueTask,
-  restartableTask,
-  lastValue,
-} from "ember-concurrency-decorators";
+import { dropTask, restartableTask } from "ember-concurrency-decorators";
 
 import saveAnalyticsTableMutation from "@projectcaluma/ember-analytics/gql/mutations/save-analytics-table.graphql";
-import getAnalyticsTableQuery from "@projectcaluma/ember-analytics/gql/queries/get-analytics-table.graphql";
 
 export default class CaReportBuilderComponent extends Component {
   @queryManager apollo;
@@ -22,7 +14,6 @@ export default class CaReportBuilderComponent extends Component {
   get isNew() {
     return !this.args.analyticsTable?.id;
   }
-
 
   get startingObjects() {
     // TODO: Replace with dynamic list
@@ -40,7 +31,7 @@ export default class CaReportBuilderComponent extends Component {
         name: data.name,
         startingObject: data.startingObject,
       };
-      const answer = yield this.apollo.mutate(
+      yield this.apollo.mutate(
         {
           mutation: saveAnalyticsTableMutation,
           fetchPolicy: "network-only",
@@ -62,6 +53,4 @@ export default class CaReportBuilderComponent extends Component {
       );
     }
   }
-
-
 }

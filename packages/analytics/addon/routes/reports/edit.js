@@ -8,7 +8,7 @@ export default class ReportsEditRoute extends Route {
   @t("caluma.analytics.list.edit")
   title;
 
-  async model({ reportId }) {
+  async model({ report_id: reportId }) {
     return reportId;
   }
 }

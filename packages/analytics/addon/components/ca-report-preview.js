@@ -4,7 +4,7 @@ import { tracked } from "@glimmer/tracking";
 // import { computed } from "@ember/object";
 import { queryManager } from "ember-apollo-client";
 import { task } from "ember-concurrency";
-import { useTask, getObservable } from "ember-resources";
+import { useTask } from "ember-resources";
 
 import getAnalyticsResultsQuery from "@projectcaluma/ember-analytics/gql/queries/get-analytics-results.graphql";
 
@@ -14,10 +14,6 @@ export default class CaReportPreviewComponent extends Component {
   @service intl;
 
   @tracked data = useTask(this, this.fetchData, () => [this.args.slug]);
-
-  get observableQuery() {
-    return getObservable(this.data.value);
-  }
 
   @task
   *fetchData() {
@@ -36,7 +32,7 @@ export default class CaReportPreviewComponent extends Component {
         const headings = result.fields.edges.map(({ node }) => node);
         return {
           fields: result.resultData.records.edges.map(({ node }) =>
-            headings.map(({alias}) =>
+            headings.map(({ alias }) =>
               node.edges
                 .map(({ node }) => node)
                 .find((node) => node.alias === alias)

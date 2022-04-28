@@ -13,7 +13,7 @@
           {{#each this.data.value.headings as |header|}}
             <th>
               {{header.alias}}
-              {{#if (not-eq header.function "VALUE" i)}}
+              {{#if (not-eq header.function "VALUE")}}
                 ({{header.function}})
               {{/if}}
             </th>

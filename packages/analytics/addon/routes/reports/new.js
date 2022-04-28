@@ -3,6 +3,9 @@ import { tracked } from "@glimmer/tracking";
 import { Changeset } from "ember-changeset";
 import lookupValidator from "ember-changeset-validations";
 
+import AnalyticsTableValidations from "@projectcaluma/ember-analytics/validations/analytics-table";
+import slugify from "@projectcaluma/ember-core/utils/slugify";
+
 class AnalyticsTable {
   constructor({ name, startingObject } = {}) {
     this.name = name;

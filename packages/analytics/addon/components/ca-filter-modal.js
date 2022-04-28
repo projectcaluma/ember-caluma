@@ -1,12 +1,10 @@
-import { enqueueTask } from "ember-concurrency";
-import { queryManager } from "ember-apollo-client";
-import Component from "@glimmer/component";
-import { useResource } from "ember-resources";
-import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
+import Component from "@glimmer/component";
+import { tracked } from "@glimmer/tracking";
+import { queryManager } from "ember-apollo-client";
+import { enqueueTask } from "ember-concurrency";
 
-import saveAnalyticsFieldMutation from "@projectcaluma/ember-analytics/gql/mutations/save-analytics-field.graphql";
 import saveAnalyticsField from "@projectcaluma/ember-analytics/tasks/save-analytics-field";
 
 export default class CaFilterModalComponent extends Component {
