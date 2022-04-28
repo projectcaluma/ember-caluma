@@ -13,6 +13,7 @@ caluma:
     delete: delete
     notification:
       field_exists: Field already exists!
+      field_invalid: Invalid field
     list:
       new: Create new report
       list_title: All reports

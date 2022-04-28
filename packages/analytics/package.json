@@ -14,7 +14,7 @@
     "test:ember-compatibility": "ember try:each"
   },
   "dependencies": {
-    "@projectcaluma/ember-core": "9.0.3",
+    "@projectcaluma/ember-core": "9.1.0",
     "ember-apollo-client": "^3.2.0",
     "ember-auto-import": "^2.4.2",
     "ember-cli-babel": "^7.26.11",
@@ -66,6 +66,7 @@
     "ember-source-channel-url": "3.0.0",
     "ember-template-lint": "3.12.0",
     "ember-try": "2.0.0",
+    "ember-validated-form": "^5.0.0",
     "faker": "5.5.3",
     "loader.js": "4.7.0",
     "npm-run-all": "4.1.5",

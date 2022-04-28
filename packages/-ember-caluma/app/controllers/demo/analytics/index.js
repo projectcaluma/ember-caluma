@@ -25,8 +25,8 @@ export default class DemoAnalyticsIndexController extends Controller {
   }
 
   @action
-  setTableSlug({ target: input }) {
-    this.tableSlug = slugify(input.value);
+  setTableSlug(value) {
+    this.tableSlug = slugify(value);
   }
 
   @action

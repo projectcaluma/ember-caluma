@@ -3583,22 +3583,22 @@
   dependencies:
     "@octokit/openapi-types" "^11.2.0"
 
-"@projectcaluma/ember-core@9.0.3":
-  version "9.0.3"
-  resolved "https://registry.yarnpkg.com/@projectcaluma/ember-core/-/ember-core-9.0.3.tgz#45a8a92b631409ac18da6fafb5297abd634e20f6"
-  integrity sha512-5nwBOhfibmV9awS3I0cy070nXAhaD91o+r02KzGByodA0lyvbr13cToDEYlhO+sP6eDNZM2MXrOo5CW6YISqZA==
+"@projectcaluma/ember-core@9.1.0":
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/@projectcaluma/ember-core/-/ember-core-9.1.0.tgz#bbb6911252065b72428b88518dd9e05e1c345c36"
+  integrity sha512-3VacvXE6OLj2K4npDujvL7tRzKZWOO1QAJ8CxDqydkK43nk8eVbj0Qzbn3cdBzkQ/W7tCyqR7grKln0s/J/sFQ==
   dependencies:
     "@apollo/client" "^3.4.16"
     ember-apollo-client "^3.2.0"
-    ember-auto-import "^2.2.0"
+    ember-auto-import "^2.2.3"
     ember-changeset-validations "^3.16.0"
     ember-cli-babel "^7.26.6"
-    ember-cli-htmlbars "^5.7.1"
-    ember-concurrency "^2.1.2"
+    ember-cli-htmlbars "^6.0.0"
+    ember-concurrency "^2.2.0"
     ember-concurrency-decorators "^2.0.3"
     ember-fetch "^8.0.4"
     ember-intl "^5.7.0"
-    graphql "^15.6.0"
+    graphql "^15.6.1"
     graphql-tag "^2.12.5"
     intersection-observer "^0.12.0"
     jexl "^2.3.0"
@@ -9856,7 +9856,7 @@ ember-concurrency-decorators@^2.0.0, ember-concurrency-decorators@^2.0.3:
     ember-cli-htmlbars "^4.3.1"
     ember-cli-typescript "^3.1.4"
 
-"ember-concurrency@>=1.0.0 <3", ember-concurrency@^2.0.0, ember-concurrency@^2.1.2, ember-concurrency@^2.2.1:
+"ember-concurrency@>=1.0.0 <3", ember-concurrency@^2.0.0, ember-concurrency@^2.2.0, ember-concurrency@^2.2.1:
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/ember-concurrency/-/ember-concurrency-2.2.1.tgz#4ed2e167036d00f7142312bc93c16f13ed9a259c"
   integrity sha512-a4283Yq+jimxqoD5YaxQu7cXePHKqkNQfsT4fs0nYTz5PYbUd6wzUtelp6k8R1JTNPwDdxyVvUgu7yYoC8Sk5A==
@@ -10608,7 +10608,7 @@ ember-uikit@^4.0.0:
     ember-toggle "^7.1.1"
     uikit "^3.6.21"
 
-ember-validated-form@^5.3.0:
+ember-validated-form@^5.0.0, ember-validated-form@^5.3.0:
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/ember-validated-form/-/ember-validated-form-5.3.0.tgz#fd697bfb4b46473dd85a592d2f23bfe564214fbb"
   integrity sha512-o5TRotrvzhATp1S/ycXVBPqGS481Xv+EkwvKjX5ahfgUaKnjxl5ekwX6g9ZknQAEDYjbSmdKYD+C/IH9xrqFsQ==
@@ -12549,7 +12549,7 @@ graphql-ws@^5.4.1:
   resolved "https://registry.yarnpkg.com/graphql-ws/-/graphql-ws-5.8.1.tgz#daf72534b8a169a272e730fa4f3ce0e6d04e2883"
   integrity sha512-UVf/fxlHultC1+12tX9ShTIipqQFNZ96g7N51RFQlk7MFPsDUUMCR3QXVEzHEd5xlTp16rs5vCyfBljvcPN3fA==
 
-graphql@15.8.0, graphql@^15.5.3, graphql@^15.6.0, graphql@^15.6.1, graphql@^15.8.0:
+graphql@15.8.0, graphql@^15.5.3, graphql@^15.6.1, graphql@^15.8.0:
   version "15.8.0"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-15.8.0.tgz#33410e96b012fa3bdb1091cc99a94769db212b38"
   integrity sha512-5gghUc24tP9HRznNpV2+FIoq3xKkj5dTQqf4v0CpdPbFVwFkWoxOM+o+2OC9ZSvjEMTjfmG9QT+gcvggTwW1zw==
