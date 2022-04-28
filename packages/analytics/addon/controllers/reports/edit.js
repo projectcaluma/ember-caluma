@@ -1,14 +1,17 @@
 import Controller from "@ember/controller";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
-import { useResource } from "ember-resources";
+import { useTask } from "ember-resources";
+import { task } from "ember-concurrency";
+import { inject as service } from "@ember/service";
 
-import FetchAnalyticsTableResource from "@projectcaluma/ember-analytics/resources/analytics-table";
+import getAnalyticsTable from "@projectcaluma/ember-analytics/tasks/get-analytics-table";
 
 export default class ReportsEditController extends Controller {
+  @service intl;
+  @service notification;
   @queryManager apollo;
 
-  @tracked data = useResource(this, FetchAnalyticsTableResource, () => [
-    this.model,
-  ]);
+  @task getTable = getAnalyticsTable;
+  @tracked data = useTask(this, this.getTable, () => [this.model]);
 }

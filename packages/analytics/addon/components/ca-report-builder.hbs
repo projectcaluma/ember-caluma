@@ -1,22 +1,4 @@
 <div data-test-analytics-table-existing ...attributes>
-  {{#if this.isNew}}
-    <h2>{{t "caluma.analytics.sections.create_report"}}</h2>
-  {{else}}
-    <div class="uk-flex uk-flex-between uk-flex-middle">
-      <h2>{{t
-          "caluma.analytics.sections.edit_report"
-          slug=@analyticsTable.slug
-        }}</h2>
-      <button
-        data-test-delete-field
-        type="button"
-        class="uk-icon-button"
-        uk-icon="trash"
-        title={{t "caluma.analytics.delete"}}
-        {{on "click" (perform this.deleteTable)}}
-      ></button>
-    </div>
-  {{/if}}
   <ValidatedForm
     @model={{@analyticsTable}}
     @on-submit={{perform this.createTable}}
@@ -25,7 +7,6 @@
     <f.input
       @name="name"
       @label={{t "caluma.analytics.report_title"}}
-      @disabled={{this.formDisabled}}
       @required={{true}}
     />
     <f.input
@@ -35,14 +16,11 @@
       @options={{this.startingObjects}}
       @optionTargetPath="value"
       @optionValuePath="label"
-      @disabled={{this.formDisabled}}
       @required={{true}}
     />
-    {{#if this.isNew}}
-      <f.submit
-        class="uk-margin-small"
-        @label={{t "caluma.analytics.list.new"}}
-      />
-    {{/if}}
+    <f.submit
+      class="uk-margin-small"
+      @label={{t "caluma.analytics.list.new"}}
+    />
   </ValidatedForm>
 </div>

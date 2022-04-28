@@ -1,7 +1,7 @@
 caluma:
   analytics:
     sections:
-      edit_report: Edit report {slug}
+      show_report: Report {slug}
       create_report: Create a new report
       field_selection: Fieldselection
       table_preview: Preview

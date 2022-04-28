@@ -11,14 +11,12 @@ import {
   enqueueTask,
   restartableTask,
 } from "ember-concurrency-decorators";
-import { useTask, useResource } from "ember-resources";
 
 import removeAnalyticsFieldMutation from "@projectcaluma/ember-analytics/gql/mutations/remove-analytics-field.graphql";
 import removeAnalyticsTableMutation from "@projectcaluma/ember-analytics/gql/mutations/remove-analytics-table.graphql";
 import saveAnalyticsFieldMutation from "@projectcaluma/ember-analytics/gql/mutations/save-analytics-field.graphql";
 import saveAnalyticsTableMutation from "@projectcaluma/ember-analytics/gql/mutations/save-analytics-table.graphql";
 import getAnalyticsTableQuery from "@projectcaluma/ember-analytics/gql/queries/get-analytics-table.graphql";
-import FetchAnalyticsTableResource from "@projectcaluma/ember-analytics/resources/analytics-table";
 import FieldValidations from "@projectcaluma/ember-analytics/validations/field";
 import slugify from "@projectcaluma/ember-core/utils/slugify";
 

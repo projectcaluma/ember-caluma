@@ -1,20 +1,5 @@
 <div>
   <h3>{{t "caluma.analytics.sections.table_preview"}}</h3>
-  {{!--  <button
-    class="uk-button uk-button-primary"
-    type="button"
-    {{on "click" this.observableQuery.refetch}}
-  >
-    {{t "caluma.analytics.preview.refresh"}}
-  </button>
---}}
-  <button
-    class="uk-button uk-button-secondary"
-    type="button"
-    {{on "click" this.download}}
-  >
-    {{t "caluma.analytics.preview.download"}}
-  </button>
 </div>
 <div>
   {{#if this.data.isRunning}}

@@ -19,8 +19,20 @@
       </span>
     </div>
   {{else}}
-    <CaReportBuilder @analyticsTable={{this.data.value}} />
-    <hr class="uk-divider-icon" />
+    <div class="uk-flex uk-flex-between uk-flex-middle">
+      <h2>{{t
+          "caluma.analytics.sections.show_report"
+          slug=this.data.value.slug
+        }}</h2>
+      <button
+        data-test-delete-field
+        type="button"
+        class="uk-icon-button"
+        uk-icon="trash"
+        title={{t "caluma.analytics.delete"}}
+        {{on "click" (perform this.deleteTable)}}
+      ></button>
+    </div>
     <ul uk-tab>
       <li class="uk-active">
         <LinkTo @route="reports.edit.index">

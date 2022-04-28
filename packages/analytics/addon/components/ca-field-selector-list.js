@@ -8,6 +8,7 @@ import { enqueueTask, dropTask, timeout } from "ember-concurrency";
 
 import removeAnalyticsFieldMutation from "@projectcaluma/ember-analytics/gql/mutations/remove-analytics-field.graphql";
 import saveAnalyticsFieldMutation from "@projectcaluma/ember-analytics/gql/mutations/save-analytics-field.graphql";
+import saveAnalyticsField from "@projectcaluma/ember-analytics/tasks/save-analytics-field";
 
 export default class CaFieldSelectorListComponent extends Component {
   @queryManager apollo;
@@ -35,25 +36,13 @@ export default class CaFieldSelectorListComponent extends Component {
       function: field.function,
       table: this.args.analyticsTable.id,
     };
-    await this.saveAnalyticsField.perform({
+    await this.saveField.perform({
       ...requiredInput,
       [key]: value,
     });
   }
 
-  @enqueueTask
-  *saveAnalyticsField(input) {
-    try {
-      yield this.apollo.mutate({
-        mutation: saveAnalyticsFieldMutation,
-        variables: { input },
-      });
-      this.debouncedNotification.perform(this.intl.t("ohye"));
-    } catch (error) {
-      console.error(error);
-      this.debouncedNotification.perform(this.intl.t("ohno"), "danger");
-    }
-  }
+  @enqueueTask saveField = saveAnalyticsField;
 
   @dropTask
   *debouncedNotification(message, type = "success") {

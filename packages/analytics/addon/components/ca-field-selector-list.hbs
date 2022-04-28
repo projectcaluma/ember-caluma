@@ -40,11 +40,19 @@
             />
           </td>
           <td>
-            {{#if field.filters}}
-              <UkButton>Edit {{field.filters}}</UkButton>
-            {{else}}
-              <UkButton>Add filters</UkButton>
-            {{/if}}
+            <CaFilterModal
+              @table={{@analyticsTable.id}}
+              @field={{field}}
+              as |TriggerButton|
+            >
+              <TriggerButton
+                @label={{if
+                  field.filters
+                  (concat "Edit " field.filters.length " filters")
+                  "Add filters"
+                }}
+              />
+            </CaFilterModal>
           </td>
           <td>
             <button

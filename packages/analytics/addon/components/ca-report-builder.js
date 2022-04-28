@@ -9,12 +9,9 @@ import {
   restartableTask,
   lastValue,
 } from "ember-concurrency-decorators";
-import { useTask, useResource } from "ember-resources";
 
-import removeAnalyticsTableMutation from "@projectcaluma/ember-analytics/gql/mutations/remove-analytics-table.graphql";
 import saveAnalyticsTableMutation from "@projectcaluma/ember-analytics/gql/mutations/save-analytics-table.graphql";
 import getAnalyticsTableQuery from "@projectcaluma/ember-analytics/gql/queries/get-analytics-table.graphql";
-import FetchAnalyticsTableResource from "@projectcaluma/ember-analytics/resources/analytics-table";
 
 export default class CaReportBuilderComponent extends Component {
   @queryManager apollo;
@@ -26,9 +23,6 @@ export default class CaReportBuilderComponent extends Component {
     return !this.args.analyticsTable?.id;
   }
 
-  get formDisabled() {
-    return !this.isNew;
-  }
 
   get startingObjects() {
     // TODO: Replace with dynamic list
@@ -69,24 +63,5 @@ export default class CaReportBuilderComponent extends Component {
     }
   }
 
-  @dropTask
-  *deleteTable() {
-    try {
-      yield this.apollo.mutate({
-        mutation: removeAnalyticsTableMutation,
-        fetchPolicy: "network-only",
-        variables: {
-          input: {
-            slug: this.args.analyticsTable.slug,
-          },
-        },
-      });
-      this.router.transitionTo("reports");
-    } catch (error) {
-      console.error(error);
-      this.notification.danger(
-        this.intl.t(`caluma.analytics.notification.delete_error`)
-      );
-    }
-  }
+
 }

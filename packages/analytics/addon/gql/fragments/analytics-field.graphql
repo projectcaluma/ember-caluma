@@ -5,4 +5,5 @@ fragment AnalyticsField on AnalyticsField {
   dataSource
   function
   showOutput
+  filters
 }
