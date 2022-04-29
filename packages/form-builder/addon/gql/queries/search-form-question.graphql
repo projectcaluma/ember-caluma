@@ -1,12 +1,12 @@
 #import QuestionInfo from '../fragments/question-info.graphql'
 
-query SearchFormQuestion($slug: String!, $search: String, $archived: Boolean) {
-  allForms(filter: [{ slug: $slug }]) {
+query SearchFormQuestion($slug: String!, $search: String) {
+  allForms(filter: [{ slugs: [$slug] }]) {
     edges {
       node {
         id
         slug
-        questions(search: $search, isArchived: $archived) {
+        questions(filter: [{ search: $search }]) {
           edges {
             node {
               id

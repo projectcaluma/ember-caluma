@@ -1,5 +1,5 @@
 fragment InquiryAnswerButtons on Case {
-  workItems(tasks: $buttonTasks, status: READY) {
+  workItems(filter: [{ tasks: $buttonTasks }, { status: READY }]) {
     edges {
       node {
         id
@@ -15,7 +15,7 @@ fragment InquiryAnswerButtons on Case {
 
 fragment InquiryDeadlineDocument on Document {
   id
-  deadline: answers(question: $deadlineQuestion) {
+  deadline: answers(filter: [{ question: $deadlineQuestion }]) {
     edges {
       node {
         id
@@ -29,7 +29,7 @@ fragment InquiryDeadlineDocument on Document {
 
 fragment InquiryStatusDocument on Document {
   id
-  status: answers(question: $statusQuestion) {
+  status: answers(filter: [{ question: $statusQuestion }]) {
     edges {
       node {
         id
@@ -48,7 +48,7 @@ fragment InquiryStatusDocument on Document {
 fragment InquiryRequest on Document {
   id
   ...InquiryDeadlineDocument
-  info: answers(question: $infoQuestion) {
+  info: answers(filter: [{ question: $infoQuestion }]) {
     edges {
       node {
         id
@@ -79,7 +79,7 @@ fragment InquiryDialog on WorkItem {
     ...InquiryAnswerButtons
     document {
       ...InquiryStatusDocument
-      info: answers(questions: $answerInfoQuestions) {
+      info: answers(filter: [{ questions: $answerInfoQuestions }]) {
         edges {
           node {
             id

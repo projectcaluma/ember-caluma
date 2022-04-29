@@ -2,7 +2,7 @@
 #import FieldQuestion, FieldTableQuestion, SimpleAnswer, SimpleQuestion from '../fragments/field.graphql'
 
 query FormEditorQuestion($slug: String!) {
-  allQuestions(filter: [{ slug: $slug }]) {
+  allQuestions(filter: [{ slugs: [$slug] }]) {
     edges {
       node {
         id

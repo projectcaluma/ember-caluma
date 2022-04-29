@@ -1,7 +1,7 @@
 #import FormInfo from '../fragments/form-info.graphql'
 
 query FormEditorGeneral($slug: String!) {
-  allForms(filter: [{ slug: $slug }]) {
+  allForms(filter: [{ slugs: [$slug] }]) {
     edges {
       node {
         id

@@ -1,5 +1,5 @@
 query DynamicOptions($question: String!) {
-  allQuestions(filter: [{ slug: $question }], first: 1) {
+  allQuestions(filter: [{ slugs: [$question] }], first: 1) {
     edges {
       node {
         id

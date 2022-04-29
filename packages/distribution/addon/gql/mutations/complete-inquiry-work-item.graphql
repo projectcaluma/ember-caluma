@@ -15,7 +15,7 @@ mutation CompleteInquiryWorkItem(
           id
           ...InquiryStatusDocument
         }
-        workItems(tasks: $buttonTasks, status: READY) {
+        workItems(filter: [{ tasks: $buttonTasks }, { status: READY }]) {
           edges {
             node {
               id

@@ -6,7 +6,7 @@ mutation RemoveFormQuestion($input: RemoveFormQuestionInput!, $search: String) {
     form {
       id
       ...FormInfo
-      questions(search: $search) {
+      questions(filter: [{ search: $search }]) {
         edges {
           node {
             id

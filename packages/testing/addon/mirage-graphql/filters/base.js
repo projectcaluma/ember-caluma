@@ -6,25 +6,18 @@ export default class BaseFilter {
   }
 
   _getFilterFns(rawFilters) {
-    const filters = Array.isArray(rawFilters)
-      ? // new format
-        rawFilters
-          .filter((filter) => Object.keys(filter).length !== 0) // filter out empty filters
-          .map((filter) => {
-            const entries = Object.entries(filter);
-            const key = entries[0][0];
-            const value = entries[0][1];
-            const options = entries
-              .slice(1)
-              .reduce((opts, [k, v]) => ({ ...opts, [k]: v }), {});
+    const filters = rawFilters
+      .filter((filter) => Object.keys(filter).length !== 0) // filter out empty filters
+      .map((filter) => {
+        const entries = Object.entries(filter);
+        const key = entries[0][0];
+        const value = entries[0][1];
+        const options = entries
+          .slice(1)
+          .reduce((opts, [k, v]) => ({ ...opts, [k]: v }), {});
 
-            return { key, value, options };
-          })
-      : // old format
-        Object.entries(rawFilters).map(([key, value]) => ({
-          key,
-          value,
-        }));
+        return { key, value, options };
+      });
 
     return filters.map(({ key, value, options = {} }) => {
       const fn = this[key];
@@ -53,7 +46,7 @@ export default class BaseFilter {
   }
 
   filter(records, filters) {
-    return this._getFilterFns(filters?.filter ?? filters ?? []).reduce(
+    return this._getFilterFns(filters?.filter ?? []).reduce(
       (recs, fn) => fn(recs),
       this.sort(records, filters?.order)
     );
@@ -64,7 +57,11 @@ export default class BaseFilter {
   }
 
   slug(records, value) {
-    return records.filter(({ slug }) => slug === value);
+    return this.slugs(records, [value]);
+  }
+
+  slugs(records, values) {
+    return records.filter(({ slug }) => values.includes(slug));
   }
 
   id(records, value) {
