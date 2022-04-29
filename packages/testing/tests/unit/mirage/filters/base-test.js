@@ -19,11 +19,10 @@ module("Unit | Mirage GraphQL Filter | base", function (hooks) {
   test("can filter records", async function (assert) {
     assert.expect(1);
 
-    assert.deepEqual(this.filter.filter(this.collection, { slug: "test-1" }), [
-      {
-        slug: "test-1",
-      },
-    ]);
+    assert.deepEqual(
+      this.filter.filter(this.collection, { filter: [{ slugs: ["test-1"] }] }),
+      [{ slug: "test-1" }]
+    );
   });
 
   test("can find records", async function (assert) {
@@ -38,7 +37,7 @@ module("Unit | Mirage GraphQL Filter | base", function (hooks) {
     assert.expect(1);
 
     assert.deepEqual(
-      this.filter.filter(this.collection, { foo: "bar" }),
+      this.filter.filter(this.collection, { filter: [{ foo: "bar" }] }),
       this.collection
     );
   });

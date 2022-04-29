@@ -9,7 +9,7 @@ mutation ReorderFormQuestions(
     form {
       id
       ...FormInfo
-      questions(search: $search) {
+      questions(filter: [{ search: $search }]) {
         edges {
           node {
             id

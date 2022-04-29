@@ -34,7 +34,7 @@ module("Unit | Mirage GraphQL Mock | form", function (hooks) {
     const res = await this.apollo.query({
       query: gql`
         query {
-          allForms(isArchived: true) {
+          allForms(filter: [{ isArchived: true }]) {
             edges {
               node {
                 slug

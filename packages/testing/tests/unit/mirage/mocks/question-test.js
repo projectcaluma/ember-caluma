@@ -79,7 +79,7 @@ module("Unit | Mirage GraphQL Mock | question", function (hooks) {
     const res = await this.apollo.query({
       query: gql`
         query {
-          allQuestions(isArchived: true) {
+          allQuestions(filter: [{ isArchived: true }]) {
             edges {
               node {
                 slug
@@ -107,7 +107,7 @@ module("Unit | Mirage GraphQL Mock | question", function (hooks) {
     const res = await this.apollo.query({
       query: gql`
         query {
-          allQuestions(search: "Blabla") {
+          allQuestions(filter: [{ search: "Blabla" }]) {
             edges {
               node {
                 slug
@@ -135,7 +135,7 @@ module("Unit | Mirage GraphQL Mock | question", function (hooks) {
     const res = await this.apollo.query({
       query: gql`
         query Questions($excludeForms: [ID]) {
-          allQuestions(excludeForms: $excludeForms) {
+          allQuestions(filter: [{ excludeForms: $excludeForms }]) {
             edges {
               node {
                 slug
@@ -430,7 +430,7 @@ module("Unit | Mirage GraphQL Mock | question", function (hooks) {
     const res = await this.apollo.query({
       query: gql`
         query ($id: ID!) {
-          allDocuments(id: $id) {
+          allDocuments(filter: [{ id: $id }]) {
             edges {
               node {
                 answers {

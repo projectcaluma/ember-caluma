@@ -20,9 +20,10 @@ export default class EditQuestionsEditRoute extends Route {
       {
         query: gql`
           query QuestionLabel($slug: String!) {
-            allQuestions(slug: $slug) {
+            allQuestions(filter: [{ slugs: [$slug] }]) {
               edges {
                 node {
+                  id
                   label
                 }
               }

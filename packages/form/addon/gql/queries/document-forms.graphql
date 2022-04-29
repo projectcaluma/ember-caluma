@@ -1,7 +1,7 @@
 #import FieldQuestion, FieldTableQuestion, SimpleQuestion from '../fragments/field.graphql'
 
 query DocumentForms($slug: String!) {
-  allForms(filter: [{ slug: $slug }]) {
+  allForms(filter: [{ slugs: [$slug] }]) {
     edges {
       node {
         id

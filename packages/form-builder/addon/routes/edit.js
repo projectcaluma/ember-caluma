@@ -20,7 +20,7 @@ export default class EditRoute extends Route {
       {
         query: gql`
           query FormName($slug: String!) {
-            allForms(slug: $slug) {
+            allForms(filter: [{ slugs: [$slug] }]) {
               edges {
                 node {
                   name
