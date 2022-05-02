@@ -1,4 +1,5 @@
 import { discoverEmberDataModels } from "ember-cli-mirage";
+import { DateTime } from "luxon";
 import { createServer, Response } from "miragejs";
 
 import graphqlHandler from "@projectcaluma/ember-testing/mirage-graphql";
@@ -38,6 +39,17 @@ export default function makeServer(config) {
             (!types || types.split(",").includes(group.type?.name))
           );
         });
+      });
+
+      this.post(":inquiryId/send-reminder", ({ workItems }, request) => {
+        const inquiry = workItems.find(request.params.inquiryId);
+        inquiry.update("meta", {
+          reminders: [
+            DateTime.now().toJSDate(),
+            ...(inquiry.meta.reminders ?? []),
+          ],
+        });
+        return new Response(200);
       });
 
       this.passthrough();

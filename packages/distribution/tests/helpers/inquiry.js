@@ -20,6 +20,7 @@ class StubInquiry {
   }
 
   task = { slug: "inquiry" };
+  id = "18bedff9-796f-4946-8f74-c9081dfb47b7";
 
   constructor({
     deadline = DateTime.now().plus({ days: 5 }).toISODate(),

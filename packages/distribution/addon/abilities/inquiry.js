@@ -1,5 +1,6 @@
 import { inject as service } from "@ember/service";
 import { Ability } from "ember-can";
+import { DateTime } from "luxon";
 
 import config from "@projectcaluma/ember-distribution/config";
 
@@ -64,6 +65,24 @@ export default class InquiryAbility extends Ability {
         .map(String)
         .includes(String(this.calumaOptions.currentGroupId)) &&
       (this.config.permissions.reopenInquiry?.(this.model) ?? true)
+    );
+  }
+
+  get canSendReminder() {
+    const deadline = DateTime.fromISO(
+      this.model.document?.deadline.edges[0]?.node.value
+    );
+
+    return (
+      !this.config.ui.readonly &&
+      this.config.enableReminders &&
+      this.model?.task.slug === this.config.inquiry.task &&
+      this.model?.status === "READY" &&
+      this.model?.controllingGroups
+        .map(String)
+        .includes(String(this.calumaOptions.currentGroupId)) &&
+      deadline.diffNow("days").days <= 0 &&
+      (this.config.permissions.sendReminder?.(this.model) ?? true)
     );
   }
 }

@@ -289,7 +289,7 @@ export default function (server, groups) {
         to: g2,
         deadline: faker.date.past(),
       },
-      { id: "6bbdc36a-3174-4578-93d4-0cb84d3dab97" }
+      { id: "6bbdc36a-3174-4578-93d4-0cb84d3dab97", meta: {} }
     ),
   });
   confirm({

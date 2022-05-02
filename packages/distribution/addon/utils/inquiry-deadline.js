@@ -21,7 +21,7 @@ function decorator(
       const value = inquiry.document?.deadline.edges[0]?.node.value;
       const isDone = ["COMPLETED", "SKIPPED"].includes(inquiry.status);
 
-      const { days: diff } = DateTime.fromISO(value).diffNow("days").toObject();
+      const diff = DateTime.fromISO(value).diffNow("days").days;
 
       const isOverdue = !isDone && diff <= 0;
       const isWarning = !isDone && diff <= this.config.warningPeriod;

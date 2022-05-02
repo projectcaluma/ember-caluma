@@ -61,6 +61,14 @@ caluma:
       create-draft: "Créer un brouillon"
       error: "Error lors de la création {count, plural, =1 {de la demande} other {des demandes}}"
 
+    reminder:
+      link: "Envoyer un rappel"
+      confirm: "Voulez-vous vraiment envoyer un rappel pour cette demande ?"
+      title: "Rappels envoyés"
+      no-reminders: Aucun rappel n'a encore été envoyé pour cette demande.
+      success: "Le rappel a été envoyé avec succès"
+      error: "Erreur lors de l'envoi du rappel"
+
     types:
       controlling: "Demandé"
       addressed: "A répondre"
