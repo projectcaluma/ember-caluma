@@ -4,7 +4,9 @@ import { queryManager, getObservable } from "ember-apollo-client";
 import { dropTask } from "ember-concurrency";
 import { useTask } from "ember-resources";
 
+import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 import config from "@projectcaluma/ember-distribution/config";
+import createInquiryMutation from "@projectcaluma/ember-distribution/gql/mutations/create-inquiry.graphql";
 import controlWorkItemsQuery from "@projectcaluma/ember-distribution/gql/queries/control-work-items.graphql";
 import inquiryNavigationQuery from "@projectcaluma/ember-distribution/gql/queries/inquiry-navigation.graphql";
 
@@ -12,6 +14,8 @@ export default class DistributionService extends Service {
   @service("-scheduler") scheduler;
   @service calumaOptions;
   @service router;
+  @service intl;
+  @service notification;
 
   @queryManager apollo;
 
@@ -78,5 +82,31 @@ export default class DistributionService extends Service {
     });
 
     return response;
+  }
+
+  @dropTask
+  *createInquiry(groups) {
+    try {
+      // get create inquiry work item to complete
+      const createId = decodeId(this.controls.value?.create.edges[0].node.id);
+
+      // create new inquiries
+      yield this.apollo.mutate({
+        mutation: createInquiryMutation,
+        variables: {
+          id: createId,
+          context: JSON.stringify({
+            addressed_groups: groups.map(String),
+          }),
+        },
+      });
+
+      // refetch navigation and controls data
+      yield this.refetch();
+    } catch (e) {
+      this.notification.danger(
+        this.intl.t("caluma.distribution.new.error", { count: groups.length })
+      );
+    }
   }
 }

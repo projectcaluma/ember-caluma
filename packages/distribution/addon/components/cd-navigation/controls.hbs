@@ -1,6 +1,10 @@
 <div class="uk-text-center uk-margin-small-top">
   {{#if (can "create inquiry of distribution")}}
-    <CdIconButton @route="new" @icon="plus" />
+    <CdIconButton
+      @title={{t "caluma.distribution.new.title"}}
+      @icon="plus"
+      @route="new"
+    />
   {{/if}}
   {{#if (can "send inquiries of distribution")}}
     <CdIconButton
