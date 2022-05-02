@@ -1,6 +1,19 @@
 {{#if this._inquiries.isRunning}}
   <div class="uk-text-center"><UkSpinner @ratio={{2}} /></div>
 {{else if this.inquiries.length}}
+  {{#if
+    (and (can "create inquiry of distribution") this.currentGroupIsCreator)
+  }}
+    <div class="uk-text-center uk-margin">
+      <CdIconButton
+        @title={{t "caluma.distribution.new.title"}}
+        @icon="plus"
+        @loading={{this.createInquiry.isRunning}}
+        @onClick={{perform this.createInquiry}}
+        data-test-new-inquiry
+      />
+    </div>
+  {{/if}}
   <section>
     {{#each this.inquiries as |inquiry|}}
       <CdInquiryDialog::Inquiry @inquiry={{inquiry}} />

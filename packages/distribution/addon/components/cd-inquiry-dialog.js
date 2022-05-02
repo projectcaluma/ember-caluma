@@ -4,15 +4,24 @@ import { queryManager, getObservable } from "ember-apollo-client";
 import { dropTask } from "ember-concurrency";
 import { useTask } from "ember-resources";
 
+import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 import config from "@projectcaluma/ember-distribution/config";
 import inquiryDialogQuery from "@projectcaluma/ember-distribution/gql/queries/inquiry-dialog.graphql";
 
 export default class CdInquiryDialogComponent extends Component {
+  @service intl;
   @service router;
+  @service distribution;
+  @service notification;
+  @service calumaOptions;
 
   @config config;
 
   @queryManager apollo;
+
+  get currentGroupIsCreator() {
+    return String(this.calumaOptions.currentGroupId) === this.args.from;
+  }
 
   get inquiries() {
     return this._inquiries.value?.allWorkItems.edges.map((edge) => edge.node);
@@ -61,5 +70,24 @@ export default class CdInquiryDialogComponent extends Component {
     });
 
     return response;
+  }
+
+  @dropTask
+  *createInquiry(e) {
+    e.preventDefault();
+
+    yield this.distribution.createInquiry.perform([this.args.to]);
+
+    // refetch dialog data
+    yield getObservable(this._inquiries.value).refetch();
+
+    this.router.transitionTo(
+      "inquiry.detail.index",
+      {
+        from: this.args.from,
+        to: this.args.to,
+      },
+      decodeId(this.inquiries[0].id)
+    );
   }
 }
