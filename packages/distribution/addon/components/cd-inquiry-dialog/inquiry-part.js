@@ -3,7 +3,6 @@ import { isEmpty } from "@ember/utils";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
 import { dropTask } from "ember-concurrency";
-import { confirm } from "ember-uikit";
 
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 import config from "@projectcaluma/ember-distribution/config";
@@ -13,6 +12,7 @@ export default class CdInquiryDialogInquiryPartComponent extends Component {
   @service notification;
   @service router;
   @service intl;
+  @service modal;
 
   @queryManager apollo;
 
@@ -46,7 +46,11 @@ export default class CdInquiryDialogInquiryPartComponent extends Component {
     e.preventDefault();
 
     /* istanbul ignore next */
-    if (!(yield confirm(this.intl.t("caluma.distribution.withdraw.confirm")))) {
+    if (
+      !(yield this.modal.confirm(
+        this.intl.t("caluma.distribution.withdraw.confirm")
+      ))
+    ) {
       return;
     }
 
