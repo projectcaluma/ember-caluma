@@ -2,7 +2,6 @@ import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
 import { dropTask } from "ember-concurrency";
-import { confirm } from "ember-uikit";
 import { gql } from "graphql-tag";
 
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
@@ -14,6 +13,7 @@ export default class CdNavigationControlsComponent extends Component {
   @service distribution;
   @service intl;
   @service notification;
+  @service modal;
   @service router;
 
   @queryManager apollo;
@@ -35,7 +35,7 @@ export default class CdNavigationControlsComponent extends Component {
 
       if (
         incompleteInquiries > 0 &&
-        !(yield confirm(
+        !(yield this.modal.confirm(
           this.intl.t("caluma.distribution.complete-confirm", {
             count: incompleteInquiries,
           })
@@ -65,7 +65,11 @@ export default class CdNavigationControlsComponent extends Component {
 
   @dropTask
   *sendInquiries() {
-    if (!(yield confirm(this.intl.t("caluma.distribution.send-confirm")))) {
+    if (
+      !(yield this.modal.confirm(
+        this.intl.t("caluma.distribution.send-confirm")
+      ))
+    ) {
       return;
     }
 

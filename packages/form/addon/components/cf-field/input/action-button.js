@@ -1,13 +1,15 @@
 import { assert } from "@ember/debug";
 import { action } from "@ember/object";
+import { inject as service } from "@ember/service";
 import { dependencySatisfies, macroCondition } from "@embroider/macros";
 import Component from "@glimmer/component";
-import { confirm } from "ember-uikit";
 
 let CfFieldInputActionButtonComponent;
 
 if (macroCondition(dependencySatisfies("@projectcaluma/ember-workflow", ""))) {
   CfFieldInputActionButtonComponent = class extends Component {
+    @service modal;
+
     constructor(...args) {
       super(...args);
 
@@ -50,7 +52,7 @@ if (macroCondition(dependencySatisfies("@projectcaluma/ember-workflow", ""))) {
 
       const confirmText = this.args.field.question.raw.infoText;
 
-      return !confirmText || confirm(confirmText);
+      return !confirmText || this.modal.confirm(confirmText);
     }
 
     @action
