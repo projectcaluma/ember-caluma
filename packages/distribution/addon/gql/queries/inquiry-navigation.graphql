@@ -45,7 +45,8 @@ query InquiryNavigation(
       { task: $task }
       { controllingGroups: [$currentGroup], invert: true }
       { addressedGroups: [$currentGroup], invert: true }
-      { status: COMPLETED }
+      { status: SUSPENDED, invert: true }
+      { status: CANCELED, invert: true }
     ]
     order: [{ attribute: CREATED_AT, direction: DESC }]
   ) {
