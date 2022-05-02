@@ -33,6 +33,7 @@ module("Unit | config", function (hooks) {
         completeTask: "complete-distribution",
         createTask: "create-inquiry",
       },
+      enableReminders: true,
       inquiry: {
         answer: {
           buttons: {

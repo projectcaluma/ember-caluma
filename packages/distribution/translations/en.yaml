@@ -62,6 +62,14 @@ caluma:
       create-draft: "Create draft"
       error: "Error while creating the {count, plural, =1 {inquiry} other {inquiries}}"
 
+    reminder:
+      link: "Send reminder"
+      confirm: "Do you really want to send a reminder for this inquiry?"
+      title: "Sent reminders"
+      no-reminders: "No reminders have been sent for this inquiry yet."
+      success: "The reminder has been sent successfully"
+      error: "Error while sending the reminder"
+
     types:
       controlling: "Requested"
       addressed: "To answer"

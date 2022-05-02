@@ -85,6 +85,39 @@
         </li>
       {{/if}}
     {{/unless}}
+    {{#if (can "send reminder inquiry" @inquiry)}}
+      <li>
+        <a
+          data-test-send-reminder
+          href=""
+          {{on "click" (perform this.sendReminder)}}
+        >
+          {{t "caluma.distribution.reminder.link"}}
+        </a>
+        <div
+          uk-dropdown="mode: hover; pos: bottom"
+          class="uk-padding-small uk-width-small"
+        >
+          <div class="uk-text-center uk-text-bold uk-margin-small-bottom">
+            {{t "caluma.distribution.reminder.title"}}
+          </div>
+          {{#if @inquiry.meta.reminders}}
+            <div class="uk-height-max-small uk-overflow-auto">
+              {{#each @inquiry.meta.reminders as |reminder|}}
+                <div class="uk-text-center uk-text-small uk-text-muted">
+                  {{format-date reminder}}
+                  {{format-time reminder hour="2-digit" minute="2-digit"}}
+                </div>
+              {{/each}}
+            </div>
+          {{else}}
+            <div class="uk-text-center">
+              {{t "caluma.distribution.reminder.no-reminders"}}
+            </div>
+          {{/if}}
+        </div>
+      </li>
+    {{/if}}
   </ul>
 
   {{#if this.requestInfo}}

@@ -1,6 +1,8 @@
-import { render } from "@ember/test-helpers";
+import { click, render } from "@ember/test-helpers";
+import confirm from "dummy/tests/helpers/confirm";
 import inquiry from "dummy/tests/helpers/inquiry";
 import { hbs } from "ember-cli-htmlbars";
+import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
 import { setupRenderingTest } from "ember-qunit";
 import { DateTime } from "luxon";
@@ -10,6 +12,7 @@ module(
   "Integration | Component | cd-inquiry-dialog/inquiry-part",
   function (hooks) {
     setupRenderingTest(hooks);
+    setupMirage(hooks);
     setupIntl(hooks);
 
     hooks.beforeEach(function () {
@@ -140,6 +143,53 @@ module(
       assert
         .dom("[data-test-title] .uk-label")
         .hasText("t:caluma.distribution.answer.buttons.adjust.status:()");
+    });
+
+    test("it renders a link for sending a reminder for the inquiry when permitted", async function (assert) {
+      assert.expect(3);
+
+      await render(
+        hbs`<CdInquiryDialog::InquiryPart @inquiry={{this.inquiry}} @type={{this.type}} />`
+      );
+
+      await this.inquiry.setReady();
+
+      assert.dom("[data-test-send-reminder]").doesNotExist();
+
+      this.owner.lookup("service:caluma-options").currentGroupId =
+        "controlling";
+
+      assert.dom("[data-test-send-reminder]").doesNotExist();
+
+      await this.inquiry.setDeadline(
+        DateTime.now().minus({ days: 2 }).toISODate()
+      );
+
+      assert
+        .dom("[data-test-send-reminder]")
+        .hasText("t:caluma.distribution.reminder.link:()");
+    });
+
+    test("it can send a reminder for an overdue inquiry", async function (assert) {
+      assert.expect(2);
+
+      await this.inquiry.setReady();
+      const calumaOptions = this.owner.lookup("service:caluma-options");
+      calumaOptions.currentGroupId = "controlling";
+      calumaOptions.sendReminderDistributionInquiry = () => {
+        assert.step("sendReminder");
+      };
+      await this.inquiry.setDeadline(
+        DateTime.now().minus({ days: 2 }).toISODate()
+      );
+
+      await render(
+        hbs`<CdInquiryDialog::InquiryPart @inquiry={{this.inquiry}} @type={{this.type}} />`
+      );
+
+      await click("[data-test-send-reminder]");
+      await confirm();
+      assert.verifySteps(["sendReminder"]);
     });
   }
 );

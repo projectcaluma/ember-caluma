@@ -66,6 +66,18 @@ export default class CalumaOptionsService extends Service {
     return Object.values(this._overrides);
   }
 
+  /**
+   * Defines the behavior used when sending a reminder for
+   * an overdue inquiry. It should at least update the meta
+   * data on the inquiry work-item to update the reminder
+   * history and perform any application-specific behavior
+   * to send reminder notifications.
+   *
+   * @method sendReminderDistributionInquiry
+   * @param {String} inquiryId
+   */
+  async sendReminderDistributionInquiry() {}
+
   groupIdentifierProperty = "id";
   groupNameProperty = "name";
   resolveGroups(identifiers) {

@@ -1,0 +1,10 @@
+query InquiryMeta($inquiry: ID!) {
+  allWorkItems(filter: [{ id: $inquiry }]) {
+    edges {
+      node {
+        id
+        meta
+      }
+    }
+  }
+}

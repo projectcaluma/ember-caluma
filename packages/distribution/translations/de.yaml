@@ -61,6 +61,14 @@ caluma:
       create-draft: "Entwurf erstellen"
       error: "Fehler beim Erstellen der {count, plural, =1 {Anfragen} other {Anfrage}}"
 
+    reminder:
+      link: "Erinnerung versenden"
+      confirm: "Wollen Sie wirklich eine Erinnerung für diese Anfrage versenden?"
+      title: "Versendete Erinnerungen"
+      no-reminders: "Es wurden noch keine Erinnerungen für diese Anfrage versendet."
+      success: "Die Erinnerung wurde erfolgreich versendet"
+      error: "Fehler beim Versenden der Erinnerung"
+
     types:
       controlling: "Angefordert"
       addressed: "Zu beantworten"

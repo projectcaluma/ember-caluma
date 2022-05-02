@@ -9,12 +9,14 @@ import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 import config from "@projectcaluma/ember-distribution/config";
 import reopenInquiryMutation from "@projectcaluma/ember-distribution/gql/mutations/reopen-inquiry.graphql";
 import withdrawInquiryMutation from "@projectcaluma/ember-distribution/gql/mutations/withdraw-inquiry.graphql";
+import inquiryMetaQuery from "@projectcaluma/ember-distribution/gql/queries/inquiry-meta.graphql";
 import inquiryAnswerStatus from "@projectcaluma/ember-distribution/utils/inquiry-answer-status";
 
 export default class CdInquiryDialogInquiryPartComponent extends Component {
   @service notification;
   @service router;
   @service intl;
+  @service calumaOptions;
 
   @queryManager apollo;
 
@@ -100,6 +102,37 @@ export default class CdInquiryDialogInquiryPartComponent extends Component {
     } catch (error) {
       this.notification.danger(
         this.intl.t("caluma.distribution.reopen-inquiry.error")
+      );
+    }
+  }
+
+  @dropTask
+  *sendReminder(e) {
+    e.preventDefault();
+
+    if (!(yield confirm(this.intl.t("caluma.distribution.reminder.confirm")))) {
+      return;
+    }
+
+    try {
+      yield this.calumaOptions.sendReminderDistributionInquiry(
+        decodeId(this.args.inquiry.id)
+      );
+
+      this.notification.success(
+        this.intl.t("caluma.distribution.reminder.success")
+      );
+
+      yield this.apollo.query({
+        query: inquiryMetaQuery,
+        variables: {
+          inquiry: decodeId(this.args.inquiry.id),
+        },
+        fetchPolicy: "network-only",
+      });
+    } catch (error) {
+      this.notification.danger(
+        this.intl.t("caluma.distribution.reminder.error")
       );
     }
   }
