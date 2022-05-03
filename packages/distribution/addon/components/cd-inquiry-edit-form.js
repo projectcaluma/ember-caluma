@@ -2,7 +2,7 @@ import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
 import { dropTask } from "ember-concurrency";
-import { useTask } from "ember-resources";
+import { trackedTask } from "ember-resources/util/ember-concurrency";
 
 import config from "@projectcaluma/ember-distribution/config";
 import resumeWorkItemMutation from "@projectcaluma/ember-distribution/gql/mutations/resume-work-item.graphql";
@@ -17,7 +17,7 @@ export default class CdInquiryEditFormComponent extends Component {
 
   @queryManager apollo;
 
-  _inquiry = useTask(this, this.fetchInquiry, () => [this.args.inquiry]);
+  _inquiry = trackedTask(this, this.fetchInquiry, () => [this.args.inquiry]);
 
   get inquiry() {
     return this._inquiry.value?.[0]?.node;

@@ -2,7 +2,7 @@ import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
 import { dropTask } from "ember-concurrency";
-import { useTask } from "ember-resources";
+import { trackedTask } from "ember-resources/util/ember-concurrency";
 
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 import config from "@projectcaluma/ember-distribution/config";
@@ -18,7 +18,9 @@ export default class CdInquiryAnswerFormComponent extends Component {
 
   @queryManager apollo;
 
-  _inquiry = useTask(this, this.fetchInquiryAnswer, () => [this.args.inquiry]);
+  _inquiry = trackedTask(this, this.fetchInquiryAnswer, () => [
+    this.args.inquiry,
+  ]);
 
   get inquiry() {
     return this._inquiry.value?.[0]?.node;

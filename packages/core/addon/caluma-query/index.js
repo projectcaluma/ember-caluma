@@ -1,13 +1,9 @@
 import { getOwner, setOwner } from "@ember/application";
-import { useResource } from "ember-resources";
 
 import CalumaQueryResource from "@projectcaluma/ember-core/caluma-query/resource";
 
 export function useCalumaQuery(destroyable, query, thunk) {
-  return useResource(destroyable, CalumaQueryResource, () => ({
-    query,
-    ...thunk(),
-  }));
+  return CalumaQueryResource.from(destroyable, () => ({ query, ...thunk() }));
 }
 
 export default function calumaQuery({ query, options = {} }) {

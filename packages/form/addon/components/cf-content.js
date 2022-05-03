@@ -4,7 +4,7 @@ import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
 import { dropTask } from "ember-concurrency";
-import { useTask } from "ember-resources";
+import { trackedTask } from "ember-resources/util/ember-concurrency";
 
 import getDocumentAnswersQuery from "@projectcaluma/ember-form/gql/queries/document-answers.graphql";
 import getDocumentFormsQuery from "@projectcaluma/ember-form/gql/queries/document-forms.graphql";
@@ -125,7 +125,7 @@ export default class CfContentComponent extends Component {
     );
   }
 
-  data = useTask(this, this.fetchData, () => [this.args.documentId]);
+  data = trackedTask(this, this.fetchData, () => [this.args.documentId]);
 
   @dropTask
   *fetchData() {

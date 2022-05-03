@@ -5,7 +5,7 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
 import { timeout, restartableTask, dropTask, task } from "ember-concurrency";
-import { useTask } from "ember-resources";
+import { trackedTask } from "ember-resources/util/ember-concurrency";
 
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 import config from "@projectcaluma/ember-distribution/config";
@@ -31,7 +31,7 @@ export default class CdInquiryNewFormComponent extends Component {
 
   @tracked selectedGroups = [];
 
-  groups = useTask(this, this.fetchGroups, () => [
+  groups = trackedTask(this, this.fetchGroups, () => [
     this.args.selectedTypes,
     this.args.search,
   ]);
