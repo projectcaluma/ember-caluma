@@ -4,7 +4,7 @@ import { macroCondition, isTesting } from "@embroider/macros";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
 import { timeout, restartableTask, dropTask } from "ember-concurrency";
-import { useTask } from "ember-resources";
+import { trackedTask } from "ember-resources/util/ember-concurrency";
 
 import FormValidations from "../../validations/form";
 
@@ -25,7 +25,7 @@ export default class CfbFormEditorGeneral extends Component {
     return this._data.value?.[0]?.node;
   }
 
-  _data = useTask(this, this.fetchData, () => [this.args.slug]);
+  _data = trackedTask(this, this.fetchData, () => [this.args.slug]);
 
   @restartableTask
   *fetchData() {

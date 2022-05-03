@@ -1,47 +1,48 @@
 import { getOwner, setOwner } from "@ember/application";
-import { destroy } from "@ember/destroyable";
+import { destroy, registerDestructor } from "@ember/destroyable";
 import { action } from "@ember/object";
 import { tracked } from "@glimmer/tracking";
-import { LifecycleResource } from "ember-resources";
+import { Resource } from "ember-resources/core";
 
-export default class CalumaQueryResource extends LifecycleResource {
+const MUTABLE_OPTIONS = [
+  "pageSize",
+  "processAll",
+  "processNew",
+  "queryOptions",
+];
+
+export default class CalumaQueryResource extends Resource {
   @tracked query;
 
-  setup() {
-    const { query, options, queryArgs } = this._parsedArgs;
+  didSetup = false;
 
-    this.query = query(options);
-    setOwner(this.query, getOwner(this));
+  constructor(owner, args) {
+    super(owner, args);
 
-    this.query.fetch(queryArgs);
+    registerDestructor(this, () => {
+      destroy(this.query);
+    });
   }
 
-  update() {
-    this._updateOptions();
+  modify(_, { options = {}, query, ...args }) {
+    if (!this.didSetup) {
+      // initialize the caluma query with the given options
+      this.query = query(options);
+      setOwner(this.query, getOwner(this));
 
-    this.query.fetch(this._parsedArgs.queryArgs);
-  }
-
-  teardown() {
-    destroy(this.query);
-  }
-
-  get _parsedArgs() {
-    const { query, options = {}, ...queryArgs } = this.args.named;
-
-    return { query, options, queryArgs };
-  }
-
-  _updateOptions() {
-    ["pageSize", "processAll", "processNew", "queryOptions"].forEach(
-      (optionKey) => {
-        const option = this._parsedArgs.options[optionKey];
+      this.didSetup = true;
+    } else {
+      // update changed options on the caluma query
+      MUTABLE_OPTIONS.forEach((optionKey) => {
+        const option = options[optionKey];
 
         if (option !== undefined && option !== this.query[optionKey]) {
           this.query[optionKey] = option;
         }
-      }
-    );
+      });
+    }
+
+    this.query.fetch(args);
   }
 
   @action

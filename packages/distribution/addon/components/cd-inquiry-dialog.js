@@ -2,7 +2,7 @@ import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager, getObservable } from "ember-apollo-client";
 import { dropTask } from "ember-concurrency";
-import { useTask } from "ember-resources";
+import { trackedTask } from "ember-resources/util/ember-concurrency";
 
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 import config from "@projectcaluma/ember-distribution/config";
@@ -27,7 +27,7 @@ export default class CdInquiryDialogComponent extends Component {
     return this._inquiries.value?.allWorkItems.edges.map((edge) => edge.node);
   }
 
-  _inquiries = useTask(this, this.fetchDialog, () => [
+  _inquiries = trackedTask(this, this.fetchDialog, () => [
     this.args.from,
     this.args.to,
     this.args.caseId,

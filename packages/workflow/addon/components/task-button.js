@@ -2,7 +2,7 @@ import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
 import { dropTask } from "ember-concurrency";
-import { useTask } from "ember-resources";
+import { trackedTask } from "ember-resources/util/ember-concurrency";
 
 import allWorkItems from "@projectcaluma/ember-workflow/gql/queries/all-work-items.graphql";
 
@@ -35,7 +35,7 @@ export default class TaskButtonComponent extends Component {
   @service notification;
   @service intl;
 
-  workItem = useTask(this, this.fetchWorkItem, () => [
+  workItem = trackedTask(this, this.fetchWorkItem, () => [
     this.args.task,
     this.args.filters,
   ]);

@@ -2,7 +2,7 @@ import { getOwner } from "@ember/application";
 import Service, { inject as service } from "@ember/service";
 import { queryManager, getObservable } from "ember-apollo-client";
 import { dropTask } from "ember-concurrency";
-import { useTask } from "ember-resources";
+import { trackedTask } from "ember-resources/util/ember-concurrency";
 
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 import config from "@projectcaluma/ember-distribution/config";
@@ -25,8 +25,8 @@ export default class DistributionService extends Service {
     return getOwner(this).lookup("route:application").currentModel;
   }
 
-  controls = useTask(this, this.fetchControls, () => [this.caseId]);
-  navigation = useTask(this, this.fetchNavigation, () => [this.caseId]);
+  controls = trackedTask(this, this.fetchControls, () => [this.caseId]);
+  navigation = trackedTask(this, this.fetchNavigation, () => [this.caseId]);
 
   async refetch() {
     await getObservable(this.controls.value)?.refetch();
