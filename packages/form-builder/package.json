@@ -50,7 +50,12 @@
     "highlightjs-jexl": "^0.0.5",
     "jexl": "^2.3.0"
   },
-  "//": "TODO: remove ember-data when https://github.com/ember-engines/ember-engines/pull/794 is released",
+  "//": [
+    "TODO: remove obsolete dependency to `ember-data` which is only necessary",
+    "because @embroider/macros `dependencySatisfies` still resolves to `true`",
+    "even if the dependency is only present in the workspace (because of the",
+    "docs app) but not as direct dependency of the package."
+  ],
   "devDependencies": {
     "@ember/optional-features": "2.0.0",
     "@ember/test-helpers": "2.7.0",
@@ -68,7 +73,7 @@
     "ember-cli-terser": "4.0.2",
     "ember-data": "3.28.9",
     "ember-disable-prototype-extensions": "1.1.3",
-    "ember-engines": "0.8.20",
+    "ember-engines": "0.8.22",
     "ember-export-application-global": "2.0.1",
     "ember-load-initializers": "2.1.2",
     "ember-maybe-import-regenerator": "1.0.0",
