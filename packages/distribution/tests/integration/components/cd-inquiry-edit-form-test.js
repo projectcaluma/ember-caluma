@@ -33,7 +33,9 @@ module("Integration | Component | cd-inquiry-edit-form", function (hooks) {
   test("it renders an inquiry form with a send button", async function (assert) {
     await render(hbs`<CdInquiryEditForm @inquiry={{this.inquiry.id}} />`);
 
-    assert.dom("h1").hasText("t:caluma.distribution.edit.title:()");
+    assert
+      .dom("p.uk-text-large")
+      .hasText("Inquiry t:caluma.distribution.status.draft:()");
     assert.dom("form").exists();
     assert
       .dom("button.uk-button-primary")

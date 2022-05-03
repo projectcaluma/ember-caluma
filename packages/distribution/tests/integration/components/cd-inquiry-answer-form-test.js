@@ -41,7 +41,9 @@ module("Integration | Component | cd-inquiry-answer-form", function (hooks) {
   test("it renders an inquiry answer form with a button for each ready work item", async function (assert) {
     await render(hbs`<CdInquiryAnswerForm @inquiry={{this.inquiry.id}} />`);
 
-    assert.dom("h1").hasText("t:caluma.distribution.answer.title:()");
+    assert
+      .dom("p.uk-text-large")
+      .hasText("Inquiry answer t:caluma.distribution.status.draft:()");
     assert.dom("form").exists();
     assert
       .dom("button.uk-button-primary")

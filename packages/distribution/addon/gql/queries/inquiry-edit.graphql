@@ -11,6 +11,8 @@ query InquiryEdit($inquiry: ID!) {
         }
         document {
           id
+          modifiedContentAt
+          modifiedContentByUser
         }
       }
     }

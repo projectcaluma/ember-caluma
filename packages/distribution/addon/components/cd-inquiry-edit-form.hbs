@@ -4,26 +4,28 @@
   @loading={{this._inquiry.isRunning}}
 >
   <:default as |content|>
-    <h1 class="uk-flex uk-flex-middle">
-      {{t "caluma.distribution.edit.title"}}
-      {{#if (eq this.inquiry.status "RUNNING")}}
-        <UkLabel
-          class="uk-margin-left"
-          @label={{t "caluma.distribution.status.draft"}}
-        />
-      {{/if}}
-    </h1>
+    <CdDocumentHeader
+      @name={{content.document.rootForm.raw.name}}
+      @isDraft={{eq this.inquiry.status "SUSPENDED"}}
+      @modifiedAt={{this.inquiry.document.modifiedContentAt}}
+      @modifiedBy={{this.inquiry.document.modifiedContentByUser}}
+    />
+
+    <hr />
 
     <content.form />
 
-    <DocumentValidity @document={{content.document}} as |isValid validate|>
-      <UkButton
-        @type="submit"
-        @color="primary"
-        @disabled={{or (not isValid) this.send.isRunning}}
-        @onClick={{perform this.send validate}}
-      >{{t "caluma.distribution.edit.send"}}</UkButton>
-    </DocumentValidity>
+    {{#if (can "edit inquiry" this.inquiry)}}
+      <DocumentValidity @document={{content.document}} as |isValid validate|>
+        <UkButton
+          @type="submit"
+          @color="primary"
+          @disabled={{or (not isValid) this.send.isRunning}}
+          @onClick={{perform this.send validate}}
+          @loading={{this.send.isRunning}}
+        >{{t "caluma.distribution.edit.send"}}</UkButton>
+      </DocumentValidity>
+    {{/if}}
   </:default>
   <:notfound><CdNotfound /></:notfound>
 </CfContent>

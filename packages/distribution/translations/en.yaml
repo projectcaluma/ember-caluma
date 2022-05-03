@@ -15,17 +15,16 @@ caluma:
     more: "more"
     less: "less"
 
-    edit:
-      title: "Edit inquiry"
-      link: "Edit"
+    last-modified: "Last modified by {user} on {date} at {time}"
+    details: "Details"
 
+    edit:
+      link: "Edit"
       send: "Send"
       send-error: "Error while sending the inquiry"
 
     answer:
-      title: "Answer inquiry"
       link: "Answer"
-
       release-for-review: "Release for review"
       release-adjustment-for-review: "Release adjustment for review"
       confirm: "Confirm"

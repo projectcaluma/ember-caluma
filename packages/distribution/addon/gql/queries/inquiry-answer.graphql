@@ -1,19 +1,33 @@
-query InquiryAnswer($inquiry: ID!, $buttonTasks: [String]!) {
+#import InquiryDeadlineDocument, InquiryRequest from '../fragments/inquiry.graphql'
+
+query InquiryAnswer(
+  $inquiry: ID!
+  $buttonTasks: [String]!
+  $infoQuestion: ID!
+  $deadlineQuestion: ID!
+) {
   allWorkItems(filter: [{ id: $inquiry }]) {
     edges {
       node {
         id
         status
         addressedGroups
+        controllingGroups
+        createdAt
         task {
           id
           slug
+        }
+        document {
+          ...InquiryRequest
         }
         childCase {
           id
           status
           document {
             id
+            modifiedContentAt
+            modifiedContentByUser
           }
           workItems(tasks: $buttonTasks, status: READY) {
             edges {
