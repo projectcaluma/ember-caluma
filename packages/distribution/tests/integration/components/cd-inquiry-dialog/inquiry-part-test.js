@@ -78,18 +78,21 @@ module(
         hbs`<CdInquiryDialog::InquiryPart @inquiry={{this.inquiry}} @type={{this.type}} />`
       );
 
-      assert.dom("ul.uk-subnav > li:nth-of-type(2)").doesNotExist();
+      assert.dom("ul.uk-subnav > li > a[data-test-edit]").doesNotExist();
+      assert.dom("ul.uk-subnav > li > a[data-test-details]").exists();
 
       this.owner.lookup("service:caluma-options").currentGroupId =
         "controlling";
 
-      assert.dom("ul.uk-subnav > li:nth-of-type(2)").doesNotExist();
+      assert.dom("ul.uk-subnav > li > a[data-test-edit]").doesNotExist();
+      assert.dom("ul.uk-subnav > li > a[data-test-details]").exists();
 
       await this.inquiry.setSuspended();
 
       assert
-        .dom("ul.uk-subnav > li:nth-of-type(2)")
+        .dom("ul.uk-subnav > li > a[data-test-edit]")
         .hasText("t:caluma.distribution.edit.link:()");
+      assert.dom("ul.uk-subnav > li > a[data-test-details]").doesNotExist();
     });
 
     test("it renders a link for answering the inquiry when permitted", async function (assert) {
@@ -99,17 +102,20 @@ module(
         hbs`<CdInquiryDialog::InquiryPart @inquiry={{this.inquiry}} @type={{this.type}} />`
       );
 
-      assert.dom("ul.uk-subnav > li:nth-of-type(2)").doesNotExist();
+      assert.dom("ul.uk-subnav > li > a[data-test-answer]").doesNotExist();
+      assert.dom("ul.uk-subnav > li > a[data-test-details]").exists();
 
       this.owner.lookup("service:caluma-options").currentGroupId = "addressed";
 
-      assert.dom("ul.uk-subnav > li:nth-of-type(2)").doesNotExist();
+      assert.dom("ul.uk-subnav > li > a[data-test-answer]").doesNotExist();
+      assert.dom("ul.uk-subnav > li > a[data-test-details]").exists();
 
       await this.inquiry.setReady();
 
       assert
-        .dom("ul.uk-subnav > li:nth-of-type(2)")
+        .dom("ul.uk-subnav > li > a[data-test-answer]")
         .hasText("t:caluma.distribution.answer.link:()");
+      assert.dom("ul.uk-subnav > li > a[data-test-details]").exists();
     });
   }
 );

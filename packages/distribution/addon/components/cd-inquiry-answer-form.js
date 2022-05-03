@@ -45,6 +45,8 @@ export default class CdInquiryAnswerFormComponent extends Component {
         variables: {
           inquiry: this.args.inquiry,
           buttonTasks: Object.keys(this.config.inquiry.answer.buttons),
+          infoQuestion: this.config.inquiry.infoQuestion,
+          deadlineQuestion: this.config.inquiry.deadlineQuestion,
         },
       },
       "allWorkItems.edges"

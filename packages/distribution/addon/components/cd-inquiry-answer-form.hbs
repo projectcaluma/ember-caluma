@@ -4,15 +4,32 @@
   @loading={{this._inquiry.isRunning}}
 >
   <:default as |content|>
-    <h1 class="uk-flex uk-flex-middle">
-      {{t "caluma.distribution.answer.title"}}
-      {{#if (eq this.inquiry.status "RUNNING")}}
-        <UkLabel
-          class="uk-margin-left"
-          @label={{t "caluma.distribution.status.draft"}}
-        />
-      {{/if}}
-    </h1>
+
+    <div class="uk-position-relative">
+      <CdDocumentHeader
+        @name={{content.document.rootForm.raw.name}}
+        @isDraft={{eq this.inquiry.status "READY"}}
+        @modifiedAt={{this.inquiry.childCase.document.modifiedContentAt}}
+        @modifiedBy={{this.inquiry.childCase.document.modifiedContentByUser}}
+      />
+
+      <CdInquiryDialog::InquiryDeadline
+        @inquiry={{this.inquiry}}
+        class="uk-margin-remove uk-position-center-right"
+      />
+    </div>
+
+    <hr />
+
+    <div
+      class="uk-padding uk-padding-remove-vertical uk-padding-remove-right uk-margin uk-text-italic inquiry-answer-form__request"
+    >
+      <CdInquiryDialog::InquiryPart
+        @inquiry={{this.inquiry}}
+        @type="request"
+        @disabled={{true}}
+      />
+    </div>
 
     <content.form />
 
@@ -23,6 +40,7 @@
             @type="submit"
             @color={{buttonConfig.color}}
             @disabled={{or (not isValid) this.completeWorkItem.isRunning}}
+            @loading={{this.completeWorkItem.isRunning}}
             @onClick={{fn
               (perform this.completeWorkItem)
               buttonConfig.workItemId
@@ -35,6 +53,7 @@
           @type="button"
           @color={{buttonConfig.color}}
           @disabled={{this.completeWorkItem.isRunning}}
+          @loading={{this.completeWorkItem.isRunning}}
           @onClick={{fn
             (perform this.completeWorkItem)
             buttonConfig.workItemId

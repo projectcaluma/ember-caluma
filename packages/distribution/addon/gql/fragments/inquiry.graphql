@@ -30,6 +30,21 @@ fragment InquiryStatusDocument on Document {
   }
 }
 
+fragment InquiryRequest on Document {
+  id
+  ...InquiryDeadlineDocument
+  info: answers(question: $infoQuestion) {
+    edges {
+      node {
+        id
+        ... on StringAnswer {
+          value
+        }
+      }
+    }
+  }
+}
+
 fragment InquiryDialog on WorkItem {
   id
   addressedGroups
@@ -42,17 +57,7 @@ fragment InquiryDialog on WorkItem {
     slug
   }
   document {
-    ...InquiryDeadlineDocument
-    info: answers(question: $infoQuestion) {
-      edges {
-        node {
-          id
-          ... on StringAnswer {
-            value
-          }
-        }
-      }
-    }
+    ...InquiryRequest
   }
   childCase {
     id

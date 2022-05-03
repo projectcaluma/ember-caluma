@@ -14,17 +14,16 @@ caluma:
     more: "mehr"
     less: "weniger"
 
-    edit:
-      title: "Anfrage bearbeiten"
-      link: "Bearbeiten"
+    last-modified: "Zuletzt bearbeitet von {user} am {date} um {time}"
+    details: "Details"
 
+    edit:
+      link: "Bearbeiten"
       send: "Senden"
       send-error: "Fehler beim Senden der Anfrage"
 
     answer:
-      title: "Anfrage beantworten"
       link: "Beantworten"
-
       release-for-review: "Zur Kontrolle freigeben"
       release-adjustment-for-review: "Anpassung zur Kontrolle freigeben"
       confirm: "Bestätigen"

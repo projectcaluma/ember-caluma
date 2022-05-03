@@ -1,4 +1,4 @@
-#import InquiryDialog, InquiryDeadlineDocument, InquiryStatusDocument from '../fragments/inquiry.graphql'
+#import InquiryDialog, InquiryDeadlineDocument, InquiryStatusDocument, InquiryRequest from '../fragments/inquiry.graphql'
 
 query InquiryDialog(
   $task: ID!

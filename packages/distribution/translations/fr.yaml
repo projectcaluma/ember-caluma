@@ -14,17 +14,16 @@ caluma:
     more: "plus"
     less: "moins"
 
-    edit:
-      title: "Modifier la demande"
-      link: "Modifier"
+    last-modified: "Dernière modification par {user} le {date} à {time}"
+    details: "Détails"
 
+    edit:
+      link: "Modifier"
       send: "Envoyer"
       send-error: "Erreur lors de l'envoi de la demande"
 
     answer:
-      title: "Répondre à la demande"
       link: "Répondre"
-
       release-for-review: "Valider pour vérification"
       release-adjustment-for-review: "Valider la révision pour vérification"
       confirm: "Confirmer"
