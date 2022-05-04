@@ -14461,8 +14461,8 @@ var i=(0,t.createTemplateFactory)({id:"ROiIr6gp",block:'[[[8,[39,0],null,null,nu
 e.default=i})),define.alias("ember-basic-dropdown/utils/calculate-position","@projectcaluma/ember-distribution/utils/calculate-position"),define.alias("ember-uikit/utils/confirm","@projectcaluma/ember-distribution/utils/confirm"),define("@projectcaluma/ember-distribution/utils/inquiry-deadline",["exports","@ember/debug","@ember/object","luxon","@projectcaluma/ember-distribution/-private/decorator"],(function(e,t,i,n,r){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var a=(0,r.createDecorator)((function(e,t,r){let{inquiryProperty:a="args.inquiry"}=arguments.length>3&&void 0!==arguments[3]?arguments[3]:{}
-return{get(){const e=(0,i.get)(this,a),t=e.document?.deadline.edges[0]?.node.value,r="COMPLETED"===e.status,o=n.DateTime.fromISO(t).startOf("day"),l=n.DateTime.now().startOf("day"),s=!r&&l>o,d=!r&&l.plus({days:this.config.warningPeriod})>o
-return{value:t,isOverdue:s,isWarning:d,color:r?"muted":s?"danger":d?"warning":"emphasis"}}}}))
+return{get(){const e=(0,i.get)(this,a),t=e.document?.deadline.edges[0]?.node.value,r="COMPLETED"===e.status,{days:o}=n.DateTime.fromISO(t).diffNow("days").toObject(),l=!r&&o<=0,s=!r&&o<=this.config.warningPeriod
+return{value:t,isOverdue:l,isWarning:s,color:r?"muted":l?"danger":s?"warning":"emphasis"}}}}))
 e.default=a})),define("@projectcaluma/ember-distribution/utils/inquiry-status",["exports","@ember/debug","@ember/object","@projectcaluma/ember-distribution/-private/decorator","@projectcaluma/ember-distribution/config"],(function(e,t,i,n,r){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=e.ICON_MAP=e.COLOR_MAP=void 0
 const a={[r.INQUIRY_STATUS.DRAFT]:"pencil-outline",[r.INQUIRY_STATUS.SENT]:"paper-plane-outline",[r.INQUIRY_STATUS.POSITIVE]:"checkmark-outline",[r.INQUIRY_STATUS.NEGATIVE]:"close-outline",[r.INQUIRY_STATUS.NEEDS_INTERACTION]:"repeat-outline"}
