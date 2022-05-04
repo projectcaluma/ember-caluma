@@ -55,12 +55,13 @@ export default class CaFieldSelectorListComponent extends Component {
         mutation: removeAnalyticsFieldMutation,
         variables: { input: { id } },
       });
-      this.notification.success(this.intl.t("ohyes"));
       const observableQuery = getObservable(this.args.analyticsTable);
       yield observableQuery.refetch();
     } catch (error) {
       console.error(error);
-      this.notification.danger(this.intl.t("ohno"));
+      this.notification.danger(
+        this.intl.t("caluma.analytics.notification.delete-error")
+      );
     }
   }
 }

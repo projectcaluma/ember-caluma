@@ -22,7 +22,7 @@ module("Integration | Component | ca-report-list", function (hooks) {
       hbs`<CaReportList @reports={{this.reports}} @itemRoute={{this.itemRoute}}/>`
     );
 
-    assert.dom(this.element).containsText("t:caluma.analytics.list.list_title");
+    assert.dom(this.element).containsText("t:caluma.analytics.list.list-title");
     assert.dom("[data-test-report-list-item]").exists({ count: 2 });
   });
 });

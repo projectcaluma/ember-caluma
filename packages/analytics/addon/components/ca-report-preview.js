@@ -1,7 +1,6 @@
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
-// import { computed } from "@ember/object";
 import { queryManager } from "ember-apollo-client";
 import { task } from "ember-concurrency";
 import { useTask } from "ember-resources";
@@ -42,26 +41,9 @@ export default class CaReportPreviewComponent extends Component {
         };
       } catch (error) {
         console.error(error);
-        this.notification.danger(this.intl.t("caluma.analytics.error_preview"));
+        this.notification.danger(this.intl.t("caluma.analytics.fetch-error"));
       }
     }
     return null;
-  }
-
-  download() {
-    alert("TODO");
-    // TODO: when download query is available
-    //
-    // const { downloadUrl } = await this.apollo.watchQuery(
-    //   {
-    //     query: getFileAnswerInfoQuery,
-    //     variables: { id: this.args.field.answer.id },
-    //     fetchPolicy: "cache-and-network",
-    //   },
-    //   "node.fileValue"
-    // );
-    // if (downloadUrl) {
-    //   window.open(downloadUrl, "_blank");
-    // }
   }
 }

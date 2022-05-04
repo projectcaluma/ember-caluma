@@ -4,12 +4,12 @@
     type="button"
     class="uk-form-icon uk-form-icon-flip"
     uk-icon="check"
-    title={{t "caluma.analytics.save_field"}}
     hidden={{not this.hasChanged}}
     {{on "click" this.trimAndSave}}
   ></button>
 
   <input
+    aria-label={{t "caluma.analytics.edit.display-title"}}
     class="uk-input {{if this.hasChanged 'uk-form-success'}}"
     value={{this.value}}
     {{on "input" (perform this.debaunceInput)}}

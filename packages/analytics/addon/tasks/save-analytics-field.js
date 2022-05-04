@@ -6,10 +6,9 @@ export function* saveAnalyticsField(input) {
       mutation: saveAnalyticsFieldMutation,
       variables: { input },
     });
-    this.notification.success(this.intl.t("ohye"));
     this.visible = false;
   } catch (error) {
     console.error(error);
-    this.notification.danger(this.intl.t("ohno"));
+    this.notification.danger(this.intl.t("caluma.analytics.notification.create-error"));
   }
 }

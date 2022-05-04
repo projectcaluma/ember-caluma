@@ -1,6 +1,6 @@
 # import * from '@projectcaluma/ember-analytics/gql/fragments/analytics-field.graphql'
 
-query GetAllAnalyticsFields {
+query AllAnalyticsFields {
   allAnalyticsFields {
     totalCount
     edges {

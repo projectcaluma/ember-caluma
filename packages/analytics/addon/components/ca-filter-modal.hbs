@@ -4,7 +4,9 @@
   as |modal|
 >
   <modal.header>
-    <h2 class="uk-modal-title">Filters</h2>
+    <h2 class="uk-modal-title">{{t
+        "caluma.analytics.filter-modal.filters"
+      }}</h2>
   </modal.header>
   <modal.body>
 
@@ -13,7 +15,7 @@
         id="new-filter"
         class="uk-input"
         type="text"
-        placeholder="Filter..."
+        placeholder={{t "caluma.analytics.filter-modal.filter-placeholder"}}
         value={{this.newFilter}}
         {{on "input" this.updateNewFilter}}
       />
@@ -41,31 +43,27 @@
             type="button"
             class="uk-icon-button"
             uk-icon="trash"
-            title={{t "caluma.analytics.delete_filter"}}
+            title={{t "caluma.analytics.filter-modal.delete-filter"}}
             {{on "click" (fn this.removeFilter filter)}}
           ></button>
         </List.item>
       {{else}}
-        <List.item>No filters</List.item>
+        <List.item>{{t "caluma.analytics.filter-modal.empty"}}</List.item>
       {{/each}}
       <List.item />
     </UkList>
   </modal.body>
   <modal.footer class="uk-flex uk-flex-between">
-    <UkButton @label="Cancel" @onClick={{fn (mut this.visible) false}}>
-      Cancel
-    </UkButton>
+    <UkButton
+      @label={{t "caluma.analytics.cancel"}}
+      @onClick={{fn (mut this.visible) false}}
+    />
     <UkButton
       @color="primary"
       @onClick={{perform this.saveField this.graphqlInput}}
       @loading={{this.saveAnalyticsField.isRunning}}
-    >
-      Save
-    </UkButton>
+      @label={{t "caluma.analytics.save"}}
+    />
   </modal.footer>
 </UkModal>
-{{yield
-  (component
-    "uk-button" label="Open modal" onClick=(fn (mut this.visible) true)
-  )
-}}
+{{yield (component "uk-button" onClick=(fn (mut this.visible) true))}}

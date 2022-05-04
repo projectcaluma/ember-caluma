@@ -1,35 +1,42 @@
 caluma:
   analytics:
-    sections:
-      show_report: Report {slug}
-      create_report: Create report
-      field_selection: Field selection
-      table_preview: Preview
     back: Back to the list
-    report_title: Report title
-    starting_object: Starting point
-    field: Field
-    field_path: Generated path
-    add_field: Add field
-    add_filter: Add filter
-    filter_placeholder: Filter expression
-    alias: Alias
-    alias_translation: Translation for alias
-    show_output: Show in output
-    delete: delete table
-    delete_field: delete field
+    cancel: Cancel
+    save: Save
+    sections:
+      show-report: Report {slug}
+      create-report: Create report
+      table: Result table
+      fields: Fields
     notification:
-      field_exists: Field already exists!
-      field_invalid: Please fix invalid field inputs.
-      table_not_found: The requested report was not found.
-      table_title_invalid: The choosen title for the table is not allowed.
-      delete_error: An error occured while deleting the report.
-      create_error: An error occured while creating the report
-      fetch_error: An error occured while loading the report.
+      alias-exists: Alias already exists!
+      field-invalid: Please fix invalid field inputs.
+      delete-error: An error occured while deleting the report.
+      create-error: An error occured while creating the report
+      fetch-error: An error occured while loading the data.
+      filter-exists: Filter already exists!
     list:
+      list-title: All reports
+      edit: Edit
+    report:
       new: Create new report
-      list_title: All reports
-    preview:
-      refresh: Refresh preview
-      download: Download report
-    aggregation: Aggregation
+      starting-object: Starting point
+      title: Report title
+      delete: Delete report
+    edit:
+      field: Field
+      add-field: Add field
+      delete-field: Delete field
+      question: Question
+      display-title: Display Title
+      display-title-placeholder: Display Title
+      aggregation: Aggregation
+      show-in-output: Show in output
+      filter: Filter
+      add-filters: Add filters
+      edit-filters: Edit {num} filters
+    filter-modal:
+      filters: Filter
+      filter-placeholder: Filter...
+      delete-filter: Delete filter
+      empty: No filters

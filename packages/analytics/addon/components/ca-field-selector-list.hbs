@@ -1,11 +1,13 @@
 <table class="uk-table uk-table-divider uk-table-hover">
   <thead>
     <tr>
-      <th>Question</th>
-      <th>Display Title</th>
-      <th>Aggregation</th>
-      <th class="uk-text-center">Shown in ouput</th>
-      <th>Filter</th>
+      <th>{{t "caluma.analytics.edit.question"}}</th>
+      <th>{{t "caluma.analytics.edit.display-title"}}</th>
+      <th>{{t "caluma.analytics.edit.aggregation"}}</th>
+      <th class="uk-text-center">{{t
+          "caluma.analytics.edit.show-in-output"
+        }}</th>
+      <th>{{t "caluma.analytics.edit.filter"}}</th>
       <th></th>
     </tr>
   </thead>
@@ -47,9 +49,12 @@
             >
               <TriggerButton
                 @label={{if
-                  field.filters
-                  (concat "Edit " field.filters.length " filters")
-                  "Add filters"
+                  field.filters.length
+                  (t
+                    "caluma.analytics.edit.edit-filters"
+                    num=field.filters.length
+                  )
+                  (t "caluma.analytics.edit.add-filters")
                 }}
               />
             </CaFilterModal>
@@ -60,7 +65,7 @@
               type="button"
               class="uk-icon-button"
               uk-icon="trash"
-              title={{t "caluma.analytics.delete_field"}}
+              title={{t "caluma.analytics.edit.delete-field"}}
               {{on "click" (perform this.removeAnalyticsField field.id)}}
             ></button>
           </td>

@@ -1,35 +1,42 @@
 caluma:
   analytics:
-    sections:
-      show_report: Auswertung {slug}
-      create_report: Auswertung erstellen
-      field_selection: Feldauswahl
-      table_preview: Vorschau
     back: Zurück zur Liste
-    report_title: Auswertungsname
-    starting_object: Ausgangspunkt
-    field: Feld
-    field_path: Generierter Pfad
-    add_field: Feld hinzufügen
-    add_filter: Filter hinzufügen
-    filter_placeholder: Filter-Operator
-    alias: Alias
-    alias_translation: Alias Übersetzung
-    show_output: In Ausgabe anzeigen
-    delete: Auswertung löschen
-    delete_field: Feld löschen
+    cancel: Abbrechen
+    save: Speichern
+    sections:
+      show-report: Auswertung {slug}
+      create-report: Auswertung erstellen
+      table: Resultate
+      fields: Felder
     notification:
-      field_exists: Feld existiert bereits!
-      field_invalid: Die Angaben zum Feld sind fehlerhaft.
-      table_not_found: Die angegebene Auswertung konnte nicht gefunden werden.
-      table_title_invalid: Der gewählte Titel ist nicht zulässsig.
-      delete_error: Beim Löschen ist ein Fehler aufgetreten.
-      create_error: Beim Erstellen ist ein Fehler aufgetreten.
-      fetch_error: Beim Laden der Daten ist ein Fehler aufgetreten.
+      alias-exists: Alias existiert bereits!
+      field-invalid: Die Angaben zum Feld sind fehlerhaft.
+      delete-error: Beim Löschen ist ein Fehler aufgetreten.
+      create-error: Beim Erstellen ist ein Fehler aufgetreten.
+      fetch-error: Beim Laden der Daten ist ein Fehler aufgetreten.
+      filter-exists: Filter existiert bereits!!
     list:
+      list-title: Liste aller Auswertungen
+      edit: Bearbeiten
+    report:
       new: Neue Auswertung anlegen
-      list_title: Liste aller Auswertungen
-    preview:
-      refresh: Vorschau aktualisieren
-      download: Auswertung herunterladen
-    aggregation: Aggregation
+      starting-object: Ausgangspunkt
+      title: Auswertungsname
+      delete: Auswertung löschen
+    edit:
+      field: Feld
+      add-field: Feld hinzufügen
+      delete-field: Feld löschen
+      question: Frage
+      display-title: Anzeigename
+      display-title-placeholder: Anzeigename...
+      aggregation: Aggregation
+      show-in-output: In Ausgabe anzeigen
+      filter: Filter
+      add-filters: Filter hinzufügen
+      edit-filters: "{num} Filter bearbeiten"
+    filter-modal:
+      filters: Filter
+      filter-placeholder: Filter...
+      delete-filter: Filter löschen
+      empty: Keine Filter

@@ -9,7 +9,7 @@ export default class ReportsIndexRoute extends Route {
   @queryManager apollo;
 
   @navigationTitle
-  @t("caluma.analytics.list.new")
+  @t("caluma.analytics.report.new")
   title;
 
   async model() {

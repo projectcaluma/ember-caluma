@@ -32,7 +32,7 @@ export default class ReportsEditIndexController extends Controller {
     } catch (error) {
       console.error(error);
       this.notification.danger(
-        this.intl.t(`caluma.analytics.notification.delete_error`)
+        this.intl.t(`caluma.analytics.notification.delete-error`)
       );
     }
   }

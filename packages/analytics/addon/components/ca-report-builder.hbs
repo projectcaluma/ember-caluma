@@ -6,13 +6,13 @@
   >
     <f.input
       @name="name"
-      @label={{t "caluma.analytics.report_title"}}
+      @label={{t "caluma.analytics.report.title"}}
       @required={{true}}
     />
     <f.input
       @type="select"
       @name="startingObject"
-      @label={{t "caluma.analytics.starting_object"}}
+      @label={{t "caluma.analytics.report.starting-object"}}
       @options={{this.startingObjects}}
       @optionTargetPath="value"
       @optionValuePath="label"
@@ -20,7 +20,7 @@
     />
     <f.submit
       class="uk-margin-small"
-      @label={{t "caluma.analytics.list.new"}}
+      @label={{t "caluma.analytics.report.new"}}
     />
   </ValidatedForm>
 </div>

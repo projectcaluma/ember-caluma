@@ -1,7 +1,7 @@
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
-import { dropTask, restartableTask } from "ember-concurrency-decorators";
+import { dropTask } from "ember-concurrency-decorators";
 
 import saveAnalyticsTableMutation from "@projectcaluma/ember-analytics/gql/mutations/save-analytics-table.graphql";
 
@@ -49,7 +49,7 @@ export default class CaReportBuilderComponent extends Component {
     } catch (error) {
       console.error(error);
       this.notification.danger(
-        this.intl.t(`caluma.analytics.notification.create_error`)
+        this.intl.t(`caluma.analytics.notification.create-error`)
       );
     }
   }

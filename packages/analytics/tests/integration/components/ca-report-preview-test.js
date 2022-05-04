@@ -14,7 +14,7 @@ module("Integration | Component | ca-report-preview", function (hooks) {
     assert
       .dom(this.element)
       .hasText(
-        "t:caluma.analytics.sections.table_preview:() t:caluma.analytics.preview.refresh:() t:caluma.analytics.preview.download:()"
+        "t:caluma.analytics.sections.table-preview:() t:caluma.analytics.preview.refresh:() t:caluma.analytics.preview.download:()"
       );
   });
 

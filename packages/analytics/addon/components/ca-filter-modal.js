@@ -45,7 +45,9 @@ export default class CaFilterModalComponent extends Component {
   @action
   addFilter() {
     if (this.filters.includes(this.newFilter)) {
-      this.notification.warning(this.intl.t("filter already exists"));
+      this.notification.warning(
+        this.intl.t("caluma.analytics.notification.filter-exists")
+      );
     } else {
       this.filters = [this.newFilter, ...this.filters];
     }

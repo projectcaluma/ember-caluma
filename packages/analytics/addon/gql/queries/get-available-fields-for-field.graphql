@@ -1,7 +1,8 @@
 # import * from '@projectcaluma/ember-analytics/gql/fragments/analytics-table-fields-of-field.graphql'
 
-query GetAllAnalyticsFields($slug: String!, $prefix: String!, $depth: Int = 1) {
+query AllAnalyticsFields($slug: String!, $prefix: String!, $depth: Int = 1) {
   analyticsTable(slug: $slug) {
+    id
     ...AnalyticsTableFieldsOfField
   }
 }

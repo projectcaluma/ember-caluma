@@ -8,7 +8,7 @@
       <h3 class="uk-flex uk-flex-middle uk-margin-remove">
         <UkIcon @icon="search" @ratio="1.5" />
         <span class="uk-margin-small-left">{{t
-            "caluma.analytics.notification.table_not_found"
+            "caluma.analytics.notification.fetch-error"
           }}</span>
       </h3>
 
@@ -21,31 +21,29 @@
   {{else}}
     <div class="uk-flex uk-flex-between uk-flex-middle">
       <h2>{{t
-          "caluma.analytics.sections.show_report"
+          "caluma.analytics.sections.show-report"
           slug=this.data.value.slug
         }}</h2>
       <button
-        data-test-delete-field
         type="button"
         class="uk-icon-button"
         uk-icon="trash"
-        title={{t "caluma.analytics.delete"}}
         {{on "click" (perform this.deleteTable)}}
+        title={{t "caluma.analytics.report.delete"}}
       ></button>
     </div>
     <ul uk-tab>
       <li class="uk-active">
         <LinkTo @route="reports.edit.index">
-          Created Questions
+          {{t "caluma.analytics.sections.fields"}}
         </LinkTo>
       </li>
       <li>
         <LinkTo @route="reports.edit.preview">
-          Table Preview
+          {{t "caluma.analytics.sections.table"}}
         </LinkTo>
       </li>
     </ul>
-
     {{outlet}}
   {{/if}}
 {{/if}}

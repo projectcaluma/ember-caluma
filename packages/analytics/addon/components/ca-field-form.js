@@ -68,16 +68,15 @@ export default class CaFieldFormComponent extends Component {
 
     if (this.field.isInvalid) {
       this.notification.danger(
-        this.intl.t(`caluma.analytics.notification.field_invalid`)
+        this.intl.t(`caluma.analytics.notification.field-invalid`)
       );
     } else if (
       this.analyticsFields.find(
         (existing) => existing.alias === this.field.get("alias")
       )
     ) {
-      // TODO check if all translations are in the yaml file
       this.notification.danger(
-        this.intl.t(`caluma.analytics.notification.alias_exists`)
+        this.intl.t(`caluma.analytics.notification.alias-exists`)
       );
     } else {
       await this.saveAnalyticsField.perform(this.field.pendingData);

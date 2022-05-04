@@ -1,6 +1,6 @@
 # import * from '@projectcaluma/ember-analytics/gql/fragments/analytics-table.graphql'
 
-query GetAllAnalyticsTables {
+query AllAnalyticsTables {
   allAnalyticsTables {
     edges {
       node {

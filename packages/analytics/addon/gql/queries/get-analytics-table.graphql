@@ -1,6 +1,6 @@
 # import * from '@projectcaluma/ember-analytics/gql/fragments/analytics-table.graphql'
 
-query GetAnalyticsTable($slug: String!) {
+query AnalyticsTable($slug: String!) {
   analyticsTable(slug: $slug) {
     ...AnalyticsTable
   }
