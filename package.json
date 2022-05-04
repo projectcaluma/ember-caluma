@@ -55,6 +55,12 @@
     "semantic-release-monorepo": "7.0.5",
     "semver": "7.3.7"
   },
+  "//": [
+    "TODO: remove validated-changeset resolution when https://github.com/poteto/ember-changeset/issues/650 is addressed"
+  ],
+  "resolutions": {
+    "**/validated-changeset": "~1.3.2"
+  },
   "release": {
     "extends": [
       "@adfinis-sygroup/semantic-release-config",
