@@ -50,7 +50,10 @@
   {{/if}}
 
   <div class="uk-margin-bottom uk-button-group">
-    {{#each-in this.config.new.types as |slug config|}}
+    {{#each-in
+      (or this.calumaOptions.types this.config.new.types)
+      as |slug config|
+    }}
       {{#unless config.disabled}}
         <UkButton
           data-test-type={{slug}}
