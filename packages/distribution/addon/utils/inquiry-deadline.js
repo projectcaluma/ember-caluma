@@ -21,12 +21,10 @@ function decorator(
       const value = inquiry.document?.deadline.edges[0]?.node.value;
       const isAnswered = inquiry.status === "COMPLETED";
 
-      const deadline = DateTime.fromISO(value).startOf("day");
-      const now = DateTime.now().startOf("day");
+      const { days: diff } = DateTime.fromISO(value).diffNow("days").toObject();
 
-      const isOverdue = !isAnswered && now > deadline;
-      const isWarning =
-        !isAnswered && now.plus({ days: this.config.warningPeriod }) > deadline;
+      const isOverdue = !isAnswered && diff <= 0;
+      const isWarning = !isAnswered && diff <= this.config.warningPeriod;
 
       return {
         value,
