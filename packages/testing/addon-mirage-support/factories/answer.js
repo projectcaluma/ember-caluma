@@ -45,7 +45,7 @@ export default Factory.extend({
       if (answer.value === undefined) {
         answer.update({
           value: [
-            faker.random.arrayElement(answer.question.options.models).slug,
+            faker.helpers.arrayElement(answer.question.options.models).slug,
           ],
         });
       }
@@ -54,7 +54,8 @@ export default Factory.extend({
 
       if (answer.value === undefined) {
         answer.update({
-          value: faker.random.arrayElement(answer.question.options.models).slug,
+          value: faker.helpers.arrayElement(answer.question.options.models)
+            .slug,
         });
       }
     } else if (answer.question.type === "FILE") {
