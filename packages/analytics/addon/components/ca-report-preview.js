@@ -37,6 +37,11 @@ export default class CaReportPreviewComponent extends Component {
                 .find((node) => node.alias === alias)
             )
           ),
+          summary: headings.map(({ alias: headingAlias }) =>
+            result.resultData.summary.edges
+              .map(({ node }) => node)
+              .find(({ alias }) => alias === headingAlias)
+          ),
           headings,
         };
       } catch (error) {

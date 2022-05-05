@@ -1,4 +1,4 @@
-<table class="uk-table uk-table-divider uk-table-hover">
+<table class="uk-table uk-table-divider uk-table-hover" uk-overflow-auto>
   <thead>
     <tr>
       <th>{{t "caluma.analytics.edit.question"}}</th>
@@ -72,7 +72,7 @@
       <td colspan="5">
         <h3 class="uk-flex uk-flex-center uk-flex-middle">
           <UkIcon @icon="search" @ratio="1.5" class="uk-margin-small-right" />
-          {{t "calma.analytics.empty"}}
+          {{t "caluma.analytics.edit.empty"}}
         </h3>
       </td>
     {{/each}}

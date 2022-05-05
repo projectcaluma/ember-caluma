@@ -11,4 +11,12 @@ fragment ResultData on AnalyticsOutput {
       }
     }
   }
+  summary {
+    edges {
+      node {
+        alias
+        value
+      }
+    }
+  }
 }

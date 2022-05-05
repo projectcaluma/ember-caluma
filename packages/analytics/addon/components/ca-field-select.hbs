@@ -6,11 +6,7 @@
     class="uk-width-auto uk-text-center uk-margin-auto-vertical"
   ></span>
 {{/if}}
-<div
-  ...attributes
-  {{did-update (perform this.fetchOptions) @parentPath}}
-  data-test-field-select-primary-selector={{not @child}}
->
+<div ...attributes data-test-field-select-primary-selector={{not @child}}>
   <PowerSelect
     class={{this.selectedOption.value}}
     @options={{this.options}}

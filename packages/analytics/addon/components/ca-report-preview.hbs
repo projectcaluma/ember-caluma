@@ -1,10 +1,10 @@
-<div>
+<div class="uk-overflow-auto">
   {{#if this.data.isRunning}}
     <div class="uk-text-center">
       <UkSpinner @ratio={{1}} />
     </div>
   {{else}}
-    <table class="uk-table">
+    <table class="uk-table uk-table-divider uk-table-striped">
       <thead>
         <tr>
           {{#each this.data.value.headings as |header|}}
@@ -27,6 +27,13 @@
             {{/each}}
           </tr>
         {{/each}}
+        <tr class="uk-text-bold">
+          {{#each this.data.value.summary as |summary|}}
+            <td>
+              {{summary.value}}
+            </td>
+          {{/each}}
+        </tr>
       </tbody>
     </table>
   {{/if}}

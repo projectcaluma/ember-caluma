@@ -35,8 +35,9 @@ caluma:
       filter: Filter
       add-filters: Add filters
       edit-filters: Edit {num} filters
+      empty: There are no fields
     filter-modal:
       filters: Filter
       filter-placeholder: Filter...
       delete-filter: Delete filter
-      empty: No filters
+      empty: There are no filters
