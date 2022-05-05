@@ -1,8 +1,2 @@
 <h2>{{t "caluma.analytics.sections.create-report"}}</h2>
-{{#if this.data.isRunning}}
-  <div class="uk-text-center">
-    <UkSpinner @ratio={{1}} />
-  </div>
-{{else}}
-  <CaReportBuilder @analyticsTable={{this.data.value}} />
-{{/if}}
+<CaReportBuilder @analyticsTable={{this.model}} />
