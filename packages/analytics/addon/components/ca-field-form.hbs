@@ -28,25 +28,21 @@
         />
       </div>
     </f.input>
-    <div class="uk-flex">
-      <div class="uk-width-1 uk-margin-right">
-        <f.input
-          @name="alias"
-          @type="text"
-          @label={{t "caluma.analytics.edit.display-title"}}
-          @placeholder={{t "caluma.analytics.edit.display-title-placeholder"}}
-        />
-      </div>
-      <div class="uk-width-medium">
-        <f.input
-          @name="aggregateFunction"
-          @type="select"
-          @label={{t "caluma.analytics.edit.aggregation"}}
-          @options={{this.config.analytics.functionChoices}}
-          class="uk-width-small"
-        />
-      </div>
-    </div>
+    {{#if this.showAggregationSelect}}
+      <f.input
+        @name="aggregateFunction"
+        @type="select"
+        @label={{t "caluma.analytics.edit.aggregation"}}
+        @options={{this.supportedFunctions}}
+        class="uk-width-small"
+      />
+    {{/if}}
+    <f.input
+      @name="alias"
+      @type="text"
+      @label={{t "caluma.analytics.edit.display-title"}}
+      @placeholder={{t "caluma.analytics.edit.display-title-placeholder"}}
+    />
     <div class="uk-flex uk-flex-right">
       <f.button
         @disabled={{f.loading}}
@@ -56,7 +52,7 @@
         {{t "caluma.analytics.cancel"}}
       </f.button>
 
-      <f.submit @disabled={{f.loading}}>
+      <f.submit @disabled={{or f.loading (not this.isValueField)}}>
         {{t "caluma.analytics.edit.add-field"}}
       </f.submit>
     </div>

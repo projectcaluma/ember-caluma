@@ -23,6 +23,8 @@ export default class CaFieldFormComponent extends Component {
   @service notification;
   @service intl;
 
+  @tracked supportedFunctions = [];
+  @tracked isValueField = false;
   @tracked showForm = false;
 
   constructor(...args) {
@@ -47,6 +49,10 @@ export default class CaFieldFormComponent extends Component {
     return this.args.analyticsTable?.slug;
   }
 
+  get showAggregationSelect() {
+    return this.field.dataSource && this.supportedFunctions.length;
+  }
+
   @action
   toggleForm() {
     this.showForm = !this.showForm;
@@ -54,12 +60,11 @@ export default class CaFieldFormComponent extends Component {
   }
 
   @action
-  setFieldPath(path) {
-    this.field.set("dataSource", path);
-    this.field.set(
-      "alias",
-      path ? path.substring(path.lastIndexOf(".") + 1) : ""
-    );
+  setFieldPath(field) {
+    this.field.dataSource = field.sourcePath;
+    this.field.alias = field.label;
+    this.supportedFunctions = field.supportedFunctions;
+    this.isValueField = field.isValue;
   }
 
   @action

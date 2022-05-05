@@ -1,4 +1,3 @@
-import { getOwner } from "@ember/application";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
@@ -13,16 +12,12 @@ export default class CaFieldSelectorListComponent extends Component {
   @service notification;
   @service intl;
 
+  @enqueueTask saveField = saveAnalyticsField;
+
   get fields() {
     return (
       this.args.analyticsTable?.fields?.edges?.map((edge) => edge.node) ?? []
     );
-  }
-
-  constructor(...args) {
-    super(...args);
-
-    this.config = getOwner(this).resolveRegistration("config:environment");
   }
 
   @action
@@ -39,8 +34,6 @@ export default class CaFieldSelectorListComponent extends Component {
       [key]: value,
     });
   }
-
-  @enqueueTask saveField = saveAnalyticsField;
 
   @dropTask
   *debouncedNotification(message, type = "success") {

@@ -1,5 +1,6 @@
 import { assert } from "@ember/debug";
 import { action, set } from "@ember/object";
+import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
@@ -9,6 +10,8 @@ import getAvailableFieldsForFieldQuery from "@projectcaluma/ember-analytics/gql/
 
 export default class CaFieldSelectComponent extends Component {
   @queryManager apollo;
+  @service notification;
+  @service intl;
 
   @tracked _selectedOption;
   @tracked options;
@@ -65,29 +68,36 @@ export default class CaFieldSelectComponent extends Component {
       this.args.onSelect
     );
     set(this, "_selectedOption", value);
-    this.args.onSelect(this._selectedOption.sourcePath);
+    this.args.onSelect(this._selectedOption);
   }
 
   @restartableTask
   *fetchOptions() {
-    if (
-      !this.fetchedFor ||
-      (!this.isRoot && this.fetchedFor !== this.args.parentPath)
-    ) {
-      const options = yield this.apollo.query(
-        {
-          query: getAvailableFieldsForFieldQuery,
-          fetchPolicy: "no-cache",
-          variables: {
-            slug: this.args.slug,
-            prefix: this.args.parentPath ?? "",
-            // depth: 1
+    try {
+      if (
+        !this.fetchedFor ||
+        (!this.isRoot && this.fetchedFor !== this.args.parentPath)
+      ) {
+        const options = yield this.apollo.query(
+          {
+            query: getAvailableFieldsForFieldQuery,
+            fetchPolicy: "no-cache",
+            variables: {
+              slug: this.args.slug,
+              prefix: this.args.parentPath ?? "",
+              // depth: 1
+            },
           },
-        },
-        "analyticsTable.availableFields"
+          "analyticsTable.availableFields"
+        );
+        this.fetchedFor = this.isRoot ? "_root_" : this.args.parentPath;
+        this.options = options.edges.map((edge) => edge.node);
+      }
+    } catch (error) {
+      console.error(error);
+      this.notification.danger(
+        this.intl.t("caluma.analytics.notification.fetch-error")
       );
-      this.fetchedFor = this.isRoot ? "_root_" : this.args.parentPath;
-      this.options = options.edges.map((edge) => edge.node);
     }
   }
 

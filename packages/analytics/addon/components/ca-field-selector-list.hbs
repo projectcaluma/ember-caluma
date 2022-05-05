@@ -25,14 +25,11 @@
             />
           </td>
           <td>
-            <PowerSelect
-              @onChange={{fn update "function"}}
-              @options={{this.config.analytics.functionChoices}}
-              @selected={{field.function}}
-              as |function|
-            >
-              {{function}}
-            </PowerSelect>
+            <CaFieldSelectorList::CaFieldFunctionSelect
+              @field={{field}}
+              @tableSlug={{@analyticsTable.slug}}
+              @update={{update}}
+            />
           </td>
           <td class="uk-flex uk-flex-center uk-flex-middle">
             <UkToggleSwitch

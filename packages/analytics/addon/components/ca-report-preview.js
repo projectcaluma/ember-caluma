@@ -41,7 +41,9 @@ export default class CaReportPreviewComponent extends Component {
         };
       } catch (error) {
         console.error(error);
-        this.notification.danger(this.intl.t("caluma.analytics.fetch-error"));
+        this.notification.danger(
+          this.intl.t("caluma.analytics.notification.fetch-error")
+        );
       }
     }
     return null;

@@ -4,4 +4,5 @@ fragment AvailableField on AvailableField {
   isLeaf
   isValue
   sourcePath
+  supportedFunctions
 }

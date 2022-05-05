@@ -1,0 +1,8 @@
+<PowerSelect
+  @onChange={{fn @update "function"}}
+  @options={{this.aggregationFunctions.value}}
+  @selected={{@field.function}}
+  as |function|
+>
+  {{function}}
+</PowerSelect>
