@@ -1,4 +1,3 @@
-import Service from "@ember/service";
 import { render } from "@ember/test-helpers";
 import inquiry from "dummy/tests/helpers/inquiry";
 import { hbs } from "ember-cli-htmlbars";
@@ -29,7 +28,6 @@ module("Integration | Component | cd-navigation/section", function (hooks) {
 
   test("it renders", async function (assert) {
     this.type = "controlling";
-    this.isActive = false;
     this.inquiries = [
       inquiry({
         addressedGroups: ["addressed3"],
@@ -45,14 +43,7 @@ module("Integration | Component | cd-navigation/section", function (hooks) {
       }),
     ];
 
-    this.owner.register(
-      "service:router",
-      class extends Service {
-        isActive() {
-          return this.isActive;
-        }
-      }
-    );
+    this.owner.lookup("service:router").isActive = () => true;
 
     await render(hbs`
         <CdNavigation::Section
