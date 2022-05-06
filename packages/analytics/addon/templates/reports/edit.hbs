@@ -33,12 +33,12 @@
       ></button>
     </div>
     <ul uk-tab>
-      <li class="uk-active">
+      <li class={{if (eq this.currentRoute "index") "uk-active"}}>
         <LinkTo @route="reports.edit.index">
           {{t "caluma.analytics.sections.fields"}}
         </LinkTo>
       </li>
-      <li>
+      <li class={{if (eq this.currentRoute "preview") "uk-active"}}>
         <LinkTo @route="reports.edit.preview">
           {{t "caluma.analytics.sections.table"}}
         </LinkTo>

@@ -10,8 +10,13 @@ import getAnalyticsTable from "@projectcaluma/ember-analytics/tasks/get-analytic
 export default class ReportsEditController extends Controller {
   @service intl;
   @service notification;
+  @service router;
   @queryManager apollo;
 
   @task getTable = getAnalyticsTable;
   @tracked data = useTask(this, this.getTable, () => [this.model]);
+
+  get currentRoute() {
+    return this.router.currentRouteName.split(".").pop();
+  }
 }
