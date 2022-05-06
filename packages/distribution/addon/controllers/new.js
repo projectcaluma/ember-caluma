@@ -13,7 +13,7 @@ export default class NewController extends Controller {
 
   @cached
   get selectedTypes() {
-    return this.types.split(",");
+    return this.types.split(",").filter(Boolean);
   }
 
   set selectedTypes(value) {
