@@ -5,6 +5,7 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
 import { dropTask } from "ember-concurrency";
+import { confirm } from "ember-uikit";
 
 import removeDocumentMutation from "@projectcaluma/ember-form/gql/mutations/remove-document.graphql";
 import saveDocumentMutation from "@projectcaluma/ember-form/gql/mutations/save-document.graphql";
@@ -14,7 +15,6 @@ export default class CfFieldInputTableComponent extends Component {
   @service notification;
   @service intl;
   @service calumaStore;
-  @service modal;
 
   @queryManager apollo;
 
@@ -70,7 +70,7 @@ export default class CfFieldInputTableComponent extends Component {
 
   @dropTask
   *delete(document) {
-    if (!(yield this.modal.confirm(this.intl.t("caluma.form.deleteRow")))) {
+    if (!(yield confirm(this.intl.t("caluma.form.deleteRow")))) {
       return;
     }
 
