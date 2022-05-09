@@ -1,3 +1,11 @@
+# [@projectcaluma/ember-testing-v11.0.0-beta.7](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-testing-v11.0.0-beta.6...@projectcaluma/ember-testing-v11.0.0-beta.7) (2022-05-09)
+
+
+### Features
+
+* **distribution:** allow displaying more information in the answer ([9de7f01](https://github.com/projectcaluma/ember-caluma/commit/9de7f0149406a0a326ba59ca0abe27860a64f2a1))
+* **distribution:** improve edit and answer inquiry UI and UX ([6cd2dee](https://github.com/projectcaluma/ember-caluma/commit/6cd2dee45dde245064a0ac013160093bc783789c))
+
 # [@projectcaluma/ember-testing-v11.0.0-beta.6](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-testing-v11.0.0-beta.5...@projectcaluma/ember-testing-v11.0.0-beta.6) (2022-04-07)
 
 
