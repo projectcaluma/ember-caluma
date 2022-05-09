@@ -1,3 +1,10 @@
+# [@projectcaluma/ember-form-v11.0.0-beta.19](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.18...@projectcaluma/ember-form-v11.0.0-beta.19) (2022-05-09)
+
+
+### Bug Fixes
+
+* **resources:** fix deprecations of ember-resources ([7a84c5c](https://github.com/projectcaluma/ember-caluma/commit/7a84c5c78d5b28f7b5393c64722907728dd5f42b))
+
 # [@projectcaluma/ember-form-v11.0.0-beta.18](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.17...@projectcaluma/ember-form-v11.0.0-beta.18) (2022-04-13)
 
 
