@@ -1,3 +1,10 @@
+# [@projectcaluma/ember-workflow-v11.0.0-beta.7](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-workflow-v11.0.0-beta.6...@projectcaluma/ember-workflow-v11.0.0-beta.7) (2022-05-09)
+
+
+### Bug Fixes
+
+* **resources:** fix deprecations of ember-resources ([7a84c5c](https://github.com/projectcaluma/ember-caluma/commit/7a84c5c78d5b28f7b5393c64722907728dd5f42b))
+
 # [@projectcaluma/ember-workflow-v11.0.0-beta.6](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-workflow-v11.0.0-beta.5...@projectcaluma/ember-workflow-v11.0.0-beta.6) (2022-03-23)
 
 
