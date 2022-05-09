@@ -1,3 +1,21 @@
+# [@projectcaluma/ember-distribution-v1.0.0-beta.9](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-distribution-v1.0.0-beta.8...@projectcaluma/ember-distribution-v1.0.0-beta.9) (2022-05-09)
+
+
+### Bug Fixes
+
+* **deps:** update ember-engines ([5aa5300](https://github.com/projectcaluma/ember-caluma/commit/5aa530074ea7dc08267d8ccc411eb1538537a1b5))
+* **distribution:** filter out empty types in new inquiry controller ([ad7e072](https://github.com/projectcaluma/ember-caluma/commit/ad7e072bd8d339964d1f7f6437bde6b4ff5824b5))
+* **distribution:** hide suspended and canceled inquiries in more section ([a377c0c](https://github.com/projectcaluma/ember-caluma/commit/a377c0c599ab479a61c0f2f7d6051ce79817d998))
+* **distribution:** improve padding of request in answer form ([de06459](https://github.com/projectcaluma/ember-caluma/commit/de06459a75e3fad30a008c738781a29a03640c96))
+* **resources:** fix deprecations of ember-resources ([7a84c5c](https://github.com/projectcaluma/ember-caluma/commit/7a84c5c78d5b28f7b5393c64722907728dd5f42b))
+
+
+### Features
+
+* **distribution:** add button to create new inquiry in dialog ([a2ab800](https://github.com/projectcaluma/ember-caluma/commit/a2ab800d8d8a9b10be1d22c7a03f34299cb87a93))
+* **distribution:** allow displaying more information in the answer ([9de7f01](https://github.com/projectcaluma/ember-caluma/commit/9de7f0149406a0a326ba59ca0abe27860a64f2a1))
+* **distribution:** improve edit and answer inquiry UI and UX ([6cd2dee](https://github.com/projectcaluma/ember-caluma/commit/6cd2dee45dde245064a0ac013160093bc783789c))
+
 # [@projectcaluma/ember-distribution-v1.0.0-beta.8](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-distribution-v1.0.0-beta.7...@projectcaluma/ember-distribution-v1.0.0-beta.8) (2022-04-11)
 
 
