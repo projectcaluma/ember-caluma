@@ -10,6 +10,7 @@ export default class InquiryAbility extends Ability {
 
   get canEdit() {
     return (
+      !this.config.ui.readonly &&
       this.model?.task.slug === this.config.inquiry.task &&
       this.model?.status === "SUSPENDED" &&
       this.model?.controllingGroups
@@ -20,6 +21,7 @@ export default class InquiryAbility extends Ability {
 
   get canAnswer() {
     return (
+      !this.config.ui.readonly &&
       this.model?.task.slug === this.config.inquiry.task &&
       this.model?.status === "READY" &&
       this.model?.addressedGroups
@@ -30,6 +32,7 @@ export default class InquiryAbility extends Ability {
 
   get canEditAnswerForm() {
     return (
+      !this.config.ui.readonly &&
       this.canAnswer &&
       this.model?.childCase.workItems.edges.some(
         (edge) => edge.node.task.__typename === "CompleteWorkflowFormTask"
