@@ -267,7 +267,7 @@ export default function (server, groups) {
   const distributionCase = createCase(server, { group: g });
 
   // controlling
-  create({ from: g, to: g1 });
+  create({ from: g, to: g1 }, { id: "d570dfc3-0df7-4276-8735-892be011923c" });
   withdraw({
     inquiry: create(
       { from: g, to: g2 },
