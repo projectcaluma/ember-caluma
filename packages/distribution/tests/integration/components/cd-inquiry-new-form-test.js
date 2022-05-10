@@ -78,16 +78,16 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
     `);
 
     assert.dom("button[data-test-type]").exists({ count: 2 });
-    assert.dom("li[data-test-group]").exists({ count: 2 });
+    assert.dom("tr[data-test-group]").exists({ count: 2 });
 
     await click("button[data-test-type=b]");
 
     assert.deepEqual(this.selectedTypes, ["a", "b"]);
-    assert.dom("li[data-test-group]").exists({ count: 4 });
+    assert.dom("tr[data-test-group]").exists({ count: 4 });
 
     await fillIn("input[data-test-search]", "2");
 
-    assert.dom("li[data-test-group]").exists({ count: 1 });
+    assert.dom("tr[data-test-group]").exists({ count: 1 });
   });
 
   test("it can select and reset groups", async function (assert) {
@@ -104,8 +104,8 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
 
     assert.dom("ul[data-test-selected-groups]").doesNotExist();
 
-    await click("li[data-test-group='2']");
-    await click("li[data-test-group='3']");
+    await click("tr[data-test-group='2']");
+    await click("tr[data-test-group='3']");
 
     assert.dom("ul[data-test-selected-groups]").hasText("2 3");
 
@@ -132,8 +132,8 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
       />
     `);
 
-    await click("li[data-test-group='2']");
-    await click("li[data-test-group='3']");
+    await click("tr[data-test-group='2']");
+    await click("tr[data-test-group='3']");
 
     await click("button[data-test-submit]");
 
