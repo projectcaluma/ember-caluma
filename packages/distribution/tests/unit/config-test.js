@@ -78,7 +78,7 @@ module("Unit | config", function (hooks) {
           },
         },
       },
-      ui: { small: false, stack: false },
+      ui: { small: false, stack: false, readonly: false },
       warningPeriod: 1,
     });
   });
