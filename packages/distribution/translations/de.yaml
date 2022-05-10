@@ -16,11 +16,15 @@ caluma:
 
     last-modified: "Zuletzt bearbeitet von {user} am {date} um {time}"
     details: "Details"
+    not-allowed-hint:
+      "Sie können jedoch das Formular bearbeiten und die Eingabedaten werden
+      automatisch gespeichert."
 
     edit:
       link: "Bearbeiten"
       send: "Senden"
       send-error: "Fehler beim Senden der Anfrage"
+      send-not-allowed: "Sie sind nicht berechtigt diese Anfrage zu versenden."
 
     answer:
       link: "Beantworten"
@@ -30,6 +34,7 @@ caluma:
       revise: "Überarbeiten"
 
       complete-error: "Fehler beim Abschliessen der Aufgabe"
+      complete-not-allowed: "Sie sind nicht berechtigt diese Antwort zu versenden."
 
     new:
       title: "Neue Anfrage"

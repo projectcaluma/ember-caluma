@@ -65,6 +65,7 @@ export default function config(target, property) {
               },
             },
           },
+          permissions: {},
         },
         getOwner(this).lookup("service:calumaOptions")?.distribution ?? {}
       );
