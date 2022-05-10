@@ -80,34 +80,38 @@
       <UkSpinner @ratio={{2}} />
     </div>
   {{else if this.groups.value.length}}
-    <ul class="uk-list uk-list-striped">
-      {{#each this.groups.value as |group|}}
-        {{! template-lint-disable require-presentational-children }}
-        <li
-          role="checkbox"
-          class="uk-flex uk-flex-between uk-flex-middle"
-          data-test-group={{group.identifier}}
-          {{on "click" (fn this.updateSelectedGroups group.identifier)}}
-        >
-          {{! template-lint-disable no-nested-interactive }}
-          <label for="group-{{group.identifier}}">
-            <input
-              type="checkbox"
-              class="uk-checkbox uk-margin-small-right"
-              checked={{includes group.identifier this.selectedGroups}}
-              id="group-{{group.identifier}}"
-            />
-            {{group-name group.identifier}}
-          </label>
-          {{#if group.config.icon}}
-            <UkIcon
-              @icon={{group.config.icon}}
-              class="uk-text-{{group.config.iconColor}}"
-            />
-          {{/if}}
-        </li>
-      {{/each}}
-    </ul>
+    <table
+      class="uk-table uk-table-striped uk-table-hover uk-table-small uk-table-middle group-list"
+    >
+      <tbody>
+        {{#each this.groups.value as |group|}}
+          {{! template-lint-disable require-presentational-children }}
+          <tr
+            role="checkbox"
+            data-test-group={{group.identifier}}
+            {{on "click" (fn this.updateSelectedGroups group.identifier)}}
+          >
+            <td class="uk-padding-remove-right">
+              {{! template-lint-disable require-input-label no-nested-interactive }}
+              <input
+                type="checkbox"
+                class="uk-checkbox"
+                checked={{includes group.identifier this.selectedGroups}}
+              />
+            </td>
+            <td class="uk-width-expand">{{group-name group.identifier}}</td>
+            <td class="uk-text-right">
+              {{#if group.config.icon}}
+                <UkIcon
+                  @icon={{group.config.icon}}
+                  class="uk-display-block uk-text-{{group.config.iconColor}}"
+                />
+              {{/if}}
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
   {{else}}
     <div class="uk-text-center">
       <UkIcon @icon="search" @ratio={{10}} class="uk-margin-top" />

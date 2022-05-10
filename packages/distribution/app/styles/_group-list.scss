@@ -1,0 +1,7 @@
+.group-list tr {
+  cursor: pointer;
+
+  > td:last-of-type svg {
+    min-width: 20px;
+  }
+}

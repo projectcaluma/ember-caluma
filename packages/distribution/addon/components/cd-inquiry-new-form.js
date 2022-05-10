@@ -44,9 +44,7 @@ export default class CdInquiryNewFormComponent extends Component {
   }
 
   @action
-  updateSelectedGroups(identifier, e) {
-    e.preventDefault();
-
+  updateSelectedGroups(identifier) {
     this.selectedGroups = toggle(identifier, this.selectedGroups);
   }
 
