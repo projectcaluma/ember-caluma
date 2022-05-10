@@ -13,9 +13,19 @@
 
     <hr />
 
+    {{#if (cannot "send inquiry" this.inquiry)}}
+      <div class="uk-alert uk-alert-warning uk-flex uk-flex-middle">
+        <UkIcon @icon="warning" class="uk-margin-small-right" />
+        {{t "caluma.distribution.edit.send-not-allowed"}}
+        {{t "caluma.distribution.not-allowed-hint"}}
+      </div>
+    {{/if}}
+
     <content.form />
 
-    {{#if (can "edit inquiry" this.inquiry)}}
+    {{#if
+      (and (can "edit inquiry" this.inquiry) (can "send inquiry" this.inquiry))
+    }}
       <DocumentValidity @document={{content.document}} as |isValid validate|>
         <UkButton
           @type="submit"

@@ -80,4 +80,20 @@ module("Unit | Ability | distribution", function (hooks) {
 
     assert.false(ability.canComplete);
   });
+
+  test("it respects configured custom permissions", async function (assert) {
+    const ability = this.owner.lookup("ability:distribution");
+
+    this.owner.lookup("service:caluma-options").distribution = {
+      permissions: {
+        completeDistribution: () => false,
+        createInquiry: () => false,
+        sendInquiry: () => false,
+      },
+    };
+
+    assert.false(ability.canComplete);
+    assert.false(ability.canCreateInquiry);
+    assert.false(ability.canSendInquiries);
+  });
 });

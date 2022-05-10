@@ -13,6 +13,7 @@ export default class DistributionAbility extends Ability {
   get canSendInquiries() {
     return (
       !this.config.ui.readonly &&
+      (this.config.permissions.sendInquiry?.(null) ?? true) &&
       this.distribution.controls.value?.send.edges.filter(
         hasStatus("SUSPENDED")
       ).length > 0
@@ -22,6 +23,7 @@ export default class DistributionAbility extends Ability {
   get canCreateInquiry() {
     return (
       !this.config.ui.readonly &&
+      (this.config.permissions.createInquiry?.() ?? true) &&
       this.distribution.controls.value?.create.edges.filter(hasStatus("READY"))
         .length > 0
     );
@@ -30,6 +32,7 @@ export default class DistributionAbility extends Ability {
   get canComplete() {
     return (
       !this.config.ui.readonly &&
+      (this.config.permissions.completeDistribution?.() ?? true) &&
       this.distribution.controls.value?.complete.edges.filter(
         hasStatus("READY")
       ).length > 0

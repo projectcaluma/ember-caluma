@@ -17,11 +17,15 @@ caluma:
 
     last-modified: "Last modified by {user} on {date} at {time}"
     details: "Details"
+    not-allowed-hint:
+      "However, you can edit the form and the input will be saved
+      automatically."
 
     edit:
       link: "Edit"
       send: "Send"
       send-error: "Error while sending the inquiry"
+      send-not-allowed: "You are not allowed to send this inquiry."
 
     answer:
       link: "Answer"
@@ -31,6 +35,7 @@ caluma:
       revise: "Revise"
 
       complete-error: "Error while completing the work item"
+      complete-not-allowed: "You are not allowed to send this inquiry answer."
 
     new:
       title: "New inquiry"

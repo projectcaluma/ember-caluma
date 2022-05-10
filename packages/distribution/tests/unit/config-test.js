@@ -78,6 +78,7 @@ module("Unit | config", function (hooks) {
           },
         },
       },
+      permissions: {},
       ui: { small: false, stack: false, readonly: false },
       warningPeriod: 1,
     });

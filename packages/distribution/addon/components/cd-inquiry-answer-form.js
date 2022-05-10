@@ -12,6 +12,7 @@ import inquiryAnswerQuery from "@projectcaluma/ember-distribution/gql/queries/in
 export default class CdInquiryAnswerFormComponent extends Component {
   @service intl;
   @service router;
+  @service abilities;
   @service notification;
 
   @config config;
@@ -27,16 +28,25 @@ export default class CdInquiryAnswerFormComponent extends Component {
   }
 
   get buttons() {
-    return this.inquiry?.childCase.workItems.edges.map((edge) => {
-      const config = this.config.inquiry.answer.buttons[edge.node.task.slug];
+    return this.inquiry?.childCase.workItems.edges
+      .map((edge) => {
+        const config = this.config.inquiry.answer.buttons[edge.node.task.slug];
 
-      return {
-        workItemId: decodeId(edge.node.id),
-        color: config.color,
-        isFormButton: edge.node.task.__typename === "CompleteWorkflowFormTask",
-        label: this.intl.t(config.label),
-      };
-    });
+        return this.abilities.can(
+          "complete child work item of inquiry",
+          this.inquiry,
+          { task: edge.node.task.slug }
+        )
+          ? {
+              workItemId: decodeId(edge.node.id),
+              color: config.color,
+              isFormButton:
+                edge.node.task.__typename === "CompleteWorkflowFormTask",
+              label: this.intl.t(config.label),
+            }
+          : null;
+      })
+      .filter(Boolean);
   }
 
   @dropTask

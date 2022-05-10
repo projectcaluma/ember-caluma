@@ -16,11 +16,15 @@ caluma:
 
     last-modified: "Dernière modification par {user} le {date} à {time}"
     details: "Détails"
+    not-allowed-hint:
+      "Vous pouvez toutefois modifier le formulaire et les données seront
+      automatiquement enregistrées."
 
     edit:
       link: "Modifier"
       send: "Envoyer"
       send-error: "Erreur lors de l'envoi de la demande"
+      send-not-allowed: "Vous n'êtes pas autorisé à envoyer cette demande."
 
     answer:
       link: "Répondre"
@@ -30,6 +34,7 @@ caluma:
       revise: "Réviser"
 
       complete-error: "Erreur lors de la clôture de la tâche"
+      complete-not-allowed: "Vous n'êtes pas autorisé à envoyer cette réponse."
 
     new:
       title: "Nouvelle demande"
