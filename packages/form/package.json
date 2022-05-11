@@ -76,7 +76,7 @@
     "webpack": "5.72.0"
   },
   "peerDependencies": {
-    "@projectcaluma/ember-workflow": "^11.0.0-beta.6"
+    "@projectcaluma/ember-workflow": "^11.0.0-beta.7"
   },
   "peerDependenciesMeta": {
     "@projectcaluma/ember-workflow": {

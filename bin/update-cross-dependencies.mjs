@@ -72,7 +72,7 @@ await new Promise((resolve) => {
     const result = Object.entries(updates).reduce(
       (result, [name, { version }]) => {
         return result.replace(
-          new RegExp(`"${name}": ".*"`),
+          new RegExp(`"${name}": ".*"`, "g"),
           `"${name}": "${version}"`
         );
       },
