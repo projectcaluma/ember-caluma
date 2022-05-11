@@ -1,3 +1,11 @@
+# [@projectcaluma/ember-distribution-v1.0.0-beta.10](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-distribution-v1.0.0-beta.9...@projectcaluma/ember-distribution-v1.0.0-beta.10) (2022-05-11)
+
+
+### Features
+
+* **distribution:** add readonly mode ([2f45c98](https://github.com/projectcaluma/ember-caluma/commit/2f45c985a2fa387c79ca39c49c1e50dc37926352))
+* **distribution:** allow custom permissions from the host app ([8a997bf](https://github.com/projectcaluma/ember-caluma/commit/8a997bf4d921ff738a6cca956a4dd9cbabe8f7c5))
+
 # [@projectcaluma/ember-distribution-v1.0.0-beta.9](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-distribution-v1.0.0-beta.8...@projectcaluma/ember-distribution-v1.0.0-beta.9) (2022-05-09)
 
 
