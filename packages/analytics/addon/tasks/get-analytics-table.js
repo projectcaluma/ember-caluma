@@ -12,6 +12,8 @@ export default function* getAnalyticsTable(slug) {
     );
   } catch (error) {
     console.error(error);
-    this.notification.danger(this.intl.t("caluma.notification.table-not-found"));
+    this.notification.danger(
+      this.intl.t("caluma.notification.table-not-found")
+    );
   }
 }

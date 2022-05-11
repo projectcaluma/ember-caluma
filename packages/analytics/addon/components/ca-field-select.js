@@ -106,10 +106,6 @@ export default class CaFieldSelectComponent extends Component {
     }
   }
 
-  capitalize(str) {
-    return str.charAt(0).toUpperCase() + str.slice(1);
-  }
-
   firstSegment(path) {
     if (!path) return "";
     if (path.indexOf(".") === -1) {
@@ -117,14 +113,5 @@ export default class CaFieldSelectComponent extends Component {
     }
     const delimiterIndex = path.indexOf(".");
     return path.substring(0, delimiterIndex);
-  }
-
-  lastSegment(path) {
-    if (!path) return "";
-    if (path.indexOf(".") === -1) {
-      return path;
-    }
-    const delimiterIndex = path.lastIndexOf(".");
-    return path.substring(delimiterIndex);
   }
 }

@@ -19,7 +19,11 @@
       </div>
     </div>
 
-    <f.input @name="dataSource" @label={{t "caluma.analytics.edit.field"}}>
+    <f.input
+      @type="select"
+      @name="dataSource"
+      @label={{t "caluma.analytics.edit.field"}}
+    >
       <div class="uk-grid-small uk-child-width-1-5" uk-grid>
         <CaFieldSelect
           @onSelect={{this.setFieldPath}}
