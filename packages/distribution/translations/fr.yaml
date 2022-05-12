@@ -54,6 +54,7 @@ caluma:
 
     status:
       draft: "Brouillon"
+      skipped: "Terminé prématurément"
       sent: "Envoyé"
       positive: "Positif"
       negative: "Negatif"

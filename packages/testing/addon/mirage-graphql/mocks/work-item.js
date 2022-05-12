@@ -103,6 +103,10 @@ export default class WorkItemMock extends BaseMock {
       });
     } else if (taskId === "complete-distribution") {
       this.collection
+        .where({ caseId, status: "READY", taskId: "inquiry" })
+        .update({ status: "SKIPPED" });
+
+      this.collection
         .where({ caseId, status: "READY" })
         .update({ status: "CANCELED" });
 

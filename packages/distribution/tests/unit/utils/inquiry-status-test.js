@@ -71,6 +71,15 @@ module("Unit | Utility | inquiry-status", function (hooks) {
       slug: "draft",
     });
 
+    await this.obj.inquiry.setSkipped();
+
+    assert.deepEqual(this.obj.status, {
+      color: "muted",
+      icon: "lock-closed-outline",
+      label: "t:caluma.distribution.status.skipped:()",
+      slug: "skipped",
+    });
+
     await this.obj.inquiry.setReady();
 
     assert.deepEqual(this.obj.status, {

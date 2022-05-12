@@ -55,6 +55,7 @@ caluma:
 
     status:
       draft: "Draft"
+      skipped: "Aborted"
       sent: "Sent"
       positive: "Positive"
       negative: "Negative"

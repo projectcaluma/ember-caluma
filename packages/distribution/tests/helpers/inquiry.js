@@ -106,6 +106,11 @@ class StubInquiry {
     this.status = "SUSPENDED";
     await settled();
   }
+
+  async setSkipped() {
+    this.status = "SKIPPED";
+    await settled();
+  }
 }
 
 export default function inquiry(options = {}) {
