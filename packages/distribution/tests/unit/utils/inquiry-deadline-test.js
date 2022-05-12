@@ -29,6 +29,12 @@ module("Unit | Utility | inquiry-deadline", function (hooks) {
     assert.strictEqual(this.obj.deadline.isOverdue, false);
     assert.strictEqual(this.obj.deadline.isWarning, false);
 
+    await this.obj.inquiry.setSkipped();
+
+    assert.strictEqual(this.obj.deadline.color, "muted");
+    assert.strictEqual(this.obj.deadline.isOverdue, false);
+    assert.strictEqual(this.obj.deadline.isWarning, false);
+
     await this.obj.inquiry.setReady();
 
     assert.strictEqual(this.obj.deadline.color, "emphasis");

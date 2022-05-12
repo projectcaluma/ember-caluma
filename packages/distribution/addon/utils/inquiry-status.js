@@ -6,6 +6,7 @@ import { INQUIRY_STATUS } from "@projectcaluma/ember-distribution/config";
 
 export const ICON_MAP = {
   [INQUIRY_STATUS.DRAFT]: "pencil-outline",
+  [INQUIRY_STATUS.SKIPPED]: "lock-closed-outline",
   [INQUIRY_STATUS.SENT]: "paper-plane-outline",
   [INQUIRY_STATUS.POSITIVE]: "checkmark-outline",
   [INQUIRY_STATUS.NEGATIVE]: "close-outline",
@@ -14,6 +15,7 @@ export const ICON_MAP = {
 
 export const COLOR_MAP = {
   [INQUIRY_STATUS.DRAFT]: "muted",
+  [INQUIRY_STATUS.SKIPPED]: "muted",
   [INQUIRY_STATUS.SENT]: "emphasis",
   [INQUIRY_STATUS.POSITIVE]: "success",
   [INQUIRY_STATUS.NEGATIVE]: "danger",
@@ -44,9 +46,12 @@ function decorator(
         ? inquiry.status === "READY"
         : inquiry.status === "SUSPENDED";
       const isSent = !isAddressed && inquiry.status === "READY";
+      const isSkipped = inquiry.status === "SKIPPED";
 
       const answer = inquiry.childCase?.document.status.edges[0]?.node;
-      const slug = isDraft
+      const slug = isSkipped
+        ? INQUIRY_STATUS.SKIPPED
+        : isDraft
         ? INQUIRY_STATUS.DRAFT
         : isSent
         ? INQUIRY_STATUS.SENT
@@ -55,7 +60,7 @@ function decorator(
       return {
         slug,
         label:
-          !isDraft && !isSent
+          !isSkipped && !isDraft && !isSent
             ? answer?.selectedOption.label
             : this.intl.t(`caluma.distribution.status.${slug}`),
         color: COLOR_MAP[slug],

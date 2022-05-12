@@ -19,18 +19,18 @@ function decorator(
     get() {
       const inquiry = get(this, inquiryProperty);
       const value = inquiry.document?.deadline.edges[0]?.node.value;
-      const isAnswered = inquiry.status === "COMPLETED";
+      const isDone = ["COMPLETED", "SKIPPED"].includes(inquiry.status);
 
       const { days: diff } = DateTime.fromISO(value).diffNow("days").toObject();
 
-      const isOverdue = !isAnswered && diff <= 0;
-      const isWarning = !isAnswered && diff <= this.config.warningPeriod;
+      const isOverdue = !isDone && diff <= 0;
+      const isWarning = !isDone && diff <= this.config.warningPeriod;
 
       return {
         value,
         isOverdue,
         isWarning,
-        color: isAnswered
+        color: isDone
           ? "muted"
           : isOverdue
           ? "danger"

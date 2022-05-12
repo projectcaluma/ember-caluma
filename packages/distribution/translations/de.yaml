@@ -54,6 +54,7 @@ caluma:
 
     status:
       draft: "Entwurf"
+      skipped: "Vorzeitig beendet"
       sent: "Versendet"
       positive: "Positiv"
       negative: "Negativ"

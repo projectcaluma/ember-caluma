@@ -85,7 +85,7 @@ module("Integration | Component | cd-navigation/controls", function (hooks) {
 
     assert.true(completeDistribution.status === "COMPLETED");
     assert.true(
-      readyWorkItems.models.every((workItem) => workItem.status === "CANCELED")
+      readyWorkItems.models.every((workItem) => workItem.status === "SKIPPED")
     );
 
     assert.true(

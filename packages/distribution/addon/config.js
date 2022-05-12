@@ -4,6 +4,7 @@ import { cached } from "tracked-toolbox";
 
 export const INQUIRY_STATUS = {
   DRAFT: "draft",
+  SKIPPED: "skipped",
   SENT: "sent",
   POSITIVE: "positive",
   NEGATIVE: "negative",
