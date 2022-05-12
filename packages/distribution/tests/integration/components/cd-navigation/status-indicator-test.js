@@ -20,8 +20,9 @@ module(
         hbs`<CdNavigation::StatusIndicator @inquiry={{this.inquiry}} @type={{this.type}} />`
       );
 
-      assert.dom(".status-indicator.uk-text-success").exists();
-      assert.dom(".status-indicator > svg > title").hasText("Positive");
+      assert.dom("[uk-icon]").hasClass("uk-text-success");
+      assert.dom("[uk-icon]").hasAttribute("icon", "check");
+      assert.dom("[uk-icon]").hasAttribute("title", "Positive");
     });
 
     test("it renders an indicator if deadline is overdue or in warning period", async function (assert) {
@@ -34,23 +35,23 @@ module(
         hbs`<CdNavigation::StatusIndicator @inquiry={{this.inquiry}} @type={{this.type}} />`
       );
 
-      assert.dom(".deadline-indicator").doesNotExist();
+      assert.dom("[uk-icon][icon=clock]").doesNotExist();
 
       await this.inquiry.setDeadline(warningDeadline.toISODate());
 
       const intl = this.owner.lookup("service:intl");
 
-      assert.dom(".deadline-indicator.uk-text-warning").exists();
+      assert.dom("[uk-icon][icon=clock].uk-text-warning").exists();
       assert
-        .dom(".deadline-indicator > svg > title")
-        .hasText(intl.formatDate(warningDeadline.toJSDate()));
+        .dom("[uk-icon][icon=clock]")
+        .hasAttribute("title", intl.formatDate(warningDeadline.toJSDate()));
 
       await this.inquiry.setDeadline(overdueDeadline.toISODate());
 
-      assert.dom(".deadline-indicator.uk-text-danger").exists();
+      assert.dom("[uk-icon][icon=clock].uk-text-danger").exists();
       assert
-        .dom(".deadline-indicator > svg > title")
-        .hasText(intl.formatDate(overdueDeadline.toJSDate()));
+        .dom("[uk-icon][icon=clock]")
+        .hasAttribute("title", intl.formatDate(overdueDeadline.toJSDate()));
     });
   }
 );

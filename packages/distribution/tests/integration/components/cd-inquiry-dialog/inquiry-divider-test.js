@@ -23,8 +23,8 @@ module(
 
       assert.dom(".inquiry-divider.uk-text-danger").exists();
       assert
-        .dom(".inquiry-divider.uk-text-danger svg title")
-        .hasText("Negative");
+        .dom(".inquiry-divider.uk-text-danger [uk-icon]")
+        .hasAttribute("title", "Negative");
     });
   }
 );

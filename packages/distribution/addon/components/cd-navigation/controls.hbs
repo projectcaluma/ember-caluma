@@ -1,32 +1,41 @@
 <div class="uk-text-center uk-margin-small-top">
   {{#if (can "create inquiry of distribution")}}
-    <CdIconButton
-      @title={{t "caluma.distribution.new.title"}}
-      @icon="plus"
+    <LinkTo
       @route="new"
-    />
+      class="uk-icon-button"
+      title={{t "caluma.distribution.new.title"}}
+    >
+      <UkIcon @icon="plus" />
+    </LinkTo>
   {{/if}}
   {{#if (can "send inquiries of distribution")}}
-    <CdIconButton
-      @title={{t "caluma.distribution.send"}}
-      @icon="paper-plane-outline"
-      @fromSvgJar={{true}}
-      @gutterTop={{4}}
-      @gutterRight={{6}}
-      @gutterLeft={{4}}
-      @gutterBottom={{4}}
-      @onClick={{perform this.sendInquiries}}
-      @loading={{this.sendInquiries.isRunning}}
+    <button
+      type="button"
+      class="uk-icon-button"
+      title={{t "caluma.distribution.send"}}
       data-test-send-pending-inquiries
-    />
+      {{on "click" (perform this.sendInquiries)}}
+    >
+      {{#if this.sendInquiries.isRunning}}
+        <UkSpinner @ratio={{0.6}} />
+      {{else}}
+        <UkIcon @icon="comment" />
+      {{/if}}
+    </button>
   {{/if}}
   {{#if (can "complete distribution")}}
-    <CdIconButton
-      @icon="lock-closed-outline"
-      @fromSvgJar={{true}}
-      @onClick={{perform this.completeDistribution}}
-      @loading={{this.completeDistribution.isRunning}}
+    <button
+      type="button"
+      class="uk-icon-button"
+      title={{t "caluma.distribution.complete"}}
       data-test-complete-distribution
-    />
+      {{on "click" (perform this.completeDistribution)}}
+    >
+      {{#if this.completeDistribution.isRunning}}
+        <UkSpinner @ratio={{0.6}} />
+      {{else}}
+        <UkIcon @icon="lock" />
+      {{/if}}
+    </button>
   {{/if}}
 </div>

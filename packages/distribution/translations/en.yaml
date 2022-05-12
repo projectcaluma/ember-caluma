@@ -3,6 +3,7 @@ caluma:
     empty: "No inquiries have been created yet."
     start: "Start"
     send: "Send pending inquiries"
+    complete: "Complete circulation"
     send-confirm: "Do you really want to send all pending inquiries?"
     complete-confirm:
       "There {count, plural, =1 {is} other {are}} <b>{count} pending

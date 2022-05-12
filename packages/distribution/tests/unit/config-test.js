@@ -72,7 +72,7 @@ module("Unit | config", function (hooks) {
         defaultTypes: ["suggestions"],
         types: {
           suggestions: {
-            icon: "bulb-outline",
+            icon: "star",
             iconColor: "warning",
             label: "caluma.distribution.new.suggestions",
           },

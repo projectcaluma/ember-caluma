@@ -3,6 +3,7 @@ caluma:
     empty: "Es wurden noch keine Anfragen erstellt."
     start: "Starten"
     send: "Offene Anfragen versenden"
+    complete: "Zirkulation abschliessen"
     send-confirm: "Wollen Sie wirklich alle offenen Anfragen versenden?"
     complete-confirm:
       "Es gibt noch <b>{count} offene {count, plural, =1 {Anfrage} other {Anfragen}}</b>

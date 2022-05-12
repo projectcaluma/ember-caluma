@@ -1,18 +1,13 @@
 {{#if this.showDeadlineIndicator}}
-  <div
-    class="deadline-indicator uk-flex uk-flex-middle uk-flex-center uk-margin-small-left uk-text-{{this.deadline.color}}"
-  >
-    {{svg-jar
-      "notifications-outline"
-      height=16
-      width=16
-      title=(format-date this.deadline.value)
-    }}
-  </div>
+  <UkIcon
+    @icon="clock"
+    class="uk-margin-small-right uk-text-{{this.deadline.color}}"
+    title={{format-date this.deadline.value}}
+  />
 {{/if}}
 
-<div
-  class="status-indicator uk-flex uk-flex-middle uk-flex-center uk-margin-small-left uk-text-{{this.status.color}}"
->
-  {{svg-jar this.status.icon title=this.status.label}}
-</div>
+<UkIcon
+  @icon={{this.status.icon}}
+  class="uk-text-{{this.status.color}}"
+  title={{this.status.label}}
+/>

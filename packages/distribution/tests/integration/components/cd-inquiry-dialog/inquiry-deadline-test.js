@@ -25,7 +25,8 @@ module(
         .lookup("service:intl")
         .formatDate(deadline.toJSDate());
 
-      assert.dom(".uk-text-muted").hasText(`Alarm ${formattedDate}`);
+      assert.dom(".uk-text-muted").hasText(formattedDate);
+      assert.dom("[uk-icon]").hasAttribute("icon", "clock");
     });
 
     test("it renders withdrawn", async function (assert) {
@@ -35,11 +36,10 @@ module(
         hbs`<CdInquiryDialog::InquiryDeadline @inquiry={{this.inquiry}} />`
       );
 
-      assert.dom("div").hasClass("uk-text-muted");
       assert
-        .dom("div")
-        .containsText("t:caluma.distribution.withdraw.status:()");
-      assert.dom("svg title").hasText("Ban");
+        .dom(".uk-text-muted")
+        .hasText("t:caluma.distribution.withdraw.status:()");
+      assert.dom("[uk-icon]").hasAttribute("icon", "ban");
     });
   }
 );

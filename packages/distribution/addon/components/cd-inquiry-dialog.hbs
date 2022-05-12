@@ -5,13 +5,19 @@
     (and (can "create inquiry of distribution") this.currentGroupIsCreator)
   }}
     <div class="uk-text-center uk-margin">
-      <CdIconButton
-        @title={{t "caluma.distribution.new.title"}}
-        @icon="plus"
-        @loading={{this.createInquiry.isRunning}}
-        @onClick={{perform this.createInquiry}}
+      <button
+        type="button"
+        class="uk-icon-button"
+        title={{t "caluma.distribution.new.title"}}
         data-test-new-inquiry
-      />
+        {{on "click" (perform this.createInquiry)}}
+      >
+        {{#if this.createInquiry.isRunning}}
+          <UkSpinner @ratio={{0.6}} />
+        {{else}}
+          <UkIcon @icon="plus" />
+        {{/if}}
+      </button>
     </div>
   {{/if}}
   <section>

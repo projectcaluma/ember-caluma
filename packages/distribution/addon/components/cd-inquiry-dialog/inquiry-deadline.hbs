@@ -14,12 +14,10 @@
       uk-flex-inline uk-flex-middle"
     ...attributes
   >
-    {{svg-jar
-      (if this.isWithdrawn "ban-outline" "alarm-outline")
-      height=26
-      width=26
+    <UkIcon
+      @icon={{if this.isWithdrawn "ban" "clock"}}
       class="uk-margin-small-right"
-    }}
+    />
     {{#if this.isWithdrawn}}
       {{t "caluma.distribution.withdraw.status"}}
     {{else}}
