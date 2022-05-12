@@ -1,5 +1,5 @@
-<li class="uk-margin-small-bottom">
-  <a href="" class="uk-margin-small-bottom" {{on "click" this.toggle}}>
+<li class="uk-margin-small-bottom uk-width-auto">
+  <a href="" {{on "click" this.toggle}}>
     <span class="uk-width-expand">
       {{t (concat "caluma.distribution.types." @type)}}
     </span>
@@ -12,7 +12,7 @@
 
   {{#if this.expanded}}
     {{#if @inquiries.length}}
-      <ul class="uk-tab uk-tab-left uk-margin-left">
+      <ul class="uk-tab uk-tab-left uk-margin-left uk-width-auto">
         {{#each this.inquiries as |inquiry|}}
           <CdNavigation::Item @inquiry={{inquiry}} @type={{@type}} />
         {{/each}}
@@ -20,7 +20,7 @@
     {{/if}}
 
     {{#if (eq @type "controlling")}}
-      <CdNavigation::Controls @caseId={{@caseId}} />
+      <CdNavigation::Controls />
     {{/if}}
   {{/if}}
 </li>

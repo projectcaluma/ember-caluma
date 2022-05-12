@@ -61,7 +61,7 @@ export default function config(target, property) {
             types: {
               suggestions: {
                 label: "caluma.distribution.new.suggestions",
-                icon: "bulb-outline",
+                icon: "star",
                 iconColor: "warning",
               },
             },

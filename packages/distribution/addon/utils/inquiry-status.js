@@ -5,12 +5,12 @@ import { createDecorator } from "@projectcaluma/ember-distribution/-private/deco
 import { INQUIRY_STATUS } from "@projectcaluma/ember-distribution/config";
 
 export const ICON_MAP = {
-  [INQUIRY_STATUS.DRAFT]: "pencil-outline",
-  [INQUIRY_STATUS.SKIPPED]: "lock-closed-outline",
-  [INQUIRY_STATUS.SENT]: "paper-plane-outline",
-  [INQUIRY_STATUS.POSITIVE]: "checkmark-outline",
-  [INQUIRY_STATUS.NEGATIVE]: "close-outline",
-  [INQUIRY_STATUS.NEEDS_INTERACTION]: "repeat-outline",
+  [INQUIRY_STATUS.DRAFT]: "commenting",
+  [INQUIRY_STATUS.SKIPPED]: "lock",
+  [INQUIRY_STATUS.SENT]: "comment",
+  [INQUIRY_STATUS.POSITIVE]: "check",
+  [INQUIRY_STATUS.NEGATIVE]: "close",
+  [INQUIRY_STATUS.NEEDS_INTERACTION]: "refresh",
 };
 
 export const COLOR_MAP = {

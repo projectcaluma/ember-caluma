@@ -100,12 +100,10 @@
             {{group-name group.identifier}}
           </label>
           {{#if group.config.icon}}
-            {{svg-jar
-              group.config.icon
-              width="20"
-              height="20"
-              class=(concat "uk-text-" group.config.iconColor)
-            }}
+            <UkIcon
+              @icon={{group.config.icon}}
+              class="uk-text-{{group.config.iconColor}}"
+            />
           {{/if}}
         </li>
       {{/each}}

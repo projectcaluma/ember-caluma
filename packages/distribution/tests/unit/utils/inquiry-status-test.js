@@ -33,7 +33,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
 
     assert.deepEqual(this.obj.status, {
       color: "success",
-      icon: "checkmark-outline",
+      icon: "check",
       label: "Positive",
       slug: "positive",
     });
@@ -45,7 +45,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
 
     assert.deepEqual(this.obj.status, {
       color: "danger",
-      icon: "close-outline",
+      icon: "close",
       label: "Negative",
       slug: "negative",
     });
@@ -57,7 +57,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
 
     assert.deepEqual(this.obj.status, {
       color: "warning",
-      icon: "repeat-outline",
+      icon: "refresh",
       label: "Needs interaction",
       slug: "needs-interaction",
     });
@@ -66,7 +66,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
 
     assert.deepEqual(this.obj.status, {
       color: "muted",
-      icon: "pencil-outline",
+      icon: "commenting",
       label: "t:caluma.distribution.status.draft:()",
       slug: "draft",
     });
@@ -75,7 +75,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
 
     assert.deepEqual(this.obj.status, {
       color: "muted",
-      icon: "lock-closed-outline",
+      icon: "lock",
       label: "t:caluma.distribution.status.skipped:()",
       slug: "skipped",
     });
@@ -84,7 +84,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
 
     assert.deepEqual(this.obj.status, {
       color: "emphasis",
-      icon: "paper-plane-outline",
+      icon: "comment",
       label: "t:caluma.distribution.status.sent:()",
       slug: "sent",
     });
@@ -93,7 +93,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
 
     assert.deepEqual(this.obj.status, {
       color: "muted",
-      icon: "pencil-outline",
+      icon: "commenting",
       label: "t:caluma.distribution.status.draft:()",
       slug: "draft",
     });

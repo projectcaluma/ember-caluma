@@ -1,10 +1,10 @@
 <div class="uk-margin-remove-last-child">
   <p class="uk-flex uk-flex-middle uk-text-large uk-margin-remove">
     {{#if (eq @type "request")}}
-      {{svg-jar "arrow-redo-outline" height=24 class="uk-margin-small-right"}}
+      <UkIcon @icon="forward" class="uk-margin-small-right" />
       {{group-name @inquiry.controllingGroups}}
     {{else if (eq @type "answer")}}
-      {{svg-jar "arrow-undo-outline" height=24 class="uk-margin-small-right"}}
+      <UkIcon @icon="reply" class="uk-margin-small-right" />
       {{group-name @inquiry.addressedGroups}}
     {{/if}}
   </p>

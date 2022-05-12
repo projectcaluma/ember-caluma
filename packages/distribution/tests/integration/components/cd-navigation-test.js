@@ -33,18 +33,18 @@ module("Integration | Component | cd-navigation", function (hooks) {
   test("it renders navigation with 3 sections", async function (assert) {
     await render(hbs`<CdNavigation @caseId={{this.caseId}} />`);
 
-    assert.dom("aside > ul").exists();
-    assert.dom("aside > ul > li > ul").exists({ count: 3 });
-    assert.dom("aside > ul > li > ul > li").exists({ count: 9 });
+    assert.dom("ul:first-child").exists({ count: 1 });
+    assert.dom("ul:first-child > li > ul").exists({ count: 3 });
+    assert.dom("ul:first-child > li > ul > li").exists({ count: 9 });
 
     assert
-      .dom("aside > ul > li:nth-of-type(1) > a")
+      .dom("ul:first-child > li:nth-of-type(1) > a")
       .hasText("t:caluma.distribution.types.controlling:()");
     assert
-      .dom("aside > ul > li:nth-of-type(2) > a")
+      .dom("ul:first-child > li:nth-of-type(2) > a")
       .hasText("t:caluma.distribution.types.addressed:()");
     assert
-      .dom("aside > ul > li:nth-of-type(3) > a")
+      .dom("ul:first-child > li:nth-of-type(3) > a")
       .hasText("t:caluma.distribution.types.more:()");
   });
 });

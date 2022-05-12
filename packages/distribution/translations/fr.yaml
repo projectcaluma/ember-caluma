@@ -3,6 +3,7 @@ caluma:
     empty: "Aucune demande n'a encore été créée."
     start: "Lancer"
     send: "Envoyer les demandes ouvertes"
+    complete: "Terminer la circulation"
     send-confirm: "Voulez-vous vraiment envoyer toutes les demandes ouvertes ?"
     complete-confirm:
       "Il y a <b>{count} {count, plural, =1 {demande} other {demandes}} en

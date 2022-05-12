@@ -1,14 +1,11 @@
-<aside>
-  <ul class="uk-tab uk-tab-left uk-margin-remove-bottom">
-    <CdNavigation::Section
-      @type="controlling"
-      @inquiries={{this.inquiries.controlling}}
-      @caseId={{@caseId}}
-    />
-    <CdNavigation::Section
-      @type="addressed"
-      @inquiries={{this.inquiries.addressed}}
-    />
-    <CdNavigation::Section @type="more" @inquiries={{this.inquiries.more}} />
-  </ul>
-</aside>
+<ul class="uk-tab uk-tab-left uk-margin-remove-bottom uk-width-auto">
+  <CdNavigation::Section
+    @type="controlling"
+    @inquiries={{this.inquiries.controlling}}
+  />
+  <CdNavigation::Section
+    @type="addressed"
+    @inquiries={{this.inquiries.addressed}}
+  />
+  <CdNavigation::Section @type="more" @inquiries={{this.inquiries.more}} />
+</ul>

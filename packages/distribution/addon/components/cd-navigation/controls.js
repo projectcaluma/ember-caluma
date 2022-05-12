@@ -26,7 +26,7 @@ export default class CdNavigationControlsComponent extends Component {
         {
           query: incompleteInquiriesQuery,
           variables: {
-            caseId: this.args.caseId,
+            caseId: this.distribution.caseId,
             task: this.config.inquiry.task,
           },
         },
