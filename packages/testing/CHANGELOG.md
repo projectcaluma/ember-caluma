@@ -1,3 +1,10 @@
+# [@projectcaluma/ember-testing-v11.0.0-beta.8](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-testing-v11.0.0-beta.7...@projectcaluma/ember-testing-v11.0.0-beta.8) (2022-05-13)
+
+
+### Features
+
+* **distribution:** add status for skipped inquiries ([1f93c92](https://github.com/projectcaluma/ember-caluma/commit/1f93c92d76b697954ec54aefa12348c84cd0abf9))
+
 # [@projectcaluma/ember-testing-v11.0.0-beta.7](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-testing-v11.0.0-beta.6...@projectcaluma/ember-testing-v11.0.0-beta.7) (2022-05-09)
 
 
