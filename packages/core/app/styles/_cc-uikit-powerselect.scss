@@ -1,3 +1,5 @@
+@import "ember-uikit/variables-theme";
+
 // Backgrounds
 $ember-power-select-selected-background: lighten(
   $global-secondary-background,
@@ -27,5 +29,3 @@ $ember-power-select-multiple-option-border-color: $ember-power-select-border-col
 $ember-power-select-line-height: 38px !default;
 $ember-power-select-multiple-option-padding: 0 8px !default;
 $ember-power-select-multiple-option-line-height: 32px !default;
-
-@import "ember-power-select";

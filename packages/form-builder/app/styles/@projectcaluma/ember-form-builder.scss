@@ -3,7 +3,8 @@
 @import "../cfb-form-editor/question-list/item";
 @import "../cfb-form-editor/question";
 @import "../cfb-navigation";
-@import "../cfb-powerselect";
+@import "@projectcaluma/ember-core";
+@import "ember-power-select";
 
 .cfb-pointer {
   cursor: pointer;
