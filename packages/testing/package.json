@@ -29,7 +29,7 @@
     "graphql-iso-date": "^3.6.1",
     "graphql-tools": "^4.0.8",
     "luxon": "^2.4.0",
-    "miragejs": "^0.1.43"
+    "miragejs": "^0.1.44"
   },
   "devDependencies": {
     "@ember/optional-features": "2.0.0",
