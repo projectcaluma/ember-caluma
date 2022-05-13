@@ -1,3 +1,10 @@
+# [@projectcaluma/ember-distribution-v1.0.0-beta.11](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-distribution-v1.0.0-beta.10...@projectcaluma/ember-distribution-v1.0.0-beta.11) (2022-05-13)
+
+
+### Features
+
+* **distribution:** add status for skipped inquiries ([1f93c92](https://github.com/projectcaluma/ember-caluma/commit/1f93c92d76b697954ec54aefa12348c84cd0abf9))
+
 # [@projectcaluma/ember-distribution-v1.0.0-beta.10](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-distribution-v1.0.0-beta.9...@projectcaluma/ember-distribution-v1.0.0-beta.10) (2022-05-11)
 
 
