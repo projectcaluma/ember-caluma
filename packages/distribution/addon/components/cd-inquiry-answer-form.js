@@ -1,6 +1,6 @@
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
-import { queryManager } from "ember-apollo-client";
+import { queryManager, getObservable } from "ember-apollo-client";
 import { dropTask } from "ember-concurrency";
 import { trackedTask } from "ember-resources/util/ember-concurrency";
 
@@ -79,6 +79,7 @@ export default class CdInquiryAnswerFormComponent extends Component {
         },
       });
 
+      yield getObservable(this._inquiry.value)?.refetch();
       yield this.router.transitionTo("inquiry.index");
     } catch (error) {
       this.notification.danger(
