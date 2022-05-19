@@ -127,7 +127,7 @@ module("Integration | Component | cf-field/input/radio", function (hooks) {
   });
 
   test("it renders disabled options", async function (assert) {
-    assert.expect(2);
+    assert.expect(4);
 
     this.set("disabled", false);
 
@@ -146,12 +146,14 @@ module("Integration | Component | cf-field/input/radio", function (hooks) {
       />
     `);
 
+    assert.dom("label input[type=radio]").isDisabled();
     assert
       .dom("label del.uk-text-muted")
       .hasAttribute("title", "t:caluma.form.optionNotAvailable:()");
 
     this.set("disabled", true);
 
+    assert.dom("label input[type=radio]").isDisabled();
     assert.dom("label del.uk-text-muted").doesNotExist();
   });
 });
