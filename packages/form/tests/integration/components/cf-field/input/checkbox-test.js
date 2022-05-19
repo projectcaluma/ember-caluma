@@ -148,7 +148,7 @@ module("Integration | Component | cf-field/input/checkbox", function (hooks) {
   });
 
   test("it renders disabled options", async function (assert) {
-    assert.expect(2);
+    assert.expect(4);
 
     this.set("disabled", false);
 
@@ -166,12 +166,14 @@ module("Integration | Component | cf-field/input/checkbox", function (hooks) {
       />
     `);
 
+    assert.dom("label input[type=checkbox]").isDisabled();
     assert
       .dom("label del.uk-text-muted")
       .hasAttribute("title", "t:caluma.form.optionNotAvailable:()");
 
     this.set("disabled", true);
 
+    assert.dom("label input[type=checkbox]").isDisabled();
     assert.dom("label del.uk-text-muted").doesNotExist();
   });
 });

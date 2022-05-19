@@ -10,7 +10,7 @@
       name={{@field.pk}}
       value={{option.slug}}
       checked={{includes option.slug @field.answer.value}}
-      disabled={{@disabled}}
+      disabled={{or option.disabled @disabled}}
       {{on "change" this.update}}
     />
     {{#if (and option.disabled (not @disabled))}}

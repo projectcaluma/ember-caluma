@@ -394,6 +394,14 @@ module("Unit | Library | field", function (hooks) {
             {
               node: {
                 slug: "option-1",
+                label: "Option 1",
+              },
+            },
+            {
+              node: {
+                slug: "invalid-option",
+                label: "Invalid Option",
+                isArchived: true,
               },
             },
           ],
@@ -412,7 +420,7 @@ module("Unit | Library | field", function (hooks) {
     field.answer.value = "invalid-option";
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      't:caluma.form.validation.inclusion:("allowBlank":true,"in":["option-1"],"value":"invalid-option")',
+      't:caluma.form.validation.inclusion:("allowBlank":true,"in":["option-1"],"label":"Invalid Option","value":"invalid-option")',
     ]);
   });
 
@@ -426,6 +434,14 @@ module("Unit | Library | field", function (hooks) {
             {
               node: {
                 slug: "option-1",
+                label: "Option 1",
+              },
+            },
+            {
+              node: {
+                slug: "invalid-option",
+                label: "Invalid Option",
+                isArchived: true,
               },
             },
           ],
@@ -444,14 +460,14 @@ module("Unit | Library | field", function (hooks) {
     field.answer.value = ["option-1", "invalid-option"];
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      't:caluma.form.validation.inclusion:("in":["option-1"],"value":"invalid-option")',
+      't:caluma.form.validation.inclusion:("allowBlank":false,"in":["option-1"],"label":"Invalid Option","value":"invalid-option")',
     ]);
 
     field.answer.value = ["invalid-option", "other-invalid-option"];
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      't:caluma.form.validation.inclusion:("in":["option-1"],"value":"invalid-option")',
-      't:caluma.form.validation.inclusion:("in":["option-1"],"value":"other-invalid-option")',
+      't:caluma.form.validation.inclusion:("allowBlank":false,"in":["option-1"],"label":"Invalid Option","value":"invalid-option")',
+      't:caluma.form.validation.inclusion:("allowBlank":false,"in":["option-1"],"label":"other-invalid-option","value":"other-invalid-option")',
     ]);
   });
 

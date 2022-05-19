@@ -582,10 +582,10 @@ export default class Field extends Base {
   @cached
   get errors() {
     return this._errors.map(({ type, context, value }) => {
-      return this.intl.t(
-        `caluma.form.validation.${type}`,
-        Object.assign({}, context, { value })
-      );
+      return this.intl.t(`caluma.form.validation.${type}`, {
+        ...context,
+        value,
+      });
     });
   }
 
@@ -742,10 +742,7 @@ export default class Field extends Base {
    * @private
    */
   _validateChoiceQuestion() {
-    return validate("inclusion", this.answer.value, {
-      allowBlank: true,
-      in: (this.options || []).map(({ slug }) => slug),
-    });
+    return this._validateOption(this.answer.value, true);
   }
 
   /**
@@ -757,15 +754,9 @@ export default class Field extends Base {
    * @private
    */
   _validateMultipleChoiceQuestion() {
-    const value = this.answer.value;
-    if (!value) {
-      return true;
-    }
-    return value.map((value) =>
-      validate("inclusion", value, {
-        in: (this.options || []).map(({ slug }) => slug),
-      })
-    );
+    return this.answer.value
+      ? this.answer.value.map((value) => this._validateOption(value))
+      : true;
   }
 
   /**
@@ -779,9 +770,7 @@ export default class Field extends Base {
   async _validateDynamicChoiceQuestion() {
     await this.question.dynamicOptions;
 
-    return validate("inclusion", this.answer.value, {
-      in: (this.options || []).map(({ slug }) => slug),
-    });
+    return this._validateOption(this.answer.value);
   }
 
   /**
@@ -801,10 +790,20 @@ export default class Field extends Base {
 
     await this.question.dynamicOptions;
 
-    return value.map((value) => {
-      return validate("inclusion", value, {
-        in: (this.options || []).map(({ slug }) => slug),
-      });
+    return value.map((value) => this._validateOption(value));
+  }
+
+  _validateOption(value, allowBlank = false) {
+    const label = Array.isArray(this.selected)
+      ? this.selected.find((selected) => selected.slug === value)?.label
+      : this.selected?.label;
+
+    return validate("inclusion", value, {
+      in: (this.options || [])
+        .filter((option) => !option.disabled)
+        .map(({ slug }) => slug),
+      allowBlank,
+      label: label ?? value,
     });
   }
 
