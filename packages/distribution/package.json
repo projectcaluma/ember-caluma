@@ -35,7 +35,7 @@
     "ember-fetch": "^8.1.1",
     "ember-intl": "^5.7.2",
     "ember-pikaday": "^4.0.0",
-    "ember-resources": "^4.7.1",
+    "ember-resources": "^4.8.0",
     "ember-svg-jar": "^2.3.4",
     "ember-test-selectors": "^6.0.0",
     "ember-uikit": "^5.1.3",
