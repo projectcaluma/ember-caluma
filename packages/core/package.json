@@ -14,7 +14,7 @@
     "test:ember-compatibility": "ember try:each"
   },
   "dependencies": {
-    "@apollo/client": "^3.6.2",
+    "@apollo/client": "^3.6.4",
     "@ember/string": "^3.0.0",
     "@glimmer/tracking": "^1.1.2",
     "ember-apollo-client": "^4.0.2",
