@@ -1,11 +1,13 @@
-<label class="uk-form-label" for={{@field.pk}}>
+<label class="uk-form-label" for={{@field.pk}} ...attributes>
   <span class="uk-text-bold">
     {{@field.question.raw.label}}
   </span>
 
-  {{#if this.optional}}
+  {{#if (and (not @field.question.isCalculated) @field.optional)}}
     <span
       class="uk-margin-small-left uk-text-muted uk-text-lowercase uk-text-normal"
     >({{t "caluma.form.optional"}})</span>
   {{/if}}
+
+  {{yield}}
 </label>
