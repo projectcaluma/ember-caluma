@@ -49,14 +49,17 @@
     />
     <div class="uk-flex uk-flex-right">
       <f.button
-        @disabled={{f.loading}}
+        @disabled={{this.saveField.isRunning}}
         class="uk-margin-small-right"
         {{on "click" this.toggleForm}}
       >
         {{t "caluma.analytics.cancel"}}
       </f.button>
 
-      <f.submit @disabled={{or f.loading (not this.isValueField)}}>
+      <f.submit
+        @loading={{this.saveField.isRunning}}
+        @disabled={{or this.saveField.isRunning (not this.isValueField)}}
+      >
         {{t "caluma.analytics.edit.add-field"}}
       </f.submit>
     </div>

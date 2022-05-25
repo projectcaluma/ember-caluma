@@ -16,6 +16,8 @@ export default class CaFilterModalComponent extends Component {
   @tracked newFilter;
   @tracked filters;
 
+  @enqueueTask saveField = saveAnalyticsField;
+
   constructor(...args) {
     super(...args);
     this.filters = this.args.field?.filters ?? [];
@@ -53,6 +55,4 @@ export default class CaFilterModalComponent extends Component {
     }
     this.newFilter = null;
   }
-
-  @enqueueTask saveField = saveAnalyticsField;
 }

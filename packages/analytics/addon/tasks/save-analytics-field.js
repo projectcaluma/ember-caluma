@@ -1,12 +1,15 @@
 import saveAnalyticsFieldMutation from "@projectcaluma/ember-analytics/gql/mutations/save-analytics-field.graphql";
 
-export function* saveAnalyticsField(input) {
+export default function* (input) {
   try {
-    yield this.apollo.mutate({
+    const mutation = yield this.apollo.mutate({
       mutation: saveAnalyticsFieldMutation,
       variables: { input },
     });
-    this.visible = false;
+    this.notification.success(
+      this.intl.t("caluma.analytics.notification.field-saved")
+    );
+    return mutation;
   } catch (error) {
     console.error(error);
     this.notification.danger(

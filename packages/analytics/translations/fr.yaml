@@ -15,6 +15,7 @@ caluma:
       create-error: An error occured while creating the report
       fetch-error: An error occured while loading the data.
       filter-exists: Filter already exists!
+      field-saved: Field successfully saved.
     list:
       list-title: All reports
       edit: Edit

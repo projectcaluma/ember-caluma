@@ -15,6 +15,7 @@ caluma:
       create-error: Beim Erstellen ist ein Fehler aufgetreten.
       fetch-error: Beim Laden der Daten ist ein Fehler aufgetreten.
       filter-exists: Filter existiert bereits!!
+      field-saved: Feld gespeichert..
     list:
       list-title: Liste aller Auswertungen
       edit: Bearbeiten

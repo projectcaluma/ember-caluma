@@ -1,4 +1,3 @@
-import { getOwner } from "@ember/application";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
@@ -8,7 +7,7 @@ import { Changeset } from "ember-changeset";
 import lookupValidator from "ember-changeset-validations";
 import { enqueueTask } from "ember-concurrency-decorators";
 
-import saveAnalyticsFieldMutation from "@projectcaluma/ember-analytics/gql/mutations/save-analytics-field.graphql";
+import saveAnalyticsField from "@projectcaluma/ember-analytics/tasks/save-analytics-field";
 import FieldValidations from "@projectcaluma/ember-analytics/validations/field";
 
 class Field {
@@ -27,9 +26,10 @@ export default class CaFieldFormComponent extends Component {
   @tracked isValueField = false;
   @tracked showForm = false;
 
+  @enqueueTask saveField = saveAnalyticsField;
+
   constructor(...args) {
     super(...args);
-    this.config = getOwner(this).resolveRegistration("config:environment");
     this.field = Changeset(
       new Field(),
       lookupValidator(FieldValidations),
@@ -84,36 +84,17 @@ export default class CaFieldFormComponent extends Component {
         this.intl.t(`caluma.analytics.notification.alias-exists`)
       );
     } else {
-      await this.saveAnalyticsField.perform(this.field.pendingData);
+      const { id, alias, dataSource, aggregateFunction, showOutput } =
+        this.field.pendingData;
+      await this.saveField.perform({
+        table: this.tableId,
+        id,
+        alias,
+        dataSource,
+        showOutput,
+        function: aggregateFunction,
+      });
       this.toggleForm();
     }
-  }
-
-  @action
-  updateAnalyticsField(field) {
-    this.saveAnalyticsField.perform(field);
-  }
-
-  @enqueueTask
-  *saveAnalyticsField({
-    id,
-    alias,
-    dataSource,
-    aggregateFunction,
-    showOutput,
-  }) {
-    yield this.apollo.mutate({
-      mutation: saveAnalyticsFieldMutation,
-      variables: {
-        input: {
-          table: this.tableId,
-          id,
-          alias,
-          dataSource,
-          showOutput,
-          function: aggregateFunction,
-        },
-      },
-    });
   }
 }

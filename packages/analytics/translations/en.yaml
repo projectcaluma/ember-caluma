@@ -11,10 +11,11 @@ caluma:
     notification:
       alias-exists: Alias already exists!
       field-invalid: Please fix invalid field inputs.
-      delete-error: An error occured while deleting the report.
-      create-error: An error occured while creating the report
-      fetch-error: An error occured while loading the data.
+      delete-error: An error occurred while deleting.
+      create-error: An error occurred while saving.
+      fetch-error: An error occurred while loading the data.
       filter-exists: Filter already exists!
+      field-saved: Field successfully saved.
     list:
       list-title: All reports
       edit: Edit
