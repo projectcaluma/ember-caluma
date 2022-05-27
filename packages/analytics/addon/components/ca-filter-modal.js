@@ -36,7 +36,7 @@ export default class CaFilterModalComponent extends Component {
 
   @action
   updateNewFilter({ target: { value } }) {
-    this.newFilter = value.trim();
+    this.newFilter = value;
   }
 
   @action
@@ -46,12 +46,13 @@ export default class CaFilterModalComponent extends Component {
 
   @action
   addFilter() {
-    if (this.filters.includes(this.newFilter)) {
+    const filter = this.newFilter.trim();
+    if (this.filters.includes(filter)) {
       this.notification.warning(
         this.intl.t("caluma.analytics.notification.filter-exists")
       );
     } else {
-      this.filters = [this.newFilter, ...this.filters];
+      this.filters = [filter, ...this.filters];
     }
     this.newFilter = null;
   }

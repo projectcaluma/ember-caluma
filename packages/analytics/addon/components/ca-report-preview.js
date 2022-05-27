@@ -21,14 +21,16 @@ export default class CaReportPreviewComponent extends Component {
         const result = yield this.apollo.watchQuery(
           {
             query: getAnalyticsResultsQuery,
-            fetchPolicy: "cache-and-network",
+            fetchPolicy: "no-cache",
             variables: {
               slug: this.args.slug,
             },
           },
           "analyticsTable"
         );
-        const headings = result.fields.edges.map(({ node }) => node);
+        const headings = result.fields.edges
+          .filter(({ node: { showOutput } }) => showOutput)
+          .map(({ node }) => node);
         return {
           fields: result.resultData.records.edges.map(({ node }) =>
             headings.map(({ alias }) =>
@@ -37,11 +39,14 @@ export default class CaReportPreviewComponent extends Component {
                 .find((node) => node.alias === alias)
             )
           ),
-          summary: headings.map(({ alias: headingAlias }) =>
-            result.resultData.summary.edges
-              .map(({ node }) => node)
-              .find(({ alias }) => alias === headingAlias)
-          ),
+          summary: result.resultData.summary.edges.length
+            ? headings.map(({ alias: headingAlias }) =>
+                result.resultData.summary.edges
+                  .map(({ node }) => node)
+                  .find(({ alias }) => alias === headingAlias)
+              )
+            : null,
+
           headings,
         };
       } catch (error) {

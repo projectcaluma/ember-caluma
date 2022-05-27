@@ -12,6 +12,7 @@ query AnalyticsResults($slug: String!) {
           id
           alias
           function
+          showOutput
         }
       }
     }

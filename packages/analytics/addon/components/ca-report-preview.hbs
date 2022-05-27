@@ -27,13 +27,15 @@
             {{/each}}
           </tr>
         {{/each}}
-        <tr class="uk-text-bold">
-          {{#each this.data.value.summary as |summary|}}
-            <td>
-              {{summary.value}}
-            </td>
-          {{/each}}
-        </tr>
+        {{#if this.data.value.summary}}
+          <tr class="uk-text-bold">
+            {{#each this.data.value.summary as |summary|}}
+              <td>
+                {{summary.value}}
+              </td>
+            {{/each}}
+          </tr>
+        {{/if}}
       </tbody>
     </table>
   {{/if}}
