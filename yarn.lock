@@ -7953,7 +7953,7 @@ ember-cli-htmlbars@^4.3.1:
     strip-bom "^4.0.0"
     walk-sync "^2.0.2"
 
-ember-cli-htmlbars@^5.0.0, ember-cli-htmlbars@^5.2.0, ember-cli-htmlbars@^5.3.1, ember-cli-htmlbars@^5.7.1:
+ember-cli-htmlbars@^5.0.0, ember-cli-htmlbars@^5.1.1, ember-cli-htmlbars@^5.2.0, ember-cli-htmlbars@^5.3.1, ember-cli-htmlbars@^5.7.1:
   version "5.7.2"
   resolved "https://registry.yarnpkg.com/ember-cli-htmlbars/-/ember-cli-htmlbars-5.7.2.tgz#e0cd2fb3c20d85fe4c3e228e6f0590ee1c645ba8"
   integrity sha512-Uj6R+3TtBV5RZoJY14oZn/sNPnc+UgmC8nb5rI4P3fR/gYoyTFIZSXiIM7zl++IpMoIrocxOrgt+mhonKphgGg==
@@ -8435,12 +8435,13 @@ ember-element-helper@^0.6.0:
     ember-cli-babel "^7.26.11"
     ember-cli-htmlbars "^6.0.1"
 
-ember-engines-router-service@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/ember-engines-router-service/-/ember-engines-router-service-0.4.0.tgz#534a71e53a2cce2316267866a5ff501d71973db3"
-  integrity sha512-k8CRuFdn4oCEZNstYkKkVsrkkqQ6Af3ISKio7roBxO/qTJj3qjlbDJCi8C5hEO0RyzrpHEOJSorw+Ea2STEJlA==
+ember-engines-router-service@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/ember-engines-router-service/-/ember-engines-router-service-0.3.0.tgz#d2584f4101f96b1e02e196a22f16eb949d5b3d87"
+  integrity sha512-BeNhrydHbjLhlC3nCrWDI0Z8aZbxCK0aKTldVY3kNvUr7/plHkp4Iv4W1zInl7mIMC56ouBzjWvxiD4w7QeNow==
   dependencies:
-    "@embroider/addon-shim" "^1.2.0"
+    ember-cli-babel "^7.18.0"
+    ember-cli-htmlbars "^5.1.1"
 
 ember-engines@0.8.22:
   version "0.8.22"
