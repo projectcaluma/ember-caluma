@@ -14,7 +14,7 @@
   "devDependencies": {
     "@ember/jquery": "2.0.0",
     "@ember/optional-features": "2.0.0",
-    "@embroider/macros": "1.6.0",
+    "@embroider/macros": "1.7.1",
     "@faker-js/faker": "7.1.0",
     "@glimmer/component": "1.1.2",
     "@glimmer/tracking": "1.1.2",
