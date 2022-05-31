@@ -14,7 +14,7 @@
     "test:ember-compatibility": "ember try:each"
   },
   "dependencies": {
-    "@apollo/client": "^3.6.4",
+    "@apollo/client": "^3.6.5",
     "@ember/string": "^3.0.0",
     "@glimmer/tracking": "^1.1.2",
     "ember-apollo-client": "^4.0.2",
@@ -38,7 +38,7 @@
     "@ember/test-helpers": "2.8.1",
     "@embroider/test-setup": "1.6.0",
     "@embroider/util": "^1.6.0",
-    "@faker-js/faker": "6.3.1",
+    "@faker-js/faker": "7.1.0",
     "@glimmer/component": "1.1.2",
     "@projectcaluma/ember-testing": "11.0.0-beta.8",
     "broccoli-asset-rev": "3.0.0",
