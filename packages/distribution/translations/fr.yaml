@@ -29,13 +29,22 @@ caluma:
 
     answer:
       link: "Répondre"
-      release-for-review: "Valider pour vérification"
-      release-adjustment-for-review: "Valider la révision pour vérification"
-      confirm: "Confirmer"
-      revise: "Réviser"
 
       complete-error: "Erreur lors de la clôture de la tâche"
       complete-not-allowed: "Vous n'êtes pas autorisé à envoyer cette réponse."
+
+      buttons:
+        compose:
+          label: "Valider pour vérification"
+          status: "En cours"
+        adjust:
+          label: "Valider la révision pour vérification"
+          status: "En révision"
+        confirm:
+          label: "Confirmer"
+          status: "En examen"
+        revise:
+          label: "Réviser"
 
     new:
       title: "Nouvelle demande"

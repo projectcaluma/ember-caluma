@@ -29,13 +29,22 @@ caluma:
 
     answer:
       link: "Beantworten"
-      release-for-review: "Zur Kontrolle freigeben"
-      release-adjustment-for-review: "Anpassung zur Kontrolle freigeben"
-      confirm: "Bestätigen"
-      revise: "Überarbeiten"
 
       complete-error: "Fehler beim Abschliessen der Aufgabe"
       complete-not-allowed: "Sie sind nicht berechtigt diese Antwort zu versenden."
+
+      buttons:
+        compose:
+          label: "Zur Kontrolle freigeben"
+          status: "In Bearbeitung"
+        adjust:
+          label: "Anpassung zur Kontrolle freigeben"
+          status: "In Überarbeitung"
+        confirm:
+          label: "Bestätigen"
+          status: "In Prüfung"
+        revise:
+          label: "Überarbeiten"
 
     new:
       title: "Neue Anfrage"

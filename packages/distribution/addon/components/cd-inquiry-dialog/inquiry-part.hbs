@@ -1,8 +1,16 @@
 <div class="uk-margin-remove-last-child">
-  <p class="uk-flex uk-flex-middle uk-text-large uk-margin-remove">
+  <p
+    class="uk-flex uk-flex-middle uk-text-large uk-margin-remove"
+    data-test-title
+  >
     {{#if (eq @type "request")}}
       <UkIcon @icon="forward" class="uk-margin-small-right" />
       {{group-name @inquiry.controllingGroups}}
+      {{#if
+        (and (can "answer inquiry" @inquiry) (not @disabled) this.answerStatus)
+      }}
+        <UkLabel @label={{this.answerStatus}} class="uk-margin-left" />
+      {{/if}}
     {{else if (eq @type "answer")}}
       <UkIcon @icon="reply" class="uk-margin-small-right" />
       {{group-name @inquiry.addressedGroups}}

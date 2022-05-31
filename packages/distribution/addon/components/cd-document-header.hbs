@@ -1,10 +1,7 @@
 <p class="uk-text-large uk-margin-remove">
   {{@name}}
-  {{#if @isDraft}}
-    <UkLabel
-      @label={{t "caluma.distribution.status.draft"}}
-      class="uk-margin-left"
-    />
+  {{#if @status}}
+    <UkLabel @label={{@status}} class="uk-margin-left" />
   {{/if}}
 </p>
 

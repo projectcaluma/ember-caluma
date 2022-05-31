@@ -8,6 +8,7 @@ import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 import config from "@projectcaluma/ember-distribution/config";
 import completeInquiryWorkItemMutation from "@projectcaluma/ember-distribution/gql/mutations/complete-inquiry-work-item.graphql";
 import inquiryAnswerQuery from "@projectcaluma/ember-distribution/gql/queries/inquiry-answer.graphql";
+import inquiryAnswerStatus from "@projectcaluma/ember-distribution/utils/inquiry-answer-status";
 
 export default class CdInquiryAnswerFormComponent extends Component {
   @service intl;
@@ -18,6 +19,8 @@ export default class CdInquiryAnswerFormComponent extends Component {
   @config config;
 
   @queryManager apollo;
+
+  @inquiryAnswerStatus({ inquiryProperty: "inquiry" }) answerStatus;
 
   _inquiry = trackedTask(this, this.fetchInquiryAnswer, () => [
     this.args.inquiry,

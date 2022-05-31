@@ -59,6 +59,18 @@ class StubInquiry {
     };
     this.childCase = {
       status: "READY",
+      workItems: {
+        edges: [
+          {
+            node: {
+              status: "READY",
+              task: new (class {
+                @tracked slug = "confirm-inquiry-answer";
+              })(),
+            },
+          },
+        ],
+      },
       document: {
         status: {
           edges: [
@@ -109,6 +121,11 @@ class StubInquiry {
 
   async setSkipped() {
     this.status = "SKIPPED";
+    await settled();
+  }
+
+  async setReadyChildWorkItem(task) {
+    this.childCase.workItems.edges[0].node.task.slug = task;
     await settled();
   }
 }
