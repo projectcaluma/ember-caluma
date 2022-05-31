@@ -8,7 +8,7 @@
     <div class="uk-position-relative">
       <CdDocumentHeader
         @name={{content.document.rootForm.raw.name}}
-        @isDraft={{eq this.inquiry.status "READY"}}
+        @status={{if (eq this.inquiry.status "READY") this.answerStatus}}
         @modifiedAt={{this.inquiry.childCase.document.modifiedContentAt}}
         @modifiedBy={{this.inquiry.childCase.document.modifiedContentByUser}}
       />

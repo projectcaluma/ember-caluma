@@ -1,3 +1,18 @@
+fragment InquiryAnswerButtons on Case {
+  workItems(tasks: $buttonTasks, status: READY) {
+    edges {
+      node {
+        id
+        status
+        task {
+          id
+          slug
+        }
+      }
+    }
+  }
+}
+
 fragment InquiryDeadlineDocument on Document {
   id
   deadline: answers(question: $deadlineQuestion) {
@@ -61,6 +76,7 @@ fragment InquiryDialog on WorkItem {
   }
   childCase {
     id
+    ...InquiryAnswerButtons
     document {
       ...InquiryStatusDocument
       info: answers(questions: $answerInfoQuestions) {

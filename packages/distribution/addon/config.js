@@ -38,20 +38,22 @@ export default function config(target, property) {
               buttons: {
                 "compose-inquiry-answer": {
                   color: "primary",
-                  label: "caluma.distribution.answer.release-for-review",
+                  label: "caluma.distribution.answer.buttons.compose.label",
+                  status: "caluma.distribution.answer.buttons.compose.status",
                 },
                 "confirm-inquiry-answer": {
                   color: "primary",
-                  label: "caluma.distribution.answer.confirm",
+                  label: "caluma.distribution.answer.buttons.confirm.label",
+                  status: "caluma.distribution.answer.buttons.confirm.status",
                 },
                 "revise-inquiry-answer": {
                   color: "default",
-                  label: "caluma.distribution.answer.revise",
+                  label: "caluma.distribution.answer.buttons.revise.label",
                 },
                 "adjust-inquiry-answer": {
                   color: "primary",
-                  label:
-                    "caluma.distribution.answer.release-adjustment-for-review",
+                  label: "caluma.distribution.answer.buttons.adjust.label",
+                  status: "caluma.distribution.answer.buttons.adjust.status",
                 },
               },
             },

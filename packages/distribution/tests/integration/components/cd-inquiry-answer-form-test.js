@@ -43,11 +43,13 @@ module("Integration | Component | cd-inquiry-answer-form", function (hooks) {
 
     assert
       .dom("p.uk-text-large")
-      .hasText("Inquiry answer t:caluma.distribution.status.draft:()");
+      .hasText(
+        "Inquiry answer t:caluma.distribution.answer.buttons.compose.status:()"
+      );
     assert.dom("form").exists();
     assert
       .dom("button.uk-button-primary")
-      .hasText("t:caluma.distribution.answer.release-for-review:()");
+      .hasText("t:caluma.distribution.answer.buttons.compose.label:()");
   });
 
   test("it renders the configured buttons for work items and completes them on click", async function (assert) {

@@ -30,13 +30,22 @@ caluma:
 
     answer:
       link: "Answer"
-      release-for-review: "Release for review"
-      release-adjustment-for-review: "Release adjustment for review"
-      confirm: "Confirm"
-      revise: "Revise"
 
       complete-error: "Error while completing the work item"
       complete-not-allowed: "You are not allowed to send this inquiry answer."
+
+      buttons:
+        compose:
+          label: "Release for review"
+          status: "In progress"
+        adjust:
+          label: "Release adjustment for review"
+          status: "In revision"
+        confirm:
+          label: "Confirm"
+          status: "In review"
+        revise:
+          label: "Revise"
 
     new:
       title: "New inquiry"

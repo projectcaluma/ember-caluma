@@ -117,5 +117,29 @@ module(
         .hasText("t:caluma.distribution.answer.link:()");
       assert.dom("ul.uk-subnav > li > a[data-test-details]").exists();
     });
+
+    test("it renders a case status if user can answer", async function (assert) {
+      this.owner.lookup("service:caluma-options").currentGroupId = "addressed";
+
+      await this.inquiry.setReady();
+
+      await render(
+        hbs`<CdInquiryDialog::InquiryPart @inquiry={{this.inquiry}} @type="request" />`
+      );
+
+      assert
+        .dom("[data-test-title] .uk-label")
+        .hasText("t:caluma.distribution.answer.buttons.confirm.status:()");
+
+      await this.inquiry.setReadyChildWorkItem("some-task");
+
+      assert.dom("[data-test-title] .uk-label").doesNotExist();
+
+      await this.inquiry.setReadyChildWorkItem("adjust-inquiry-answer");
+
+      assert
+        .dom("[data-test-title] .uk-label")
+        .hasText("t:caluma.distribution.answer.buttons.adjust.status:()");
+    });
   }
 );

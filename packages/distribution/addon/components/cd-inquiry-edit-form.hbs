@@ -6,7 +6,10 @@
   <:default as |content|>
     <CdDocumentHeader
       @name={{content.document.rootForm.raw.name}}
-      @isDraft={{eq this.inquiry.status "SUSPENDED"}}
+      @status={{if
+        (eq this.inquiry.status "SUSPENDED")
+        (t "caluma.distribution.status.draft")
+      }}
       @modifiedAt={{this.inquiry.document.modifiedContentAt}}
       @modifiedBy={{this.inquiry.document.modifiedContentByUser}}
     />

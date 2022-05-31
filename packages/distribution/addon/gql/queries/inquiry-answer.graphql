@@ -1,4 +1,4 @@
-#import InquiryDeadlineDocument, InquiryRequest from '../fragments/inquiry.graphql'
+#import InquiryAnswerButtons, InquiryDeadlineDocument, InquiryRequest from '../fragments/inquiry.graphql'
 
 query InquiryAnswer(
   $inquiry: ID!
@@ -30,17 +30,7 @@ query InquiryAnswer(
             modifiedContentAt
             modifiedContentByUser
           }
-          workItems(tasks: $buttonTasks, status: READY) {
-            edges {
-              node {
-                id
-                task {
-                  id
-                  slug
-                }
-              }
-            }
-          }
+          ...InquiryAnswerButtons
         }
       }
     }
