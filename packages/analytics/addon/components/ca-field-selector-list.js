@@ -2,7 +2,7 @@ import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager, getObservable } from "ember-apollo-client";
-import { enqueueTask, dropTask, timeout } from "ember-concurrency";
+import { enqueueTask } from "ember-concurrency";
 
 import removeAnalyticsFieldMutation from "@projectcaluma/ember-analytics/gql/mutations/remove-analytics-field.graphql";
 import saveAnalyticsField from "@projectcaluma/ember-analytics/tasks/save-analytics-field";
@@ -33,12 +33,6 @@ export default class CaFieldSelectorListComponent extends Component {
       ...requiredInput,
       [key]: value,
     });
-  }
-
-  @dropTask
-  *debouncedNotification(message, type = "success") {
-    yield timeout(1000);
-    this.notification[type](message);
   }
 
   @enqueueTask

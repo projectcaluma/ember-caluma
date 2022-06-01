@@ -16,11 +16,6 @@ export default class CaFieldSelectComponent extends Component {
   @tracked _selectedOption;
   @tracked options;
 
-  constructor(...args) {
-    super(...args);
-    this.fetchOptions.perform();
-  }
-
   get selectedOption() {
     if (!this.currentPathSegment) {
       return {};
@@ -90,7 +85,6 @@ export default class CaFieldSelectComponent extends Component {
             variables: {
               slug: this.args.slug,
               prefix: this.args.parentPath ?? "",
-              // depth: 1
             },
           },
           "analyticsTable.availableFields"

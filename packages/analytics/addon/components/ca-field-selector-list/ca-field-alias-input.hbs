@@ -5,13 +5,16 @@
     class="uk-form-icon uk-form-icon-flip"
     uk-icon="check"
     hidden={{not this.hasChanged}}
+    name={{t "caluma.analytics.edit.delete-field"}}
     {{on "click" this.trimAndSave}}
-  ></button>
+  >
+    <span hidden>{{t "caluma.analytics.edit.delete-field"}}</span>
+  </button>
 
   <input
     aria-label={{t "caluma.analytics.edit.display-title"}}
     class="uk-input {{if this.hasChanged 'uk-form-success'}}"
     value={{this.value}}
-    {{on "input" (perform this.debaunceInput)}}
+    {{on "input" (perform this.debounceInput)}}
   />
 </div>

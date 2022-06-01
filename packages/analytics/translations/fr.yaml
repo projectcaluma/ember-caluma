@@ -31,11 +31,11 @@ caluma:
       question: Question
       display-title: Afficher le titre
       display-title-placeholder: Afficher le titre
-      aggregation:
+      aggregation: Agrégation
       show-in-output: Afficher dans la sortie
       filter: Filtre
       add-filters: Ajouter des filtres
-      edit-filters: Modifier {nombre} de filtres
+      edit-filters: Modifier {num} de filtres
       empty: "Il n'y a pas de champs"
     filter-modal:
       filters: Filtrer

@@ -12,11 +12,11 @@
 
     <div class="uk-flex">
       <input
-        id="new-filter"
         class="uk-input"
         type="text"
         placeholder={{t "caluma.analytics.filter-modal.filter-placeholder"}}
         value={{this.newFilter}}
+        aria-label={{t "caluma.analytics.filter-modal.filter-placeholder"}}
         {{on "input" this.updateNewFilter}}
       />
 
@@ -43,9 +43,13 @@
             type="button"
             class="uk-icon-button"
             uk-icon="trash"
-            title={{t "caluma.analytics.filter-modal.delete-filter"}}
+            name={{t "caluma.analytics.filter-modal.delete-filter"}}
             {{on "click" (fn this.removeFilter filter)}}
-          ></button>
+          >
+            <span hidden>{{t
+                "caluma.analytics.filter-modal.delete-filter"
+              }}</span>
+          </button>
         </List.item>
       {{else}}
         <List.item>{{t "caluma.analytics.filter-modal.empty"}}</List.item>

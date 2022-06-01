@@ -1,7 +1,7 @@
 import { action } from "@ember/object";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
-import { dropTask, timeout } from "ember-concurrency";
+import { restartableTask, timeout } from "ember-concurrency";
 
 export default class CaFieldSelectorListCaFieldAliasInputComponent extends Component {
   @tracked _value = null;
@@ -20,8 +20,8 @@ export default class CaFieldSelectorListCaFieldAliasInputComponent extends Compo
     this._value = null;
   }
 
-  @dropTask
-  *debaunceInput(event) {
+  @restartableTask
+  *debounceInput(event) {
     yield timeout(200);
     this._value = event.target.value;
   }

@@ -4,8 +4,6 @@ import {
   validateFormat,
 } from "ember-changeset-validations/validators";
 
-import validateFilter from "@projectcaluma/ember-analytics/validators/filter";
-
 export default {
   alias: [
     validatePresence(true),
@@ -13,6 +11,4 @@ export default {
     validateFormat({ regex: /[\w\d\s]*/ }),
   ],
   dataSource: [validatePresence(true), validateLength({ max: 1024 })],
-  filter: validateFilter(),
-  // TODO: add other field properties
 };

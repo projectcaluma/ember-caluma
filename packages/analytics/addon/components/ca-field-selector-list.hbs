@@ -62,9 +62,11 @@
               type="button"
               class="uk-icon-button"
               uk-icon="trash"
-              title={{t "caluma.analytics.edit.delete-field"}}
+              name={{t "caluma.analytics.edit.delete-field"}}
               {{on "click" (perform this.removeAnalyticsField field.id)}}
-            ></button>
+            >
+              <span hidden>{{t "caluma.analytics.edit.delete-field"}}</span>
+            </button>
           </td>
         </tr>
       {{/let}}

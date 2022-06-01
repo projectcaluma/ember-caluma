@@ -29,8 +29,10 @@
         class="uk-icon-button"
         uk-icon="trash"
         {{on "click" (perform this.deleteTable)}}
-        title={{t "caluma.analytics.report.delete"}}
-      ></button>
+        name={{t "caluma.analytics.report.delete"}}
+      >
+        <span hidden>{{t "caluma.analytics.report.delete"}}</span>
+      </button>
     </div>
     <ul uk-tab>
       <li class={{if (eq this.currentRoute "index") "uk-active"}}>
