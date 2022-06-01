@@ -1,44 +1,44 @@
 caluma:
   analytics:
-    back: Back to the list
-    cancel: Cancel
-    save: Save
+    back: Retour à la liste
+    cancel: Annuler
+    save: Enregistrer
     sections:
-      show-report: Report {slug}
-      create-report: Create report
-      table: Result table
-      fields: Fields
+      show-report: Rapport {slug}
+      create-report: Créer un rapport
+      table: Table de résultats
+      fields: Champs
     notification:
-      alias-exists: Alias already exists!
-      field-invalid: Please fix invalid field inputs.
-      delete-error: An error occured while deleting the report.
-      create-error: An error occured while creating the report
-      fetch-error: An error occured while loading the data.
-      filter-exists: Filter already exists!
-      field-saved: Field successfully saved.
+      alias-exists: "L'alias existe déjà!"
+      field-invalid: Veuillez corriger les entrées de champs invalides.
+      delete-error: "Une erreur s'est produite lors de la suppression du rapport."
+      create-error: "Une erreur s'est produite lors de la création du rapport."
+      fetch-error: "Une erreur s'est produite lors du chargement des données."
+      filter-exists: "Le filtre existe déjà!"
+      field-saved: Le champ a été sauvegardé avec succès.
     list:
-      list-title: All reports
-      edit: Edit
+      list-title: Tous les rapports
+      edit: Editer
     report:
-      new: Create new report
-      starting-object: Starting point
-      title: Report title
-      delete: Delete report
+      new: Créer un nouveau rapport
+      starting-object: Point de départ
+      title: Titre du rapport
+      delete: Supprimer le rapport
     edit:
-      field: Field
-      add-field: Add field
-      delete-field: Delete field
+      field: Champ
+      add-field: Ajouter un champ
+      delete-field: Supprimer un champ
       question: Question
-      display-title: Display Title
-      display-title-placeholder: Display Title
-      aggregation: Aggregation
-      show-in-output: Show in output
-      filter: Filter
-      add-filters: Add filters
-      edit-filters: Edit {num} filters
-      empty: There are no fields
+      display-title: Afficher le titre
+      display-title-placeholder: Afficher le titre
+      aggregation:
+      show-in-output: Afficher dans la sortie
+      filter: Filtre
+      add-filters: Ajouter des filtres
+      edit-filters: Modifier {nombre} de filtres
+      empty: "Il n'y a pas de champs"
     filter-modal:
-      filters: Filter
-      filter-placeholder: Filter...
-      delete-filter: Delete filter
-      empty: There are no filters
+      filters: Filtrer
+      filter-placeholder: Filtre...
+      delete-filter: Supprimer le filtre
+      empty: "Il n'y a pas de filtre"
