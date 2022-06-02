@@ -1,1 +1,1 @@
-../../config/ember-try.js
+../../../config/ember-try.js
