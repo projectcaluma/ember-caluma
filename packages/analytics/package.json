@@ -72,6 +72,9 @@
   "peerDependency": {
     "ember-engines": ">= 0.8"
   },
+  "resolutions": {
+    "**/@embroider/macros": ">=1.0.0"
+  },
   "engines": {
     "node": "12.* || 14.* || >= 16"
   },
