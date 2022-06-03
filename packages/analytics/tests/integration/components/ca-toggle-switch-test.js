@@ -6,7 +6,7 @@ import { module, test } from "qunit";
 
 module("Integration | Component | ca-toggle-switch", function (hooks) {
   setupRenderingTest(hooks);
-  setupIntl(hooks);
+  setupIntl(hooks, ["en"]);
 
   test("it renders", async function (assert) {
     assert.expect(2);

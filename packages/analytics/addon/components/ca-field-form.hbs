@@ -9,7 +9,7 @@
             @label={{t "caluma.analytics.edit.show-in-output"}}
             @required={{true}}
             @renderComponent={{component
-              "ca-toggle-switch"
+              (ensure-safe-component "ca-toggle-switch")
               value=f.model.showOutput
               size="small"
               onToggle=(mut f.model.showOutput)
@@ -66,7 +66,11 @@
   </ValidatedForm>
 {{else}}
   <div class="uk-flex uk-flex-right">
-    <UkButton @color="primary" {{on "click" this.toggleForm}}>
+    <UkButton
+      @color="primary"
+      data-test-add-field-button
+      {{on "click" this.toggleForm}}
+    >
       {{t "caluma.analytics.edit.add-field"}}
     </UkButton>
   </div>
