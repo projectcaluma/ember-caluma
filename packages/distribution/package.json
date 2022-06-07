@@ -49,7 +49,7 @@
     "@ember/optional-features": "2.0.0",
     "@ember/test-helpers": "2.8.1",
     "@embroider/test-setup": "1.7.1",
-    "@faker-js/faker": "7.1.0",
+    "@faker-js/faker": "7.2.0",
     "@projectcaluma/ember-testing": "11.0.0-beta.8",
     "broccoli-asset-rev": "3.0.0",
     "ember-cli": "3.28.5",
