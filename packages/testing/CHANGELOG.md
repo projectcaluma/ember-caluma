@@ -1,3 +1,16 @@
+# [@projectcaluma/ember-testing-v11.0.0-beta.9](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-testing-v11.0.0-beta.8...@projectcaluma/ember-testing-v11.0.0-beta.9) (2022-06-09)
+
+
+### Features
+
+* **caluma:** use new filter syntax of caluma ([7a00c03](https://github.com/projectcaluma/ember-caluma/commit/7a00c03a103933d9e48dd88adb7382441a298742))
+
+
+### BREAKING CHANGES
+
+* **caluma:** `ember-caluma` now requires Caluma version >=
+8.0.0-beta.6
+
 # [@projectcaluma/ember-testing-v11.0.0-beta.8](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-testing-v11.0.0-beta.7...@projectcaluma/ember-testing-v11.0.0-beta.8) (2022-05-13)
 
 
