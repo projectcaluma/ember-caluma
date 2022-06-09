@@ -1,3 +1,16 @@
+# [@projectcaluma/ember-form-builder-v11.0.0-beta.14](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-builder-v11.0.0-beta.13...@projectcaluma/ember-form-builder-v11.0.0-beta.14) (2022-06-09)
+
+
+### Features
+
+* **caluma:** use new filter syntax of caluma ([7a00c03](https://github.com/projectcaluma/ember-caluma/commit/7a00c03a103933d9e48dd88adb7382441a298742))
+
+
+### BREAKING CHANGES
+
+* **caluma:** `ember-caluma` now requires Caluma version >=
+8.0.0-beta.6
+
 # [@projectcaluma/ember-form-builder-v11.0.0-beta.13](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-builder-v11.0.0-beta.12...@projectcaluma/ember-form-builder-v11.0.0-beta.13) (2022-05-09)
 
 
