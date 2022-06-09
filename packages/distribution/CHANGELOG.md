@@ -1,3 +1,16 @@
+# [@projectcaluma/ember-distribution-v1.0.0-beta.12](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-distribution-v1.0.0-beta.11...@projectcaluma/ember-distribution-v1.0.0-beta.12) (2022-06-09)
+
+
+### Bug Fixes
+
+* **distribution:** fix selection of groups with the checkbox ([9f028dc](https://github.com/projectcaluma/ember-caluma/commit/9f028dc6ec16214249f43e519280397131006e7c))
+* **distribution:** refetch inquiry answer after work-item completion ([60cfaca](https://github.com/projectcaluma/ember-caluma/commit/60cfaca04d94a44efc4950eeb1aecee767b4eeb5))
+
+
+### Features
+
+* **distribution:** add configurable status for unanswered inquiries ([e08247f](https://github.com/projectcaluma/ember-caluma/commit/e08247f6e2b73f859011f4eac7ffff71f101f546))
+
 # [@projectcaluma/ember-distribution-v1.0.0-beta.11](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-distribution-v1.0.0-beta.10...@projectcaluma/ember-distribution-v1.0.0-beta.11) (2022-05-13)
 
 
