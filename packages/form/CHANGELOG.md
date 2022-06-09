@@ -1,3 +1,16 @@
+# [@projectcaluma/ember-form-v11.0.0-beta.20](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.19...@projectcaluma/ember-form-v11.0.0-beta.20) (2022-06-09)
+
+
+### Bug Fixes
+
+* **form:** improve validation of choice and multiple choice fields ([e828fad](https://github.com/projectcaluma/ember-caluma/commit/e828fad9557fd521ca9eec63af74f8cee12e3910))
+* **form:** pass context to table row form ([af1031a](https://github.com/projectcaluma/ember-caluma/commit/af1031ae9e8138a404cd043199709025092da882))
+
+
+### Features
+
+* **form:** add option to bypass the timeout when saving a field ([a2ba306](https://github.com/projectcaluma/ember-caluma/commit/a2ba306306f90a2d2279b34550507241f0987961))
+
 # [@projectcaluma/ember-form-v11.0.0-beta.19](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.18...@projectcaluma/ember-form-v11.0.0-beta.19) (2022-05-09)
 
 
