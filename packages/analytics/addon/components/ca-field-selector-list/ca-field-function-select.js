@@ -3,7 +3,7 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
 import { task } from "ember-concurrency";
-import { useTask } from "ember-resources";
+import { trackedTask } from "ember-resources/util/ember-concurrency";
 
 import getAvailableFieldsForFieldQuery from "@projectcaluma/ember-analytics/gql/queries/get-available-fields-for-field.graphql";
 
@@ -12,7 +12,7 @@ export default class CaFieldSelectorListCaFieldFunctionSelectComponent extends C
   @service notification;
   @service intl;
 
-  @tracked aggregationFunctions = useTask(
+  @tracked aggregationFunctions = trackedTask(
     this,
     this.getAggregationFunctions,
     () => [this.args.field, this.args.tableSlug]

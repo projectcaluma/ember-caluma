@@ -3,7 +3,7 @@ import { inject as service } from "@ember/service";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
 import { task, dropTask } from "ember-concurrency";
-import { useTask } from "ember-resources";
+import { trackedTask } from "ember-resources/util/ember-concurrency";
 
 import removeAnalyticsTableMutation from "@projectcaluma/ember-analytics/gql/mutations/remove-analytics-table.graphql";
 import getAnalyticsTable from "@projectcaluma/ember-analytics/tasks/get-analytics-table";
@@ -14,7 +14,7 @@ export default class ReportsEditIndexController extends Controller {
   @queryManager apollo;
 
   @task getTable = getAnalyticsTable;
-  @tracked data = useTask(this, this.getTable, () => [this.model]);
+  @tracked data = trackedTask(this, this.getTable, () => [this.model]);
 
   @dropTask
   *deleteTable() {

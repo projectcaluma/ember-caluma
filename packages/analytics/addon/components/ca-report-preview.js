@@ -3,7 +3,7 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
 import { task } from "ember-concurrency";
-import { useTask } from "ember-resources";
+import { trackedTask } from "ember-resources/util/ember-concurrency";
 
 import getAnalyticsResultsQuery from "@projectcaluma/ember-analytics/gql/queries/get-analytics-results.graphql";
 
@@ -12,7 +12,7 @@ export default class CaReportPreviewComponent extends Component {
   @service notification;
   @service intl;
 
-  @tracked data = useTask(this, this.fetchData, () => [this.args.slug]);
+  @tracked data = trackedTask(this, this.fetchData, () => [this.args.slug]);
 
   @task
   *fetchData() {
