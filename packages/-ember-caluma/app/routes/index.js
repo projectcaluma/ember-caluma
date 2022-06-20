@@ -12,7 +12,10 @@ export default class IndexRoute extends Route {
       {
         query: gql`
           query {
-            allDocuments(form: "main", orderBy: CREATED_AT_DESC) {
+            allDocuments(
+              filter: [{ form: "main" }]
+              order: [{ attribute: CREATED_AT, direction: DESC }]
+            ) {
               edges {
                 node {
                   id
