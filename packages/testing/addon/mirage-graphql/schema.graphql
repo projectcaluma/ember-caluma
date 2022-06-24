@@ -28,13 +28,13 @@ type ActionButtonQuestion implements Question & Node {
   meta: GenericScalar!
   source: Question
   forms(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [FormFilterSetType] = null
-    order: [FormOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [FormFilterSetType]
+    order: [FormOrderSetType]
   ): FormConnection
 
   """
@@ -166,10 +166,10 @@ input AnalyticsFieldOrderSetType {
 
 type AnalyticsOutput {
   records(
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
+    before: String
+    after: String
+    first: Int
+    last: Int
   ): AnalyticsTableContentConnection
   summary: AnalyticsRowConnection
 }
@@ -214,11 +214,11 @@ type AnalyticsTable implements Node {
   name: String!
   startingObject: StartingObject
   fields(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
   ): AnalyticsFieldConnection!
 
   """
@@ -226,12 +226,12 @@ type AnalyticsTable implements Node {
   """
   id: ID!
   availableFields(
-    prefix: String = null
-    depth: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
+    prefix: String
+    depth: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
   ): AvailableFieldConnection
   resultData: AnalyticsOutput
 }
@@ -490,13 +490,13 @@ type CalculatedFloatQuestion implements Question & Node {
   meta: GenericScalar!
   source: Question
   forms(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [FormFilterSetType] = null
-    order: [FormOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [FormFilterSetType]
+    order: [FormOrderSetType]
   ): FormConnection
   calcExpression: String
 
@@ -560,23 +560,23 @@ type Case implements Node {
   meta: GenericScalar
   document: Document
   workItems(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [WorkItemFilterSetType] = null
-    order: [WorkItemOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [WorkItemFilterSetType]
+    order: [WorkItemOrderSetType]
   ): WorkItemConnection
   parentWorkItem: WorkItem
   familyWorkItems(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [WorkItemFilterSetType] = null
-    order: [WorkItemOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [WorkItemFilterSetType]
+    order: [WorkItemOrderSetType]
   ): WorkItemConnection
 }
 
@@ -693,22 +693,22 @@ type ChoiceQuestion implements Question & Node {
   source: Question
   defaultAnswer: StringAnswer
   forms(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [FormFilterSetType] = null
-    order: [FormOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [FormFilterSetType]
+    order: [FormOrderSetType]
   ): FormConnection
   options(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [OptionFilterSetType] = null
-    order: [OptionOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [OptionFilterSetType]
+    order: [OptionOrderSetType]
   ): OptionConnection
 
   """
@@ -985,13 +985,13 @@ type DateQuestion implements Question & Node {
   source: Question
   defaultAnswer: DateAnswer
   forms(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [FormFilterSetType] = null
-    order: [FormOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [FormFilterSetType]
+    order: [FormOrderSetType]
   ): FormConnection
 
   """
@@ -1116,20 +1116,20 @@ type Document implements Node {
   Reference this document has been copied from
   """
   copies(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
   ): DocumentConnection!
   answers(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [AnswerFilterSetType] = null
-    order: [AnswerOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [AnswerFilterSetType]
+    order: [AnswerOrderSetType]
   ): AnswerConnection
   case: Case
   workItem: WorkItem
@@ -1241,19 +1241,19 @@ type DynamicChoiceQuestion implements Question & DynamicQuestion & Node {
   meta: GenericScalar!
   source: Question
   forms(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [FormFilterSetType] = null
-    order: [FormOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [FormFilterSetType]
+    order: [FormOrderSetType]
   ): FormConnection
   options(
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
+    before: String
+    after: String
+    first: Int
+    last: Int
   ): DataSourceDataConnection
   dataSource: String!
 
@@ -1284,19 +1284,19 @@ type DynamicMultipleChoiceQuestion implements Question & DynamicQuestion & Node 
   meta: GenericScalar!
   source: Question
   forms(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [FormFilterSetType] = null
-    order: [FormOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [FormFilterSetType]
+    order: [FormOrderSetType]
   ): FormConnection
   options(
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
+    before: String
+    after: String
+    first: Int
+    last: Int
   ): DataSourceDataConnection
   dataSource: String!
 
@@ -1366,10 +1366,10 @@ input DynamicOptionOrderSetType {
 
 interface DynamicQuestion {
   options(
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
+    before: String
+    after: String
+    first: Int
+    last: Int
   ): DataSourceDataConnection
   dataSource: String!
   hintText: String
@@ -1433,13 +1433,13 @@ type FileQuestion implements Question & Node {
   meta: GenericScalar!
   source: Question
   forms(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [FormFilterSetType] = null
-    order: [FormOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [FormFilterSetType]
+    order: [FormOrderSetType]
   ): FormConnection
 
   """
@@ -1488,13 +1488,13 @@ type FloatQuestion implements Question & Node {
   source: Question
   defaultAnswer: FloatAnswer
   forms(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [FormFilterSetType] = null
-    order: [FormOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [FormFilterSetType]
+    order: [FormOrderSetType]
   ): FormConnection
 
   """
@@ -1593,13 +1593,13 @@ type Form implements Node {
   isPublished: Boolean!
   isArchived: Boolean!
   questions(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [QuestionFilterSetType] = null
-    order: [QuestionOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [QuestionFilterSetType]
+    order: [QuestionOrderSetType]
   ): QuestionConnection
 
   """
@@ -1607,11 +1607,11 @@ type Form implements Node {
   """
   source: Form
   documents(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
   ): DocumentConnection!
 
   """
@@ -1728,13 +1728,13 @@ type FormQuestion implements Question & Node {
   meta: GenericScalar!
   source: Question
   forms(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [FormFilterSetType] = null
-    order: [FormOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [FormFilterSetType]
+    order: [FormOrderSetType]
   ): FormConnection
 
   """
@@ -1818,13 +1818,13 @@ type IntegerQuestion implements Question & Node {
   source: Question
   defaultAnswer: IntegerAnswer
   forms(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [FormFilterSetType] = null
-    order: [FormOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [FormFilterSetType]
+    order: [FormOrderSetType]
   ): FormConnection
 
   """
@@ -1877,10 +1877,10 @@ type ListAnswer implements Answer & Node {
   value: [String]
   meta: GenericScalar!
   selectedOptions(
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
+    before: String
+    after: String
+    first: Int
+    last: Int
   ): SelectedOptionConnection
 }
 
@@ -1906,22 +1906,22 @@ type MultipleChoiceQuestion implements Question & Node {
   source: Question
   defaultAnswer: ListAnswer
   forms(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [FormFilterSetType] = null
-    order: [FormOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [FormFilterSetType]
+    order: [FormOrderSetType]
   ): FormConnection
   options(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [OptionFilterSetType] = null
-    order: [OptionOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [OptionFilterSetType]
+    order: [OptionOrderSetType]
   ): OptionConnection
   staticContent: String
 
@@ -2166,121 +2166,121 @@ type PageInfo {
 
 type Query {
   allAnalyticsTables(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [AnalyticsTableFilterSetType] = null
-    order: [AnalyticsTableOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [AnalyticsTableFilterSetType]
+    order: [AnalyticsTableOrderSetType]
   ): AnalyticsTableConnection
   analyticsTable(slug: String!): AnalyticsTable
   allAnalyticsFields(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [AnalyticsFieldFilterSetType] = null
-    order: [AnalyticsFieldOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [AnalyticsFieldFilterSetType]
+    order: [AnalyticsFieldOrderSetType]
   ): AnalyticsFieldConnection
   allDataSources(
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
+    before: String
+    after: String
+    first: Int
+    last: Int
   ): DataSourceConnection
   dataSource(
     name: String!
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
+    before: String
+    after: String
+    first: Int
+    last: Int
   ): DataSourceDataConnection
   allWorkflows(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [WorkflowFilterSetType] = null
-    order: [WorkflowOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [WorkflowFilterSetType]
+    order: [WorkflowOrderSetType]
   ): WorkflowConnection
   allTasks(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [TaskFilterSetType] = null
-    order: [TaskOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [TaskFilterSetType]
+    order: [TaskOrderSetType]
   ): TaskConnection
   allCases(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [CaseFilterSetType] = null
-    order: [CaseOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [CaseFilterSetType]
+    order: [CaseOrderSetType]
   ): CaseConnection
   allWorkItems(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [WorkItemFilterSetType] = null
-    order: [WorkItemOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [WorkItemFilterSetType]
+    order: [WorkItemOrderSetType]
   ): WorkItemConnection
   allForms(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [FormFilterSetType] = null
-    order: [FormOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [FormFilterSetType]
+    order: [FormOrderSetType]
   ): FormConnection
   allQuestions(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [QuestionFilterSetType] = null
-    order: [QuestionOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [QuestionFilterSetType]
+    order: [QuestionOrderSetType]
   ): QuestionConnection
   allDocuments(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [DocumentFilterSetType] = null
-    order: [DocumentOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [DocumentFilterSetType]
+    order: [DocumentOrderSetType]
   ): DocumentConnection
   allFormatValidators(
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
+    before: String
+    after: String
+    first: Int
+    last: Int
   ): FormatValidatorConnection
   allUsedDynamicOptions(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [DynamicOptionFilterSetType] = null
-    order: [DynamicOptionOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [DynamicOptionFilterSetType]
+    order: [DynamicOptionOrderSetType]
   ): DynamicOptionConnection
   documentValidity(
     id: ID!
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
+    before: String
+    after: String
+    first: Int
+    last: Int
   ): DocumentValidityConnection
   node(
     """
@@ -2311,13 +2311,13 @@ interface Question {
   isArchived: Boolean!
   meta: GenericScalar!
   forms(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [FormFilterSetType] = null
-    order: [FormOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [FormFilterSetType]
+    order: [FormOrderSetType]
   ): FormConnection
   source: Question
 }
@@ -3277,7 +3277,7 @@ type SaveWorkItemPayload {
 Lookup type to search in answers.
 """
 input SearchAnswersFilterType {
-  questions: [ID]
+  questions: [ID]!
   value: GenericScalar!
   lookup: SearchLookupMode
 }
@@ -3536,13 +3536,13 @@ type StaticQuestion implements Question & Node {
   meta: GenericScalar!
   source: Question
   forms(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [FormFilterSetType] = null
-    order: [FormOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [FormFilterSetType]
+    order: [FormOrderSetType]
   ): FormConnection
   staticContent: String
   dataSource: String
@@ -3676,13 +3676,13 @@ type TableQuestion implements Question & Node {
   source: Question
   defaultAnswer: TableAnswer
   forms(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [FormFilterSetType] = null
-    order: [FormOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [FormFilterSetType]
+    order: [FormOrderSetType]
   ): FormConnection
 
   """
@@ -3787,20 +3787,20 @@ type TextareaQuestion implements Question & Node {
   meta: GenericScalar!
   source: Question
   formatValidators(
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
+    before: String
+    after: String
+    first: Int
+    last: Int
   ): FormatValidatorConnection
   defaultAnswer: StringAnswer
   forms(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [FormFilterSetType] = null
-    order: [FormOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [FormFilterSetType]
+    order: [FormOrderSetType]
   ): FormConnection
 
   """
@@ -3833,20 +3833,20 @@ type TextQuestion implements Question & Node {
   meta: GenericScalar!
   source: Question
   formatValidators(
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
+    before: String
+    after: String
+    first: Int
+    last: Int
   ): FormatValidatorConnection
   defaultAnswer: StringAnswer
   forms(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [FormFilterSetType] = null
-    order: [FormOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [FormFilterSetType]
+    order: [FormOrderSetType]
   ): FormConnection
 
   """
@@ -3912,11 +3912,11 @@ type Workflow implements Node {
   List of forms which are allowed to start workflow with
   """
   allowForms(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
   ): FormConnection!
 
   """
@@ -3929,13 +3929,13 @@ type Workflow implements Node {
   """
   tasks: [Task]!
   flows(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
-    filter: [FlowFilterSetType] = null
-    order: [FlowOrderSetType] = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
+    filter: [FlowFilterSetType]
+    order: [FlowOrderSetType]
   ): FlowConnection
 }
 
@@ -4036,11 +4036,11 @@ type WorkItem implements Node {
   document: Document
   previousWorkItem: WorkItem
   succeedingWorkItems(
-    offset: Int = null
-    before: String = null
-    after: String = null
-    first: Int = null
-    last: Int = null
+    offset: Int
+    before: String
+    after: String
+    first: Int
+    last: Int
   ): WorkItemConnection!
 }
 
