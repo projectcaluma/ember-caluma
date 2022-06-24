@@ -9,7 +9,7 @@ services:
       - dbdata:/var/lib/postgresql/data
 
   caluma:
-    image: ghcr.io/projectcaluma/caluma:8.0.0-beta.7
+    image: ghcr.io/projectcaluma/caluma:8.0.0-beta.9
     ports:
       - "8000:8000"
     depends_on:
