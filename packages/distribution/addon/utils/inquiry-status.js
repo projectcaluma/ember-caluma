@@ -10,7 +10,7 @@ export const ICON_MAP = {
   [INQUIRY_STATUS.SENT]: "comment",
   [INQUIRY_STATUS.POSITIVE]: "check",
   [INQUIRY_STATUS.NEGATIVE]: "close",
-  [INQUIRY_STATUS.NEEDS_INTERACTION]: "refresh",
+  [INQUIRY_STATUS.NEEDS_INTERACTION]: "file-text",
 };
 
 export const COLOR_MAP = {

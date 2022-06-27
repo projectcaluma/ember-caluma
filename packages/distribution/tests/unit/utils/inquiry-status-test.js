@@ -57,7 +57,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
 
     assert.deepEqual(this.obj.status, {
       color: "warning",
-      icon: "refresh",
+      icon: "file-text",
       label: "Needs interaction",
       slug: "needs-interaction",
     });
