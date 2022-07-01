@@ -3,14 +3,18 @@
     {{if this.config.ui.small 'uk-card-small'}}"
 >
   <div class="uk-card-body">
-    <CdInquiryDialog::InquiryDeadline @inquiry={{@inquiry}} />
-
     {{#if this.hasAnswer}}
-      <CdInquiryDialog::InquiryPart @inquiry={{@inquiry}} @type="answer" />
+      <CdInquiryDialog::InquiryPart @inquiry={{@inquiry}} @type="answer">
+        <CdInquiryDialog::InquiryDeadline @inquiry={{@inquiry}} />
+      </CdInquiryDialog::InquiryPart>
 
       <CdInquiryDialog::InquiryDivider @inquiry={{@inquiry}} />
     {{/if}}
 
-    <CdInquiryDialog::InquiryPart @inquiry={{@inquiry}} @type="request" />
+    <CdInquiryDialog::InquiryPart @inquiry={{@inquiry}} @type="request">
+      {{#unless this.hasAnswer}}
+        <CdInquiryDialog::InquiryDeadline @inquiry={{@inquiry}} />
+      {{/unless}}
+    </CdInquiryDialog::InquiryPart>
   </div>
 </article>

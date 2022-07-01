@@ -1,17 +1,12 @@
 {{#if this.deadline.value}}
   <div
-    class="uk-position-top-right
-      {{if
-        this.config.ui.small
-        'uk-margin-top uk-margin-right'
-        'uk-margin-medium-top uk-margin-medium-right'
-      }}
+    class="uk-flex-inline uk-flex-middle
       {{if
         this.isWithdrawn
         'uk-text-muted'
         (concat 'uk-text-' this.deadline.color)
-      }}
-      uk-flex-inline uk-flex-middle"
+      }}"
+    data-test-deadline
     ...attributes
   >
     <UkIcon
