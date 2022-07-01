@@ -14,9 +14,10 @@ module("Integration | Component | cd-inquiry-dialog/inquiry", function (hooks) {
 
     await render(hbs`<CdInquiryDialog::Inquiry @inquiry={{this.inquiry}} />`);
 
-    assert.dom(".uk-position-top-right").exists();
+    assert.dom("[data-test-deadline]").exists();
     assert.dom(".inquiry-divider").exists();
     assert.dom(".uk-subnav").exists({ count: 2 });
-    assert.dom("p").exists({ count: 5 });
+    assert.dom("[data-test-title]").exists({ count: 2 });
+    assert.dom("p").exists({ count: 3 });
   });
 });

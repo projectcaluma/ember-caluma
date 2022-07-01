@@ -88,7 +88,7 @@ module("Integration | Component | cd-inquiry-dialog", function (hooks) {
     await confirm();
 
     assert
-      .dom(".uk-position-top-right")
+      .dom("[data-test-deadline]")
       .containsText("t:caluma.distribution.withdraw.status:()");
 
     this.owner.lookup("service:router").transitionTo = (route) => {

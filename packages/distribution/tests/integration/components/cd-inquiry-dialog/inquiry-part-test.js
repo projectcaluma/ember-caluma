@@ -52,7 +52,7 @@ module(
           minute: "2-digit",
         });
 
-      assert.dom("p:nth-of-type(1)").containsText("controlling");
+      assert.dom("[data-test-title]").containsText("controlling");
       assert
         .dom("ul.uk-subnav > li:nth-of-type(1)")
         .containsText(date(this.createdAt));
@@ -63,7 +63,7 @@ module(
 
       this.set("type", "answer");
 
-      assert.dom("p:nth-of-type(1)").containsText("addressed");
+      assert.dom("[data-test-title]").containsText("addressed");
       assert
         .dom("ul.uk-subnav > li:nth-of-type(1)")
         .containsText(date(this.closedAt));
