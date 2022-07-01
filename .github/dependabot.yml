@@ -38,3 +38,7 @@ updates:
       - dependency-name: eslint
         versions:
           - ">= 8"
+      # 4.1.0 is broken
+      - dependency-name: ember-apollo-client
+        versions:
+          - "4.1.0"
