@@ -1388,13 +1388,13 @@ type File implements Node {
   """
   id: ID!
   name: String!
-  answer: FileAnswer
+  answer: FilesAnswer
   uploadUrl: String
   downloadUrl: String
   metadata: GenericScalar
 }
 
-type FileAnswer implements Answer & Node {
+type FilesAnswer implements Answer & Node {
   createdAt: DateTime!
   modifiedAt: DateTime!
   createdByUser: String
@@ -1407,12 +1407,12 @@ type FileAnswer implements Answer & Node {
   """
   id: ID!
   question: Question!
-  value: File!
+  value: [File]!
   meta: GenericScalar!
   file: File
 }
 
-type FileQuestion implements Question & Node {
+type FilesQuestion implements Question & Node {
   createdAt: DateTime!
   modifiedAt: DateTime!
   createdByUser: String
@@ -2000,7 +2000,7 @@ type Mutation {
   ): SaveIntegerQuestionPayload
   saveTableQuestion(input: SaveTableQuestionInput!): SaveTableQuestionPayload
   saveFormQuestion(input: SaveFormQuestionInput!): SaveFormQuestionPayload
-  saveFileQuestion(input: SaveFileQuestionInput!): SaveFileQuestionPayload
+  saveFilesQuestion(input: SaveFilesQuestionInput!): SaveFilesQuestionPayload
   saveStaticQuestion(input: SaveStaticQuestionInput!): SaveStaticQuestionPayload
   saveCalculatedFloatQuestion(
     input: SaveCalculatedFloatQuestionInput!
@@ -2028,9 +2028,9 @@ type Mutation {
   saveDocumentTableAnswer(
     input: SaveDocumentTableAnswerInput!
   ): SaveDocumentTableAnswerPayload
-  saveDocumentFileAnswer(
-    input: SaveDocumentFileAnswerInput!
-  ): SaveDocumentFileAnswerPayload
+  saveDocumentFilesAnswer(
+    input: SaveDocumentFilesAnswerInput!
+  ): SaveDocumentFilesAnswerPayload
   saveDefaultStringAnswer(
     input: SaveDefaultStringAnswerInput!
   ): SaveDefaultStringAnswerPayload
@@ -2840,15 +2840,20 @@ type SaveDocumentDateAnswerPayload {
   clientMutationId: String
 }
 
-input SaveDocumentFileAnswerInput {
+input SaveDocumentFilesAnswerInput {
   question: ID!
   document: ID!
   meta: JSONString
-  value: String
+  value: [SaveFile]
   clientMutationId: String
 }
 
-type SaveDocumentFileAnswerPayload {
+input SaveFile {
+  id: String
+  name: String
+}
+
+type SaveDocumentFilesAnswerPayload {
   answer: Answer
   clientMutationId: String
 }
@@ -2970,7 +2975,7 @@ type SaveDynamicMultipleChoiceQuestionPayload {
   clientMutationId: String
 }
 
-input SaveFileQuestionInput {
+input SaveFilesQuestionInput {
   slug: String!
   label: String!
   infoText: String
@@ -2982,7 +2987,7 @@ input SaveFileQuestionInput {
   clientMutationId: String
 }
 
-type SaveFileQuestionPayload {
+type SaveFilesQuestionPayload {
   question: Question
   clientMutationId: String
 }

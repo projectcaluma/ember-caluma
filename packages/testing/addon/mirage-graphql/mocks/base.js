@@ -10,7 +10,7 @@ import serialize from "@projectcaluma/ember-testing/mirage-graphql/serialize";
 
 export const ANSWER_TYPES = [
   "DATE",
-  "FILE",
+  "FILES",
   "FLOAT",
   "INTEGER",
   "LIST",
@@ -25,7 +25,7 @@ export const QUESTION_TYPES = [
   "DATE",
   "DYNAMIC_CHOICE",
   "DYNAMIC_MULTIPLE_CHOICE",
-  "FILE",
+  "FILES",
   "FLOAT",
   "FORM",
   "INTEGER",

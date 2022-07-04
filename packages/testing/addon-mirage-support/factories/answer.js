@@ -58,15 +58,19 @@ export default Factory.extend({
             .slug,
         });
       }
-    } else if (answer.question.type === "FILE") {
-      answer.update({ type: "FILE" });
+    } else if (answer.question.type === "FILES") {
+      answer.update({ type: "FILES" });
 
       if (answer.value === undefined) {
         answer.update({
-          value: {
-            uploadUrl: faker.internet.url,
-            downloadUrl: faker.internet.url,
-          },
+          value: [
+            {
+              id: faker.datatype.uuid(),
+              name: faker.datatype.string(),
+              uploadUrl: faker.internet.url(),
+              downloadUrl: faker.internet.url(),
+            },
+          ],
         });
       }
     } else if (answer.question.type === "DATE") {

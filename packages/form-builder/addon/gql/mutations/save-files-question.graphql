@@ -1,11 +1,11 @@
 #import QuestionInfo from '../fragments/question-info.graphql'
 
-mutation SaveFileQuestion($input: SaveFileQuestionInput!) {
-  saveFileQuestion(input: $input) {
+mutation SaveFilesQuestion($input: SaveFilesQuestionInput!) {
+  saveFilesQuestion(input: $input) {
     question {
       id
       ...QuestionInfo
-      ... on FileQuestion {
+      ... on FilesQuestion {
         hintText
       }
     }

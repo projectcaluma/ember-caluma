@@ -26,7 +26,7 @@ import saveDefaultStringAnswerMutation from "@projectcaluma/ember-form-builder/g
 import saveDefaultTableAnswerMutation from "@projectcaluma/ember-form-builder/gql/mutations/save-default-table-answer.graphql";
 import saveDynamicChoiceQuestionMutation from "@projectcaluma/ember-form-builder/gql/mutations/save-dynamic-choice-question.graphql";
 import saveDynamicMultipleChoiceQuestionMutation from "@projectcaluma/ember-form-builder/gql/mutations/save-dynamic-multiple-choice-question.graphql";
-import saveFileQuestionMutation from "@projectcaluma/ember-form-builder/gql/mutations/save-file-question.graphql";
+import saveFilesQuestionMutation from "@projectcaluma/ember-form-builder/gql/mutations/save-files-question.graphql";
 import saveFloatQuestionMutation from "@projectcaluma/ember-form-builder/gql/mutations/save-float-question.graphql";
 import saveFormQuestionMutation from "@projectcaluma/ember-form-builder/gql/mutations/save-form-question.graphql";
 import saveIntegerQuestionMutation from "@projectcaluma/ember-form-builder/gql/mutations/save-integer-question.graphql";
@@ -53,7 +53,7 @@ export const TYPES = {
   DynamicChoiceQuestion: saveDynamicChoiceQuestionMutation,
   TableQuestion: saveTableQuestionMutation,
   FormQuestion: saveFormQuestionMutation,
-  FileQuestion: saveFileQuestionMutation,
+  FilesQuestion: saveFilesQuestionMutation,
   StaticQuestion: saveStaticQuestionMutation,
   DateQuestion: saveDateQuestionMutation,
   CalculatedFloatQuestion: saveCalculatedFloatQuestionMutation,
@@ -335,7 +335,7 @@ export default class CfbFormEditorQuestion extends Component {
     };
   }
 
-  _getFileQuestionInput(changeset) {
+  _getFilesQuestionInput(changeset) {
     return {
       hintText: changeset.get("hintText"),
     };

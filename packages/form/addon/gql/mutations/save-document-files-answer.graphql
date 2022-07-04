@@ -1,0 +1,9 @@
+#import * from '../fragments/field.graphql'
+
+mutation SaveDocumentFilesAnswer($input: SaveDocumentFilesAnswerInput!) {
+  saveDocumentFilesAnswer(input: $input) {
+    answer {
+      ...FieldAnswer
+    }
+  }
+}

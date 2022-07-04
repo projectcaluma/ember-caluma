@@ -11,14 +11,14 @@
     month="2-digit"
     year="numeric"
   }}
-{{else if (has-question-type @field.question "file")}}
-  {{#if @field.answer.value}}
+{{else if (has-question-type @field.question "files")}}
+  {{#each @field.answer.value as |file|}}
     <UkButton
       @color="link"
-      @label={{@field.answer.value.name}}
-      @onClick={{fn this.download @field.answer.raw.id}}
+      @label={{file.name}}
+      @onClick={{fn this.download file.id}}
     />
-  {{/if}}
+  {{/each}}
 {{else}}
   {{@field.answer.value}}
 {{/if}}

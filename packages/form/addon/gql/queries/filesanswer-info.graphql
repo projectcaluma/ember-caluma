@@ -1,8 +1,8 @@
-query FileAnswerInfo($id: ID!) {
+query FilesAnswerInfo($id: ID!) {
   node(id: $id) {
-    id
-    ... on FileAnswer {
-      fileValue: value {
+    ... on FilesAnswer {
+      id
+      value {
         id
         uploadUrl
         downloadUrl

@@ -19,7 +19,7 @@ export default {
   hintText: or(
     validateType("FormQuestion", true),
     validateType("StaticQuestion", true),
-    validateType("FileQuestion", true),
+    validateType("FilesQuestion", true),
     validateLength({ max: 1024, allowBlank: true })
   ),
   integerMinValue: or(

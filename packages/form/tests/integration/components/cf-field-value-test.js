@@ -1,11 +1,13 @@
 import { render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
+import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
 import { setupRenderingTest } from "ember-qunit";
 import { module, test } from "qunit";
 
 module("Integration | Component | cf-field-value", function (hooks) {
   setupRenderingTest(hooks);
+  setupMirage(hooks);
   setupIntl(hooks);
 
   test("it renders multiple choice questions", async function (assert) {
@@ -109,5 +111,25 @@ module("Integration | Component | cf-field-value", function (hooks) {
     await render(hbs`<CfFieldValue @field={{this.field}} />`);
 
     assert.dom(this.element).hasText("foo");
+  });
+
+  test("it renders file questions", async function (assert) {
+    const file = this.server.create("file");
+
+    this.field = {
+      questionType: "FilesQuestion",
+      question: {
+        raw: {
+          __typename: "FilesQuestion",
+        },
+      },
+      answer: {
+        value: [file],
+      },
+    };
+
+    await render(hbs`<CfFieldValue @field={{this.field}} />`);
+
+    assert.dom(this.element).hasText(file.name);
   });
 });

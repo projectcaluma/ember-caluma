@@ -61,12 +61,12 @@ export default class AnswerMock extends BaseMock {
     });
   }
 
-  @register("SaveDocumentFileAnswerPayload")
-  handleSaveFileAnswer(_, { input }) {
+  @register("SaveDocumentFilesAnswerPayload")
+  handleSaveFilesAnswer(_, { input }) {
     return this._handleSaveDocumentAnswer(_, {
       ...input,
-      value: input.value ? { metadata: { object_name: input.value } } : null,
-      type: "FILE",
+      value: input.value ? [...input.value] : [],
+      type: "FILES",
     });
   }
 
