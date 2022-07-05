@@ -1444,15 +1444,7 @@
     "@embroider/shared-internals" "^0.50.2"
     semver "^7.3.5"
 
-"@embroider/addon-shim@^1.0.0", "@embroider/addon-shim@^1.2.0":
-  version "1.6.0"
-  resolved "https://registry.yarnpkg.com/@embroider/addon-shim/-/addon-shim-1.6.0.tgz#d2d6d1d820605a48273a123a9adb49e163c8de1c"
-  integrity sha512-wHXsBsDsKxF6Ftnh67SBzV0OvwCBCBlgN5IVm661ByEdDacwWzYywFpVNcNJpCUttEJPMrqB5MJK7xf/xEqihg==
-  dependencies:
-    "@embroider/shared-internals" "^1.6.0"
-    semver "^7.3.5"
-
-"@embroider/addon-shim@^1.5.0", "@embroider/addon-shim@^1.6.0":
+"@embroider/addon-shim@^1.0.0", "@embroider/addon-shim@^1.2.0", "@embroider/addon-shim@^1.5.0", "@embroider/addon-shim@^1.6.0":
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/@embroider/addon-shim/-/addon-shim-1.8.0.tgz#a545d85991f033a7bac147fe720ff2a7a870731f"
   integrity sha512-iMD9Yzx24WY0/K42if2piWzkw+BFCpqxwbPaNWFqlTbNGzzd1UnNiFhtdjXT5vTyYSQRgbQwuFcr/04Rh8qF8A==
@@ -1502,7 +1494,7 @@
     semver "^7.3.5"
     typescript-memoize "^1.0.1"
 
-"@embroider/shared-internals@1.8.3", "@embroider/shared-internals@^1.0.0", "@embroider/shared-internals@^1.6.0", "@embroider/shared-internals@^1.8.0":
+"@embroider/shared-internals@1.8.3", "@embroider/shared-internals@^1.0.0", "@embroider/shared-internals@^1.8.0":
   version "1.8.3"
   resolved "https://registry.yarnpkg.com/@embroider/shared-internals/-/shared-internals-1.8.3.tgz#52d868dc80016e9fe983552c0e516f437bf9b9f9"
   integrity sha512-N5Gho6Qk8z5u+mxLCcMYAoQMbN4MmH+z2jXwQHVs859bxuZTxwF6kKtsybDAASCtd2YGxEmzcc1Ja/wM28824w==
@@ -8771,10 +8763,10 @@ ember-resolver@8.0.3:
     ember-cli-version-checker "^5.1.2"
     resolve "^1.20.0"
 
-ember-resources@^5.0.1:
-  version "5.0.1"
-  resolved "https://registry.yarnpkg.com/ember-resources/-/ember-resources-5.0.1.tgz#1538b23c96c42d9cd5b87afcf81419edeec454ea"
-  integrity sha512-C3LfNowKTm7Tkmj0m1PctbDTInRaDpz5GSOE0UC6ySvv6huJievVngqv1vdq8Wi0NGyM+w8ZV8qIUogk9TBFIw==
+ember-resources@^5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/ember-resources/-/ember-resources-5.0.2.tgz#c73fe2efd87100a2d9a7b3c99e5527146130338b"
+  integrity sha512-hqL0FAlXpA9ggYmxKTnpB3iYR/m8cuK9tzEuv+5QJfAunpWDKSpLTjY0HeQnjYcGEae46TbyfikTKgXMO8vKgQ==
   dependencies:
     "@babel/runtime" "^7.17.8"
     "@embroider/addon-shim" "^1.2.0"
