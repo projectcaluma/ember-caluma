@@ -86,6 +86,7 @@ fragment InquiryDialog on WorkItem {
             question {
               id
               label
+              slug
             }
             ... on StringAnswer {
               value
