@@ -34,9 +34,16 @@ export default class CdInquiryDialogInquiryPartComponent extends Component {
   }
 
   get answerInfo() {
+    const questions = this.config.inquiry.answer.infoQuestions ?? [];
+
     return this.args.type === "answer"
       ? this.args.inquiry.childCase.document.info.edges
           .filter((edge) => !isEmpty(edge.node.value))
+          .sort(
+            (a, b) =>
+              questions.indexOf(a.node.question.slug) -
+              questions.indexOf(b.node.question.slug)
+          )
           .map((edge) => ({
             question: edge.node.question.label,
             value: edge.node.value,
