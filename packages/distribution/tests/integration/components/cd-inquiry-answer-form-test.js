@@ -43,7 +43,7 @@ module("Integration | Component | cd-inquiry-answer-form", function (hooks) {
 
     assert
       .dom("p.uk-text-large")
-      .hasText(
+      .containsText(
         "Inquiry answer t:caluma.distribution.answer.buttons.compose.status:()"
       );
     assert.dom("form").exists();

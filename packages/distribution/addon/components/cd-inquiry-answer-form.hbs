@@ -5,19 +5,14 @@
 >
   <:default as |content|>
 
-    <div class="uk-position-relative">
-      <CdDocumentHeader
-        @name={{content.document.rootForm.raw.name}}
-        @status={{if (eq this.inquiry.status "READY") this.answerStatus}}
-        @modifiedAt={{this.inquiry.childCase.document.modifiedContentAt}}
-        @modifiedBy={{this.inquiry.childCase.document.modifiedContentByUser}}
-      />
-
-      <CdInquiryDialog::InquiryDeadline
-        @inquiry={{this.inquiry}}
-        class="uk-margin-remove uk-position-center-right"
-      />
-    </div>
+    <CdDocumentHeader
+      @name={{content.document.rootForm.raw.name}}
+      @status={{if (eq this.inquiry.status "READY") this.answerStatus}}
+      @modifiedAt={{this.inquiry.childCase.document.modifiedContentAt}}
+      @modifiedBy={{this.inquiry.childCase.document.modifiedContentByUser}}
+    >
+      <CdInquiryDialog::InquiryDeadline @inquiry={{this.inquiry}} />
+    </CdDocumentHeader>
 
     <hr />
 
