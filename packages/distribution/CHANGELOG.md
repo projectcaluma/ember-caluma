@@ -1,3 +1,17 @@
+# [@projectcaluma/ember-distribution-v1.0.0-beta.14](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-distribution-v1.0.0-beta.13...@projectcaluma/ember-distribution-v1.0.0-beta.14) (2022-07-06)
+
+
+### Bug Fixes
+
+* **distribution:** fix title and deadline alignment and icon size ([eb6f495](https://github.com/projectcaluma/ember-caluma/commit/eb6f495408decdf7d735ad2dbc702ee7e4e0ede5))
+* **distribution:** fix title layout with status ([dc49b82](https://github.com/projectcaluma/ember-caluma/commit/dc49b82b3d2f3b9962e9373506e286b4b7ca7225))
+* **distribution:** order answers by configured question order ([668383f](https://github.com/projectcaluma/ember-caluma/commit/668383f5526403187ee66b4ac85cc8ace4ad061a))
+
+
+### Features
+
+* **distribution:** change needs-interaction status icon to text file ([695c6db](https://github.com/projectcaluma/ember-caluma/commit/695c6db4b7d87af87e334da7aece7e0f4b17129e))
+
 # [@projectcaluma/ember-distribution-v1.0.0-beta.13](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-distribution-v1.0.0-beta.12...@projectcaluma/ember-distribution-v1.0.0-beta.13) (2022-06-09)
 
 
