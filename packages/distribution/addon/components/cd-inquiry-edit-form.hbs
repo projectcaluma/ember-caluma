@@ -15,8 +15,12 @@
     />
 
     <hr />
-
-    {{#if (cannot "send inquiry" this.inquiry)}}
+    {{#if
+      (and
+        (cannot "send inquiry" this.inquiry)
+        (eq this.inquiry.status "SUSPENDED")
+      )
+    }}
       <div class="uk-alert uk-alert-warning uk-flex uk-flex-middle">
         <UkIcon @icon="warning" class="uk-margin-small-right" />
         {{t "caluma.distribution.edit.send-not-allowed"}}
