@@ -1,3 +1,11 @@
+# [@projectcaluma/ember-distribution-v1.0.0-beta.15](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-distribution-v1.0.0-beta.14...@projectcaluma/ember-distribution-v1.0.0-beta.15) (2022-07-18)
+
+
+### Bug Fixes
+
+* **distribution:** include fetch service dependency ([841c233](https://github.com/projectcaluma/ember-caluma/commit/841c23320f07968a8181bfc9273f592652049516))
+* **distribution:** only show permission info for suspended inquiries ([bd594f8](https://github.com/projectcaluma/ember-caluma/commit/bd594f8ac026af8bf0579dc947862710363ac028))
+
 # [@projectcaluma/ember-distribution-v1.0.0-beta.14](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-distribution-v1.0.0-beta.13...@projectcaluma/ember-distribution-v1.0.0-beta.14) (2022-07-06)
 
 
