@@ -799,9 +799,7 @@ export default class Field extends Base {
       : this.selected?.label;
 
     return validate("inclusion", value, {
-      in: (this.options || [])
-        .filter((option) => !option.disabled)
-        .map(({ slug }) => slug),
+      in: (this.options || []).map(({ slug }) => slug),
       allowBlank,
       label: label ?? value,
     });
