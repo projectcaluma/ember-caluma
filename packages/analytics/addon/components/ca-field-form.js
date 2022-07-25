@@ -5,7 +5,7 @@ import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
 import { Changeset } from "ember-changeset";
 import lookupValidator from "ember-changeset-validations";
-import { enqueueTask } from "ember-concurrency-decorators";
+import { enqueueTask } from "ember-concurrency";
 
 import saveAnalyticsField from "@projectcaluma/ember-analytics/tasks/save-analytics-field";
 import FieldValidations from "@projectcaluma/ember-analytics/validations/field";
