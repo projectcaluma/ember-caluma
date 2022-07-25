@@ -41,7 +41,7 @@
     "jexl": "^2.3.0",
     "lodash.isequal": "^4.5.0",
     "luxon": "^3.0.1",
-    "tracked-toolbox": "^1.2.3"
+    "tracked-toolbox": "^2.0.0"
   },
   "devDependencies": {
     "@ember/optional-features": "2.0.0",

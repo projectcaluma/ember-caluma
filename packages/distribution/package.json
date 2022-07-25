@@ -43,7 +43,7 @@
     "graphql-tag": "^2.12.6",
     "lodash.merge": "^4.6.2",
     "luxon": "^3.0.1",
-    "tracked-toolbox": "^1.2.3"
+    "tracked-toolbox": "^2.0.0"
   },
   "devDependencies": {
     "@ember/optional-features": "2.0.0",
