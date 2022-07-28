@@ -8,7 +8,7 @@ module("Integration | Component | ca-report-preview", function (hooks) {
   setupRenderingTest(hooks);
   setupIntl(hooks);
 
-  test("it renders", async function (assert) {
+  test.skip("it renders", async function (assert) {
     await render(hbs`<CaReportPreview />`);
 
     assert

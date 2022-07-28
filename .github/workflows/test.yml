@@ -92,6 +92,8 @@ jobs:
 
       - name: Upload coverage report to Codecov
         uses: codecov/codecov-action@v3
+        with:
+          gcov_ignore: "./packages/analytics/"
 
   test-floating:
     name: Floating Tests

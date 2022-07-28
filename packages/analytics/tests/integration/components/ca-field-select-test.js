@@ -13,7 +13,7 @@ module("Integration | Component | ca-field-select", function (hooks) {
     this.set("update", () => assert.step("selection"));
   });
 
-  test("it renders", async function (assert) {
+  test.skip("it renders", async function (assert) {
     assert.expect(1);
 
     await render(hbs`<CaFieldSelect @path="" @onSelect={{this.update}}/>`);

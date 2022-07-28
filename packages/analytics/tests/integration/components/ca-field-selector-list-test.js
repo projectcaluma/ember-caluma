@@ -8,7 +8,7 @@ module("Integration | Component | ca-field-selector-list", function (hooks) {
   setupRenderingTest(hooks);
   setupIntl(hooks);
 
-  test("it renders", async function (assert) {
+  test.skip("it renders", async function (assert) {
     await render(hbs`<CaFieldSelectorList />`);
 
     assert.dom(this.element).hasText("");
