@@ -1,6 +1,9 @@
 {{#if this.showForm}}
   <ValidatedForm @model={{this.field}} @on-submit={{this.submitField}} as |f|>
-    <div class="uk-flex uk-flex-between uk-flex-middle">
+    <div
+      data-test-add-field-form
+      class="uk-flex uk-flex-between uk-flex-middle"
+    >
       <h3>{{t "caluma.analytics.edit.add-field"}}</h3>
       <div class="uk-flex uk-flex-middle">
         <div class="uk-margin-right uk-flex uk-flex-middle">
@@ -49,14 +52,16 @@
     />
     <div class="uk-flex uk-flex-right">
       <f.button
-        @disabled={{this.saveField.isRunning}}
+        data-test-form-cancel
         class="uk-margin-small-right"
+        @disabled={{this.saveField.isRunning}}
         {{on "click" this.toggleForm}}
       >
         {{t "caluma.analytics.cancel"}}
       </f.button>
 
       <f.submit
+        data-test-form-submit
         @loading={{this.saveField.isRunning}}
         @disabled={{or this.saveField.isRunning (not this.isValueField)}}
       >

@@ -1,53 +1,70 @@
 import { render } from "@ember/test-helpers";
+import { tracked } from "@glimmer/tracking";
+import { Changeset } from "ember-changeset";
+import lookupValidator from "ember-changeset-validations";
 import { hbs } from "ember-cli-htmlbars";
-// import { setupMirage } from "ember-cli-mirage/test-support";
+import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
 import { setupRenderingTest } from "ember-qunit";
 import { module, test, todo } from "qunit";
 
+import AnalyticsTableValidations from "@projectcaluma/ember-analytics/validations/analytics-table";
+import slugify from "@projectcaluma/ember-core/utils/slugify";
+
+class AnalyticsTable {
+  constructor({ name, startingObject } = {}) {
+    this.name = name;
+    this.startingObject = startingObject;
+  }
+
+  get slug() {
+    return slugify(this.name ?? "");
+  }
+  @tracked name;
+  @tracked startingObject;
+}
+
 module("Integration | Component | ca-report-builder", function (hooks) {
   setupRenderingTest(hooks);
-  // setupMirage(hooks);
+  setupMirage(hooks);
   setupIntl(hooks);
 
-  hooks.beforeEach(function () {
+  hooks.beforeEach(function (assert) {
     this.set("startingObjects", [
       { label: "a", value: "A" },
       { label: "b", value: "B" },
     ]);
-    this.set("onAdd", (assert) => assert.step("add"));
+    this.set("onAdd", () => {
+      assert.step("add");
+    });
     this.set("route", "demo.analytics");
     this.set("slug", "test");
+    this.set("analyticsTable", () => {
+      return new Changeset(
+        new AnalyticsTable({
+          startingObject: "CASES",
+        }),
+        lookupValidator(AnalyticsTableValidations),
+        AnalyticsTableValidations
+      );
+    });
   });
 
-  test("it renders the builder without existing table", async function (assert) {
+  test("it renders the table from slug", async function (assert) {
     await render(hbs`
       <CaReportBuilder
-        @slug="new"
         @on-add={{this.onAdd}}
-        @starting-objects={{this.startingObjects}}
+        @analyticsTable={{this.analyticsTable}}
       />`);
 
-    assert.dom("[data-test-analytics-table-new]").exists();
-  });
-
-  todo("it renders with existing table from slug", async function (assert) {
-    await render(hbs`
-      <CaReportBuilder
-        @slug="new"
-        @on-add={{this.onAdd}}
-        @starting-objects={{this.startingObjects}}
-      />`);
-
-    assert.dom("[data-test-analytics-table-existing]").exists();
+    assert.dom("[data-test-analytics-table]").exists();
   });
 
   todo("the form for creating new fields works", async function (assert) {
     await render(hbs`
       <CaReportBuilder
-        @slug="new"
         @on-add={{this.onAdd}}
-        @starting-objects={{this.startingObjects}}
+        @analyticsTable={{this.analyticsTable}}
       />`);
 
     assert.dom("input[name=alias]").exists({ count: 1 });

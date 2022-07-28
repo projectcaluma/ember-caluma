@@ -11,10 +11,6 @@ export default class CaReportBuilderComponent extends Component {
   @service intl;
   @service router;
 
-  get isNew() {
-    return !this.args.analyticsTable?.id;
-  }
-
   get startingObjects() {
     // TODO: Replace with dynamic list
     // return this.args.startingObjects;

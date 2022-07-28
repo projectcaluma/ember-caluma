@@ -1,5 +1,7 @@
 import { render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
+import { setupMirage } from "ember-cli-mirage/test-support";
+import { setupIntl } from "ember-intl/test-support";
 import { setupRenderingTest } from "ember-qunit";
 import { module, test } from "qunit";
 
@@ -7,23 +9,26 @@ module(
   "Integration | Component | ca-field-selector-list/ca-field-function-select",
   function (hooks) {
     setupRenderingTest(hooks);
+    setupIntl(hooks, ["en"]);
+    setupMirage(hooks);
 
     test("it renders", async function (assert) {
-      // Set any properties with this.set('myProperty', 'value');
-      // Handle any actions with this.set('myAction', function(val) { ... });
+      this.set("update", () => {
+        assert.step("update");
+      });
 
-      await render(hbs`<CaFieldSelectorList::CaFieldFunctionSelect />`);
+      this.set("field", {
+        dataSource: "some.path.to.field",
+      });
 
-      assert.dom(this.element).hasText("");
+      await render(
+        hbs`<CaFieldSelectorList::CaFieldFunctionSelect @update={{this.update}} @field={{this.field}} @tableSlug={{"test"}} />`
+      );
 
-      // Template block usage:
-      await render(hbs`
-      <CaFieldSelectorList::CaFieldFunctionSelect>
-        template block text
-      </CaFieldSelectorList::CaFieldFunctionSelect>
-    `);
-
-      assert.dom(this.element).hasText("template block text");
+      const requests = this.server.pretender.handledRequests;
+      assert.equal(requests.length, 1);
+      assert.dom(".ember-power-select-trigger").exists({ count: 1 });
+      assert.ok(requests[0].sendArguments[0].includes("AllAnalyticsFields"));
     });
   }
 );

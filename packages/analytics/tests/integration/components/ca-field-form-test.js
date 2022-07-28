@@ -16,9 +16,16 @@ module("Integration | Component | ca-field-form", function (hooks) {
     };
 
     await render(hbs`<CaFieldForm @analyticsTable={{this.analyticsTable}} />`);
+    assert
+      .dom("[data-test-add-field-button]")
+      .hasText(this.intl.t("caluma.analytics.edit.add-field"));
 
-    await click("[data-test-add-field-button]");
+    await click("button[data-test-add-field-button]");
 
-    assert.dom(this.element).hasText("");
+    assert.dom("[data-test-add-field-form]").exists();
+    assert.dom("input[name=alias]").exists();
+    assert.dom("[data-test-field-select-primary-selector]").exists();
+    assert.dom("button[data-test-form-cancel]").exists();
+    assert.dom("button[data-test-form-submit]").isDisabled();
   });
 });
