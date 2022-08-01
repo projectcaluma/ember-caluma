@@ -13,7 +13,7 @@ module("Integration | Component | cd-navigation", function (hooks) {
   setupIntl(hooks);
 
   hooks.beforeEach(function () {
-    distribution(this.server, [
+    const distributionCase = distribution(this.server, [
       { id: "group1" },
       { id: "group2" },
       { id: "group3" },
@@ -21,7 +21,7 @@ module("Integration | Component | cd-navigation", function (hooks) {
       { id: "group5" },
     ]);
 
-    this.caseId = this.server.db.cases[0].id;
+    this.caseId = distributionCase.id;
 
     this.owner.lookup("service:caluma-options").currentGroupId = "group1";
     this.owner.lookup("service:router").isActive = () => true;

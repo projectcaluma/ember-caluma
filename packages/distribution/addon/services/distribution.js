@@ -29,8 +29,16 @@ export default class DistributionService extends Service {
   navigation = trackedTask(this, this.fetchNavigation, () => [this.caseId]);
 
   async refetch() {
-    await getObservable(this.controls.value)?.refetch();
+    await this.refetchControls();
+    await this.refetchNavigation();
+  }
+
+  async refetchNavigation() {
     await getObservable(this.navigation.value)?.refetch();
+  }
+
+  async refetchControls() {
+    await getObservable(this.controls.value)?.refetch();
   }
 
   @dropTask

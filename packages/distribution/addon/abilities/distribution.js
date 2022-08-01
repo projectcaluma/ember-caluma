@@ -38,4 +38,13 @@ export default class DistributionAbility extends Ability {
       ).length > 0
     );
   }
+
+  get canReopen() {
+    return (
+      !this.config.ui.readonly &&
+      (this.config.permissions.reopenDistribution?.() ?? true) &&
+      this.distribution.controls.value?.case.edges[0]?.node.parentWorkItem
+        .isRedoable
+    );
+  }
 }
