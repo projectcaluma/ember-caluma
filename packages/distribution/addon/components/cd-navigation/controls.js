@@ -8,6 +8,7 @@ import { gql } from "graphql-tag";
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 import config from "@projectcaluma/ember-distribution/config";
 import completeWorkItemMutation from "@projectcaluma/ember-distribution/gql/mutations/complete-work-item.graphql";
+import redoWorkItemMutation from "@projectcaluma/ember-distribution/gql/mutations/redo-work-item.graphql";
 import incompleteInquiriesQuery from "@projectcaluma/ember-distribution/gql/queries/incomplete-inquiries.graphql";
 
 export default class CdNavigationControlsComponent extends Component {
@@ -60,6 +61,30 @@ export default class CdNavigationControlsComponent extends Component {
       this.notification.danger(
         this.intl.t("caluma.distribution.complete-error")
       );
+    }
+  }
+
+  @dropTask
+  *reopenDistribution() {
+    try {
+      if (!(yield confirm(this.intl.t("caluma.distribution.reopen-confirm")))) {
+        return;
+      }
+
+      const distributionWorkItemId = decodeId(
+        this.distribution.controls.value?.case.edges[0]?.node.parentWorkItem.id
+      );
+
+      yield this.apollo.mutate({
+        mutation: redoWorkItemMutation,
+        variables: {
+          workItem: distributionWorkItemId,
+        },
+      });
+
+      yield this.distribution.refetchControls();
+    } catch (e) {
+      this.notification.danger(this.intl.t("caluma.distribution.reopen-error"));
     }
   }
 

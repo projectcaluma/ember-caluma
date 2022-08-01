@@ -73,6 +73,7 @@ export function createBlueprint(server) {
   server.create("workflow", { slug: "distribution" });
   server.create("workflow", { slug: "inquiry" });
 
+  server.create("task", { slug: "distribution" });
   server.create("task", { slug: "create-inquiry" });
   server.create("task", { slug: "complete-distribution" });
   server.create("task", { slug: "inquiry" });
@@ -225,10 +226,17 @@ export function reviseInquiry(server, { inquiry }) {
 }
 
 export function createCase(server, { group }) {
+  const distributionWorkItem = server.create("work-item", {
+    taskId: "distribution",
+    status: "READY",
+    case: server.create("case"),
+  });
+
   const distributionCase = server.create("case", {
     id: "4222ab21-9c89-47de-98be-d62a8ed0ebeb",
     status: "RUNNING",
     workflowId: "distribution",
+    parentWorkItem: distributionWorkItem,
   });
 
   server.create("work-item", {
@@ -389,4 +397,6 @@ export default function (server, groups) {
       status: "inquiry-answer-status-positive",
     }),
   });
+
+  return distributionCase;
 }

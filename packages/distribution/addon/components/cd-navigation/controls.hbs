@@ -4,6 +4,7 @@
       @route="new"
       class="uk-icon-button"
       title={{t "caluma.distribution.new.title"}}
+      data-test-new-inquiry
     >
       <UkIcon @icon="plus" />
     </LinkTo>
@@ -35,6 +36,21 @@
         <UkSpinner @ratio={{0.6}} />
       {{else}}
         <UkIcon @icon="lock" />
+      {{/if}}
+    </button>
+  {{/if}}
+  {{#if (can "reopen distribution")}}
+    <button
+      type="button"
+      class="uk-icon-button"
+      title={{t "caluma.distribution.reopen"}}
+      data-test-reopen-distribution
+      {{on "click" (perform this.reopenDistribution)}}
+    >
+      {{#if this.reopenDistribution.isRunning}}
+        <UkSpinner @ratio={{0.6}} />
+      {{else}}
+        <UkIcon @icon="refresh" />
       {{/if}}
     </button>
   {{/if}}

@@ -1,0 +1,8 @@
+mutation RedoWorkItem($workItem: ID!) {
+  redoWorkItem(input: { id: $workItem }) {
+    workItem {
+      id
+      isRedoable
+    }
+  }
+}

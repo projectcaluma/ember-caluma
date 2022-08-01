@@ -50,4 +50,15 @@ query ControlWorkItems(
       }
     }
   }
+  case: allCases(filter: [{ id: $caseId }]) {
+    edges {
+      node {
+        id
+        parentWorkItem {
+          id
+          isRedoable
+        }
+      }
+    }
+  }
 }

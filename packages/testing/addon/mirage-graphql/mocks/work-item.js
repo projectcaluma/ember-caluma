@@ -27,6 +27,27 @@ export default class WorkItemMock extends BaseMock {
     });
   }
 
+  @register("RedoWorkItemPayload")
+  handleRedoWorkItem(_, { input }) {
+    const { id } = deserialize(input);
+    const workItem = this.collection.find(id);
+
+    if (workItem.taskId === "distribution") {
+      const caseId = workItem.childCaseId;
+
+      this.collection
+        .where({ caseId, taskId: "complete-distribution" })
+        .update({ status: "READY" });
+      this.collection
+        .where({ caseId, taskId: "create-inquiry" })
+        .update({ status: "READY" });
+    }
+
+    return this.handleSavePayload.fn.call(this, _, {
+      input: { id, redoable: false, status: "READY" },
+    });
+  }
+
   @register("CompleteWorkItemPayload")
   handleCompleteWorkItem(_, { input }) {
     const { id } = deserialize(input);
@@ -103,6 +124,10 @@ export default class WorkItemMock extends BaseMock {
       });
     } else if (taskId === "complete-distribution") {
       this.collection
+        .where({ childCaseId: caseId, status: "READY", taskId: "distribution" })
+        .update({ status: "COMPLETED", redoable: true });
+
+      this.collection
         .where({ caseId, status: "READY", taskId: "inquiry" })
         .update({ status: "SKIPPED" });
 
@@ -116,7 +141,7 @@ export default class WorkItemMock extends BaseMock {
     }
 
     return this.handleSavePayload.fn.call(this, _, {
-      input: { id: input.id, status: "COMPLETED" },
+      input: { id, status: "COMPLETED" },
     });
   }
 }

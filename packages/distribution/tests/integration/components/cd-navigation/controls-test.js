@@ -14,7 +14,7 @@ module("Integration | Component | cd-navigation/controls", function (hooks) {
   setupIntl(hooks);
 
   hooks.beforeEach(function () {
-    distribution(this.server, [
+    const distributionCase = distribution(this.server, [
       { id: "group1" },
       { id: "group2" },
       { id: "group3" },
@@ -22,7 +22,7 @@ module("Integration | Component | cd-navigation/controls", function (hooks) {
       { id: "group5" },
     ]);
 
-    this.caseId = this.server.db.cases[0].id;
+    this.caseId = distributionCase.id;
     this.owner.lookup("service:caluma-options").currentGroupId = "group1";
     Object.defineProperty(this.owner.lookup("service:distribution"), "caseId", {
       value: this.caseId,
@@ -93,5 +93,22 @@ module("Integration | Component | cd-navigation/controls", function (hooks) {
         (workItem) => workItem.status === "CANCELED"
       )
     );
+  });
+
+  test("it can redo the current distribution", async function (assert) {
+    await assert.expect(3);
+
+    await render(hbs`<CdNavigation::Controls @caseId={{this.caseId}} />`);
+
+    await click("[data-test-complete-distribution]");
+    await confirm();
+
+    assert.dom("[data-test-reopen-distribution]").exists();
+
+    await click("[data-test-reopen-distribution]");
+    await confirm();
+
+    assert.dom("[data-test-complete-distribution]").exists();
+    assert.dom("[data-test-new-inquiry]").exists();
   });
 });

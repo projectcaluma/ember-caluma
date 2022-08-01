@@ -4,14 +4,17 @@ caluma:
     start: "Starten"
     send: "Offene Anfragen versenden"
     complete: "Zirkulation abschliessen"
+    reopen: "Zirkulation wiedereröffnen"
     send-confirm: "Wollen Sie wirklich alle offenen Anfragen versenden?"
     complete-confirm:
       "Es gibt noch <b>{count} offene {count, plural, =1 {Anfrage} other {Anfragen}}</b>
       in der aktuellen Zirkulation. Wenn Sie die Zirkulation abschliessen, werden
       alle verbleibenden offenen Anfragen abgebrochen. Möchten Sie fortfahren?"
     complete-confirm-empty: "Möchten Sie die Zirkulation wirklich abschliessen?"
+    reopen-confirm: "Wollen Sie die Zirkulation wirklich wiedereröffnen?"
     send-error: "Fehler beim Versenden der offenen Anfragen"
     complete-error: "Fehler beim Abschliessen der Zirkulation"
+    reopen-error: "Fehler beim Wiedereröffnen der Zirkulation"
 
     more: "mehr"
     less: "weniger"
