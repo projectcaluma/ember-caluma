@@ -1,3 +1,10 @@
+# [@projectcaluma/ember-form-builder-v11.0.0-beta.15](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-builder-v11.0.0-beta.14...@projectcaluma/ember-form-builder-v11.0.0-beta.15) (2022-08-02)
+
+
+### Features
+
+* **analytics:** adds analytics module for caluma ([#1655](https://github.com/projectcaluma/ember-caluma/issues/1655)) ([9573abe](https://github.com/projectcaluma/ember-caluma/commit/9573abe95cd39cb1467113026f2ab7773c3c9143))
+
 # [@projectcaluma/ember-form-builder-v11.0.0-beta.14](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-builder-v11.0.0-beta.13...@projectcaluma/ember-form-builder-v11.0.0-beta.14) (2022-06-09)
 
 
