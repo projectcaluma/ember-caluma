@@ -1,3 +1,10 @@
+# [@projectcaluma/ember-core-v11.0.0-beta.8](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-core-v11.0.0-beta.7...@projectcaluma/ember-core-v11.0.0-beta.8) (2022-08-02)
+
+
+### Features
+
+* **analytics:** adds analytics module for caluma ([#1655](https://github.com/projectcaluma/ember-caluma/issues/1655)) ([9573abe](https://github.com/projectcaluma/ember-caluma/commit/9573abe95cd39cb1467113026f2ab7773c3c9143))
+
 # [@projectcaluma/ember-core-v11.0.0-beta.7](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-core-v11.0.0-beta.6...@projectcaluma/ember-core-v11.0.0-beta.7) (2022-05-09)
 
 
