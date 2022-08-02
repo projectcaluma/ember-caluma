@@ -1,0 +1,82 @@
+{{#if this.showForm}}
+  <ValidatedForm @model={{this.field}} @on-submit={{this.submitField}} as |f|>
+    <div
+      data-test-add-field-form
+      class="uk-flex uk-flex-between uk-flex-middle"
+    >
+      <h3>{{t "caluma.analytics.edit.add-field"}}</h3>
+      <div class="uk-flex uk-flex-middle">
+        <div class="uk-margin-right uk-flex uk-flex-middle">
+          <f.input
+            @name="showOutput"
+            @label={{t "caluma.analytics.edit.show-in-output"}}
+            @required={{true}}
+            @renderComponent={{component
+              (ensure-safe-component "ca-toggle-switch")
+              value=f.model.showOutput
+              size="small"
+              onToggle=(mut f.model.showOutput)
+            }}
+          />
+        </div>
+      </div>
+    </div>
+
+    <f.input
+      @type="select"
+      @name="dataSource"
+      @label={{t "caluma.analytics.edit.field"}}
+    >
+      <div class="uk-grid-small uk-child-width-1-5" uk-grid>
+        <CaFieldSelect
+          @onSelect={{this.setFieldPath}}
+          @selectedPath={{this.field.dataSource}}
+          @slug={{@analyticsTable.slug}}
+        />
+      </div>
+    </f.input>
+    {{#if this.showAggregationSelect}}
+      <f.input
+        @name="aggregateFunction"
+        @type="select"
+        @label={{t "caluma.analytics.edit.aggregation"}}
+        @options={{this.supportedFunctions}}
+        class="uk-width-small"
+      />
+    {{/if}}
+    <f.input
+      @name="alias"
+      @type="text"
+      @label={{t "caluma.analytics.edit.display-title"}}
+      @placeholder={{t "caluma.analytics.edit.display-title-placeholder"}}
+    />
+    <div class="uk-flex uk-flex-right">
+      <f.button
+        data-test-form-cancel
+        class="uk-margin-small-right"
+        @disabled={{this.saveField.isRunning}}
+        {{on "click" this.toggleForm}}
+      >
+        {{t "caluma.analytics.cancel"}}
+      </f.button>
+
+      <f.submit
+        data-test-form-submit
+        @loading={{this.saveField.isRunning}}
+        @disabled={{or this.saveField.isRunning (not this.isValueField)}}
+      >
+        {{t "caluma.analytics.edit.add-field"}}
+      </f.submit>
+    </div>
+  </ValidatedForm>
+{{else}}
+  <div class="uk-flex uk-flex-right">
+    <UkButton
+      @color="primary"
+      data-test-add-field-button
+      {{on "click" this.toggleForm}}
+    >
+      {{t "caluma.analytics.edit.add-field"}}
+    </UkButton>
+  </div>
+{{/if}}

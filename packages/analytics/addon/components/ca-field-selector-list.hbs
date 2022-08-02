@@ -1,0 +1,82 @@
+<table class="uk-table uk-table-divider uk-table-hover" uk-overflow-auto>
+  <thead>
+    <tr>
+      <th>{{t "caluma.analytics.edit.question"}}</th>
+      <th>{{t "caluma.analytics.edit.display-title"}}</th>
+      <th>{{t "caluma.analytics.edit.aggregation"}}</th>
+      <th class="uk-text-center">{{t
+          "caluma.analytics.edit.show-in-output"
+        }}</th>
+      <th>{{t "caluma.analytics.edit.filter"}}</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each this.fields as |field|}}
+      {{#let (fn this.updateField field) as |update|}}
+        <tr>
+          <td>
+            {{field.dataSource}}
+          </td>
+          <td>
+            <CaFieldSelectorList::CaFieldAliasInput
+              @value={{field.alias}}
+              @onSave={{fn update "alias"}}
+            />
+          </td>
+          <td>
+            <CaFieldSelectorList::CaFieldFunctionSelect
+              @field={{field}}
+              @tableSlug={{@analyticsTable.slug}}
+              @update={{update}}
+            />
+          </td>
+          <td class="uk-flex uk-flex-center uk-flex-middle">
+            <UkToggleSwitch
+              @value={{field.showOutput}}
+              @size="small"
+              @onToggle={{fn update "showOutput"}}
+            />
+          </td>
+          <td>
+            <CaFilterModal
+              @table={{@analyticsTable.id}}
+              @field={{field}}
+              as |TriggerButton|
+            >
+              <TriggerButton
+                @label={{if
+                  field.filters.length
+                  (t
+                    "caluma.analytics.edit.edit-filters"
+                    num=field.filters.length
+                  )
+                  (t "caluma.analytics.edit.add-filters")
+                }}
+              />
+            </CaFilterModal>
+          </td>
+          <td>
+            <button
+              data-test-delete-field
+              type="button"
+              class="uk-icon-button"
+              uk-icon="trash"
+              name={{t "caluma.analytics.edit.delete-field"}}
+              {{on "click" (perform this.removeAnalyticsField field.id)}}
+            >
+              <span hidden>{{t "caluma.analytics.edit.delete-field"}}</span>
+            </button>
+          </td>
+        </tr>
+      {{/let}}
+    {{else}}
+      <td colspan="5">
+        <h3 class="uk-flex uk-flex-center uk-flex-middle">
+          <UkIcon @icon="search" @ratio="1.5" class="uk-margin-small-right" />
+          {{t "caluma.analytics.edit.empty"}}
+        </h3>
+      </td>
+    {{/each}}
+  </tbody>
+</table>

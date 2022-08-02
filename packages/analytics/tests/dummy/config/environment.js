@@ -6,6 +6,9 @@ module.exports = function (environment) {
     environment,
     rootURL: "/",
     locationType: "auto",
+    apollo: {
+      apiURL: "/graphql",
+    },
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -41,6 +44,10 @@ module.exports = function (environment) {
 
     ENV.APP.rootElement = "#ember-testing";
     ENV.APP.autoboot = false;
+
+    ENV["ember-cli-mirage"] = {
+      trackRequests: true,
+    };
   }
 
   if (environment === "production") {

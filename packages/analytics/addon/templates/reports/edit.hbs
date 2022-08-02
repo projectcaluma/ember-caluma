@@ -1,0 +1,51 @@
+{{#if this.data.isRunning}}
+  <div class="uk-text-center">
+    <UkSpinner @ratio={{1}} />
+  </div>
+{{else}}
+  {{#if this.data.hasError}}
+    <div uk-alert class="uk-flex uk-flex-between uk-flex-middle">
+      <h3 class="uk-flex uk-flex-middle uk-margin-remove">
+        <UkIcon @icon="search" @ratio="1.5" />
+        <span class="uk-margin-small-left">{{t
+            "caluma.analytics.notification.fetch-error"
+          }}</span>
+      </h3>
+
+      <span>
+        <LinkTo @route="reports" class="uk-button uk-button-primary">
+          {{t "caluma.analytics.back"}}
+        </LinkTo>
+      </span>
+    </div>
+  {{else}}
+    <div class="uk-flex uk-flex-between uk-flex-middle">
+      <h2>{{t
+          "caluma.analytics.sections.show-report"
+          slug=this.data.value.slug
+        }}</h2>
+      <button
+        type="button"
+        class="uk-icon-button"
+        uk-icon="trash"
+        {{on "click" (perform this.deleteTable)}}
+        name={{t "caluma.analytics.report.delete"}}
+      >
+        <span hidden>{{t "caluma.analytics.report.delete"}}</span>
+      </button>
+    </div>
+    <ul uk-tab>
+      <li class={{if (eq this.currentRoute "index") "uk-active"}}>
+        <LinkTo @route="reports.edit.index">
+          {{t "caluma.analytics.sections.fields"}}
+        </LinkTo>
+      </li>
+      <li class={{if (eq this.currentRoute "preview") "uk-active"}}>
+        <LinkTo @route="reports.edit.preview">
+          {{t "caluma.analytics.sections.table"}}
+        </LinkTo>
+      </li>
+    </ul>
+    {{outlet}}
+  {{/if}}
+{{/if}}

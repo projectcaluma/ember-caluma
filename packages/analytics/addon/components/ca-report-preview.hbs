@@ -1,0 +1,42 @@
+<div class="uk-overflow-auto">
+  {{#if this.data.isRunning}}
+    <div class="uk-text-center">
+      <UkSpinner @ratio={{1}} />
+    </div>
+  {{else}}
+    <table class="uk-table uk-table-divider uk-table-striped">
+      <thead>
+        <tr>
+          {{#each this.data.value.headings as |header|}}
+            <th>
+              {{header.alias}}
+              {{#if (not-eq header.function "VALUE")}}
+                ({{header.function}})
+              {{/if}}
+            </th>
+          {{/each}}
+        </tr>
+      </thead>
+      <tbody>
+        {{#each this.data.value.fields as |row|}}
+          <tr>
+            {{#each row as |entry|}}
+              <td>
+                {{entry.value}}
+              </td>
+            {{/each}}
+          </tr>
+        {{/each}}
+        {{#if this.data.value.summary}}
+          <tr class="uk-text-bold">
+            {{#each this.data.value.summary as |summary|}}
+              <td>
+                {{summary.value}}
+              </td>
+            {{/each}}
+          </tr>
+        {{/if}}
+      </tbody>
+    </table>
+  {{/if}}
+</div>

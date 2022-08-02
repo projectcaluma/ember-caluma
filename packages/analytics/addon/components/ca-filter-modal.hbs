@@ -1,0 +1,77 @@
+<UkModal
+  @visible={{this.visible}}
+  @onHide={{fn (mut this.visible) false}}
+  as |modal|
+>
+  <modal.header>
+    <h2 class="uk-modal-title">{{t
+        "caluma.analytics.filter-modal.filters"
+      }}</h2>
+  </modal.header>
+  <modal.body>
+
+    <div class="uk-flex">
+      <input
+        class="uk-input"
+        type="text"
+        placeholder={{t "caluma.analytics.filter-modal.filter-placeholder"}}
+        value={{this.newFilter}}
+        aria-label={{t "caluma.analytics.filter-modal.filter-placeholder"}}
+        {{on "input" this.updateNewFilter}}
+      />
+
+      <UkButton
+        @color="primary"
+        @disabled={{not this.newFilter}}
+        class="uk-flex uk-flex-middle"
+        {{on "click" this.addFilter}}
+      >
+        <UkIcon @icon="plus" @ratio="1.5" />
+      </UkButton>
+    </div>
+
+    <UkList
+      @divider="true"
+      class="uk-padding-small uk-padding-remove-left"
+      uk-overflow-auto
+      as |List|
+    >
+      {{#each this.filters as |filter|}}
+        <List.item class="uk-flex uk-flex-between uk-flex-middle">
+          <span>{{filter}}</span>
+          <button
+            type="button"
+            class="uk-icon-button"
+            uk-icon="trash"
+            name={{t "caluma.analytics.filter-modal.delete-filter"}}
+            {{on "click" (fn this.removeFilter filter)}}
+          >
+            <span hidden>{{t
+                "caluma.analytics.filter-modal.delete-filter"
+              }}</span>
+          </button>
+        </List.item>
+      {{else}}
+        <List.item>{{t "caluma.analytics.filter-modal.empty"}}</List.item>
+      {{/each}}
+      <List.item />
+    </UkList>
+  </modal.body>
+  <modal.footer class="uk-flex uk-flex-between">
+    <UkButton
+      @label={{t "caluma.analytics.cancel"}}
+      @onClick={{fn (mut this.visible) false}}
+    />
+    <UkButton
+      @color="primary"
+      @onClick={{perform this.saveField this.graphqlInput}}
+      @loading={{this.saveField.isRunning}}
+      @label={{t "caluma.analytics.save"}}
+    />
+  </modal.footer>
+</UkModal>
+{{yield
+  (component
+    (ensure-safe-component "uk-button") onClick=(fn (mut this.visible) true)
+  )
+}}

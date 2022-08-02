@@ -1,0 +1,30 @@
+{{#if @child}}
+  <span
+    data-test-field-select-seperator
+    uk-icon="icon: triangle-right; ratio: 1.5"
+    class="uk-width-auto uk-text-center uk-margin-auto-vertical"
+  ></span>
+{{/if}}
+<div ...attributes data-test-field-select-primary-selector={{not @child}}>
+  <PowerSelect
+    class={{this.selectedOption.value}}
+    @options={{this.options}}
+    @selected={{this.selectedOption}}
+    @onChange={{this.update}}
+    @triggerId={{this.fieldPath}}
+    @onOpen={{this.fetchOptions.perform}}
+    as |option|
+  >
+    {{option.label}}
+  </PowerSelect>
+</div>
+{{#if this.isBranch}}
+  <CaFieldSelect
+    data-test-field-select-secondary-selector
+    @child={{true}}
+    @onSelect={{@onSelect}}
+    @parentPath={{this.fieldPath}}
+    @selectedPath={{@selectedPath}}
+    @slug={{@slug}}
+  />
+{{/if}}

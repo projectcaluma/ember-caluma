@@ -1,0 +1,44 @@
+caluma:
+  analytics:
+    back: Zurück zur Liste
+    cancel: Abbrechen
+    save: Speichern
+    sections:
+      show-report: Auswertung {slug}
+      create-report: Auswertung erstellen
+      table: Resultate
+      fields: Felder
+    notification:
+      alias-exists: Alias existiert bereits!
+      field-invalid: Die Angaben zum Feld sind fehlerhaft.
+      delete-error: Beim Löschen ist ein Fehler aufgetreten.
+      create-error: Beim Erstellen ist ein Fehler aufgetreten.
+      fetch-error: Beim Laden der Daten ist ein Fehler aufgetreten.
+      filter-exists: Filter existiert bereits!!
+      field-saved: Feld gespeichert..
+    list:
+      list-title: Liste aller Auswertungen
+      edit: Bearbeiten
+    report:
+      new: Neue Auswertung anlegen
+      starting-object: Ausgangspunkt
+      title: Auswertungsname
+      delete: Auswertung löschen
+    edit:
+      field: Feld
+      add-field: Feld hinzufügen
+      delete-field: Feld löschen
+      question: Frage
+      display-title: Anzeigename
+      display-title-placeholder: Anzeigename...
+      aggregation: Aggregation
+      show-in-output: In Ausgabe anzeigen
+      filter: Filter
+      add-filters: Filter hinzufügen
+      edit-filters: "{num} Filter bearbeiten"
+      empty: Keine erfassten Felder
+    filter-modal:
+      filters: Filter
+      filter-placeholder: Filter...
+      delete-filter: Filter löschen
+      empty: Keine erfassten Filter

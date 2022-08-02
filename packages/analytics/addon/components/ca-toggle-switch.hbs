@@ -1,0 +1,19 @@
+<div class="uk-flex uk-flex-middle">
+  <@labelComponent />
+
+  <div
+    class="uk-form-controls uk-flex uk-flex-middle uk-margin-left"
+    ...attributes
+  >
+    <UkToggleSwitch
+      @value={{@value}}
+      @size={{@size}}
+      @name={{@name}}
+      @disabled={{@disabled}}
+      @onToggle={{@update}}
+    />
+  </div>
+
+  <@hintComponent />
+  <@errorComponent />
+</div>

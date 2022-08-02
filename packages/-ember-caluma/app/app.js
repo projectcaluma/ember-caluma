@@ -10,6 +10,11 @@ export default class App extends Application {
   Resolver = Resolver;
 
   engines = {
+    "@projectcaluma/ember-analytics": {
+      dependencies: {
+        services: ["apollo", "notification", "intl"],
+      },
+    },
     "@projectcaluma/ember-form-builder": {
       dependencies: {
         services: ["apollo", "notification", "intl", "caluma-options"],

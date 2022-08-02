@@ -1,0 +1,20 @@
+# import * from '@projectcaluma/ember-analytics/gql/fragments/analytics-table-result.graphql'
+
+query AnalyticsResults($slug: String!) {
+  analyticsTable(slug: $slug) {
+    id
+    resultData {
+      ...ResultData
+    }
+    fields {
+      edges {
+        node {
+          id
+          alias
+          function
+          showOutput
+        }
+      }
+    }
+  }
+}

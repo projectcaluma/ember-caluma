@@ -1,0 +1,22 @@
+fragment ResultData on AnalyticsOutput {
+  records {
+    edges {
+      node {
+        edges {
+          node {
+            alias
+            value
+          }
+        }
+      }
+    }
+  }
+  summary {
+    edges {
+      node {
+        alias
+        value
+      }
+    }
+  }
+}

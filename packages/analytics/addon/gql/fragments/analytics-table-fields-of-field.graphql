@@ -1,0 +1,11 @@
+# import * from '@projectcaluma/ember-analytics/gql/fragments/analytics-available-field.graphql'
+
+fragment AnalyticsTableFieldsOfField on AnalyticsTable {
+  availableFields(prefix: $prefix, depth: $depth) {
+    edges {
+      node {
+        ...AvailableField
+      }
+    }
+  }
+}

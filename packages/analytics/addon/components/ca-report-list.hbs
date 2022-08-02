@@ -1,0 +1,27 @@
+<div ...attributes>
+  <table class="uk-table uk-table-divider uk-table-striped uk-table-hover">
+    <caption>{{t "caluma.analytics.list.list-title"}}</caption>
+    <thead>
+      <tr>
+        <th>{{t "caluma.analytics.report.title"}}</th>
+        <th>{{t "caluma.analytics.report.starting-object"}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each @reports as |report|}}
+        <tr>
+          <td>
+            <LinkTo
+              data-test-report-list-item
+              @route="reports.edit.index"
+              @model={{report.slug}}
+            >
+              {{report.name}}
+            </LinkTo>
+          </td>
+          <td>{{report.startingObject}}</td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+</div>

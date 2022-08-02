@@ -1,0 +1,9 @@
+fragment AnalyticsField on AnalyticsField {
+  id
+  alias
+  meta
+  dataSource
+  function
+  showOutput
+  filters
+}

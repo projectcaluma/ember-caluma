@@ -1,0 +1,44 @@
+caluma:
+  analytics:
+    back: Back to the list
+    cancel: Cancel
+    save: Save
+    sections:
+      show-report: Report {slug}
+      create-report: Create report
+      table: Result table
+      fields: Fields
+    notification:
+      alias-exists: Alias already exists!
+      field-invalid: Please fix invalid field inputs.
+      delete-error: An error occurred while deleting.
+      create-error: An error occurred while saving.
+      fetch-error: An error occurred while loading the data.
+      filter-exists: Filter already exists!
+      field-saved: Field successfully saved.
+    list:
+      list-title: All reports
+      edit: Edit
+    report:
+      new: Create new report
+      starting-object: Starting point
+      title: Report title
+      delete: Delete report
+    edit:
+      field: Field
+      add-field: Add field
+      delete-field: Delete field
+      question: Question
+      display-title: Display Title
+      display-title-placeholder: Display Title
+      aggregation: Aggregation
+      show-in-output: Show in output
+      filter: Filter
+      add-filters: Add filters
+      edit-filters: Edit {num} filters
+      empty: There are no fields
+    filter-modal:
+      filters: Filter
+      filter-placeholder: Filter...
+      delete-filter: Delete filter
+      empty: There are no filters

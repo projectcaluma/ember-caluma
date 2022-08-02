@@ -1,0 +1,8 @@
+{{#if this.data.isRunning}}
+  <div class="uk-text-center">
+    <UkSpinner @ratio={{1}} />
+  </div>
+{{else}}
+  <CaFieldForm @analyticsTable={{this.data.value}} />
+  <CaFieldSelectorList @analyticsTable={{this.data.value}} />
+{{/if}}
