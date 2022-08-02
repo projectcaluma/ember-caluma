@@ -8482,10 +8482,10 @@ ember-engines-router-service@^0.3.0:
     ember-cli-babel "^7.18.0"
     ember-cli-htmlbars "^5.1.1"
 
-ember-engines@0.8.22, ember-engines@^0.8.22:
-  version "0.8.22"
-  resolved "https://registry.yarnpkg.com/ember-engines/-/ember-engines-0.8.22.tgz#c7159e9343ed5bbb77410dde8f001f17859aa8c9"
-  integrity sha512-BiWf4qQ7mJPHScCIyTiwSmVPpreapSDDwNhwi1jvIN3dVbdhAuVndHpSt6otHoceReV5+dtsboOoTZ1A4sLJMQ==
+ember-engines@0.8.23, ember-engines@^0.8.23:
+  version "0.8.23"
+  resolved "https://registry.yarnpkg.com/ember-engines/-/ember-engines-0.8.23.tgz#a3d87cf5682aa856d46d1e29fbdd0985c21197ae"
+  integrity sha512-rrvHUkZRNrf+9u/sCw7XYrITStjP/9Ypykk1nYQHoo+6Krp11e81QNVsGTXFpXtMHXbNtH5IcRyZvfSXqUOrUQ==
   dependencies:
     "@embroider/macros" "^1.3.0"
     amd-name-resolver "1.3.1"
