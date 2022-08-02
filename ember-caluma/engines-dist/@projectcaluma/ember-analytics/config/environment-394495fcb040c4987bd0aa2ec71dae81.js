@@ -1,0 +1,1 @@
+define("@projectcaluma/ember-analytics/config/environment",(function(){return{default:{modulePrefix:"@projectcaluma/ember-analytics","ember-validated-form":{theme:"uikit"},analytics:{functionChoices:["VALUE","SUM","COUNT","AVG","MAX","MIN"]}}}}))
