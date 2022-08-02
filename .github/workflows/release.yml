@@ -71,6 +71,8 @@ jobs:
       max-parallel: 1
       matrix:
         workspace:
+          # Analytics is not required anywhere
+          - "@projectcaluma/ember-analytics"
           - "@projectcaluma/ember-distribution"
 
     steps:
@@ -117,9 +119,6 @@ jobs:
       max-parallel: 1
       matrix:
         workspace:
-          # Remove this line and add it to release or release-beta-only job if
-          # the first beta or stable release is ready
-          - "@projectcaluma/ember-analytics"
           # The docs app needs to have all packages up-to-date
           - "ember-caluma"
 
