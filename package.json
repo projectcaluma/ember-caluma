@@ -56,10 +56,12 @@
     "semver": "7.3.7"
   },
   "//": [
-    "TODO: remove validated-changeset resolution when https://github.com/poteto/ember-changeset/issues/650 is addressed"
+    "TODO: remove validated-changeset resolution when https://github.com/poteto/ember-changeset/issues/650 is addressed",
+    "TODO: remove tracked-toolbox resolution when https://github.com/ember-learn/ember-cli-addon-docs/issues/1309 is addressed"
   ],
   "resolutions": {
-    "**/validated-changeset": "~1.3.2"
+    "**/validated-changeset": "~1.3.2",
+    "**/tracked-toolbox": "^1.2.3"
   },
   "release": {
     "extends": [
