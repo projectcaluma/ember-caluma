@@ -142,7 +142,9 @@ export default class CfbFormEditorQuestion extends Component {
     if (!forms.map) {
       return [];
     }
-    return forms.mapBy("node").filter((form) => form.slug !== this.args.form);
+    return forms
+      .filter((edge) => edge.node.slug !== this.args.form)
+      .map((edge) => edge.node);
   }
 
   @restartableTask
@@ -189,7 +191,7 @@ export default class CfbFormEditorQuestion extends Component {
   }
 
   get model() {
-    return this.data.lastSuccessful?.value?.firstObject?.node;
+    return this.data.lastSuccessful?.value?.[0]?.node;
   }
 
   get changeset() {

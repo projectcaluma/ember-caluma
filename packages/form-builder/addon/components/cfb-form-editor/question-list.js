@@ -35,7 +35,7 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
   get questions() {
     return this.mode === "add"
       ? this.questionTaskValue
-      : this.questionTaskValue.firstObject?.node.questions.edges;
+      : this.questionTaskValue[0]?.node.questions.edges;
   }
 
   // Use built in input component when it works instead of this getter and setter
