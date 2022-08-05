@@ -92,10 +92,10 @@ export default class QuestionMock extends BaseMock {
     });
   }
 
-  @register("SaveFileQuestionPayload")
-  handleSaveFileQuestion(_, { input }) {
+  @register("SaveFilesQuestionPayload")
+  handleSaveFilesQuestion(_, { input }) {
     return this.handleSavePayload.fn.call(this, _, {
-      input: { ...input, type: "FILE" },
+      input: { ...input, type: "FILES" },
     });
   }
 }

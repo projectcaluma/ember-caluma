@@ -1,4 +1,4 @@
-import { render, fillIn, click } from "@ember/test-helpers";
+import { render, fillIn, click, triggerEvent } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
@@ -44,6 +44,10 @@ module("Integration | Component | cf-content", function (hooks) {
         formIds: [form.id],
         type: "DATE",
       }),
+      this.server.create("question", {
+        formIds: [form.id],
+        type: "FILES",
+      }),
     ];
 
     const document = this.server.create("document", { formId: form.id });
@@ -88,6 +92,10 @@ module("Integration | Component | cf-content", function (hooks) {
             year: "numeric",
           })
         );
+      } else if (answer.type === "FILES") {
+        assert
+          .dom(`[data-test-file-list]`)
+          .containsText(answer.value?.[0]?.name);
       } else {
         assert.dom(`[name="${id}"]`).hasValue(String(answer.value));
       }
@@ -115,6 +123,8 @@ module("Integration | Component | cf-content", function (hooks) {
           .forEach(({ slug }) => {
             assert.dom(`[name="${id}"][value="${slug}"]`).isDisabled();
           });
+      } else if (question.type === "FILES") {
+        assert.dom(`[name="${id}"]`).isDisabled();
       } else {
         assert.dom(`[name="${id}"]`).hasAttribute("readonly");
         assert.dom(`[name="${id}"]`).hasClass("uk-disabled");
@@ -166,15 +176,11 @@ module("Integration | Component | cf-content", function (hooks) {
       slug: "date-question",
       type: "DATE",
     });
-    // The following questions is commented-out as we currently have a
-    // problem with GraphQL/Mirage and I didn't want to skip everything.
-    /*
     this.server.create("question", {
       formIds: [form.id],
-      slug: "file-question",
-      type: "FILE"
+      slug: "files-question",
+      type: "FILES",
     });
-    */
 
     radioQuestion.options.models.forEach((option, i) => {
       option.update({ slug: `${radioQuestion.slug}-option-${i + 1}` });
@@ -217,15 +223,12 @@ module("Integration | Component | cf-content", function (hooks) {
     );
     await click(`[name="Document:${document.id}:Question:date-question"]`);
     await Pikaday.selectDate(new Date(2019, 2, 25)); // month is zero based
-    // The following answers are commented-out as we currently have a
-    // problem with GraphQL/Mirage and I didn't want to skip everything.
-    /*
+
     await triggerEvent(
-      `[name="Document:${document.id}:Question:file-question"]`,
+      `[name="Document:${document.id}:Question:files-question"]`,
       "change",
-      [new File(["test"], "test.txt")]
+      { files: [new File(["test"], "test.txt")] }
     );
-    */
 
     assert.deepEqual(
       this.server.schema.documents
@@ -263,14 +266,14 @@ module("Integration | Component | cf-content", function (hooks) {
           slug: "date-question",
           value: "2019-03-25",
         },
-        // The following answers are commented-out as we currently have a
-        // problem with GraphQL/Mirage and I didn't want to skip everything.
-        /*,
         {
-          slug: "file-question",
-          value: { metadata: { object_name: "test.txt" } }
-        }
-        */
+          slug: "files-question",
+          value: [],
+          // This acutally should be the value underneath, but apollo replaces our uploadUrl
+          // to "Hello World" and ruins the show this way. Afterwards a catch block will reset the
+          // value to an empty array.
+          // value: [{ name: "test.txt" }]
+        },
       ]
     );
   });

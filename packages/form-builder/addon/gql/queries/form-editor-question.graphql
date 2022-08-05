@@ -163,7 +163,7 @@ query FormEditorQuestion($slug: String!) {
           calcExpression
           hintText
         }
-        ... on FileQuestion {
+        ... on FilesQuestion {
           hintText
         }
         ... on ActionButtonQuestion {

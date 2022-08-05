@@ -103,7 +103,7 @@ caluma:
         TextareaQuestion: "Text (mehrzeilig)"
         TableQuestion: "Tabelle"
         FormQuestion: "Formular"
-        FileQuestion: "Datei"
+        FilesQuestion: "Dateien"
         StaticQuestion: "Nichtinteraktiver Inhalt"
         DateQuestion: "Datum"
         DynamicMultipleChoiceQuestion: "Dynamische Mehrfachauswahl"

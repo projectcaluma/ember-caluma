@@ -515,7 +515,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     this.server.create("form", { slug: "test-form" });
 
     this.set("afterSubmit", (question) => {
-      assert.strictEqual(question.__typename, "FileQuestion");
+      assert.strictEqual(question.__typename, "FilesQuestion");
       assert.strictEqual(question.label, "Label");
       assert.strictEqual(question.slug, "slug");
 
@@ -526,7 +526,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       hbs`<CfbFormEditor::Question @form='test-form' @onAfterSubmit={{this.afterSubmit}}/>`
     );
 
-    await fillIn("[name=__typename]", "FileQuestion");
+    await fillIn("[name=__typename]", "FilesQuestion");
     await fillIn("[name=label]", "Label");
     await fillIn("[name=slug]", "slug");
 

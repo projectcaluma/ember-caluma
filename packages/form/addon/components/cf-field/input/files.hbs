@@ -1,0 +1,35 @@
+<div class="uk-flex-middle uk-grid-divider uk-grid-column-small" uk-grid>
+  <div uk-form-custom="target: true">
+
+    <input
+      type="file"
+      name={{@field.pk}}
+      id={{@field.pk}}
+      disabled={{@disabled}}
+      multiple
+      {{on "change" this.save}}
+    />
+    <UkButton disabled={{@disabled}}>
+      {{t "caluma.form.selectFile"}}
+    </UkButton>
+  </div>
+  <ul class="uk-list uk-list-collapse" data-test-file-list={{@field.pk}}>
+    {{#each this.files as |file|}}
+      <li class="uk-text-justify uk-text-middle">
+        <UkButton
+          data-test-download-link={{file.id}}
+          @color="link"
+          @onClick={{fn this.download file.id}}
+        >
+          {{file.name}}
+        </UkButton>
+        <UkIcon
+          class="uk-icon-button uk-margin-small-left"
+          role="button"
+          @icon="trash"
+          {{on "click" (fn this.delete file.id)}}
+        />
+      </li>
+    {{/each}}
+  </ul>
+</div>

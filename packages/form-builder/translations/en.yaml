@@ -103,7 +103,7 @@ caluma:
         TextareaQuestion: "Textarea"
         TableQuestion: "Table"
         FormQuestion: "Form"
-        FileQuestion: "File"
+        FilesQuestion: "Files"
         StaticQuestion: "Non-interactive content"
         DateQuestion: "Date"
         DynamicMultipleChoiceQuestion: "Dynamic choices"

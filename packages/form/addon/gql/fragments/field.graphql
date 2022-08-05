@@ -117,7 +117,7 @@ fragment SimpleQuestion on Question {
     calcExpression
     hintText
   }
-  ... on FileQuestion {
+  ... on FilesQuestion {
     hintText
   }
   ... on ActionButtonQuestion {
@@ -234,8 +234,8 @@ fragment SimpleAnswer on Answer {
   ... on ListAnswer {
     listValue: value
   }
-  ... on FileAnswer {
-    fileValue: value {
+  ... on FilesAnswer {
+    filesValue: value {
       id
       uploadUrl
       downloadUrl

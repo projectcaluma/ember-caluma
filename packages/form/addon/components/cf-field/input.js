@@ -4,7 +4,7 @@ import Component from "@glimmer/component";
 import ActionButtonComponent from "@projectcaluma/ember-form/components/cf-field/input/action-button";
 import CheckboxComponent from "@projectcaluma/ember-form/components/cf-field/input/checkbox";
 import DateComponent from "@projectcaluma/ember-form/components/cf-field/input/date";
-import FileComponent from "@projectcaluma/ember-form/components/cf-field/input/file";
+import FilesComponent from "@projectcaluma/ember-form/components/cf-field/input/files";
 import FloatComponent from "@projectcaluma/ember-form/components/cf-field/input/float";
 import IntegerComponent from "@projectcaluma/ember-form/components/cf-field/input/integer";
 import RadioComponent from "@projectcaluma/ember-form/components/cf-field/input/radio";
@@ -20,7 +20,7 @@ const COMPONENT_MAPPING = {
   DateQuestion: DateComponent,
   DynamicChoiceQuestion: RadioComponent,
   DynamicMultipleChoiceQuestion: CheckboxComponent,
-  FileQuestion: FileComponent,
+  FilesQuestion: FilesComponent,
   FloatQuestion: FloatComponent,
   IntegerQuestion: IntegerComponent,
   MultipleChoiceQuestion: CheckboxComponent,

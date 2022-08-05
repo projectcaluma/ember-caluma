@@ -13,7 +13,7 @@ import { cached } from "tracked-toolbox";
 
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 import saveDocumentDateAnswerMutation from "@projectcaluma/ember-form/gql/mutations/save-document-date-answer.graphql";
-import saveDocumentFileAnswerMutation from "@projectcaluma/ember-form/gql/mutations/save-document-file-answer.graphql";
+import saveDocumentFilesAnswerMutation from "@projectcaluma/ember-form/gql/mutations/save-document-files-answer.graphql";
 import saveDocumentFloatAnswerMutation from "@projectcaluma/ember-form/gql/mutations/save-document-float-answer.graphql";
 import saveDocumentIntegerAnswerMutation from "@projectcaluma/ember-form/gql/mutations/save-document-integer-answer.graphql";
 import saveDocumentListAnswerMutation from "@projectcaluma/ember-form/gql/mutations/save-document-list-answer.graphql";
@@ -34,7 +34,7 @@ export const TYPE_MAP = {
   DynamicChoiceQuestion: "StringAnswer",
   TableQuestion: "TableAnswer",
   FormQuestion: null,
-  FileQuestion: "FileAnswer",
+  FilesQuestion: "FilesAnswer",
   StaticQuestion: null,
   DateQuestion: "DateAnswer",
 };
@@ -44,7 +44,7 @@ const MUTATION_MAP = {
   IntegerAnswer: saveDocumentIntegerAnswerMutation,
   StringAnswer: saveDocumentStringAnswerMutation,
   ListAnswer: saveDocumentListAnswerMutation,
-  FileAnswer: saveDocumentFileAnswerMutation,
+  FilesAnswer: saveDocumentFilesAnswerMutation,
   DateAnswer: saveDocumentDateAnswerMutation,
   TableAnswer: saveDocumentTableAnswerMutation,
 };
@@ -810,11 +810,11 @@ export default class Field extends Base {
   /**
    * Dummy method for the validation of file uploads.
    *
-   * @method _validateFileQuestion
+   * @method _validateFilesQuestion
    * @return {Boolean} Always returns true
    * @private
    */
-  _validateFileQuestion() {
+  _validateFilesQuestion() {
     return true;
   }
 
