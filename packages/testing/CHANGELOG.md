@@ -1027,7 +1027,7 @@ need to install this.
 * **cf-navigation:** add compute watcher on hidden state ([#225](https://github.com/projectcaluma/ember-caluma/issues/225)) ([41ba470](https://github.com/projectcaluma/ember-caluma/commit/41ba470))
 * **cf-navigation:** add minor safety checks ([#217](https://github.com/projectcaluma/ember-caluma/issues/217)) ([cf3ca9e](https://github.com/projectcaluma/ember-caluma/commit/cf3ca9e))
 * **deps:** remove obsolete dependency ([be4dbad](https://github.com/projectcaluma/ember-caluma/commit/be4dbad))
-* **deps:** update @adfinis-sygroup/semantic-release-config ([2225e00](https://github.com/projectcaluma/ember-caluma/commit/2225e00))
+* **deps:** update @adfinis/semantic-release-config ([2225e00](https://github.com/projectcaluma/ember-caluma/commit/2225e00))
 * **deps:** update dependency ember-uikit to ^0.8.0 ([#219](https://github.com/projectcaluma/ember-caluma/issues/219)) ([28a841b](https://github.com/projectcaluma/ember-caluma/commit/28a841b))
 * **deps:** update dependency ember-uikit to v0.8.1 ([#223](https://github.com/projectcaluma/ember-caluma/issues/223)) ([b892a50](https://github.com/projectcaluma/ember-caluma/commit/b892a50))
 * **deps:** update dependency graphql to v14.3.0 ([#208](https://github.com/projectcaluma/ember-caluma/issues/208)) ([6cf38cc](https://github.com/projectcaluma/ember-caluma/commit/6cf38cc))

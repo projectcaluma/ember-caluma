@@ -2,14 +2,14 @@
 # yarn lockfile v1
 
 
-"@adfinis-sygroup/eslint-config@1.5.0":
+"@adfinis/eslint-config@1.5.0":
   version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@adfinis-sygroup/eslint-config/-/eslint-config-1.5.0.tgz#559ed9aef2311cb48a284b2f43d30c7e616e129a"
+  resolved "https://registry.yarnpkg.com/@adfinis/eslint-config/-/eslint-config-1.5.0.tgz#559ed9aef2311cb48a284b2f43d30c7e616e129a"
   integrity sha512-BhHH00dJC5fJmz0lf16e355a1ecPzKR4hPpCcYUzzZWb5Ti1OkrAG0ZZxrF6gCIt+0DummdqgRUr74r/zdFNBg==
 
-"@adfinis-sygroup/semantic-release-config@3.4.0":
+"@adfinis/semantic-release-config@3.4.0":
   version "3.4.0"
-  resolved "https://registry.yarnpkg.com/@adfinis-sygroup/semantic-release-config/-/semantic-release-config-3.4.0.tgz#3ed832f7ca1af4367a235dc82a895e41982b7238"
+  resolved "https://registry.yarnpkg.com/@adfinis/semantic-release-config/-/semantic-release-config-3.4.0.tgz#3ed832f7ca1af4367a235dc82a895e41982b7238"
   integrity sha512-/ijJNxWO2tpJr3S15qcAXmhHyrUFpGNNcmSnirD2x0AvRt/+aAECydE69oEN+rQdDUDICOAJFllTpa212+1LYQ==
   dependencies:
     "@commitlint/cli" "^16.0.2"

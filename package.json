@@ -31,8 +31,8 @@
     "*.{scss,graphql,json,md,yaml}": "prettier --write"
   },
   "devDependencies": {
-    "@adfinis-sygroup/eslint-config": "1.5.0",
-    "@adfinis-sygroup/semantic-release-config": "3.4.0",
+    "@adfinis/eslint-config": "1.5.0",
+    "@adfinis/semantic-release-config": "3.4.0",
     "@graphql-eslint/eslint-plugin": "3.10.6",
     "babel-eslint": "10.1.0",
     "ember-template-lint": "4.10.1",
@@ -65,7 +65,7 @@
   },
   "release": {
     "extends": [
-      "@adfinis-sygroup/semantic-release-config",
+      "@adfinis/semantic-release-config",
       "semantic-release-monorepo"
     ]
   }
