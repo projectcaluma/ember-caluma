@@ -1,3 +1,14 @@
+# [@projectcaluma/ember-form-v11.0.0-beta.22](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.21...@projectcaluma/ember-form-v11.0.0-beta.22) (2022-08-05)
+
+
+* feat!: add multi file upload (#2040) ([c4fd004](https://github.com/projectcaluma/ember-caluma/commit/c4fd0049654b2d2e5ea62e5909a45d89cb888b40)), closes [#2040](https://github.com/projectcaluma/ember-caluma/issues/2040)
+
+
+### BREAKING CHANGES
+
+* This requires the caluma backend version v8.0.0-beta.12
+or later.
+
 # [@projectcaluma/ember-form-v11.0.0-beta.21](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.20...@projectcaluma/ember-form-v11.0.0-beta.21) (2022-06-09)
 
 
