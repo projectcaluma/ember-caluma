@@ -40,5 +40,15 @@ module.exports = {
         "@graphql-eslint/selection-set-depth": ["off"],
       },
     },
+    // Mirage
+    {
+      files: [
+        "./packages/*/tests/**/*.js",
+        "./packages/testing/addon/mirage-graphql/**/*.js",
+      ],
+      rules: {
+        "ember/no-array-prototype-extensions": ["off"],
+      },
+    },
   ],
 };
