@@ -166,7 +166,8 @@ module("Integration | Component | cf-field/input/checkbox", function (hooks) {
       />
     `);
 
-    assert.dom("label input[type=checkbox]").isDisabled();
+    // the checkbox needs to be enabled in order to be deselected
+    assert.dom("label input[type=checkbox]").isEnabled();
     assert
       .dom("label del.uk-text-muted")
       .hasAttribute("title", "t:caluma.form.optionNotAvailable:()");
