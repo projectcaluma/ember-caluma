@@ -619,6 +619,7 @@ input CaseFilterSetType {
   metaHasKey: String
   metaValue: [JSONValueFilterType]
   id: ID
+  ids: [ID]
   documentForm: String
   documentForms: [String]
   hasAnswer: [HasAnswerFilterType]
@@ -1409,7 +1410,6 @@ type FilesAnswer implements Answer & Node {
   question: Question!
   value: [File]!
   meta: GenericScalar!
-  file: File
 }
 
 type FilesQuestion implements Question & Node {
@@ -2484,6 +2484,10 @@ type RemoveFormQuestionPayload {
 
 input ReopenCaseInput {
   id: ID!
+
+  """
+  List of work item ids to be readied when the case is reopened
+  """
   workItems: [ID]!
 
   """
@@ -2841,16 +2845,11 @@ type SaveDocumentDateAnswerPayload {
 }
 
 input SaveDocumentFilesAnswerInput {
+  value: [SaveFile]
   question: ID!
   document: ID!
   meta: JSONString
-  value: [SaveFile]
   clientMutationId: String
-}
-
-input SaveFile {
-  id: String
-  name: String
 }
 
 type SaveDocumentFilesAnswerPayload {
@@ -2973,6 +2972,11 @@ input SaveDynamicMultipleChoiceQuestionInput {
 type SaveDynamicMultipleChoiceQuestionPayload {
   question: Question
   clientMutationId: String
+}
+
+input SaveFile {
+  id: String
+  name: String
 }
 
 input SaveFilesQuestionInput {
@@ -3280,9 +3284,16 @@ type SaveWorkItemPayload {
 
 """
 Lookup type to search in answers.
+
+You may pass in a list of question slugs and/or a list of form slugs to define
+which answers to search. If you pass in one or more forms, answers to the
+questions in that form will be searched. If you pass in one or more question
+slug, the corresponding answers are searched. If you pass both, a superset
+of both is searched (ie. they do not limit each other).
 """
 input SearchAnswersFilterType {
-  questions: [ID]!
+  questions: [ID]
+  forms: [ID]
   value: GenericScalar!
   lookup: SearchLookupMode
 }
@@ -3393,13 +3404,8 @@ enum SortableAnswerAttributes {
 enum SortableCaseAttributes {
   CREATED_AT
   MODIFIED_AT
-  ALLOW_ALL_FORMS
-  DESCRIPTION
-  IS_ARCHIVED
-  IS_PUBLISHED
-  NAME
   STATUS
-  SLUG
+  DOCUMENT__FORM__NAME
 }
 
 enum SortableDocumentAttributes {
@@ -3458,12 +3464,10 @@ enum SortableQuestionAttributes {
 enum SortableTaskAttributes {
   CREATED_AT
   MODIFIED_AT
-  ALLOW_ALL_FORMS
   LEAD_TIME
   TYPE
   DESCRIPTION
   IS_ARCHIVED
-  IS_PUBLISHED
   NAME
   SLUG
 }
@@ -3483,10 +3487,7 @@ enum SortableWorkItemAttributes {
   CREATED_AT
   MODIFIED_AT
   CLOSED_AT
-  ALLOW_ALL_FORMS
   DESCRIPTION
-  IS_ARCHIVED
-  IS_PUBLISHED
   NAME
   DEADLINE
   STATUS
