@@ -15,7 +15,7 @@
     "@ember/jquery": "2.0.0",
     "@ember/optional-features": "2.0.0",
     "@embroider/macros": "1.8.3",
-    "@faker-js/faker": "7.3.0",
+    "@faker-js/faker": "7.4.0",
     "@glimmer/component": "1.1.2",
     "@glimmer/tracking": "1.1.2",
     "@projectcaluma/ember-analytics": "1.0.0-beta.1",
