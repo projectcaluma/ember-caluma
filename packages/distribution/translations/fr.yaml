@@ -9,6 +9,7 @@ caluma:
       "Il y a <b>{count} {count, plural, =1 {demande} other {demandes}} en
       attente</b> sur la distribution actuelle. Si vous terminez la distribution,
       toutes les demandes en attente seront annulées. Voulez-vous continuer ?"
+    complete-confirm-empty: "Vous voulez vraiment fermer la circulation ?"
     send-error: "Erreur lors de l'envoi des demandes ouvertes"
     complete-error: "Erreur lors de la terminaison de la distribution"
 
