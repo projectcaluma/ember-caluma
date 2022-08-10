@@ -33,14 +33,14 @@ export default class CdNavigationControlsComponent extends Component {
         "allWorkItems.totalCount"
       );
 
-      if (
-        incompleteInquiries > 0 &&
-        !(yield confirm(
-          this.intl.t("caluma.distribution.complete-confirm", {
-            count: incompleteInquiries,
-          })
-        ))
-      ) {
+      const confirmText =
+        incompleteInquiries === 0
+          ? this.intl.t("caluma.distribution.complete-confirm-empty")
+          : this.intl.t("caluma.distribution.complete-confirm", {
+              count: incompleteInquiries,
+            });
+
+      if (!(yield confirm(confirmText))) {
         return;
       }
 

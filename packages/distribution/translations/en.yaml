@@ -10,6 +10,7 @@ caluma:
       {count, plural, =1 {inquiry} other {inquiries}}</b> on the current
       distribution. Completing the distribution will cause all remaining
       pending inquiries to be canceled. Would you like to continue?"
+    complete-confirm-empty: "Do you really want to complete the distribution?"
     send-error: "Error while sending pending inquiries"
     complete-error: "Error while completing distribution"
 
