@@ -120,4 +120,44 @@ module("Unit | Mirage GraphQL Filter | base", function (hooks) {
       this.collection
     );
   });
+
+  test("can inverse any filter", async function (assert) {
+    assert.deepEqual(
+      this.filter.filter(this.collection, {
+        filter: [
+          {
+            slug: "test-1",
+            invert: true,
+          },
+        ],
+      }),
+      this.collection.filter(({ slug }) => slug !== "test-1")
+    );
+
+    assert.deepEqual(
+      this.filter.filter(this.collection, {
+        filter: [
+          {
+            slugs: ["test-1", "test-2"],
+            invert: true,
+          },
+        ],
+      }),
+      this.collection.filter(
+        ({ slug }) => slug !== "test-1" && slug !== "test-2"
+      )
+    );
+
+    assert.deepEqual(
+      this.filter.filter(this.collection, {
+        filter: [
+          {
+            createdByGroup: "1",
+            invert: true,
+          },
+        ],
+      }),
+      this.collection.filter(({ createdByGroup }) => createdByGroup !== "1")
+    );
+  });
 });
