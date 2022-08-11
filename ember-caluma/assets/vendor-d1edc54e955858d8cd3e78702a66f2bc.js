@@ -7812,7 +7812,11 @@ return{...e,[i]:n}}),{})}})).map((e=>{let{key:t,value:i,options:n={}}=e
 const r=this[t]
 return"function"!=typeof r||[null,void 0].includes(i)?e=>e:e=>r.call(this,e,i,n)}))}sort(e,i){return i?e.sort(((e,n)=>i.map((i=>{const r=(0,t.camelize)(i.attribute.toLowerCase()),a="ASC"===i.direction?-1:1
 return(n[r]-e[r])*a})).find((e=>0!==e))??0)):e}filter(e,t){return this._getFilterFns(t?.filter??[]).reduce(((e,t)=>t(e)),this.sort(e,t?.order))}find(e,t){return this.filter(e,t)[0]||null}slug(e,t){return this.slugs(e,[t])}slugs(e,t){return e.filter((e=>{let{slug:i}=e
-return t.includes(i)}))}id(e,t){return null==t?[]:e.filter((e=>{let{id:i,slug:n}=e
+return t.includes(i)}))}createdByUser(e,t){return e.filter((e=>{let{createdByUser:i}=e
+return i===t}))}createdByGroup(e,t){return e.filter((e=>{let{createdByGroup:i}=e
+return i===t}))}modifiedByUser(e,t){return e.filter((e=>{let{modifiedByUser:i}=e
+return i===t}))}modifiedByGroup(e,t){return e.filter((e=>{let{modifiedByGroup:i}=e
+return i===t}))}id(e,t){return null==t?[]:e.filter((e=>{let{id:i,slug:n}=e
 return i===t||n===t||btoa(`${this.type}:${i}`)===t||btoa(`${this.type}:${n}`)===t}))}}})),define("@projectcaluma/ember-testing/mirage-graphql/filters/form",["exports","@projectcaluma/ember-testing/mirage-graphql/filters/base"],(function(e,t){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 class i extends t.default{isArchived(e,t){return e.filter((e=>{let{isArchived:i}=e
