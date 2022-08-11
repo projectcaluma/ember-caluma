@@ -11,4 +11,8 @@ export default Factory.extend({
   isArchived: false,
   isPublished: true,
   meta: () => ({}),
+  createdByUser: () => faker.random.numeric(10),
+  createdByGroup: () => faker.random.numeric(10),
+  modifiedByUser: () => faker.random.numeric(10),
+  modifiedByGroup: () => faker.random.numeric(10),
 });
