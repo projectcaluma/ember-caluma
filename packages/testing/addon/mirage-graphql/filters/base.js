@@ -64,6 +64,22 @@ export default class BaseFilter {
     return records.filter(({ slug }) => values.includes(slug));
   }
 
+  createdByUser(records, value) {
+    return records.filter(({ createdByUser }) => createdByUser === value);
+  }
+
+  createdByGroup(records, value) {
+    return records.filter(({ createdByGroup }) => createdByGroup === value);
+  }
+
+  modifiedByUser(records, value) {
+    return records.filter(({ modifiedByUser }) => modifiedByUser === value);
+  }
+
+  modifiedByGroup(records, value) {
+    return records.filter(({ modifiedByGroup }) => modifiedByGroup === value);
+  }
+
   id(records, value) {
     if (value === undefined || value === null) {
       return [];
