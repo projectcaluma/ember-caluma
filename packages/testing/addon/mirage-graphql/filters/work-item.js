@@ -1,27 +1,27 @@
 import BaseFilter from "@projectcaluma/ember-testing/mirage-graphql/filters/base";
 
 export default class WorkItemFilter extends BaseFilter {
-  status(records, value, { invert = false }) {
-    return records.filter(({ status }) => invert !== (status === value));
+  status(records, value) {
+    return records.filter(({ status }) => status === value);
   }
 
-  tasks(records, value, { invert = false }) {
-    return records.filter((record) => invert !== value.includes(record.taskId));
+  tasks(records, value) {
+    return records.filter((record) => value.includes(record.taskId));
   }
 
-  task(records, value, { invert = false }) {
-    return this.tasks(records, [value], { invert });
+  task(records, value) {
+    return this.tasks(records, [value]);
   }
 
-  controllingGroups(records, value, { invert = false }) {
+  controllingGroups(records, value) {
     return records.filter((record) =>
-      value.every((g) => invert !== record.controllingGroups?.includes(g))
+      value.every((g) => record.controllingGroups?.includes(g))
     );
   }
 
-  addressedGroups(records, value, { invert = false }) {
+  addressedGroups(records, value) {
     return records.filter((record) =>
-      value.every((g) => invert !== record.addressedGroups?.includes(g))
+      value.every((g) => record.addressedGroups?.includes(g))
     );
   }
 }
