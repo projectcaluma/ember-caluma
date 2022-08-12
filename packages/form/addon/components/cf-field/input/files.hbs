@@ -23,12 +23,15 @@
         >
           {{file.name}}
         </UkButton>
-        <UkIcon
-          class="uk-icon-button uk-margin-small-left"
-          role="button"
-          @icon="trash"
-          {{on "click" (fn this.delete file.id)}}
-        />
+        {{#unless @disabled}}
+          <UkIcon
+            data-test-delete={{file.id}}
+            class="uk-icon-button uk-margin-small-left"
+            role="button"
+            @icon="trash"
+            {{on "click" (fn this.delete file.id)}}
+          />
+        {{/unless}}
       </li>
     {{/each}}
   </ul>
