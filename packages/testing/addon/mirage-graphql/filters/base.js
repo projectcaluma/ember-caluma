@@ -23,7 +23,12 @@ export default class BaseFilter {
       const fn = this[key];
 
       return typeof fn === "function" && ![null, undefined].includes(value)
-        ? (records) => fn.call(this, records, value, options)
+        ? (records) => {
+            const filteredRecords = fn.call(this, records, value, options);
+            return options?.invert
+              ? records.filter((record) => !filteredRecords.includes(record))
+              : filteredRecords;
+          }
         : (records) => records;
     });
   }
