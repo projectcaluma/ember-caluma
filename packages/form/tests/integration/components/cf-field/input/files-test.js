@@ -110,4 +110,26 @@ module("Integration | Component | cf-field/input/files", function (hooks) {
     // eslint-disable-next-line require-atomic-updates
     window.open = window_open;
   });
+
+  test("it disables all controls when field is disabled", async function (assert) {
+    assert.expect(2);
+
+    const file = this.server.create("file");
+
+    this.field = {
+      answer: {
+        raw: {
+          id: btoa("FilesAnswer:1"),
+        },
+        value: [file],
+      },
+    };
+
+    await render(
+      hbs`<CfField::Input::Files @field={{this.field}} @disabled={{true}} />`
+    );
+
+    assert.dom("input[type=file]").isDisabled();
+    assert.dom(`[data-test-delete="${file.id}"]`).isNotVisible();
+  });
 });
