@@ -1,3 +1,10 @@
+# [@projectcaluma/ember-distribution-v1.0.0-beta.16](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-distribution-v1.0.0-beta.15...@projectcaluma/ember-distribution-v1.0.0-beta.16) (2022-08-15)
+
+
+### Features
+
+* **distribution:** always show confirmation dialog when completing ([507e062](https://github.com/projectcaluma/ember-caluma/commit/507e062afa32e7d4b8d64a2016a4c795a6e632cf))
+
 # [@projectcaluma/ember-distribution-v1.0.0-beta.15](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-distribution-v1.0.0-beta.14...@projectcaluma/ember-distribution-v1.0.0-beta.15) (2022-07-18)
 
 
