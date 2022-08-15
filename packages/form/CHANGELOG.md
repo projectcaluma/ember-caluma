@@ -1,3 +1,11 @@
+# [@projectcaluma/ember-form-v11.0.0-beta.23](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.22...@projectcaluma/ember-form-v11.0.0-beta.23) (2022-08-15)
+
+
+### Bug Fixes
+
+* **files:** disable delete button when field is disabled ([#2086](https://github.com/projectcaluma/ember-caluma/issues/2086)) ([2055c53](https://github.com/projectcaluma/ember-caluma/commit/2055c53cbcfe07fbdcfa46e6042a763b4b643d65))
+* **form:** allow deselecting disabled multiple choice options ([0dd663e](https://github.com/projectcaluma/ember-caluma/commit/0dd663e467b66f0f8742d667630c28255e03e161))
+
 # [@projectcaluma/ember-form-v11.0.0-beta.22](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-form-v11.0.0-beta.21...@projectcaluma/ember-form-v11.0.0-beta.22) (2022-08-05)
 
 
