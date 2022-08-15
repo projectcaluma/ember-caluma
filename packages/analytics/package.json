@@ -43,7 +43,7 @@
     "@embroider/test-setup": "1.8.3",
     "@glimmer/component": "1.1.2",
     "@glimmer/tracking": "1.1.2",
-    "@projectcaluma/ember-testing": "^11.0.0-beta.10",
+    "@projectcaluma/ember-testing": "^11.0.0-beta.11",
     "broccoli-asset-rev": "3.0.0",
     "ember-changeset": "^4.1.0",
     "ember-changeset-validations": "^4.1.0",
