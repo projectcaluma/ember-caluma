@@ -1,3 +1,11 @@
+# [@projectcaluma/ember-testing-v11.0.0-beta.11](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-testing-v11.0.0-beta.10...@projectcaluma/ember-testing-v11.0.0-beta.11) (2022-08-15)
+
+
+### Features
+
+* **testing:** add createdBy and modifiedBy filters ([c6ace21](https://github.com/projectcaluma/ember-caluma/commit/c6ace21c573d45da6f99c0bc2de076c507f4f056))
+* **testing:** allow inverting of filters ([88ab05d](https://github.com/projectcaluma/ember-caluma/commit/88ab05d4c01275e835d79c22451592666cec4db2))
+
 # [@projectcaluma/ember-testing-v11.0.0-beta.10](https://github.com/projectcaluma/ember-caluma/compare/@projectcaluma/ember-testing-v11.0.0-beta.9...@projectcaluma/ember-testing-v11.0.0-beta.10) (2022-08-05)
 
 
