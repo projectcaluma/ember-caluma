@@ -25,7 +25,7 @@
     "ember-engines-router-service": "^0.3.0",
     "ember-fetch": "^8.1.2",
     "ember-intl": "^5.7.0",
-    "ember-power-select": "6.0.0",
+    "ember-power-select": "6.0.1",
     "ember-resources": "^5.2.1",
     "ember-uikit": "^5.0.0",
     "ember-validated-form": "^5.3.0",
