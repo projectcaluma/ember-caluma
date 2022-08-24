@@ -16,7 +16,8 @@ export default class DistributionEngine extends Engine {
       "notification",
       "intl",
       "caluma-options",
-      "store", // this is just in case that a custom form widget uses the store
+      // this is just in case that a custom form widget uses the store or fetch service
+      "store",
       "fetch",
     ],
   };
