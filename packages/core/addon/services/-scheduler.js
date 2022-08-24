@@ -37,7 +37,7 @@ function typeResolver(type) {
       ? yield this.calumaOptions[methodName]?.(uncachedIdentifiers)
       : [];
 
-    const allResults = [...cached, ...result];
+    const allResults = [...cached, ...(result?.toArray?.() ?? result ?? [])];
 
     if (result?.length) {
       this[`${type}Cache`] = allResults;
