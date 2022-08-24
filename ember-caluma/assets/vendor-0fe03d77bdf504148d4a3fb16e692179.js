@@ -10506,7 +10506,7 @@ var u
 "undefined"==typeof FastBoot&&("function"!=typeof(u=window.Element.prototype).matches&&(u.matches=u.msMatchesSelector||u.mozMatchesSelector||u.webkitMatchesSelector),"function"!=typeof u.closest&&(u.closest=function(e){let t=this
 for(;null!==t&&1===t.nodeType;){if(t.matches(e))return t
 t=t.parentNode}return null}))
-let c=(a=class extends n.default{constructor(){super(...arguments),o(this,"isTouchDevice",d),o(this,"hasMoved",!1),o(this,"mouseOverHandler",(e=>{})),o(this,"mouseUpHandler",(e=>{})),o(this,"touchEndHandler",(e=>{})),o(this,"touchMoveHandler",(e=>{})),o(this,"touchStartHandler",(e=>{}))}addHandlers(e){let t=e.getAttribute("role")
+let c=(a=class extends n.default{constructor(){super(...arguments),o(this,"isTouchDevice",this.args.extra?._isTouchDevice||d),o(this,"touchMoveEvent",void 0),o(this,"mouseOverHandler",(e=>{})),o(this,"mouseUpHandler",(e=>{})),o(this,"touchEndHandler",(e=>{})),o(this,"touchMoveHandler",(e=>{})),o(this,"touchStartHandler",(e=>{}))}addHandlers(e){let t=e.getAttribute("role")
 if("group"===t)return
 let i=(e,t)=>{if(null===t.target)return
 let i=t.target.closest("[data-option-index]")
@@ -10514,15 +10514,20 @@ if(!i)return
 if(i.closest("[aria-disabled=true]"))return
 let n=i.getAttribute("data-option-index")
 null!==n&&e(this._optionFromIndex(n),t)}
-this.mouseUpHandler=e=>i(this.args.select.actions.choose,e),e.addEventListener("mouseup",this.mouseUpHandler),this.args.highlightOnHover&&(this.mouseOverHandler=e=>i(this.args.select.actions.highlight,e),e.addEventListener("mouseover",this.mouseOverHandler)),this.isTouchDevice&&(this.touchMoveHandler=t=>{this.hasMoved=!0,e&&e.removeEventListener("touchmove",this.touchMoveHandler)},this.touchStartHandler=t=>{e.addEventListener("touchmove",this.touchMoveHandler)},this.touchEndHandler=e=>{if(null===e.target)return
+this.mouseUpHandler=e=>i(this.args.select.actions.choose,e),e.addEventListener("mouseup",this.mouseUpHandler),this.args.highlightOnHover&&(this.mouseOverHandler=e=>i(this.args.select.actions.highlight,e),e.addEventListener("mouseover",this.mouseOverHandler)),this.isTouchDevice&&(this.touchMoveHandler=t=>{this.touchMoveEvent=t,e&&e.removeEventListener("touchmove",this.touchMoveHandler)},this.touchStartHandler=t=>{e.addEventListener("touchmove",this.touchMoveHandler)},this.touchEndHandler=e=>{if(null===e.target)return
 let t=e.target.closest("[data-option-index]")
 if(null===t)return
-if(e.preventDefault(),this.hasMoved)return void(this.hasMoved=!1)
+if(e.preventDefault(),this._hasMoved(e))return void(this.touchMoveEvent=void 0)
 if(t.closest("[aria-disabled=true]"))return
 let i=t.getAttribute("data-option-index")
 null!==i&&this.args.select.actions.choose(this._optionFromIndex(i),e)},e.addEventListener("touchstart",this.touchStartHandler),e.addEventListener("touchend",this.touchEndHandler)),"group"!==t&&this.args.select.actions.scrollTo(this.args.select.highlighted)}removeHandlers(e){e.removeEventListener("mouseup",this.mouseUpHandler),e.removeEventListener("mouseover",this.mouseOverHandler),e.removeEventListener("touchstart",this.touchStartHandler),e.removeEventListener("touchmove",this.touchMoveHandler),e.removeEventListener("touchend",this.touchEndHandler)}_optionFromIndex(e){let t=e.split("."),i=this.args.options[parseInt(t[0],10)]
 for(let n=1;n<t.length;n++)i=i.options[parseInt(t[n],10)]
-return i}},l(a.prototype,"addHandlers",[r.action],Object.getOwnPropertyDescriptor(a.prototype,"addHandlers"),a.prototype),l(a.prototype,"removeHandlers",[r.action],Object.getOwnPropertyDescriptor(a.prototype,"removeHandlers"),a.prototype),a)
+return i}_hasMoved(e){let t=this.touchMoveEvent
+if(!t)return!1
+let i=t.changedTouches[0]
+if(!e.changedTouches?.[0]||"stylus"!==i.touchType)return!0
+let n=Math.abs(i.pageX-e.changedTouches[0].pageX),r=Math.abs(i.pageY-e.changedTouches[0].pageY)
+return n>=5||r>=5}},l(a.prototype,"addHandlers",[r.action],Object.getOwnPropertyDescriptor(a.prototype,"addHandlers"),a.prototype),l(a.prototype,"removeHandlers",[r.action],Object.getOwnPropertyDescriptor(a.prototype,"removeHandlers"),a.prototype),a)
 e.default=c,(0,t.setComponentTemplate)(s,c)})),define("ember-power-select/components/power-select/placeholder",["exports","@ember/component","@ember/template-factory","@ember/component/template-only"],(function(e,t,i,n){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 const r=(0,i.createTemplateFactory)({id:"7iOUtQCZ",block:'[[[41,[30,1],[[[1,"  "],[11,1],[24,0,"ember-power-select-placeholder"],[17,2],[12],[1,[30,1]],[13],[1,"\\n"]],[]],null]],["@placeholder","&attrs"],false,["if"]]',moduleName:"ember-power-select/components/power-select/placeholder.hbs",isStrictMode:!1})
