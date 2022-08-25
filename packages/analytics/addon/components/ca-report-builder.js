@@ -12,9 +12,21 @@ export default class CaReportBuilderComponent extends Component {
   @service router;
 
   get startingObjects() {
-    // TODO: Replace with dynamic list
-    // return this.args.startingObjects;
-    return [{ label: "Cases", value: "CASES" }];
+    // startingObjects defined by schema
+    return [
+      {
+        label: this.intl.t(`caluma.analytics.starting-options.cases`),
+        value: "CASES",
+      },
+      {
+        label: this.intl.t(`caluma.analytics.starting-options.work-items`),
+        value: "WORK_ITEMS",
+      },
+      {
+        label: this.intl.t(`caluma.analytics.starting-options.documents`),
+        value: "DOCUMENTS",
+      },
+    ];
   }
 
   @dropTask
