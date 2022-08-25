@@ -13,6 +13,8 @@
     @onChange={{this.update}}
     @triggerId={{this.fieldPath}}
     @onOpen={{this.fetchOptions.perform}}
+    @searchEnabled={{true}}
+    @searchField="label"
     as |option|
   >
     {{option.label}}
