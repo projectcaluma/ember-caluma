@@ -22,7 +22,7 @@ module(
 
       assert.dom("[uk-icon]").hasClass("uk-text-success");
       assert.dom("[uk-icon]").hasAttribute("icon", "check");
-      assert.dom("[uk-icon]").hasAttribute("title", "Positive");
+      assert.dom("[uk-icon]").hasAttribute("uk-tooltip", "Positive");
     });
 
     test("it renders an indicator if deadline is overdue or in warning period", async function (assert) {
@@ -44,14 +44,20 @@ module(
       assert.dom("[uk-icon][icon=clock].uk-text-warning").exists();
       assert
         .dom("[uk-icon][icon=clock]")
-        .hasAttribute("title", intl.formatDate(warningDeadline.toJSDate()));
+        .hasAttribute(
+          "uk-tooltip",
+          intl.formatDate(warningDeadline.toJSDate())
+        );
 
       await this.inquiry.setDeadline(overdueDeadline.toISODate());
 
       assert.dom("[uk-icon][icon=clock].uk-text-danger").exists();
       assert
         .dom("[uk-icon][icon=clock]")
-        .hasAttribute("title", intl.formatDate(overdueDeadline.toJSDate()));
+        .hasAttribute(
+          "uk-tooltip",
+          intl.formatDate(overdueDeadline.toJSDate())
+        );
     });
   }
 );

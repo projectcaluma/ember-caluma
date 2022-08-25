@@ -24,7 +24,7 @@ module(
       assert.dom(".inquiry-divider.uk-text-danger").exists();
       assert
         .dom(".inquiry-divider.uk-text-danger [uk-icon]")
-        .hasAttribute("title", "Negative");
+        .hasAttribute("uk-tooltip", "Negative");
     });
   }
 );

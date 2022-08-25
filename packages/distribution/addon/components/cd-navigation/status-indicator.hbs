@@ -2,12 +2,12 @@
   <UkIcon
     @icon="clock"
     class="uk-margin-small-right uk-text-{{this.deadline.color}}"
-    title={{format-date this.deadline.value}}
+    uk-tooltip={{format-date this.deadline.value}}
   />
 {{/if}}
 
 <UkIcon
   @icon={{this.status.icon}}
   class="uk-text-{{this.status.color}}"
-  title={{this.status.label}}
+  uk-tooltip={{this.status.label}}
 />
