@@ -3,6 +3,6 @@
     {{if this.config.ui.small 'inquiry-divider--small' 'uk-margin'}}"
 >
   <div class="inquiry-divider__icon uk-flex uk-flex-center uk-flex-middle">
-    <UkIcon @icon={{this.status.icon}} title={{this.status.label}} />
+    <UkIcon @icon={{this.status.icon}} uk-tooltip={{this.status.label}} />
   </div>
 </div>
