@@ -42,3 +42,7 @@ caluma:
       filter-placeholder: Filter...
       delete-filter: Delete filter
       empty: There are no filters
+    starting-options:
+      cases: Cases
+      work-items: Work items
+      documents: Documents
