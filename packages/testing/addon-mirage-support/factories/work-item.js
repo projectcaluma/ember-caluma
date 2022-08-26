@@ -16,5 +16,5 @@ export default Factory.extend({
       ? faker.date.past()
       : null;
   },
-  redoable: () => false,
+  isRedoable: () => false,
 });

@@ -44,7 +44,7 @@ export default class WorkItemMock extends BaseMock {
     }
 
     return this.handleSavePayload.fn.call(this, _, {
-      input: { id, redoable: false, status: "READY" },
+      input: { id, isRedoable: false, status: "READY" },
     });
   }
 
@@ -125,7 +125,7 @@ export default class WorkItemMock extends BaseMock {
     } else if (taskId === "complete-distribution") {
       this.collection
         .where({ childCaseId: caseId, status: "READY", taskId: "distribution" })
-        .update({ status: "COMPLETED", redoable: true });
+        .update({ status: "COMPLETED", isRedoable: true });
 
       this.collection
         .where({ caseId, status: "READY", taskId: "inquiry" })
