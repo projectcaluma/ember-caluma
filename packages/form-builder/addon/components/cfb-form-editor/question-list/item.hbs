@@ -80,12 +80,17 @@
 
     <span class="uk-position-relative uk-width-auto">
       <UkBadge
-        uk-tooltip="title: {{if
-          this.hidden
-          (t
-            (concat 'caluma.form-builder.question-list.hidden.' this.hiddenType)
+        {{uk-tooltip
+          (if
+            this.hidden
+            (t
+              (concat
+                "caluma.form-builder.question-list.hidden." this.hiddenType
+              )
+            )
           )
-        }}; pos: left"
+          pos="left"
+        }}
         class="cfb-form-editor__question-list__item__type
           {{if
             this.hidden
@@ -103,11 +108,14 @@
       />
       {{#if this.required}}
         <span
-          uk-tooltip="title: {{t
-            (concat
-              'caluma.form-builder.question-list.required.' this.requiredType
+          {{uk-tooltip
+            (t
+              (concat
+                "caluma.form-builder.question-list.required." this.requiredType
+              )
             )
-          }}; pos: top-left"
+            pos="top-left"
+          }}
           title={{t
             (concat
               "caluma.form-builder.question-list.required." this.requiredType
