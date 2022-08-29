@@ -3,7 +3,7 @@
     <LinkTo
       @route="new"
       class="uk-icon-button"
-      uk-tooltip={{t "caluma.distribution.new.title"}}
+      {{uk-tooltip (t "caluma.distribution.new.title")}}
       data-test-new-inquiry
     >
       <UkIcon @icon="plus" />
@@ -13,7 +13,7 @@
     <button
       type="button"
       class="uk-icon-button"
-      uk-tooltip={{t "caluma.distribution.send"}}
+      {{uk-tooltip (t "caluma.distribution.send")}}
       data-test-send-pending-inquiries
       {{on "click" (perform this.sendInquiries)}}
     >
@@ -28,7 +28,7 @@
     <button
       type="button"
       class="uk-icon-button"
-      uk-tooltip={{t "caluma.distribution.complete"}}
+      {{uk-tooltip (t "caluma.distribution.complete")}}
       data-test-complete-distribution
       {{on "click" (perform this.completeDistribution)}}
     >
@@ -43,7 +43,7 @@
     <button
       type="button"
       class="uk-icon-button"
-      uk-tooltip={{t "caluma.distribution.reopen"}}
+      {{uk-tooltip (t "caluma.distribution.reopen")}}
       data-test-reopen-distribution
       {{on "click" (perform this.reopenDistribution)}}
     >

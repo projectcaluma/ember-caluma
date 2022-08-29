@@ -22,9 +22,12 @@ module(
       );
 
       assert.dom(".inquiry-divider.uk-text-danger").exists();
-      assert
-        .dom(".inquiry-divider.uk-text-danger [uk-icon]")
-        .hasAttribute("uk-tooltip", "Negative");
+
+      assert.tooltipHasText(
+        this.element,
+        ".inquiry-divider.uk-text-danger [uk-icon]",
+        "Negative"
+      );
     });
   }
 );
