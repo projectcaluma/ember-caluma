@@ -35,14 +35,14 @@
     "ember-fetch": "^8.1.2",
     "ember-intl": "^5.7.2",
     "ember-pikaday": "^4.0.0",
-    "ember-resources": "^5.2.1",
+    "ember-resources": "^5.3.0",
     "ember-svg-jar": "^2.3.4",
     "ember-test-selectors": "^6.0.0",
     "ember-uikit": "^6.0.0",
     "graphql": "^15.8.0",
     "graphql-tag": "^2.12.6",
     "lodash.merge": "^4.6.2",
-    "luxon": "^3.0.1",
+    "luxon": "^3.0.2",
     "tracked-toolbox": "^1.2.3"
   },
   "devDependencies": {

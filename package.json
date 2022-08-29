@@ -34,8 +34,8 @@
   },
   "devDependencies": {
     "@adfinis-sygroup/eslint-config": "1.5.0",
-    "@commitlint/cli": "17.0.3",
-    "@commitlint/config-conventional": "17.0.3",
+    "@commitlint/cli": "17.1.2",
+    "@commitlint/config-conventional": "17.1.0",
     "@graphql-eslint/eslint-plugin": "3.10.7",
     "@release-it-plugins/workspaces": "3.2.0",
     "@release-it/conventional-changelog": "5.1.0",
@@ -57,13 +57,9 @@
     "prettier": "2.7.1",
     "release-it": "15.4.0"
   },
-  "//": [
-    "TODO: remove validated-changeset resolution when https://github.com/poteto/ember-changeset/issues/650 is addressed",
-    "TODO: remove tracked-toolbox resolution when https://github.com/ember-learn/ember-cli-addon-docs/issues/1309 is addressed"
-  ],
+  "//": "tracked-toolbox: https://github.com/ember-learn/ember-cli-addon-docs/issues/1309",
   "resolutions": {
-    "**/validated-changeset": "~1.3.2",
-    "**/tracked-toolbox": "^1.2.3"
+    "tracked-toolbox": "^1.2.3"
   },
   "publishConfig": {
     "access": "public",
