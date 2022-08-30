@@ -42,7 +42,7 @@
     "graphql": "^15.8.0",
     "graphql-tag": "^2.12.6",
     "lodash.merge": "^4.6.2",
-    "luxon": "^3.0.2",
+    "luxon": "^3.0.3",
     "tracked-toolbox": "^1.2.3"
   },
   "devDependencies": {
