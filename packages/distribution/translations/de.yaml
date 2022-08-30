@@ -85,3 +85,8 @@ caluma:
       confirm: "Wollen Sie die Anfrage wirklich zurückziehen?"
       error: "Fehler beim Zurückziehen der Anfrage"
       status: "Zurückgezogen"
+
+    reopen-inquiry:
+      link: "Wiedereröffnen"
+      confirm: "Wollen Sie die Anfrage wirklich wiedereröffnen?"
+      error: "Fehler beim Wiedereröffnen der Anfrage"

@@ -77,6 +77,13 @@
           </LinkTo>
         </li>
       {{/if}}
+      {{#if (and (eq @type "answer") (can "reopen inquiry" @inquiry))}}
+        <li>
+          <a href="" {{on "click" (perform this.reopen)}} data-test-reopen>
+            {{t "caluma.distribution.reopen-inquiry.link"}}
+          </a>
+        </li>
+      {{/if}}
     {{/unless}}
   </ul>
 

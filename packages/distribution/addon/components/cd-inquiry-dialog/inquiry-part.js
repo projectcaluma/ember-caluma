@@ -7,6 +7,7 @@ import { confirm } from "ember-uikit";
 
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 import config from "@projectcaluma/ember-distribution/config";
+import reopenInquiryMutation from "@projectcaluma/ember-distribution/gql/mutations/reopen-inquiry.graphql";
 import withdrawInquiryMutation from "@projectcaluma/ember-distribution/gql/mutations/withdraw-inquiry.graphql";
 import inquiryAnswerStatus from "@projectcaluma/ember-distribution/utils/inquiry-answer-status";
 
@@ -70,6 +71,35 @@ export default class CdInquiryDialogInquiryPartComponent extends Component {
     } catch (error) {
       this.notification.danger(
         this.intl.t("caluma.distribution.withdraw.error")
+      );
+    }
+  }
+
+  @dropTask
+  *reopen(e) {
+    e.preventDefault();
+
+    /* istanbul ignore next */
+    if (
+      !(yield confirm(
+        this.intl.t("caluma.distribution.reopen-inquiry.confirm")
+      ))
+    ) {
+      return;
+    }
+
+    try {
+      yield this.apollo.mutate({
+        mutation: reopenInquiryMutation,
+        variables: {
+          workItem: decodeId(this.args.inquiry.id),
+          statusQuestion: this.config.inquiry.answer.statusQuestion,
+          buttonTasks: Object.keys(this.config.inquiry.answer.buttons),
+        },
+      });
+    } catch (error) {
+      this.notification.danger(
+        this.intl.t("caluma.distribution.reopen-inquiry.error")
       );
     }
   }

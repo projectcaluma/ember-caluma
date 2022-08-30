@@ -86,3 +86,8 @@ caluma:
       confirm: "Do you really want to withdraw the inquiry?"
       error: "Error while withdrawing the inquiry"
       status: "Withdrawn"
+
+    reopen-inquiry:
+      link: "Reopen"
+      confirm: "Do you really want to reopen the inquiry?"
+      error: "Error while reopening the inquiry"

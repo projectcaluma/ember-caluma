@@ -85,3 +85,8 @@ caluma:
       confirm: "Voulez-vous vraiment retirer la demande ?"
       error: "Erreur lors du retrait de la demande"
       status: "Retirée"
+
+    reopen-inquiry:
+      link: "Rouvrir"
+      confirm: "Voulez-vous vraiment rouvrir la demande ?"
+      error: "Erreur lors de la réouverture de la demande"

@@ -31,16 +31,21 @@ export default class WorkItemMock extends BaseMock {
   handleRedoWorkItem(_, { input }) {
     const { id } = deserialize(input);
     const workItem = this.collection.find(id);
+    const caseId = workItem?.childCaseId;
 
     if (workItem.taskId === "distribution") {
-      const caseId = workItem.childCaseId;
-
       this.collection
         .where({ caseId, taskId: "complete-distribution" })
         .update({ status: "READY" });
       this.collection
         .where({ caseId, taskId: "create-inquiry" })
         .update({ status: "READY" });
+    } else if (workItem.taskId === "inquiry") {
+      this.server.create("work-item", {
+        caseId,
+        status: "READY",
+        taskId: "adjust-inquiry-answer",
+      });
     }
 
     return this.handleSavePayload.fn.call(this, _, {
@@ -81,7 +86,7 @@ export default class WorkItemMock extends BaseMock {
         .update({ status: "CANCELED" });
       this.collection
         .findBy({ childCaseId: caseId })
-        .update({ status: "COMPLETED" });
+        .update({ status: "COMPLETED", isRedoable: true });
       this.schema.cases.find(caseId).update({ status: "COMPLETED" });
     } else if (taskId === "revise-inquiry-answer") {
       this.collection
