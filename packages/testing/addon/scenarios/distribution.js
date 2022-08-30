@@ -193,7 +193,7 @@ export function answerInquiry(server, { inquiry, status, reason, hint }) {
 }
 
 export function confirmInquiry({ inquiry }) {
-  inquiry.update({ status: "COMPLETED" });
+  inquiry.update({ status: "COMPLETED", isRedoable: true });
   inquiry.childCase.update({
     status: "COMPLETED",
     closedAt: faker.date.recent(),

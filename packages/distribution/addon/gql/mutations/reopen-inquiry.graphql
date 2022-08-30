@@ -1,15 +1,16 @@
 #import InquiryStatusDocument from '../fragments/inquiry.graphql'
 
-mutation CompleteInquiryWorkItem(
+mutation ReopenInquiry(
   $workItem: ID!
   $statusQuestion: ID!
   $buttonTasks: [String]!
 ) {
-  completeWorkItem(input: { id: $workItem }) {
+  redoWorkItem(input: { id: $workItem }) {
     workItem {
       id
       status
-      case {
+      isRedoable
+      childCase {
         id
         document {
           id
@@ -25,11 +26,6 @@ mutation CompleteInquiryWorkItem(
               }
             }
           }
-        }
-        parentWorkItem {
-          id
-          status
-          isRedoable
         }
       }
     }

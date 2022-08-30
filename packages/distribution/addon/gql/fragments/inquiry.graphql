@@ -67,6 +67,7 @@ fragment InquiryDialog on WorkItem {
   createdAt
   closedAt
   status
+  isRedoable
   task {
     id
     slug

@@ -95,7 +95,7 @@ module("Integration | Component | cd-navigation/controls", function (hooks) {
     );
   });
 
-  test("it can redo the current distribution", async function (assert) {
+  test("it can reopen the current distribution", async function (assert) {
     await assert.expect(3);
 
     await render(hbs`<CdNavigation::Controls @caseId={{this.caseId}} />`);

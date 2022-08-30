@@ -52,6 +52,8 @@ export default class CdInquiryDialogComponent extends Component {
       },
     });
 
+    this._setRedoableStates(response.allWorkItems);
+
     /**
      * Sadly this is necessary to handle what happens after the withdraw task in
      * the inquiry part component because the mutation triggers a refresh of the
@@ -68,9 +70,37 @@ export default class CdInquiryDialogComponent extends Component {
       if (allWorkItems.edges.every((edge) => edge.node.status === "CANCELED")) {
         this.router.transitionTo("index");
       }
+
+      /**
+       * Get work item that was redoable in the previous calulation and is now
+       * not anymore. This indicates that the work item was redone which should
+       * result in a transition to the answer view.
+       */
+      const redoneWorkItem = this._redoableStates.find((stateObj) => {
+        const updatedWorkItem = allWorkItems.edges.find(
+          (edge) => decodeId(edge.node.id) === stateObj.id
+        );
+
+        return (
+          stateObj.isRedoable && !(updatedWorkItem?.node.isRedoable ?? true)
+        );
+      });
+
+      if (redoneWorkItem) {
+        this.router.transitionTo("inquiry.detail.answer", redoneWorkItem.id);
+      }
+
+      this._setRedoableStates(allWorkItems);
     });
 
     return response;
+  }
+
+  _setRedoableStates(allWorkItems) {
+    this._redoableStates = allWorkItems.edges.map((edge) => ({
+      id: decodeId(edge.node.id),
+      isRedoable: edge.node.isRedoable,
+    }));
   }
 
   @dropTask

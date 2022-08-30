@@ -8,7 +8,7 @@ import { gql } from "graphql-tag";
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 import config from "@projectcaluma/ember-distribution/config";
 import completeWorkItemMutation from "@projectcaluma/ember-distribution/gql/mutations/complete-work-item.graphql";
-import redoWorkItemMutation from "@projectcaluma/ember-distribution/gql/mutations/redo-work-item.graphql";
+import reopenDistributionMutation from "@projectcaluma/ember-distribution/gql/mutations/reopen-distribution.graphql";
 import incompleteInquiriesQuery from "@projectcaluma/ember-distribution/gql/queries/incomplete-inquiries.graphql";
 
 export default class CdNavigationControlsComponent extends Component {
@@ -76,7 +76,7 @@ export default class CdNavigationControlsComponent extends Component {
       );
 
       yield this.apollo.mutate({
-        mutation: redoWorkItemMutation,
+        mutation: reopenDistributionMutation,
         variables: {
           workItem: distributionWorkItemId,
         },

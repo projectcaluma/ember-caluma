@@ -56,4 +56,14 @@ export default class InquiryAbility extends Ability {
       ) ?? true
     );
   }
+
+  get canReopen() {
+    return (
+      this.model.isRedoable &&
+      this.model?.addressedGroups
+        .map(String)
+        .includes(String(this.calumaOptions.currentGroupId)) &&
+      (this.config.permissions.reopenInquiry?.(this.model) ?? true)
+    );
+  }
 }

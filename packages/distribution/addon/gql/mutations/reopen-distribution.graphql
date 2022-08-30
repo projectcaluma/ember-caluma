@@ -1,4 +1,4 @@
-mutation RedoWorkItem($workItem: ID!) {
+mutation ReopenDistribution($workItem: ID!) {
   redoWorkItem(input: { id: $workItem }) {
     workItem {
       id
