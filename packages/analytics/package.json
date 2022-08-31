@@ -1,6 +1,6 @@
 {
   "name": "@projectcaluma/ember-analytics",
-  "version": "11.0.0-beta.26",
+  "version": "11.0.0-beta.27",
   "description": "Ember addon for Caluma analytics.",
   "keywords": [
     "ember-addon",
@@ -17,7 +17,7 @@
   "dependencies": {
     "@glimmer/component": "^1.1.2",
     "@glimmer/tracking": "^1.1.2",
-    "@projectcaluma/ember-core": "^11.0.0-beta.26",
+    "@projectcaluma/ember-core": "^11.0.0-beta.27",
     "ember-apollo-client": "^4.0.2",
     "ember-auto-import": "^2.4.2",
     "ember-cli-babel": "^7.26.11",
@@ -46,7 +46,7 @@
     "@ember/test-helpers": "2.8.1",
     "@embroider/test-setup": "1.8.3",
     "@faker-js/faker": "7.5.0",
-    "@projectcaluma/ember-testing": "11.0.0-beta.26",
+    "@projectcaluma/ember-testing": "11.0.0-beta.27",
     "broccoli-asset-rev": "3.0.0",
     "ember-cli": "3.28.5",
     "ember-cli-code-coverage": "1.0.3",
