@@ -70,9 +70,7 @@
       "@release-it/conventional-changelog": {
         "preset": "conventionalcommits"
       },
-      "@release-it-plugins/workspaces": {
-        "skipChecks": true
-      }
+      "@release-it-plugins/workspaces": true
     },
     "npm": false,
     "git": {
