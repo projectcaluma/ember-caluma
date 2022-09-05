@@ -162,6 +162,8 @@ jobs:
           - ember-lts-4.4
           - ember-lts-3.28
           - ember-release
+          - embroider-safe
+          - embroider-optimized
         workspace:
           - "@projectcaluma/ember-analytics"
           - "@projectcaluma/ember-core"
