@@ -34,6 +34,7 @@ module("Unit | config", function (hooks) {
         createTask: "create-inquiry",
       },
       enableReminders: true,
+      hooks: {},
       inquiry: {
         answer: {
           buttons: {

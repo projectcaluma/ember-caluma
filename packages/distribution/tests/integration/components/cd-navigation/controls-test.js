@@ -56,7 +56,14 @@ module("Integration | Component | cd-navigation/controls", function (hooks) {
   });
 
   test("it can complete the current distribution", async function (assert) {
-    await assert.expect(3);
+    await assert.expect(5);
+
+    this.owner.lookup("service:caluma-options").distribution = {
+      hooks: {
+        postCompleteDistribution: () =>
+          assert.step("post-complete-distribution"),
+      },
+    };
 
     const completeDistribution = this.server.schema.workItems.where({
       caseId: this.caseId,
@@ -93,6 +100,8 @@ module("Integration | Component | cd-navigation/controls", function (hooks) {
         (workItem) => workItem.status === "CANCELED"
       )
     );
+
+    assert.verifySteps(["post-complete-distribution"]);
   });
 
   test("it can reopen the current distribution", async function (assert) {
