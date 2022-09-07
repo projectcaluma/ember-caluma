@@ -55,6 +55,8 @@ export default class CdNavigationControlsComponent extends Component {
         },
       });
 
+      yield this.config.hooks.postCompleteDistribution?.();
+
       yield this.distribution.refetch();
       this.router.transitionTo("index");
     } catch (e) {
