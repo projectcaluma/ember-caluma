@@ -5,10 +5,6 @@ module.exports = function (environment) {
     modulePrefix: require("../package.json").name,
     environment,
 
-    "ember-validated-form": {
-      theme: "uikit",
-    },
-
     analytics: {
       functionChoices: ["VALUE", "SUM", "COUNT", "AVG", "MAX", "MIN"],
     },
