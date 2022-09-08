@@ -9,4 +9,12 @@ module.exports = buildEngine({
   lazyLoading: {
     enabled: false,
   },
+
+  included(...args) {
+    const app = this._findHost(this);
+
+    app.options["ember-validated-form"] = { theme: "uikit" };
+
+    this._super.included.apply(this, args);
+  },
 });

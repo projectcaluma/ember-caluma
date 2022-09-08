@@ -46,7 +46,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     await fillIn("[name=label]", "");
     await blur("[name=label]");
 
-    assert.dom("[name=label] + span").hasText("Label can't be blank");
+    assert.dom("small.uk-text-danger").hasText("Label can't be blank");
   });
 
   test("it can edit a question", async function (assert) {
@@ -574,19 +574,19 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     await blur("input[name=slug]");
 
     assert
-      .dom("input[name=slug] + span")
+      .dom("small.uk-text-danger")
       .hasText("t:caluma.form-builder.validations.question.slug:()");
 
     await fillIn("input[name=slug]", "valid-slug");
     await blur("input[name=slug]");
 
-    assert.dom("input[name=slug] + span").doesNotExist();
+    assert.dom("small.uk-text-danger").doesNotExist();
 
     await fillIn("input[name=slug]", "other-test-slug");
     await blur("input[name=slug]");
 
     assert
-      .dom("input[name=slug] + span")
+      .dom("small.uk-text-danger")
       .hasText("t:caluma.form-builder.validations.question.slug:()");
   });
 

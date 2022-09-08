@@ -43,7 +43,7 @@
     "ember-resources": "^5.3.2",
     "ember-test-selectors": "^6.0.0",
     "ember-uikit": "^6.0.0",
-    "ember-validated-form": "^5.3.0",
+    "ember-validated-form": "^6.0.2",
     "graphql": "^15.8.0",
     "graphql-tag": "^2.12.6",
     "highlight.js": "^11.6.0",
@@ -96,6 +96,7 @@
     "edition": "octane"
   },
   "ember-addon": {
-    "configPath": "tests/dummy/config"
+    "configPath": "tests/dummy/config",
+    "before": ["ember-validated-form"]
   }
 }

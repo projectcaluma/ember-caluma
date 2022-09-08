@@ -43,7 +43,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
     await blur("input[name=name]");
 
     assert.dom("form button[type=submit]").isDisabled();
-    assert.dom("input[name=name] + span").hasText("Name can't be blank");
+    assert.dom("small.uk-text-danger").hasText("Name can't be blank");
   });
 
   test("it prepends the slug with a namespace", async function (assert) {
@@ -199,20 +199,20 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
     await blur("input[name=slug]");
 
     assert
-      .dom("input[name=slug] + span")
+      .dom("small.uk-text-danger")
       .hasText("t:caluma.form-builder.validations.form.slug:()");
 
     await fillIn("input[name=slug]", "valid-slug");
     await blur("input[name=slug]");
 
-    assert.dom("input[name=slug] + span").doesNotExist();
+    assert.dom("small.uk-text-danger").doesNotExist();
 
     await fillIn("input[name=name]", "Other Test Slug");
     await blur("input[name=name]");
     await blur("input[name=slug]");
 
     assert
-      .dom("input[name=slug] + span")
+      .dom("small.uk-text-danger")
       .hasText("t:caluma.form-builder.validations.form.slug:()");
   });
 });
