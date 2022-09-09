@@ -4,12 +4,13 @@ import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
 import { dropTask } from "ember-concurrency";
 import { confirm } from "ember-uikit";
+import { DateTime } from "luxon";
 
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 import config from "@projectcaluma/ember-distribution/config";
 import reopenInquiryMutation from "@projectcaluma/ember-distribution/gql/mutations/reopen-inquiry.graphql";
+import updateInquiryMetaMutation from "@projectcaluma/ember-distribution/gql/mutations/update-inquiry-meta.graphql";
 import withdrawInquiryMutation from "@projectcaluma/ember-distribution/gql/mutations/withdraw-inquiry.graphql";
-import inquiryMetaQuery from "@projectcaluma/ember-distribution/gql/queries/inquiry-meta.graphql";
 import inquiryAnswerStatus from "@projectcaluma/ember-distribution/utils/inquiry-answer-status";
 
 export default class CdInquiryDialogInquiryPartComponent extends Component {
@@ -123,12 +124,18 @@ export default class CdInquiryDialogInquiryPartComponent extends Component {
         this.intl.t("caluma.distribution.reminder.success")
       );
 
-      yield this.apollo.query({
-        query: inquiryMetaQuery,
+      yield this.apollo.mutate({
+        mutation: updateInquiryMetaMutation,
         variables: {
           inquiry: decodeId(this.args.inquiry.id),
+          meta: JSON.stringify({
+            ...this.args.inquiry.meta,
+            reminders: [
+              DateTime.now().toISO(),
+              ...(this.args.inquiry.meta.reminders ?? []),
+            ],
+          }),
         },
-        fetchPolicy: "network-only",
       });
     } catch (error) {
       this.notification.danger(

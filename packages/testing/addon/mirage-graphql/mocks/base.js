@@ -191,7 +191,12 @@ export default class BaseMock {
     _,
     { input: { clientMutationId = faker.datatype.uuid(), slug, id, ...args } }
   ) {
-    const identifier = slug ? { slug } : { id };
+    // Sometimes we pass the identifier as property `slug` (e.g in `saveForm`),
+    // sometimes as `id` (e.g. in `saveDocument`) and sometimes as the camelized
+    // name of the type (e.g in `saveWorkItem`).
+    const identifier = slug
+      ? { slug }
+      : { id: id ?? args[camelize(this.type)] };
 
     const relKeys = this.schema.modelFor(camelize(this.type)).foreignKeys;
 
