@@ -8837,10 +8837,10 @@ ember-resolver@8.0.3:
     ember-cli-version-checker "^5.1.2"
     resolve "^1.20.0"
 
-ember-resources@^5.3.1:
-  version "5.3.1"
-  resolved "https://registry.yarnpkg.com/ember-resources/-/ember-resources-5.3.1.tgz#9cf57043bbd68fd2e57077e46f7d76a2b19756fc"
-  integrity sha512-ZIRAK/C1fw8FLN3esWiz2bCKh0Gq9mpjzR9Dxf0QIu+yMVq8G7akS6XVyvFUa0jAzO+fyZ8mD5HBTb40aJg61A==
+ember-resources@^5.3.2:
+  version "5.3.2"
+  resolved "https://registry.yarnpkg.com/ember-resources/-/ember-resources-5.3.2.tgz#7b129bd71125a88e23b140612bf216f0b0e6be02"
+  integrity sha512-7v4aShd40LAhG320ki7nxZvJBoiDknIltzGqDF2532f5qv99XFKLlEXp8KoC2BLZJrC0+HURuciyaNwXoSg0qg==
   dependencies:
     "@babel/runtime" "^7.17.8"
     "@embroider/addon-shim" "^1.2.0"
