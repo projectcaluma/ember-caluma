@@ -1,0 +1,8 @@
+mutation UpdateInquiryMeta($inquiry: ID!, $meta: JSONString!) {
+  saveWorkItem(input: { workItem: $inquiry, meta: $meta }) {
+    workItem {
+      id
+      meta
+    }
+  }
+}
