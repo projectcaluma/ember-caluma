@@ -9085,12 +9085,11 @@ ember-try@2.0.0:
     rimraf "^3.0.2"
     walk-sync "^2.2.0"
 
-ember-uikit@6.0.0, ember-uikit@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/ember-uikit/-/ember-uikit-6.0.0.tgz#c64e0a8572d28d5ad1c4ea3ebd28a33202bce33d"
-  integrity sha512-u6S57+MNv2iuGgfDu8nHRymujw5esyCiZZKX5vHSMownSLc0JP/PsKCwPYWnL0YvkssYjbo1enUnpbCeCe4LyQ==
+ember-uikit@6.1.0, ember-uikit@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/ember-uikit/-/ember-uikit-6.1.0.tgz#4112f94ab65f48953acb00326a760003e5841420"
+  integrity sha512-Q53owUuytxWBsehpz+/4ZPLShpooVuNpa9/uTmuE2X6KjM8fAn0Yu+utWCbgb887vEgDbxeyt4BGIqt+MHm8Kw==
   dependencies:
-    "@ember/render-modifiers" "^2.0.4"
     "@ember/string" "^3.0.0"
     "@embroider/util" "^1.8.3"
     "@glimmer/component" "^1.1.2"
@@ -9100,11 +9099,11 @@ ember-uikit@6.0.0, ember-uikit@^6.0.0:
     broccoli-stew "^3.0.0"
     ember-auto-import "^2.4.2"
     ember-cli-babel "^7.26.11"
-    ember-cli-htmlbars "^6.1.0"
+    ember-cli-htmlbars "^6.1.1"
     ember-focus-trap "^1.0.1"
     ember-modifier "^3.2.7"
     ember-toggle "^9.0.3"
-    uikit "^3.15.5"
+    uikit "^3.15.6"
 
 ember-validated-form@^6.0.2:
   version "6.0.2"
@@ -18138,10 +18137,10 @@ uglify-js@^3.1.4:
   resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.17.0.tgz#55bd6e9d19ce5eef0d5ad17cd1f587d85b180a85"
   integrity sha512-aTeNPVmgIMPpm1cxXr2Q/nEbvkmV8yq66F3om7X3P/cvOXQ0TMQ64Wk63iyT1gPlmdmGzjGpyLh1f3y8MZWXGg==
 
-uikit@^3.15.5:
-  version "3.15.5"
-  resolved "https://registry.yarnpkg.com/uikit/-/uikit-3.15.5.tgz#b382c1ea1bcf0fe2e8846bf9efc177b42fcaf59b"
-  integrity sha512-mQ1UiIIT0uIIGUzmIioOAlgn1N9SFBM+E92cB5E7u3dg/uicV1nbEA2WJ1ia0ecnt35FysVMQ13w0ruyLS2k8A==
+uikit@^3.15.6:
+  version "3.15.6"
+  resolved "https://registry.yarnpkg.com/uikit/-/uikit-3.15.6.tgz#572f7333373d853267be64d255d24a154d36df6e"
+  integrity sha512-hHj8TJ1g2VAUyN8ZzpGtkTtee/GUiWMxEqZGrA9R0e/1o0IeJrBU2V6JDbUczcxr45yNLeeNmUUsYCvou/+xCA==
 
 unbox-primitive@^1.0.2:
   version "1.0.2"
