@@ -7,6 +7,7 @@ const hasStatus = (status) => (edge) => edge.node.status === status;
 
 export default class DistributionAbility extends Ability {
   @service distribution;
+  @service calumaOptions;
 
   @config config;
 
@@ -43,6 +44,9 @@ export default class DistributionAbility extends Ability {
     return (
       !this.config.ui.readonly &&
       (this.config.permissions.reopenDistribution?.() ?? true) &&
+      this.distribution.controls.value?.case.edges[0]?.node.parentWorkItem.addressedGroups
+        .map(String)
+        .includes(String(this.calumaOptions.currentGroupId)) &&
       this.distribution.controls.value?.case.edges[0]?.node.parentWorkItem
         .isRedoable
     );
