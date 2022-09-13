@@ -61,7 +61,7 @@ export default class InquiryAbility extends Ability {
   get canReopen() {
     return (
       this.model.isRedoable &&
-      this.model?.addressedGroups
+      this.model?.controllingGroups
         .map(String)
         .includes(String(this.calumaOptions.currentGroupId)) &&
       (this.config.permissions.reopenInquiry?.(this.model) ?? true)

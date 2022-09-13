@@ -132,14 +132,14 @@ module("Integration | Component | cd-inquiry-dialog", function (hooks) {
   });
 
   test("it can reopen an inquiry", async function (assert) {
-    assert.expect(6);
+    assert.expect(3);
 
     const inquiry = confirmInquiry({
       inquiry: answerInquiry(this.server, {
         inquiry: sendInquiry(this.server, {
           inquiry: createInquiry(this.server, this.distributionCase, {
-            from: { id: "group2" },
-            to: { id: "group1" },
+            from: { id: "group1" },
+            to: { id: "group2" },
           }),
         }),
       }),
@@ -148,20 +148,14 @@ module("Integration | Component | cd-inquiry-dialog", function (hooks) {
     assert.strictEqual(inquiry.status, "COMPLETED");
 
     await render(
-      hbs`<CdInquiryDialog @from="group2" @to="group1" @caseId={{this.caseId}} />`
+      hbs`<CdInquiryDialog @from="group1" @to="group2" @caseId={{this.caseId}} />`
     );
-
-    this.owner.lookup("service:router").transitionTo = (route, id) => {
-      assert.strictEqual(route, "inquiry.detail.answer");
-      assert.strictEqual(id, inquiry.id);
-      assert.step("transition");
-    };
 
     await click("[data-test-reopen]");
     await confirm();
 
     assert.strictEqual(inquiry.status, "READY");
 
-    assert.verifySteps(["transition"]);
+    assert.dom("[data-test-reopen]").doesNotExist();
   });
 });
