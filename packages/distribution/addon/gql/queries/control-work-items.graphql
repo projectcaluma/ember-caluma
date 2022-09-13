@@ -57,6 +57,7 @@ query ControlWorkItems(
         parentWorkItem {
           id
           isRedoable
+          addressedGroups
         }
       }
     }
