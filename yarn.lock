@@ -9105,10 +9105,10 @@ ember-uikit@6.1.0, ember-uikit@^6.1.0:
     ember-toggle "^9.0.3"
     uikit "^3.15.6"
 
-ember-validated-form@^6.0.2:
-  version "6.0.2"
-  resolved "https://registry.yarnpkg.com/ember-validated-form/-/ember-validated-form-6.0.2.tgz#356e5772817930804086759744d11c0a68dd2220"
-  integrity sha512-omMtmO11OnA4O3VMpRoiUtWXlwFmRoWXDzUzj0szbE2XHZpiwsfBOPF09mGiievvJX8kLqL27qYWTJ2ZXXyz3w==
+ember-validated-form@^6.1.0:
+  version "6.1.0"
+  resolved "https://registry.yarnpkg.com/ember-validated-form/-/ember-validated-form-6.1.0.tgz#617c65fd68d7cc162e10ff490d0e037a8c8ab254"
+  integrity sha512-iLeLZpVXa11RRuUEdoSa2beMF/eBBlNgkGO90Itc/FE0o8SnK3lNeP3tRpmnXTUzuzdJWh9UuCEzGikheR7yKg==
   dependencies:
     "@embroider/macros" "^1.8.3"
     "@embroider/util" "^1.8.3"
