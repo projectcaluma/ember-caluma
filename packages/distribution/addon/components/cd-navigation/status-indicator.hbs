@@ -2,12 +2,15 @@
   <UkIcon
     @icon="clock"
     class="uk-margin-small-right uk-text-{{this.deadline.color}}"
-    {{uk-tooltip (format-date this.deadline.value)}}
+    {{uk-tooltip
+      (format-date this.deadline.value)
+      pos=(if this.config.ui.stack "left" "top")
+    }}
   />
 {{/if}}
 
 <UkIcon
   @icon={{this.status.icon}}
   class="uk-text-{{this.status.color}}"
-  {{uk-tooltip this.status.label}}
+  {{uk-tooltip this.status.label pos=(if this.config.ui.stack "left" "top")}}
 />
