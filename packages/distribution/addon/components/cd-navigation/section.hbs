@@ -1,4 +1,6 @@
-<li class="uk-margin-small-bottom uk-width-auto">
+<li
+  class="uk-margin-small-bottom uk-width-auto {{if this.isActive 'uk-active'}}"
+>
   <a href="" {{on "click" this.toggle}}>
     <span class="uk-width-expand">
       {{t (concat "caluma.distribution.types." @type)}}
