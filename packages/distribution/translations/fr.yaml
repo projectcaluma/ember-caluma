@@ -3,7 +3,8 @@ caluma:
     empty: "Aucune demande n'a encore été créée."
     start: "Lancer"
     send: "Envoyer les demandes ouvertes"
-    complete: "Terminer la circulation"
+    complete: "Clore la circulation"
+    skip: "Sauter la procédure de circulation"
     send-confirm: "Voulez-vous vraiment envoyer toutes les demandes ouvertes ?"
     reopen: "Rouvrir la procédure de circulation"
     complete-confirm:
@@ -11,9 +12,11 @@ caluma:
       attente</b> sur la distribution actuelle. Si vous terminez la distribution,
       toutes les demandes en attente seront annulées. Voulez-vous continuer ?"
     complete-confirm-empty: "Vous voulez vraiment fermer la circulation ?"
+    skip-confirm: "Vous voulez vraiment sauter la circulation ?"
     reopen-confirm: "Vous voulez vraiment rouvrir la circulation ?"
     send-error: "Erreur lors de l'envoi des demandes ouvertes"
-    complete-error: "Erreur lors de la terminaison de la circulation"
+    complete-error: "Erreur lors de la clôture de la circulation"
+    skip-error: "Erreur lors du saut de la circulation"
     reopen-error: "Erreur lors de la réouverture de la circulation"
 
     more: "plus"

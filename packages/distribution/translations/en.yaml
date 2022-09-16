@@ -4,6 +4,7 @@ caluma:
     start: "Start"
     send: "Send pending inquiries"
     complete: "Complete circulation"
+    skip: "Skip circulation"
     send-confirm: "Do you really want to send all pending inquiries?"
     reopen: "Reopen circulation"
     complete-confirm:
@@ -12,9 +13,11 @@ caluma:
       distribution. Completing the distribution will cause all remaining
       pending inquiries to be canceled. Would you like to continue?"
     complete-confirm-empty: "Do you really want to complete the distribution?"
+    skip-confirm: "Do you really want to skip the distribution?"
     reopen-confirm: "Do you really want to reopen the distribution?"
     send-error: "Error while sending pending inquiries"
     complete-error: "Error while completing the distribution"
+    skip-error: "Error while skipping the distribution"
     reopen-error: "Error while reopening the distribution"
 
     more: "more"

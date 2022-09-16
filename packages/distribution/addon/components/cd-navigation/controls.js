@@ -20,26 +20,38 @@ export default class CdNavigationControlsComponent extends Component {
   @queryManager apollo;
   @config config;
 
+  get hasInquiries() {
+    return (
+      this.distribution.navigation.value?.addressed.edges.length > 0 ||
+      this.distribution.navigation.value?.controlling.edges.length > 0 ||
+      this.distribution.navigation.value?.more.edges.length > 0
+    );
+  }
+
   @dropTask
   *completeDistribution() {
     try {
-      const incompleteInquiries = yield this.apollo.query(
-        {
-          query: incompleteInquiriesQuery,
-          variables: {
-            caseId: this.distribution.caseId,
-            task: this.config.inquiry.task,
-          },
-        },
-        "allWorkItems.totalCount"
-      );
+      let confirmText = this.intl.t("caluma.distribution.skip-confirm");
 
-      const confirmText =
-        incompleteInquiries === 0
-          ? this.intl.t("caluma.distribution.complete-confirm-empty")
-          : this.intl.t("caluma.distribution.complete-confirm", {
-              count: incompleteInquiries,
-            });
+      if (this.hasInquiries) {
+        const incompleteInquiries = yield this.apollo.query(
+          {
+            query: incompleteInquiriesQuery,
+            variables: {
+              caseId: this.distribution.caseId,
+              task: this.config.inquiry.task,
+            },
+          },
+          "allWorkItems.totalCount"
+        );
+
+        confirmText =
+          incompleteInquiries === 0
+            ? this.intl.t("caluma.distribution.complete-confirm-empty")
+            : this.intl.t("caluma.distribution.complete-confirm", {
+                count: incompleteInquiries,
+              });
+      }
 
       if (!(yield confirm(confirmText))) {
         return;
