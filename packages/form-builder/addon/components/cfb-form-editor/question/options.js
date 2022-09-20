@@ -1,11 +1,10 @@
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
-import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
 import { Changeset } from "ember-changeset";
 import lookupValidator from "ember-changeset-validations";
-import { task } from "ember-concurrency";
+import { dropTask } from "ember-concurrency";
 
 import slugify from "@projectcaluma/ember-core/utils/slugify";
 import saveChoiceQuestionMutation from "@projectcaluma/ember-form-builder/gql/mutations/save-choice-question.graphql";
@@ -17,90 +16,24 @@ const TYPES = {
   ChoiceQuestion: saveChoiceQuestionMutation,
 };
 
-const removeQuestionPrefix = (slug, questionSlug) => {
-  return slug.replace(new RegExp(`^${questionSlug}-`), "");
-};
-
-const addQuestionPrefix = (slug, questionSlug) => {
-  return `${questionSlug}-${slug}`;
-};
-
 export default class CfbFormEditorQuestionOptions extends Component {
-  @tracked _optionRows;
-
   @service intl;
   @service notification;
+
   @queryManager apollo;
 
-  constructor(...args) {
-    super(...args);
-
-    this._optionRows = this.args.value?.edges?.length
-      ? this.args.value.edges.map(
-          (edge) =>
-            new Changeset(
-              {
-                slug: removeQuestionPrefix(edge.node.slug, this.questionSlug),
-                label: edge.node.label,
-                isArchived: edge.node.isArchived,
-                isNew: false,
-              },
-              lookupValidator(OptionValidations),
-              OptionValidations
-            )
-        )
-      : [
-          new Changeset(
-            { slug: "", label: "", isNew: true, linkSlug: true },
-            lookupValidator(OptionValidations),
-            OptionValidations
-          ),
-        ];
+  get canReorder() {
+    return this.args.value.every((row) => row.get("id") !== undefined);
   }
 
-  get questionSlug() {
-    return this.args.model.slug;
-  }
-
-  get optionRows() {
-    return this._optionRows;
-  }
-
-  _update() {
-    this.args.update({
-      edges: this.optionRows
-        .filter((row) => !row.isNew || row.isDirty)
-        .map((row) => {
-          const { label, slug, isArchived } = Object.assign(
-            {},
-            row.get("data"),
-            row.get("change")
-          );
-
-          return {
-            node: {
-              label,
-              slug: addQuestionPrefix(
-                removeQuestionPrefix(slug, this.questionSlug),
-                this.questionSlug
-              ),
-              isArchived: Boolean(isArchived),
-            },
-          };
-        }),
-    });
-
-    this.args.setDirty();
-  }
-
-  @task
+  @dropTask
   *reorderOptions(slugs) {
     try {
       yield this.apollo.mutate({
         mutation: TYPES[this.args.model.__typename],
         variables: {
           input: {
-            slug: this.questionSlug,
+            slug: this.args.model.slug,
             label: this.args.model.label,
             options: slugs,
           },
@@ -123,55 +56,45 @@ export default class CfbFormEditorQuestionOptions extends Component {
 
   @action
   addRow() {
-    this._optionRows = [
-      ...this.optionRows,
+    this.args.update([
+      ...this.args.value,
       new Changeset(
-        { slug: "", label: "", isNew: true, linkSlug: true },
+        {
+          id: undefined,
+          slug: "",
+          label: "",
+          isArchived: false,
+          slugUnlinked: false,
+          question: this.args.model.slug,
+        },
         lookupValidator(OptionValidations),
         OptionValidations
       ),
-    ];
+    ]);
 
-    this._update();
+    this.args.setDirty();
   }
 
   @action
   deleteRow(row) {
-    this._optionRows = this.optionRows.filter((r) => r !== row);
-
-    this._update();
-  }
-
-  @action
-  toggleRowArchived(row) {
-    row.set("isArchived", !row.get("isArchived"));
-
-    this._update();
+    this.args.update(this.args.value.filter((r) => r !== row));
+    this.args.setDirty();
   }
 
   @action
   updateLabel(value, changeset) {
     changeset.set("label", value);
 
-    if (changeset.get("isNew") && changeset.get("linkSlug")) {
-      changeset.set(
-        "slug",
-        slugify(value, { locale: this.intl.primaryLocale })
-      );
+    if (!changeset.get("id") && !changeset.get("slugUnlinked")) {
+      const slugifiedLabel = slugify(value, {
+        locale: this.intl.primaryLocale,
+      });
+      const slug = slugifiedLabel
+        ? `${this.args.model.slug}-${slugifiedLabel}`
+        : "";
+
+      changeset.set("slug", slug);
     }
-    this._update();
-  }
-
-  @action
-  updateSlug(value, changeset) {
-    changeset.set("slug", value);
-    changeset.set("linkSlug", false);
-    this._update();
-  }
-
-  @action
-  update() {
-    this._update();
   }
 
   @action
@@ -180,12 +103,7 @@ export default class CfbFormEditorQuestionOptions extends Component {
     const options = [...sortable.$el.children].slice(0, -1);
 
     this.reorderOptions.perform(
-      options.map((option) =>
-        addQuestionPrefix(
-          option.firstElementChild.firstElementChild.id,
-          this.questionSlug
-        )
-      )
+      options.map((option) => option.firstElementChild.firstElementChild.id)
     );
   }
 }

@@ -1,0 +1,19 @@
+query CheckOptionSlug($slug: String!, $question: String!) {
+  allQuestions(filter: [{ slugs: [$question] }]) {
+    edges {
+      node {
+        id
+        ... on ChoiceQuestion {
+          options(filter: [{ slug: $slug }]) {
+            totalCount
+          }
+        }
+        ... on MultipleChoiceQuestion {
+          options(filter: [{ slug: $slug }]) {
+            totalCount
+          }
+        }
+      }
+    }
+  }
+}

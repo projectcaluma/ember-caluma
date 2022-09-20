@@ -1,16 +1,14 @@
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
-import { macroCondition, isTesting } from "@embroider/macros";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
-import { timeout, restartableTask, dropTask } from "ember-concurrency";
+import { restartableTask, dropTask } from "ember-concurrency";
 import { trackedTask } from "ember-resources/util/ember-concurrency";
 
 import FormValidations from "../../validations/form";
 
 import slugify from "@projectcaluma/ember-core/utils/slugify";
 import saveFormMutation from "@projectcaluma/ember-form-builder/gql/mutations/save-form.graphql";
-import checkFormSlugQuery from "@projectcaluma/ember-form-builder/gql/queries/check-form-slug.graphql";
 import formEditorGeneralQuery from "@projectcaluma/ember-form-builder/gql/queries/form-editor-general.graphql";
 
 export default class CfbFormEditorGeneral extends Component {
@@ -61,16 +59,13 @@ export default class CfbFormEditorGeneral extends Component {
   @dropTask
   *submit(changeset) {
     try {
-      const slug =
-        ((!this.args.slug && this.prefix) || "") + changeset.get("slug");
-
       const form = yield this.apollo.mutate(
         {
           mutation: saveFormMutation,
           variables: {
             input: {
               name: changeset.get("name"),
-              slug,
+              slug: changeset.get("slug"),
               description: changeset.get("description"),
               isArchived: changeset.get("isArchived"),
               isPublished: changeset.get("isPublished"),
@@ -100,47 +95,15 @@ export default class CfbFormEditorGeneral extends Component {
     }
   }
 
-  @restartableTask
-  *validateSlug(slug, changeset) {
-    /* istanbul ignore next */
-    if (macroCondition(isTesting())) {
-      // no timeout
-    } else {
-      yield timeout(500);
-    }
-
-    const res = yield this.apollo.query(
-      {
-        query: checkFormSlugQuery,
-        variables: { slug },
-      },
-      "allForms.edges"
-    );
-
-    if (res && res.length) {
-      changeset.pushErrors(
-        "slug",
-        this.intl.t("caluma.form-builder.validations.form.slug")
-      );
-    }
-  }
-
   @action
   updateName(value, changeset) {
     changeset.set("name", value);
 
-    if (!this.args.slug) {
-      const slug = slugify(value, { locale: this.intl.primaryLocale });
+    if (!this.args.slug && !this.slugUnlinked) {
+      const slugifiedName = slugify(value, { locale: this.intl.primaryLocale });
+      const slug = slugifiedName ? this.prefix + slugifiedName : "";
+
       changeset.set("slug", slug);
-
-      this.validateSlug.perform(this.prefix + slug, changeset);
     }
-  }
-
-  @action
-  updateSlug(value, changeset) {
-    changeset.set("slug", value);
-
-    this.validateSlug.perform(this.prefix + value, changeset);
   }
 }

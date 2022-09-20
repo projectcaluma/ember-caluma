@@ -16,40 +16,17 @@
       @on-update={{this.updateName}}
     />
 
-    {{#if (or @slug (not this.prefix))}}
-      <f.input
-        @type="text"
-        @name="slug"
-        @label={{t "caluma.form-builder.form.slug"}}
-        @required={{true}}
-        @disabled={{@slug}}
-        @on-update={{this.updateSlug}}
-      />
-    {{else}}
-      <f.input
-        @name="slug"
-        @required={{true}}
-        @disabled={{@slug}}
-        @label={{t "caluma.form-builder.question.slug"}}
-        @on-update={{this.updateSlug value="target.value"}}
-        as |fi|
-      >
-        <div class="cfb-prefixed">
-          <span class="cfb-prefixed-slug">{{this.prefix}}</span>
-          <f.input
-            @type="text"
-            @model={{fi.model}}
-            @name={{fi.name}}
-            @value={{fi.value}}
-            @update={{fi.update}}
-            @setDirty={{fi.setDirty}}
-            @inputId={{fi.inputId}}
-            @isValid={{fi.isValid}}
-            @isInvalid={{fi.isInvalid}}
-          />
-        </div>
-      </f.input>
-    {{/if}}
+    <f.input
+      @type="text"
+      @name="slug"
+      @label={{t "caluma.form-builder.form.slug"}}
+      @required={{true}}
+      @disabled={{not (is-empty @slug)}}
+      @renderComponent={{component
+        "cfb-slug-input"
+        onUnlink=(fn (mut this.slugUnlinked) true)
+      }}
+    />
 
     <f.input
       @name="description"
@@ -74,7 +51,7 @@
 
     <div class="uk-text-right">
       <f.submit
-        @disabled={{or f.loading f.model.isInvalid}}
+        @disabled={{f.loading}}
         @label={{t "caluma.form-builder.global.save"}}
       />
     </div>

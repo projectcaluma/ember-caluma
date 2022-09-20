@@ -1,0 +1,12 @@
+.cfb-slug-input {
+  position: relative;
+
+  &__prefix {
+    position: absolute;
+    margin-left: $form-padding-horizontal;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $global-muted-color;
+  }
+}

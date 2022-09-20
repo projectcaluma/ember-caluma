@@ -175,3 +175,6 @@ caluma:
 
       question:
         slug: "Eine Frage mit diesem Slug existiert bereits"
+
+      option:
+        slug: "Eine Option mit diesem Slug existiert bereits"

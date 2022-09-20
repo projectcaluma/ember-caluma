@@ -9,6 +9,8 @@ export default class CustomCalumaOptionsService extends CalumaOptionsService {
   @service intl;
   @service store;
 
+  namespace = "demo";
+
   constructor(...args) {
     super(...args);
 
