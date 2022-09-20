@@ -1,0 +1,33 @@
+<div class="uk-margin">
+  <@labelComponent />
+
+  <div class="uk-form-controls">
+    <div class="cfb-slug-input">
+      {{#if (and (not (or @disabled @hidePrefix)) this.prefix)}}
+        <span
+          class="cfb-slug-input__prefix
+            {{if @isValid 'uk-text-success'}}
+            {{if @isInvalid 'uk-text-danger'}}"
+          {{did-insert this.calculatePadding}}
+        >
+          {{this.prefix}}
+        </span>
+      {{/if}}
+      <input
+        id={{@inputId}}
+        name={{or @inputName @name}}
+        type="text"
+        class="uk-input cfb-slug-input__input
+          {{if @isValid 'uk-form-success'}}
+          {{if @isInvalid 'uk-form-danger'}}"
+        value={{this.displayValue}}
+        disabled={{@disabled}}
+        style={{this.inputStyle}}
+        {{on "input" this.update}}
+      />
+    </div>
+  </div>
+
+  <@hintComponent />
+  <@errorComponent />
+</div>

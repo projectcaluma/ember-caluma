@@ -2,13 +2,12 @@ import { A } from "@ember/array";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import { camelize } from "@ember/string";
-import { macroCondition, isTesting } from "@embroider/macros";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
 import Changeset from "ember-changeset";
 import lookupValidator from "ember-changeset-validations";
-import { dropTask, restartableTask, task, timeout } from "ember-concurrency";
+import { dropTask, restartableTask, task } from "ember-concurrency";
 
 import { hasQuestionType } from "@projectcaluma/ember-core/helpers/has-question-type";
 import slugify from "@projectcaluma/ember-core/utils/slugify";
@@ -37,9 +36,9 @@ import saveTableQuestionMutation from "@projectcaluma/ember-form-builder/gql/mut
 import saveTextQuestionMutation from "@projectcaluma/ember-form-builder/gql/mutations/save-text-question.graphql";
 import saveTextareaQuestionMutation from "@projectcaluma/ember-form-builder/gql/mutations/save-textarea-question.graphql";
 import allDataSourcesQuery from "@projectcaluma/ember-form-builder/gql/queries/all-data-sources.graphql";
-import checkQuestionSlugQuery from "@projectcaluma/ember-form-builder/gql/queries/check-question-slug.graphql";
 import formEditorQuestionQuery from "@projectcaluma/ember-form-builder/gql/queries/form-editor-question.graphql";
 import formListQuery from "@projectcaluma/ember-form-builder/gql/queries/form-list.graphql";
+import optionValidations from "@projectcaluma/ember-form-builder/validations/option";
 import validations from "@projectcaluma/ember-form-builder/validations/question";
 
 export const TYPES = {
@@ -77,9 +76,9 @@ export default class CfbFormEditorQuestion extends Component {
   @service notification;
   @service intl;
   @service calumaOptions;
+
   @queryManager apollo;
 
-  @tracked linkSlug = true;
   @tracked changeset;
 
   @restartableTask
@@ -209,13 +208,10 @@ export default class CfbFormEditorQuestion extends Component {
   }
 
   getInput(changeset) {
-    const slug =
-      ((!this.args.slug && this.prefix) || "") + changeset.get("slug");
-
     const rawMeta = changeset.get("meta");
 
     const input = {
-      slug,
+      slug: changeset.get("slug"),
       label: changeset.get("label"),
       isHidden: changeset.get("isHidden"),
       infoText: changeset.get("infoText"),
@@ -289,14 +285,14 @@ export default class CfbFormEditorQuestion extends Component {
 
   _getMultipleChoiceQuestionInput(changeset) {
     return {
-      options: changeset.get("options.edges").map(({ node: { slug } }) => slug),
+      options: changeset.get("options").map(({ slug }) => slug),
       hintText: changeset.get("hintText"),
     };
   }
 
   _getChoiceQuestionInput(changeset) {
     return {
-      options: changeset.get("options.edges").map(({ node: { slug } }) => slug),
+      options: changeset.get("options").map(({ slug }) => slug),
       hintText: changeset.get("hintText"),
     };
   }
@@ -358,14 +354,16 @@ export default class CfbFormEditorQuestion extends Component {
   @task
   *saveOptions(changeset) {
     yield Promise.all(
-      (changeset.get("options.edges") || []).map(async ({ node: option }) => {
-        const { label, slug, isArchived } = option;
+      (changeset.get("options") || [])
+        .filter((option) => option.get("isDirty"))
+        .map(async (option) => {
+          const { label, slug, isArchived } = option;
 
-        await this.apollo.mutate({
-          mutation: saveOptionMutation,
-          variables: { input: { label, slug, isArchived } },
-        });
-      })
+          await this.apollo.mutate({
+            mutation: saveOptionMutation,
+            variables: { input: { label, slug, isArchived } },
+          });
+        })
     );
   }
 
@@ -447,39 +445,36 @@ export default class CfbFormEditorQuestion extends Component {
     }
   }
 
-  @restartableTask
-  *validateSlug(slug, changeset) {
-    /* istanbul ignore next */
-    if (macroCondition(isTesting())) {
-      // no timeout
-    } else {
-      yield timeout(500);
-    }
-
-    const res = yield this.apollo.query(
-      {
-        query: checkQuestionSlugQuery,
-        variables: { slug },
-      },
-      "allQuestions.edges"
-    );
-
-    if (res && res.length) {
-      changeset.pushErrors(
-        "slug",
-        this.intl.t("caluma.form-builder.validations.question.slug")
-      );
-    }
-  }
-
   @action
   async fetchData() {
     await this.data.perform();
     await this.availableForms.perform();
     await this.availableDataSources.perform();
     if (this.model) {
+      const options = this.model.options?.edges?.map(
+        (edge) =>
+          new Changeset(
+            { ...edge.node, slugUnlinked: false, question: this.model.slug },
+            lookupValidator(optionValidations),
+            optionValidations
+          )
+      ) ?? [
+        new Changeset(
+          {
+            id: undefined,
+            label: "",
+            slug: "",
+            isArchived: false,
+            slugUnlinked: false,
+            question: this.model.slug,
+          },
+          lookupValidator(optionValidations),
+          optionValidations
+        ),
+      ];
+
       this.changeset = new Changeset(
-        this.model,
+        { ...this.model, options },
         lookupValidator(validations),
         validations
       );
@@ -490,21 +485,14 @@ export default class CfbFormEditorQuestion extends Component {
   updateLabel(value, changeset) {
     changeset.set("label", value);
 
-    if (!this.args.slug && this.linkSlug) {
-      const slug = slugify(value, { locale: this.intl.primaryLocale });
+    if (!this.args.slug && !this.slugUnlinked) {
+      const slugifiedLabel = slugify(value, {
+        locale: this.intl.primaryLocale,
+      });
+      const slug = slugifiedLabel ? this.prefix + slugifiedLabel : "";
 
       changeset.set("slug", slug);
-
-      this.validateSlug.perform(this.prefix + slug, changeset);
     }
-  }
-
-  @action
-  updateSlug(value, changeset) {
-    changeset.set("slug", value);
-    this.linkSlug = false;
-
-    this.validateSlug.perform(this.prefix + value, changeset);
   }
 
   @action

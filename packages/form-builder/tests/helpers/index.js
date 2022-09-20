@@ -1,8 +1,17 @@
+import { importSync } from "@embroider/macros";
 import {
   setupApplicationTest as upstreamSetupApplicationTest,
   setupRenderingTest as upstreamSetupRenderingTest,
   setupTest as upstreamSetupTest,
 } from "ember-qunit";
+
+function setApplicationInstance() {
+  const application = importSync(
+    "@projectcaluma/ember-form-builder/-private/application"
+  ).default;
+
+  application.instance = this.owner;
+}
 
 // This file exists to provide wrappers around ember-qunit's / ember-mocha's
 // test setup functions. This way, you can easily extend the setup that is
@@ -10,6 +19,8 @@ import {
 
 function setupApplicationTest(hooks, options) {
   upstreamSetupApplicationTest(hooks, options);
+
+  hooks.beforeEach(setApplicationInstance);
 
   // Additional setup for application tests can be done here.
   //
@@ -30,13 +41,13 @@ function setupApplicationTest(hooks, options) {
 function setupRenderingTest(hooks, options) {
   upstreamSetupRenderingTest(hooks, options);
 
-  // Additional setup for rendering tests can be done here.
+  hooks.beforeEach(setApplicationInstance);
 }
 
 function setupTest(hooks, options) {
   upstreamSetupTest(hooks, options);
 
-  // Additional setup for unit tests can be done here.
+  hooks.beforeEach(setApplicationInstance);
 }
 
 export { setupApplicationTest, setupRenderingTest, setupTest };

@@ -30,7 +30,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
   });
 
   test("it validates", async function (assert) {
-    assert.expect(2);
+    assert.expect(1);
 
     this.server.create("form", {
       name: "Test Name",
@@ -43,7 +43,6 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
     await fillIn("input[name=name]", "");
     await blur("input[name=name]");
 
-    assert.dom("form button[type=submit]").isDisabled();
     assert.dom("small.uk-text-danger").hasText("Name can't be blank");
   });
 
@@ -68,9 +67,11 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
     );
 
     await fillIn("input[name=name]", "Form 1");
-    assert.dom("button[type=submit]").isDisabled();
 
-    // TODO: WHY IS THAT SHIT NOT FOUND BY THE TESTSUITE????
+    await click("button[type=submit]");
+
+    assert.dom("input[name=slug]").hasClass("uk-form-danger");
+
     await fillIn("input[name=slug]", "form-2");
 
     await click("button[type=submit]");
@@ -199,13 +200,10 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
       .hasText("t:caluma.form-builder.validations.form.slug:()");
 
     await fillIn("input[name=slug]", "valid-slug");
-    await blur("input[name=slug]");
 
     assert.dom("small.uk-text-danger").doesNotExist();
 
-    await fillIn("input[name=name]", "Other Test Slug");
-    await blur("input[name=name]");
-    await blur("input[name=slug]");
+    await fillIn("input[name=slug]", "other-test-slug");
 
     assert
       .dom("small.uk-text-danger")

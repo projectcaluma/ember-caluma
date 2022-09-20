@@ -5,26 +5,26 @@
     @handle=".uk-sortable-handle"
     @onMoved={{this._handleMoved}}
     @tagName="ul"
-    class="uk-list uk-list-divider uk-margin-remove-bottom uk-margin-small-top"
+    class="uk-list uk-list-divider uk-form-controls uk-margin-small-top"
   >
-    {{#each this.optionRows as |row i|}}
-      <li data-test-row={{concat "option-" (add i 1)}}>
+    {{#each @value as |row i|}}
+      <li class="cfb-option-row" data-test-row={{concat "option-" (add i 1)}}>
         <ValidatedForm @model={{row}} as |f|>
           <div
             uk-grid
-            class="uk-grid-small uk-flex uk-flex-middle"
+            class="uk-grid-small uk-flex uk-flex-top"
             id={{row.slug}}
           >
-            {{#if (not (and row.isNew (gt this.optionRows.length 1)))}}
-              <span
-                data-test-sort-handle
-                uk-icon="menu"
-                class="uk-sortable-handle"
-                role="button"
-              ></span>
-            {{/if}}
-            <div class="uk-width-auto">
-              {{#if (and row.isNew (gt this.optionRows.length 1))}}
+            <div class="uk-width-auto uk-flex uk-flex-middle">
+              {{#if this.canReorder}}
+                <span
+                  data-test-sort-handle
+                  uk-icon="menu"
+                  class="uk-sortable-handle uk-margin-small-right"
+                  role="button"
+                ></span>
+              {{/if}}
+              {{#if (is-empty row.id)}}
                 <button
                   data-test-delete-row
                   type="button"
@@ -34,21 +34,25 @@
                   {{on "click" (fn this.deleteRow row)}}
                 >
                 </button>
+              {{else}}
+                <button
+                  data-test-archive-row
+                  type="button"
+                  class="uk-icon-button"
+                  uk-icon={{if row.isArchived "refresh" "close"}}
+                  title={{t
+                    (concat
+                      "caluma.form-builder.options."
+                      (if row.isArchived "restore" "archive")
+                    )
+                  }}
+                  {{on
+                    "click"
+                    (fn (changeset-set row "isArchived") (not row.isArchived))
+                  }}
+                >
+                </button>
               {{/if}}
-              <button
-                data-test-archive-row
-                type="button"
-                class="uk-icon-button"
-                uk-icon={{if row.isArchived "plus" "close"}}
-                title={{t
-                  (concat
-                    "caluma.form-builder.options."
-                    (if row.isArchived "restore" "archive")
-                  )
-                }}
-                {{on "click" (fn this.toggleRowArchived row)}}
-              >
-              </button>
             </div>
             <div class="uk-width-expand">
               <f.input
@@ -56,6 +60,7 @@
                 @inputName={{concat "option-" (add i 1) "-label"}}
                 @required={{true}}
                 @disabled={{row.isArchived}}
+                @submitted={{@submitted}}
                 @on-update={{this.updateLabel}}
               />
             </div>
@@ -64,8 +69,14 @@
                 @name="slug"
                 @inputName={{concat "option-" (add i 1) "-slug"}}
                 @required={{true}}
-                @disabled={{not row.isNew}}
-                @on-update={{this.updateSlug}}
+                @disabled={{not (is-empty row.id)}}
+                @submitted={{@submitted}}
+                @renderComponent={{component
+                  "cfb-slug-input"
+                  hidePrefix=true
+                  prefix=@model.slug
+                  onUnlink=(fn (mut row.slugUnlinked) true)
+                }}
               />
             </div>
           </div>

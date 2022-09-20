@@ -1,27 +1,20 @@
+import Changeset from "ember-changeset";
 import { module, test } from "qunit";
 
 import validateOptions from "@projectcaluma/ember-form-builder/validators/options";
 
 module("Unit | Validator | options", function () {
   test("it validates correctly", async function (assert) {
-    assert.expect(4);
+    assert.expect(2);
 
-    assert.true(await validateOptions()(null, { edges: [] }));
-    assert.true(
-      await validateOptions()(null, {
-        edges: [{ node: { slug: "test", label: "test" } }],
-      })
-    );
+    const option = new Changeset({});
+
+    assert.true(await validateOptions()(null, [option]));
+
+    option.pushErrors("Test");
+
     assert.strictEqual(
-      await validateOptions()(null, {
-        edges: [{ node: { slug: "test", label: "" } }],
-      }),
-      "Invalid options"
-    );
-    assert.strictEqual(
-      await validateOptions()(null, {
-        edges: [{ node: { slug: "", label: "test" } }],
-      }),
+      await validateOptions()(null, [option]),
       "Invalid options"
     );
   });
