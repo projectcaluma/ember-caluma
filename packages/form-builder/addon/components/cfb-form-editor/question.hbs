@@ -369,30 +369,11 @@
         {{#if @slug}}
           <div class="uk-margin">
             <f.input
+              @type="checkbox-group"
               @name="meta.columnsToDisplay"
               @label={{t "caluma.form-builder.question.columnsToDisplay"}}
-            >
-              {{#each this.model.rowForm.questions.edges as |rowEdge|}}
-                {{#let rowEdge.node as |row|}}
-                  <label>
-                    <input
-                      type="checkbox"
-                      value={{row.slug}}
-                      checked={{includes
-                        row.slug
-                        this.model.meta.columnsToDisplay
-                      }}
-                      class="uk-checkbox uk-margin-small-right"
-                      {{on
-                        "change"
-                        (fn this.toggleColumnToDisplay row.slug f.model)
-                      }}
-                    />
-                    {{row.label}}
-                  </label>
-                {{/let}}
-              {{/each}}
-            </f.input>
+              @options={{this.columnsToDisplayOptions}}
+            />
           </div>
         {{/if}}
       {{/if}}
