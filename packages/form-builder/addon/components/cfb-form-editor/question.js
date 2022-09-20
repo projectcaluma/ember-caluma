@@ -204,6 +204,13 @@ export default class CfbFormEditorQuestion extends Component {
       : "";
   }
 
+  get columnsToDisplayOptions() {
+    return this.model.rowForm?.questions.edges.map((edge) => ({
+      key: edge.node.slug,
+      label: edge.node.label,
+    }));
+  }
+
   getInput(changeset) {
     const slug =
       ((!this.args.slug && this.prefix) || "") + changeset.get("slug");
@@ -494,19 +501,6 @@ export default class CfbFormEditorQuestion extends Component {
     this.linkSlug = false;
 
     this.validateSlug.perform(this.prefix + value, changeset);
-  }
-
-  /*
-   * This function adds the selected slugs to the columns to display
-   * list if it isnt present, otherwise it will remove the slug.
-   */
-  @action
-  toggleColumnToDisplay(value, changeset) {
-    const displayed = new Set(changeset.get("meta.columnsToDisplay"));
-
-    displayed.delete(value) || displayed.add(value);
-
-    changeset.set("meta.columnsToDisplay", [...displayed]);
   }
 
   @action
