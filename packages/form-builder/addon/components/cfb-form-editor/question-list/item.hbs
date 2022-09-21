@@ -9,35 +9,33 @@
   ...attributes
 >
   <div class="uk-flex uk-flex-middle">
-    <span class="uk-width-auto uk-margin-small-right">
-      {{#if (eq @mode "reorder")}}
-        <i
-          role="button"
-          data-test-sort-handle
-          uk-icon="menu"
-          class="uk-sortable-handle"
-        >
-        </i>
-      {{else if (eq @mode "remove")}}
-        <i
-          role="button"
-          data-test-remove-item
-          uk-icon="minus"
-          class="cfb-pointer uk-text-danger"
-          {{on "click" (fn (optional @onRemoveQuestion) @question)}}
-        >
-        </i>
-      {{else if (eq @mode "add")}}
-        <i
-          role="button"
-          data-test-add-item
-          uk-icon="plus"
-          class="cfb-pointer uk-text-success"
-          {{on "click" (fn (optional @onAddQuestion) @question)}}
-        >
-        </i>
-      {{/if}}
-    </span>
+    {{#if (eq @mode "reorder")}}
+      <i
+        role="button"
+        data-test-sort-handle
+        uk-icon="menu"
+        class="uk-sortable-handle uk-margin-small-right"
+      >
+      </i>
+    {{else if (eq @mode "remove")}}
+      <i
+        role="button"
+        data-test-remove-item
+        uk-icon="minus"
+        class="cfb-pointer uk-text-danger uk-margin-small-right"
+        {{on "click" (fn (optional @onRemoveQuestion) @question)}}
+      >
+      </i>
+    {{else if (eq @mode "add")}}
+      <i
+        role="button"
+        data-test-add-item
+        uk-icon="plus"
+        class="cfb-pointer uk-text-success uk-margin-small-right"
+        {{on "click" (fn (optional @onAddQuestion) @question)}}
+      >
+      </i>
+    {{/if}}
 
     {{#if (eq @mode "reorder")}}
       <a
