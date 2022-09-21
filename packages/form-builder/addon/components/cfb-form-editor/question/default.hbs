@@ -1,13 +1,15 @@
 <div class="uk-margin">
-  {{component @labelComponent}}
+  <@labelComponent />
 
-  {{component
-    (get-widget this.field.question)
-    field=this.field
-    disabled=false
-    onSave=this.onUpdate
-  }}
+  <div class="uk-form-controls">
+    {{component
+      (get-widget this.field.question)
+      field=this.field
+      disabled=false
+      onSave=this.onUpdate
+    }}
+  </div>
 
-  {{component @hintComponent}}
-  {{component @errorComponent}}
+  <@hintComponent />
+  <@errorComponent />
 </div>

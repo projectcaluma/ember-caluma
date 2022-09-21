@@ -1,17 +1,19 @@
 <div class="uk-margin">
-  {{component @labelComponent}}
+  <@labelComponent />
 
-  <PowerSelectMultiple
-    @selected={{this.selected}}
-    @placeholder={{@placeholder}}
-    @options={{this.validators}}
-    @onChange={{this.updateValidators}}
-    @renderInPlace={{true}}
-    as |item|
-  >
-    {{item.name}}
-  </PowerSelectMultiple>
+  <div class="uk-form-controls">
+    <PowerSelectMultiple
+      @selected={{this.selected}}
+      @placeholder={{@placeholder}}
+      @options={{this.validators}}
+      @onChange={{this.updateValidators}}
+      @renderInPlace={{true}}
+      as |item|
+    >
+      {{item.name}}
+    </PowerSelectMultiple>
+  </div>
 
-  {{component @hintComponent}}
-  {{component @errorComponent}}
+  <@hintComponent />
+  <@errorComponent />
 </div>

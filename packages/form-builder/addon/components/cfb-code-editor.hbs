@@ -1,12 +1,27 @@
-{{component @labelComponent}}
+<div class="uk-margin">
+  <@labelComponent />
 
-<div
-  name={{@name}}
-  class="uk-textarea cfb-code-editor {{concat 'language-' @language}}"
-  {{did-insert this.didInsertNode}}
-  {{will-destroy this.willDestroyNode}}
-  {{autoresize mode="height"}}
-></div>
+  <div class="uk-form-controls">
+    <div
+      name={{@name}}
+      class="uk-textarea cfb-code-editor {{concat 'language-' @language}}"
+      {{did-insert this.didInsertNode}}
+      {{will-destroy this.willDestroyNode}}
+      {{autoresize mode="height"}}
+    ></div>
+  </div>
 
-{{component @hintComponent}}
-{{component @errorComponent}}
+  {{#if (eq @language "markdown")}}
+    <small class="uk-text-muted">
+      {{t "caluma.form-builder.question.supportsMarkdownPrefix"}}
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://www.markdownguide.org/basic-syntax"
+      >{{t "caluma.form-builder.question.markdown"}}</a>
+    </small>
+  {{/if}}
+
+  <@hintComponent />
+  <@errorComponent />
+</div>
