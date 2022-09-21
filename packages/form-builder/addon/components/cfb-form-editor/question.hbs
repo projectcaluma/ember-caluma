@@ -113,26 +113,11 @@
       {{/if}}
 
       {{#if (has-question-type f.model "static")}}
-        <div class="uk-margin">
-          <f.input
-            @label={{t "caluma.form-builder.question.staticContent"}}
-            @name="staticContent"
-            @renderComponent={{component
-              "cfb-code-editor"
-              language="markdown"
-              className="uk-margin-remove-bottom"
-            }}
-            class="uk-margin-remove-bottom"
-          />
-          <small class="uk-text-muted">
-            {{t "caluma.form-builder.question.supportsMarkdownPrefix"}}
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://www.markdownguide.org/basic-syntax"
-            >{{t "caluma.form-builder.question.markdown"}}</a>
-          </small>
-        </div>
+        <f.input
+          @label={{t "caluma.form-builder.question.staticContent"}}
+          @name="staticContent"
+          @renderComponent={{component "cfb-code-editor" language="markdown"}}
+        />
       {{/if}}
 
       {{#if (has-question-type f.model "action-button")}}
@@ -143,25 +128,11 @@
           {{autoresize mode="height"}}
         />
       {{else}}
-        <div class="uk-margin">
-          <f.input
-            @label={{t "caluma.form-builder.question.infoText"}}
-            @name="infoText"
-            @renderComponent={{component
-              "cfb-code-editor"
-              language="markdown"
-              className="uk-margin-remove-bottom"
-            }}
-          />
-          <small class="uk-text-muted">
-            {{t "caluma.form-builder.question.supportsMarkdownPrefix"}}
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://www.markdownguide.org/basic-syntax"
-            >{{t "caluma.form-builder.question.markdown"}}</a>
-          </small>
-        </div>
+        <f.input
+          @label={{t "caluma.form-builder.question.infoText"}}
+          @name="infoText"
+          @renderComponent={{component "cfb-code-editor" language="markdown"}}
+        />
       {{/if}}
 
       {{#if (not (has-question-type f.model "action-button" "static" "form"))}}
@@ -250,17 +221,18 @@
         <div uk-grid class="uk-grid-small uk-child-width-1-2 uk-margin">
           <div>
             <f.input
+              @type="number"
               @name="floatMinValue"
               @label={{t "caluma.form-builder.question.min-value"}}
-              @renderComponent={{component "cfb-float-input"}}
+              step="any"
             />
           </div>
-
           <div>
             <f.input
+              @type="number"
               @name="floatMaxValue"
               @label={{t "caluma.form-builder.question.max-value"}}
-              @renderComponent={{component "cfb-float-input"}}
+              step="any"
             />
           </div>
         </div>
@@ -367,14 +339,12 @@
         </div>
 
         {{#if @slug}}
-          <div class="uk-margin">
-            <f.input
-              @type="checkbox-group"
-              @name="meta.columnsToDisplay"
-              @label={{t "caluma.form-builder.question.columnsToDisplay"}}
-              @options={{this.columnsToDisplayOptions}}
-            />
-          </div>
+          <f.input
+            @type="checkbox-group"
+            @name="meta.columnsToDisplay"
+            @label={{t "caluma.form-builder.question.columnsToDisplay"}}
+            @options={{this.columnsToDisplayOptions}}
+          />
         {{/if}}
       {{/if}}
 
@@ -459,13 +429,11 @@
           />
         {{/if}}
 
-        <div class="uk-margin">
-          <f.input
-            @label={{t "caluma.form-builder.question.isHidden"}}
-            @name="isHidden"
-            @renderComponent={{component "cfb-code-editor" language="jexl"}}
-          />
-        </div>
+        <f.input
+          @label={{t "caluma.form-builder.question.isHidden"}}
+          @name="isHidden"
+          @renderComponent={{component "cfb-code-editor" language="jexl"}}
+        />
 
         {{#if
           (not
@@ -474,22 +442,18 @@
             )
           )
         }}
-          <div class="uk-margin">
-            <f.input
-              @label={{t "caluma.form-builder.question.isRequired"}}
-              @name="isRequired"
-              @renderComponent={{component "cfb-code-editor" language="jexl"}}
-            />
-          </div>
+          <f.input
+            @label={{t "caluma.form-builder.question.isRequired"}}
+            @name="isRequired"
+            @renderComponent={{component "cfb-code-editor" language="jexl"}}
+          />
         {{/if}}
 
-        <div class="uk-margin">
-          <f.input
-            @label={{t "caluma.form-builder.question.meta"}}
-            @name="meta"
-            @renderComponent={{component "cfb-code-editor" language="json"}}
-          />
-        </div>
+        <f.input
+          @label={{t "caluma.form-builder.question.meta"}}
+          @name="meta"
+          @renderComponent={{component "cfb-code-editor" language="json"}}
+        />
       {{/if}}
 
       <div class="uk-text-right">
