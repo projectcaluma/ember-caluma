@@ -1,47 +1,26 @@
-import getMessages from "ember-changeset-validations/utils/get-messages";
-import buildMessage from "ember-changeset-validations/utils/validation-errors";
+import { validateNumber } from "ember-changeset-validations/validators";
 
-export default function validateGtLt(options = { gt: null, lt: null }) {
+export default function validateGtLt(options = {}) {
   return (key, newValue, oldValue, changes, content) => {
-    newValue = Number(newValue);
-
-    if (!newValue) {
-      return true;
-    }
-
-    const messages = getMessages();
     const data = { ...content, ...changes };
 
-    if (options.gt) {
-      const dependentValue = data[options.gt];
+    const parsedOptions = Object.entries(options).reduce((parsed, [k, v]) => {
+      const value =
+        /^(g|l)t(e)?$/.test(k) && typeof v === "string" ? data[v] : v;
 
-      return dependentValue
-        ? Number(newValue) > Number(dependentValue) ||
-            buildMessage(key, {
-              type: "greaterThan",
-              value: newValue,
-              context: {
-                gt: messages.getDescriptionFor(options.gt),
-              },
-            })
-        : true;
-    }
+      if (value) {
+        return { ...parsed, [k]: value };
+      }
 
-    if (options.lt) {
-      const dependentValue = data[options.lt];
+      return parsed;
+    }, {});
 
-      return dependentValue
-        ? Number(newValue) < Number(dependentValue) ||
-            buildMessage(key, {
-              type: "lessThan",
-              value: newValue,
-              context: {
-                lt: messages.getDescriptionFor(options.lt),
-              },
-            })
-        : true;
-    }
-
-    return true;
+    return validateNumber(parsedOptions)(
+      key,
+      newValue,
+      oldValue,
+      changes,
+      content
+    );
   };
 }
