@@ -44,6 +44,14 @@
         >{{t "caluma.distribution.edit.send"}}</UkButton>
       </DocumentValidity>
     {{/if}}
+    {{#if (can "answer inquiry" this.inquiry)}}
+      <LinkTo
+        @route="inquiry.detail.answer"
+        class="uk-button uk-button-primary"
+      >
+        {{t "caluma.distribution.answer.link"}}
+      </LinkTo>
+    {{/if}}
   </:default>
   <:notfound><CdNotfound /></:notfound>
 </CfContent>
