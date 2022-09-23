@@ -35,7 +35,7 @@ module("Integration | Component | cd-inquiry-edit-form", function (hooks) {
 
     assert
       .dom("p.uk-text-large")
-      .hasText("Inquiry t:caluma.distribution.status.draft:()");
+      .hasText("Inquiry (group2) t:caluma.distribution.status.draft:()");
     assert.dom("form").exists();
     assert
       .dom("button.uk-button-primary")
