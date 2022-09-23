@@ -6,6 +6,7 @@
   <:default as |content|>
     <CdDocumentHeader
       @name={{content.document.rootForm.raw.name}}
+      @group={{this.inquiry.addressedGroups}}
       @status={{if
         (eq this.inquiry.status "SUSPENDED")
         (t "caluma.distribution.status.draft")

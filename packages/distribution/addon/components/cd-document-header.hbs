@@ -1,6 +1,9 @@
 <p class="uk-text-large uk-margin-remove uk-flex uk-flex-middle">
   <div class="uk-width-expand">
     {{@name}}
+    {{#if @group}}
+      ({{group-name @group}})
+    {{/if}}
     {{#if @status}}
       <UkLabel @label={{@status}} class="uk-margin-left" />
     {{/if}}

@@ -4,6 +4,7 @@ query InquiryEdit($inquiry: ID!) {
       node {
         id
         status
+        addressedGroups
         controllingGroups
         task {
           id
