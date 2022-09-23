@@ -30,7 +30,7 @@ caluma:
 
     edit:
       link: "Bearbeiten"
-      send: "Senden"
+      send: "Aktuelle Anfrage versenden"
       send-error: "Fehler beim Senden der Anfrage"
       send-not-allowed: "Sie sind nicht berechtigt diese Anfrage zu versenden."
 
