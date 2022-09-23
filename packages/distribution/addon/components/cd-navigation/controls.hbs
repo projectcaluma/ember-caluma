@@ -1,18 +1,8 @@
 <div class="uk-text-center uk-margin-small-top">
-  {{#if (can "create inquiry of distribution")}}
-    <LinkTo
-      @route="new"
-      class="uk-icon-button"
-      {{uk-tooltip (t "caluma.distribution.new.title")}}
-      data-test-new-inquiry
-    >
-      <UkIcon @icon="plus" />
-    </LinkTo>
-  {{/if}}
   {{#if (can "send inquiries of distribution")}}
     <button
       type="button"
-      class="uk-icon-button"
+      class="uk-icon-button uk-button-primary"
       {{uk-tooltip (t "caluma.distribution.send")}}
       data-test-send-pending-inquiries
       {{on "click" (perform this.sendInquiries)}}
@@ -23,6 +13,16 @@
         <UkIcon @icon="comment" />
       {{/if}}
     </button>
+  {{/if}}
+  {{#if (can "create inquiry of distribution")}}
+    <LinkTo
+      @route="new"
+      class="uk-icon-button"
+      {{uk-tooltip (t "caluma.distribution.new.title")}}
+      data-test-new-inquiry
+    >
+      <UkIcon @icon="plus" />
+    </LinkTo>
   {{/if}}
   {{#if (can "complete distribution")}}
     <button
