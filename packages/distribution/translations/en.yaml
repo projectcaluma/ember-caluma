@@ -31,7 +31,7 @@ caluma:
 
     edit:
       link: "Edit"
-      send: "Send"
+      send: "Send current inquiry"
       send-error: "Error while sending the inquiry"
       send-not-allowed: "You are not allowed to send this inquiry."
 
