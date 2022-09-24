@@ -1,7 +1,7 @@
 import { render } from "@ember/test-helpers";
+import { setupRenderingTest } from "dummy/tests/helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupIntl } from "ember-intl/test-support";
-import { setupRenderingTest } from "ember-qunit";
 import { module, test } from "qunit";
 
 module("Integration | Component | cf-field/input", function (hooks) {
@@ -12,8 +12,8 @@ module("Integration | Component | cf-field/input", function (hooks) {
     assert.expect(2);
 
     await render(hbs`
-      {{cf-field/input
-        field=(hash
+      <CfField::Input
+        @field={{hash
           question=(hash
             raw=(hash
               __typename="TextQuestion"
@@ -22,8 +22,8 @@ module("Integration | Component | cf-field/input", function (hooks) {
           answer=(hash
             value="Test"
           )
-        )
-      }}
+        }}
+      />
     `);
 
     assert.dom(".uk-form-controls").exists();
@@ -34,8 +34,8 @@ module("Integration | Component | cf-field/input", function (hooks) {
     assert.expect(2);
 
     await render(hbs`
-      {{cf-field/input
-        field=(hash
+      <CfField::Input
+        @field={{hash
           question=(hash
             raw=(hash
               __typename="TextareaQuestion"
@@ -44,8 +44,8 @@ module("Integration | Component | cf-field/input", function (hooks) {
           answer=(hash
             value="Test"
           )
-        )
-      }}
+        }}
+      />
     `);
 
     assert.dom(".uk-form-controls").exists();
@@ -56,8 +56,8 @@ module("Integration | Component | cf-field/input", function (hooks) {
     assert.expect(2);
 
     await render(hbs`
-      {{cf-field/input
-        field=(hash
+      <CfField::Input
+        @field={{hash
           question=(hash
             raw=(hash
               __typename="IntegerQuestion"
@@ -66,8 +66,8 @@ module("Integration | Component | cf-field/input", function (hooks) {
           answer=(hash
             value=5
           )
-        )
-      }}
+        }}
+      />
     `);
 
     assert.dom(".uk-form-controls").exists();
@@ -78,16 +78,16 @@ module("Integration | Component | cf-field/input", function (hooks) {
     assert.expect(2);
 
     await render(hbs`
-      {{cf-field/input
-        field=(hash
+      <CfField::Input
+        @field={{hash
           question=(hash
             raw=(hash
               __typename="FloatQuestion"
             )
           )
           value=0.55
-        )
-      }}
+        }}
+      />
     `);
 
     assert.dom(".uk-form-controls").exists();
@@ -100,9 +100,9 @@ module("Integration | Component | cf-field/input", function (hooks) {
     this.set("noop", () => {});
 
     await render(hbs`
-      {{cf-field/input
-        onSave=noop
-        field=(hash
+      <CfField::Input
+        @onSave={{this.noop}}
+        @field={{hash
           options=(array
             (hash slug="option-1")
           )
@@ -114,8 +114,8 @@ module("Integration | Component | cf-field/input", function (hooks) {
           answer=(hash
             value="option-1"
           )
-        )
-      }}
+        }}
+      />
     `);
 
     assert.dom(".uk-form-controls").exists();
@@ -126,8 +126,8 @@ module("Integration | Component | cf-field/input", function (hooks) {
     assert.expect(2);
 
     await render(hbs`
-      {{cf-field/input
-        field=(hash
+      <CfField::Input
+        @field={{hash
           options=(array
             (hash slug="option-1")
           )
@@ -139,8 +139,8 @@ module("Integration | Component | cf-field/input", function (hooks) {
           answer=(hash
             value=(array "option-1")
           )
-        )
-      }}
+        }}
+      />
     `);
 
     assert.dom(".uk-form-controls").exists();
@@ -151,16 +151,16 @@ module("Integration | Component | cf-field/input", function (hooks) {
     assert.expect(2);
 
     await render(hbs`
-      {{cf-field/input
-        disabled=true
-        field=(hash
+      <CfField::Input
+        @disabled={{true}}
+        @field={{hash
           question=(hash
             raw=(hash
               __typename="TextQuestion"
             )
           )
-        )
-      }}
+        }}
+      />
     `);
 
     assert.dom("input[type=text]").hasAttribute("readonly");

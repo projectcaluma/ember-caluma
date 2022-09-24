@@ -1,4 +1,4 @@
-import { setupRenderingTest } from "ember-qunit";
+import { setupRenderingTest } from "dummy/tests/helpers";
 import { module, skip } from "qunit";
 
 module("Integration | Component | cf-form", function (hooks) {

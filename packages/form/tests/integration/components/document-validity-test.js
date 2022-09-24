@@ -1,7 +1,7 @@
 import { render, click, scrollTo, settled } from "@ember/test-helpers";
+import { setupRenderingTest } from "dummy/tests/helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
-import { setupRenderingTest } from "ember-qunit";
 import { module, test } from "qunit";
 
 import data from "../../unit/lib/data";

@@ -1,7 +1,7 @@
 import { setOwner } from "@ember/application";
 import { tracked } from "@glimmer/tracking";
+import { setupTest } from "dummy/tests/helpers";
 import inquiry from "dummy/tests/helpers/inquiry";
-import { setupTest } from "ember-qunit";
 import { DateTime } from "luxon";
 import { module, test } from "qunit";
 

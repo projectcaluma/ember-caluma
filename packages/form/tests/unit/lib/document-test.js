@@ -1,5 +1,5 @@
 import { settled } from "@ember/test-helpers";
-import { setupTest } from "ember-qunit";
+import { setupTest } from "dummy/tests/helpers";
 import { module, test, skip } from "qunit";
 
 import data from "./data";

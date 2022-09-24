@@ -1,6 +1,6 @@
 import { render } from "@ember/test-helpers";
+import { setupRenderingTest } from "dummy/tests/helpers";
 import { hbs } from "ember-cli-htmlbars";
-import { setupRenderingTest } from "ember-qunit";
 import { module, test } from "qunit";
 
 module("Integration | Helper | has-question-type", function (hooks) {
@@ -10,7 +10,7 @@ module("Integration | Helper | has-question-type", function (hooks) {
     this.set("obj", { __typename: "DynamicChoiceQuestion" });
     this.set("expected", "dynamic-choice");
 
-    await render(hbs`{{has-question-type obj expected}}`);
+    await render(hbs`{{has-question-type this.obj this.expected}}`);
 
     assert.dom(this.element).hasText("true");
   });

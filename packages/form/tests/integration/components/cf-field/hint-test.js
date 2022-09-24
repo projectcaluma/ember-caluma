@@ -1,7 +1,7 @@
 import { render } from "@ember/test-helpers";
+import { setupRenderingTest } from "dummy/tests/helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupIntl } from "ember-intl/test-support";
-import { setupRenderingTest } from "ember-qunit";
 import { module, test } from "qunit";
 
 module("Integration | Component | cf-field/hint", function (hooks) {
@@ -41,7 +41,7 @@ module("Integration | Component | cf-field/hint", function (hooks) {
   test("it renders", async function (assert) {
     assert.expect(2);
 
-    await render(hbs`<CfField::hint @field={{field}} />`);
+    await render(hbs`<CfField::Hint @field={{this.field}} />`);
 
     assert.dom(`div[data-test-field-hint='${this.field.pk}']`).exists();
     assert.dom(`div[data-test-field-hint='${this.field.pk}']`).hasText("Test");

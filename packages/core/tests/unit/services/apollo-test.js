@@ -1,5 +1,5 @@
 import { InMemoryCache } from "@apollo/client/cache";
-import { setupTest } from "ember-qunit";
+import { setupTest } from "dummy/tests/helpers";
 import { module, test } from "qunit";
 
 import possibleTypes from "@projectcaluma/ember-core/-private/possible-types";

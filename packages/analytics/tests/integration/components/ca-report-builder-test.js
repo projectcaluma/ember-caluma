@@ -1,11 +1,11 @@
 import { render } from "@ember/test-helpers";
 import { tracked } from "@glimmer/tracking";
+import { setupRenderingTest } from "dummy/tests/helpers";
 import { Changeset } from "ember-changeset";
 import lookupValidator from "ember-changeset-validations";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
-import { setupRenderingTest } from "ember-qunit";
 import { module, test, todo } from "qunit";
 
 import AnalyticsTableValidations from "@projectcaluma/ember-analytics/validations/analytics-table";

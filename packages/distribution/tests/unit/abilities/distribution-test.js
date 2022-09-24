@@ -1,7 +1,7 @@
 import { settled } from "@ember/test-helpers";
 import { tracked } from "@glimmer/tracking";
+import { setupTest } from "dummy/tests/helpers";
 import { setupMirage } from "ember-cli-mirage/test-support";
-import { setupTest } from "ember-qunit";
 import { module, test } from "qunit";
 
 import DistributionService from "@projectcaluma/ember-distribution/services/distribution";

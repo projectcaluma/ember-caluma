@@ -1,4 +1,4 @@
-import { setupTest } from "ember-qunit";
+import { setupTest } from "dummy/tests/helpers";
 import jexl from "jexl";
 import { module, test } from "qunit";
 

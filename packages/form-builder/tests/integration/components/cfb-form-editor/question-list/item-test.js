@@ -1,8 +1,8 @@
 import { render, settled } from "@ember/test-helpers";
 import { tracked } from "@glimmer/tracking";
+import { setupRenderingTest } from "dummy/tests/helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupIntl } from "ember-intl/test-support";
-import { setupRenderingTest } from "ember-qunit";
 import { module, test } from "qunit";
 
 class Question {

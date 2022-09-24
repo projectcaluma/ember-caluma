@@ -1,6 +1,6 @@
 import { classify } from "@ember/string";
+import { setupTest } from "dummy/tests/helpers";
 import { setupMirage } from "ember-cli-mirage/test-support";
-import { setupTest } from "ember-qunit";
 import { gql } from "graphql-tag";
 import { module, test } from "qunit";
 

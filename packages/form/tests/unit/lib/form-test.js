@@ -1,4 +1,4 @@
-import { setupTest } from "ember-qunit";
+import { setupTest } from "dummy/tests/helpers";
 import { module, test } from "qunit";
 
 module("Unit | Library | form", function (hooks) {
