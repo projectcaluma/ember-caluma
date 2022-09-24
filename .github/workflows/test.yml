@@ -158,6 +158,7 @@ jobs:
           - "@projectcaluma/ember-testing"
           - "@projectcaluma/ember-workflow"
         scenario:
+          - ember-lts-4.4
           - ember-lts-3.28
           - ember-release
 

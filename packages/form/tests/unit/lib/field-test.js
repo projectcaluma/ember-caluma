@@ -1,6 +1,6 @@
 import { settled } from "@ember/test-helpers";
+import { setupTest } from "dummy/tests/helpers";
 import { setupIntl } from "ember-intl/test-support";
-import { setupTest } from "ember-qunit";
 import { module, test } from "qunit";
 
 import data from "./data";

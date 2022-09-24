@@ -1,6 +1,6 @@
 import { later } from "@ember/runloop";
 import { settled } from "@ember/test-helpers";
-import { setupTest } from "ember-qunit";
+import { setupTest } from "dummy/tests/helpers";
 import { module, test } from "qunit";
 
 module("Unit | Service | -scheduler", function (hooks) {

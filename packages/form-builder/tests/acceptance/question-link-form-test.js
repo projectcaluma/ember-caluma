@@ -1,7 +1,7 @@
 import { visit, click, currentURL } from "@ember/test-helpers";
+import { setupApplicationTest } from "dummy/tests/helpers";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
-import { setupApplicationTest } from "ember-qunit";
 import { module, test } from "qunit";
 
 module("Acceptance | question link form", function (hooks) {

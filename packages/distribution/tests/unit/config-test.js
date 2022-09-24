@@ -1,5 +1,5 @@
 import { setOwner } from "@ember/application";
-import { setupTest } from "ember-qunit";
+import { setupTest } from "dummy/tests/helpers";
 import { module, test } from "qunit";
 
 import config from "@projectcaluma/ember-distribution/config";

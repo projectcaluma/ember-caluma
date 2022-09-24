@@ -1,5 +1,5 @@
+import { setupTest } from "dummy/tests/helpers";
 import { setupMirage } from "ember-cli-mirage/test-support";
-import { setupTest } from "ember-qunit";
 import { module, test } from "qunit";
 
 module("Unit | Ability | inquiry", function (hooks) {

@@ -1,7 +1,7 @@
 import { render, click, settled } from "@ember/test-helpers";
+import { setupRenderingTest } from "dummy/tests/helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupIntl } from "ember-intl/test-support";
-import { setupRenderingTest } from "ember-qunit";
 import { module, test } from "qunit";
 
 module("Integration | Component | ca-toggle-switch", function (hooks) {

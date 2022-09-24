@@ -1,7 +1,7 @@
 import { render, fillIn } from "@ember/test-helpers";
+import { setupRenderingTest } from "dummy/tests/helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupIntl } from "ember-intl/test-support";
-import { setupRenderingTest } from "ember-qunit";
 import { module, test } from "qunit";
 
 module("Integration | Component | cf-field/input/text", function (hooks) {
@@ -9,7 +9,7 @@ module("Integration | Component | cf-field/input/text", function (hooks) {
   setupIntl(hooks);
 
   test("it computes the proper element id", async function (assert) {
-    await render(hbs`{{cf-field/input/text field=(hash pk="test-id")}}`);
+    await render(hbs`<CfField::Input::Text @field={{hash pk="test-id"}} />`);
 
     assert.dom("#test-id").exists();
   });
@@ -18,8 +18,8 @@ module("Integration | Component | cf-field/input/text", function (hooks) {
     assert.expect(4);
 
     await render(hbs`
-      {{cf-field/input/text
-        field=(hash
+      <CfField::Input::Text
+        @field={{hash
           pk="test"
           answer=(hash
             value="Test"
@@ -27,8 +27,8 @@ module("Integration | Component | cf-field/input/text", function (hooks) {
           question=(hash
             textMaxLength=5
           )
-        )
-      }}
+        }}
+      />
     `);
 
     assert.dom("input").hasClass("uk-input");
@@ -40,7 +40,7 @@ module("Integration | Component | cf-field/input/text", function (hooks) {
   test("it can be disabled", async function (assert) {
     assert.expect(2);
 
-    await render(hbs`{{cf-field/input/text disabled=true}}`);
+    await render(hbs`<CfField::Input::Text @disabled={{true}} />`);
 
     assert.dom("input").hasAttribute("readonly");
     assert.dom("input").hasClass("uk-disabled");
@@ -51,7 +51,7 @@ module("Integration | Component | cf-field/input/text", function (hooks) {
 
     this.set("save", (value) => assert.strictEqual(value, "Test"));
 
-    await render(hbs`{{cf-field/input/text onSave=save}}`);
+    await render(hbs`<CfField::Input::Text @onSave={{this.save}} />`);
 
     await fillIn("input", "Test");
   });

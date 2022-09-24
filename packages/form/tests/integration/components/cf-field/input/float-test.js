@@ -1,7 +1,7 @@
 import { render, fillIn } from "@ember/test-helpers";
+import { setupRenderingTest } from "dummy/tests/helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupIntl } from "ember-intl/test-support";
-import { setupRenderingTest } from "ember-qunit";
 import { module, test } from "qunit";
 
 module("Integration | Component | cf-field/input/float", function (hooks) {
@@ -23,7 +23,7 @@ module("Integration | Component | cf-field/input/float", function (hooks) {
   });
 
   test("it computes the proper element id", async function (assert) {
-    await render(hbs`<CfField::input::float @field={{this.field}} />`);
+    await render(hbs`<CfField::Input::Float @field={{this.field}} />`);
 
     assert.dom("#test-id").exists();
   });
@@ -31,7 +31,7 @@ module("Integration | Component | cf-field/input/float", function (hooks) {
   test("it renders", async function (assert) {
     assert.expect(7);
 
-    await render(hbs`<CfField::input::float @field={{this.field}} />`);
+    await render(hbs`<CfField::Input::Float @field={{this.field}} />`);
 
     assert.dom("input").hasClass("uk-input");
     assert.dom("input").hasAttribute("name", "test-id");
@@ -46,7 +46,7 @@ module("Integration | Component | cf-field/input/float", function (hooks) {
     assert.expect(2);
 
     await render(
-      hbs`<CfField::input::float
+      hbs`<CfField::Input::Float
         @field={{this.field}}
         @disabled={{true}}
       />`
@@ -62,7 +62,7 @@ module("Integration | Component | cf-field/input/float", function (hooks) {
     this.set("save", (value) => assert.strictEqual(value, 1.5));
 
     await render(
-      hbs`<CfField::input::float
+      hbs`<CfField::Input::Float
         @field={{this.field}}
         @onSave={{this.save}}
       />`
@@ -77,7 +77,7 @@ module("Integration | Component | cf-field/input/float", function (hooks) {
     this.set("save", (value) => assert.strictEqual(value, null));
 
     await render(
-      hbs`<CfField::input::float
+      hbs`<CfField::Input::Float
         @field={{this.field}}
         @onSave={{this.save}}
       />`

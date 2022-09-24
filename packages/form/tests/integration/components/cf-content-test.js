@@ -1,9 +1,9 @@
 import { render, fillIn, click, triggerEvent } from "@ember/test-helpers";
+import { setupRenderingTest } from "dummy/tests/helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
 import { Interactor as Pikaday } from "ember-pikaday/test-support";
-import { setupRenderingTest } from "ember-qunit";
 import { module, test } from "qunit";
 
 module("Integration | Component | cf-content", function (hooks) {
@@ -64,7 +64,7 @@ module("Integration | Component | cf-content", function (hooks) {
   });
 
   test("it renders", async function (assert) {
-    await render(hbs`{{cf-content documentId=document.id}}`);
+    await render(hbs`<CfContent @documentId={{this.document.id}} />`);
 
     assert.dom("form").exists();
 
@@ -103,7 +103,9 @@ module("Integration | Component | cf-content", function (hooks) {
   });
 
   test("it renders in disabled mode", async function (assert) {
-    await render(hbs`{{cf-content disabled=true documentId=document.id}}`);
+    await render(
+      hbs`<CfContent @disabled={{true}} @documentId={{this.document.id}} />`
+    );
 
     this.questions.forEach((question) => {
       const id = `Document:${this.document.id}:Question:${question.slug}`;
@@ -282,7 +284,7 @@ module("Integration | Component | cf-content", function (hooks) {
     const options = this.owner.lookup("service:calumaOptions");
     options.registerComponentOverride({ component: "dummy-one" });
 
-    await render(hbs`{{cf-content documentId=document.id}}`);
+    await render(hbs`<CfContent @documentId={{this.document.id}} />`);
 
     assert.dom(`[data-test-dummy-one]`).exists();
   });

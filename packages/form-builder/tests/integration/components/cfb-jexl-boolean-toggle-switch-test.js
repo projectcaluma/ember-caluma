@@ -1,7 +1,7 @@
 import { render, click, settled } from "@ember/test-helpers";
+import { setupRenderingTest } from "dummy/tests/helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupIntl } from "ember-intl/test-support";
-import { setupRenderingTest } from "ember-qunit";
 import { module, test } from "qunit";
 
 module(
@@ -19,7 +19,7 @@ module(
         <CfbJexlBooleanToggleSwitch
           @name='test'
           @value={{this.value}}
-          @update={{fn (mut value)}}
+          @update={{fn (mut this.value)}}
         />
       `);
 

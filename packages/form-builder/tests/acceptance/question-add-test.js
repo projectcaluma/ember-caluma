@@ -1,7 +1,7 @@
 import { visit, currentURL, click, fillIn } from "@ember/test-helpers";
+import { setupApplicationTest } from "dummy/tests/helpers";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
-import { setupApplicationTest } from "ember-qunit";
 import { module, test } from "qunit";
 
 module("Acceptance | question add", function (hooks) {

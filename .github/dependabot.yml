@@ -24,16 +24,6 @@ updates:
       - dependency-name: graphql
         versions:
           - ">= 16"
-      # We're not ready yet
-      - dependency-name: ember-source
-        versions:
-          - ">= 4"
-      - dependency-name: ember-cli
-        versions:
-          - ">= 4"
-      - dependency-name: ember-data
-        versions:
-          - ">= 4"
       # https://github.com/ember-cli/ember-cli/issues/9307
       - dependency-name: eslint
         versions:
@@ -42,3 +32,7 @@ updates:
       - dependency-name: ember-apollo-client
         versions:
           - "4.1.0"
+      # https://github.com/emberjs/ember-test-helpers/issues/1232
+      - dependency-name: @ember/test-helpers
+        versions:
+          - ">=2.8.0"

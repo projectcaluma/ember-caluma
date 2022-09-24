@@ -1,10 +1,10 @@
 import { render, triggerEvent, click } from "@ember/test-helpers";
 import { faker } from "@faker-js/faker";
 import { tracked } from "@glimmer/tracking";
+import { setupRenderingTest } from "dummy/tests/helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
-import { setupRenderingTest } from "ember-qunit";
 import { module, test } from "qunit";
 
 module("Integration | Component | cf-field/input/files", function (hooks) {

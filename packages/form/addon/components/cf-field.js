@@ -9,7 +9,7 @@ import { hasQuestionType } from "@projectcaluma/ember-core/helpers/has-question-
  * Component to display a label and input for a certain field of a document.
  *
  * ```hbs
- * {{cf-field field=someField}}
+ * <CfField @field={{this.someField}} />
  * ```
  *
  * You can disable the field by passing `disabled=true`.

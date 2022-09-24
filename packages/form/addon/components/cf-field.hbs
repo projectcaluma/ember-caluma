@@ -9,7 +9,7 @@
     {{will-destroy this.unregisterComponent}}
   >
     {{#if this.labelVisible}}
-      <CfField::label @field={{@field}} />
+      <CfField::Label @field={{@field}} />
     {{/if}}
 
     <div class="uk-flex">
@@ -28,7 +28,7 @@
       </div>
 
       {{#if (and @field.question.raw.infoText this.infoTextVisible)}}
-        <CfField::info @text={{@field.question.raw.infoText}} />
+        <CfField::Info @text={{@field.question.raw.infoText}} />
       {{/if}}
 
       {{#if this.saveIndicatorVisible}}
@@ -65,11 +65,11 @@
     </div>
 
     {{#if (and @field.question.raw.hintText this.hintTextVisible)}}
-      <CfField::hint @field={{@field}} />
+      <CfField::Hint @field={{@field}} />
     {{/if}}
 
     {{#if @field.errors.length}}
-      <CfField::errors @field={{@field}} />
+      <CfField::Errors @field={{@field}} />
     {{/if}}
   </div>
 {{/if}}

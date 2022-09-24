@@ -1,9 +1,9 @@
 import { setOwner } from "@ember/application";
 import { inject as service } from "@ember/service";
 import { tracked } from "@glimmer/tracking";
+import { setupTest } from "dummy/tests/helpers";
 import inquiry from "dummy/tests/helpers/inquiry";
 import { setupIntl } from "ember-intl/test-support";
-import { setupTest } from "ember-qunit";
 import { module, test } from "qunit";
 
 import config from "@projectcaluma/ember-distribution/config";

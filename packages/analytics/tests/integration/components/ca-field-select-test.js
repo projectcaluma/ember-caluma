@@ -1,8 +1,8 @@
 import { render } from "@ember/test-helpers";
+import { setupRenderingTest } from "dummy/tests/helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { selectChoose } from "ember-power-select/test-support";
-import { setupRenderingTest } from "ember-qunit";
 import { module, test, todo } from "qunit";
 
 module("Integration | Component | ca-field-select", function (hooks) {

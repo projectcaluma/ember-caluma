@@ -1,7 +1,7 @@
 import { render, fillIn } from "@ember/test-helpers";
+import { setupRenderingTest } from "dummy/tests/helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupIntl } from "ember-intl/test-support";
-import { setupRenderingTest } from "ember-qunit";
 import { module, test } from "qunit";
 
 module("Integration | Component | cf-field/input/textarea", function (hooks) {
@@ -9,7 +9,9 @@ module("Integration | Component | cf-field/input/textarea", function (hooks) {
   setupIntl(hooks);
 
   test("it computes the proper element id", async function (assert) {
-    await render(hbs`{{cf-field/input/textarea field=(hash pk="test-id")}}`);
+    await render(
+      hbs`<CfField::Input::Textarea @field={{hash pk="test-id"}} />`
+    );
 
     assert.dom("#test-id").exists();
   });
@@ -18,8 +20,8 @@ module("Integration | Component | cf-field/input/textarea", function (hooks) {
     assert.expect(4);
 
     await render(hbs`
-      {{cf-field/input/textarea
-        field=(hash
+      <CfField::Input::Textarea
+        @field={{hash
           pk="test"
           answer=(hash
             value="Test Test Test"
@@ -29,8 +31,8 @@ module("Integration | Component | cf-field/input/textarea", function (hooks) {
               textareaMaxLength=200
             )
           )
-        )
-      }}
+        }}
+      />
     `);
 
     assert.dom("textarea").hasClass("uk-textarea");
@@ -42,7 +44,7 @@ module("Integration | Component | cf-field/input/textarea", function (hooks) {
   test("it can be disabled", async function (assert) {
     assert.expect(2);
 
-    await render(hbs`{{cf-field/input/textarea disabled=true}}`);
+    await render(hbs`<CfField::Input::Textarea @disabled={{true}} />`);
 
     assert.dom("textarea").hasAttribute("readonly");
     assert.dom("textarea").hasClass("uk-disabled");
@@ -53,7 +55,7 @@ module("Integration | Component | cf-field/input/textarea", function (hooks) {
 
     this.set("save", (value) => assert.strictEqual(value, "Test"));
 
-    await render(hbs`{{cf-field/input/textarea onSave=save}}`);
+    await render(hbs`<CfField::Input::Textarea @onSave={{this.save}} />`);
 
     await fillIn("textarea", "Test");
   });

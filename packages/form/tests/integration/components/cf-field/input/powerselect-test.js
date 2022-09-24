@@ -1,7 +1,7 @@
 import { click, render } from "@ember/test-helpers";
+import { setupRenderingTest } from "dummy/tests/helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupIntl } from "ember-intl/test-support";
-import { setupRenderingTest } from "ember-qunit";
 import { module, test } from "qunit";
 
 module(
@@ -69,14 +69,16 @@ module(
     });
 
     test("it computes the proper element id", async function (assert) {
-      await render(hbs`{{cf-field/input/powerselect field=singleChoiceField}}`);
+      await render(
+        hbs`<CfField::Input::Powerselect @field={{this.singleChoiceField}} />`
+      );
 
       assert
         .dom(".ember-power-select-trigger")
         .hasAttribute("id", this.singleChoiceField.pk);
 
       await render(
-        hbs`{{cf-field/input/powerselect field=multipleChoiceField}}`
+        hbs`<CfField::Input::Powerselect @field={{this.multipleChoiceField}} />`
       );
 
       assert
@@ -88,9 +90,7 @@ module(
       assert.expect(1);
 
       await render(
-        hbs`{{cf-field/input/powerselect
-        field=singleChoiceField
-      }}`
+        hbs`<CfField::Input::Powerselect @field={{this.singleChoiceField}} />`
       );
 
       assert.dom(".ember-power-select-trigger").exists();
@@ -104,10 +104,7 @@ module(
       });
 
       await render(
-        hbs`{{cf-field/input/powerselect
-        field=singleChoiceField
-        onSave=onSave
-      }}`
+        hbs`<CfField::Input::Powerselect @field={{this.singleChoiceField}} @onSave={{this.onSave}} />`
       );
 
       assert.dom(".ember-power-select-trigger").exists();
@@ -123,9 +120,7 @@ module(
       assert.expect(1);
 
       await render(
-        hbs`{{cf-field/input/powerselect
-        field=multipleChoiceField
-      }}`
+        hbs`<CfField::Input::Powerselect @field={{this.multipleChoiceField}} />`
       );
 
       assert.dom(".ember-power-select-trigger").exists();
@@ -139,10 +134,7 @@ module(
       });
 
       await render(
-        hbs`{{cf-field/input/powerselect
-        field=multipleChoiceField
-        onSave=onSave
-      }}`
+        hbs`<CfField::Input::Powerselect @field={{this.multipleChoiceField}} @onSave={{this.onSave}} />`
       );
 
       // Check if select is being rendered.
@@ -172,10 +164,7 @@ module(
       });
 
       await render(
-        hbs`{{cf-field/input/powerselect
-        field=multipleChoiceField
-        onSave=onSave
-      }}`
+        hbs`<CfField::Input::Powerselect @field={{this.multipleChoiceField}} @onSave={{this.onSave}} />`
       );
 
       this.set("multipleChoiceField.answer.value", ["option-1"]);
