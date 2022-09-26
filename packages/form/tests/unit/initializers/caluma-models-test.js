@@ -1,9 +1,10 @@
 import Application from "@ember/application";
 import { run } from "@ember/runloop";
-import config from "dummy/config/environment";
-import { initialize } from "dummy/initializers/caluma-models";
 import Resolver from "ember-resolver";
 import { module, test } from "qunit";
+
+import config from "dummy/config/environment";
+import { initialize } from "dummy/initializers/caluma-models";
 
 module("Unit | Initializer | caluma-models", function (hooks) {
   hooks.beforeEach(function () {

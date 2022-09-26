@@ -1,13 +1,13 @@
 import { setOwner } from "@ember/application";
 import { inject as service } from "@ember/service";
 import { tracked } from "@glimmer/tracking";
-import { setupTest } from "dummy/tests/helpers";
-import inquiry from "dummy/tests/helpers/inquiry";
 import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import config from "@projectcaluma/ember-distribution/config";
 import inquiryAnswerStatus from "@projectcaluma/ember-distribution/utils/inquiry-answer-status";
+import { setupTest } from "dummy/tests/helpers";
+import inquiry from "dummy/tests/helpers/inquiry";
 
 class MyClass {
   @service intl;

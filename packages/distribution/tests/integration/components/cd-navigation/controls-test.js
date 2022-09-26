@@ -1,12 +1,12 @@
 import { render, click } from "@ember/test-helpers";
-import { setupRenderingTest } from "dummy/tests/helpers";
-import confirm from "dummy/tests/helpers/confirm";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import distribution from "@projectcaluma/ember-testing/scenarios/distribution";
+import { setupRenderingTest } from "dummy/tests/helpers";
+import confirm from "dummy/tests/helpers/confirm";
 
 module("Integration | Component | cd-navigation/controls", function (hooks) {
   setupRenderingTest(hooks);

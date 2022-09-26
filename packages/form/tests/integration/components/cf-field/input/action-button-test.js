@@ -1,11 +1,12 @@
 import { click, render, waitFor, scrollTo } from "@ember/test-helpers";
 import { tracked } from "@glimmer/tracking";
-import { setupRenderingTest } from "dummy/tests/helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { restartableTask } from "ember-concurrency";
 import { module, test } from "qunit";
 import UIkit from "uikit";
+
+import { setupRenderingTest } from "dummy/tests/helpers";
 
 module(
   "Integration | Component | cf-field/input/action-button",

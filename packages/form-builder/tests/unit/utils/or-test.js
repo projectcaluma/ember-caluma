@@ -1,10 +1,11 @@
 /**
  * Copied and updated from nucleartide/ember-changeset-hofs
  */
-import { resolveAfter, rejectAfter } from "dummy/tests/helpers/promise";
-import or from "dummy/utils/or";
 import { module, test } from "qunit";
 import { resolve } from "rsvp";
+
+import { resolveAfter, rejectAfter } from "dummy/tests/helpers/promise";
+import or from "dummy/utils/or";
 
 module("Unit | Utility | or", function () {
   module("sync validators", function () {

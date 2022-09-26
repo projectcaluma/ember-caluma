@@ -1,6 +1,4 @@
 import { click, render } from "@ember/test-helpers";
-import { setupRenderingTest } from "dummy/tests/helpers";
-import confirm from "dummy/tests/helpers/confirm";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
@@ -14,6 +12,8 @@ import {
   createInquiry,
   sendInquiry,
 } from "@projectcaluma/ember-testing/scenarios/distribution";
+import { setupRenderingTest } from "dummy/tests/helpers";
+import confirm from "dummy/tests/helpers/confirm";
 
 module("Integration | Component | cd-inquiry-dialog", function (hooks) {
   setupRenderingTest(hooks);

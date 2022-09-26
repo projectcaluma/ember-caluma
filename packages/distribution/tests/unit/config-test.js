@@ -1,8 +1,8 @@
 import { setOwner } from "@ember/application";
-import { setupTest } from "dummy/tests/helpers";
 import { module, test } from "qunit";
 
 import config from "@projectcaluma/ember-distribution/config";
+import { setupTest } from "dummy/tests/helpers";
 
 module("Unit | config", function (hooks) {
   setupTest(hooks);

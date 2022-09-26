@@ -1,9 +1,9 @@
 import { setOwner } from "@ember/application";
-import { setupTest } from "dummy/tests/helpers";
 import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import WorkItemModel from "@projectcaluma/ember-core/caluma-query/models/work-item";
+import { setupTest } from "dummy/tests/helpers";
 
 const UUID = "96accc67-95d6-4e5d-82c6-20f3f4bc5942";
 

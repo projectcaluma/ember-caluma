@@ -1,9 +1,10 @@
 import { render, click, settled } from "@ember/test-helpers";
 import { tracked } from "@glimmer/tracking";
-import { setupRenderingTest } from "dummy/tests/helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
+
+import { setupRenderingTest } from "dummy/tests/helpers";
 
 module("Integration | Component | cf-field/input/checkbox", function (hooks) {
   setupRenderingTest(hooks);

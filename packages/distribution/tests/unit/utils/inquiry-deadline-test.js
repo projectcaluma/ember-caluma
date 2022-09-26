@@ -1,12 +1,12 @@
 import { setOwner } from "@ember/application";
 import { tracked } from "@glimmer/tracking";
-import { setupTest } from "dummy/tests/helpers";
-import inquiry from "dummy/tests/helpers/inquiry";
 import { DateTime } from "luxon";
 import { module, test } from "qunit";
 
 import config from "@projectcaluma/ember-distribution/config";
 import inquiryDeadline from "@projectcaluma/ember-distribution/utils/inquiry-deadline";
+import { setupTest } from "dummy/tests/helpers";
+import inquiry from "dummy/tests/helpers/inquiry";
 
 class MyClass {
   @config config;

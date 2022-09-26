@@ -1,8 +1,9 @@
 import { later } from "@ember/runloop";
 import { render } from "@ember/test-helpers";
-import { setupRenderingTest } from "dummy/tests/helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { module, test } from "qunit";
+
+import { setupRenderingTest } from "dummy/tests/helpers";
 
 module("Integration | Helper | group-name", function (hooks) {
   setupRenderingTest(hooks);

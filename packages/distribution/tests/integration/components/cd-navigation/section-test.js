@@ -1,6 +1,4 @@
 import { render } from "@ember/test-helpers";
-import { setupRenderingTest } from "dummy/tests/helpers";
-import inquiry from "dummy/tests/helpers/inquiry";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
@@ -10,6 +8,8 @@ import {
   createBlueprint,
   createCase,
 } from "@projectcaluma/ember-testing/scenarios/distribution";
+import { setupRenderingTest } from "dummy/tests/helpers";
+import inquiry from "dummy/tests/helpers/inquiry";
 
 module("Integration | Component | cd-navigation/section", function (hooks) {
   setupRenderingTest(hooks);

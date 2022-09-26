@@ -1,9 +1,10 @@
 import Application from "@ember/application";
 import { run } from "@ember/runloop";
-import config from "dummy/config/environment";
-import { initialize } from "dummy/instance-initializers/form-widget-overrides";
 import Resolver from "ember-resolver";
 import { module, test } from "qunit";
+
+import config from "dummy/config/environment";
+import { initialize } from "dummy/instance-initializers/form-widget-overrides";
 
 module("Unit | Instance Initializer | form-widget-overrides", function (hooks) {
   hooks.beforeEach(function () {

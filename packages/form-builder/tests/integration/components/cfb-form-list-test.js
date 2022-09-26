@@ -1,9 +1,10 @@
 import { render, click } from "@ember/test-helpers";
-import { setupRenderingTest } from "dummy/tests/helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
+
+import { setupRenderingTest } from "dummy/tests/helpers";
 
 module("Integration | Component | cfb-form-list", function (hooks) {
   setupRenderingTest(hooks);

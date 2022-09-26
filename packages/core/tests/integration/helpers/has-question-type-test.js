@@ -1,7 +1,8 @@
 import { render } from "@ember/test-helpers";
-import { setupRenderingTest } from "dummy/tests/helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { module, test } from "qunit";
+
+import { setupRenderingTest } from "dummy/tests/helpers";
 
 module("Integration | Helper | has-question-type", function (hooks) {
   setupRenderingTest(hooks);

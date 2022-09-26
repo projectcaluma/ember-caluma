@@ -1,6 +1,5 @@
 import { settled } from "@ember/test-helpers";
 import { tracked } from "@glimmer/tracking";
-import { setupTest } from "dummy/tests/helpers";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { module, test } from "qunit";
 
@@ -10,6 +9,7 @@ import {
   createCase,
   createInquiry,
 } from "@projectcaluma/ember-testing/scenarios/distribution";
+import { setupTest } from "dummy/tests/helpers";
 
 module("Unit | Ability | distribution", function (hooks) {
   setupTest(hooks);

@@ -1,8 +1,9 @@
 import { render } from "@ember/test-helpers";
-import { setupRenderingTest } from "dummy/tests/helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupIntl } from "ember-intl/test-support";
 import { module, skip } from "qunit";
+
+import { setupRenderingTest } from "dummy/tests/helpers";
 
 module("Integration | Component | cf-form-wrapper", function (hooks) {
   setupRenderingTest(hooks);

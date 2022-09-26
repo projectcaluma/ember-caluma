@@ -3,7 +3,7 @@
 module.exports = {
   extends: "@adfinis-sygroup/eslint-config/ember-addon",
   settings: {
-    "import/internal-regex": "^(@projectcaluma|ember-caluma)/",
+    "import/internal-regex": "^(@projectcaluma|ember-caluma|dummy)/",
   },
   overrides: [
     // Customization for workspace

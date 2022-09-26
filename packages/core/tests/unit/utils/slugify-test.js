@@ -1,5 +1,6 @@
-import slugify from "dummy/utils/slugify";
 import { module, test } from "qunit";
+
+import slugify from "dummy/utils/slugify";
 
 module("Unit | Utility | slugify", function (/*hooks*/) {
   test("it slugifies correctly", function (assert) {

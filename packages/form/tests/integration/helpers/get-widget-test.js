@@ -1,9 +1,10 @@
 import { setComponentTemplate } from "@ember/component";
 import { render } from "@ember/test-helpers";
 import Component from "@glimmer/component";
-import { setupRenderingTest } from "dummy/tests/helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { module, test } from "qunit";
+
+import { setupRenderingTest } from "dummy/tests/helpers";
 
 module("Integration | Helper | get-widget", function (hooks) {
   setupRenderingTest(hooks);

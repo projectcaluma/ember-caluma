@@ -1,8 +1,9 @@
 import { render } from "@ember/test-helpers";
-import { setupRenderingTest } from "dummy/tests/helpers";
 import { Changeset } from "ember-changeset";
 import { hbs } from "ember-cli-htmlbars";
 import { module, test } from "qunit";
+
+import { setupRenderingTest } from "dummy/tests/helpers";
 
 module(
   "Integration | Component | cfb-form-editor/question/default",

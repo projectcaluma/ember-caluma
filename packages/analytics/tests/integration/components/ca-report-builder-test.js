@@ -1,6 +1,5 @@
 import { render } from "@ember/test-helpers";
 import { tracked } from "@glimmer/tracking";
-import { setupRenderingTest } from "dummy/tests/helpers";
 import { Changeset } from "ember-changeset";
 import lookupValidator from "ember-changeset-validations";
 import { hbs } from "ember-cli-htmlbars";
@@ -10,6 +9,7 @@ import { module, test, todo } from "qunit";
 
 import AnalyticsTableValidations from "@projectcaluma/ember-analytics/validations/analytics-table";
 import slugify from "@projectcaluma/ember-core/utils/slugify";
+import { setupRenderingTest } from "dummy/tests/helpers";
 
 class AnalyticsTable {
   constructor({ name, startingObject } = {}) {

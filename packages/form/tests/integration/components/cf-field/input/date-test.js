@@ -1,9 +1,10 @@
 import { click, fillIn, render } from "@ember/test-helpers";
-import { setupRenderingTest } from "dummy/tests/helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupIntl, setLocale } from "ember-intl/test-support";
 import { Interactor as Pikaday } from "ember-pikaday/test-support";
 import { module, test } from "qunit";
+
+import { setupRenderingTest } from "dummy/tests/helpers";
 
 module("Integration | Component | cf-field/input/date", function (hooks) {
   setupRenderingTest(hooks);

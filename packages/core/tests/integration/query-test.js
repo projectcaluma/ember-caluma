@@ -3,13 +3,13 @@ import { action } from "@ember/object";
 import { render, click } from "@ember/test-helpers";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
-import { setupRenderingTest } from "dummy/tests/helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { module, test } from "qunit";
 
 import calumaQuery from "@projectcaluma/ember-core/caluma-query";
 import { allWorkItems } from "@projectcaluma/ember-core/caluma-query/queries";
+import { setupRenderingTest } from "dummy/tests/helpers";
 
 class QueryComponent extends Component {
   @calumaQuery({ query: allWorkItems, options: { pageSize: 5 } }) query;

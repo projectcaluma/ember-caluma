@@ -1,5 +1,4 @@
 import { render, click, scrollTo, settled } from "@ember/test-helpers";
-import { setupRenderingTest } from "dummy/tests/helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { module, test } from "qunit";
@@ -7,6 +6,7 @@ import { module, test } from "qunit";
 import data from "../../unit/lib/data";
 
 import { parseDocument } from "@projectcaluma/ember-form/lib/parsers";
+import { setupRenderingTest } from "dummy/tests/helpers";
 
 module("Integration | Component | document-validity", function (hooks) {
   setupRenderingTest(hooks);

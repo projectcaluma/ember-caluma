@@ -1,5 +1,4 @@
 import { waitFor, click, fillIn, render, scrollTo } from "@ember/test-helpers";
-import { setupRenderingTest } from "dummy/tests/helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
@@ -7,6 +6,7 @@ import { module, test } from "qunit";
 import UIkit from "uikit";
 
 import { parseDocument } from "@projectcaluma/ember-form/lib/parsers";
+import { setupRenderingTest } from "dummy/tests/helpers";
 
 module("Integration | Component | cf-field/input/table", function (hooks) {
   setupRenderingTest(hooks);

@@ -1,8 +1,9 @@
 import { classify } from "@ember/string";
-import { setupTest } from "dummy/tests/helpers";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { gql } from "graphql-tag";
 import { module, test } from "qunit";
+
+import { setupTest } from "dummy/tests/helpers";
 
 module("Unit | Mirage GraphQL Mock | work item", function (hooks) {
   setupTest(hooks);

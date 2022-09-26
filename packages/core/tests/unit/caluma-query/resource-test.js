@@ -1,12 +1,12 @@
 import { setOwner } from "@ember/application";
 import { waitUntil } from "@ember/test-helpers";
 import { tracked } from "@glimmer/tracking";
-import { setupTest } from "dummy/tests/helpers";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { module, test } from "qunit";
 
 import { useCalumaQuery } from "@projectcaluma/ember-core/caluma-query";
 import { allWorkItems } from "@projectcaluma/ember-core/caluma-query/queries";
+import { setupTest } from "dummy/tests/helpers";
 
 module("Unit | Caluma Query | resource", function (hooks) {
   setupTest(hooks);

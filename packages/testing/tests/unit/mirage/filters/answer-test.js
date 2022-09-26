@@ -1,7 +1,8 @@
-import { setupTest } from "dummy/tests/helpers";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { gql } from "graphql-tag";
 import { assert, module, test } from "qunit";
+
+import { setupTest } from "dummy/tests/helpers";
 
 module("Unit | Mirage GraphQL Filter | answer", function (hooks) {
   setupTest(hooks);

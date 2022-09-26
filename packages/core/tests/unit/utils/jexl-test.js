@@ -1,4 +1,3 @@
-import { setupTest } from "dummy/tests/helpers";
 import jexl from "jexl";
 import { module, test } from "qunit";
 
@@ -7,6 +6,7 @@ import {
   getTransforms,
   intersects,
 } from "@projectcaluma/ember-core/utils/jexl";
+import { setupTest } from "dummy/tests/helpers";
 
 module("Unit | Utility | jexl", function (hooks) {
   setupTest(hooks);

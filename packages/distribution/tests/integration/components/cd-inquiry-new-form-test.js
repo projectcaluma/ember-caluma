@@ -1,5 +1,4 @@
 import { render, click, fillIn } from "@ember/test-helpers";
-import { setupRenderingTest } from "dummy/tests/helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
@@ -9,6 +8,7 @@ import {
   createBlueprint,
   createCase,
 } from "@projectcaluma/ember-testing/scenarios/distribution";
+import { setupRenderingTest } from "dummy/tests/helpers";
 
 module("Integration | Component | cd-inquiry-new-form", function (hooks) {
   setupRenderingTest(hooks);

@@ -1,5 +1,4 @@
 import { settled } from "@ember/test-helpers";
-import { setupTest } from "dummy/tests/helpers";
 import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
@@ -7,6 +6,7 @@ import data from "./data";
 
 import { getDependenciesFromJexl } from "@projectcaluma/ember-form/lib/dependencies";
 import { parseDocument } from "@projectcaluma/ember-form/lib/parsers";
+import { setupTest } from "dummy/tests/helpers";
 
 module("Unit | Library | field", function (hooks) {
   setupTest(hooks);

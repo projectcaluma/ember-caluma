@@ -1,7 +1,8 @@
 import { render, typeIn, fillIn, settled } from "@ember/test-helpers";
-import { setupRenderingTest } from "dummy/tests/helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { module, test } from "qunit";
+
+import { setupRenderingTest } from "dummy/tests/helpers";
 
 module("Integration | Component | cfb-code-editor", function (hooks) {
   setupRenderingTest(hooks);
