@@ -16,7 +16,10 @@ The Ember.js addons for [Caluma](https://caluma.io) - a collaborative form editi
 
 ## Compatibility
 
-`ember-caluma` is guaranteed to work with the **last LTS version** of Ember.js (currently 3.28).
+`@projectcaluma/ember-*` packages are guaranteed to work with the following LTS versions of Ember.js:
+
+- 4.4
+- 3.28
 
 ## Documentation
 
