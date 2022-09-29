@@ -8,6 +8,7 @@
       {{did-insert this.didInsertNode}}
       {{will-destroy this.willDestroyNode}}
       {{autoresize mode="height"}}
+      {{on "blur" @setDirty}}
     ></div>
   </div>
 

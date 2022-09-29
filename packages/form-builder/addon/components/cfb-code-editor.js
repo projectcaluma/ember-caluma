@@ -7,6 +7,8 @@ import json from "highlight.js/lib/languages/json";
 import markdown from "highlight.js/lib/languages/markdown";
 import jexl from "highlightjs-jexl/src/languages/jexl";
 
+hljs.configure({ ignoreUnescapedHTML: true });
+
 hljs.registerLanguage("json", json);
 hljs.registerLanguage("markdown", markdown);
 hljs.registerLanguage("jexl", jexl);
@@ -42,7 +44,6 @@ export default class CfbCodeEditorComponent extends Component {
 
     this._lastValue = value;
     this.args.update(value);
-    this.args.setDirty();
   }
 
   @action
