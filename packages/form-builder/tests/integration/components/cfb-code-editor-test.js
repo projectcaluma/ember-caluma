@@ -1,4 +1,4 @@
-import { render, typeIn, fillIn, settled } from "@ember/test-helpers";
+import { render, typeIn, fillIn, settled, blur } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { module, test } from "qunit";
 
@@ -19,6 +19,7 @@ module("Integration | Component | cfb-code-editor", function (hooks) {
 
     // use `typeIn` because codejar listens to keydown event
     await typeIn("[name=editor]", "1 + 1");
+    await blur("[name=editor]");
 
     // syntax highlighting creates child <span>s
     assert.dom("[name=editor] span").exists({ count: 2 });
@@ -64,6 +65,7 @@ module("Integration | Component | cfb-code-editor", function (hooks) {
 
     await fillIn("[name=editor]", `{"bar":"baz"}`);
     await typeIn("[name=editor]", " ");
+    await blur("[name=editor]");
 
     assert.deepEqual(this.value, { bar: "baz" });
     assert.true(this.dirty);
