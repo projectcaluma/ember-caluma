@@ -57,10 +57,6 @@
     "prettier": "2.7.1",
     "release-it": "15.4.2"
   },
-  "//": "tracked-toolbox: https://github.com/ember-learn/ember-cli-addon-docs/issues/1309",
-  "resolutions": {
-    "tracked-toolbox": "^1.2.3"
-  },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
