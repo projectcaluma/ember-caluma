@@ -16,6 +16,8 @@ caluma:
       fetch-error: "Une erreur s'est produite lors du chargement des données."
       filter-exists: "Le filtre existe déjà!"
       field-saved: Le champ a été sauvegardé avec succès.
+      reorder-success: Vos entrées ont été triées avec succès!
+      reorder-error: Quelque chose s'est mal passé lors du tri des entrées.
     list:
       list-title: Tous les rapports
       edit: Editer
