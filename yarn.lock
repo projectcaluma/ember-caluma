@@ -1449,14 +1449,6 @@
     ember-cli-version-checker "^5.1.2"
     semver "^7.3.5"
 
-"@embroider/addon-shim@^0.50.2":
-  version "0.50.2"
-  resolved "https://registry.yarnpkg.com/@embroider/addon-shim/-/addon-shim-0.50.2.tgz#9be2ed8cee1086cef63c5baecf8dde8dcdacc24e"
-  integrity sha512-a+pFlXZPovcCNFo05HxXBW9ole43mPyFZnkhvZlLF0f1sHEn9j0sD1Ld2BM/NCERmHcYz9eXQnX1FPNLCDoGEA==
-  dependencies:
-    "@embroider/shared-internals" "^0.50.2"
-    semver "^7.3.5"
-
 "@embroider/addon-shim@^1.0.0", "@embroider/addon-shim@^1.2.0", "@embroider/addon-shim@^1.5.0":
   version "1.8.3"
   resolved "https://registry.yarnpkg.com/@embroider/addon-shim/-/addon-shim-1.8.3.tgz#2368510b8ce42d50d02cb3289c32e260dfa34bd9"
@@ -1488,19 +1480,6 @@
     ember-rfc176-data "^0.3.17"
     fs-extra "^9.1.0"
     js-string-escape "^1.0.1"
-    lodash "^4.17.21"
-    resolve-package-path "^4.0.1"
-    semver "^7.3.5"
-    typescript-memoize "^1.0.1"
-
-"@embroider/shared-internals@^0.50.2":
-  version "0.50.2"
-  resolved "https://registry.yarnpkg.com/@embroider/shared-internals/-/shared-internals-0.50.2.tgz#567c5451db31a1f3edc2f64376ce5a0dcaaabacb"
-  integrity sha512-l3SKn1YdxTFBjY3ylYTLHxFY0dG2XxIsjbtZt7Mm6QyZFssWBDg3oWYwBoUpkw/ysjNJf8IcI7reXhB23WXwDw==
-  dependencies:
-    babel-import-util "^1.1.0"
-    ember-rfc176-data "^0.3.17"
-    fs-extra "^9.1.0"
     lodash "^4.17.21"
     resolve-package-path "^4.0.1"
     semver "^7.3.5"
@@ -8558,6 +8537,22 @@ ember-fetch@8.1.2, ember-fetch@^8.1.1, ember-fetch@^8.1.2:
     node-fetch "^2.6.1"
     whatwg-fetch "^3.6.2"
 
+ember-flatpickr@3.2.3, ember-flatpickr@^3.2.3:
+  version "3.2.3"
+  resolved "https://registry.yarnpkg.com/ember-flatpickr/-/ember-flatpickr-3.2.3.tgz#4ec405d03853d67316fb1813e4e39bca487f1b83"
+  integrity sha512-ON6FNh3gFSxDTam2UOyPOSeYki5qNqPqPEB+SS/Q+L+kPEvxmDMPeG/lWLLvdDsPR0X55W9q7uSjzZZAD/UxqA==
+  dependencies:
+    "@ember/render-modifiers" "^2.0.3"
+    "@glimmer/component" "^1.0.4"
+    "@glimmer/tracking" "^1.0.4"
+    broccoli-funnel "^3.0.3"
+    broccoli-merge-trees "^4.2.0"
+    broccoli-stew "^3.0.0"
+    ember-cli-babel "^7.26.11"
+    ember-cli-htmlbars "^6.0.1"
+    ember-cli-typescript "^5.0.0"
+    flatpickr "^4.6.9"
+
 ember-focus-trap@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/ember-focus-trap/-/ember-focus-trap-1.0.1.tgz#a99565f6ce55d500b92a0965e79e3ad04219f157"
@@ -8719,14 +8714,6 @@ ember-modifier-manager-polyfill@^1.2.0:
     ember-cli-string-utils "^1.1.0"
     ember-cli-typescript "^5.0.0"
     ember-compatibility-helpers "^1.2.5"
-
-ember-pikaday@4.0.0, ember-pikaday@^4.0.0:
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/ember-pikaday/-/ember-pikaday-4.0.0.tgz#7fbf58087abcdaa0cdc66aa22f3ef0496038eaec"
-  integrity sha512-YEKvINhIBLb03F6BJ5newJZKo0IVx03ISEjZNVtE8NW+kOVRBcWZeIREf2p28YRukilKcQBDgqUBj5MwKSr46w==
-  dependencies:
-    "@embroider/addon-shim" "^0.50.2"
-    ember-modifier "^3.0.0"
 
 ember-power-select@6.0.1, ember-power-select@^6.0.1:
   version "6.0.1"
@@ -10217,6 +10204,11 @@ flat-cache@^3.0.4:
   dependencies:
     flatted "^3.1.0"
     rimraf "^3.0.2"
+
+flatpickr@^4.6.9:
+  version "4.6.13"
+  resolved "https://registry.yarnpkg.com/flatpickr/-/flatpickr-4.6.13.tgz#8a029548187fd6e0d670908471e43abe9ad18d94"
+  integrity sha512-97PMG/aywoYpB4IvbvUJi0RQi8vearvU0oov1WW3k0WZPBMrTQVqekSX5CjSG/M4Q3i6A/0FKXC7RyAoAUUSPw==
 
 flatted@^3.1.0:
   version "3.2.7"

@@ -51,7 +51,3 @@ caluma:
       uploadFailed: "Beim Hochladen ist ein Fehler aufgetreten."
       format: "{errorMsg}"
       table: "Mindestens eine Zeile der Tabelle wurde nicht korrekt ausgefüllt"
-
-    pikaday:
-      month-previous: "Vorheriger Monat"
-      month-next: "Nächster Monat"

@@ -10,7 +10,7 @@ module.exports = {
         { name: "ember-cli-showdown" },
         { name: "ember-composable-helpers" },
         { name: "ember-math-helpers" },
-        { name: "ember-pikaday" },
+        { name: "ember-flatpickr" },
         { name: "ember-power-select" },
         { name: "ember-autoresize-modifier" },
       ],

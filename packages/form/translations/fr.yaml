@@ -51,7 +51,3 @@ caluma:
       uploadFailed: "Une erreur s'est produite pendant le téléchargement."
       format: "{errorMsg}"
       table: "Au moins une ligne du tableau n'a pas été remplie correctement"
-
-    pikaday:
-      month-previous: "Mois précédent"
-      month-next: "Mois suivant"

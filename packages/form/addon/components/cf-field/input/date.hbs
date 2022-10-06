@@ -1,30 +1,12 @@
-{{#if @disabled}}
-  <input
-    class="uk-input uk-disabled"
-    type="text"
-    name={{@field.pk}}
-    id={{@field.pk}}
-    value={{format-date
-      @field.answer.value
-      day="2-digit"
-      month="2-digit"
-      year="numeric"
-    }}
-    readonly
-  />
-{{else}}
-  <input
-    class="uk-input"
-    type="text"
-    name={{@field.pk}}
-    id={{@field.pk}}
-    {{pikaday
-      firstDay=1
-      toString=this.formatDate
-      i18n=this.pikadayTranslations
-      value=@field.answer.value
-      onSelect=this.onChange
-      parse=this.parseDate
-    }}
-  />
-{{/if}}
+<EmberFlatpickr
+  id={{@field.pk}}
+  name={{@field.pk}}
+  class="uk-input {{if @disabled 'uk-disabled'}}"
+  readonly={{@disabled}}
+  @disabled={{@disabled}}
+  @locale={{this.locale}}
+  @date={{or @field.answer.value null}}
+  @formatDate={{this.formatDate}}
+  @allowInput={{true}}
+  @onChange={{this.onChange}}
+/>
