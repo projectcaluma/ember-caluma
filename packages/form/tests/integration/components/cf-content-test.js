@@ -1,8 +1,8 @@
 import { render, fillIn, click, triggerEvent } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
+import { setFlatpickrDate } from "ember-flatpickr/test-support/helpers";
 import { setupIntl } from "ember-intl/test-support";
-import { Interactor as Pikaday } from "ember-pikaday/test-support";
 import { module, test } from "qunit";
 
 import { setupRenderingTest } from "dummy/tests/helpers";
@@ -226,8 +226,10 @@ module("Integration | Component | cf-content", function (hooks) {
     await click(
       `[name="Document:${document.id}:Question:checkbox-question"][value="checkbox-question-option-2"]`
     );
-    await click(`[name="Document:${document.id}:Question:date-question"]`);
-    await Pikaday.selectDate(new Date(2019, 2, 25)); // month is zero based
+    await setFlatpickrDate(
+      `[name="Document:${document.id}:Question:date-question"]`,
+      new Date(2019, 2, 25) // month is zero based
+    );
 
     await triggerEvent(
       `[name="Document:${document.id}:Question:files-question"]`,

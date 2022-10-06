@@ -1,7 +1,7 @@
-import { click, fillIn, render } from "@ember/test-helpers";
+import { fillIn, blur, render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
+import { setFlatpickrDate } from "ember-flatpickr/test-support/helpers";
 import { setupIntl, setLocale } from "ember-intl/test-support";
-import { Interactor as Pikaday } from "ember-pikaday/test-support";
 import { module, test } from "qunit";
 
 import { setupRenderingTest } from "dummy/tests/helpers";
@@ -28,8 +28,7 @@ module("Integration | Component | cf-field/input/date", function (hooks) {
 
     await render(hbs`<CfField::Input::Date @onSave={{this.save}} />`);
 
-    await click("input");
-    await Pikaday.selectDate(new Date(2013, 3, 28)); // month is zero based
+    await setFlatpickrDate("input", new Date(2013, 3, 28)); // month is zero based
   });
 
   test("it renders disabled", async function (assert) {
@@ -57,16 +56,20 @@ module("Integration | Component | cf-field/input/date", function (hooks) {
 
     setLocale("en-us");
     await fillIn("input", "something");
+    await blur();
     assert.strictEqual(this.value, null);
 
-    await fillIn("input", "4/28/2013");
-    assert.strictEqual(this.value, "2013-04-28");
+    await fillIn("input", "1/1/2013");
+    await blur();
+    assert.strictEqual(this.value, "2013-01-01");
 
     setLocale("de-ch");
-    await fillIn("input", "1.2.2022");
-    assert.strictEqual(this.value, "2022-02-01");
+    await fillIn("input", "1.1.2022");
+    await blur();
+    assert.strictEqual(this.value, "2022-01-01");
 
-    await fillIn("input", "01.03.2022");
-    assert.strictEqual(this.value, "2022-03-01");
+    await fillIn("input", "01.01.2022");
+    await blur();
+    assert.strictEqual(this.value, "2022-01-01");
   });
 });

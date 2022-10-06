@@ -10,7 +10,7 @@ module.exports = {
         { name: "@projectcaluma/ember-form" },
         { name: "ember-engines" },
         { name: "ember-math-helpers" },
-        { name: "ember-pikaday" },
+        { name: "ember-flatpickr" },
         { name: "ember-power-select" },
       ],
     });

@@ -1,28 +1,19 @@
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
-import { DateTime, Info } from "luxon";
-import { cached } from "tracked-toolbox";
-
-// put the last element to the front of the array
-const shift = (array) => [...array.slice(-1), ...array.slice(0, -1)];
+import { DateTime } from "luxon";
 
 export default class CfFieldInputDateComponent extends Component {
   @service intl;
 
-  @action
-  onChange(date) {
-    // Change Javascript date to ISO string if not null.
-    this.args.onSave(date ? DateTime.fromJSDate(date).toISODate() : null);
+  get locale() {
+    return this.intl.primaryLocale.split("-")[0];
   }
 
   @action
-  parseDate(value) {
-    const date = DateTime.fromFormat(value, "D", {
-      locale: this.intl.primaryLocale,
-    });
-
-    return date.isValid ? date.toJSDate() : null;
+  onChange([date]) {
+    // Change Javascript date to ISO string if not null.
+    this.args.onSave(date ? DateTime.fromJSDate(date).toISODate() : null);
   }
 
   @action
@@ -32,18 +23,5 @@ export default class CfFieldInputDateComponent extends Component {
       month: "2-digit",
       year: "numeric",
     });
-  }
-
-  @cached
-  get pikadayTranslations() {
-    const locale = this.intl.primaryLocale;
-
-    return {
-      previousMonth: this.intl.t("caluma.form.pikaday.month-previous"),
-      nextMonth: this.intl.t("caluma.form.pikaday.month-next"),
-      months: Info.months("long", { locale }),
-      weekdays: shift(Info.weekdays("long", { locale })),
-      weekdaysShort: shift(Info.weekdays("short", { locale })),
-    };
   }
 }

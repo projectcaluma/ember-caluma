@@ -51,7 +51,3 @@ caluma:
       uploadFailed: "An error occured during upload."
       format: "{errorMsg}"
       table: "At least one row of the table was not filled in correctly"
-
-    pikaday:
-      month-previous: "Previous month"
-      month-next: "Next month"
