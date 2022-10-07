@@ -37,7 +37,7 @@
   </div>
 
   {{#if (includes this.mode (array "remove" "add"))}}
-    <form class="uk-search uk-search-default uk-width-1-1">
+    <div class="uk-search uk-search-default uk-width-1-1">
       <span class="uk-search-icon-flip" uk-search-icon></span>
       <input
         class="uk-search-input"
@@ -47,7 +47,7 @@
         value={{this.search}}
         {{on "input" (fn (mut this.search))}}
       />
-    </form>
+    </div>
   {{/if}}
 
   <ul
