@@ -45,15 +45,16 @@ jobs:
     timeout-minutes: 10
 
     strategy:
+      fail-fast: false
       matrix:
         workspace:
-          - "@projectcaluma/ember-analytics"
-          - "@projectcaluma/ember-core"
-          - "@projectcaluma/ember-distribution"
-          - "@projectcaluma/ember-form"
-          - "@projectcaluma/ember-form-builder"
-          - "@projectcaluma/ember-testing"
-          - "@projectcaluma/ember-workflow"
+          - analytics
+          - core
+          - distribution
+          - form
+          - form-builder
+          - testing
+          - workflow
 
     steps:
       - uses: actions/checkout@v3
@@ -66,7 +67,7 @@ jobs:
         run: yarn install
 
       - name: Run tests
-        run: yarn workspace ${{ matrix.workspace }} test:ember
+        run: yarn workspace @projectcaluma/ember-${{ matrix.workspace }} test:ember
         env:
           COVERAGE: true
 
@@ -82,15 +83,16 @@ jobs:
     timeout-minutes: 10
 
     strategy:
+      fail-fast: false
       matrix:
         workspace:
-          - "@projectcaluma/ember-analytics"
-          - "@projectcaluma/ember-core"
-          - "@projectcaluma/ember-distribution"
-          - "@projectcaluma/ember-form"
-          - "@projectcaluma/ember-form-builder"
-          - "@projectcaluma/ember-testing"
-          - "@projectcaluma/ember-workflow"
+          - analytics
+          - core
+          - distribution
+          - form
+          - form-builder
+          - testing
+          - workflow
 
     steps:
       - uses: actions/checkout@v3
@@ -102,7 +104,7 @@ jobs:
         run: yarn install --no-lockfile
 
       - name: Run tests
-        run: yarn workspace ${{ matrix.workspace }} test:ember
+        run: yarn workspace @projectcaluma/ember-${{ matrix.workspace }} test:ember
 
   # test-browserstack:
   #   name: Browserstack Tests
@@ -148,19 +150,20 @@ jobs:
     timeout-minutes: 10
 
     strategy:
+      fail-fast: false
       matrix:
-        workspace:
-          - "@projectcaluma/ember-analytics"
-          - "@projectcaluma/ember-core"
-          - "@projectcaluma/ember-distribution"
-          - "@projectcaluma/ember-form"
-          - "@projectcaluma/ember-form-builder"
-          - "@projectcaluma/ember-testing"
-          - "@projectcaluma/ember-workflow"
         scenario:
-          - ember-lts-4.4
-          - ember-lts-3.28
-          - ember-release
+          - lts-4.4
+          - lts-3.28
+          - release
+        workspace:
+          - analytics
+          - core
+          - distribution
+          - form
+          - form-builder
+          - testing
+          - workflow
 
     steps:
       - uses: actions/checkout@v3
@@ -173,4 +176,4 @@ jobs:
         run: yarn install
 
       - name: Run tests
-        run: yarn workspace ${{ matrix.workspace }} ember try:one ${{ matrix.scenario }} --skip-cleanup
+        run: yarn workspace ember-${{ matrix.workspace }} ember try:one @projectcaluma/ember-${{ matrix.scenario }} --skip-cleanup
