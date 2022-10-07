@@ -45,6 +45,7 @@ jobs:
     timeout-minutes: 10
 
     strategy:
+      fail-fast: false
       matrix:
         workspace:
           - "@projectcaluma/ember-analytics"
@@ -82,6 +83,7 @@ jobs:
     timeout-minutes: 10
 
     strategy:
+      fail-fast: false
       matrix:
         workspace:
           - "@projectcaluma/ember-analytics"
@@ -148,7 +150,12 @@ jobs:
     timeout-minutes: 10
 
     strategy:
+      fail-fast: false
       matrix:
+        scenario:
+          - ember-lts-4.4
+          - ember-lts-3.28
+          - ember-release
         workspace:
           - "@projectcaluma/ember-analytics"
           - "@projectcaluma/ember-core"
@@ -157,10 +164,6 @@ jobs:
           - "@projectcaluma/ember-form-builder"
           - "@projectcaluma/ember-testing"
           - "@projectcaluma/ember-workflow"
-        scenario:
-          - ember-lts-4.4
-          - ember-lts-3.28
-          - ember-release
 
     steps:
       - uses: actions/checkout@v3
