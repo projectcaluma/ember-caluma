@@ -1,28 +1,22 @@
-<li
-  class="uk-margin-small-bottom uk-width-auto {{if this.isActive 'uk-active'}}"
->
-  <a href="" {{on "click" this.toggle}}>
-    <span class="uk-width-expand">
-      {{t (concat "caluma.distribution.types." @type)}}
-    </span>
-    {{#if this.expanded}}
-      <UkIcon @icon="chevron-down" />
-    {{else}}
-      <UkIcon @icon="chevron-right" />
-    {{/if}}
-  </a>
+{{#if @inquiries.length}}
+  <li class="uk-margin-small uk-width-auto {{if this.isActive 'uk-active'}}">
+    <a href="" {{on "click" this.toggle}}>
+      <span class="uk-width-expand">
+        {{t (concat "caluma.distribution.types." @type)}}
+      </span>
+      {{#if this.expanded}}
+        <UkIcon @icon="chevron-down" />
+      {{else}}
+        <UkIcon @icon="chevron-right" />
+      {{/if}}
+    </a>
 
-  {{#if this.expanded}}
-    {{#if @inquiries.length}}
+    {{#if this.expanded}}
       <ul class="uk-tab uk-tab-left uk-margin-left uk-width-auto">
         {{#each this.inquiries as |inquiry|}}
           <CdNavigation::Item @inquiry={{inquiry}} @type={{@type}} />
         {{/each}}
       </ul>
     {{/if}}
-
-    {{#if (eq @type "controlling")}}
-      <CdNavigation::Controls />
-    {{/if}}
-  {{/if}}
-</li>
+  </li>
+{{/if}}

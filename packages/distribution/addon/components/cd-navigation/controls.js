@@ -20,20 +20,12 @@ export default class CdNavigationControlsComponent extends Component {
   @queryManager apollo;
   @config config;
 
-  get hasInquiries() {
-    return (
-      this.distribution.navigation.value?.addressed.edges.length > 0 ||
-      this.distribution.navigation.value?.controlling.edges.length > 0 ||
-      this.distribution.navigation.value?.more.edges.length > 0
-    );
-  }
-
   @dropTask
   *completeDistribution() {
     try {
       let confirmText = this.intl.t("caluma.distribution.skip-confirm");
 
-      if (this.hasInquiries) {
+      if (this.distribution.hasInquiries) {
         const incompleteInquiries = yield this.apollo.query(
           {
             query: incompleteInquiriesQuery,

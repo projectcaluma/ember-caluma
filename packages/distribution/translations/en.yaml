@@ -1,7 +1,7 @@
 caluma:
   distribution:
     empty: "No inquiries have been created yet."
-    start: "Start"
+    start: "Start circulation"
     send: "Send pending inquiries"
     complete: "Complete circulation"
     skip: "Skip circulation"
@@ -19,6 +19,8 @@ caluma:
     complete-error: "Error while completing the distribution"
     skip-error: "Error while skipping the distribution"
     reopen-error: "Error while reopening the distribution"
+
+    attention-to: "{abbr, select, true {attn.} other {attention to}} {subject}"
 
     more: "more"
     less: "less"
@@ -74,9 +76,9 @@ caluma:
       error: "Error while sending the reminder"
 
     types:
-      controlling: "Requested"
-      addressed: "To answer"
-      more: "More"
+      controlling: "Requested inquiries"
+      addressed: "Own inquiries"
+      more: "More inquiries"
 
     status:
       draft: "Draft"

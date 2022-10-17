@@ -38,13 +38,13 @@ module("Integration | Component | cd-navigation", function (hooks) {
     assert.dom("ul:first-child > li > ul > li").exists({ count: 9 });
 
     assert
-      .dom("ul:first-child > li:nth-of-type(1) > a")
-      .hasText("t:caluma.distribution.types.controlling:()");
-    assert
       .dom("ul:first-child > li:nth-of-type(2) > a")
       .hasText("t:caluma.distribution.types.addressed:()");
     assert
       .dom("ul:first-child > li:nth-of-type(3) > a")
+      .hasText("t:caluma.distribution.types.controlling:()");
+    assert
+      .dom("ul:first-child > li:nth-of-type(4) > a")
       .hasText("t:caluma.distribution.types.more:()");
   });
 });

@@ -1,67 +1,98 @@
-<div class="uk-text-center uk-margin-small-top">
-  {{#if (can "send inquiries of distribution")}}
-    <button
-      type="button"
-      class="uk-icon-button uk-button-primary"
-      {{uk-tooltip (t "caluma.distribution.send")}}
-      data-test-send-pending-inquiries
-      {{on "click" (perform this.sendInquiries)}}
-    >
-      {{#if this.sendInquiries.isRunning}}
-        <UkSpinner @ratio={{0.6}} />
-      {{else}}
-        <UkIcon @icon="comment" />
-      {{/if}}
-    </button>
+{{#if
+  (or
+    (can "send inquiries of distribution")
+    (can "create inquiry of distribution")
+    (can "complete distribution")
+    (can "reopen distribution")
+  )
+}}
+  {{#if @useButtons}}
+    {{#if (can "create inquiry of distribution")}}
+      <LinkTo
+        @route="new"
+        class="uk-button uk-button-primary"
+        data-test-new-inquiry
+      >
+        {{t "caluma.distribution.start"}}
+      </LinkTo>
+    {{/if}}
+    {{#if (can "complete distribution")}}
+      <UkButton
+        @onClick={{perform this.completeDistribution}}
+        @label={{t "caluma.distribution.skip"}}
+        @loading={{this.completeDistribution.isRunning}}
+        @disabled={{this.completeDistribution.isRunning}}
+        data-test-complete-distribution
+      />
+    {{/if}}
+    {{#if (can "reopen distribution")}}
+      <UkButton
+        @onClick={{perform this.reopenDistribution}}
+        @label={{t "caluma.distribution.reopen"}}
+        @loading={{this.reopenDistribution.isRunning}}
+        @disabled={{this.reopenDistribution.isRunning}}
+        data-test-reopen-distribution
+      />
+    {{/if}}
+  {{else}}
+    <li class="uk-margin-small">
+      <div class="uk-text-center">
+        {{#if (can "send inquiries of distribution")}}
+          <button
+            type="button"
+            class="uk-icon-button uk-button-primary"
+            {{uk-tooltip (t "caluma.distribution.send")}}
+            data-test-send-pending-inquiries
+            {{on "click" (perform this.sendInquiries)}}
+          >
+            {{#if this.sendInquiries.isRunning}}
+              <UkSpinner @ratio={{0.6}} />
+            {{else}}
+              <UkIcon @icon="comment" />
+            {{/if}}
+          </button>
+        {{/if}}
+        {{#if (can "create inquiry of distribution")}}
+          <LinkTo
+            @route="new"
+            class="uk-icon-button"
+            {{uk-tooltip (t "caluma.distribution.new.title")}}
+            data-test-new-inquiry
+          >
+            <UkIcon @icon="plus" />
+          </LinkTo>
+        {{/if}}
+        {{#if (can "complete distribution")}}
+          <button
+            type="button"
+            class="uk-icon-button"
+            {{uk-tooltip (t "caluma.distribution.complete")}}
+            data-test-complete-distribution
+            {{on "click" (perform this.completeDistribution)}}
+          >
+            {{#if this.completeDistribution.isRunning}}
+              <UkSpinner @ratio={{0.6}} />
+            {{else}}
+              <UkIcon @icon="lock" />
+            {{/if}}
+          </button>
+        {{/if}}
+        {{#if (can "reopen distribution")}}
+          <button
+            type="button"
+            class="uk-icon-button"
+            {{uk-tooltip (t "caluma.distribution.reopen")}}
+            data-test-reopen-distribution
+            {{on "click" (perform this.reopenDistribution)}}
+          >
+            {{#if this.reopenDistribution.isRunning}}
+              <UkSpinner @ratio={{0.6}} />
+            {{else}}
+              <UkIcon @icon="refresh" />
+            {{/if}}
+          </button>
+        {{/if}}
+      </div>
+    </li>
   {{/if}}
-  {{#if (can "create inquiry of distribution")}}
-    <LinkTo
-      @route="new"
-      class="uk-icon-button"
-      {{uk-tooltip (t "caluma.distribution.new.title")}}
-      data-test-new-inquiry
-    >
-      <UkIcon @icon="plus" />
-    </LinkTo>
-  {{/if}}
-  {{#if (can "complete distribution")}}
-    <button
-      type="button"
-      class="uk-icon-button"
-      {{uk-tooltip
-        (t
-          (if
-            this.hasInquiries
-            "caluma.distribution.complete"
-            "caluma.distribution.skip"
-          )
-        )
-      }}
-      data-test-complete-distribution
-      {{on "click" (perform this.completeDistribution)}}
-    >
-      {{#if this.completeDistribution.isRunning}}
-        <UkSpinner @ratio={{0.6}} />
-      {{else if this.hasInquiries}}
-        <UkIcon @icon="lock" />
-      {{else}}
-        <UkIcon @icon="forward" />
-      {{/if}}
-    </button>
-  {{/if}}
-  {{#if (can "reopen distribution")}}
-    <button
-      type="button"
-      class="uk-icon-button"
-      {{uk-tooltip (t "caluma.distribution.reopen")}}
-      data-test-reopen-distribution
-      {{on "click" (perform this.reopenDistribution)}}
-    >
-      {{#if this.reopenDistribution.isRunning}}
-        <UkSpinner @ratio={{0.6}} />
-      {{else}}
-        <UkIcon @icon="refresh" />
-      {{/if}}
-    </button>
-  {{/if}}
-</div>
+{{/if}}

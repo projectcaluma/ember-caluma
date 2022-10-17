@@ -60,8 +60,6 @@ module("Integration | Component | cd-navigation/section", function (hooks) {
     assert.dom("ul > li:nth-of-type(2) > a").containsText("addressed2");
     assert.dom("ul > li:nth-of-type(3) > a").containsText("addressed3");
 
-    assert.dom("a [uk-icon][icon=plus]").exists();
-
     this.set("type", "more");
 
     assert

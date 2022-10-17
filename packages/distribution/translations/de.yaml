@@ -1,7 +1,7 @@
 caluma:
   distribution:
     empty: "Es wurden noch keine Anfragen erstellt."
-    start: "Starten"
+    start: "Zirkulation starten"
     send: "Offene Anfragen versenden"
     complete: "Zirkulation abschliessen"
     skip: "Zirkulation überspringen"
@@ -18,6 +18,8 @@ caluma:
     complete-error: "Fehler beim Abschliessen der Zirkulation"
     skip-error: "Fehler beim Überspringen der Zirkulation"
     reopen-error: "Fehler beim Wiedereröffnen der Zirkulation"
+
+    attention-to: "{abbr, select, true {z. H.} other {zu Handen}} {subject}"
 
     more: "mehr"
     less: "weniger"
@@ -73,9 +75,9 @@ caluma:
       error: "Fehler beim Versenden der Erinnerung"
 
     types:
-      controlling: "Angefordert"
-      addressed: "Zu beantworten"
-      more: "Weitere"
+      controlling: "Angeforderte Stellungnahmen"
+      addressed: "Eigene Stellungnahmen"
+      more: "Weitere Stellungnahmen"
 
     status:
       draft: "Entwurf"

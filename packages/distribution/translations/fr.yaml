@@ -1,7 +1,7 @@
 caluma:
   distribution:
     empty: "Aucune demande n'a encore été créée."
-    start: "Lancer"
+    start: "Lancer la procédure de circulation"
     send: "Envoyer les demandes ouvertes"
     complete: "Clore la circulation"
     skip: "Sauter la procédure de circulation"
@@ -18,6 +18,8 @@ caluma:
     complete-error: "Erreur lors de la clôture de la circulation"
     skip-error: "Erreur lors du saut de la circulation"
     reopen-error: "Erreur lors de la réouverture de la circulation"
+
+    attention-to: "{abbr, select, true {à l'att. de} other {à l'attention de}} {subject}"
 
     more: "plus"
     less: "moins"
@@ -73,9 +75,9 @@ caluma:
       error: "Erreur lors de l'envoi du rappel"
 
     types:
-      controlling: "Demandé"
-      addressed: "A répondre"
-      more: "Plus"
+      controlling: "Prises de position demandées"
+      addressed: "Propres prises de position"
+      more: "Autres prises de position"
 
     status:
       draft: "Brouillon"
