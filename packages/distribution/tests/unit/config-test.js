@@ -32,6 +32,7 @@ module("Unit | config", function (hooks) {
       controls: {
         completeTask: "complete-distribution",
         createTask: "create-inquiry",
+        checkTask: "check-inquiries",
       },
       enableReminders: true,
       hooks: {},

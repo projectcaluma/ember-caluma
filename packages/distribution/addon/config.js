@@ -20,6 +20,7 @@ export default function config(target, property) {
           controls: {
             createTask: "create-inquiry",
             completeTask: "complete-distribution",
+            checkTask: "check-inquiries",
           },
           warningPeriod: 3,
           inquiry: {

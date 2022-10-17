@@ -30,6 +30,15 @@ export default class DistributionAbility extends Ability {
     );
   }
 
+  get canCheckInquiries() {
+    return (
+      !this.config.ui.readonly &&
+      (this.config.permissions.checkInquiries?.() ?? true) &&
+      this.distribution.controls.value?.check.edges.filter(hasStatus("READY"))
+        .length > 0
+    );
+  }
+
   get canComplete() {
     return (
       !this.config.ui.readonly &&

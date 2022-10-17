@@ -32,7 +32,7 @@ module("Integration | Component | cd-navigation/controls", function (hooks) {
   test("it renders", async function (assert) {
     await render(hbs`<CdNavigation::Controls @caseId={{this.caseId}} />`);
 
-    assert.dom("button").exists({ count: 2 });
+    assert.dom("button").exists({ count: 3 });
     assert.dom("a").exists({ count: 1 });
   });
 
@@ -56,7 +56,7 @@ module("Integration | Component | cd-navigation/controls", function (hooks) {
   });
 
   test("it can complete the current distribution", async function (assert) {
-    await assert.expect(5);
+    assert.expect(5);
 
     this.owner.lookup("service:caluma-options").distribution = {
       hooks: {
@@ -105,7 +105,7 @@ module("Integration | Component | cd-navigation/controls", function (hooks) {
   });
 
   test("it can reopen the current distribution", async function (assert) {
-    await assert.expect(3);
+    assert.expect(3);
 
     await render(hbs`<CdNavigation::Controls @caseId={{this.caseId}} />`);
 
@@ -119,5 +119,15 @@ module("Integration | Component | cd-navigation/controls", function (hooks) {
 
     assert.dom("[data-test-complete-distribution]").exists();
     assert.dom("[data-test-new-inquiry]").exists();
+  });
+
+  test("it can mark inquiries as checked", async function (assert) {
+    assert.expect(1);
+
+    await render(hbs`<CdNavigation::Controls @caseId={{this.caseId}} />`);
+
+    await click("[data-test-check-inquiries]");
+
+    assert.dom("[data-test-check-inquiries]").doesNotExist();
   });
 });

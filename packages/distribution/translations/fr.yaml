@@ -6,6 +6,7 @@ caluma:
     complete: "Clore la circulation"
     skip: "Sauter la procédure de circulation"
     reopen: "Rouvrir la procédure de circulation"
+    check-inquiries: "Marquer les prises de position comme vérifiées"
     send-confirm:
       "Voulez-vous vraiment envoyer <b>{count, plural, =1 {une demande ouverte}
       other {{count} demandes ouvertes}}</b> ?"
@@ -21,6 +22,7 @@ caluma:
     complete-error: "Erreur lors de la clôture de la circulation"
     skip-error: "Erreur lors du saut de la circulation"
     reopen-error: "Erreur lors de la réouverture de la circulation"
+    check-inquiries-error: "Erreur lors du marquage des prises de position comme vérifiées"
 
     attention-to: "{abbr, select, true {à l'att. de} other {à l'attention de}} {subject}"
 

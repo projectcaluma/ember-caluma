@@ -6,6 +6,7 @@ caluma:
     complete: "Complete circulation"
     skip: "Skip circulation"
     reopen: "Reopen circulation"
+    check-inquiries: "Mark inquiries as checked"
     send-confirm:
       "Do you really want to send <b>{other, plural, =1 {one pending inquiry}
       other {{count} pending inquiries}}</b>?"
@@ -21,6 +22,7 @@ caluma:
     complete-error: "Error while completing the distribution"
     skip-error: "Error while skipping the distribution"
     reopen-error: "Error while reopening the distribution"
+    check-inquiries-error: "Error while marking the inquiries as checked"
 
     attention-to: "{abbr, select, true {attn.} other {attention to}} {subject}"
 
