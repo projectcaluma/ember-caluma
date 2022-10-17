@@ -3,9 +3,5 @@
   <p class="uk-margin-medium uk-margin-remove-horizontal">
     {{t "caluma.distribution.empty"}}
   </p>
-  {{#if (can "create inquiry of distribution")}}
-    <LinkTo @route="new" class="uk-button uk-button-primary">
-      {{t "caluma.distribution.start"}}
-    </LinkTo>
-  {{/if}}
+  <CdNavigation::Controls @useButtons={{true}} />
 </div>

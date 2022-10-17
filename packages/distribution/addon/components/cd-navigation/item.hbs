@@ -1,17 +1,28 @@
 <li class="uk-width-auto {{if this.isActive 'uk-active'}}">
   <LinkTo @route="inquiry" @model={{this.model}}>
-    {{#let
-      (if
-        (eq @type "addressed")
-        @inquiry.controllingGroupName
-        @inquiry.addressedGroupName
-      )
-      as |name|
-    }}
-      <span class="uk-width-expand uk-text-truncate" title={{name}}>
-        {{name}}
+    {{#if (eq @type "addressed")}}
+      <span
+        class="uk-width-expand uk-text-truncate"
+        title={{t
+          "caluma.distribution.attention-to"
+          subject=@inquiry.controllingGroupName
+          abbr=false
+        }}
+      >
+        {{t
+          "caluma.distribution.attention-to"
+          subject=@inquiry.controllingGroupName
+          abbr=true
+        }}
       </span>
-    {{/let}}
+    {{else}}
+      <span
+        class="uk-width-expand uk-text-truncate"
+        title={{@inquiry.addressedGroupName}}
+      >
+        {{@inquiry.addressedGroupName}}
+      </span>
+    {{/if}}
 
     <CdNavigation::StatusIndicator @inquiry={{@inquiry}} @type={{@type}} />
   </LinkTo>

@@ -25,6 +25,14 @@ export default class DistributionService extends Service {
     return getOwner(this).lookup("route:application").currentModel;
   }
 
+  get hasInquiries() {
+    return (
+      this.navigation.value?.addressed.edges.length > 0 ||
+      this.navigation.value?.controlling.edges.length > 0 ||
+      this.navigation.value?.more.edges.length > 0
+    );
+  }
+
   controls = trackedTask(this, this.fetchControls, () => [this.caseId]);
   navigation = trackedTask(this, this.fetchNavigation, () => [this.caseId]);
 

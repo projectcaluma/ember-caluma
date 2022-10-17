@@ -1,6 +1,4 @@
-{{#if this.controls.workItems.isRunning}}
-  <div class="uk-text-center"><UkSpinner @ratio={{2}} /></div>
-{{else if (can "create inquiry of distribution")}}
+{{#if (can "create inquiry of distribution")}}
   <p class="uk-text-large">{{t "caluma.distribution.new.title"}}</p>
 
   <hr />
