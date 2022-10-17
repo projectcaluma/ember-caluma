@@ -91,6 +91,7 @@ export function createBlueprint(server) {
     slug: "adjust-inquiry-answer",
     type: "COMPLETE_WORKFLOW_FORM",
   });
+  server.create("task", { slug: "check-inquiries" });
 }
 
 export function createInquiry(
@@ -196,7 +197,7 @@ export function answerInquiry(server, { inquiry, status, reason, hint }) {
   return inquiry;
 }
 
-export function confirmInquiry({ inquiry }) {
+export function confirmInquiry(server, { inquiry }) {
   inquiry.update({ status: "COMPLETED", isRedoable: true });
   inquiry.childCase.update({
     status: "COMPLETED",
@@ -208,6 +209,21 @@ export function confirmInquiry({ inquiry }) {
   inquiry.childCase.workItems
     .filter((workItem) => workItem.taskId === "revise-inquiry-answer")
     .update({ status: "CANCELED" });
+
+  if (
+    !inquiry.case.workItems.filter(
+      (workItem) =>
+        workItem.taskId === "check-inquiries" &&
+        String(workItem.addressedGroups) === String(inquiry.addressedGroups)
+    ).length
+  ) {
+    server.create("work-item", {
+      taskId: "check-inquiries",
+      status: "READY",
+      case: inquiry.case,
+      addressedGroups: inquiry.addressedGroups,
+    });
+  }
 
   return inquiry;
 }
@@ -273,7 +289,7 @@ export default function (server, groups) {
   const withdraw = (...args) => withdrawInquiry(server, ...args);
   const send = (...args) => sendInquiry(server, ...args);
   const answer = (...args) => answerInquiry(server, ...args);
-  const confirm = (...args) => confirmInquiry(...args);
+  const confirm = (...args) => confirmInquiry(server, ...args);
   const revise = (...args) => reviseInquiry(server, ...args);
 
   const distributionCase = createCase(server, { group: g });

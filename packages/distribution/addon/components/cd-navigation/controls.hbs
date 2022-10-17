@@ -62,6 +62,21 @@
             <UkIcon @icon="plus" />
           </LinkTo>
         {{/if}}
+        {{#if (can "check inquiries of distribution")}}
+          <button
+            type="button"
+            class="uk-icon-button"
+            {{uk-tooltip (t "caluma.distribution.check-inquiries")}}
+            data-test-check-inquiries
+            {{on "click" (perform this.checkInquiries)}}
+          >
+            {{#if this.checkInquiries.isRunning}}
+              <UkSpinner @ratio={{0.6}} />
+            {{else}}
+              <UkIcon @icon="check" />
+            {{/if}}
+          </button>
+        {{/if}}
         {{#if (can "complete distribution")}}
           <button
             type="button"

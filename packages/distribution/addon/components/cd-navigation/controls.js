@@ -128,4 +128,22 @@ export default class CdNavigationControlsComponent extends Component {
       this.notification.danger(this.intl.t("caluma.distribution.send-error"));
     }
   }
+
+  @dropTask
+  *checkInquiries() {
+    try {
+      yield this.apollo.mutate({
+        mutation: completeWorkItemMutation,
+        variables: {
+          workItem: decodeId(
+            this.distribution.controls.value?.check.edges[0]?.node.id
+          ),
+        },
+      });
+    } catch (e) {
+      this.notification.danger(
+        this.intl.t("caluma.distribution.check-inquiries-error")
+      );
+    }
+  }
 }

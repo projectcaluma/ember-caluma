@@ -2,6 +2,7 @@ query ControlWorkItems(
   $createTask: ID!
   $completeTask: ID!
   $inquiryTask: ID!
+  $checkTask: ID!
   $caseId: ID!
   $currentGroup: String!
 ) {
@@ -41,6 +42,22 @@ query ControlWorkItems(
       { task: $inquiryTask }
       { status: SUSPENDED }
       { controllingGroups: [$currentGroup] }
+    ]
+  ) {
+    edges {
+      node {
+        id
+        status
+      }
+    }
+  }
+  check: allWorkItems(
+    filter: [
+      { case: $caseId }
+      { task: $checkTask }
+      { status: READY }
+      { hasDeadline: true }
+      { addressedGroups: [$currentGroup] }
     ]
   ) {
     edges {

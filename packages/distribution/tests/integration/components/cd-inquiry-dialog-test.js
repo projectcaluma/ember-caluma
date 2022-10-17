@@ -43,7 +43,7 @@ module("Integration | Component | cd-inquiry-dialog", function (hooks) {
         to: { id: "group2" },
       }),
     });
-    confirmInquiry({
+    confirmInquiry(this.server, {
       inquiry: answerInquiry(this.server, {
         inquiry: createInquiry(this.server, this.distributionCase, {
           from: { id: "group1" },
@@ -51,7 +51,7 @@ module("Integration | Component | cd-inquiry-dialog", function (hooks) {
         }),
       }),
     });
-    confirmInquiry({
+    confirmInquiry(this.server, {
       inquiry: answerInquiry(this.server, {
         inquiry: createInquiry(this.server, this.distributionCase, {
           from: { id: "group1" },
@@ -134,7 +134,7 @@ module("Integration | Component | cd-inquiry-dialog", function (hooks) {
   test("it can reopen an inquiry", async function (assert) {
     assert.expect(3);
 
-    const inquiry = confirmInquiry({
+    const inquiry = confirmInquiry(this.server, {
       inquiry: answerInquiry(this.server, {
         inquiry: sendInquiry(this.server, {
           inquiry: createInquiry(this.server, this.distributionCase, {

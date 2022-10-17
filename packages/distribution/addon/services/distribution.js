@@ -59,6 +59,7 @@ export default class DistributionService extends Service {
         createTask: this.config.controls.createTask,
         completeTask: this.config.controls.completeTask,
         inquiryTask: this.config.inquiry.task,
+        checkTask: this.config.controls.checkTask,
       },
     });
   }

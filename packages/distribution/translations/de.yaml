@@ -6,6 +6,7 @@ caluma:
     complete: "Zirkulation abschliessen"
     skip: "Zirkulation überspringen"
     reopen: "Zirkulation wiedereröffnen"
+    check-inquiries: "Stellungnahmen als geprüft markieren"
     send-confirm:
       "Wollen Sie wirklich <b>{count, plural, =1 {eine offene Anfrage} other
       {{count} offene Anfragen}}</b> versenden?"
@@ -21,6 +22,7 @@ caluma:
     complete-error: "Fehler beim Abschliessen der Zirkulation"
     skip-error: "Fehler beim Überspringen der Zirkulation"
     reopen-error: "Fehler beim Wiedereröffnen der Zirkulation"
+    check-inquiries-error: "Fehler beim Markieren der Stellungnahmen als geprüft"
 
     attention-to: "{abbr, select, true {z. H.} other {zu Handen}} {subject}"
 
