@@ -45,8 +45,21 @@
           <UkButton
             @type="submit"
             @color={{buttonConfig.color}}
-            @disabled={{or (not isValid) this.completeWorkItem.isRunning}}
-            @loading={{this.completeWorkItem.isRunning}}
+            @disabled={{or
+              (not isValid)
+              (and
+                this.completeWorkItem.isRunning
+                (includes
+                  buttonConfig.workItemId this.completeWorkItem.lastRunning.args
+                )
+              )
+            }}
+            @loading={{and
+              this.completeWorkItem.isRunning
+              (includes
+                buttonConfig.workItemId this.completeWorkItem.lastRunning.args
+              )
+            }}
             @onClick={{fn
               (perform this.completeWorkItem)
               buttonConfig.workItemId
@@ -58,8 +71,18 @@
         <UkButton
           @type="button"
           @color={{buttonConfig.color}}
-          @disabled={{this.completeWorkItem.isRunning}}
-          @loading={{this.completeWorkItem.isRunning}}
+          @disabled={{and
+            this.completeWorkItem.isRunning
+            (includes
+              buttonConfig.workItemId this.completeWorkItem.lastRunning.args
+            )
+          }}
+          @loading={{and
+            this.completeWorkItem.isRunning
+            (includes
+              buttonConfig.workItemId this.completeWorkItem.lastRunning.args
+            )
+          }}
           @onClick={{fn
             (perform this.completeWorkItem)
             buttonConfig.workItemId
