@@ -70,6 +70,10 @@ export default class CfFieldComponent extends Component {
    */
   @restartableTask
   *save(value, bypassTimeout = false) {
+    if (typeof this.args.onSave === "function") {
+      return yield this.args.onSave(this.args.field, value);
+    }
+
     /* istanbul ignore next */
     if (macroCondition(isTesting())) {
       // no timeout

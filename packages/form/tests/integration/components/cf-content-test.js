@@ -19,6 +19,8 @@ module("Integration | Component | cf-content", function (hooks) {
       this.server.create("question", {
         formIds: [form.id],
         type: "TEXT",
+        maxLength: 9999,
+        minLength: 0,
         meta: { widgetOverride: "dummy-one" },
       }),
       this.server.create("question", {
@@ -288,5 +290,31 @@ module("Integration | Component | cf-content", function (hooks) {
     await render(hbs`<CfContent @documentId={{this.document.id}} />`);
 
     assert.dom(`[data-test-dummy-one]`).exists();
+  });
+
+  test("it allows overriding the save function", async function (assert) {
+    assert.expect(4);
+
+    const question = this.questions[0].slug;
+
+    this.save = (field, value) => {
+      assert.strictEqual(field.question.slug, question);
+      assert.strictEqual(value, "My new value");
+      assert.step("save");
+    };
+
+    await render(hbs`
+      <CfContent
+        @documentId={{this.document.id}}
+        @onSave={{this.save}}
+      />
+    `);
+
+    await fillIn(
+      `[name="Document:${this.document.id}:Question:${question}"]`,
+      "My new value"
+    );
+
+    assert.verifySteps(["save"]);
   });
 });

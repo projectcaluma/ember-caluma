@@ -3,7 +3,12 @@
     {{#if (has-block)}}
       {{yield field}}
     {{else}}
-      <CfField @field={{field}} @disabled={{@disabled}} @context={{@context}} />
+      <CfField
+        @field={{field}}
+        @disabled={{@disabled}}
+        @context={{@context}}
+        @onSave={{@onSave}}
+      />
     {{/if}}
   {{/each}}
 </form>
