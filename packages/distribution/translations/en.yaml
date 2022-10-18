@@ -5,13 +5,15 @@ caluma:
     send: "Send pending inquiries"
     complete: "Complete circulation"
     skip: "Skip circulation"
-    send-confirm: "Do you really want to send all pending inquiries?"
     reopen: "Reopen circulation"
+    send-confirm:
+      "Do you really want to send <b>{other, plural, =1 {one pending inquiry}
+      other {{count} pending inquiries}}</b>?"
     complete-confirm:
-      "There {count, plural, =1 {is} other {are}} <b>{count} pending
-      {count, plural, =1 {inquiry} other {inquiries}}</b> on the current
-      distribution. Completing the distribution will cause all remaining
-      pending inquiries to be canceled. Would you like to continue?"
+      "There {count, plural, =1 {is <b>one pending inquiry} other {are
+      <b>{count} pending inquiries}}</b> on the current distribution.
+      Completing the distribution will cause all remaining pending inquiries to
+      be canceled. Would you like to continue?"
     complete-confirm-empty: "Do you really want to complete the distribution?"
     skip-confirm: "Do you really want to skip the distribution?"
     reopen-confirm: "Do you really want to reopen the distribution?"

@@ -6,11 +6,14 @@ caluma:
     complete: "Zirkulation abschliessen"
     skip: "Zirkulation überspringen"
     reopen: "Zirkulation wiedereröffnen"
-    send-confirm: "Wollen Sie wirklich alle offenen Anfragen versenden?"
+    send-confirm:
+      "Wollen Sie wirklich <b>{count, plural, =1 {eine offene Anfrage} other
+      {{count} offene Anfragen}}</b> versenden?"
     complete-confirm:
-      "Es gibt noch <b>{count} offene {count, plural, =1 {Anfrage} other {Anfragen}}</b>
-      in der aktuellen Zirkulation. Wenn Sie die Zirkulation abschliessen, werden
-      alle verbleibenden offenen Anfragen abgebrochen. Möchten Sie fortfahren?"
+      "Es gibt noch <b>{count, plural, =1 {eine offene Anfrage} other {{count}
+      offene Anfragen}}</b> in der aktuellen Zirkulation. Wenn Sie die
+      Zirkulation abschliessen, werden alle verbleibenden offenen Anfragen
+      abgebrochen. Möchten Sie fortfahren?"
     complete-confirm-empty: "Möchten Sie die Zirkulation wirklich abschliessen?"
     skip-confirm: "Wollen Sie die Zirkulation wirklich überspringen?"
     reopen-confirm: "Wollen Sie die Zirkulation wirklich wiedereröffnen?"

@@ -104,15 +104,20 @@ export default class CdNavigationControlsComponent extends Component {
 
   @dropTask
   *sendInquiries() {
-    if (!(yield confirm(this.intl.t("caluma.distribution.send-confirm")))) {
+    const ids = this.distribution.controls.value.send.edges
+      .filter((edge) => edge.node.status === "SUSPENDED")
+      .map((edge) => decodeId(edge.node.id));
+
+    if (
+      ids.length &&
+      !(yield confirm(
+        this.intl.t("caluma.distribution.send-confirm", { count: ids.length })
+      ))
+    ) {
       return;
     }
 
     try {
-      const ids = this.distribution.controls.value.send.edges.map((edge) =>
-        decodeId(edge.node.id)
-      );
-
       const mutations = ids.map(
         (id, index) => `
         sendInquiry${index}: resumeWorkItem(input: { id: "${id}" }) {
