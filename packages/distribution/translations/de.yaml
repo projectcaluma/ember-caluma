@@ -33,6 +33,10 @@ caluma:
       send: "Aktuelle Anfrage versenden"
       send-error: "Fehler beim Senden der Anfrage"
       send-not-allowed: "Sie sind nicht berechtigt diese Anfrage zu versenden."
+      edit-sent:
+        "<b>Achtung:</b> Sie bearbeiten eine Anfrage, die bereits versendet
+        wurde. Falls Sie die Details grundlegend ändern, kann es sein, dass die
+        adressierte Stelle dies nicht bemerkt, da sie nicht informiert wird."
 
     answer:
       link: "Beantworten"

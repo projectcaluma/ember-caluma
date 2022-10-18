@@ -34,6 +34,10 @@ caluma:
       send: "Send current inquiry"
       send-error: "Error while sending the inquiry"
       send-not-allowed: "You are not allowed to send this inquiry."
+      edit-sent:
+        "<b>Warning:</b> You are editing an inquiry which has already been sent.
+        If you fundamentally change the details, the addressed group may not
+        notice it as they won't be informed."
 
     answer:
       link: "Answer"

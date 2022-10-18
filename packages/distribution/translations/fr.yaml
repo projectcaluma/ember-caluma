@@ -33,6 +33,10 @@ caluma:
       send: "Envoyer la demande actuelle"
       send-error: "Erreur lors de l'envoi de la demande"
       send-not-allowed: "Vous n'êtes pas autorisé à envoyer cette demande."
+      edit-sent:
+        "<b>Attention :</b> Vous traitez une demande qui a déjà été envoyée. Si
+        vous modifiez fondamentalement les détails, il se peut que le service
+        destinataire ne le remarque pas, car il n'en est pas informé."
 
     answer:
       link: "Répondre"

@@ -29,6 +29,17 @@
       </div>
     {{/if}}
 
+    {{#if
+      (and (can "edit inquiry" this.inquiry) (eq this.inquiry.status "READY"))
+    }}
+      <div class="uk-alert uk-alert-warning uk-flex uk-flex-middle">
+        <UkIcon @icon="warning" class="uk-margin-small-right uk-flex-none" />
+        <p class="uk-margin-remove">
+          {{t "caluma.distribution.edit.edit-sent" htmlSafe=true}}
+        </p>
+      </div>
+    {{/if}}
+
     <content.form />
 
     {{#if

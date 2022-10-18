@@ -13,7 +13,7 @@ export default class InquiryAbility extends Ability {
     return (
       !this.config.ui.readonly &&
       this.model?.task.slug === this.config.inquiry.task &&
-      this.model?.status === "SUSPENDED" &&
+      ["SUSPENDED", "READY"].includes(this.model?.status) &&
       this.model?.controllingGroups
         .map(String)
         .includes(String(this.calumaOptions.currentGroupId))
