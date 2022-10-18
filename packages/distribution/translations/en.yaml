@@ -63,6 +63,8 @@ caluma:
       selected: "{count, plural, other {selected}}"
       reset: "Reset"
       create-draft: "Create draft"
+      continue: "Continue"
+      back: "Back"
       error: "Error while creating the {count, plural, =1 {inquiry} other {inquiries}}"
 
     reminder:

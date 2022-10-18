@@ -74,6 +74,7 @@ module("Unit | config", function (hooks) {
         task: "inquiry",
       },
       new: {
+        defaultDeadlineLeadTime: 30,
         defaultTypes: ["suggestions"],
         types: {
           suggestions: {

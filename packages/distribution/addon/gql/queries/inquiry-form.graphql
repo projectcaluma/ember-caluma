@@ -1,0 +1,26 @@
+#import FieldQuestion, FieldTableQuestion, SimpleQuestion from '@projectcaluma/ember-form/gql/fragments/field.graphql'
+
+query InquiryForm($inquiryTask: String!) {
+  allTasks(filter: [{ slug: $inquiryTask }], first: 1) {
+    edges {
+      node {
+        id
+        ... on CompleteTaskFormTask {
+          form {
+            id
+            slug
+            name
+            meta
+            questions {
+              edges {
+                node {
+                  ...FieldQuestion
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

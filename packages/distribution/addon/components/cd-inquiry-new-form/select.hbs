@@ -1,0 +1,71 @@
+<div class="uk-margin-bottom uk-button-group">
+  {{#each-in this.config.new.types as |slug config|}}
+    {{#unless config.disabled}}
+      <UkButton
+        data-test-type={{slug}}
+        @label={{t config.label}}
+        @color={{if (includes slug @selectedTypes) "primary" "default"}}
+        @onClick={{fn this.updateSelectedTypes slug}}
+      />
+    {{/unless}}
+  {{/each-in}}
+</div>
+
+<div class="uk-search uk-search-default uk-width-1-1">
+  <span class="uk-search-icon-flip" uk-search-icon></span>
+  <input
+    placeholder={{t "caluma.distribution.new.search"}}
+    aria-label={{t "caluma.distribution.new.search"}}
+    class="uk-search-input"
+    type="search"
+    value={{@search}}
+    data-test-search
+    {{on "input" (perform this.updateSearch)}}
+  />
+</div>
+
+{{#if this.groups.isRunning}}
+  <div class="uk-text-center uk-margin">
+    <UkSpinner @ratio={{2}} />
+  </div>
+{{else if this.groups.value.length}}
+  <table
+    class="uk-table uk-table-striped uk-table-hover uk-table-small uk-table-middle group-list"
+  >
+    <tbody>
+      {{#each this.groups.value as |group|}}
+        {{! template-lint-disable require-presentational-children }}
+        <tr
+          role="checkbox"
+          data-test-group={{group.identifier}}
+          {{on "click" (fn this.updateSelectedGroups group.identifier)}}
+        >
+          <td class="uk-padding-remove-right">
+            {{! template-lint-disable require-input-label no-nested-interactive }}
+            <input
+              type="checkbox"
+              class="uk-checkbox"
+              checked={{includes group.identifier @selectedGroups}}
+            />
+          </td>
+          <td class="uk-width-expand">{{group-name group.identifier}}</td>
+          <td class="uk-text-right">
+            {{#if group.config.icon}}
+              <UkIcon
+                @icon={{group.config.icon}}
+                class="uk-display-block uk-text-{{group.config.iconColor}}"
+              />
+            {{/if}}
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+{{else}}
+  <div class="uk-text-center">
+    <UkIcon @icon="search" @ratio={{10}} class="uk-margin-top" />
+    <p class="uk-text-muted">
+      {{t "caluma.distribution.new.empty"}}
+    </p>
+  </div>
+{{/if}}

@@ -76,7 +76,11 @@ export function createBlueprint(server) {
   server.create("task", { slug: "distribution" });
   server.create("task", { slug: "create-inquiry" });
   server.create("task", { slug: "complete-distribution" });
-  server.create("task", { slug: "inquiry" });
+  server.create("task", {
+    slug: "inquiry",
+    formId: inquiryForm.id,
+    type: "COMPLETE_TASK_FORM",
+  });
   server.create("task", {
     slug: "compose-inquiry-answer",
     type: "COMPLETE_WORKFLOW_FORM",

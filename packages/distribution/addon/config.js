@@ -59,6 +59,7 @@ export default function config(target, property) {
             },
           },
           new: {
+            defaultDeadlineLeadTime: 30,
             defaultTypes: ["suggestions"],
             types: {
               suggestions: {

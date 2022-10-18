@@ -2,6 +2,7 @@ import { render, click, fillIn } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
+import { DateTime } from "luxon";
 import { module, test } from "qunit";
 
 import {
@@ -135,16 +136,58 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
     await click("tr[data-test-group='2']");
     await click("tr[data-test-group='3']");
 
+    await click("button[data-test-continue]");
+
+    const intl = this.owner.lookup("service:intl");
+    assert
+      .dom('[name$="Question:inquiry-deadline"]')
+      .hasValue(intl.formatDate(DateTime.now().plus({ days: 30 }).toJSDate()));
+
+    await fillIn('[name$="Question:inquiry-remark"]', "My remark");
+    await fillIn('[name$="Question:inquiry-deadline"]', "01/01/2022");
+
     await click("button[data-test-submit]");
 
     assert.deepEqual(
       this.case.workItems.models
         .filter((w) => w.taskId === "inquiry")
-        .map((w) => ({ from: w.controllingGroups, to: w.addressedGroups })),
-
+        .map((w) => ({
+          from: w.controllingGroups,
+          to: w.addressedGroups,
+          answers: w.document.answers.models.map((a) => ({
+            question: a.questionId,
+            value: a.value,
+          })),
+        })),
       [
-        { from: ["1"], to: ["2"] },
-        { from: ["1"], to: ["3"] },
+        {
+          from: ["1"],
+          to: ["2"],
+          answers: [
+            {
+              question: "inquiry-remark",
+              value: "My remark",
+            },
+            {
+              question: "inquiry-deadline",
+              value: "2022-01-01",
+            },
+          ],
+        },
+        {
+          from: ["1"],
+          to: ["3"],
+          answers: [
+            {
+              question: "inquiry-remark",
+              value: "My remark",
+            },
+            {
+              question: "inquiry-deadline",
+              value: "2022-01-01",
+            },
+          ],
+        },
       ]
     );
 

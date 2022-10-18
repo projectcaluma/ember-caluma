@@ -93,7 +93,7 @@ export default class DistributionService extends Service {
   }
 
   @dropTask
-  *createInquiry(groups) {
+  *createInquiry(groups, context = {}) {
     try {
       // get create inquiry work item to complete
       const createId = decodeId(this.controls.value?.create.edges[0].node.id);
@@ -104,6 +104,7 @@ export default class DistributionService extends Service {
         variables: {
           id: createId,
           context: JSON.stringify({
+            ...context,
             addressed_groups: groups.map(String),
           }),
         },
