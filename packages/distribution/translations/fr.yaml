@@ -71,6 +71,8 @@ caluma:
       selected: "{count, plural, =1 {sélectionné} other {sélectionnés}}"
       reset: "Réinitialiser"
       create-draft: "Créer un brouillon"
+      continue: "Continuer"
+      back: "Retour"
       error: "Error lors de la création {count, plural, =1 {de la demande} other {des demandes}}"
 
     reminder:

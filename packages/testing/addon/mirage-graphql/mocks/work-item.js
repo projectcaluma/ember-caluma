@@ -1,5 +1,3 @@
-import { DateTime } from "luxon";
-
 import deserialize from "@projectcaluma/ember-testing/mirage-graphql/deserialize";
 import BaseMock from "@projectcaluma/ember-testing/mirage-graphql/mocks/base";
 import register from "@projectcaluma/ember-testing/mirage-graphql/register";
@@ -98,7 +96,7 @@ export default class WorkItemMock extends BaseMock {
         taskId: "adjust-inquiry-answer",
       });
     } else if (taskId === "create-inquiry") {
-      const { addressed_groups: groups } = JSON.parse(input.context);
+      const { addressed_groups: groups, answers } = JSON.parse(input.context);
 
       groups.forEach((group) => {
         createInquiry(
@@ -107,8 +105,8 @@ export default class WorkItemMock extends BaseMock {
           {
             to: { id: group },
             from: { id: workItem.addressedGroups[0] },
-            remark: "",
-            deadline: DateTime.now().plus({ days: 30 }).toJSDate(),
+            remark: answers["inquiry-remark"],
+            deadline: answers["inquiry-deadline"],
           },
           {
             createdAt: new Date(),

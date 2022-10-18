@@ -28,95 +28,40 @@
         }}
       </div>
       <div>
-        <UkButton
-          @label={{t "caluma.distribution.new.reset"}}
-          @onClick={{this.clearSelectedGroups}}
-          data-test-reset
-        />
-        <UkButton
-          @color="primary"
-          @label={{t "caluma.distribution.new.create-draft"}}
-          @type="submit"
-          @loading={{this.submit.isRunning}}
-          @disabled={{this.submit.isRunning}}
-          @onClick={{perform this.submit}}
-          data-test-submit
-        />
+        {{#if this.edit}}
+          <UkButton
+            @label={{t "caluma.distribution.new.back"}}
+            @onClick={{fn (mut this.edit) false}}
+          />
+        {{else}}
+          <UkButton
+            @label={{t "caluma.distribution.new.reset"}}
+            @onClick={{this.clearSelectedGroups}}
+            data-test-reset
+          />
+          <UkButton
+            @color="primary"
+            @label={{t "caluma.distribution.new.continue"}}
+            @onClick={{fn (mut this.edit) true}}
+            data-test-continue
+          />
+        {{/if}}
       </div>
     </div>
     <hr />
   {{/if}}
 
-  <div class="uk-margin-bottom uk-button-group">
-    {{#each-in this.config.new.types as |slug config|}}
-      {{#unless config.disabled}}
-        <UkButton
-          data-test-type={{slug}}
-          @label={{t config.label}}
-          @color={{if (includes slug @selectedTypes) "primary" "default"}}
-          @onClick={{fn this.updateSelectedTypes slug}}
-        />
-      {{/unless}}
-    {{/each-in}}
-  </div>
-
-  <div class="uk-search uk-search-default uk-width-1-1">
-    <span class="uk-search-icon-flip" uk-search-icon></span>
-    <input
-      placeholder={{t "caluma.distribution.new.search"}}
-      aria-label={{t "caluma.distribution.new.search"}}
-      class="uk-search-input"
-      type="search"
-      value={{@search}}
-      data-test-search
-      {{on "input" (perform this.updateSearch)}}
-    />
-  </div>
-
-  {{#if this.groups.isRunning}}
-    <div class="uk-text-center uk-margin">
-      <UkSpinner @ratio={{2}} />
-    </div>
-  {{else if this.groups.value.length}}
-    <table
-      class="uk-table uk-table-striped uk-table-hover uk-table-small uk-table-middle group-list"
-    >
-      <tbody>
-        {{#each this.groups.value as |group|}}
-          {{! template-lint-disable require-presentational-children }}
-          <tr
-            role="checkbox"
-            data-test-group={{group.identifier}}
-            {{on "click" (fn this.updateSelectedGroups group.identifier)}}
-          >
-            <td class="uk-padding-remove-right">
-              {{! template-lint-disable require-input-label no-nested-interactive }}
-              <input
-                type="checkbox"
-                class="uk-checkbox"
-                checked={{includes group.identifier this.selectedGroups}}
-              />
-            </td>
-            <td class="uk-width-expand">{{group-name group.identifier}}</td>
-            <td class="uk-text-right">
-              {{#if group.config.icon}}
-                <UkIcon
-                  @icon={{group.config.icon}}
-                  class="uk-display-block uk-text-{{group.config.iconColor}}"
-                />
-              {{/if}}
-            </td>
-          </tr>
-        {{/each}}
-      </tbody>
-    </table>
+  {{#if this.edit}}
+    <CdInquiryNewForm::BulkEdit @selectedGroups={{this.selectedGroups}} />
   {{else}}
-    <div class="uk-text-center">
-      <UkIcon @icon="search" @ratio={{10}} class="uk-margin-top" />
-      <p class="uk-text-muted">
-        {{t "caluma.distribution.new.empty"}}
-      </p>
-    </div>
+    <CdInquiryNewForm::Select
+      @search={{@search}}
+      @selectedGroups={{this.selectedGroups}}
+      @selectedTypes={{@selectedTypes}}
+      @onChangeSearch={{@onChangeSearch}}
+      @onChangeSelectedGroups={{fn (mut this.selectedGroups)}}
+      @onChangeSelectedTypes={{@onChangeSelectedTypes}}
+    />
   {{/if}}
 {{else}}
   <CdNotfound />

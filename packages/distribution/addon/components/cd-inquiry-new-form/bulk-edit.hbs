@@ -1,0 +1,20 @@
+{{#if this.document.isLoading}}
+  <div class="uk-text-center"><UkSpinner @ratio={{2}} /></div>
+{{else if this.document.value}}
+  <CfFormWrapper
+    @document={{this.document.value}}
+    @fieldset={{this.fieldset}}
+    @onSave={{this.saveField}}
+  />
+  <DocumentValidity @document={{this.document.value}} as |isValid validate|>
+    <UkButton
+      @color="primary"
+      @label={{t "caluma.distribution.new.create-draft"}}
+      @type="submit"
+      @loading={{this.submit.isRunning}}
+      @disabled={{or (not isValid) this.submit.isRunning}}
+      @onClick={{perform this.submit validate}}
+      data-test-submit
+    />
+  </DocumentValidity>
+{{/if}}

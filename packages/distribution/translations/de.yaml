@@ -71,6 +71,8 @@ caluma:
       selected: "{count, plural, other {ausgewählt}}"
       reset: "Zurücksetzen"
       create-draft: "Entwurf erstellen"
+      continue: "Weiter"
+      back: "Zurück"
       error: "Fehler beim Erstellen der {count, plural, =1 {Anfragen} other {Anfrage}}"
 
     reminder:
