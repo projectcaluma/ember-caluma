@@ -5,12 +5,15 @@ caluma:
     send: "Envoyer les demandes ouvertes"
     complete: "Clore la circulation"
     skip: "Sauter la procédure de circulation"
-    send-confirm: "Voulez-vous vraiment envoyer toutes les demandes ouvertes ?"
     reopen: "Rouvrir la procédure de circulation"
+    send-confirm:
+      "Voulez-vous vraiment envoyer <b>{count, plural, =1 {une demande ouverte}
+      other {{count} demandes ouvertes}}</b> ?"
     complete-confirm:
-      "Il y a <b>{count} {count, plural, =1 {demande} other {demandes}} en
-      attente</b> sur la distribution actuelle. Si vous terminez la distribution,
-      toutes les demandes en attente seront annulées. Voulez-vous continuer ?"
+      "Il y a <b>{count, plural, =1 {une demande ouverte} other {{count}
+      demandes ouvertes}} </b> sur la circulation actuelle. Si vous clôturez la
+      circulation, toutes les demandes ouvertes seront annulées. Voulez-vous
+      continuer ?"
     complete-confirm-empty: "Vous voulez vraiment fermer la circulation ?"
     skip-confirm: "Vous voulez vraiment sauter la circulation ?"
     reopen-confirm: "Vous voulez vraiment rouvrir la circulation ?"
