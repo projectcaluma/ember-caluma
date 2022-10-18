@@ -1,16 +1,14 @@
+import { registerDestructor } from "@ember/destroyable";
 import { inject as service } from "@ember/service";
 import AutoresizeModifier from "ember-autoresize-modifier/modifiers/autoresize";
 
 export default class CustomAutoresizeModifier extends AutoresizeModifier {
   @service inViewport;
 
-  didInstall() {
-    super.didInstall();
+  modify(...args) {
+    super.modify(...args);
 
     this.inViewport.watchElement(this.element).onEnter(this.resize);
-  }
-
-  willRemove() {
-    this.inViewport.stopWatching(this.element);
+    registerDestructor(this, () => this.inViewport.stopWatching(this.element));
   }
 }
