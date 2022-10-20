@@ -31,9 +31,7 @@ module("Integration | Component | cd-inquiry-dialog", function (hooks) {
 
     this.caseId = this.distributionCase.id;
 
-    Object.defineProperty(this.owner.lookup("service:distribution"), "caseId", {
-      value: this.caseId,
-    });
+    this.owner.lookup("service:distribution").caseId = this.caseId;
   });
 
   test("it renders", async function (assert) {
@@ -60,9 +58,7 @@ module("Integration | Component | cd-inquiry-dialog", function (hooks) {
       }),
     });
 
-    await render(
-      hbs`<CdInquiryDialog @from="group1" @to="group2" @caseId={{this.caseId}} />`
-    );
+    await render(hbs`<CdInquiryDialog @from="group1" @to="group2" />`);
 
     assert.dom("article").exists({ count: 3 });
     assert.dom(".inquiry-divider").exists({ count: 2 });
@@ -80,9 +76,7 @@ module("Integration | Component | cd-inquiry-dialog", function (hooks) {
       to: { id: "group2" },
     });
 
-    await render(
-      hbs`<CdInquiryDialog @from="group1" @to="group2" @caseId={{this.caseId}} />`
-    );
+    await render(hbs`<CdInquiryDialog @from="group1" @to="group2" />`);
 
     await click("[data-test-withdraw]");
     await confirm();
@@ -110,9 +104,7 @@ module("Integration | Component | cd-inquiry-dialog", function (hooks) {
       to: { id: "group2" },
     });
 
-    await render(
-      hbs`<CdInquiryDialog @from="group1" @to="group2" @caseId={{this.caseId}} />`
-    );
+    await render(hbs`<CdInquiryDialog @from="group1" @to="group2" />`);
 
     this.owner.lookup("service:router").transitionTo = (
       route,
@@ -147,9 +139,7 @@ module("Integration | Component | cd-inquiry-dialog", function (hooks) {
 
     assert.strictEqual(inquiry.status, "COMPLETED");
 
-    await render(
-      hbs`<CdInquiryDialog @from="group1" @to="group2" @caseId={{this.caseId}} />`
-    );
+    await render(hbs`<CdInquiryDialog @from="group1" @to="group2" />`);
 
     await click("[data-test-reopen]");
     await confirm();

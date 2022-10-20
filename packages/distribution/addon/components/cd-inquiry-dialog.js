@@ -30,24 +30,24 @@ export default class CdInquiryDialogComponent extends Component {
   _inquiries = trackedTask(this, this.fetchDialog, () => [
     this.args.from,
     this.args.to,
-    this.args.caseId,
+    this.distribution.caseId,
     this.config,
   ]);
 
   @dropTask
-  *fetchDialog() {
+  *fetchDialog(from, to, caseId, config) {
     const response = yield this.apollo.watchQuery({
       query: inquiryDialogQuery,
       variables: {
-        from: this.args.from,
-        to: this.args.to,
-        caseId: this.args.caseId,
-        task: this.config.inquiry.task,
-        infoQuestion: this.config.inquiry.infoQuestion,
-        deadlineQuestion: this.config.inquiry.deadlineQuestion,
-        statusQuestion: this.config.inquiry.answer.statusQuestion,
-        answerInfoQuestions: this.config.inquiry.answer.infoQuestions,
-        buttonTasks: Object.keys(this.config.inquiry.answer.buttons),
+        from,
+        to,
+        caseId,
+        task: config.inquiry.task,
+        infoQuestion: config.inquiry.infoQuestion,
+        deadlineQuestion: config.inquiry.deadlineQuestion,
+        statusQuestion: config.inquiry.answer.statusQuestion,
+        answerInfoQuestions: config.inquiry.answer.infoQuestions,
+        buttonTasks: Object.keys(config.inquiry.answer.buttons),
         includeNavigationData: true,
       },
     });

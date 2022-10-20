@@ -63,7 +63,7 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
 
     const distribution = this.owner.lookup("service:distribution");
 
-    Object.defineProperty(distribution, "caseId", { value: this.case.id });
+    distribution.caseId = this.case.id;
     await distribution.navigation;
   });
 
@@ -72,7 +72,6 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
       <CdInquiryNewForm
         @selectedTypes={{this.selectedTypes}}
         @search={{this.search}}
-        @caseId={{this.case.id}}
 
         @onChangeSelectedTypes={{fn (mut this.selectedTypes)}}
         @onChangeSearch={{fn (mut this.search)}}
@@ -97,7 +96,6 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
       <CdInquiryNewForm
         @selectedTypes={{this.selectedTypes}}
         @search={{this.search}}
-        @caseId={{this.case.id}}
 
         @onChangeSelectedTypes={{fn (mut this.selectedTypes)}}
         @onChangeSearch={{fn (mut this.search)}}
@@ -127,7 +125,6 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
       <CdInquiryNewForm
         @selectedTypes={{this.selectedTypes}}
         @search={{this.search}}
-        @caseId={{this.case.id}}
 
         @onChangeSelectedTypes={{fn (mut this.selectedTypes)}}
         @onChangeSearch={{fn (mut this.search)}}

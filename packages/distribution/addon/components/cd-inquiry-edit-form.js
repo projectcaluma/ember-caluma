@@ -24,11 +24,11 @@ export default class CdInquiryEditFormComponent extends Component {
   }
 
   @dropTask
-  *fetchInquiry() {
+  *fetchInquiry(inquiry) {
     return yield this.apollo.watchQuery(
       {
         query: inquiryEditQuery,
-        variables: { inquiry: this.args.inquiry },
+        variables: { inquiry },
       },
       "allWorkItems.edges"
     );
