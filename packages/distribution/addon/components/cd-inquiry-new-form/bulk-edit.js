@@ -97,17 +97,20 @@ export default class CdInquiryNewFormBulkEditComponent extends Component {
       answers: this.answers,
     });
 
-    const lastControlling =
-      this.distribution.navigation.value.controlling.edges[0].node;
+    const firstCreated = this.distribution.navigation.value.controlling.edges
+      .map((edge) => edge.node)
+      .find((node) =>
+        node.addressedGroups.includes(String(this.args.selectedGroups[0]))
+      );
 
-    // transition to last added inquiry
+    // transition to inquiry addressed to the first selected group
     this.router.transitionTo(
       "inquiry.detail.index",
       {
-        from: lastControlling.controllingGroups[0],
-        to: lastControlling.addressedGroups[0],
+        from: firstCreated.controllingGroups[0],
+        to: firstCreated.addressedGroups[0],
       },
-      decodeId(lastControlling.id)
+      decodeId(firstCreated.id)
     );
   }
 }
