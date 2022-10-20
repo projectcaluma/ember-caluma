@@ -24,6 +24,7 @@ module("Unit | config", function (hooks) {
             "q1-a3": "positive",
           },
           statusQuestion: "q1",
+          details: null,
         },
       },
     };
@@ -60,6 +61,7 @@ module("Unit | config", function (hooks) {
             },
           },
           infoQuestions: ["inquiry-answer-reason"],
+          details: null,
           statusMapping: {
             "inquiry-answer-status-needs-interaction": "needs-interaction",
             "inquiry-answer-status-negative": "negative",

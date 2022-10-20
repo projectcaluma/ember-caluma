@@ -1,6 +1,7 @@
 {{#if this.deadline.value}}
   <div
     class="uk-flex-inline uk-flex-middle uk-text-{{this.deadline.color}}"
+    {{uk-tooltip (t "caluma.distribution.inquiry.deadline")}}
     data-test-deadline
     ...attributes
   >

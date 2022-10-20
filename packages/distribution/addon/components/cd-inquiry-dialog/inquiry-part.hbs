@@ -19,106 +19,133 @@
     {{yield}}
   </div>
 
-  <ul
-    class="uk-subnav uk-subnav-divider
-      {{if
-        this.config.ui.small
-        'uk-margin-remove-top uk-margin-small-bottom'
-        'uk-margin-small-top'
-      }}"
-  >
-    <li>
-      <span>
-        {{format-date this.date}}
-        {{format-time this.date hour="2-digit" minute="2-digit"}}
-      </span>
-    </li>
+  <div class="uk-flex uk-flex-between uk-flex-top">
     {{#unless @disabled}}
-      {{#if (or (eq @type "answer") (cannot "edit inquiry" @inquiry))}}
-        <li>
-          <LinkTo
-            data-test-details
-            @route="inquiry.detail.{{if (eq @type 'answer') 'answer' 'index'}}"
-            @model={{decode-id @inquiry.id}}
-          >
-            {{t "caluma.distribution.details"}}
-          </LinkTo>
-        </li>
-      {{/if}}
-      {{#if (can "edit inquiry" @inquiry)}}
-        <li>
-          <LinkTo
-            data-test-edit
-            @route="inquiry.detail.index"
-            @model={{decode-id @inquiry.id}}
-          >
-            {{t "caluma.distribution.edit.link"}}
-          </LinkTo>
-        </li>
-        {{#if (can "withdraw inquiry" @inquiry)}}
+      <ul
+        class="uk-subnav uk-subnav-divider uk-margin-remove-bottom
+          {{if
+            this.config.ui.small
+            'uk-margin-remove-top'
+            'uk-margin-small-top'
+          }}"
+      >
+        {{#if (or (eq @type "answer") (cannot "edit inquiry" @inquiry))}}
           <li>
-            <a
-              href=""
-              {{on "click" (perform this.withdraw)}}
-              data-test-withdraw
+            <LinkTo
+              data-test-details
+              @route="inquiry.detail.{{if
+                (eq @type 'answer')
+                'answer'
+                'index'
+              }}"
+              @model={{decode-id @inquiry.id}}
             >
-              {{t "caluma.distribution.withdraw.link"}}
+              {{t "caluma.distribution.details"}}
+            </LinkTo>
+          </li>
+        {{/if}}
+        {{#if (can "edit inquiry" @inquiry)}}
+          <li>
+            <LinkTo
+              data-test-edit
+              @route="inquiry.detail.index"
+              @model={{decode-id @inquiry.id}}
+            >
+              {{t "caluma.distribution.edit.link"}}
+            </LinkTo>
+          </li>
+          {{#if (can "withdraw inquiry" @inquiry)}}
+            <li>
+              <a
+                href=""
+                {{on "click" (perform this.withdraw)}}
+                data-test-withdraw
+              >
+                {{t "caluma.distribution.withdraw.link"}}
+              </a>
+            </li>
+          {{/if}}
+        {{else if (can "answer inquiry" @inquiry)}}
+          <li>
+            <LinkTo
+              data-test-answer
+              @route="inquiry.detail.answer"
+              @model={{decode-id @inquiry.id}}
+            >
+              {{t "caluma.distribution.answer.link"}}
+            </LinkTo>
+          </li>
+        {{/if}}
+        {{#if (and (eq @type "answer") (can "reopen inquiry" @inquiry))}}
+          <li>
+            <a href="" {{on "click" (perform this.reopen)}} data-test-reopen>
+              {{t "caluma.distribution.reopen-inquiry.link"}}
             </a>
           </li>
         {{/if}}
-      {{else if (can "answer inquiry" @inquiry)}}
-        <li>
-          <LinkTo
-            data-test-answer
-            @route="inquiry.detail.answer"
-            @model={{decode-id @inquiry.id}}
-          >
-            {{t "caluma.distribution.answer.link"}}
-          </LinkTo>
-        </li>
-      {{/if}}
-      {{#if (and (eq @type "answer") (can "reopen inquiry" @inquiry))}}
-        <li>
-          <a href="" {{on "click" (perform this.reopen)}} data-test-reopen>
-            {{t "caluma.distribution.reopen-inquiry.link"}}
-          </a>
-        </li>
-      {{/if}}
-    {{/unless}}
-    {{#if (can "send reminder inquiry" @inquiry)}}
-      <li>
-        <a
-          data-test-send-reminder
-          href=""
-          {{on "click" (perform this.sendReminder)}}
-        >
-          {{t "caluma.distribution.reminder.link"}}
-        </a>
-        <div
-          uk-dropdown="mode: hover; pos: bottom"
-          class="uk-padding-small uk-width-small"
-        >
-          <div class="uk-text-center uk-text-bold uk-margin-small-bottom">
-            {{t "caluma.distribution.reminder.title"}}
-          </div>
-          {{#if @inquiry.meta.reminders}}
-            <div class="uk-height-max-small uk-overflow-auto">
-              {{#each @inquiry.meta.reminders as |reminder|}}
-                <div class="uk-text-center uk-text-small uk-text-muted">
-                  {{format-date reminder}}
-                  {{format-time reminder hour="2-digit" minute="2-digit"}}
+        {{#if (can "send reminder inquiry" @inquiry)}}
+          <li>
+            <a
+              data-test-send-reminder
+              href=""
+              {{on "click" (perform this.sendReminder)}}
+            >
+              {{t "caluma.distribution.reminder.link"}}
+            </a>
+            <div
+              uk-dropdown="mode: hover; pos: bottom"
+              class="uk-padding-small uk-width-small"
+            >
+              <div class="uk-text-center uk-text-bold uk-margin-small-bottom">
+                {{t "caluma.distribution.reminder.title"}}
+              </div>
+              {{#if @inquiry.meta.reminders}}
+                <div class="uk-height-max-small uk-overflow-auto">
+                  {{#each @inquiry.meta.reminders as |reminder|}}
+                    <div class="uk-text-center uk-text-small uk-text-muted">
+                      {{format-date reminder}}
+                      {{format-time reminder hour="2-digit" minute="2-digit"}}
+                    </div>
+                  {{/each}}
                 </div>
-              {{/each}}
+              {{else}}
+                <div class="uk-text-center">
+                  {{t "caluma.distribution.reminder.no-reminders"}}
+                </div>
+              {{/if}}
             </div>
-          {{else}}
-            <div class="uk-text-center">
-              {{t "caluma.distribution.reminder.no-reminders"}}
-            </div>
-          {{/if}}
-        </div>
+          </li>
+        {{/if}}
+      </ul>
+    {{/unless}}
+    <ul
+      class="uk-subnav uk-subnav-divider uk-margin-remove-bottom
+        {{if
+          this.config.ui.small
+          'uk-margin-remove-top'
+          'uk-margin-small-top'
+        }}"
+    >
+      {{#if (and (eq @type "answer") @inquiry.assignedUsers.length)}}
+        <li {{uk-tooltip (t "caluma.distribution.inquiry.assigned-user")}}>
+          {{user-name @inquiry.assignedUsers}}
+        </li>
+      {{/if}}
+      <li
+        {{uk-tooltip
+          (if
+            (eq @type "answer")
+            (t "caluma.distribution.inquiry.closed-at")
+            (t "caluma.distribution.inquiry.created-at")
+          )
+        }}
+      >
+        {{format-date this.date}}
+        {{format-time this.date hour="2-digit" minute="2-digit"}}
       </li>
-    {{/if}}
-  </ul>
+    </ul>
+
+  </div>
 
   {{#if this.requestInfo}}
     <CdTruncated

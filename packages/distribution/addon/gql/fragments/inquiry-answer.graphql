@@ -16,11 +16,18 @@ fragment InquiryAnswerStatus on Document {
 }
 
 fragment InquiryAnswerButtons on Case {
-  workItems(filter: [{ tasks: $buttonTasks }, { status: READY }]) {
+  workItems(
+    filter: [
+      { tasks: $buttonTasks }
+      { status: CANCELED, invert: true }
+      { status: SKIPPED, invert: true }
+    ]
+  ) {
     edges {
       node {
         id
         status
+        closedAt
         task {
           id
           slug

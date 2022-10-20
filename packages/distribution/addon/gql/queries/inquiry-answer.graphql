@@ -14,6 +14,8 @@ query InquiryAnswer(
         status
         addressedGroups
         controllingGroups
+        assignedUsers
+        closedByUser
         createdAt
         closedAt
         task {

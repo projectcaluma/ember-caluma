@@ -29,11 +29,16 @@ caluma:
     more: "mehr"
     less: "weniger"
 
-    last-modified: "Zuletzt bearbeitet von {user} am {date} um {time}"
     details: "Details"
     not-allowed-hint:
       "Sie können jedoch das Formular bearbeiten und die Eingabedaten werden
       automatisch gespeichert."
+
+    inquiry:
+      created-at: "Erstellt am"
+      closed-at: "Beantwortet am"
+      deadline: "Frist"
+      assigned-user: "Verantwortliche Person"
 
     edit:
       link: "Bearbeiten"
@@ -63,6 +68,10 @@ caluma:
           status: "In Prüfung"
         revise:
           label: "Überarbeiten"
+
+      details:
+        show: "Details anzeigen"
+        hide: "Details verstecken"
 
     new:
       title: "Neue Anfrage"

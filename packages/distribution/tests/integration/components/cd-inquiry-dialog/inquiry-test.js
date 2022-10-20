@@ -17,7 +17,7 @@ module("Integration | Component | cd-inquiry-dialog/inquiry", function (hooks) {
 
     assert.dom("[data-test-deadline]").exists();
     assert.dom(".inquiry-divider").exists();
-    assert.dom(".uk-subnav").exists({ count: 2 });
+    assert.dom(".uk-subnav").exists({ count: 4 });
     assert.dom("[data-test-title]").exists({ count: 2 });
     assert.dom("p").exists({ count: 3 });
   });

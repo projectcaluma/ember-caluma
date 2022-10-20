@@ -1,5 +1,7 @@
+import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
+import { tracked } from "@glimmer/tracking";
 import { queryManager, getObservable } from "ember-apollo-client";
 import { dropTask } from "ember-concurrency";
 import { trackedTask } from "ember-resources/util/ember-concurrency";
@@ -22,6 +24,7 @@ export default class CdInquiryAnswerFormComponent extends Component {
   @queryManager apollo;
 
   @inquiryAnswerStatus({ inquiryProperty: "inquiry" }) answerStatus;
+  @tracked isExpanded = !this.config.ui.small;
 
   _inquiry = trackedTask(this, this.fetchInquiryAnswer, () => [
     this.args.inquiry,
@@ -31,8 +34,13 @@ export default class CdInquiryAnswerFormComponent extends Component {
     return this._inquiry.value?.[0]?.node;
   }
 
+  get inquiryDetails() {
+    return this.config.inquiry.answer.details?.(this.inquiry);
+  }
+
   get buttons() {
     return this.inquiry?.childCase.workItems.edges
+      .filter((edge) => edge.node.status === "READY")
       .map((edge) => {
         const config = this.config.inquiry.answer.buttons[edge.node.task.slug];
 
@@ -51,6 +59,12 @@ export default class CdInquiryAnswerFormComponent extends Component {
           : null;
       })
       .filter(Boolean);
+  }
+
+  @action
+  toggle(e) {
+    e.preventDefault();
+    this.isExpanded = !this.isExpanded;
   }
 
   @dropTask
