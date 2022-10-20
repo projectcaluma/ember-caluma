@@ -120,7 +120,7 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
     this.owner.lookup("service:router").transitionTo = (routeName, model) => {
       assert.step("redirect");
       assert.strictEqual(routeName, "inquiry.detail.index");
-      assert.deepEqual(model, { from: "1", to: "3" });
+      assert.deepEqual(model, { from: "1", to: "2" });
     };
 
     await render(hbs`
