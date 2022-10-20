@@ -4,6 +4,8 @@ mutation CompleteInquiryWorkItem(
   $workItem: ID!
   $statusQuestion: ID!
   $buttonTasks: [String]!
+  $checkTask: ID!
+  $currentGroup: String!
 ) {
   completeWorkItem(input: { id: $workItem }) {
     workItem {
@@ -30,6 +32,24 @@ mutation CompleteInquiryWorkItem(
           id
           status
           isRedoable
+          # This is needed to remove the check inquiries button if that work
+          # item is closed automatically after completing an inquiry.
+          case {
+            id
+            workItems(
+              filter: [
+                { task: $checkTask }
+                { addressedGroups: [$currentGroup] }
+              ]
+            ) {
+              edges {
+                node {
+                  id
+                  status
+                }
+              }
+            }
+          }
         }
       }
     }
