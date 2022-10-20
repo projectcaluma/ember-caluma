@@ -4,6 +4,7 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 
 export default class CdNavigationSectionComponent extends Component {
+  @service distribution;
   @service router;
 
   @tracked expanded = true;
@@ -19,23 +20,14 @@ export default class CdNavigationSectionComponent extends Component {
     );
   }
 
+  get inquiries() {
+    return this.distribution.inquiries?.[this.args.type] ?? [];
+  }
+
   @action
   toggle(e) {
     e.preventDefault();
 
     this.expanded = !this.expanded;
-  }
-
-  get inquiries() {
-    const sortProperty =
-      this.args.type === "addressed"
-        ? "controllingGroupName"
-        : "addressedGroupName";
-
-    return (
-      this.args.inquiries?.sort((a, b) =>
-        a[sortProperty].localeCompare(b[sortProperty])
-      ) ?? []
-    );
   }
 }
