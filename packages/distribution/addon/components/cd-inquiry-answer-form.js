@@ -15,6 +15,7 @@ export default class CdInquiryAnswerFormComponent extends Component {
   @service router;
   @service abilities;
   @service notification;
+  @service calumaOptions;
 
   @config config;
 
@@ -79,6 +80,8 @@ export default class CdInquiryAnswerFormComponent extends Component {
           workItem,
           statusQuestion: this.config.inquiry.answer.statusQuestion,
           buttonTasks: Object.keys(this.config.inquiry.answer.buttons),
+          checkTask: this.config.controls.checkTask,
+          currentGroup: String(this.calumaOptions.currentGroupId),
         },
       });
 
