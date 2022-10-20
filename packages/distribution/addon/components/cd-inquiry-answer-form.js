@@ -54,12 +54,12 @@ export default class CdInquiryAnswerFormComponent extends Component {
   }
 
   @dropTask
-  *fetchInquiryAnswer() {
+  *fetchInquiryAnswer(inquiry) {
     return yield this.apollo.watchQuery(
       {
         query: inquiryAnswerQuery,
         variables: {
-          inquiry: this.args.inquiry,
+          inquiry,
           buttonTasks: Object.keys(this.config.inquiry.answer.buttons),
           infoQuestion: this.config.inquiry.infoQuestion,
           deadlineQuestion: this.config.inquiry.deadlineQuestion,

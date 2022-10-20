@@ -10,7 +10,7 @@
   <div uk-grid class={{if this.config.ui.stack "uk-grid-small"}}>
     {{#if this.distribution.hasInquiries}}
       <div class={{if this.config.ui.stack "uk-width-1-1" "uk-width-1-3"}}>
-        <CdNavigation @caseId={{@model}} />
+        <CdNavigation />
       </div>
       {{#if this.config.ui.stack}}<div class="uk-width-1-1"><hr /></div>{{/if}}
     {{/if}}
