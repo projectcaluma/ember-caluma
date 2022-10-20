@@ -1,14 +1,16 @@
-import { getOwner } from "@ember/application";
 import Service, { inject as service } from "@ember/service";
+import { tracked } from "@glimmer/tracking";
 import { queryManager, getObservable } from "ember-apollo-client";
 import { dropTask } from "ember-concurrency";
 import { trackedTask } from "ember-resources/util/ember-concurrency";
+import { cached } from "tracked-toolbox";
 
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 import config from "@projectcaluma/ember-distribution/config";
 import createInquiryMutation from "@projectcaluma/ember-distribution/gql/mutations/create-inquiry.graphql";
 import controlWorkItemsQuery from "@projectcaluma/ember-distribution/gql/queries/control-work-items.graphql";
 import inquiryNavigationQuery from "@projectcaluma/ember-distribution/gql/queries/inquiry-navigation.graphql";
+import uniqueByGroups from "@projectcaluma/ember-distribution/utils/unique-by-groups";
 
 export default class DistributionService extends Service {
   @service("-scheduler") scheduler;
@@ -21,9 +23,7 @@ export default class DistributionService extends Service {
 
   @config config;
 
-  get caseId() {
-    return getOwner(this).lookup("route:application").currentModel;
-  }
+  @tracked caseId;
 
   get hasInquiries() {
     return (
@@ -126,5 +126,50 @@ export default class DistributionService extends Service {
         this.intl.t("caluma.distribution.new.error", { count: groups.length })
       );
     }
+  }
+
+  @cached
+  get inquiries() {
+    const findGroupName = (identifiers) => {
+      const group = this.scheduler.groupCache.find((group) =>
+        identifiers
+          .map(String)
+          .includes(String(group[this.calumaOptions.groupIdentifierProperty]))
+      );
+
+      return group?.[this.calumaOptions.groupNameProperty] ?? "";
+    };
+
+    return Object.entries(this.navigation.value ?? {}).reduce(
+      (inquiries, [key, objects]) => {
+        return {
+          ...inquiries,
+          // Don't return any data until the internal scheduler has cached
+          // groups since we don't want to render empty navigation items
+          [key]: this.scheduler.groupCache.length
+            ? uniqueByGroups(
+                objects.edges.map((edge) => ({
+                  ...edge.node,
+                  // Populate the work item with the names of the involved
+                  // groups so the <DistributionNavigation::Section /> component
+                  // can sort by them
+                  addressedGroupName: findGroupName(edge.node.addressedGroups),
+                  controllingGroupName: findGroupName(
+                    edge.node.controllingGroups
+                  ),
+                }))
+              ).sort((a, b) => {
+                const sortProperty =
+                  key === "addressed"
+                    ? "controllingGroupName"
+                    : "addressedGroupName";
+
+                return a[sortProperty].localeCompare(b[sortProperty]);
+              })
+            : [],
+        };
+      },
+      {}
+    );
   }
 }

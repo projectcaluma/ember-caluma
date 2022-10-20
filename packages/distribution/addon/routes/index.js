@@ -1,41 +1,28 @@
 import Route from "@ember/routing/route";
 import { inject as service } from "@ember/service";
-import { queryManager } from "ember-apollo-client";
-
-import config from "@projectcaluma/ember-distribution/config";
-import inquiryNavigationQuery from "@projectcaluma/ember-distribution/gql/queries/inquiry-navigation.graphql";
-import uniqueByGroups from "@projectcaluma/ember-distribution/utils/unique-by-groups";
 
 export default class IndexRoute extends Route {
+  @service("-scheduler") scheduler;
+  @service distribution;
   @service router;
-  @service calumaOptions;
 
-  @config config;
+  async redirect() {
+    // trigger resource
+    this.distribution.navigation.value;
 
-  @queryManager apollo;
+    // wait for navigation request and group resolver
+    await this.distribution.fetchNavigation.last;
+    await this.scheduler.resolveGroup.last;
 
-  async redirect(model) {
-    const response = await this.apollo.query({
-      query: inquiryNavigationQuery,
-      variables: {
-        caseId: model,
-        task: this.config.inquiry.task,
-        currentGroup: String(this.calumaOptions.currentGroupId),
-        includeNavigationData: false,
-      },
-    });
+    const inquiries = this.distribution.inquiries;
 
-    const models = Object.entries(response).flatMap(([, objects]) => {
-      return uniqueByGroups(objects.edges.map((edge) => edge.node)).map(
-        (inquiry) => ({
-          from: inquiry.controllingGroups[0],
-          to: inquiry.addressedGroups[0],
-        })
-      );
-    }, {});
+    const firstInquiry = inquiries.addressed[0] ?? inquiries.controlling[0];
 
-    if (models.length) {
-      return this.router.replaceWith("inquiry", models[0]);
+    if (firstInquiry) {
+      return this.router.replaceWith("inquiry", {
+        from: firstInquiry.controllingGroups[0],
+        to: firstInquiry.addressedGroups[0],
+      });
     }
   }
 }

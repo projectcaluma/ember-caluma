@@ -28,11 +28,8 @@ module("Integration | Component | cd-navigation/section", function (hooks) {
 
   test("it renders", async function (assert) {
     this.type = "controlling";
-    this.inquiries = [
-      inquiry({
-        addressedGroups: ["addressed3"],
-        controllingGroups: ["controlling3"],
-      }),
+
+    const inquiries = [
       inquiry({
         addressedGroups: ["addressed1"],
         controllingGroups: ["controlling1"],
@@ -41,16 +38,28 @@ module("Integration | Component | cd-navigation/section", function (hooks) {
         addressedGroups: ["addressed2"],
         controllingGroups: ["controlling2"],
       }),
+      inquiry({
+        addressedGroups: ["addressed3"],
+        controllingGroups: ["controlling3"],
+      }),
     ];
+
+    Object.defineProperty(
+      this.owner.lookup("service:distribution"),
+      "inquiries",
+      {
+        value: {
+          addressed: inquiries,
+          controlling: inquiries,
+          more: inquiries,
+        },
+      }
+    );
 
     this.owner.lookup("service:router").isActive = () => true;
 
     await render(hbs`
-        <CdNavigation::Section
-          @inquiries={{this.inquiries}}
-          @type={{this.type}}
-          @caseId={{this.case.id}}
-        />
+        <CdNavigation::Section @type={{this.type}} />
       `);
 
     assert
