@@ -58,10 +58,10 @@ module(
 
       assert.dom("[data-test-title]").containsText("controlling");
       assert
-        .dom("ul.uk-subnav > li:nth-of-type(1)")
+        .dom("ul:nth-of-type(2).uk-subnav > li:nth-of-type(1)")
         .containsText(date(this.createdAt));
       assert
-        .dom("ul.uk-subnav > li:nth-of-type(1)")
+        .dom("ul:nth-of-type(2).uk-subnav > li:nth-of-type(1)")
         .containsText(time(this.createdAt));
       assert.dom("[data-test-inquiry-request]").hasText("Question?");
 
@@ -69,10 +69,10 @@ module(
 
       assert.dom("[data-test-title]").containsText("addressed");
       assert
-        .dom("ul.uk-subnav > li:nth-of-type(1)")
+        .dom("ul:nth-of-type(2).uk-subnav > li:nth-of-type(1)")
         .containsText(date(this.closedAt));
       assert
-        .dom("ul.uk-subnav > li:nth-of-type(1)")
+        .dom("ul:nth-of-type(2).uk-subnav > li:nth-of-type(1)")
         .containsText(time(this.closedAt));
       assert.dom("[data-test-inquiry-answer]").hasText("Answer!");
     });

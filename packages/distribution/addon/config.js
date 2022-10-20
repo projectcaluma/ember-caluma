@@ -57,6 +57,23 @@ export default function config(target, property) {
                   status: "caluma.distribution.answer.buttons.adjust.status",
                 },
               },
+              details: (inquiry) => [
+                {
+                  label: "caluma.distribution.inquiry.created-at",
+                  value: inquiry.createdAt,
+                  type: "date",
+                },
+                {
+                  label: "caluma.distribution.inquiry.assigned-user",
+                  value: inquiry.assignedUsers,
+                  type: "user",
+                },
+                {
+                  label: "caluma.distribution.inquiry.closed-at",
+                  value: inquiry.closedAt,
+                  type: "date",
+                },
+              ],
             },
           },
           new: {

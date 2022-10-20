@@ -29,11 +29,16 @@ caluma:
     more: "more"
     less: "less"
 
-    last-modified: "Last modified by {user} on {date} at {time}"
     details: "Details"
     not-allowed-hint:
       "However, you can edit the form and the input will be saved
       automatically."
+
+    inquiry:
+      created-at: "Created at"
+      closed-at: "Answered at"
+      deadline: "Deadline"
+      assigned-user: "Assigned user"
 
     edit:
       link: "Edit"
@@ -63,6 +68,10 @@ caluma:
           status: "In review"
         revise:
           label: "Revise"
+
+      details:
+        show: "Show details"
+        hide: "Hide details"
 
     new:
       title: "New inquiry"

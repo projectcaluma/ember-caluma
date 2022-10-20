@@ -29,11 +29,16 @@ caluma:
     more: "plus"
     less: "moins"
 
-    last-modified: "Dernière modification par {user} le {date} à {time}"
     details: "Détails"
     not-allowed-hint:
       "Vous pouvez toutefois modifier le formulaire et les données seront
       automatiquement enregistrées."
+
+    inquiry:
+      created-at: "Créé le"
+      closed-at: "Répondu le"
+      deadline: "Délai"
+      assigned-user: "Personne responsable"
 
     edit:
       link: "Modifier"
@@ -63,6 +68,10 @@ caluma:
           status: "En examen"
         revise:
           label: "Réviser"
+
+      details:
+        show: "Afficher les détails"
+        hide: "Cacher les détails"
 
     new:
       title: "Nouvelle demande"

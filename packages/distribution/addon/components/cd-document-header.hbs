@@ -10,14 +10,3 @@
   </div>
   {{yield}}
 </p>
-
-{{#if (and @modifiedBy @modifiedAt)}}
-  <p class="uk-text-meta uk-margin-remove-bottom uk-margin-small-top">
-    {{t
-      "caluma.distribution.last-modified"
-      user=(user-name @modifiedBy)
-      date=(format-date @modifiedAt)
-      time=(format-time @modifiedAt hour="2-digit" minute="2-digit")
-    }}
-  </p>
-{{/if}}

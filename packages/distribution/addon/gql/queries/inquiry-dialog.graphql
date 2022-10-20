@@ -5,6 +5,7 @@ fragment DialogInquiry on WorkItem {
   id
   addressedGroups
   controllingGroups
+  assignedUsers
   createdAt
   closedAt
   status

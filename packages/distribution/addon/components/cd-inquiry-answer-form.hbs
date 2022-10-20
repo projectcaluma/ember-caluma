@@ -5,92 +5,157 @@
 >
   <:default as |content|>
 
-    <CdDocumentHeader
-      @name={{content.document.rootForm.raw.name}}
-      @status={{if (eq this.inquiry.status "READY") this.answerStatus}}
-      @modifiedAt={{this.inquiry.childCase.document.modifiedContentAt}}
-      @modifiedBy={{this.inquiry.childCase.document.modifiedContentByUser}}
-    >
-      <CdInquiryDialog::InquiryDeadline @inquiry={{this.inquiry}} />
-    </CdDocumentHeader>
+    <div uk-grid class="uk-grid uk-grid-small uk-grid-divider">
+      <div class="uk-width-expand">
+        <CdDocumentHeader
+          @name={{content.document.rootForm.raw.name}}
+          @status={{if (eq this.inquiry.status "READY") this.answerStatus}}
+        >
+          <div class="uk-flex uk-flex-middle">
+            <CdInquiryDialog::InquiryDeadline @inquiry={{this.inquiry}} />
 
-    <hr />
+            {{#if this.inquiryDetails.length}}
+              <a
+                href=""
+                class="uk-margin-small-left uk-link-reset"
+                {{uk-tooltip
+                  (if
+                    this.isExpanded
+                    (t "caluma.distribution.answer.details.hide")
+                    (t "caluma.distribution.answer.details.show")
+                  )
+                }}
+                {{on "click" this.toggle}}
+              >
+                <UkIcon
+                  @icon={{if
+                    this.isExpanded
+                    "chevron-double-right"
+                    "chevron-double-left"
+                  }}
+                />
+              </a>
+            {{/if}}
+          </div>
 
-    <div class="uk-margin uk-text-italic inquiry-answer-form__request">
-      <CdInquiryDialog::InquiryPart
-        @inquiry={{this.inquiry}}
-        @type="request"
-        @disabled={{true}}
-      />
-    </div>
+        </CdDocumentHeader>
 
-    {{#if
-      (and
-        (not this.buttons.length)
-        (can "edit answer form of inquiry" this.inquiry)
-      )
-    }}
-      <div class="uk-alert uk-alert-warning uk-flex uk-flex-middle">
-        <UkIcon @icon="warning" class="uk-margin-small-right uk-flex-none" />
-        {{t "caluma.distribution.answer.complete-not-allowed"}}
-        {{t "caluma.distribution.not-allowed-hint"}}
-      </div>
-    {{/if}}
+        <hr />
 
-    <content.form />
+        <div class="uk-margin uk-text-italic inquiry-answer-form__request">
+          <CdInquiryDialog::InquiryPart
+            @inquiry={{this.inquiry}}
+            @type="request"
+            @disabled={{true}}
+          />
+        </div>
 
-    {{#each this.buttons as |buttonConfig|}}
-      {{#if buttonConfig.isFormButton}}
-        <DocumentValidity @document={{content.document}} as |isValid validate|>
-          <UkButton
-            @type="submit"
-            @color={{buttonConfig.color}}
-            @disabled={{or
-              (not isValid)
-              (and
+        {{#if
+          (and
+            (not this.buttons.length)
+            (can "edit answer form of inquiry" this.inquiry)
+          )
+        }}
+          <div class="uk-alert uk-alert-warning uk-flex uk-flex-middle">
+            <UkIcon
+              @icon="warning"
+              class="uk-margin-small-right uk-flex-none"
+            />
+            {{t "caluma.distribution.answer.complete-not-allowed"}}
+            {{t "caluma.distribution.not-allowed-hint"}}
+          </div>
+        {{/if}}
+
+        <content.form />
+
+        {{#each this.buttons as |buttonConfig|}}
+          {{#if buttonConfig.isFormButton}}
+            <DocumentValidity
+              @document={{content.document}}
+              as |isValid validate|
+            >
+              <UkButton
+                @type="submit"
+                @color={{buttonConfig.color}}
+                @disabled={{or
+                  (not isValid)
+                  (and
+                    this.completeWorkItem.isRunning
+                    (includes
+                      buttonConfig.workItemId
+                      this.completeWorkItem.lastRunning.args
+                    )
+                  )
+                }}
+                @loading={{and
+                  this.completeWorkItem.isRunning
+                  (includes
+                    buttonConfig.workItemId
+                    this.completeWorkItem.lastRunning.args
+                  )
+                }}
+                @onClick={{fn
+                  (perform this.completeWorkItem)
+                  buttonConfig.workItemId
+                  validate
+                }}
+              >{{buttonConfig.label}}</UkButton>
+            </DocumentValidity>
+          {{else}}
+            <UkButton
+              @type="button"
+              @color={{buttonConfig.color}}
+              @disabled={{and
                 this.completeWorkItem.isRunning
                 (includes
                   buttonConfig.workItemId this.completeWorkItem.lastRunning.args
                 )
-              )
-            }}
-            @loading={{and
-              this.completeWorkItem.isRunning
-              (includes
-                buttonConfig.workItemId this.completeWorkItem.lastRunning.args
-              )
-            }}
-            @onClick={{fn
-              (perform this.completeWorkItem)
-              buttonConfig.workItemId
-              validate
-            }}
-          >{{buttonConfig.label}}</UkButton>
-        </DocumentValidity>
-      {{else}}
-        <UkButton
-          @type="button"
-          @color={{buttonConfig.color}}
-          @disabled={{and
-            this.completeWorkItem.isRunning
-            (includes
-              buttonConfig.workItemId this.completeWorkItem.lastRunning.args
-            )
-          }}
-          @loading={{and
-            this.completeWorkItem.isRunning
-            (includes
-              buttonConfig.workItemId this.completeWorkItem.lastRunning.args
-            )
-          }}
-          @onClick={{fn
-            (perform this.completeWorkItem)
-            buttonConfig.workItemId
-            null
-          }}
-        >{{buttonConfig.label}}</UkButton>
+              }}
+              @loading={{and
+                this.completeWorkItem.isRunning
+                (includes
+                  buttonConfig.workItemId this.completeWorkItem.lastRunning.args
+                )
+              }}
+              @onClick={{fn
+                (perform this.completeWorkItem)
+                buttonConfig.workItemId
+                null
+              }}
+            >{{buttonConfig.label}}</UkButton>
+          {{/if}}
+        {{/each}}
+      </div>
+
+      {{#if (and this.isExpanded this.inquiryDetails.length)}}
+        <div class="inquiry-answer-form__side-bar">
+          <dl
+            class="uk-description-list uk-text-break
+              {{unless
+                this.config.ui.small
+                'uk-margin-small-left uk-margin-small-right'
+              }}"
+          >
+            {{#each this.inquiryDetails as |data|}}
+              <dt>{{t data.label}}</dt>
+              <dd>
+                {{#if (not data.value)}}
+                  -
+                {{else if (eq data.type "date")}}
+                  {{format-date data.value}}
+                  {{format-time data.value hour="2-digit" minute="2-digit"}}
+                {{else if (eq data.type "user")}}
+                  {{user-name data.value}}
+                {{else}}
+                  {{data.value}}
+                {{/if}}
+              </dd>
+            {{/each}}
+          </dl>
+        </div>
       {{/if}}
-    {{/each}}
+
+    </div>
   </:default>
   <:notfound><CdNotfound /></:notfound>
 </CfContent>
