@@ -1,6 +1,7 @@
 import { render, click, fillIn } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
+import { setFlatpickrDate } from "ember-flatpickr/test-support/helpers";
 import { setupIntl } from "ember-intl/test-support";
 import { DateTime } from "luxon";
 import { module, test } from "qunit";
@@ -144,7 +145,10 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
       .hasValue(intl.formatDate(DateTime.now().plus({ days: 30 }).toJSDate()));
 
     await fillIn('[name$="Question:inquiry-remark"]', "My remark");
-    await fillIn('[name$="Question:inquiry-deadline"]', "01/01/2022");
+    await setFlatpickrDate(
+      '[name$="Question:inquiry-deadline"]',
+      new Date(2022, 0, 1)
+    );
 
     await click("button[data-test-submit]");
 
