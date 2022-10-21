@@ -8,8 +8,8 @@ import { cached } from "tracked-toolbox";
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 import config from "@projectcaluma/ember-distribution/config";
 import createInquiryMutation from "@projectcaluma/ember-distribution/gql/mutations/create-inquiry.graphql";
-import controlWorkItemsQuery from "@projectcaluma/ember-distribution/gql/queries/control-work-items.graphql";
-import inquiryNavigationQuery from "@projectcaluma/ember-distribution/gql/queries/inquiry-navigation.graphql";
+import controlsQuery from "@projectcaluma/ember-distribution/gql/queries/controls.graphql";
+import navigationQuery from "@projectcaluma/ember-distribution/gql/queries/navigation.graphql";
 import uniqueByGroups from "@projectcaluma/ember-distribution/utils/unique-by-groups";
 
 export default class DistributionService extends Service {
@@ -52,7 +52,7 @@ export default class DistributionService extends Service {
   @dropTask
   *fetchControls(caseId) {
     return yield this.apollo.watchQuery({
-      query: controlWorkItemsQuery,
+      query: controlsQuery,
       variables: {
         caseId,
         currentGroup: String(this.calumaOptions.currentGroupId),
@@ -67,14 +67,13 @@ export default class DistributionService extends Service {
   @dropTask
   *fetchNavigation(caseId) {
     const response = yield this.apollo.watchQuery({
-      query: inquiryNavigationQuery,
+      query: navigationQuery,
       variables: {
         caseId,
         task: this.config.inquiry.task,
         currentGroup: String(this.calumaOptions.currentGroupId),
         statusQuestion: this.config.inquiry.answer.statusQuestion,
         deadlineQuestion: this.config.inquiry.deadlineQuestion,
-        includeNavigationData: true,
       },
     });
 

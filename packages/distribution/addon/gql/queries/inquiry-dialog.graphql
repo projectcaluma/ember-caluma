@@ -1,4 +1,32 @@
-#import InquiryAnswerButtons, InquiryDialog, InquiryDeadlineDocument, InquiryStatusDocument, InquiryRequest from '../fragments/inquiry.graphql'
+# import InquiryAnswer, InquiryAnswerButtons, InquiryAnswerStatus from '../fragments/inquiry-answer.graphql'
+# import InquiryRequest, InquiryRequestDeadline from '../fragments/inquiry-request.graphql'
+
+fragment DialogInquiry on WorkItem {
+  id
+  addressedGroups
+  controllingGroups
+  createdAt
+  closedAt
+  status
+  isRedoable
+  task {
+    id
+    slug
+  }
+  meta
+  document {
+    id
+    ...InquiryRequest
+  }
+  childCase {
+    id
+    ...InquiryAnswerButtons
+    document {
+      id
+      ...InquiryAnswer
+    }
+  }
+}
 
 query InquiryDialog(
   $task: ID!
@@ -22,7 +50,7 @@ query InquiryDialog(
   ) {
     edges {
       node {
-        ...InquiryDialog
+        ...DialogInquiry
       }
     }
   }
