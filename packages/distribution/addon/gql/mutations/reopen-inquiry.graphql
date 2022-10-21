@@ -1,4 +1,4 @@
-#import InquiryStatusDocument from '../fragments/inquiry.graphql'
+# import InquiryAnswerButtons, InquiryAnswerStatus from '../fragments/inquiry-answer.graphql'
 
 mutation ReopenInquiry(
   $workItem: ID!
@@ -14,19 +14,9 @@ mutation ReopenInquiry(
         id
         document {
           id
-          ...InquiryStatusDocument
+          ...InquiryAnswerStatus
         }
-        workItems(filter: [{ tasks: $buttonTasks }, { status: READY }]) {
-          edges {
-            node {
-              id
-              task {
-                id
-                slug
-              }
-            }
-          }
-        }
+        ...InquiryAnswerButtons
       }
     }
   }

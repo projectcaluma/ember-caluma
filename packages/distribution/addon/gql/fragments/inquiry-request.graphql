@@ -1,0 +1,26 @@
+fragment InquiryRequestDeadline on Document {
+  deadline: answers(filter: [{ question: $deadlineQuestion }]) {
+    edges {
+      node {
+        id
+        ... on DateAnswer {
+          value
+        }
+      }
+    }
+  }
+}
+
+fragment InquiryRequest on Document {
+  ...InquiryRequestDeadline
+  info: answers(filter: [{ question: $infoQuestion }]) {
+    edges {
+      node {
+        id
+        ... on StringAnswer {
+          value
+        }
+      }
+    }
+  }
+}

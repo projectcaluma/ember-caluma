@@ -1,12 +1,30 @@
-#import Inquiry, InquiryDeadlineDocument, InquiryStatusDocument from '../fragments/inquiry.graphql'
+# import InquiryAnswerStatus from '../fragments/inquiry-answer.graphql'
+# import InquiryRequestDeadline from '../fragments/inquiry-request.graphql'
 
-query InquiryNavigation(
+fragment NavigationInquiry on WorkItem {
+  id
+  status
+  addressedGroups
+  controllingGroups
+  document {
+    id
+    ...InquiryRequestDeadline
+  }
+  childCase {
+    id
+    document {
+      id
+      ...InquiryAnswerStatus
+    }
+  }
+}
+
+query Navigation(
   $task: ID!
   $statusQuestion: ID
   $deadlineQuestion: ID
   $currentGroup: String!
   $caseId: ID!
-  $includeNavigationData: Boolean!
 ) {
   controlling: allWorkItems(
     filter: [
@@ -19,7 +37,7 @@ query InquiryNavigation(
   ) {
     edges {
       node {
-        ...Inquiry
+        ...NavigationInquiry
       }
     }
   }
@@ -35,7 +53,7 @@ query InquiryNavigation(
   ) {
     edges {
       node {
-        ...Inquiry
+        ...NavigationInquiry
       }
     }
   }
@@ -52,7 +70,7 @@ query InquiryNavigation(
   ) {
     edges {
       node {
-        ...Inquiry
+        ...NavigationInquiry
       }
     }
   }

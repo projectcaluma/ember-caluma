@@ -1,4 +1,4 @@
-query ControlWorkItems(
+query Controls(
   $createTask: ID!
   $completeTask: ID!
   $inquiryTask: ID!

@@ -82,6 +82,7 @@ export default class CdInquiryAnswerFormComponent extends Component {
           buttonTasks: Object.keys(this.config.inquiry.answer.buttons),
           checkTask: this.config.controls.checkTask,
           currentGroup: String(this.calumaOptions.currentGroupId),
+          answerInfoQuestions: this.config.inquiry.answer.infoQuestions,
         },
       });
 

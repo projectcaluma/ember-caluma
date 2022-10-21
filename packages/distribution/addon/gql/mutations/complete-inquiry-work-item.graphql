@@ -1,4 +1,4 @@
-#import InquiryStatusDocument from '../fragments/inquiry.graphql'
+# import InquiryAnswer, InquiryAnswerButtons, InquiryAnswerStatus from '../fragments/inquiry-answer.graphql'
 
 mutation CompleteInquiryWorkItem(
   $workItem: ID!
@@ -6,6 +6,7 @@ mutation CompleteInquiryWorkItem(
   $buttonTasks: [String]!
   $checkTask: ID!
   $currentGroup: String!
+  $answerInfoQuestions: [ID]!
 ) {
   completeWorkItem(input: { id: $workItem }) {
     workItem {
@@ -15,19 +16,9 @@ mutation CompleteInquiryWorkItem(
         id
         document {
           id
-          ...InquiryStatusDocument
+          ...InquiryAnswer
         }
-        workItems(filter: [{ tasks: $buttonTasks }, { status: READY }]) {
-          edges {
-            node {
-              id
-              task {
-                id
-                slug
-              }
-            }
-          }
-        }
+        ...InquiryAnswerButtons
         parentWorkItem {
           id
           status

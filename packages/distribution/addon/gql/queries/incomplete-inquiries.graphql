@@ -1,4 +1,4 @@
-query InquiryIncomplete($caseId: ID!, $task: ID!) {
+query IncompleteInquiries($caseId: ID!, $task: ID!) {
   allWorkItems(
     filter: [
       { case: $caseId }

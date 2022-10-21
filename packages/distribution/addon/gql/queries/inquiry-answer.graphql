@@ -1,4 +1,5 @@
-#import InquiryAnswerButtons, InquiryDeadlineDocument, InquiryRequest from '../fragments/inquiry.graphql'
+# import InquiryAnswerButtons from '../fragments/inquiry-answer.graphql'
+# import InquiryRequest, InquiryRequestDeadline from '../fragments/inquiry-request.graphql'
 
 query InquiryAnswer(
   $inquiry: ID!
@@ -20,6 +21,7 @@ query InquiryAnswer(
           slug
         }
         document {
+          id
           ...InquiryRequest
         }
         childCase {

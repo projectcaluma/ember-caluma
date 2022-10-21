@@ -48,7 +48,6 @@ export default class CdInquiryDialogComponent extends Component {
         statusQuestion: config.inquiry.answer.statusQuestion,
         answerInfoQuestions: config.inquiry.answer.infoQuestions,
         buttonTasks: Object.keys(config.inquiry.answer.buttons),
-        includeNavigationData: true,
       },
     });
 
