@@ -34,7 +34,7 @@ module("Integration | Component | cd-inquiry-edit-form", function (hooks) {
     await render(hbs`<CdInquiryEditForm @inquiry={{this.inquiry.id}} />`);
 
     assert
-      .dom("p.uk-text-large")
+      .dom("[data-test-document-header]")
       .hasText("Inquiry (group2) t:caluma.distribution.status.draft:()");
     assert.dom("form").exists();
     assert

@@ -19,11 +19,11 @@ module("Integration | Component | cd-document-header", function (hooks) {
       />
     `);
 
-    assert.dom("p.uk-text-large").containsText("Test");
-    assert.dom("p.uk-text-large .uk-label").hasText("Test");
+    assert.dom("[data-test-document-header]").containsText("Test");
+    assert.dom("[data-test-document-header] .uk-label").hasText("Test");
 
     this.set("status", null);
 
-    assert.dom("p.uk-text-large .uk-label").doesNotExist();
+    assert.dom("[data-test-document-header] .uk-label").doesNotExist();
   });
 });

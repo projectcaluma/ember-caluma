@@ -11,36 +11,31 @@
           @name={{content.document.rootForm.raw.name}}
           @status={{if (eq this.inquiry.status "READY") this.answerStatus}}
         >
-          <div class="uk-flex uk-flex-middle">
-            <CdInquiryDialog::InquiryDeadline @inquiry={{this.inquiry}} />
+          <CdInquiryDialog::InquiryDeadline @inquiry={{this.inquiry}} />
 
-            {{#if this.inquiryDetails.length}}
-              <a
-                href=""
-                class="uk-margin-small-left uk-link-reset"
-                {{uk-tooltip
-                  (if
-                    this.isExpanded
-                    (t "caluma.distribution.answer.details.hide")
-                    (t "caluma.distribution.answer.details.show")
-                  )
+          {{#if this.inquiryDetails.length}}
+            <button
+              class="uk-icon-button uk-margin-left"
+              type="button"
+              {{uk-tooltip
+                (if
+                  this.isExpanded
+                  (t "caluma.distribution.answer.details.hide")
+                  (t "caluma.distribution.answer.details.show")
+                )
+              }}
+              {{on "click" this.toggle}}
+            >
+              <UkIcon
+                @icon={{if
+                  this.isExpanded
+                  "chevron-double-right"
+                  "chevron-double-left"
                 }}
-                {{on "click" this.toggle}}
-              >
-                <UkIcon
-                  @icon={{if
-                    this.isExpanded
-                    "chevron-double-right"
-                    "chevron-double-left"
-                  }}
-                />
-              </a>
-            {{/if}}
-          </div>
-
+              />
+            </button>
+          {{/if}}
         </CdDocumentHeader>
-
-        <hr />
 
         <div class="uk-margin uk-text-italic inquiry-answer-form__request">
           <CdInquiryDialog::InquiryPart

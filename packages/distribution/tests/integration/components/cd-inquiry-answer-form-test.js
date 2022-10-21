@@ -42,7 +42,7 @@ module("Integration | Component | cd-inquiry-answer-form", function (hooks) {
     await render(hbs`<CdInquiryAnswerForm @inquiry={{this.inquiry.id}} />`);
 
     assert
-      .dom("p.uk-text-large")
+      .dom("[data-test-document-header]")
       .containsText(
         "Inquiry answer t:caluma.distribution.answer.buttons.compose.status:()"
       );
