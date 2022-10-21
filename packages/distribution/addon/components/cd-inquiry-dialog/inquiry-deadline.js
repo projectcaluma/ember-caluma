@@ -8,7 +8,21 @@ export default class CdInquiryDialogInquiryDeadlineComponent extends Component {
 
   @inquiryDeadline deadline;
 
+  get icon() {
+    if (this.isWithdrawn) {
+      return "ban";
+    } else if (this.isSkipped) {
+      return "lock";
+    }
+
+    return "clock";
+  }
+
   get isWithdrawn() {
     return this.args.inquiry.status === "CANCELED";
+  }
+
+  get isSkipped() {
+    return this.args.inquiry.status === "SKIPPED";
   }
 }

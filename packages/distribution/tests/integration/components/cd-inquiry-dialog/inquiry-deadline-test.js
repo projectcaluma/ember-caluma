@@ -42,5 +42,18 @@ module(
         .hasText("t:caluma.distribution.withdraw.status:()");
       assert.dom("[uk-icon]").hasAttribute("icon", "ban");
     });
+
+    test("it renders skipped", async function (assert) {
+      this.inquiry = inquiry({ workItemStatus: "SKIPPED" });
+
+      await render(
+        hbs`<CdInquiryDialog::InquiryDeadline @inquiry={{this.inquiry}} />`
+      );
+
+      assert
+        .dom(".uk-text-muted")
+        .hasText("t:caluma.distribution.status.skipped:()");
+      assert.dom("[uk-icon]").hasAttribute("icon", "lock");
+    });
   }
 );
