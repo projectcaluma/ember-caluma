@@ -9,6 +9,7 @@ import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 import config from "@projectcaluma/ember-distribution/config";
 import createInquiryMutation from "@projectcaluma/ember-distribution/gql/mutations/create-inquiry.graphql";
 import controlsQuery from "@projectcaluma/ember-distribution/gql/queries/controls.graphql";
+import inquiryDialogQuery from "@projectcaluma/ember-distribution/gql/queries/inquiry-dialog.graphql";
 import navigationQuery from "@projectcaluma/ember-distribution/gql/queries/navigation.graphql";
 import uniqueByGroups from "@projectcaluma/ember-distribution/utils/unique-by-groups";
 
@@ -106,6 +107,22 @@ export default class DistributionService extends Service {
       // get create inquiry work item to complete
       const createId = decodeId(this.controls.value?.create.edges[0].node.id);
 
+      // refetch dialog queries of the groups that will have a new inquiry
+      const refetchQueries = groups.map((group) => ({
+        query: inquiryDialogQuery,
+        variables: {
+          from: String(this.calumaOptions.currentGroupId),
+          to: String(group),
+          caseId: this.caseId,
+          task: this.config.inquiry.task,
+          infoQuestion: this.config.inquiry.infoQuestion,
+          deadlineQuestion: this.config.inquiry.deadlineQuestion,
+          statusQuestion: this.config.inquiry.answer.statusQuestion,
+          answerInfoQuestions: this.config.inquiry.answer.infoQuestions,
+          buttonTasks: Object.keys(this.config.inquiry.answer.buttons),
+        },
+      }));
+
       // create new inquiries
       yield this.apollo.mutate({
         mutation: createInquiryMutation,
@@ -116,6 +133,7 @@ export default class DistributionService extends Service {
             addressed_groups: groups.map(String),
           }),
         },
+        refetchQueries,
       });
 
       // refetch navigation and controls data
