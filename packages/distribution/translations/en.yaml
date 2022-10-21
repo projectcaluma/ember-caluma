@@ -8,7 +8,7 @@ caluma:
     reopen: "Reopen circulation"
     check-inquiries: "Mark inquiries as checked"
     send-confirm:
-      "Do you really want to send <b>{other, plural, =1 {one pending inquiry}
+      "Do you really want to send <b>{count, plural, =1 {one pending inquiry}
       other {{count} pending inquiries}}</b>?"
     complete-confirm:
       "There {count, plural, =1 {is <b>one pending inquiry} other {are
