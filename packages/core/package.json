@@ -1,6 +1,6 @@
 {
   "name": "@projectcaluma/ember-core",
-  "version": "11.0.0-beta.30",
+  "version": "11.0.0-beta.31",
   "description": "Ember core addon for working with Caluma.",
   "keywords": [
     "ember-addon"
@@ -41,7 +41,7 @@
     "@embroider/util": "^1.9.0",
     "@faker-js/faker": "7.6.0",
     "@glimmer/component": "1.1.2",
-    "@projectcaluma/ember-testing": "11.0.0-beta.30",
+    "@projectcaluma/ember-testing": "11.0.0-beta.31",
     "broccoli-asset-rev": "3.0.0",
     "ember-cli": "4.8.0",
     "ember-cli-code-coverage": "1.0.3",
