@@ -770,7 +770,7 @@ export default class Field extends Base {
   async _validateDynamicChoiceQuestion() {
     await this.question.dynamicOptions;
 
-    return this._validateOption(this.answer.value);
+    return this._validateOption(this.answer.value, true);
   }
 
   /**
@@ -790,7 +790,9 @@ export default class Field extends Base {
 
     await this.question.dynamicOptions;
 
-    return value.map((value) => this._validateOption(value));
+    return this.answer.value
+      ? value.map((value) => this._validateOption(value))
+      : true;
   }
 
   _validateOption(value, allowBlank = false) {
