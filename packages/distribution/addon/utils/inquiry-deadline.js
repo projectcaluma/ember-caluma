@@ -19,7 +19,9 @@ function decorator(
     get() {
       const inquiry = get(this, inquiryProperty);
       const value = inquiry.document?.deadline.edges[0]?.node.value;
-      const isDone = ["COMPLETED", "SKIPPED"].includes(inquiry.status);
+      const isDone = ["COMPLETED", "SKIPPED", "CANCELED"].includes(
+        inquiry.status
+      );
 
       const diff = DateTime.fromISO(value).diffNow("days").days;
 

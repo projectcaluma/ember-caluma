@@ -1,20 +1,14 @@
 {{#if this.deadline.value}}
   <div
-    class="uk-flex-inline uk-flex-middle
-      {{if
-        this.isWithdrawn
-        'uk-text-muted'
-        (concat 'uk-text-' this.deadline.color)
-      }}"
+    class="uk-flex-inline uk-flex-middle uk-text-{{this.deadline.color}}"
     data-test-deadline
     ...attributes
   >
-    <UkIcon
-      @icon={{if this.isWithdrawn "ban" "clock"}}
-      class="uk-margin-small-right"
-    />
+    <UkIcon @icon={{this.icon}} class="uk-margin-small-right" />
     {{#if this.isWithdrawn}}
       {{t "caluma.distribution.withdraw.status"}}
+    {{else if this.isSkipped}}
+      {{t "caluma.distribution.status.skipped"}}
     {{else}}
       {{format-date this.deadline.value}}
     {{/if}}

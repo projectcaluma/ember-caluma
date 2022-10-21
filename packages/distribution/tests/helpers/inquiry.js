@@ -125,6 +125,11 @@ class StubInquiry {
     await settled();
   }
 
+  async setCanceled() {
+    this.status = "CANCELED";
+    await settled();
+  }
+
   async setReadyChildWorkItem(task) {
     this.childCase.workItems.edges[0].node.task.slug = task;
     await settled();
