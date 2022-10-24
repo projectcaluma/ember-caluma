@@ -33,7 +33,15 @@ export default class InquiryAbility extends Ability {
   }
 
   get canWithdraw() {
-    return this.config.permissions.withdrawInquiry?.(this.model) ?? true;
+    return (
+      !this.config.ui.readonly &&
+      this.model?.task.slug === this.config.inquiry.task &&
+      this.model?.status === "SUSPENDED" &&
+      (this.config.permissions.withdrawInquiry?.(this.model) ?? true) &&
+      this.model?.controllingGroups
+        .map(String)
+        .includes(String(this.calumaOptions.currentGroupId))
+    );
   }
 
   get canAnswer() {
