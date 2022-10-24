@@ -16,7 +16,6 @@ query InquiryAnswer(
         controllingGroups
         assignedUsers
         closedByUser
-        createdAt
         closedAt
         task {
           id
@@ -29,6 +28,7 @@ query InquiryAnswer(
         childCase {
           id
           status
+          createdAt
           document {
             id
           }

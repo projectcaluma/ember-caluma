@@ -6,7 +6,6 @@ fragment DialogInquiry on WorkItem {
   addressedGroups
   controllingGroups
   assignedUsers
-  createdAt
   closedAt
   status
   isRedoable
@@ -21,6 +20,7 @@ fragment DialogInquiry on WorkItem {
   }
   childCase {
     id
+    createdAt
     ...InquiryAnswerButtons
     document {
       id
