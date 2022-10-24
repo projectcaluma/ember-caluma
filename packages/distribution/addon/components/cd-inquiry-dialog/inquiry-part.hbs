@@ -128,7 +128,7 @@
     >
       {{#if (and (eq @type "answer") @inquiry.assignedUsers.length)}}
         <li {{uk-tooltip (t "caluma.distribution.inquiry.assigned-user")}}>
-          {{user-name @inquiry.assignedUsers}}
+          <span>{{user-name @inquiry.assignedUsers}}</span>
         </li>
       {{/if}}
       <li
@@ -140,8 +140,10 @@
           )
         }}
       >
-        {{format-date this.date}}
-        {{format-time this.date hour="2-digit" minute="2-digit"}}
+        <span>
+          {{format-date this.date}}
+          {{format-time this.date hour="2-digit" minute="2-digit"}}
+        </span>
       </li>
     </ul>
 
