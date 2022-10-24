@@ -131,20 +131,25 @@
           <span>{{user-name @inquiry.assignedUsers}}</span>
         </li>
       {{/if}}
-      <li
-        {{uk-tooltip
-          (if
-            (eq @type "answer")
-            (t "caluma.distribution.inquiry.closed-at")
-            (t "caluma.distribution.inquiry.created-at")
-          )
-        }}
-      >
-        <span>
-          {{format-date this.date}}
-          {{format-time this.date hour="2-digit" minute="2-digit"}}
-        </span>
-      </li>
+      {{#if (eq @type "answer")}}
+        <li {{uk-tooltip (t "caluma.distribution.inquiry.closed-at")}}>
+          <span>
+            {{format-date @inquiry.closedAt}}
+            {{format-time @inquiry.closedAt hour="2-digit" minute="2-digit"}}
+          </span>
+        </li>
+      {{else if (and (eq @type "request") @inquiry.childCase.createdAt)}}
+        <li {{uk-tooltip (t "caluma.distribution.inquiry.sent-at")}}>
+          <span>
+            {{format-date @inquiry.childCase.createdAt}}
+            {{format-time
+              @inquiry.childCase.createdAt
+              hour="2-digit"
+              minute="2-digit"
+            }}
+          </span>
+        </li>
+      {{/if}}
     </ul>
 
   </div>

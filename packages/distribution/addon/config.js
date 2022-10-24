@@ -59,8 +59,8 @@ export default function config(target, property) {
               },
               details: (inquiry) => [
                 {
-                  label: "caluma.distribution.inquiry.created-at",
-                  value: inquiry.createdAt,
+                  label: "caluma.distribution.inquiry.sent-at",
+                  value: inquiry.childCase?.createdAt,
                   type: "date",
                 },
                 {

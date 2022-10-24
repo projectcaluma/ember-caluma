@@ -36,7 +36,6 @@ class StubInquiry {
     this.status = workItemStatus;
     this.addressedGroups = addressedGroups;
     this.controllingGroups = controllingGroups;
-    this.createdAt = createdAt;
     this.closedAt = closedAt;
     this.document = {
       deadline: {
@@ -59,6 +58,7 @@ class StubInquiry {
       },
     };
     this.childCase = {
+      createdAt,
       status: "READY",
       workItems: {
         edges: [

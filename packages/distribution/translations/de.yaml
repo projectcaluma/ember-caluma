@@ -35,7 +35,7 @@ caluma:
       automatisch gespeichert."
 
     inquiry:
-      created-at: "Erstellt am"
+      sent-at: "Versendet am"
       closed-at: "Beantwortet am"
       deadline: "Frist"
       assigned-user: "Verantwortliche Person"

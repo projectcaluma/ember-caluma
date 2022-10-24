@@ -35,7 +35,7 @@ caluma:
       automatically."
 
     inquiry:
-      created-at: "Created at"
+      sent-at: "Sent at"
       closed-at: "Answered at"
       deadline: "Deadline"
       assigned-user: "Assigned user"
