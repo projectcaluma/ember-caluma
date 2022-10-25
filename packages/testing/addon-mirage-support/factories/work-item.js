@@ -11,6 +11,7 @@ export default Factory.extend({
   deadline: () => faker.date.future(),
   status: () => faker.helpers.arrayElement(STATUS),
   addressedGroups: () => ["group1", "group2"],
+  assignedUsers: () => ["1"],
   closedAt() {
     return STATUS.filter((s) => s !== "READY").includes(this.status)
       ? faker.date.past()

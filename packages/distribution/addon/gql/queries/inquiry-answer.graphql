@@ -31,8 +31,6 @@ query InquiryAnswer(
           status
           document {
             id
-            modifiedContentAt
-            modifiedContentByUser
           }
           ...InquiryAnswerButtons
         }

@@ -100,10 +100,7 @@ export function createInquiry(
   { from, to, remark, deadline },
   workItemAttrs = {}
 ) {
-  const document = server.create("document", {
-    formId: "inquiry",
-    modifiedContentByUser: "1",
-  });
+  const document = server.create("document", { formId: "inquiry" });
 
   server.create("answer", {
     document,
@@ -138,10 +135,7 @@ export function sendInquiry(server, { inquiry }) {
   const childCase = server.create("case", {
     status: "RUNNING",
     workflowId: "inquiry",
-    document: server.create("document", {
-      formId: "inquiry-answer",
-      modifiedContentByUser: "1",
-    }),
+    document: server.create("document", { formId: "inquiry-answer" }),
   });
 
   server.create("work-item", {
