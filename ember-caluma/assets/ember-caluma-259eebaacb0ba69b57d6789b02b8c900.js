@@ -83,7 +83,7 @@ e.default=o})),define("ember-caluma/mirage/factories/case",["exports","@faker-js
 const n=["RUNNING","COMPLETED","CANCELED","SUSPENDED"]
 var o=r.Factory.extend({id:()=>t.faker.datatype.uuid(),createdByUser:()=>t.faker.datatype.uuid(),createdAt:()=>t.faker.date.past(),modifiedAt:()=>t.faker.date.past(),status:()=>t.faker.helpers.arrayElement(n)})
 e.default=o})),define("ember-caluma/mirage/factories/document",["exports","@faker-js/faker","miragejs"],(function(e,t,r){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
-var n=r.Factory.extend({id:()=>t.faker.datatype.uuid(),modifiedContentByUser:()=>t.faker.datatype.uuid(),modifiedContentAt:()=>t.faker.date.past()})
+var n=r.Factory.extend({id:()=>t.faker.datatype.uuid()})
 e.default=n})),define("ember-caluma/mirage/factories/file",["exports","@faker-js/faker","miragejs"],(function(e,t,r){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var n=r.Factory.extend({id:()=>t.faker.datatype.uuid(),name:()=>t.faker.datatype.string(),modifiedAt:()=>t.faker.date.past(),createdByUser:()=>t.faker.datatype.uuid(),uploadUrl:()=>t.faker.internet.url(),downloadUrl:()=>t.faker.internet.url(),afterCreate(e){e.metadata||e.update({metadata:{}}),e.metadata.object_name||e.update({metadata:{object_name:t.faker.helpers.slugify()}})}})
 e.default=n})),define("ember-caluma/mirage/factories/form",["exports","@faker-js/faker","miragejs"],(function(e,t,r){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
@@ -110,7 +110,7 @@ e.default=n})),define("ember-caluma/mirage/factories/user",["exports","@faker-js
 var n=r.Factory.extend({firstName:()=>t.faker.name.firstName(),lastName:()=>t.faker.name.lastName()})
 e.default=n})),define("ember-caluma/mirage/factories/work-item",["exports","@faker-js/faker","miragejs"],(function(e,t,r){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 const n=["READY","CANCELED","COMPLETED","SKIPPED","SUSPENDED"]
-var o=r.Factory.extend({id:()=>t.faker.datatype.uuid(),name:()=>t.faker.lorem.words(5),createdByUser:()=>t.faker.datatype.uuid(),createdAt:()=>t.faker.date.past(),deadline:()=>t.faker.date.future(),status:()=>t.faker.helpers.arrayElement(n),addressedGroups:()=>["group1","group2"],closedAt(){return n.filter((e=>"READY"!==e)).includes(this.status)?t.faker.date.past():null},isRedoable:()=>!1})
+var o=r.Factory.extend({id:()=>t.faker.datatype.uuid(),name:()=>t.faker.lorem.words(5),createdByUser:()=>t.faker.datatype.uuid(),createdAt:()=>t.faker.date.past(),deadline:()=>t.faker.date.future(),status:()=>t.faker.helpers.arrayElement(n),addressedGroups:()=>["group1","group2"],assignedUsers:()=>["1"],closedAt(){return n.filter((e=>"READY"!==e)).includes(this.status)?t.faker.date.past():null},isRedoable:()=>!1})
 e.default=o})),define("ember-caluma/mirage/factories/workflow",["exports","miragejs"],(function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var r=t.Factory.extend({id(){return this.slug},name:e=>`Workflow #${e+1}`,slug:e=>`workflow-${e+1}`})
 e.default=r})),define("ember-caluma/mirage/models/answer",["exports","miragejs"],(function(e,t){Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
