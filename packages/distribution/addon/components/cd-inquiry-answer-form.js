@@ -2,7 +2,7 @@ import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
-import { queryManager, getObservable } from "ember-apollo-client";
+import { queryManager } from "ember-apollo-client";
 import { dropTask } from "ember-concurrency";
 import { trackedTask } from "ember-resources/util/ember-concurrency";
 
@@ -55,6 +55,7 @@ export default class CdInquiryAnswerFormComponent extends Component {
               isFormButton:
                 edge.node.task.__typename === "CompleteWorkflowFormTask",
               label: this.intl.t(config.label),
+              willCompleteInquiry: config.willCompleteInquiry ?? false,
             }
           : null;
       })
@@ -84,7 +85,7 @@ export default class CdInquiryAnswerFormComponent extends Component {
   }
 
   @dropTask
-  *completeWorkItem(workItem, validate = () => true) {
+  *completeWorkItem(workItem, willCompleteInquiry, validate = () => true) {
     try {
       if (typeof validate === "function" && !(yield validate())) return;
 
@@ -95,12 +96,14 @@ export default class CdInquiryAnswerFormComponent extends Component {
           statusQuestion: this.config.inquiry.answer.statusQuestion,
           buttonTasks: Object.keys(this.config.inquiry.answer.buttons),
           checkTask: this.config.controls.checkTask,
+          createTask: this.config.controls.createTask,
+          inquiryTask: this.config.inquiry.task,
           currentGroup: String(this.calumaOptions.currentGroupId),
           answerInfoQuestions: this.config.inquiry.answer.infoQuestions,
+          willCompleteInquiry,
         },
       });
 
-      yield getObservable(this._inquiry.value)?.refetch();
       yield this.router.transitionTo("inquiry.index");
     } catch (error) {
       this.notification.danger(
