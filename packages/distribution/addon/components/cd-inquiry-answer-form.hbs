@@ -92,6 +92,7 @@
                 @onClick={{fn
                   (perform this.completeWorkItem)
                   buttonConfig.workItemId
+                  buttonConfig.willCompleteInquiry
                   validate
                 }}
               >{{buttonConfig.label}}</UkButton>
@@ -115,6 +116,7 @@
               @onClick={{fn
                 (perform this.completeWorkItem)
                 buttonConfig.workItemId
+                buttonConfig.willCompleteInquiry
                 null
               }}
             >{{buttonConfig.label}}</UkButton>

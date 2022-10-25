@@ -54,6 +54,7 @@ module("Unit | config", function (hooks) {
               color: "primary",
               label: "caluma.distribution.answer.buttons.confirm.label",
               status: "caluma.distribution.answer.buttons.confirm.status",
+              willCompleteInquiry: true,
             },
             "revise-inquiry-answer": {
               color: "default",

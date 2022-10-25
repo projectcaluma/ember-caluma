@@ -4,9 +4,12 @@ mutation CompleteInquiryWorkItem(
   $workItem: ID!
   $statusQuestion: ID!
   $buttonTasks: [String]!
-  $checkTask: ID!
+  $checkTask: String!
+  $inquiryTask: ID!
+  $createTask: String!
   $currentGroup: String!
   $answerInfoQuestions: [ID]!
+  $willCompleteInquiry: Boolean = false
 ) {
   completeWorkItem(input: { id: $workItem }) {
     workItem {
@@ -14,22 +17,26 @@ mutation CompleteInquiryWorkItem(
       status
       case {
         id
+        status
         document {
           id
           ...InquiryAnswer
         }
         ...InquiryAnswerButtons
-        parentWorkItem {
+        # If the work item that will be completed also completes the inquiry
+        # itself, we need to fetch certain work items that were completed /
+        # canceled in the side effect layer and the inquiry itself
+        parentWorkItem @include(if: $willCompleteInquiry) {
           id
           status
           isRedoable
-          # This is needed to remove the check inquiries button if that work
-          # item is closed automatically after completing an inquiry.
+          closedByUser
+          closedAt
           case {
             id
-            workItems(
+            controls: workItems(
               filter: [
-                { task: $checkTask }
+                { tasks: [$checkTask, $createTask] }
                 { addressedGroups: [$currentGroup] }
               ]
             ) {
@@ -37,6 +44,19 @@ mutation CompleteInquiryWorkItem(
                 node {
                   id
                   status
+                }
+              }
+            }
+            inquiries: workItems(
+              filter: [
+                { task: $inquiryTask }
+                { controllingGroups: [$currentGroup] }
+              ]
+            ) {
+              edges {
+                node {
+                  id
+                  isRedoable
                 }
               }
             }
