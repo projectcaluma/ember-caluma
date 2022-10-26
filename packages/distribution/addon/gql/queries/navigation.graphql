@@ -1,4 +1,4 @@
-# import InquiryAnswerStatus from '../fragments/inquiry-answer.graphql'
+# import InquiryAnswerStatus, InquiryAnswerButtons from '../fragments/inquiry-answer.graphql'
 # import InquiryRequestDeadline from '../fragments/inquiry-request.graphql'
 
 fragment NavigationInquiry on WorkItem {
@@ -14,8 +14,10 @@ fragment NavigationInquiry on WorkItem {
     id
     document {
       id
+      modifiedContentAt
       ...InquiryAnswerStatus
     }
+    ...InquiryAnswerButtons
   }
 }
 
@@ -25,6 +27,7 @@ query Navigation(
   $deadlineQuestion: ID
   $currentGroup: String!
   $caseId: ID!
+  $buttonTasks: [String]!
 ) {
   controlling: allWorkItems(
     filter: [

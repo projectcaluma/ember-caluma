@@ -26,7 +26,9 @@ function decorator(
         this.config.inquiry.answer.buttons
       ).find(([task]) => readyWorkItems.includes(task))?.[1];
 
-      return buttonConfig?.status ? this.intl.t(buttonConfig.status) : null;
+      return buttonConfig?.status
+        ? this.intl.t(buttonConfig.status.label ?? buttonConfig.status)
+        : null;
     },
   };
 }

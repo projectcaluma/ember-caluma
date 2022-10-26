@@ -103,6 +103,7 @@ caluma:
       draft: "Brouillon"
       skipped: "Terminé prématurément"
       sent: "Envoyé"
+      in-progress: "En cours"
       positive: "Positif"
       negative: "Negatif"
       needs-interaction: "Action nécessaire"

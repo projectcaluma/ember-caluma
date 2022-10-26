@@ -6,6 +6,7 @@ export const INQUIRY_STATUS = {
   DRAFT: "draft",
   SKIPPED: "skipped",
   SENT: "sent",
+  IN_PROGRESS: "in-progress",
   POSITIVE: "positive",
   NEGATIVE: "negative",
   NEEDS_INTERACTION: "needs-interaction",
@@ -45,7 +46,11 @@ export default function config(target, property) {
                 "confirm-inquiry-answer": {
                   color: "primary",
                   label: "caluma.distribution.answer.buttons.confirm.label",
-                  status: "caluma.distribution.answer.buttons.confirm.status",
+                  status: {
+                    label: "caluma.distribution.answer.buttons.confirm.status",
+                    color: { addressed: "muted", controlling: "emphasis" },
+                    icon: "user",
+                  },
                   willCompleteInquiry: true,
                 },
                 "revise-inquiry-answer": {

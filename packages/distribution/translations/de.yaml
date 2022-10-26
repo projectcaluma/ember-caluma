@@ -103,6 +103,7 @@ caluma:
       draft: "Entwurf"
       skipped: "Vorzeitig beendet"
       sent: "Versendet"
+      in-progress: "In Bearbeitung"
       positive: "Positiv"
       negative: "Negativ"
       needs-interaction: "Aktion erforderlich"

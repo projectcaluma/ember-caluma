@@ -135,7 +135,10 @@ export function sendInquiry(server, { inquiry }) {
   const childCase = server.create("case", {
     status: "RUNNING",
     workflowId: "inquiry",
-    document: server.create("document", { formId: "inquiry-answer" }),
+    document: server.create("document", {
+      formId: "inquiry-answer",
+      modifiedContentAt: faker.date.recent(),
+    }),
   });
 
   server.create("work-item", {

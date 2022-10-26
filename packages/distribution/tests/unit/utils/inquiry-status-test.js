@@ -1,5 +1,6 @@
 import { setOwner } from "@ember/application";
 import { inject as service } from "@ember/service";
+import { settled } from "@ember/test-helpers";
 import { tracked } from "@glimmer/tracking";
 import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
@@ -82,6 +83,38 @@ module("Unit | Utility | inquiry-status", function (hooks) {
 
     await this.obj.inquiry.setReady();
 
+    // In review
+    this.set("obj.type", "controlling");
+
+    assert.deepEqual(this.obj.status, {
+      color: "emphasis",
+      icon: "user",
+      label: "t:caluma.distribution.answer.buttons.confirm.status:()",
+    });
+
+    this.set("obj.type", "addressed");
+
+    assert.deepEqual(this.obj.status, {
+      color: "muted",
+      icon: "user",
+      label: "t:caluma.distribution.answer.buttons.confirm.status:()",
+    });
+
+    this.set("obj.type", "more");
+
+    assert.deepEqual(this.obj.status, {
+      color: "emphasis",
+      icon: "comment",
+      label: "t:caluma.distribution.status.sent:()",
+      slug: "sent",
+    });
+
+    // Sent
+    this.obj.inquiry.childCase.workItems.edges = [];
+    await settled();
+
+    this.set("obj.type", "controlling");
+
     assert.deepEqual(this.obj.status, {
       color: "emphasis",
       icon: "comment",
@@ -96,6 +129,46 @@ module("Unit | Utility | inquiry-status", function (hooks) {
       icon: "commenting",
       label: "t:caluma.distribution.status.draft:()",
       slug: "draft",
+    });
+
+    this.set("obj.type", "more");
+
+    assert.deepEqual(this.obj.status, {
+      color: "emphasis",
+      icon: "comment",
+      label: "t:caluma.distribution.status.sent:()",
+      slug: "sent",
+    });
+
+    // In progress
+    this.obj.inquiry.childCase.document.modifiedContentAt = new Date();
+    await settled();
+
+    this.set("obj.type", "controlling");
+
+    assert.deepEqual(this.obj.status, {
+      color: "emphasis",
+      icon: "file-edit",
+      label: "t:caluma.distribution.status.in-progress:()",
+      slug: "in-progress",
+    });
+
+    this.set("obj.type", "addressed");
+
+    assert.deepEqual(this.obj.status, {
+      color: "muted",
+      icon: "file-edit",
+      label: "t:caluma.distribution.status.in-progress:()",
+      slug: "in-progress",
+    });
+
+    this.set("obj.type", "more");
+
+    assert.deepEqual(this.obj.status, {
+      color: "emphasis",
+      icon: "comment",
+      label: "t:caluma.distribution.status.sent:()",
+      slug: "sent",
     });
   });
 });
