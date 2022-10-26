@@ -24,7 +24,12 @@ export default class CdInquiryDialogComponent extends Component {
   }
 
   get inquiries() {
-    return this._inquiries.value?.allWorkItems.edges.map((edge) => edge.node);
+    return this._inquiries.value?.allWorkItems.edges
+      .map((edge) => edge.node)
+      .filter(
+        // suspended inquiries should only be visible to its creator
+        (node) => this.currentGroupIsCreator || node.status !== "SUSPENDED"
+      );
   }
 
   _inquiries = trackedTask(this, this.fetchDialog, () => [
