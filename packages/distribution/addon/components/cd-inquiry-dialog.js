@@ -43,6 +43,7 @@ export default class CdInquiryDialogComponent extends Component {
   *fetchDialog(from, to, caseId, config) {
     const response = yield this.apollo.watchQuery({
       query: inquiryDialogQuery,
+      fetchPolicy: "cache-and-network",
       variables: {
         from,
         to,
