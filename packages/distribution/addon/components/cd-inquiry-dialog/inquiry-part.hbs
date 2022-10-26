@@ -2,14 +2,15 @@
   <div class="uk-flex uk-flex-middle uk-text-large" data-test-title>
     {{#if (eq @type "request")}}
       <UkIcon @icon="forward" class="uk-margin-small-right" />
-      <div class="uk-width-expand uk-margin-small-right">
+      <div
+        class="uk-width-expand uk-margin-small-right uk-flex-inline uk-flex-middle"
+      >
         {{group-name @inquiry.controllingGroups}}
-        {{#if
-          (and
-            (can "answer inquiry" @inquiry) (not @disabled) this.answerStatus
-          )
-        }}
-          <UkLabel @label={{this.answerStatus}} class="uk-margin-left" />
+        {{#if this.status}}
+          <UkLabel
+            @label={{this.status}}
+            class="uk-margin-left uk-text-default"
+          />
         {{/if}}
       </div>
     {{else if (eq @type "answer")}}

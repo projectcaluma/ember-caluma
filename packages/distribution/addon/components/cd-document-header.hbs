@@ -1,11 +1,11 @@
 <div class="uk-text-large uk-flex uk-flex-middle" data-test-document-header>
-  <div class="uk-width-expand">
+  <div class="uk-width-expand uk-flex-inline uk-flex-middle">
     {{@name}}
     {{#if @group}}
       ({{group-name @group}})
     {{/if}}
     {{#if @status}}
-      <UkLabel @label={{@status}} class="uk-margin-left" />
+      <UkLabel @label={{@status}} class="uk-margin-left uk-text-default" />
     {{/if}}
   </div>
   {{yield}}
