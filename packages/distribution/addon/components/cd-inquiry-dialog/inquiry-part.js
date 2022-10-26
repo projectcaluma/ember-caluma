@@ -18,12 +18,32 @@ export default class CdInquiryDialogInquiryPartComponent extends Component {
   @service router;
   @service intl;
   @service calumaOptions;
+  @service abilities;
 
   @queryManager apollo;
 
   @config config;
 
   @inquiryAnswerStatus answerStatus;
+
+  get status() {
+    if (!this.args.type === "request" || this.args.disabled) {
+      return null;
+    }
+
+    const inquiry = this.args.inquiry;
+
+    if (
+      inquiry.status === "SUSPENDED" &&
+      this.abilities.can("edit inquiry", inquiry)
+    ) {
+      return this.intl.t("caluma.distribution.status.draft");
+    } else if (this.abilities.can("answer inquiry", inquiry)) {
+      return this.answerStatus;
+    }
+
+    return null;
+  }
 
   get date() {
     const key = this.args.type === "request" ? "createdAt" : "closedAt";
