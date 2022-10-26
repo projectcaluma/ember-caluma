@@ -14,6 +14,9 @@ export default class CdNavigationStatusIndicatorComponent extends Component {
   @inquiryDeadline deadline;
 
   get showDeadlineIndicator() {
-    return this.deadline.isOverdue || this.deadline.isWarning;
+    return (
+      ["addressed", "controlling"].includes(this.args.type) &&
+      (this.deadline.isOverdue || this.deadline.isWarning)
+    );
   }
 }

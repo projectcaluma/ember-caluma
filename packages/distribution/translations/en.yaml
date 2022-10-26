@@ -103,6 +103,7 @@ caluma:
       draft: "Draft"
       skipped: "Aborted"
       sent: "Sent"
+      in-progress: "In Progress"
       positive: "Positive"
       negative: "Negative"
       needs-interaction: "Needs interaction"

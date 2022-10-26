@@ -73,6 +73,7 @@ class StubInquiry {
         ],
       },
       document: {
+        modifiedContentAt: null,
         status: {
           edges: [
             {

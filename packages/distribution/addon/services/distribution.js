@@ -74,6 +74,7 @@ export default class DistributionService extends Service {
         currentGroup: String(this.calumaOptions.currentGroupId),
         statusQuestion: this.config.inquiry.answer.statusQuestion,
         deadlineQuestion: this.config.inquiry.deadlineQuestion,
+        buttonTasks: Object.keys(this.config.inquiry.answer.buttons),
       },
     });
 
