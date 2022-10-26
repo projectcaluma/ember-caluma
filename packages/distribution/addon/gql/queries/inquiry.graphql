@@ -1,17 +1,10 @@
 # import InquiryRequest, InquiryRequestDeadline from '../fragments/inquiry-request.graphql'
 
-query InquiryEdit($inquiry: ID!, $infoQuestion: ID!, $deadlineQuestion: ID!) {
+query Inquiry($inquiry: ID!, $infoQuestion: ID!, $deadlineQuestion: ID!) {
   allWorkItems(filter: [{ id: $inquiry }]) {
     edges {
       node {
         id
-        status
-        addressedGroups
-        controllingGroups
-        task {
-          id
-          slug
-        }
         document {
           id
           ...InquiryRequest
