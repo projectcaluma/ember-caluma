@@ -1,8 +1,3 @@
-# We can not symlink this file so an exact copy exists in another package:
-# packages/form-builder/addon/gql/fragments/field.graphql
-#
-# When changing this file the other must also receive the same changes.
-
 fragment SimpleQuestion on Question {
   id
   slug
