@@ -68,11 +68,15 @@ export default function config(target, property) {
                   value: inquiry.assignedUsers,
                   type: "user",
                 },
-                {
-                  label: "caluma.distribution.inquiry.closed-at",
-                  value: inquiry.closedAt,
-                  type: "date",
-                },
+                ...(inquiry.closedAt
+                  ? [
+                      {
+                        label: "caluma.distribution.inquiry.closed-at",
+                        value: inquiry.closedAt,
+                        type: "date",
+                      },
+                    ]
+                  : []),
               ],
             },
           },
