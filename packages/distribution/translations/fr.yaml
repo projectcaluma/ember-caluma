@@ -15,7 +15,7 @@ caluma:
       demandes ouvertes}} </b> sur la circulation actuelle. Si vous clôturez la
       circulation, toutes les demandes ouvertes seront annulées. Voulez-vous
       continuer ?"
-    complete-confirm-empty: "Vous voulez vraiment fermer la circulation ?"
+    complete-confirm-empty: "Vous voulez vraiment clore la circulation ?"
     skip-confirm: "Vous voulez vraiment sauter la circulation ?"
     reopen-confirm: "Vous voulez vraiment rouvrir la circulation ?"
     send-error: "Erreur lors de l'envoi des demandes ouvertes"
@@ -77,11 +77,11 @@ caluma:
       title: "Nouvelle demande"
       search: "Chercher..."
       suggestions: "Propositions"
-      empty: "Aucune services n'a été trouvée"
+      empty: "Aucune service n'a été trouvée"
       groups: "{count} {count, plural, =1 {service} other {services}}"
       selected: "{count, plural, =1 {sélectionné} other {sélectionnés}}"
       reset: "Réinitialiser"
-      create-draft: "Créer un brouillon"
+      create-draft: "Créer le brouillon"
       continue: "Continuer"
       back: "Retour"
       error: "Error lors de la création {count, plural, =1 {de la demande} other {des demandes}}"
@@ -90,7 +90,7 @@ caluma:
       link: "Envoyer un rappel"
       confirm: "Voulez-vous vraiment envoyer un rappel pour cette demande ?"
       title: "Rappels envoyés"
-      no-reminders: Aucun rappel n'a encore été envoyé pour cette demande.
+      no-reminders: "Aucun rappel n'a encore été envoyé pour cette demande."
       success: "Le rappel a été envoyé avec succès"
       error: "Erreur lors de l'envoi du rappel"
 
