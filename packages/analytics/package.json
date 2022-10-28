@@ -31,7 +31,7 @@
     "ember-fetch": "^8.1.2",
     "ember-intl": "^5.7.0",
     "ember-power-select": "6.0.1",
-    "ember-resources": "^5.4.0",
+    "ember-resources": "^5.5.0",
     "ember-uikit": "^6.1.0",
     "ember-validated-form": "^6.1.2",
     "graphql": "^15.6.1"
