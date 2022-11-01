@@ -137,9 +137,18 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
     await click("button[data-test-continue]");
 
     const intl = this.owner.lookup("service:intl");
+    const expectedDeadline = intl.formatDate(
+      DateTime.now().plus({ days: 30 }).toJSDate(),
+      {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      }
+    );
+
     assert
       .dom('[name$="Question:inquiry-deadline"]')
-      .hasValue(intl.formatDate(DateTime.now().plus({ days: 30 }).toJSDate()));
+      .hasValue(expectedDeadline);
 
     await fillIn('[name$="Question:inquiry-remark"]', "My remark");
     await setFlatpickrDate(

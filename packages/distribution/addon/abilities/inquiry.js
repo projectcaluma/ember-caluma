@@ -4,101 +4,131 @@ import { DateTime } from "luxon";
 
 import config from "@projectcaluma/ember-distribution/config";
 
+/**
+ * This class contains all permission definitions for inquiries. To improve
+ * performance there are a few helpers and rules for optimal permission
+ * computation. The permissions need to be ordered by how expensive their
+ * computation is: the least expensive first and the most expensive last and so
+ * on:
+ *
+ * 1. Static config properties (e.g. `enableReminders`)
+ * 2. Base permission which checks for the correct task and the readonly config
+ * 3. Simple work item property checks (e.g. `isReady` or `isSuspended`)
+ * 4. Addressed / controlling group affiliation (e.g. `isAddressed` or `isControlling`)
+ * 5. All other computations (e.g. whether the deadline is overdue)
+ * 6. Custom permissions served by the host app (using `hasCustomPermission`)
+ */
 export default class InquiryAbility extends Ability {
   @service calumaOptions;
 
   @config config;
 
-  get canEdit() {
+  hasCustomPermission(permissionName, ...args) {
+    return this.config.permissions[permissionName]?.(...args) ?? true;
+  }
+
+  get hasBasePermission() {
     return (
       !this.config.ui.readonly &&
-      this.model?.task.slug === this.config.inquiry.task &&
-      ["SUSPENDED", "READY"].includes(this.model?.status) &&
-      this.model?.controllingGroups
-        .map(String)
-        .includes(String(this.calumaOptions.currentGroupId))
+      this.model?.task.slug === this.config.inquiry.task
+    );
+  }
+
+  get isReady() {
+    return this.model.status === "READY";
+  }
+
+  get isSuspended() {
+    return this.model.status === "SUSPENDED";
+  }
+
+  get isAddressed() {
+    return this.model.addressedGroups
+      .map(String)
+      .includes(String(this.calumaOptions.currentGroupId));
+  }
+
+  get isControlling() {
+    return this.model.controllingGroups
+      .map(String)
+      .includes(String(this.calumaOptions.currentGroupId));
+  }
+
+  get canEdit() {
+    return (
+      this.hasBasePermission &&
+      // Since editing in the status ready has the same character as sending an
+      // inquiry, we need to make sure that permission would be given
+      (this.isSuspended ||
+        (this.isReady &&
+          this.hasCustomPermission("sendInquiry", this.model))) &&
+      this.isControlling
     );
   }
 
   get canSend() {
     return (
-      !this.config.ui.readonly &&
-      this.model?.task.slug === this.config.inquiry.task &&
-      this.model?.status === "SUSPENDED" &&
-      (this.config.permissions.sendInquiry?.(this.model) ?? true) &&
-      this.model?.controllingGroups
-        .map(String)
-        .includes(String(this.calumaOptions.currentGroupId))
+      this.hasBasePermission &&
+      this.isSuspended &&
+      this.isControlling &&
+      this.hasCustomPermission("sendInquiry", this.model)
     );
   }
 
   get canWithdraw() {
     return (
-      !this.config.ui.readonly &&
-      this.model?.task.slug === this.config.inquiry.task &&
-      this.model?.status === "SUSPENDED" &&
-      (this.config.permissions.withdrawInquiry?.(this.model) ?? true) &&
-      this.model?.controllingGroups
-        .map(String)
-        .includes(String(this.calumaOptions.currentGroupId))
+      this.hasBasePermission &&
+      this.isSuspended &&
+      this.isControlling &&
+      this.hasCustomPermission("withdrawInquiry", this.model)
     );
   }
 
   get canAnswer() {
-    return (
-      !this.config.ui.readonly &&
-      this.model?.task.slug === this.config.inquiry.task &&
-      this.model?.status === "READY" &&
-      this.model?.addressedGroups
-        .map(String)
-        .includes(String(this.calumaOptions.currentGroupId))
-    );
+    return this.hasBasePermission && this.isReady && this.isAddressed;
   }
 
   get canEditAnswerForm() {
     return (
-      !this.config.ui.readonly &&
       this.canAnswer &&
-      this.model?.childCase.workItems.edges.some(
-        (edge) => edge.node.task.__typename === "CompleteWorkflowFormTask"
+      this.model.childCase.workItems.edges.some(
+        (edge) =>
+          edge.node.status === "READY" &&
+          edge.node.task.__typename === "CompleteWorkflowFormTask"
       )
     );
   }
 
   get canCompleteChildWorkItem() {
     return (
-      this.config.permissions.completeInquiryChildWorkItem?.(
+      this.hasBasePermission &&
+      this.hasCustomPermission(
+        "completeInquiryChildWorkItem",
         this.model,
         this.task
-      ) ?? true
+      )
     );
   }
 
   get canReopen() {
     return (
+      this.hasBasePermission &&
       this.model.isRedoable &&
-      this.model?.controllingGroups
-        .map(String)
-        .includes(String(this.calumaOptions.currentGroupId)) &&
-      (this.config.permissions.reopenInquiry?.(this.model) ?? true)
+      this.isControlling &&
+      this.hasCustomPermission("reopenInquiry", this.model)
     );
   }
 
   get canSendReminder() {
-    const deadline = DateTime.fromISO(
-      this.model.document?.deadline.edges[0]?.node.value
-    );
-
     return (
-      !this.config.ui.readonly &&
       this.config.enableReminders &&
-      this.model?.task.slug === this.config.inquiry.task &&
-      this.model?.status === "READY" &&
-      this.model?.controllingGroups
-        .map(String)
-        .includes(String(this.calumaOptions.currentGroupId)) &&
-      deadline.diffNow("days").days <= 0 &&
-      (this.config.permissions.sendReminder?.(this.model) ?? true)
+      this.hasBasePermission &&
+      this.isReady &&
+      this.isControlling &&
+      DateTime.fromISO(
+        this.model.document?.deadline.edges[0]?.node.value
+      ).diffNow("days").days <= 0 &&
+      this.hasCustomPermission("sendReminder", this.model)
     );
   }
 }
