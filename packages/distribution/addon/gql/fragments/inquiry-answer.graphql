@@ -28,6 +28,7 @@ fragment InquiryAnswerButtons on Case {
         id
         status
         closedAt
+        closedByUser
         task {
           id
           slug
