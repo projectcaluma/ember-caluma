@@ -39,6 +39,7 @@ fragment InquiryAnswerButtons on Case {
 
 fragment InquiryAnswer on Document {
   ...InquiryAnswerStatus
+  modifiedContentAt
   info: answers(filter: [{ questions: $answerInfoQuestions }]) {
     edges {
       node {
