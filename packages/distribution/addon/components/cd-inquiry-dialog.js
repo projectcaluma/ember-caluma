@@ -84,6 +84,8 @@ export default class CdInquiryDialogComponent extends Component {
 
     yield this.distribution.createInquiry.perform([this.args.to]);
 
+    yield getObservable(this._inquiries.value).refetch();
+
     this.router.transitionTo(
       "inquiry.detail.index",
       {
