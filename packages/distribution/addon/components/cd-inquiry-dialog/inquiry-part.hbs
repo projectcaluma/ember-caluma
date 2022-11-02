@@ -7,10 +7,7 @@
       >
         {{group-name @inquiry.controllingGroups}}
         {{#if this.status}}
-          <UkLabel
-            @label={{this.status}}
-            class="uk-margin-left uk-text-default"
-          />
+          <UkLabel @label={{this.status}} class="uk-margin-left" />
         {{/if}}
       </div>
     {{else if (eq @type "answer")}}
