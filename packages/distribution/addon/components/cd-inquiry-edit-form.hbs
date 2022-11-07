@@ -16,6 +16,7 @@
     {{#if
       (and
         (cannot "send inquiry" this.inquiry)
+        (can "edit inquiry" this.inquiry)
         (eq this.inquiry.status "SUSPENDED")
       )
     }}

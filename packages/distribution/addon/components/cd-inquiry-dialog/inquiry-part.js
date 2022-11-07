@@ -33,10 +33,7 @@ export default class CdInquiryDialogInquiryPartComponent extends Component {
 
     const inquiry = this.args.inquiry;
 
-    if (
-      inquiry.status === "SUSPENDED" &&
-      this.abilities.can("edit inquiry", inquiry)
-    ) {
+    if (inquiry.status === "SUSPENDED") {
       return this.intl.t("caluma.distribution.status.draft");
     } else if (this.abilities.can("answer inquiry", inquiry)) {
       return this.answerStatus;
