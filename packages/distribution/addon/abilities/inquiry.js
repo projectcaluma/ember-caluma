@@ -57,12 +57,9 @@ export default class InquiryAbility extends Ability {
   get canEdit() {
     return (
       this.hasBasePermission &&
-      // Since editing in the status ready has the same character as sending an
-      // inquiry, we need to make sure that permission would be given
-      (this.isSuspended ||
-        (this.isReady &&
-          this.hasCustomPermission("sendInquiry", this.model))) &&
-      this.isControlling
+      (this.isSuspended || this.isReady) &&
+      this.isControlling &&
+      this.hasCustomPermission("editInquiry", this.model)
     );
   }
 

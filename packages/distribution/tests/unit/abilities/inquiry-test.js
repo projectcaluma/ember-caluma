@@ -13,7 +13,7 @@ module("Unit | Ability | inquiry", function (hooks) {
   });
 
   test("it respects configured custom permissions", async function (assert) {
-    assert.expect(8);
+    assert.expect(10);
 
     const ability = this.owner.lookup("ability:inquiry");
 
@@ -22,6 +22,10 @@ module("Unit | Ability | inquiry", function (hooks) {
 
     this.owner.lookup("service:caluma-options").distribution = {
       permissions: {
+        editInquiry: () => {
+          assert.step("edit-inquiry");
+          return false;
+        },
         sendInquiry: () => {
           assert.step("send-inquiry");
           return false;
@@ -39,12 +43,14 @@ module("Unit | Ability | inquiry", function (hooks) {
     };
 
     await ability.model.setSuspended();
+    assert.false(ability.canEdit);
     assert.false(ability.canSend);
     assert.false(ability.canWithdraw);
     await ability.model.setReady();
     assert.false(ability.canCompleteChildWorkItem);
 
     assert.verifySteps([
+      "edit-inquiry",
       "send-inquiry",
       "withdraw-inquiry",
       "complete-inquiry-child-work-item",
