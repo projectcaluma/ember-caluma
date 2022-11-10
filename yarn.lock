@@ -1711,15 +1711,15 @@
   dependencies:
     babel-plugin-debug-macros "^0.3.4"
 
-"@graphql-eslint/eslint-plugin@3.13.0":
-  version "3.13.0"
-  resolved "https://registry.yarnpkg.com/@graphql-eslint/eslint-plugin/-/eslint-plugin-3.13.0.tgz#3490b961cb87b8b0f2fa876102fe1c0097d1df3f"
-  integrity sha512-ZFWqGrSU7GnKuNRQ0omlmLikHarQ3kUf4bd3OgFte/JnyHTDeHm5M1o5L32bnHQzuuMpSXEItLy8wqqKAlrGGg==
+"@graphql-eslint/eslint-plugin@3.13.1":
+  version "3.13.1"
+  resolved "https://registry.yarnpkg.com/@graphql-eslint/eslint-plugin/-/eslint-plugin-3.13.1.tgz#2805481f3a39b260035c035d260851c43ee957a5"
+  integrity sha512-Q9holJ9CnV5zgG3uqYAMdJ4GBVsNjF/BOaGWeBx6K33P3BvCXGivCZvJJhpXCRfbp0sP2CiLKf02eG9ScZS3lg==
   dependencies:
     "@babel/code-frame" "^7.18.6"
     "@graphql-tools/code-file-loader" "^7.3.6"
     "@graphql-tools/graphql-tag-pluck" "^7.3.6"
-    "@graphql-tools/utils" "^8.12.0"
+    "@graphql-tools/utils" "^9.0.0"
     chalk "^4.1.2"
     debug "^4.3.4"
     fast-glob "^3.2.12"
@@ -1868,10 +1868,17 @@
   dependencies:
     tslib "^2.4.0"
 
-"@graphql-tools/utils@^8.12.0", "@graphql-tools/utils@^8.6.5":
+"@graphql-tools/utils@^8.6.5":
   version "8.13.1"
   resolved "https://registry.yarnpkg.com/@graphql-tools/utils/-/utils-8.13.1.tgz#b247607e400365c2cd87ff54654d4ad25a7ac491"
   integrity sha512-qIh9yYpdUFmctVqovwMdheVNJqFh+DQNWIhX87FJStfXYnmweBUDATok9fWPleKeFwxnW8IapKmY8m8toJEkAw==
+  dependencies:
+    tslib "^2.4.0"
+
+"@graphql-tools/utils@^9.0.0":
+  version "9.1.0"
+  resolved "https://registry.yarnpkg.com/@graphql-tools/utils/-/utils-9.1.0.tgz#c33893e0aa9cbd3760d94f1771477e722adb4e54"
+  integrity sha512-4Ketxo98IwKA/56LP6cI6PgQBwUCujszQcTNkzjq7liJPa2mLjKnmVOJ0bauMwKcEazeYuZagceljb0POmEGvQ==
   dependencies:
     tslib "^2.4.0"
 
