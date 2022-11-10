@@ -522,7 +522,7 @@ return N.noConflict=function(t){return e.$===N&&(e.$=Yt),t&&e.jQuery===N&&(e.jQu
  *            Portions Copyright 2008-2011 Apple Inc. All rights reserved.
  * @license   Licensed under MIT license
  *            See https://raw.github.com/emberjs/ember.js/master/LICENSE
- * @version   4.8.1
+ * @version   4.8.2
  */
 var e,t;(function(){var i="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof self?self:"undefined"!=typeof window?window:"undefined"!=typeof global?global:null
 if(null===i)throw new Error("unable to locate global object")
@@ -3755,7 +3755,7 @@ return n.Adapter=r,n.QUnitAdapter=a,Object.defineProperty(ie,"Test",{configurabl
 var se=ie
 t.default=se})),e("ember/version",["exports"],(function(e){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
-e.default="4.8.1"})),e("route-recognizer",["exports"],(function(e){"use strict"
+e.default="4.8.2"})),e("route-recognizer",["exports"],(function(e){"use strict"
 Object.defineProperty(e,"__esModule",{value:!0}),e.default=void 0
 var t=Object.create
 function i(){var e=t(null)
