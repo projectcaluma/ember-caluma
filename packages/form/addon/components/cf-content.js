@@ -158,7 +158,11 @@ export default class CfContentComponent extends Component {
 
     const raw = parseDocument({ ...answerDocument, form });
 
-    const document = new Document({ raw, owner });
+    const document = new Document({
+      raw,
+      owner,
+      dataSourceContext: this.args.context,
+    });
     const navigation = new Navigation({ document, owner });
 
     registerDestructor(this, () => {

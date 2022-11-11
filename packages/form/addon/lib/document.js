@@ -18,7 +18,7 @@ const sum = (nums) => nums.reduce((num, base) => base + num, 0);
  * @class Document
  */
 export default class Document extends Base {
-  constructor({ raw, parentDocument, ...args }) {
+  constructor({ raw, parentDocument, dataSourceContext, ...args }) {
     assert(
       "A graphql document `raw` must be passed",
       raw?.__typename === "Document"
@@ -27,6 +27,7 @@ export default class Document extends Base {
     super({ raw, ...args });
 
     this.parentDocument = parentDocument;
+    this.dataSourceContext = dataSourceContext;
 
     this.pushIntoStore();
 
@@ -82,6 +83,13 @@ export default class Document extends Base {
    * @property {Fieldset[]} fieldsets
    */
   fieldsets = [];
+
+  /**
+   * Context object for data sources
+   *
+   * @property {Object} dataSourceContext
+   */
+  dataSourceContext = null;
 
   /**
    * The primary key of the document.
