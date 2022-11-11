@@ -1,11 +1,11 @@
-query DynamicOptions($question: String!) {
+query DynamicOptions($question: String!, $context: JSONString) {
   allQuestions(filter: [{ slugs: [$question] }], first: 1) {
     edges {
       node {
         id
         slug
         ... on DynamicChoiceQuestion {
-          dynamicChoiceOptions: options {
+          dynamicChoiceOptions: options(context: $context) {
             edges {
               node {
                 slug
@@ -15,7 +15,7 @@ query DynamicOptions($question: String!) {
           }
         }
         ... on DynamicMultipleChoiceQuestion {
-          dynamicMultipleChoiceOptions: options {
+          dynamicMultipleChoiceOptions: options(context: $context) {
             edges {
               node {
                 slug

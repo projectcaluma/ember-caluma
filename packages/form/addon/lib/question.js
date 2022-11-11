@@ -66,7 +66,12 @@ export default class Question extends Base {
       {
         query: getDynamicOptions,
         fetchPolicy: "network-only",
-        variables: { question: this.slug },
+        variables: {
+          question: this.slug,
+          context: this.dataSourceContext
+            ? JSON.stringify(this.dataSourceContext)
+            : null,
+        },
       },
       "allQuestions.edges"
     );

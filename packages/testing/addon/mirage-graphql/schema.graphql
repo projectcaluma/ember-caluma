@@ -112,6 +112,7 @@ type AnalyticsField implements Node {
   filters: [String]
   function: AggregateFunction
   showOutput: Boolean!
+  sort: Int!
 }
 
 type AnalyticsFieldConnection {
@@ -550,6 +551,11 @@ type Case implements Node {
   id: ID!
 
   """
+  Family id which case belongs to.
+  """
+  family: Case
+
+  """
   Time when case has either been canceled or completed
   """
   closedAt: DateTime
@@ -627,6 +633,7 @@ input CaseFilterSetType {
   rootCase: ID
   searchAnswers: [SearchAnswersFilterType]
   status: [CaseStatusArgument]
+  excludeChildCases: Boolean
   invert: Boolean
 }
 
@@ -1251,6 +1258,10 @@ type DynamicChoiceQuestion implements Question & DynamicQuestion & Node {
     order: [FormOrderSetType]
   ): FormConnection
   options(
+    """
+    JSON object passed as context to the data source
+    """
+    context: JSONString
     before: String
     after: String
     first: Int
@@ -1294,6 +1305,10 @@ type DynamicMultipleChoiceQuestion implements Question & DynamicQuestion & Node 
     order: [FormOrderSetType]
   ): FormConnection
   options(
+    """
+    JSON object passed as context to the data source
+    """
+    context: JSONString
     before: String
     after: String
     first: Int
@@ -1367,6 +1382,10 @@ input DynamicOptionOrderSetType {
 
 interface DynamicQuestion {
   options(
+    """
+    JSON object passed as context to the data source
+    """
+    context: JSONString
     before: String
     after: String
     first: Int
@@ -1940,6 +1959,9 @@ type Mutation {
   removeAnalyticsField(
     input: RemoveAnalyticsFieldInput!
   ): RemoveAnalyticsFieldPayload
+  reorderAnalyticsFields(
+    input: ReorderAnalyticsFieldsInput!
+  ): ReorderAnalyticsFieldsPayload
   saveWorkflow(input: SaveWorkflowInput!): SaveWorkflowPayload
   addWorkflowFlow(input: AddWorkflowFlowInput!): AddWorkflowFlowPayload
   removeFlow(input: RemoveFlowInput!): RemoveFlowPayload
@@ -2190,6 +2212,16 @@ type Query {
   ): DataSourceConnection
   dataSource(
     name: String!
+
+    """
+    Slug of the question passed as context to the data source
+    """
+    question: String
+
+    """
+    JSON object passed as context to the data source
+    """
+    context: JSONString
     before: String
     after: String
     first: Int
@@ -2366,6 +2398,7 @@ input QuestionFilterSetType {
   excludeForms: [ID]
   search: String
   slugs: [String]
+  visibleInDocument: ID
   invert: Boolean
 }
 
@@ -2497,6 +2530,17 @@ input ReopenCaseInput {
 
 type ReopenCasePayload {
   case: Case
+  clientMutationId: String
+}
+
+input ReorderAnalyticsFieldsInput {
+  table: ID!
+  fields: [ID]!
+  clientMutationId: String
+}
+
+type ReorderAnalyticsFieldsPayload {
+  analyticsTable: AnalyticsTable
   clientMutationId: String
 }
 
@@ -2834,6 +2878,11 @@ input SaveDocumentDateAnswerInput {
   document: ID!
   meta: JSONString
   value: Date
+
+  """
+  JSON object passed as context to the data source of dynamic questions
+  """
+  dataSourceContext: JSONString
   clientMutationId: String
 }
 
@@ -2847,6 +2896,11 @@ input SaveDocumentFilesAnswerInput {
   question: ID!
   document: ID!
   meta: JSONString
+
+  """
+  JSON object passed as context to the data source of dynamic questions
+  """
+  dataSourceContext: JSONString
   clientMutationId: String
 }
 
@@ -2860,6 +2914,11 @@ input SaveDocumentFloatAnswerInput {
   document: ID!
   meta: JSONString
   value: Float
+
+  """
+  JSON object passed as context to the data source of dynamic questions
+  """
+  dataSourceContext: JSONString
   clientMutationId: String
 }
 
@@ -2880,6 +2939,11 @@ input SaveDocumentIntegerAnswerInput {
   document: ID!
   meta: JSONString
   value: Int
+
+  """
+  JSON object passed as context to the data source of dynamic questions
+  """
+  dataSourceContext: JSONString
   clientMutationId: String
 }
 
@@ -2893,6 +2957,11 @@ input SaveDocumentListAnswerInput {
   document: ID!
   meta: JSONString
   value: [String]
+
+  """
+  JSON object passed as context to the data source of dynamic questions
+  """
+  dataSourceContext: JSONString
   clientMutationId: String
 }
 
@@ -2911,6 +2980,11 @@ input SaveDocumentStringAnswerInput {
   document: ID!
   meta: JSONString
   value: String
+
+  """
+  JSON object passed as context to the data source of dynamic questions
+  """
+  dataSourceContext: JSONString
   clientMutationId: String
 }
 
@@ -2928,6 +3002,11 @@ input SaveDocumentTableAnswerInput {
   List of document IDs representing the rows in the table.
   """
   value: [ID]
+
+  """
+  JSON object passed as context to the data source of dynamic questions
+  """
+  dataSourceContext: JSONString
   clientMutationId: String
 }
 

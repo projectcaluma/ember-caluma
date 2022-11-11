@@ -89,6 +89,8 @@ export default class Field extends Base {
         raw: this.raw.question,
         owner,
       });
+
+    this.question.dataSourceContext = this.document.dataSourceContext;
   }
 
   _createAnswer() {
@@ -545,18 +547,24 @@ export default class Field extends Base {
 
     const type = this.answer.raw.__typename;
 
+    const value = this.answer.serializedValue;
+    const input = {
+      question: this.question.slug,
+      document: this.document.uuid,
+    };
+
+    if (value !== null) {
+      input.value = value;
+    }
+
+    if (this.document.dataSourceContext) {
+      input.dataSourceContext = JSON.stringify(this.document.dataSourceContext);
+    }
+
     const response = yield this.apollo.mutate(
       {
         mutation: MUTATION_MAP[type],
-        variables: {
-          input: {
-            question: this.question.slug,
-            document: this.document.uuid,
-            ...(this.answer.serializedValue !== null
-              ? { value: this.answer.serializedValue }
-              : {}),
-          },
-        },
+        variables: { input },
       },
       `saveDocument${type}.answer`
     );
