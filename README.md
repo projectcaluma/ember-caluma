@@ -31,17 +31,17 @@ You can find the interactive documentation [here](https://docs.caluma.io/ember-c
 
 - `git clone git@github.com:projectcaluma/ember-caluma`
 - `cd ember-caluma`
-- `yarn install`
+- `pnpm install`
 
 ### Linting
 
-- `yarn lint`
+- `pnpm lint`
 
 ### Running tests
 
-- `yarn workspace @projectcaluma/ember-[package] ember test` – Runs the test suite on the current Ember version
-- `yarn workspace @projectcaluma/ember-[package] ember test --server` – Runs the test suite in "watch mode"
-- `yarn workspace @projectcaluma/ember-[package] ember try:each` – Runs the test suite against multiple Ember versions
+- `pnpm --filter @projectcaluma/ember-[package] ember test` – Runs the test suite on the current Ember version
+- `pnpm --filter @projectcaluma/ember-[package] ember test --server` – Runs the test suite in "watch mode"
+- `pnpm --filter @projectcaluma/ember-[package] ember try:each` – Runs the test suite against multiple Ember versions
 
 Cross-browser testing provided by:
 
@@ -51,13 +51,13 @@ Cross-browser testing provided by:
 
 #### With a mocked [Mirage.js](https://github.com/miragejs/ember-cli-mirage) backend
 
-- `yarn start`
+- `pnpm start`
 - Visit the dummy application at [http://localhost:4200](http://localhost:4200).
 
 #### With a dockerized [Caluma](https://github.com/projectcaluma/caluma) backend
 
 - `docker-compose up -d`
-- `yarn start-proxy`
+- `pnpm start-proxy`
 - Visit the dummy application at [http://localhost:4200](http://localhost:4200).
 
 ### Updating the schema
@@ -66,8 +66,8 @@ The addon includes a mirage server for mocking Caluma's GraphQL API, which is ge
 
 ```bash
 docker-compose up -d
-yarn update-schema
-yarn update-possible-types
+pnpm update-schema
+pnpm update-possible-types
 ```
 
 ### Releasing
