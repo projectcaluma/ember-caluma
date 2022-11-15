@@ -13,8 +13,11 @@
   },
   "devDependencies": {
     "@ember/jquery": "2.0.0",
+    "@ember/legacy-built-in-components": "0.4.2",
     "@ember/optional-features": "2.0.0",
     "@ember/string": "3.0.1",
+    "@ember/test-helpers": "2.7.0",
+    "@ember/test-waiters": "3.0.1",
     "@embroider/macros": "1.10.0",
     "@faker-js/faker": "7.6.0",
     "@glimmer/component": "1.1.2",
@@ -68,6 +71,7 @@
     "miragejs": "0.1.47",
     "sass": "1.60.0",
     "tracked-built-ins": "3.1.1",
+    "uikit": "3.16.13",
     "webpack": "5.77.0"
   },
   "ember": {

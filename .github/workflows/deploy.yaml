@@ -8,7 +8,7 @@ on:
       - v[0-9]+.[0-9]+.[0-9]+
 
 env:
-  NODE_VERSION: 14
+  NODE_VERSION: 16
 
 concurrency:
   group: deploy
@@ -20,16 +20,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: "yarn"
+          cache: "pnpm"
 
       - name: Install Dependencies
-        run: yarn install
+        run: pnpm install
 
       - name: Deploy to Github Pages
-        run: yarn workspace ember-caluma ember deploy production
+        run: pnpm --filter ember-caluma ember deploy production
         env:
           DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
           ADDON_DOCS_UPDATE_LATEST: "true"

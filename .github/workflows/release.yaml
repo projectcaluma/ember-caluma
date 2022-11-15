@@ -7,6 +7,9 @@ on:
         type: boolean
         description: Prelease (beta)
 
+env:
+  NODE_VERSION: 16
+
 jobs:
   release:
     name: Release
@@ -20,34 +23,35 @@ jobs:
           ref: ${{ github.event.ref }}
           fetch-depth: 0
           token: ${{ secrets.GH_TOKEN }}
+      - uses: pnpm/action-setup@v2
       - uses: actions/setup-node@v3
         with:
-          node-version: "14"
-          cache: "yarn"
+          node-version: ${{ env.NODE_VERSION }}
+          cache: "pnpm"
 
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install
 
       - name: Configure git
         run: |
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 
-      - name: Configure npm
+      - name: Configure pnpm
         run: |
-          npm config set registry https://registry.npmjs.org
-          npm config set //registry.npmjs.org/:_authToken=${NPM_TOKEN}
+          pnpm config set registry https://registry.npmjs.org
+          pnpm config set //registry.npmjs.org/:_authToken=${NPM_TOKEN}
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Release package (beta)
         if: ${{ github.event.inputs.prerelease == 'true' }}
-        run: npm run release -- --ci --preRelease=beta
+        run: pnpm release --ci --preRelease=beta
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
 
       - name: Release package
         if: ${{ github.event.inputs.prerelease == 'false' }}
-        run: npm run release -- --ci
+        run: pnpm release --ci
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}

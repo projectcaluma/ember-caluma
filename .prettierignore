@@ -26,3 +26,6 @@
 
 # release-it
 CHANGELOG.md
+
+# pnpm
+pnpm-lock.yaml

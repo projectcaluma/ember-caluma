@@ -9,7 +9,7 @@ on:
       - main
 
 env:
-  NODE_VERSION: 14
+  NODE_VERSION: 16
 
 concurrency:
   group: test-${{ github.ref }}
@@ -27,16 +27,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: "yarn"
+          cache: "pnpm"
 
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install
 
       - name: Lint ${{ matrix.target }}
-        run: yarn lint:${{ matrix.target }}
+        run: pnpm lint:${{ matrix.target }}
 
   test:
     name: Tests
@@ -58,16 +59,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: "yarn"
+          cache: "pnpm"
 
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install
 
       - name: Run tests
-        run: yarn workspace ${{ matrix.workspace }} test:ember
+        run: pnpm --filter ${{ matrix.workspace }} test:ember
         env:
           COVERAGE: true
 
@@ -96,15 +98,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
+          cache: "pnpm"
 
       - name: Install dependencies
-        run: yarn install --no-lockfile
+        run: pnpm install --no-lockfile
 
       - name: Run tests
-        run: yarn workspace ${{ matrix.workspace }} test:ember
+        run: pnpm --filter ${{ matrix.workspace }} test:ember
 
   # test-browserstack:
   #   name: Browserstack Tests
@@ -120,28 +124,29 @@ jobs:
 
   #   steps:
   #     - uses: actions/checkout@v3
+  #     - uses: pnpm/action-setup@v2
   #     - uses: actions/setup-node@v3
   #       with:
   #         node-version: ${{ env.NODE_VERSION }}
-  #         cache: "yarn"
+  #         cache: "pnpm"
 
   #     - name: Install dependencies
-  #       run: yarn install
+  #       run: pnpm install
 
   #     - name: Connect to Browserstack
-  #       run: yarn ember browserstack:connect
+  #       run: pnpm ember browserstack:connect
 
   #     - name: Run tests
-  #       run: yarn test:browserstack
+  #       run: pnpm test:browserstack
   #       env:
   #         CI_JOB_ID: ${{ job.container.id }}
   #         BROWSERSTACK_LOCAL_IDENTIFIER: ${{ job.container.id }}
 
   #     - name: Collect test results
-  #       run: yarn ember browserstack:results
+  #       run: pnpm ember browserstack:results
 
   #     - name: Disconnect from Browserstack
-  #       run: yarn ember browserstack:disconnect
+  #       run: pnpm ember browserstack:disconnect
 
   test-compatibility:
     name: Compatibility Tests
@@ -168,13 +173,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: "yarn"
+          cache: "pnpm"
 
       - name: Install dependencies
-        run: yarn install
+        run: pnpm install
 
       - name: Run tests
-        run: yarn workspace ${{ matrix.workspace }} ember try:one ${{ matrix.scenario }} --skip-cleanup
+        run: pnpm --filter ${{ matrix.workspace }} ember try:one ${{ matrix.scenario }} --skip-cleanup
