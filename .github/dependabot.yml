@@ -45,3 +45,7 @@ updates:
       - dependency-name: tracked-toolbox
         versions:
           - "2.0.0"
+      # ember-data 4.8.3 doesn't work with ember-cli-addon-docs
+      - dependency-name: ember-data
+        versions:
+          - "4.8.3"
