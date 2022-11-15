@@ -83,5 +83,6 @@
       "release": true,
       "releaseName": "v${version}"
     }
-  }
+  },
+  "packageManager": "yarn@3.2.4"
 }
