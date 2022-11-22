@@ -63,6 +63,29 @@ module("Unit | Utility | inquiry-status", function (hooks) {
       slug: "needs-interaction",
     });
 
+    // extensible inquiry answer status
+    this.obj.config.inquiry.answer = {
+      ...this.obj.config.inquiry.answer,
+      statusIconMap: { custom: "code" },
+      statusColorMap: { custom: "primary" },
+      statusMapping: {
+        ...this.obj.config.inquiry.answer.statusMapping,
+        "inquiry-answer-status-custom": "custom",
+      },
+    };
+
+    await this.obj.inquiry.setStatus(
+      "inquiry-answer-status-custom",
+      "Custom answer status"
+    );
+
+    assert.deepEqual(this.obj.status, {
+      color: "primary",
+      icon: "code",
+      label: "Custom answer status",
+      slug: "custom",
+    });
+
     await this.obj.inquiry.setSuspended();
 
     assert.deepEqual(this.obj.status, {

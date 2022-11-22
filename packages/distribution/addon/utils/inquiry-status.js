@@ -94,14 +94,23 @@ function decorator(
         ? INQUIRY_STATUS.SENT
         : this.config.inquiry.answer.statusMapping[answer.value];
 
+      const iconMap = {
+        ...ICON_MAP,
+        ...this.config.inquiry.answer?.statusIconMap,
+      };
+      const colorMap = {
+        ...COLOR_MAP,
+        ...this.config.inquiry.answer?.statusColorMap,
+      };
+
       return {
         slug,
         label:
           !isSkipped && !isDraft && !isSent
             ? answer?.selectedOption.label
             : this.intl.t(`caluma.distribution.status.${slug}`),
-        color: COLOR_MAP[slug][inquiryType] ?? COLOR_MAP[slug],
-        icon: ICON_MAP[slug],
+        color: colorMap[slug][inquiryType] ?? colorMap[slug],
+        icon: iconMap[slug],
       };
     },
   };
