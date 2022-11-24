@@ -1,6 +1,7 @@
 import { getOwner } from "@ember/application";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
+import { camelize } from "@ember/string";
 import Component from "@glimmer/component";
 
 import { TYPE_MAP } from "@projectcaluma/ember-form/lib/field";
@@ -60,16 +61,20 @@ export default class CfbFormEditorQuestionDefault extends Component {
       __typename: "Form",
     };
 
+    const typename = TYPE_MAP[this.args.model.__typename];
+    const valueKey = camelize(typename.replace(/Answer$/, "Value"));
+
     const newAnswer = {
       id: btoa(`Answer:dv-answer-${this.args.model.slug}`),
-      __typename: TYPE_MAP[this.args.model.__typename],
+      __typename: typename,
+      [valueKey]: undefined,
     };
 
     // The value depends on where it comes from. If there is a default value
     // present on load the `value.content` will be set. After an update through
     // this component the value will be a POJO on `value`.
     const answer = {
-      ...(this.args._value?.content || this.args._value || newAnswer),
+      ...(this.args.value?.content ?? this.args.value ?? newAnswer),
       question: this.question,
     };
 
@@ -115,8 +120,8 @@ export default class CfbFormEditorQuestionDefault extends Component {
 
     this.args.update({
       [this.field.answer._valueKey]: this.field.answer.serializedValue,
-      __typename: this.field.answer.__typename,
-      id: this.field.answer.id,
+      __typename: this.field.answer.raw.__typename,
+      id: this.field.answer.raw.id,
     });
 
     if (this.field.errors.length > 0) {
