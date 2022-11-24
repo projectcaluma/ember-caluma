@@ -27,14 +27,14 @@ export default {
     validateType("IntegerQuestion", false),
     and(
       validateNumber({ allowBlank: true, integer: true }),
-      validateGtLt({ lt: "integerMaxValue" })
+      validateGtLt({ lt: "integerMaxValue", allowNone: true })
     )
   ),
   integerMaxValue: or(
     validateType("IntegerQuestion", false),
     and(
       validateNumber({ allowBlank: true, integer: true }),
-      validateGtLt({ gt: "integerMinValue" })
+      validateGtLt({ gt: "integerMinValue", allowNone: true })
     )
   ),
 
@@ -42,14 +42,14 @@ export default {
     validateType("FloatQuestion", false),
     and(
       validateNumber({ allowBlank: true }),
-      validateGtLt({ lt: "floatMaxValue" })
+      validateGtLt({ lt: "floatMaxValue", allowNone: true })
     )
   ),
   floatMaxValue: or(
     validateType("FloatQuestion", false),
     and(
       validateNumber({ allowBlank: true }),
-      validateGtLt({ gt: "floatMinValue" })
+      validateGtLt({ gt: "floatMinValue", allowNone: true })
     )
   ),
 
