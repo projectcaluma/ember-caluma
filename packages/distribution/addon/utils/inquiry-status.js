@@ -4,26 +4,6 @@ import { get } from "@ember/object";
 import { createDecorator } from "@projectcaluma/ember-distribution/-private/decorator";
 import { INQUIRY_STATUS } from "@projectcaluma/ember-distribution/config";
 
-export const ICON_MAP = {
-  [INQUIRY_STATUS.DRAFT]: "commenting",
-  [INQUIRY_STATUS.SKIPPED]: "lock",
-  [INQUIRY_STATUS.SENT]: "comment",
-  [INQUIRY_STATUS.IN_PROGRESS]: "file-edit",
-  [INQUIRY_STATUS.POSITIVE]: "check",
-  [INQUIRY_STATUS.NEGATIVE]: "close",
-  [INQUIRY_STATUS.NEEDS_INTERACTION]: "file-text",
-};
-
-export const COLOR_MAP = {
-  [INQUIRY_STATUS.DRAFT]: "muted",
-  [INQUIRY_STATUS.SKIPPED]: "muted",
-  [INQUIRY_STATUS.SENT]: "emphasis",
-  [INQUIRY_STATUS.IN_PROGRESS]: { addressed: "muted", controlling: "emphasis" },
-  [INQUIRY_STATUS.POSITIVE]: "success",
-  [INQUIRY_STATUS.NEGATIVE]: "danger",
-  [INQUIRY_STATUS.NEEDS_INTERACTION]: "warning",
-};
-
 function decorator(
   target,
   key,
@@ -84,7 +64,7 @@ function decorator(
       }
 
       const answer = inquiry.childCase?.document.status.edges[0]?.node;
-      const slug = isSkipped
+      const statusConfig = isSkipped
         ? INQUIRY_STATUS.SKIPPED
         : isInProgress
         ? INQUIRY_STATUS.IN_PROGRESS
@@ -95,13 +75,13 @@ function decorator(
         : this.config.inquiry.answer.statusMapping[answer.value];
 
       return {
-        slug,
+        slug: statusConfig.slug,
         label:
           !isSkipped && !isDraft && !isSent
             ? answer?.selectedOption.label
-            : this.intl.t(`caluma.distribution.status.${slug}`),
-        color: COLOR_MAP[slug][inquiryType] ?? COLOR_MAP[slug],
-        icon: ICON_MAP[slug],
+            : this.intl.t(`caluma.distribution.status.${statusConfig.slug}`),
+        color: statusConfig.color[inquiryType] ?? statusConfig.color,
+        icon: statusConfig.icon,
       };
     },
   };
