@@ -108,15 +108,13 @@ module(
     test("triggers the callback functions", async function (assert) {
       assert.expect(6);
 
-      await render(hbs`
-      <CfField::Input::ActionButton
-        @field={{this.field}}
-        @context={{hash
-          actionButtonOnSuccess=this.success
-          actionButtonOnError=this.error
-        }}
-      />
-    `);
+      await render(hbs`<CfField::Input::ActionButton
+  @field={{this.field}}
+  @context={{hash
+    actionButtonOnSuccess=this.success
+    actionButtonOnError=this.error
+  }}
+/>`);
 
       await click("button.uk-button-secondary");
       await waitFor(".uk-modal.uk-open");

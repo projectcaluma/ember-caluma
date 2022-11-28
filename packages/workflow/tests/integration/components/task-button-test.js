@@ -37,14 +37,14 @@ module("Integration | Component | task-button", function (hooks) {
   });
 
   test("it renders default", async function (assert) {
-    await render(hbs`<TaskButton @mutation="complete" @task="test"/>`);
+    await render(hbs`<TaskButton @mutation="complete" @task="test" />`);
 
     assert.dom("button").hasText("t:caluma.mutate-work-item.complete:()");
   });
 
   test("it renders label", async function (assert) {
     await render(
-      hbs`<TaskButton @mutation="complete" @task="test" @label="Lorem Ipsum"/>`
+      hbs`<TaskButton @mutation="complete" @task="test" @label="Lorem Ipsum" />`
     );
 
     assert.dom("button").hasText("Lorem Ipsum");
@@ -52,7 +52,8 @@ module("Integration | Component | task-button", function (hooks) {
 
   test("it renders block", async function (assert) {
     await render(
-      hbs`<TaskButton @mutation="complete" @task="test">Lorem Ipsum</TaskButton>`
+      hbs`{{! template-lint-disable no-bare-strings }}
+<TaskButton @mutation="complete" @task="test">Lorem Ipsum</TaskButton>`
     );
 
     assert.dom("button").hasText("Lorem Ipsum");

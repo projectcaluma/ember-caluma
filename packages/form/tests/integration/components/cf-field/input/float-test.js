@@ -47,10 +47,7 @@ module("Integration | Component | cf-field/input/float", function (hooks) {
     assert.expect(2);
 
     await render(
-      hbs`<CfField::Input::Float
-        @field={{this.field}}
-        @disabled={{true}}
-      />`
+      hbs`<CfField::Input::Float @field={{this.field}} @disabled={{true}} />`
     );
 
     assert.dom("input").hasAttribute("readonly");
@@ -63,10 +60,7 @@ module("Integration | Component | cf-field/input/float", function (hooks) {
     this.set("save", (value) => assert.strictEqual(value, 1.5));
 
     await render(
-      hbs`<CfField::Input::Float
-        @field={{this.field}}
-        @onSave={{this.save}}
-      />`
+      hbs`<CfField::Input::Float @field={{this.field}} @onSave={{this.save}} />`
     );
 
     await fillIn("input", 1.5);
@@ -78,10 +72,7 @@ module("Integration | Component | cf-field/input/float", function (hooks) {
     this.set("save", (value) => assert.strictEqual(value, null));
 
     await render(
-      hbs`<CfField::Input::Float
-        @field={{this.field}}
-        @onSave={{this.save}}
-      />`
+      hbs`<CfField::Input::Float @field={{this.field}} @onSave={{this.save}} />`
     );
 
     await fillIn("input", "Test");

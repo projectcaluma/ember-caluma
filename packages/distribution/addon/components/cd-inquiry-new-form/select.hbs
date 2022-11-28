@@ -38,6 +38,7 @@
         <tr
           role="checkbox"
           data-test-group={{group.identifier}}
+          aria-checked={{includes group.identifier @selectedGroups}}
           {{on "click" (fn this.updateSelectedGroups group.identifier)}}
         >
           <td class="uk-padding-remove-right">

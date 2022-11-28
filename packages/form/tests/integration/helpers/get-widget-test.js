@@ -12,7 +12,11 @@ module("Integration | Helper | get-widget", function (hooks) {
   hooks.beforeEach(function () {
     // eslint-disable-next-line ember/no-empty-glimmer-component-classes
     class SomeComponent extends Component {}
-    setComponentTemplate(hbs`some-component`, SomeComponent);
+    setComponentTemplate(
+      hbs`{{! template-lint-disable no-bare-strings }}
+some-component`,
+      SomeComponent
+    );
 
     this.SomeComponent = SomeComponent;
 
@@ -25,58 +29,38 @@ module("Integration | Helper | get-widget", function (hooks) {
       component: "some-component",
     });
 
-    await render(hbs`
-      {{component
-        (ensure-safe-component
-          (get-widget
-            (hash
-              raw=(hash
-                meta=(hash widgetOverride="some-component")
-              )
-            )
-          )
-        )
-      }}
-    `);
+    await render(hbs`{{component
+  (ensure-safe-component
+    (get-widget (hash raw=(hash meta=(hash widgetOverride="some-component"))))
+  )
+}}`);
 
     assert.dom(this.element).hasText("some-component");
   });
 
   test("it doesn't return an invalid override", async function (assert) {
-    await render(hbs`
-      {{component
-        (ensure-safe-component
-          (get-widget
-            (hash
-              raw=(hash
-                meta=(hash widgetOverride="some-component")
-              )
-            )
-          )
-        )
-        field=(hash question=(hash raw=(hash __typename="TextQuestion")))
-      }}
-    `);
+    await render(hbs`{{component
+  (ensure-safe-component
+    (get-widget (hash raw=(hash meta=(hash widgetOverride="some-component"))))
+  )
+  field=(hash question=(hash raw=(hash __typename="TextQuestion")))
+}}`);
 
     assert.dom("input").exists();
   });
 
   test("it has a fallback", async function (assert) {
-    await render(hbs`
-      {{component
-        (ensure-safe-component (get-widget null))
-        field=(hash question=(hash raw=(hash __typename="TextQuestion")))
-      }}
-    `);
+    await render(hbs`{{component
+  (ensure-safe-component (get-widget null))
+  field=(hash question=(hash raw=(hash __typename="TextQuestion")))
+}}`);
 
     assert.dom("input").exists();
 
-    await render(hbs`
-      {{component
-        (ensure-safe-component (get-widget undefined))
-        field=(hash question=(hash raw=(hash __typename="TextQuestion")))
-      }}
-    `);
+    await render(hbs`{{component
+  (ensure-safe-component (get-widget undefined))
+  field=(hash question=(hash raw=(hash __typename="TextQuestion")))
+}}`);
 
     assert.dom("input").exists();
   });
@@ -95,17 +79,15 @@ module("Integration | Helper | get-widget", function (hooks) {
       component: "some-component",
     });
 
-    await render(hbs`
-      {{component
-        (ensure-safe-component
-          (get-widget
-            null
-            (hash raw=(hash meta=(hash widgetOverride="some-invalid-component")))
-            (hash raw=(hash meta=(hash widgetOverride="some-component")))
-          )
-        )
-      }}
-    `);
+    await render(hbs`{{component
+  (ensure-safe-component
+    (get-widget
+      null
+      (hash raw=(hash meta=(hash widgetOverride="some-invalid-component")))
+      (hash raw=(hash meta=(hash widgetOverride="some-component")))
+    )
+  )
+}}`);
 
     assert.dom(this.element).hasText("some-component");
   });
@@ -117,19 +99,11 @@ module("Integration | Helper | get-widget", function (hooks) {
       componentClass: this.SomeComponent,
     });
 
-    await render(hbs`
-      {{component
-        (ensure-safe-component
-          (get-widget
-            (hash
-              raw=(hash
-                meta=(hash widgetOverride="some-component")
-              )
-            )
-          )
-        )
-      }}
-    `);
+    await render(hbs`{{component
+  (ensure-safe-component
+    (get-widget (hash raw=(hash meta=(hash widgetOverride="some-component"))))
+  )
+}}`);
 
     assert.dom(this.element).hasText("some-component");
   });

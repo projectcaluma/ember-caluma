@@ -23,7 +23,11 @@ module(
       });
 
       await render(
-        hbs`<CaFieldSelectorList::CaFieldFunctionSelect @update={{this.update}} @field={{this.field}} @tableSlug={{"test"}} />`
+        hbs`<CaFieldSelectorList::CaFieldFunctionSelect
+  @update={{this.update}}
+  @field={{this.field}}
+  @tableSlug={{"test"}}
+/>`
       );
 
       const requests = this.server.pretender.handledRequests;

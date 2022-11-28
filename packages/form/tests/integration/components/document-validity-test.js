@@ -34,17 +34,20 @@ module("Integration | Component | document-validity", function (hooks) {
   test("it checks validity", async function (assert) {
     assert.expect(1);
 
-    await render(hbs`
-      <DocumentValidity @document={{this.document}} @validateOnEnter={{true}} as |isValid|>
-        <p>
-          {{#if isValid}}
-            Valid
-          {{else}}
-            Invalid
-          {{/if}}
-        </p>
-      </DocumentValidity>
-    `);
+    await render(hbs`{{! template-lint-disable no-bare-strings }}
+<DocumentValidity
+  @document={{this.document}}
+  @validateOnEnter={{true}}
+  as |isValid|
+>
+  <p>
+    {{#if isValid}}
+      Valid
+    {{else}}
+      Invalid
+    {{/if}}
+  </p>
+</DocumentValidity>`);
 
     await scrollTo("p", 0, 0);
 
@@ -56,18 +59,17 @@ module("Integration | Component | document-validity", function (hooks) {
 
     await this.makeInvalid();
 
-    await render(hbs`
-      <DocumentValidity @document={{this.document}} as |isValid validate|>
-        <p>
-          {{#if isValid}}
-            Valid
-          {{else}}
-            Invalid
-          {{/if}}
-        </p>
-        <button {{on "click" validate}}>Validate!</button>
-      </DocumentValidity>
-    `);
+    await render(hbs`{{! template-lint-disable no-bare-strings }}
+<DocumentValidity @document={{this.document}} as |isValid validate|>
+  <p>
+    {{#if isValid}}
+      Valid
+    {{else}}
+      Invalid
+    {{/if}}
+  </p>
+  <button type="button" {{on "click" validate}}>Validate!</button>
+</DocumentValidity>`);
 
     assert.dom("p").hasText("Valid");
     await click("button");
@@ -83,16 +85,15 @@ module("Integration | Component | document-validity", function (hooks) {
     this.onInvalid = () => assert.step("invalid");
     this.onValid = () => assert.step("valid");
 
-    await render(hbs`
-      <DocumentValidity
-        @document={{this.document}}
-        @onValid={{this.onValid}}
-        @onInvalid={{this.onInvalid}}
-        as |isValid validate|
-      >
-        <button {{on "click" validate}}></button>
-      </DocumentValidity>
-    `);
+    await render(hbs`{{! template-lint-disable no-bare-strings }}
+<DocumentValidity
+  @document={{this.document}}
+  @onValid={{this.onValid}}
+  @onInvalid={{this.onInvalid}}
+  as |isValid validate|
+>
+  <button type="button" {{on "click" validate}}></button>
+</DocumentValidity>`);
 
     await this.makeInvalid();
     await click("button");

@@ -17,7 +17,7 @@ module("Integration | Component | ca-field-select", function (hooks) {
   test.skip("it renders", async function (assert) {
     assert.expect(1);
 
-    await render(hbs`<CaFieldSelect @path="" @onSelect={{this.update}}/>`);
+    await render(hbs`<CaFieldSelect @path="" @onSelect={{this.update}} />`);
 
     assert.dom(this.element).exists();
   });
@@ -26,7 +26,7 @@ module("Integration | Component | ca-field-select", function (hooks) {
     assert.expect(2);
 
     await render(
-      hbs`<CaFieldSelect @path="" @child={{true}} @onSelect={{this.update}}/>`
+      hbs`<CaFieldSelect @path="" @child={{true}} @onSelect={{this.update}} />`
     );
 
     assert.dom(this.element).exists();
@@ -38,10 +38,9 @@ module("Integration | Component | ca-field-select", function (hooks) {
 
     // TODO: setup mirage to satisfy *fetchOptions
 
-    await render(hbs`<CaFieldSelect
-      @selectedPath={{this.path}}
-      @onSelect={{this.update}}
-    />`);
+    await render(
+      hbs`<CaFieldSelect @selectedPath={{this.path}} @onSelect={{this.update}} />`
+    );
 
     assert
       .dom("[data-test-field-select-primary-selector]")
@@ -60,10 +59,10 @@ module("Integration | Component | ca-field-select", function (hooks) {
     this.set("path", "grandpa.father.son");
 
     await render(hbs`<CaFieldSelect
-      @selectedPath={{this.path}}
-      @parentPath=""
-      @onSelect={{this.update}}
-    />`);
+  @selectedPath={{this.path}}
+  @parentPath=""
+  @onSelect={{this.update}}
+/>`);
 
     assert
       .dom("[data-test-field-select-primary-selector]")
@@ -96,10 +95,9 @@ module("Integration | Component | ca-field-select", function (hooks) {
 
       this.set("path", "grandpa.father.son");
 
-      await render(hbs`<CaFieldSelect
-        @selectedPath={{this.path}}
-        @onSelect={{this.update}}
-      />`);
+      await render(
+        hbs`<CaFieldSelect @selectedPath={{this.path}} @onSelect={{this.update}} />`
+      );
       selectChoose(".ember-power-select-trigger", "father");
 
       assert.verifySteps(["selection"]);

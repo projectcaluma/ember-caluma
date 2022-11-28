@@ -21,7 +21,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
       description: "Test Description",
     });
 
-    await render(hbs`<CfbFormEditor::General @slug='test-slug' />`);
+    await render(hbs`<CfbFormEditor::General @slug="test-slug" />`);
 
     assert.dom("input[name=name]").hasValue("Test Name");
     assert.dom("input[name=slug]").hasValue("test-slug");
@@ -38,7 +38,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
       description: "Test Description",
     });
 
-    await render(hbs`<CfbFormEditor::General @slug='test-slug' />`);
+    await render(hbs`<CfbFormEditor::General @slug="test-slug" />`);
 
     await fillIn("input[name=name]", "");
     await blur("input[name=name]");
@@ -120,7 +120,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
     });
 
     await render(
-      hbs`<CfbFormEditor::General @slug='test-slug' @onAfterSubmit={{this.afterSubmit}} />`
+      hbs`<CfbFormEditor::General @slug="test-slug" @onAfterSubmit={{this.afterSubmit}} />`
     );
 
     await fillIn("input[name=name]", "Test Name 1");
@@ -144,10 +144,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
 
     // edit form
     await render(
-      hbs`<CfbFormEditor::General
-        @slug='test-form'
-        @onAfterSubmit={{this.afterSubmit}}
-      />`
+      hbs`<CfbFormEditor::General @slug="test-form" @onAfterSubmit={{this.afterSubmit}} />`
     );
 
     this.server.post("/graphql", () => graphqlError("saveForm"), 200);
@@ -155,9 +152,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
 
     // new form
     await render(
-      hbs`<CfbFormEditor::General
-        @slug={{null}}
-        @onAfterSubmit={{this.afterSubmit}}/>`
+      hbs`<CfbFormEditor::General @slug={{null}} @onAfterSubmit={{this.afterSubmit}} />`
     );
 
     // Slug validation must be valid
@@ -181,7 +176,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
       data: { allForms: { edges: [], __typename: "FormEdges" } },
     }));
 
-    await render(hbs`<CfbFormEditor::General @slug='test-slug'/>`);
+    await render(hbs`<CfbFormEditor::General @slug="test-slug" />`);
 
     assert
       .dom("p")

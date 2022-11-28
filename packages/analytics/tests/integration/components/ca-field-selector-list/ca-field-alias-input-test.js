@@ -21,7 +21,10 @@ module(
       });
 
       await render(
-        hbs`<CaFieldSelectorList::CaFieldAliasInput @value={{this.alias}} @onInput={{this.onSave}} />`
+        hbs`<CaFieldSelectorList::CaFieldAliasInput
+  @value={{this.alias}}
+  @onInput={{this.onSave}}
+/>`
       );
       assert.dom("[data-test-field-alias-input]").hasValue(this.alias);
 

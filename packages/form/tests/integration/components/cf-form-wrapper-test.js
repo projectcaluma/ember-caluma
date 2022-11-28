@@ -18,11 +18,10 @@ module("Integration | Component | cf-form-wrapper", function (hooks) {
     assert.dom(this.element).hasText("");
 
     // Template block usage:
-    await render(hbs`
-      <CfFormWrapper>
-        template block text
-      </CfFormWrapper>
-    `);
+    await render(hbs`{{! template-lint-disable no-bare-strings }}
+<CfFormWrapper>
+  template block text
+</CfFormWrapper>`);
 
     assert.dom(this.element).hasText("template block text");
   });

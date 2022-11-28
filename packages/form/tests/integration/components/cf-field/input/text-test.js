@@ -18,19 +18,13 @@ module("Integration | Component | cf-field/input/text", function (hooks) {
   test("it renders", async function (assert) {
     assert.expect(4);
 
-    await render(hbs`
-      <CfField::Input::Text
-        @field={{hash
-          pk="test"
-          answer=(hash
-            value="Test"
-          )
-          question=(hash
-            textMaxLength=5
-          )
-        }}
-      />
-    `);
+    await render(hbs`<CfField::Input::Text
+  @field={{hash
+    pk="test"
+    answer=(hash value="Test")
+    question=(hash textMaxLength=5)
+  }}
+/>`);
 
     assert.dom("input").hasClass("uk-input");
     assert.dom("input").hasAttribute("name", "test");

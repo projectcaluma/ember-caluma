@@ -33,20 +33,16 @@ class QueryComponent extends Component {
 }
 
 setComponentTemplate(
-  hbs`
-    <button id="toggle" type="button" {{on "click" this.toggle}}>toggle</button>
-    <ul
-      {{did-insert this.fetch}}
-      {{did-update this.fetch this.status}}
-    >
-      {{#each this.query.value as |item|}}
-        <li>{{item.id}}</li>
-      {{/each}}
-    </ul>
-    {{#if this.query.hasNextPage}}
-      <button id="more" type="button" {{on "click" this.more}}>more</button>
-    {{/if}}
-  `,
+  hbs`{{! template-lint-disable no-bare-strings }}
+<button id="toggle" type="button" {{on "click" this.toggle}}>toggle</button>
+<ul {{did-insert this.fetch}} {{did-update this.fetch this.status}}>
+  {{#each this.query.value as |item|}}
+    <li>{{item.id}}</li>
+  {{/each}}
+</ul>
+{{#if this.query.hasNextPage}}
+  <button id="more" type="button" {{on "click" this.more}}>more</button>
+{{/if}}`,
   QueryComponent
 );
 

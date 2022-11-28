@@ -8,14 +8,12 @@ module("Integration | Component | cfb-code-editor", function (hooks) {
   setupRenderingTest(hooks);
 
   test("it updates value", async function (assert) {
-    await render(hbs`
-      <CfbCodeEditor
-        @name="editor"
-        @language="jexl"
-        @update={{fn (mut this.value)}}
-        @setDirty={{fn (mut this.dirty) true}}
-      />
-    `);
+    await render(hbs`<CfbCodeEditor
+  @name="editor"
+  @language="jexl"
+  @update={{fn (mut this.value)}}
+  @setDirty={{fn (mut this.dirty) true}}
+/>`);
 
     // use `typeIn` because codejar listens to keydown event
     await typeIn("[name=editor]", "1 + 1");
@@ -32,15 +30,13 @@ module("Integration | Component | cfb-code-editor", function (hooks) {
   test("it updates value on change from outside", async function (assert) {
     this.value = "true";
 
-    await render(hbs`
-      <CfbCodeEditor
-        @name="editor"
-        @value={{this.value}}
-        @language="jexl"
-        @update={{fn (mut this.value)}}
-        @setDirty={{fn (mut this.dirty) true}}
-      />
-    `);
+    await render(hbs`<CfbCodeEditor
+  @name="editor"
+  @value={{this.value}}
+  @language="jexl"
+  @update={{fn (mut this.value)}}
+  @setDirty={{fn (mut this.dirty) true}}
+/>`);
 
     assert.dom(this.element).hasText("true");
 
@@ -53,15 +49,13 @@ module("Integration | Component | cfb-code-editor", function (hooks) {
   test("it updates json data", async function (assert) {
     this.value = {};
 
-    await render(hbs`
-      <CfbCodeEditor
-        @name="editor"
-        @value={{this.value}}
-        @language="json"
-        @update={{fn (mut this.value)}}
-        @setDirty={{fn (mut this.dirty) true}}
-      />
-    `);
+    await render(hbs`<CfbCodeEditor
+  @name="editor"
+  @value={{this.value}}
+  @language="json"
+  @update={{fn (mut this.value)}}
+  @setDirty={{fn (mut this.dirty) true}}
+/>`);
 
     await fillIn("[name=editor]", `{"bar":"baz"}`);
     await typeIn("[name=editor]", " ");
