@@ -68,15 +68,12 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
   });
 
   test("it renders", async function (assert) {
-    await render(hbs`
-      <CdInquiryNewForm
-        @selectedTypes={{this.selectedTypes}}
-        @search={{this.search}}
-
-        @onChangeSelectedTypes={{fn (mut this.selectedTypes)}}
-        @onChangeSearch={{fn (mut this.search)}}
-      />
-    `);
+    await render(hbs`<CdInquiryNewForm
+  @selectedTypes={{this.selectedTypes}}
+  @search={{this.search}}
+  @onChangeSelectedTypes={{fn (mut this.selectedTypes)}}
+  @onChangeSearch={{fn (mut this.search)}}
+/>`);
 
     assert.dom("button[data-test-type]").exists({ count: 2 });
     assert.dom("tr[data-test-group]").exists({ count: 2 });
@@ -92,15 +89,12 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
   });
 
   test("it can select and reset groups", async function (assert) {
-    await render(hbs`
-      <CdInquiryNewForm
-        @selectedTypes={{this.selectedTypes}}
-        @search={{this.search}}
-
-        @onChangeSelectedTypes={{fn (mut this.selectedTypes)}}
-        @onChangeSearch={{fn (mut this.search)}}
-      />
-    `);
+    await render(hbs`<CdInquiryNewForm
+  @selectedTypes={{this.selectedTypes}}
+  @search={{this.search}}
+  @onChangeSelectedTypes={{fn (mut this.selectedTypes)}}
+  @onChangeSearch={{fn (mut this.search)}}
+/>`);
 
     assert.dom("ul[data-test-selected-groups]").doesNotExist();
 
@@ -121,15 +115,12 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
       assert.deepEqual(model, { from: "1", to: "2" });
     };
 
-    await render(hbs`
-      <CdInquiryNewForm
-        @selectedTypes={{this.selectedTypes}}
-        @search={{this.search}}
-
-        @onChangeSelectedTypes={{fn (mut this.selectedTypes)}}
-        @onChangeSearch={{fn (mut this.search)}}
-      />
-    `);
+    await render(hbs`<CdInquiryNewForm
+  @selectedTypes={{this.selectedTypes}}
+  @search={{this.search}}
+  @onChangeSelectedTypes={{fn (mut this.selectedTypes)}}
+  @onChangeSearch={{fn (mut this.search)}}
+/>`);
 
     await click("tr[data-test-group='2']");
     await click("tr[data-test-group='3']");

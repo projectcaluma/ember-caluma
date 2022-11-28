@@ -56,9 +56,7 @@ module("Integration | Component | cd-navigation/section", function (hooks) {
 
     this.owner.lookup("service:router").isActive = () => true;
 
-    await render(hbs`
-        <CdNavigation::Section @type={{this.type}} />
-      `);
+    await render(hbs`<CdNavigation::Section @type={{this.type}} />`);
 
     assert
       .dom("li:first-of-type > a")

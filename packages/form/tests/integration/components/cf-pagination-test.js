@@ -18,11 +18,10 @@ module("Integration | Component | cf-pagination", function (hooks) {
     assert.dom(this.element).hasText("");
 
     // Template block usage:
-    await render(hbs`
-      <CfPagination>
-        template block text
-      </CfPagination>
-    `);
+    await render(hbs`{{! template-lint-disable no-bare-strings }}
+<CfPagination>
+  template block text
+</CfPagination>`);
 
     assert.dom(this.element).hasText("template block text");
   });

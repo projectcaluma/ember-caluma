@@ -105,7 +105,10 @@ module(
       });
 
       await render(
-        hbs`<CfField::Input::Powerselect @field={{this.singleChoiceField}} @onSave={{this.onSave}} />`
+        hbs`<CfField::Input::Powerselect
+  @field={{this.singleChoiceField}}
+  @onSave={{this.onSave}}
+/>`
       );
 
       assert.dom(".ember-power-select-trigger").exists();
@@ -135,7 +138,10 @@ module(
       });
 
       await render(
-        hbs`<CfField::Input::Powerselect @field={{this.multipleChoiceField}} @onSave={{this.onSave}} />`
+        hbs`<CfField::Input::Powerselect
+  @field={{this.multipleChoiceField}}
+  @onSave={{this.onSave}}
+/>`
       );
 
       // Check if select is being rendered.
@@ -165,7 +171,10 @@ module(
       });
 
       await render(
-        hbs`<CfField::Input::Powerselect @field={{this.multipleChoiceField}} @onSave={{this.onSave}} />`
+        hbs`<CfField::Input::Powerselect
+  @field={{this.multipleChoiceField}}
+  @onSave={{this.onSave}}
+/>`
       );
 
       this.set("multipleChoiceField.answer.value", ["option-1"]);

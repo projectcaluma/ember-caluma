@@ -21,7 +21,7 @@ module("Integration | Component | work-item-button", function (hooks) {
 
   test("it renders label", async function (assert) {
     await render(
-      hbs`<WorkItemButton @mutation="complete" @workItemId="test" @label="Lorem Ipsum"/>`
+      hbs`<WorkItemButton @mutation="complete" @workItemId="test" @label="Lorem Ipsum" />`
     );
 
     assert.dom("button").hasText("Lorem Ipsum");
@@ -29,7 +29,8 @@ module("Integration | Component | work-item-button", function (hooks) {
 
   test("it renders block", async function (assert) {
     await render(
-      hbs`<WorkItemButton @mutation="complete" @workItemId="test">Lorem Ipsum</WorkItemButton>`
+      hbs`{{! template-lint-disable no-bare-strings }}
+<WorkItemButton @mutation="complete" @workItemId="test">Lorem Ipsum</WorkItemButton>`
     );
 
     assert.dom("button").hasText("Lorem Ipsum");
@@ -79,7 +80,11 @@ module("Integration | Component | work-item-button", function (hooks) {
     };
 
     await render(
-      hbs`<WorkItemButton @mutation="complete" @workItemId="test" @beforeMutate={{this.beforeMutate}} />`
+      hbs`<WorkItemButton
+  @mutation="complete"
+  @workItemId="test"
+  @beforeMutate={{this.beforeMutate}}
+/>`
     );
 
     await click("button");

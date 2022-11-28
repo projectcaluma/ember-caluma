@@ -51,21 +51,19 @@ module("Integration | Component | ca-report-builder", function (hooks) {
   });
 
   test("it renders the table from slug", async function (assert) {
-    await render(hbs`
-      <CaReportBuilder
-        @on-add={{this.onAdd}}
-        @analyticsTable={{this.analyticsTable}}
-      />`);
+    await render(hbs`<CaReportBuilder
+  @on-add={{this.onAdd}}
+  @analyticsTable={{this.analyticsTable}}
+/>`);
 
     assert.dom("[data-test-analytics-table]").exists();
   });
 
   todo("the form for creating new fields works", async function (assert) {
-    await render(hbs`
-      <CaReportBuilder
-        @on-add={{this.onAdd}}
-        @analyticsTable={{this.analyticsTable}}
-      />`);
+    await render(hbs`<CaReportBuilder
+  @on-add={{this.onAdd}}
+  @analyticsTable={{this.analyticsTable}}
+/>`);
 
     assert.dom("input[name=alias]").exists({ count: 1 });
     // assert.dom("input[name=alias]").("test");

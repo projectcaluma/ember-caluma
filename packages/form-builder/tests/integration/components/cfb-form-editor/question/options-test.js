@@ -23,7 +23,7 @@ module(
       });
 
       await render(
-        hbs`<CfbFormEditor::Question::Options @model={{this.model}} @value={{this.value}}/>`
+        hbs`<CfbFormEditor::Question::Options @model={{this.model}} @value={{this.value}} />`
       );
 
       // one is the add row
@@ -41,7 +41,7 @@ module(
       });
 
       await render(
-        hbs`<CfbFormEditor::Question::Options @model={{this.model}} @value={{this.value}}/>`
+        hbs`<CfbFormEditor::Question::Options @model={{this.model}} @value={{this.value}} />`
       );
 
       assert.dom("li").exists({ count: 2 });
@@ -60,7 +60,12 @@ module(
       this.set("noop", () => {});
 
       await render(
-        hbs`<CfbFormEditor::Question::Options @model={{this.model}} @value={{this.value}} @update={{this.noop}} @setDirty={{this.noop}}/>`
+        hbs`<CfbFormEditor::Question::Options
+  @model={{this.model}}
+  @value={{this.value}}
+  @update={{this.noop}}
+  @setDirty={{this.noop}}
+/>`
       );
 
       await click("[data-test-add-row]");
@@ -81,7 +86,12 @@ module(
       this.set("noop", () => {});
 
       await render(
-        hbs`<CfbFormEditor::Question::Options @model={{this.model}} @value={{this.value}} @update={{this.noop}} @setDirty={{this.noop}}/>`
+        hbs`<CfbFormEditor::Question::Options
+  @model={{this.model}}
+  @value={{this.value}}
+  @update={{this.noop}}
+  @setDirty={{this.noop}}
+/>`
       );
 
       assert.dom("li").exists({ count: 3 });
@@ -105,7 +115,12 @@ module(
       this.set("setDirty", () => {});
 
       await render(
-        hbs`<CfbFormEditor::Question::Options @model={{this.model}} @value={{this.value}} @update={{this.update}} @setDirty={{this.setDirty}}/>`
+        hbs`<CfbFormEditor::Question::Options
+  @model={{this.model}}
+  @value={{this.value}}
+  @update={{this.update}}
+  @setDirty={{this.setDirty}}
+/>`
       );
 
       // add some new rows (only one will be filled)
@@ -159,7 +174,12 @@ module(
       this.set("noop", () => {});
 
       await render(
-        hbs`<CfbFormEditor::Question::Options @model={{this.model}} @value={{this.value}} @update={{this.noop}} @setDirty={{this.noop}}/>`
+        hbs`<CfbFormEditor::Question::Options
+  @model={{this.model}}
+  @value={{this.value}}
+  @update={{this.noop}}
+  @setDirty={{this.noop}}
+/>`
       );
 
       assert.dom("[data-test-row]").exists({ count: 2 });

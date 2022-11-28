@@ -279,12 +279,9 @@ module("Integration | Component | cf-field/input/table", function (hooks) {
         assert.step("save");
       };
 
-      await render(hbs`
-        <CfField::Input::Table
-          @field={{this.field}}
-          @onSave={{this.save}}
-        />
-      `);
+      await render(
+        hbs`<CfField::Input::Table @field={{this.field}} @onSave={{this.save}} />`
+      );
 
       await click("[data-test-add-row]");
 
@@ -306,11 +303,7 @@ module("Integration | Component | cf-field/input/table", function (hooks) {
     test("it can edit a row", async function (assert) {
       assert.expect(1);
 
-      await render(hbs`
-        <CfField::Input::Table
-          @field={{this.field}}
-        />
-      `);
+      await render(hbs`<CfField::Input::Table @field={{this.field}} />`);
 
       await click("[data-test-edit-row]");
 
@@ -335,12 +328,9 @@ module("Integration | Component | cf-field/input/table", function (hooks) {
         assert.step("save");
       };
 
-      await render(hbs`
-        <CfField::Input::Table
-          @field={{this.field}}
-          @onSave={{this.save}}
-        />
-      `);
+      await render(
+        hbs`<CfField::Input::Table @field={{this.field}} @onSave={{this.save}} />`
+      );
 
       await click("[data-test-delete-row]");
       await click("button[autofocus]");

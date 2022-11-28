@@ -16,11 +16,10 @@ module("Integration | Component | ca-filter-modal", function (hooks) {
     assert.dom(this.element).hasText("");
 
     // Template block usage:
-    await render(hbs`
-      <CaFilterModal>
-        template block text
-      </CaFilterModal>
-    `);
+    await render(hbs`{{! template-lint-disable no-bare-strings }}
+<CaFilterModal>
+  template block text
+</CaFilterModal>`);
 
     assert.dom(this.element).hasText("template block text");
   });

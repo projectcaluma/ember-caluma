@@ -22,7 +22,7 @@ module("Integration | Component | cfb-form-editor", function (hooks) {
   test("it renders blockless", async function (assert) {
     assert.expect(1);
 
-    await render(hbs`<CfbFormEditor @slug='test-slug'/>`);
+    await render(hbs`<CfbFormEditor @slug="test-slug" />`);
 
     assert.dom("[data-test-question-list-item]").exists({ count: 5 });
   });
@@ -30,11 +30,10 @@ module("Integration | Component | cfb-form-editor", function (hooks) {
   test("it renders block style", async function (assert) {
     assert.expect(2);
 
-    await render(hbs`
-      <CfbFormEditor @slug='test-slug'>
-        Content!
-      </CfbFormEditor>
-    `);
+    await render(hbs`{{! template-lint-disable no-bare-strings }}
+<CfbFormEditor @slug="test-slug">
+  Content!
+</CfbFormEditor>`);
 
     assert.dom("[uk-grid] > div:first-of-type").hasText("Content!");
     assert.dom("[data-test-question-list]").exists();

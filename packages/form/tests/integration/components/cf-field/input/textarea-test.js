@@ -20,21 +20,13 @@ module("Integration | Component | cf-field/input/textarea", function (hooks) {
   test("it renders", async function (assert) {
     assert.expect(4);
 
-    await render(hbs`
-      <CfField::Input::Textarea
-        @field={{hash
-          pk="test"
-          answer=(hash
-            value="Test Test Test"
-          )
-          question=(hash
-            raw=(hash
-              textareaMaxLength=200
-            )
-          )
-        }}
-      />
-    `);
+    await render(hbs`<CfField::Input::Textarea
+  @field={{hash
+    pk="test"
+    answer=(hash value="Test Test Test")
+    question=(hash raw=(hash textareaMaxLength=200))
+  }}
+/>`);
 
     assert.dom("textarea").hasClass("uk-textarea");
     assert.dom("textarea").hasAttribute("name", "test");

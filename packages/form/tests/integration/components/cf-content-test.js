@@ -305,12 +305,9 @@ module("Integration | Component | cf-content", function (hooks) {
       assert.step("save");
     };
 
-    await render(hbs`
-      <CfContent
-        @documentId={{this.document.id}}
-        @onSave={{this.save}}
-      />
-    `);
+    await render(
+      hbs`<CfContent @documentId={{this.document.id}} @onSave={{this.save}} />`
+    );
 
     await fillIn(
       `[name="Document:${this.document.id}:Question:${question}"]`,

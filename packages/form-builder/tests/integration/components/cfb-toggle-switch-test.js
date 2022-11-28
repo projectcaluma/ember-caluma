@@ -14,13 +14,11 @@ module("Integration | Component | cfb-toggle-switch", function (hooks) {
 
     this.set("value", false);
 
-    await render(hbs`
-      <CfbToggleSwitch
-        @name='test'
-        @value={{this.value}}
-        @update={{fn (mut this.value)}}
-      />
-    `);
+    await render(hbs`<CfbToggleSwitch
+  @name="test"
+  @value={{this.value}}
+  @update={{fn (mut this.value)}}
+/>`);
 
     assert.dom("input[name=test]").isNotChecked();
 
@@ -40,13 +38,9 @@ module("Integration | Component | cfb-toggle-switch", function (hooks) {
       this.set("value", value);
     });
 
-    await render(hbs`
-      <CfbToggleSwitch
-        @name='test'
-        @value={{this.value}}
-        @update={{this.update}}
-      />
-    `);
+    await render(
+      hbs`<CfbToggleSwitch @name="test" @value={{this.value}} @update={{this.update}} />`
+    );
 
     assert.dom("input[name=test]").isNotChecked();
 

@@ -18,22 +18,13 @@ module("Integration | Component | cf-field/input/integer", function (hooks) {
   test("it renders", async function (assert) {
     assert.expect(7);
 
-    await render(hbs`
-      <CfField::Input::Integer
-        @field={{hash
-          pk="test"
-          answer=(hash
-            value=3
-          )
-          question=(hash
-            raw=(hash
-              integerMinValue=1
-              integerMaxValue=5
-            )
-          )
-        }}
-      />
-    `);
+    await render(hbs`<CfField::Input::Integer
+  @field={{hash
+    pk="test"
+    answer=(hash value=3)
+    question=(hash raw=(hash integerMinValue=1 integerMaxValue=5))
+  }}
+/>`);
 
     assert.dom("input").hasClass("uk-input");
     assert.dom("input").hasAttribute("name", "test");
