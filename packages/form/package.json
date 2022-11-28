@@ -1,6 +1,6 @@
 {
   "name": "@projectcaluma/ember-form",
-  "version": "11.0.0-beta.38",
+  "version": "11.0.0-beta.39",
   "description": "Ember addon for rendering Caluma forms.",
   "keywords": [
     "ember-addon"
@@ -19,7 +19,7 @@
     "@embroider/util": "^1.9.0",
     "@glimmer/component": "^1.1.2",
     "@glimmer/tracking": "^1.1.2",
-    "@projectcaluma/ember-core": "^11.0.0-beta.38",
+    "@projectcaluma/ember-core": "^11.0.0-beta.39",
     "ember-apollo-client": "~4.0.2",
     "ember-auto-import": "^2.4.3",
     "ember-autoresize-modifier": "^0.6.0",
@@ -48,8 +48,8 @@
     "@ember/test-helpers": "2.7.0",
     "@embroider/test-setup": "2.0.0",
     "@faker-js/faker": "7.6.0",
-    "@projectcaluma/ember-testing": "11.0.0-beta.38",
-    "@projectcaluma/ember-workflow": "^11.0.0-beta.38",
+    "@projectcaluma/ember-testing": "11.0.0-beta.39",
+    "@projectcaluma/ember-workflow": "^11.0.0-beta.39",
     "broccoli-asset-rev": "3.0.0",
     "ember-cli": "4.8.0",
     "ember-cli-code-coverage": "1.0.3",
@@ -74,7 +74,7 @@
     "webpack": "5.75.0"
   },
   "peerDependencies": {
-    "@projectcaluma/ember-workflow": "^11.0.0-beta.38"
+    "@projectcaluma/ember-workflow": "^11.0.0-beta.39"
   },
   "peerDependenciesMeta": {
     "@projectcaluma/ember-workflow": {
