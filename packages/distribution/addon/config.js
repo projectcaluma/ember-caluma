@@ -3,13 +3,21 @@ import merge from "lodash.merge";
 import { cached } from "tracked-toolbox";
 
 export const INQUIRY_STATUS = {
-  DRAFT: "draft",
-  SKIPPED: "skipped",
-  SENT: "sent",
-  IN_PROGRESS: "in-progress",
-  POSITIVE: "positive",
-  NEGATIVE: "negative",
-  NEEDS_INTERACTION: "needs-interaction",
+  DRAFT: { slug: "draft", icon: "commenting", color: "muted" },
+  SKIPPED: { slug: "skipped", icon: "lock", color: "muted" },
+  SENT: { slug: "sent", icon: "comment", color: "emphasis" },
+  IN_PROGRESS: {
+    slug: "in-progress",
+    icon: "file-edit",
+    color: { addressed: "muted", controlling: "emphasis" },
+  },
+  POSITIVE: { slug: "positive", icon: "check", color: "success" },
+  NEGATIVE: { slug: "negative", icon: "close", color: "danger" },
+  NEEDS_INTERACTION: {
+    slug: "needs-interaction",
+    icon: "file-text",
+    color: "warning",
+  },
 };
 
 export default function config(target, property) {
