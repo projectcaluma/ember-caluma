@@ -34,8 +34,7 @@ module("Integration | Component | document-validity", function (hooks) {
   test("it checks validity", async function (assert) {
     assert.expect(1);
 
-    await render(hbs`{{! template-lint-disable no-bare-strings }}
-<DocumentValidity
+    await render(hbs`<DocumentValidity
   @document={{this.document}}
   @validateOnEnter={{true}}
   as |isValid|
@@ -59,8 +58,7 @@ module("Integration | Component | document-validity", function (hooks) {
 
     await this.makeInvalid();
 
-    await render(hbs`{{! template-lint-disable no-bare-strings }}
-<DocumentValidity @document={{this.document}} as |isValid validate|>
+    await render(hbs`<DocumentValidity @document={{this.document}} as |isValid validate|>
   <p>
     {{#if isValid}}
       Valid
@@ -85,8 +83,7 @@ module("Integration | Component | document-validity", function (hooks) {
     this.onInvalid = () => assert.step("invalid");
     this.onValid = () => assert.step("valid");
 
-    await render(hbs`{{! template-lint-disable no-bare-strings }}
-<DocumentValidity
+    await render(hbs`<DocumentValidity
   @document={{this.document}}
   @onValid={{this.onValid}}
   @onInvalid={{this.onInvalid}}

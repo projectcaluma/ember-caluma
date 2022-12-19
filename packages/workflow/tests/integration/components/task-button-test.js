@@ -52,8 +52,7 @@ module("Integration | Component | task-button", function (hooks) {
 
   test("it renders block", async function (assert) {
     await render(
-      hbs`{{! template-lint-disable no-bare-strings }}
-<TaskButton @mutation="complete" @task="test">Lorem Ipsum</TaskButton>`
+      hbs`<TaskButton @mutation="complete" @task="test">Lorem Ipsum</TaskButton>`
     );
 
     assert.dom("button").hasText("Lorem Ipsum");

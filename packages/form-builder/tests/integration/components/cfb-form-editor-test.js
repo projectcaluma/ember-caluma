@@ -30,8 +30,7 @@ module("Integration | Component | cfb-form-editor", function (hooks) {
   test("it renders block style", async function (assert) {
     assert.expect(2);
 
-    await render(hbs`{{! template-lint-disable no-bare-strings }}
-<CfbFormEditor @slug="test-slug">
+    await render(hbs`<CfbFormEditor @slug="test-slug">
   Content!
 </CfbFormEditor>`);
 

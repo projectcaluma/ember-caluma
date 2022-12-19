@@ -18,8 +18,7 @@ module("Integration | Component | cf-form-wrapper", function (hooks) {
     assert.dom(this.element).hasText("");
 
     // Template block usage:
-    await render(hbs`{{! template-lint-disable no-bare-strings }}
-<CfFormWrapper>
+    await render(hbs`<CfFormWrapper>
   template block text
 </CfFormWrapper>`);
 

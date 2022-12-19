@@ -18,8 +18,7 @@ module("Integration | Component | cf-pagination", function (hooks) {
     assert.dom(this.element).hasText("");
 
     // Template block usage:
-    await render(hbs`{{! template-lint-disable no-bare-strings }}
-<CfPagination>
+    await render(hbs`<CfPagination>
   template block text
 </CfPagination>`);
 
