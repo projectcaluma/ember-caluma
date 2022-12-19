@@ -6,4 +6,12 @@ module.exports = {
   rules: {
     "no-bare-strings": true,
   },
+  overrides: [
+    {
+      files: ["**/-ember-caluma/**/*", "**/tests/**/*"],
+      rules: {
+        "no-bare-strings": false,
+      },
+    },
+  ],
 };

@@ -12,11 +12,7 @@ module("Integration | Helper | get-widget", function (hooks) {
   hooks.beforeEach(function () {
     // eslint-disable-next-line ember/no-empty-glimmer-component-classes
     class SomeComponent extends Component {}
-    setComponentTemplate(
-      hbs`{{! template-lint-disable no-bare-strings }}
-some-component`,
-      SomeComponent
-    );
+    setComponentTemplate(hbs`some-component`, SomeComponent);
 
     this.SomeComponent = SomeComponent;
 

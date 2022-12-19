@@ -29,8 +29,7 @@ module("Integration | Component | work-item-button", function (hooks) {
 
   test("it renders block", async function (assert) {
     await render(
-      hbs`{{! template-lint-disable no-bare-strings }}
-<WorkItemButton @mutation="complete" @workItemId="test">Lorem Ipsum</WorkItemButton>`
+      hbs`<WorkItemButton @mutation="complete" @workItemId="test">Lorem Ipsum</WorkItemButton>`
     );
 
     assert.dom("button").hasText("Lorem Ipsum");
