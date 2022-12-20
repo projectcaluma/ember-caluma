@@ -8,7 +8,7 @@ export default class CustomAutoresizeModifier extends AutoresizeModifier {
   modify(...args) {
     super.modify(...args);
 
-    this.inViewport.watchElement(this.element).onEnter(this.resize);
-    registerDestructor(this, () => this.inViewport.stopWatching(this.element));
+    this.inViewport.watchElement(this.el).onEnter(this.resize);
+    registerDestructor(this, () => this.inViewport.stopWatching(this.el));
   }
 }
