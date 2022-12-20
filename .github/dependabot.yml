@@ -35,7 +35,7 @@ updates:
       # https://github.com/emberjs/ember-test-helpers/issues/1232
       - dependency-name: "@ember/test-helpers"
         versions:
-          - ">= 2.8.0 <= 2.8.1"
+          - ">= 2.8.0 <= 2.9.1"
       # https://github.com/villander/ember-engines-router-service/issues/67
       - dependency-name: ember-engines-router-service
         versions:
@@ -47,4 +47,4 @@ updates:
       # ember-data 4.8.x doesn't work with ember-cli-addon-docs
       - dependency-name: ember-data
         versions:
-          - ">= 4.8.0 <= 4.8.3"
+          - ">= 4.8.0 <= 4.9.1"
