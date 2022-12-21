@@ -1,6 +1,6 @@
 {
   "name": "root",
-  "version": "11.0.0-beta.39",
+  "version": "11.0.0-beta.40",
   "private": true,
   "workspaces": [
     "packages/*"
