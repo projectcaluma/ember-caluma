@@ -55,7 +55,7 @@
     "lint-staged": "13.1.0",
     "node-fetch": "3.3.0",
     "prettier": "2.8.1",
-    "release-it": "15.5.1"
+    "release-it": "15.6.0"
   },
   "//": "tracked-toolbox: https://github.com/ember-learn/ember-cli-addon-docs/issues/1309",
   "resolutions": {
