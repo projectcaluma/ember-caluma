@@ -1,8 +1,10 @@
 {{#if (has-question-type @field.question "choice" "dynamic-choice")}}
   {{@field.selected.label}}
-{{else if (has-question-type
-  @field.question "multiple-choice" "multiple-dynamic-choice"
-)}}
+{{else if
+  (has-question-type
+    @field.question "multiple-choice" "multiple-dynamic-choice"
+  )
+}}
   {{#each @field.selected as |opt i|}}{{if (gt i 0) ", "}}{{opt.label}}{{/each}}
 {{else if (has-question-type @field.question "date")}}
   {{format-date
