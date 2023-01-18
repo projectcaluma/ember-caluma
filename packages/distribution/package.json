@@ -31,7 +31,7 @@
     "ember-auto-import": "^2.5.0",
     "ember-can": "^4.2.0",
     "ember-cli-babel": "^7.26.11",
-    "ember-cli-htmlbars": "^6.1.1",
+    "ember-cli-htmlbars": "^6.2.0",
     "ember-concurrency": "^2.3.7",
     "ember-engines-router-service": "^0.3.0",
     "ember-fetch": "^8.1.2",
