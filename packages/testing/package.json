@@ -14,7 +14,7 @@
     "test:ember-compatibility": "ember try:each"
   },
   "dependencies": {
-    "@ember/string": "^3.0.0",
+    "@ember/string": "^3.0.1",
     "@faker-js/faker": "^7.6.0",
     "broccoli-funnel": "^3.0.8",
     "broccoli-merge-trees": "^4.2.0",
