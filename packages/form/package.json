@@ -14,7 +14,7 @@
     "test:ember-compatibility": "ember try:each"
   },
   "dependencies": {
-    "@ember/string": "^3.0.0",
+    "@ember/string": "^3.0.1",
     "@embroider/macros": "^1.10.0",
     "@embroider/util": "^1.9.0",
     "@glimmer/component": "^1.1.2",
