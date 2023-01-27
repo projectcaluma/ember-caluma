@@ -2031,10 +2031,10 @@
     "@glimmer/interfaces" "^0.42.2"
     "@glimmer/util" "^0.42.2"
 
-"@graphql-eslint/eslint-plugin@3.14.3":
-  version "3.14.3"
-  resolved "https://registry.yarnpkg.com/@graphql-eslint/eslint-plugin/-/eslint-plugin-3.14.3.tgz#ca9d5f2499a4a0c09404ad1ac9a0bfc5a4c767e3"
-  integrity sha512-Ey4LocCSYLNXYWDfNh67ZzbCTNx1liqhZbQthidvoGtoVUo0sKsnR5pn2dVCRB8NbvQ4skob9r2dFBcUYhVbgQ==
+"@graphql-eslint/eslint-plugin@3.15.0":
+  version "3.15.0"
+  resolved "https://registry.yarnpkg.com/@graphql-eslint/eslint-plugin/-/eslint-plugin-3.15.0.tgz#9d2db9a69836a24e608165ae9c8dafb34e73d431"
+  integrity sha512-0sCHsbD07sCAHLKr/89i0ZcKasAbPps9OcWcvBtBoyuyvINWQlTrG0eqIwo4n5pOdNLw1yCfk+R7AwRYJ8m+MQ==
   dependencies:
     "@babel/code-frame" "^7.18.6"
     "@graphql-tools/code-file-loader" "^7.3.6"
