@@ -1,0 +1,5 @@
+mutation ReorderAnalyticsFields($input: ReorderAnalyticsFieldsInput!) {
+  reorderAnalyticsFields(input: $input) {
+    clientMutationId
+  }
+}

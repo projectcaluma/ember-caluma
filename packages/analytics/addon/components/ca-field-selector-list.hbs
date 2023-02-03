@@ -1,6 +1,11 @@
-<table class="uk-table uk-table-divider uk-table-hover" uk-overflow-auto>
+<table
+  class="uk-table uk-table-divider uk-table-hover"
+  uk-overflow-auto
+  {{did-insert this.setupUIkit}}
+>
   <thead>
     <tr>
+      <th></th>
       <th>{{t "caluma.analytics.edit.question"}}</th>
       <th>{{t "caluma.analytics.edit.display-title"}}</th>
       <th>{{t "caluma.analytics.edit.aggregation"}}</th>
@@ -11,10 +16,23 @@
       <th></th>
     </tr>
   </thead>
-  <tbody>
+  <tbody
+    data-test-field-list
+    uk-sortable="handle: .uk-sortable-handle;"
+    class="uk-list"
+    id="field-list"
+  >
     {{#each this.fields as |field|}}
       {{#let (fn this.updateField field) as |update|}}
-        <tr>
+        <tr id={{field.id}}>
+          <td>
+            <span
+              data-test-sort-handle
+              uk-icon="menu"
+              class="uk-sortable-handle"
+              role="button"
+            ></span>
+          </td>
           <td>
             {{field.dataSource}}
           </td>
@@ -71,7 +89,7 @@
         </tr>
       {{/let}}
     {{else}}
-      <td colspan="5">
+      <td colspan="7">
         <h3 class="uk-flex uk-flex-center uk-flex-middle">
           <UkIcon @icon="search" @ratio="1.5" class="uk-margin-small-right" />
           {{t "caluma.analytics.edit.empty"}}

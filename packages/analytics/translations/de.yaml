@@ -16,6 +16,8 @@ caluma:
       fetch-error: Beim Laden der Daten ist ein Fehler aufgetreten.
       filter-exists: Filter existiert bereits!!
       field-saved: Feld gespeichert.
+      reorder-success: Felder wurden erfolgreich sortiert!
+      reorder-error: Beim Sortieren der Felder ist etwas schief gelaufen.
     list:
       list-title: Liste aller Auswertungen
       edit: Bearbeiten

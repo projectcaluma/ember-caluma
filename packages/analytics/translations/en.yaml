@@ -16,6 +16,8 @@ caluma:
       fetch-error: An error occurred while loading the data.
       filter-exists: Filter already exists!
       field-saved: Field successfully saved.
+      reorder-success: Fields were successfully reordered!
+      reorder-error: Something went wrong while reordering the fields.
     list:
       list-title: All reports
       edit: Edit
