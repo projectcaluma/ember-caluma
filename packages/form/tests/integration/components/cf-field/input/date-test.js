@@ -40,10 +40,11 @@ module("Integration | Component | cf-field/input/date", function (hooks) {
       hbs`<CfField::Input::Date @disabled={{true}} @field={{this.field}} />`
     );
 
-    assert.dom("input").hasAttribute("type", "text");
-    assert.dom("input").hasAttribute("readonly");
-    assert.dom("input").hasClass("uk-disabled");
-    assert.dom("input").hasValue("10.09.2021");
+    assert.dom(".flatpickr-alt-input").hasAttribute("type", "text");
+    assert.dom(".flatpickr-alt-input").hasValue("10.09.2021");
+    assert.dom(".ember-flatpickr-input").hasAttribute("readonly");
+    assert.dom(".ember-flatpickr-input").hasClass("uk-disabled");
+    assert.dom(".ember-flatpickr-input").hasValue("2021-09-10");
   });
 
   test("it works on input", async function (assert) {
@@ -51,22 +52,26 @@ module("Integration | Component | cf-field/input/date", function (hooks) {
 
     await render(hbs`<CfField::Input::Date @onSave={{fn (mut this.value)}} />`);
 
-    setLocale("en-us");
-    await fillIn("input", "something");
+    await setLocale("en-us");
+    await fillIn(".flatpickr-alt-input", "something");
     await blur();
     assert.strictEqual(this.value, null);
+    assert.dom(".flatpickr-alt-input").hasValue("");
 
-    await fillIn("input", "1/1/2013");
+    await fillIn(".flatpickr-alt-input", "1/30/2013");
     await blur();
-    assert.strictEqual(this.value, "2013-01-01");
+    assert.strictEqual(this.value, "2013-01-30");
+    assert.dom(".flatpickr-alt-input").hasValue("01/30/2013");
 
-    setLocale("de-ch");
-    await fillIn("input", "1.1.2022");
+    await setLocale("de-ch");
+    await fillIn(".flatpickr-alt-input", "20.2.2022");
     await blur();
-    assert.strictEqual(this.value, "2022-01-01");
+    assert.strictEqual(this.value, "2022-02-20");
+    assert.dom(".flatpickr-alt-input").hasValue("20.02.2022");
 
-    await fillIn("input", "01.01.2022");
+    await fillIn(".flatpickr-alt-input", "25.03.2021");
     await blur();
-    assert.strictEqual(this.value, "2022-01-01");
+    assert.strictEqual(this.value, "2021-03-25");
+    assert.dom(".flatpickr-alt-input").hasValue("25.03.2021");
   });
 });

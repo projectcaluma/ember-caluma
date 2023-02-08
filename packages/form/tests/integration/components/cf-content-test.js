@@ -88,7 +88,8 @@ module("Integration | Component | cf-content", function (hooks) {
           assert.dom(`[name="${id}"][value="${v}"]`).isChecked();
         });
       } else if (answer.type === "DATE") {
-        assert.dom(`[name="${id}"]`).hasValue(
+        assert.dom(`[name="${id}"]`).hasValue(answer.value);
+        assert.dom(`[name="${id}"] + input`).hasValue(
           intl.formatDate(answer.value, {
             day: "2-digit",
             month: "2-digit",
