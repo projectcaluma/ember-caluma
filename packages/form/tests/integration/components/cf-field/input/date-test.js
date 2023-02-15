@@ -10,6 +10,17 @@ module("Integration | Component | cf-field/input/date", function (hooks) {
   setupRenderingTest(hooks);
   setupIntl(hooks);
 
+  hooks.beforeEach(function () {
+    this.owner.resolveRegistration("config:environment")["ember-caluma"] = {
+      FLATPICKR_DATE_FORMAT: {
+        de: "d.m.Y",
+        fr: "d.m.Y",
+        en: "m/d/Y",
+      },
+      FLATPICKR_DATE_FORMAT_DEFAULT: "m/d/Y",
+    };
+  });
+
   test("it computes the proper element id", async function (assert) {
     await render(hbs`<CfField::Input::Date @field={{hash pk="test-id"}} />`);
 

@@ -1,3 +1,4 @@
+import { getOwner } from "@ember/application";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
@@ -13,22 +14,17 @@ export default class CfFieldInputDateComponent extends Component {
     return this.intl.primaryLocale.split("-")[0];
   }
 
-  /*
-   * Extract the date format string for the current locale.
-   * For example en-us will return "m/d/Y" and de-ch will return "d.m.Y".
-   */
-  get dateFormat() {
-    const sample = this.intl.formatDate(
-      DateTime.fromISO("1970-12-31").toJSDate(),
-      {
-        day: "2-digit",
-        month: "2-digit",
-        year: "numeric",
-      }
-    );
+  get config() {
+    return getOwner(this).resolveRegistration("config:environment");
+  }
 
-    // refer to flatpickr documentation for formatting options
-    return sample.replace(31, "d").replace(12, "m").replace(1970, "Y");
+  get dateFormat() {
+    const {
+      FLATPICKR_DATE_FORMAT = {},
+      FLATPICKR_DATE_FORMAT_DEFAULT = "m/d/Y",
+    } = this.config["ember-caluma"] || {};
+
+    return FLATPICKR_DATE_FORMAT[this.locale] ?? FLATPICKR_DATE_FORMAT_DEFAULT;
   }
 
   @action

@@ -25,6 +25,12 @@ module.exports = function (environment) {
 
     "ember-caluma": {
       powerSelectEnableSearchLimit: 2,
+      FLATPICKR_DATE_FORMAT: {
+        de: "d.m.Y",
+        fr: "d.m.Y",
+        en: "m/d/Y",
+      },
+      FLATPICKR_DATE_FORMAT_DEFAULT: "m/d/Y",
     },
   };
 
