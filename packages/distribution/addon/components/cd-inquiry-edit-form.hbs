@@ -47,7 +47,11 @@
         <UkButton
           @type="submit"
           @color="primary"
-          @disabled={{or (not isValid) this.send.isRunning}}
+          @disabled={{or
+            (not isValid)
+            this.send.isRunning
+            this.distribution.sendAllInquiries.isRunning
+          }}
           @onClick={{perform this.send validate}}
           @loading={{this.send.isRunning}}
         >{{t "caluma.distribution.edit.send"}}</UkButton>

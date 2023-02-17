@@ -9,6 +9,7 @@ import resumeWorkItemMutation from "@projectcaluma/ember-distribution/gql/mutati
 import inquiryEditQuery from "@projectcaluma/ember-distribution/gql/queries/inquiry-edit.graphql";
 
 export default class CdInquiryEditFormComponent extends Component {
+  @service distribution;
   @service notification;
   @service router;
   @service intl;
@@ -37,7 +38,9 @@ export default class CdInquiryEditFormComponent extends Component {
   @dropTask
   *send(validate) {
     try {
-      if (!(yield validate())) return;
+      if (!(yield validate()) || this.distribution.sendAllInquiries.isRunning) {
+        return;
+      }
 
       yield this.apollo.mutate({
         mutation: resumeWorkItemMutation,
