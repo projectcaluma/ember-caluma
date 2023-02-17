@@ -3,7 +3,6 @@ import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
 import { dropTask } from "ember-concurrency";
 import { confirm } from "ember-uikit";
-import { gql } from "graphql-tag";
 
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 import config from "@projectcaluma/ember-distribution/config";
@@ -91,41 +90,6 @@ export default class CdNavigationControlsComponent extends Component {
       yield this.distribution.refetchControls();
     } catch (e) {
       this.notification.danger(this.intl.t("caluma.distribution.reopen-error"));
-    }
-  }
-
-  @dropTask
-  *sendInquiries() {
-    const ids = this.distribution.controls.value.send.edges
-      .filter((edge) => edge.node.status === "SUSPENDED")
-      .map((edge) => decodeId(edge.node.id));
-
-    if (
-      ids.length &&
-      !(yield confirm(
-        this.intl.t("caluma.distribution.send-confirm", { count: ids.length })
-      ))
-    ) {
-      return;
-    }
-
-    try {
-      const mutations = ids.map(
-        (id, index) => `
-        sendInquiry${index}: resumeWorkItem(input: { id: "${id}" }) {
-          workItem {
-            id
-            status
-          }
-        }
-      `
-      );
-
-      const mutation = gql`mutation SendInquiries {${mutations.join("\n")}}`;
-
-      yield this.apollo.mutate({ mutation });
-    } catch (e) {
-      this.notification.danger(this.intl.t("caluma.distribution.send-error"));
     }
   }
 

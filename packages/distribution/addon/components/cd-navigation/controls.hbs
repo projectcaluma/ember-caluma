@@ -43,9 +43,9 @@
             class="uk-icon-button uk-button-primary"
             {{uk-tooltip (t "caluma.distribution.send")}}
             data-test-send-pending-inquiries
-            {{on "click" (perform this.sendInquiries)}}
+            {{on "click" (perform this.distribution.sendAllInquiries)}}
           >
-            {{#if this.sendInquiries.isRunning}}
+            {{#if this.distribution.sendAllInquiries.isRunning}}
               <UkSpinner @ratio={{0.6}} />
             {{else}}
               <UkIcon @icon="comment" />

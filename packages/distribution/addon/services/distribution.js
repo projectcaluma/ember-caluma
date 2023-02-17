@@ -3,6 +3,8 @@ import { tracked } from "@glimmer/tracking";
 import { queryManager, getObservable } from "ember-apollo-client";
 import { dropTask } from "ember-concurrency";
 import { trackedTask } from "ember-resources/util/ember-concurrency";
+import { confirm } from "ember-uikit";
+import { gql } from "graphql-tag";
 import { cached } from "tracked-toolbox";
 
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
@@ -171,5 +173,40 @@ export default class DistributionService extends Service {
       },
       {}
     );
+  }
+
+  @dropTask
+  *sendAllInquiries() {
+    const ids = this.controls.value.send.edges
+      .filter((edge) => edge.node.status === "SUSPENDED")
+      .map((edge) => decodeId(edge.node.id));
+
+    if (
+      ids.length &&
+      !(yield confirm(
+        this.intl.t("caluma.distribution.send-confirm", { count: ids.length })
+      ))
+    ) {
+      return;
+    }
+
+    try {
+      const mutations = ids.map(
+        (id, index) => `
+        sendInquiry${index}: resumeWorkItem(input: { id: "${id}" }) {
+          workItem {
+            id
+            status
+          }
+        }
+      `
+      );
+
+      const mutation = gql`mutation SendInquiries {${mutations.join("\n")}}`;
+
+      yield this.apollo.mutate({ mutation });
+    } catch (e) {
+      this.notification.danger(this.intl.t("caluma.distribution.send-error"));
+    }
   }
 }
