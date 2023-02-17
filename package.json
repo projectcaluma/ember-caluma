@@ -34,7 +34,7 @@
   },
   "devDependencies": {
     "@adfinis-sygroup/eslint-config": "1.5.0",
-    "@commitlint/cli": "17.4.2",
+    "@commitlint/cli": "17.4.3",
     "@commitlint/config-conventional": "17.4.2",
     "@graphql-eslint/eslint-plugin": "3.15.0",
     "@release-it-plugins/workspaces": "3.2.0",
