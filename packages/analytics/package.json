@@ -33,7 +33,7 @@
     "ember-power-select": "6.0.1",
     "ember-resources": "^5.6.2",
     "ember-uikit": "^6.1.1",
-    "ember-validated-form": "^6.1.2",
+    "ember-validated-form": "^6.2.0",
     "graphql": "^15.6.1"
   },
   "//": [
