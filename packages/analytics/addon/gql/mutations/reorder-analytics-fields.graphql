@@ -1,5 +1,10 @@
+# import * from '@projectcaluma/ember-analytics/gql/fragments/analytics-table.graphql'
+
 mutation ReorderAnalyticsFields($input: ReorderAnalyticsFieldsInput!) {
   reorderAnalyticsFields(input: $input) {
     clientMutationId
+    analyticsTable {
+      ...AnalyticsTable
+    }
   }
 }
