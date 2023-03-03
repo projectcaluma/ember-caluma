@@ -35,7 +35,7 @@
     "ember-concurrency": "^2.3.7",
     "ember-engines-router-service": "^0.3.0",
     "ember-fetch": "^8.1.2",
-    "ember-flatpickr": "^3.2.3",
+    "ember-flatpickr": "^4.0.0",
     "ember-intl": "^5.7.2",
     "ember-resources": "^5.6.2",
     "ember-svg-jar": "^2.4.2",
