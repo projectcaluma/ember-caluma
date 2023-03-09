@@ -10,6 +10,7 @@ import validateOptions from "../validators/options";
 import and from "@projectcaluma/ember-form-builder/utils/and";
 import or from "@projectcaluma/ember-form-builder/utils/or";
 import validateJexl from "@projectcaluma/ember-form-builder/validators/jexl";
+import validateMeta from "@projectcaluma/ember-form-builder/validators/meta";
 import validateSlug from "@projectcaluma/ember-form-builder/validators/slug";
 import validateType from "@projectcaluma/ember-form-builder/validators/type";
 
@@ -85,4 +86,5 @@ export default {
   ),
   isHidden: validateJexl(),
   isRequired: validateJexl(),
+  meta: validateMeta(),
 };
