@@ -1,8 +1,4 @@
-<table
-  class="uk-table uk-table-divider uk-table-hover"
-  uk-overflow-auto
-  {{did-insert this.setupUIkit}}
->
+<table class="uk-table uk-table-divider uk-table-hover uk-overflow-auto">
   <thead>
     <tr>
       <th></th>
@@ -18,20 +14,19 @@
   </thead>
   <tbody
     data-test-field-list
-    uk-sortable="handle: .uk-sortable-handle;"
     class="uk-list"
     id="field-list"
+    {{sortable-group onChange=(perform this.reorderFields)}}
   >
     {{#each this.fields as |field|}}
       {{#let (fn this.updateField field) as |update|}}
-        <tr id={{field.id}}>
-          <td>
-            <span
-              data-test-sort-handle
-              uk-icon="menu"
-              class="uk-sortable-handle"
-              role="button"
-            ></span>
+        <tr
+          id={{field.id}}
+          class="uk-position-relative"
+          {{sortable-item model=field}}
+        >
+          <td data-test-sort-handle {{sortable-handle}}>
+            <span uk-icon="menu" role="button" class="uk-drag"></span>
           </td>
           <td>
             {{field.dataSource}}

@@ -9216,6 +9216,13 @@ ember-set-helper@^2.0.1:
   dependencies:
     ember-cli-babel "^7.18.0"
 
+ember-sortable@5.0.0, ember-sortable@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/ember-sortable/-/ember-sortable-5.0.0.tgz#0634f3d4c5c6bdd27968bd885ed44bec64f86710"
+  integrity sha512-Wwc3/h0jamQEHFcrZ0YWoUkDh7s4YgSe26+eJP0QNyyR3t3MyGoi2klqsULqPuLzuXcWsio9Z+dGxFdCW1L//g==
+  dependencies:
+    "@embroider/addon-shim" "^1.8.4"
+
 ember-source-channel-url@3.0.0, ember-source-channel-url@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/ember-source-channel-url/-/ember-source-channel-url-3.0.0.tgz#bcd5be72c63fa0b8c390b3121783b462063e2a1b"

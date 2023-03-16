@@ -1,10 +1,9 @@
 import { action } from "@ember/object";
-import { run } from "@ember/runloop";
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
+import { tracked } from "@glimmer/tracking";
 import { queryManager, getObservable } from "ember-apollo-client";
 import { enqueueTask, restartableTask } from "ember-concurrency";
-import UIkit from "uikit";
 
 import removeAnalyticsFieldMutation from "@projectcaluma/ember-analytics/gql/mutations/remove-analytics-field.graphql";
 import reorderAnalyticsFieldsMutation from "@projectcaluma/ember-analytics/gql/mutations/reorder-analytics-fields.graphql";
@@ -16,10 +15,13 @@ export default class CaFieldSelectorListComponent extends Component {
   @service intl;
 
   @enqueueTask saveField = saveAnalyticsField;
+  @tracked _fields;
 
   get fields() {
     return (
-      this.args.analyticsTable?.fields?.edges?.map((edge) => edge.node) ?? []
+      this._fields ??
+      this.args.analyticsTable?.fields?.edges?.map((edge) => edge.node) ??
+      []
     );
   }
 
@@ -57,13 +59,14 @@ export default class CaFieldSelectorListComponent extends Component {
 
   @restartableTask
   *reorderFields(fields) {
+    this._fields = fields;
     try {
       yield this.apollo.mutate({
         mutation: reorderAnalyticsFieldsMutation,
         variables: {
           input: {
             table: this.args.analyticsTable.id,
-            fields,
+            fields: fields.map((field) => field.id),
           },
         },
       });
@@ -71,23 +74,11 @@ export default class CaFieldSelectorListComponent extends Component {
       this.notification.success(
         this.intl.t("caluma.analytics.notification.reorder-success")
       );
+      this._fields = null;
     } catch (e) {
       this.notification.danger(
         this.intl.t("caluma.analytics.notification.reorder-error")
       );
     }
-  }
-
-  _handleMoved({ detail: [sortable] }) {
-    const options = [...sortable.$el.children];
-
-    this.reorderFields.perform(options.map((option) => option.id));
-  }
-
-  @action
-  setupUIkit() {
-    UIkit.util.on("#field-list", "moved", (...args) =>
-      run(this, this._handleMoved, ...args)
-    );
   }
 }
