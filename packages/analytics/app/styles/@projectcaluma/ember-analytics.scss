@@ -1,1 +1,6 @@
 @import "../ca-uikit-powerselect";
+
+.sortable-item.is-dropping,
+.sortable-item.is-dragging {
+  z-index: 10;
+}
