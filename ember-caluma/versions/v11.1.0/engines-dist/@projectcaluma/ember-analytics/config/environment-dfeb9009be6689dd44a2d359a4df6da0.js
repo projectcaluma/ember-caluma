@@ -1,1 +1,0 @@
-define("@projectcaluma/ember-analytics/config/environment",(function(){return{default:{modulePrefix:"@projectcaluma/ember-analytics",analytics:{functionChoices:["VALUE","SUM","COUNT","AVG","MAX","MIN"]}}}}))
