@@ -1,14 +1,14 @@
 {
-  "main": {
-    "path": "versions/main",
-    "name": "main",
-    "sha": "6f75a3c532b2d9fa9863fdaa1b0b82600271825e",
-    "tag": null
+  "v11.1.1": {
+    "path": "versions/v11.1.1",
+    "name": "v11.1.1",
+    "sha": "b6f3812e63e8e1b6bda235a428dfb8fa322cb006",
+    "tag": "v11.1.1"
   },
   "-latest": {
     "path": "",
     "name": "Latest",
-    "sha": "6f75a3c532b2d9fa9863fdaa1b0b82600271825e",
-    "tag": null
+    "sha": "b6f3812e63e8e1b6bda235a428dfb8fa322cb006",
+    "tag": "v11.1.1"
   }
 }
