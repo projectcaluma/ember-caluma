@@ -19,7 +19,7 @@
     "ember-source": "^3.28.0 || ^4.0.0"
   },
   "dependencies": {
-    "@ember/legacy-built-in-components": "^0.4.1",
+    "@ember/legacy-built-in-components": "^0.4.2",
     "@ember/string": "^3.0.1",
     "@embroider/macros": "^1.10.0",
     "@glimmer/component": "^1.1.2",
