@@ -27,7 +27,8 @@ export default class Document extends Base {
     super({ raw, ...args });
 
     this.parentDocument = parentDocument;
-    this.dataSourceContext = dataSourceContext;
+    this.dataSourceContext =
+      dataSourceContext ?? parentDocument?.dataSourceContext;
 
     this.pushIntoStore();
 
