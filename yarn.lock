@@ -6528,10 +6528,10 @@ coa@^2.0.2:
     chalk "^2.4.1"
     q "^1.1.2"
 
-codejar@^3.6.0:
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/codejar/-/codejar-3.6.0.tgz#be491d4db4d723da24f1bcd735ecad09e0f6c36d"
-  integrity sha512-30iPkdz4Y3d2qVMpMKsvEREtfUBH6JHvW2aWeoCBR67DUoZqSQLIvcAlLWZuTG7i7DonJkbCqkBnJPPhbj+J6w==
+codejar@^3.7.0:
+  version "3.7.0"
+  resolved "https://registry.yarnpkg.com/codejar/-/codejar-3.7.0.tgz#135913e26957c0a0c6a3a99305cfe8492c7b5c2b"
+  integrity sha512-rqyDu2zNwfu1EhXI++LEMQDzhykS+V0BV52RemtCj5lczgTgWSufyEa+tS7RP7qCXH/WXOkU0eIthmFUzvG78Q==
 
 collection-visit@^1.0.0:
   version "1.0.0"
