@@ -53,7 +53,7 @@
     "get-graphql-schema": "2.1.2",
     "husky": "8.0.3",
     "lint-staged": "13.2.0",
-    "node-fetch": "3.3.0",
+    "node-fetch": "3.3.1",
     "prettier": "2.8.4",
     "release-it": "15.9.1"
   },
