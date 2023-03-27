@@ -80,6 +80,7 @@ export default class CfbFormEditorQuestion extends Component {
   @queryManager apollo;
 
   @tracked linkSlug = true;
+  @tracked changeset;
 
   @restartableTask
   *data() {
@@ -192,10 +193,6 @@ export default class CfbFormEditorQuestion extends Component {
 
   get model() {
     return this.data.lastSuccessful?.value?.[0]?.node;
-  }
-
-  get changeset() {
-    return new Changeset(this.model, lookupValidator(validations), validations);
   }
 
   get prefix() {
@@ -480,6 +477,13 @@ export default class CfbFormEditorQuestion extends Component {
     await this.data.perform();
     await this.availableForms.perform();
     await this.availableDataSources.perform();
+    if (this.model) {
+      this.changeset = new Changeset(
+        this.model,
+        lookupValidator(validations),
+        validations
+      );
+    }
   }
 
   @action

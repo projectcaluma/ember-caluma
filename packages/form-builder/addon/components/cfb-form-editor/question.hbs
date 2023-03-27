@@ -3,7 +3,7 @@
     <div class="uk-flex uk-flex-center uk-flex-middle uk-height-small">
       <UkSpinner @ratio={{2}} />
     </div>
-  {{else if this.model}}
+  {{else if this.changeset}}
     <ValidatedForm
       @model={{this.changeset}}
       @on-submit={{perform this.submit}}
