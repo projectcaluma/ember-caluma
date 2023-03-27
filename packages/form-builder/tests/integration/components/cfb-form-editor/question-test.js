@@ -1,4 +1,4 @@
-import { render, fillIn, blur, click } from "@ember/test-helpers";
+import { render, fillIn, blur, click, select } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
@@ -667,5 +667,44 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     );
 
     assert.dom(".ember-power-select-multiple-option").exists();
+  });
+
+  test("it loads the correct widget overrides", async function (assert) {
+    const calumaOptions = this.owner.lookup("service:caluma-options");
+
+    calumaOptions.registerComponentOverride({
+      label: "a widget override for all types",
+      component: "dummy-component-1",
+    });
+    calumaOptions.registerComponentOverride({
+      label: "a widget override for float questions only",
+      component: "dummy-component-2",
+      types: ["FloatQuestion"],
+    });
+
+    await render(hbs`<CfbFormEditor::Question @slug={{null}} />`);
+
+    assert
+      .dom('select[name="meta.widgetOverride"]')
+      .includesText(
+        "a widget override for all types",
+        "it contains option for the all types override"
+      );
+
+    await select("select[name='__typename']", "FloatQuestion");
+
+    assert
+      .dom('select[name="meta.widgetOverride"]')
+      .includesText(
+        "a widget override for all types",
+        "it contains option for the all types override"
+      );
+
+    assert
+      .dom('select[name="meta.widgetOverride"]')
+      .includesText(
+        "a widget override for float questions only",
+        "it contains option for the float question override"
+      );
   });
 });
