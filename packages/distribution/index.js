@@ -1,6 +1,6 @@
 "use strict";
 
-// eslint-disable-next-line node/no-unpublished-require
+// eslint-disable-next-line n/no-unpublished-require
 const { buildEngine } = require("ember-engines/lib/engine-addon");
 
 const name = require("./package").name;

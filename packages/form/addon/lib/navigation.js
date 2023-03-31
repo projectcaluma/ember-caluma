@@ -390,8 +390,9 @@ export class Navigation extends Base {
    * @property {NavigationItem} nextItem
    */
   get nextItem() {
-    if (!this.currentItem)
+    if (!this.currentItem) {
       return this.items.filter((item) => item.navigable)[0];
+    }
 
     const items = this.items
       .slice(this.items.indexOf(this.currentItem) + 1)
