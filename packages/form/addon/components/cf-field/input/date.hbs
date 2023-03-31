@@ -1,8 +1,8 @@
 <div class="uk-inline uk-width-1-1">
   <a
     class="uk-form-icon uk-form-icon-flip"
-    uk-tooltip={{t "caluma.form.delete"}}
     href="#"
+    {{uk-tooltip (t "caluma.form.delete")}}
     {{on "click" this.clearCalendar}}
   >
     <UkIcon @icon="close" />
