@@ -1,6 +1,6 @@
 {
   "name": "@projectcaluma/ember-form-builder",
-  "version": "11.1.2",
+  "version": "11.1.3",
   "description": "Ember engine for building Caluma forms.",
   "keywords": [
     "ember-addon",
@@ -24,8 +24,8 @@
     "@embroider/macros": "^1.10.0",
     "@glimmer/component": "^1.1.2",
     "@glimmer/tracking": "^1.1.2",
-    "@projectcaluma/ember-core": "^11.1.2",
-    "@projectcaluma/ember-form": "^11.1.2",
+    "@projectcaluma/ember-core": "^11.1.3",
+    "@projectcaluma/ember-form": "^11.1.3",
     "codejar": "^3.7.0",
     "ember-apollo-client": "~4.0.2",
     "ember-auto-import": "^2.6.1",
@@ -62,7 +62,7 @@
     "@ember/test-helpers": "2.7.0",
     "@embroider/test-setup": "2.1.1",
     "@faker-js/faker": "7.6.0",
-    "@projectcaluma/ember-testing": "11.1.2",
+    "@projectcaluma/ember-testing": "11.1.3",
     "broccoli-asset-rev": "3.0.0",
     "ember-autoresize-modifier": "^0.7.0",
     "ember-cli": "4.11.0",
