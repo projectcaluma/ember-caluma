@@ -9,7 +9,6 @@
   "homepage": "https://docs.caluma.io/ember-caluma",
   "repository": "github:projectcaluma/ember-caluma",
   "scripts": {
-    "test": "concurrently \"npm:lint\" \"npm:test:*\" --names \"lint,test:\"",
     "test:ember": "ember test",
     "test:ember-compatibility": "ember try:each"
   },
@@ -26,19 +25,19 @@
     "ember-intl": "^5.7.2",
     "ember-resources": "^5.6.4",
     "ember-truth-helpers": "^3.1.1",
-    "ember-uikit": "^6.1.1",
+    "ember-uikit": "^7.0.1",
     "graphql": "^15.8.0"
   },
   "devDependencies": {
     "@ember/optional-features": "2.0.0",
+    "@ember/string": "3.0.1",
     "@ember/test-helpers": "2.7.0",
     "@embroider/test-setup": "2.1.1",
     "@faker-js/faker": "7.6.0",
     "@glimmer/tracking": "1.1.2",
     "@projectcaluma/ember-testing": "11.1.1",
     "broccoli-asset-rev": "3.0.0",
-    "concurrently": "7.6.0",
-    "ember-cli": "4.9.2",
+    "ember-cli": "4.11.0",
     "ember-cli-code-coverage": "2.0.0",
     "ember-cli-dependency-checker": "3.3.1",
     "ember-cli-inject-live-reload": "2.1.0",
@@ -47,14 +46,14 @@
     "ember-cli-terser": "4.0.2",
     "ember-load-initializers": "2.1.2",
     "ember-qunit": "6.1.1",
-    "ember-resolver": "8.1.0",
-    "ember-source": "4.10.0",
+    "ember-resolver": "10.0.0",
+    "ember-source": "4.11.0",
     "ember-source-channel-url": "3.0.0",
     "ember-try": "2.0.0",
     "loader.js": "4.7.0",
     "qunit": "2.19.4",
     "qunit-dom": "2.0.0",
-    "webpack": "5.76.2"
+    "webpack": "5.77.0"
   },
   "peerDependencies": {
     "ember-source": "^3.28.0 || ^4.0.0"
