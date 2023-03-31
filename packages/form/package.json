@@ -35,7 +35,7 @@
     "ember-math-helpers": "^3.0.0",
     "ember-power-select": "^6.0.1",
     "ember-resources": "^5.6.4",
-    "ember-uikit": "^6.1.1",
+    "ember-uikit": "^7.0.0",
     "ember-validators": "^4.1.2",
     "graphql": "^15.8.0",
     "jexl": "^2.3.0",

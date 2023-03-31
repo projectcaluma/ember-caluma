@@ -9167,10 +9167,10 @@ ember-modifier-manager-polyfill@^1.2.0:
     ember-cli-version-checker "^2.1.2"
     ember-compatibility-helpers "^1.2.0"
 
-"ember-modifier@^2.1.2 || ^3.0.0 || ^4.0.0", "ember-modifier@^2.1.2 || ^3.1.0 || ^4.0.0", "ember-modifier@^3.0.0 || ^4.0.0":
-  version "4.0.0"
-  resolved "https://registry.yarnpkg.com/ember-modifier/-/ember-modifier-4.0.0.tgz#0bb3fae11435fcbe0d3dfa852ce224d81d75ddb2"
-  integrity sha512-OdconmrqKP2haK4kBwNmtnA2NiC2MFmIJC3LgJ1WhwZ49GaktM+bRIuFxF/S5W0oaegzKs1qH2ZDlqMeO2L3nw==
+"ember-modifier@^2.1.2 || ^3.0.0 || ^4.0.0", "ember-modifier@^2.1.2 || ^3.1.0 || ^4.0.0", "ember-modifier@^3.0.0 || ^4.0.0", ember-modifier@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/ember-modifier/-/ember-modifier-4.1.0.tgz#cb91efbf8ca4ff4a1a859767afa42dddba5a2bbd"
+  integrity sha512-YFCNpEYj6jdyy3EjslRb2ehNiDvaOrXTilR9+ngq+iUqSHYto2zKV0rleiA1XJQ27ELM1q8RihT29U6Lq5EyqQ==
   dependencies:
     "@embroider/addon-shim" "^1.8.4"
     ember-cli-normalize-entity-name "^1.0.0"
@@ -9486,25 +9486,25 @@ ember-try@2.0.0:
     rimraf "^3.0.2"
     walk-sync "^2.2.0"
 
-ember-uikit@6.1.1, ember-uikit@^6.1.1:
-  version "6.1.1"
-  resolved "https://registry.yarnpkg.com/ember-uikit/-/ember-uikit-6.1.1.tgz#ece31447724f730a1bfde2650c383e3d1eb11f90"
-  integrity sha512-8gLzSS23Gab6WYA3gRFbnvjjgvvTIf5YRjE5JPu523yEkVCQ6kqlntg0MklYuxnEBYAKpzna7IA1H2JPsriYIg==
+ember-uikit@7.0.0, ember-uikit@^7.0.0:
+  version "7.0.0"
+  resolved "https://registry.yarnpkg.com/ember-uikit/-/ember-uikit-7.0.0.tgz#252a449179069dff045efa5020ce1d1bce16430b"
+  integrity sha512-pOTijCmAcPR/Yp5o6H7AAdNEH1+/ZpvSt8lmPQ4EJ8CC1SyeZ81BoS0GQq7lEEsZ5zIF1qQPJ8fqzSQekJ4fMw==
   dependencies:
-    "@ember/string" "^3.0.0"
-    "@embroider/util" "^1.9.0"
+    "@ember/string" "^3.0.1"
+    "@embroider/util" "^1.10.0"
     "@glimmer/component" "^1.1.2"
     "@glimmer/tracking" "^1.1.2"
     broccoli-funnel "^3.0.8"
     broccoli-merge-trees "^4.2.0"
     broccoli-stew "^3.0.0"
-    ember-auto-import "^2.4.3"
+    ember-auto-import "^2.6.1"
     ember-cli-babel "^7.26.11"
-    ember-cli-htmlbars "^6.1.1"
+    ember-cli-htmlbars "^6.2.0"
     ember-focus-trap "^1.0.1"
-    ember-modifier "^3.2.7"
+    ember-modifier "^4.1.0"
     ember-toggle "^9.0.3"
-    uikit "^3.15.11"
+    uikit "^3.16.13"
 
 ember-validated-form@^6.2.0:
   version "6.2.0"
@@ -18812,10 +18812,10 @@ uglify-js@^3.1.4:
   resolved "https://registry.yarnpkg.com/uglify-js/-/uglify-js-3.17.4.tgz#61678cf5fa3f5b7eb789bb345df29afb8257c22c"
   integrity sha512-T9q82TJI9e/C1TAxYvfb16xO120tMVFZrGA3f9/P4424DNu6ypK103y0GPFVa17yotwSyZW5iYXgjYHkGrJW/g==
 
-uikit@^3.15.11:
-  version "3.15.19"
-  resolved "https://registry.yarnpkg.com/uikit/-/uikit-3.15.19.tgz#8ca6190463fba29a394b246fe6fc37b7a6fc4ec8"
-  integrity sha512-xYZOuLlejmttB+aSKBp71pNBcLtYau3skVfmMmtrY1Id5k/A5wFA6LzCofx7VLbHfXqLivZfQoL6DDKqYc+GkQ==
+uikit@^3.16.13:
+  version "3.16.13"
+  resolved "https://registry.yarnpkg.com/uikit/-/uikit-3.16.13.tgz#82f45ade98787c3fbd17ddafa292f54b3d47ed35"
+  integrity sha512-v5CpeWYkMMJvSiJqzNLwrCN9O7y27sJDv08Ri7fHEyUm7U4nW/z70NBxLiflqCNRb1Bbj5YNjgyUuRg0AlXVxw==
 
 unbox-primitive@^1.0.2:
   version "1.0.2"
