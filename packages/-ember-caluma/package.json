@@ -65,7 +65,7 @@
     "graphql": "15.8.0",
     "loader.js": "4.7.0",
     "miragejs": "0.1.47",
-    "sass": "1.58.3",
+    "sass": "1.60.0",
     "webpack": "5.76.2"
   },
   "ember": {
