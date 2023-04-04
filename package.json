@@ -16,6 +16,8 @@
     "lint:hbs:fix": "ember-template-lint . --fix",
     "lint:js": "eslint . --cache",
     "lint:js:fix": "eslint . --fix",
+    "lint:prettier": "prettier --check \"**/*.{scss,graphql,json,md,yaml}\"",
+    "lint:prettier:fix": "prettier --write \"**/*.{scss,graphql,json,md,yaml}\"",
     "update-possible-types": "node bin/fetch-possible-types.mjs && prettier --write packages/core/addon/-private/possible-types.js",
     "update-schema": "get-graphql-schema http://localhost:8000/graphql > packages/testing/addon/mirage-graphql/schema.graphql && prettier --write packages/testing/addon/mirage-graphql/schema.graphql",
     "update-caluma": "concurrently \"npm:update-possible-types\" \"npm:update-schema\"",
