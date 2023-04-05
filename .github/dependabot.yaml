@@ -7,44 +7,45 @@ updates:
       day: "friday"
       time: "12:00"
       timezone: "Europe/Zurich"
-  - package-ecosystem: npm
-    directory: "/"
-    schedule:
-      interval: "weekly"
-      day: "friday"
-      time: "12:00"
-      timezone: "Europe/Zurich"
-    open-pull-requests-limit: 10
-    versioning-strategy: increase
-    ignore:
-      # graphql-tools v5+ breaks generic mocking
-      - dependency-name: graphql-tools
-        versions:
-          - ">= 5"
-      - dependency-name: graphql
-        versions:
-          - ">= 16"
-      # https://github.com/ember-cli/ember-cli/issues/9307
-      - dependency-name: eslint
-        versions:
-          - ">= 8"
-      # 4.1.0 is broken
-      - dependency-name: ember-apollo-client
-        versions:
-          - "4.1.0"
-      # https://github.com/villander/ember-engines-router-service/issues/67
-      - dependency-name: ember-engines-router-service
-        versions:
-          - ">= 0.4.0 <= 4.4.1"
-      # https://github.com/ember-learn/ember-cli-addon-docs/issues/1309
-      - dependency-name: tracked-toolbox
-        versions:
-          - "2.0.0"
-      # ember-data 4.8.x doesn't work with ember-cli-addon-docs
-      - dependency-name: ember-data
-        versions:
-          - ">= 4.8.0 <= 4.9.1"
-      # https://github.com/ember-engines/ember-engines/issues/833
-      - dependency-name: ember-engines
-        versions:
-          - "0.9.0"
+  # https://github.com/dependabot/dependabot-core/issues/1736
+  # - package-ecosystem: npm
+  #   directory: "/"
+  #   schedule:
+  #     interval: "weekly"
+  #     day: "friday"
+  #     time: "12:00"
+  #     timezone: "Europe/Zurich"
+  #   open-pull-requests-limit: 10
+  #   versioning-strategy: increase
+  #   ignore:
+  #     # graphql-tools v5+ breaks generic mocking
+  #     - dependency-name: graphql-tools
+  #       versions:
+  #         - ">= 5"
+  #     - dependency-name: graphql
+  #       versions:
+  #         - ">= 16"
+  #     # https://github.com/ember-cli/ember-cli/issues/9307
+  #     - dependency-name: eslint
+  #       versions:
+  #         - ">= 8"
+  #     # 4.1.0 is broken
+  #     - dependency-name: ember-apollo-client
+  #       versions:
+  #         - "4.1.0"
+  #     # https://github.com/villander/ember-engines-router-service/issues/67
+  #     - dependency-name: ember-engines-router-service
+  #       versions:
+  #         - ">= 0.4.0 <= 4.4.1"
+  #     # https://github.com/ember-learn/ember-cli-addon-docs/issues/1309
+  #     - dependency-name: tracked-toolbox
+  #       versions:
+  #         - "2.0.0"
+  #     # ember-data 4.8.x doesn't work with ember-cli-addon-docs
+  #     - dependency-name: ember-data
+  #       versions:
+  #         - ">= 4.8.0 <= 4.9.1"
+  #     # https://github.com/ember-engines/ember-engines/issues/833
+  #     - dependency-name: ember-engines
+  #       versions:
+  #         - "0.9.0"
