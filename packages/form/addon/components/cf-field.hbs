@@ -7,6 +7,7 @@
       }}"
     {{did-insert this.registerComponent}}
     {{will-destroy this.unregisterComponent}}
+    {{in-viewport onEnter=this.refreshDynamicOptions}}
   >
     {{#if this.labelVisible}}
       <CfField::Label @field={{@field}} />

@@ -1,8 +1,7 @@
 import { assert } from "@ember/debug";
 import { camelize } from "@ember/string";
 import { queryManager } from "ember-apollo-client";
-import { dropTask } from "ember-concurrency";
-import { trackedTask } from "ember-resources/util/ember-concurrency";
+import { trackedFunction } from "ember-resources/util/function";
 import { cached } from "tracked-toolbox";
 
 import getDynamicOptions from "@projectcaluma/ember-form/gql/queries/dynamic-options.graphql";
@@ -51,18 +50,10 @@ export default class Question extends Base {
     return this.raw.slug;
   }
 
-  /**
-   * Load all dynamic options for this question
-   *
-   * @method loadDynamicOptions.perform
-   * @return {Object[]} The dynamic options
-   * @public
-   */
-  @dropTask
-  *loadDynamicOptions() {
+  dynamicOptions = trackedFunction(this, async () => {
     if (!this.isDynamic) return;
 
-    const [question] = yield this.apollo.query(
+    const [question] = await this.apollo.query(
       {
         query: getDynamicOptions,
         fetchPolicy: "network-only",
@@ -80,9 +71,7 @@ export default class Question extends Base {
       question.node.dynamicChoiceOptions ??
       question.node.dynamicMultipleChoiceOptions
     );
-  }
-
-  dynamicOptions = trackedTask(this, this.loadDynamicOptions, () => []);
+  });
 
   get dynamicChoiceOptions() {
     return this.dynamicOptions.value ?? [];

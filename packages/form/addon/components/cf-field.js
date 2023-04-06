@@ -91,4 +91,11 @@ export default class CfFieldComponent extends Component {
 
     return yield this.args.field.save.unlinked().perform();
   }
+
+  @action
+  refreshDynamicOptions() {
+    if (this.args.field.question.isDynamic) {
+      this.args.field.question.dynamicOptions.retry();
+    }
+  }
 }
