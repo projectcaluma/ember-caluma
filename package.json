@@ -1,6 +1,6 @@
 {
   "name": "root",
-  "version": "11.1.3",
+  "version": "11.1.4",
   "private": true,
   "homepage": "https://docs.caluma.io/ember-caluma",
   "repository": "github:projectcaluma/ember-caluma",
