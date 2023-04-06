@@ -37,10 +37,10 @@ jobs:
           git config user.name "${GITHUB_ACTOR}"
           git config user.email "${GITHUB_ACTOR}@users.noreply.github.com"
 
-      - name: Configure pnpm
+      - name: Configure npm
         run: |
-          pnpm config set registry https://registry.npmjs.org
-          pnpm config set //registry.npmjs.org/:_authToken=${NPM_TOKEN}
+          npm config set registry https://registry.npmjs.org
+          npm config set //registry.npmjs.org/:_authToken=${NPM_TOKEN}
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
