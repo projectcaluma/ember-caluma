@@ -11,7 +11,7 @@ There are various addons for using Caluma in Ember.js:
 Choose your needed packages and install them:
 
 ```bash
-ember install @projectcaluma/ember-form
+ember install ember-engines @projectcaluma/ember-form
 ```
 
 # Usage
