@@ -51,6 +51,7 @@ caluma:
       isRequired: "Champ obligatoire"
       staticContent: "Contenu statique"
       infoText: "Texte d'information"
+      hintText: "Texte indicatif"
       confirmationText: "Texte de confirmation"
       placeholder: "Caractère générique"
       isHidden: "Caché (JEXL)"
