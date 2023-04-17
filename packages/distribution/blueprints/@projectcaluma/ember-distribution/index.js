@@ -12,14 +12,13 @@ module.exports = {
      */
     return this.addAddonsToProject({
       packages: [
+        { name: "@ember/legacy-built-in-components" },
         { name: "@projectcaluma/ember-core" },
-        { name: "ember-changeset" },
-        { name: "ember-composable-helpers" },
+        { name: "@projectcaluma/ember-form" },
+        { name: "@projectcaluma/ember-workflow" },
         { name: "ember-concurrency" },
         { name: "ember-engines" },
-        { name: "ember-sortable" },
-        { name: "ember-power-select" },
-        { name: "ember-validated-form" },
+        { name: "ember-svg-jar" },
       ],
     });
   },
