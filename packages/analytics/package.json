@@ -19,7 +19,7 @@
     "@glimmer/tracking": "^1.1.2",
     "@projectcaluma/ember-core": "^11.1.5",
     "ember-apollo-client": "^4.0.2",
-    "ember-auto-import": "^2.6.1",
+    "ember-auto-import": "^2.6.3",
     "ember-changeset": "^4.1.2",
     "ember-changeset-validations": "^4.1.1",
     "ember-cli-babel": "^7.26.11",
@@ -32,7 +32,7 @@
     "ember-power-select": "7.0.0",
     "ember-resources": "^5.6.4",
     "ember-sortable": "^5.0.0",
-    "ember-uikit": "^7.0.1",
+    "ember-uikit": "^7.0.2",
     "ember-validated-form": "^6.2.0",
     "graphql": "^15.8.0"
   },
@@ -60,7 +60,7 @@
     "ember-cli-sri": "2.1.1",
     "ember-cli-terser": "4.0.2",
     "ember-data": "4.7.3",
-    "ember-engines": "0.8.23",
+    "ember-engines": "0.9.0",
     "ember-load-initializers": "2.1.2",
     "ember-modifier": "4.1.0",
     "ember-qunit": "6.2.0",
@@ -71,9 +71,9 @@
     "loader.js": "4.7.0",
     "qunit": "2.19.4",
     "qunit-dom": "2.0.0",
-    "sass": "1.60.0",
-    "uikit": "3.16.13",
-    "webpack": "5.77.0"
+    "sass": "1.62.0",
+    "uikit": "3.16.15",
+    "webpack": "5.79.0"
   },
   "peerDependency": {
     "ember-engines": ">= 0.8"
