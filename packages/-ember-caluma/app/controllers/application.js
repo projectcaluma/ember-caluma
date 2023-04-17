@@ -1,15 +1,8 @@
 import Controller from "@ember/controller";
 import { inject as service } from "@ember/service";
 
-import ENV from "ember-caluma/config/environment";
-
 export default class ApplicationController extends Controller {
   @service router;
-
-  get showDistribution() {
-    // TODO: remove when distribution is V1
-    return ENV.environment !== "production";
-  }
 
   get distributionIsActive() {
     return this.router.isActive(

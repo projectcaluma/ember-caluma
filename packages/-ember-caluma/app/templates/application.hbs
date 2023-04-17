@@ -2,18 +2,16 @@
   <header.link @route="demo.form-builder">Form builder</header.link>
   <header.link @route="demo.form-rendering">Form rendering</header.link>
   <header.link @route="demo.queries">Queries</header.link>
-  {{#if this.showDistribution}}
-    <LinkTo
-      @route="demo.distribution"
-      @model="4222ab21-9c89-47de-98be-d62a8ed0ebeb"
-      class="docs-px-4 docs-py-5 docs-transition docs-uppercase docs-text-xxs docs-font-bold docs-no-underline
-        {{if
-          this.distributionIsActive
-          'docs-text-brand'
-          'docs-text-grey-darkest hover:docs-text-brand'
-        }}"
-    >Distribution</LinkTo>
-  {{/if}}
+  <LinkTo
+    @route="demo.distribution"
+    @model="4222ab21-9c89-47de-98be-d62a8ed0ebeb"
+    class="docs-px-4 docs-py-5 docs-transition docs-uppercase docs-text-xxs docs-font-bold docs-no-underline
+      {{if
+        this.distributionIsActive
+        'docs-text-brand'
+        'docs-text-grey-darkest hover:docs-text-brand'
+      }}"
+  >Distribution</LinkTo>
   <header.link @route="demo.analytics">Analytics</header.link>
 </DocsHeader>
 
