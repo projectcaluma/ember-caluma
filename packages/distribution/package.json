@@ -27,7 +27,7 @@
     "@projectcaluma/ember-form": "^11.1.5",
     "@projectcaluma/ember-workflow": "^11.1.5",
     "ember-apollo-client": "~4.0.2",
-    "ember-auto-import": "^2.6.1",
+    "ember-auto-import": "^2.6.3",
     "ember-can": "^4.2.0",
     "ember-cli-babel": "^7.26.11",
     "ember-cli-htmlbars": "^6.2.0",
@@ -39,7 +39,7 @@
     "ember-resources": "^5.6.4",
     "ember-svg-jar": "^2.4.2",
     "ember-test-selectors": "^6.0.0",
-    "ember-uikit": "^7.0.1",
+    "ember-uikit": "^7.0.2",
     "graphql": "^15.8.0",
     "graphql-tag": "^2.12.6",
     "lodash.merge": "^4.6.2",
@@ -61,7 +61,7 @@
     "ember-cli-sass": "11.0.1",
     "ember-cli-sri": "2.1.1",
     "ember-cli-terser": "4.0.2",
-    "ember-engines": "0.8.23",
+    "ember-engines": "0.9.0",
     "ember-load-initializers": "2.1.2",
     "ember-qunit": "6.2.0",
     "ember-resolver": "10.0.0",
@@ -72,9 +72,9 @@
     "miragejs": "0.1.47",
     "qunit": "2.19.4",
     "qunit-dom": "2.0.0",
-    "sass": "1.60.0",
-    "uikit": "3.16.13",
-    "webpack": "5.77.0"
+    "sass": "1.62.0",
+    "uikit": "3.16.15",
+    "webpack": "5.79.0"
   },
   "engines": {
     "node": "14.* || 16.* || >= 18"

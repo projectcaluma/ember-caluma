@@ -30,7 +30,7 @@
     "@projectcaluma/ember-workflow": "11.1.5",
     "broccoli-asset-rev": "3.0.0",
     "ember-apollo-client": "4.0.2",
-    "ember-auto-import": "2.6.1",
+    "ember-auto-import": "2.6.3",
     "ember-changeset": "4.1.2",
     "ember-changeset-validations": "4.1.1",
     "ember-cli": "4.11.0",
@@ -51,7 +51,7 @@
     "ember-composable-helpers": "5.0.0",
     "ember-data": "4.7.3",
     "ember-disable-prototype-extensions": "1.1.3",
-    "ember-engines": "0.8.23",
+    "ember-engines": "0.9.0",
     "ember-fetch": "8.1.2",
     "ember-flatpickr": "4.0.0",
     "ember-intl": "5.7.2",
@@ -63,15 +63,15 @@
     "ember-sortable": "5.0.0",
     "ember-source": "4.12.0",
     "ember-truth-helpers": "3.1.1",
-    "ember-uikit": "7.0.1",
+    "ember-uikit": "7.0.2",
     "ember-validated-form": "^6.2.0",
     "graphql": "15.8.0",
     "loader.js": "4.7.0",
     "miragejs": "0.1.47",
-    "sass": "1.60.0",
+    "sass": "1.62.0",
     "tracked-built-ins": "3.1.1",
-    "uikit": "3.16.13",
-    "webpack": "5.77.0"
+    "uikit": "3.16.15",
+    "webpack": "5.79.0"
   },
   "ember": {
     "edition": "octane"

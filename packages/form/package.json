@@ -20,7 +20,7 @@
     "@glimmer/tracking": "^1.1.2",
     "@projectcaluma/ember-core": "^11.1.5",
     "ember-apollo-client": "~4.0.2",
-    "ember-auto-import": "^2.6.1",
+    "ember-auto-import": "^2.6.3",
     "ember-autoresize-modifier": "^0.7.0",
     "ember-cli-babel": "^7.26.11",
     "ember-cli-htmlbars": "^6.2.0",
@@ -34,7 +34,7 @@
     "ember-math-helpers": "^3.0.0",
     "ember-power-select": "^7.0.0",
     "ember-resources": "^5.6.4",
-    "ember-uikit": "^7.0.1",
+    "ember-uikit": "^7.0.2",
     "ember-validators": "^4.1.2",
     "graphql": "^15.8.0",
     "jexl": "^2.3.0",
@@ -67,9 +67,9 @@
     "miragejs": "0.1.47",
     "qunit": "2.19.4",
     "qunit-dom": "2.0.0",
-    "uikit": "3.16.13",
+    "uikit": "3.16.15",
     "uuid": "9.0.0",
-    "webpack": "5.77.0"
+    "webpack": "5.79.0"
   },
   "peerDependencies": {
     "@projectcaluma/ember-workflow": "^11.1.5",

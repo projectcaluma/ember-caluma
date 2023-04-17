@@ -45,7 +45,3 @@ updates:
   #     - dependency-name: ember-data
   #       versions:
   #         - ">= 4.8.0 <= 4.9.1"
-  #     # https://github.com/ember-engines/ember-engines/issues/833
-  #     - dependency-name: ember-engines
-  #       versions:
-  #         - "0.9.0"
