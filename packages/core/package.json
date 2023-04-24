@@ -25,7 +25,7 @@
     "ember-inflector": "^4.0.2",
     "ember-intl": "^5.7.2",
     "ember-resources": "^5.6.4",
-    "ember-uikit": "^7.0.2",
+    "ember-uikit": "^7.0.3",
     "graphql": "^15.8.0",
     "graphql-tag": "^2.12.6",
     "jexl": "^2.3.0",
@@ -37,7 +37,7 @@
     "@ember/render-modifiers": "2.0.5",
     "@ember/test-helpers": "2.9.3",
     "@embroider/test-setup": "2.1.1",
-    "@embroider/util": "^1.10.0",
+    "@embroider/util": "1.10.0",
     "@faker-js/faker": "7.6.0",
     "@glimmer/component": "1.1.2",
     "@projectcaluma/ember-testing": "11.1.5",
@@ -59,7 +59,7 @@
     "qunit": "2.19.4",
     "qunit-dom": "2.0.0",
     "uikit": "3.16.15",
-    "webpack": "5.79.0"
+    "webpack": "5.80.0"
   },
   "peerDependencies": {
     "ember-source": "^3.28.0 || ^4.0.0"
