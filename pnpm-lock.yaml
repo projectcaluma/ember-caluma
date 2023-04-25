@@ -113,25 +113,25 @@ importers:
         specifier: 1.1.2
         version: 1.1.2
       '@projectcaluma/ember-analytics':
-        specifier: 11.1.5
+        specifier: 11.2.0
         version: link:../analytics
       '@projectcaluma/ember-core':
-        specifier: 11.1.5
+        specifier: 11.2.0
         version: link:../core
       '@projectcaluma/ember-distribution':
-        specifier: 11.1.5
+        specifier: 11.2.0
         version: link:../distribution
       '@projectcaluma/ember-form':
-        specifier: 11.1.5
+        specifier: 11.2.0
         version: link:../form
       '@projectcaluma/ember-form-builder':
-        specifier: 11.1.5
+        specifier: 11.2.0
         version: link:../form-builder
       '@projectcaluma/ember-testing':
-        specifier: 11.1.5
+        specifier: 11.2.0
         version: link:../testing
       '@projectcaluma/ember-workflow':
-        specifier: 11.1.5
+        specifier: 11.2.0
         version: link:../workflow
       broccoli-asset-rev:
         specifier: 3.0.0
@@ -278,7 +278,7 @@ importers:
         specifier: ^1.1.2
         version: 1.1.2
       '@projectcaluma/ember-core':
-        specifier: ^11.1.5
+        specifier: ^11.2.0
         version: link:../core
       ember-apollo-client:
         specifier: ~4.0.2
@@ -351,7 +351,7 @@ importers:
         specifier: 7.6.0
         version: 7.6.0
       '@projectcaluma/ember-testing':
-        specifier: 11.1.5
+        specifier: 11.2.0
         version: link:../testing
       broccoli-asset-rev:
         specifier: 3.0.0
@@ -505,7 +505,7 @@ importers:
         specifier: 1.1.2
         version: 1.1.2(@babel/core@7.21.4)
       '@projectcaluma/ember-testing':
-        specifier: 11.1.5
+        specifier: 11.2.0
         version: link:../testing
       broccoli-asset-rev:
         specifier: 3.0.0
@@ -583,13 +583,13 @@ importers:
         specifier: ^1.1.2
         version: 1.1.2
       '@projectcaluma/ember-core':
-        specifier: ^11.1.5
+        specifier: ^11.2.0
         version: link:../core
       '@projectcaluma/ember-form':
-        specifier: ^11.1.5
+        specifier: ^11.2.0
         version: link:../form
       '@projectcaluma/ember-workflow':
-        specifier: ^11.1.5
+        specifier: ^11.2.0
         version: link:../workflow
       ember-apollo-client:
         specifier: ~4.0.2
@@ -662,7 +662,7 @@ importers:
         specifier: 7.6.0
         version: 7.6.0
       '@projectcaluma/ember-testing':
-        specifier: 11.1.5
+        specifier: 11.2.0
         version: link:../testing
       broccoli-asset-rev:
         specifier: 3.0.0
@@ -752,7 +752,7 @@ importers:
         specifier: ^1.1.2
         version: 1.1.2
       '@projectcaluma/ember-core':
-        specifier: ^11.1.5
+        specifier: ^11.2.0
         version: link:../core
       ember-apollo-client:
         specifier: ~4.0.2
@@ -834,10 +834,10 @@ importers:
         specifier: 7.6.0
         version: 7.6.0
       '@projectcaluma/ember-testing':
-        specifier: 11.1.5
+        specifier: 11.2.0
         version: link:../testing
       '@projectcaluma/ember-workflow':
-        specifier: 11.1.5
+        specifier: 11.2.0
         version: link:../workflow
       broccoli-asset-rev:
         specifier: 3.0.0
@@ -924,10 +924,10 @@ importers:
         specifier: ^1.1.2
         version: 1.1.2
       '@projectcaluma/ember-core':
-        specifier: ^11.1.5
+        specifier: ^11.2.0
         version: link:../core
       '@projectcaluma/ember-form':
-        specifier: ^11.1.5
+        specifier: ^11.2.0
         version: link:../form
       codejar:
         specifier: ^3.7.0
@@ -1018,7 +1018,7 @@ importers:
         specifier: 7.6.0
         version: 7.6.0
       '@projectcaluma/ember-testing':
-        specifier: 11.1.5
+        specifier: 11.2.0
         version: link:../testing
       broccoli-asset-rev:
         specifier: 3.0.0
@@ -1211,7 +1211,7 @@ importers:
         specifier: ^1.1.2
         version: 1.1.2(@babel/core@7.21.4)
       '@projectcaluma/ember-core':
-        specifier: ^11.1.5
+        specifier: ^11.2.0
         version: link:../core
       ember-apollo-client:
         specifier: ~4.0.2
@@ -1269,7 +1269,7 @@ importers:
         specifier: 1.1.2
         version: 1.1.2
       '@projectcaluma/ember-testing':
-        specifier: 11.1.5
+        specifier: 11.2.0
         version: link:../testing
       broccoli-asset-rev:
         specifier: 3.0.0
