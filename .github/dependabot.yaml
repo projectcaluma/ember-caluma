@@ -33,11 +33,3 @@ updates:
   #     - dependency-name: ember-engines-router-service
   #       versions:
   #         - ">= 0.4.0 <= 4.4.1"
-  #     # https://github.com/ember-learn/ember-cli-addon-docs/issues/1309
-  #     - dependency-name: tracked-toolbox
-  #       versions:
-  #         - "2.0.0"
-  #     # ember-data 4.8.x doesn't work with ember-cli-addon-docs
-  #     - dependency-name: ember-data
-  #       versions:
-  #         - ">= 4.8.0 <= 4.9.1"
