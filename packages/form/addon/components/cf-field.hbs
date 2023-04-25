@@ -5,6 +5,8 @@
         (and @disabled (has-question-type @field.question 'action-button'))
         'uk-hidden'
       }}"
+    data-question-slug={{@field.question.slug}}
+    data-question-type={{@field.questionType}}
     {{did-insert this.registerComponent}}
     {{will-destroy this.unregisterComponent}}
     {{in-viewport onEnter=this.refreshDynamicOptions}}
