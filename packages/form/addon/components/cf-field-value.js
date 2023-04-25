@@ -18,7 +18,7 @@ export default class CfFieldValueComponent extends Component {
       "node.value"
     );
 
-    const { downloadUrl } = files?.find((file) => file.id === id);
+    const { downloadUrl } = files?.find((file) => file.id === id) ?? {};
     if (downloadUrl) {
       window.open(downloadUrl, "_blank");
     }
