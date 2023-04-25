@@ -16,6 +16,9 @@ importers:
       '@babel/eslint-parser':
         specifier: 7.21.3
         version: 7.21.3(@babel/core@7.21.4)(eslint@8.39.0)
+      '@babel/plugin-proposal-decorators':
+        specifier: 7.21.0
+        version: 7.21.0(@babel/core@7.21.4)
       '@commitlint/cli':
         specifier: 17.6.1
         version: 17.6.1
