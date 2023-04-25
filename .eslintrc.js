@@ -1,7 +1,7 @@
 "use strict";
 
 module.exports = {
-  extends: "@adfinis-sygroup/eslint-config/ember-addon",
+  extends: "@adfinis/eslint-config/ember-addon",
   settings: {
     "import/internal-regex": "^(@projectcaluma|ember-caluma|dummy)/",
   },
@@ -17,13 +17,8 @@ module.exports = {
         "./packages/*/config/**/*.js",
         "./packages/*/tests/dummy/config/**/*.js",
       ],
-      parserOptions: {
-        sourceType: "script",
-      },
-      env: {
-        browser: false,
-        node: true,
-      },
+      parserOptions: { sourceType: "script" },
+      env: { browser: false, node: true },
       extends: ["plugin:n/recommended"],
     },
     // GraphQL
