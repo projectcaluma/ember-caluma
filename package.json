@@ -62,10 +62,6 @@
   },
   "packageManager": "pnpm@8.1.0",
   "pnpm": {
-    "//": "tracked-toolbox: https://github.com/ember-learn/ember-cli-addon-docs/issues/1309",
-    "overrides": {
-      "tracked-toolbox": "^1.2.3"
-    },
     "peerDependencyRules": {
       "ignoreMissing": [
         "@babel/core",
