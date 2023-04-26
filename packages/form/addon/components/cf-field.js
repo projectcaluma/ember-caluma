@@ -94,7 +94,10 @@ export default class CfFieldComponent extends Component {
 
   @action
   refreshDynamicOptions() {
-    if (this.args.field.question.isDynamic) {
+    if (
+      this.args.field.question.isDynamic &&
+      this.args.field.question.dynamicOptions.isResolved
+    ) {
       this.args.field.question.dynamicOptions.retry();
     }
   }

@@ -360,7 +360,10 @@ export default class Field extends Base {
     );
 
     if (this.question.isDynamic && hasUnknownValue) {
-      if (!this._fetchUsedDynamicOptions.lastSuccessful) {
+      if (
+        !this._fetchUsedDynamicOptions.lastSuccessful &&
+        this.question.dynamicOptions.isResolved
+      ) {
         // Fetch used dynamic options if not done yet
         this._fetchUsedDynamicOptions.perform();
       }
@@ -776,7 +779,7 @@ export default class Field extends Base {
    * @private
    */
   async _validateDynamicChoiceQuestion() {
-    await this.question.dynamicOptions;
+    await this.question.dynamicOptions.retry();
 
     return this._validateOption(this.answer.value, true);
   }
@@ -796,7 +799,7 @@ export default class Field extends Base {
       return true;
     }
 
-    await this.question.dynamicOptions;
+    await this.question.dynamicOptions.retry();
 
     return this.answer.value
       ? value.map((value) => this._validateOption(value))
