@@ -64,10 +64,11 @@
   "pnpm": {
     "peerDependencyRules": {
       "ignoreMissing": [
-        "@babel/core",
-        "@glint/template",
         "typescript"
-      ]
+      ],
+      "allowedVersions": {
+        "graphql": "^15.8.0"
+      }
     }
   },
   "publishConfig": {
