@@ -13,7 +13,7 @@
     "test:ember-compatibility": "ember try:each"
   },
   "dependencies": {
-    "@apollo/client": "^3.7.12",
+    "@apollo/client": "^3.7.13",
     "@ember/string": "^3.0.1",
     "@glimmer/tracking": "^1.1.2",
     "ember-apollo-client": "~4.0.2",
@@ -25,7 +25,7 @@
     "ember-inflector": "^4.0.2",
     "ember-intl": "^5.7.2",
     "ember-resources": "^5.6.4",
-    "ember-uikit": "^7.0.3",
+    "ember-uikit": "^8.0.0",
     "graphql": "^15.8.0",
     "graphql-tag": "^2.12.6",
     "jexl": "^2.3.0",
@@ -42,7 +42,7 @@
     "@glimmer/component": "1.1.2",
     "@projectcaluma/ember-testing": "workspace:*",
     "broccoli-asset-rev": "3.0.0",
-    "ember-cli": "4.11.0",
+    "ember-cli": "4.12.1",
     "ember-cli-code-coverage": "2.0.0",
     "ember-cli-dependency-checker": "3.3.1",
     "ember-cli-inject-live-reload": "2.1.0",
@@ -59,10 +59,10 @@
     "qunit": "2.19.4",
     "qunit-dom": "2.0.0",
     "uikit": "3.16.15",
-    "webpack": "5.80.0"
+    "webpack": "5.81.0"
   },
   "peerDependencies": {
-    "ember-source": "^3.28.0 || ^4.0.0"
+    "ember-source": "^4.0.0"
   },
   "engines": {
     "node": "14.* || 16.* || >= 18"

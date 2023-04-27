@@ -1,3 +1,5 @@
+@use "sass:color";
+
 $flatpickr-today-color: $global-warning-background;
 $flatpickr-selected-color: $global-primary-background;
 
@@ -19,8 +21,8 @@ span.flatpickr-day {
     font-weight: 700;
 
     &:hover {
-      background: darken($flatpickr-selected-color, 10%);
-      border-color: darken($flatpickr-selected-color, 10%);
+      background: color.adjust($flatpickr-selected-color, $lightness: -10%);
+      border-color: color.adjust($flatpickr-selected-color, $lightness: -10%);
     }
   }
 }
