@@ -1,3 +1,5 @@
+@use "sass:color";
+
 $icon-size: 0.8rem !default;
 
 .cf-navigation {
@@ -13,9 +15,8 @@ $icon-size: 0.8rem !default;
       position: relative;
       height: $icon-size;
       width: $icon-size;
-      color: darken($global-border, 40%);
-      border: 1px solid darken($global-border, 10%);
-
+      color: color.adjust($global-border, $lightness: -40%);
+      border: 1px solid color.adjust($global-border, $lightness: -10%);
       transition: color 500ms ease, border 500ms ease;
 
       &::before {
@@ -36,6 +37,7 @@ $icon-size: 0.8rem !default;
       &--in-progress::before {
         content: "?";
       }
+
       &--valid::before {
         content: "✓";
       }
@@ -48,16 +50,16 @@ $icon-size: 0.8rem !default;
 }
 
 .cf-navigation__item__icon--in-progress.cf-navigation__item__icon--dirty {
-  color: darken($global-warning-background, 20%);
-  border-color: lighten($global-warning-background, 10%);
+  color: color.adjust($global-warning-background, $lightness: -20%);
+  border-color: color.adjust($global-warning-background, $lightness: 10%);
 }
 
 .cf-navigation__item__icon--valid.cf-navigation__item__icon--dirty {
-  color: darken($global-success-background, 20%);
-  border-color: lighten($global-success-background, 10%);
+  color: color.adjust($global-success-background, $lightness: -20%);
+  border-color: color.adjust($global-success-background, $lightness: 10%);
 }
 
 .cf-navigation__item__icon--invalid.cf-navigation__item__icon--dirty {
-  color: darken($global-danger-background, 20%);
-  border-color: lighten($global-danger-background, 10%);
+  color: color.adjust($global-danger-background, $lightness: -20%);
+  border-color: color.adjust($global-danger-background, $lightness: 10%);
 }

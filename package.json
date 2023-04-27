@@ -13,8 +13,10 @@
     "lint:hbs:fix": "ember-template-lint . --fix",
     "lint:js": "eslint . --cache",
     "lint:js:fix": "eslint . --fix",
-    "lint:prettier": "prettier --check \"**/*.{scss,graphql,json,md,yaml}\"",
-    "lint:prettier:fix": "prettier --write \"**/*.{scss,graphql,json,md,yaml}\"",
+    "lint:css": "stylelint \"**/*.scss\"",
+    "lint:css:fix": "concurrently \"npm:lint:css -- --fix\"",
+    "lint:prettier": "prettier -c \"**/*.{graphql,json,md,yaml}\"",
+    "lint:prettier:fix": "prettier -wl \"**/*.{graphql,json,md,yaml}\"",
     "update-possible-types": "node bin/fetch-possible-types.mjs && prettier --write packages/core/addon/-private/possible-types.js",
     "update-schema": "get-graphql-schema http://localhost:8000/graphql > packages/testing/addon/mirage-graphql/schema.graphql && prettier --write packages/testing/addon/mirage-graphql/schema.graphql",
     "update-caluma": "concurrently \"npm:update-possible-types\" \"npm:update-schema\"",
@@ -30,11 +32,12 @@
   "lint-staged": {
     "*.js": "eslint --cache --fix",
     "*.hbs": "ember-template-lint --fix",
-    "*.{scss,graphql,json,md,yaml}": "prettier --write"
+    "*.scss": "stylelint --fix",
+    "*.{graphql,json,md,yaml}": "prettier --write"
   },
   "devDependencies": {
     "@adfinis/eslint-config": "2.0.0",
-    "@babel/core": "7.21.4",
+    "@babel/core": "7.21.5",
     "@babel/eslint-parser": "7.21.3",
     "@babel/plugin-proposal-decorators": "7.21.0",
     "@commitlint/cli": "17.6.1",
@@ -43,7 +46,7 @@
     "@release-it-plugins/workspaces": "3.2.0",
     "@release-it/conventional-changelog": "5.1.1",
     "concurrently": "8.0.1",
-    "ember-template-lint": "5.7.2",
+    "ember-template-lint": "5.7.3",
     "ember-template-lint-plugin-prettier": "4.1.0",
     "eslint": "8.39.0",
     "eslint-config-prettier": "8.8.0",
@@ -55,10 +58,14 @@
     "get-graphql-schema": "2.1.2",
     "graphql": "15.8.0",
     "husky": "8.0.3",
-    "lint-staged": "13.2.1",
+    "lint-staged": "13.2.2",
     "node-fetch": "3.3.1",
     "prettier": "2.8.8",
-    "release-it": "15.10.1"
+    "release-it": "15.10.1",
+    "stylelint": "^15.4.0",
+    "stylelint-config-standard-scss": "9.0.0",
+    "stylelint-prettier": "^3.0.0",
+    "stylelint-scss": "5.0.0"
   },
   "packageManager": "pnpm@8.1.0",
   "pnpm": {
