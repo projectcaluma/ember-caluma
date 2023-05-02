@@ -7,29 +7,28 @@ updates:
       day: "friday"
       time: "12:00"
       timezone: "Europe/Zurich"
-  # https://github.com/dependabot/dependabot-core/issues/1736
-  # - package-ecosystem: npm
-  #   directory: "/"
-  #   schedule:
-  #     interval: "weekly"
-  #     day: "friday"
-  #     time: "12:00"
-  #     timezone: "Europe/Zurich"
-  #   open-pull-requests-limit: 10
-  #   versioning-strategy: increase
-  #   ignore:
-  #     # graphql-tools v5+ breaks generic mocking
-  #     - dependency-name: graphql-tools
-  #       versions:
-  #         - ">= 5"
-  #     - dependency-name: graphql
-  #       versions:
-  #         - ">= 16"
-  #     # 4.1.0 is broken
-  #     - dependency-name: ember-apollo-client
-  #       versions:
-  #         - "4.1.0"
-  #     # https://github.com/villander/ember-engines-router-service/issues/67
-  #     - dependency-name: ember-engines-router-service
-  #       versions:
-  #         - ">= 0.4.0 <= 4.4.1"
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "friday"
+      time: "12:00"
+      timezone: "Europe/Zurich"
+    open-pull-requests-limit: 10
+    versioning-strategy: increase
+    ignore:
+      # graphql-tools v5+ breaks generic mocking
+      - dependency-name: graphql-tools
+        versions:
+          - ">= 5"
+      - dependency-name: graphql
+        versions:
+          - ">= 16"
+      # 4.1.0 is broken
+      - dependency-name: ember-apollo-client
+        versions:
+          - "4.1.0"
+      # https://github.com/villander/ember-engines-router-service/issues/67
+      - dependency-name: ember-engines-router-service
+        versions:
+          - ">= 0.4.0 <= 4.4.1"
