@@ -6,13 +6,13 @@ importers:
     devDependencies:
       '@adfinis/eslint-config':
         specifier: 2.0.0
-        version: 2.0.0(@babel/core@7.21.5)(@babel/eslint-parser@7.21.3)(eslint-config-prettier@8.8.0)(eslint-plugin-ember@11.5.2)(eslint-plugin-import@2.27.5)(eslint-plugin-n@15.7.0)(eslint-plugin-prettier@4.2.1)(eslint-plugin-qunit@7.3.4)(eslint@8.39.0)(prettier@2.8.8)
+        version: 2.0.0(@babel/core@7.21.5)(@babel/eslint-parser@7.21.8)(eslint-config-prettier@8.8.0)(eslint-plugin-ember@11.5.2)(eslint-plugin-import@2.27.5)(eslint-plugin-n@15.7.0)(eslint-plugin-prettier@4.2.1)(eslint-plugin-qunit@7.3.4)(eslint@8.39.0)(prettier@2.8.8)
       '@babel/core':
         specifier: 7.21.5
         version: 7.21.5
       '@babel/eslint-parser':
-        specifier: 7.21.3
-        version: 7.21.3(@babel/core@7.21.5)(eslint@8.39.0)
+        specifier: 7.21.8
+        version: 7.21.8(@babel/core@7.21.5)(eslint@8.39.0)
       '@babel/plugin-proposal-decorators':
         specifier: 7.21.0
         version: 7.21.0(@babel/core@7.21.5)
@@ -1355,7 +1355,7 @@ importers:
 
 packages:
 
-  /@adfinis/eslint-config@2.0.0(@babel/core@7.21.5)(@babel/eslint-parser@7.21.3)(eslint-config-prettier@8.8.0)(eslint-plugin-ember@11.5.2)(eslint-plugin-import@2.27.5)(eslint-plugin-n@15.7.0)(eslint-plugin-prettier@4.2.1)(eslint-plugin-qunit@7.3.4)(eslint@8.39.0)(prettier@2.8.8):
+  /@adfinis/eslint-config@2.0.0(@babel/core@7.21.5)(@babel/eslint-parser@7.21.8)(eslint-config-prettier@8.8.0)(eslint-plugin-ember@11.5.2)(eslint-plugin-import@2.27.5)(eslint-plugin-n@15.7.0)(eslint-plugin-prettier@4.2.1)(eslint-plugin-qunit@7.3.4)(eslint@8.39.0)(prettier@2.8.8):
     resolution: {integrity: sha512-jfD8GUBZwwbO6S7d/VLSwZ57tNdM3uD9R2Mgi9uh5/Mr6SCOeJ/CH/9LrxtqxIWASqDvyCmDh7SMsWaVHfqpCQ==}
     peerDependencies:
       '@babel/core': ^7.21.4
@@ -1370,7 +1370,7 @@ packages:
       prettier: ^2.8.8
     dependencies:
       '@babel/core': 7.21.5
-      '@babel/eslint-parser': 7.21.3(@babel/core@7.21.5)(eslint@8.39.0)
+      '@babel/eslint-parser': 7.21.8(@babel/core@7.21.5)(eslint@8.39.0)
       eslint: 8.39.0
       eslint-config-prettier: 8.8.0(eslint@8.39.0)
       eslint-plugin-ember: 11.5.2(eslint@8.39.0)
@@ -1496,8 +1496,8 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /@babel/eslint-parser@7.21.3(@babel/core@7.21.5)(eslint@8.39.0):
-    resolution: {integrity: sha512-kfhmPimwo6k4P8zxNs8+T7yR44q1LdpsZdE1NkCsVlfiuTPRfnGgjaF8Qgug9q9Pou17u6wneYF0lDCZJATMFg==}
+  /@babel/eslint-parser@7.21.8(@babel/core@7.21.5)(eslint@8.39.0):
+    resolution: {integrity: sha512-HLhI+2q+BP3sf78mFUZNCGc10KEmoUqtUT1OCdMZsN+qr4qFeLUod62/zAnF3jNQstwyasDkZnVXwfK2Bml7MQ==}
     engines: {node: ^10.13.0 || ^12.13.0 || >=14.0.0}
     peerDependencies:
       '@babel/core': '>=7.11.0'
