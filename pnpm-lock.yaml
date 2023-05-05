@@ -251,8 +251,8 @@ importers:
         specifier: 7.0.0
         version: 7.0.0(@babel/core@7.21.8)(@ember/string@3.0.1)(@glint/template@1.0.2)(ember-source@4.12.0)(webpack@5.82.1)
       ember-resolver:
-        specifier: 10.0.0
-        version: 10.0.0(@ember/string@3.0.1)(ember-source@4.12.0)
+        specifier: 10.1.0
+        version: 10.1.0(@ember/string@3.0.1)(ember-source@4.12.0)
       ember-sortable:
         specifier: 5.0.0
         version: 5.0.0(@ember/test-helpers@2.9.3)(@ember/test-waiters@3.0.2)(ember-modifier@4.1.0)(ember-source@4.12.0)
@@ -420,8 +420,8 @@ importers:
         specifier: 6.2.0
         version: 6.2.0(@ember/test-helpers@2.9.3)(ember-source@4.12.0)(qunit@2.19.4)(webpack@5.82.1)
       ember-resolver:
-        specifier: 10.0.0
-        version: 10.0.0(@ember/string@3.0.1)(ember-source@4.12.0)
+        specifier: 10.1.0
+        version: 10.1.0(@ember/string@3.0.1)(ember-source@4.12.0)
       ember-source:
         specifier: 4.12.0
         version: 4.12.0(@babel/core@7.21.8)(@glimmer/component@1.1.2)(webpack@5.82.1)
@@ -562,8 +562,8 @@ importers:
         specifier: 6.2.0
         version: 6.2.0(@ember/test-helpers@2.9.3)(ember-source@4.12.0)(qunit@2.19.4)(webpack@5.82.1)
       ember-resolver:
-        specifier: 10.0.0
-        version: 10.0.0(@ember/string@3.0.1)(ember-source@4.12.0)
+        specifier: 10.1.0
+        version: 10.1.0(@ember/string@3.0.1)(ember-source@4.12.0)
       ember-source:
         specifier: 4.12.0
         version: 4.12.0(@babel/core@7.21.8)(@glimmer/component@1.1.2)(webpack@5.82.1)
@@ -725,8 +725,8 @@ importers:
         specifier: 6.2.0
         version: 6.2.0(@ember/test-helpers@2.9.3)(ember-source@4.12.0)(qunit@2.19.4)(webpack@5.82.1)
       ember-resolver:
-        specifier: 10.0.0
-        version: 10.0.0(@ember/string@3.0.1)(ember-source@4.12.0)
+        specifier: 10.1.0
+        version: 10.1.0(@ember/string@3.0.1)(ember-source@4.12.0)
       ember-source:
         specifier: 4.12.0
         version: 4.12.0(@babel/core@7.21.8)(@glimmer/component@1.1.2)(webpack@5.82.1)
@@ -894,8 +894,8 @@ importers:
         specifier: 6.2.0
         version: 6.2.0(@ember/test-helpers@2.9.3)(ember-source@4.12.0)(qunit@2.19.4)(webpack@5.82.1)
       ember-resolver:
-        specifier: 10.0.0
-        version: 10.0.0(@ember/string@3.0.1)(ember-source@4.12.0)
+        specifier: 10.1.0
+        version: 10.1.0(@ember/string@3.0.1)(ember-source@4.12.0)
       ember-source:
         specifier: 4.12.0
         version: 4.12.0(@babel/core@7.21.8)(@glimmer/component@1.1.2)(webpack@5.82.1)
@@ -1084,8 +1084,8 @@ importers:
         specifier: 6.2.0
         version: 6.2.0(@ember/test-helpers@2.9.3)(ember-source@4.12.0)(qunit@2.19.4)(webpack@5.82.1)
       ember-resolver:
-        specifier: 10.0.0
-        version: 10.0.0(@ember/string@3.0.1)(ember-source@4.12.0)
+        specifier: 10.1.0
+        version: 10.1.0(@ember/string@3.0.1)(ember-source@4.12.0)
       ember-source:
         specifier: 4.12.0
         version: 4.12.0(@babel/core@7.21.8)(@glimmer/component@1.1.2)(webpack@5.82.1)
@@ -1202,8 +1202,8 @@ importers:
         specifier: 6.2.0
         version: 6.2.0(@ember/test-helpers@2.9.3)(ember-source@4.12.0)(qunit@2.19.4)(webpack@5.82.1)
       ember-resolver:
-        specifier: 10.0.0
-        version: 10.0.0(@ember/string@3.0.1)(ember-source@4.12.0)
+        specifier: 10.1.0
+        version: 10.1.0(@ember/string@3.0.1)(ember-source@4.12.0)
       ember-source:
         specifier: 4.12.0
         version: 4.12.0(@babel/core@7.21.8)(@glimmer/component@1.1.2)(webpack@5.82.1)
@@ -1326,8 +1326,8 @@ importers:
         specifier: 6.2.0
         version: 6.2.0(@ember/test-helpers@2.9.3)(ember-source@4.12.0)(qunit@2.19.4)(webpack@5.82.1)
       ember-resolver:
-        specifier: 10.0.0
-        version: 10.0.0(@ember/string@3.0.1)(ember-source@4.12.0)
+        specifier: 10.1.0
+        version: 10.1.0(@ember/string@3.0.1)(ember-source@4.12.0)
       ember-source:
         specifier: 4.12.0
         version: 4.12.0(@babel/core@7.21.8)(@glimmer/component@1.1.2)(webpack@5.82.1)
@@ -1532,7 +1532,7 @@ packages:
     dependencies:
       '@babel/core': 7.21.8
       '@babel/helper-annotate-as-pure': 7.18.6
-      '@babel/helper-environment-visitor': 7.18.9
+      '@babel/helper-environment-visitor': 7.21.5
       '@babel/helper-function-name': 7.21.0
       '@babel/helper-member-expression-to-functions': 7.21.0
       '@babel/helper-optimise-call-expression': 7.18.6
@@ -1566,10 +1566,6 @@ packages:
       semver: 6.3.0
     transitivePeerDependencies:
       - supports-color
-
-  /@babel/helper-environment-visitor@7.18.9:
-    resolution: {integrity: sha512-3r/aACDJ3fhQ/EVgFy0hpj8oHyHpQc+LPtJoY9SzTThAsStm4Ptegq92vqKoE3vD706ZVFWITnMnxucw+S9Ipg==}
-    engines: {node: '>=6.9.0'}
 
   /@babel/helper-environment-visitor@7.21.5:
     resolution: {integrity: sha512-IYl4gZ3ETsWocUWgsFZLM5i1BYx9SoemminVEXadgLBa9TdeorzgLKm8wWLA6J1N/kT3Kch8XIk1laNzYoHKvQ==}
@@ -10561,8 +10557,8 @@ packages:
       - supports-color
       - webpack
 
-  /ember-resolver@10.0.0(@ember/string@3.0.1)(ember-source@4.12.0):
-    resolution: {integrity: sha512-e99wFJ4ZpleJ6JMEcIk4WEYP4s3nc+9/iNSXtwBHXC8ADJHJTeN3HjnT/eEbFbswdui4FYxIYuK+UCdP09811Q==}
+  /ember-resolver@10.1.0(@ember/string@3.0.1)(ember-source@4.12.0):
+    resolution: {integrity: sha512-Ju/ORUUbGnR83AgC3qV6fIVuM5tyi/nPRf9ggTM2+kdeGPLNTSkNZ0zSbjWEm0kerDezMjj/RoGuLvZl/L758w==}
     engines: {node: 14.* || 16.* || >= 18}
     peerDependencies:
       '@ember/string': ^3.0.1
