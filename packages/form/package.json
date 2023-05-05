@@ -69,7 +69,7 @@
     "qunit-dom": "2.0.0",
     "uikit": "3.16.15",
     "uuid": "9.0.0",
-    "webpack": "5.81.0"
+    "webpack": "5.82.0"
   },
   "peerDependencies": {
     "@projectcaluma/ember-workflow": "workspace:^",
