@@ -52,7 +52,7 @@
     "loader.js": "4.7.0",
     "qunit": "2.19.4",
     "qunit-dom": "2.0.0",
-    "webpack": "5.82.0"
+    "webpack": "5.82.1"
   },
   "peerDependencies": {
     "ember-source": "^4.0.0"
