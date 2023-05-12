@@ -33,7 +33,7 @@
     "@ember/string": "3.0.1",
     "@ember/test-helpers": "2.9.3",
     "@embroider/test-setup": "2.1.1",
-    "@faker-js/faker": "7.6.0",
+    "@faker-js/faker": "8.0.0",
     "@glimmer/tracking": "1.1.2",
     "@projectcaluma/ember-testing": "workspace:*",
     "broccoli-asset-rev": "3.0.0",
