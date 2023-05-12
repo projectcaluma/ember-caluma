@@ -81,7 +81,7 @@
     "miragejs": "0.1.47",
     "qunit": "2.19.4",
     "qunit-dom": "2.0.0",
-    "webpack": "5.82.0"
+    "webpack": "5.82.1"
   },
   "peerDependencies": {
     "ember-engines": "^0.9.0",
