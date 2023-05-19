@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@ember/string": "^3.0.1",
-    "@faker-js/faker": "^8.0.0",
+    "@faker-js/faker": "^8.0.1",
     "broccoli-funnel": "^3.0.8",
     "broccoli-merge-trees": "^4.2.0",
     "ember-apollo-client": "~4.0.2",
