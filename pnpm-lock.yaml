@@ -20,8 +20,8 @@ importers:
         specifier: 17.6.3
         version: 17.6.3
       '@commitlint/config-conventional':
-        specifier: 17.6.3
-        version: 17.6.3
+        specifier: 17.6.5
+        version: 17.6.5
       '@graphql-eslint/eslint-plugin':
         specifier: 3.18.0
         version: 3.18.0(@babel/core@7.21.8)(@types/node@18.16.1)(graphql@15.8.0)
@@ -2649,8 +2649,8 @@ packages:
       - '@swc/wasm'
     dev: true
 
-  /@commitlint/config-conventional@17.6.3:
-    resolution: {integrity: sha512-bLyHEjjRWqlLQWIgYFHmUPbEFMOOLXeF3QbUinDIJev/u9e769tkoTH9YPknEywiuIrAgZaVo+OfzAIsJP0fsw==}
+  /@commitlint/config-conventional@17.6.5:
+    resolution: {integrity: sha512-Xl9H9KLl86NZm5CYNTNF9dcz1xelE/EbvhWIWcYxG/rn3UWYWdWmmnX2q6ZduNdLFSGbOxzUpIx61j5zxbeXxg==}
     engines: {node: '>=v14'}
     dependencies:
       conventional-changelog-conventionalcommits: 5.0.0
