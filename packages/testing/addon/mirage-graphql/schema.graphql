@@ -152,6 +152,8 @@ input AnalyticsFieldFilterSetType {
   modifiedByGroup: String
   createdBefore: DateTime
   createdAfter: DateTime
+  modifiedBefore: DateTime
+  modifiedAfter: DateTime
   metaHasKey: String
   metaValue: [JSONValueFilterType]
   search: String
@@ -301,6 +303,8 @@ input AnalyticsTableFilterSetType {
   modifiedByGroup: String
   createdBefore: DateTime
   createdAfter: DateTime
+  modifiedBefore: DateTime
+  modifiedAfter: DateTime
   metaHasKey: String
   metaValue: [JSONValueFilterType]
   search: String
@@ -363,6 +367,8 @@ input AnswerFilterSetType {
   modifiedByGroup: String
   createdBefore: DateTime
   createdAfter: DateTime
+  modifiedBefore: DateTime
+  modifiedAfter: DateTime
   metaHasKey: String
   metaValue: [JSONValueFilterType]
   questions: [ID]
@@ -622,6 +628,8 @@ input CaseFilterSetType {
   modifiedByGroup: String
   createdBefore: DateTime
   createdAfter: DateTime
+  modifiedBefore: DateTime
+  modifiedAfter: DateTime
   metaHasKey: String
   metaValue: [JSONValueFilterType]
   id: ID
@@ -1185,6 +1193,8 @@ input DocumentFilterSetType {
   modifiedByGroup: String
   createdBefore: DateTime
   createdAfter: DateTime
+  modifiedBefore: DateTime
+  modifiedAfter: DateTime
   metaHasKey: String
   metaValue: [JSONValueFilterType]
   rootDocument: ID
@@ -1576,6 +1586,8 @@ input FlowFilterSetType {
   modifiedByGroup: String
   createdBefore: DateTime
   createdAfter: DateTime
+  modifiedBefore: DateTime
+  modifiedAfter: DateTime
   invert: Boolean
 }
 
@@ -1714,6 +1726,8 @@ input FormFilterSetType {
   modifiedByGroup: String
   createdBefore: DateTime
   createdAfter: DateTime
+  modifiedBefore: DateTime
+  modifiedAfter: DateTime
   metaHasKey: String
   metaValue: [JSONValueFilterType]
   search: String
@@ -2147,6 +2161,8 @@ input OptionFilterSetType {
   modifiedByGroup: String
   createdBefore: DateTime
   createdAfter: DateTime
+  modifiedBefore: DateTime
+  modifiedAfter: DateTime
   metaHasKey: String
   metaValue: [JSONValueFilterType]
   search: String
@@ -2307,6 +2323,7 @@ type Query {
   ): DynamicOptionConnection
   documentValidity(
     id: ID!
+    dataSourceContext: JSONString
     before: String
     after: String
     first: Int
@@ -2393,6 +2410,8 @@ input QuestionFilterSetType {
   modifiedByGroup: String
   createdBefore: DateTime
   createdAfter: DateTime
+  modifiedBefore: DateTime
+  modifiedAfter: DateTime
   metaHasKey: String
   metaValue: [JSONValueFilterType]
   excludeForms: [ID]
@@ -3819,6 +3838,8 @@ input TaskFilterSetType {
   modifiedByGroup: String
   createdBefore: DateTime
   createdAfter: DateTime
+  modifiedBefore: DateTime
+  modifiedAfter: DateTime
   metaHasKey: String
   metaValue: [JSONValueFilterType]
   search: String
@@ -4045,6 +4066,8 @@ input WorkflowFilterSetType {
   modifiedByGroup: String
   createdBefore: DateTime
   createdAfter: DateTime
+  modifiedBefore: DateTime
+  modifiedAfter: DateTime
   metaHasKey: String
   metaValue: [JSONValueFilterType]
   search: String
@@ -4163,6 +4186,8 @@ input WorkItemFilterSetType {
   modifiedByGroup: String
   createdBefore: DateTime
   createdAfter: DateTime
+  modifiedBefore: DateTime
+  modifiedAfter: DateTime
   metaHasKey: String
   metaValue: [JSONValueFilterType]
   id: ID
@@ -4171,9 +4196,12 @@ input WorkItemFilterSetType {
   assignedUsers: [String]
   documentHasAnswer: [HasAnswerFilterType]
   caseDocumentHasAnswer: [HasAnswerFilterType]
+  caseDocumentForms: [String]
   caseMetaValue: [JSONValueFilterType]
   rootCaseMetaValue: [JSONValueFilterType]
   caseSearchAnswers: [SearchAnswersFilterType]
+  deadlineBefore: DateTime
+  deadlineAfter: DateTime
   invert: Boolean
 }
 
