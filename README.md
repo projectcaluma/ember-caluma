@@ -20,7 +20,6 @@ The Ember.js addons for [Caluma](https://caluma.io) - a collaborative form editi
 
 - 4.8
 - 4.4
-- 3.28
 
 ## Documentation
 
