@@ -15,8 +15,8 @@
   },
   "dependencies": {
     "@ember/legacy-built-in-components": "^0.4.2",
-    "@ember/string": "^3.0.1",
-    "@embroider/macros": "^1.10.0",
+    "@ember/string": "^3.1.1",
+    "@embroider/macros": "^1.11.0",
     "@glimmer/component": "^1.1.2",
     "@glimmer/tracking": "^1.1.2",
     "@projectcaluma/ember-core": "workspace:^",
@@ -68,8 +68,8 @@
     "miragejs": "0.1.47",
     "qunit": "2.19.4",
     "qunit-dom": "2.0.0",
-    "sass": "1.62.1",
-    "uikit": "3.16.17",
+    "sass": "1.63.3",
+    "uikit": "3.16.19",
     "webpack": "5.86.0"
   },
   "peerDependencies": {

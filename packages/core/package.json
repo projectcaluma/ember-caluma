@@ -13,8 +13,8 @@
     "test:ember-compatibility": "ember try:each"
   },
   "dependencies": {
-    "@apollo/client": "^3.7.14",
-    "@ember/string": "^3.0.1",
+    "@apollo/client": "^3.7.15",
+    "@ember/string": "^3.1.1",
     "@glimmer/tracking": "^1.1.2",
     "ember-apollo-client": "~4.0.2",
     "ember-auto-import": "^2.6.3",
@@ -34,10 +34,10 @@
   },
   "devDependencies": {
     "@ember/optional-features": "2.0.0",
-    "@ember/render-modifiers": "2.0.5",
+    "@ember/render-modifiers": "2.1.0",
     "@ember/test-helpers": "2.9.3",
     "@embroider/test-setup": "3.0.1",
-    "@embroider/util": "1.11.0",
+    "@embroider/util": "1.11.1",
     "@faker-js/faker": "8.0.2",
     "@glimmer/component": "1.1.2",
     "@projectcaluma/ember-testing": "workspace:*",
@@ -58,7 +58,7 @@
     "loader.js": "4.7.0",
     "qunit": "2.19.4",
     "qunit-dom": "2.0.0",
-    "uikit": "3.16.17",
+    "uikit": "3.16.19",
     "webpack": "5.86.0"
   },
   "peerDependencies": {
