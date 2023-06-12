@@ -27,7 +27,7 @@ updates:
       # 4.1.0 is broken
       - dependency-name: ember-apollo-client
         versions:
-          - "4.1.0"
+          - ">= 4.1.0 <= 4.1.1"
       # https://github.com/villander/ember-engines-router-service/issues/67
       - dependency-name: ember-engines-router-service
         versions:
