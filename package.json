@@ -69,7 +69,7 @@
     "stylelint": "^15.6.1",
     "stylelint-config-standard-scss": "9.0.0",
     "stylelint-prettier": "^3.0.0",
-    "stylelint-scss": "5.0.0"
+    "stylelint-scss": "5.0.1"
   },
   "packageManager": "pnpm@8.6.0",
   "pnpm": {
