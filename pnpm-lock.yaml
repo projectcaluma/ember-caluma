@@ -234,7 +234,7 @@ importers:
         version: 8.1.2
       ember-flatpickr:
         specifier: 4.0.0
-        version: 4.0.0(@babel/core@7.21.8)(ember-source@4.12.0)
+        version: 4.0.0(@babel/core@7.21.8)(@glint/template@1.0.2)(ember-source@4.12.0)
       ember-intl:
         specifier: 5.7.2
         version: 5.7.2
@@ -511,8 +511,8 @@ importers:
         specifier: 2.0.0
         version: 2.0.0
       '@ember/render-modifiers':
-        specifier: 2.0.5
-        version: 2.0.5(@babel/core@7.21.8)(ember-source@4.12.0)
+        specifier: 2.1.0
+        version: 2.1.0(@babel/core@7.21.8)(@glint/template@1.0.2)(ember-source@4.12.0)
       '@ember/test-helpers':
         specifier: 2.9.3
         version: 2.9.3(@babel/core@7.21.8)(@glint/template@1.0.2)(ember-source@4.12.0)
@@ -641,7 +641,7 @@ importers:
         version: 8.1.2
       ember-flatpickr:
         specifier: ^4.0.0
-        version: 4.0.0(@babel/core@7.21.8)(ember-source@4.12.0)
+        version: 4.0.0(@babel/core@7.21.8)(@glint/template@1.0.2)(ember-source@4.12.0)
       ember-intl:
         specifier: ^5.7.2
         version: 5.7.2
@@ -807,7 +807,7 @@ importers:
         version: 8.1.2
       ember-flatpickr:
         specifier: ^4.0.0
-        version: 4.0.0(@babel/core@7.21.8)(ember-source@4.12.0)
+        version: 4.0.0(@babel/core@7.21.8)(@glint/template@1.0.2)(ember-source@4.12.0)
       ember-in-viewport:
         specifier: ^4.1.0
         version: 4.1.0(@babel/core@7.21.8)(ember-source@4.12.0)(webpack@5.86.0)
@@ -933,8 +933,8 @@ importers:
         specifier: ^0.4.2
         version: 0.4.2(ember-source@4.12.0)
       '@ember/render-modifiers':
-        specifier: ^2.0.5
-        version: 2.0.5(@babel/core@7.21.8)(ember-source@4.12.0)
+        specifier: ^2.1.0
+        version: 2.1.0(@babel/core@7.21.8)(@glint/template@1.0.2)(ember-source@4.12.0)
       '@ember/string':
         specifier: ^3.0.1
         version: 3.0.1
@@ -988,7 +988,7 @@ importers:
         version: 8.1.2
       ember-flatpickr:
         specifier: ^4.0.0
-        version: 4.0.0(@babel/core@7.21.8)(ember-source@4.12.0)
+        version: 4.0.0(@babel/core@7.21.8)(@glint/template@1.0.2)(ember-source@4.12.0)
       ember-intl:
         specifier: ^5.7.2
         version: 5.7.2
@@ -3149,13 +3149,18 @@ packages:
       - supports-color
     dev: true
 
-  /@ember/render-modifiers@2.0.5(@babel/core@7.21.8)(ember-source@4.12.0):
-    resolution: {integrity: sha512-5cJ1niIdOJC6k6KtIn9HGbr1DATJQp4ZqMv1vbi6LKQWbVCQ3byvKONtUEi3H0wcewlrcaWCqXOgm0nACzCOQA==}
+  /@ember/render-modifiers@2.1.0(@babel/core@7.21.8)(@glint/template@1.0.2)(ember-source@4.12.0):
+    resolution: {integrity: sha512-LruhfoDv2itpk0fA0IC76Sxjcnq/7BC6txpQo40hOko8Dn6OxwQfxkPIbZGV0Cz7df+iX+VJrcYzNIvlc3w2EQ==}
     engines: {node: 12.* || 14.* || >= 16}
     peerDependencies:
-      ember-source: ^3.8 || ^4.0.0
+      '@glint/template': ^1.0.2
+      ember-source: ^3.8 || ^4.0.0 || ^5.0.0
+    peerDependenciesMeta:
+      '@glint/template':
+        optional: true
     dependencies:
       '@embroider/macros': 1.10.0
+      '@glint/template': 1.0.2
       ember-cli-babel: 7.26.11
       ember-modifier-manager-polyfill: 1.2.0(@babel/core@7.21.8)
       ember-source: 4.12.0(@babel/core@7.21.8)(@glimmer/component@1.1.2)(webpack@5.86.0)
@@ -9246,7 +9251,7 @@ packages:
     resolution: {integrity: sha512-BTPePnyLHhAVkz73EGgOSeQBJWVURUtNUHkx1Qod+mXfI9bG5Ye4ZSwvxN0q5uvRby8VZT9SLzcOlEa1c7I3QA==}
     engines: {node: 14.* || >= 16}
     dependencies:
-      '@ember/render-modifiers': 2.0.5(@babel/core@7.21.8)(ember-source@4.12.0)
+      '@ember/render-modifiers': 2.1.0(@babel/core@7.21.8)(@glint/template@1.0.2)(ember-source@4.12.0)
       '@embroider/macros': 1.10.0
       '@embroider/util': 1.11.0(@glint/template@1.0.2)(ember-source@4.12.0)
       '@glimmer/component': 1.1.2(@babel/core@7.21.8)
@@ -9362,7 +9367,7 @@ packages:
       ember-fetch: ^8.1.1
     dependencies:
       '@csstools/postcss-sass': 5.0.1(postcss@8.4.23)
-      '@ember/render-modifiers': 2.0.5(@babel/core@7.21.8)(ember-source@4.12.0)
+      '@ember/render-modifiers': 2.1.0(@babel/core@7.21.8)(@glint/template@1.0.2)(ember-source@4.12.0)
       '@ember/test-waiters': 3.0.2
       '@glimmer/component': 1.1.2(@babel/core@7.21.8)
       '@glimmer/syntax': 0.84.3
@@ -10338,13 +10343,13 @@ packages:
       - encoding
       - supports-color
 
-  /ember-flatpickr@4.0.0(@babel/core@7.21.8)(ember-source@4.12.0):
+  /ember-flatpickr@4.0.0(@babel/core@7.21.8)(@glint/template@1.0.2)(ember-source@4.12.0):
     resolution: {integrity: sha512-NWCGFZENEcJ5GgtkuAtlAad3uyik4E0wD+/k40tNrlNd+XcGdMVQ4t90ku3GwfTrH9gNR5iq5LajL0dzA5Uhrw==}
     engines: {node: 14.* || 16.* || >= 18}
     peerDependencies:
       ember-source: ^3.28.0 || ^4.0.0
     dependencies:
-      '@ember/render-modifiers': 2.0.5(@babel/core@7.21.8)(ember-source@4.12.0)
+      '@ember/render-modifiers': 2.1.0(@babel/core@7.21.8)(@glint/template@1.0.2)(ember-source@4.12.0)
       '@glimmer/component': 1.1.2(@babel/core@7.21.8)
       '@glimmer/tracking': 1.1.2
       broccoli-funnel: 3.0.8
@@ -10357,6 +10362,7 @@ packages:
       flatpickr: 4.6.13
     transitivePeerDependencies:
       - '@babel/core'
+      - '@glint/template'
       - supports-color
 
   /ember-focus-trap@1.0.2:
@@ -10924,17 +10930,18 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /ember-toggle@9.0.3(@babel/core@7.21.8)(ember-source@4.12.0):
+  /ember-toggle@9.0.3(@babel/core@7.21.8)(@glint/template@1.0.2)(ember-source@4.12.0):
     resolution: {integrity: sha512-DxcQZ6HYq0NSRCkHqX77N8XiaIRZPjipDj68FVibPcW3puEFZwJnJgDu9eKmGcZWQvxpge5gzbloiwpJ7xib1A==}
     engines: {node: 12.* || 14.* || >= 16}
     dependencies:
-      '@ember/render-modifiers': 2.0.5(@babel/core@7.21.8)(ember-source@4.12.0)
+      '@ember/render-modifiers': 2.1.0(@babel/core@7.21.8)(@glint/template@1.0.2)(ember-source@4.12.0)
       ember-cached-decorator-polyfill: 0.1.4(@babel/core@7.21.8)
       ember-cli-babel: 7.26.11
       ember-cli-htmlbars: 6.2.0
       ember-gesture-modifiers: 3.0.0(@babel/core@7.21.8)
     transitivePeerDependencies:
       - '@babel/core'
+      - '@glint/template'
       - ember-source
       - supports-color
 
@@ -11008,7 +11015,7 @@ packages:
       ember-focus-trap: 1.0.2
       ember-modifier: 4.1.0(ember-source@4.12.0)
       ember-source: 4.12.0(@babel/core@7.21.8)(@glimmer/component@1.1.2)(webpack@5.86.0)
-      ember-toggle: 9.0.3(@babel/core@7.21.8)(ember-source@4.12.0)
+      ember-toggle: 9.0.3(@babel/core@7.21.8)(@glint/template@1.0.2)(ember-source@4.12.0)
       ember-truth-helpers: 3.1.1
       uikit: 3.16.17
     transitivePeerDependencies:
