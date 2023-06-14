@@ -5,7 +5,7 @@ caluma:
     send: "Envoyer les demandes ouvertes"
     complete: "Clore la circulation"
     skip: "Sauter la procédure de circulation"
-    reopen: "Rouvrir la procédure de circulation"
+    reopen: "Réouvrir la procédure de circulation"
     check-inquiries: "Marquer les prises de position comme vérifiées"
     send-confirm:
       "Voulez-vous vraiment envoyer <b>{count, plural, =1 {une demande ouverte}
@@ -17,7 +17,7 @@ caluma:
       continuer ?"
     complete-confirm-empty: "Vous voulez vraiment clore la circulation ?"
     skip-confirm: "Vous voulez vraiment sauter la circulation ?"
-    reopen-confirm: "Vous voulez vraiment rouvrir la circulation ?"
+    reopen-confirm: "Vous voulez vraiment réouvrir la circulation ?"
     send-error: "Erreur lors de l'envoi des demandes ouvertes"
     complete-error: "Erreur lors de la clôture de la circulation"
     skip-error: "Erreur lors du saut de la circulation"
@@ -121,6 +121,6 @@ caluma:
       status: "Retirée"
 
     reopen-inquiry:
-      link: "Rouvrir"
-      confirm: "Voulez-vous vraiment rouvrir la demande ?"
+      link: "Réouvrir"
+      confirm: "Voulez-vous vraiment réouvrir la demande ?"
       error: "Erreur lors de la réouverture de la demande"
