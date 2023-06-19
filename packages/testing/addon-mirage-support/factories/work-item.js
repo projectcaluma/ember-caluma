@@ -4,9 +4,9 @@ import { Factory } from "miragejs";
 const STATUS = ["READY", "CANCELED", "COMPLETED", "SKIPPED", "SUSPENDED"];
 
 export default Factory.extend({
-  id: () => faker.datatype.uuid(),
+  id: () => faker.string.uuid(),
   name: () => faker.lorem.words(5),
-  createdByUser: () => faker.datatype.uuid(),
+  createdByUser: () => faker.string.uuid(),
   createdAt: () => faker.date.past(),
   deadline: () => faker.date.future(),
   status: () => faker.helpers.arrayElement(STATUS),
