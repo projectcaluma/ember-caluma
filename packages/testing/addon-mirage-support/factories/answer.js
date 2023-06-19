@@ -3,7 +3,7 @@ import { DateTime } from "luxon";
 import { Factory } from "miragejs";
 
 export default Factory.extend({
-  id: () => faker.datatype.uuid(),
+  id: () => faker.string.uuid(),
 
   afterCreate(answer, server) {
     if (!answer.question) {
@@ -65,7 +65,7 @@ export default Factory.extend({
         answer.update({
           value: [
             {
-              id: faker.datatype.uuid(),
+              id: faker.string.uuid(),
               name: faker.datatype.string(),
               uploadUrl: faker.internet.url(),
               downloadUrl: faker.internet.url(),

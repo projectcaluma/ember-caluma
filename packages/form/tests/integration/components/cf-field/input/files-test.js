@@ -35,7 +35,7 @@ module("Integration | Component | cf-field/input/files", function (hooks) {
     this.onSave = (files) => ({
       filesValue: files?.map((f) => ({
         name: f.name,
-        id: faker.datatype.uuid(),
+        id: faker.string.uuid(),
         uploadUrl: `/minio/upload/${f.name}`,
       })),
     });

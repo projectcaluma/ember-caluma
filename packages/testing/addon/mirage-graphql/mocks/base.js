@@ -189,7 +189,7 @@ export default class BaseMock {
   @register("Save{subtype}{type}Payload")
   handleSavePayload(
     _,
-    { input: { clientMutationId = faker.datatype.uuid(), slug, id, ...args } }
+    { input: { clientMutationId = faker.string.uuid(), slug, id, ...args } }
   ) {
     // Sometimes we pass the identifier as property `slug` (e.g in `saveForm`),
     // sometimes as `id` (e.g. in `saveDocument`) and sometimes as the camelized
