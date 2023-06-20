@@ -19,24 +19,24 @@ export default Factory.extend({
     if (["TEXT", "TEXTAREA"].includes(question.type)) {
       if (question.maxLength === undefined) {
         question.update({
-          maxLength: faker.datatype.number({ min: 1, max: 255 }),
+          maxLength: faker.number.int({ min: 1, max: 255 }),
         });
       }
       if (question.minLength === undefined) {
         question.update({
-          minLength: faker.datatype.number({ min: 1, max: 10 }),
+          minLength: faker.number.int({ min: 1, max: 10 }),
         });
       }
     } else if (["INTEGER", "FLOAT"].includes(question.type)) {
       if (question.minValue === undefined) {
         question.update({
-          minValue: faker.datatype.number({ min: 1, max: 100 }),
+          minValue: faker.number.int({ min: 1, max: 100 }),
         });
       }
 
       if (question.maxValue === undefined) {
         question.update({
-          maxValue: faker.datatype.number({
+          maxValue: faker.number.int({
             min: question.minValue + 1,
             max: 1000,
           }),
