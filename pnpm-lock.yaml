@@ -288,8 +288,8 @@ importers:
         specifier: 3.1.1
         version: 3.1.1
       uikit:
-        specifier: 3.16.21
-        version: 3.16.21
+        specifier: 3.16.22
+        version: 3.16.22
       webpack:
         specifier: 5.87.0
         version: 5.87.0
@@ -448,8 +448,8 @@ importers:
         specifier: 1.63.4
         version: 1.63.4
       uikit:
-        specifier: 3.16.21
-        version: 3.16.21
+        specifier: 3.16.22
+        version: 3.16.22
       webpack:
         specifier: 5.87.0
         version: 5.87.0
@@ -587,8 +587,8 @@ importers:
         specifier: 2.0.0
         version: 2.0.0
       uikit:
-        specifier: 3.16.21
-        version: 3.16.21
+        specifier: 3.16.22
+        version: 3.16.22
       webpack:
         specifier: 5.87.0
         version: 5.87.0
@@ -756,8 +756,8 @@ importers:
         specifier: 1.63.4
         version: 1.63.4
       uikit:
-        specifier: 3.16.21
-        version: 3.16.21
+        specifier: 3.16.22
+        version: 3.16.22
       webpack:
         specifier: 5.87.0
         version: 5.87.0
@@ -922,8 +922,8 @@ importers:
         specifier: 2.0.0
         version: 2.0.0
       uikit:
-        specifier: 3.16.21
-        version: 3.16.21
+        specifier: 3.16.22
+        version: 3.16.22
       uuid:
         specifier: 9.0.0
         version: 9.0.0
@@ -1030,8 +1030,8 @@ importers:
         specifier: ^2.3.0
         version: 2.3.0
       uikit:
-        specifier: ^3.16.21
-        version: 3.16.21
+        specifier: ^3.16.22
+        version: 3.16.22
     devDependencies:
       '@ember/optional-features':
         specifier: 2.0.0
@@ -1351,8 +1351,8 @@ importers:
         specifier: 2.0.0
         version: 2.0.0
       uikit:
-        specifier: 3.16.21
-        version: 3.16.21
+        specifier: 3.16.22
+        version: 3.16.22
       webpack:
         specifier: 5.87.0
         version: 5.87.0
@@ -11124,7 +11124,7 @@ packages:
       ember-source: 4.12.0(@babel/core@7.22.5)(@glimmer/component@1.1.2)(@glint/template@1.0.2)(webpack@5.87.0)
       ember-toggle: 9.0.3(@babel/core@7.22.5)(@glint/template@1.0.2)(ember-source@4.12.0)
       ember-truth-helpers: 3.1.1
-      uikit: 3.16.21
+      uikit: 3.16.22
     transitivePeerDependencies:
       - '@babel/core'
       - '@glint/environment-ember-loose'
@@ -19425,8 +19425,8 @@ packages:
     requiresBuild: true
     optional: true
 
-  /uikit@3.16.21:
-    resolution: {integrity: sha512-H+vlReN/eL4y0c01c7Y4QKZpzohd0NPQqjpHQTSqSH8tY3JaSz12VKvFx27e/n8RhRZ+Pu9wK99DM7kX+wSGtQ==}
+  /uikit@3.16.22:
+    resolution: {integrity: sha512-zzzqCDZdJV7oeHccfUaDAx7n96HlooiTirmxk3uI8N7CEn1Gj89CumgSx/dhgPsqPRlnFZ+6gIBA9ZpFhy5Qjg==}
 
   /unbox-primitive@1.0.2:
     resolution: {integrity: sha512-61pPlCD9h51VoreyJ0BReideM3MDKMKnh6+V9L08331ipq6Q8OFXZYiqP6n/tbHx4s5I9uRhcye6BrbkizkBDw==}
