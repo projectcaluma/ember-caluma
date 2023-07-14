@@ -457,8 +457,8 @@ importers:
   packages/core:
     dependencies:
       '@apollo/client':
-        specifier: ^3.7.15
-        version: 3.7.15(graphql@15.8.0)
+        specifier: ^3.7.17
+        version: 3.7.17(graphql@15.8.0)
       '@ember/string':
         specifier: ^3.1.1
         version: 3.1.1
@@ -1392,8 +1392,8 @@ packages:
       '@jridgewell/gen-mapping': 0.3.3
       '@jridgewell/trace-mapping': 0.3.18
 
-  /@apollo/client@3.7.15(graphql@15.8.0):
-    resolution: {integrity: sha512-pLScjo4GAQRWKWyEg2J3FlQr9fbUAuADT0EI2+JlLf2BjaU9I7WUaZVD9w+0qNPE8BZqs53MRQq0OCm1QCW+eg==}
+  /@apollo/client@3.7.17(graphql@15.8.0):
+    resolution: {integrity: sha512-0EErSHEtKPNl5wgWikHJbKFAzJ/k11O0WO2QyqZSHpdxdAnw7UWHY4YiLbHCFG7lhrD+NTQ3Z/H9Jn4rcikoJA==}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^15.8.0
       graphql-ws: ^5.5.5
@@ -9173,7 +9173,7 @@ packages:
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^15.8.0
     dependencies:
-      '@apollo/client': 3.7.15(graphql@15.8.0)
+      '@apollo/client': 3.7.17(graphql@15.8.0)
       '@ember/test-waiters': 3.0.2
       '@embroider/macros': 1.11.1(@glint/template@1.0.2)
       '@glimmer/tracking': 1.1.2
