@@ -5,7 +5,11 @@ import jexl from "jexl";
 import { cached } from "tracked-toolbox";
 
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
-import { intersects, mapby } from "@projectcaluma/ember-core/utils/jexl";
+import {
+  intersects,
+  mapby,
+  flatten,
+} from "@projectcaluma/ember-core/utils/jexl";
 import Base from "@projectcaluma/ember-form/lib/base";
 
 const onlyNumbers = (nums) =>
@@ -180,6 +184,7 @@ export default class Document extends Base {
       return nums.length ? sum(nums) / nums.length : null;
     });
     documentJexl.addTransform("stringify", (input) => JSON.stringify(input));
+    documentJexl.addTransform("flatten", flatten);
 
     return documentJexl;
   }
