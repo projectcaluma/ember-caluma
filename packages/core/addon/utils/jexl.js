@@ -11,6 +11,14 @@ export const mapby = (arr, ...keys) => {
   );
 };
 
+export const flatten = (array) => {
+  if (!Array.isArray(array)) {
+    return null;
+  }
+
+  return array.flat();
+};
+
 /**
  * Transform a JEXL expression into it's AST
  *

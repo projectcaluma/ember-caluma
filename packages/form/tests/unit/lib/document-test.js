@@ -235,7 +235,7 @@ module("Unit | Library | document", function (hooks) {
     );
   });
 
-  test("it stringifies correctly", async function (assert) {
+  test("it transforms correcty with stringify transform", async function (assert) {
     assert.true(
       await this.document.jexl.eval(
         '\'["test1","test2"]\' == value|stringify',
@@ -243,6 +243,21 @@ module("Unit | Library | document", function (hooks) {
           value: ["test1", "test2"],
         }
       )
+    );
+  });
+
+  test("it transforms correcty with flatten transform", async function (assert) {
+    const expression = "array|flatten";
+
+    assert.deepEqual(
+      await this.document.jexl.eval(expression, {
+        array: [["some-value"], ["some-other-value"]],
+      }),
+      ["some-value", "some-other-value"]
+    );
+    assert.strictEqual(
+      await this.document.jexl.eval(expression, { array: null }),
+      null
     );
   });
 
