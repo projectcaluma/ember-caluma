@@ -33,8 +33,10 @@ export default class CfbFormEditorQuestionDefault extends Component {
         this.args.model.__typename
       )
     ) {
-      // Use Power Select for choice questions to save space.
-      raw.meta = { widgetOverride: "cf-field/input/powerselect" };
+      if (!this.args.disableChoicePowerselectOverride) {
+        // Use Power Select for choice questions to save space.
+        raw.meta = { widgetOverride: "cf-field/input/powerselect" };
+      }
 
       const key = this.args.model.__typename
         .replace(/^./, (match) => match.toLowerCase())
