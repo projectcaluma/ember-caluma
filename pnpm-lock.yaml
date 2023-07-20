@@ -213,8 +213,8 @@ importers:
         specifier: 11.0.1
         version: 11.0.1
       ember-cli-showdown:
-        specifier: 6.0.1
-        version: 6.0.1
+        specifier: 7.0.0
+        version: 7.0.0(@glint/template@1.0.2)(ember-source@4.12.0)(webpack@5.87.0)
       ember-cli-sri:
         specifier: 2.1.1
         version: 2.1.1
@@ -798,8 +798,8 @@ importers:
         specifier: ^6.2.0
         version: 6.2.0
       ember-cli-showdown:
-        specifier: ^6.0.1
-        version: 6.0.1
+        specifier: ^7.0.0
+        version: 7.0.0(@glint/template@1.0.2)(ember-source@4.12.0)(webpack@5.87.0)
       ember-composable-helpers:
         specifier: ^5.0.0
         version: 5.0.0
@@ -7284,6 +7284,7 @@ packages:
 
   /broccoli-source@1.1.0:
     resolution: {integrity: sha512-ahvqmwF6Yvh6l+sTJJdey4o4ynwSH8swSSBSGmUXGSPPCqBWvquWB/4rWN65ZArKilBFq/29O0yQnZNIf//sTg==}
+    dev: true
 
   /broccoli-source@2.1.2:
     resolution: {integrity: sha512-1lLayO4wfS0c0Sj50VfHJXNWf94FYY0WUhxj0R77thbs6uWI7USiOWFqQV5dRmhAJnoKaGN4WyLGQbgjgiYFwQ==}
@@ -9926,20 +9927,21 @@ packages:
       - supports-color
     dev: true
 
-  /ember-cli-showdown@6.0.1:
-    resolution: {integrity: sha512-yQJf6ffpnn/5fTiDbwL/zvfzIuRepXzUNpaE9qrI+fo3fhn6KlrbDnr+UqkWYR41DqpspVwV4/sodkyENFu9SQ==}
-    engines: {node: 12.* || 14.* || >= 16}
+  /ember-cli-showdown@7.0.0(@glint/template@1.0.2)(ember-source@4.12.0)(webpack@5.87.0):
+    resolution: {integrity: sha512-xpmqv+pSK1hMG50CD8DqClS0uEyTGF+jE1c/32otiZTslDMcISQC1xysdtdx2RHC+Uu0EpiS+WGp0oDznrH+WA==}
+    engines: {node: 14.* || 16.* || >= 18}
+    peerDependencies:
+      ember-source: ^3.12.0 || >4.0.0
     dependencies:
-      broccoli-funnel: 2.0.2
-      broccoli-source: 1.1.0
-      broccoli-string-replace: 0.1.2
+      ember-auto-import: 2.6.3(@glint/template@1.0.2)(webpack@5.87.0)
       ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 5.7.2
-      resolve: 1.22.2
-      semver: 5.7.1
+      ember-cli-htmlbars: 6.2.0
+      ember-source: 4.12.0(@babel/core@7.22.5)(@glimmer/component@1.1.2)(@glint/template@1.0.2)(webpack@5.87.0)
       showdown: 1.9.1
     transitivePeerDependencies:
+      - '@glint/template'
       - supports-color
+      - webpack
 
   /ember-cli-sri@2.1.1:
     resolution: {integrity: sha512-YG/lojDxkur9Bnskt7xB6gUOtJ6aPl/+JyGYm9HNDk3GECVHB3SMN3rlGhDKHa1ndS5NK2W2TSLb9bzRbGlMdg==}
