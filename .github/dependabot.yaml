@@ -32,3 +32,13 @@ updates:
       - dependency-name: ember-engines-router-service
         versions:
           - ">= 0.4.0 <= 4.4.1"
+      # Not ready yet for Ember v5
+      - dependency-name: ember-source
+        versions:
+          - ">= 5.0.0"
+      - dependency-name: ember-cli
+        versions:
+          - ">= 5.0.0"
+      - dependency-name: ember-data
+        versions:
+          - ">= 5.0.0"

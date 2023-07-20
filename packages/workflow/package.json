@@ -20,10 +20,10 @@
     "ember-cli-babel": "^7.26.11",
     "ember-cli-htmlbars": "^6.2.0",
     "ember-composable-helpers": "^5.0.0",
-    "ember-concurrency": "^2.3.7",
+    "ember-concurrency": "^3.0.0",
     "ember-fetch": "^8.1.2",
     "ember-intl": "^5.7.2",
-    "ember-resources": "^6.2.1",
+    "ember-resources": "^6.2.2",
     "ember-truth-helpers": "^3.1.1",
     "ember-uikit": "^8.0.0",
     "graphql": "^15.8.0"
@@ -31,7 +31,7 @@
   "devDependencies": {
     "@ember/optional-features": "2.0.0",
     "@ember/string": "3.1.1",
-    "@ember/test-helpers": "3.1.0",
+    "@ember/test-helpers": "3.2.0",
     "@embroider/test-setup": "3.0.1",
     "@faker-js/faker": "8.0.2",
     "@glimmer/tracking": "1.1.2",
@@ -54,7 +54,7 @@
     "qunit": "2.19.4",
     "qunit-dom": "2.0.0",
     "uikit": "3.16.22",
-    "webpack": "5.87.0"
+    "webpack": "5.88.2"
   },
   "peerDependencies": {
     "ember-source": "^4.0.0"
