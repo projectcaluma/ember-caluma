@@ -13,7 +13,7 @@ export default class CfbNavigationComponent extends Component {
     const routeParts = currentRoute.split(".");
     return routeParts
       .map((routeName, index) =>
-        this._lookupRoute(routeName, routeParts, index)
+        this._lookupRoute(routeName, routeParts, index),
       )
       .filter((route) => route && route.__navigationTitleProperty);
   }

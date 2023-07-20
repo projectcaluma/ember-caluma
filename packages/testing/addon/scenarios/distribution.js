@@ -98,7 +98,7 @@ export function createInquiry(
   server,
   distributionCase,
   { from, to, remark, deadline },
-  workItemAttrs = {}
+  workItemAttrs = {},
 ) {
   const document = server.create("document", { formId: "inquiry" });
 
@@ -211,7 +211,7 @@ export function confirmInquiry(server, { inquiry }) {
     !inquiry.case.workItems.filter(
       (workItem) =>
         workItem.taskId === "check-inquiries" &&
-        String(workItem.addressedGroups) === String(inquiry.addressedGroups)
+        String(workItem.addressedGroups) === String(inquiry.addressedGroups),
     ).length
   ) {
     server.create("work-item", {
@@ -296,7 +296,7 @@ export default function (server, groups) {
   withdraw({
     inquiry: create(
       { from: g, to: g2 },
-      { id: "4afed640-07a6-4eb9-82a7-b5e961391370" }
+      { id: "4afed640-07a6-4eb9-82a7-b5e961391370" },
     ),
   });
   send({
@@ -306,7 +306,7 @@ export default function (server, groups) {
         to: g2,
         deadline: faker.date.past(),
       },
-      { id: "6bbdc36a-3174-4578-93d4-0cb84d3dab97", meta: {} }
+      { id: "6bbdc36a-3174-4578-93d4-0cb84d3dab97", meta: {} },
     ),
   });
   confirm({
@@ -317,7 +317,7 @@ export default function (server, groups) {
           to: g3,
           deadline: faker.date.past(),
         },
-        { id: "88999388-daf2-4a18-b7e2-50373d082331" }
+        { id: "88999388-daf2-4a18-b7e2-50373d082331" },
       ),
       status: "inquiry-answer-status-needs-interaction",
     }),
@@ -331,7 +331,7 @@ export default function (server, groups) {
         {
           id: "75d56729-5518-469d-ae66-188a5c32d59d",
           createdAt: faker.date.recent(),
-        }
+        },
       ),
       status: "inquiry-answer-status-positive",
     }),
@@ -341,7 +341,7 @@ export default function (server, groups) {
   withdraw({
     inquiry: create(
       { from: g, to: g4 },
-      { id: "7360fa66-83d2-4f6a-b489-5db46f6fd670" }
+      { id: "7360fa66-83d2-4f6a-b489-5db46f6fd670" },
     ),
   });
 
@@ -350,7 +350,7 @@ export default function (server, groups) {
     inquiry: answer({
       inquiry: create(
         { from: g2, to: g },
-        { id: "e907584c-a38a-488e-80f7-bab6bb22f303" }
+        { id: "e907584c-a38a-488e-80f7-bab6bb22f303" },
       ),
       status: "inquiry-answer-status-needs-interaction",
     }),
@@ -366,14 +366,14 @@ export default function (server, groups) {
       {
         id: "4889435d-f310-472f-808b-7b20936c40fc",
         createdAt: faker.date.recent(),
-      }
+      },
     ),
   });
   confirm({
     inquiry: answer({
       inquiry: create(
         { from: g4, to: g },
-        { id: "4c5dbcc3-f42a-4c25-8d06-f85bd17edbf2" }
+        { id: "4c5dbcc3-f42a-4c25-8d06-f85bd17edbf2" },
       ),
       status: "inquiry-answer-status-negative",
     }),
@@ -381,7 +381,7 @@ export default function (server, groups) {
   answer({
     inquiry: create(
       { from: g3, to: g },
-      { id: "3f7eea45-251d-4934-81fd-27c78bbca88c" }
+      { id: "3f7eea45-251d-4934-81fd-27c78bbca88c" },
     ),
     status: "inquiry-answer-status-positive",
   });
@@ -389,7 +389,7 @@ export default function (server, groups) {
     inquiry: answer({
       inquiry: create(
         { from: g1, to: g },
-        { id: "dd07b1a4-91e6-4411-a4ea-445637690577" }
+        { id: "dd07b1a4-91e6-4411-a4ea-445637690577" },
       ),
       status: "inquiry-answer-status-needs-interaction",
     }),
@@ -400,7 +400,7 @@ export default function (server, groups) {
     inquiry: answer({
       inquiry: create(
         { from: g2, to: g3 },
-        { id: "4f374860-28b3-465b-be5f-5e501a39fe8b" }
+        { id: "4f374860-28b3-465b-be5f-5e501a39fe8b" },
       ),
       status: "inquiry-answer-status-needs-interaction",
     }),
@@ -409,7 +409,7 @@ export default function (server, groups) {
     inquiry: answer({
       inquiry: create(
         { from: g3, to: g4 },
-        { id: "16eebfae-55c5-4d31-ad48-7ed5578a22a2" }
+        { id: "16eebfae-55c5-4d31-ad48-7ed5578a22a2" },
       ),
       status: "inquiry-answer-status-positive",
     }),

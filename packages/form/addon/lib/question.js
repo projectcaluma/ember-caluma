@@ -22,7 +22,7 @@ export default class Question extends Base {
   constructor({ raw, ...args }) {
     assert(
       "A graphql question `raw` must be passed",
-      /Question$/.test(raw?.__typename)
+      /Question$/.test(raw?.__typename),
     );
 
     super({ raw, ...args });
@@ -64,7 +64,7 @@ export default class Question extends Base {
             : null,
         },
       },
-      "allQuestions.edges"
+      "allQuestions.edges",
     );
 
     return (
@@ -153,7 +153,7 @@ export default class Question extends Base {
   @cached
   get defaultValue() {
     const key = camelize(
-      this.raw.__typename.replace(/Question$/, "DefaultAnswer")
+      this.raw.__typename.replace(/Question$/, "DefaultAnswer"),
     );
 
     const value = this.raw[key]?.value;
@@ -167,7 +167,7 @@ export default class Question extends Base {
               [answer.question.slug]: getValue(answer),
             };
           },
-          {}
+          {},
         );
       });
     }

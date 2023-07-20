@@ -16,8 +16,8 @@ export default class CfbFormEditorQuestionValidation extends Component {
   get selected() {
     return this.validators.filter((validator) =>
       (this.args.value?.edges.map((edge) => edge.node.slug) || []).includes(
-        validator.slug
-      )
+        validator.slug,
+      ),
     );
   }
 
@@ -27,7 +27,7 @@ export default class CfbFormEditorQuestionValidation extends Component {
   *fetchFormatValidators() {
     return yield this.apollo.watchQuery(
       { query: allFormatValidatorsQuery, fetchPolicy: "cache-and-network" },
-      "allFormatValidators.edges"
+      "allFormatValidators.edges",
     );
   }
 

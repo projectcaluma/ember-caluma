@@ -25,7 +25,7 @@ module("Unit | Mirage GraphQL Filter | base", function (hooks) {
 
     assert.deepEqual(
       this.filter.filter(this.collection, { filter: [{ slugs: ["test-1"] }] }),
-      [{ slug: "test-1" }]
+      [{ slug: "test-1" }],
     );
   });
 
@@ -49,7 +49,7 @@ module("Unit | Mirage GraphQL Filter | base", function (hooks) {
           slug: "test-4",
           createdByUser: "1",
         },
-      ]
+      ],
     );
   });
 
@@ -65,7 +65,7 @@ module("Unit | Mirage GraphQL Filter | base", function (hooks) {
           slug: "test-5",
           createdByGroup: "1",
         },
-      ]
+      ],
     );
   });
 
@@ -81,7 +81,7 @@ module("Unit | Mirage GraphQL Filter | base", function (hooks) {
           slug: "test-6",
           modifiedByUser: "1",
         },
-      ]
+      ],
     );
   });
 
@@ -97,7 +97,7 @@ module("Unit | Mirage GraphQL Filter | base", function (hooks) {
           slug: "test-7",
           modifiedByGroup: "1",
         },
-      ]
+      ],
     );
   });
 
@@ -106,7 +106,7 @@ module("Unit | Mirage GraphQL Filter | base", function (hooks) {
 
     assert.deepEqual(
       this.filter.filter(this.collection, { filter: [{ foo: "bar" }] }),
-      this.collection
+      this.collection,
     );
   });
 
@@ -117,7 +117,7 @@ module("Unit | Mirage GraphQL Filter | base", function (hooks) {
       this.filter.filter(this.collection, {
         filter: [{}],
       }),
-      this.collection
+      this.collection,
     );
   });
 
@@ -131,7 +131,7 @@ module("Unit | Mirage GraphQL Filter | base", function (hooks) {
           },
         ],
       }),
-      this.collection.filter(({ slug }) => slug !== "test-1")
+      this.collection.filter(({ slug }) => slug !== "test-1"),
     );
 
     assert.deepEqual(
@@ -144,8 +144,8 @@ module("Unit | Mirage GraphQL Filter | base", function (hooks) {
         ],
       }),
       this.collection.filter(
-        ({ slug }) => slug !== "test-1" && slug !== "test-2"
-      )
+        ({ slug }) => slug !== "test-1" && slug !== "test-2",
+      ),
     );
 
     assert.deepEqual(
@@ -157,7 +157,7 @@ module("Unit | Mirage GraphQL Filter | base", function (hooks) {
           },
         ],
       }),
-      this.collection.filter(({ createdByGroup }) => createdByGroup !== "1")
+      this.collection.filter(({ createdByGroup }) => createdByGroup !== "1"),
     );
   });
 });

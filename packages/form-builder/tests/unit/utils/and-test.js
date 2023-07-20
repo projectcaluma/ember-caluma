@@ -71,7 +71,7 @@ module("Unit | Utility | and", function () {
 
         const validationFn = and(
           and(and(...validators1), and(...validators2)),
-          and(...validators3)
+          and(...validators3),
         );
 
         assert.strictEqual(validationFn(), "first error");
@@ -86,7 +86,7 @@ module("Unit | Utility | and", function () {
 
         const validationFn = and(
           and(and(...validators1), and(...validators2)),
-          and(...validators3)
+          and(...validators3),
         );
 
         assert.strictEqual(validationFn(), "leeroy jenkins");
@@ -130,7 +130,7 @@ module("Unit | Utility | and", function () {
           const validationFn = and(...validators);
           const result = await validationFn();
           assert.strictEqual(result, expected);
-        })
+        }),
       );
     });
 
@@ -173,7 +173,7 @@ module("Unit | Utility | and", function () {
 
         const validationFn = and(
           and(and(...validators1), and(...validators2)),
-          and(...validators3)
+          and(...validators3),
         );
 
         assert.strictEqual(await validationFn(), "first error");
@@ -200,7 +200,7 @@ module("Unit | Utility | and", function () {
 
         const validationFn = and(
           and(and(...validators1), and(...validators2)),
-          and(...validators3)
+          and(...validators3),
         );
 
         assert.strictEqual(await validationFn(), "leeroy jenkins");

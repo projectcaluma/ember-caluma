@@ -122,7 +122,7 @@ export default class CfbFormEditorQuestion extends Component {
         variables: { slug: this.args.slug },
         fetchPolicy: "cache-and-network",
       },
-      "allQuestions.edges"
+      "allQuestions.edges",
     );
   }
 
@@ -137,7 +137,7 @@ export default class CfbFormEditorQuestion extends Component {
         },
         fetchPolicy: "cache-and-network",
       },
-      "allForms.edges"
+      "allForms.edges",
     );
     if (!forms.map) {
       return [];
@@ -151,7 +151,7 @@ export default class CfbFormEditorQuestion extends Component {
   *availableDataSources() {
     const dataSources = yield this.apollo.watchQuery(
       { query: allDataSourcesQuery, fetchPolicy: "cache-and-network" },
-      "allDataSources.edges"
+      "allDataSources.edges",
     );
     return dataSources.map((edge) => {
       return {
@@ -363,7 +363,7 @@ export default class CfbFormEditorQuestion extends Component {
             mutation: saveOptionMutation,
             variables: { input: { label, slug, isArchived } },
           });
-        })
+        }),
     );
   }
 
@@ -412,7 +412,7 @@ export default class CfbFormEditorQuestion extends Component {
           mutation: TYPES[typename],
           variables: { input },
         },
-        `save${typename}.question`
+        `save${typename}.question`,
       );
 
       yield this.saveDefaultAnswer.perform(question, changeset);
@@ -432,7 +432,7 @@ export default class CfbFormEditorQuestion extends Component {
       }
 
       this.notification.success(
-        this.intl.t("caluma.form-builder.notification.question.save.success")
+        this.intl.t("caluma.form-builder.notification.question.save.success"),
       );
 
       this.args.onAfterSubmit?.(question);
@@ -440,7 +440,7 @@ export default class CfbFormEditorQuestion extends Component {
       // eslint-disable-next-line no-console
       console.error(e);
       this.notification.danger(
-        this.intl.t("caluma.form-builder.notification.question.save.error")
+        this.intl.t("caluma.form-builder.notification.question.save.error"),
       );
     }
   }
@@ -456,8 +456,8 @@ export default class CfbFormEditorQuestion extends Component {
           new Changeset(
             { ...edge.node, slugUnlinked: false, question: this.model.slug },
             lookupValidator(optionValidations),
-            optionValidations
-          )
+            optionValidations,
+          ),
       ) ?? [
         new Changeset(
           {
@@ -469,14 +469,14 @@ export default class CfbFormEditorQuestion extends Component {
             question: this.model.slug,
           },
           lookupValidator(optionValidations),
-          optionValidations
+          optionValidations,
         ),
       ];
 
       this.changeset = new Changeset(
         { ...this.model, options },
         lookupValidator(validations),
-        validations
+        validations,
       );
     }
   }

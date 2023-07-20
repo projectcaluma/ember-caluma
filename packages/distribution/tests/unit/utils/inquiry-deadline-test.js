@@ -48,7 +48,7 @@ module("Unit | Utility | inquiry-deadline", function (hooks) {
     assert.strictEqual(this.obj.deadline.isWarning, false);
 
     await this.obj.inquiry.setDeadline(
-      DateTime.now().plus({ days: 2 }).toISODate()
+      DateTime.now().plus({ days: 2 }).toISODate(),
     );
 
     assert.strictEqual(this.obj.deadline.color, "warning");
@@ -56,7 +56,7 @@ module("Unit | Utility | inquiry-deadline", function (hooks) {
     assert.strictEqual(this.obj.deadline.isWarning, true);
 
     await this.obj.inquiry.setDeadline(
-      DateTime.now().minus({ days: 2 }).toISODate()
+      DateTime.now().minus({ days: 2 }).toISODate(),
     );
 
     assert.strictEqual(this.obj.deadline.color, "danger");

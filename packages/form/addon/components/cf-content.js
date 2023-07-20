@@ -121,7 +121,7 @@ export default class CfContentComponent extends Component {
       this.document?.raw.form.slug;
 
     return this.document.fieldsets.find(
-      (fieldset) => fieldset.form.slug === slug
+      (fieldset) => fieldset.form.slug === slug,
     );
   }
 
@@ -140,7 +140,7 @@ export default class CfContentComponent extends Component {
         fetchPolicy: "network-only",
         variables: { id: this.args.documentId },
       },
-      "allDocuments.edges"
+      "allDocuments.edges",
     )).map(({ node }) => node);
 
     const [form] = (yield this.apollo.query(
@@ -149,7 +149,7 @@ export default class CfContentComponent extends Component {
         fetchPolicy: "cache-first",
         variables: { slug: answerDocument.form.slug },
       },
-      "allForms.edges"
+      "allForms.edges",
     )).map(({ node }) => node);
 
     const owner = getOwner(this);

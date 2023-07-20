@@ -90,7 +90,7 @@ export default class DistributionService extends Service {
                 ...edge.node.controllingGroups,
               ]);
             })
-            .flat(2)
+            .flat(2),
         ),
       ];
 
@@ -125,7 +125,7 @@ export default class DistributionService extends Service {
       yield this.refetch();
     } catch (e) {
       this.notification.danger(
-        this.intl.t("caluma.distribution.new.error", { count: groups.length })
+        this.intl.t("caluma.distribution.new.error", { count: groups.length }),
       );
     }
   }
@@ -136,7 +136,7 @@ export default class DistributionService extends Service {
       const group = this.scheduler.groupCache.find((group) =>
         identifiers
           .map(String)
-          .includes(String(group[this.calumaOptions.groupIdentifierProperty]))
+          .includes(String(group[this.calumaOptions.groupIdentifierProperty])),
       );
 
       return group?.[this.calumaOptions.groupNameProperty] ?? "";
@@ -157,9 +157,9 @@ export default class DistributionService extends Service {
                   // can sort by them
                   addressedGroupName: findGroupName(edge.node.addressedGroups),
                   controllingGroupName: findGroupName(
-                    edge.node.controllingGroups
+                    edge.node.controllingGroups,
                   ),
-                }))
+                })),
               ).sort((a, b) => {
                 const sortProperty =
                   key === "addressed"
@@ -171,7 +171,7 @@ export default class DistributionService extends Service {
             : [],
         };
       },
-      {}
+      {},
     );
   }
 
@@ -184,7 +184,7 @@ export default class DistributionService extends Service {
     if (
       ids.length &&
       !(yield confirm(
-        this.intl.t("caluma.distribution.send-confirm", { count: ids.length })
+        this.intl.t("caluma.distribution.send-confirm", { count: ids.length }),
       ))
     ) {
       return;
@@ -199,7 +199,7 @@ export default class DistributionService extends Service {
             status
           }
         }
-      `
+      `,
       );
 
       const mutation = gql`mutation SendInquiries {${mutations.join("\n")}}`;

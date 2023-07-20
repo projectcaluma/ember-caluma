@@ -77,7 +77,7 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
           },
           fetchPolicy: "network-only",
         },
-        "allQuestions"
+        "allQuestions",
       );
 
       this.cursor = questions.pageInfo.endCursor;
@@ -97,7 +97,7 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
         },
         fetchPolicy: "cache-and-network",
       },
-      "allForms.edges"
+      "allForms.edges",
     );
   }
 
@@ -117,14 +117,14 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
 
       this.notification.success(
         this.intl.t(
-          "caluma.form-builder.notification.form.reorder-questions.success"
-        )
+          "caluma.form-builder.notification.form.reorder-questions.success",
+        ),
       );
     } catch (e) {
       this.notification.danger(
         this.intl.t(
-          "caluma.form-builder.notification.form.reorder-questions.error"
-        )
+          "caluma.form-builder.notification.form.reorder-questions.error",
+        ),
       );
     }
   }
@@ -145,8 +145,8 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
 
       this.notification.success(
         this.intl.t(
-          "caluma.form-builder.notification.form.add-question.success"
-        )
+          "caluma.form-builder.notification.form.add-question.success",
+        ),
       );
 
       this._resetParameters();
@@ -156,7 +156,7 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
       this.args.onAfterAddQuestion?.(question);
     } catch (e) {
       this.notification.danger(
-        this.intl.t("caluma.form-builder.notification.form.add-question.error")
+        this.intl.t("caluma.form-builder.notification.form.add-question.error"),
       );
     }
   }
@@ -177,16 +177,16 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
 
       this.notification.success(
         this.intl.t(
-          "caluma.form-builder.notification.form.remove-question.success"
-        )
+          "caluma.form-builder.notification.form.remove-question.success",
+        ),
       );
 
       this.args.onAfterRemoveQuestion?.(question);
     } catch (e) {
       this.notification.danger(
         this.intl.t(
-          "caluma.form-builder.notification.form.remove-question.error"
-        )
+          "caluma.form-builder.notification.form.remove-question.error",
+        ),
       );
     }
   }
@@ -195,7 +195,7 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
     const children = [...sortable.$el.children];
 
     this.reorderQuestions.perform(
-      children.map((child) => this._children[child.id])
+      children.map((child) => this._children[child.id]),
     );
   }
 
@@ -208,7 +208,7 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
   @action
   setupUIkit() {
     UIkit.util.on("#question-list", "moved", (...args) =>
-      run(this, this._handleMoved, ...args)
+      run(this, this._handleMoved, ...args),
     );
   }
 

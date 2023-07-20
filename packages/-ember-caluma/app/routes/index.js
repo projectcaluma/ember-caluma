@@ -25,7 +25,7 @@ export default class IndexRoute extends Route {
           }
         `,
       },
-      "allDocuments.edges"
+      "allDocuments.edges",
     );
 
     return decodeId(response[0]?.node.id);

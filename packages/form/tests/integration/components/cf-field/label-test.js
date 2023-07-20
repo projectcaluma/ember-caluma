@@ -33,7 +33,7 @@ module("Integration | Component | cf-field/label", function (hooks) {
     };
 
     const document = new (this.owner.factoryFor("caluma-model:document").class)(
-      { raw, owner: this.owner }
+      { raw, owner: this.owner },
     );
     this.set("field", document.fields[0]);
   });

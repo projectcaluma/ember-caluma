@@ -103,7 +103,7 @@ module("Integration | Component | cf-field", function (hooks) {
     };
 
     const rawDocument = new (this.owner.factoryFor(
-      "caluma-model:document"
+      "caluma-model:document",
     ).class)({
       raw: {
         __typename: "Document",
@@ -170,7 +170,7 @@ module("Integration | Component | cf-field", function (hooks) {
     assert
       .dom("span.validation-errors")
       .hasText(
-        't:caluma.form.validation.tooShort:("max":20,"min":10,"value":"Test")'
+        't:caluma.form.validation.tooShort:("max":20,"min":10,"value":"Test")',
       );
   });
 
@@ -192,7 +192,7 @@ module("Integration | Component | cf-field", function (hooks) {
     assert
       .dom("span.validation-errors")
       .hasText(
-        `t:caluma.form.validation.format:("errorMsg":"Invalid email","value":"Test")`
+        `t:caluma.form.validation.format:("errorMsg":"Invalid email","value":"Test")`,
       );
   });
 

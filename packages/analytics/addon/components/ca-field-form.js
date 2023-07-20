@@ -33,7 +33,7 @@ export default class CaFieldFormComponent extends Component {
     this.field = Changeset(
       new Field(),
       lookupValidator(FieldValidations),
-      FieldValidations
+      FieldValidations,
     );
   }
 
@@ -73,15 +73,15 @@ export default class CaFieldFormComponent extends Component {
 
     if (this.field.isInvalid) {
       this.notification.danger(
-        this.intl.t(`caluma.analytics.notification.field-invalid`)
+        this.intl.t(`caluma.analytics.notification.field-invalid`),
       );
     } else if (
       this.analyticsFields.find(
-        (existing) => existing.alias === this.field.get("alias")
+        (existing) => existing.alias === this.field.get("alias"),
       )
     ) {
       this.notification.danger(
-        this.intl.t(`caluma.analytics.notification.alias-exists`)
+        this.intl.t(`caluma.analytics.notification.alias-exists`),
       );
     } else {
       const { id, alias, dataSource, aggregateFunction, showOutput } =

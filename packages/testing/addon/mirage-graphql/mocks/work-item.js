@@ -117,7 +117,7 @@ export default class WorkItemMock extends BaseMock {
           },
           {
             createdAt: new Date(),
-          }
+          },
         );
 
         this.server.create("work-item", {

@@ -18,7 +18,7 @@ module("Unit | Library | field", function (hooks) {
       new (this.owner.factoryFor("caluma-model:document").class)({
         raw: parseDocument(data),
         owner: this.owner,
-      })
+      }),
     );
 
     await settled();
@@ -73,7 +73,7 @@ module("Unit | Library | field", function (hooks) {
     assert.strictEqual(fieldWithoutAnswer.answer.value, null);
     assert.strictEqual(
       fieldWithoutAnswer.answer.raw.__typename,
-      "StringAnswer"
+      "StringAnswer",
     );
     assert.strictEqual(fieldWithoutAnswer.answer.id, undefined);
   });
@@ -112,7 +112,7 @@ module("Unit | Library | field", function (hooks) {
 
     assert.deepEqual(
       field.hiddenDependencies.map((dep) => dep.pk),
-      [dependentField.pk]
+      [dependentField.pk],
     );
   });
 
@@ -124,7 +124,7 @@ module("Unit | Library | field", function (hooks) {
 
     assert.deepEqual(
       field.optionalDependencies.map((dep) => dep.pk),
-      [dependentField.pk]
+      [dependentField.pk],
     );
   });
 
@@ -546,18 +546,18 @@ module("Unit | Library | field", function (hooks) {
       assert.deepEqual(
         getDependenciesFromJexl(
           this.field.document.jexl,
-          this.field.question.raw.isHidden
+          this.field.question.raw.isHidden,
         ),
-        ["table", "table.table-form-question", "table.table-form-question-2"]
+        ["table", "table.table-form-question", "table.table-form-question-2"],
       );
 
       assert.deepEqual(
         [
           ...new Set(
-            this.field.hiddenDependencies.map((field) => field.question.slug)
+            this.field.hiddenDependencies.map((field) => field.question.slug),
           ),
         ],
-        ["table", "table-form-question", "table-form-question-2"]
+        ["table", "table-form-question", "table-form-question-2"],
       );
     });
 
@@ -567,14 +567,14 @@ module("Unit | Library | field", function (hooks) {
       assert.deepEqual(
         getDependenciesFromJexl(
           this.field.document.jexl,
-          this.field.question.raw.isRequired
+          this.field.question.raw.isRequired,
         ),
-        ["question-1"]
+        ["question-1"],
       );
 
       assert.deepEqual(
         this.field.optionalDependencies.map((field) => field.question.slug),
-        ["question-1"]
+        ["question-1"],
       );
     });
 
@@ -592,14 +592,14 @@ module("Unit | Library | field", function (hooks) {
       assert.deepEqual(
         getDependenciesFromJexl(
           field.document.jexl,
-          field.question.raw.isRequired
+          field.question.raw.isRequired,
         ),
-        ["table", "table.__all__"]
+        ["table", "table.__all__"],
       );
 
       assert.deepEqual(
         [...new Set(field.optionalDependencies.map((f) => f.question.slug))],
-        ["table", "table-form-question", "table-form-question-2"]
+        ["table", "table-form-question", "table-form-question-2"],
       );
     });
   });

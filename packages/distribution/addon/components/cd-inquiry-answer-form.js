@@ -47,7 +47,7 @@ export default class CdInquiryAnswerFormComponent extends Component {
         return this.abilities.can(
           "complete child work item of inquiry",
           this.inquiry,
-          { task: edge.node.task.slug }
+          { task: edge.node.task.slug },
         )
           ? {
               workItemId: decodeId(edge.node.id),
@@ -80,7 +80,7 @@ export default class CdInquiryAnswerFormComponent extends Component {
           deadlineQuestion: this.config.inquiry.deadlineQuestion,
         },
       },
-      "allWorkItems.edges"
+      "allWorkItems.edges",
     );
   }
 
@@ -107,7 +107,7 @@ export default class CdInquiryAnswerFormComponent extends Component {
       yield this.router.transitionTo("inquiry.index");
     } catch (error) {
       this.notification.danger(
-        this.intl.t("caluma.distribution.answer.complete-error")
+        this.intl.t("caluma.distribution.answer.complete-error"),
       );
     }
   }

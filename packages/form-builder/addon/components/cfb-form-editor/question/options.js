@@ -42,14 +42,14 @@ export default class CfbFormEditorQuestionOptions extends Component {
 
       this.notification.success(
         this.intl.t(
-          "caluma.form-builder.notification.form.reorder-options.success"
-        )
+          "caluma.form-builder.notification.form.reorder-options.success",
+        ),
       );
     } catch (e) {
       this.notification.danger(
         this.intl.t(
-          "caluma.form-builder.notification.form.reorder-options.error"
-        )
+          "caluma.form-builder.notification.form.reorder-options.error",
+        ),
       );
     }
   }
@@ -68,7 +68,7 @@ export default class CfbFormEditorQuestionOptions extends Component {
           question: this.args.model.slug,
         },
         lookupValidator(OptionValidations),
-        OptionValidations
+        OptionValidations,
       ),
     ]);
 
@@ -103,7 +103,7 @@ export default class CfbFormEditorQuestionOptions extends Component {
     const options = [...sortable.$el.children].slice(0, -1);
 
     this.reorderOptions.perform(
-      options.map((option) => option.firstElementChild.firstElementChild.id)
+      options.map((option) => option.firstElementChild.firstElementChild.id),
     );
   }
 }

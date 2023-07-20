@@ -91,7 +91,7 @@ export default class InquiryAbility extends Ability {
       this.model.childCase.workItems.edges.some(
         (edge) =>
           edge.node.status === "READY" &&
-          edge.node.task.__typename === "CompleteWorkflowFormTask"
+          edge.node.task.__typename === "CompleteWorkflowFormTask",
       )
     );
   }
@@ -102,7 +102,7 @@ export default class InquiryAbility extends Ability {
       this.hasCustomPermission(
         "completeInquiryChildWorkItem",
         this.model,
-        this.task
+        this.task,
       )
     );
   }
@@ -123,7 +123,7 @@ export default class InquiryAbility extends Ability {
       this.isReady &&
       this.isControlling &&
       DateTime.fromISO(
-        this.model.document?.deadline.edges[0]?.node.value
+        this.model.document?.deadline.edges[0]?.node.value,
       ).diffNow("days").days <= 0 &&
       this.hasCustomPermission("sendReminder", this.model)
     );

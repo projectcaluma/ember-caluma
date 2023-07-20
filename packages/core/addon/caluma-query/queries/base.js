@@ -43,7 +43,7 @@ export default class BaseQuery {
 
   get modelClass() {
     const factory = getOwner(this).factoryFor(
-      `caluma-query-model:${this.modelName}`
+      `caluma-query-model:${this.modelName}`,
     );
 
     return factory.class;
@@ -67,7 +67,7 @@ export default class BaseQuery {
 
   get value() {
     const Model = getOwner(this).factoryFor(
-      `caluma-query-model:${this.modelName}`
+      `caluma-query-model:${this.modelName}`,
     ).class;
 
     return this.items.map((item) => {
@@ -127,7 +127,7 @@ export default class BaseQuery {
     this.items = yield this.processAll([
       ...this.items,
       ...(yield this.processNew(
-        data[this.dataKey].edges.map(({ node }) => node)
+        data[this.dataKey].edges.map(({ node }) => node),
       )),
     ]);
 

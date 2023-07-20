@@ -109,7 +109,7 @@ export default function config(target, property) {
           hooks: {},
           enableReminders: true,
         },
-        getOwner(this).lookup("service:calumaOptions")?.distribution ?? {}
+        getOwner(this).lookup("service:calumaOptions")?.distribution ?? {},
       );
     },
   });

@@ -47,17 +47,17 @@ export default class CaReportBuilderComponent extends Component {
             input,
           },
         },
-        "saveAnalyticsTable.analyticsTable"
+        "saveAnalyticsTable.analyticsTable",
       );
       yield this.args.onAdd?.(
         this.args.analyticsTable.slug,
-        this.args.analyticsTable.startingObject
+        this.args.analyticsTable.startingObject,
       );
       this.router.transitionTo("reports.edit", data.slug);
     } catch (error) {
       console.error(error);
       this.notification.danger(
-        this.intl.t(`caluma.analytics.notification.create-error`)
+        this.intl.t(`caluma.analytics.notification.create-error`),
       );
     }
   }

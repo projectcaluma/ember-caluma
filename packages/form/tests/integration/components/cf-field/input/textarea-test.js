@@ -11,7 +11,7 @@ module("Integration | Component | cf-field/input/textarea", function (hooks) {
 
   test("it computes the proper element id", async function (assert) {
     await render(
-      hbs`<CfField::Input::Textarea @field={{hash pk="test-id"}} />`
+      hbs`<CfField::Input::Textarea @field={{hash pk="test-id"}} />`,
     );
 
     assert.dom("#test-id").exists();

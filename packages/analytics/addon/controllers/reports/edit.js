@@ -37,7 +37,7 @@ export default class ReportsEditController extends Controller {
     } catch (error) {
       console.error(error);
       this.notification.danger(
-        this.intl.t(`caluma.analytics.notification.delete-error`)
+        this.intl.t(`caluma.analytics.notification.delete-error`),
       );
     }
   }

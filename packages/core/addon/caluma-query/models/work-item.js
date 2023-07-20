@@ -14,7 +14,7 @@ export default class WorkItemModel extends CalumaQueryModel {
 
   get status() {
     return this.intl.t(
-      `caluma.caluma-query.work-item.status.${this.raw.status}`
+      `caluma.caluma-query.work-item.status.${this.raw.status}`,
     );
   }
 

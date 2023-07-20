@@ -6,7 +6,7 @@ import register from "@projectcaluma/ember-testing/mirage-graphql/register";
 export default class AnswerMock extends BaseMock {
   _handleSaveDocumentAnswer(
     _,
-    { question: questionId, document: documentId, value, type }
+    { question: questionId, document: documentId, value, type },
   ) {
     const answer = this.collection.findBy({ questionId, documentId });
 

@@ -15,7 +15,7 @@ export default class CaFieldSelectorListCaFieldFunctionSelectComponent extends C
   @tracked aggregationFunctions = trackedTask(
     this,
     this.getAggregationFunctions,
-    () => [this.args.field, this.args.tableSlug]
+    () => [this.args.field, this.args.tableSlug],
   );
 
   @task
@@ -32,17 +32,17 @@ export default class CaFieldSelectorListCaFieldFunctionSelectComponent extends C
             prefix,
           },
         },
-        "analyticsTable.availableFields"
+        "analyticsTable.availableFields",
       );
       const fields = options.edges.map((edge) => edge.node);
       const field = fields.find(
-        (field) => field.sourcePath === this.args.field.dataSource
+        (field) => field.sourcePath === this.args.field.dataSource,
       );
       return field?.supportedFunctions ?? [];
     } catch (error) {
       console.error(error);
       this.notification.danger(
-        this.intl.t("caluma.analytics.notification.fetch-error")
+        this.intl.t("caluma.analytics.notification.fetch-error"),
       );
     }
   }

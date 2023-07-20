@@ -51,7 +51,7 @@ export default class TaskButtonComponent extends Component {
             filter: [{ task }, { status: "READY" }, ...(filters ?? [])],
           },
         },
-        "allWorkItems.edges"
+        "allWorkItems.edges",
       );
 
       return response[0]?.node;

@@ -42,7 +42,7 @@ setComponentTemplate(
 {{#if this.query.hasNextPage}}
   <button id="more" type="button" {{on "click" this.more}}>more</button>
 {{/if}}`,
-  QueryComponent
+  QueryComponent,
 );
 
 module("Integration | Caluma Query", function (hooks) {

@@ -7,11 +7,11 @@ function decorator(
   target,
   key,
   desc,
-  { inquiryProperty = "args.inquiry" } = {}
+  { inquiryProperty = "args.inquiry" } = {},
 ) {
   assert(
     `The @projectcaluma/ember-distribution config must be injected in order to use @inquiryAnswerStatus: \`@config config\``,
-    Object.prototype.hasOwnProperty.call(target, "config")
+    Object.prototype.hasOwnProperty.call(target, "config"),
   );
 
   return {
@@ -23,7 +23,7 @@ function decorator(
           .map((edge) => edge.node.task.slug) ?? [];
 
       const buttonConfig = Object.entries(
-        this.config.inquiry.answer.buttons
+        this.config.inquiry.answer.buttons,
       ).find(([task]) => readyWorkItems.includes(task))?.[1];
 
       return buttonConfig?.status

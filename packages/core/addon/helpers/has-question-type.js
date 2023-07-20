@@ -13,5 +13,5 @@ export function hasQuestionType(obj, ...expected) {
 }
 
 export default helper(([obj, ...expected]) =>
-  hasQuestionType(obj, ...expected)
+  hasQuestionType(obj, ...expected),
 );

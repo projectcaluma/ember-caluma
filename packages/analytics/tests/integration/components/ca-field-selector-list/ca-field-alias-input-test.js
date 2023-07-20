@@ -24,7 +24,7 @@ module(
         hbs`<CaFieldSelectorList::CaFieldAliasInput
   @value={{this.alias}}
   @onInput={{this.onSave}}
-/>`
+/>`,
       );
       assert.dom("[data-test-field-alias-input]").hasValue(this.alias);
 
@@ -33,5 +33,5 @@ module(
       assert.verifySteps(["save"]);
       assert.dom("[data-test-field-alias-input]").hasValue("changed alias");
     });
-  }
+  },
 );

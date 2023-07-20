@@ -65,7 +65,7 @@ export default class CaFieldSelectComponent extends Component {
   update(value) {
     assert(
       "A listener for updates on CaFieldSelectComponent has to be set.",
-      this.args.onSelect
+      this.args.onSelect,
     );
     set(this, "_selectedOption", value);
     this.args.onSelect(this._selectedOption);
@@ -87,7 +87,7 @@ export default class CaFieldSelectComponent extends Component {
               prefix: this.args.parentPath ?? "",
             },
           },
-          "analyticsTable.availableFields"
+          "analyticsTable.availableFields",
         );
         this.fetchedFor = this.isRoot ? "_root_" : this.args.parentPath;
         this.options = options.edges.map((edge) => edge.node);
@@ -95,7 +95,7 @@ export default class CaFieldSelectComponent extends Component {
     } catch (error) {
       console.error(error);
       this.notification.danger(
-        this.intl.t("caluma.analytics.notification.fetch-error")
+        this.intl.t("caluma.analytics.notification.fetch-error"),
       );
     }
   }

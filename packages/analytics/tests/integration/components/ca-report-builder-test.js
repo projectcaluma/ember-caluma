@@ -51,6 +51,6 @@ module("Integration | Component | ca-report-builder", function (hooks) {
   todo("it is not possible to create invalid fields", async function () {});
   todo(
     "the field object will reset after submitting a new field",
-    async function () {}
+    async function () {},
   );
 });

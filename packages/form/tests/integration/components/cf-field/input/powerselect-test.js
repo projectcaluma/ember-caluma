@@ -50,7 +50,7 @@ module(
       };
 
       const document = new (this.owner.factoryFor(
-        "caluma-model:document"
+        "caluma-model:document",
       ).class)({
         raw: {
           __typename: "Document",
@@ -71,7 +71,7 @@ module(
 
     test("it computes the proper element id", async function (assert) {
       await render(
-        hbs`<CfField::Input::Powerselect @field={{this.singleChoiceField}} />`
+        hbs`<CfField::Input::Powerselect @field={{this.singleChoiceField}} />`,
       );
 
       assert
@@ -79,7 +79,7 @@ module(
         .hasAttribute("id", this.singleChoiceField.pk);
 
       await render(
-        hbs`<CfField::Input::Powerselect @field={{this.multipleChoiceField}} />`
+        hbs`<CfField::Input::Powerselect @field={{this.multipleChoiceField}} />`,
       );
 
       assert
@@ -91,7 +91,7 @@ module(
       assert.expect(1);
 
       await render(
-        hbs`<CfField::Input::Powerselect @field={{this.singleChoiceField}} />`
+        hbs`<CfField::Input::Powerselect @field={{this.singleChoiceField}} />`,
       );
 
       assert.dom(".ember-power-select-trigger").exists();
@@ -108,7 +108,7 @@ module(
         hbs`<CfField::Input::Powerselect
   @field={{this.singleChoiceField}}
   @onSave={{this.onSave}}
-/>`
+/>`,
       );
 
       assert.dom(".ember-power-select-trigger").exists();
@@ -124,7 +124,7 @@ module(
       assert.expect(1);
 
       await render(
-        hbs`<CfField::Input::Powerselect @field={{this.multipleChoiceField}} />`
+        hbs`<CfField::Input::Powerselect @field={{this.multipleChoiceField}} />`,
       );
 
       assert.dom(".ember-power-select-trigger").exists();
@@ -141,7 +141,7 @@ module(
         hbs`<CfField::Input::Powerselect
   @field={{this.multipleChoiceField}}
   @onSave={{this.onSave}}
-/>`
+/>`,
       );
 
       // Check if select is being rendered.
@@ -174,7 +174,7 @@ module(
         hbs`<CfField::Input::Powerselect
   @field={{this.multipleChoiceField}}
   @onSave={{this.onSave}}
-/>`
+/>`,
       );
 
       this.set("multipleChoiceField.answer.value", ["option-1"]);
@@ -186,5 +186,5 @@ module(
 
       assert.deepEqual(this.multipleChoiceField.answer.value, []);
     });
-  }
+  },
 );

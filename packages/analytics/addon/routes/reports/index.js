@@ -18,7 +18,7 @@ export default class ReportsIndexRoute extends Route {
         fetchPolicy: "network-only",
         query: getAllAnalyticsTableQuery,
       },
-      "allAnalyticsTables"
+      "allAnalyticsTables",
     );
 
     return tables.edges.map((edge) => edge.node);

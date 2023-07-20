@@ -28,14 +28,14 @@ module("Unit | Utility | inquiry-answer-status", function (hooks) {
 
     assert.strictEqual(
       this.obj.status,
-      "t:caluma.distribution.answer.buttons.confirm.status:()"
+      "t:caluma.distribution.answer.buttons.confirm.status:()",
     );
 
     this.obj.inquiry.setReadyChildWorkItem("adjust-inquiry-answer");
 
     assert.strictEqual(
       this.obj.status,
-      "t:caluma.distribution.answer.buttons.adjust.status:()"
+      "t:caluma.distribution.answer.buttons.adjust.status:()",
     );
 
     this.obj.inquiry.setReadyChildWorkItem("some-other-task");

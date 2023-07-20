@@ -17,7 +17,7 @@ module("Unit | Library | document", function (hooks) {
     });
 
     this.set("getDocumentHiddenState", () =>
-      this.document.fields.map((field) => [field.question.slug, field.hidden])
+      this.document.fields.map((field) => [field.question.slug, field.hidden]),
     );
 
     this.set(
@@ -25,7 +25,7 @@ module("Unit | Library | document", function (hooks) {
       new (this.owner.factoryFor("caluma-model:document").class)({
         raw: parseDocument(data),
         owner: this.owner,
-      })
+      }),
     );
 
     await settled();
@@ -116,7 +116,7 @@ module("Unit | Library | document", function (hooks) {
     await Promise.all(
       tests.map(async ([expression, result]) => {
         assert.strictEqual(await this.document.jexl.eval(expression), result);
-      })
+      }),
     );
   });
 
@@ -139,9 +139,9 @@ module("Unit | Library | document", function (hooks) {
       tests.map(async ([value, expression, result]) => {
         assert.deepEqual(
           await this.document.jexl.eval(expression, { value }),
-          result
+          result,
         );
-      })
+      }),
     );
   });
 
@@ -151,7 +151,7 @@ module("Unit | Library | document", function (hooks) {
 
     assert.strictEqual(
       await this.document.jexl.eval(expression, { values }),
-      10
+      10,
     );
   });
 
@@ -161,7 +161,7 @@ module("Unit | Library | document", function (hooks) {
 
     assert.strictEqual(
       await this.document.jexl.eval(expression, { values }),
-      30
+      30,
     );
   });
 
@@ -172,7 +172,7 @@ module("Unit | Library | document", function (hooks) {
     assert.strictEqual(await this.document.jexl.eval(expression, { value }), 2);
     assert.strictEqual(
       await this.document.jexl.eval(expression, { value: null }),
-      null
+      null,
     );
   });
 
@@ -183,7 +183,7 @@ module("Unit | Library | document", function (hooks) {
     assert.strictEqual(await this.document.jexl.eval(expression, { value }), 1);
     assert.strictEqual(
       await this.document.jexl.eval(expression, { value: null }),
-      null
+      null,
     );
   });
 
@@ -195,15 +195,15 @@ module("Unit | Library | document", function (hooks) {
 
     assert.strictEqual(
       await this.document.jexl.eval(expression, { value, places }),
-      1.877
+      1.877,
     );
     assert.strictEqual(
       await this.document.jexl.eval(expressionWithoutPlaces, { value, places }),
-      2
+      2,
     );
     assert.strictEqual(
       await this.document.jexl.eval(expression, { value: null, places: null }),
-      null
+      null,
     );
   });
 
@@ -213,7 +213,7 @@ module("Unit | Library | document", function (hooks) {
 
     assert.strictEqual(
       await this.document.jexl.eval(expression, { values }),
-      60
+      60,
     );
   });
 
@@ -223,15 +223,15 @@ module("Unit | Library | document", function (hooks) {
 
     assert.strictEqual(
       await this.document.jexl.eval(expression, { values }),
-      20
+      20,
     );
     assert.strictEqual(
       await this.document.jexl.eval(expression, { values: [] }),
-      null
+      null,
     );
     assert.strictEqual(
       await this.document.jexl.eval(expression, { values: [10] }),
-      10
+      10,
     );
   });
 
@@ -241,8 +241,8 @@ module("Unit | Library | document", function (hooks) {
         '\'["test1","test2"]\' == value|stringify',
         {
           value: ["test1", "test2"],
-        }
-      )
+        },
+      ),
     );
   });
 
@@ -253,11 +253,11 @@ module("Unit | Library | document", function (hooks) {
       await this.document.jexl.eval(expression, {
         array: [["some-value"], ["some-other-value"]],
       }),
-      ["some-value", "some-other-value"]
+      ["some-value", "some-other-value"],
     );
     assert.strictEqual(
       await this.document.jexl.eval(expression, { array: null }),
-      null
+      null,
     );
   });
 

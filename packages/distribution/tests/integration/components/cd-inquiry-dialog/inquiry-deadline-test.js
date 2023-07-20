@@ -19,7 +19,7 @@ module(
       this.inquiry = inquiry({ deadline: deadline.toISODate() });
 
       await render(
-        hbs`<CdInquiryDialog::InquiryDeadline @inquiry={{this.inquiry}} />`
+        hbs`<CdInquiryDialog::InquiryDeadline @inquiry={{this.inquiry}} />`,
       );
 
       const formattedDate = this.owner
@@ -34,7 +34,7 @@ module(
       this.inquiry = inquiry({ workItemStatus: "CANCELED" });
 
       await render(
-        hbs`<CdInquiryDialog::InquiryDeadline @inquiry={{this.inquiry}} />`
+        hbs`<CdInquiryDialog::InquiryDeadline @inquiry={{this.inquiry}} />`,
       );
 
       assert
@@ -47,7 +47,7 @@ module(
       this.inquiry = inquiry({ workItemStatus: "SKIPPED" });
 
       await render(
-        hbs`<CdInquiryDialog::InquiryDeadline @inquiry={{this.inquiry}} />`
+        hbs`<CdInquiryDialog::InquiryDeadline @inquiry={{this.inquiry}} />`,
       );
 
       assert
@@ -55,5 +55,5 @@ module(
         .hasText("t:caluma.distribution.status.skipped:()");
       assert.dom("[uk-icon]").hasAttribute("icon", "lock");
     });
-  }
+  },
 );

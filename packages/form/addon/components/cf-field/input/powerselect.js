@@ -22,7 +22,7 @@ export default class CfFieldInputPowerselectComponent extends Component {
   get selectComponent() {
     return ensureSafeComponent(
       this.multiple ? PowerSelectMultipleComponent : PowerSelectComponent,
-      this
+      this,
     );
   }
 

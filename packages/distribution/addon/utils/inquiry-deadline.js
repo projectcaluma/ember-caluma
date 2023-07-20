@@ -8,11 +8,11 @@ function decorator(
   target,
   key,
   desc,
-  { inquiryProperty = "args.inquiry" } = {}
+  { inquiryProperty = "args.inquiry" } = {},
 ) {
   assert(
     `The @projectcaluma/ember-distribution config must be injected in order to use @inquiryDeadline: \`@config config\``,
-    Object.prototype.hasOwnProperty.call(target, "config")
+    Object.prototype.hasOwnProperty.call(target, "config"),
   );
 
   return {
@@ -20,7 +20,7 @@ function decorator(
       const inquiry = get(this, inquiryProperty);
       const value = inquiry.document?.deadline.edges[0]?.node.value;
       const isDone = ["COMPLETED", "SKIPPED", "CANCELED"].includes(
-        inquiry.status
+        inquiry.status,
       );
 
       const diff = DateTime.fromISO(value).diffNow("days").days;

@@ -15,6 +15,6 @@ export default async function confirm() {
 
   // Click confirm button
   await click(
-    modal.$el.querySelector(".uk-modal-footer .uk-button.uk-button-primary")
+    modal.$el.querySelector(".uk-modal-footer .uk-button.uk-button-primary"),
   );
 }

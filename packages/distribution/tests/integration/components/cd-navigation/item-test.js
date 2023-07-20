@@ -17,7 +17,7 @@ module("Integration | Component | cd-navigation/item", function (hooks) {
     this.owner.lookup("service:router").isActive = () => true;
 
     await render(
-      hbs`<CdNavigation::Item @inquiry={{this.inquiry}} @type={{this.type}} />`
+      hbs`<CdNavigation::Item @inquiry={{this.inquiry}} @type={{this.type}} />`,
     );
 
     assert.dom("li").hasClass("uk-active");
@@ -30,13 +30,13 @@ module("Integration | Component | cd-navigation/item", function (hooks) {
     assert
       .dom("li > a")
       .hasText(
-        't:caluma.distribution.attention-to:("abbr":true,"subject":"controlling")'
+        't:caluma.distribution.attention-to:("abbr":true,"subject":"controlling")',
       );
     assert
       .dom("li > a > span")
       .hasAttribute(
         "title",
-        't:caluma.distribution.attention-to:("abbr":false,"subject":"controlling")'
+        't:caluma.distribution.attention-to:("abbr":false,"subject":"controlling")',
       );
   });
 });

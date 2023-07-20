@@ -7,7 +7,7 @@ import {
 
 function setApplicationInstance() {
   const application = importSync(
-    "@projectcaluma/ember-form-builder/-private/application"
+    "@projectcaluma/ember-form-builder/-private/application",
   ).default;
 
   application.instance = this.owner;

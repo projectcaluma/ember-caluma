@@ -19,7 +19,7 @@ module(
       this.inquiry = inquiry({ status });
 
       await render(
-        hbs`<CdInquiryDialog::InquiryDivider @inquiry={{this.inquiry}} />`
+        hbs`<CdInquiryDialog::InquiryDivider @inquiry={{this.inquiry}} />`,
       );
 
       assert.dom(".inquiry-divider.uk-text-danger").exists();
@@ -27,8 +27,8 @@ module(
       assert.tooltipHasText(
         this.element,
         ".inquiry-divider.uk-text-danger [uk-icon]",
-        "Negative"
+        "Negative",
       );
     });
-  }
+  },
 );

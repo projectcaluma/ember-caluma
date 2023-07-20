@@ -18,7 +18,7 @@ module(
 
     test("it renders a status indicator", async function (assert) {
       await render(
-        hbs`<CdNavigation::StatusIndicator @inquiry={{this.inquiry}} @type={{this.type}} />`
+        hbs`<CdNavigation::StatusIndicator @inquiry={{this.inquiry}} @type={{this.type}} />`,
       );
 
       assert.dom("[uk-icon]").hasClass("uk-text-success");
@@ -33,7 +33,7 @@ module(
       const overdueDeadline = DateTime.now().minus({ days: 2 });
 
       await render(
-        hbs`<CdNavigation::StatusIndicator @inquiry={{this.inquiry}} @type={{this.type}} />`
+        hbs`<CdNavigation::StatusIndicator @inquiry={{this.inquiry}} @type={{this.type}} />`,
       );
 
       assert.dom("[uk-icon][icon=clock]").doesNotExist();
@@ -46,7 +46,7 @@ module(
       assert.tooltipHasText(
         this.element,
         "[uk-icon][icon=clock]",
-        intl.formatDate(warningDeadline.toJSDate())
+        intl.formatDate(warningDeadline.toJSDate()),
       );
 
       await this.inquiry.setDeadline(overdueDeadline.toISODate());
@@ -55,8 +55,8 @@ module(
       assert.tooltipHasText(
         this.element,
         "[uk-icon][icon=clock]",
-        intl.formatDate(overdueDeadline.toJSDate())
+        intl.formatDate(overdueDeadline.toJSDate()),
       );
     });
-  }
+  },
 );

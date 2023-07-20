@@ -24,7 +24,7 @@ export default function and(...validators) {
         newValue,
         oldValue,
         changes,
-        object
+        object,
       );
 
       if (isPromise(validation)) {

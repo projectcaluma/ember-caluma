@@ -28,7 +28,7 @@ module("Integration | Helper | format-graphql-error", function (hooks) {
     assert
       .dom(this.element)
       .hasText(
-        "allForms.edges.0.node.id:1:2: Error 1 allForms.pageInfo.endCursor:15:3: Error 2"
+        "allForms.edges.0.node.id:1:2: Error 1 allForms.pageInfo.endCursor:15:3: Error 2",
       );
   });
 

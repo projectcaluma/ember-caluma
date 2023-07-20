@@ -15,7 +15,7 @@ module("Unit | Validator | options", function () {
 
     assert.strictEqual(
       await validateOptions()(null, [option]),
-      "Invalid options"
+      "Invalid options",
     );
   });
 });

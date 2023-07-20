@@ -32,7 +32,7 @@ module("Acceptance | question reorder", function (hooks) {
     const children = [
       item,
       ...[...list.children].filter(
-        (c) => c.dataset.testQuestionListItem !== "test"
+        (c) => c.dataset.testQuestionListItem !== "test",
       ),
     ];
 

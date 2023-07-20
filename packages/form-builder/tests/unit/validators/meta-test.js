@@ -8,13 +8,13 @@ module("Unit | Validator | meta", function () {
 
     assert.true(validate(null, {}));
     assert.true(
-      validate(null, { widgetOverride: "cf-field/input/powerselect" })
+      validate(null, { widgetOverride: "cf-field/input/powerselect" }),
     );
 
     assert.strictEqual(validate(null, ""), "Meta is not a valid JSON object");
     assert.strictEqual(
       validate(null, '{ "widgetOverride": "cf-field/input/powerselect"""""}'),
-      "Meta is not a valid JSON object"
+      "Meta is not a valid JSON object",
     );
     assert.strictEqual(validate(null, []), "Meta is not a valid JSON object");
   });

@@ -26,7 +26,7 @@ module("Acceptance | question edit", function (hooks) {
     assert.dom("[data-test-question-list-item]").exists({ count: 1 });
 
     await click(
-      "[data-test-question-list-item=test-question] [data-test-edit-question]"
+      "[data-test-question-list-item=test-question] [data-test-edit-question]",
     );
 
     assert.strictEqual(currentURL(), "/test-form/questions/test-question");

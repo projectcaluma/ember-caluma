@@ -81,7 +81,7 @@ export class NavigationItem extends Base {
   @cached
   get children() {
     return this.navigation.items.filter(
-      (item) => item._parentSlug === this.slug
+      (item) => item._parentSlug === this.slug,
     );
   }
 
@@ -162,7 +162,7 @@ export class NavigationItem extends Base {
     return (
       (this.fieldset.field === undefined || !this.fieldset.field.hidden) &&
       this.fieldset.fields.some(
-        (field) => field.questionType !== "FormQuestion" && !field.hidden
+        (field) => field.questionType !== "FormQuestion" && !field.hidden,
       )
     );
   }
@@ -234,7 +234,7 @@ export class NavigationItem extends Base {
     return this.fieldset.fields.filter(
       (f) =>
         !["FormQuestion", "StaticQuestion"].includes(f.questionType) &&
-        !f.hidden
+        !f.hidden,
     );
   }
 
@@ -343,7 +343,7 @@ export class Navigation extends Base {
             fieldset,
             navigation: this,
             owner,
-          })
+          }),
       );
     });
 

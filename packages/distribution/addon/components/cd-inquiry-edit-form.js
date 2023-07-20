@@ -31,7 +31,7 @@ export default class CdInquiryEditFormComponent extends Component {
         query: inquiryEditQuery,
         variables: { inquiry },
       },
-      "allWorkItems.edges"
+      "allWorkItems.edges",
     );
   }
 
@@ -50,7 +50,7 @@ export default class CdInquiryEditFormComponent extends Component {
       yield this.router.transitionTo("inquiry.index");
     } catch (error) {
       this.notification.danger(
-        this.intl.t("caluma.distribution.edit.send-error")
+        this.intl.t("caluma.distribution.edit.send-error"),
       );
     }
   }

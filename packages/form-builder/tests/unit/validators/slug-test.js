@@ -18,12 +18,12 @@ module("Unit | Validator | slug", function (hooks) {
     // count is 1 -> invalid
     assert.strictEqual(
       await validator.validate(null, "slug", null, null, { id: undefined }),
-      "t:caluma.form-builder.validations.form.slug:()"
+      "t:caluma.form-builder.validations.form.slug:()",
     );
 
     // id is given -> valid
     assert.true(
-      await validator.validate(null, "slug", null, null, { id: "x" })
+      await validator.validate(null, "slug", null, null, { id: "x" }),
     );
 
     this.server.post("/graphql", { data: { allForms: { totalCount: 0 } } });
@@ -32,7 +32,7 @@ module("Unit | Validator | slug", function (hooks) {
     assert.true(
       await validator.validate(null, "slug-new", null, null, {
         id: undefined,
-      })
+      }),
     );
   });
 
@@ -44,12 +44,12 @@ module("Unit | Validator | slug", function (hooks) {
     // count is 1 -> invalid
     assert.strictEqual(
       await validator.validate(null, "slug", null, null, { id: undefined }),
-      "t:caluma.form-builder.validations.question.slug:()"
+      "t:caluma.form-builder.validations.question.slug:()",
     );
 
     // id is given -> valid
     assert.true(
-      await validator.validate(null, "slug", null, null, { id: "x" })
+      await validator.validate(null, "slug", null, null, { id: "x" }),
     );
 
     this.server.post("/graphql", { data: { allQuestions: { totalCount: 0 } } });
@@ -58,7 +58,7 @@ module("Unit | Validator | slug", function (hooks) {
     assert.true(
       await validator.validate(null, "slug-new", null, null, {
         id: undefined,
-      })
+      }),
     );
   });
 
@@ -87,7 +87,7 @@ module("Unit | Validator | slug", function (hooks) {
         id: undefined,
         question: "question-slug",
       }),
-      "t:caluma.form-builder.validations.option.slug:()"
+      "t:caluma.form-builder.validations.option.slug:()",
     );
 
     // id is given -> valid
@@ -95,7 +95,7 @@ module("Unit | Validator | slug", function (hooks) {
       await validator.validate(null, "slug", null, null, {
         id: "x",
         question: "question-slug",
-      })
+      }),
     );
 
     this.server.post("/graphql", {
@@ -119,7 +119,7 @@ module("Unit | Validator | slug", function (hooks) {
       await validator.validate(null, "slug-new", null, null, {
         id: undefined,
         question: "question-slug",
-      })
+      }),
     );
   });
 });

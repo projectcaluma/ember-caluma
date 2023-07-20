@@ -53,7 +53,7 @@ export default class BaseFilter {
   filter(records, filters) {
     return this._getFilterFns(filters?.filter ?? []).reduce(
       (recs, fn) => fn(recs),
-      this.sort(records, filters?.order)
+      this.sort(records, filters?.order),
     );
   }
 
@@ -95,7 +95,7 @@ export default class BaseFilter {
         id === value ||
         slug === value ||
         btoa(`${this.type}:${id}`) === value ||
-        btoa(`${this.type}:${slug}`) === value
+        btoa(`${this.type}:${slug}`) === value,
     );
   }
 }

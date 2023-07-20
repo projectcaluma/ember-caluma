@@ -15,10 +15,10 @@ module(
       };
 
       await render(
-        hbs`<CfbFormEditor::Question::Default::Table @field={{this.field}} />`
+        hbs`<CfbFormEditor::Question::Default::Table @field={{this.field}} />`,
       );
 
       assert.dom(this.element).exists();
     });
-  }
+  },
 );

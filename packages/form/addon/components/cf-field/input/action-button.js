@@ -13,7 +13,7 @@ if (macroCondition(dependencySatisfies("@projectcaluma/ember-workflow", ""))) {
 
       assert(
         "The document must have a `workItemUuid` for `<CfField::Input::ActionButton />` to work.",
-        this.args.field.document.workItemUuid
+        this.args.field.document.workItemUuid,
       );
     }
 
@@ -69,7 +69,7 @@ if (macroCondition(dependencySatisfies("@projectcaluma/ember-workflow", ""))) {
       super(...args);
 
       assert(
-        "@projectcaluma/ember-workflow must be installed to enable the usage of the action button questions"
+        "@projectcaluma/ember-workflow must be installed to enable the usage of the action button questions",
       );
     }
   };

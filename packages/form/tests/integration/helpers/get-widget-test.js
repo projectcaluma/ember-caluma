@@ -63,7 +63,7 @@ module("Integration | Helper | get-widget", function (hooks) {
 
   test("it can pass the default widget", async function (assert) {
     await render(
-      hbs`{{component (ensure-safe-component (get-widget null default="cf-form"))}}`
+      hbs`{{component (ensure-safe-component (get-widget null default="cf-form"))}}`,
     );
 
     assert.dom("form").exists();

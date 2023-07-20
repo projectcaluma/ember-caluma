@@ -15,13 +15,13 @@ export default class WorkItemFilter extends BaseFilter {
 
   controllingGroups(records, value) {
     return records.filter((record) =>
-      value.every((g) => record.controllingGroups?.includes(g))
+      value.every((g) => record.controllingGroups?.includes(g)),
     );
   }
 
   addressedGroups(records, value) {
     return records.filter((record) =>
-      value.every((g) => record.addressedGroups?.includes(g))
+      value.every((g) => record.addressedGroups?.includes(g)),
     );
   }
 }

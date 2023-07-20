@@ -21,7 +21,7 @@ class DedupedTrackedObject {
       Object.defineProperty(
         this,
         key,
-        dedupeTracked(this, key, { initializer: () => value })
+        dedupeTracked(this, key, { initializer: () => value }),
       );
     });
   }
@@ -38,7 +38,7 @@ export default class Answer extends Base {
 
     assert(
       "A graphql answer `raw` must be passed",
-      /Answer$/.test(raw?.__typename)
+      /Answer$/.test(raw?.__typename),
     );
 
     super({ raw, ...args });
@@ -128,7 +128,7 @@ export default class Answer extends Base {
         if (document instanceof Document) return document;
 
         const existing = this.calumaStore.find(
-          `Document:${decodeId(document.id)}`
+          `Document:${decodeId(document.id)}`,
         );
 
         return (

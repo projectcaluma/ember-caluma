@@ -17,7 +17,9 @@ $icon-size: 0.8rem !default;
       width: $icon-size;
       color: color.adjust($global-border, $lightness: -40%);
       border: 1px solid color.adjust($global-border, $lightness: -10%);
-      transition: color 500ms ease, border 500ms ease;
+      transition:
+        color 500ms ease,
+        border 500ms ease;
 
       &::before {
         position: absolute;

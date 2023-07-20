@@ -39,7 +39,7 @@ module("Integration | Component | cfb-toggle-switch", function (hooks) {
     });
 
     await render(
-      hbs`<CfbToggleSwitch @name="test" @value={{this.value}} @update={{this.update}} />`
+      hbs`<CfbToggleSwitch @name="test" @value={{this.value}} @update={{this.update}} />`,
     );
 
     assert.dom("input[name=test]").isNotChecked();

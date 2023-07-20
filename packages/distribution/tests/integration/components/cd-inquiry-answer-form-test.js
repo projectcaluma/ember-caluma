@@ -44,7 +44,7 @@ module("Integration | Component | cd-inquiry-answer-form", function (hooks) {
     assert
       .dom("[data-test-document-header]")
       .containsText(
-        "Inquiry answer t:caluma.distribution.answer.buttons.compose.status:()"
+        "Inquiry answer t:caluma.distribution.answer.buttons.compose.status:()",
       );
     assert.dom("form").exists();
     assert

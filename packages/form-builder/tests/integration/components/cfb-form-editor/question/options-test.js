@@ -19,7 +19,7 @@ function optionChangeset({ slug, label, isArchived } = {}) {
       slugUnlinked: false,
     },
     lookupValidator(optionValidations),
-    optionValidations
+    optionValidations,
   );
 }
 
@@ -46,7 +46,7 @@ module(
       ];
 
       await render(
-        hbs`<CfbFormEditor::Question::Options @model={{this.model}} @value={{this.value}} />`
+        hbs`<CfbFormEditor::Question::Options @model={{this.model}} @value={{this.value}} />`,
       );
 
       // one is the add row
@@ -114,7 +114,7 @@ module(
   @value={{this.value}}
   @update={{this.update}}
   @setDirty={{this.noop}}
-/>`
+/>`,
       );
 
       assert.dom("[data-test-row]").exists({ count: 2 });
@@ -133,5 +133,5 @@ module(
         .dom("[data-test-row=option-1] input[name=option-1-label]")
         .isNotDisabled();
     });
-  }
+  },
 );

@@ -115,7 +115,7 @@ module("Integration | Component | cf-field/input/checkbox", function (hooks) {
     };
 
     await render(
-      hbs`<CfField::Input::Checkbox @onSave={{this.save}} @field={{this.field}} />`
+      hbs`<CfField::Input::Checkbox @onSave={{this.save}} @field={{this.field}} />`,
     );
 
     await click("label:nth-of-type(1) input");

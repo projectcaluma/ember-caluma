@@ -28,7 +28,7 @@ export default class CfFieldInputTableComponent extends Component {
 
   get questions() {
     return this.args.field.question.raw.rowForm.questions.edges.map(
-      (edge) => edge.node
+      (edge) => edge.node,
     );
   }
 
@@ -37,7 +37,7 @@ export default class CfFieldInputTableComponent extends Component {
 
     if (config?.length) {
       return this.questions.filter((question) =>
-        config.includes(question.slug)
+        config.includes(question.slug),
       );
     }
 
@@ -53,7 +53,7 @@ export default class CfFieldInputTableComponent extends Component {
           input: { form: this.args.field.question.raw.rowForm.slug },
         },
       },
-      "saveDocument.document"
+      "saveDocument.document",
     );
 
     const owner = getOwner(this);
@@ -75,7 +75,7 @@ export default class CfFieldInputTableComponent extends Component {
     }
 
     const remainingDocuments = this.args.field.answer.value.filter(
-      (doc) => doc.pk !== document.pk
+      (doc) => doc.pk !== document.pk,
     );
 
     yield this.args.onSave(remainingDocuments);
@@ -104,7 +104,7 @@ export default class CfFieldInputTableComponent extends Component {
         yield this.args.onSave([...rows, newDocument]);
 
         this.notification.success(
-          this.intl.t("caluma.form.notification.table.add.success")
+          this.intl.t("caluma.form.notification.table.add.success"),
         );
       }
 
@@ -113,7 +113,7 @@ export default class CfFieldInputTableComponent extends Component {
       yield this.close.perform();
     } catch (e) {
       this.notification.danger(
-        this.intl.t("caluma.form.notification.table.add.error")
+        this.intl.t("caluma.form.notification.table.add.error"),
       );
     }
   }
