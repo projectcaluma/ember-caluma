@@ -7,7 +7,7 @@ export default class ApplicationController extends Controller {
   get distributionIsActive() {
     return this.router.isActive(
       "demo.distribution",
-      "4222ab21-9c89-47de-98be-d62a8ed0ebeb"
+      "4222ab21-9c89-47de-98be-d62a8ed0ebeb",
     );
   }
 }

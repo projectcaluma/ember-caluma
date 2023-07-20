@@ -8,17 +8,17 @@ module("Unit | Utility | slugify", function (/*hooks*/) {
 
     assert.strictEqual(
       slugify("TEST WITH UPPERCASE LETTERS"),
-      "test-with-uppercase-letters"
+      "test-with-uppercase-letters",
     );
 
     assert.strictEqual(
       slugify("test with numbers 123"),
-      "test-with-numbers-123"
+      "test-with-numbers-123",
     );
 
     assert.strictEqual(
       slugify("test with special characters #?%/()"),
-      "test-with-special-characters-percent"
+      "test-with-special-characters-percent",
     );
   });
 

@@ -35,7 +35,7 @@ module(
       assert
         .dom("li")
         .hasText(
-          "test-question Test Question? t:caluma.form-builder.question.types.TextQuestion:()"
+          "test-question Test Question? t:caluma.form-builder.question.types.TextQuestion:()",
         );
 
       assert.dom(".cfb-form-editor__question-list__item__required").exists();
@@ -85,5 +85,5 @@ module(
       this.set("mode", "add");
       assert.dom("[data-test-add-item]").exists();
     });
-  }
+  },
 );

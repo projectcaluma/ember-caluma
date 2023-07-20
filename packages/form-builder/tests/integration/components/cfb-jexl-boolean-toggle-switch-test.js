@@ -56,5 +56,5 @@ module(
 
       assert.verifySteps(["update"]);
     });
-  }
+  },
 );

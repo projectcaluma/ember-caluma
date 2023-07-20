@@ -35,7 +35,7 @@ export default class CdInquiryNewFormSelectComponent extends Component {
   @action
   updateSelectedGroups(identifier) {
     this.args.onChangeSelectedGroups(
-      toggle(identifier, this.args.selectedGroups)
+      toggle(identifier, this.args.selectedGroups),
     );
   }
 
@@ -60,7 +60,7 @@ export default class CdInquiryNewFormSelectComponent extends Component {
 
     const typedGroups = yield this.calumaOptions.fetchTypedGroups(
       types,
-      search
+      search,
     );
 
     return Object.entries(typedGroups)

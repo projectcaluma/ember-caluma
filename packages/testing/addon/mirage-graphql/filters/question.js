@@ -13,7 +13,7 @@ export default class QuestionFilter extends BaseFilter {
 
   excludeForms(records, value) {
     return records.filter(
-      ({ formIds }) => !value.some((id) => (formIds || []).includes(id))
+      ({ formIds }) => !value.some((id) => (formIds || []).includes(id)),
     );
   }
 }

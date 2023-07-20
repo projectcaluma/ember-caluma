@@ -13,7 +13,7 @@ module("Integration | Component | work-item-button", function (hooks) {
 
   test("it renders default", async function (assert) {
     await render(
-      hbs`<WorkItemButton @mutation="complete" @workItemId="test" />`
+      hbs`<WorkItemButton @mutation="complete" @workItemId="test" />`,
     );
 
     assert.dom("button").hasText("t:caluma.mutate-work-item.complete:()");
@@ -21,7 +21,7 @@ module("Integration | Component | work-item-button", function (hooks) {
 
   test("it renders label", async function (assert) {
     await render(
-      hbs`<WorkItemButton @mutation="complete" @workItemId="test" @label="Lorem Ipsum" />`
+      hbs`<WorkItemButton @mutation="complete" @workItemId="test" @label="Lorem Ipsum" />`,
     );
 
     assert.dom("button").hasText("Lorem Ipsum");
@@ -29,7 +29,7 @@ module("Integration | Component | work-item-button", function (hooks) {
 
   test("it renders block", async function (assert) {
     await render(
-      hbs`<WorkItemButton @mutation="complete" @workItemId="test">Lorem Ipsum</WorkItemButton>`
+      hbs`<WorkItemButton @mutation="complete" @workItemId="test">Lorem Ipsum</WorkItemButton>`,
     );
 
     assert.dom("button").hasText("Lorem Ipsum");
@@ -46,17 +46,17 @@ module("Integration | Component | work-item-button", function (hooks) {
       (_, request) => {
         assert.ok(
           request.requestBody.includes(
-            `${mutation.charAt(0).toUpperCase() + mutation.slice(1)}WorkItem`
-          )
+            `${mutation.charAt(0).toUpperCase() + mutation.slice(1)}WorkItem`,
+          ),
         );
 
         return { data: { [`${mutation}WorkItem`]: null } };
       },
-      200
+      200,
     );
 
     await render(
-      hbs`<WorkItemButton @mutation={{this.mutation}} @workItemId="test" />`
+      hbs`<WorkItemButton @mutation={{this.mutation}} @workItemId="test" />`,
     );
 
     await click("button");
@@ -83,7 +83,7 @@ module("Integration | Component | work-item-button", function (hooks) {
   @mutation="complete"
   @workItemId="test"
   @beforeMutate={{this.beforeMutate}}
-/>`
+/>`,
     );
 
     await click("button");

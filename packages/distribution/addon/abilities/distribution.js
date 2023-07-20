@@ -16,7 +16,7 @@ export default class DistributionAbility extends Ability {
       !this.config.ui.readonly &&
       (this.config.permissions.sendInquiry?.(null) ?? true) &&
       this.distribution.controls.value?.send.edges.filter(
-        hasStatus("SUSPENDED")
+        hasStatus("SUSPENDED"),
       ).length > 0
     );
   }
@@ -44,7 +44,7 @@ export default class DistributionAbility extends Ability {
       !this.config.ui.readonly &&
       (this.config.permissions.completeDistribution?.() ?? true) &&
       this.distribution.controls.value?.complete.edges.filter(
-        hasStatus("READY")
+        hasStatus("READY"),
       ).length > 0
     );
   }

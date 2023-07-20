@@ -33,5 +33,5 @@ module(
 
       assert.ok(true);
     });
-  }
+  },
 );

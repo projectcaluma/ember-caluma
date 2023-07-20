@@ -8,12 +8,12 @@ export default function* getAnalyticsTable(slug) {
         fetchPolicy: "cache-and-network",
         variables: { slug },
       },
-      "analyticsTable"
+      "analyticsTable",
     );
   } catch (error) {
     console.error(error);
     this.notification.danger(
-      this.intl.t("caluma.notification.table-not-found")
+      this.intl.t("caluma.notification.table-not-found"),
     );
   }
 }

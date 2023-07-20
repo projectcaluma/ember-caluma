@@ -7,13 +7,13 @@ export default function* (input) {
       variables: { input },
     });
     this.notification.success(
-      this.intl.t("caluma.analytics.notification.field-saved")
+      this.intl.t("caluma.analytics.notification.field-saved"),
     );
     return mutation;
   } catch (error) {
     console.error(error);
     this.notification.danger(
-      this.intl.t("caluma.analytics.notification.create-error")
+      this.intl.t("caluma.analytics.notification.create-error"),
     );
   }
 }

@@ -8,16 +8,16 @@ function decorator(
   target,
   key,
   desc,
-  { inquiryProperty = "args.inquiry", inquiryTypeProperty = "args.type" } = {}
+  { inquiryProperty = "args.inquiry", inquiryTypeProperty = "args.type" } = {},
 ) {
   assert(
     `The @projectcaluma/ember-distribution config must be injected in order to use @inquiryStatus: \`@config config\``,
-    Object.prototype.hasOwnProperty.call(target, "config")
+    Object.prototype.hasOwnProperty.call(target, "config"),
   );
 
   assert(
     `The intl service must be injected in order to use @inquiryStatus: \`@service intl\``,
-    Object.prototype.hasOwnProperty.call(target, "intl")
+    Object.prototype.hasOwnProperty.call(target, "intl"),
   );
 
   return {

@@ -49,7 +49,7 @@ module("Integration | Component | cf-field/input/files", function (hooks) {
     const payload_fail = new File(["test"], "fail.txt", { type: "text/plain" });
 
     await render(
-      hbs`<CfField::Input::Files @field={{this.field}} @onSave={{this.onSave}} />`
+      hbs`<CfField::Input::Files @field={{this.field}} @onSave={{this.onSave}} />`,
     );
 
     await triggerEvent("input[type=file]", "change", { files: [] });
@@ -127,7 +127,7 @@ module("Integration | Component | cf-field/input/files", function (hooks) {
     };
 
     await render(
-      hbs`<CfField::Input::Files @field={{this.field}} @disabled={{true}} />`
+      hbs`<CfField::Input::Files @field={{this.field}} @disabled={{true}} />`,
     );
 
     assert.dom("input[type=file]").isDisabled();

@@ -13,11 +13,11 @@ module("Unit | Validator | gt-lt", function () {
     assert.true(validateGtLt({ gt: "x" })("key", 2, null, {}, {}));
     assert.strictEqual(
       validateGtLt({ gt: "x" })("key", 9, null, {}, { x: 10 }),
-      "Key must be greater than 10"
+      "Key must be greater than 10",
     );
     assert.strictEqual(
       validateGtLt({ lt: "x" })("key", 11, null, {}, { x: 10 }),
-      "Key must be less than 10"
+      "Key must be less than 10",
     );
   });
 });

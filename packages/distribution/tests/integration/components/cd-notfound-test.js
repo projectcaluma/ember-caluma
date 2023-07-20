@@ -17,7 +17,7 @@ module("Integration | Component | cd-notfound", function (hooks) {
     assert
       .dom("p")
       .hasText(
-        "t:caluma.distribution.notfound.back:() t:caluma.distribution.notfound.link:()"
+        "t:caluma.distribution.notfound.back:() t:caluma.distribution.notfound.link:()",
       );
     assert.dom("p > a").hasText("t:caluma.distribution.notfound.link:()");
   });

@@ -48,7 +48,7 @@ module("Unit | Utility | jexl", function (hooks) {
 
     assert.deepEqual(
       getTransforms(
-        getAST(this.customJexl, "'foo'|bar > 'baz' && 'x'|y > 9000")
+        getAST(this.customJexl, "'foo'|bar > 'baz' && 'x'|y > 9000"),
       ),
       [
         {
@@ -69,7 +69,7 @@ module("Unit | Utility | jexl", function (hooks) {
             },
           ],
         },
-      ]
+      ],
     );
   });
 

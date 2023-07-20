@@ -33,7 +33,7 @@ export default class CdNavigationControlsComponent extends Component {
               task: this.config.inquiry.task,
             },
           },
-          "allWorkItems.totalCount"
+          "allWorkItems.totalCount",
         );
 
         confirmText =
@@ -64,7 +64,7 @@ export default class CdNavigationControlsComponent extends Component {
       this.router.transitionTo("index");
     } catch (e) {
       this.notification.danger(
-        this.intl.t("caluma.distribution.complete-error")
+        this.intl.t("caluma.distribution.complete-error"),
       );
     }
   }
@@ -77,7 +77,7 @@ export default class CdNavigationControlsComponent extends Component {
       }
 
       const distributionWorkItemId = decodeId(
-        this.distribution.controls.value?.case.edges[0]?.node.parentWorkItem.id
+        this.distribution.controls.value?.case.edges[0]?.node.parentWorkItem.id,
       );
 
       yield this.apollo.mutate({
@@ -100,13 +100,13 @@ export default class CdNavigationControlsComponent extends Component {
         mutation: completeWorkItemMutation,
         variables: {
           workItem: decodeId(
-            this.distribution.controls.value?.check.edges[0]?.node.id
+            this.distribution.controls.value?.check.edges[0]?.node.id,
           ),
         },
       });
     } catch (e) {
       this.notification.danger(
-        this.intl.t("caluma.distribution.check-inquiries-error")
+        this.intl.t("caluma.distribution.check-inquiries-error"),
       );
     }
   }

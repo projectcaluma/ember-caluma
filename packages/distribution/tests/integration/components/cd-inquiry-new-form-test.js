@@ -37,7 +37,7 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
     };
     this.owner.lookup("service:caluma-options").fetchTypedGroups = (
       types,
-      search
+      search,
     ) => {
       const re = new RegExp(`.*${search}.*`, "i");
 
@@ -145,7 +145,7 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
     await fillIn('[name$="Question:inquiry-remark"]', "My remark");
     await setFlatpickrDate(
       '[name$="Question:inquiry-deadline"]',
-      new Date(2022, 0, 1)
+      new Date(2022, 0, 1),
     );
 
     await click("button[data-test-submit]");
@@ -190,7 +190,7 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
             },
           ],
         },
-      ]
+      ],
     );
 
     assert.verifySteps(["redirect"]);

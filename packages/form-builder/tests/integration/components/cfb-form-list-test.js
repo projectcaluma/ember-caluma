@@ -21,7 +21,7 @@ module("Integration | Component | cfb-form-list", function (hooks) {
     this.server.createList("form", 5);
 
     await render(
-      hbs`<CfbFormList @onUpdateSearch={{this.noop}} @onUpdateCategory={{this.noop}} />`
+      hbs`<CfbFormList @onUpdateSearch={{this.noop}} @onUpdateCategory={{this.noop}} />`,
     );
 
     assert.dom("[data-test-form-list]").exists();
@@ -32,7 +32,7 @@ module("Integration | Component | cfb-form-list", function (hooks) {
     assert.expect(1);
 
     await render(
-      hbs`<CfbFormList @onUpdateSearch={{this.noop}} @onUpdateCategory={{this.noop}} />`
+      hbs`<CfbFormList @onUpdateSearch={{this.noop}} @onUpdateCategory={{this.noop}} />`,
     );
 
     assert.dom("[data-test-form-list-empty]").exists();

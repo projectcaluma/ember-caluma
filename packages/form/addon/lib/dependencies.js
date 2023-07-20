@@ -16,19 +16,19 @@ import { getAST, getTransforms } from "@projectcaluma/ember-core/utils/jexl";
 export function getDependenciesFromJexl(jexl, expression) {
   const allTransforms = getTransforms(getAST(jexl, expression));
   const answerTransforms = allTransforms.filter(
-    (transform) => transform.name === "answer"
+    (transform) => transform.name === "answer",
   );
   const mapbyTransforms = allTransforms.filter(
     (transform) =>
       transform.name === "mapby" &&
       transform.args[0].type === "FunctionCall" &&
-      transform.args[0].name === "answer"
+      transform.args[0].name === "answer",
   );
   const stringifyTransforms = allTransforms.filter(
     (transform) =>
       transform.name === "stringify" &&
       transform.args[0].type === "FunctionCall" &&
-      transform.args[0].name === "answer"
+      transform.args[0].name === "answer",
   );
 
   return [
@@ -41,7 +41,7 @@ export function getDependenciesFromJexl(jexl, expression) {
         return childKeys.map((key) => `${parentKey}.${key}`);
       }),
       ...stringifyTransforms.map(
-        (transform) => `${transform.args[0].args[0].value}.__all__`
+        (transform) => `${transform.args[0].args[0].value}.__all__`,
       ),
     ]),
   ];

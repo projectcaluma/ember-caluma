@@ -34,7 +34,7 @@ module("Unit | Service | apollo", function (hooks) {
         slug: "test",
         __typename: "TestType",
       }),
-      "TestType:test"
+      "TestType:test",
     );
 
     assert.strictEqual(
@@ -48,7 +48,7 @@ module("Unit | Service | apollo", function (hooks) {
           },
         ],
       }),
-      undefined
+      undefined,
     );
   });
 });

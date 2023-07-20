@@ -13,7 +13,7 @@ module("Integration | Component | cd-document-header", function (hooks) {
     this.status = "Test";
 
     await render(
-      hbs`<CdDocumentHeader @name="Test" @status={{this.status}} />`
+      hbs`<CdDocumentHeader @name="Test" @status={{this.status}} />`,
     );
 
     assert.dom("[data-test-document-header]").containsText("Test");

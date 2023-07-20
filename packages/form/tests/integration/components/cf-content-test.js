@@ -94,7 +94,7 @@ module("Integration | Component | cf-content", function (hooks) {
             day: "2-digit",
             month: "2-digit",
             year: "numeric",
-          })
+          }),
         );
       } else if (answer.type === "FILES") {
         assert
@@ -108,13 +108,13 @@ module("Integration | Component | cf-content", function (hooks) {
 
   test("it renders in disabled mode", async function (assert) {
     await render(
-      hbs`<CfContent @disabled={{true}} @documentId={{this.document.id}} />`
+      hbs`<CfContent @disabled={{true}} @documentId={{this.document.id}} />`,
     );
 
     this.questions.forEach((question) => {
       const id = `Document:${this.document.id}:Question:${question.slug}`;
       const options = this.server.db.options.filter(({ questionIds }) =>
-        questionIds.includes(question.id)
+        questionIds.includes(question.id),
       );
 
       if (question.type === "CHOICE") {
@@ -204,38 +204,38 @@ module("Integration | Component | cf-content", function (hooks) {
 
     await fillIn(
       `[name="Document:${document.id}:Question:text-question"]`,
-      "Text"
+      "Text",
     );
     await fillIn(
       `[name="Document:${document.id}:Question:textarea-question"]`,
-      "Textarea"
+      "Textarea",
     );
     await fillIn(
       `[name="Document:${document.id}:Question:integer-question"]`,
-      1
+      1,
     );
     await fillIn(
       `[name="Document:${document.id}:Question:float-question"]`,
-      1.1
+      1.1,
     );
     await click(
-      `[name="Document:${document.id}:Question:radio-question"][value="radio-question-option-2"]`
+      `[name="Document:${document.id}:Question:radio-question"][value="radio-question-option-2"]`,
     );
     await click(
-      `[name="Document:${document.id}:Question:checkbox-question"][value="checkbox-question-option-1"]`
+      `[name="Document:${document.id}:Question:checkbox-question"][value="checkbox-question-option-1"]`,
     );
     await click(
-      `[name="Document:${document.id}:Question:checkbox-question"][value="checkbox-question-option-2"]`
+      `[name="Document:${document.id}:Question:checkbox-question"][value="checkbox-question-option-2"]`,
     );
     await setFlatpickrDate(
       `[name="Document:${document.id}:Question:date-question"]`,
-      new Date(2019, 2, 25) // month is zero based
+      new Date(2019, 2, 25), // month is zero based
     );
 
     await triggerEvent(
       `[name="Document:${document.id}:Question:files-question"]`,
       "change",
-      { files: [new File(["test"], "test.txt")] }
+      { files: [new File(["test"], "test.txt")] },
     );
 
     assert.deepEqual(
@@ -282,7 +282,7 @@ module("Integration | Component | cf-content", function (hooks) {
           // value to an empty array.
           // value: [{ name: "test.txt" }]
         },
-      ]
+      ],
     );
   });
 
@@ -307,12 +307,12 @@ module("Integration | Component | cf-content", function (hooks) {
     };
 
     await render(
-      hbs`<CfContent @documentId={{this.document.id}} @onSave={{this.save}} />`
+      hbs`<CfContent @documentId={{this.document.id}} @onSave={{this.save}} />`,
     );
 
     await fillIn(
       `[name="Document:${this.document.id}:Question:${question}"]`,
-      "My new value"
+      "My new value",
     );
 
     assert.verifySteps(["save"]);

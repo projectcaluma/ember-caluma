@@ -45,7 +45,7 @@ module(
 
     test("it renders", async function (assert) {
       await render(
-        hbs`<CdInquiryDialog::InquiryPart @inquiry={{this.inquiry}} @type={{this.type}} />`
+        hbs`<CdInquiryDialog::InquiryPart @inquiry={{this.inquiry}} @type={{this.type}} />`,
       );
 
       const intl = this.owner.lookup("service:intl");
@@ -79,7 +79,7 @@ module(
 
     test("it renders a link for editing the inquiry when permitted", async function (assert) {
       await render(
-        hbs`<CdInquiryDialog::InquiryPart @inquiry={{this.inquiry}} @type={{this.type}} />`
+        hbs`<CdInquiryDialog::InquiryPart @inquiry={{this.inquiry}} @type={{this.type}} />`,
       );
 
       assert.dom("ul.uk-subnav > li > a[data-test-edit]").doesNotExist();
@@ -103,7 +103,7 @@ module(
       await this.inquiry.setSuspended();
 
       await render(
-        hbs`<CdInquiryDialog::InquiryPart @inquiry={{this.inquiry}} @type={{this.type}} />`
+        hbs`<CdInquiryDialog::InquiryPart @inquiry={{this.inquiry}} @type={{this.type}} />`,
       );
 
       assert.dom("ul.uk-subnav > li > a[data-test-answer]").doesNotExist();
@@ -128,7 +128,7 @@ module(
       await this.inquiry.setReady();
 
       await render(
-        hbs`<CdInquiryDialog::InquiryPart @inquiry={{this.inquiry}} @type="request" />`
+        hbs`<CdInquiryDialog::InquiryPart @inquiry={{this.inquiry}} @type="request" />`,
       );
 
       assert
@@ -150,7 +150,7 @@ module(
       assert.expect(3);
 
       await render(
-        hbs`<CdInquiryDialog::InquiryPart @inquiry={{this.inquiry}} @type={{this.type}} />`
+        hbs`<CdInquiryDialog::InquiryPart @inquiry={{this.inquiry}} @type={{this.type}} />`,
       );
 
       await this.inquiry.setReady();
@@ -163,7 +163,7 @@ module(
       assert.dom("[data-test-send-reminder]").doesNotExist();
 
       await this.inquiry.setDeadline(
-        DateTime.now().minus({ days: 2 }).toISODate()
+        DateTime.now().minus({ days: 2 }).toISODate(),
       );
 
       assert
@@ -181,16 +181,16 @@ module(
         assert.step("sendReminder");
       };
       await this.inquiry.setDeadline(
-        DateTime.now().minus({ days: 2 }).toISODate()
+        DateTime.now().minus({ days: 2 }).toISODate(),
       );
 
       await render(
-        hbs`<CdInquiryDialog::InquiryPart @inquiry={{this.inquiry}} @type={{this.type}} />`
+        hbs`<CdInquiryDialog::InquiryPart @inquiry={{this.inquiry}} @type={{this.type}} />`,
       );
 
       await click("[data-test-send-reminder]");
       await confirm();
       assert.verifySteps(["sendReminder"]);
     });
-  }
+  },
 );

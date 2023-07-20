@@ -25,7 +25,7 @@ export default class Document extends Base {
   constructor({ raw, parentDocument, dataSourceContext, ...args }) {
     assert(
       "A graphql document `raw` must be passed",
-      raw?.__typename === "Document"
+      raw?.__typename === "Document",
     );
 
     super({ raw, ...args });
@@ -62,7 +62,7 @@ export default class Document extends Base {
             raw: { form, answers: this.raw.answers },
             document: this,
             owner,
-          })
+          }),
       );
     });
   }
@@ -124,7 +124,7 @@ export default class Document extends Base {
     const rawId =
       this.raw.workItem?.id ||
       this.raw.case?.workItems.edges.find(
-        (edge) => edge.node.task.__typename === "CompleteWorkflowFormTask"
+        (edge) => edge.node.task.__typename === "CompleteWorkflowFormTask",
       )?.node.id;
 
     return rawId ? decodeId(rawId) : null;
@@ -150,7 +150,7 @@ export default class Document extends Base {
     const documentJexl = new jexl.Jexl();
 
     documentJexl.addTransform("answer", (slug, defaultValue) =>
-      this.findAnswer(slug, defaultValue)
+      this.findAnswer(slug, defaultValue),
     );
     documentJexl.addTransform("mapby", mapby);
     documentJexl.addBinaryOp("intersects", 20, intersects);
@@ -170,13 +170,13 @@ export default class Document extends Base {
     documentJexl.addTransform("round", (num, places = 0) =>
       !onlyNumbers([num]).length
         ? null
-        : Math.round(num * Math.pow(10, places)) / Math.pow(10, places)
+        : Math.round(num * Math.pow(10, places)) / Math.pow(10, places),
     );
     documentJexl.addTransform("ceil", (num) =>
-      !onlyNumbers([num]).length ? null : Math.ceil(num)
+      !onlyNumbers([num]).length ? null : Math.ceil(num),
     );
     documentJexl.addTransform("floor", (num) =>
-      !onlyNumbers([num]).length ? null : Math.floor(num)
+      !onlyNumbers([num]).length ? null : Math.floor(num),
     );
     documentJexl.addTransform("sum", (arr) => sum(onlyNumbers(arr)));
     documentJexl.addTransform("avg", (arr) => {
@@ -234,7 +234,7 @@ export default class Document extends Base {
         ...answerMap,
         [field.question.slug]: field.value,
       }),
-      {}
+      {},
     );
   }
 
@@ -269,7 +269,7 @@ export default class Document extends Base {
               ...obj,
               [tableField.question.slug]: tableField.value,
             };
-          }, {})
+          }, {}),
       );
     }
 
@@ -284,7 +284,7 @@ export default class Document extends Base {
    */
   findField(slug) {
     return [...this.fields, ...(this.parentDocument?.fields ?? [])].find(
-      (field) => field.question.slug === slug
+      (field) => field.question.slug === slug,
     );
   }
 }

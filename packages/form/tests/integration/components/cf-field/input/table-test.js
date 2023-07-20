@@ -106,19 +106,19 @@ module("Integration | Component | cf-field/input/table", function (hooks) {
 
     assert
       .dom(
-        "tbody > tr:nth-of-type(1) > td:last-of-type [icon=warning].uk-text-danger"
+        "tbody > tr:nth-of-type(1) > td:last-of-type [icon=warning].uk-text-danger",
       )
       .exists();
     assert
       .dom(
-        "tbody > tr:nth-of-type(2) > td:last-of-type [icon=warning].uk-text-danger"
+        "tbody > tr:nth-of-type(2) > td:last-of-type [icon=warning].uk-text-danger",
       )
       .doesNotExist();
   });
 
   test("it renders disabled", async function (assert) {
     await render(
-      hbs`<CfField::Input::Table @field={{this.field}} @disabled={{true}} />`
+      hbs`<CfField::Input::Table @field={{this.field}} @disabled={{true}} />`,
     );
 
     assert.dom("[data-test-add-row]").doesNotExist();
@@ -263,7 +263,7 @@ module("Integration | Component | cf-field/input/table", function (hooks) {
       };
 
       this.calumaDocument = new (this.owner.factoryFor(
-        "caluma-model:document"
+        "caluma-model:document",
       ).class)({ raw: parseDocument(data), owner: this.owner });
 
       this.field = this.calumaDocument.fields[0];
@@ -280,7 +280,7 @@ module("Integration | Component | cf-field/input/table", function (hooks) {
       };
 
       await render(
-        hbs`<CfField::Input::Table @field={{this.field}} @onSave={{this.save}} />`
+        hbs`<CfField::Input::Table @field={{this.field}} @onSave={{this.save}} />`,
       );
 
       await click("[data-test-add-row]");
@@ -329,7 +329,7 @@ module("Integration | Component | cf-field/input/table", function (hooks) {
       };
 
       await render(
-        hbs`<CfField::Input::Table @field={{this.field}} @onSave={{this.save}} />`
+        hbs`<CfField::Input::Table @field={{this.field}} @onSave={{this.save}} />`,
       );
 
       await click("[data-test-delete-row]");

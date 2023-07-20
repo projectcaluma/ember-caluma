@@ -25,17 +25,17 @@ module("Acceptance | question link form", function (hooks) {
     await click("[data-test-add-question]");
     assert
       .dom(
-        `[data-test-question-list-item=${question.slug}] [data-test-link-subform]`
+        `[data-test-question-list-item=${question.slug}] [data-test-link-subform]`,
       )
       .doesNotExist();
     await click(
-      `[data-test-question-list-item=${question.slug}] [data-test-add-item]`
+      `[data-test-question-list-item=${question.slug}] [data-test-add-item]`,
     );
 
     await click("[data-test-cancel]");
 
     await click(
-      `[data-test-question-list-item=${question.slug}] [data-test-link-subform]`
+      `[data-test-question-list-item=${question.slug}] [data-test-link-subform]`,
     );
     assert.strictEqual(currentURL(), `/${subForm.slug}`);
 
@@ -51,7 +51,7 @@ module("Acceptance | question link form", function (hooks) {
 
     assert.strictEqual(
       document.querySelector("input[name='name']").value,
-      subForm.name
+      subForm.name,
     );
     assert
       .dom(".uk-breadcrumb .cfb-navigation__item__link")
@@ -82,13 +82,13 @@ module("Acceptance | question link form", function (hooks) {
     await click("[data-test-add-question]");
     assert
       .dom(
-        `[data-test-question-list-item=${rowFormQuestion.slug}] [data-test-link-subform]`
+        `[data-test-question-list-item=${rowFormQuestion.slug}] [data-test-link-subform]`,
       )
       .doesNotExist();
 
     await click("[data-test-cancel]");
     await click(
-      `[data-test-question-list-item=${question.slug}] [data-test-link-subform]`
+      `[data-test-question-list-item=${question.slug}] [data-test-link-subform]`,
     );
     assert.strictEqual(currentURL(), `/${rowForm.slug}`);
 
@@ -98,7 +98,7 @@ module("Acceptance | question link form", function (hooks) {
       .containsText(rowFormQuestion.slug);
     assert.strictEqual(
       document.querySelector("input[name='name']").value,
-      rowForm.name
+      rowForm.name,
     );
 
     assert

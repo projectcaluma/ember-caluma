@@ -207,7 +207,7 @@ import ApolloService from "ember-apollo-client/services/apollo";
 
 export default class CustomApolloService extends ApolloService.extend(
   CalumaApolloServiceMixin,
-  {}
+  {},
 ) {
   @service session;
 

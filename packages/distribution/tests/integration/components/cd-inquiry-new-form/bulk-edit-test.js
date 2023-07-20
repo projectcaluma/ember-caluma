@@ -11,5 +11,5 @@ module(
     test("it renders", async function (assert) {
       assert.true(true);
     });
-  }
+  },
 );

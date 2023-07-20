@@ -109,7 +109,7 @@ module("Integration | Component | cd-inquiry-dialog", function (hooks) {
     this.owner.lookup("service:router").transitionTo = (
       route,
       { from, to },
-      uuid
+      uuid,
     ) => {
       assert.strictEqual(route, "inquiry.detail.index");
       assert.strictEqual(from, "group1");

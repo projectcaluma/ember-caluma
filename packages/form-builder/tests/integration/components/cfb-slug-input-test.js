@@ -25,7 +25,7 @@ module("Integration | Component | cfb-slug-input", function (hooks) {
 
   test("it renders with a prefix if passed", async function (assert) {
     await render(
-      hbs`<CfbSlugInput @value="question-1-my-slug" @prefix="question-1" />`
+      hbs`<CfbSlugInput @value="question-1-my-slug" @prefix="question-1" />`,
     );
 
     assert.dom("input").hasValue("my-slug");

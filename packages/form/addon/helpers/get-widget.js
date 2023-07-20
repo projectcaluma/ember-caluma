@@ -48,13 +48,13 @@ export default class GetWidgetHelper extends Helper {
       warn(
         `Widget override "${widget}" is not registered. Please register it by calling \`calumaOptions.registerComponentOverride\``,
         override,
-        { id: "ember-caluma.unregistered-override" }
+        { id: "ember-caluma.unregistered-override" },
       );
 
       if (override) {
         return ensureSafeComponent(
           override.componentClass ?? override.component,
-          this
+          this,
         );
       }
     }

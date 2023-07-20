@@ -20,7 +20,7 @@ module("Unit | Caluma Query | Models | work-item", function (hooks) {
         closedAt: "2021-10-19T00:00:00.000Z",
         modifiedAt: "2021-10-11T00:00:00.000Z",
         deadline: "2021-10-20T00:00:00.000Z",
-      })
+      }),
     );
     setOwner(this.model, this.owner);
   });
@@ -31,7 +31,7 @@ module("Unit | Caluma Query | Models | work-item", function (hooks) {
     assert.strictEqual(this.model.id, UUID);
     assert.strictEqual(
       this.model.status,
-      "t:caluma.caluma-query.work-item.status.COMPLETED:()"
+      "t:caluma.caluma-query.work-item.status.COMPLETED:()",
     );
 
     ["createdAt", "closedAt", "modifiedAt", "deadline"].forEach((attr) => {

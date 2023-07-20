@@ -34,7 +34,7 @@ module("Unit | Library | answer", function (hooks) {
     assert.strictEqual(newAnswer.pk, null);
 
     const existingAnswer = new (this.owner.factoryFor(
-      "caluma-model:answer"
+      "caluma-model:answer",
     ).class)({
       raw: {
         __typename: "StringAnswer",
@@ -107,7 +107,7 @@ module("Unit | Library | answer", function (hooks) {
     assert.deepEqual(
       answer.value[0].jexlContext,
       { form: "parent-form" },
-      "JEXL context of the table rows do not match the parent documents context"
+      "JEXL context of the table rows do not match the parent documents context",
     );
   });
 });

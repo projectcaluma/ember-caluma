@@ -283,7 +283,7 @@ export default class Field extends Base {
     try {
       return this.document.jexl.evalSync(
         this.question.raw.calcExpression,
-        this.jexlContext
+        this.jexlContext,
       );
     } catch (error) {
       return null;
@@ -311,7 +311,7 @@ export default class Field extends Base {
           question: this.question.slug,
         },
       },
-      "allUsedDynamicOptions.edges"
+      "allUsedDynamicOptions.edges",
     );
 
     return edges.map(({ node: { slug, label } }) => ({
@@ -352,11 +352,11 @@ export default class Field extends Base {
       (this.question.isMultipleChoice ? this.value : [this.value]) || [];
 
     const options = this.question.options.filter(
-      (option) => !option.disabled || selected.includes(option.slug)
+      (option) => !option.disabled || selected.includes(option.slug),
     );
 
     const hasUnknownValue = !selected.every((slug) =>
-      options.find((option) => option.slug === slug)
+      options.find((option) => option.slug === slug),
     );
 
     if (this.question.isDynamic && hasUnknownValue) {
@@ -399,7 +399,7 @@ export default class Field extends Base {
     const selected = this.options.filter(({ slug }) =>
       this.question.isMultipleChoice
         ? (this.value || []).includes(slug)
-        : this.value === slug
+        : this.value === slug,
     );
 
     return this.question.isMultipleChoice ? selected : selected[0];
@@ -491,11 +491,11 @@ export default class Field extends Base {
     try {
       return this.document.jexl.evalSync(
         this.question.raw.isHidden,
-        this.jexlContext
+        this.jexlContext,
       );
     } catch (error) {
       throw new Error(
-        `Error while evaluating \`isHidden\` expression on field \`${this.pk}\`: ${error.message}`
+        `Error while evaluating \`isHidden\` expression on field \`${this.pk}\`: ${error.message}`,
       );
     }
   }
@@ -526,11 +526,11 @@ export default class Field extends Base {
     try {
       return !this.document.jexl.evalSync(
         this.question.raw.isRequired,
-        this.jexlContext
+        this.jexlContext,
       );
     } catch (error) {
       throw new Error(
-        `Error while evaluating \`isRequired\` expression on field \`${this.pk}\`: ${error.message}`
+        `Error while evaluating \`isRequired\` expression on field \`${this.pk}\`: ${error.message}`,
       );
     }
   }
@@ -569,7 +569,7 @@ export default class Field extends Base {
         mutation: MUTATION_MAP[type],
         variables: { input },
       },
-      `saveDocument${type}.answer`
+      `saveDocument${type}.answer`,
     );
 
     const wasNew = this.isNew;
@@ -613,7 +613,7 @@ export default class Field extends Base {
 
     assert(
       `Missing validation function for ${this.questionType}`,
-      specificValidation
+      specificValidation,
     );
 
     const validationFns = [
@@ -626,7 +626,7 @@ export default class Field extends Base {
         const res = await fn.call(this);
 
         return Array.isArray(res) ? res : [res];
-      })
+      }),
     ))
       .reduce((arr, e) => [...arr, ...e], []) // flatten the array
       .filter((e) => typeof e === "object");
@@ -861,11 +861,11 @@ export default class Field extends Base {
             await field.validate.perform();
 
             return field.isValid;
-          })
+          }),
         );
 
         return validFields.every(Boolean);
-      })
+      }),
     );
 
     return (

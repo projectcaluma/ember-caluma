@@ -164,7 +164,7 @@ module("Integration | Component | ca-field-selector-list", function (hooks) {
 
   test("it renders fields", async function (assert) {
     await render(
-      hbs`<CaFieldSelectorList @analyticsTable={{this.analyticsTable}} />`
+      hbs`<CaFieldSelectorList @analyticsTable={{this.analyticsTable}} />`,
     );
 
     assert.dom("tbody tr").exists({ count: 3 });
@@ -172,7 +172,7 @@ module("Integration | Component | ca-field-selector-list", function (hooks) {
 
   test("it reorders", async function (assert) {
     await render(
-      hbs`<CaFieldSelectorList @analyticsTable={{this.analyticsTable}} />`
+      hbs`<CaFieldSelectorList @analyticsTable={{this.analyticsTable}} />`,
     );
 
     assert

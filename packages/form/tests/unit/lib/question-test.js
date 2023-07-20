@@ -18,7 +18,7 @@ module("Unit | Library | question", function (hooks) {
           __typename: "TextQuestion",
         },
         owner: this.owner,
-      }
+      },
     );
 
     assert.strictEqual(question.pk, "Question:some-question");

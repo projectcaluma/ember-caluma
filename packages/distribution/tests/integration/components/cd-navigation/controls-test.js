@@ -49,7 +49,7 @@ module("Integration | Component | cd-navigation/controls", function (hooks) {
 
     workItems.reload();
     assert.true(
-      workItems.models.every((workItem) => workItem.status === "READY")
+      workItems.models.every((workItem) => workItem.status === "READY"),
     );
   });
 
@@ -90,13 +90,13 @@ module("Integration | Component | cd-navigation/controls", function (hooks) {
 
     assert.true(completeDistribution.status === "COMPLETED");
     assert.true(
-      readyWorkItems.models.every((workItem) => workItem.status === "SKIPPED")
+      readyWorkItems.models.every((workItem) => workItem.status === "SKIPPED"),
     );
 
     assert.true(
       suspendedWorkItems.models.every(
-        (workItem) => workItem.status === "CANCELED"
-      )
+        (workItem) => workItem.status === "CANCELED",
+      ),
     );
 
     assert.verifySteps(["post-complete-distribution"]);

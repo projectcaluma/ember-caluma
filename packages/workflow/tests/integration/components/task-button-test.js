@@ -32,7 +32,7 @@ module("Integration | Component | task-button", function (hooks) {
           },
         };
       },
-      200
+      200,
     );
   });
 
@@ -44,7 +44,7 @@ module("Integration | Component | task-button", function (hooks) {
 
   test("it renders label", async function (assert) {
     await render(
-      hbs`<TaskButton @mutation="complete" @task="test" @label="Lorem Ipsum" />`
+      hbs`<TaskButton @mutation="complete" @task="test" @label="Lorem Ipsum" />`,
     );
 
     assert.dom("button").hasText("Lorem Ipsum");
@@ -52,7 +52,7 @@ module("Integration | Component | task-button", function (hooks) {
 
   test("it renders block", async function (assert) {
     await render(
-      hbs`<TaskButton @mutation="complete" @task="test">Lorem Ipsum</TaskButton>`
+      hbs`<TaskButton @mutation="complete" @task="test">Lorem Ipsum</TaskButton>`,
     );
 
     assert.dom("button").hasText("Lorem Ipsum");

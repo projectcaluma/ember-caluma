@@ -47,7 +47,7 @@ export default Factory.extend({
         const options = server.createList("option", 3);
 
         options.forEach((option) =>
-          option.update({ slug: `${question.slug}-${option.slug}` })
+          option.update({ slug: `${question.slug}-${option.slug}` }),
         );
 
         question.update({ optionIds: options.map(({ id }) => id) });

@@ -98,7 +98,7 @@ export default class CalumaOptionsService extends Service {
 
   fetchTypedGroups(/* types, search */) {
     assert(
-      "`fetchTypedGroups` must be implemented on the Caluma options service"
+      "`fetchTypedGroups` must be implemented on the Caluma options service",
     );
   }
 }

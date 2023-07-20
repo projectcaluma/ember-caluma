@@ -38,7 +38,7 @@ module(
       this.set("mode", "reorder");
 
       await render(
-        hbs`<CfbFormEditor::QuestionList @form="oioi" @mode={{this.mode}} />`
+        hbs`<CfbFormEditor::QuestionList @form="oioi" @mode={{this.mode}} />`,
       );
 
       assert.dom("[data-test-question-list-empty]").exists();
@@ -108,7 +108,7 @@ module(
       this.form.questionIds = [...this.form.questionIds, question.id];
 
       await render(
-        hbs`<CfbFormEditor::QuestionList @form="test-slug" @mode="reorder" />`
+        hbs`<CfbFormEditor::QuestionList @form="test-slug" @mode="reorder" />`,
       );
 
       assert.dom("[data-test-question-list-item=test]:last-child").exists();
@@ -120,7 +120,7 @@ module(
       const children = [
         item,
         ...[...list.children].filter(
-          (c) => c.dataset.testQuestionListItem !== "test"
+          (c) => c.dataset.testQuestionListItem !== "test",
         ),
       ];
 
@@ -143,7 +143,7 @@ module(
       this.server.create("question", { slug: "test" });
 
       await render(
-        hbs`<CfbFormEditor::QuestionList @form="test-slug" @mode="add" />`
+        hbs`<CfbFormEditor::QuestionList @form="test-slug" @mode="add" />`,
       );
 
       assert.dom("[data-test-question-list-item=test]").exists();
@@ -159,12 +159,12 @@ module(
       this.server.create("question", { slug: "test", formIds: [this.form.id] });
 
       await render(
-        hbs`<CfbFormEditor::QuestionList @form="test-slug" @mode="remove" />`
+        hbs`<CfbFormEditor::QuestionList @form="test-slug" @mode="remove" />`,
       );
 
       assert.dom("[data-test-question-list-item=test]").exists();
       await click(
-        "[data-test-question-list-item=test] [data-test-remove-item]"
+        "[data-test-question-list-item=test] [data-test-remove-item]",
       );
       assert.dom("[data-test-question-list-item=test]").doesNotExist();
       await click("[data-test-cancel]");
@@ -175,13 +175,13 @@ module(
       assert.expect(1);
 
       await render(
-        hbs`<CfbFormEditor::QuestionList @form="test-slug" @mode="reorder" />`
+        hbs`<CfbFormEditor::QuestionList @form="test-slug" @mode="reorder" />`,
       );
 
       this.server.post(
         "/graphql",
         () => graphqlError("reorderFormQuestions"),
-        200
+        200,
       );
       await triggerEvent("[data-test-question-list]", "moved", {
         detail: [
@@ -200,13 +200,13 @@ module(
       assert.expect(1);
 
       await render(
-        hbs`<CfbFormEditor::QuestionList @form="test-slug" @mode="remove" />`
+        hbs`<CfbFormEditor::QuestionList @form="test-slug" @mode="remove" />`,
       );
 
       this.server.post(
         "/graphql",
         () => graphqlError("removeFormQuestion"),
-        200
+        200,
       );
       await click("[data-test-remove-item]");
 
@@ -219,7 +219,7 @@ module(
       this.server.create("question");
 
       await render(
-        hbs`<CfbFormEditor::QuestionList @form="test-slug" @mode="add" />`
+        hbs`<CfbFormEditor::QuestionList @form="test-slug" @mode="add" />`,
       );
 
       this.server.post("/graphql", () => graphqlError("addFormQuestion"), 200);
@@ -227,5 +227,5 @@ module(
 
       assert.ok(true);
     });
-  }
+  },
 );

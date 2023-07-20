@@ -10,7 +10,7 @@ module("Integration | Helper | decodeId", function (hooks) {
   test("it renders", async function (assert) {
     this.set(
       "inputValue",
-      "Q2FzZTo5ZGYzYzYwNy0yZjU0LTQ4YTgtODYzNi1hNDQzNWYyZmI2NTM"
+      "Q2FzZTo5ZGYzYzYwNy0yZjU0LTQ4YTgtODYzNi1hNDQzNWYyZmI2NTM",
     );
 
     await render(hbs`{{decode-id this.inputValue}}`);

@@ -49,7 +49,7 @@ export default class CaFilterModalComponent extends Component {
     const filter = this.newFilter.trim();
     if (this.filters.includes(filter)) {
       this.notification.warning(
-        this.intl.t("caluma.analytics.notification.filter-exists")
+        this.intl.t("caluma.analytics.notification.filter-exists"),
       );
     } else {
       this.filters = [filter, ...this.filters];

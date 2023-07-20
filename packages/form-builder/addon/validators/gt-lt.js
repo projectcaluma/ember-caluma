@@ -20,7 +20,7 @@ export default function validateGtLt(options = {}) {
       newValue,
       oldValue,
       changes,
-      content
+      content,
     );
   };
 }

@@ -27,5 +27,5 @@ module(
       assert.dom(".ember-power-select-option").exists({ count: 5 });
       assert.dom(".ember-power-select-option").hasText("Validator #1");
     });
-  }
+  },
 );

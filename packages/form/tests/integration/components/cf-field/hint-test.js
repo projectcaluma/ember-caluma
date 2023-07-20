@@ -34,7 +34,7 @@ module("Integration | Component | cf-field/hint", function (hooks) {
     };
 
     const document = new (this.owner.factoryFor("caluma-model:document").class)(
-      { raw, owner: this.owner }
+      { raw, owner: this.owner },
     );
     this.field = document.fields[0];
   });

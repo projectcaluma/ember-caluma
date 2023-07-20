@@ -27,7 +27,7 @@ export default class CfFieldInputFilesComponent extends Component {
         variables: { id: this.args.field.answer.raw.id },
         fetchPolicy: "network-only",
       },
-      "node.value"
+      "node.value",
     );
     const { downloadUrl } =
       answers.find((file) =>
@@ -35,7 +35,7 @@ export default class CfFieldInputFilesComponent extends Component {
         macroCondition(isTesting())
           ? file.id === fileId ||
             atob(file.id).substring(file.__typename.length + 1) === fileId
-          : file.id === fileId
+          : file.id === fileId,
       ) ?? {};
     if (downloadUrl) {
       window.open(downloadUrl, "_blank");
@@ -60,7 +60,7 @@ export default class CfFieldInputFilesComponent extends Component {
     // trigger save action for file list of old and new files with
     // reduces properties to match gql format
     const { filesValue: savedAnswerValue } = await this.args.onSave(
-      fileList.map(({ name, id }) => ({ name, id }))
+      fileList.map(({ name, id }) => ({ name, id })),
     );
 
     try {
@@ -69,7 +69,7 @@ export default class CfFieldInputFilesComponent extends Component {
         ...savedAnswerValue.find(
           (value) =>
             file.name === value.name &&
-            !fileList.find((file) => file.id === value.id)
+            !fileList.find((file) => file.id === value.id),
         ),
         value: file.value,
       }));

@@ -30,7 +30,7 @@ export default class CfbFormEditorQuestionDefault extends Component {
 
     if (
       ["ChoiceQuestion", "MultipleChoiceQuestion"].includes(
-        this.args.model.__typename
+        this.args.model.__typename,
       )
     ) {
       if (!this.args.disableChoicePowerselectOverride) {

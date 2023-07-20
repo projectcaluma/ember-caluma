@@ -16,11 +16,11 @@ export default class Fieldset extends Base {
 
     assert(
       "A graphql form `raw.form` must be passed",
-      raw?.form?.__typename === "Form"
+      raw?.form?.__typename === "Form",
     );
     assert(
       "A collection of graphql answers `raw.answers` must be passed",
-      raw?.answers?.every((answer) => /Answer$/.test(answer.__typename))
+      raw?.answers?.every((answer) => /Answer$/.test(answer.__typename)),
     );
 
     super({ raw, ...args });
@@ -53,18 +53,18 @@ export default class Fieldset extends Base {
       return associateDestroyableChild(
         this,
         this.calumaStore.find(
-          `${this.document.pk}:Question:${question.slug}`
+          `${this.document.pk}:Question:${question.slug}`,
         ) ||
           new (owner.factoryFor("caluma-model:field").class)({
             raw: {
               question,
               answer: this.raw.answers.find(
-                (answer) => answer?.question?.slug === question.slug
+                (answer) => answer?.question?.slug === question.slug,
               ),
             },
             fieldset: this,
             owner,
-          })
+          }),
       );
     });
 

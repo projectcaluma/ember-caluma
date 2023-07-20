@@ -26,7 +26,7 @@ export default class CaReportPreviewComponent extends Component {
               slug: this.args.slug,
             },
           },
-          "analyticsTable"
+          "analyticsTable",
         );
         const headings = result.fields.edges
           .filter(({ node: { showOutput } }) => showOutput)
@@ -36,14 +36,14 @@ export default class CaReportPreviewComponent extends Component {
             headings.map(({ alias }) =>
               node.edges
                 .map(({ node }) => node)
-                .find((node) => node.alias === alias)
-            )
+                .find((node) => node.alias === alias),
+            ),
           ),
           summary: result.resultData.summary.edges.length
             ? headings.map(({ alias: headingAlias }) =>
                 result.resultData.summary.edges
                   .map(({ node }) => node)
-                  .find(({ alias }) => alias === headingAlias)
+                  .find(({ alias }) => alias === headingAlias),
               )
             : null,
 
@@ -52,7 +52,7 @@ export default class CaReportPreviewComponent extends Component {
       } catch (error) {
         console.error(error);
         this.notification.danger(
-          this.intl.t("caluma.analytics.notification.fetch-error")
+          this.intl.t("caluma.analytics.notification.fetch-error"),
         );
       }
     }

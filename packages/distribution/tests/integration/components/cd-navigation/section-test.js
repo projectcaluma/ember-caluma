@@ -51,7 +51,7 @@ module("Integration | Component | cd-navigation/section", function (hooks) {
           controlling: inquiries,
           more: inquiries,
         },
-      }
+      },
     );
 
     this.owner.lookup("service:router").isActive = () => true;

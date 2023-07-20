@@ -36,7 +36,7 @@ export class SlugUniquenessValidator {
 
   async validate(key, newValue, oldValue, changes, context) {
     const application = importSync(
-      "@projectcaluma/ember-form-builder/-private/application"
+      "@projectcaluma/ember-form-builder/-private/application",
     ).default;
 
     setOwner(this, application.instance);

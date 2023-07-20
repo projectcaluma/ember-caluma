@@ -7,7 +7,7 @@ export default function setupUIkitHelpers(assert) {
     return assert.strictEqual(
       tooltip.title,
       expected,
-      `Expected tooltip to have title "${expected}" but got "${tooltip.title}"`
+      `Expected tooltip to have title "${expected}" but got "${tooltip.title}"`,
     );
   };
 }

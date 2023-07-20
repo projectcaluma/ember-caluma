@@ -46,7 +46,7 @@ export default class CfbFormEditorGeneral extends Component {
         variables: { slug: this.args.slug },
         fetchPolicy: "cache-and-network",
       },
-      "allForms.edges"
+      "allForms.edges",
     );
   }
 
@@ -72,15 +72,15 @@ export default class CfbFormEditorGeneral extends Component {
             },
           },
         },
-        "saveForm.form"
+        "saveForm.form",
       );
 
       this.notification.success(
         this.intl.t(
           `caluma.form-builder.notification.form.${
             this.args.slug ? "save" : "create"
-          }.success`
-        )
+          }.success`,
+        ),
       );
 
       this.args.onAfterSubmit?.(form);
@@ -89,8 +89,8 @@ export default class CfbFormEditorGeneral extends Component {
         this.intl.t(
           `caluma.form-builder.notification.form.${
             this.args.slug ? "save" : "create"
-          }.error`
-        )
+          }.error`,
+        ),
       );
     }
   }

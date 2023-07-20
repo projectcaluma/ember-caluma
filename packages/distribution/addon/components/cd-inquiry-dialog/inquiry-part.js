@@ -63,7 +63,7 @@ export default class CdInquiryDialogInquiryPartComponent extends Component {
           .sort(
             (a, b) =>
               questions.indexOf(a.node.question.slug) -
-              questions.indexOf(b.node.question.slug)
+              questions.indexOf(b.node.question.slug),
           )
           .map((edge) => ({
             question: edge.node.question.label,
@@ -90,7 +90,7 @@ export default class CdInquiryDialogInquiryPartComponent extends Component {
       });
     } catch (error) {
       this.notification.danger(
-        this.intl.t("caluma.distribution.withdraw.error")
+        this.intl.t("caluma.distribution.withdraw.error"),
       );
     }
   }
@@ -102,7 +102,7 @@ export default class CdInquiryDialogInquiryPartComponent extends Component {
     /* istanbul ignore next */
     if (
       !(yield confirm(
-        this.intl.t("caluma.distribution.reopen-inquiry.confirm")
+        this.intl.t("caluma.distribution.reopen-inquiry.confirm"),
       ))
     ) {
       return;
@@ -119,7 +119,7 @@ export default class CdInquiryDialogInquiryPartComponent extends Component {
       });
     } catch (error) {
       this.notification.danger(
-        this.intl.t("caluma.distribution.reopen-inquiry.error")
+        this.intl.t("caluma.distribution.reopen-inquiry.error"),
       );
     }
   }
@@ -134,11 +134,11 @@ export default class CdInquiryDialogInquiryPartComponent extends Component {
 
     try {
       yield this.calumaOptions.sendReminderDistributionInquiry(
-        decodeId(this.args.inquiry.id)
+        decodeId(this.args.inquiry.id),
       );
 
       this.notification.success(
-        this.intl.t("caluma.distribution.reminder.success")
+        this.intl.t("caluma.distribution.reminder.success"),
       );
 
       yield this.apollo.mutate({
@@ -156,7 +156,7 @@ export default class CdInquiryDialogInquiryPartComponent extends Component {
       });
     } catch (error) {
       this.notification.danger(
-        this.intl.t("caluma.distribution.reminder.error")
+        this.intl.t("caluma.distribution.reminder.error"),
       );
     }
   }

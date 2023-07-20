@@ -41,7 +41,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
 
     await this.obj.inquiry.setStatus(
       "inquiry-answer-status-negative",
-      "Negative"
+      "Negative",
     );
 
     assert.deepEqual(this.obj.status, {
@@ -53,7 +53,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
 
     await this.obj.inquiry.setStatus(
       "inquiry-answer-status-needs-interaction",
-      "Needs interaction"
+      "Needs interaction",
     );
 
     assert.deepEqual(this.obj.status, {

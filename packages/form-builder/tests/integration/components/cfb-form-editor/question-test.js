@@ -69,7 +69,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       hbs`<CfbFormEditor::Question
   @slug="test-slug"
   @onAfterSubmit={{this.afterSubmit}}
-/>`
+/>`,
     );
 
     await fillIn("[name=label]", "Test Label 1");
@@ -99,7 +99,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       hbs`<CfbFormEditor::Question
   @slug="test-slug"
   @onAfterSubmit={{this.afterSubmit}}
-/>`
+/>`,
     );
 
     await fillIn("[name=label]", "Test Label 1");
@@ -125,7 +125,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       hbs`<CfbFormEditor::Question
   @slug="foo-bar-test-slug"
   @onAfterSubmit={{this.afterSubmit}}
-/>`
+/>`,
     );
 
     this.server.post("/graphql", () => graphqlError("saveQuestion"), 200);
@@ -179,7 +179,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       hbs`<CfbFormEditor::Question
   @form="test-form"
   @onAfterSubmit={{this.afterSubmit}}
-/>`
+/>`,
     );
 
     await fillIn("[name=__typename]", "TextQuestion");
@@ -210,7 +210,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       hbs`<CfbFormEditor::Question
   @form="test-form"
   @onAfterSubmit={{this.afterSubmit}}
-/>`
+/>`,
     );
 
     await fillIn("[name=__typename]", "TextQuestion");
@@ -243,7 +243,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       hbs`<CfbFormEditor::Question
   @form="test-form"
   @onAfterSubmit={{this.afterSubmit}}
-/>`
+/>`,
     );
 
     await fillIn("[name=__typename]", "TextareaQuestion");
@@ -276,7 +276,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       hbs`<CfbFormEditor::Question
   @form="test-form"
   @onAfterSubmit={{this.afterSubmit}}
-/>`
+/>`,
     );
 
     await fillIn("[name=__typename]", "IntegerQuestion");
@@ -309,7 +309,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       hbs`<CfbFormEditor::Question
   @form="test-form"
   @onAfterSubmit={{this.afterSubmit}}
-/>`
+/>`,
     );
 
     await fillIn("[name=__typename]", "FloatQuestion");
@@ -343,7 +343,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       hbs`<CfbFormEditor::Question
   @form="test-form"
   @onAfterSubmit={{this.afterSubmit}}
-/>`
+/>`,
     );
 
     await fillIn("[name=__typename]", "MultipleChoiceQuestion");
@@ -377,7 +377,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       hbs`<CfbFormEditor::Question
   @form="test-form"
   @onAfterSubmit={{this.afterSubmit}}
-/>`
+/>`,
     );
 
     await fillIn("[name=__typename]", "ChoiceQuestion");
@@ -410,7 +410,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       hbs`<CfbFormEditor::Question
   @form="test-form"
   @onAfterSubmit={{this.afterSubmit}}
-/>`
+/>`,
     );
 
     await fillIn("[name=__typename]", "TableQuestion");
@@ -439,7 +439,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       hbs`<CfbFormEditor::Question
   @form="test-form"
   @onAfterSubmit={{this.afterSubmit}}
-/>`
+/>`,
     );
 
     await fillIn("[name=__typename]", "TableQuestion");
@@ -489,7 +489,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       hbs`<CfbFormEditor::Question
   @form="test-form"
   @onAfterSubmit={{this.afterSubmit}}
-/>`
+/>`,
     );
 
     await fillIn("[name=__typename]", "FormQuestion");
@@ -518,7 +518,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       hbs`<CfbFormEditor::Question
   @form="test-form"
   @onAfterSubmit={{this.afterSubmit}}
-/>`
+/>`,
     );
 
     await fillIn("[name=__typename]", "FormQuestion");
@@ -566,7 +566,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       hbs`<CfbFormEditor::Question
   @form="test-form"
   @onAfterSubmit={{this.afterSubmit}}
-/>`
+/>`,
     );
 
     await fillIn("[name=__typename]", "FilesQuestion");
@@ -595,7 +595,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       hbs`<CfbFormEditor::Question
   @form="test-form"
   @onAfterSubmit={{this.afterSubmit}}
-/>`
+/>`,
     );
 
     // await selectChoose("[name=__typename]", "StaticQuestion");
@@ -663,7 +663,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     await render(hbs`<CfbFormEditor::Question />`);
     await selectChoose(
       ".ember-power-select-trigger",
-      ".ember-power-select-option"
+      ".ember-power-select-option",
     );
 
     assert.dom(".ember-power-select-multiple-option").exists();
@@ -688,7 +688,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       .dom('select[name="meta.widgetOverride"]')
       .includesText(
         "a widget override for all types",
-        "it contains option for the all types override"
+        "it contains option for the all types override",
       );
 
     await select("select[name='__typename']", "FloatQuestion");
@@ -697,14 +697,14 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       .dom('select[name="meta.widgetOverride"]')
       .includesText(
         "a widget override for all types",
-        "it contains option for the all types override"
+        "it contains option for the all types override",
       );
 
     assert
       .dom('select[name="meta.widgetOverride"]')
       .includesText(
         "a widget override for float questions only",
-        "it contains option for the float question override"
+        "it contains option for the float question override",
       );
   });
 });

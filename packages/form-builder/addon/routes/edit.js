@@ -31,7 +31,7 @@ export default class EditRoute extends Route {
         `,
         variables: { slug },
       },
-      "allForms.edges"
+      "allForms.edges",
     );
 
     return form?.node.name;

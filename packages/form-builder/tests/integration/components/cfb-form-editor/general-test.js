@@ -63,7 +63,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
     });
 
     await render(
-      hbs`<CfbFormEditor::General @onAfterSubmit={{this.afterSubmit}} />`
+      hbs`<CfbFormEditor::General @onAfterSubmit={{this.afterSubmit}} />`,
     );
 
     await fillIn("input[name=name]", "Form 1");
@@ -88,7 +88,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
     });
 
     await render(
-      hbs`<CfbFormEditor::General @onAfterSubmit={{this.afterSubmit}} />`
+      hbs`<CfbFormEditor::General @onAfterSubmit={{this.afterSubmit}} />`,
     );
 
     assert.dom("input[name=slug]").isNotDisabled();
@@ -121,7 +121,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
     });
 
     await render(
-      hbs`<CfbFormEditor::General @slug="test-slug" @onAfterSubmit={{this.afterSubmit}} />`
+      hbs`<CfbFormEditor::General @slug="test-slug" @onAfterSubmit={{this.afterSubmit}} />`,
     );
 
     await fillIn("input[name=name]", "Test Name 1");
@@ -145,7 +145,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
 
     // edit form
     await render(
-      hbs`<CfbFormEditor::General @slug="test-form" @onAfterSubmit={{this.afterSubmit}} />`
+      hbs`<CfbFormEditor::General @slug="test-form" @onAfterSubmit={{this.afterSubmit}} />`,
     );
 
     this.server.post("/graphql", () => graphqlError("saveForm"), 200);
@@ -153,14 +153,14 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
 
     // new form
     await render(
-      hbs`<CfbFormEditor::General @slug={{null}} @onAfterSubmit={{this.afterSubmit}} />`
+      hbs`<CfbFormEditor::General @slug={{null}} @onAfterSubmit={{this.afterSubmit}} />`,
     );
 
     // Slug validation must be valid
     this.server.post(
       "/graphql",
       { data: { allForms: { edges: [], __typename: "FormConnection" } } },
-      200
+      200,
     );
     await fillIn("input[name=name]", "test");
 

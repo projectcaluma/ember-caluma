@@ -12,7 +12,7 @@ export default function uniqueByGroups(workItems) {
             workItem,
           ];
         })
-        .reverse()
+        .reverse(),
     ).values(),
   ];
 }

@@ -48,7 +48,7 @@ module("Integration | Component | cf-field/input/date", function (hooks) {
     this.field = { answer: { value: "2021-09-10" } };
 
     await render(
-      hbs`<CfField::Input::Date @disabled={{true}} @field={{this.field}} />`
+      hbs`<CfField::Input::Date @disabled={{true}} @field={{this.field}} />`,
     );
 
     assert

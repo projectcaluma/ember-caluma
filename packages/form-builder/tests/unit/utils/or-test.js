@@ -85,7 +85,7 @@ module("Unit | Utility | or", function () {
 
         const validationFn = or(
           or(or(...validators1), or(...validators2)),
-          or(...validators3)
+          or(...validators3),
         );
 
         assert.strictEqual(validationFn(), "ninth error");
@@ -112,7 +112,7 @@ module("Unit | Utility | or", function () {
 
         const validationFn = or(
           or(or(...validators1), or(...validators2)),
-          or(...validators3)
+          or(...validators3),
         );
 
         assert.true(validationFn());
@@ -148,7 +148,7 @@ module("Unit | Utility | or", function () {
           const validationFn = or(...validators);
           const result = await validationFn();
           assert.strictEqual(result, expected);
-        })
+        }),
       );
     });
 
@@ -206,7 +206,7 @@ module("Unit | Utility | or", function () {
 
         const validationFn = or(
           or(or(...validators1), or(...validators2)),
-          or(...validators3)
+          or(...validators3),
         );
 
         assert.strictEqual(await validationFn(), "ninth error");
@@ -233,7 +233,7 @@ module("Unit | Utility | or", function () {
 
         const validationFn = or(
           or(or(...validators1), or(...validators2)),
-          or(...validators3)
+          or(...validators3),
         );
 
         assert.true(await validationFn());

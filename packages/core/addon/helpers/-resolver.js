@@ -42,7 +42,7 @@ export default class PrivateResolver extends Helper {
     // options service once. We pass a resolve function to run after the
     // possibly asynchronous resolve method.
     this.scheduler.resolveOnce(identifier, this.resolverType, (value) =>
-      run(this, "resolve", value)
+      run(this, "resolve", value),
     );
 
     // Return the default value (`null`) if the value is not computed yet

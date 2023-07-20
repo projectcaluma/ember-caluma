@@ -32,7 +32,7 @@ export default class EditQuestionsEditRoute extends Route {
         `,
         variables: { slug },
       },
-      "allQuestions.edges"
+      "allQuestions.edges",
     );
 
     return question?.node.label;

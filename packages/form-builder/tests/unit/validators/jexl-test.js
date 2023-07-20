@@ -12,23 +12,23 @@ module("Unit | Validator | jexl", function () {
 
     assert.strictEqual(
       validate(null, "'test'|foo"),
-      "Transform foo is not defined"
+      "Transform foo is not defined",
     );
     assert.strictEqual(
       validate(null, "'test' =="),
-      "Unexpected end of expression"
+      "Unexpected end of expression",
     );
     assert.strictEqual(
       validate(null, "'foo' = 'bar'"),
-      "Invalid expression token: ="
+      "Invalid expression token: =",
     );
     assert.strictEqual(
       validate(null, "'a' noop 'b'"),
-      "Token noop (identifier) unexpected"
+      "Token noop (identifier) unexpected",
     );
     assert.strictEqual(
       validate(null, "|transform"),
-      "Token | (pipe) unexpected"
+      "Token | (pipe) unexpected",
     );
   });
 });

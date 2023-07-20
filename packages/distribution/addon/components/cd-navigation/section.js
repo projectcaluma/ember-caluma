@@ -15,7 +15,7 @@ export default class CdNavigationSectionComponent extends Component {
         this.router.isActive("inquiry", {
           to: inquiry.addressedGroups[0],
           from: inquiry.controllingGroups[0],
-        })
+        }),
       ) !== undefined
     );
   }

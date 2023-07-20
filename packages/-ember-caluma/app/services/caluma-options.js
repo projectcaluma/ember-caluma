@@ -51,7 +51,7 @@ export default class CustomCalumaOptionsService extends CalumaOptionsService {
       .peekAll(type)
       .map((obj) => String(obj[this[`${type}IdentifierProperty`]]));
     const uncachedIdentifiers = identifiers.filter(
-      (identifier) => !cachedIdentifiers.includes(String(identifier))
+      (identifier) => !cachedIdentifiers.includes(String(identifier)),
     );
 
     if (uncachedIdentifiers.length) {
@@ -88,7 +88,7 @@ export default class CustomCalumaOptionsService extends CalumaOptionsService {
         ...all,
         [type]: response.filter((group) => group.get("type.name") === type),
       }),
-      {}
+      {},
     );
   }
 

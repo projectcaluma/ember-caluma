@@ -26,7 +26,7 @@ export default class ReportsNewRoute extends Route {
         startingObject: "CASES",
       }),
       lookupValidator(AnalyticsTableValidations),
-      AnalyticsTableValidations
+      AnalyticsTableValidations,
     );
   }
 }

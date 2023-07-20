@@ -25,7 +25,7 @@ module("Integration | Helper | user-name", function (hooks) {
     assert.expect(3);
 
     this.owner.lookup("service:caluma-options").resolveUsers = function (
-      identifiers
+      identifiers,
     ) {
       assert.step("resolver");
       return identifiers.map((identifier) => ({
@@ -54,10 +54,10 @@ module("Integration | Helper | user-name", function (hooks) {
               ids.map((id) => ({
                 username: id,
                 fullName: `Hans Muster (${id})`,
-              }))
+              })),
             ),
-          10
-        )
+          10,
+        ),
       );
     };
 

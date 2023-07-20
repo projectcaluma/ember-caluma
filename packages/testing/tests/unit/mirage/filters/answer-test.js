@@ -76,7 +76,7 @@ module("Unit | Mirage GraphQL Filter | answer", function (hooks) {
             slug: this.question.slug,
           },
         },
-      ]
+      ],
     );
   });
 
@@ -100,7 +100,7 @@ module("Unit | Mirage GraphQL Filter | answer", function (hooks) {
             slug: this.otherQuestion.slug,
           },
         },
-      ]
+      ],
     );
   });
 });

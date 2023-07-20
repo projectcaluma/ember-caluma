@@ -100,7 +100,7 @@ export default class CdInquiryNewFormBulkEditComponent extends Component {
     const firstCreated = this.distribution.navigation.value.controlling.edges
       .map((edge) => edge.node)
       .find((node) =>
-        node.addressedGroups.includes(String(this.args.selectedGroups[0]))
+        node.addressedGroups.includes(String(this.args.selectedGroups[0])),
       );
 
     // transition to inquiry addressed to the first selected group
@@ -110,7 +110,7 @@ export default class CdInquiryNewFormBulkEditComponent extends Component {
         from: firstCreated.controllingGroups[0],
         to: firstCreated.addressedGroups[0],
       },
-      decodeId(firstCreated.id)
+      decodeId(firstCreated.id),
     );
   }
 }

@@ -39,7 +39,7 @@ module("Integration | Component | ca-toggle-switch", function (hooks) {
     });
 
     await render(
-      hbs`<CaToggleSwitch @name="test" @value={{this.value}} @update={{this.update}} />`
+      hbs`<CaToggleSwitch @name="test" @value={{this.value}} @update={{this.update}} />`,
     );
 
     assert.dom("input[name=test]").isNotChecked();

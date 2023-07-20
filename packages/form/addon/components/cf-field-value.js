@@ -15,7 +15,7 @@ export default class CfFieldValueComponent extends Component {
         variables: { id: this.args.field.answer.raw.id },
         fetchPolicy: "network-only",
       },
-      "node.value"
+      "node.value",
     );
 
     const { downloadUrl } = files?.find((file) => file.id === id) ?? {};

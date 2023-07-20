@@ -26,7 +26,7 @@ module("Integration | Component | ca-field-select", function (hooks) {
     assert.expect(2);
 
     await render(
-      hbs`<CaFieldSelect @path="" @child={{true}} @onSelect={{this.update}} />`
+      hbs`<CaFieldSelect @path="" @child={{true}} @onSelect={{this.update}} />`,
     );
 
     assert.dom(this.element).exists();
@@ -39,7 +39,7 @@ module("Integration | Component | ca-field-select", function (hooks) {
     // TODO: setup mirage to satisfy *fetchOptions
 
     await render(
-      hbs`<CaFieldSelect @selectedPath={{this.path}} @onSelect={{this.update}} />`
+      hbs`<CaFieldSelect @selectedPath={{this.path}} @onSelect={{this.update}} />`,
     );
 
     assert
@@ -96,11 +96,11 @@ module("Integration | Component | ca-field-select", function (hooks) {
       this.set("path", "grandpa.father.son");
 
       await render(
-        hbs`<CaFieldSelect @selectedPath={{this.path}} @onSelect={{this.update}} />`
+        hbs`<CaFieldSelect @selectedPath={{this.path}} @onSelect={{this.update}} />`,
       );
       selectChoose(".ember-power-select-trigger", "father");
 
       assert.verifySteps(["selection"]);
-    }
+    },
   );
 });

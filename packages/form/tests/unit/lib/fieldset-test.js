@@ -20,7 +20,7 @@ module("Unit | Library | fieldset", function (hooks) {
         },
         document: { pk: "Document:xxx-xxx" },
         owner: this.owner,
-      }
+      },
     );
 
     assert.strictEqual(fieldset.pk, "Document:xxx-xxx:Form:some-form");

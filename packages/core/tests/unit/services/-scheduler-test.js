@@ -13,14 +13,17 @@ module("Unit | Service | -scheduler", function (hooks) {
     calumaOptionsService.resolveGroups = function (ids) {
       assert.step("resolveGroups");
       return new Promise((resolve) =>
-        later(() => resolve(ids.map((id) => ({ id, name: `Group ${id}` }))), 10)
+        later(
+          () => resolve(ids.map((id) => ({ id, name: `Group ${id}` }))),
+          10,
+        ),
       );
     };
 
     calumaOptionsService.resolveUsers = function (ids) {
       assert.step("resolveUsers");
       return new Promise((resolve) =>
-        later(() => resolve(ids.map((id) => ({ id, name: `User ${id}` }))), 10)
+        later(() => resolve(ids.map((id) => ({ id, name: `User ${id}` }))), 10),
       );
     };
   });
@@ -35,14 +38,14 @@ module("Unit | Service | -scheduler", function (hooks) {
       "group",
       (result) =>
         assert.step("groupCallback") &&
-        assert.deepEqual(result, { id: 1, name: "Group 1" })
+        assert.deepEqual(result, { id: 1, name: "Group 1" }),
     );
     service.resolveOnce(
       2,
       "group",
       (result) =>
         assert.step("groupCallback") &&
-        assert.deepEqual(result, { id: 2, name: "Group 2" })
+        assert.deepEqual(result, { id: 2, name: "Group 2" }),
     );
 
     await settled();
@@ -60,14 +63,14 @@ module("Unit | Service | -scheduler", function (hooks) {
       "user",
       (result) =>
         assert.step("userCallback") &&
-        assert.deepEqual(result, { id: 1, name: "User 1" })
+        assert.deepEqual(result, { id: 1, name: "User 1" }),
     );
     service.resolveOnce(
       2,
       "user",
       (result) =>
         assert.step("userCallback") &&
-        assert.deepEqual(result, { id: 2, name: "User 2" })
+        assert.deepEqual(result, { id: 2, name: "User 2" }),
     );
 
     await settled();

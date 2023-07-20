@@ -22,67 +22,67 @@ export default {
     validateType("FormQuestion", true),
     validateType("StaticQuestion", true),
     validateType("FilesQuestion", true),
-    validateLength({ max: 1024, allowBlank: true })
+    validateLength({ max: 1024, allowBlank: true }),
   ),
   integerMinValue: or(
     validateType("IntegerQuestion", false),
     and(
       validateNumber({ allowBlank: true, integer: true }),
-      validateGtLt({ lt: "integerMaxValue", allowNone: true })
-    )
+      validateGtLt({ lt: "integerMaxValue", allowNone: true }),
+    ),
   ),
   integerMaxValue: or(
     validateType("IntegerQuestion", false),
     and(
       validateNumber({ allowBlank: true, integer: true }),
-      validateGtLt({ gt: "integerMinValue", allowNone: true })
-    )
+      validateGtLt({ gt: "integerMinValue", allowNone: true }),
+    ),
   ),
 
   floatMinValue: or(
     validateType("FloatQuestion", false),
     and(
       validateNumber({ allowBlank: true }),
-      validateGtLt({ lt: "floatMaxValue", allowNone: true })
-    )
+      validateGtLt({ lt: "floatMaxValue", allowNone: true }),
+    ),
   ),
   floatMaxValue: or(
     validateType("FloatQuestion", false),
     and(
       validateNumber({ allowBlank: true }),
-      validateGtLt({ gt: "floatMinValue", allowNone: true })
-    )
+      validateGtLt({ gt: "floatMinValue", allowNone: true }),
+    ),
   ),
 
   minLength: or(
     and(
       validateType("TextQuestion", false),
-      validateType("TextareaQuestion", false)
+      validateType("TextareaQuestion", false),
     ),
-    validateNumber({ gt: 0, allowBlank: true })
+    validateNumber({ gt: 0, allowBlank: true }),
   ),
   maxLength: or(
     and(
       validateType("TextQuestion", false),
-      validateType("TextareaQuestion", false)
+      validateType("TextareaQuestion", false),
     ),
-    validateNumber({ gt: 0, allowBlank: true })
+    validateNumber({ gt: 0, allowBlank: true }),
   ),
 
   options: or(
     and(
       validateType("MultipleChoiceQuestion", false),
-      validateType("ChoiceQuestion", false)
+      validateType("ChoiceQuestion", false),
     ),
-    and(validateOptions(), validateLength({ min: 1 }))
+    and(validateOptions(), validateLength({ min: 1 })),
   ),
   "rowForm.slug": or(
     validateType("TableQuestion", false),
-    validatePresence(true)
+    validatePresence(true),
   ),
   "subForm.slug": or(
     validateType("FormQuestion", false),
-    validatePresence(true)
+    validatePresence(true),
   ),
   isHidden: validateJexl(),
   isRequired: validateJexl(),

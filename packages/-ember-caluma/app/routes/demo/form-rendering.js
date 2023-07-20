@@ -23,7 +23,7 @@ export default class DemoFormRenderingRoute extends Route {
           }
         `,
       },
-      "allDocuments.edges"
+      "allDocuments.edges",
     );
 
     if (!documents.length) {
@@ -44,7 +44,7 @@ export default class DemoFormRenderingRoute extends Route {
             },
           },
         },
-        "saveDocument.document.id"
+        "saveDocument.document.id",
       );
     }
 

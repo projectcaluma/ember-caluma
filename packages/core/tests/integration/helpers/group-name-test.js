@@ -20,7 +20,7 @@ module("Integration | Helper | group-name", function (hooks) {
     assert.expect(3);
 
     this.owner.lookup("service:caluma-options").resolveGroups = function (
-      identifiers
+      identifiers,
     ) {
       assert.step("resolver");
       return identifiers.map((identifier) => ({
@@ -41,7 +41,10 @@ module("Integration | Helper | group-name", function (hooks) {
     this.owner.lookup("service:caluma-options").resolveGroups = function (ids) {
       assert.step("resolver");
       return new Promise((resolve) =>
-        later(() => resolve(ids.map((id) => ({ id, name: `Group ${id}` }))), 10)
+        later(
+          () => resolve(ids.map((id) => ({ id, name: `Group ${id}` }))),
+          10,
+        ),
       );
     };
 

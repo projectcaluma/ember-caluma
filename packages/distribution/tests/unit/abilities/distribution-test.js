@@ -24,7 +24,7 @@ module("Unit | Ability | distribution", function (hooks) {
       "service:distribution",
       class DistributionServiceMock extends DistributionService {
         @tracked caseId;
-      }
+      },
     );
 
     const service = this.owner.lookup("service:distribution");

@@ -20,7 +20,7 @@ class PowerSelectOverride {
 
   get label() {
     return this.intl.t(
-      "caluma.form-builder.question.widgetOverrides.powerselect"
+      "caluma.form-builder.question.widgetOverrides.powerselect",
     );
   }
 

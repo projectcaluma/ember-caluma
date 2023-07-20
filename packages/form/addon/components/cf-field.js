@@ -51,7 +51,7 @@ export default class CfFieldComponent extends Component {
       this.args.field?.question,
       "action-button",
       "static",
-      "form"
+      "form",
     );
   }
 

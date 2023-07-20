@@ -129,5 +129,5 @@ module(
 
       assert.verifySteps(["validate", "error"]);
     });
-  }
+  },
 );

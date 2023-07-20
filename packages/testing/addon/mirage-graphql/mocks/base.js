@@ -69,7 +69,7 @@ export default class BaseMock {
 
       return Object.prototype.isPrototypeOf.call(
         Reflect.getPrototypeOf(proto),
-        Object
+        Object,
       )
         ? res
         : [...handlers(proto), ...res];
@@ -91,10 +91,10 @@ export default class BaseMock {
                     ...typeHandlers,
                     [handlerName.replace(
                       /\{subtype\}/,
-                      classify(type.toLowerCase())
+                      classify(type.toLowerCase()),
                     )]: fn,
                   }),
-                  {}
+                  {},
                 )
               : { [baseHandlerName]: fn };
 
@@ -114,7 +114,7 @@ export default class BaseMock {
   handleConnection(root, vars, _, { fieldName }) {
     let records = this.filter.filter(
       this.collection.all().models,
-      deserialize(vars)
+      deserialize(vars),
     );
 
     const relKey = `${singularize(fieldName)}Ids`;
@@ -189,7 +189,7 @@ export default class BaseMock {
   @register("Save{subtype}{type}Payload")
   handleSavePayload(
     _,
-    { input: { clientMutationId = faker.string.uuid(), slug, id, ...args } }
+    { input: { clientMutationId = faker.string.uuid(), slug, id, ...args } },
   ) {
     // Sometimes we pass the identifier as property `slug` (e.g in `saveForm`),
     // sometimes as `id` (e.g. in `saveDocument`) and sometimes as the camelized
@@ -219,8 +219,8 @@ export default class BaseMock {
             deserialize({
               ...identifier,
               ...parsedArgs,
-            })
-          )
+            }),
+          ),
         );
 
     return {

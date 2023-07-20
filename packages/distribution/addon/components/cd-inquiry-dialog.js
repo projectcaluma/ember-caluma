@@ -28,7 +28,7 @@ export default class CdInquiryDialogComponent extends Component {
       .map((edge) => edge.node)
       .filter(
         // suspended inquiries should only be visible to its creator
-        (node) => this.currentGroupIsCreator || node.status !== "SUSPENDED"
+        (node) => this.currentGroupIsCreator || node.status !== "SUSPENDED",
       );
   }
 
@@ -92,7 +92,7 @@ export default class CdInquiryDialogComponent extends Component {
         from: this.args.from,
         to: this.args.to,
       },
-      decodeId(this.inquiries[0].id)
+      decodeId(this.inquiries[0].id),
     );
   }
 }

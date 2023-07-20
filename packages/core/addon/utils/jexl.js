@@ -7,7 +7,7 @@ export const mapby = (arr, ...keys) => {
   }
 
   return arr.map((obj) =>
-    keys.length > 1 ? keys.map((key) => obj[key]) : obj[keys[0]]
+    keys.length > 1 ? keys.map((key) => obj[key]) : obj[keys[0]],
   );
 };
 

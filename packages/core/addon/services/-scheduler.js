@@ -27,9 +27,9 @@ function typeResolver(type) {
       (identifier) =>
         !cached
           .map((resolved) =>
-            String(resolved[this.calumaOptions[`${type}IdentifierProperty`]])
+            String(resolved[this.calumaOptions[`${type}IdentifierProperty`]]),
           )
-          .includes(String(identifier))
+          .includes(String(identifier)),
     );
 
     const methodName = camelize(`resolve-${pluralize(type)}`);
@@ -77,8 +77,8 @@ export default class PrivateSchedulerService extends Service {
         result.find(
           (obj) =>
             String(obj[this.calumaOptions[`${type}IdentifierProperty`]]) ===
-            String(identifier)
-        )
+            String(identifier),
+        ),
       );
     };
 
@@ -93,7 +93,7 @@ export default class PrivateSchedulerService extends Service {
 
     assert(
       `${typeResolverName} needs to be defined on the scheduler service`,
-      typeResolverName in this
+      typeResolverName in this,
     );
 
     once(this[typeResolverName], "perform");

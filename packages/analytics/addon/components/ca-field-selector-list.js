@@ -52,7 +52,7 @@ export default class CaFieldSelectorListComponent extends Component {
     } catch (error) {
       console.error(error);
       this.notification.danger(
-        this.intl.t("caluma.analytics.notification.delete-error")
+        this.intl.t("caluma.analytics.notification.delete-error"),
       );
     }
   }
@@ -72,12 +72,12 @@ export default class CaFieldSelectorListComponent extends Component {
       });
 
       this.notification.success(
-        this.intl.t("caluma.analytics.notification.reorder-success")
+        this.intl.t("caluma.analytics.notification.reorder-success"),
       );
       this._fields = null;
     } catch (e) {
       this.notification.danger(
-        this.intl.t("caluma.analytics.notification.reorder-error")
+        this.intl.t("caluma.analytics.notification.reorder-error"),
       );
     }
   }

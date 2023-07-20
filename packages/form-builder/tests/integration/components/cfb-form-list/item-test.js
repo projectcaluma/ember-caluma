@@ -33,7 +33,7 @@ module("Integration | Component | cfb-form-list/item", function (hooks) {
     this.set("editForm", () => assert.step("edit-form"));
 
     await render(
-      hbs`<CfbFormList::Item @item={{this.form}} @onEditForm={{this.editForm}} />`
+      hbs`<CfbFormList::Item @item={{this.form}} @onEditForm={{this.editForm}} />`,
     );
 
     await click("[data-test-edit-form]");

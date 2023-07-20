@@ -27,7 +27,7 @@ module(
   @update={{this.update}}
   @field={{this.field}}
   @tableSlug={{"test"}}
-/>`
+/>`,
       );
 
       const requests = this.server.pretender.handledRequests;
@@ -35,5 +35,5 @@ module(
       assert.dom(".ember-power-select-trigger").exists({ count: 1 });
       assert.ok(requests[0].sendArguments[0].includes("AllAnalyticsFields"));
     });
-  }
+  },
 );
