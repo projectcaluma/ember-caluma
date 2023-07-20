@@ -25,12 +25,12 @@
     "ember-cli-babel": "^7.26.11",
     "ember-cli-htmlbars": "^6.2.0",
     "ember-composable-helpers": "^5.0.0",
-    "ember-concurrency": "^2.3.7",
+    "ember-concurrency": "^3.0.0",
     "ember-engines-router-service": "^0.3.0",
     "ember-fetch": "^8.1.2",
     "ember-intl": "^5.7.2",
-    "ember-power-select": "^7.0.0",
-    "ember-resources": "^6.2.1",
+    "ember-power-select": "^7.1.0",
+    "ember-resources": "^6.2.2",
     "ember-sortable": "^5.0.0",
     "ember-uikit": "^8.0.0",
     "ember-validated-form": "^6.2.0",
@@ -45,7 +45,7 @@
   "devDependencies": {
     "@ember/optional-features": "2.0.0",
     "@ember/string": "3.1.1",
-    "@ember/test-helpers": "3.1.0",
+    "@ember/test-helpers": "3.2.0",
     "@ember/test-waiters": "3.0.2",
     "@embroider/test-setup": "3.0.1",
     "@faker-js/faker": "8.0.2",
@@ -71,9 +71,9 @@
     "loader.js": "4.7.0",
     "qunit": "2.19.4",
     "qunit-dom": "2.0.0",
-    "sass": "1.63.6",
+    "sass": "1.64.0",
     "uikit": "3.16.22",
-    "webpack": "5.87.0"
+    "webpack": "5.88.2"
   },
   "peerDependency": {
     "ember-engines": "^0.9.0",

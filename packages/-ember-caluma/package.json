@@ -15,9 +15,9 @@
     "@ember/legacy-built-in-components": "0.4.2",
     "@ember/optional-features": "2.0.0",
     "@ember/string": "3.1.1",
-    "@ember/test-helpers": "3.1.0",
+    "@ember/test-helpers": "3.2.0",
     "@ember/test-waiters": "3.0.2",
-    "@embroider/macros": "1.11.1",
+    "@embroider/macros": "1.12.3",
     "@faker-js/faker": "8.0.2",
     "@glimmer/component": "1.1.2",
     "@glimmer/tracking": "1.1.2",
@@ -45,7 +45,7 @@
     "ember-cli-inject-live-reload": "2.1.0",
     "ember-cli-mirage": "3.0.0-alpha.3",
     "ember-cli-sass": "11.0.1",
-    "ember-cli-showdown": "6.0.1",
+    "ember-cli-showdown": "7.0.0",
     "ember-cli-sri": "2.1.1",
     "ember-cli-terser": "4.0.2",
     "ember-composable-helpers": "5.0.0",
@@ -58,7 +58,7 @@
     "ember-load-initializers": "2.1.2",
     "ember-math-helpers": "3.0.0",
     "ember-modifier": "4.1.0",
-    "ember-power-select": "7.0.0",
+    "ember-power-select": "7.1.0",
     "ember-resolver": "10.1.1",
     "ember-sortable": "5.0.0",
     "ember-source": "4.12.0",
@@ -68,10 +68,10 @@
     "graphql": "15.8.0",
     "loader.js": "4.7.0",
     "miragejs": "0.1.47",
-    "sass": "1.63.6",
+    "sass": "1.64.0",
     "tracked-built-ins": "3.1.1",
     "uikit": "3.16.22",
-    "webpack": "5.87.0"
+    "webpack": "5.88.2"
   },
   "ember": {
     "edition": "octane"

@@ -32,7 +32,7 @@
   },
   "devDependencies": {
     "@ember/optional-features": "2.0.0",
-    "@ember/test-helpers": "3.1.0",
+    "@ember/test-helpers": "3.2.0",
     "@embroider/test-setup": "3.0.1",
     "@glimmer/component": "1.1.2",
     "broccoli-asset-rev": "3.0.0",
@@ -52,7 +52,7 @@
     "loader.js": "4.7.0",
     "qunit": "2.19.4",
     "qunit-dom": "2.0.0",
-    "webpack": "5.87.0"
+    "webpack": "5.88.2"
   },
   "peerDependencies": {
     "ember-source": "^4.0.0"
