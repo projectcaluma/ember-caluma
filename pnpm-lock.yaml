@@ -10,7 +10,7 @@ importers:
     devDependencies:
       '@adfinis/eslint-config':
         specifier: 2.0.0
-        version: 2.0.0(@babel/core@7.22.5)(@babel/eslint-parser@7.22.5)(eslint-config-prettier@8.8.0)(eslint-plugin-ember@11.8.0)(eslint-plugin-import@2.27.5)(eslint-plugin-n@16.0.0)(eslint-plugin-prettier@4.2.1)(eslint-plugin-qunit@7.3.4)(eslint@8.43.0)(prettier@2.8.8)
+        version: 2.0.0(@babel/core@7.22.5)(@babel/eslint-parser@7.22.5)(eslint-config-prettier@8.8.0)(eslint-plugin-ember@11.10.0)(eslint-plugin-import@2.27.5)(eslint-plugin-n@16.0.0)(eslint-plugin-prettier@4.2.1)(eslint-plugin-qunit@7.3.4)(eslint@8.43.0)(prettier@2.8.8)
       '@babel/core':
         specifier: 7.22.5
         version: 7.22.5
@@ -60,8 +60,8 @@ importers:
         specifier: 8.8.0
         version: 8.8.0(eslint@8.43.0)
       eslint-plugin-ember:
-        specifier: 11.8.0
-        version: 11.8.0(eslint@8.43.0)
+        specifier: 11.10.0
+        version: 11.10.0(eslint@8.43.0)
       eslint-plugin-import:
         specifier: 2.27.5
         version: 2.27.5(eslint@8.43.0)
@@ -1359,7 +1359,7 @@ importers:
 
 packages:
 
-  /@adfinis/eslint-config@2.0.0(@babel/core@7.22.5)(@babel/eslint-parser@7.22.5)(eslint-config-prettier@8.8.0)(eslint-plugin-ember@11.8.0)(eslint-plugin-import@2.27.5)(eslint-plugin-n@16.0.0)(eslint-plugin-prettier@4.2.1)(eslint-plugin-qunit@7.3.4)(eslint@8.43.0)(prettier@2.8.8):
+  /@adfinis/eslint-config@2.0.0(@babel/core@7.22.5)(@babel/eslint-parser@7.22.5)(eslint-config-prettier@8.8.0)(eslint-plugin-ember@11.10.0)(eslint-plugin-import@2.27.5)(eslint-plugin-n@16.0.0)(eslint-plugin-prettier@4.2.1)(eslint-plugin-qunit@7.3.4)(eslint@8.43.0)(prettier@2.8.8):
     resolution: {integrity: sha512-jfD8GUBZwwbO6S7d/VLSwZ57tNdM3uD9R2Mgi9uh5/Mr6SCOeJ/CH/9LrxtqxIWASqDvyCmDh7SMsWaVHfqpCQ==}
     peerDependencies:
       '@babel/core': ^7.21.4
@@ -1377,7 +1377,7 @@ packages:
       '@babel/eslint-parser': 7.22.5(@babel/core@7.22.5)(eslint@8.43.0)
       eslint: 8.43.0
       eslint-config-prettier: 8.8.0(eslint@8.43.0)
-      eslint-plugin-ember: 11.8.0(eslint@8.43.0)
+      eslint-plugin-ember: 11.10.0(eslint@8.43.0)
       eslint-plugin-import: 2.27.5(eslint@8.43.0)
       eslint-plugin-n: 16.0.0(eslint@8.43.0)
       eslint-plugin-prettier: 4.2.1(eslint-config-prettier@8.8.0)(eslint@8.43.0)(prettier@2.8.8)
@@ -11458,8 +11458,8 @@ packages:
       - supports-color
     dev: true
 
-  /eslint-plugin-ember@11.8.0(eslint@8.43.0):
-    resolution: {integrity: sha512-oZ6My7LlbyhNCguHuyBnajGbpU5+raQ5zkaF9Vqe8EkWf3Ji2uJZH7BxzMMcR4gAuyx5qTUZRXVs42km1nTzVg==}
+  /eslint-plugin-ember@11.10.0(eslint@8.43.0):
+    resolution: {integrity: sha512-/5VanfpfzIdmWgXWyQ6ylAJWITu8mXivRce06h0uoifVpUoGaBdAkwuto/PLGfDxWdi43xWUFLb5Tpkhx2MoFg==}
     engines: {node: 14.* || 16.* || >= 18}
     peerDependencies:
       eslint: '>= 7'
@@ -11469,6 +11469,7 @@ packages:
       css-tree: 2.3.1
       ember-rfc176-data: 0.3.18
       ember-template-imports: 3.4.2
+      ember-template-recast: 6.1.4
       eslint: 8.43.0
       eslint-utils: 3.0.0(eslint@8.43.0)
       estraverse: 5.3.0
