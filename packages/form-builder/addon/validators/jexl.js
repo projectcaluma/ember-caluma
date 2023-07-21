@@ -12,6 +12,7 @@ const TRANSFORMS = [
   "sum",
   "avg",
   "stringify",
+  "flatten",
 ];
 const BINARY_OPS = ["intersects"];
 

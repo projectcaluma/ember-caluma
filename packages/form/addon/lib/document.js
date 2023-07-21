@@ -149,6 +149,9 @@ export default class Document extends Base {
   get jexl() {
     const documentJexl = new jexl.Jexl();
 
+    // WARNING: When adding a new transform or operator, make sure to add it in
+    // `packages/form-builder/addon/validators/jexl.js` as well for the
+    // validation in the form builder.
     documentJexl.addTransform("answer", (slug, defaultValue) =>
       this.findAnswer(slug, defaultValue),
     );
