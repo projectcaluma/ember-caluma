@@ -28,7 +28,7 @@
     "ember-concurrency": "^3.0.0",
     "ember-engines-router-service": "^0.3.0",
     "ember-fetch": "^8.1.2",
-    "ember-intl": "^5.7.2",
+    "ember-intl": "^6.0.0",
     "ember-power-select": "^7.1.0",
     "ember-resources": "^6.2.2",
     "ember-sortable": "^5.0.0",

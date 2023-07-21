@@ -240,8 +240,8 @@ importers:
         specifier: 4.0.0
         version: 4.0.0(@babel/core@7.22.9)(@glint/template@1.0.2)(ember-source@4.12.3)
       ember-intl:
-        specifier: 5.7.2
-        version: 5.7.2
+        specifier: 6.0.0
+        version: 6.0.0
       ember-load-initializers:
         specifier: 2.1.2
         version: 2.1.2(@babel/core@7.22.9)
@@ -339,8 +339,8 @@ importers:
         specifier: ^8.1.2
         version: 8.1.2
       ember-intl:
-        specifier: ^5.7.2
-        version: 5.7.2
+        specifier: ^6.0.0
+        version: 6.0.0
       ember-power-select:
         specifier: ^7.1.0
         version: 7.1.0(@babel/core@7.22.9)(@glint/template@1.0.2)(ember-source@4.12.3)(webpack@5.88.2)
@@ -487,8 +487,8 @@ importers:
         specifier: ^4.0.2
         version: 4.0.2
       ember-intl:
-        specifier: ^5.7.2
-        version: 5.7.2
+        specifier: ^6.0.0
+        version: 6.0.0
       ember-resources:
         specifier: ^6.2.2
         version: 6.2.2(@ember/test-waiters@3.0.2)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.0.2)(ember-concurrency@3.0.0)(ember-source@4.12.3)
@@ -647,8 +647,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0(@babel/core@7.22.9)(@glint/template@1.0.2)(ember-source@4.12.3)
       ember-intl:
-        specifier: ^5.7.2
-        version: 5.7.2
+        specifier: ^6.0.0
+        version: 6.0.0
       ember-resources:
         specifier: ^6.2.2
         version: 6.2.2(@ember/test-waiters@3.0.2)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.0.2)(ember-concurrency@3.0.0)(ember-source@4.12.3)
@@ -816,8 +816,8 @@ importers:
         specifier: ^4.1.0
         version: 4.1.0(@babel/core@7.22.9)(@glint/template@1.0.2)(ember-source@4.12.3)(webpack@5.88.2)
       ember-intl:
-        specifier: ^5.7.2
-        version: 5.7.2
+        specifier: ^6.0.0
+        version: 6.0.0
       ember-math-helpers:
         specifier: ^3.0.0
         version: 3.0.0
@@ -994,8 +994,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0(@babel/core@7.22.9)(@glint/template@1.0.2)(ember-source@4.12.3)
       ember-intl:
-        specifier: ^5.7.2
-        version: 5.7.2
+        specifier: ^6.0.0
+        version: 6.0.0
       ember-math-helpers:
         specifier: ^3.0.0
         version: 3.0.0
@@ -1263,8 +1263,8 @@ importers:
         specifier: ^8.1.2
         version: 8.1.2
       ember-intl:
-        specifier: ^5.7.2
-        version: 5.7.2
+        specifier: ^6.0.0
+        version: 6.0.0
       ember-resources:
         specifier: ^6.2.2
         version: 6.2.2(@ember/test-waiters@3.0.2)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.0.2)(ember-concurrency@3.0.0)(ember-source@4.12.3)
@@ -3509,6 +3509,12 @@ packages:
     resolution: {integrity: sha512-Uo3pGspElQW91PCvKSIAXoEgAUlRnH29sX2/p89kg7sP1m2PzCufHINd0FhTXQf6DYGiUlVncdSPa2F9wxed2A==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0, npm: '>=6.14.13'}
 
+  /@formatjs/ecma402-abstract@1.11.3:
+    resolution: {integrity: sha512-kP/Buv5vVFMAYLHNvvUzr0lwRTU0u2WTy44Tqwku1X3C3lJ5dKqDCYVqA8wL+Y19Bq+MwHgxqd5FZJRCIsLRyQ==}
+    dependencies:
+      '@formatjs/intl-localematcher': 0.2.24
+      tslib: 2.6.0
+
   /@formatjs/ecma402-abstract@1.11.4:
     resolution: {integrity: sha512-EBikYFp2JCdIfGEb5G9dyCkTGDmC57KSHhRQOC3aYxoPWVZvfWCDjZwkGYHN7Lis/fmuWl906bnNTJifDQ3sXw==}
     dependencies:
@@ -3525,11 +3531,24 @@ packages:
     dependencies:
       tslib: 2.6.0
 
+  /@formatjs/icu-messageformat-parser@2.0.18:
+    resolution: {integrity: sha512-vquIzsAJJmZ5jWVH8dEgUKcbG4yu3KqtyPet+q35SW5reLOvblkfeCXTRW2TpIwNXzdVqsJBwjbTiRiSU9JxwQ==}
+    dependencies:
+      '@formatjs/ecma402-abstract': 1.11.3
+      '@formatjs/icu-skeleton-parser': 1.3.5
+      tslib: 2.6.0
+
   /@formatjs/icu-messageformat-parser@2.1.0:
     resolution: {integrity: sha512-Qxv/lmCN6hKpBSss2uQ8IROVnta2r9jd3ymUEIjm2UyIkUCHVcbUVRGL/KS/wv7876edvsPe+hjHVJ4z8YuVaw==}
     dependencies:
       '@formatjs/ecma402-abstract': 1.11.4
       '@formatjs/icu-skeleton-parser': 1.3.6
+      tslib: 2.6.0
+
+  /@formatjs/icu-skeleton-parser@1.3.5:
+    resolution: {integrity: sha512-Nhyo2/6kG7ZfgeEfo02sxviOuBcvtzH6SYUharj3DLCDJH3A/4OxkKcmx/2PWGX4bc6iSieh+FA94CsKDxnZBQ==}
+    dependencies:
+      '@formatjs/ecma402-abstract': 1.11.3
       tslib: 2.6.0
 
   /@formatjs/icu-skeleton-parser@1.3.6:
@@ -3538,9 +3557,44 @@ packages:
       '@formatjs/ecma402-abstract': 1.11.4
       tslib: 2.6.0
 
+  /@formatjs/intl-displaynames@5.4.2:
+    resolution: {integrity: sha512-SLesCDan9NCMqBbHPXMEwqAcPn3tnbQw0sv0rssH1JQDLDUQYwKXL93kz30X3yskTyQS7N+pd47bhoIe3kbXyw==}
+    dependencies:
+      '@formatjs/ecma402-abstract': 1.11.3
+      '@formatjs/intl-localematcher': 0.2.24
+      tslib: 2.6.0
+
+  /@formatjs/intl-listformat@6.5.2:
+    resolution: {integrity: sha512-/IYagQJkzTvpBlhhaysGYNgM3o72WBg1ZWZcpookkgXEJbINwLP5kVagHxmgxffYKs1CDzQ8rmKHghu2qR/7zw==}
+    dependencies:
+      '@formatjs/ecma402-abstract': 1.11.3
+      '@formatjs/intl-localematcher': 0.2.24
+      tslib: 2.6.0
+
+  /@formatjs/intl-localematcher@0.2.24:
+    resolution: {integrity: sha512-K/HRGo6EMnCbhpth/y3u4rW4aXkmQNqRe1L2G+Y5jNr3v0gYhvaucV8WixNju/INAMbPBlbsRBRo/nfjnoOnxQ==}
+    dependencies:
+      tslib: 2.6.0
+
   /@formatjs/intl-localematcher@0.2.25:
     resolution: {integrity: sha512-YmLcX70BxoSopLFdLr1Ds99NdlTI2oWoLbaUW2M406lxOIPzE1KQhRz2fPUkq34xVZQaihCoU29h0KK7An3bhA==}
     dependencies:
+      tslib: 2.6.0
+
+  /@formatjs/intl@1.18.5:
+    resolution: {integrity: sha512-5jiC7neCMXMAa/uQU68plY3vxQqtDjiFPkvc6fEuCmNoVZkIya9uMG8uqM2Z0BOX6xg0K1ohHuj+VLHDDx1fEw==}
+    peerDependencies:
+      typescript: ^4.5
+    peerDependenciesMeta:
+      typescript:
+        optional: true
+    dependencies:
+      '@formatjs/ecma402-abstract': 1.11.3
+      '@formatjs/fast-memoize': 1.2.1
+      '@formatjs/icu-messageformat-parser': 2.0.18
+      '@formatjs/intl-displaynames': 5.4.2
+      '@formatjs/intl-listformat': 6.5.2
+      intl-messageformat: 9.11.4
       tslib: 2.6.0
 
   /@fullhuman/postcss-purgecss@2.3.0:
@@ -5479,7 +5533,6 @@ packages:
 
   /argparse@2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
-    dev: true
 
   /argv-formatter@1.0.0:
     resolution: {integrity: sha512-F2+Hkm9xFaRg+GkaNnbwXNDV5O6pnCFEmqyhvfC/Ic5LbgOWjJh3L+mN/s91rxVL3znE7DYVpW0GJFT+4YBgWw==}
@@ -7800,8 +7853,8 @@ packages:
       isobject: 3.0.1
       static-extend: 0.1.2
 
-  /cldr-core@36.0.0:
-    resolution: {integrity: sha512-QLnAjt20rZe38c8h8OJ9jPND+O4o5O8Nw0TK/P3KpNn1cmOhMu0rk6Kc3ap96c5OStQ9gAngs9+Be2sum26NOw==}
+  /cldr-core@38.1.0:
+    resolution: {integrity: sha512-Da9xKjDp4qGGIX0VDsBqTan09iR5nuYD2a/KkfEaUyqKhu6wFVNRiCpPDXeRbpVwPBY6PgemV8WiHatMhcpy4A==}
 
   /clean-base-url@1.0.0:
     resolution: {integrity: sha512-9q6ZvUAhbKOSRFY7A/irCQ/rF0KIpa3uXpx6izm8+fp7b2H4hLeUJ+F1YYk9+gDQ/X8Q0MEyYs+tG3cht//HTg==}
@@ -10587,15 +10640,16 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /ember-intl@5.7.2:
-    resolution: {integrity: sha512-gs17uY1ywzMaUpx1gxfBkFQYRTWTSa/zbkL13MVtffG9aBLP+998MibytZOUxIipMtLCm4sr/g6/1aaKRr9/+g==}
+  /ember-intl@6.0.0:
+    resolution: {integrity: sha512-9lLnZeVaPOTQ+ifG/aq7C4xc8QFjfYnsMicl0EUQd5p77tcq2OUFhodozoXgiM2zmVsR9CfF2Nqq7Cv3U4mENg==}
     engines: {node: '>= 10.*'}
     peerDependencies:
-      typescript: ^4.0.0
+      typescript: '4'
     peerDependenciesMeta:
       typescript:
         optional: true
     dependencies:
+      '@formatjs/intl': 1.18.5
       broccoli-caching-writer: 3.0.3
       broccoli-funnel: 3.0.8
       broccoli-merge-files: 0.8.0
@@ -10603,16 +10657,17 @@ packages:
       broccoli-source: 3.0.1
       broccoli-stew: 3.0.0
       calculate-cache-key-for-tree: 2.0.0
-      cldr-core: 36.0.0
+      cldr-core: 38.1.0
       ember-auto-import: 1.12.2
       ember-cli-babel: 7.26.11
       ember-cli-typescript: 4.2.1
+      eventemitter3: 4.0.7
       extend: 3.0.2
       fast-memoize: 2.5.2
       has-unicode: 2.0.1
       intl-messageformat: 9.13.0
       intl-messageformat-parser: 6.4.4
-      js-yaml: 3.14.1
+      js-yaml: 4.1.0
       json-stable-stringify: 1.0.2
       locale-emoji: 0.3.0
       lodash.castarray: 4.4.0
@@ -11770,7 +11825,6 @@ packages:
 
   /eventemitter3@4.0.7:
     resolution: {integrity: sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==}
-    dev: true
 
   /events-to-array@1.1.2:
     resolution: {integrity: sha512-inRWzRY7nG+aXZxBzEqYKB3HPgwflZRopAjDCHv0whhRx+MTUr1ei0ICZUypdyE0HRm4L2d5VEcIqLD6yl+BFA==}
@@ -13697,6 +13751,14 @@ packages:
       '@formatjs/ecma402-abstract': 1.6.4
       tslib: 2.6.0
 
+  /intl-messageformat@9.11.4:
+    resolution: {integrity: sha512-77TSkNubIy/hsapz6LQpyR6OADcxhWdhSaboPb5flMaALCVkPvAIxr48AlPqaMl4r1anNcvR9rpLWVdwUY1IKg==}
+    dependencies:
+      '@formatjs/ecma402-abstract': 1.11.3
+      '@formatjs/fast-memoize': 1.2.1
+      '@formatjs/icu-messageformat-parser': 2.0.18
+      tslib: 2.6.0
+
   /intl-messageformat@9.13.0:
     resolution: {integrity: sha512-7sGC7QnSQGa5LZP7bXLDhVDtQOeKGeBFGHF2Y8LVBwYZoQZCgWeKoPGTa5GMG8g/TzDgeXuYJQis7Ggiw2xTOw==}
     dependencies:
@@ -14212,7 +14274,6 @@ packages:
     hasBin: true
     dependencies:
       argparse: 2.0.1
-    dev: true
 
   /jsdom@16.7.0:
     resolution: {integrity: sha512-u9Smc2G1USStM+s/x1ru5Sxrl6mPYCbByG1U/hUmqaVsm4tbNyS7CicOSRyuGQYZhTu0h84qkZZQ/I+dzizSVw==}
