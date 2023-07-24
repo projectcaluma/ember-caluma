@@ -133,6 +133,12 @@ caluma:
 
       hideLabel: "Cacher l'étiquette"
 
+      usage:
+        button: "Formulaires avec cette question"
+        title: "Formulaires avec cette question"
+        no-forms-found: "Aucun formulaire n'a été trouvé qui utilise cette question"
+        not-published: "non publié"
+
     options:
       delete: "Supprimer l'option"
       archive: "Archiver (masquer) l'option"

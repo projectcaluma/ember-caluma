@@ -133,6 +133,12 @@ caluma:
 
       hideLabel: "Hide label"
 
+      usage:
+        button: "Forms with this question"
+        title: "Forms with this question"
+        no-forms-found: "No form was found that uses this question"
+        not-published: "not published"
+
     options:
       delete: "Delete option"
       archive: "Archive (hide) option"

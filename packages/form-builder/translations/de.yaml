@@ -133,6 +133,12 @@ caluma:
 
       hideLabel: "Label verstecken"
 
+      usage:
+        button: "Formulare mit dieser Frage"
+        title: "Formulare mit dieser Frage"
+        no-forms-found: "Es wurde keine Formular gefunden welche diese Frage verwenden"
+        not-published: "nicht publiziert"
+
     options:
       delete: "Option löschen"
       archive: "Option archivieren (verstecken)"
