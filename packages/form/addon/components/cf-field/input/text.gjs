@@ -1,3 +1,4 @@
+import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import Component from "@glimmer/component";
 
@@ -20,4 +21,19 @@ export default class CfFieldInputText extends Component {
   input({ target: { value } }) {
     this.args.onSave(value);
   }
+
+  <template><input
+  type="text"
+  class="uk-input
+    {{if @field.isInvalid 'uk-form-danger'}}
+    {{if @disabled 'uk-disabled'}}"
+  name={{@field.pk}}
+  id={{@field.pk}}
+  value={{@field.answer.value}}
+  placeholder={{@field.question.raw.placeholder}}
+  readonly={{@disabled}}
+  minlength={{@field.question.raw.textMinLength}}
+  maxlength={{@field.question.raw.textMaxLength}}
+  {{on "input" this.input}}
+/></template>
 }
