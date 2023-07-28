@@ -282,8 +282,8 @@ importers:
         specifier: 0.1.47
         version: 0.1.47
       sass:
-        specifier: 1.64.0
-        version: 1.64.0
+        specifier: 1.64.1
+        version: 1.64.1
       tracked-built-ins:
         specifier: 3.1.1
         version: 3.1.1
@@ -445,8 +445,8 @@ importers:
         specifier: 2.0.0
         version: 2.0.0
       sass:
-        specifier: 1.64.0
-        version: 1.64.0
+        specifier: 1.64.1
+        version: 1.64.1
       uikit:
         specifier: 3.16.22
         version: 3.16.22
@@ -753,8 +753,8 @@ importers:
         specifier: 2.0.0
         version: 2.0.0
       sass:
-        specifier: 1.64.0
-        version: 1.64.0
+        specifier: 1.64.1
+        version: 1.64.1
       uikit:
         specifier: 3.16.22
         version: 3.16.22
@@ -2862,7 +2862,7 @@ packages:
     dependencies:
       '@csstools/sass-import-resolve': 1.0.0
       postcss: 8.4.26
-      sass: 1.64.0
+      sass: 1.64.1
       source-map: 0.7.4
     dev: true
 
@@ -17727,8 +17727,8 @@ packages:
       walker: 1.0.8
     dev: true
 
-  /sass@1.64.0:
-    resolution: {integrity: sha512-m7YtAGmQta9uANIUJwXesAJMSncqH+3INc8kdVXs6eV6GUC8Qu2IYKQSN8PRLgiQfpca697G94klm2leYMxSHw==}
+  /sass@1.64.1:
+    resolution: {integrity: sha512-16rRACSOFEE8VN7SCgBu1MpYCyN7urj9At898tyzdXFhC+a+yOX5dXwAR7L8/IdPJ1NB8OYoXmD55DM30B2kEQ==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:
