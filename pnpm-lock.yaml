@@ -10,7 +10,7 @@ importers:
     devDependencies:
       '@adfinis/eslint-config':
         specifier: 2.0.0
-        version: 2.0.0(@babel/core@7.22.9)(@babel/eslint-parser@7.22.9)(eslint-config-prettier@8.8.0)(eslint-plugin-ember@11.10.0)(eslint-plugin-import@2.27.5)(eslint-plugin-n@16.0.1)(eslint-plugin-prettier@5.0.0)(eslint-plugin-qunit@8.0.0)(eslint@8.45.0)(prettier@3.0.0)
+        version: 2.0.0(@babel/core@7.22.9)(@babel/eslint-parser@7.22.9)(eslint-config-prettier@8.8.0)(eslint-plugin-ember@11.10.0)(eslint-plugin-import@2.28.0)(eslint-plugin-n@16.0.1)(eslint-plugin-prettier@5.0.0)(eslint-plugin-qunit@8.0.0)(eslint@8.45.0)(prettier@3.0.0)
       '@babel/core':
         specifier: 7.22.9
         version: 7.22.9
@@ -63,8 +63,8 @@ importers:
         specifier: 11.10.0
         version: 11.10.0(eslint@8.45.0)
       eslint-plugin-import:
-        specifier: 2.27.5
-        version: 2.27.5(eslint@8.45.0)
+        specifier: 2.28.0
+        version: 2.28.0(eslint@8.45.0)
       eslint-plugin-n:
         specifier: 16.0.1
         version: 16.0.1(eslint@8.45.0)
@@ -1364,7 +1364,7 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /@adfinis/eslint-config@2.0.0(@babel/core@7.22.9)(@babel/eslint-parser@7.22.9)(eslint-config-prettier@8.8.0)(eslint-plugin-ember@11.10.0)(eslint-plugin-import@2.27.5)(eslint-plugin-n@16.0.1)(eslint-plugin-prettier@5.0.0)(eslint-plugin-qunit@8.0.0)(eslint@8.45.0)(prettier@3.0.0):
+  /@adfinis/eslint-config@2.0.0(@babel/core@7.22.9)(@babel/eslint-parser@7.22.9)(eslint-config-prettier@8.8.0)(eslint-plugin-ember@11.10.0)(eslint-plugin-import@2.28.0)(eslint-plugin-n@16.0.1)(eslint-plugin-prettier@5.0.0)(eslint-plugin-qunit@8.0.0)(eslint@8.45.0)(prettier@3.0.0):
     resolution: {integrity: sha512-jfD8GUBZwwbO6S7d/VLSwZ57tNdM3uD9R2Mgi9uh5/Mr6SCOeJ/CH/9LrxtqxIWASqDvyCmDh7SMsWaVHfqpCQ==}
     peerDependencies:
       '@babel/core': ^7.21.4
@@ -1383,7 +1383,7 @@ packages:
       eslint: 8.45.0
       eslint-config-prettier: 8.8.0(eslint@8.45.0)
       eslint-plugin-ember: 11.10.0(eslint@8.45.0)
-      eslint-plugin-import: 2.27.5(eslint@8.45.0)
+      eslint-plugin-import: 2.28.0(eslint@8.45.0)
       eslint-plugin-n: 16.0.1(eslint@8.45.0)
       eslint-plugin-prettier: 5.0.0(eslint-config-prettier@8.8.0)(eslint@8.45.0)(prettier@3.0.0)
       eslint-plugin-qunit: 8.0.0(eslint@8.45.0)
@@ -5549,6 +5549,17 @@ packages:
   /array-unique@0.3.2:
     resolution: {integrity: sha512-SleRWjh9JUud2wH1hPs9rZBZ33H6T9HOiL0uwGnGx9FpE6wKGyfWugmbkEOIs6qWrZhg0LWeLziLrEwQJhs5mQ==}
     engines: {node: '>=0.10.0'}
+
+  /array.prototype.findlastindex@1.2.2:
+    resolution: {integrity: sha512-tb5thFFlUcp7NdNF6/MpDk/1r/4awWG1FIz3YqDf+/zJSTezBb+/5WViH41obXULHVpDzoiCLpJ/ZO9YbJMsdw==}
+    engines: {node: '>= 0.4'}
+    dependencies:
+      call-bind: 1.0.2
+      define-properties: 1.2.0
+      es-abstract: 1.22.1
+      es-shim-unscopables: 1.0.0
+      get-intrinsic: 1.2.1
+    dev: true
 
   /array.prototype.flat@1.3.1:
     resolution: {integrity: sha512-roTU0KWIOmJ4DRLmwKd19Otg0/mT3qPNt0Qb3GWW8iObuZXxrjB/pzn0R3hqpRSWg4HCwqx+0vwOnWnvlOyeIA==}
@@ -11542,8 +11553,8 @@ packages:
       eslint: 8.45.0
     dev: true
 
-  /eslint-plugin-import@2.27.5(eslint@8.45.0):
-    resolution: {integrity: sha512-LmEt3GVofgiGuiE+ORpnvP+kAm3h6MLZJ4Q5HCyHADofsb4VzXFsRiWj3c0OFiV+3DWFh0qg3v9gcPlfc3zRow==}
+  /eslint-plugin-import@2.28.0(eslint@8.45.0):
+    resolution: {integrity: sha512-B8s/n+ZluN7sxj9eUf7/pRFERX0r5bnFA2dCaLHy2ZeaQEAz0k+ZZkFWRFHJAqxfxQDx6KLv9LeIki7cFdwW+Q==}
     engines: {node: '>=4'}
     peerDependencies:
       '@typescript-eslint/parser': '*'
@@ -11553,6 +11564,7 @@ packages:
         optional: true
     dependencies:
       array-includes: 3.1.6
+      array.prototype.findlastindex: 1.2.2
       array.prototype.flat: 1.3.1
       array.prototype.flatmap: 1.3.1
       debug: 3.2.7
@@ -11564,8 +11576,10 @@ packages:
       is-core-module: 2.12.1
       is-glob: 4.0.3
       minimatch: 3.1.2
+      object.fromentries: 2.0.6
+      object.groupby: 1.0.0
       object.values: 1.1.6
-      resolve: 1.22.2
+      resolve: 1.22.3
       semver: 6.3.1
       tsconfig-paths: 3.14.2
     transitivePeerDependencies:
@@ -16038,6 +16052,15 @@ packages:
       has-symbols: 1.0.3
       object-keys: 1.1.1
 
+  /object.fromentries@2.0.6:
+    resolution: {integrity: sha512-VciD13dswC4j1Xt5394WR4MzmAQmlgN72phd/riNp9vtD7tp4QQWJ0R4wvclXcafgcYK8veHRed2W6XeGBvcfg==}
+    engines: {node: '>= 0.4'}
+    dependencies:
+      call-bind: 1.0.2
+      define-properties: 1.2.0
+      es-abstract: 1.22.1
+    dev: true
+
   /object.getownpropertydescriptors@2.1.6:
     resolution: {integrity: sha512-lq+61g26E/BgHv0ZTFgRvi7NMEPuAxLkFU7rukXjc/AlwH4Am5xXVnIXy3un1bg/JPbXHrixRkK1itUzzPiIjQ==}
     engines: {node: '>= 0.8'}
@@ -16047,6 +16070,15 @@ packages:
       define-properties: 1.2.0
       es-abstract: 1.22.1
       safe-array-concat: 1.0.0
+
+  /object.groupby@1.0.0:
+    resolution: {integrity: sha512-70MWG6NfRH9GnbZOikuhPPYzpUpof9iW2J9E4dW7FXTqPNb6rllE6u39SKwwiNh8lCwX3DDb5OgcKGiEBrTTyw==}
+    dependencies:
+      call-bind: 1.0.2
+      define-properties: 1.2.0
+      es-abstract: 1.22.1
+      get-intrinsic: 1.2.1
+    dev: true
 
   /object.pick@1.3.0:
     resolution: {integrity: sha512-tqa/UMy/CCoYmj+H5qc07qvSL9dqcs/WZENZ1JbtWBlATP+iVOe778gE6MSijnyCnORzDuX6hU+LA4SZ09YjFQ==}
