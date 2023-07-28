@@ -32,7 +32,7 @@
     "ember-fetch": "^8.1.2",
     "ember-flatpickr": "^4.0.0",
     "ember-intl": "^5.7.2",
-    "ember-resources": "^6.2.2",
+    "ember-resources": "^6.3.1",
     "ember-svg-jar": "^2.4.3",
     "ember-test-selectors": "^6.0.0",
     "ember-uikit": "^8.0.0",
