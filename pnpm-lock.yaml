@@ -255,8 +255,8 @@ importers:
         specifier: 7.1.0
         version: 7.1.0(@babel/core@7.22.9)(@glint/template@1.0.2)(ember-source@4.12.3)(webpack@5.88.2)
       ember-resolver:
-        specifier: 10.1.1
-        version: 10.1.1(@ember/string@3.1.1)(ember-source@4.12.3)
+        specifier: 11.0.0
+        version: 11.0.0(ember-source@4.12.3)
       ember-sortable:
         specifier: 5.0.0
         version: 5.0.0(@ember/test-helpers@3.2.0)(@ember/test-waiters@3.0.2)(ember-modifier@4.1.0)(ember-source@4.12.3)
@@ -424,8 +424,8 @@ importers:
         specifier: 7.0.0
         version: 7.0.0(@ember/test-helpers@3.2.0)(@glint/template@1.0.2)(ember-source@4.12.3)(qunit@2.19.4)(webpack@5.88.2)
       ember-resolver:
-        specifier: 10.1.1
-        version: 10.1.1(@ember/string@3.1.1)(ember-source@4.12.3)
+        specifier: 11.0.0
+        version: 11.0.0(ember-source@4.12.3)
       ember-source:
         specifier: 4.12.3
         version: 4.12.3(@babel/core@7.22.9)(@glimmer/component@1.1.2)(@glint/template@1.0.2)(webpack@5.88.2)
@@ -566,8 +566,8 @@ importers:
         specifier: 7.0.0
         version: 7.0.0(@ember/test-helpers@3.2.0)(@glint/template@1.0.2)(ember-source@4.12.3)(qunit@2.19.4)(webpack@5.88.2)
       ember-resolver:
-        specifier: 10.1.1
-        version: 10.1.1(@ember/string@3.1.1)(ember-source@4.12.3)
+        specifier: 11.0.0
+        version: 11.0.0(ember-source@4.12.3)
       ember-source:
         specifier: 4.12.3
         version: 4.12.3(@babel/core@7.22.9)(@glimmer/component@1.1.2)(@glint/template@1.0.2)(webpack@5.88.2)
@@ -729,8 +729,8 @@ importers:
         specifier: 7.0.0
         version: 7.0.0(@ember/test-helpers@3.2.0)(@glint/template@1.0.2)(ember-source@4.12.3)(qunit@2.19.4)(webpack@5.88.2)
       ember-resolver:
-        specifier: 10.1.1
-        version: 10.1.1(@ember/string@3.1.1)(ember-source@4.12.3)
+        specifier: 11.0.0
+        version: 11.0.0(ember-source@4.12.3)
       ember-source:
         specifier: 4.12.3
         version: 4.12.3(@babel/core@7.22.9)(@glimmer/component@1.1.2)(@glint/template@1.0.2)(webpack@5.88.2)
@@ -898,8 +898,8 @@ importers:
         specifier: 7.0.0
         version: 7.0.0(@ember/test-helpers@3.2.0)(@glint/template@1.0.2)(ember-source@4.12.3)(qunit@2.19.4)(webpack@5.88.2)
       ember-resolver:
-        specifier: 10.1.1
-        version: 10.1.1(@ember/string@3.1.1)(ember-source@4.12.3)
+        specifier: 11.0.0
+        version: 11.0.0(ember-source@4.12.3)
       ember-source:
         specifier: 4.12.3
         version: 4.12.3(@babel/core@7.22.9)(@glimmer/component@1.1.2)(@glint/template@1.0.2)(webpack@5.88.2)
@@ -1088,8 +1088,8 @@ importers:
         specifier: 7.0.0
         version: 7.0.0(@ember/test-helpers@3.2.0)(@glint/template@1.0.2)(ember-source@4.12.3)(qunit@2.19.4)(webpack@5.88.2)
       ember-resolver:
-        specifier: 10.1.1
-        version: 10.1.1(@ember/string@3.1.1)(ember-source@4.12.3)
+        specifier: 11.0.0
+        version: 11.0.0(ember-source@4.12.3)
       ember-source:
         specifier: 4.12.3
         version: 4.12.3(@babel/core@7.22.9)(@glimmer/component@1.1.2)(@glint/template@1.0.2)(webpack@5.88.2)
@@ -1206,8 +1206,8 @@ importers:
         specifier: 7.0.0
         version: 7.0.0(@ember/test-helpers@3.2.0)(@glint/template@1.0.2)(ember-source@4.12.3)(qunit@2.19.4)(webpack@5.88.2)
       ember-resolver:
-        specifier: 10.1.1
-        version: 10.1.1(@ember/string@3.1.1)(ember-source@4.12.3)
+        specifier: 11.0.0
+        version: 11.0.0(ember-source@4.12.3)
       ember-source:
         specifier: 4.12.3
         version: 4.12.3(@babel/core@7.22.9)(@glimmer/component@1.1.2)(@glint/template@1.0.2)(webpack@5.88.2)
@@ -1330,8 +1330,8 @@ importers:
         specifier: 7.0.0
         version: 7.0.0(@ember/test-helpers@3.2.0)(@glint/template@1.0.2)(ember-source@4.12.3)(qunit@2.19.4)(webpack@5.88.2)
       ember-resolver:
-        specifier: 10.1.1
-        version: 10.1.1(@ember/string@3.1.1)(ember-source@4.12.3)
+        specifier: 11.0.0
+        version: 11.0.0(ember-source@4.12.3)
       ember-source:
         specifier: 4.12.3
         version: 4.12.3(@babel/core@7.22.9)(@glimmer/component@1.1.2)(@glint/template@1.0.2)(webpack@5.88.2)
@@ -10788,17 +10788,15 @@ packages:
       - supports-color
       - webpack
 
-  /ember-resolver@10.1.1(@ember/string@3.1.1)(ember-source@4.12.3):
-    resolution: {integrity: sha512-y1zzn6C4YGJui+tJzcCKlsf1oSOSVAkRrvmg8OwqVIKnALKKb9ihx2qLCslHg8x0wJvJgMtDMXgrczvQrZW0Lw==}
+  /ember-resolver@11.0.0(ember-source@4.12.3):
+    resolution: {integrity: sha512-TOc685OnGEMMNEt04BukmQHOYVXnRJc+sGZij/vzWdxXRq+Wpsu1Nw2nLFo6fbMqqVLATk5oLKAQ1eKQwte2wQ==}
     engines: {node: 14.* || 16.* || >= 18}
     peerDependencies:
-      '@ember/string': ^3.0.1
       ember-source: ^4.8.3 || >= 5.0.0
     peerDependenciesMeta:
       ember-source:
         optional: true
     dependencies:
-      '@ember/string': 3.1.1
       ember-cli-babel: 7.26.11
       ember-source: 4.12.3(@babel/core@7.22.9)(@glimmer/component@1.1.2)(@glint/template@1.0.2)(webpack@5.88.2)
     transitivePeerDependencies:
