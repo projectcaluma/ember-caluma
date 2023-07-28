@@ -33,7 +33,7 @@
     "ember-intl": "^5.7.2",
     "ember-math-helpers": "^3.0.0",
     "ember-power-select": "^7.1.0",
-    "ember-resources": "^6.2.2",
+    "ember-resources": "^6.3.1",
     "ember-uikit": "^8.0.0",
     "ember-validators": "^4.1.2",
     "graphql": "^15.8.0",
