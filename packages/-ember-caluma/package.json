@@ -68,7 +68,7 @@
     "graphql": "15.8.0",
     "loader.js": "4.7.0",
     "miragejs": "0.1.47",
-    "sass": "1.64.0",
+    "sass": "1.64.1",
     "tracked-built-ins": "3.1.1",
     "uikit": "3.16.22",
     "webpack": "5.88.2"
