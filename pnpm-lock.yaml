@@ -10,7 +10,7 @@ importers:
     devDependencies:
       '@adfinis/eslint-config':
         specifier: 2.0.0
-        version: 2.0.0(@babel/core@7.22.9)(@babel/eslint-parser@7.22.9)(eslint-config-prettier@8.8.0)(eslint-plugin-ember@11.10.0)(eslint-plugin-import@2.28.0)(eslint-plugin-n@16.0.1)(eslint-plugin-prettier@5.0.0)(eslint-plugin-qunit@8.0.0)(eslint@8.45.0)(prettier@3.0.0)
+        version: 2.0.0(@babel/core@7.22.9)(@babel/eslint-parser@7.22.9)(eslint-config-prettier@8.9.0)(eslint-plugin-ember@11.10.0)(eslint-plugin-import@2.28.0)(eslint-plugin-n@16.0.1)(eslint-plugin-prettier@5.0.0)(eslint-plugin-qunit@8.0.0)(eslint@8.45.0)(prettier@3.0.0)
       '@babel/core':
         specifier: 7.22.9
         version: 7.22.9
@@ -57,8 +57,8 @@ importers:
         specifier: 8.45.0
         version: 8.45.0
       eslint-config-prettier:
-        specifier: 8.8.0
-        version: 8.8.0(eslint@8.45.0)
+        specifier: 8.9.0
+        version: 8.9.0(eslint@8.45.0)
       eslint-plugin-ember:
         specifier: 11.10.0
         version: 11.10.0(eslint@8.45.0)
@@ -70,7 +70,7 @@ importers:
         version: 16.0.1(eslint@8.45.0)
       eslint-plugin-prettier:
         specifier: 5.0.0
-        version: 5.0.0(eslint-config-prettier@8.8.0)(eslint@8.45.0)(prettier@3.0.0)
+        version: 5.0.0(eslint-config-prettier@8.9.0)(eslint@8.45.0)(prettier@3.0.0)
       eslint-plugin-qunit:
         specifier: 8.0.0
         version: 8.0.0(eslint@8.45.0)
@@ -1364,7 +1364,7 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /@adfinis/eslint-config@2.0.0(@babel/core@7.22.9)(@babel/eslint-parser@7.22.9)(eslint-config-prettier@8.8.0)(eslint-plugin-ember@11.10.0)(eslint-plugin-import@2.28.0)(eslint-plugin-n@16.0.1)(eslint-plugin-prettier@5.0.0)(eslint-plugin-qunit@8.0.0)(eslint@8.45.0)(prettier@3.0.0):
+  /@adfinis/eslint-config@2.0.0(@babel/core@7.22.9)(@babel/eslint-parser@7.22.9)(eslint-config-prettier@8.9.0)(eslint-plugin-ember@11.10.0)(eslint-plugin-import@2.28.0)(eslint-plugin-n@16.0.1)(eslint-plugin-prettier@5.0.0)(eslint-plugin-qunit@8.0.0)(eslint@8.45.0)(prettier@3.0.0):
     resolution: {integrity: sha512-jfD8GUBZwwbO6S7d/VLSwZ57tNdM3uD9R2Mgi9uh5/Mr6SCOeJ/CH/9LrxtqxIWASqDvyCmDh7SMsWaVHfqpCQ==}
     peerDependencies:
       '@babel/core': ^7.21.4
@@ -1381,11 +1381,11 @@ packages:
       '@babel/core': 7.22.9
       '@babel/eslint-parser': 7.22.9(@babel/core@7.22.9)(eslint@8.45.0)
       eslint: 8.45.0
-      eslint-config-prettier: 8.8.0(eslint@8.45.0)
+      eslint-config-prettier: 8.9.0(eslint@8.45.0)
       eslint-plugin-ember: 11.10.0(eslint@8.45.0)
       eslint-plugin-import: 2.28.0(eslint@8.45.0)
       eslint-plugin-n: 16.0.1(eslint@8.45.0)
-      eslint-plugin-prettier: 5.0.0(eslint-config-prettier@8.8.0)(eslint@8.45.0)(prettier@3.0.0)
+      eslint-plugin-prettier: 5.0.0(eslint-config-prettier@8.9.0)(eslint@8.45.0)(prettier@3.0.0)
       eslint-plugin-qunit: 8.0.0(eslint@8.45.0)
       prettier: 3.0.0
     dev: true
@@ -11502,8 +11502,8 @@ packages:
       source-map: 0.6.1
     dev: true
 
-  /eslint-config-prettier@8.8.0(eslint@8.45.0):
-    resolution: {integrity: sha512-wLbQiFre3tdGgpDv67NQKnJuTlcUVYHas3k+DZCc2U2BadthoEY4B7hLPvAxaqdyOGCzuLfii2fqGph10va7oA==}
+  /eslint-config-prettier@8.9.0(eslint@8.45.0):
+    resolution: {integrity: sha512-+sbni7NfVXnOpnRadUA8S28AUlsZt9GjgFvABIRL9Hkn8KqNzOp+7Lw4QWtrwn20KzU3wqu1QoOj2m+7rKRqkA==}
     hasBin: true
     peerDependencies:
       eslint: '>=7.0.0'
@@ -11640,7 +11640,7 @@ packages:
       semver: 7.5.4
     dev: true
 
-  /eslint-plugin-prettier@5.0.0(eslint-config-prettier@8.8.0)(eslint@8.45.0)(prettier@3.0.0):
+  /eslint-plugin-prettier@5.0.0(eslint-config-prettier@8.9.0)(eslint@8.45.0)(prettier@3.0.0):
     resolution: {integrity: sha512-AgaZCVuYDXHUGxj/ZGu1u8H8CYgDY3iG6w5kUFw4AzMVXzB7VvbKgYR4nATIN+OvUrghMbiDLeimVjVY5ilq3w==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
@@ -11655,7 +11655,7 @@ packages:
         optional: true
     dependencies:
       eslint: 8.45.0
-      eslint-config-prettier: 8.8.0(eslint@8.45.0)
+      eslint-config-prettier: 8.9.0(eslint@8.45.0)
       prettier: 3.0.0
       prettier-linter-helpers: 1.0.0
       synckit: 0.8.5
