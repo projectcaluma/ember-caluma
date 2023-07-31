@@ -46,7 +46,7 @@
     "highlight.js": "^11.8.0",
     "highlightjs-jexl": "^0.0.5",
     "jexl": "^2.3.0",
-    "uikit": "^3.16.22"
+    "uikit": "^3.16.23"
   },
   "//": [
     "TODO: remove obsolete dependency to `ember-data` which is only necessary",
