@@ -16,7 +16,7 @@
   "dependencies": {
     "@ember/legacy-built-in-components": "^0.4.2",
     "@ember/string": "^3.1.1",
-    "@embroider/macros": "^1.12.3",
+    "@embroider/macros": "^1.13.0",
     "@glimmer/component": "^1.1.2",
     "@glimmer/tracking": "^1.1.2",
     "@projectcaluma/ember-core": "workspace:^",
