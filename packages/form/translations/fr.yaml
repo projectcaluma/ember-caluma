@@ -51,3 +51,4 @@ caluma:
       uploadFailed: "Une erreur s'est produite pendant le téléchargement."
       format: "{errorMsg}"
       table: "Au moins une ligne du tableau n'a pas été remplie correctement"
+      error: "Les questions suivantes ne sont pas encore correctement remplies :"

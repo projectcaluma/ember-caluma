@@ -12,8 +12,9 @@ if (macroCondition(dependencySatisfies("@projectcaluma/ember-workflow", ""))) {
       super(...args);
 
       assert(
-        "The document must have a `workItemUuid` for `<CfField::Input::ActionButton />` to work.",
-        this.args.field.document.workItemUuid,
+        "The document or context must have a `workItem` for `<CfField::Input::ActionButton />` to work.",
+        this.args.field.document.workItemUuid ||
+          this.args.context?.actionButtonWorkItemId,
       );
     }
 
@@ -36,6 +37,12 @@ if (macroCondition(dependencySatisfies("@projectcaluma/ember-workflow", ""))) {
       return (
         this.args.field.question.raw.action === "COMPLETE" &&
         this.args.field.question.raw.validateOnEnter
+      );
+    }
+
+    get invalidFields() {
+      return this.args.field.document.fields.filter(
+        (field) => !field.hidden && field.isInvalid,
       );
     }
 
