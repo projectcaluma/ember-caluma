@@ -175,6 +175,15 @@ caluma:
           success: "Ihre Frage wurde erfolgreich gespeichert!"
           error: "Hoppla, beim Speichern der Frage ist etwas schief gelaufen..."
 
+    copy-modal:
+      title: '"{form}" kopieren'
+      name:
+        label: "Name"
+        hint: "Original: {name}"
+      slug:
+        label: "Slug"
+        hint: "Original: {slug}"
+      submit: "Formular kopieren"
     validations:
       form:
         slug: "Ein Formular mit diesem Slug existiert bereits"

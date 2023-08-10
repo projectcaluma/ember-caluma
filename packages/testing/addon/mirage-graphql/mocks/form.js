@@ -37,4 +37,13 @@ export default class FormMock extends BaseMock {
       },
     });
   }
+
+  @register("CopyFormPayload")
+  handleCopyForm(_, { input }) {
+    return this.handleSavePayload.fn.call(this, _, {
+      input: {
+        slug: input.slug,
+      },
+    });
+  }
 }
