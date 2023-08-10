@@ -8,6 +8,24 @@
     @validateOnEnter={{this.validateOnEnter}}
     as |isValid validate|
   >
+    {{#if (and this.invalidFields.length @context.showValidation)}}
+      <div class="uk-alert uk-alert-danger uk-animation-fade">
+        <div class="uk-flex-inline uk-flex-middle uk-text-bold">
+          <UkIcon @icon="warning" class="uk-margin-small-right" />
+          {{t "caluma.form.validation.error"}}
+        </div>
+        <ul class="uk-list uk-list-bullet">
+          {{#each this.invalidFields as |invalidField|}}
+            <li>
+              <LinkTo
+                @query={{hash displayedForm=invalidField.fieldset.form.slug}}
+              >{{invalidField.question.raw.label}}</LinkTo>
+            </li>
+          {{/each}}
+        </ul>
+      </div>
+    {{/if}}
+
     <WorkItemButton
       @workItemId={{this.workItem}}
       @mutation={{this.action}}
