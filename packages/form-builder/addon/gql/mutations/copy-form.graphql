@@ -1,0 +1,11 @@
+#import FormInfo from '../fragments/form-info.graphql'
+
+mutation CopyForm($input: CopyFormInput!) {
+  copyForm(input: $input) {
+    form {
+      id
+      ...FormInfo
+    }
+    clientMutationId
+  }
+}

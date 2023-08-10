@@ -175,6 +175,16 @@ caluma:
           success: "Your question was successfully saved!"
           error: "Ooops, something went wrong while saving the question..."
 
+    copy-modal:
+      title: 'Copy "{form}"'
+      name:
+        label: "Name"
+        hint: "Original: {name}"
+      slug:
+        label: "Slug"
+        hint: "Original: {slug}"
+      submit: "Copy form"
+
     validations:
       form:
         slug: "A form with this slug already exists"

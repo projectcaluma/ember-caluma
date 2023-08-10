@@ -1,0 +1,49 @@
+{{#if this.visible}}
+  <UkModal
+    @visible={{this.visible}}
+    @onHide={{fn (mut this.visible) false}}
+    data-test-copy-form-modal
+    as |modal|
+  >
+    <ValidatedForm
+      @model={{this.changeset}}
+      @on-submit={{perform this.submit}}
+      as |f|
+    >
+      <modal.header>
+        <h2 class="uk-modal-title">
+          {{t "caluma.form-builder.copy-modal.title" form=@item.name}}
+        </h2>
+      </modal.header>
+      <modal.body>
+        <f.input
+          @name="name"
+          @label={{t "caluma.form-builder.copy-modal.name.label"}}
+          @hint={{t "caluma.form-builder.copy-modal.name.hint" name=@item.name}}
+          data-test-copy-modal-input-name
+        />
+        <f.input
+          @name="slug"
+          @label={{t "caluma.form-builder.copy-modal.slug.label"}}
+          @hint={{t "caluma.form-builder.copy-modal.slug.hint" slug=@item.slug}}
+          data-test-copy-modal-input-slug
+        />
+      </modal.body>
+      <modal.footer class="uk-text-right">
+        <f.submit
+          @loading={{this.submit.isRunning}}
+          @disabled={{or
+            this.submit.isRunning
+            (not this.changeset.isValid)
+            (eq @item.slug this.changeset.slug)
+          }}
+          data-test-copy-form-submit
+        >
+          {{t "caluma.form-builder.copy-modal.submit"}}
+        </f.submit>
+      </modal.footer>
+    </ValidatedForm>
+  </UkModal>
+{{/if}}
+
+{{yield (hash toggle=this.toggle)}}
