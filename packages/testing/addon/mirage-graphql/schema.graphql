@@ -44,6 +44,7 @@ type ActionButtonQuestion implements Question & Node {
   action: ButtonAction!
   color: ButtonColor!
   validateOnEnter: Boolean!
+  showValidation: Boolean!
 }
 
 input AddFormQuestionInput {
@@ -1874,6 +1875,7 @@ enum JSONLookupMode {
   CONTAINS
   ICONTAINS
   IN
+  INTERSECTS
   GTE
   GT
   LTE
@@ -2633,6 +2635,7 @@ input SaveActionButtonQuestionInput {
   action: ButtonAction!
   color: ButtonColor!
   validateOnEnter: Boolean!
+  showValidation: Boolean!
   clientMutationId: String
 }
 

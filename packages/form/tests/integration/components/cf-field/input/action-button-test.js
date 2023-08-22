@@ -3,6 +3,7 @@ import { tracked } from "@glimmer/tracking";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { restartableTask } from "ember-concurrency";
+import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 import UIkit from "uikit";
 
@@ -13,35 +14,64 @@ module(
   function (hooks) {
     setupRenderingTest(hooks);
     setupMirage(hooks);
+    setupIntl(hooks);
 
     hooks.beforeEach(function (assert) {
       UIkit.container = this.owner.rootElement;
+
+      const validField = new (class {
+        @tracked isValid = true;
+
+        @restartableTask
+        *validate() {
+          yield assert.step("validate");
+        }
+      })();
+
+      const invalidField = new (class {
+        @tracked isValid = true;
+        @tracked hidden = false;
+
+        get isInvalid() {
+          return !this.isValid;
+        }
+
+        question = { raw: { label: "foo" } };
+
+        @restartableTask
+        validate() {
+          this.isValid = false;
+        }
+      })();
+
+      const question = {
+        raw: {
+          label: "Submit",
+          infoText: "Really?",
+          action: "COMPLETE",
+          color: "SECONDARY",
+          validateOnEnter: false,
+          showValidation: false,
+        },
+      };
 
       this.field = {
         document: {
           workItemUuid: this.server.create("work-item", {
             case: this.server.create("case"),
           }).id,
-          fields: [
-            new (class {
-              @tracked isValid = true;
-
-              @restartableTask
-              *validate() {
-                yield assert.step("validate");
-              }
-            })(),
-          ],
+          fields: [validField],
         },
-        question: {
-          raw: {
-            label: "Submit",
-            infoText: "Really?",
-            action: "COMPLETE",
-            color: "SECONDARY",
-            validateOnEnter: false,
-          },
+        question,
+      };
+      this.invalidField = {
+        document: {
+          workItemUuid: this.server.create("work-item", {
+            case: this.server.create("case"),
+          }).id,
+          fields: [invalidField],
         },
+        question,
       };
 
       this.success = function () {
@@ -83,6 +113,28 @@ module(
       await waitFor("button:enabled");
 
       assert.verifySteps(["validate"]);
+    });
+
+    test("doesn't show validation errors if not configured", async function (assert) {
+      await render(
+        hbs`<CfField::Input::ActionButton @field={{this.invalidField}} />`,
+      );
+      await click("button.uk-button-secondary");
+
+      assert.dom(".uk-alert-danger").doesNotExist();
+    });
+
+    test("shows validation errors if configured", async function (assert) {
+      this.invalidField.question.raw.showValidation = true;
+
+      await render(
+        hbs`<CfField::Input::ActionButton @field={{this.invalidField}} />`,
+      );
+      await click("button.uk-button-secondary");
+
+      assert
+        .dom(".uk-alert-danger")
+        .hasText("t:caluma.form.validation.error:() foo");
     });
 
     test("does not validate if action is skip", async function (assert) {

@@ -8,7 +8,7 @@
     @validateOnEnter={{this.validateOnEnter}}
     as |isValid validate|
   >
-    {{#if (and this.invalidFields.length @context.showValidation)}}
+    {{#if (and this.invalidFields.length @field.question.raw.showValidation)}}
       <div class="uk-alert uk-alert-danger uk-animation-fade">
         <div class="uk-flex-inline uk-flex-middle uk-text-bold">
           <UkIcon @icon="warning" class="uk-margin-small-right" />

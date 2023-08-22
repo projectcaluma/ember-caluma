@@ -110,6 +110,7 @@ export default class CfbFormEditorQuestion extends Component {
             action: ACTIONS[0],
             color: COLORS[0],
             validateOnEnter: false,
+            showValidation: false,
             __typename: Object.keys(TYPES)[0],
           },
         },
@@ -348,6 +349,7 @@ export default class CfbFormEditorQuestion extends Component {
       action: changeset.get("action"),
       color: changeset.get("color"),
       validateOnEnter: Boolean(changeset.get("validateOnEnter")),
+      showValidation: Boolean(changeset.get("showValidation")),
     };
   }
 

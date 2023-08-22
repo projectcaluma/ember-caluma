@@ -88,6 +88,9 @@ export default Factory.extend({
       if (question.validateOnEnter === undefined) {
         question.update({ validateOnEnter: false });
       }
+      if (question.showValidation === undefined) {
+        question.update({ showValidation: false });
+      }
     }
   },
 });

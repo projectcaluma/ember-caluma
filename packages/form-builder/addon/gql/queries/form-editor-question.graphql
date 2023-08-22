@@ -170,6 +170,7 @@ query FormEditorQuestion($slug: String!) {
           action
           color
           validateOnEnter
+          showValidation
         }
       }
     }

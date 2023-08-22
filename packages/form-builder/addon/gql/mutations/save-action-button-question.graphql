@@ -9,6 +9,7 @@ mutation SaveActionButtonQuestion($input: SaveActionButtonQuestionInput!) {
         action
         color
         validateOnEnter
+        showValidation
       }
     }
     clientMutationId

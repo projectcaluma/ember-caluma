@@ -115,6 +115,7 @@ caluma:
       action: "Aktion"
       color: "Farbe"
       validateOnEnter: "Validierung beim Betreten des Fensters"
+      showValidation: "Validierungs-Fehler anzeigen"
 
       actions:
         COMPLETE: "Abschliessen"

@@ -115,6 +115,7 @@ caluma:
       action: "Action"
       color: "Color"
       validateOnEnter: "Validate on entering the viewport"
+      showValidation: "Show validation errors"
 
       actions:
         COMPLETE: "Complete"
