@@ -12,7 +12,7 @@ if (macroCondition(dependencySatisfies("@projectcaluma/ember-workflow", ""))) {
       super(...args);
 
       assert(
-        "The document or context must have a `workItem` for `<CfField::Input::ActionButton />` to work.",
+        "`<CfField::Input::ActionButton />` did not find a `workItem` related to the `document` or passed via `context.actionButtonWorkItemId`.",
         this.args.field.document.workItemUuid ||
           this.args.context?.actionButtonWorkItemId,
       );
