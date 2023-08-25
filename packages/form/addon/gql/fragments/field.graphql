@@ -119,6 +119,7 @@ fragment SimpleQuestion on Question {
     action
     color
     validateOnEnter
+    showValidation
   }
 }
 
