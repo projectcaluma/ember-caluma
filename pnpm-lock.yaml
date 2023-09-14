@@ -345,8 +345,8 @@ importers:
         specifier: ^7.1.0
         version: 7.1.0(@babel/core@7.22.9)(@glint/template@1.0.2)(ember-source@4.12.3)(webpack@5.88.2)
       ember-resources:
-        specifier: ^6.3.1
-        version: 6.3.1(@ember/test-waiters@3.0.2)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.0.2)(ember-concurrency@3.0.0)(ember-source@4.12.3)
+        specifier: ^6.4.0
+        version: 6.4.0(@ember/test-waiters@3.0.2)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.0.2)(ember-concurrency@3.0.0)(ember-source@4.12.3)
       ember-sortable:
         specifier: ^5.0.0
         version: 5.0.0(@ember/test-helpers@3.2.0)(@ember/test-waiters@3.0.2)(ember-modifier@4.1.0)(ember-source@4.12.3)
@@ -490,8 +490,8 @@ importers:
         specifier: ^5.7.2
         version: 5.7.2
       ember-resources:
-        specifier: ^6.3.1
-        version: 6.3.1(@ember/test-waiters@3.0.2)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.0.2)(ember-concurrency@3.0.0)(ember-source@4.12.3)
+        specifier: ^6.4.0
+        version: 6.4.0(@ember/test-waiters@3.0.2)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.0.2)(ember-concurrency@3.0.0)(ember-source@4.12.3)
       ember-uikit:
         specifier: ^8.0.0
         version: 8.0.0(@babel/core@7.22.9)(@glint/template@1.0.2)(ember-source@4.12.3)(webpack@5.88.2)
@@ -650,8 +650,8 @@ importers:
         specifier: ^5.7.2
         version: 5.7.2
       ember-resources:
-        specifier: ^6.3.1
-        version: 6.3.1(@ember/test-waiters@3.0.2)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.0.2)(ember-concurrency@3.0.0)(ember-source@4.12.3)
+        specifier: ^6.4.0
+        version: 6.4.0(@ember/test-waiters@3.0.2)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.0.2)(ember-concurrency@3.0.0)(ember-source@4.12.3)
       ember-svg-jar:
         specifier: ^2.4.3
         version: 2.4.3(@glint/template@1.0.2)
@@ -825,8 +825,8 @@ importers:
         specifier: ^7.1.0
         version: 7.1.0(@babel/core@7.22.9)(@glint/template@1.0.2)(ember-source@4.12.3)(webpack@5.88.2)
       ember-resources:
-        specifier: ^6.3.1
-        version: 6.3.1(@ember/test-waiters@3.0.2)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.0.2)(ember-concurrency@3.0.0)(ember-source@4.12.3)
+        specifier: ^6.4.0
+        version: 6.4.0(@ember/test-waiters@3.0.2)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.0.2)(ember-concurrency@3.0.0)(ember-source@4.12.3)
       ember-uikit:
         specifier: ^8.0.0
         version: 8.0.0(@babel/core@7.22.9)(@glint/template@1.0.2)(ember-source@4.12.3)(webpack@5.88.2)
@@ -1003,8 +1003,8 @@ importers:
         specifier: ^7.1.0
         version: 7.1.0(@babel/core@7.22.9)(@glint/template@1.0.2)(ember-source@4.12.3)(webpack@5.88.2)
       ember-resources:
-        specifier: ^6.3.1
-        version: 6.3.1(@ember/test-waiters@3.0.2)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.0.2)(ember-concurrency@3.0.0)(ember-source@4.12.3)
+        specifier: ^6.4.0
+        version: 6.4.0(@ember/test-waiters@3.0.2)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.0.2)(ember-concurrency@3.0.0)(ember-source@4.12.3)
       ember-test-selectors:
         specifier: ^6.0.0
         version: 6.0.0
@@ -1266,8 +1266,8 @@ importers:
         specifier: ^5.7.2
         version: 5.7.2
       ember-resources:
-        specifier: ^6.3.1
-        version: 6.3.1(@ember/test-waiters@3.0.2)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.0.2)(ember-concurrency@3.0.0)(ember-source@4.12.3)
+        specifier: ^6.4.0
+        version: 6.4.0(@ember/test-waiters@3.0.2)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.0.2)(ember-concurrency@3.0.0)(ember-source@4.12.3)
       ember-truth-helpers:
         specifier: ^3.1.1
         version: 3.1.1
@@ -1721,6 +1721,7 @@ packages:
   /@babel/plugin-proposal-class-properties@7.18.6(@babel/core@7.22.9):
     resolution: {integrity: sha512-cumfXOF0+nzZrrN8Rf0t7M+tF6sZc7vhQwYQck9q1/5w2OExlD+b4v4RpMJFaV1Z7WcDRgO6FqvxqxGlwo+RHQ==}
     engines: {node: '>=6.9.0'}
+    deprecated: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-class-properties instead.
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
@@ -1744,6 +1745,7 @@ packages:
   /@babel/plugin-proposal-private-methods@7.18.6(@babel/core@7.22.9):
     resolution: {integrity: sha512-nutsvktDItsNn4rpGItSNV2sz1XwS+nfU0Rg8aCx3W3NOKVzdMjJRu0O5OkgDp3ZGICSTbgRpxZoWsxoKRvbeA==}
     engines: {node: '>=6.9.0'}
+    deprecated: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-private-methods instead.
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
@@ -1762,6 +1764,7 @@ packages:
   /@babel/plugin-proposal-private-property-in-object@7.21.11(@babel/core@7.22.9):
     resolution: {integrity: sha512-0QZ8qP/3RLDVBwBFoWAwCtgcDZJVwA5LUJRZU8x2YFfKNuFq161wK3cuGrALu5yiPu+vzwTAg/sMWVNeWeNyaw==}
     engines: {node: '>=6.9.0'}
+    deprecated: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-private-property-in-object instead.
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
@@ -1774,6 +1777,7 @@ packages:
   /@babel/plugin-proposal-unicode-property-regex@7.18.6(@babel/core@7.22.9):
     resolution: {integrity: sha512-2BShG/d5yoZyXZfVePH91urL5wTG6ASZU9M4o03lKK8u8UW1y08OMttBSOADTcJrnPMpvDXRG3G8fyLh4ovs8w==}
     engines: {node: '>=4'}
+    deprecated: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-unicode-property-regex instead.
     peerDependencies:
       '@babel/core': ^7.0.0-0
     dependencies:
@@ -10834,8 +10838,8 @@ packages:
       - supports-color
     dev: true
 
-  /ember-resources@6.3.1(@ember/test-waiters@3.0.2)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.0.2)(ember-concurrency@3.0.0)(ember-source@4.12.3):
-    resolution: {integrity: sha512-DcLW/j/ffnPwmOunNM45gi3221kxIdiYk3pR879OWxmQXHjGk8uL5ACwD/0IrwjTpbO8/H+6fwOKg+GqFM7NBQ==}
+  /ember-resources@6.4.0(@ember/test-waiters@3.0.2)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.0.2)(ember-concurrency@3.0.0)(ember-source@4.12.3):
+    resolution: {integrity: sha512-F5tfwhu8yRrPsMQk5nJWAZJuCi1xvGaTHp3izT+8rwuBXZSvjJAW+EapWNhKR7SYmtail9cPVwh37lcDd6HLXQ==}
     peerDependencies:
       '@ember/test-waiters': ^3.0.0
       '@glimmer/component': ^1.1.2
