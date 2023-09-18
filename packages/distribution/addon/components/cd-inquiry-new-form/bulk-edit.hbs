@@ -5,6 +5,7 @@
     @document={{this.document.value}}
     @fieldset={{this.fieldset}}
     @onSave={{this.saveField}}
+    @context={{hash selectedGroups=@selectedGroups}}
   />
   <DocumentValidity @document={{this.document.value}} as |isValid validate|>
     <UkButton
