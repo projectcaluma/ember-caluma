@@ -1,6 +1,7 @@
 import { render, click, settled } from "@ember/test-helpers";
 import { tracked } from "@glimmer/tracking";
 import { hbs } from "ember-cli-htmlbars";
+import { timeout } from "ember-concurrency";
 import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
@@ -153,5 +154,33 @@ module("Integration | Component | cf-field/input/checkbox", function (hooks) {
 
     assert.dom("label input[type=checkbox]").isDisabled();
     assert.dom("label del.uk-text-muted").doesNotExist();
+  });
+
+  test("it handles fast selections correctly", async function (assert) {
+    assert.expect(1);
+
+    this.field = new (class {
+      @tracked value = [];
+      options = [
+        { slug: "option-1", label: "Option 1" },
+        { slug: "option-2", label: "Option 2" },
+      ];
+    })();
+
+    this.save = async (value) => {
+      await timeout(50);
+      this.field.value = value;
+      await settled();
+    };
+
+    await render(
+      hbs`<CfField::Input::Checkbox @onSave={{this.save}} @field={{this.field}} />`,
+    );
+
+    // explicitly don't await the first click to trigger two concurrently
+    // running save tasks
+    click("label:nth-of-type(1) input");
+    await click("label:nth-of-type(2) input");
+    assert.deepEqual(this.field.value, ["option-1", "option-2"]);
   });
 });
