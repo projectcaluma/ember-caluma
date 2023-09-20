@@ -177,8 +177,8 @@ importers:
         specifier: 4.1.1
         version: 4.1.1(@glint/template@1.0.2)(webpack@5.88.2)
       ember-cli:
-        specifier: 4.12.1
-        version: 4.12.1
+        specifier: 4.12.2
+        version: 4.12.2
       ember-cli-addon-docs:
         specifier: 5.2.0
         version: 5.2.0(@babel/core@7.22.19)(@ember/test-helpers@3.2.0)(ember-data@4.12.3)(ember-fetch@8.1.2)(ember-source@4.12.3)(webpack@5.88.2)
@@ -187,7 +187,7 @@ importers:
         version: 7.26.11
       ember-cli-dependency-checker:
         specifier: 3.3.2
-        version: 3.3.2(ember-cli@4.12.1)
+        version: 3.3.2(ember-cli@4.12.2)
       ember-cli-deploy:
         specifier: 2.0.0
         version: 2.0.0
@@ -385,14 +385,14 @@ importers:
         specifier: 3.0.0
         version: 3.0.0
       ember-cli:
-        specifier: 4.12.1
-        version: 4.12.1
+        specifier: 4.12.2
+        version: 4.12.2
       ember-cli-code-coverage:
         specifier: 2.0.0
         version: 2.0.0
       ember-cli-dependency-checker:
         specifier: 3.3.2
-        version: 3.3.2(ember-cli@4.12.1)
+        version: 3.3.2(ember-cli@4.12.2)
       ember-cli-inject-live-reload:
         specifier: 2.1.0
         version: 2.1.0
@@ -539,14 +539,14 @@ importers:
         specifier: 3.0.0
         version: 3.0.0
       ember-cli:
-        specifier: 4.12.1
-        version: 4.12.1
+        specifier: 4.12.2
+        version: 4.12.2
       ember-cli-code-coverage:
         specifier: 2.0.0
         version: 2.0.0
       ember-cli-dependency-checker:
         specifier: 3.3.2
-        version: 3.3.2(ember-cli@4.12.1)
+        version: 3.3.2(ember-cli@4.12.2)
       ember-cli-inject-live-reload:
         specifier: 2.1.0
         version: 2.1.0
@@ -696,14 +696,14 @@ importers:
         specifier: 3.0.0
         version: 3.0.0
       ember-cli:
-        specifier: 4.12.1
-        version: 4.12.1
+        specifier: 4.12.2
+        version: 4.12.2
       ember-cli-code-coverage:
         specifier: 2.0.0
         version: 2.0.0
       ember-cli-dependency-checker:
         specifier: 3.3.2
-        version: 3.3.2(ember-cli@4.12.1)
+        version: 3.3.2(ember-cli@4.12.2)
       ember-cli-inject-live-reload:
         specifier: 2.1.0
         version: 2.1.0
@@ -871,14 +871,14 @@ importers:
         specifier: 3.0.0
         version: 3.0.0
       ember-cli:
-        specifier: 4.12.1
-        version: 4.12.1
+        specifier: 4.12.2
+        version: 4.12.2
       ember-cli-code-coverage:
         specifier: 2.0.0
         version: 2.0.0
       ember-cli-dependency-checker:
         specifier: 3.3.2
-        version: 3.3.2(ember-cli@4.12.1)
+        version: 3.3.2(ember-cli@4.12.2)
       ember-cli-inject-live-reload:
         specifier: 2.1.0
         version: 2.1.0
@@ -1055,14 +1055,14 @@ importers:
         specifier: 0.7.0
         version: 0.7.0(@glint/template@1.0.2)(ember-source@4.12.3)(webpack@5.88.2)
       ember-cli:
-        specifier: 4.12.1
-        version: 4.12.1
+        specifier: 4.12.2
+        version: 4.12.2
       ember-cli-code-coverage:
         specifier: 2.0.0
         version: 2.0.0
       ember-cli-dependency-checker:
         specifier: 3.3.2
-        version: 3.3.2(ember-cli@4.12.1)
+        version: 3.3.2(ember-cli@4.12.2)
       ember-cli-inject-live-reload:
         specifier: 2.1.0
         version: 2.1.0
@@ -1182,14 +1182,14 @@ importers:
         specifier: 3.0.0
         version: 3.0.0
       ember-cli:
-        specifier: 4.12.1
-        version: 4.12.1
+        specifier: 4.12.2
+        version: 4.12.2
       ember-cli-code-coverage:
         specifier: 2.0.0
         version: 2.0.0
       ember-cli-dependency-checker:
         specifier: 3.3.2
-        version: 3.3.2(ember-cli@4.12.1)
+        version: 3.3.2(ember-cli@4.12.2)
       ember-cli-inject-live-reload:
         specifier: 2.1.0
         version: 2.1.0
@@ -1303,14 +1303,14 @@ importers:
         specifier: 3.0.0
         version: 3.0.0
       ember-cli:
-        specifier: 4.12.1
-        version: 4.12.1
+        specifier: 4.12.2
+        version: 4.12.2
       ember-cli-code-coverage:
         specifier: 2.0.0
         version: 2.0.0
       ember-cli-dependency-checker:
         specifier: 3.3.2
-        version: 3.3.2(ember-cli@4.12.1)
+        version: 3.3.2(ember-cli@4.12.2)
       ember-cli-inject-live-reload:
         specifier: 2.1.0
         version: 2.1.0
@@ -9755,14 +9755,14 @@ packages:
       - utf-8-validate
     dev: true
 
-  /ember-cli-dependency-checker@3.3.2(ember-cli@4.12.1):
+  /ember-cli-dependency-checker@3.3.2(ember-cli@4.12.2):
     resolution: {integrity: sha512-PwkrW5oYsdPWwt+0Tojufmv/hxVETTjkrEdK7ANQB2VSnqpA5UcYubwpQM9ONuR2J8wyNDMwEHlqIrk/FYtBsQ==}
     engines: {node: '>= 6'}
     peerDependencies:
       ember-cli: ^3.2.0 || >=4.0.0
     dependencies:
       chalk: 2.4.2
-      ember-cli: 4.12.1
+      ember-cli: 4.12.2
       find-yarn-workspace-root: 1.2.1
       is-git-url: 1.0.0
       resolve: 1.22.2
@@ -10192,8 +10192,8 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /ember-cli@4.12.1:
-    resolution: {integrity: sha512-O4QqvbvyyAvIC5SlYNOOocEhX/co7wKOSEGf8M+ipU/zgzA5ElyKMAQly9wf1QJ/RbSD1j2cFVUBIdVH/OuJHg==}
+  /ember-cli@4.12.2:
+    resolution: {integrity: sha512-990UglceEsB3nd/pTI08wL+hbApICrd6P4BO88486rSf9r3XjZ7LBcD318N8I1AGe5IUDkbccMrOQxoHge6zNg==}
     engines: {node: '>= 14'}
     hasBin: true
     dependencies:
@@ -10273,7 +10273,7 @@ packages:
       promise.hash.helper: 1.0.8
       quick-temp: 0.1.8
       remove-types: 1.0.0
-      resolve: 1.22.2
+      resolve: 1.22.3
       resolve-package-path: 4.0.3
       safe-stable-stringify: 2.4.3
       sane: 5.0.1
