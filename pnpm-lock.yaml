@@ -78,8 +78,8 @@ importers:
         specifier: 2.1.2
         version: 2.1.2
       glob:
-        specifier: 10.3.3
-        version: 10.3.3
+        specifier: 10.3.5
+        version: 10.3.5
       graphql:
         specifier: 15.8.0
         version: 15.8.0
@@ -9782,7 +9782,7 @@ packages:
       '@babel/eslint-parser': 7.22.9(@babel/core@7.22.19)(eslint@8.47.0)
       chalk: 4.1.2
       ember-cli-deploy-plugin: 0.2.9
-      glob: 10.3.3
+      glob: 10.3.5
       rsvp: 4.8.5
     transitivePeerDependencies:
       - '@babel/core'
@@ -12869,8 +12869,8 @@ packages:
   /glob-to-regexp@0.4.1:
     resolution: {integrity: sha512-lkX1HJXwyMcprw/5YUZc2s7DrpAiHB21/V+E1rHUrVNokkvB6bqMzT0VfV6/86ZNabt1k14YOIaT7nDvOX3Iiw==}
 
-  /glob@10.3.3:
-    resolution: {integrity: sha512-92vPiMb/iqpmEgsOoIDvTjc50wf9CCCvMzsi6W0JLPeUKE8TWP1a73PgqSrqy7iAZxaSD1YdzU7QZR5LF51MJw==}
+  /glob@10.3.5:
+    resolution: {integrity: sha512-bYUpUD7XDEHI4Q2O5a7PXGvyw4deKR70kHiDxzQbe925wbZknhOzUt2xBgTkYL6RBcVeXYuD9iNYeqoWbBZQnA==}
     engines: {node: '>=16 || 14 >=14.17'}
     hasBin: true
     dependencies:

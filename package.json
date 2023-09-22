@@ -59,7 +59,7 @@
     "eslint-plugin-prettier": "5.0.0",
     "eslint-plugin-qunit": "8.0.0",
     "get-graphql-schema": "2.1.2",
-    "glob": "10.3.3",
+    "glob": "10.3.5",
     "graphql": "15.8.0",
     "husky": "8.0.3",
     "lint-staged": "13.2.3",
