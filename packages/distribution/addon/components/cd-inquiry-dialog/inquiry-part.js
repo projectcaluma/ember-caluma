@@ -59,7 +59,12 @@ export default class CdInquiryDialogInquiryPartComponent extends Component {
 
     return this.args.type === "answer"
       ? this.args.inquiry.childCase.document.info.edges
-          .filter((edge) => !isEmpty(edge.node.value))
+          .filter(
+            (edge) =>
+              !isEmpty(edge.node.value) ||
+              !isEmpty(edge.node.selectedOption) ||
+              !isEmpty(edge.node.selectedOptions),
+          )
           .sort(
             (a, b) =>
               questions.indexOf(a.node.question.slug) -
@@ -68,6 +73,22 @@ export default class CdInquiryDialogInquiryPartComponent extends Component {
           .map((edge) => ({
             question: edge.node.question.label,
             value: edge.node.value,
+            selectedOption: edge.node?.selectedOption,
+            selectedOptions: edge.node?.selectedOptions,
+          }))
+          // For single choice the value is simply the selectedOption label
+          .map((answer) => ({
+            ...answer,
+            value: answer.selectedOption
+              ? answer.selectedOption.label
+              : answer.value,
+          }))
+          // For multiple choice the value is a list of selectedOption labels
+          .map((answer) => ({
+            ...answer,
+            value: answer.selectedOptions
+              ? answer.selectedOptions.edges.map((edge) => edge.node.label)
+              : answer.value,
           }))
       : null;
   }
