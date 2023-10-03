@@ -72,23 +72,11 @@ export default class CdInquiryDialogInquiryPartComponent extends Component {
           )
           .map((edge) => ({
             question: edge.node.question.label,
-            value: edge.node.value,
-            selectedOption: edge.node?.selectedOption,
-            selectedOptions: edge.node?.selectedOptions,
-          }))
-          // For single choice the value is simply the selectedOption label
-          .map((answer) => ({
-            ...answer,
-            value: answer.selectedOption
-              ? answer.selectedOption.label
-              : answer.value,
-          }))
-          // For multiple choice the value is a list of selectedOption labels
-          .map((answer) => ({
-            ...answer,
-            value: answer.selectedOptions
-              ? answer.selectedOptions.edges.map((edge) => edge.node.label)
-              : answer.value,
+            value: edge.node.selectedOption // single choice answer
+              ? edge.node.selectedOption.label
+              : edge.node.selectedOptions // multiple choice answer
+              ? edge.node.selectedOptions.edges.map((edge) => edge.node.label)
+              : edge.node.value, // regular answer
           }))
       : null;
   }

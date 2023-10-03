@@ -1,5 +1,5 @@
 {{#if (is-array @text)}}
-  <UkList @bullet={{true}} class="uk-margin-remove" as |list|>
+  <UkList @bullet={{true}} class="uk-margin-remove" ...attributes as |list|>
     {{#each @text as |item|}}
       <list.item>{{item}}</list.item>
     {{/each}}
