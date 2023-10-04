@@ -2,9 +2,12 @@ import { assert } from "@ember/debug";
 import { once } from "@ember/runloop";
 import Service, { inject as service } from "@ember/service";
 import { camelize } from "@ember/string";
+import { dependencySatisfies } from "@embroider/macros";
 import { tracked } from "@glimmer/tracking";
 import { task } from "ember-concurrency";
 import { pluralize } from "ember-inflector";
+
+const toArrayIsDeprecated = dependencySatisfies("ember-data", "^4.7.0");
 
 /**
  * Decorator to define a type resolver in the scheduler service.
@@ -37,7 +40,9 @@ function typeResolver(type) {
       ? yield this.calumaOptions[methodName]?.(uncachedIdentifiers)
       : [];
 
-    const allResults = [...cached, ...(result?.toArray?.() ?? result ?? [])];
+    const allResults = toArrayIsDeprecated
+      ? [...cached, ...(result ?? [])]
+      : [...cached, ...(result?.toArray?.() ?? result ?? [])];
 
     if (result?.length) {
       this[`${type}Cache`] = allResults;
