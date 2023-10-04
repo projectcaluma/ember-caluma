@@ -253,7 +253,7 @@
               <EmberFlatpickr
                 @altFormat={{this.dateFormat}}
                 class="uk-input form-control input"
-                @date={{changeset-get f.model "minDate"}}
+                @date={{or (changeset-get f.model "minDate") null}}
                 @onChange={{fn this.onDateMinMaxChange "minDate"}}
                 @maxDate={{changeset-get f.model "maxDate"}}
                 @altInput={{true}}
@@ -279,7 +279,7 @@
               <EmberFlatpickr
                 @altFormat={{this.dateFormat}}
                 class="uk-input form-control input"
-                @date={{changeset-get f.model "maxDate"}}
+                @date={{or (changeset-get f.model "maxDate") null}}
                 @onChange={{fn this.onDateMinMaxChange "maxDate"}}
                 @minDate={{changeset-get f.model "minDate"}}
                 @altInput={{true}}
