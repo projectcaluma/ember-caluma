@@ -96,6 +96,8 @@ export default function (server) {
     label: "When?",
     formIds: [form.id],
     type: "DATE",
+    minDate: "2023-09-01",
+    maxDate: null,
     hintText: null,
   });
   server.create("question", {

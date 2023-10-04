@@ -70,6 +70,8 @@ caluma:
 
       min-value: "Minimaler Wert"
       max-value: "Maximaler Wert"
+      min-date: "Mindestdatum"
+      max-date: "Maximales Datum"
       min-length: "Minimale Länge"
       max-length: "Maximale Länge"
       rowForm: "Formular für Tabelleneinträge"
