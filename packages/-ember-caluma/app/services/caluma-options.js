@@ -35,6 +35,11 @@ export default class CustomCalumaOptionsService extends CalumaOptionsService {
         infoQuestions: ["inquiry-answer-reason", "inquiry-answer-hint"],
       },
     },
+    ui: {
+      new: {
+        showAllServices: false, // if true all the services are shown in one big table
+      },
+    },
     new: {
       defaultTypes: ["suggestions", "private"],
       types: {
