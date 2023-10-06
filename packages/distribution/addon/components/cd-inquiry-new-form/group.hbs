@@ -1,0 +1,25 @@
+{{! template-lint-disable require-presentational-children }}
+<tr
+  role="checkbox"
+  data-test-group={{@group.identifier}}
+  aria-checked={{includes @group.identifier @selectedGroups}}
+  {{on "click" (fn @updateSelectedGroups @group.identifier)}}
+>
+  <td class="uk-padding-remove-right">
+    {{! template-lint-disable require-input-label no-nested-interactive }}
+    <input
+      type="checkbox"
+      class="uk-checkbox"
+      checked={{includes @group.identifier @selectedGroups}}
+    />
+  </td>
+  <td class="uk-width-expand">{{group-name @group.identifier}}</td>
+  <td class="uk-text-right">
+    {{#if @group.config.icon}}
+      <UkIcon
+        @icon={{@group.config.icon}}
+        class="uk-display-block uk-text-{{@group.config.iconColor}}"
+      />
+    {{/if}}
+  </td>
+</tr>
