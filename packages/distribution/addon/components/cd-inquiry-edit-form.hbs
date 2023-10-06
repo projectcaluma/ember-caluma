@@ -2,6 +2,7 @@
   @documentId={{decode-id this.inquiry.document.id}}
   @disabled={{cannot "edit inquiry" this.inquiry}}
   @loading={{this._inquiry.isRunning}}
+  @context={{hash inquiry=this.inquiry}}
 >
   <:default as |content|>
     <CdDocumentHeader
