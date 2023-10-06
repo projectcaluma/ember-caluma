@@ -2,6 +2,7 @@
   @documentId={{decode-id this.inquiry.childCase.document.id}}
   @disabled={{cannot "edit answer form of inquiry" this.inquiry}}
   @loading={{this._inquiry.isRunning}}
+  @context={{hash inquiry=this.inquiry}}
 >
   <:default as |content|>
 
