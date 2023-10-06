@@ -20,8 +20,28 @@ export default class CdInquiryNewFormSelectComponent extends Component {
 
   @config config;
 
+  get showAllServices() {
+    return this.config.ui?.new?.showAllServices;
+  }
+
+  get groupTypes() {
+    return Object.entries(this.config.new.types)
+      .filter(([, { disabled }]) => !disabled)
+      .map(([identifier, group]) => ({
+        identifier,
+        name: group.label,
+        config: group.config,
+        groups: this.groups?.value?.filter(
+          (group) => group.type === identifier,
+        ),
+      }));
+  }
+
   groups = trackedTask(this, this.fetchGroups, () => [
-    this.args.selectedTypes,
+    // if we want to show all services we need to fetch all groups
+    this.showAllServices
+      ? Object.keys(this.config.new.types)
+      : this.args.selectedTypes,
     this.args.search,
   ]);
 
@@ -69,6 +89,7 @@ export default class CdInquiryNewFormSelectComponent extends Component {
           identifier: group[this.calumaOptions.groupIdentifierProperty],
           name: group[this.calumaOptions.groupNameProperty],
           config: this.config.new.types[type],
+          type,
         }));
       })
       .sort((a, b) => a.name.localeCompare(b.name));

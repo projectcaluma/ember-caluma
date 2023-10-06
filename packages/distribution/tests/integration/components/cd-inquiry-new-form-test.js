@@ -29,7 +29,10 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
     this.owner.lookup("service:caluma-options").distribution = {
       new: {
         types: {
-          suggestions: { disabled: true },
+          suggestions: {
+            label: "suggestions",
+            disabled: true,
+          },
           a: { label: "label-a" },
           b: { label: "label-b" },
         },
@@ -194,5 +197,54 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
     );
 
     assert.verifySteps(["redirect"]);
+  });
+
+  module("when showAllGroups is on", async function (hooks) {
+    hooks.beforeEach(async function () {
+      const calumaOptions = this.owner.lookup("service:caluma-options");
+      calumaOptions.distribution.ui = {
+        ...calumaOptions.distribution?.ui,
+        new: {
+          ...calumaOptions.distribution?.ui?.new,
+          showAllServices: true,
+        },
+      };
+
+      await render(hbs`<CdInquiryNewForm
+  @selectedTypes={{this.selectedTypes}}
+  @search={{this.search}}
+  @onChangeSelectedTypes={{fn (mut this.selectedTypes)}}
+  @onChangeSearch={{fn (mut this.search)}}
+/>`);
+    });
+
+    test("it doesn't show the group buttons", async function (assert) {
+      assert.dom("[data-test-group-toggle-bar]").isNotVisible();
+    });
+
+    test("it shows all the enabled groups", async function (assert) {
+      assert.dom('[data-test-group-type="suggestions"]').isNotVisible();
+      assert.dom('[data-test-group-type="label-a"]').isVisible();
+      assert.dom('[data-test-group-type="label-b"]').isVisible();
+    });
+
+    test("it allows the toggling of a group", async function (assert) {
+      assert.dom('[data-test-group="2"]').isVisible();
+      assert.dom('[data-test-group="3"]').isVisible();
+
+      await click('[data-test-group-type="label-a"]');
+
+      assert.dom('[data-test-group="2"]').isNotVisible();
+      assert.dom('[data-test-group="3"]').isNotVisible();
+    });
+
+    test("it allows searching for a group and shows all the groups", async function (assert) {
+      await click('[data-test-group-type="label-a"]'); // hide the first group
+
+      await fillIn("[data-test-search]", "2");
+
+      assert.dom('[data-test-group="2"]').isVisible();
+      assert.dom('[data-test-group="3"]').isNotVisible();
+    });
   });
 });

@@ -1,15 +1,17 @@
-<div class="uk-margin-bottom uk-button-group">
-  {{#each-in this.config.new.types as |slug config|}}
-    {{#unless config.disabled}}
-      <UkButton
-        data-test-type={{slug}}
-        @label={{t config.label}}
-        @color={{if (includes slug @selectedTypes) "primary" "default"}}
-        @onClick={{fn this.updateSelectedTypes slug}}
-      />
-    {{/unless}}
-  {{/each-in}}
-</div>
+{{#unless this.showAllServices}}
+  <div class="uk-margin-bottom uk-button-group" data-test-group-toggle-bar>
+    {{#each-in this.config.new.types as |slug config|}}
+      {{#unless config.disabled}}
+        <UkButton
+          data-test-type={{slug}}
+          @label={{t config.label}}
+          @color={{if (includes slug @selectedTypes) "primary" "default"}}
+          @onClick={{fn this.updateSelectedTypes slug}}
+        />
+      {{/unless}}
+    {{/each-in}}
+  </div>
+{{/unless}}
 
 <div class="uk-search uk-search-default uk-width-1-1">
   <span class="uk-search-icon-flip" uk-search-icon></span>
@@ -30,36 +32,30 @@
   </div>
 {{else if this.groups.value.length}}
   <table
-    class="uk-table uk-table-striped uk-table-hover uk-table-small uk-table-middle group-list"
+    class={{concat
+      "uk-table uk-table-hover uk-table-small uk-table-middle group-list "
+      (if this.showAllServices "uk-table-divider" "uk-table-striped")
+    }}
   >
     <tbody>
-      {{#each this.groups.value as |group|}}
-        {{! template-lint-disable require-presentational-children }}
-        <tr
-          role="checkbox"
-          data-test-group={{group.identifier}}
-          aria-checked={{includes group.identifier @selectedGroups}}
-          {{on "click" (fn this.updateSelectedGroups group.identifier)}}
-        >
-          <td class="uk-padding-remove-right">
-            {{! template-lint-disable require-input-label no-nested-interactive }}
-            <input
-              type="checkbox"
-              class="uk-checkbox"
-              checked={{includes group.identifier @selectedGroups}}
-            />
-          </td>
-          <td class="uk-width-expand">{{group-name group.identifier}}</td>
-          <td class="uk-text-right">
-            {{#if group.config.icon}}
-              <UkIcon
-                @icon={{group.config.icon}}
-                class="uk-display-block uk-text-{{group.config.iconColor}}"
-              />
-            {{/if}}
-          </td>
-        </tr>
-      {{/each}}
+      {{#if this.showAllServices}}
+        {{#each this.groupTypes as |type|}}
+          <CdInquiryNewForm::GroupType
+            @type={{type}}
+            @selectedGroups={{@selectedGroups}}
+            @updateSelectedGroups={{this.updateSelectedGroups}}
+            @search={{@search}}
+          />
+        {{/each}}
+      {{else}}
+        {{#each this.groups.value as |group|}}
+          <CdInquiryNewForm::Group
+            @group={{group}}
+            @selectedGroups={{@selectedGroups}}
+            @updateSelectedGroups={{this.updateSelectedGroups}}
+          />
+        {{/each}}
+      {{/if}}
     </tbody>
   </table>
 {{else}}
