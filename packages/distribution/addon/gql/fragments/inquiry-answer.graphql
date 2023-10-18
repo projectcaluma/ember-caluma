@@ -52,6 +52,18 @@ fragment InquiryAnswer on Document {
         }
         ... on StringAnswer {
           value
+          selectedOption {
+            label
+          }
+        }
+        ... on ListAnswer {
+          selectedOptions {
+            edges {
+              node {
+                label
+              }
+            }
+          }
         }
       }
     }

@@ -45,6 +45,10 @@ export default function createGraphqlHandler(server) {
         SelectedOption: ({ value }) => {
           const option = server.schema.options.findBy({ slug: value });
 
+          if (!option) {
+            return null;
+          }
+
           return {
             slug: value,
             label: option.label,
