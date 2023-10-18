@@ -653,8 +653,8 @@ importers:
         specifier: ^6.4.0
         version: 6.4.0(@ember/test-waiters@3.0.2)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.0.2)(ember-concurrency@3.0.0)(ember-source@4.12.3)
       ember-svg-jar:
-        specifier: ^2.4.3
-        version: 2.4.3(@glint/template@1.0.2)
+        specifier: ^2.4.6
+        version: 2.4.6(@glint/template@1.0.2)
       ember-test-selectors:
         specifier: ^6.0.0
         version: 6.0.0
@@ -1688,10 +1688,6 @@ packages:
     resolution: {integrity: sha512-mM4COjgZox8U+JcXQwPijIZLElkgEpO5rsERVDJTc2qfCDfERyob6k5WegS14SX18IIjv+XD+GrqNumY5JRCDw==}
     engines: {node: '>=6.9.0'}
 
-  /@babel/helper-validator-identifier@7.22.19:
-    resolution: {integrity: sha512-Tinq7ybnEPFFXhlYOYFiSjespWQk0dq2dRNAiMdRTOYQzEGqnnNyrTxPYHP5r6wGjlF1rFgABdDV0g8EwD6Qbg==}
-    engines: {node: '>=6.9.0'}
-
   /@babel/helper-validator-identifier@7.22.20:
     resolution: {integrity: sha512-Y4OZ+ytlatR8AI+8KZfKuL5urKp7qey08ha31L8b3BwewJAoJamTzyvxPR/5D+KkdJCGPq/+8TukHBlY10FX9A==}
     engines: {node: '>=6.9.0'}
@@ -1722,7 +1718,7 @@ packages:
     resolution: {integrity: sha512-C/BaXcnnvBCmHTpz/VGZ8jgtE2aYlW4hxDhseJAWZb7gqGM/qtCK6iZUb0TyKFf7BOUsBH7Q7fkRsDRhg1XklQ==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/helper-validator-identifier': 7.22.19
+      '@babel/helper-validator-identifier': 7.22.20
       chalk: 2.4.2
       js-tokens: 4.0.0
 
@@ -9610,7 +9606,7 @@ packages:
       ember-router-generator: 2.0.0
       ember-router-scroll: 4.1.2(@babel/core@7.23.0)
       ember-set-helper: 2.0.1
-      ember-svg-jar: 2.4.3(@glint/template@1.0.2)
+      ember-svg-jar: 2.4.6(@glint/template@1.0.2)
       ember-tether: 2.0.1
       ember-truth-helpers: 3.1.1
       esm: 3.2.25
@@ -11039,8 +11035,8 @@ packages:
       - supports-color
       - webpack
 
-  /ember-svg-jar@2.4.3(@glint/template@1.0.2):
-    resolution: {integrity: sha512-dY3tA+7iKHa1C8x5MnAM+2kVLbb8j1ECdFAdR4Sys74nje79UFWtJDGERizW2ZSALnsqb3uRgEFINP0V3vCeeg==}
+  /ember-svg-jar@2.4.6(@glint/template@1.0.2):
+    resolution: {integrity: sha512-W+t6sRAiPhRl4imGKEMWsQDiCV8Nl2GRwzUpqZ1a+CZoW+2aCkF+kcngeDlHn5XzT16bQXg/QYXUvwtKJlSLfg==}
     engines: {node: 12.* || 14.* || >= 16}
     dependencies:
       '@embroider/macros': 1.13.0(@glint/template@1.0.2)
