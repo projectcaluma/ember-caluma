@@ -54,7 +54,7 @@
     "qunit": "2.19.4",
     "qunit-dom": "2.0.0",
     "uikit": "3.16.26",
-    "webpack": "5.88.2"
+    "webpack": "5.89.0"
   },
   "peerDependencies": {
     "ember-source": "^4.0.0"
