@@ -39,7 +39,7 @@
     "@adfinis/eslint-config": "2.0.0",
     "@babel/core": "7.23.0",
     "@babel/eslint-parser": "7.22.9",
-    "@babel/plugin-proposal-decorators": "7.22.7",
+    "@babel/plugin-proposal-decorators": "7.23.2",
     "@commitlint/cli": "17.6.7",
     "@commitlint/config-conventional": "17.7.0",
     "@graphql-eslint/eslint-plugin": "3.20.1",
