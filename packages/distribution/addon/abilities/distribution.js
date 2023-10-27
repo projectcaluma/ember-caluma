@@ -14,7 +14,7 @@ export default class DistributionAbility extends Ability {
   get canSendInquiries() {
     return (
       !this.config.ui.readonly &&
-      (this.config.permissions.sendInquiry?.(null) ?? true) &&
+      (this.config.permissions.sendInquiry?.(this.distribution) ?? true) &&
       this.distribution.controls.value?.send.edges.filter(
         hasStatus("SUSPENDED"),
       ).length > 0
@@ -24,7 +24,7 @@ export default class DistributionAbility extends Ability {
   get canCreateInquiry() {
     return (
       !this.config.ui.readonly &&
-      (this.config.permissions.createInquiry?.() ?? true) &&
+      (this.config.permissions.createInquiry?.(this.distribution) ?? true) &&
       this.distribution.controls.value?.create.edges.filter(hasStatus("READY"))
         .length > 0
     );
@@ -33,7 +33,7 @@ export default class DistributionAbility extends Ability {
   get canCheckInquiries() {
     return (
       !this.config.ui.readonly &&
-      (this.config.permissions.checkInquiries?.() ?? true) &&
+      (this.config.permissions.checkInquiries?.(this.distribution) ?? true) &&
       this.distribution.controls.value?.check.edges.filter(hasStatus("READY"))
         .length > 0
     );
@@ -42,7 +42,8 @@ export default class DistributionAbility extends Ability {
   get canComplete() {
     return (
       !this.config.ui.readonly &&
-      (this.config.permissions.completeDistribution?.() ?? true) &&
+      (this.config.permissions.completeDistribution?.(this.distribution) ??
+        true) &&
       this.distribution.controls.value?.complete.edges.filter(
         hasStatus("READY"),
       ).length > 0
@@ -52,7 +53,8 @@ export default class DistributionAbility extends Ability {
   get canReopen() {
     return (
       !this.config.ui.readonly &&
-      (this.config.permissions.reopenDistribution?.() ?? true) &&
+      (this.config.permissions.reopenDistribution?.(this.distribution) ??
+        true) &&
       this.distribution.controls.value?.case.edges[0]?.node.parentWorkItem.addressedGroups
         .map(String)
         .includes(String(this.calumaOptions.currentGroupId)) &&
