@@ -656,8 +656,8 @@ importers:
         specifier: ^6.4.0
         version: 6.4.0(@ember/test-waiters@3.0.2)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.0.2)(ember-concurrency@3.0.0)(ember-source@4.12.3)
       ember-svg-jar:
-        specifier: ^2.4.3
-        version: 2.4.3(@glint/template@1.0.2)
+        specifier: ^2.4.7
+        version: 2.4.7(@glint/template@1.0.2)
       ember-test-selectors:
         specifier: ^6.0.0
         version: 6.0.0
@@ -9691,7 +9691,7 @@ packages:
       ember-router-generator: 2.0.0
       ember-router-scroll: 4.1.2(@babel/core@7.23.0)
       ember-set-helper: 2.0.1
-      ember-svg-jar: 2.4.3(@glint/template@1.0.2)
+      ember-svg-jar: 2.4.7(@glint/template@1.0.2)
       ember-tether: 2.0.1
       ember-truth-helpers: 3.1.1
       esm: 3.2.25
@@ -11120,8 +11120,8 @@ packages:
       - supports-color
       - webpack
 
-  /ember-svg-jar@2.4.3(@glint/template@1.0.2):
-    resolution: {integrity: sha512-dY3tA+7iKHa1C8x5MnAM+2kVLbb8j1ECdFAdR4Sys74nje79UFWtJDGERizW2ZSALnsqb3uRgEFINP0V3vCeeg==}
+  /ember-svg-jar@2.4.7(@glint/template@1.0.2):
+    resolution: {integrity: sha512-W1PWqiQOAcNvUIomkZP5oi4JdV2eQPEuGLa1ic0LPhpx/OHKwtW35M1TTDQ+YWwCnKJf0uh/Bl8ZumVw38YXBQ==}
     engines: {node: 12.* || 14.* || >= 16}
     dependencies:
       '@embroider/macros': 1.13.0(@glint/template@1.0.2)
