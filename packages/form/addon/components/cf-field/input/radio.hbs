@@ -24,15 +24,8 @@
     {{/if}}
   </label>
 {{/each}}
-{{#if
-  (and
-    (eq @field.question.raw.isRequired this.isQuestionRequired)
-    this.checkedValue
-  )
-}}
-  <button
-    {{on "click" this.resetSelected}}
-    class="reset"
-    type="button"
-  >{{this.reset}}</button>
+{{#if (and (eq @field.question.raw.isRequired "false") this.checkedValue)}}
+  <button {{on "click" this.resetSelected}} class="reset" type="button">{{t
+      "caluma.form.power-select.reset"
+    }}</button>
 {{/if}}

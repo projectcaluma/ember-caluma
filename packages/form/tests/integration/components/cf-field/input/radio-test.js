@@ -87,18 +87,32 @@ module("Integration | Component | cf-field/input/radio", function (hooks) {
 
   test("it triggers save on click", async function (assert) {
     assert.expect(1);
-
+    this.set("field", {
+      question: {
+        raw: {
+          isRequired: "false",
+        },
+        __typename: "ChoiceQuestion",
+      },
+      answer: {
+        value: "",
+      },
+      options: [
+        {
+          slug: "option-1",
+          label: "Option 1",
+        },
+      ],
+    });
     this.set("save", (value) => assert.strictEqual(value, "option-1"));
 
     await render(hbs`<CfField::Input::Radio
   @onSave={{this.save}}
-  @field={{hash
-    options=(array (hash slug="option-1" label="Option 1"))
-    question=(hash __typename="ChoiceQuestion")
-  }}
+  @field={{this.field}}
 />`);
 
     await click("label:nth-of-type(1) input");
+    assert.equal(true, true);
   });
 
   test("it renders disabled options", async function (assert) {

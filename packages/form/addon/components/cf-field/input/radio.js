@@ -4,8 +4,6 @@ import { tracked } from "@glimmer/tracking";
 
 export default class CfFieldInputRadioComponent extends Component {
   @tracked checkedValue = this.args.field.answer.value;
-  reset = "Reset";
-  isQuestionRequired = "false";
 
   @action
   updatSelection({ target: { value, checked } }) {
