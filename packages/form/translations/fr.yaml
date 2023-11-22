@@ -40,6 +40,7 @@ caluma:
       options-empty: "Pas d'options disponibles"
       search-placeholder: "Tapez ici pour rechercher"
       search-empty: "Pas d'options trouvées"
+      reset: "Réinitialiser"
 
     validation:
       blank: "Ce champ ne doit pas être laissé vide"
