@@ -106,10 +106,9 @@ module("Integration | Component | cf-field/input/radio", function (hooks) {
     });
     this.set("save", (value) => assert.strictEqual(value, "option-1"));
 
-    await render(hbs`<CfField::Input::Radio
-  @onSave={{this.save}}
-  @field={{this.field}}
-/>`);
+    await render(
+      hbs`<CfField::Input::Radio @onSave={{this.save}} @field={{this.field}} />`,
+    );
 
     await click("label:nth-of-type(1) input");
     assert.equal(true, true);
