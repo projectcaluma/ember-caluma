@@ -49,7 +49,7 @@
               {{#if this.save.last.error}}
                 <div uk-dropdown="pos: bottom-left" class="uk-padding-small">
                   <div class="uk-alert uk-alert-danger uk-margin-small">
-                    {{t "caluma.form.error.intro"}}
+                    {{this.errorIntroText}}
                   </div>
                   <p class="uk-text-meta uk-margin-small">
                     {{t "caluma.form.error.details"}}

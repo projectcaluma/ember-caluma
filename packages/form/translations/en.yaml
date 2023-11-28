@@ -13,8 +13,10 @@ caluma:
     info: "More information"
 
     error:
-      intro: "Oh no, something went wrong on our side. Your answer could not be saved."
       details: "Technical details:"
+      technical-error: "Oh no, something went wrong on our side. Your answer could not be saved."
+      offline: "Your answer could not be saved because you are offline. Please check your internet connection and try again."
+      invalid: "Your answer could not be saved because the validation failed. Please check your entries and try again."
 
     navigation:
       next: "Next"

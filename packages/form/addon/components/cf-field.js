@@ -1,4 +1,5 @@
 import { action } from "@ember/object";
+import { service } from "@ember/service";
 import { macroCondition, isTesting } from "@embroider/macros";
 import Component from "@glimmer/component";
 import { timeout, restartableTask } from "ember-concurrency";
@@ -18,6 +19,8 @@ import { hasQuestionType } from "@projectcaluma/ember-core/helpers/has-question-
  * @argument {Field} field The field data model to render
  */
 export default class CfFieldComponent extends Component {
+  @service intl;
+
   @action
   registerComponent() {
     this.args.field._components.add(this);
@@ -53,6 +56,17 @@ export default class CfFieldComponent extends Component {
       "static",
       "form",
     );
+  }
+
+  get errorIntroText() {
+    const _errors = this.save.last.error.errors ?? [];
+    if (_errors.some((e) => e?.code === "network_error")) {
+      return this.intl.t("caluma.form.error.offline");
+    }
+    if (_errors.some((e) => e?.message.includes("code='invalid'"))) {
+      return this.intl.t("caluma.form.error.invalid");
+    }
+    return this.intl.t("caluma.form.error.technical-error");
   }
 
   get saveIndicatorVisible() {
