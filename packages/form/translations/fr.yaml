@@ -13,8 +13,10 @@ caluma:
     info: "Plus d'informations"
 
     error:
-      intro: "Oh non, quelque chose a mal tourné de notre côté. Votre réponse n'a pas pu être sauvegardée."
       details: "Détails techniques :"
+      technical-error: "Oh non, quelque chose a mal tourné de notre côté. Votre réponse n'a pas pu être sauvegardée."
+      offline: "Votre réponse n'a pas pu être enregistrée car vous êtes hors ligne. Veuillez vérifier votre connexion Internet et réessayer."
+      invalid: "Votre réponse n'a pas pu être enregistrée car la validation a échoué. Veuillez vérifier vos saisies et réessayer."
 
     navigation:
       next: "suivante"

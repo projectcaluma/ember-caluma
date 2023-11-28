@@ -13,8 +13,10 @@ caluma:
     info: "Mehr Informationen"
 
     error:
-      intro: "Oh nein, auf unserer Seite ist etwas schief gelaufen. Ihre Antwort konnte nicht gespeichert werden."
       details: "Technische Details:"
+      technical-error: "Oh nein, auf unserer Seite ist etwas schief gelaufen. Ihre Antwort konnte nicht gespeichert werden."
+      offline: "Ihre Antwort konnte nicht gespeichert werden, da Sie offline sind. Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie es erneut."
+      invalid: "Ihre Antwort konnte nicht gespeichert werden, weil die Validierung fehlgeschlagen ist. Bitte überprüfen Sie Ihre Eingaben und versuchen Sie es erneut."
 
     navigation:
       next: "Weiter"
