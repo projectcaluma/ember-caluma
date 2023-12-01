@@ -10,7 +10,7 @@ importers:
     devDependencies:
       '@adfinis/eslint-config':
         specifier: 2.0.0
-        version: 2.0.0(@babel/core@7.23.0)(@babel/eslint-parser@7.22.9)(eslint-config-prettier@8.10.0)(eslint-plugin-ember@11.11.1)(eslint-plugin-import@2.28.1)(eslint-plugin-n@16.2.0)(eslint-plugin-prettier@5.0.0)(eslint-plugin-qunit@8.0.0)(eslint@8.47.0)(prettier@3.0.2)
+        version: 2.0.0(@babel/core@7.23.0)(@babel/eslint-parser@7.22.9)(eslint-config-prettier@8.10.0)(eslint-plugin-ember@11.11.1)(eslint-plugin-import@2.28.1)(eslint-plugin-n@16.2.0)(eslint-plugin-prettier@5.0.0)(eslint-plugin-qunit@8.0.1)(eslint@8.47.0)(prettier@3.0.2)
       '@babel/core':
         specifier: 7.23.0
         version: 7.23.0
@@ -72,8 +72,8 @@ importers:
         specifier: 5.0.0
         version: 5.0.0(eslint-config-prettier@8.10.0)(eslint@8.47.0)(prettier@3.0.2)
       eslint-plugin-qunit:
-        specifier: 8.0.0
-        version: 8.0.0(eslint@8.47.0)
+        specifier: 8.0.1
+        version: 8.0.1(eslint@8.47.0)
       get-graphql-schema:
         specifier: 2.1.2
         version: 2.1.2
@@ -1367,7 +1367,7 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /@adfinis/eslint-config@2.0.0(@babel/core@7.23.0)(@babel/eslint-parser@7.22.9)(eslint-config-prettier@8.10.0)(eslint-plugin-ember@11.11.1)(eslint-plugin-import@2.28.1)(eslint-plugin-n@16.2.0)(eslint-plugin-prettier@5.0.0)(eslint-plugin-qunit@8.0.0)(eslint@8.47.0)(prettier@3.0.2):
+  /@adfinis/eslint-config@2.0.0(@babel/core@7.23.0)(@babel/eslint-parser@7.22.9)(eslint-config-prettier@8.10.0)(eslint-plugin-ember@11.11.1)(eslint-plugin-import@2.28.1)(eslint-plugin-n@16.2.0)(eslint-plugin-prettier@5.0.0)(eslint-plugin-qunit@8.0.1)(eslint@8.47.0)(prettier@3.0.2):
     resolution: {integrity: sha512-jfD8GUBZwwbO6S7d/VLSwZ57tNdM3uD9R2Mgi9uh5/Mr6SCOeJ/CH/9LrxtqxIWASqDvyCmDh7SMsWaVHfqpCQ==}
     peerDependencies:
       '@babel/core': ^7.21.4
@@ -1389,7 +1389,7 @@ packages:
       eslint-plugin-import: 2.28.1(eslint@8.47.0)
       eslint-plugin-n: 16.2.0(eslint@8.47.0)
       eslint-plugin-prettier: 5.0.0(eslint-config-prettier@8.10.0)(eslint@8.47.0)(prettier@3.0.2)
-      eslint-plugin-qunit: 8.0.0(eslint@8.47.0)
+      eslint-plugin-qunit: 8.0.1(eslint@8.47.0)
       prettier: 3.0.2
     dev: true
 
@@ -11805,8 +11805,8 @@ packages:
       synckit: 0.8.5
     dev: true
 
-  /eslint-plugin-qunit@8.0.0(eslint@8.47.0):
-    resolution: {integrity: sha512-ly2x/pmJPcS0ztGAPap6qLC13GjOFwhBbvun0K1dAjaxaC6KB3TYjeBo+5pGvXqL3WdicmYxEKhTGwmhvoxMBQ==}
+  /eslint-plugin-qunit@8.0.1(eslint@8.47.0):
+    resolution: {integrity: sha512-3bFOPryXoQOez95oP/JfWTxHBc/bgDQQZqTuv9uYTwH5sdIvSM2TES1iHDcy/F/LvqiqIpscDAOPAjlqSCnNPg==}
     engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
     dependencies:
       eslint-utils: 3.0.0(eslint@8.47.0)
