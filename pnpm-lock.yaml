@@ -201,8 +201,8 @@ importers:
         specifier: 1.0.1
         version: 1.0.1
       ember-cli-htmlbars:
-        specifier: 6.2.0
-        version: 6.2.0
+        specifier: 6.3.0
+        version: 6.3.0
       ember-cli-inject-live-reload:
         specifier: 2.1.0
         version: 2.1.0
@@ -324,8 +324,8 @@ importers:
         specifier: ^8.2.0
         version: 8.2.0(@babel/core@7.23.0)
       ember-cli-htmlbars:
-        specifier: ^6.2.0
-        version: 6.2.0
+        specifier: ^6.3.0
+        version: 6.3.0
       ember-composable-helpers:
         specifier: ^5.0.0
         version: 5.0.0
@@ -478,8 +478,8 @@ importers:
         specifier: ^8.2.0
         version: 8.2.0(@babel/core@7.23.0)
       ember-cli-htmlbars:
-        specifier: ^6.2.0
-        version: 6.2.0
+        specifier: ^6.3.0
+        version: 6.3.0
       ember-concurrency:
         specifier: ^3.1.1
         version: 3.1.1(@babel/core@7.23.0)(ember-source@4.12.3)
@@ -635,8 +635,8 @@ importers:
         specifier: ^8.2.0
         version: 8.2.0(@babel/core@7.23.0)
       ember-cli-htmlbars:
-        specifier: ^6.2.0
-        version: 6.2.0
+        specifier: ^6.3.0
+        version: 6.3.0
       ember-concurrency:
         specifier: ^3.1.1
         version: 3.1.1(@babel/core@7.23.0)(ember-source@4.12.3)
@@ -798,8 +798,8 @@ importers:
         specifier: ^8.2.0
         version: 8.2.0(@babel/core@7.23.0)
       ember-cli-htmlbars:
-        specifier: ^6.2.0
-        version: 6.2.0
+        specifier: ^6.3.0
+        version: 6.3.0
       ember-cli-showdown:
         specifier: ^7.0.0
         version: 7.0.0(@glint/template@1.0.2)(ember-source@4.12.3)(webpack@5.89.0)
@@ -979,8 +979,8 @@ importers:
         specifier: ^8.2.0
         version: 8.2.0(@babel/core@7.23.0)
       ember-cli-htmlbars:
-        specifier: ^6.2.0
-        version: 6.2.0
+        specifier: ^6.3.0
+        version: 6.3.0
       ember-composable-helpers:
         specifier: ^5.0.0
         version: 5.0.0
@@ -1142,8 +1142,8 @@ importers:
         specifier: ^8.2.0
         version: 8.2.0(@babel/core@7.23.0)
       ember-cli-htmlbars:
-        specifier: ^6.2.0
-        version: 6.2.0
+        specifier: ^6.3.0
+        version: 6.3.0
       ember-cli-mirage:
         specifier: ^3.0.0-alpha.3
         version: 3.0.0-alpha.3(@babel/core@7.23.0)(@ember/test-helpers@3.2.0)(@glint/template@1.0.2)(ember-data@4.12.3)(ember-qunit@7.0.0)(webpack@5.89.0)
@@ -1254,8 +1254,8 @@ importers:
         specifier: ^8.2.0
         version: 8.2.0(@babel/core@7.23.0)
       ember-cli-htmlbars:
-        specifier: ^6.2.0
-        version: 6.2.0
+        specifier: ^6.3.0
+        version: 6.3.0
       ember-composable-helpers:
         specifier: ^5.0.0
         version: 5.0.0
@@ -3248,7 +3248,7 @@ packages:
       broccoli-funnel: 3.0.8
       ember-auto-import: 2.6.3(@glint/template@1.0.2)(webpack@5.89.0)
       ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 6.2.0
+      ember-cli-htmlbars: 6.3.0
       ember-source: 4.12.3(@babel/core@7.23.0)(@glimmer/component@1.1.2)(@glint/template@1.0.2)(webpack@5.89.0)
     transitivePeerDependencies:
       - '@glint/template'
@@ -9416,7 +9416,7 @@ packages:
     engines: {node: '>= 12'}
     dependencies:
       ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 6.2.0
+      ember-cli-htmlbars: 6.3.0
     transitivePeerDependencies:
       - supports-color
 
@@ -9516,7 +9516,7 @@ packages:
     dependencies:
       ember-auto-import: 2.6.3(@glint/template@1.0.2)(webpack@5.89.0)
       ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 6.2.0
+      ember-cli-htmlbars: 6.3.0
       ember-modifier: 4.1.0(ember-source@4.12.3)
     transitivePeerDependencies:
       - '@glint/template'
@@ -9535,7 +9535,7 @@ packages:
       '@glimmer/tracking': 1.1.2
       ember-auto-import: 2.6.3(@glint/template@1.0.2)(webpack@5.89.0)
       ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 6.2.0
+      ember-cli-htmlbars: 6.3.0
       ember-cli-typescript: 5.2.1
       ember-element-helper: 0.6.1(@glint/template@1.0.2)(ember-source@4.12.3)
       ember-get-config: 2.1.1(@glint/template@1.0.2)
@@ -9599,7 +9599,7 @@ packages:
     engines: {node: 12.* || 14.* || >= 16}
     dependencies:
       ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 6.2.0
+      ember-cli-htmlbars: 6.3.0
       ember-inflector: 4.0.2
     transitivePeerDependencies:
       - supports-color
@@ -9845,7 +9845,7 @@ packages:
       ember-arg-types: 1.0.0(webpack@5.89.0)
       ember-auto-import: 2.6.3(@glint/template@1.0.2)(webpack@5.89.0)
       ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 6.2.0
+      ember-cli-htmlbars: 6.3.0
       ember-modifier: 3.2.7(@babel/core@7.23.0)
       prop-types: 15.8.1
     transitivePeerDependencies:
@@ -10019,27 +10019,6 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /ember-cli-htmlbars@6.2.0:
-    resolution: {integrity: sha512-j5EGixjGau23HrqRiW/JjoAovg5UBHfjbyN7wX5ekE90knIEqUUj1z/Mo/cTx/J2VepQ2lE6HdXW9LWQ/WdMtw==}
-    engines: {node: 12.* || 14.* || >= 16}
-    dependencies:
-      '@ember/edition-utils': 1.2.0
-      babel-plugin-ember-template-compilation: 2.1.1
-      babel-plugin-htmlbars-inline-precompile: 5.3.1
-      broccoli-debug: 0.6.5
-      broccoli-persistent-filter: 3.1.3
-      broccoli-plugin: 4.0.7
-      ember-cli-version-checker: 5.1.2
-      fs-tree-diff: 2.0.1
-      hash-for-dep: 1.5.1
-      heimdalljs-logger: 0.1.10
-      js-string-escape: 1.0.1
-      semver: 7.5.4
-      silent-error: 1.1.1
-      walk-sync: 2.2.0
-    transitivePeerDependencies:
-      - supports-color
-
   /ember-cli-htmlbars@6.3.0:
     resolution: {integrity: sha512-N9Y80oZfcfWLsqickMfRd9YByVcTGyhYRnYQ2XVPVrp6jyUyOeRWmEAPh7ERSXpp8Ws4hr/JB9QVQrn/yZa+Ag==}
     engines: {node: 12.* || 14.* || >= 16}
@@ -10060,7 +10039,6 @@ packages:
       walk-sync: 2.2.0
     transitivePeerDependencies:
       - supports-color
-    dev: true
 
   /ember-cli-inject-live-reload@2.1.0:
     resolution: {integrity: sha512-YV5wYRD5PJHmxaxaJt18u6LE6Y+wo455BnmcpN+hGNlChy2piM9/GMvYgTAz/8Vin8RJ5KekqP/w/NEaRndc/A==}
@@ -10167,7 +10145,7 @@ packages:
     dependencies:
       ember-auto-import: 2.6.3(@glint/template@1.0.2)(webpack@5.89.0)
       ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 6.2.0
+      ember-cli-htmlbars: 6.3.0
       ember-source: 4.12.3(@babel/core@7.23.0)(@glimmer/component@1.1.2)(@glint/template@1.0.2)(webpack@5.89.0)
       showdown: 1.9.1
     transitivePeerDependencies:
@@ -10544,7 +10522,7 @@ packages:
       '@glimmer/tracking': 1.1.2
       ember-cli-babel: 7.26.11
       ember-cli-babel-plugin-helpers: 1.1.1
-      ember-cli-htmlbars: 6.2.0
+      ember-cli-htmlbars: 6.3.0
       ember-compatibility-helpers: 1.2.6(@babel/core@7.23.0)
       ember-source: 4.12.3(@babel/core@7.23.0)(@glimmer/component@1.1.2)(@glint/template@1.0.2)(webpack@5.89.0)
     transitivePeerDependencies:
@@ -10619,7 +10597,7 @@ packages:
     dependencies:
       '@embroider/util': 1.12.1(@glint/template@1.0.2)(ember-source@4.12.3)
       ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 6.2.0
+      ember-cli-htmlbars: 6.3.0
       ember-source: 4.12.3(@babel/core@7.23.0)(@glimmer/component@1.1.2)(@glint/template@1.0.2)(webpack@5.89.0)
     transitivePeerDependencies:
       - '@glint/environment-ember-loose'
@@ -10705,7 +10683,7 @@ packages:
       broccoli-merge-trees: 4.2.0
       broccoli-stew: 3.0.0
       ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 6.2.0
+      ember-cli-htmlbars: 6.3.0
       ember-cli-typescript: 5.2.1
       ember-source: 4.12.3(@babel/core@7.23.0)(@glimmer/component@1.1.2)(@glint/template@1.0.2)(webpack@5.89.0)
       flatpickr: 4.6.13
@@ -10728,7 +10706,7 @@ packages:
     engines: {node: 12.* || 14.* || >= 16}
     dependencies:
       ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 6.2.0
+      ember-cli-htmlbars: 6.3.0
       ember-modifier: 3.2.7(@babel/core@7.23.0)
     transitivePeerDependencies:
       - '@babel/core'
@@ -10857,7 +10835,7 @@ packages:
     dependencies:
       broccoli-funnel: 3.0.8
       ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 6.2.0
+      ember-cli-htmlbars: 6.3.0
     transitivePeerDependencies:
       - supports-color
 
@@ -10866,7 +10844,7 @@ packages:
     engines: {node: 10.* || >= 12}
     dependencies:
       ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 6.2.0
+      ember-cli-htmlbars: 6.3.0
       ember-cli-version-checker: 5.1.2
     transitivePeerDependencies:
       - supports-color
@@ -10883,7 +10861,7 @@ packages:
       '@embroider/macros': 1.13.3(@glint/template@1.0.2)
       '@embroider/util': 1.12.1(@glint/template@1.0.2)(ember-source@4.12.3)
       ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 6.2.0
+      ember-cli-htmlbars: 6.3.0
       ember-cli-version-checker: 2.2.0
       ember-decorators: 6.1.1
       ember-tether: 3.0.0(@babel/core@7.23.0)(ember-source@4.12.3)(webpack@5.89.0)
@@ -10945,7 +10923,7 @@ packages:
       ember-assign-helper: 0.4.0
       ember-basic-dropdown: 7.2.1(@babel/core@7.23.0)(@ember/string@3.1.1)(@glint/template@1.0.2)(ember-source@4.12.3)(webpack@5.89.0)
       ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 6.2.0
+      ember-cli-htmlbars: 6.3.0
       ember-cli-typescript: 5.2.1
       ember-concurrency: 3.1.1(@babel/core@7.23.0)(ember-source@4.12.3)
       ember-text-measurer: 0.6.0
@@ -11275,7 +11253,7 @@ packages:
       '@ember/render-modifiers': 2.1.0(@babel/core@7.23.0)(@glint/template@1.0.2)(ember-source@4.12.3)
       ember-auto-import: 2.6.3(@glint/template@1.0.2)(webpack@5.89.0)
       ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 6.2.0
+      ember-cli-htmlbars: 6.3.0
       ember-source: 4.12.3(@babel/core@7.23.0)(@glimmer/component@1.1.2)(@glint/template@1.0.2)(webpack@5.89.0)
       tether: 2.0.0
     transitivePeerDependencies:
@@ -11301,7 +11279,7 @@ packages:
       '@ember/render-modifiers': 2.1.0(@babel/core@7.23.0)(@glint/template@1.0.2)(ember-source@4.12.3)
       ember-cached-decorator-polyfill: 0.1.4(@babel/core@7.23.0)
       ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 6.2.0
+      ember-cli-htmlbars: 6.3.0
       ember-gesture-modifiers: 3.0.0(@babel/core@7.23.0)
     transitivePeerDependencies:
       - '@babel/core'
@@ -11374,7 +11352,7 @@ packages:
       broccoli-stew: 3.0.0
       ember-auto-import: 2.6.3(@glint/template@1.0.2)(webpack@5.89.0)
       ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 6.2.0
+      ember-cli-htmlbars: 6.3.0
       ember-composable-helpers: 5.0.0
       ember-focus-trap: 1.0.2
       ember-modifier: 4.1.0(ember-source@4.12.3)
@@ -11400,7 +11378,7 @@ packages:
       ember-changeset: 4.1.2(@glint/template@1.0.2)(ember-data@4.12.3)(webpack@5.89.0)
       ember-changeset-validations: 4.1.1(@glint/template@1.0.2)(webpack@5.89.0)
       ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 6.2.0
+      ember-cli-htmlbars: 6.3.0
       ember-truth-helpers: 3.1.1
     transitivePeerDependencies:
       - '@babel/core'
