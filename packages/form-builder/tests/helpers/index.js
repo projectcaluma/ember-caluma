@@ -1,4 +1,5 @@
 import { importSync } from "@embroider/macros";
+import { setupIntl } from "ember-intl/test-support";
 import {
   setupApplicationTest as upstreamSetupApplicationTest,
   setupRenderingTest as upstreamSetupRenderingTest,
@@ -19,6 +20,7 @@ function setApplicationInstance() {
 
 function setupApplicationTest(hooks, options) {
   upstreamSetupApplicationTest(hooks, options);
+  setupIntl(hooks);
 
   hooks.beforeEach(setApplicationInstance);
 
@@ -40,12 +42,14 @@ function setupApplicationTest(hooks, options) {
 
 function setupRenderingTest(hooks, options) {
   upstreamSetupRenderingTest(hooks, options);
+  setupIntl(hooks);
 
   hooks.beforeEach(setApplicationInstance);
 }
 
 function setupTest(hooks, options) {
   upstreamSetupTest(hooks, options);
+  setupIntl(hooks);
 
   hooks.beforeEach(setApplicationInstance);
 }

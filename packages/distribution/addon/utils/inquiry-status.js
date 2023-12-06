@@ -67,12 +67,12 @@ function decorator(
       const statusConfig = isSkipped
         ? INQUIRY_STATUS.SKIPPED
         : isInProgress
-        ? INQUIRY_STATUS.IN_PROGRESS
-        : isDraft
-        ? INQUIRY_STATUS.DRAFT
-        : isSent
-        ? INQUIRY_STATUS.SENT
-        : this.config.inquiry.answer.statusMapping[answer.value];
+          ? INQUIRY_STATUS.IN_PROGRESS
+          : isDraft
+            ? INQUIRY_STATUS.DRAFT
+            : isSent
+              ? INQUIRY_STATUS.SENT
+              : this.config.inquiry.answer.statusMapping[answer.value];
 
       return {
         slug: statusConfig.slug,

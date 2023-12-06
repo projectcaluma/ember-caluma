@@ -75,8 +75,8 @@ export default class CdInquiryDialogInquiryPartComponent extends Component {
             value: edge.node.selectedOption // single choice answer
               ? edge.node.selectedOption.label
               : edge.node.selectedOptions // multiple choice answer
-              ? edge.node.selectedOptions.edges.map((edge) => edge.node.label)
-              : edge.node.value, // regular answer
+                ? edge.node.selectedOptions.edges.map((edge) => edge.node.label)
+                : edge.node.value, // regular answer
           }))
       : null;
   }

@@ -35,10 +35,10 @@ function decorator(
         color: isDone
           ? "muted"
           : isOverdue
-          ? "danger"
-          : isWarning
-          ? "warning"
-          : "emphasis",
+            ? "danger"
+            : isWarning
+              ? "warning"
+              : "emphasis",
       };
     },
   };

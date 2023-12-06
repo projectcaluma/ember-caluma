@@ -42,8 +42,8 @@ export default class ComponentsCfbFormListComponent extends Component {
       this.args.category === "active"
         ? { isArchived: false }
         : this.args.category === "archived"
-        ? { isArchived: true }
-        : null;
+          ? { isArchived: true }
+          : null;
 
     const search = this.args.search ? { search: this.args.search } : null;
 
@@ -51,8 +51,8 @@ export default class ComponentsCfbFormListComponent extends Component {
       this.args.category === "unpublished"
         ? { isPublished: false }
         : this.args.category === "published"
-        ? { isPublished: true }
-        : null;
+          ? { isPublished: true }
+          : null;
 
     return [isArchived, isPublished, search].filter(Boolean) || null;
   }
