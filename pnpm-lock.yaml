@@ -961,8 +961,8 @@ importers:
         specifier: workspace:^
         version: link:../form
       codejar:
-        specifier: ^3.7.0
-        version: 3.7.0
+        specifier: ^4.2.0
+        version: 4.2.0
       ember-apollo-client:
         specifier: ~4.0.2
         version: 4.0.2(@glint/template@1.0.2)(graphql@15.8.0)(webpack@5.89.0)
@@ -8055,8 +8055,8 @@ packages:
       chalk: 2.4.2
       q: 1.5.1
 
-  /codejar@3.7.0:
-    resolution: {integrity: sha512-rqyDu2zNwfu1EhXI++LEMQDzhykS+V0BV52RemtCj5lczgTgWSufyEa+tS7RP7qCXH/WXOkU0eIthmFUzvG78Q==}
+  /codejar@4.2.0:
+    resolution: {integrity: sha512-U8OZe+2B400W5nSSbXxaoboBN5i1hxWdBZJ9kcTy0DBuc4muwkPE/ph/MGX4yooIE8hztfNLPNU1CbcNYch69A==}
     dev: false
 
   /collection-visit@1.0.0:
