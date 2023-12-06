@@ -6,7 +6,7 @@ import graphqlHandler from "@projectcaluma/ember-testing/mirage-graphql";
 export default function makeServer(config) {
   return createServer({
     ...config,
-    models: { ...discoverEmberDataModels(), ...config.models },
+    models: { ...discoverEmberDataModels(config.store), ...config.models },
     routes() {
       this.timing = 400; // delay for each request, automatically set to 0 during testing
 

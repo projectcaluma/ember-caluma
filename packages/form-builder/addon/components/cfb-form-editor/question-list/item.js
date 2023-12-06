@@ -23,8 +23,8 @@ export default class CfbFormEditorQuestionListItem extends Component {
     return required === true
       ? "required"
       : required
-      ? "conditional"
-      : "not-required";
+        ? "conditional"
+        : "not-required";
   }
 
   get hidden() {
