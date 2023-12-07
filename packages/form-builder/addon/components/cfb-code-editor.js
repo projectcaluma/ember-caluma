@@ -16,7 +16,7 @@ hljs.registerLanguage("jexl", jexl);
 export default class CfbCodeEditorComponent extends Component {
   _editor = null;
   _cursor = null;
-  _lastValue = null;
+  _lastValue = this.args.value;
 
   get value() {
     const value = this.args.value;
@@ -48,7 +48,9 @@ export default class CfbCodeEditorComponent extends Component {
 
   @action
   updateCode() {
-    this._editor.updateCode(this.value);
+    if (this._lastValue === this.value) return;
+
+    this._editor.updateCode(this.value, false);
 
     if (this._cursor) {
       this._editor.restore(this._cursor);
@@ -58,10 +60,16 @@ export default class CfbCodeEditorComponent extends Component {
 
   @action
   didInsertNode(element) {
-    this._editor = CodeJar(element, (editor) => hljs.highlightElement(editor));
-    this._editor.onUpdate(this.onUpdate);
+    this._editor = CodeJar(element, (editor) => {
+      editor.removeAttribute("data-highlighted");
+      hljs.highlightElement(editor);
+    });
 
-    this.updateCode();
+    // set initial value
+    this._editor.updateCode(this.value);
+
+    // register update method
+    this._editor.onUpdate(this.onUpdate);
 
     // eslint-disable-next-line ember/no-observers
     addObserver(this.args, "value", this, "updateCode");
