@@ -78,7 +78,9 @@
         "typescript"
       ],
       "allowedVersions": {
-        "graphql": "^15.8.0"
+        "graphql": "^15.8.0",
+        "ember-source": "^5.0.0",
+        "ember-sortable>@ember/test-helpers": "^3.2.1"
       }
     }
   },
