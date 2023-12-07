@@ -39,9 +39,9 @@ You can find the interactive documentation [here](https://docs.caluma.io/ember-c
 
 ### Running tests
 
-- `pnpm --filter @projectcaluma/ember-[package] ember test` – Runs the test suite on the current Ember version
-- `pnpm --filter @projectcaluma/ember-[package] ember test --server` – Runs the test suite in "watch mode"
-- `pnpm --filter @projectcaluma/ember-[package] ember try:each` – Runs the test suite against multiple Ember versions
+- `pnpm --filter @projectcaluma/ember-[package] exec ember test` – Runs the test suite on the current Ember version
+- `pnpm --filter @projectcaluma/ember-[package] exec ember test --server` – Runs the test suite in "watch mode"
+- `pnpm --filter @projectcaluma/ember-[package] exec ember try:each` – Runs the test suite against multiple Ember versions
 
 Cross-browser testing provided by:
 
