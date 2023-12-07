@@ -21,17 +21,13 @@ jobs:
     runs-on: [ubuntu-latest]
     timeout-minutes: 5
 
-    strategy:
-      matrix:
-        target: [js, hbs, css, prettier]
-
     steps:
       - uses: actions/checkout@v4
       - uses: wyvox/action-setup-pnpm@v3
         with:
           node-version: ${{ env.NODE_VERSION }}
-      - name: Lint ${{ matrix.target }}
-        run: pnpm lint:${{ matrix.target }}
+      - name: Lint
+        run: pnpm lint
 
   test:
     name: Tests
