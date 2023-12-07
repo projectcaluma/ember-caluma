@@ -3,7 +3,7 @@ import { Factory } from "miragejs";
 
 export default Factory.extend({
   id: () => faker.string.uuid(),
-  name: () => faker.datatype.string(),
+  name: () => faker.string.sample(),
   modifiedAt: () => faker.date.past(),
   createdByUser: () => faker.string.uuid(),
   uploadUrl: () => faker.internet.url(),

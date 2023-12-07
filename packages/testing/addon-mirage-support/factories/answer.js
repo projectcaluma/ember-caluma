@@ -66,7 +66,7 @@ export default Factory.extend({
           value: [
             {
               id: faker.string.uuid(),
-              name: faker.datatype.string(),
+              name: faker.string.sample(),
               uploadUrl: faker.internet.url(),
               downloadUrl: faker.internet.url(),
             },
