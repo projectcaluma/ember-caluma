@@ -76,6 +76,20 @@
     "ember-engines": "^0.9.0",
     "ember-source": "^4.0.0"
   },
+  "dependenciesMeta": {
+    "@projectcaluma/ember-core": {
+      "injected": true
+    },
+    "@projectcaluma/ember-form": {
+      "injected": true
+    },
+    "@projectcaluma/ember-testing": {
+      "injected": true
+    },
+    "@projectcaluma/ember-workflow": {
+      "injected": true
+    }
+  },
   "engines": {
     "node": "14.* || 16.* || >= 18"
   },

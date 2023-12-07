@@ -59,6 +59,14 @@
   "peerDependencies": {
     "ember-source": "^4.0.0"
   },
+  "dependenciesMeta": {
+    "@projectcaluma/ember-core": {
+      "injected": true
+    },
+    "@projectcaluma/ember-testing": {
+      "injected": true
+    }
+  },
   "engines": {
     "node": "14.* || 16.* || >= 18"
   },
