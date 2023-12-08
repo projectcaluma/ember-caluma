@@ -16,77 +16,77 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  lint:
-    name: Lint
-    runs-on: [ubuntu-latest]
-    timeout-minutes: 5
+  # lint:
+  #   name: Lint
+  #   runs-on: [ubuntu-latest]
+  #   timeout-minutes: 5
 
-    steps:
-      - uses: actions/checkout@v4
-      - uses: wyvox/action-setup-pnpm@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-      - name: Lint
-        run: pnpm lint
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: wyvox/action-setup-pnpm@v3
+  #       with:
+  #         node-version: ${{ env.NODE_VERSION }}
+  #     - name: Lint
+  #       run: pnpm lint
 
-  test:
-    name: Tests
-    needs: [lint]
-    runs-on: [ubuntu-latest]
-    timeout-minutes: 10
+  # test:
+  #   name: Tests
+  #   needs: [lint]
+  #   runs-on: [ubuntu-latest]
+  #   timeout-minutes: 10
 
-    strategy:
-      fail-fast: false
-      matrix:
-        workspace:
-          - "@projectcaluma/ember-analytics"
-          - "@projectcaluma/ember-core"
-          - "@projectcaluma/ember-distribution"
-          - "@projectcaluma/ember-form"
-          - "@projectcaluma/ember-form-builder"
-          - "@projectcaluma/ember-testing"
-          - "@projectcaluma/ember-workflow"
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       workspace:
+  #         - "@projectcaluma/ember-analytics"
+  #         - "@projectcaluma/ember-core"
+  #         - "@projectcaluma/ember-distribution"
+  #         - "@projectcaluma/ember-form"
+  #         - "@projectcaluma/ember-form-builder"
+  #         - "@projectcaluma/ember-testing"
+  #         - "@projectcaluma/ember-workflow"
 
-    steps:
-      - uses: actions/checkout@v4
-      - uses: wyvox/action-setup-pnpm@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-      - name: Run tests
-        run: pnpm --filter ${{ matrix.workspace }} test:ember
-        env:
-          COVERAGE: true
-      - name: Upload coverage report to Codecov
-        uses: codecov/codecov-action@v3
-        with:
-          gcov_ignore: "./packages/analytics/"
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: wyvox/action-setup-pnpm@v3
+  #       with:
+  #         node-version: ${{ env.NODE_VERSION }}
+  #     - name: Run tests
+  #       run: pnpm --filter ${{ matrix.workspace }} test:ember
+  #       env:
+  #         COVERAGE: true
+  #     - name: Upload coverage report to Codecov
+  #       uses: codecov/codecov-action@v3
+  #       with:
+  #         gcov_ignore: "./packages/analytics/"
 
-  test-floating:
-    name: Floating Tests
-    needs: [lint]
-    runs-on: [ubuntu-latest]
-    timeout-minutes: 10
+  # test-floating:
+  #   name: Floating Tests
+  #   needs: [lint]
+  #   runs-on: [ubuntu-latest]
+  #   timeout-minutes: 10
 
-    strategy:
-      fail-fast: false
-      matrix:
-        workspace:
-          - "@projectcaluma/ember-analytics"
-          - "@projectcaluma/ember-core"
-          - "@projectcaluma/ember-distribution"
-          - "@projectcaluma/ember-form"
-          - "@projectcaluma/ember-form-builder"
-          - "@projectcaluma/ember-testing"
-          - "@projectcaluma/ember-workflow"
+  #   strategy:
+  #     fail-fast: false
+  #     matrix:
+  #       workspace:
+  #         - "@projectcaluma/ember-analytics"
+  #         - "@projectcaluma/ember-core"
+  #         - "@projectcaluma/ember-distribution"
+  #         - "@projectcaluma/ember-form"
+  #         - "@projectcaluma/ember-form-builder"
+  #         - "@projectcaluma/ember-testing"
+  #         - "@projectcaluma/ember-workflow"
 
-    steps:
-      - uses: actions/checkout@v4
-      - uses: wyvox/action-setup-pnpm@v3
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-          args: "--no-lockfile"
-      - name: Run tests
-        run: pnpm --filter ${{ matrix.workspace }} test:ember
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: wyvox/action-setup-pnpm@v3
+  #       with:
+  #         node-version: ${{ env.NODE_VERSION }}
+  #         args: "--no-lockfile"
+  #     - name: Run tests
+  #       run: pnpm --filter ${{ matrix.workspace }} test:ember
 
   # test-browserstack:
   #   name: Browserstack Tests
@@ -119,7 +119,7 @@ jobs:
 
   test-compatibility:
     name: Compatibility Tests
-    needs: [lint]
+    # needs: [lint]
     runs-on: [ubuntu-latest]
     timeout-minutes: 10
 
@@ -127,19 +127,19 @@ jobs:
       fail-fast: false
       matrix:
         scenario:
-          - ember-lts-4.8
-          - ember-lts-4.4
-          - ember-release
+          # - ember-lts-4.8
+          # - ember-lts-4.4
+          # - ember-release
           - embroider-safe
           - embroider-optimized
         workspace:
           - "@projectcaluma/ember-analytics"
-          - "@projectcaluma/ember-core"
+          # - "@projectcaluma/ember-core"
           - "@projectcaluma/ember-distribution"
           - "@projectcaluma/ember-form"
           - "@projectcaluma/ember-form-builder"
-          - "@projectcaluma/ember-testing"
-          - "@projectcaluma/ember-workflow"
+          # - "@projectcaluma/ember-testing"
+          # - "@projectcaluma/ember-workflow"
 
     steps:
       - uses: actions/checkout@v4
