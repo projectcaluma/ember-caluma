@@ -1,6 +1,7 @@
 caluma:
   distribution:
     empty: "Aucune demande n'a encore été créée."
+    no-actions: "Aucune action n'est disponible dans l'état actuel."
     start: "Lancer la procédure de circulation"
     send: "Envoyer les demandes ouvertes"
     complete: "Clore la circulation"
