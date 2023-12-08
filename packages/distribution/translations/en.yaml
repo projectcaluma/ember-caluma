@@ -1,6 +1,7 @@
 caluma:
   distribution:
     empty: "No inquiries have been created yet."
+    no-actions: "There are no actions available in the current state."
     start: "Start circulation"
     send: "Send pending inquiries"
     complete: "Complete circulation"

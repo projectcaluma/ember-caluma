@@ -1,7 +1,17 @@
 <div class="uk-text-center uk-text-muted">
   {{svg-jar "distribution" class="uk-inline" width=200}}
   <p class="uk-margin-medium uk-margin-remove-horizontal">
-    {{t "caluma.distribution.empty"}}
+    {{#if
+      (or
+        (can "create inquiry of distribution")
+        (can "complete distribution")
+        (can "reopen distribution")
+      )
+    }}
+      {{t "caluma.distribution.empty"}}
+    {{else}}
+      {{t "caluma.distribution.no-actions"}}
+    {{/if}}
   </p>
   <CdNavigation::Controls @useButtons={{true}} />
 </div>

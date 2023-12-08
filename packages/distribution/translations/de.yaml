@@ -1,6 +1,7 @@
 caluma:
   distribution:
     empty: "Es wurden noch keine Anfragen erstellt."
+    no-actions: "Keine Aktionen im aktuellen Zustand möglich."
     start: "Zirkulation starten"
     send: "Offene Anfragen versenden"
     complete: "Zirkulation abschliessen"
