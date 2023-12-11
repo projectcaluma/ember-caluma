@@ -2,12 +2,16 @@
   <@labelComponent />
 
   <div class="uk-form-controls">
-    {{component
-      (get-widget this.field.question)
-      field=this.field
-      disabled=false
-      onSave=this.onUpdate
+    {{#let
+      (component (ensure-safe-component (get-widget this.field.question)))
+      as |QuestionComponent|
     }}
+      <QuestionComponent
+        @field={{this.field}}
+        @disabled={{false}}
+        @onSave={{this.onUpdate}}
+      />
+    {{/let}}
   </div>
 
   <@hintComponent />
