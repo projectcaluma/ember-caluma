@@ -35,6 +35,10 @@ module("Acceptance | question edit", function (hooks) {
 
     await click("button[type=submit]");
 
-    assert.strictEqual(currentURL(), "/test-form");
+    assert.strictEqual(
+      currentURL(),
+      "/test-form/questions/test-question",
+      "it should stay on the same page after save",
+    );
   });
 });
