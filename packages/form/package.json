@@ -31,7 +31,7 @@
     "ember-fetch": "^8.1.2",
     "ember-flatpickr": "^4.0.0",
     "ember-in-viewport": "^4.1.0",
-    "ember-intl": "^6.3.2",
+    "ember-intl": "^6.4.0",
     "ember-math-helpers": "^4.0.0",
     "ember-power-select": "^7.2.0",
     "ember-resources": "^6.4.2",

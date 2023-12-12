@@ -249,8 +249,8 @@ importers:
         specifier: 4.0.0
         version: 4.0.0(@babel/core@7.23.5)(@glint/template@1.2.1)(ember-source@5.4.0)
       ember-intl:
-        specifier: 6.3.2
-        version: 6.3.2(@babel/core@7.23.5)(@glint/template@1.2.1)(webpack@5.89.0)
+        specifier: 6.4.0
+        version: 6.4.0(@babel/core@7.23.5)(@glint/template@1.2.1)(webpack@5.89.0)
       ember-load-initializers:
         specifier: 2.1.2
         version: 2.1.2(@babel/core@7.23.5)
@@ -366,8 +366,8 @@ importers:
         specifier: ^8.1.2
         version: 8.1.2
       ember-intl:
-        specifier: ^6.3.2
-        version: 6.3.2(@babel/core@7.23.5)(@glint/template@1.2.1)(webpack@5.89.0)
+        specifier: ^6.4.0
+        version: 6.4.0(@babel/core@7.23.5)(@glint/template@1.2.1)(webpack@5.89.0)
       ember-power-select:
         specifier: ^7.2.0
         version: 7.2.0(@babel/core@7.23.5)(@glint/template@1.2.1)(ember-source@5.4.0)(webpack@5.89.0)
@@ -525,8 +525,8 @@ importers:
         specifier: ^4.0.2
         version: 4.0.2
       ember-intl:
-        specifier: ^6.3.2
-        version: 6.3.2(@babel/core@7.23.5)(@glint/template@1.2.1)(webpack@5.89.0)
+        specifier: ^6.4.0
+        version: 6.4.0(@babel/core@7.23.5)(@glint/template@1.2.1)(webpack@5.89.0)
       ember-resources:
         specifier: ^6.4.2
         version: 6.4.2(@ember/test-waiters@3.1.0)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.2.1)(ember-concurrency@3.1.1)(ember-source@5.4.0)
@@ -694,8 +694,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0(@babel/core@7.23.5)(@glint/template@1.2.1)(ember-source@5.4.0)
       ember-intl:
-        specifier: ^6.3.2
-        version: 6.3.2(@babel/core@7.23.5)(@glint/template@1.2.1)(webpack@5.89.0)
+        specifier: ^6.4.0
+        version: 6.4.0(@babel/core@7.23.5)(@glint/template@1.2.1)(webpack@5.89.0)
       ember-resources:
         specifier: ^6.4.2
         version: 6.4.2(@ember/test-waiters@3.1.0)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.2.1)(ember-concurrency@3.1.1)(ember-source@5.4.0)
@@ -878,8 +878,8 @@ importers:
         specifier: ^4.1.0
         version: 4.1.0(@babel/core@7.23.5)(@glint/template@1.2.1)(ember-source@5.4.0)(webpack@5.89.0)
       ember-intl:
-        specifier: ^6.3.2
-        version: 6.3.2(@babel/core@7.23.5)(@glint/template@1.2.1)(webpack@5.89.0)
+        specifier: ^6.4.0
+        version: 6.4.0(@babel/core@7.23.5)(@glint/template@1.2.1)(webpack@5.89.0)
       ember-math-helpers:
         specifier: ^4.0.0
         version: 4.0.0(ember-source@5.4.0)
@@ -1069,8 +1069,8 @@ importers:
         specifier: ^4.0.0
         version: 4.0.0(@babel/core@7.23.5)(@glint/template@1.2.1)(ember-source@5.4.0)
       ember-intl:
-        specifier: ^6.3.2
-        version: 6.3.2(@babel/core@7.23.5)(@glint/template@1.2.1)(webpack@5.89.0)
+        specifier: ^6.4.0
+        version: 6.4.0(@babel/core@7.23.5)(@glint/template@1.2.1)(webpack@5.89.0)
       ember-math-helpers:
         specifier: ^4.0.0
         version: 4.0.0(ember-source@5.4.0)
@@ -1357,8 +1357,8 @@ importers:
         specifier: ^8.1.2
         version: 8.1.2
       ember-intl:
-        specifier: ^6.3.2
-        version: 6.3.2(@babel/core@7.23.5)(@glint/template@1.2.1)(webpack@5.89.0)
+        specifier: ^6.4.0
+        version: 6.4.0(@babel/core@7.23.5)(@glint/template@1.2.1)(webpack@5.89.0)
       ember-resources:
         specifier: ^6.4.2
         version: 6.4.2(@ember/test-waiters@3.1.0)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.2.1)(ember-concurrency@3.1.1)(ember-source@5.4.0)
@@ -10273,8 +10273,8 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /ember-intl@6.3.2(@babel/core@7.23.5)(@glint/template@1.2.1)(webpack@5.89.0):
-    resolution: {integrity: sha512-UJ91JjlY3z6fjajoHhhJtKUbgqEr/l6Ie4Viqn0B3Lrbavxg5IgAIvyZZ9fOVtq05MDtCuc610zV6vLOc71G0w==}
+  /ember-intl@6.4.0(@babel/core@7.23.5)(@glint/template@1.2.1)(webpack@5.89.0):
+    resolution: {integrity: sha512-BXxscjgoqzXQ6tUSV8aJsQcUAIcfqLJnNjegarFWdBBHLEOffQ8xARhvQC0hW40zGi/RHFEyTTx7vbiCPGtP1A==}
     engines: {node: 16.* || >= 18}
     peerDependencies:
       typescript: ^4.8.0 || ^5.0.0
@@ -19451,7 +19451,7 @@ packages:
       ember-concurrency: 3.1.1(@babel/core@7.23.5)(ember-source@5.4.0)
       ember-engines-router-service: 0.5.0(@glint/template@1.2.1)(ember-source@5.4.0)
       ember-fetch: 8.1.2
-      ember-intl: 6.3.2(@babel/core@7.23.5)(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-intl: 6.4.0(@babel/core@7.23.5)(@glint/template@1.2.1)(webpack@5.89.0)
       ember-power-select: 7.2.0(@babel/core@7.23.5)(@glint/template@1.2.1)(ember-source@5.4.0)(webpack@5.89.0)
       ember-resources: 6.4.2(@ember/test-waiters@3.1.0)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.2.1)(ember-concurrency@3.1.1)(ember-source@5.4.0)
       ember-sortable: 5.0.0(@ember/test-helpers@3.2.1)(@ember/test-waiters@3.1.0)(ember-modifier@4.1.0)(ember-source@5.4.0)
@@ -19496,7 +19496,7 @@ packages:
       ember-concurrency: 3.1.1(@babel/core@7.23.5)(ember-source@5.4.0)
       ember-fetch: 8.1.2
       ember-inflector: 4.0.2
-      ember-intl: 6.3.2(@babel/core@7.23.5)(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-intl: 6.4.0(@babel/core@7.23.5)(@glint/template@1.2.1)(webpack@5.89.0)
       ember-resources: 6.4.2(@ember/test-waiters@3.1.0)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.2.1)(ember-concurrency@3.1.1)(ember-source@5.4.0)
       ember-source: 5.4.0(@babel/core@7.23.5)(@glimmer/component@1.1.2)(@glint/template@1.2.1)(rsvp@4.8.5)(webpack@5.89.0)
       ember-uikit: 9.0.0(@glint/template@1.2.1)(ember-source@5.4.0)(webpack@5.89.0)
@@ -19547,7 +19547,7 @@ packages:
       ember-engines-router-service: 0.5.0(@glint/template@1.2.1)(ember-source@5.4.0)
       ember-fetch: 8.1.2
       ember-flatpickr: 4.0.0(@babel/core@7.23.5)(@glint/template@1.2.1)(ember-source@5.4.0)
-      ember-intl: 6.3.2(@babel/core@7.23.5)(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-intl: 6.4.0(@babel/core@7.23.5)(@glint/template@1.2.1)(webpack@5.89.0)
       ember-resources: 6.4.2(@ember/test-waiters@3.1.0)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.2.1)(ember-concurrency@3.1.1)(ember-source@5.4.0)
       ember-source: 5.4.0(@babel/core@7.23.5)(@glimmer/component@1.1.2)(@glint/template@1.2.1)(rsvp@4.8.5)(webpack@5.89.0)
       ember-svg-jar: 2.4.7(@glint/template@1.2.1)
@@ -19603,7 +19603,7 @@ packages:
       ember-fetch: 8.1.2
       ember-flatpickr: 4.0.0(@babel/core@7.23.5)(@glint/template@1.2.1)(ember-source@5.4.0)
       ember-in-viewport: 4.1.0(@babel/core@7.23.5)(@glint/template@1.2.1)(ember-source@5.4.0)(webpack@5.89.0)
-      ember-intl: 6.3.2(@babel/core@7.23.5)(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-intl: 6.4.0(@babel/core@7.23.5)(@glint/template@1.2.1)(webpack@5.89.0)
       ember-math-helpers: 4.0.0(ember-source@5.4.0)
       ember-power-select: 7.2.0(@babel/core@7.23.5)(@glint/template@1.2.1)(ember-source@5.4.0)(webpack@5.89.0)
       ember-resources: 6.4.2(@ember/test-waiters@3.1.0)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.2.1)(ember-concurrency@3.1.1)(ember-source@5.4.0)
@@ -19660,7 +19660,7 @@ packages:
       ember-fetch: 8.1.2
       ember-flatpickr: 4.0.0(@babel/core@7.23.5)(@glint/template@1.2.1)(ember-source@5.4.0)
       ember-in-viewport: 4.1.0(@babel/core@7.23.5)(@glint/template@1.2.1)(ember-source@5.4.0)(webpack@5.89.0)
-      ember-intl: 6.3.2(@babel/core@7.23.5)(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-intl: 6.4.0(@babel/core@7.23.5)(@glint/template@1.2.1)(webpack@5.89.0)
       ember-math-helpers: 4.0.0(ember-source@5.4.0)
       ember-power-select: 7.2.0(@babel/core@7.23.5)(@glint/template@1.2.1)(ember-source@5.4.0)(webpack@5.89.0)
       ember-resources: 6.4.2(@ember/test-waiters@3.1.0)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.2.1)(ember-concurrency@3.1.1)(ember-source@5.4.0)
@@ -19717,7 +19717,7 @@ packages:
       ember-engines-router-service: 0.5.0(@glint/template@1.2.1)(ember-source@5.4.0)
       ember-fetch: 8.1.2
       ember-flatpickr: 4.0.0(@babel/core@7.23.5)(@glint/template@1.2.1)(ember-source@5.4.0)
-      ember-intl: 6.3.2(@babel/core@7.23.5)(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-intl: 6.4.0(@babel/core@7.23.5)(@glint/template@1.2.1)(webpack@5.89.0)
       ember-math-helpers: 4.0.0(ember-source@5.4.0)
       ember-power-select: 7.2.0(@babel/core@7.23.5)(@glint/template@1.2.1)(ember-source@5.4.0)(webpack@5.89.0)
       ember-resources: 6.4.2(@ember/test-waiters@3.1.0)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.2.1)(ember-concurrency@3.1.1)(ember-source@5.4.0)
@@ -19806,7 +19806,7 @@ packages:
       ember-composable-helpers: 5.0.0
       ember-concurrency: 3.1.1(@babel/core@7.23.5)(ember-source@5.4.0)
       ember-fetch: 8.1.2
-      ember-intl: 6.3.2(@babel/core@7.23.5)(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-intl: 6.4.0(@babel/core@7.23.5)(@glint/template@1.2.1)(webpack@5.89.0)
       ember-resources: 6.4.2(@ember/test-waiters@3.1.0)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.2.1)(ember-concurrency@3.1.1)(ember-source@5.4.0)
       ember-source: 5.4.0(@babel/core@7.23.5)(@glimmer/component@1.1.2)(@glint/template@1.2.1)(rsvp@4.8.5)(webpack@5.89.0)
       ember-truth-helpers: 4.0.3(ember-source@5.4.0)

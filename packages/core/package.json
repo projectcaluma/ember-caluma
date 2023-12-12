@@ -25,7 +25,7 @@
     "ember-concurrency": "^3.1.1",
     "ember-fetch": "^8.1.2",
     "ember-inflector": "^4.0.2",
-    "ember-intl": "^6.3.2",
+    "ember-intl": "^6.4.0",
     "ember-resources": "^6.4.2",
     "ember-uikit": "^9.0.0",
     "graphql": "^15.8.0",
