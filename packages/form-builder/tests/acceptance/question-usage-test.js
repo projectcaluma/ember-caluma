@@ -29,7 +29,7 @@ module("Acceptance | question usage", function (hooks) {
 
     await visit("/test-form/questions/test-question");
 
-    await click("[data-test-show-question-usage-modal-btn]");
+    await click("[data-test-show-question-usage-modal-link]");
 
     assert.dom("[data-test-question-usage-modal]").isVisible();
 
