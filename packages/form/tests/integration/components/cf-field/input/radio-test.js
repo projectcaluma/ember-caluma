@@ -86,32 +86,32 @@ module("Integration | Component | cf-field/input/radio", function (hooks) {
   });
 
   test("it triggers save on click", async function (assert) {
-    assert.expect(1);
-    this.set("field", {
-      question: {
-        raw: {
-          isRequired: "false",
-        },
-        __typename: "ChoiceQuestion",
-      },
-      answer: {
-        value: "",
-      },
-      options: [
-        {
-          slug: "option-1",
-          label: "Option 1",
-        },
-      ],
+    this.set("value", false);
+    this.set("raw", { isRequired: "false" });
+    this.set("onSave", (value) => {
+      this.set("value", value);
+      assert.step("save");
     });
-    this.set("save", (value) => assert.strictEqual(value, "option-1"));
 
-    await render(
-      hbs`<CfField::Input::Radio @onSave={{this.save}} @field={{this.field}} />`,
-    );
+    await render(hbs`<CfField::Input::Radio
+  @onSave={{this.onSave}}
+  @field={{hash
+    options=(array (hash slug="option-1" label="Option 1"))
+    answer=(hash value=this.value)
+    question=(hash __typename="ChoiceQuestion" slug="test" raw=this.raw)
+  }}
+/>`);
 
     await click("label:nth-of-type(1) input");
-    assert.equal(true, true);
+    await click("[data-test-radio-reset]");
+
+    assert.verifySteps(["save", "save"]);
+
+    this.set("raw", { isRequired: "true" });
+    await click("label:nth-of-type(1) input");
+
+    assert.verifySteps(["save"]);
+    assert.dom("[data-test-radio-reset]").isNotVisible();
   });
 
   test("it renders disabled options", async function (assert) {

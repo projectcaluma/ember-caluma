@@ -6,13 +6,12 @@
   >
     <input
       class="uk-radio uk-margin-small-right"
-      id={{option.slug}}
       type="radio"
       name={{@field.pk}}
       value={{option.slug}}
       checked={{eq option.slug @field.answer.value}}
       disabled={{or option.disabled @disabled}}
-      {{on "change" this.updatSelection}}
+      {{on "change" (fn @onSave option.slug)}}
     />
     {{#if (and option.disabled (not @disabled))}}
       <del
@@ -24,9 +23,9 @@
     {{/if}}
   </label>
 {{/each}}
-{{#if (and (eq @field.question.raw.isRequired "false") this.checkedValue)}}
+{{#if (and (eq @field.question.raw.isRequired "false") @field.answer.value)}}
   <br />
-  <a href="#" {{on "click" this.resetSelected}}>{{t
+  <a data-test-radio-reset href="#" {{on "click" (fn @onSave null)}}>{{t
       "caluma.form.power-select.reset"
     }}</a>
 
