@@ -134,9 +134,8 @@ caluma:
       hideLabel: "Label verstecken"
 
       usage:
-        button: "Formulare mit dieser Frage"
-        title: "Formulare mit dieser Frage"
-        no-forms-found: "Es wurde keine Formular gefunden welche diese Frage verwenden"
+        title: "Diese Frage wird in {n,plural, =1 {<b>einem</b> Formular} other {<b>#</b> Formularen}} verwendet."
+        references-heading: "Alle Verweise auf diese Frage"
         not-published: "nicht publiziert"
 
     options:

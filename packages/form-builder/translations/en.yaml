@@ -134,9 +134,8 @@ caluma:
       hideLabel: "Hide label"
 
       usage:
-        button: "Forms with this question"
-        title: "Forms with this question"
-        no-forms-found: "No form was found that uses this question"
+        title: "This question is used in {n,plural, =1 {<b>another</b> form} other {<b>#</b> other forms}}"
+        references-heading: "All references of this question"
         not-published: "not published"
 
     options:

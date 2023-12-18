@@ -134,9 +134,8 @@ caluma:
       hideLabel: "Cacher l'étiquette"
 
       usage:
-        button: "Formulaires avec cette question"
-        title: "Formulaires avec cette question"
-        no-forms-found: "Aucun formulaire n'a été trouvé qui utilise cette question"
+        title: "Cette question est {n,plural, =1 {utilisé sous <b>une</b> forme} other {utilisé sous <b>#</b> formes}}."
+        references-heading: "Toutes les références à cette question"
         not-published: "non publié"
 
     options:
