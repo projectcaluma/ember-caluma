@@ -10,7 +10,7 @@ import { dropTask } from "ember-concurrency";
 import copyFormMutation from "@projectcaluma/ember-form-builder/gql/mutations/copy-form.graphql";
 import validations from "@projectcaluma/ember-form-builder/validations/form";
 
-export default class componentsCfbFormItemListCopyModal extends Component {
+export default class CfbFormEditorCopyModal extends Component {
   @queryManager apollo;
   @service notification;
   @service router;
@@ -49,21 +49,13 @@ export default class componentsCfbFormItemListCopyModal extends Component {
       );
 
       this.notification.success(
-        this.intl.t(
-          `caluma.form-builder.notification.form.${
-            this.args.slug ? "save" : "create"
-          }.success`,
-        ),
+        this.intl.t("caluma.form-builder.notification.form.create.success"),
       );
 
       this.router.transitionTo("edit", form.slug);
     } catch (e) {
       this.notification.danger(
-        this.intl.t(
-          `caluma.form-builder.notification.form.${
-            this.args.slug ? "save" : "create"
-          }.error`,
-        ),
+        this.intl.t("caluma.form-builder.notification.form.create.error"),
       );
     }
   }

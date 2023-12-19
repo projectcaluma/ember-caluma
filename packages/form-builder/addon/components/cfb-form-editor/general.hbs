@@ -58,6 +58,15 @@
     </CfbFormEditor::CfbAdvancedSettings>
 
     <div class="uk-text-right">
+      <CfbFormEditor::CopyModal @item={{this.data}} as |modal|>
+        <f.button
+          @disabled={{f.loading}}
+          @label={{t "caluma.form-builder.copy-modal.submit"}}
+          {{on "click" modal.toggle}}
+          data-test-copy-form-button={{@slug}}
+        />
+      </CfbFormEditor::CopyModal>
+
       <f.submit
         @disabled={{f.loading}}
         @label={{t "caluma.form-builder.global.save"}}

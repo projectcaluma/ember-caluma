@@ -7,17 +7,6 @@
   </span>
   <span class="uk-label {{this.labelClass}}">{{this.labelName}}</span>
   <span class="uk-width-auto uk-margin-small-left">
-    <CfbFormList::CopyModal @item={{@item}} as |modal|>
-      <button
-        type="button"
-        uk-icon="copy"
-        class="uk-icon-button"
-        data-test-copy-form-button={{@item.slug}}
-        {{on "click" modal.toggle}}
-      >
-      </button>
-    </CfbFormList::CopyModal>
-
     <button
       data-test-edit-form
       type="button"

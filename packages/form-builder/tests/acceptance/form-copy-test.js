@@ -17,12 +17,15 @@ module("Acceptance | form copy", function (hooks) {
 
     await visit("/");
 
-    assert.dom("[data-test-copy-form-modal]").isNotVisible();
+    await click(
+      `[data-test-form-list-item=${form.slug}] [data-test-edit-form]`,
+    );
+
+    assert.dom("[data-test-copy-form-modal] form").isNotVisible();
 
     await click(`[data-test-copy-form-button=${form.slug}]`);
 
-    assert.dom("[data-test-copy-form-modal]").isVisible();
-
+    assert.dom("[data-test-copy-form-modal] form").isVisible();
     assert.dom("[data-test-copy-modal-input-name]").hasValue(form.name);
     assert.dom("[data-test-copy-modal-input-slug]").hasValue(form.slug);
 
