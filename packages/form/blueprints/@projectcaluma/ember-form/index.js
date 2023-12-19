@@ -20,6 +20,7 @@ module.exports = {
         { name: "ember-flatpickr" },
         { name: "ember-in-viewport" },
         { name: "ember-math-helpers" },
+        { name: "ember-truth-helpers" },
         { name: "ember-power-select" },
       ],
     });
