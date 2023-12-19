@@ -23,10 +23,9 @@
     {{/if}}
   </label>
 {{/each}}
-{{#if (and (eq @field.question.raw.isRequired "false") @field.answer.value)}}
+{{#if (and @field.optional @field.answer.value)}}
   <br />
-  <a data-test-radio-reset href="#" {{on "click" (fn @onSave null)}}>{{t
+  <a href="" data-test-radio-reset {{on "click" this.reset}}>{{t
       "caluma.form.power-select.reset"
     }}</a>
-
 {{/if}}

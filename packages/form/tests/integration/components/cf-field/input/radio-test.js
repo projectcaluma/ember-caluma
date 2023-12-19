@@ -87,7 +87,7 @@ module("Integration | Component | cf-field/input/radio", function (hooks) {
 
   test("it triggers save on click", async function (assert) {
     this.set("value", false);
-    this.set("raw", { isRequired: "false" });
+    this.set("optional", true);
     this.set("onSave", (value) => {
       this.set("value", value);
       assert.step("save");
@@ -98,7 +98,8 @@ module("Integration | Component | cf-field/input/radio", function (hooks) {
   @field={{hash
     options=(array (hash slug="option-1" label="Option 1"))
     answer=(hash value=this.value)
-    question=(hash __typename="ChoiceQuestion" slug="test" raw=this.raw)
+    question=(hash __typename="ChoiceQuestion" slug="test")
+    optional=this.optional
   }}
 />`);
 
@@ -107,7 +108,7 @@ module("Integration | Component | cf-field/input/radio", function (hooks) {
 
     assert.verifySteps(["save", "save"]);
 
-    this.set("raw", { isRequired: "true" });
+    this.set("optional", false);
     await click("label:nth-of-type(1) input");
 
     assert.verifySteps(["save"]);
