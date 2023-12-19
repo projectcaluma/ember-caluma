@@ -134,6 +134,11 @@ caluma:
 
       hideLabel: "Hide label"
 
+      usage:
+        title: "This question is used in {n,plural, =1 {<b>another</b> form} other {<b>#</b> other forms}}"
+        references-heading: "All references of this question"
+        not-published: "not published"
+
     options:
       delete: "Delete option"
       archive: "Archive (hide) option"

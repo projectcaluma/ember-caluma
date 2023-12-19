@@ -440,7 +440,9 @@
         />
       {{/if}}
 
-      <div class="uk-text-right">
+      <div class="uk-flex uk-flex-between uk-flex-middle uk-flex-row-reverse">
+        <CfbFormEditor::QuestionUsage @model={{f.model}} class="uk-flex-last" />
+
         <f.submit
           @disabled={{f.loading}}
           @label={{t "caluma.form-builder.global.save"}}

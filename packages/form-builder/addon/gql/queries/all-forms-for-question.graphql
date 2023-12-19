@@ -1,0 +1,13 @@
+query AllFormsForQuestion($slug: String!) {
+  allForms(filter: [{ questions: [$slug] }]) {
+    edges {
+      node {
+        id
+        slug
+        name
+        isArchived
+        isPublished
+      }
+    }
+  }
+}

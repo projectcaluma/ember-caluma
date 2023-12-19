@@ -134,6 +134,11 @@ caluma:
 
       hideLabel: "Label verstecken"
 
+      usage:
+        title: "Diese Frage wird in {n,plural, =1 {<b>einem</b> Formular} other {<b>#</b> Formularen}} verwendet."
+        references-heading: "Alle Verweise auf diese Frage"
+        not-published: "nicht publiziert"
+
     options:
       delete: "Option löschen"
       archive: "Option archivieren (verstecken)"

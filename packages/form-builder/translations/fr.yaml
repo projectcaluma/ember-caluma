@@ -134,6 +134,11 @@ caluma:
 
       hideLabel: "Cacher l'étiquette"
 
+      usage:
+        title: "Cette question est {n,plural, =1 {utilisé sous <b>une</b> forme} other {utilisé sous <b>#</b> formes}}."
+        references-heading: "Toutes les références à cette question"
+        not-published: "non publié"
+
     options:
       delete: "Supprimer l'option"
       archive: "Archiver (masquer) l'option"

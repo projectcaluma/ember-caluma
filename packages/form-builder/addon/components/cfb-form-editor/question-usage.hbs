@@ -1,0 +1,50 @@
+{{#if this.otherForms}}
+  <a
+    ...attributes
+    href="#"
+    {{on "click" (fn (mut this.modalVisible) true)}}
+    data-test-show-question-usage-modal-link
+  >
+    {{this.title}}
+  </a>
+{{/if}}
+
+<UkModal
+  @visible={{this.modalVisible}}
+  @stack={{true}}
+  @onHide={{fn (mut this.modalVisible) false}}
+  data-test-question-usage-modal
+  as |modal|
+>
+  <modal.header>
+    {{t "caluma.form-builder.question.usage.references-heading"}}
+  </modal.header>
+  <modal.body>
+    <ul class="uk-list uk-list-divider">
+      {{#each this.forms.value as |form|}}
+        <li data-test-question-form-item={{form.node.slug}}>
+          <div class="uk-flex uk-flex-middle">
+            <span class="uk-width-expand">
+              <LinkTo @route="edit" @model={{form.node.slug}}>
+                {{form.node.name}}
+              </LinkTo>
+            </span>
+
+            {{#if form.node.isArchived}}
+              <UkBadge>
+                {{t "caluma.form-builder.form.isArchived"}}
+              </UkBadge>
+            {{/if}}
+
+            {{#unless form.node.isPublished}}
+              <UkBadge class="uk-margin-small-left">
+                {{t "caluma.form-builder.question.usage.not-published"}}
+              </UkBadge>
+            {{/unless}}
+          </div>
+          <div class="uk-text-muted uk-text-small">{{form.node.slug}}</div>
+        </li>
+      {{/each}}
+    </ul>
+  </modal.body>
+</UkModal>
