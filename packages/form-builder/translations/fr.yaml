@@ -175,6 +175,16 @@ caluma:
           success: "Votre question a été enregistrée avec succès !"
           error: "Oups, quelque chose s'est mal passé lors de l'enregistrement de la question..."
 
+    copy-modal:
+      title: 'Copier "{form}"'
+      name:
+        label: "Nom"
+        hint: "Original : {name}"
+      slug:
+        label: "Slug"
+        hint: "Original : {slug}"
+      submit: "Copier"
+
     validations:
       form:
         slug: "Un formulaire avec ce slug existe déjà"

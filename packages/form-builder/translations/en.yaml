@@ -183,7 +183,7 @@ caluma:
       slug:
         label: "Slug"
         hint: "Original: {slug}"
-      submit: "Copy form"
+      submit: "Copy"
 
     validations:
       form:

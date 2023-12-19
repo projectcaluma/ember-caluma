@@ -1,10 +1,10 @@
-{{#if this.visible}}
-  <UkModal
-    @visible={{this.visible}}
-    @onHide={{fn (mut this.visible) false}}
-    data-test-copy-form-modal
-    as |modal|
-  >
+<UkModal
+  @visible={{this.visible}}
+  @onHide={{fn (mut this.visible) false}}
+  data-test-copy-form-modal
+  as |modal|
+>
+  {{#if this.visible}}
     <ValidatedForm
       @model={{this.changeset}}
       @on-submit={{perform this.submit}}
@@ -26,6 +26,7 @@
           @name="slug"
           @label={{t "caluma.form-builder.copy-modal.slug.label"}}
           @hint={{t "caluma.form-builder.copy-modal.slug.hint" slug=@item.slug}}
+          @renderComponent={{component "cfb-slug-input" hidePrefix=false}}
           data-test-copy-modal-input-slug
         />
       </modal.body>
@@ -43,7 +44,7 @@
         </f.submit>
       </modal.footer>
     </ValidatedForm>
-  </UkModal>
-{{/if}}
+  {{/if}}
+</UkModal>
 
 {{yield (hash toggle=this.toggle)}}

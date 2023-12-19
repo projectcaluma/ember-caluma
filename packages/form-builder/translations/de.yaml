@@ -183,7 +183,8 @@ caluma:
       slug:
         label: "Slug"
         hint: "Original: {slug}"
-      submit: "Formular kopieren"
+      submit: "Kopieren"
+
     validations:
       form:
         slug: "Ein Formular mit diesem Slug existiert bereits"

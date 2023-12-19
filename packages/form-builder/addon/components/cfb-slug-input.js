@@ -1,4 +1,5 @@
 import { action } from "@ember/object";
+import { scheduleOnce } from "@ember/runloop";
 import { inject as service } from "@ember/service";
 import { htmlSafe } from "@ember/template";
 import Component from "@glimmer/component";
@@ -30,6 +31,12 @@ export default class CfbSlugInputComponent extends Component {
 
   @action
   calculatePadding(element) {
+    // Ensures that the element is already visible in combined use
+    // with modal dialogs.
+    scheduleOnce("afterRender", this, this._calculatePadding, element);
+  }
+
+  _calculatePadding(element) {
     const prefixWidth = element.clientWidth;
     const prefixMargin = window.getComputedStyle(element).marginLeft;
 
