@@ -874,6 +874,9 @@ importers:
       ember-resources:
         specifier: ^6.4.2
         version: 6.4.2(@ember/test-waiters@3.1.0)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.2.1)(ember-concurrency@3.1.1)(ember-source@5.5.0)
+      ember-truth-helpers:
+        specifier: ^4.0.3
+        version: 4.0.3(ember-source@5.5.0)
       ember-uikit:
         specifier: ^9.0.0
         version: 9.0.0(@glint/template@1.2.1)(ember-source@5.5.0)(webpack@5.89.0)
@@ -19676,6 +19679,7 @@ packages:
       ember-power-select: 7.2.0(@babel/core@7.23.6)(@glint/template@1.2.1)(ember-source@5.5.0)(webpack@5.89.0)
       ember-resources: 6.4.2(@ember/test-waiters@3.1.0)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.2.1)(ember-concurrency@3.1.1)(ember-source@5.5.0)
       ember-source: 5.5.0(@babel/core@7.23.6)(@glimmer/component@1.1.2)(@glint/template@1.2.1)(rsvp@4.8.5)(webpack@5.89.0)
+      ember-truth-helpers: 4.0.3(ember-source@5.5.0)
       ember-uikit: 9.0.0(@glint/template@1.2.1)(ember-source@5.5.0)(webpack@5.89.0)
       ember-validators: 4.1.2(@glint/template@1.2.1)
       graphql: 15.8.0
