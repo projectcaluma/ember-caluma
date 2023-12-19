@@ -10,6 +10,7 @@ module("Integration | Component | cfb-code-editor", function (hooks) {
   test("it updates value", async function (assert) {
     await render(hbs`<CfbCodeEditor
   @name="editor"
+  @value={{this.value}}
   @language="jexl"
   @update={{fn (mut this.value)}}
   @setDirty={{fn (mut this.dirty) true}}
@@ -20,7 +21,8 @@ module("Integration | Component | cfb-code-editor", function (hooks) {
     await blur("[name=editor]");
 
     // syntax highlighting creates child <span>s
-    assert.dom("[name=editor] span").exists({ count: 2 });
+    assert.dom("[name=editor] span.hljs-number").exists({ count: 2 });
+    assert.dom("[name=editor] span.hljs-operator").exists({ count: 1 });
 
     assert.dom(this.element).hasText("1 + 1");
     assert.strictEqual(this.value, "1 + 1");
