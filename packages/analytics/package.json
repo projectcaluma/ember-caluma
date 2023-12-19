@@ -1,6 +1,6 @@
 {
   "name": "@projectcaluma/ember-analytics",
-  "version": "12.7.0",
+  "version": "12.8.0",
   "description": "Ember addon for Caluma analytics.",
   "keywords": [
     "ember-addon",
