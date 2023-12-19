@@ -6,6 +6,7 @@ import hljs from "highlight.js/lib/core";
 import json from "highlight.js/lib/languages/json";
 import markdown from "highlight.js/lib/languages/markdown";
 import jexl from "highlightjs-jexl/src/languages/jexl";
+import isEqual from "lodash.isequal";
 
 hljs.configure({ ignoreUnescapedHTML: true });
 
@@ -15,14 +16,15 @@ hljs.registerLanguage("jexl", jexl);
 
 export default class CfbCodeEditorComponent extends Component {
   _editor = null;
-  _cursor = null;
   _lastValue = this.args.value;
 
-  get value() {
-    const value = this.args.value;
-
-    if (this.args.language === "json" && typeof value === "object") {
-      return JSON.stringify(value?.unwrap?.() ?? value, null, 2);
+  get stringValue() {
+    if (this.args.language === "json" && typeof this.args.value === "object") {
+      return JSON.stringify(
+        this.args.value?.unwrap?.() ?? this.args.value,
+        null,
+        2,
+      );
     }
 
     return this.args.value;
@@ -30,10 +32,6 @@ export default class CfbCodeEditorComponent extends Component {
 
   @action
   onUpdate(value) {
-    if (this._lastValue === value) return;
-
-    this._cursor = this._editor.save();
-
     if (this.args.language === "json") {
       try {
         value = JSON.parse(value);
@@ -42,20 +40,23 @@ export default class CfbCodeEditorComponent extends Component {
       }
     }
 
+    if (isEqual(this._lastValue, value)) return;
+
     this._lastValue = value;
     this.args.update(value);
   }
 
   @action
   updateCode() {
-    if (this._lastValue === this.value) return;
+    if (isEqual(this._lastValue, this.args.value)) return;
 
-    this._editor.updateCode(this.value, false);
+    this._editor.updateCode(this.stringValue, false);
+  }
 
-    if (this._cursor) {
-      this._editor.restore(this._cursor);
-      this._cursor = null;
-    }
+  @action
+  onBlur() {
+    this._editor.updateCode(this.stringValue);
+    this.args.setDirty();
   }
 
   @action
@@ -66,7 +67,7 @@ export default class CfbCodeEditorComponent extends Component {
     });
 
     // set initial value
-    this._editor.updateCode(this.value);
+    this._editor.updateCode(this.stringValue);
 
     // register update method
     this._editor.onUpdate(this.onUpdate);

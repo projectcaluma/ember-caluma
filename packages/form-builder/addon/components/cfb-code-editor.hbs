@@ -4,11 +4,14 @@
   <div class="uk-form-controls">
     <div
       name={{@name}}
-      class="uk-textarea cfb-code-editor {{concat 'language-' @language}}"
+      class="uk-textarea cfb-code-editor
+        {{concat 'language-' @language}}
+        {{if @isValid 'uk-form-success'}}
+        {{if @isInvalid 'uk-form-danger'}}"
       {{did-insert this.didInsertNode}}
       {{will-destroy this.willDestroyNode}}
       {{autoresize mode="height"}}
-      {{on "blur" @setDirty}}
+      {{on "blur" this.onBlur}}
     ></div>
   </div>
 

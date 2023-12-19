@@ -47,6 +47,7 @@
     "highlight.js": "^11.9.0",
     "highlightjs-jexl": "^0.0.5",
     "jexl": "^2.3.0",
+    "lodash.isequal": "^4.5.0",
     "uikit": "^3.17.11"
   },
   "//": [
