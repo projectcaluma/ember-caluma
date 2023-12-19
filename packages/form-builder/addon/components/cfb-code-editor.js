@@ -7,6 +7,7 @@ import json from "highlight.js/lib/languages/json";
 import markdown from "highlight.js/lib/languages/markdown";
 import jexl from "highlightjs-jexl/src/languages/jexl";
 import isEqual from "lodash.isequal";
+import "highlight.js/styles/github.css";
 
 hljs.configure({ ignoreUnescapedHTML: true });
 
