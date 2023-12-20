@@ -19,8 +19,9 @@ export default class CfbFormEditorCopyModal extends Component {
 
   constructor(owner, args) {
     super(owner, args);
+
     this.changeset = Changeset(
-      this.args.item,
+      { ...this.args.item, id: undefined },
       lookupValidator(validations),
       validations,
     );
