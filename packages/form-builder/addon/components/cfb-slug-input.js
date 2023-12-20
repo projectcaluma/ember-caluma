@@ -33,7 +33,7 @@ export default class CfbSlugInputComponent extends Component {
   calculatePadding(element) {
     // Ensures that the element is already visible in combined use
     // with modal dialogs.
-    scheduleOnce("afterRender", this, this._calculatePadding, element);
+    scheduleOnce("afterRender", this, "_calculatePadding", element);
   }
 
   _calculatePadding(element) {
