@@ -35,7 +35,7 @@ export default class CfbFormEditorCopyModal extends Component {
   @dropTask
   *submit(changeset) {
     try {
-      const form = yield this.apollo.mutate(
+      yield this.apollo.mutate(
         {
           mutation: copyFormMutation,
           variables: {
@@ -53,7 +53,7 @@ export default class CfbFormEditorCopyModal extends Component {
         this.intl.t("caluma.form-builder.notification.form.create.success"),
       );
 
-      this.router.transitionTo("edit", form.slug);
+      this.router.transitionTo("edit", changeset.slug);
     } catch (e) {
       this.notification.danger(
         this.intl.t("caluma.form-builder.notification.form.create.error"),
