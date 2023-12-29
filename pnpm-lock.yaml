@@ -183,8 +183,8 @@ importers:
         specifier: 5.5.0
         version: 5.5.0
       ember-cli-addon-docs:
-        specifier: 6.0.2
-        version: 6.0.2(@babel/core@7.23.6)(@ember/test-helpers@3.2.1)(ember-data@5.3.0)(ember-fetch@8.1.2)(ember-source@5.5.0)(webpack@5.89.0)
+        specifier: 7.0.0
+        version: 7.0.0(@babel/core@7.23.6)(@ember/test-helpers@3.2.1)(ember-data@5.3.0)(ember-fetch@8.1.2)(ember-source@5.5.0)(webpack@5.89.0)
       ember-cli-babel:
         specifier: 8.2.0
         version: 8.2.0(@babel/core@7.23.6)
@@ -3736,6 +3736,12 @@ packages:
     dependencies:
       '@simple-dom/interface': 1.4.0
 
+  /@glimmer/interfaces@0.86.0:
+    resolution: {integrity: sha512-qKPb8ivmzQtgvBbFJn/rS3E/1wtiSJ9EG4WA+j3uxUSZqbR4oKTNR2IhwPnopLON1jASBHh+aonczvcvpGNLwA==}
+    dependencies:
+      '@simple-dom/interface': 1.4.0
+    dev: true
+
   /@glimmer/low-level@0.78.2:
     resolution: {integrity: sha512-0S6TWOOd0fzLLysw1pWZN0TgasaHmYs1Sjz9Til1mTByIXU1S+1rhdyr2veSQPO/aRjPuEQyKXZQHvx23Zax6w==}
 
@@ -3819,6 +3825,16 @@ packages:
       '@handlebars/parser': 2.0.0
       simple-html-tokenizer: 0.5.11
 
+  /@glimmer/syntax@0.86.0:
+    resolution: {integrity: sha512-ZjT59PEb69QMqE+EJSdeYoHCT5d1LElJjYOtu0q/+6h9zsaEZIUYsHdFJWNvTs3cLMcGIg2ae4KWfGwZtexn/g==}
+    dependencies:
+      '@glimmer/interfaces': 0.86.0
+      '@glimmer/util': 0.86.0
+      '@glimmer/wire-format': 0.86.0
+      '@handlebars/parser': 2.0.0
+      simple-html-tokenizer: 0.5.11
+    dev: true
+
   /@glimmer/tracking@1.1.2:
     resolution: {integrity: sha512-cyV32zsHh+CnftuRX84ALZpd2rpbDrhLhJnTXn9W//QpqdRZ5rdMsxSY9fOsj0CKEc706tmEU299oNnDc0d7tA==}
     dependencies:
@@ -3834,6 +3850,13 @@ packages:
       '@glimmer/env': 0.1.7
       '@glimmer/interfaces': 0.84.3
       '@simple-dom/interface': 1.4.0
+
+  /@glimmer/util@0.86.0:
+    resolution: {integrity: sha512-KXwGBaMvHhapWaITGMCMKuNaaNAH4DjezY1oAwfF/eRBO43sp1g93kO88e+aJ90waftN7IKAMymGrPrHg22ibw==}
+    dependencies:
+      '@glimmer/env': 0.1.7
+      '@glimmer/interfaces': 0.86.0
+    dev: true
 
   /@glimmer/validator@0.44.0:
     resolution: {integrity: sha512-i01plR0EgFVz69GDrEuFgq1NheIjZcyTy3c7q+w7d096ddPVeVcRzU3LKaqCfovvLJ+6lJx40j45ecycASUUyw==}
@@ -3862,6 +3885,13 @@ packages:
     dependencies:
       '@glimmer/interfaces': 0.84.3
       '@glimmer/util': 0.84.3
+
+  /@glimmer/wire-format@0.86.0:
+    resolution: {integrity: sha512-nI37pUNlLrEPDtCR8fxc6aEZ1NqVG5A5FWmd04Qg5gSb41dziq97lYyXbkWsOojWmL6ciYFfacpz5FlPNxgnJw==}
+    dependencies:
+      '@glimmer/interfaces': 0.86.0
+      '@glimmer/util': 0.86.0
+    dev: true
 
   /@glint/template@1.2.1:
     resolution: {integrity: sha512-rlYy/93fAhYjXmTchWcwCpPFMfrqBYEskzbDYawS2oz4DVwtf4fOITLKB0QddQMI7WUCjgXAiIGZqcNa/R4YeQ==}
@@ -9198,9 +9228,9 @@ packages:
       - webpack
     dev: true
 
-  /ember-cli-addon-docs@6.0.2(@babel/core@7.23.6)(@ember/test-helpers@3.2.1)(ember-data@5.3.0)(ember-fetch@8.1.2)(ember-source@5.5.0)(webpack@5.89.0):
-    resolution: {integrity: sha512-pHcrMttJV5pH6QKvHUhoCLxraxJFVvyVRwXuU09yXcmrNI5jSaqnOCyif2wa/ibTQvejt/kwsAn1yHB4bZVs4w==}
-    engines: {node: 16.* || >= 18}
+  /ember-cli-addon-docs@7.0.0(@babel/core@7.23.6)(@ember/test-helpers@3.2.1)(ember-data@5.3.0)(ember-fetch@8.1.2)(ember-source@5.5.0)(webpack@5.89.0):
+    resolution: {integrity: sha512-lQP6LuiewG3CdqwRWJoDgVX5iBjlVtTTzc2kBF8PWyO3TB9uxYoT7DJe+sVTgdwk13ziYepxrxJaHmFqPdTp8Q==}
+    engines: {node: '>= 18'}
     peerDependencies:
       ember-data: '>= 3.0.0'
       ember-fetch: ^8.1.1
@@ -9210,7 +9240,7 @@ packages:
       '@ember/render-modifiers': 2.1.0(@babel/core@7.23.6)(@glint/template@1.2.1)(ember-source@5.5.0)
       '@ember/test-waiters': 3.1.0
       '@glimmer/component': 1.1.2(@babel/core@7.23.6)
-      '@glimmer/syntax': 0.84.3
+      '@glimmer/syntax': 0.86.0
       '@glimmer/tracking': 1.1.2
       '@handlebars/parser': 2.1.0
       broccoli-bridge: 1.0.0
@@ -9246,20 +9276,21 @@ packages:
       ember-source: 5.5.0(@babel/core@7.23.6)(@glimmer/component@1.1.2)(@glint/template@1.2.1)(rsvp@4.8.5)(webpack@5.89.0)
       ember-svg-jar: 2.4.7(@glint/template@1.2.1)
       ember-tether: 3.0.0(@babel/core@7.23.6)(ember-source@5.5.0)(webpack@5.89.0)
-      ember-truth-helpers: 3.1.1
+      ember-truth-helpers: 4.0.3(ember-source@5.5.0)
       esm: 3.2.25
       execa: 5.1.1
       fs-extra: 11.2.0
       git-repo-info: 2.1.1
       highlight.js: 11.9.0
-      hosted-git-info: 6.1.1
+      hosted-git-info: 7.0.1
       html-entities: 2.4.0
       jsdom: 20.0.3
       json-api-serializer: 2.6.6
       line-column: 1.0.2
       lodash: 4.17.21
       lunr: 2.3.9
-      marked: 4.3.0
+      marked: 11.1.0
+      marked-highlight: 1.0.2(marked@11.1.0)
       node-html-parser: 6.1.11
       pad-start: 1.0.2
       parse-git-config: 3.0.0
@@ -14800,6 +14831,14 @@ packages:
       uc.micro: 1.0.6
     dev: true
 
+  /marked-highlight@1.0.2(marked@11.1.0):
+    resolution: {integrity: sha512-Jh+4nqS3KxsOJfh7k8wgtvVAXPydrVgkgggmQgdrtmK5I+0b27cIYfW8YYYzxGgMy1JCZTRygr58CMhvZqFULA==}
+    peerDependencies:
+      marked: ^4 || ^5
+    dependencies:
+      marked: 11.1.0
+    dev: true
+
   /marked-terminal@6.2.0(marked@9.1.6):
     resolution: {integrity: sha512-ubWhwcBFHnXsjYNsu+Wndpg0zhY4CahSpPlA70PlO0rR9r2sZpkyU+rkCsOWH+KMEkx847UpALON+HWgxowFtw==}
     engines: {node: '>=16.0.0'}
@@ -14815,9 +14854,9 @@ packages:
       supports-hyperlinks: 3.0.0
     dev: true
 
-  /marked@4.3.0:
-    resolution: {integrity: sha512-PRsaiG84bK+AMvxziE/lCFss8juXjNaWzVbN5tXAm4XjeaS9NAHhop+PjQxz2A9h8Q4M/xGmzP8vqNwy6JeK0A==}
-    engines: {node: '>= 12'}
+  /marked@11.1.0:
+    resolution: {integrity: sha512-fvKJWAPEafVj1dwGwcPI5mBB/0pvViL6NlCbNDG1HOIRwwAU/jeMoFxfbRLuirO1wRH7m4yPvBqD/O1wyWvayw==}
+    engines: {node: '>= 18'}
     hasBin: true
     dev: true
 
