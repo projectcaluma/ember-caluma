@@ -171,8 +171,8 @@ importers:
         specifier: 4.0.2
         version: 4.0.2(@glint/template@1.2.1)(graphql@15.8.0)(webpack@5.89.0)
       ember-auto-import:
-        specifier: 2.7.1
-        version: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+        specifier: 2.7.2
+        version: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-changeset:
         specifier: 4.1.2
         version: 4.1.2(ember-data@5.3.0)(webpack@5.89.0)
@@ -324,8 +324,8 @@ importers:
         specifier: ~4.0.2
         version: 4.0.2(@glint/template@1.2.1)(graphql@15.8.0)(webpack@5.89.0)
       ember-auto-import:
-        specifier: ^2.7.1
-        version: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+        specifier: ^2.7.2
+        version: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-changeset:
         specifier: ^4.1.2
         version: 4.1.2(@glint/template@1.2.1)(ember-data@5.3.0)(webpack@5.89.0)
@@ -492,8 +492,8 @@ importers:
         specifier: ~4.0.2
         version: 4.0.2(@glint/template@1.2.1)(graphql@15.8.0)(webpack@5.89.0)
       ember-auto-import:
-        specifier: ^2.7.1
-        version: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+        specifier: ^2.7.2
+        version: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-cli-babel:
         specifier: ^8.2.0
         version: 8.2.0(@babel/core@7.23.6)
@@ -655,8 +655,8 @@ importers:
         specifier: ~4.0.2
         version: 4.0.2(@glint/template@1.2.1)(graphql@15.8.0)(webpack@5.89.0)
       ember-auto-import:
-        specifier: ^2.7.1
-        version: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+        specifier: ^2.7.2
+        version: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-can:
         specifier: ^4.2.0
         version: 4.2.0
@@ -833,8 +833,8 @@ importers:
         specifier: ~4.0.2
         version: 4.0.2(@glint/template@1.2.1)(graphql@15.8.0)(webpack@5.89.0)
       ember-auto-import:
-        specifier: ^2.7.1
-        version: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+        specifier: ^2.7.2
+        version: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-autoresize-modifier:
         specifier: ^0.7.0
         version: 0.7.0(@glint/template@1.2.1)(ember-source@5.5.0)(webpack@5.89.0)
@@ -1027,8 +1027,8 @@ importers:
         specifier: ~4.0.2
         version: 4.0.2(@glint/template@1.2.1)(graphql@15.8.0)(webpack@5.89.0)
       ember-auto-import:
-        specifier: ^2.7.1
-        version: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+        specifier: ^2.7.2
+        version: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-changeset:
         specifier: ^4.1.2
         version: 4.1.2(@glint/template@1.2.1)(ember-data@5.3.0)(webpack@5.89.0)
@@ -1212,8 +1212,8 @@ importers:
         specifier: ~4.0.2
         version: 4.0.2(@glint/template@1.2.1)(graphql@15.8.0)(webpack@5.89.0)
       ember-auto-import:
-        specifier: ^2.7.1
-        version: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+        specifier: ^2.7.2
+        version: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-cli-babel:
         specifier: ^8.2.0
         version: 8.2.0(@babel/core@7.23.6)
@@ -1330,8 +1330,8 @@ importers:
         specifier: ~4.0.2
         version: 4.0.2(@glint/template@1.2.1)(graphql@15.8.0)(webpack@5.89.0)
       ember-auto-import:
-        specifier: ^2.7.1
-        version: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+        specifier: ^2.7.2
+        version: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-cli-babel:
         specifier: ^8.2.0
         version: 8.2.0(@babel/core@7.23.6)
@@ -3041,7 +3041,7 @@ packages:
       '@ember/edition-utils': 1.2.0
       '@ember/string': 3.1.1
       '@embroider/macros': 1.13.4(@glint/template@1.2.1)
-      ember-auto-import: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-auto-import: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-cli-babel: 8.2.0(@babel/core@7.23.6)
       webpack: 5.89.0
     transitivePeerDependencies:
@@ -3429,7 +3429,7 @@ packages:
       '@simple-dom/interface': 1.4.0
       broccoli-debug: 0.6.5
       broccoli-funnel: 3.0.8
-      ember-auto-import: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-auto-import: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-cli-babel: 7.26.11
       ember-cli-htmlbars: 6.3.0
       ember-source: 5.5.0(@babel/core@7.23.6)(@glimmer/component@1.1.2)(@glint/template@1.2.1)(rsvp@4.8.5)(webpack@5.89.0)
@@ -8925,7 +8925,7 @@ packages:
       '@embroider/macros': 1.13.4(@glint/template@1.2.1)
       '@glimmer/tracking': 1.1.2
       broccoli-graphql-filter: 1.0.1(graphql@15.8.0)
-      ember-auto-import: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-auto-import: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-cli-babel: 7.26.11
       graphql: 15.8.0
     transitivePeerDependencies:
@@ -8958,7 +8958,7 @@ packages:
     engines: {node: 14.* || >= 16}
     dependencies:
       '@embroider/macros': 1.13.4(@glint/template@1.2.1)
-      ember-auto-import: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-auto-import: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-cli-babel: 7.26.11
       ember-cli-typescript: 5.2.1
       ember-get-config: 2.1.1(@glint/template@1.2.1)
@@ -9003,8 +9003,8 @@ packages:
     transitivePeerDependencies:
       - supports-color
 
-  /ember-auto-import@2.7.1(@glint/template@1.2.1)(webpack@5.89.0):
-    resolution: {integrity: sha512-8i5pw9DAtIJ+h+iGbYD25GPTyF3gLurokT7b1HBvKkHdOQuqGaXB9aiWA72BnqwA3Kwd3nfgdOml3HEaeQmCKQ==}
+  /ember-auto-import@2.7.2(@glint/template@1.2.1)(webpack@5.89.0):
+    resolution: {integrity: sha512-pkWIljmJClYL17YBk8FjO7NrZPQoY9v0b+FooJvaHf/xlDQIBYVP7OaDHbNuNbpj7+wAwSDAnnwxjCoLsmm4cw==}
     engines: {node: 12.* || 14.* || >= 16}
     dependencies:
       '@babel/core': 7.23.6
@@ -9050,7 +9050,7 @@ packages:
     resolution: {integrity: sha512-WL/fTjYLMbX/rbpmuwtvSXPWZKuk68T+//M/AFwTYKWCqseB0Z+VTRV5zFBeme+7maKNg2GJ7bFmq9dQSWa70Q==}
     engines: {node: 14.* || >= 16}
     dependencies:
-      ember-auto-import: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-auto-import: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-cli-babel: 7.26.11
       ember-cli-htmlbars: 6.3.0
       ember-modifier: 4.1.0(ember-source@5.5.0)
@@ -9070,7 +9070,7 @@ packages:
       '@embroider/util': 1.12.1(@glint/template@1.2.1)(ember-source@5.5.0)
       '@glimmer/component': 1.1.2(@babel/core@7.23.6)
       '@glimmer/tracking': 1.1.2
-      ember-auto-import: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-auto-import: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-cli-babel: 7.26.11
       ember-cli-htmlbars: 6.3.0
       ember-cli-typescript: 5.2.1
@@ -9146,7 +9146,7 @@ packages:
     resolution: {integrity: sha512-lRT+LOwY+kTMRC/op85L6+FFHDuOkoQvqgexexTiLFECiTNw4vQbOrcAqhfe6n/QJBr5uypZ+bg4W1Ng34dkMg==}
     engines: {node: 12.* || 14.* || >= 16}
     dependencies:
-      ember-auto-import: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-auto-import: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-cli-babel: 7.26.11
       ember-get-config: 2.1.1(@glint/template@1.2.1)
       ember-validators: 4.1.2(@glint/template@1.2.1)
@@ -9167,7 +9167,7 @@ packages:
     dependencies:
       '@embroider/macros': 1.13.4(@glint/template@1.2.1)
       '@glimmer/tracking': 1.1.2
-      ember-auto-import: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-auto-import: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-cli-babel: 7.26.11
       ember-data: 5.3.0(@babel/core@7.23.6)(@ember/string@3.1.1)(@glimmer/tracking@1.1.2)(@glint/template@1.2.1)(ember-source@5.5.0)
       validated-changeset: 1.3.4
@@ -9188,7 +9188,7 @@ packages:
     dependencies:
       '@embroider/macros': 1.13.4(@glint/template@1.2.1)
       '@glimmer/tracking': 1.1.2
-      ember-auto-import: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-auto-import: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-cli-babel: 7.26.11
       ember-data: 5.3.0(@babel/core@7.23.6)(@ember/string@3.1.1)(@glimmer/tracking@1.1.2)(ember-source@5.5.0)
       validated-changeset: 1.3.4
@@ -9223,7 +9223,7 @@ packages:
       broccoli-source: 3.0.1
       broccoli-stew: 3.0.0
       chalk: 4.1.2
-      ember-auto-import: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-auto-import: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-cli-autoprefixer: 2.0.0
       ember-cli-babel: 7.26.11
       ember-cli-clipboard: 1.1.0(ember-source@5.5.0)(webpack@5.89.0)
@@ -9414,7 +9414,7 @@ packages:
       '@embroider/macros': 1.13.4(@glint/template@1.2.1)
       clipboard: 2.0.11
       ember-arg-types: 1.1.0(webpack@5.89.0)
-      ember-auto-import: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-auto-import: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-cli-babel: 7.26.11
       ember-cli-htmlbars: 6.3.0
       ember-modifier: 4.1.0(ember-source@5.5.0)
@@ -9656,7 +9656,7 @@ packages:
       broccoli-file-creator: 2.1.1
       broccoli-funnel: 3.0.8
       broccoli-merge-trees: 4.2.0
-      ember-auto-import: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-auto-import: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-cli-babel: 8.2.0(@babel/core@7.23.6)
       ember-data: 5.3.0(@babel/core@7.23.6)(@ember/string@3.1.1)(@glimmer/tracking@1.1.2)(@glint/template@1.2.1)(ember-source@5.5.0)
       ember-get-config: 2.1.1(@glint/template@1.2.1)
@@ -9696,7 +9696,7 @@ packages:
       broccoli-file-creator: 2.1.1
       broccoli-funnel: 3.0.8
       broccoli-merge-trees: 4.2.0
-      ember-auto-import: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-auto-import: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-cli-babel: 8.2.0(@babel/core@7.23.6)
       ember-data: 5.3.0(@babel/core@7.23.6)(@ember/string@3.1.1)(@glimmer/tracking@1.1.2)(ember-source@5.5.0)
       ember-get-config: 2.1.1(@glint/template@1.2.1)
@@ -9735,7 +9735,7 @@ packages:
       broccoli-file-creator: 2.1.1
       broccoli-funnel: 3.0.8
       broccoli-merge-trees: 4.2.0
-      ember-auto-import: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-auto-import: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-cli-babel: 8.2.0(@babel/core@7.23.6)
       ember-get-config: 2.1.1(@glint/template@1.2.1)
       ember-inflector: 4.0.2
@@ -9810,7 +9810,7 @@ packages:
     peerDependencies:
       ember-source: ^3.12.0 || >4.0.0 || ^5.0.0
     dependencies:
-      ember-auto-import: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-auto-import: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-cli-babel: 7.26.11
       ember-cli-htmlbars: 6.3.0
       ember-source: 5.5.0(@babel/core@7.23.6)(@glimmer/component@1.1.2)(@glint/template@1.2.1)(rsvp@4.8.5)(webpack@5.89.0)
@@ -10209,7 +10209,7 @@ packages:
       '@ember/string': 3.1.1
       '@embroider/macros': 1.13.4(@glint/template@1.2.1)
       broccoli-merge-trees: 4.2.0
-      ember-auto-import: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-auto-import: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-cli-babel: 8.2.0(@babel/core@7.23.6)
       ember-inflector: 4.0.2
       webpack: 5.89.0
@@ -10246,7 +10246,7 @@ packages:
       '@ember/string': 3.1.1
       '@embroider/macros': 1.13.4(@glint/template@1.2.1)
       broccoli-merge-trees: 4.2.0
-      ember-auto-import: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-auto-import: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-cli-babel: 8.2.0(@babel/core@7.23.6)
       ember-inflector: 4.0.2
       webpack: 5.89.0
@@ -10445,7 +10445,7 @@ packages:
     engines: {node: 12.* || 14.* || >= 16}
     dependencies:
       '@embroider/macros': 1.13.4(@glint/template@1.2.1)
-      ember-auto-import: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-auto-import: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-cli-babel: 7.26.11
       ember-destroyable-polyfill: 2.0.3(@babel/core@7.23.6)
       ember-modifier: 4.1.0(ember-source@5.5.0)
@@ -10487,7 +10487,7 @@ packages:
       broccoli-stew: 3.0.0
       calculate-cache-key-for-tree: 2.0.0
       cldr-core: 44.0.1
-      ember-auto-import: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-auto-import: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-cli-babel: 8.2.0(@babel/core@7.23.6)
       ember-cli-typescript: 5.2.1
       eventemitter3: 5.0.1
@@ -10627,7 +10627,7 @@ packages:
       '@glimmer/component': 1.1.2(@babel/core@7.23.6)
       '@glimmer/tracking': 1.1.2
       ember-assign-helper: 0.4.0
-      ember-auto-import: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-auto-import: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-basic-dropdown: 7.3.0(@babel/core@7.23.6)(@ember/string@3.1.1)(@glint/template@1.2.1)(ember-source@5.5.0)(webpack@5.89.0)
       ember-cli-babel: 7.26.11
       ember-cli-htmlbars: 6.3.0
@@ -10811,7 +10811,7 @@ packages:
       broccoli-funnel: 3.0.8
       broccoli-merge-trees: 4.2.0
       chalk: 4.1.2
-      ember-auto-import: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-auto-import: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-cli-babel: 7.26.11
       ember-cli-get-component-path-option: 1.0.0
       ember-cli-is-package-missing: 1.0.0
@@ -10841,7 +10841,7 @@ packages:
       '@ember/string': ^3.0.1
     dependencies:
       '@ember/string': 3.1.1
-      ember-auto-import: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-auto-import: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-cli-babel: 7.26.11
       ember-modifier: 4.1.0(ember-source@5.5.0)
     transitivePeerDependencies:
@@ -10979,7 +10979,7 @@ packages:
       ember-source: ^4.0.0 || ^5.0.0
     dependencies:
       '@ember/render-modifiers': 2.1.0(@babel/core@7.23.6)(@glint/template@1.2.1)(ember-source@5.5.0)
-      ember-auto-import: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-auto-import: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-cli-babel: 7.26.11
       ember-cli-htmlbars: 6.3.0
       ember-source: 5.5.0(@babel/core@7.23.6)(@glimmer/component@1.1.2)(@glint/template@1.2.1)(rsvp@4.8.5)(webpack@5.89.0)
@@ -11091,7 +11091,7 @@ packages:
       broccoli-funnel: 3.0.8
       broccoli-merge-trees: 4.2.0
       broccoli-stew: 3.0.0
-      ember-auto-import: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-auto-import: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-cli-babel: 8.2.0(@babel/core@7.23.6)
       ember-cli-htmlbars: 6.3.0
       ember-composable-helpers: 5.0.0
@@ -19617,7 +19617,7 @@ packages:
       '@embroider/macros': 1.13.4(@glint/template@1.2.1)
       '@glimmer/tracking': 1.1.2
       ember-apollo-client: 4.0.2(@glint/template@1.2.1)(graphql@15.8.0)(webpack@5.89.0)
-      ember-auto-import: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-auto-import: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-cli-babel: 8.2.0(@babel/core@7.23.6)
       ember-cli-htmlbars: 6.3.0
       ember-concurrency: 3.1.1(@babel/core@7.23.6)(ember-source@5.5.0)
@@ -19667,7 +19667,7 @@ packages:
       '@projectcaluma/ember-core': file:packages/core(@ember/test-waiters@3.1.0)(@glimmer/component@1.1.2)(@glint/template@1.2.1)(ember-source@5.5.0)(webpack@5.89.0)
       '@projectcaluma/ember-workflow': file:packages/workflow(@glimmer/tracking@1.1.2)(@glint/template@1.2.1)(ember-source@5.5.0)(webpack@5.89.0)
       ember-apollo-client: 4.0.2(@glint/template@1.2.1)(graphql@15.8.0)(webpack@5.89.0)
-      ember-auto-import: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-auto-import: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-autoresize-modifier: 0.7.0(@glint/template@1.2.1)(ember-source@5.5.0)(webpack@5.89.0)
       ember-cli-babel: 8.2.0(@babel/core@7.23.6)
       ember-cli-htmlbars: 6.3.0
@@ -19718,7 +19718,7 @@ packages:
       broccoli-funnel: 3.0.8
       broccoli-merge-trees: 4.2.0
       ember-apollo-client: 4.0.2(@glint/template@1.2.1)(graphql@15.8.0)(webpack@5.89.0)
-      ember-auto-import: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-auto-import: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-cli-babel: 8.2.0(@babel/core@7.23.6)
       ember-cli-htmlbars: 6.3.0
       ember-cli-mirage: 3.0.2(@ember/test-helpers@3.2.1)(@glint/template@1.2.1)(ember-data@5.3.0)(ember-qunit@8.0.2)(ember-source@5.5.0)(miragejs@0.1.48)(webpack@5.89.0)
@@ -19757,7 +19757,7 @@ packages:
       '@glimmer/component': 1.1.2(@babel/core@7.23.6)
       '@projectcaluma/ember-core': file:packages/core(@ember/test-waiters@3.1.0)(@glimmer/component@1.1.2)(@glint/template@1.2.1)(ember-source@5.5.0)(webpack@5.89.0)
       ember-apollo-client: 4.0.2(@glint/template@1.2.1)(graphql@15.8.0)(webpack@5.89.0)
-      ember-auto-import: 2.7.1(@glint/template@1.2.1)(webpack@5.89.0)
+      ember-auto-import: 2.7.2(@glint/template@1.2.1)(webpack@5.89.0)
       ember-cli-babel: 8.2.0(@babel/core@7.23.6)
       ember-cli-htmlbars: 6.3.0
       ember-composable-helpers: 5.0.0

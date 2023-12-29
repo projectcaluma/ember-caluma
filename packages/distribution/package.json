@@ -24,7 +24,7 @@
     "@projectcaluma/ember-form": "workspace:^",
     "@projectcaluma/ember-workflow": "workspace:^",
     "ember-apollo-client": "~4.0.2",
-    "ember-auto-import": "^2.7.1",
+    "ember-auto-import": "^2.7.2",
     "ember-can": "^4.2.0",
     "ember-cli-babel": "^8.2.0",
     "ember-cli-htmlbars": "^6.3.0",

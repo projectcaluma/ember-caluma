@@ -20,7 +20,7 @@
     "@glimmer/tracking": "^1.1.2",
     "@projectcaluma/ember-core": "workspace:^",
     "ember-apollo-client": "~4.0.2",
-    "ember-auto-import": "^2.7.1",
+    "ember-auto-import": "^2.7.2",
     "ember-changeset": "^4.1.2",
     "ember-changeset-validations": "^4.1.1",
     "ember-cli-babel": "^8.2.0",
