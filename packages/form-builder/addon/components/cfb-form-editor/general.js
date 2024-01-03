@@ -58,6 +58,8 @@ export default class CfbFormEditorGeneral extends Component {
 
   @dropTask
   *submit(changeset) {
+    const rawMeta = changeset.get("meta");
+
     try {
       const form = yield this.apollo.mutate(
         {
@@ -69,6 +71,7 @@ export default class CfbFormEditorGeneral extends Component {
               description: changeset.get("description"),
               isArchived: changeset.get("isArchived"),
               isPublished: changeset.get("isPublished"),
+              meta: JSON.stringify(rawMeta?.unwrap?.() ?? rawMeta),
             },
           },
         },

@@ -5,4 +5,5 @@ fragment FormInfo on Form {
   description
   isArchived
   isPublished
+  meta
 }

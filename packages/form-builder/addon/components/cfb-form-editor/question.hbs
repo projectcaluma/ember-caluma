@@ -384,20 +384,7 @@
         @renderComponent={{component "cfb-toggle-switch" size="small"}}
       />
 
-      <UkButton
-        @color="link"
-        @onClick={{toggle-action "showAdvanced" this}}
-        class="uk-flex uk-flex-middle uk-margin"
-      >
-        {{#if this.showAdvanced}}
-          <UkIcon @icon="triangle-down" />
-        {{else}}
-          <UkIcon @icon="triangle-right" />
-        {{/if}}
-        {{t "caluma.form-builder.question.advancedSettings"}}
-      </UkButton>
-
-      {{#if this.showAdvanced}}
+      <CfbFormEditor::CfbAdvancedSettings>
         {{#if (has-question-type f.model "action-button")}}
           <f.input
             @name="validateOnEnter"
@@ -438,7 +425,7 @@
           @name="meta"
           @renderComponent={{component "cfb-code-editor" language="json"}}
         />
-      {{/if}}
+      </CfbFormEditor::CfbAdvancedSettings>
 
       <div class="uk-flex uk-flex-between uk-flex-middle uk-flex-row-reverse">
         <CfbFormEditor::QuestionUsage @model={{f.model}} class="uk-flex-last" />

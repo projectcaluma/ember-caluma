@@ -1,0 +1,16 @@
+<UkButton
+  @color="link"
+  @onClick={{toggle-action "showAdvanced" this}}
+  class="uk-flex uk-flex-middle uk-margin"
+>
+  {{#if this.showAdvanced}}
+    <UkIcon @icon="triangle-down" />
+  {{else}}
+    <UkIcon @icon="triangle-right" />
+  {{/if}}
+  {{t "caluma.form-builder.question.advancedSettings"}}
+</UkButton>
+
+{{#if this.showAdvanced}}
+  {{yield}}
+{{/if}}
