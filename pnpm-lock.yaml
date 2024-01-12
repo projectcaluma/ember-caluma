@@ -246,8 +246,8 @@ importers:
         specifier: 8.1.2
         version: 8.1.2
       ember-flatpickr:
-        specifier: 4.0.0
-        version: 4.0.0(@babel/core@7.23.6)(@glint/template@1.2.1)(ember-source@5.5.0)
+        specifier: 5.0.0
+        version: 5.0.0(@babel/core@7.23.6)(@glint/template@1.2.1)(ember-source@5.5.0)(flatpickr@4.6.13)
       ember-intl:
         specifier: 6.4.0
         version: 6.4.0(@babel/core@7.23.6)(@glint/template@1.2.1)(webpack@5.89.0)
@@ -647,7 +647,7 @@ importers:
         version: file:packages/core(@ember/test-waiters@3.1.0)(@glimmer/component@1.1.2)(@glint/template@1.2.1)(ember-source@5.5.0)(webpack@5.89.0)
       '@projectcaluma/ember-form':
         specifier: workspace:^
-        version: file:packages/form(@glint/template@1.2.1)(@projectcaluma/ember-workflow@12.8.0)(ember-source@5.5.0)(webpack@5.89.0)
+        version: file:packages/form(@glint/template@1.2.1)(@projectcaluma/ember-workflow@12.8.0)(ember-source@5.5.0)(flatpickr@4.6.13)(webpack@5.89.0)
       '@projectcaluma/ember-workflow':
         specifier: workspace:^
         version: file:packages/workflow(@glimmer/tracking@1.1.2)(@glint/template@1.2.1)(ember-source@5.5.0)(webpack@5.89.0)
@@ -676,8 +676,8 @@ importers:
         specifier: ^8.1.2
         version: 8.1.2
       ember-flatpickr:
-        specifier: ^4.0.0
-        version: 4.0.0(@babel/core@7.23.6)(@glint/template@1.2.1)(ember-source@5.5.0)
+        specifier: ^5.0.0
+        version: 5.0.0(@babel/core@7.23.6)(@glint/template@1.2.1)(ember-source@5.5.0)(flatpickr@4.6.13)
       ember-intl:
         specifier: ^6.4.0
         version: 6.4.0(@babel/core@7.23.6)(@glint/template@1.2.1)(webpack@5.89.0)
@@ -857,8 +857,8 @@ importers:
         specifier: ^8.1.2
         version: 8.1.2
       ember-flatpickr:
-        specifier: ^4.0.0
-        version: 4.0.0(@babel/core@7.23.6)(@glint/template@1.2.1)(ember-source@5.5.0)
+        specifier: ^5.0.0
+        version: 5.0.0(@babel/core@7.23.6)(@glint/template@1.2.1)(ember-source@5.5.0)(flatpickr@4.6.13)
       ember-in-viewport:
         specifier: ^4.1.0
         version: 4.1.0(@babel/core@7.23.6)(@glint/template@1.2.1)(ember-source@5.5.0)(webpack@5.89.0)
@@ -1019,7 +1019,7 @@ importers:
         version: file:packages/core(@ember/test-waiters@3.1.0)(@glimmer/component@1.1.2)(@glint/template@1.2.1)(ember-source@5.5.0)(webpack@5.89.0)
       '@projectcaluma/ember-form':
         specifier: workspace:^
-        version: file:packages/form(@glint/template@1.2.1)(@projectcaluma/ember-workflow@12.8.0)(ember-source@5.5.0)(webpack@5.89.0)
+        version: file:packages/form(@glint/template@1.2.1)(@projectcaluma/ember-workflow@12.8.0)(ember-source@5.5.0)(flatpickr@4.6.13)(webpack@5.89.0)
       codejar:
         specifier: ^4.2.0
         version: 4.2.0
@@ -1054,8 +1054,8 @@ importers:
         specifier: ^8.1.2
         version: 8.1.2
       ember-flatpickr:
-        specifier: ^4.0.0
-        version: 4.0.0(@babel/core@7.23.6)(@glint/template@1.2.1)(ember-source@5.5.0)
+        specifier: ^5.0.0
+        version: 5.0.0(@babel/core@7.23.6)(@glint/template@1.2.1)(ember-source@5.5.0)(flatpickr@4.6.13)
       ember-intl:
         specifier: ^6.4.0
         version: 6.4.0(@babel/core@7.23.6)(@glint/template@1.2.1)(webpack@5.89.0)
@@ -3416,6 +3416,20 @@ packages:
     dependencies:
       ember-cli-babel: 7.26.11
     transitivePeerDependencies:
+      - supports-color
+
+  /@ember/test-helpers@2.7.0(@babel/core@7.23.6):
+    resolution: {integrity: sha512-eWFtw5+sbci1Fw+E+HoyaMxY126LvK7jul6i8tad48zlWoxrOalbhJhz1mKqIo4daHbqIZWuFgQhOib4QfTKCQ==}
+    engines: {node: 10.* || 12.* || 14.* || 15.* || >= 16.*}
+    dependencies:
+      '@ember/test-waiters': 3.1.0
+      broccoli-debug: 0.6.5
+      broccoli-funnel: 3.0.8
+      ember-cli-babel: 7.26.11
+      ember-cli-htmlbars: 5.7.2
+      ember-destroyable-polyfill: 2.0.3(@babel/core@7.23.6)
+    transitivePeerDependencies:
+      - '@babel/core'
       - supports-color
 
   /@ember/test-helpers@3.2.1(@glint/template@1.2.1)(ember-source@5.5.0)(webpack@5.89.0):
@@ -10372,21 +10386,16 @@ packages:
       - encoding
       - supports-color
 
-  /ember-flatpickr@4.0.0(@babel/core@7.23.6)(@glint/template@1.2.1)(ember-source@5.5.0):
-    resolution: {integrity: sha512-NWCGFZENEcJ5GgtkuAtlAad3uyik4E0wD+/k40tNrlNd+XcGdMVQ4t90ku3GwfTrH9gNR5iq5LajL0dzA5Uhrw==}
+  /ember-flatpickr@5.0.0(@babel/core@7.23.6)(@glint/template@1.2.1)(ember-source@5.5.0)(flatpickr@4.6.13):
+    resolution: {integrity: sha512-ALqzN7+AUReCEppEcRtLMYZm41tZHV2kkitsUkmHY+SyW27mLiAGE4iriuup6Ps/qDGdn2h+Sm6zazkFKDGupQ==}
     engines: {node: 14.* || 16.* || >= 18}
     peerDependencies:
-      ember-source: ^3.28.0 || ^4.0.0 || ^5.0.0
+      ember-source: ^4.0.0 || ^5.0.0
+      flatpickr: ^4.0.0
     dependencies:
       '@ember/render-modifiers': 2.1.0(@babel/core@7.23.6)(@glint/template@1.2.1)(ember-source@5.5.0)
-      '@glimmer/component': 1.1.2(@babel/core@7.23.6)
-      '@glimmer/tracking': 1.1.2
-      broccoli-funnel: 3.0.8
-      broccoli-merge-trees: 4.2.0
-      broccoli-stew: 3.0.0
-      ember-cli-babel: 7.26.11
-      ember-cli-htmlbars: 6.3.0
-      ember-cli-typescript: 5.2.1
+      '@ember/test-helpers': 2.7.0(@babel/core@7.23.6)
+      '@embroider/addon-shim': 1.8.7
       ember-source: 5.5.0(@babel/core@7.23.6)(@glimmer/component@1.1.2)(@glint/template@1.2.1)(rsvp@4.8.5)(webpack@5.89.0)
       flatpickr: 4.6.13
     transitivePeerDependencies:
@@ -19647,7 +19656,7 @@ packages:
       - typescript
       - webpack
 
-  file:packages/form(@glint/template@1.2.1)(@projectcaluma/ember-workflow@12.8.0)(ember-source@5.5.0)(webpack@5.89.0):
+  file:packages/form(@glint/template@1.2.1)(@projectcaluma/ember-workflow@12.8.0)(ember-source@5.5.0)(flatpickr@4.6.13)(webpack@5.89.0):
     resolution: {directory: packages/form, type: directory}
     id: file:packages/form
     name: '@projectcaluma/ember-form'
@@ -19676,7 +19685,7 @@ packages:
       ember-composable-helpers: 5.0.0
       ember-concurrency: 3.1.1(@babel/core@7.23.6)(ember-source@5.5.0)
       ember-fetch: 8.1.2
-      ember-flatpickr: 4.0.0(@babel/core@7.23.6)(@glint/template@1.2.1)(ember-source@5.5.0)
+      ember-flatpickr: 5.0.0(@babel/core@7.23.6)(@glint/template@1.2.1)(ember-source@5.5.0)(flatpickr@4.6.13)
       ember-in-viewport: 4.1.0(@babel/core@7.23.6)(@glint/template@1.2.1)(ember-source@5.5.0)(webpack@5.89.0)
       ember-intl: 6.4.0(@babel/core@7.23.6)(@glint/template@1.2.1)(webpack@5.89.0)
       ember-math-helpers: 4.0.0(ember-source@5.5.0)
@@ -19696,6 +19705,7 @@ packages:
       - '@glint/environment-ember-loose'
       - '@glint/template'
       - encoding
+      - flatpickr
       - graphql-ws
       - react
       - react-dom
