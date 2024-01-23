@@ -8,7 +8,7 @@ on:
       - v[0-9]+.[0-9]+.[0-9]+
 
 env:
-  NODE_VERSION: 18
+  NODE_VERSION: 20
 
 concurrency:
   group: deploy
