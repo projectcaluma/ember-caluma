@@ -1,0 +1,12 @@
+<input
+  type="text"
+  class="uk-input
+    {{if @field.isInvalid 'uk-form-danger'}}
+    {{if this.disabled 'uk-disabled'}}"
+  name={{@field.pk}}
+  id={{@field.pk}}
+  value={{this.displayValue}}
+  placeholder={{@field.question.raw.placeholder}}
+  readonly={{this.disabled}}
+  {{on "input" this.input}}
+/>

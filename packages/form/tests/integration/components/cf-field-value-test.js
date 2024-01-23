@@ -1,7 +1,7 @@
 import { render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
-import { setupIntl } from "ember-intl/test-support";
+import { setLocale, setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import { setupRenderingTest } from "dummy/tests/helpers";
@@ -132,5 +132,26 @@ module("Integration | Component | cf-field-value", function (hooks) {
     await render(hbs`<CfFieldValue @field={{this.field}} />`);
 
     assert.dom(this.element).hasText(file.name);
+  });
+
+  test("it numbers using the number-separator widget override", async function (assert) {
+    setLocale(["de-ch", "de"]);
+
+    this.field = {
+      questionType: "FloatQuestion",
+      question: {
+        raw: {
+          __typename: "FloatQuestion",
+          meta: { widgetOverride: "cf-field/input/number-separator" },
+        },
+      },
+      answer: {
+        value: 1111111.111111,
+      },
+    };
+
+    await render(hbs`<CfFieldValue @field={{this.field}} />`);
+
+    assert.dom(this.element).hasText("1’111’111.111111");
   });
 });

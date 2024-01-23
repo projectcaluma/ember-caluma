@@ -129,6 +129,7 @@ caluma:
       widgetOverrides:
         powerselect: "Power Select"
         hidden: "Hidden"
+        number-separator: "Number separator"
 
       not-found: "No question with slug '{slug}' found"
 
