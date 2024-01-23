@@ -15,7 +15,7 @@
     class="uk-input {{if @disabled 'uk-disabled'}}"
     readonly={{@disabled}}
     @disabled={{@disabled}}
-    @locale={{this.locale}}
+    @locale={{this.localeObject}}
     @date={{or @field.answer.value null}}
     @altFormat={{this.dateFormat}}
     @altInput={{true}}

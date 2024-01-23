@@ -42,6 +42,7 @@
     "ember-test-selectors": "^6.0.0",
     "ember-uikit": "^9.0.0",
     "ember-validated-form": "^7.0.0",
+    "flatpickr": "^4.6.13",
     "graphql": "^15.8.0",
     "graphql-tag": "^2.12.6",
     "highlight.js": "^11.9.0",

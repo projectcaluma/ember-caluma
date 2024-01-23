@@ -1,4 +1,6 @@
 @use "sass:color";
+@import "flatpickr/dist/flatpickr";
+@import "flatpickr/dist/themes/airbnb";
 
 $flatpickr-today-color: $global-warning-background;
 $flatpickr-selected-color: $global-primary-background;
