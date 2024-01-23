@@ -40,6 +40,17 @@ export default function (server) {
     hintText: null,
   });
   server.create("question", {
+    slug: "age-in-seconds",
+    label: "How many seconds is that?",
+    infoText: null,
+    formIds: [form.id],
+    type: "INTEGER",
+    minValue: 0,
+    maxValue: null,
+    hintText: null,
+    meta: { widgetOverride: "cf-field/input/number-separator" },
+  });
+  server.create("question", {
     slug: "height",
     label: "How tall are you in meters?",
     formIds: [form.id],

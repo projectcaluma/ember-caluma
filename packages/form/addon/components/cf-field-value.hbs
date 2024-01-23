@@ -21,6 +21,15 @@
       @onClick={{fn this.download file.id}}
     />
   {{/each}}
+{{else if
+  (and
+    @field.answer.value
+    (eq
+      @field.question.raw.meta.widgetOverride "cf-field/input/number-separator"
+    )
+  )
+}}
+  {{format-number @field.answer.value maximumFractionDigits=20}}
 {{else}}
   {{@field.answer.value}}
 {{/if}}

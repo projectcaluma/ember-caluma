@@ -129,6 +129,7 @@ caluma:
       widgetOverrides:
         powerselect: "Power Select"
         hidden: "Versteckt"
+        number-separator: "Zahlentrennzeichen"
 
       not-found: "Keine Frage mit dem Slug '{slug}' gefunden"
 

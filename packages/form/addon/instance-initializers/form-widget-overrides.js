@@ -2,6 +2,7 @@ import { setOwner } from "@ember/application";
 import { inject as service } from "@ember/service";
 
 import HiddenComponent from "@projectcaluma/ember-form/components/cf-field/input/hidden";
+import NumberSeparatorComponent from "@projectcaluma/ember-form/components/cf-field/input/number-separator";
 import PowerSelectComponent from "@projectcaluma/ember-form/components/cf-field/input/powerselect";
 
 class HiddenOverride {
@@ -34,17 +35,30 @@ class PowerSelectOverride {
   ];
 }
 
+class NumberSeparatorOverride {
+  @service intl;
+
+  get label() {
+    return this.intl.t(
+      "caluma.form-builder.question.widgetOverrides.number-separator",
+    );
+  }
+
+  component = "cf-field/input/number-separator";
+  componentClass = NumberSeparatorComponent;
+  types = ["IntegerQuestion", "FloatQuestion", "CalculatedFloatQuestion"];
+}
+
 export function initialize(appInstance) {
   const options = appInstance.lookup("service:caluma-options");
 
-  const hiddenOverride = new HiddenOverride();
-  const powerSelectOverride = new PowerSelectOverride();
-
-  setOwner(hiddenOverride, appInstance);
-  setOwner(powerSelectOverride, appInstance);
-
-  options.registerComponentOverride(hiddenOverride);
-  options.registerComponentOverride(powerSelectOverride);
+  [HiddenOverride, PowerSelectOverride, NumberSeparatorOverride].forEach(
+    (cls) => {
+      const override = new cls();
+      setOwner(override, appInstance);
+      options.registerComponentOverride(override);
+    },
+  );
 }
 
 export default {
