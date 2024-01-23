@@ -5,6 +5,11 @@ module.exports = {
   settings: {
     "import/internal-regex": "^(@projectcaluma|ember-caluma|dummy)/",
   },
+  rules: {
+    // TODO: Migrate as suggested here:
+    // https://github.com/ember-cli/eslint-plugin-ember/blob/master/docs/rules/no-runloop.md
+    "ember/no-runloop": "warn",
+  },
   overrides: [
     // Customization for workspace
     {

@@ -1,6 +1,6 @@
 import { action } from "@ember/object";
 import Component from "@glimmer/component";
-import { tracked } from "@glimmer/tracking";
+import { localCopy } from "tracked-toolbox";
 
 /**
  * Input component for the checkbox question type
@@ -9,7 +9,7 @@ import { tracked } from "@glimmer/tracking";
  * @argument {Field} field The field for this input type
  */
 export default class CfFieldInputCheckboxComponent extends Component {
-  @tracked selected = this.args.field.value;
+  @localCopy("args.field.value") selected;
 
   /**
    * Update the value of the field with the slugs of the currently checked
