@@ -49,6 +49,14 @@
       @renderComponent={{component "cfb-toggle-switch" size="small"}}
     />
 
+    <CfbFormEditor::CfbAdvancedSettings>
+      <f.input
+        @label={{t "caluma.form-builder.question.meta"}}
+        @name="meta"
+        @renderComponent={{component "cfb-code-editor" language="json"}}
+      />
+    </CfbFormEditor::CfbAdvancedSettings>
+
     <div class="uk-text-right">
       <f.submit
         @disabled={{f.loading}}
