@@ -441,7 +441,10 @@
       {{/if}}
 
       <div class="uk-flex uk-flex-between uk-flex-middle uk-flex-row-reverse">
-        <CfbFormEditor::QuestionUsage @model={{f.model}} class="uk-flex-last" />
+        <CfbFormEditor::QuestionUsage
+          @slug={{changeset-get f.model "slug"}}
+          class="uk-flex-last"
+        />
 
         <f.submit
           @disabled={{f.loading}}
