@@ -11,6 +11,7 @@ export default class CfbFormEditorQuestionUsage extends Component {
   @queryManager apollo;
 
   @tracked modalVisible = false;
+  @tracked _forms = null;
 
   get title() {
     return this.intl.t("caluma.form-builder.question.usage.title", {
@@ -25,17 +26,28 @@ export default class CfbFormEditorQuestionUsage extends Component {
   }
 
   forms = trackedFunction(this, async () => {
+    if (!this.args.slug) {
+      // The shown question hasn't completely loaded yet
+      return [];
+    }
+    if (this._forms) {
+      // we have already fetched the forms previously
+      return this._forms;
+    }
+
     try {
       const forms = await this.apollo.query(
         {
           query: allFormsForQuestionQuery,
           variables: {
-            slug: this.args.model.slug,
+            slug: this.args.slug,
           },
           fetchPolicy: "no-cache",
         },
         "allForms.edges",
       );
+
+      this._forms = forms; // cache the result
 
       return forms;
     } catch (error) {

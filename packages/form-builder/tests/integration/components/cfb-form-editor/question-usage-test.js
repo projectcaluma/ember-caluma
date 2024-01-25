@@ -26,7 +26,7 @@ module(
       this.server.createList("form", 3, { questions: [this.question] });
 
       await render(
-        hbs`<CfbFormEditor::QuestionUsage @model={{this.question}} />`,
+        hbs`<CfbFormEditor::QuestionUsage @slug={{this.question.slug}} />`,
       );
 
       await waitFor("[data-test-show-question-usage-modal-link]");
@@ -49,7 +49,7 @@ module(
       this.server.create("form", { questions: [this.question] });
 
       await render(
-        hbs`<CfbFormEditor::QuestionUsage @model={{this.question}} />`,
+        hbs`<CfbFormEditor::QuestionUsage @slug={{this.question.slug}} />`,
       );
 
       assert.dom("[data-test-show-question-usage-modal-link]").isNotVisible();
