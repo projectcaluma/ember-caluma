@@ -75,7 +75,7 @@
     "sass": "1.70.0",
     "tracked-built-ins": "3.3.0",
     "uikit": "3.17.11",
-    "webpack": "5.89.0"
+    "webpack": "5.90.0"
   },
   "ember": {
     "edition": "octane"
