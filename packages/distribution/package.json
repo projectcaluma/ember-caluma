@@ -73,7 +73,7 @@
     "qunit-dom": "3.0.0",
     "sass": "1.70.0",
     "uikit": "3.17.11",
-    "webpack": "5.89.0"
+    "webpack": "5.90.0"
   },
   "peerDependencies": {
     "ember-engines": "^0.9.0",
