@@ -65,11 +65,17 @@
     "webpack": "5.90.0"
   },
   "peerDependencies": {
-    "ember-source": "^4.0.0"
+    "ember-source": "^4.0.0",
+    "ember-data": "*"
   },
   "dependenciesMeta": {
     "@projectcaluma/ember-testing": {
       "injected": true
+    }
+  },
+  "peerDependenciesMeta": {
+    "ember-data": {
+      "optional": true
     }
   },
   "engines": {
