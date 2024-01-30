@@ -46,6 +46,8 @@ module("Integration | Component | cf-content", function (hooks) {
       this.server.create("question", {
         formIds: [form.id],
         type: "DATE",
+        minDate: "2023-01-01",
+        maxDate: "2030-12-31",
       }),
       this.server.create("question", {
         formIds: [form.id],
@@ -181,6 +183,8 @@ module("Integration | Component | cf-content", function (hooks) {
       formIds: [form.id],
       slug: "date-question",
       type: "DATE",
+      minDate: "2023-01-01",
+      maxDate: null,
     });
     this.server.create("question", {
       formIds: [form.id],
@@ -229,7 +233,7 @@ module("Integration | Component | cf-content", function (hooks) {
     );
     await setFlatpickrDate(
       `[name="Document:${document.id}:Question:date-question"]`,
-      new Date(2019, 2, 25), // month is zero based
+      new Date(2023, 2, 25), // month is zero based
     );
 
     await triggerEvent(
@@ -272,7 +276,7 @@ module("Integration | Component | cf-content", function (hooks) {
         },
         {
           slug: "date-question",
-          value: "2019-03-25",
+          value: "2023-03-25",
         },
         {
           slug: "files-question",
