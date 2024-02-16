@@ -23,7 +23,7 @@
     {{/if}}
   </label>
 {{/each}}
-{{#if (and (and @field.optional @field.answer.value) (not @disabled))}}
+{{#if (and @field.optional @field.answer.value (not @disabled))}}
   <br />
   <a href="" data-test-radio-reset {{on "click" this.reset}}>
     {{t "caluma.form.power-select.reset"}}
