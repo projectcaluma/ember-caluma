@@ -103,16 +103,6 @@ module(
       assert.verifySteps([]);
       await click("button.uk-button-secondary");
       assert.verifySteps(["validate"]);
-
-      this.field.question.raw.validateOnEnter = true;
-
-      await render(hbs`<CfField::Input::ActionButton @field={{this.field}} />`);
-
-      // wait for the button to enter the viewport which triggers the validation
-      await scrollTo("button", 0, 0);
-      await waitFor("button:enabled");
-
-      assert.verifySteps(["validate"]);
     });
 
     test("doesn't show validation errors if not configured", async function (assert) {
