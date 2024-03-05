@@ -23,7 +23,7 @@
         }}
           <FieldComponent
             @field={{@field}}
-            @disabled={{@disabled}}
+            @disabled={{or @disabled @field.refreshAnswer.isRunning}}
             @context={{@context}}
             @onSave={{perform this.save}}
           />
@@ -38,7 +38,7 @@
         <div
           class="cf-field__icon uk-padding-remove-vertical uk-flex uk-flex-middle uk-flex-center"
         >
-          {{#if this.save.isRunning}}
+          {{#if (or this.save.isRunning @field.refreshAnswer.isRunning)}}
             <UkSpinner class="uk-animation-fade" />
           {{else if (or this.save.last.isError @field.isInvalid)}}
             <div class="uk-flex-inline">

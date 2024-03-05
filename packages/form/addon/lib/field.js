@@ -20,6 +20,7 @@ import saveDocumentListAnswerMutation from "@projectcaluma/ember-form/gql/mutati
 import saveDocumentStringAnswerMutation from "@projectcaluma/ember-form/gql/mutations/save-document-string-answer.graphql";
 import saveDocumentTableAnswerMutation from "@projectcaluma/ember-form/gql/mutations/save-document-table-answer.graphql";
 import getDocumentUsedDynamicOptionsQuery from "@projectcaluma/ember-form/gql/queries/document-used-dynamic-options.graphql";
+import refreshAnswerQuery from "@projectcaluma/ember-form/gql/queries/refresh-answer.graphql";
 import Base from "@projectcaluma/ember-form/lib/base";
 import dependencies from "@projectcaluma/ember-form/lib/dependencies";
 
@@ -632,6 +633,29 @@ export default class Field extends Base {
       .filter((e) => typeof e === "object");
 
     this._errors = errors;
+  }
+
+  @dropTask
+  *refreshAnswer() {
+    const response = yield this.apollo.query(
+      {
+        query: refreshAnswerQuery,
+        fetchPolicy: "network-only",
+        variables: {
+          document: this.document.uuid,
+          question: this.question.slug,
+        },
+      },
+      "allDocuments.edges",
+    );
+
+    const rawAnswer = response[0].node.answers.edges[0]?.node;
+
+    if (rawAnswer) {
+      Object.entries(rawAnswer).forEach(([key, value]) => {
+        this.answer.raw[key] = value;
+      });
+    }
   }
 
   /**
