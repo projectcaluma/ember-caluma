@@ -1,0 +1,18 @@
+#import * from '../fragments/field.graphql'
+
+query RefreshAnswer($document: ID!, $question: ID!) {
+  allDocuments(filter: [{ id: $document }]) {
+    edges {
+      node {
+        id
+        answers(filter: [{ questions: [$question] }]) {
+          edges {
+            node {
+              ...FieldAnswer
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,4 +1,5 @@
 import { settled } from "@ember/test-helpers";
+import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
@@ -11,6 +12,7 @@ import { setupTest } from "dummy/tests/helpers";
 module("Unit | Library | field", function (hooks) {
   setupTest(hooks);
   setupIntl(hooks);
+  setupMirage(hooks);
 
   hooks.beforeEach(async function () {
     this.set(
@@ -537,6 +539,48 @@ module("Unit | Library | field", function (hooks) {
     assert.throws(() => {
       field3.optional;
     }, /(Error while evaluating `isRequired` expression).*(Field for question `nonexistent` could not be found)/);
+  });
+
+  test("can refresh the answer", async function (assert) {
+    assert.expect(2);
+
+    const field = this.document.findField("question-1");
+
+    assert.strictEqual(field.answer.value, "test answer");
+
+    this.server.post("/graphql/", {
+      data: {
+        allDocuments: {
+          edges: [
+            {
+              node: {
+                id: this.document.raw.id,
+                answers: {
+                  edges: [
+                    {
+                      node: {
+                        id: field.answer.raw.id,
+                        stringValue: "new answer",
+                        __typename: "StringAnswer",
+                      },
+                      __typename: "AnswerEdge",
+                    },
+                  ],
+                  __typename: "AnswerConnection",
+                },
+                __typename: "Document",
+              },
+              __typename: "DocumentEdge",
+            },
+          ],
+          __typename: "DocumentConnection",
+        },
+      },
+    });
+
+    await field.refreshAnswer.perform();
+
+    assert.strictEqual(field.answer.value, "new answer");
   });
 
   module("dependencies", function () {
