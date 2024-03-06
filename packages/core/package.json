@@ -35,7 +35,7 @@
     "slugify": "^1.6.6"
   },
   "devDependencies": {
-    "@ember/optional-features": "2.0.0",
+    "@ember/optional-features": "2.1.0",
     "@ember/render-modifiers": "2.1.0",
     "@ember/test-helpers": "3.2.1",
     "@embroider/test-setup": "3.0.3",
