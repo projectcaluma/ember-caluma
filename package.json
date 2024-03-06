@@ -38,7 +38,7 @@
   "devDependencies": {
     "@adfinis/eslint-config": "2.1.0",
     "@babel/core": "7.23.9",
-    "@babel/eslint-parser": "7.23.3",
+    "@babel/eslint-parser": "7.23.10",
     "@babel/plugin-proposal-decorators": "7.24.0",
     "@commitlint/cli": "19.0.3",
     "@commitlint/config-conventional": "18.6.0",
