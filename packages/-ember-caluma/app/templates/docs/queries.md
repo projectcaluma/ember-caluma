@@ -80,10 +80,11 @@ predefined filters, such as e.g `myWorkItems`.
 | `processNew`   | `Function<Promise<Object[]>>` | Identical to `processAll` but **only new** items (triggered by `loadMore`) will be processed                                                                                |
 | `queryOptions` | `Object`                      | Pass options to `apollo.query`. For more information on what options exist, [see here](https://www.apollographql.com/docs/react/api/core/ApolloClient/#ApolloClient.query). |
 
-## Usage with ember-resources
+## Usage with resources
 
-If you're a fan of the wonderful `ember-resources` addon like we are, you can
-also use the caluma queries directly as a resource:
+If you're a fan of the wonderful `ember-modify-based-class-resource` (formerly
+`ember-resources`) addon like we are, you can also use the caluma queries
+directly as a resource:
 
 ```js
 import Controller from "@ember/controller";

@@ -5,8 +5,8 @@ import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
 import { dropTask } from "ember-concurrency";
-import { trackedFunction } from "ember-resources/util/function";
 import { DateTime } from "luxon";
+import { trackedFunction } from "reactiveweb/function";
 
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 import config from "@projectcaluma/ember-distribution/config";

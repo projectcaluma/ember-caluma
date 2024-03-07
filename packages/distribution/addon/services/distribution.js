@@ -2,9 +2,9 @@ import Service, { inject as service } from "@ember/service";
 import { tracked } from "@glimmer/tracking";
 import { queryManager, getObservable } from "ember-apollo-client";
 import { dropTask } from "ember-concurrency";
-import { trackedTask } from "ember-resources/util/ember-concurrency";
 import { confirm } from "ember-uikit";
 import { gql } from "graphql-tag";
+import { trackedTask } from "reactiveweb/ember-concurrency";
 import { cached } from "tracked-toolbox";
 
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";

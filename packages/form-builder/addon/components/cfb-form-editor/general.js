@@ -3,7 +3,7 @@ import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
 import { restartableTask, dropTask } from "ember-concurrency";
-import { trackedTask } from "ember-resources/util/ember-concurrency";
+import { trackedTask } from "reactiveweb/ember-concurrency";
 
 import FormValidations from "../../validations/form";
 

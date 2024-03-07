@@ -2,7 +2,7 @@ import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
-import { trackedFunction } from "ember-resources/util/function";
+import { trackedFunction } from "reactiveweb/function";
 
 import allFormsForQuestionQuery from "@projectcaluma/ember-form-builder/gql/queries/all-forms-for-question.graphql";
 

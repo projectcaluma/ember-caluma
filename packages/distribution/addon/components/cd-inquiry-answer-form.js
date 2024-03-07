@@ -4,7 +4,7 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
 import { dropTask } from "ember-concurrency";
-import { trackedTask } from "ember-resources/util/ember-concurrency";
+import { trackedTask } from "reactiveweb/ember-concurrency";
 
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 import config from "@projectcaluma/ember-distribution/config";

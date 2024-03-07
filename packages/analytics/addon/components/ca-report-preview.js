@@ -3,7 +3,7 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
 import { task } from "ember-concurrency";
-import { trackedTask } from "ember-resources/util/ember-concurrency";
+import { trackedTask } from "reactiveweb/ember-concurrency";
 
 import getAnalyticsResultsQuery from "@projectcaluma/ember-analytics/gql/queries/get-analytics-results.graphql";
 

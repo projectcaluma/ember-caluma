@@ -2,7 +2,7 @@ import { getOwner, setOwner } from "@ember/application";
 import { destroy, registerDestructor } from "@ember/destroyable";
 import { action } from "@ember/object";
 import { tracked } from "@glimmer/tracking";
-import { Resource } from "ember-resources/core";
+import { Resource } from "ember-modify-based-class-resource";
 
 const MUTABLE_OPTIONS = [
   "pageSize",
