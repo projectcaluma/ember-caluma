@@ -1,7 +1,7 @@
 import { assert } from "@ember/debug";
 import { camelize } from "@ember/string";
 import { queryManager } from "ember-apollo-client";
-import { trackedFunction } from "ember-resources/util/function";
+import { trackedFunction } from "reactiveweb/function";
 import { cached } from "tracked-toolbox";
 
 import getDynamicOptions from "@projectcaluma/ember-form/gql/queries/dynamic-options.graphql";

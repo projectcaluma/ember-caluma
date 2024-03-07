@@ -13,7 +13,7 @@
     "test:ember-compatibility": "ember try:each"
   },
   "dependencies": {
-    "@babel/core": "^7.23.9",
+    "@babel/core": "^7.24.0",
     "@ember/string": "^3.1.1",
     "@faker-js/faker": "^8.4.1",
     "broccoli-funnel": "^3.0.8",
@@ -22,7 +22,7 @@
     "ember-auto-import": "^2.7.2",
     "ember-cli-babel": "^8.2.0",
     "ember-cli-htmlbars": "^6.3.0",
-    "ember-cli-mirage": "^3.0.2",
+    "ember-cli-mirage": "^3.0.3",
     "ember-fetch": "^8.1.2",
     "ember-inflector": "^4.0.2",
     "graphql": "^15.8.0",
@@ -33,13 +33,13 @@
   },
   "devDependencies": {
     "@ember/optional-features": "2.1.0",
-    "@ember/test-helpers": "3.2.1",
+    "@ember/test-helpers": "3.3.0",
     "@embroider/test-setup": "3.0.3",
     "@glimmer/component": "1.1.2",
     "broccoli-asset-rev": "3.0.0",
-    "ember-cli": "5.5.0",
+    "ember-cli": "5.7.0",
     "ember-cli-clean-css": "3.0.0",
-    "ember-cli-code-coverage": "2.0.3",
+    "ember-cli-code-coverage": "2.1.1",
     "ember-cli-dependency-checker": "3.3.2",
     "ember-cli-inject-live-reload": "2.1.0",
     "ember-cli-sri": "2.1.1",
@@ -47,14 +47,14 @@
     "ember-load-initializers": "2.1.2",
     "ember-qunit": "8.0.2",
     "ember-resolver": "11.0.1",
-    "ember-source": "5.6.0",
+    "ember-source": "5.7.0",
     "ember-source-channel-url": "3.0.0",
     "ember-try": "3.0.0",
     "graphql-tag": "2.12.6",
     "loader.js": "4.7.0",
-    "qunit": "2.20.0",
+    "qunit": "2.20.1",
     "qunit-dom": "3.0.0",
-    "webpack": "5.90.0"
+    "webpack": "5.90.3"
   },
   "peerDependencies": {
     "ember-source": "^4.0.0"
