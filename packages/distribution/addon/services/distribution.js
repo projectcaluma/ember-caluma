@@ -28,11 +28,7 @@ export default class DistributionService extends Service {
   @tracked caseId;
 
   get hasInquiries() {
-    return (
-      this.navigation.value?.addressed.edges.length > 0 ||
-      this.navigation.value?.controlling.edges.length > 0 ||
-      this.navigation.value?.more.edges.length > 0
-    );
+    return this.navigation.value?.length > 0;
   }
 
   controls = trackedTask(this, this.fetchControls, () => [this.caseId]);
@@ -68,17 +64,19 @@ export default class DistributionService extends Service {
 
   @dropTask
   *fetchNavigation(caseId) {
-    const response = yield this.apollo.watchQuery({
-      query: navigationQuery,
-      variables: {
-        caseId,
-        task: this.config.inquiry.task,
-        currentGroup: String(this.calumaOptions.currentGroupId),
-        statusQuestion: this.config.inquiry.answer.statusQuestion,
-        deadlineQuestion: this.config.inquiry.deadlineQuestion,
-        buttonTasks: Object.keys(this.config.inquiry.answer.buttons),
+    const response = yield this.apollo.watchQuery(
+      {
+        query: navigationQuery,
+        variables: {
+          caseId,
+          task: this.config.inquiry.task,
+          statusQuestion: this.config.inquiry.answer.statusQuestion,
+          deadlineQuestion: this.config.inquiry.deadlineQuestion,
+          buttonTasks: Object.keys(this.config.inquiry.answer.buttons),
+        },
       },
-    });
+      "inquiries.edges",
+    );
 
     getObservable(response).subscribe(({ data }) => {
       const groupIds = [
@@ -142,37 +140,48 @@ export default class DistributionService extends Service {
       return group?.[this.calumaOptions.groupNameProperty] ?? "";
     };
 
-    return Object.entries(this.navigation.value ?? {}).reduce(
-      (inquiries, [key, objects]) => {
-        return {
-          ...inquiries,
-          // Don't return any data until the internal scheduler has cached
-          // groups since we don't want to render empty navigation items
-          [key]: this.scheduler.groupCache.length
-            ? uniqueByGroups(
-                objects.edges.map((edge) => ({
-                  ...edge.node,
-                  // Populate the work item with the names of the involved
-                  // groups so the <DistributionNavigation::Section /> component
-                  // can sort by them
-                  addressedGroupName: findGroupName(edge.node.addressedGroups),
-                  controllingGroupName: findGroupName(
-                    edge.node.controllingGroups,
-                  ),
-                })),
-              ).sort((a, b) => {
-                const sortProperty =
-                  key === "addressed"
-                    ? "controllingGroupName"
-                    : "addressedGroupName";
+    const parseFiltered = (filterFn, orderBy) => {
+      // Don't return any data until the internal scheduler has cached groups
+      // since we don't want to render empty navigation items
+      if (!this.scheduler.groupCache.length) {
+        return [];
+      }
 
-                return a[sortProperty].localeCompare(b[sortProperty]);
-              })
-            : [],
-        };
-      },
-      {},
-    );
+      return uniqueByGroups(
+        (this.navigation.value ?? [])
+          .filter(filterFn)
+          .map((edge) => ({
+            ...edge.node,
+            // Populate the work item with the names of the involved groups so
+            // the <DistributionNavigation::Section /> component can sort by them
+            addressedGroupName: findGroupName(edge.node.addressedGroups),
+            controllingGroupName: findGroupName(edge.node.controllingGroups),
+          }))
+          .sort((a, b) => a[orderBy].localeCompare(b[orderBy])),
+      );
+    };
+
+    const group = String(this.calumaOptions.currentGroupId);
+
+    return {
+      controlling: parseFiltered(
+        (edge) => edge.node.controllingGroups.includes(group),
+        "addressedGroupName",
+      ),
+      addressed: parseFiltered(
+        (edge) =>
+          edge.node.status !== "SUSPENDED" &&
+          edge.node.addressedGroups.includes(group),
+        "controllingGroupName",
+      ),
+      more: parseFiltered(
+        (edge) =>
+          edge.node.status !== "SUSPENDED" &&
+          !edge.node.controllingGroups.includes(group) &&
+          !edge.node.addressedGroups.includes(group),
+        "addressedGroupName",
+      ),
+    };
   }
 
   @dropTask

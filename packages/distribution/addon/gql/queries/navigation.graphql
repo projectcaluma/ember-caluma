@@ -25,48 +25,13 @@ query Navigation(
   $task: ID!
   $statusQuestion: ID
   $deadlineQuestion: ID
-  $currentGroup: String!
   $caseId: ID!
   $buttonTasks: [String]!
 ) {
-  controlling: allWorkItems(
+  inquiries: allWorkItems(
     filter: [
       { case: $caseId }
       { task: $task }
-      { controllingGroups: [$currentGroup] }
-      { status: CANCELED, invert: true }
-    ]
-    order: [{ attribute: CREATED_AT, direction: DESC }]
-  ) {
-    edges {
-      node {
-        ...NavigationInquiry
-      }
-    }
-  }
-  addressed: allWorkItems(
-    filter: [
-      { case: $caseId }
-      { task: $task }
-      { addressedGroups: [$currentGroup] }
-      { status: SUSPENDED, invert: true }
-      { status: CANCELED, invert: true }
-    ]
-    order: [{ attribute: CREATED_AT, direction: DESC }]
-  ) {
-    edges {
-      node {
-        ...NavigationInquiry
-      }
-    }
-  }
-  more: allWorkItems(
-    filter: [
-      { case: $caseId }
-      { task: $task }
-      { controllingGroups: [$currentGroup], invert: true }
-      { addressedGroups: [$currentGroup], invert: true }
-      { status: SUSPENDED, invert: true }
       { status: CANCELED, invert: true }
     ]
     order: [{ attribute: CREATED_AT, direction: DESC }]
