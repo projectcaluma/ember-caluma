@@ -18,11 +18,7 @@ module.exports = buildEngine({
     this._super.included.apply(this, args);
   },
 
-  options: {
-    babel: {
-      plugins: [
-        require.resolve("ember-concurrency/async-arrow-task-transform"),
-      ],
-    },
+  babel: {
+    plugins: [require.resolve("ember-concurrency/async-arrow-task-transform")],
   },
 });

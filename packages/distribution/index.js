@@ -14,11 +14,7 @@ module.exports = buildEngine({
   lazyLoading: { enabled: false },
   svgJar: { sourceDirs: [publicAssets] },
 
-  options: {
-    babel: {
-      plugins: [
-        require.resolve("ember-concurrency/async-arrow-task-transform"),
-      ],
-    },
+  babel: {
+    plugins: [require.resolve("ember-concurrency/async-arrow-task-transform")],
   },
 });
