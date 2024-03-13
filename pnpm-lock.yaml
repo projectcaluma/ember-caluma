@@ -276,8 +276,8 @@ importers:
         specifier: 4.0.3
         version: 4.0.3(ember-source@5.7.0)
       ember-uikit:
-        specifier: 9.0.0
-        version: 9.0.0(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.90.3)
+        specifier: 9.0.1
+        version: 9.0.1(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.90.3)
       ember-validated-form:
         specifier: 7.0.0
         version: 7.0.0(@babel/core@7.24.0)(ember-data@5.3.3)(ember-source@5.7.0)(webpack@5.90.3)
@@ -363,8 +363,8 @@ importers:
         specifier: ^5.0.1
         version: 5.0.1(@ember/test-helpers@3.3.0)(@ember/test-waiters@3.1.0)(ember-modifier@4.1.0)(ember-source@5.7.0)
       ember-uikit:
-        specifier: ^9.0.0
-        version: 9.0.0(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.90.3)
+        specifier: ^9.0.1
+        version: 9.0.1(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.90.3)
       ember-validated-form:
         specifier: ^7.0.0
         version: 7.0.0(@babel/core@7.24.0)(@glint/template@1.3.0)(ember-data@5.3.3)(ember-source@5.7.0)(webpack@5.90.3)
@@ -522,8 +522,8 @@ importers:
         specifier: ^1.1.0
         version: 1.1.0(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.3.0)(ember-resources@7.0.0)(ember-source@5.7.0)
       ember-uikit:
-        specifier: ^9.0.0
-        version: 9.0.0(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.90.3)
+        specifier: ^9.0.1
+        version: 9.0.1(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.90.3)
       graphql:
         specifier: ^15.8.0
         version: 15.8.0
@@ -694,8 +694,8 @@ importers:
         specifier: ^6.0.0
         version: 6.0.0
       ember-uikit:
-        specifier: ^9.0.0
-        version: 9.0.0(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.90.3)
+        specifier: ^9.0.1
+        version: 9.0.1(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.90.3)
       flatpickr:
         specifier: ^4.6.13
         version: 4.6.13
@@ -884,8 +884,8 @@ importers:
         specifier: ^4.0.3
         version: 4.0.3(ember-source@5.7.0)
       ember-uikit:
-        specifier: ^9.0.0
-        version: 9.0.0(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.90.3)
+        specifier: ^9.0.1
+        version: 9.0.1(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.90.3)
       ember-validators:
         specifier: ^4.1.2
         version: 4.1.2(@glint/template@1.3.0)
@@ -1081,8 +1081,8 @@ importers:
         specifier: ^6.0.0
         version: 6.0.0
       ember-uikit:
-        specifier: ^9.0.0
-        version: 9.0.0(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.90.3)
+        specifier: ^9.0.1
+        version: 9.0.1(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.90.3)
       ember-validated-form:
         specifier: ^7.0.0
         version: 7.0.0(@babel/core@7.24.0)(@glint/template@1.3.0)(ember-data@5.3.3)(ember-source@5.7.0)(webpack@5.90.3)
@@ -1369,8 +1369,8 @@ importers:
         specifier: ^4.0.3
         version: 4.0.3(ember-source@5.7.0)
       ember-uikit:
-        specifier: ^9.0.0
-        version: 9.0.0(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.90.3)
+        specifier: ^9.0.1
+        version: 9.0.1(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.90.3)
       graphql:
         specifier: ^15.8.0
         version: 15.8.0
@@ -11737,9 +11737,9 @@ packages:
       - supports-color
     dev: true
 
-  /ember-uikit@9.0.0(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.90.3):
-    resolution: {integrity: sha512-zEmifiWleNmRHRd0A8I4Ylonh6lJoeUxX9w8tgrBkMtONUqe2lwQNJTbiaOEvCZQjuHyBoYjti83DnQ0FykL0Q==}
-    engines: {node: 16.* || >= 18}
+  /ember-uikit@9.0.1(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.90.3):
+    resolution: {integrity: sha512-gNAGHiIWgX3Hxd2P5ejKG//K9zKG31CEjhxi4rXxnljFVeZtp5JtTKBligi9/RIxqUq2rZsdSVXO/dEB0x3kCA==}
+    engines: {node: '>= 18'}
     peerDependencies:
       ember-source: ^4.0.0 || ^5.0.0
     dependencies:
@@ -20312,7 +20312,7 @@ packages:
       ember-intl: 6.5.1(@babel/core@7.24.0)(@glint/template@1.3.0)(webpack@5.90.3)
       ember-modify-based-class-resource: 1.1.0(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.3.0)(ember-resources@7.0.0)(ember-source@5.7.0)
       ember-source: 5.7.0(@babel/core@7.24.0)(@glimmer/component@1.1.2)(@glint/template@1.3.0)(rsvp@4.8.5)(webpack@5.90.3)
-      ember-uikit: 9.0.0(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.90.3)
+      ember-uikit: 9.0.1(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.90.3)
       graphql: 15.8.0
       graphql-tag: 2.12.6(graphql@15.8.0)
       jexl: 2.3.0
@@ -20369,7 +20369,7 @@ packages:
       ember-power-select: 7.2.0(@babel/core@7.24.0)(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.90.3)
       ember-source: 5.7.0(@babel/core@7.24.0)(@glimmer/component@1.1.2)(@glint/template@1.3.0)(rsvp@4.8.5)(webpack@5.90.3)
       ember-truth-helpers: 4.0.3(ember-source@5.7.0)
-      ember-uikit: 9.0.0(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.90.3)
+      ember-uikit: 9.0.1(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.90.3)
       ember-validators: 4.1.2(@glint/template@1.3.0)
       flatpickr: 4.6.13
       graphql: 15.8.0
@@ -20430,7 +20430,7 @@ packages:
       ember-power-select: 7.2.0(@babel/core@7.24.0)(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.90.3)
       ember-source: 5.7.0(@babel/core@7.24.0)(@glimmer/component@1.1.2)(@glint/template@1.3.0)(rsvp@4.8.5)(webpack@5.90.3)
       ember-truth-helpers: 4.0.3(ember-source@5.7.0)
-      ember-uikit: 9.0.0(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.90.3)
+      ember-uikit: 9.0.1(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.90.3)
       ember-validators: 4.1.2(@glint/template@1.3.0)
       flatpickr: 4.6.13
       graphql: 15.8.0
@@ -20519,7 +20519,7 @@ packages:
       ember-intl: 6.5.1(@babel/core@7.24.0)(@glint/template@1.3.0)(webpack@5.90.3)
       ember-source: 5.7.0(@babel/core@7.24.0)(@glimmer/component@1.1.2)(@glint/template@1.3.0)(rsvp@4.8.5)(webpack@5.90.3)
       ember-truth-helpers: 4.0.3(ember-source@5.7.0)
-      ember-uikit: 9.0.0(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.90.3)
+      ember-uikit: 9.0.1(@glint/template@1.3.0)(ember-source@5.7.0)(webpack@5.90.3)
       graphql: 15.8.0
       reactiveweb: 1.2.2(@babel/core@7.24.0)(@ember/test-waiters@3.1.0)(@glimmer/component@1.1.2)(@glimmer/tracking@1.1.2)(@glint/template@1.3.0)(ember-source@5.7.0)
     transitivePeerDependencies:
