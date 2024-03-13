@@ -25,7 +25,7 @@
     "ember-autoresize-modifier": "^0.7.0",
     "ember-cli-babel": "^8.2.0",
     "ember-cli-htmlbars": "^6.3.0",
-    "ember-cli-showdown": "^9.0.0",
+    "ember-cli-showdown": "^9.0.1",
     "ember-composable-helpers": "^5.0.0",
     "ember-concurrency": "^4.0.0",
     "ember-fetch": "^8.1.2",
