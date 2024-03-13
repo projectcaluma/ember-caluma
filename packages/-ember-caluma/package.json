@@ -57,7 +57,7 @@
     "ember-engines-router-service": "0.5.1",
     "ember-fetch": "8.1.2",
     "ember-flatpickr": "7.1.0",
-    "ember-intl": "6.5.1",
+    "ember-intl": "6.5.3",
     "ember-load-initializers": "2.1.2",
     "ember-math-helpers": "4.0.0",
     "ember-modifier": "4.1.0",
@@ -74,7 +74,7 @@
     "miragejs": "0.1.48",
     "sass": "1.71.1",
     "tracked-built-ins": "3.3.0",
-    "uikit": "3.19.1",
+    "uikit": "3.19.2",
     "webpack": "5.90.3"
   },
   "ember": {

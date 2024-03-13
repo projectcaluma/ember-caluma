@@ -26,10 +26,10 @@
     "ember-cli-babel": "^8.2.0",
     "ember-cli-htmlbars": "^6.3.0",
     "ember-composable-helpers": "^5.0.0",
-    "ember-concurrency": "^4.0.0",
+    "ember-concurrency": "^4.0.1",
     "ember-engines-router-service": "^0.5.1",
     "ember-fetch": "^8.1.2",
-    "ember-intl": "^6.5.1",
+    "ember-intl": "^6.5.3",
     "ember-power-select": "^7.2.0",
     "ember-sortable": "^5.0.1",
     "ember-uikit": "^9.0.1",
@@ -73,7 +73,7 @@
     "qunit": "2.20.1",
     "qunit-dom": "3.0.0",
     "sass": "1.71.1",
-    "uikit": "3.19.1",
+    "uikit": "3.19.2",
     "webpack": "5.90.3"
   },
   "peerDependency": {
