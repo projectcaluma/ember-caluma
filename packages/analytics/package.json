@@ -26,7 +26,7 @@
     "ember-cli-babel": "^8.2.0",
     "ember-cli-htmlbars": "^6.3.0",
     "ember-composable-helpers": "^5.0.0",
-    "ember-concurrency": "^4.0.0",
+    "ember-concurrency": "^4.0.1",
     "ember-engines-router-service": "^0.5.1",
     "ember-fetch": "^8.1.2",
     "ember-intl": "^6.5.1",
