@@ -16,7 +16,7 @@
     as |modal|
   >
     <modal.body>
-      {{markdown-to-html @text openLinksInNewWindow=true}}
+      <MarkdownToHtml @markdown={{@text}} @openLinksInNewWindow={{true}} />
     </modal.body>
   </UkModal>
 </div>
