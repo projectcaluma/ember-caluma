@@ -169,7 +169,7 @@ importers:
         version: 3.0.0
       ember-apollo-client:
         specifier: 4.0.2
-        version: 4.0.2(@glint/template@1.3.0)(graphql@15.8.0)(webpack@5.90.3)
+        version: 4.0.2(graphql@15.8.0)(webpack@5.90.3)
       ember-auto-import:
         specifier: 2.7.2
         version: 2.7.2(@glint/template@1.3.0)(webpack@5.90.3)
@@ -477,8 +477,8 @@ importers:
   packages/core:
     dependencies:
       '@apollo/client':
-        specifier: ^3.9.6
-        version: 3.9.6(graphql@15.8.0)
+        specifier: ^3.9.7
+        version: 3.9.7(graphql@15.8.0)
       '@babel/core':
         specifier: ^7.24.0
         version: 7.24.0
@@ -1225,7 +1225,7 @@ importers:
         version: 4.2.0
       ember-apollo-client:
         specifier: ~4.0.2
-        version: 4.0.2(@glint/template@1.3.0)(graphql@15.8.0)(webpack@5.90.3)
+        version: 4.0.2(graphql@15.8.0)(webpack@5.90.3)
       ember-auto-import:
         specifier: ^2.7.2
         version: 2.7.2(@glint/template@1.3.0)(webpack@5.90.3)
@@ -1516,6 +1516,42 @@ packages:
 
   /@apollo/client@3.9.6(graphql@15.8.0):
     resolution: {integrity: sha512-+zpddcnZ4G2VZ0xIEnvIHFsLqeopNOnWuE2ZVbRuetLLpj/biLPNN719B/iofdd1/iHRclKfv0XaAmX6PBhYKA==}
+    peerDependencies:
+      graphql: ^15.0.0 || ^16.0.0 || ^15.8.0
+      graphql-ws: ^5.5.5
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+      subscriptions-transport-ws: ^0.9.0 || ^0.11.0
+    peerDependenciesMeta:
+      graphql-ws:
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
+      subscriptions-transport-ws:
+        optional: true
+    dependencies:
+      '@graphql-typed-document-node/core': 3.2.0(graphql@15.8.0)
+      '@wry/caches': 1.0.1
+      '@wry/equality': 0.5.7
+      '@wry/trie': 0.5.0
+      graphql: 15.8.0
+      graphql-tag: 2.12.6(graphql@15.8.0)
+      hoist-non-react-statics: 3.3.2
+      optimism: 0.18.0
+      prop-types: 15.8.1
+      rehackt: 0.0.6
+      response-iterator: 0.2.6
+      symbol-observable: 4.0.0
+      ts-invariant: 0.10.3
+      tslib: 2.6.2
+      zen-observable-ts: 1.2.5
+    transitivePeerDependencies:
+      - '@types/react'
+
+  /@apollo/client@3.9.7(graphql@15.8.0):
+    resolution: {integrity: sha512-OEEwt55bkFhqihCT5d75KUxZt50JZ9MuIYwG7VZlyPPIAb9K+qzVWlXWlf3tB5DaV43yXkUSLQfNpdIBFOB55Q==}
     peerDependencies:
       graphql: ^15.0.0 || ^16.0.0 || ^15.8.0
       graphql-ws: ^5.5.5
@@ -9646,6 +9682,30 @@ packages:
     resolution: {integrity: sha512-LYLXyEUsZ3nNSwiOWjI88N1PJUAMU2QphQSgGLVkFnb3FxZxNui2Vzi2PaKPgPWbsWbZstZnh6BMf/VQJamjiQ==}
 
   /ember-apollo-client@4.0.2(@glint/template@1.3.0)(graphql@15.8.0)(webpack@5.90.3):
+    resolution: {integrity: sha512-Rhp6Tx6pZPL8h2GFtq6rRGBbnmNUi/dpteDhzPgNNS40MqUb721xHcChX4Td2hb3LlkcRT3d/e5WYxmaG2mu5A==}
+    engines: {node: 12.* || 14.* || >= 16}
+    peerDependencies:
+      graphql: ^14.0.0 || ^15.0.0 || ^16.0.0 || ^15.8.0
+    dependencies:
+      '@apollo/client': 3.9.7(graphql@15.8.0)
+      '@ember/test-waiters': 3.0.2
+      '@embroider/macros': 1.15.0(@glint/template@1.3.0)
+      '@glimmer/tracking': 1.1.2
+      broccoli-graphql-filter: 1.0.1(graphql@15.8.0)
+      ember-auto-import: 2.7.2(@glint/template@1.3.0)(webpack@5.90.3)
+      ember-cli-babel: 7.26.11
+      graphql: 15.8.0
+    transitivePeerDependencies:
+      - '@glint/template'
+      - '@types/react'
+      - graphql-ws
+      - react
+      - react-dom
+      - subscriptions-transport-ws
+      - supports-color
+      - webpack
+
+  /ember-apollo-client@4.0.2(graphql@15.8.0)(webpack@5.90.3):
     resolution: {integrity: sha512-Rhp6Tx6pZPL8h2GFtq6rRGBbnmNUi/dpteDhzPgNNS40MqUb721xHcChX4Td2hb3LlkcRT3d/e5WYxmaG2mu5A==}
     engines: {node: 12.* || 14.* || >= 16}
     peerDependencies:
@@ -20441,7 +20501,7 @@ packages:
       ember-data:
         optional: true
     dependencies:
-      '@apollo/client': 3.9.6(graphql@15.8.0)
+      '@apollo/client': 3.9.7(graphql@15.8.0)
       '@babel/core': 7.24.0
       '@ember/string': 3.1.1
       '@embroider/macros': 1.15.0(@glint/template@1.3.0)
