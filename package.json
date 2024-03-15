@@ -40,7 +40,7 @@
     "@babel/core": "7.24.0",
     "@babel/eslint-parser": "7.23.10",
     "@babel/plugin-proposal-decorators": "7.24.0",
-    "@commitlint/cli": "19.1.0",
+    "@commitlint/cli": "19.2.0",
     "@commitlint/config-conventional": "19.1.0",
     "@graphql-eslint/eslint-plugin": "3.20.1",
     "@semantic-release/commit-analyzer": "11.1.0",
