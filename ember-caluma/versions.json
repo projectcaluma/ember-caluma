@@ -2,13 +2,13 @@
   "main": {
     "path": "versions/main",
     "name": "main",
-    "sha": "7d8e430dee2f276ea9426001cf41afd8d544c512",
+    "sha": "3e064a54bd2bb27d65caa2850facd36a8f2bbdfe",
     "tag": null
   },
   "-latest": {
     "path": "",
     "name": "Latest",
-    "sha": "7d8e430dee2f276ea9426001cf41afd8d544c512",
+    "sha": "3e064a54bd2bb27d65caa2850facd36a8f2bbdfe",
     "tag": null
   }
 }
