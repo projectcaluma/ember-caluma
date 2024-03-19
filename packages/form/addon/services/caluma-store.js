@@ -1,4 +1,5 @@
 import { assert, debug } from "@ember/debug";
+import { destroy } from "@ember/destroyable";
 import { set } from "@ember/object";
 import Service from "@ember/service";
 
@@ -41,7 +42,7 @@ export default class CalumaStoreService extends Service {
   }
 
   clear() {
-    this._store.forEach((obj) => obj.destroy());
+    this._store.forEach((obj) => destroy(obj));
 
     // `this._store` is not an ember array but a native map
     // eslint-disable-next-line ember/no-array-prototype-extensions
