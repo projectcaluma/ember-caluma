@@ -57,7 +57,7 @@ jobs:
         env:
           COVERAGE: true
       - name: Upload coverage report to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
           gcov_ignore: "./packages/analytics/"
 
