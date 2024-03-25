@@ -14,6 +14,7 @@
     name={{@field.pk}}
     class="uk-input {{if @disabled 'uk-disabled'}}"
     readonly={{@disabled}}
+    placeholder={{@field.question.raw.placeholder}}
     @disabled={{@disabled}}
     @locale={{this.locale}}
     @date={{or @field.answer.value null}}
