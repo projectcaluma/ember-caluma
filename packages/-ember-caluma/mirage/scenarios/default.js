@@ -48,7 +48,6 @@ export default function (server) {
     minValue: 0,
     maxValue: null,
     hintText: null,
-    meta: { widgetOverride: "cf-field/input/number-separator" },
   });
   server.create("question", {
     slug: "height",

@@ -134,16 +134,13 @@ module("Integration | Component | cf-field-value", function (hooks) {
     assert.dom(this.element).hasText(file.name);
   });
 
-  test("it numbers using the number-separator widget override", async function (assert) {
+  test("it renders numbers using the number-separator widget override", async function (assert) {
     setLocale(["de-ch", "de"]);
 
     this.field = {
       questionType: "FloatQuestion",
       question: {
-        raw: {
-          __typename: "FloatQuestion",
-          meta: { widgetOverride: "cf-field/input/number-separator" },
-        },
+        useNumberSeparatorWidget: true,
       },
       answer: {
         value: 1111111.111111,

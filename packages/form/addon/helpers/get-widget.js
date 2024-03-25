@@ -35,10 +35,16 @@ export default class GetWidgetHelper extends Helper {
 
   compute(params, { default: defaultWidget = "cf-field/input" }) {
     for (const obj of params) {
-      const widget = obj?.raw?.meta?.widgetOverride;
+      let widget = obj?.raw?.meta?.widgetOverride;
+
+      if (obj?.useNumberSeparatorWidget) {
+        widget = "cf-field/input/number-separator";
+      }
+
       if (!widget) {
         continue;
       }
+
       const override =
         widget &&
         this.calumaOptions

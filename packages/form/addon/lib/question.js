@@ -1,4 +1,5 @@
 import { assert } from "@ember/debug";
+import { inject as service } from "@ember/service";
 import { camelize } from "@ember/string";
 import { queryManager } from "ember-apollo-client";
 import { trackedFunction } from "reactiveweb/function";
@@ -17,6 +18,8 @@ const getValue = (answer) => {
  * @class Question
  */
 export default class Question extends Base {
+  @service calumaOptions;
+
   @queryManager apollo;
 
   constructor({ raw, ...args }) {
@@ -173,5 +176,17 @@ export default class Question extends Base {
     }
 
     return value;
+  }
+
+  get useNumberSeparatorWidget() {
+    return (
+      this.raw.meta.widgetOverride === "cf-field/input/number-separator" ||
+      (this.calumaOptions.alwaysUseNumberSeparatorWidget &&
+        [
+          "IntegerQuestion",
+          "FloatQuestion",
+          "CalculatedFloatQuestion",
+        ].includes(this.raw.__typename))
+    );
   }
 }

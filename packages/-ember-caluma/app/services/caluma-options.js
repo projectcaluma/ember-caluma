@@ -29,6 +29,8 @@ export default class CustomCalumaOptionsService extends CalumaOptionsService {
     this.currentGroupId = 1;
   }
 
+  alwaysUseNumberSeparatorWidget = true;
+
   distribution = {
     inquiry: {
       answer: {
