@@ -83,7 +83,7 @@ export default class CalumaOptionsService extends Service {
   resolveGroups(identifiers) {
     return identifiers.map((identifier) => ({
       [this.groupIdentifierProperty]: identifier,
-      [this.groupNameProperty]: identifier,
+      [this.groupNameProperty]: String(identifier),
     }));
   }
 
@@ -92,7 +92,7 @@ export default class CalumaOptionsService extends Service {
   resolveUsers(identifiers) {
     return identifiers.map((identifier) => ({
       [this.userIdentifierProperty]: identifier,
-      [this.userNameProperty]: identifier,
+      [this.userNameProperty]: String(identifier),
     }));
   }
 

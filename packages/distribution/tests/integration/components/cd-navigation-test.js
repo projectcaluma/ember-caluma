@@ -1,4 +1,4 @@
-import { render } from "@ember/test-helpers";
+import { render, waitUntil } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
@@ -30,6 +30,10 @@ module("Integration | Component | cd-navigation", function (hooks) {
 
   test("it renders navigation with 3 sections", async function (assert) {
     await render(hbs`<CdNavigation />`);
+
+    await waitUntil(
+      () => this.owner.lookup("service:distribution").navigation.isFinished,
+    );
 
     assert.dom("ul:first-child").exists({ count: 1 });
     assert.dom("ul:first-child > li > ul").exists({ count: 3 });
