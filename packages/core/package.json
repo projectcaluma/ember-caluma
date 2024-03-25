@@ -22,7 +22,7 @@
     "ember-auto-import": "^2.7.2",
     "ember-cli-babel": "^8.2.0",
     "ember-cli-htmlbars": "^6.3.0",
-    "ember-concurrency": "^4.0.1",
+    "ember-concurrency": "^4.0.2",
     "ember-fetch": "^8.1.2",
     "ember-inflector": "^4.0.2",
     "ember-intl": "^6.5.3",
