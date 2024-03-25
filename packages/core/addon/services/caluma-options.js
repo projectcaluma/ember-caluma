@@ -31,6 +31,8 @@ export default class CalumaOptionsService extends Service {
       : null;
   }
 
+  alwaysUseNumberSeparatorWidget = false;
+
   /**
    * Registers a new component override.
    *
