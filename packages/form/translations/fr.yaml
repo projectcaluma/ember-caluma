@@ -1,6 +1,6 @@
 caluma:
   form:
-    optional: "optional"
+    optional: "optionnelle"
     save: "sauvegarder"
     delete: "supprimer"
     edit: "modifier"
