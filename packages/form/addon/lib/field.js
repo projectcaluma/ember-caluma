@@ -655,6 +655,8 @@ export default class Field extends Base {
       Object.entries(rawAnswer).forEach(([key, value]) => {
         this.answer.raw[key] = value;
       });
+
+      yield this.validate.linked().perform();
     }
   }
 
