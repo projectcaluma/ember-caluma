@@ -542,11 +542,16 @@ module("Unit | Library | field", function (hooks) {
   });
 
   test("can refresh the answer", async function (assert) {
-    assert.expect(2);
+    assert.expect(4);
 
     const field = this.document.findField("question-1");
 
+    field.question.raw.textMinLength = 12;
+
+    await field.validate.perform();
+
     assert.strictEqual(field.answer.value, "test answer");
+    assert.notOk(field.isValid);
 
     this.server.post("/graphql/", {
       data: {
@@ -560,7 +565,7 @@ module("Unit | Library | field", function (hooks) {
                     {
                       node: {
                         id: field.answer.raw.id,
-                        stringValue: "new answer",
+                        stringValue: "new valid answer",
                         __typename: "StringAnswer",
                       },
                       __typename: "AnswerEdge",
@@ -580,7 +585,8 @@ module("Unit | Library | field", function (hooks) {
 
     await field.refreshAnswer.perform();
 
-    assert.strictEqual(field.answer.value, "new answer");
+    assert.strictEqual(field.answer.value, "new valid answer");
+    assert.ok(field.isValid);
   });
 
   module("dependencies", function () {
