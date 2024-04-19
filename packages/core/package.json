@@ -38,7 +38,7 @@
     "@ember/optional-features": "2.1.0",
     "@ember/render-modifiers": "2.1.0",
     "@ember/test-helpers": "3.3.0",
-    "@embroider/test-setup": "3.0.3",
+    "@embroider/test-setup": "4.0.0",
     "@embroider/util": "1.13.0",
     "@faker-js/faker": "8.4.1",
     "@glimmer/component": "1.1.2",
