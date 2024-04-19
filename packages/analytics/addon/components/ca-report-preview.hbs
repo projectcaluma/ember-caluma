@@ -4,7 +4,16 @@
       <UkSpinner @ratio={{1}} />
     </div>
   {{else}}
-    <table class="uk-table uk-table-divider uk-table-striped">
+    <UkButton
+      class="uk-button uk-button-primary uk-float-right uk-margin-small-top"
+      {{on "click" this.exportTable}}
+    >
+      {{t "caluma.analytics.preview.export"}}
+    </UkButton>
+    <table
+      class="uk-table uk-table-divider uk-table-striped"
+      id="reports-table"
+    >
       <thead>
         <tr>
           {{#each this.data.value.headings as |header|}}

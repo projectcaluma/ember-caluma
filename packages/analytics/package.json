@@ -35,7 +35,8 @@
     "ember-uikit": "^9.1.1",
     "ember-validated-form": "^7.0.1",
     "graphql": "^15.8.0",
-    "reactiveweb": "^1.2.2"
+    "reactiveweb": "^1.2.2",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz"
   },
   "//": [
     "TODO: remove obsolete dependency to `ember-data` which is only necessary",

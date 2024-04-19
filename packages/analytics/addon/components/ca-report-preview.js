@@ -1,9 +1,12 @@
+import { action } from "@ember/object";
+import { next } from "@ember/runloop";
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
 import { task } from "ember-concurrency";
 import { trackedTask } from "reactiveweb/ember-concurrency";
+import * as XLSX from "xlsx";
 
 import getAnalyticsResultsQuery from "@projectcaluma/ember-analytics/gql/queries/get-analytics-results.graphql";
 
@@ -57,5 +60,18 @@ export default class CaReportPreviewComponent extends Component {
       }
     }
     return null;
+  }
+
+  @action
+  exportTable() {
+    next(() => {
+      const wb = XLSX.utils.table_to_book(
+        document.getElementById("reports-table"),
+      );
+      XLSX.writeFile(
+        wb,
+        `${new Date().toLocaleDateString()}_${this.args.slug}.xlsx`,
+      );
+    });
   }
 }
