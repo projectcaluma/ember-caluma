@@ -103,7 +103,7 @@ importers:
         version: 16.3.1
       stylelint-config-standard-scss:
         specifier: 13.0.0
-        version: 13.0.0(postcss@8.4.35)(stylelint@16.3.1)
+        version: 13.0.0(postcss@8.4.38)(stylelint@16.3.1)
       stylelint-prettier:
         specifier: ^5.0.0
         version: 5.0.0(prettier@3.2.5)(stylelint@16.3.1)
@@ -457,8 +457,8 @@ importers:
         specifier: 2.20.1
         version: 2.20.1
       qunit-dom:
-        specifier: 3.0.0
-        version: 3.0.0
+        specifier: 3.1.1
+        version: 3.1.1
       sass:
         specifier: 1.75.0
         version: 1.75.0
@@ -616,8 +616,8 @@ importers:
         specifier: 2.20.1
         version: 2.20.1
       qunit-dom:
-        specifier: 3.0.0
-        version: 3.0.0
+        specifier: 3.1.1
+        version: 3.1.1
       uikit:
         specifier: 3.19.2
         version: 3.19.2
@@ -653,7 +653,7 @@ importers:
         version: file:packages/core(@glimmer/component@1.1.2)(@glint/template@1.3.0)(ember-data@5.3.3)(ember-resources@7.0.0)(ember-source@5.7.0)(webpack@5.91.0)
       '@projectcaluma/ember-form':
         specifier: workspace:^
-        version: file:packages/form(@ember/test-waiters@3.1.0)(@glint/template@1.3.0)(@projectcaluma/ember-workflow@12.11.0)(ember-resources@7.0.0)(ember-source@5.7.0)(webpack@5.91.0)
+        version: file:packages/form(@ember/test-waiters@3.1.0)(@glint/template@1.3.0)(@projectcaluma/ember-workflow@12.11.1)(ember-resources@7.0.0)(ember-source@5.7.0)(webpack@5.91.0)
       '@projectcaluma/ember-workflow':
         specifier: workspace:^
         version: file:packages/workflow(@ember/test-waiters@3.1.0)(@glimmer/tracking@1.1.2)(@glint/template@1.3.0)(ember-resources@7.0.0)(ember-source@5.7.0)(webpack@5.91.0)
@@ -794,8 +794,8 @@ importers:
         specifier: 2.20.1
         version: 2.20.1
       qunit-dom:
-        specifier: 3.0.0
-        version: 3.0.0
+        specifier: 3.1.1
+        version: 3.1.1
       sass:
         specifier: 1.75.0
         version: 1.75.0
@@ -984,8 +984,8 @@ importers:
         specifier: 2.20.1
         version: 2.20.1
       qunit-dom:
-        specifier: 3.0.0
-        version: 3.0.0
+        specifier: 3.1.1
+        version: 3.1.1
       uikit:
         specifier: 3.19.2
         version: 3.19.2
@@ -1193,8 +1193,8 @@ importers:
         specifier: 2.20.1
         version: 2.20.1
       qunit-dom:
-        specifier: 3.0.0
-        version: 3.0.0
+        specifier: 3.1.1
+        version: 3.1.1
       webpack:
         specifier: 5.91.0
         version: 5.91.0
@@ -1324,8 +1324,8 @@ importers:
         specifier: 2.20.1
         version: 2.20.1
       qunit-dom:
-        specifier: 3.0.0
-        version: 3.0.0
+        specifier: 3.1.1
+        version: 3.1.1
       webpack:
         specifier: 5.91.0
         version: 5.91.0
@@ -1448,8 +1448,8 @@ importers:
         specifier: 2.20.1
         version: 2.20.1
       qunit-dom:
-        specifier: 3.0.0
-        version: 3.0.0
+        specifier: 3.1.1
+        version: 3.1.1
       uikit:
         specifier: 3.19.2
         version: 3.19.2
@@ -17069,6 +17069,15 @@ packages:
       postcss: 8.4.35
     dev: true
 
+  /postcss-scss@4.0.9(postcss@8.4.38):
+    resolution: {integrity: sha512-AjKOeiwAitL/MXxQW2DliT28EKukvvbEWx3LBmJIRN8KfBGZbRTxNYW0kSqi1COiTZ57nZ9NW06S6ux//N1c9A==}
+    engines: {node: '>=12.0'}
+    peerDependencies:
+      postcss: ^8.4.29
+    dependencies:
+      postcss: 8.4.38
+    dev: true
+
   /postcss-selector-parser@6.0.15:
     resolution: {integrity: sha512-rEYkQOMUCEMhsKbK66tbEU9QVIxbhN18YiniAwA7XQYTVBqrBy+P2p5JcdqsHgKM2zWylp8d7J6eszocfds5Sw==}
     engines: {node: '>=4'}
@@ -17341,8 +17350,8 @@ packages:
       rimraf: 2.7.1
       underscore.string: 3.3.6
 
-  /qunit-dom@3.0.0:
-    resolution: {integrity: sha512-rqGZ9ZgOvtOY+Ph2ElCJ4pRIHouMZmI3DWK35Xr3x3c17/gIwOHHyKAQk6XetqhqepS6p+oXvK6Bx1uZu5jJuw==}
+  /qunit-dom@3.1.1:
+    resolution: {integrity: sha512-Ja2NK+LsQM4iDU5QFtkwbLEbETgr6+7wTf7t6DXW3hWhB6GmAtKA2r3eLnmXpSdncMnoBsedXSKfjM0iMTOUGQ==}
     dev: true
 
   /qunit@2.20.1:
@@ -18840,7 +18849,7 @@ packages:
     resolution: {integrity: sha512-DU2KZiB6VbPkO2tGSqQ9n96ZstUPjW7X4sGO6V2m1myIQluX0p1Ol8BrA/l6/EesqhMqXOIXs3cJNOy1UuU2BA==}
     dev: true
 
-  /stylelint-config-recommended-scss@14.0.0(postcss@8.4.35)(stylelint@16.3.1):
+  /stylelint-config-recommended-scss@14.0.0(postcss@8.4.38)(stylelint@16.3.1):
     resolution: {integrity: sha512-HDvpoOAQ1RpF+sPbDOT2Q2/YrBDEJDnUymmVmZ7mMCeNiFSdhRdyGEimBkz06wsN+HaFwUh249gDR+I9JR7Onw==}
     engines: {node: '>=18.12.0'}
     peerDependencies:
@@ -18850,8 +18859,8 @@ packages:
       postcss:
         optional: true
     dependencies:
-      postcss: 8.4.35
-      postcss-scss: 4.0.9(postcss@8.4.35)
+      postcss: 8.4.38
+      postcss-scss: 4.0.9(postcss@8.4.38)
       stylelint: 16.3.1
       stylelint-config-recommended: 14.0.0(stylelint@16.3.1)
       stylelint-scss: 6.2.1(stylelint@16.3.1)
@@ -18866,7 +18875,7 @@ packages:
       stylelint: 16.3.1
     dev: true
 
-  /stylelint-config-standard-scss@13.0.0(postcss@8.4.35)(stylelint@16.3.1):
+  /stylelint-config-standard-scss@13.0.0(postcss@8.4.38)(stylelint@16.3.1):
     resolution: {integrity: sha512-WaLvkP689qSYUpJQPCo30TFJSSc3VzvvoWnrgp+7PpVby5o8fRUY1cZcP0sePZfjrFl9T8caGhcKg0GO34VDiQ==}
     engines: {node: '>=18.12.0'}
     peerDependencies:
@@ -18876,9 +18885,9 @@ packages:
       postcss:
         optional: true
     dependencies:
-      postcss: 8.4.35
+      postcss: 8.4.38
       stylelint: 16.3.1
-      stylelint-config-recommended-scss: 14.0.0(postcss@8.4.35)(stylelint@16.3.1)
+      stylelint-config-recommended-scss: 14.0.0(postcss@8.4.38)(stylelint@16.3.1)
       stylelint-config-standard: 36.0.0(stylelint@16.3.1)
     dev: true
 
@@ -20496,7 +20505,7 @@ packages:
       - typescript
       - webpack
 
-  file:packages/form(@ember/test-waiters@3.1.0)(@glint/template@1.3.0)(@projectcaluma/ember-workflow@12.11.0)(ember-resources@7.0.0)(ember-source@5.7.0)(webpack@5.91.0):
+  file:packages/form(@ember/test-waiters@3.1.0)(@glint/template@1.3.0)(@projectcaluma/ember-workflow@12.11.1)(ember-resources@7.0.0)(ember-source@5.7.0)(webpack@5.91.0):
     resolution: {directory: packages/form, type: directory}
     id: file:packages/form
     name: '@projectcaluma/ember-form'
