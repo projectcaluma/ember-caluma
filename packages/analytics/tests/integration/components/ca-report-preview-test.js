@@ -9,14 +9,11 @@ module("Integration | Component | ca-report-preview", function (hooks) {
   setupRenderingTest(hooks);
   setupIntl(hooks);
 
-  test.skip("it renders", async function (assert) {
+  test("it renders", async function (assert) {
     await render(hbs`<CaReportPreview />`);
 
-    assert
-      .dom(this.element)
-      .hasText(
-        "t:caluma.analytics.sections.table-preview:() t:caluma.analytics.preview.refresh:() t:caluma.analytics.preview.download:()",
-      );
+    assert.dom(this.element).hasText("t:caluma.analytics.preview.export:()");
+    assert.dom(this.element.querySelector("#reports-table")).exists();
   });
 
   todo("it renders table data", async function () {});

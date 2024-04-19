@@ -48,3 +48,5 @@ caluma:
       cases: Cases
       work-items: Work items
       documents: Documents
+    preview:
+      export: Export
