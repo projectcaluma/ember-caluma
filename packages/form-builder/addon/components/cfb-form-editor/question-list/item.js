@@ -1,11 +1,14 @@
 import { action } from "@ember/object";
 import { guidFor } from "@ember/object/internals";
+import { service } from "@ember/service";
 import Component from "@glimmer/component";
 import jexl from "jexl";
 
 import { hasQuestionType } from "@projectcaluma/ember-core/helpers/has-question-type";
 
 export default class CfbFormEditorQuestionListItem extends Component {
+  @service router;
+
   get elementId() {
     return guidFor(this);
   }
@@ -45,6 +48,14 @@ export default class CfbFormEditorQuestionListItem extends Component {
     return (
       this.args.mode === "reorder" &&
       (hasQuestionType(question, "form") || hasQuestionType(question, "table"))
+    );
+  }
+
+  get isActive() {
+    // we can't access this.router.applicationRouter.currentRoute.queryParams
+    // because it is non-reactive
+    return this.router.currentURL?.endsWith(
+      `/questions/${this.args.question.slug}`,
     );
   }
 
