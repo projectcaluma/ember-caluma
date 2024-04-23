@@ -41,7 +41,11 @@
       <a
         data-test-edit-question
         href="#"
-        class="uk-width-auto uk-margin-small-right uk-text-bold"
+        class={{if
+          this.isActive
+          "uk-width-auto uk-margin-small-right uk-text-bold"
+          "uk-width-auto uk-margin-small-right"
+        }}
         {{on "click" (fn this.editQuestion @question)}}
       >
         {{@question.slug}}
@@ -51,7 +55,11 @@
       </a>
     {{else}}
       <span
-        class="uk-width-auto uk-margin-small-right uk-text-bold"
+        class={{if
+          this.isActive
+          "uk-width-auto uk-margin-small-right uk-text-bold"
+          "uk-width-auto uk-margin-small-right"
+        }}
       >{{@question.slug}}</span>
     {{/if}}
 
