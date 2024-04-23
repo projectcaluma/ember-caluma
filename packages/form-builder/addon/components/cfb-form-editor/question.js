@@ -195,6 +195,10 @@ export default class CfbFormEditorQuestion extends Component {
     return this.data.lastSuccessful?.value?.[0]?.node;
   }
 
+  get isNew() {
+    return !this.changeset.get("id");
+  }
+
   get prefix() {
     return this.calumaOptions.namespace
       ? `${this.calumaOptions.namespace}-`
