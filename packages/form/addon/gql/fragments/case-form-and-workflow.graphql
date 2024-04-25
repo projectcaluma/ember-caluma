@@ -1,0 +1,28 @@
+fragment CaseFormAndWorkflow on Case {
+  id
+  workflow {
+    id
+    slug
+  }
+  document {
+    id
+    form {
+      id
+      slug
+    }
+  }
+  family {
+    id
+    workflow {
+      id
+      slug
+    }
+    document {
+      id
+      form {
+        id
+        slug
+      }
+    }
+  }
+}

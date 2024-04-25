@@ -413,18 +413,19 @@ export default class Field extends Base {
    * - `form`: Legacy property pointing to the root form.
    * - `info.form`: The form this question is attached to.
    * - `info.formMeta`: The meta of the form this question is attached to.
-   * - `info.mainCaseForm`: The main cases' form (can give useful context in task forms).
    * - `info.parent.form`: The parent form if applicable.
    * - `info.parent.formMeta`: The parent form meta if applicable.
    * - `info.root.form`: The new property for the root form.
    * - `info.root.formMeta`: The new property for the root form meta.
+   * - `info.case.form`: The cases' form (works for task forms and case forms).
+   * - `info.case.workflow`: The cases' workflow (works for task forms and case forms).
+   * - `info.case.root.form`: The _root_ cases' form (works for task forms and case forms).
+   * - `info.case.root.workflow`: The _root_ cases' workflow (works for task forms and case forms).
    *
    * @property {Object} jexlContext
    */
   get jexlContext() {
     const parent = this.fieldset.field?.fieldset.form;
-
-    const rootDocument = this.document.parentDocument ?? this.document;
 
     return {
       ...this.document.jexlContext,
@@ -432,8 +433,6 @@ export default class Field extends Base {
         ...this.document.jexlContext.info,
         form: this.fieldset.form.slug,
         formMeta: this.fieldset.form.raw.meta,
-        mainCaseForm:
-          rootDocument.raw.workItem?.case.family.document?.form.slug,
         parent: parent
           ? {
               form: parent.slug,

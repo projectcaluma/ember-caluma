@@ -1,4 +1,5 @@
 #import * from '../fragments/field.graphql'
+#import * from '../fragments/case-form-and-workflow.graphql'
 
 query DocumentAnswers($id: ID!) {
   allDocuments(filter: [{ id: $id }]) {
@@ -12,21 +13,11 @@ query DocumentAnswers($id: ID!) {
         workItem {
           id
           case {
-            id
-            family {
-              id
-              document {
-                id
-                form {
-                  id
-                  slug
-                }
-              }
-            }
+            ...CaseFormAndWorkflow
           }
         }
         case {
-          id
+          ...CaseFormAndWorkflow
           workItems {
             edges {
               node {
