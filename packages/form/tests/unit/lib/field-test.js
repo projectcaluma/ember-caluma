@@ -146,6 +146,7 @@ module("Unit | Library | field", function (hooks) {
           "is-top-form": false,
           level: 1,
         },
+        mainCaseForm: "main-case-form",
         parent: null,
         root: {
           form: "form",
