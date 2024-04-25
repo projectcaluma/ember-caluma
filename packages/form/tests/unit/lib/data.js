@@ -236,9 +236,26 @@ const answers = {
   ],
 };
 
+const workItem = {
+  id: id("WorkItem"),
+  case: {
+    id: id("Case"),
+    family: {
+      id: id("Case"),
+      document: {
+        id: id("Document"),
+        form: {
+          slug: "main-case-form",
+        },
+      },
+    },
+  },
+};
+
 export default {
   id: id("Document"),
   answers,
   form,
+  workItem,
   __typename: "Document",
 };

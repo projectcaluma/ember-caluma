@@ -11,6 +11,19 @@ query DocumentAnswers($id: ID!) {
         }
         workItem {
           id
+          case {
+            id
+            family {
+              id
+              document {
+                id
+                form {
+                  id
+                  slug
+                }
+              }
+            }
+          }
         }
         case {
           id
