@@ -3,7 +3,7 @@ import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
-import data from "./data";
+import { rawDocumentWithWorkItem } from "./data";
 
 import { getDependenciesFromJexl } from "@projectcaluma/ember-form/lib/dependencies";
 import { parseDocument } from "@projectcaluma/ember-form/lib/parsers";
@@ -18,7 +18,7 @@ module("Unit | Library | field", function (hooks) {
     this.set(
       "document",
       new (this.owner.factoryFor("caluma-model:document").class)({
-        raw: parseDocument(data),
+        raw: parseDocument(rawDocumentWithWorkItem),
         owner: this.owner,
       }),
     );
@@ -146,13 +146,20 @@ module("Unit | Library | field", function (hooks) {
           "is-top-form": false,
           level: 1,
         },
-        mainCaseForm: "main-case-form",
         parent: null,
         root: {
           form: "form",
           formMeta: {
             "is-top-form": true,
             level: 0,
+          },
+        },
+        case: {
+          form: "child-case-form",
+          workflow: "child-case-workflow",
+          root: {
+            form: "root-case-form",
+            workflow: "root-case-workflow",
           },
         },
       },

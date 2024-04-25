@@ -198,6 +198,7 @@ export default class Document extends Base {
    * @property {Object} jexlContext
    */
   get jexlContext() {
+    const _case = this.raw.workItem?.case ?? this.raw.case;
     return (
       this.parentDocument?.jexlContext ?? {
         // JEXL interprets null in an expression as variable instead of a
@@ -208,6 +209,14 @@ export default class Document extends Base {
           root: {
             form: this.rootForm.slug,
             formMeta: this.rootForm.raw.meta,
+          },
+          case: {
+            form: _case?.document?.form.slug,
+            workflow: _case?.workflow.slug,
+            root: {
+              form: _case?.family.document?.form.slug,
+              workflow: _case?.family.workflow.slug,
+            },
           },
         },
       }

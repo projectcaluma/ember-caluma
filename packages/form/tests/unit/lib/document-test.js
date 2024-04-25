@@ -1,7 +1,11 @@
 import { settled } from "@ember/test-helpers";
 import { module, test, skip } from "qunit";
 
-import data from "./data";
+import {
+  rawDocumentWithCase,
+  rawDocumentWithWorkItem,
+  rawUnlinkedDocument,
+} from "./data";
 
 import { parseDocument } from "@projectcaluma/ember-form/lib/parsers";
 import { setupTest } from "dummy/tests/helpers";
@@ -23,7 +27,7 @@ module("Unit | Library | document", function (hooks) {
     this.set(
       "document",
       new (this.owner.factoryFor("caluma-model:document").class)({
-        raw: parseDocument(data),
+        raw: parseDocument(rawDocumentWithWorkItem),
         owner: this.owner,
       }),
     );
@@ -261,13 +265,73 @@ module("Unit | Library | document", function (hooks) {
     );
   });
 
-  test("computes the correct jexl context", async function (assert) {
+  test("computes the correct jexl context (task form)", async function (assert) {
     assert.expect(1);
 
     assert.deepEqual(this.document.jexlContext, {
       null: null,
       form: "form",
       info: {
+        case: {
+          form: "child-case-form",
+          root: {
+            form: "root-case-form",
+            workflow: "root-case-workflow",
+          },
+          workflow: "child-case-workflow",
+        },
+        root: { form: "form", formMeta: { "is-top-form": true, level: 0 } },
+      },
+    });
+  });
+
+  test("computes the correct jexl context (case form)", async function (assert) {
+    assert.expect(1);
+
+    const documentWithCase = new (this.owner.factoryFor(
+      "caluma-model:document",
+    ).class)({
+      raw: parseDocument(rawDocumentWithCase),
+      owner: this.owner,
+    });
+    assert.deepEqual(documentWithCase.jexlContext, {
+      null: null,
+      form: "form",
+      info: {
+        case: {
+          form: "child-case-form",
+          root: {
+            form: "root-case-form",
+            workflow: "root-case-workflow",
+          },
+          workflow: "child-case-workflow",
+        },
+        root: { form: "form", formMeta: { "is-top-form": true, level: 0 } },
+      },
+    });
+  });
+
+  test("computes the correct jexl context (unlinked document)", async function (assert) {
+    assert.expect(1);
+
+    const documentWithCase = new (this.owner.factoryFor(
+      "caluma-model:document",
+    ).class)({
+      raw: parseDocument(rawUnlinkedDocument),
+      owner: this.owner,
+    });
+    assert.deepEqual(documentWithCase.jexlContext, {
+      null: null,
+      form: "form",
+      info: {
+        case: {
+          form: undefined,
+          root: {
+            form: undefined,
+            workflow: undefined,
+          },
+          workflow: undefined,
+        },
         root: { form: "form", formMeta: { "is-top-form": true, level: 0 } },
       },
     });

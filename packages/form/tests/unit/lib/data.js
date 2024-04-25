@@ -236,26 +236,59 @@ const answers = {
   ],
 };
 
-const workItem = {
-  id: id("WorkItem"),
-  case: {
+const _case = {
+  id: id("Case"),
+  workflow: {
+    id: id("Workflow", "child-case-workflow"),
+    slug: "child-case-workflow",
+  },
+  document: {
+    id: id("Document"),
+    form: {
+      id: id("Form", "child-case-form"),
+      slug: "child-case-form",
+    },
+  },
+  family: {
     id: id("Case"),
-    family: {
-      id: id("Case"),
-      document: {
-        id: id("Document"),
-        form: {
-          slug: "main-case-form",
-        },
+    workflow: {
+      id: id("Workflow", "root-case-workflow"),
+      slug: "root-case-workflow",
+    },
+    document: {
+      id: id("Document"),
+      form: {
+        id: id("Form", "root-case-form"),
+        slug: "root-case-form",
       },
     },
   },
 };
 
-export default {
+const workItem = {
+  id: id("WorkItem"),
+  case: _case,
+};
+
+export const rawDocumentWithCase = {
+  id: id("Document"),
+  answers,
+  form,
+  case: _case,
+  __typename: "Document",
+};
+
+export const rawDocumentWithWorkItem = {
   id: id("Document"),
   answers,
   form,
   workItem,
+  __typename: "Document",
+};
+
+export const rawUnlinkedDocument = {
+  id: id("Document"),
+  answers,
+  form,
   __typename: "Document",
 };

@@ -3,7 +3,7 @@ import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { module, test } from "qunit";
 
-import data from "../../unit/lib/data";
+import { rawDocumentWithWorkItem } from "../../unit/lib/data";
 
 import { parseDocument } from "@projectcaluma/ember-form/lib/parsers";
 import { setupRenderingTest } from "dummy/tests/helpers";
@@ -14,7 +14,7 @@ module("Integration | Component | document-validity", function (hooks) {
 
   hooks.beforeEach(function () {
     this.document = new (this.owner.factoryFor("caluma-model:document").class)({
-      raw: parseDocument(data),
+      raw: parseDocument(rawDocumentWithWorkItem),
       owner: this.owner,
     });
 
