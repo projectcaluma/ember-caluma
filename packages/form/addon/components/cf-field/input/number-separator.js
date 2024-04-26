@@ -35,7 +35,7 @@ export default class CfFieldInputNumberSeparatorComponent extends Component {
     // We need to remove the thousand separator and replace the decimal
     // separator with a dot in order to parse it into a number. Which character
     // those are is determined per locale in the getters above.
-    const serialized = Number(
+    const serialized = parseFloat(
       value
         .replace(new RegExp(`\\${this.thousandSeparator}`, "g"), "")
         .replace(new RegExp(`\\${this.decimalSeparator}`), "."),
