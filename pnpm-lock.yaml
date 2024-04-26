@@ -460,8 +460,8 @@ importers:
         specifier: 2.20.1
         version: 2.20.1
       qunit-dom:
-        specifier: 3.0.0
-        version: 3.0.0
+        specifier: 3.1.2
+        version: 3.1.2
       sass:
         specifier: 1.75.0
         version: 1.75.0
@@ -619,8 +619,8 @@ importers:
         specifier: 2.20.1
         version: 2.20.1
       qunit-dom:
-        specifier: 3.0.0
-        version: 3.0.0
+        specifier: 3.1.2
+        version: 3.1.2
       uikit:
         specifier: 3.19.2
         version: 3.19.2
@@ -797,8 +797,8 @@ importers:
         specifier: 2.20.1
         version: 2.20.1
       qunit-dom:
-        specifier: 3.0.0
-        version: 3.0.0
+        specifier: 3.1.2
+        version: 3.1.2
       sass:
         specifier: 1.75.0
         version: 1.75.0
@@ -987,8 +987,8 @@ importers:
         specifier: 2.20.1
         version: 2.20.1
       qunit-dom:
-        specifier: 3.0.0
-        version: 3.0.0
+        specifier: 3.1.2
+        version: 3.1.2
       uikit:
         specifier: 3.19.2
         version: 3.19.2
@@ -1196,8 +1196,8 @@ importers:
         specifier: 2.20.1
         version: 2.20.1
       qunit-dom:
-        specifier: 3.0.0
-        version: 3.0.0
+        specifier: 3.1.2
+        version: 3.1.2
       webpack:
         specifier: 5.91.0
         version: 5.91.0
@@ -1327,8 +1327,8 @@ importers:
         specifier: 2.20.1
         version: 2.20.1
       qunit-dom:
-        specifier: 3.0.0
-        version: 3.0.0
+        specifier: 3.1.2
+        version: 3.1.2
       webpack:
         specifier: 5.91.0
         version: 5.91.0
@@ -1451,8 +1451,8 @@ importers:
         specifier: 2.20.1
         version: 2.20.1
       qunit-dom:
-        specifier: 3.0.0
-        version: 3.0.0
+        specifier: 3.1.2
+        version: 3.1.2
       uikit:
         specifier: 3.19.2
         version: 3.19.2
@@ -17353,8 +17353,8 @@ packages:
       rimraf: 2.7.1
       underscore.string: 3.3.6
 
-  /qunit-dom@3.0.0:
-    resolution: {integrity: sha512-rqGZ9ZgOvtOY+Ph2ElCJ4pRIHouMZmI3DWK35Xr3x3c17/gIwOHHyKAQk6XetqhqepS6p+oXvK6Bx1uZu5jJuw==}
+  /qunit-dom@3.1.2:
+    resolution: {integrity: sha512-urHvzhDxihYrMBpsT/Fk7So79CPfvS0ZwZw2VPA+0JV1Q1XP2IhDg/PLHTt+r2j7787iQAOpILx2GjwAa6CpnA==}
     dev: true
 
   /qunit@2.20.1:
