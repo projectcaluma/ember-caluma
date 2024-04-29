@@ -13,7 +13,7 @@
     "test:ember-compatibility": "ember try:each"
   },
   "dependencies": {
-    "@babel/core": "^7.24.3",
+    "@babel/core": "^7.24.4",
     "@glimmer/component": "^1.1.2",
     "@projectcaluma/ember-core": "workspace:^",
     "ember-apollo-client": "~4.0.2",
