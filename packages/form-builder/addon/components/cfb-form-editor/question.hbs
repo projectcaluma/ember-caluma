@@ -35,7 +35,7 @@
         @name="__typename"
         @required={{true}}
         @disabled={{not (is-empty @slug)}}
-        @on-update={{changeset-set f.model "__typename"}}
+        @on-update={{this.updateType}}
       />
 
       <f.input
