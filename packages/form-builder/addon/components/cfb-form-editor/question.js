@@ -502,6 +502,30 @@ export default class CfbFormEditorQuestion extends Component {
   }
 
   @action
+  updateType(value, changeset) {
+    changeset.set("__typename", value);
+
+    const defaultWidget = "cf-field/input/number-separator";
+    const currentWidget = changeset.get("meta.widgetOverride");
+    const isViableType = [
+      "IntegerQuestion",
+      "FloatQuestion",
+      "CalculatedFloatQuestion",
+    ].includes(value);
+
+    if (this.calumaOptions.useNumberSeparatorWidgetAsDefault) {
+      if (isViableType && !currentWidget) {
+        // Set the default widget as override if the question type is viable for
+        // it and there is no widget selected yet
+        changeset.set("meta.widgetOverride", defaultWidget);
+      } else if (!isViableType && currentWidget === defaultWidget) {
+        // Remove default widget for non viable question types
+        changeset.set("meta.widgetOverride", undefined);
+      }
+    }
+  }
+
+  @action
   updateSubForm(value, changeset) {
     changeset.set("subForm.slug", value.slug);
   }

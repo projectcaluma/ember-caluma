@@ -31,7 +31,17 @@ export default class CalumaOptionsService extends Service {
       : null;
   }
 
+  /**
+   * Use number separator widget for all viable questions (integer, float and
+   * calculated float) without exceptions.
+   */
   alwaysUseNumberSeparatorWidget = false;
+
+  /**
+   * Pre-select number separator widget when creating a viable question in the
+   * form builder.
+   */
+  useNumberSeparatorWidgetAsDefault = false;
 
   /**
    * Registers a new component override.
