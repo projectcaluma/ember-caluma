@@ -24,8 +24,8 @@ importers:
         specifier: 19.3.0
         version: 19.3.0(@types/node@20.11.26)
       '@commitlint/config-conventional':
-        specifier: 19.1.0
-        version: 19.1.0
+        specifier: 19.2.2
+        version: 19.2.2
       '@graphql-eslint/eslint-plugin':
         specifier: 3.20.1
         version: 3.20.1(@babel/core@7.24.3)(@types/node@20.11.26)(graphql@15.8.0)
@@ -656,7 +656,7 @@ importers:
         version: file:packages/core(@glimmer/component@1.1.2)(@glint/template@1.3.0)(ember-data@5.3.3)(ember-resources@7.0.0)(ember-source@5.7.0)(webpack@5.91.0)
       '@projectcaluma/ember-form':
         specifier: workspace:^
-        version: file:packages/form(@ember/test-waiters@3.1.0)(@glint/template@1.3.0)(@projectcaluma/ember-workflow@12.13.0)(ember-resources@7.0.0)(ember-source@5.7.0)(webpack@5.91.0)
+        version: file:packages/form(@ember/test-waiters@3.1.0)(@glint/template@1.3.0)(@projectcaluma/ember-workflow@12.14.0)(ember-resources@7.0.0)(ember-source@5.7.0)(webpack@5.91.0)
       '@projectcaluma/ember-workflow':
         specifier: workspace:^
         version: file:packages/workflow(@ember/test-waiters@3.1.0)(@glimmer/tracking@1.1.2)(@glint/template@1.3.0)(ember-resources@7.0.0)(ember-source@5.7.0)(webpack@5.91.0)
@@ -2920,8 +2920,8 @@ packages:
       - typescript
     dev: true
 
-  /@commitlint/config-conventional@19.1.0:
-    resolution: {integrity: sha512-KIKD2xrp6Uuk+dcZVj3++MlzIr/Su6zLE8crEDQCZNvWHNQSeeGbzOlNtsR32TUy6H3JbP7nWgduAHCaiGQ6EA==}
+  /@commitlint/config-conventional@19.2.2:
+    resolution: {integrity: sha512-mLXjsxUVLYEGgzbxbxicGPggDuyWNkf25Ht23owXIH+zV2pv1eJuzLK3t1gDY5Gp6pxdE60jZnWUY5cvgL3ufw==}
     engines: {node: '>=v18'}
     dependencies:
       '@commitlint/types': 19.0.3
@@ -20526,7 +20526,7 @@ packages:
       - typescript
       - webpack
 
-  file:packages/form(@ember/test-waiters@3.1.0)(@glint/template@1.3.0)(@projectcaluma/ember-workflow@12.13.0)(ember-resources@7.0.0)(ember-source@5.7.0)(webpack@5.91.0):
+  file:packages/form(@ember/test-waiters@3.1.0)(@glint/template@1.3.0)(@projectcaluma/ember-workflow@12.14.0)(ember-resources@7.0.0)(ember-source@5.7.0)(webpack@5.91.0):
     resolution: {directory: packages/form, type: directory}
     id: file:packages/form
     name: '@projectcaluma/ember-form'
