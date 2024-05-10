@@ -13,7 +13,7 @@
     "test:ember-compatibility": "ember try:each"
   },
   "dependencies": {
-    "@apollo/client": "^3.9.9",
+    "@apollo/client": "^3.10.3",
     "@babel/core": "^7.24.3",
     "@ember/string": "^3.1.1",
     "@embroider/macros": "^1.15.0",
