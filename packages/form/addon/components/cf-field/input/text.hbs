@@ -12,3 +12,7 @@
   maxlength={{@field.question.raw.textMaxLength}}
   {{on "input" this.input}}
 />
+
+{{#if @field.answer.historicalValue}}
+  Geändert! War: {{@field.answer.historicalValue}}
+{{/if}}
