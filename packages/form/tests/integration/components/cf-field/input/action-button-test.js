@@ -4,6 +4,7 @@ import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { restartableTask } from "ember-concurrency";
 import { setupIntl } from "ember-intl/test-support";
+import { Response } from "miragejs";
 import { module, test } from "qunit";
 import UIkit from "uikit";
 
@@ -147,23 +148,31 @@ module(
       assert.verifySteps([]);
     });
 
-    test("triggers the callback functions", async function (assert) {
-      assert.expect(6);
+    test("triggers the success callback", async function (assert) {
+      assert.expect(3);
 
       await render(hbs`<CfField::Input::ActionButton
   @field={{this.field}}
-  @context={{hash
-    actionButtonOnSuccess=this.success
-    actionButtonOnError=this.error
-  }}
+  @context={{hash actionButtonOnSuccess=this.success}}
 />`);
 
       await click("button.uk-button-secondary");
       await waitFor(".uk-modal.uk-open");
       await click(".uk-modal-footer button.uk-button-primary");
       assert.verifySteps(["validate", "success"]);
+    });
 
-      this.server.post("/graphql/", {}, 500);
+    test("triggers the error callback", async function (assert) {
+      assert.expect(3);
+
+      this.server.post("/graphql/", () => {
+        return new Response(500);
+      });
+
+      await render(hbs`<CfField::Input::ActionButton
+  @field={{this.field}}
+  @context={{hash actionButtonOnError=this.error}}
+/>`);
 
       await click("button.uk-button-secondary");
       await waitFor(".uk-modal.uk-open");
