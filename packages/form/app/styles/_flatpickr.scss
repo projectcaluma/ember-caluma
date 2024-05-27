@@ -8,15 +8,6 @@ $flatpickr-selected-color: $global-primary-background;
 span.flatpickr-day {
   font-weight: $base-body-font-weight;
 
-  &.today:not(.selected) {
-    border-bottom-color: $flatpickr-today-color;
-
-    &:hover {
-      background: $flatpickr-today-color;
-      border-color: $flatpickr-today-color;
-    }
-  }
-
   &.selected {
     background: $flatpickr-selected-color;
     border-color: $flatpickr-selected-color;
@@ -25,6 +16,15 @@ span.flatpickr-day {
     &:hover {
       background: color.adjust($flatpickr-selected-color, $lightness: -10%);
       border-color: color.adjust($flatpickr-selected-color, $lightness: -10%);
+    }
+  }
+
+  &.today:not(.selected) {
+    border-bottom-color: $flatpickr-today-color;
+
+    &:hover {
+      background: $flatpickr-today-color;
+      border-color: $flatpickr-today-color;
     }
   }
 }
