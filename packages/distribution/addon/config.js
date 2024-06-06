@@ -96,14 +96,8 @@ export default function config(target, property) {
           },
           new: {
             defaultDeadlineLeadTime: 30,
-            defaultTypes: ["suggestions"],
-            types: {
-              suggestions: {
-                label: "caluma.distribution.new.suggestions",
-                icon: "star",
-                iconColor: "warning",
-              },
-            },
+            defaultTypes: [],
+            types: {},
           },
           permissions: {},
           hooks: {},
