@@ -8,6 +8,7 @@
   minlength={{@field.question.raw.textareaMinLength}}
   maxlength={{@field.question.raw.textareaMaxLength}}
   readonly={{@disabled}}
+  value={{@field.answer.value}}
   {{on "input" this.input}}
   {{autoresize mode="height"}}
 >{{@field.answer.value}}</textarea>
