@@ -98,4 +98,16 @@ export default class BaseFilter {
         btoa(`${this.type}:${slug}`) === value,
     );
   }
+
+  ids(records, value) {
+    if (value === undefined || value === null) {
+      return [];
+    }
+
+    return records.filter(({ id, slug }) =>
+      [id, slug, btoa(`${this.type}:${id}`), btoa(`${this.type}:${slug}`)].some(
+        (v) => value.includes(v),
+      ),
+    );
+  }
 }
