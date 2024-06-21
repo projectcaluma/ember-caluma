@@ -1,5 +1,6 @@
 import { render, fillIn } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
+import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
@@ -7,6 +8,7 @@ import { setupRenderingTest } from "dummy/tests/helpers";
 
 module("Integration | Component | cf-field/input/textarea", function (hooks) {
   setupRenderingTest(hooks);
+  setupMirage(hooks);
   setupIntl(hooks);
 
   test("it computes the proper element id", async function (assert) {
@@ -51,5 +53,76 @@ module("Integration | Component | cf-field/input/textarea", function (hooks) {
     await render(hbs`<CfField::Input::Textarea @onSave={{this.save}} />`);
 
     await fillIn("textarea", "Test");
+  });
+
+  test("it displays refreshed value", async function (assert) {
+    const form = this.server.create("form", { slug: "some-form" });
+    const question = this.server.create("question", {
+      type: "TEXTAREA",
+      slug: "question-1",
+      label: "Apple",
+      isRequired: "true",
+      isHidden: "false",
+      formIds: [form.id],
+    });
+    const document = this.server.create("document", { formId: form.id });
+    const answerValue = "Test";
+    const answer = this.server.create("answer", {
+      questionId: question.id,
+      documentId: document.id,
+      value: answerValue,
+    });
+
+    const rawForm = {
+      __typename: "Form",
+      slug: "some-form",
+      questions: [
+        {
+          slug: "question-1",
+          label: "Apple",
+          isRequired: "true",
+          isHidden: "false",
+          textMinLength: 10,
+          textMaxLength: 20,
+          meta: {},
+          __typename: "TextareaQuestion",
+        },
+      ],
+    };
+
+    const rawDocument = new (this.owner.factoryFor(
+      "caluma-model:document",
+    ).class)({
+      raw: {
+        __typename: "Document",
+        id: window.btoa(`Document:${document.id}`),
+        answers: [
+          {
+            stringValue: answerValue,
+            question: {
+              slug: "question-1",
+            },
+            __typename: "StringAnswer",
+          },
+        ],
+        rootForm: rawForm,
+        forms: [rawForm],
+      },
+      owner: this.owner,
+    });
+
+    this.field = rawDocument.fields[0];
+
+    await render(hbs`<CfField::Input::Textarea @field={{this.field}} />`);
+
+    assert.dom("textarea").hasValue(answerValue);
+
+    answer.update({ value: "Beer" });
+
+    assert.dom("textarea").hasValue(answerValue);
+
+    await this.field.refreshAnswer.perform();
+
+    assert.dom("textarea").hasValue("Beer");
   });
 });
