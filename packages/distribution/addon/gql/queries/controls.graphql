@@ -67,7 +67,7 @@ query Controls(
       }
     }
   }
-  case: allCases(filter: [{ id: $caseId }]) {
+  case: allCases(filter: [{ ids: [$caseId] }]) {
     edges {
       node {
         id
