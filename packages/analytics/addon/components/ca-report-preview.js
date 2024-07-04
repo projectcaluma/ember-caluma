@@ -74,4 +74,19 @@ export default class CaReportPreviewComponent extends Component {
       );
     });
   }
+
+  getXLSXType(input) {
+    // Check if it's a number
+    if (!isNaN(input) && input.trim() !== "") {
+      return "n";
+    }
+
+    // Check if it looks like a date and can be parsed as a date
+    if (/^\d{4}-\d{2}-\d{2}$/.test(input) && !isNaN(Date.parse(input))) {
+      return "d";
+    }
+
+    // Default to string
+    return "s";
+  }
 }
