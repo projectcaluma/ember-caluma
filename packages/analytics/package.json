@@ -32,7 +32,7 @@
     "ember-intl": "^6.5.3",
     "ember-power-select": "^7.2.0",
     "ember-sortable": "^5.0.1",
-    "ember-uikit": "^9.1.1",
+    "ember-uikit": "^9.1.2",
     "ember-validated-form": "^7.0.1",
     "graphql": "^15.8.0",
     "reactiveweb": "^1.2.3",

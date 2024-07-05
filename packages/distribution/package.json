@@ -35,7 +35,7 @@
     "ember-intl": "^6.5.3",
     "ember-svg-jar": "^2.4.9",
     "ember-test-selectors": "^6.0.0",
-    "ember-uikit": "^9.1.1",
+    "ember-uikit": "^9.1.2",
     "flatpickr": "^4.6.13",
     "graphql": "^15.8.0",
     "graphql-tag": "^2.12.6",
