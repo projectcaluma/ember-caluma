@@ -77,7 +77,7 @@ export default class CaReportPreviewComponent extends Component {
 
   getXLSXType(input) {
     // Check if it's a number
-    if (!isNaN(input) && input.trim() !== "") {
+    if (input && !isNaN(input) && input.trim() !== "") {
       return "n";
     }
 
