@@ -6,6 +6,7 @@ caluma:
     edit: "Edit"
     cancel: "Cancel"
     close: "Close"
+    view: "View"
     selectFile: "Browse..."
     deleteRow: "Do you really want to delete this row?"
     addRow: "Add row"

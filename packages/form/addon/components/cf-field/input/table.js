@@ -126,7 +126,9 @@ export default class CfFieldInputTableComponent extends Component {
       this.documentToEditIsNew = false;
     }
 
-    yield this.args.field.validate.perform();
+    if (!this.args.disabled) {
+      yield this.args.field.validate.perform();
+    }
 
     this.showAddModal = false;
     this.documentToEdit = null;
