@@ -6,6 +6,7 @@ caluma:
     edit: "Bearbeiten"
     cancel: "Abbrechen"
     close: "Schliessen"
+    view: "Anzeigen"
     selectFile: "Durchsuchen..."
     deleteRow: "Möchten Sie diese Zeile wirklich löschen?"
     addRow: "Zeile hinzufügen"

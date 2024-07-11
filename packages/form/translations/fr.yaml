@@ -6,6 +6,7 @@ caluma:
     edit: "modifier"
     cancel: "annuler"
     close: "fermer"
+    view: "Montrer"
     selectFile: "Sélectionner..."
     deleteRow: "Voulez-vous supprimer cette ligne?"
     addRow: "Ajouter une ligne"
