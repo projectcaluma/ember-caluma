@@ -5,6 +5,7 @@ module.exports = {
   plugins: ["ember-template-lint-plugin-prettier"],
   rules: {
     "no-bare-strings": true,
+    "no-at-ember-render-modifiers": "warn",
   },
   overrides: [
     {

@@ -26,7 +26,7 @@ module(
         hbs`<CaFieldSelectorList::CaFieldFunctionSelect
   @update={{this.update}}
   @field={{this.field}}
-  @tableSlug={{"test"}}
+  @tableSlug="test"
 />`,
       );
 

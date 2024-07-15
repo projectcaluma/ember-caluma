@@ -14,7 +14,7 @@ module("Integration | Component | cf-field/input/files", function (hooks) {
   setupIntl(hooks, ["en"]);
 
   test("it computes the proper element id", async function (assert) {
-    await render(hbs`<CfField::Input::Files @field={{(hash pk="test-id")}} />`);
+    await render(hbs`<CfField::Input::Files @field={{hash pk="test-id"}} />`);
 
     assert.dom("#test-id").exists();
   });
