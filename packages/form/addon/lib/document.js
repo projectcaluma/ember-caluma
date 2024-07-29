@@ -269,7 +269,7 @@ export default class Document extends Base {
     }
 
     if (field.hidden || [undefined, null].includes(field.value)) {
-      return defaultValue ?? field.question.isMultipleChoice ? [] : null;
+      return (defaultValue ?? field.question.isMultipleChoice) ? [] : null;
     }
 
     if (field.question.isTable) {
