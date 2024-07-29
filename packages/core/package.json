@@ -13,13 +13,13 @@
     "test:ember-compatibility": "ember try:each"
   },
   "dependencies": {
-    "@apollo/client": "^3.10.4",
-    "@babel/core": "^7.24.7",
-    "@ember/string": "^3.1.1",
-    "@embroider/macros": "^1.15.0",
+    "@apollo/client": "^3.11.1",
+    "@babel/core": "^7.25.2",
+    "@ember/string": "^4.0.0",
+    "@embroider/macros": "^1.16.5",
     "@glimmer/tracking": "^1.1.2",
     "ember-apollo-client": "~4.0.2",
-    "ember-auto-import": "^2.7.2",
+    "ember-auto-import": "^2.7.4",
     "ember-cli-babel": "^8.2.0",
     "ember-cli-htmlbars": "^6.3.0",
     "ember-concurrency": "^4.0.2",
@@ -37,14 +37,14 @@
   "devDependencies": {
     "@ember/optional-features": "2.1.0",
     "@ember/render-modifiers": "2.1.0",
-    "@ember/test-helpers": "3.3.0",
+    "@ember/test-helpers": "3.3.1",
     "@embroider/test-setup": "4.0.0",
-    "@embroider/util": "1.13.1",
+    "@embroider/util": "1.13.2",
     "@faker-js/faker": "8.4.1",
     "@glimmer/component": "1.1.2",
     "@projectcaluma/ember-testing": "workspace:*",
     "broccoli-asset-rev": "3.0.0",
-    "ember-cli": "5.7.0",
+    "ember-cli": "5.10.0",
     "ember-cli-clean-css": "3.0.0",
     "ember-cli-code-coverage": "3.0.0",
     "ember-cli-dependency-checker": "3.3.2",
@@ -53,20 +53,20 @@
     "ember-cli-sri": "2.1.1",
     "ember-cli-terser": "4.0.2",
     "ember-load-initializers": "2.1.2",
-    "ember-qunit": "8.0.2",
-    "ember-resolver": "11.0.1",
-    "ember-source": "5.7.0",
+    "ember-qunit": "8.1.0",
+    "ember-resolver": "12.0.1",
+    "ember-source": "5.10.1",
     "ember-source-channel-url": "3.0.0",
     "ember-try": "3.0.0",
     "loader.js": "4.7.0",
-    "qunit": "2.20.1",
-    "qunit-dom": "3.1.2",
-    "uikit": "3.21.5",
-    "webpack": "5.91.0"
+    "qunit": "2.21.1",
+    "qunit-dom": "3.2.0",
+    "uikit": "3.21.8",
+    "webpack": "5.93.0"
   },
   "peerDependencies": {
     "ember-data": "*",
-    "ember-source": "^4.0.0"
+    "ember-source": ">= 4.0.0"
   },
   "dependenciesMeta": {
     "@projectcaluma/ember-testing": {

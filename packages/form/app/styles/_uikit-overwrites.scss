@@ -1,3 +1,5 @@
+@use "sass:meta";
+
 /* UIkit overwrites
  * ----------------
  * These styles amend UIkit so that disabled form elements can be styled as
@@ -12,7 +14,7 @@
   background-color: $form-disabled-background;
   color: $form-disabled-color;
 
-  @if mixin-exists(hook-form-disabled) {
+  @if meta.mixin-exists(hook-form-disabled) {
     @include hook-form-disabled;
   }
 }
@@ -30,7 +32,7 @@
   cursor: default;
   background-color: $form-radio-disabled-background;
 
-  @if mixin-exists(hook-form-radio-disabled) {
+  @if meta.mixin-exists(hook-form-radio-disabled) {
     @include hook-form-radio-disabled;
   }
 }
