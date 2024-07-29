@@ -1,4 +1,5 @@
 import Service, { inject as service } from "@ember/service";
+import { waitForPromise } from "@ember/test-waiters";
 import { tracked } from "@glimmer/tracking";
 import { queryManager, getObservable } from "ember-apollo-client";
 import { dropTask } from "ember-concurrency";
@@ -44,11 +45,15 @@ export default class DistributionService extends Service {
   }
 
   async refetchNavigation() {
-    await getObservable(this.navigation.value)?.refetch();
+    await waitForPromise(
+      getObservable(this.navigation.value)?.refetch() ?? Promise.resolve(),
+    );
   }
 
   async refetchControls() {
-    await getObservable(this.controls.value)?.refetch();
+    await waitForPromise(
+      getObservable(this.controls.value)?.refetch() ?? Promise.resolve(),
+    );
   }
 
   @dropTask

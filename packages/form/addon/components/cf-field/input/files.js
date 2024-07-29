@@ -1,5 +1,6 @@
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
+import { waitForPromise } from "@ember/test-waiters";
 import { macroCondition, isTesting } from "@embroider/macros";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
@@ -86,7 +87,9 @@ export default class CfFieldInputFilesComponent extends Component {
       };
 
       // upload the actual file to data storage
-      await Promise.all(newFiles.map((file) => uploadFunction(file)));
+      await Promise.all(
+        newFiles.map((file) => waitForPromise(uploadFunction(file))),
+      );
 
       this.args.field.answer.value = savedAnswerValue;
     } catch (error) {
