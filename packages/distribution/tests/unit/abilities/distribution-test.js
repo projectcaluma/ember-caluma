@@ -1,4 +1,3 @@
-import { settled } from "@ember/test-helpers";
 import { tracked } from "@glimmer/tracking";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { module, test } from "qunit";
@@ -43,8 +42,7 @@ module("Unit | Ability | distribution", function (hooks) {
     });
 
     // remove cached query from the store and trigger refetch
-    this.owner.lookup("service:apollo").client.resetStore();
-    await settled();
+    await this.owner.lookup("service:apollo").client.resetStore();
 
     assert.true(ability.canSendInquiries);
   });
@@ -59,8 +57,7 @@ module("Unit | Ability | distribution", function (hooks) {
       .update("status", "COMPLETED");
 
     // remove cached query from the store and trigger refetch
-    this.owner.lookup("service:apollo").client.resetStore();
-    await settled();
+    await this.owner.lookup("service:apollo").client.resetStore();
 
     assert.false(ability.canCreateInquiry);
   });
@@ -75,8 +72,7 @@ module("Unit | Ability | distribution", function (hooks) {
       .update("status", "COMPLETED");
 
     // remove cached query from the store and trigger refetch
-    this.owner.lookup("service:apollo").client.resetStore();
-    await settled();
+    await this.owner.lookup("service:apollo").client.resetStore();
 
     assert.false(ability.canComplete);
   });

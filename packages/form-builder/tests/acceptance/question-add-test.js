@@ -1,4 +1,4 @@
-import { visit, currentURL, click, fillIn } from "@ember/test-helpers";
+import { visit, currentURL, click, fillIn, settled } from "@ember/test-helpers";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
@@ -30,6 +30,8 @@ module("Acceptance | question add", function (hooks) {
     assert.strictEqual(currentURL(), "/test-form/questions/test-question");
 
     await click("[data-test-cancel]");
+    // eslint-disable-next-line ember/no-settled-after-test-helper
+    await settled();
 
     assert.dom("[data-test-question-list-item=test-question]").exists();
   });
