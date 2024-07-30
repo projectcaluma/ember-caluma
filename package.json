@@ -71,7 +71,7 @@
     "stylelint-prettier": "^5.0.0",
     "stylelint-scss": "6.2.1"
   },
-  "packageManager": "pnpm@8.15.4",
+  "packageManager": "pnpm@9.6.0",
   "pnpm": {
     "peerDependencyRules": {
       "ignoreMissing": [
