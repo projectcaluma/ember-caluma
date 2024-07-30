@@ -1,6 +1,6 @@
 {
   "name": "@projectcaluma/ember-form",
-  "version": "12.15.5",
+  "version": "13.0.0-beta.1",
   "description": "Ember addon for rendering Caluma forms.",
   "keywords": [
     "ember-addon"
