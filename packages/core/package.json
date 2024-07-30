@@ -28,7 +28,7 @@
     "ember-intl": "^7.0.4",
     "ember-modify-based-class-resource": "^1.1.0",
     "ember-uikit": "^9.1.2",
-    "graphql": "^15.8.0",
+    "graphql": "^15.9.0",
     "graphql-tag": "^2.12.6",
     "jexl": "^2.3.0",
     "lodash.clonedeep": "^4.5.0",

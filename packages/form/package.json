@@ -38,7 +38,7 @@
     "ember-uikit": "^9.1.2",
     "ember-validators": "^4.1.2",
     "flatpickr": "^4.6.13",
-    "graphql": "^15.8.0",
+    "graphql": "^15.9.0",
     "jexl": "^2.3.0",
     "lodash.isequal": "^4.5.0",
     "luxon": "^3.4.4",

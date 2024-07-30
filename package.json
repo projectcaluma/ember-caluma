@@ -60,7 +60,7 @@
     "eslint-plugin-qunit": "8.1.1",
     "get-graphql-schema": "2.1.2",
     "glob": "11.0.0",
-    "graphql": "15.8.0",
+    "graphql": "15.9.0",
     "husky": "9.1.4",
     "lint-staged": "15.2.7",
     "node-fetch": "3.3.2",

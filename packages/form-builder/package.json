@@ -42,7 +42,7 @@
     "ember-uikit": "^9.1.2",
     "ember-validated-form": "^7.0.1",
     "flatpickr": "^4.6.13",
-    "graphql": "^15.8.0",
+    "graphql": "^15.9.0",
     "graphql-tag": "^2.12.6",
     "highlight.js": "^11.10.0",
     "highlightjs-jexl": "^0.0.5",
