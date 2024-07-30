@@ -199,7 +199,7 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
     assert.verifySteps(["redirect"]);
   });
 
-  module("when showAllGroups is on", async function (hooks) {
+  module("when showAllGroups is on", function (hooks) {
     hooks.beforeEach(async function () {
       const calumaOptions = this.owner.lookup("service:caluma-options");
       calumaOptions.distribution.ui = {
