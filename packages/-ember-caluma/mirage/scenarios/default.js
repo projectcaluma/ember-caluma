@@ -125,6 +125,54 @@ export default function (server) {
     ],
   });
   server.create("question", {
+    slug: "a-b-or-c",
+    label: "A, B or C?",
+    isRequired: "false",
+    infoText: null,
+    formIds: [form.id],
+    type: "CHOICE",
+    meta: { widgetOverride: "cf-field/input/powerselect" },
+    hintText: null,
+    options: [
+      server.create("option", {
+        slug: "a-b-or-c-a",
+        label: "A",
+      }),
+      server.create("option", {
+        slug: "a-b-or-c-b",
+        label: "B",
+      }),
+      server.create("option", {
+        slug: "a-b-or-c-c",
+        label: "C",
+      }),
+    ],
+  });
+  server.create("question", {
+    slug: "a-b-and-c",
+    label: "A, B and C?",
+    isRequired: "false",
+    infoText: null,
+    formIds: [form.id],
+    type: "MULTIPLE_CHOICE",
+    meta: { widgetOverride: "cf-field/input/powerselect" },
+    hintText: null,
+    options: [
+      server.create("option", {
+        slug: "a-b-and-c-a",
+        label: "A",
+      }),
+      server.create("option", {
+        slug: "a-b-and-c-b",
+        label: "B",
+      }),
+      server.create("option", {
+        slug: "a-b-and-c-c",
+        label: "C",
+      }),
+    ],
+  });
+  server.create("question", {
     slug: "dummy",
     label: "Dummy widget",
     isRequired: "false",
