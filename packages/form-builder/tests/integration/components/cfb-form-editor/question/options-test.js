@@ -47,6 +47,7 @@ module(
 
       await render(
         hbs`<CfbFormEditor::Question::Options @model={{this.model}} @value={{this.value}} />`,
+        { owner: this.engine },
       );
 
       // one is the add row
@@ -62,12 +63,15 @@ module(
         optionChangeset({ label: "Option 1", slug: "prefix-option-1" }),
       ];
 
-      await render(hbs`<CfbFormEditor::Question::Options
+      await render(
+        hbs`<CfbFormEditor::Question::Options
   @model={{this.model}}
   @value={{this.value}}
   @update={{this.update}}
   @setDirty={{this.noop}}
-/>`);
+/>`,
+        { owner: this.engine },
+      );
 
       assert.dom("li").exists({ count: 2 });
 
@@ -84,12 +88,15 @@ module(
         optionChangeset({ label: "Option 2", slug: "prefix-option-2" }),
       ];
 
-      await render(hbs`<CfbFormEditor::Question::Options
+      await render(
+        hbs`<CfbFormEditor::Question::Options
   @model={{this.model}}
   @value={{this.value}}
   @update={{this.update}}
   @setDirty={{this.noop}}
-/>`);
+/>`,
+        { owner: this.engine },
+      );
 
       assert.dom("li").exists({ count: 3 });
 
@@ -115,6 +122,7 @@ module(
   @update={{this.update}}
   @setDirty={{this.noop}}
 />`,
+        { owner: this.engine },
       );
 
       assert.dom("[data-test-row]").exists({ count: 2 });

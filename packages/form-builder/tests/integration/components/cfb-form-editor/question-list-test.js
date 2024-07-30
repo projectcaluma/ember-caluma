@@ -25,7 +25,9 @@ module(
     test("it renders", async function (assert) {
       assert.expect(1);
 
-      await render(hbs`<CfbFormEditor::QuestionList @form="test-slug" />`);
+      await render(hbs`<CfbFormEditor::QuestionList @form="test-slug" />`, {
+        owner: this.engine,
+      });
 
       assert.dom("[data-test-question-list-item]").exists({ count: 5 });
     });
@@ -39,6 +41,7 @@ module(
 
       await render(
         hbs`<CfbFormEditor::QuestionList @form="oioi" @mode={{this.mode}} />`,
+        { owner: this.engine },
       );
 
       assert.dom("[data-test-question-list-empty]").exists();
@@ -71,7 +74,9 @@ module(
         questions: [formQuestion],
       });
 
-      await render(hbs`<CfbFormEditor::QuestionList @form="new-form" />`);
+      await render(hbs`<CfbFormEditor::QuestionList @form="new-form" />`, {
+        owner: this.engine,
+      });
 
       assert.dom("[data-test-link-subform]").exists();
       assert.dom("[data-test-link-subform]").hasText(formQuestion.subForm.name);
@@ -89,7 +94,9 @@ module(
         questions: [tableQuestion],
       });
 
-      await render(hbs`<CfbFormEditor::QuestionList @form="new-form" />`);
+      await render(hbs`<CfbFormEditor::QuestionList @form="new-form" />`, {
+        owner: this.engine,
+      });
 
       assert.dom("[data-test-link-subform]").exists();
       assert
@@ -109,6 +116,7 @@ module(
 
       await render(
         hbs`<CfbFormEditor::QuestionList @form="test-slug" @mode="reorder" />`,
+        { owner: this.engine },
       );
 
       assert.dom("[data-test-question-list-item=test]:last-child").exists();
@@ -144,6 +152,7 @@ module(
 
       await render(
         hbs`<CfbFormEditor::QuestionList @form="test-slug" @mode="add" />`,
+        { owner: this.engine },
       );
 
       assert.dom("[data-test-question-list-item=test]").exists();
@@ -160,6 +169,7 @@ module(
 
       await render(
         hbs`<CfbFormEditor::QuestionList @form="test-slug" @mode="remove" />`,
+        { owner: this.engine },
       );
 
       assert.dom("[data-test-question-list-item=test]").exists();
@@ -176,6 +186,7 @@ module(
 
       await render(
         hbs`<CfbFormEditor::QuestionList @form="test-slug" @mode="reorder" />`,
+        { owner: this.engine },
       );
 
       this.server.post(
@@ -201,6 +212,7 @@ module(
 
       await render(
         hbs`<CfbFormEditor::QuestionList @form="test-slug" @mode="remove" />`,
+        { owner: this.engine },
       );
 
       this.server.post(
@@ -220,6 +232,7 @@ module(
 
       await render(
         hbs`<CfbFormEditor::QuestionList @form="test-slug" @mode="add" />`,
+        { owner: this.engine },
       );
 
       this.server.post("/graphql", () => graphqlError("addFormQuestion"), 200);

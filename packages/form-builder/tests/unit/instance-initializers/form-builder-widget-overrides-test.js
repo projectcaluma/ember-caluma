@@ -3,8 +3,8 @@ import { run } from "@ember/runloop";
 import Resolver from "ember-resolver";
 import { module, test } from "qunit";
 
+import { initialize } from "@projectcaluma/ember-form-builder/instance-initializers/form-builder-widget-overrides";
 import config from "dummy/config/environment";
-import { initialize } from "dummy/instance-initializers/form-builder-widget-overrides";
 
 module(
   "Unit | Instance Initializer | form-builder-widget-overrides",

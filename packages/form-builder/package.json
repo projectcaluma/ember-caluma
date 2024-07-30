@@ -78,6 +78,7 @@
     "ember-load-initializers": "2.1.2",
     "ember-qunit": "8.1.0",
     "ember-resolver": "12.0.1",
+    "ember-sinon-qunit": "7.5.0",
     "ember-source": "5.10.1",
     "ember-source-channel-url": "3.0.0",
     "ember-try": "3.0.0",
@@ -85,6 +86,7 @@
     "miragejs": "0.1.48",
     "qunit": "2.21.1",
     "qunit-dom": "3.2.0",
+    "sinon": "18.0.0",
     "webpack": "5.93.0"
   },
   "peerDependencies": {

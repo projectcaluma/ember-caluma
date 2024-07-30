@@ -4,8 +4,8 @@
 import { module, test } from "qunit";
 import { resolve } from "rsvp";
 
+import and from "@projectcaluma/ember-form-builder/utils/and";
 import { resolveAfter, rejectAfter } from "dummy/tests/helpers/promise";
-import and from "dummy/utils/and";
 
 module("Unit | Utility | and", function () {
   module("sync validators", function () {

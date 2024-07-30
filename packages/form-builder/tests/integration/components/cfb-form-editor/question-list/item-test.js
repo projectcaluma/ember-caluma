@@ -27,10 +27,13 @@ module(
       this.question = new Question();
       this.set("mode", "reorder");
 
-      await render(hbs`<CfbFormEditor::QuestionList::Item
+      await render(
+        hbs`<CfbFormEditor::QuestionList::Item
   @question={{this.question}}
   @mode={{this.mode}}
-/>`);
+/>`,
+        { owner: this.engine },
+      );
 
       assert
         .dom("li")

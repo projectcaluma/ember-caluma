@@ -21,7 +21,9 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
       description: "Test Description",
     });
 
-    await render(hbs`<CfbFormEditor::General @slug="test-slug" />`);
+    await render(hbs`<CfbFormEditor::General @slug="test-slug" />`, {
+      owner: this.engine,
+    });
 
     assert.dom("input[name=name]").hasValue("Test Name");
     assert.dom("input[name=slug]").hasValue("test-slug");
@@ -38,7 +40,9 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
       description: "Test Description",
     });
 
-    await render(hbs`<CfbFormEditor::General @slug="test-slug" />`);
+    await render(hbs`<CfbFormEditor::General @slug="test-slug" />`, {
+      owner: this.engine,
+    });
 
     await fillIn("input[name=name]", "");
     await blur("input[name=name]");
@@ -64,6 +68,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
 
     await render(
       hbs`<CfbFormEditor::General @onAfterSubmit={{this.afterSubmit}} />`,
+      { owner: this.engine },
     );
 
     await fillIn("input[name=name]", "Form 1");
@@ -89,6 +94,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
 
     await render(
       hbs`<CfbFormEditor::General @onAfterSubmit={{this.afterSubmit}} />`,
+      { owner: this.engine },
     );
 
     assert.dom("input[name=slug]").isNotDisabled();
@@ -122,6 +128,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
 
     await render(
       hbs`<CfbFormEditor::General @slug="test-slug" @onAfterSubmit={{this.afterSubmit}} />`,
+      { owner: this.engine },
     );
 
     await fillIn("input[name=name]", "Test Name 1");
@@ -146,6 +153,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
     // edit form
     await render(
       hbs`<CfbFormEditor::General @slug="test-form" @onAfterSubmit={{this.afterSubmit}} />`,
+      { owner: this.engine },
     );
 
     this.server.post("/graphql", () => graphqlError("saveForm"), 200);
@@ -154,6 +162,7 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
     // new form
     await render(
       hbs`<CfbFormEditor::General @slug={{null}} @onAfterSubmit={{this.afterSubmit}} />`,
+      { owner: this.engine },
     );
 
     // Slug validation must be valid
@@ -177,7 +186,9 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
       data: { allForms: { edges: [], __typename: "FormEdges" } },
     }));
 
-    await render(hbs`<CfbFormEditor::General @slug="test-slug" />`);
+    await render(hbs`<CfbFormEditor::General @slug="test-slug" />`, {
+      owner: this.engine,
+    });
 
     assert
       .dom("p")
@@ -190,7 +201,9 @@ module("Integration | Component | cfb-form-editor/general", function (hooks) {
     this.server.create("form", { slug: "test-slug" });
     this.server.create("form", { slug: "other-test-slug" });
 
-    await render(hbs`<CfbFormEditor::General @slug={{null}} />`);
+    await render(hbs`<CfbFormEditor::General @slug={{null}} />`, {
+      owner: this.engine,
+    });
 
     await fillIn("input[name=slug]", "test-slug");
     await blur("input[name=slug]");
