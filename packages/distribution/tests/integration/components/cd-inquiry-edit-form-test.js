@@ -31,7 +31,9 @@ module("Integration | Component | cd-inquiry-edit-form", function (hooks) {
   });
 
   test("it renders an inquiry form with a send button", async function (assert) {
-    await render(hbs`<CdInquiryEditForm @inquiry={{this.inquiry.id}} />`);
+    await render(hbs`<CdInquiryEditForm @inquiry={{this.inquiry.id}} />`, {
+      owner: this.engine,
+    });
 
     assert
       .dom("[data-test-document-header]")
@@ -45,12 +47,14 @@ module("Integration | Component | cd-inquiry-edit-form", function (hooks) {
   test("it resumes the work item on send", async function (assert) {
     assert.expect(4);
 
-    this.owner.lookup("service:router").transitionTo = (routeName) => {
+    this.engine.lookup("service:router").transitionTo = (routeName) => {
       assert.strictEqual(routeName, "inquiry.index");
       assert.step("transition");
     };
 
-    await render(hbs`<CdInquiryEditForm @inquiry={{this.inquiry.id}} />`);
+    await render(hbs`<CdInquiryEditForm @inquiry={{this.inquiry.id}} />`, {
+      owner: this.engine,
+    });
 
     await click("button.uk-button-primary");
 

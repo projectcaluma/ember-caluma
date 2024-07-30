@@ -1,3 +1,4 @@
+import { setupEngine } from "ember-engines/test-support";
 import { setupIntl } from "ember-intl/test-support";
 import {
   setupApplicationTest as upstreamSetupApplicationTest,
@@ -32,6 +33,7 @@ function setupApplicationTest(hooks, options) {
 function setupRenderingTest(hooks, options) {
   upstreamSetupRenderingTest(hooks, options);
   setupIntl(hooks);
+  setupEngine(hooks, "@projectcaluma/ember-distribution");
 
   // Additional setup for rendering tests can be done here.
 }
@@ -39,6 +41,7 @@ function setupRenderingTest(hooks, options) {
 function setupTest(hooks, options) {
   upstreamSetupTest(hooks, options);
   setupIntl(hooks);
+  setupEngine(hooks, "@projectcaluma/ember-distribution");
 
   // Additional setup for unit tests can be done here.
 }

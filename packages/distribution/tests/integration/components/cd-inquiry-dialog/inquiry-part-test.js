@@ -46,6 +46,7 @@ module(
     test("it renders", async function (assert) {
       await render(
         hbs`<CdInquiryDialog::InquiryPart @inquiry={{this.inquiry}} @type={{this.type}} />`,
+        { owner: this.engine },
       );
 
       const intl = this.owner.lookup("service:intl");
@@ -80,6 +81,7 @@ module(
     test("it renders a link for editing the inquiry when permitted", async function (assert) {
       await render(
         hbs`<CdInquiryDialog::InquiryPart @inquiry={{this.inquiry}} @type={{this.type}} />`,
+        { owner: this.engine },
       );
 
       assert.dom("ul.uk-subnav > li > a[data-test-edit]").doesNotExist();
@@ -104,6 +106,7 @@ module(
 
       await render(
         hbs`<CdInquiryDialog::InquiryPart @inquiry={{this.inquiry}} @type={{this.type}} />`,
+        { owner: this.engine },
       );
 
       assert.dom("ul.uk-subnav > li > a[data-test-answer]").doesNotExist();
@@ -129,6 +132,7 @@ module(
 
       await render(
         hbs`<CdInquiryDialog::InquiryPart @inquiry={{this.inquiry}} @type="request" />`,
+        { owner: this.engine },
       );
 
       assert
@@ -151,6 +155,7 @@ module(
 
       await render(
         hbs`<CdInquiryDialog::InquiryPart @inquiry={{this.inquiry}} @type={{this.type}} />`,
+        { owner: this.engine },
       );
 
       await this.inquiry.setReady();
@@ -186,6 +191,7 @@ module(
 
       await render(
         hbs`<CdInquiryDialog::InquiryPart @inquiry={{this.inquiry}} @type={{this.type}} />`,
+        { owner: this.engine },
       );
 
       await click("[data-test-send-reminder]");

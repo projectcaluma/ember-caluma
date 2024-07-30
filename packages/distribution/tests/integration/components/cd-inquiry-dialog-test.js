@@ -31,7 +31,7 @@ module("Integration | Component | cd-inquiry-dialog", function (hooks) {
 
     this.caseId = this.distributionCase.id;
 
-    this.owner.lookup("service:distribution").caseId = this.caseId;
+    this.engine.lookup("service:distribution").caseId = this.caseId;
   });
 
   test("it renders", async function (assert) {
@@ -58,7 +58,9 @@ module("Integration | Component | cd-inquiry-dialog", function (hooks) {
       }),
     });
 
-    await render(hbs`<CdInquiryDialog @from="group1" @to="group2" />`);
+    await render(hbs`<CdInquiryDialog @from="group1" @to="group2" />`, {
+      owner: this.engine,
+    });
 
     assert.dom("article").exists({ count: 3 });
     assert.dom(".inquiry-divider").exists({ count: 2 });
@@ -76,7 +78,9 @@ module("Integration | Component | cd-inquiry-dialog", function (hooks) {
       to: { id: "group2" },
     });
 
-    await render(hbs`<CdInquiryDialog @from="group1" @to="group2" />`);
+    await render(hbs`<CdInquiryDialog @from="group1" @to="group2" />`, {
+      owner: this.engine,
+    });
 
     await click("[data-test-withdraw]");
     await confirm();
@@ -85,7 +89,7 @@ module("Integration | Component | cd-inquiry-dialog", function (hooks) {
       .dom("[data-test-deadline]")
       .containsText("t:caluma.distribution.withdraw.status:()");
 
-    this.owner.lookup("service:router").transitionTo = (route) => {
+    this.engine.lookup("service:router").transitionTo = (route) => {
       assert.strictEqual(route, "index");
       assert.step("transition");
     };
@@ -104,9 +108,11 @@ module("Integration | Component | cd-inquiry-dialog", function (hooks) {
       to: { id: "group2" },
     });
 
-    await render(hbs`<CdInquiryDialog @from="group1" @to="group2" />`);
+    await render(hbs`<CdInquiryDialog @from="group1" @to="group2" />`, {
+      owner: this.engine,
+    });
 
-    this.owner.lookup("service:router").transitionTo = (
+    this.engine.lookup("service:router").transitionTo = (
       route,
       { from, to },
       uuid,
@@ -139,7 +145,9 @@ module("Integration | Component | cd-inquiry-dialog", function (hooks) {
 
     assert.strictEqual(inquiry.status, "COMPLETED");
 
-    await render(hbs`<CdInquiryDialog @from="group1" @to="group2" />`);
+    await render(hbs`<CdInquiryDialog @from="group1" @to="group2" />`, {
+      owner: this.engine,
+    });
 
     await click("[data-test-reopen]");
     await confirm();

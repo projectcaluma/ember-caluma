@@ -64,19 +64,22 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
       }, {});
     };
 
-    const distribution = this.owner.lookup("service:distribution");
+    const distribution = this.engine.lookup("service:distribution");
 
     distribution.caseId = this.case.id;
     await distribution.navigation;
   });
 
   test("it renders", async function (assert) {
-    await render(hbs`<CdInquiryNewForm
+    await render(
+      hbs`<CdInquiryNewForm
   @selectedTypes={{this.selectedTypes}}
   @search={{this.search}}
   @onChangeSelectedTypes={{fn (mut this.selectedTypes)}}
   @onChangeSearch={{fn (mut this.search)}}
-/>`);
+/>`,
+      { owner: this.engine },
+    );
 
     assert.dom("button[data-test-type]").exists({ count: 2 });
     assert.dom("tr[data-test-group]").exists({ count: 2 });
@@ -92,12 +95,15 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
   });
 
   test("it can select and reset groups", async function (assert) {
-    await render(hbs`<CdInquiryNewForm
+    await render(
+      hbs`<CdInquiryNewForm
   @selectedTypes={{this.selectedTypes}}
   @search={{this.search}}
   @onChangeSelectedTypes={{fn (mut this.selectedTypes)}}
   @onChangeSearch={{fn (mut this.search)}}
-/>`);
+/>`,
+      { owner: this.engine },
+    );
 
     assert.dom("ul[data-test-selected-groups]").doesNotExist();
 
@@ -112,18 +118,21 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
   });
 
   test("it can create new inquiries", async function (assert) {
-    this.owner.lookup("service:router").transitionTo = (routeName, model) => {
+    this.engine.lookup("service:router").transitionTo = (routeName, model) => {
       assert.step("redirect");
       assert.strictEqual(routeName, "inquiry.detail.index");
       assert.deepEqual(model, { from: "1", to: "2" });
     };
 
-    await render(hbs`<CdInquiryNewForm
+    await render(
+      hbs`<CdInquiryNewForm
   @selectedTypes={{this.selectedTypes}}
   @search={{this.search}}
   @onChangeSelectedTypes={{fn (mut this.selectedTypes)}}
   @onChangeSearch={{fn (mut this.search)}}
-/>`);
+/>`,
+      { owner: this.engine },
+    );
 
     await click("tr[data-test-group='2']");
     await click("tr[data-test-group='3']");
@@ -210,12 +219,15 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
         },
       };
 
-      await render(hbs`<CdInquiryNewForm
+      await render(
+        hbs`<CdInquiryNewForm
   @selectedTypes={{this.selectedTypes}}
   @search={{this.search}}
   @onChangeSelectedTypes={{fn (mut this.selectedTypes)}}
   @onChangeSearch={{fn (mut this.search)}}
-/>`);
+/>`,
+        { owner: this.engine },
+      );
     });
 
     test("it doesn't show the group buttons", async function (assert) {

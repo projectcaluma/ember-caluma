@@ -25,11 +25,11 @@ module("Integration | Component | cd-navigation", function (hooks) {
 
     this.owner.lookup("service:caluma-options").currentGroupId = "group1";
     this.owner.lookup("service:router").isActive = () => true;
-    this.owner.lookup("service:distribution").caseId = this.caseId;
+    this.engine.lookup("service:distribution").caseId = this.caseId;
   });
 
   test("it renders navigation with 3 sections", async function (assert) {
-    await render(hbs`<CdNavigation />`);
+    await render(hbs`<CdNavigation />`, { owner: this.engine });
 
     assert.dom("ul:first-child").exists({ count: 1 });
     assert.dom("ul:first-child > li > ul").exists({ count: 3 });

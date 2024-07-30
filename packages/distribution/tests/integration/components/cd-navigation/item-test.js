@@ -18,6 +18,7 @@ module("Integration | Component | cd-navigation/item", function (hooks) {
 
     await render(
       hbs`<CdNavigation::Item @inquiry={{this.inquiry}} @type={{this.type}} />`,
+      { owner: this.engine },
     );
 
     assert.dom("li").hasClass("uk-active");

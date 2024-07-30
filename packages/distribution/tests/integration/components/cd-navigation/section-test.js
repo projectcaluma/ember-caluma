@@ -21,7 +21,7 @@ module("Integration | Component | cd-navigation/section", function (hooks) {
 
     this.case = createCase(this.server, { group: { id: "1" } });
     this.owner.lookup("service:caluma-options").currentGroupId = 1;
-    this.owner.lookup("service:distribution").caseId = this.case.id;
+    this.engine.lookup("service:distribution").caseId = this.case.id;
   });
 
   test("it renders", async function (assert) {
@@ -43,7 +43,7 @@ module("Integration | Component | cd-navigation/section", function (hooks) {
     ];
 
     Object.defineProperty(
-      this.owner.lookup("service:distribution"),
+      this.engine.lookup("service:distribution"),
       "inquiries",
       {
         value: {
@@ -54,9 +54,11 @@ module("Integration | Component | cd-navigation/section", function (hooks) {
       },
     );
 
-    this.owner.lookup("service:router").isActive = () => true;
+    this.engine.lookup("service:router").isActive = () => true;
 
-    await render(hbs`<CdNavigation::Section @type={{this.type}} />`);
+    await render(hbs`<CdNavigation::Section @type={{this.type}} />`, {
+      owner: this.engine,
+    });
 
     assert
       .dom("li:first-of-type > a")

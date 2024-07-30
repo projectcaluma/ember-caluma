@@ -19,20 +19,20 @@ module("Unit | Ability | distribution", function (hooks) {
 
     this.case = createCase(this.server, { group: { id: "1" } });
     this.owner.lookup("service:caluma-options").currentGroupId = 1;
-    this.owner.register(
+    this.engine.register(
       "service:distribution",
       class DistributionServiceMock extends DistributionService {
         @tracked caseId;
       },
     );
 
-    const service = this.owner.lookup("service:distribution");
+    const service = this.engine.lookup("service:distribution");
     service.caseId = this.case.id;
     await service.controls;
   });
 
   test("it computes send inquiries permission", async function (assert) {
-    const ability = this.owner.lookup("ability:distribution");
+    const ability = this.engine.lookup("ability:distribution");
 
     assert.false(ability.canSendInquiries);
 
@@ -48,7 +48,7 @@ module("Unit | Ability | distribution", function (hooks) {
   });
 
   test("it computes create inquiry permission", async function (assert) {
-    const ability = this.owner.lookup("ability:distribution");
+    const ability = this.engine.lookup("ability:distribution");
 
     assert.true(ability.canCreateInquiry);
 
@@ -63,7 +63,7 @@ module("Unit | Ability | distribution", function (hooks) {
   });
 
   test("it computes complete permission", async function (assert) {
-    const ability = this.owner.lookup("ability:distribution");
+    const ability = this.engine.lookup("ability:distribution");
 
     assert.true(ability.canComplete);
 
@@ -78,7 +78,7 @@ module("Unit | Ability | distribution", function (hooks) {
   });
 
   test("it respects configured custom permissions", async function (assert) {
-    const ability = this.owner.lookup("ability:distribution");
+    const ability = this.engine.lookup("ability:distribution");
 
     this.owner.lookup("service:caluma-options").distribution = {
       permissions: {
