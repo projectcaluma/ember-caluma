@@ -23,6 +23,7 @@ module("Integration | Helper | get-widget", function (hooks) {
     this.owner.lookup("service:calumaOptions").registerComponentOverride({
       label: "Some Component",
       component: "some-component",
+      componentClass: this.SomeComponent,
     });
 
     await render(hbs`{{component
@@ -73,6 +74,7 @@ module("Integration | Helper | get-widget", function (hooks) {
     this.owner.lookup("service:calumaOptions").registerComponentOverride({
       label: "Some Component",
       component: "some-component",
+      componentClass: this.SomeComponent,
     });
 
     await render(hbs`{{component

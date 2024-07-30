@@ -5,6 +5,7 @@ import { setFlatpickrDate } from "ember-flatpickr/test-support/helpers";
 import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
+import DummyOneComponent from "dummy/components/dummy-one";
 import { setupRenderingTest } from "dummy/tests/helpers";
 
 module("Integration | Component | cf-content", function (hooks) {
@@ -288,7 +289,10 @@ module("Integration | Component | cf-content", function (hooks) {
 
   test("it allows for component overrides", async function (assert) {
     const options = this.owner.lookup("service:calumaOptions");
-    options.registerComponentOverride({ component: "dummy-one" });
+    options.registerComponentOverride({
+      component: "dummy-one",
+      componentClass: DummyOneComponent,
+    });
 
     await render(hbs`<CfContent @documentId={{this.document.id}} />`);
 
