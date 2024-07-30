@@ -16,7 +16,9 @@ module("Integration | Component | ca-field-form", function (hooks) {
       fields: { edges: [{ node: { alias: "existing field" } }] },
     };
 
-    await render(hbs`<CaFieldForm @analyticsTable={{this.analyticsTable}} />`);
+    await render(hbs`<CaFieldForm @analyticsTable={{this.analyticsTable}} />`, {
+      owner: this.engine,
+    });
     assert
       .dom("[data-test-add-field-button]")
       .hasText(this.intl.t("caluma.analytics.edit.add-field"));

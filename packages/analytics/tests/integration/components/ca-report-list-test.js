@@ -21,6 +21,7 @@ module("Integration | Component | ca-report-list", function (hooks) {
 
     await render(
       hbs`<CaReportList @reports={{this.reports}} @itemRoute={{this.itemRoute}} />`,
+      { owner: this.engine },
     );
 
     assert.dom(this.element).containsText("t:caluma.analytics.list.list-title");

@@ -314,6 +314,9 @@ importers:
       '@ember/legacy-built-in-components':
         specifier: ^0.5.0
         version: 0.5.0(@glint/template@1.4.0)(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0))
+      '@embroider/macros':
+        specifier: ^1.15.0
+        version: 1.16.5(@glint/template@1.4.0)
       '@glimmer/component':
         specifier: ^1.1.2
         version: 1.1.2(@babel/core@7.25.2)
@@ -395,7 +398,7 @@ importers:
         version: 8.4.1
       '@projectcaluma/ember-testing':
         specifier: workspace:*
-        version: file:packages/testing(z7g2cqx77mmu3sh6eyj36oj75e)
+        version: file:packages/testing(7udqqkajlpdscd5jle5splyb5q)
       broccoli-asset-rev:
         specifier: 3.0.0
         version: 3.0.0
@@ -416,7 +419,7 @@ importers:
         version: 2.1.0
       ember-cli-mirage:
         specifier: 3.0.3
-        version: 3.0.3(quggfhdguqbqmhdwak73f5a4qu)
+        version: 3.0.3(j3ei5i6u4he7qhj5t4acfb5kte)
       ember-cli-sass:
         specifier: 11.0.1
         version: 11.0.1
@@ -566,7 +569,7 @@ importers:
         version: 1.1.2(@babel/core@7.25.2)
       '@projectcaluma/ember-testing':
         specifier: workspace:*
-        version: file:packages/testing(z7g2cqx77mmu3sh6eyj36oj75e)
+        version: file:packages/testing(7udqqkajlpdscd5jle5splyb5q)
       broccoli-asset-rev:
         specifier: 3.0.0
         version: 3.0.0
@@ -587,7 +590,7 @@ importers:
         version: 2.1.0
       ember-cli-mirage:
         specifier: 3.0.3
-        version: 3.0.3(quggfhdguqbqmhdwak73f5a4qu)
+        version: 3.0.3(j3ei5i6u4he7qhj5t4acfb5kte)
       ember-cli-sri:
         specifier: 2.1.1
         version: 2.1.1
@@ -735,7 +738,7 @@ importers:
         version: 8.4.1
       '@projectcaluma/ember-testing':
         specifier: workspace:*
-        version: file:packages/testing(z7g2cqx77mmu3sh6eyj36oj75e)
+        version: file:packages/testing(7udqqkajlpdscd5jle5splyb5q)
       broccoli-asset-rev:
         specifier: 3.0.0
         version: 3.0.0
@@ -756,7 +759,7 @@ importers:
         version: 2.1.0
       ember-cli-mirage:
         specifier: 3.0.3
-        version: 3.0.3(quggfhdguqbqmhdwak73f5a4qu)
+        version: 3.0.3(j3ei5i6u4he7qhj5t4acfb5kte)
       ember-cli-sass:
         specifier: 11.0.1
         version: 11.0.1
@@ -928,7 +931,7 @@ importers:
         version: 8.4.1
       '@projectcaluma/ember-testing':
         specifier: workspace:*
-        version: file:packages/testing(z7g2cqx77mmu3sh6eyj36oj75e)
+        version: file:packages/testing(7udqqkajlpdscd5jle5splyb5q)
       '@projectcaluma/ember-workflow':
         specifier: workspace:*
         version: file:packages/workflow(@ember/test-waiters@3.1.0)(@glimmer/tracking@1.1.2)(@glint/template@1.4.0)(ember-data@5.3.3(@babel/core@7.25.2)(@ember/string@4.0.0)(@glint/template@1.4.0)(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0)))(ember-resources@7.0.2(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glimmer/tracking@1.1.2)(@glint/template@1.4.0)(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0)))(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0))(graphql-ws@5.12.1(graphql@15.8.0))(typescript@5.5.4)(webpack@5.93.0)
@@ -952,7 +955,7 @@ importers:
         version: 2.1.0
       ember-cli-mirage:
         specifier: 3.0.3
-        version: 3.0.3(quggfhdguqbqmhdwak73f5a4qu)
+        version: 3.0.3(j3ei5i6u4he7qhj5t4acfb5kte)
       ember-cli-sass:
         specifier: 11.0.1
         version: 11.0.1
@@ -1137,7 +1140,7 @@ importers:
         version: 8.4.1
       '@projectcaluma/ember-testing':
         specifier: workspace:*
-        version: file:packages/testing(z7g2cqx77mmu3sh6eyj36oj75e)
+        version: file:packages/testing(7udqqkajlpdscd5jle5splyb5q)
       broccoli-asset-rev:
         specifier: 3.0.0
         version: 3.0.0
@@ -1161,7 +1164,7 @@ importers:
         version: 2.1.0
       ember-cli-mirage:
         specifier: 3.0.3
-        version: 3.0.3(quggfhdguqbqmhdwak73f5a4qu)
+        version: 3.0.3(j3ei5i6u4he7qhj5t4acfb5kte)
       ember-cli-sri:
         specifier: 2.1.1
         version: 2.1.1
@@ -13798,7 +13801,7 @@ snapshots:
       - typescript
       - webpack
 
-  '@projectcaluma/ember-testing@file:packages/testing(ilfhbqhopnilznjjamxmtgbogi)':
+  '@projectcaluma/ember-testing@file:packages/testing(7udqqkajlpdscd5jle5splyb5q)':
     dependencies:
       '@babel/core': 7.25.2
       '@ember/string': 4.0.0
@@ -13809,7 +13812,7 @@ snapshots:
       ember-auto-import: 2.7.4(@glint/template@1.4.0)(webpack@5.93.0)
       ember-cli-babel: 8.2.0(@babel/core@7.25.2)
       ember-cli-htmlbars: 6.3.0
-      ember-cli-mirage: 3.0.3(wkt72tetfsa344axwaqg5zrofm)
+      ember-cli-mirage: 3.0.3(j3ei5i6u4he7qhj5t4acfb5kte)
       ember-fetch: 8.1.2
       ember-inflector: 4.0.3(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0))
       ember-source: 5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0)
@@ -13833,7 +13836,7 @@ snapshots:
       - supports-color
       - webpack
 
-  '@projectcaluma/ember-testing@file:packages/testing(z7g2cqx77mmu3sh6eyj36oj75e)':
+  '@projectcaluma/ember-testing@file:packages/testing(ilfhbqhopnilznjjamxmtgbogi)':
     dependencies:
       '@babel/core': 7.25.2
       '@ember/string': 4.0.0
@@ -13844,7 +13847,7 @@ snapshots:
       ember-auto-import: 2.7.4(@glint/template@1.4.0)(webpack@5.93.0)
       ember-cli-babel: 8.2.0(@babel/core@7.25.2)
       ember-cli-htmlbars: 6.3.0
-      ember-cli-mirage: 3.0.3(quggfhdguqbqmhdwak73f5a4qu)
+      ember-cli-mirage: 3.0.3(wkt72tetfsa344axwaqg5zrofm)
       ember-fetch: 8.1.2
       ember-inflector: 4.0.3(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0))
       ember-source: 5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0)
@@ -17526,7 +17529,7 @@ snapshots:
       - supports-color
       - webpack
 
-  ember-cli-mirage@3.0.3(quggfhdguqbqmhdwak73f5a4qu):
+  ember-cli-mirage@3.0.3(j3ei5i6u4he7qhj5t4acfb5kte):
     dependencies:
       '@babel/core': 7.25.2
       '@embroider/macros': 1.16.5(@glint/template@1.4.0)

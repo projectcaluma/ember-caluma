@@ -28,6 +28,7 @@ module(
   @field={{this.field}}
   @tableSlug="test"
 />`,
+        { owner: this.engine },
       );
 
       const requests = this.server.pretender.handledRequests;

@@ -14,11 +14,14 @@ module("Integration | Component | ca-toggle-switch", function (hooks) {
 
     this.set("value", false);
 
-    await render(hbs`<CaToggleSwitch
+    await render(
+      hbs`<CaToggleSwitch
   @name="test"
   @value={{this.value}}
   @update={{fn (mut this.value)}}
-/>`);
+/>`,
+      { owner: this.engine },
+    );
 
     assert.dom("input[name=test]").isNotChecked();
 
@@ -40,6 +43,7 @@ module("Integration | Component | ca-toggle-switch", function (hooks) {
 
     await render(
       hbs`<CaToggleSwitch @name="test" @value={{this.value}} @update={{this.update}} />`,
+      { owner: this.engine },
     );
 
     assert.dom("input[name=test]").isNotChecked();
