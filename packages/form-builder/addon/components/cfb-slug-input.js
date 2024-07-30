@@ -18,7 +18,7 @@ export default class CfbSlugInputComponent extends Component {
   }
 
   get inputStyle() {
-    return this.padding ? htmlSafe(`padding-left: ${this.padding};`) : "";
+    return htmlSafe(this.padding ? `padding-left: ${this.padding};` : "");
   }
 
   get displayValue() {
