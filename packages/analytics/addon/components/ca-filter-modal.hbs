@@ -69,8 +69,4 @@
     />
   </modal.footer>
 </UkModal>
-{{yield
-  (component
-    (ensure-safe-component "uk-button") onClick=(fn (mut this.visible) true)
-  )
-}}
+{{yield (component this.buttonComponent onClick=(fn (mut this.visible) true))}}

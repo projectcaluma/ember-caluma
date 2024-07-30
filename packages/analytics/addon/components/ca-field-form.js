@@ -7,6 +7,7 @@ import { Changeset } from "ember-changeset";
 import lookupValidator from "ember-changeset-validations";
 import { enqueueTask } from "ember-concurrency";
 
+import CaToggleSwitchComponent from "@projectcaluma/ember-analytics/components/ca-toggle-switch";
 import saveAnalyticsField from "@projectcaluma/ember-analytics/tasks/save-analytics-field";
 import FieldValidations from "@projectcaluma/ember-analytics/validations/field";
 
@@ -27,6 +28,8 @@ export default class CaFieldFormComponent extends Component {
   @tracked showForm = false;
 
   @enqueueTask saveField = saveAnalyticsField;
+
+  toggleComponent = CaToggleSwitchComponent;
 
   constructor(...args) {
     super(...args);

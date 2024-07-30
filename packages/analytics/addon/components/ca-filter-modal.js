@@ -4,6 +4,7 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
 import { enqueueTask } from "ember-concurrency";
+import UkButtonComponent from "ember-uikit/components/uk-button";
 
 import saveAnalyticsField from "@projectcaluma/ember-analytics/tasks/save-analytics-field";
 
@@ -17,6 +18,8 @@ export default class CaFilterModalComponent extends Component {
   @tracked filters;
 
   @enqueueTask saveField = saveAnalyticsField;
+
+  buttonComponent = UkButtonComponent;
 
   constructor(...args) {
     super(...args);

@@ -1,4 +1,5 @@
 import { render, fillIn, blur, click, select } from "@ember/test-helpers";
+import Component from "@glimmer/component";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setupIntl } from "ember-intl/test-support";
@@ -675,11 +676,13 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     calumaOptions.registerComponentOverride({
       label: "a widget override for all types",
       component: "dummy-component-1",
+      componentClass: class extends Component {},
     });
     calumaOptions.registerComponentOverride({
       label: "a widget override for float questions only",
       component: "dummy-component-2",
       types: ["FloatQuestion"],
+      componentClass: class extends Component {},
     });
 
     await render(hbs`<CfbFormEditor::Question @slug={{null}} />`);

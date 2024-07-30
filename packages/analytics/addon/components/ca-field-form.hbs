@@ -12,7 +12,7 @@
             @label={{t "caluma.analytics.edit.show-in-output"}}
             @required={{true}}
             @renderComponent={{component
-              (ensure-safe-component "ca-toggle-switch")
+              this.toggleComponent
               value=f.model.showOutput
               size="small"
               onToggle=(mut f.model.showOutput)
