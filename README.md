@@ -56,7 +56,7 @@ Cross-browser testing provided by:
 
 #### With a dockerized [Caluma](https://github.com/projectcaluma/caluma) backend
 
-- `docker-compose up -d`
+- `docker compose up -d`
 - `pnpm start-proxy`
 - Visit the dummy application at [http://localhost:4200](http://localhost:4200).
 
@@ -65,7 +65,7 @@ Cross-browser testing provided by:
 The addon includes a mirage server for mocking Caluma's GraphQL API, which is generated from the GraphQL schema definition. If the upstream GraphQL schema changed you can update the addon by running
 
 ```bash
-docker-compose up -d
+docker compose up -d
 pnpm update-schema
 pnpm update-possible-types
 ```
