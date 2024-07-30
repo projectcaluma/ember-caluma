@@ -149,6 +149,7 @@ export default function (server) {
     // directly attached to a work item instead of a case workItemId:
     // server.create("work-item").id,
     caseId: server.create("case", {
+      workflowId: server.create("workflow").id,
       workItemIds: [
         server.create("work-item", {
           taskId: server.create("task", {
