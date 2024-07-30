@@ -19,6 +19,7 @@ module(
     test("it renders a status indicator", async function (assert) {
       await render(
         hbs`<CdNavigation::StatusIndicator @inquiry={{this.inquiry}} @type={{this.type}} />`,
+        { owner: this.engine },
       );
 
       assert.dom("[uk-icon]").hasClass("uk-text-success");
@@ -34,6 +35,7 @@ module(
 
       await render(
         hbs`<CdNavigation::StatusIndicator @inquiry={{this.inquiry}} @type={{this.type}} />`,
+        { owner: this.engine },
       );
 
       assert.dom("[uk-icon][icon=clock]").doesNotExist();

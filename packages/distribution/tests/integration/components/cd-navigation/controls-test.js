@@ -24,11 +24,11 @@ module("Integration | Component | cd-navigation/controls", function (hooks) {
 
     this.caseId = distributionCase.id;
     this.owner.lookup("service:caluma-options").currentGroupId = "group1";
-    this.owner.lookup("service:distribution").caseId = this.caseId;
+    this.engine.lookup("service:distribution").caseId = this.caseId;
   });
 
   test("it renders", async function (assert) {
-    await render(hbs`<CdNavigation::Controls />`);
+    await render(hbs`<CdNavigation::Controls />`, { owner: this.engine });
 
     assert.dom("button").exists({ count: 3 });
     assert.dom("a").exists({ count: 1 });
@@ -42,7 +42,7 @@ module("Integration | Component | cd-navigation/controls", function (hooks) {
       controllingGroups: ["group1"],
     });
 
-    await render(hbs`<CdNavigation::Controls />`);
+    await render(hbs`<CdNavigation::Controls />`, { owner: this.engine });
 
     await click("[data-test-send-pending-inquiries]");
     await confirm();
@@ -79,7 +79,7 @@ module("Integration | Component | cd-navigation/controls", function (hooks) {
       status: "SUSPENDED",
     });
 
-    await render(hbs`<CdNavigation::Controls />`);
+    await render(hbs`<CdNavigation::Controls />`, { owner: this.engine });
 
     await click("[data-test-complete-distribution]");
     await confirm();
@@ -105,7 +105,7 @@ module("Integration | Component | cd-navigation/controls", function (hooks) {
   test("it can reopen the current distribution", async function (assert) {
     assert.expect(3);
 
-    await render(hbs`<CdNavigation::Controls />`);
+    await render(hbs`<CdNavigation::Controls />`, { owner: this.engine });
 
     await click("[data-test-complete-distribution]");
     await confirm();
@@ -122,7 +122,7 @@ module("Integration | Component | cd-navigation/controls", function (hooks) {
   test("it can mark inquiries as checked", async function (assert) {
     assert.expect(1);
 
-    await render(hbs`<CdNavigation::Controls />`);
+    await render(hbs`<CdNavigation::Controls />`, { owner: this.engine });
 
     await click("[data-test-check-inquiries]");
 

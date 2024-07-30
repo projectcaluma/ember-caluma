@@ -13,7 +13,9 @@ module("Integration | Component | cd-inquiry-dialog/inquiry", function (hooks) {
   test("it renders", async function (assert) {
     this.inquiry = inquiry();
 
-    await render(hbs`<CdInquiryDialog::Inquiry @inquiry={{this.inquiry}} />`);
+    await render(hbs`<CdInquiryDialog::Inquiry @inquiry={{this.inquiry}} />`, {
+      owner: this.engine,
+    });
 
     assert.dom("[data-test-deadline]").exists();
     assert.dom(".inquiry-divider").exists();

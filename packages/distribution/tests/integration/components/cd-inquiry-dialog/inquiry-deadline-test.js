@@ -20,6 +20,7 @@ module(
 
       await render(
         hbs`<CdInquiryDialog::InquiryDeadline @inquiry={{this.inquiry}} />`,
+        { owner: this.engine },
       );
 
       const formattedDate = this.owner
@@ -35,6 +36,7 @@ module(
 
       await render(
         hbs`<CdInquiryDialog::InquiryDeadline @inquiry={{this.inquiry}} />`,
+        { owner: this.engine },
       );
 
       assert
@@ -48,6 +50,7 @@ module(
 
       await render(
         hbs`<CdInquiryDialog::InquiryDeadline @inquiry={{this.inquiry}} />`,
+        { owner: this.engine },
       );
 
       assert

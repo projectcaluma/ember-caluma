@@ -20,6 +20,7 @@ module(
 
       await render(
         hbs`<CdInquiryDialog::InquiryDivider @inquiry={{this.inquiry}} />`,
+        { owner: this.engine },
       );
 
       assert.dom(".inquiry-divider.uk-text-danger").exists();

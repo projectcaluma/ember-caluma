@@ -10,7 +10,7 @@ module("Integration | Component | cd-notfound", function (hooks) {
   setupIntl(hooks);
 
   test("it renders", async function (assert) {
-    await render(hbs`<CdNotfound />`);
+    await render(hbs`<CdNotfound />`, { owner: this.engine });
 
     assert.dom("h1").hasText("t:caluma.distribution.notfound.title:()");
     assert.dom("h2").hasText("t:caluma.distribution.notfound.subtitle:()");

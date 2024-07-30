@@ -15,7 +15,7 @@ module("Unit | Ability | inquiry", function (hooks) {
   test("it respects configured custom permissions", async function (assert) {
     assert.expect(10);
 
-    const ability = this.owner.lookup("ability:inquiry");
+    const ability = this.engine.lookup("ability:inquiry");
 
     ability.task = "test-task";
     ability.model = inquiry();

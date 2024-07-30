@@ -14,6 +14,7 @@ module("Integration | Component | cd-document-header", function (hooks) {
 
     await render(
       hbs`<CdDocumentHeader @name="Test" @status={{this.status}} />`,
+      { owner: this.engine },
     );
 
     assert.dom("[data-test-document-header]").containsText("Test");

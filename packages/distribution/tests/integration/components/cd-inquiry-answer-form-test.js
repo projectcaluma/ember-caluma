@@ -32,14 +32,16 @@ module("Integration | Component | cd-inquiry-answer-form", function (hooks) {
       }),
     });
 
-    this.owner.lookup("service:router").transitionTo = (routeName) => {
+    this.engine.lookup("service:router").transitionTo = (routeName) => {
       assert.strictEqual(routeName, "inquiry.index");
       assert.step("transition");
     };
   });
 
   test("it renders an inquiry answer form with a button for each ready work item", async function (assert) {
-    await render(hbs`<CdInquiryAnswerForm @inquiry={{this.inquiry.id}} />`);
+    await render(hbs`<CdInquiryAnswerForm @inquiry={{this.inquiry.id}} />`, {
+      owner: this.engine,
+    });
 
     assert
       .dom("[data-test-document-header]")
@@ -55,7 +57,9 @@ module("Integration | Component | cd-inquiry-answer-form", function (hooks) {
   test("it renders the configured buttons for work items and completes them on click", async function (assert) {
     assert.expect(13);
 
-    await render(hbs`<CdInquiryAnswerForm @inquiry={{this.inquiry.id}} />`);
+    await render(hbs`<CdInquiryAnswerForm @inquiry={{this.inquiry.id}} />`, {
+      owner: this.engine,
+    });
 
     await click("input[value=inquiry-answer-status-positive]");
     await fillIn("textarea[name$=inquiry-answer-reason]", "Test");
