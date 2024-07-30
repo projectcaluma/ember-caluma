@@ -1,6 +1,5 @@
 import { render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
-import { setupIntl } from "ember-intl/test-support";
 import { DateTime } from "luxon";
 import { module, test } from "qunit";
 
@@ -11,7 +10,6 @@ module(
   "Integration | Component | cd-inquiry-dialog/inquiry-deadline",
   function (hooks) {
     setupRenderingTest(hooks);
-    setupIntl(hooks);
 
     test("it renders", async function (assert) {
       const deadline = DateTime.now();
@@ -39,9 +37,7 @@ module(
         { owner: this.engine },
       );
 
-      assert
-        .dom(".uk-text-muted")
-        .hasText("t:caluma.distribution.withdraw.status:()");
+      assert.dom(".uk-text-muted").hasText("Withdrawn");
       assert.dom("[uk-icon]").hasAttribute("icon", "ban");
     });
 
@@ -53,9 +49,7 @@ module(
         { owner: this.engine },
       );
 
-      assert
-        .dom(".uk-text-muted")
-        .hasText("t:caluma.distribution.status.skipped:()");
+      assert.dom(".uk-text-muted").hasText("Aborted");
       assert.dom("[uk-icon]").hasAttribute("icon", "lock");
     });
   },

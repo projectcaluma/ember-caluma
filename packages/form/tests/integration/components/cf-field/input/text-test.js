@@ -1,7 +1,6 @@
 import { render, fillIn } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
-import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import { setupRenderingTest } from "dummy/tests/helpers";
@@ -9,7 +8,6 @@ import { setupRenderingTest } from "dummy/tests/helpers";
 module("Integration | Component | cf-field/input/text", function (hooks) {
   setupRenderingTest(hooks);
   setupMirage(hooks);
-  setupIntl(hooks);
 
   test("it computes the proper element id", async function (assert) {
     await render(hbs`<CfField::Input::Text @field={{hash pk="test-id"}} />`);

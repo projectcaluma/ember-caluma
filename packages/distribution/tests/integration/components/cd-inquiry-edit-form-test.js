@@ -1,7 +1,6 @@
 import { click, render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
-import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import {
@@ -13,7 +12,6 @@ import { setupRenderingTest } from "dummy/tests/helpers";
 module("Integration | Component | cd-inquiry-edit-form", function (hooks) {
   setupRenderingTest(hooks);
   setupMirage(hooks);
-  setupIntl(hooks);
 
   hooks.beforeEach(function () {
     createBlueprint(this.server);
@@ -35,13 +33,9 @@ module("Integration | Component | cd-inquiry-edit-form", function (hooks) {
       owner: this.engine,
     });
 
-    assert
-      .dom("[data-test-document-header]")
-      .hasText("Inquiry (group2) t:caluma.distribution.status.draft:()");
+    assert.dom("[data-test-document-header]").hasText("Inquiry (group2) Draft");
     assert.dom("form").exists();
-    assert
-      .dom("button.uk-button-primary")
-      .hasText("t:caluma.distribution.edit.send:()");
+    assert.dom("button.uk-button-primary").hasText("Send current inquiry");
   });
 
   test("it resumes the work item on send", async function (assert) {

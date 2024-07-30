@@ -1,7 +1,6 @@
 import { render, settled } from "@ember/test-helpers";
 import { tracked } from "@glimmer/tracking";
 import { hbs } from "ember-cli-htmlbars";
-import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import { setupRenderingTest } from "dummy/tests/helpers";
@@ -19,7 +18,6 @@ module(
   "Integration | Component | cfb-form-editor/question-list/item",
   function (hooks) {
     setupRenderingTest(hooks);
-    setupIntl(hooks);
 
     test("it renders", async function (assert) {
       assert.expect(13);
@@ -35,11 +33,7 @@ module(
         { owner: this.engine },
       );
 
-      assert
-        .dom("li")
-        .hasText(
-          "test-question Test Question? t:caluma.form-builder.question.types.TextQuestion:()",
-        );
+      assert.dom("li").hasText("test-question Test Question? Text");
 
       assert.dom(".cfb-form-editor__question-list__item__required").exists();
       assert

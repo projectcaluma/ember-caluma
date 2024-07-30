@@ -1,13 +1,11 @@
 import { render, click } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
-import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import { setupRenderingTest } from "dummy/tests/helpers";
 
 module("Integration | Component | cf-field/input/radio", function (hooks) {
   setupRenderingTest(hooks);
-  setupIntl(hooks);
 
   hooks.beforeEach(function () {
     this.set("noop", () => {});
@@ -134,7 +132,7 @@ module("Integration | Component | cf-field/input/radio", function (hooks) {
     assert.dom("label input[type=radio]").isDisabled();
     assert
       .dom("label del.uk-text-muted")
-      .hasAttribute("title", "t:caluma.form.optionNotAvailable:()");
+      .hasAttribute("title", "This option is not available anymore");
 
     this.set("disabled", true);
 

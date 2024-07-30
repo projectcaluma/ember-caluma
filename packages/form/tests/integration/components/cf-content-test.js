@@ -2,7 +2,6 @@ import { render, fillIn, click, triggerEvent } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setFlatpickrDate } from "ember-flatpickr/test-support/helpers";
-import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import DummyOneComponent from "dummy/components/dummy-one";
@@ -11,7 +10,6 @@ import { setupRenderingTest } from "dummy/tests/helpers";
 module("Integration | Component | cf-content", function (hooks) {
   setupRenderingTest(hooks);
   setupMirage(hooks);
-  setupIntl(hooks);
 
   hooks.beforeEach(function () {
     const form = this.server.create("form");

@@ -1,7 +1,6 @@
 import { render, fillIn } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
-import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import { setupRenderingTest } from "dummy/tests/helpers";
@@ -9,7 +8,6 @@ import { setupRenderingTest } from "dummy/tests/helpers";
 module("Integration | Component | cf-field", function (hooks) {
   setupRenderingTest(hooks);
   setupMirage(hooks);
-  setupIntl(hooks);
 
   hooks.beforeEach(function () {
     const formatValidator = this.server.create("format-validator", {
@@ -169,9 +167,7 @@ module("Integration | Component | cf-field", function (hooks) {
 
     assert
       .dom("span.validation-errors")
-      .hasText(
-        't:caluma.form.validation.tooShort:("max":20,"min":10,"value":"Test")',
-      );
+      .hasText("The value of this field can't be shorter than 10 characters");
   });
 
   test("it hides the label", async function (assert) {
@@ -189,11 +185,7 @@ module("Integration | Component | cf-field", function (hooks) {
 
     await fillIn("input", "Test");
 
-    assert
-      .dom("span.validation-errors")
-      .hasText(
-        `t:caluma.form.validation.format:("errorMsg":"Invalid email","value":"Test")`,
-      );
+    assert.dom("span.validation-errors").hasText("Invalid email");
   });
 
   test("it saves the valid email address", async function (assert) {

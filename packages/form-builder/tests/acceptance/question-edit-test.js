@@ -1,6 +1,5 @@
 import { visit, currentURL, click, fillIn } from "@ember/test-helpers";
 import { setupMirage } from "ember-cli-mirage/test-support";
-import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import { setupApplicationTest } from "dummy/tests/helpers";
@@ -8,7 +7,6 @@ import { setupApplicationTest } from "dummy/tests/helpers";
 module("Acceptance | question edit", function (hooks) {
   setupApplicationTest(hooks);
   setupMirage(hooks);
-  setupIntl(hooks);
 
   test("can edit question", async function (assert) {
     assert.expect(3);

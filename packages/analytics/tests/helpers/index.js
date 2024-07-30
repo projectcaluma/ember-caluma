@@ -12,7 +12,7 @@ import {
 
 function setupApplicationTest(hooks, options) {
   upstreamSetupApplicationTest(hooks, options);
-  setupIntl(hooks);
+  setupIntl(hooks, "en");
 
   // Additional setup for application tests can be done here.
   //
@@ -32,7 +32,7 @@ function setupApplicationTest(hooks, options) {
 
 function setupRenderingTest(hooks, options) {
   upstreamSetupRenderingTest(hooks, options);
-  setupIntl(hooks);
+  setupIntl(hooks, "en");
   setupEngine(hooks, "@projectcaluma/ember-analytics");
 
   // Additional setup for rendering tests can be done here.
@@ -40,7 +40,7 @@ function setupRenderingTest(hooks, options) {
 
 function setupTest(hooks, options) {
   upstreamSetupTest(hooks, options);
-  setupIntl(hooks);
+  setupIntl(hooks, "en");
   setupEngine(hooks, "@projectcaluma/ember-analytics");
 
   // Additional setup for unit tests can be done here.

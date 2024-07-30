@@ -1,7 +1,6 @@
 import { render, click, find, fillIn, triggerEvent } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
-import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import { setupRenderingTest } from "dummy/tests/helpers";
@@ -12,7 +11,6 @@ module(
   function (hooks) {
     setupRenderingTest(hooks);
     setupMirage(hooks);
-    setupIntl(hooks);
 
     hooks.beforeEach(function () {
       this.form = this.server.create("form", {
@@ -47,19 +45,21 @@ module(
       assert.dom("[data-test-question-list-empty]").exists();
       assert
         .dom("[data-test-question-list-empty]")
-        .hasText("t:caluma.form-builder.question.empty:()");
+        .hasText(
+          "You have not yet added a question. Press the plus button above to do so!",
+        );
 
       await click("[data-test-add-question]");
       await fillIn("input[type=search]", "thisslugisveryunlikelytoexist");
       assert
         .dom("[data-test-question-list-empty]")
-        .hasText("t:caluma.form-builder.global.empty-search:()");
+        .hasText("No results found. Adjust your search to get better results.");
 
       this.set("mode", "remove");
       await fillIn("input[type=search]", "thisslugisveryunlikelytoexist");
       assert
         .dom("[data-test-question-list-empty]")
-        .hasText("t:caluma.form-builder.global.empty-search:()");
+        .hasText("No results found. Adjust your search to get better results.");
     });
 
     test("it links subforms in form questions", async function (assert) {

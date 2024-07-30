@@ -1,13 +1,11 @@
 import { render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
-import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import { setupRenderingTest } from "dummy/tests/helpers";
 
 module("Integration | Component | ca-report-list", function (hooks) {
   setupRenderingTest(hooks);
-  setupIntl(hooks);
 
   test("it renders", async function (assert) {
     assert.expect(2);
@@ -24,7 +22,7 @@ module("Integration | Component | ca-report-list", function (hooks) {
       { owner: this.engine },
     );
 
-    assert.dom(this.element).containsText("t:caluma.analytics.list.list-title");
+    assert.dom(this.element).containsText("All reports");
     assert.dom("[data-test-report-list-item]").exists({ count: 2 });
   });
 });

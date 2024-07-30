@@ -1,13 +1,11 @@
 import { render, click } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
-import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import { setupRenderingTest } from "dummy/tests/helpers";
 
 module("Integration | Component | ca-field-form", function (hooks) {
   setupRenderingTest(hooks);
-  setupIntl(hooks, ["en"]);
 
   test("it renders", async function (assert) {
     this.analyticsTable = {
@@ -19,9 +17,7 @@ module("Integration | Component | ca-field-form", function (hooks) {
     await render(hbs`<CaFieldForm @analyticsTable={{this.analyticsTable}} />`, {
       owner: this.engine,
     });
-    assert
-      .dom("[data-test-add-field-button]")
-      .hasText(this.intl.t("caluma.analytics.edit.add-field"));
+    assert.dom("[data-test-add-field-button]").hasText("Add field");
 
     await click("button[data-test-add-field-button]");
 

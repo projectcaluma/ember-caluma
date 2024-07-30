@@ -1,7 +1,6 @@
 import { render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
-import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import {
@@ -14,7 +13,6 @@ import inquiry from "dummy/tests/helpers/inquiry";
 module("Integration | Component | cd-navigation/section", function (hooks) {
   setupRenderingTest(hooks);
   setupMirage(hooks);
-  setupIntl(hooks);
 
   hooks.beforeEach(function () {
     createBlueprint(this.server);
@@ -60,27 +58,21 @@ module("Integration | Component | cd-navigation/section", function (hooks) {
       owner: this.engine,
     });
 
-    assert
-      .dom("li:first-of-type > a")
-      .hasText("t:caluma.distribution.types.controlling:()");
+    assert.dom("li:first-of-type > a").hasText("Requested inquiries");
     assert.dom("ul > li:nth-of-type(1) > a").containsText("addressed1");
     assert.dom("ul > li:nth-of-type(2) > a").containsText("addressed2");
     assert.dom("ul > li:nth-of-type(3) > a").containsText("addressed3");
 
     this.set("type", "more");
 
-    assert
-      .dom("li:first-of-type > a")
-      .hasText("t:caluma.distribution.types.more:()");
+    assert.dom("li:first-of-type > a").hasText("More inquiries");
     assert.dom("ul > li:nth-of-type(1) > a").containsText("addressed1");
     assert.dom("ul > li:nth-of-type(2) > a").containsText("addressed2");
     assert.dom("ul > li:nth-of-type(3) > a").containsText("addressed3");
 
     this.set("type", "addressed");
 
-    assert
-      .dom("li:first-of-type > a")
-      .hasText("t:caluma.distribution.types.addressed:()");
+    assert.dom("li:first-of-type > a").hasText("Own inquiries");
     assert.dom("ul > li:nth-of-type(1) > a").containsText("controlling1");
     assert.dom("ul > li:nth-of-type(2) > a").containsText("controlling2");
     assert.dom("ul > li:nth-of-type(3) > a").containsText("controlling3");

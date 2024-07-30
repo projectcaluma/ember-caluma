@@ -1,7 +1,7 @@
 import { fillIn, render } from "@ember/test-helpers";
 import { tracked } from "@glimmer/tracking";
 import { hbs } from "ember-cli-htmlbars";
-import { setLocale, setupIntl } from "ember-intl/test-support";
+import { setLocale } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import { setupRenderingTest } from "dummy/tests/helpers";
@@ -10,7 +10,6 @@ module(
   "Integration | Component | cf-field/input/number-separator",
   function (hooks) {
     setupRenderingTest(hooks);
-    setupIntl(hooks);
 
     hooks.beforeEach(function () {
       setLocale(["de-ch", "de"]);

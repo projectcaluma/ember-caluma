@@ -1,7 +1,6 @@
 import { click, render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
-import { setupIntl } from "ember-intl/test-support";
 import { DateTime } from "luxon";
 import { module, test } from "qunit";
 
@@ -14,7 +13,6 @@ module(
   function (hooks) {
     setupRenderingTest(hooks);
     setupMirage(hooks);
-    setupIntl(hooks);
 
     hooks.beforeEach(function () {
       this.createdAt = DateTime.fromObject({
@@ -95,9 +93,7 @@ module(
 
       await this.inquiry.setSuspended();
 
-      assert
-        .dom("ul.uk-subnav > li > a[data-test-edit]")
-        .hasText("t:caluma.distribution.edit.link:()");
+      assert.dom("ul.uk-subnav > li > a[data-test-edit]").hasText("Edit");
       assert.dom("ul.uk-subnav > li > a[data-test-details]").doesNotExist();
     });
 
@@ -119,9 +115,7 @@ module(
 
       await this.inquiry.setReady();
 
-      assert
-        .dom("ul.uk-subnav > li > a[data-test-answer]")
-        .hasText("t:caluma.distribution.answer.link:()");
+      assert.dom("ul.uk-subnav > li > a[data-test-answer]").hasText("Answer");
       assert.dom("ul.uk-subnav > li > a[data-test-details]").exists();
     });
 
@@ -135,9 +129,7 @@ module(
         { owner: this.engine },
       );
 
-      assert
-        .dom("[data-test-title] .uk-label")
-        .hasText("t:caluma.distribution.answer.buttons.confirm.status:()");
+      assert.dom("[data-test-title] .uk-label").hasText("In review");
 
       await this.inquiry.setReadyChildWorkItem("some-task");
 
@@ -145,9 +137,7 @@ module(
 
       await this.inquiry.setReadyChildWorkItem("adjust-inquiry-answer");
 
-      assert
-        .dom("[data-test-title] .uk-label")
-        .hasText("t:caluma.distribution.answer.buttons.adjust.status:()");
+      assert.dom("[data-test-title] .uk-label").hasText("In revision");
     });
 
     test("it renders a link for sending a reminder for the inquiry when permitted", async function (assert) {
@@ -171,9 +161,7 @@ module(
         DateTime.now().minus({ days: 2 }).toISODate(),
       );
 
-      assert
-        .dom("[data-test-send-reminder]")
-        .hasText("t:caluma.distribution.reminder.link:()");
+      assert.dom("[data-test-send-reminder]").hasText("Send reminder");
     });
 
     test("it can send a reminder for an overdue inquiry", async function (assert) {

@@ -1,7 +1,6 @@
 import { render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
-import { setupIntl } from "ember-intl/test-support";
 import { module, test, todo } from "qunit";
 
 import ReportsNewRoute from "@projectcaluma/ember-analytics/routes/reports/new";
@@ -10,7 +9,6 @@ import { setupRenderingTest } from "dummy/tests/helpers";
 module("Integration | Component | ca-report-builder", function (hooks) {
   setupRenderingTest(hooks);
   setupMirage(hooks);
-  setupIntl(hooks);
 
   hooks.beforeEach(function (assert) {
     this.set("startingObjects", [

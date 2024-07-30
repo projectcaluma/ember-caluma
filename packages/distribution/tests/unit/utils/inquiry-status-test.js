@@ -2,7 +2,6 @@ import { setOwner } from "@ember/application";
 import { inject as service } from "@ember/service";
 import { settled } from "@ember/test-helpers";
 import { tracked } from "@glimmer/tracking";
-import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import config from "@projectcaluma/ember-distribution/config";
@@ -24,7 +23,6 @@ class MyClass {
 
 module("Unit | Utility | inquiry-status", function (hooks) {
   setupTest(hooks);
-  setupIntl(hooks);
 
   test("it works", async function (assert) {
     this.obj = new MyClass();
@@ -68,7 +66,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
     assert.deepEqual(this.obj.status, {
       color: "muted",
       icon: "commenting",
-      label: "t:caluma.distribution.status.draft:()",
+      label: "Draft",
       slug: "draft",
     });
 
@@ -77,7 +75,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
     assert.deepEqual(this.obj.status, {
       color: "muted",
       icon: "lock",
-      label: "t:caluma.distribution.status.skipped:()",
+      label: "Aborted",
       slug: "skipped",
     });
 
@@ -89,7 +87,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
     assert.deepEqual(this.obj.status, {
       color: "emphasis",
       icon: "user",
-      label: "t:caluma.distribution.answer.buttons.confirm.status:()",
+      label: "In review",
     });
 
     this.set("obj.type", "addressed");
@@ -97,7 +95,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
     assert.deepEqual(this.obj.status, {
       color: "muted",
       icon: "user",
-      label: "t:caluma.distribution.answer.buttons.confirm.status:()",
+      label: "In review",
     });
 
     this.set("obj.type", "more");
@@ -105,7 +103,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
     assert.deepEqual(this.obj.status, {
       color: "emphasis",
       icon: "comment",
-      label: "t:caluma.distribution.status.sent:()",
+      label: "Sent",
       slug: "sent",
     });
 
@@ -118,7 +116,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
     assert.deepEqual(this.obj.status, {
       color: "emphasis",
       icon: "comment",
-      label: "t:caluma.distribution.status.sent:()",
+      label: "Sent",
       slug: "sent",
     });
 
@@ -127,7 +125,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
     assert.deepEqual(this.obj.status, {
       color: "muted",
       icon: "commenting",
-      label: "t:caluma.distribution.status.draft:()",
+      label: "Draft",
       slug: "draft",
     });
 
@@ -136,7 +134,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
     assert.deepEqual(this.obj.status, {
       color: "emphasis",
       icon: "comment",
-      label: "t:caluma.distribution.status.sent:()",
+      label: "Sent",
       slug: "sent",
     });
 
@@ -149,7 +147,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
     assert.deepEqual(this.obj.status, {
       color: "emphasis",
       icon: "file-edit",
-      label: "t:caluma.distribution.status.in-progress:()",
+      label: "In Progress",
       slug: "in-progress",
     });
 
@@ -158,7 +156,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
     assert.deepEqual(this.obj.status, {
       color: "muted",
       icon: "file-edit",
-      label: "t:caluma.distribution.status.in-progress:()",
+      label: "In Progress",
       slug: "in-progress",
     });
 
@@ -167,7 +165,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
     assert.deepEqual(this.obj.status, {
       color: "emphasis",
       icon: "comment",
-      label: "t:caluma.distribution.status.sent:()",
+      label: "Sent",
       slug: "sent",
     });
   });
