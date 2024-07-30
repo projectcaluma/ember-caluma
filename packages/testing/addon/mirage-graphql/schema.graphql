@@ -216,6 +216,7 @@ type AnalyticsTable implements Node {
   meta: JSONString!
   disableVisibilities: Boolean!
   name: String!
+  description: String
   startingObject: StartingObject
   fields(
     offset: Int
@@ -298,6 +299,7 @@ type AnalyticsTableEdge {
 input AnalyticsTableFilterSetType {
   slug: String
   name: String
+  description: String
   createdByUser: String
   createdByGroup: String
   modifiedByUser: String
@@ -633,7 +635,6 @@ input CaseFilterSetType {
   modifiedAfter: DateTime
   metaHasKey: String
   metaValue: [JSONValueFilterType]
-  id: ID
   ids: [ID]
   documentForm: String
   documentForms: [String]
@@ -1032,6 +1033,31 @@ type DjangoDebug {
   Executed SQL queries for this API query.
   """
   sql: [DjangoDebugSQL]
+
+  """
+  Raise exceptions for this API query.
+  """
+  exceptions: [DjangoDebugException]
+}
+
+"""
+Represents a single exception raised.
+"""
+type DjangoDebugException {
+  """
+  The class of the exception
+  """
+  excType: String!
+
+  """
+  The message of the exception
+  """
+  message: String!
+
+  """
+  The stack trace
+  """
+  stack: String!
 }
 
 """
@@ -2111,6 +2137,7 @@ type Option implements Node {
   modifiedByGroup: String
   slug: String!
   label: String!
+  isHidden: String!
   isArchived: Boolean!
   meta: GenericScalar
 
@@ -2168,6 +2195,7 @@ input OptionFilterSetType {
   metaHasKey: String
   metaValue: [JSONValueFilterType]
   search: String
+  visibleInDocument: ID
   invert: Boolean
 }
 
@@ -2668,6 +2696,7 @@ type SaveAnalyticsFieldPayload {
 input SaveAnalyticsTableInput {
   slug: String!
   name: String!
+  description: String
   startingObject: StartingObject!
   disableVisibilities: Boolean
   meta: JSONString
@@ -3406,7 +3435,7 @@ Lookup type to search in answers.
 You may pass in a list of question slugs and/or a list of form slugs to define
 which answers to search. If you pass in one or more forms, answers to the
 questions in that form will be searched. If you pass in one or more question
-slug, the corresponding answers are searched. If you pass both, a superset
+slugs, the corresponding answers are searched. If you pass both, a superset
 of both is searched (ie. they do not limit each other).
 """
 input SearchAnswersFilterType {
@@ -3416,10 +3445,17 @@ input SearchAnswersFilterType {
   lookup: SearchLookupMode
 }
 
+"""
+Lookup used in SearchAnswersFilterType.
+
+Keep in mind that the SearchAnswer filter operates on a word-by-word basis.
+This defines the lookup used for every single word.
+"""
 enum SearchLookupMode {
   STARTSWITH
   CONTAINS
   TEXT
+  EXACT_WORD
 }
 
 type SelectedOption {
@@ -3509,6 +3545,7 @@ enum SortableAnalyticsTableAttributes {
   MODIFIED_AT
   SLUG
   NAME
+  DESCRIPTION
 }
 
 enum SortableAnswerAttributes {
