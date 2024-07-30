@@ -40,4 +40,4 @@ jobs:
         run: pnpm publish -r
       - name: Publish packages (beta)
         if: github.ref == 'refs/heads/beta'
-        run: pnpm publish -r --tag beta
+        run: pnpm publish -r --tag beta --publish-branch beta
