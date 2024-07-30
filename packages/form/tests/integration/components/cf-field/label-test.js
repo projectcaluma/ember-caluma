@@ -1,13 +1,11 @@
 import { render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
-import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import { setupRenderingTest } from "dummy/tests/helpers";
 
 module("Integration | Component | cf-field/label", function (hooks) {
   setupRenderingTest(hooks);
-  setupIntl(hooks);
 
   hooks.beforeEach(function () {
     const form = {
@@ -56,6 +54,6 @@ module("Integration | Component | cf-field/label", function (hooks) {
 
     this.set("field.question.raw.isRequired", "false");
 
-    assert.dom("label").hasText("Test (t:caluma.form.optional:())");
+    assert.dom("label").hasText("Test (Optional)");
   });
 });

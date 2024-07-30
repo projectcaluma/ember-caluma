@@ -1,7 +1,6 @@
 import { render, click, waitFor } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
-import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import { setupRenderingTest } from "dummy/tests/helpers";
@@ -11,7 +10,6 @@ module(
   function (hooks) {
     setupRenderingTest(hooks);
     setupMirage(hooks);
-    setupIntl(hooks);
 
     test("it renders", async function (assert) {
       this.set(

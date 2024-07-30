@@ -1,11 +1,9 @@
-import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import { setupTest } from "dummy/tests/helpers";
 
 module("Unit | Service | options", function (hooks) {
   setupTest(hooks);
-  setupIntl(hooks);
 
   test("it exists", function (assert) {
     const service = this.owner.lookup("service:calumaOptions");

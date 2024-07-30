@@ -1,6 +1,5 @@
 import { settled } from "@ember/test-helpers";
 import { setupMirage } from "ember-cli-mirage/test-support";
-import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import { rawDocumentWithWorkItem } from "./data";
@@ -11,7 +10,6 @@ import { setupTest } from "dummy/tests/helpers";
 
 module("Unit | Library | field", function (hooks) {
   setupTest(hooks);
-  setupIntl(hooks);
   setupMirage(hooks);
 
   hooks.beforeEach(async function () {
@@ -221,9 +219,7 @@ module("Unit | Library | field", function (hooks) {
     });
 
     await field.validate.perform();
-    assert.deepEqual(field.errors, [
-      't:caluma.form.validation.blank:("presence":true,"value":"")',
-    ]);
+    assert.deepEqual(field.errors, ["This field can't be blank"]);
   });
 
   test("it ignores optional fields", async function (assert) {
@@ -281,13 +277,13 @@ module("Unit | Library | field", function (hooks) {
     field.answer.value = "Testx";
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      't:caluma.form.validation.tooLong:("max":4,"min":2,"value":"Testx")',
+      "The value of this field can't be longer than 4 characters",
     ]);
 
     field.answer.value = "x";
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      't:caluma.form.validation.tooShort:("max":4,"min":2,"value":"x")',
+      "The value of this field can't be shorter than 2 characters",
     ]);
   });
 
@@ -312,13 +308,13 @@ module("Unit | Library | field", function (hooks) {
     field.answer.value = "Testx";
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      't:caluma.form.validation.tooLong:("max":4,"min":2,"value":"Testx")',
+      "The value of this field can't be longer than 4 characters",
     ]);
 
     field.answer.value = "x";
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      't:caluma.form.validation.tooShort:("max":4,"min":2,"value":"x")',
+      "The value of this field can't be shorter than 2 characters",
     ]);
   });
 
@@ -343,19 +339,19 @@ module("Unit | Library | field", function (hooks) {
     field.answer.value = 1;
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      't:caluma.form.validation.greaterThanOrEqualTo:("gte":2,"integer":true,"lte":2,"value":1)',
+      "The value of this field must be greater than or equal to 2",
     ]);
 
     field.answer.value = 3;
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      't:caluma.form.validation.lessThanOrEqualTo:("gte":2,"integer":true,"lte":2,"value":3)',
+      "The value of this field must be less than or equal to 2",
     ]);
 
     field.answer.value = 1.5;
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      't:caluma.form.validation.notAnInteger:("gte":2,"integer":true,"lte":2,"value":1.5)',
+      "The value of this field must be an integer",
     ]);
   });
 
@@ -384,13 +380,13 @@ module("Unit | Library | field", function (hooks) {
 
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      't:caluma.form.validation.greaterThanOrEqualTo:("gte":1.5,"lte":2.5,"value":1.4)',
+      "The value of this field must be greater than or equal to 1.5",
     ]);
 
     field.answer.value = 2.6;
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      't:caluma.form.validation.lessThanOrEqualTo:("gte":1.5,"lte":2.5,"value":2.6)',
+      "The value of this field must be less than or equal to 2.5",
     ]);
   });
 
@@ -430,7 +426,7 @@ module("Unit | Library | field", function (hooks) {
     field.answer.value = "invalid-option";
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      't:caluma.form.validation.inclusion:("allowBlank":true,"in":["option-1"],"label":"Invalid Option","value":"invalid-option")',
+      '"Invalid Option" is not a valid value for this field',
     ]);
   });
 
@@ -470,14 +466,14 @@ module("Unit | Library | field", function (hooks) {
     field.answer.value = ["option-1", "invalid-option"];
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      't:caluma.form.validation.inclusion:("allowBlank":false,"in":["option-1"],"label":"Invalid Option","value":"invalid-option")',
+      '"Invalid Option" is not a valid value for this field',
     ]);
 
     field.answer.value = ["invalid-option", "other-invalid-option"];
     await field.validate.perform();
     assert.deepEqual(field.errors, [
-      't:caluma.form.validation.inclusion:("allowBlank":false,"in":["option-1"],"label":"Invalid Option","value":"invalid-option")',
-      't:caluma.form.validation.inclusion:("allowBlank":false,"in":["option-1"],"label":"other-invalid-option","value":"other-invalid-option")',
+      '"Invalid Option" is not a valid value for this field',
+      '"other-invalid-option" is not a valid value for this field',
     ]);
   });
 
@@ -493,7 +489,7 @@ module("Unit | Library | field", function (hooks) {
     row.findField("table-form-question").answer.value = null;
     await table.validate.perform();
     assert.deepEqual(table.errors, [
-      't:caluma.form.validation.table:("value":null)',
+      "At least one row of the table was not filled in correctly",
     ]);
   });
 

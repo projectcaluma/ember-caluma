@@ -2,7 +2,6 @@ import { render, fillIn, blur, click, select } from "@ember/test-helpers";
 import Component from "@glimmer/component";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
-import { setupIntl } from "ember-intl/test-support";
 import { selectChoose } from "ember-power-select/test-support";
 import { module, test } from "qunit";
 
@@ -12,7 +11,6 @@ import graphqlError from "dummy/tests/helpers/graphql-error";
 module("Integration | Component | cfb-form-editor/question", function (hooks) {
   setupRenderingTest(hooks);
   setupMirage(hooks);
-  setupIntl(hooks);
 
   hooks.beforeEach(function () {
     this.server.create("format-validator", { slug: "email" });
@@ -159,9 +157,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       owner: this.engine,
     });
 
-    assert
-      .dom("p")
-      .hasText('t:caluma.form-builder.question.not-found:("slug":"test-slug")');
+    assert.dom("p").hasText("No question with slug 'test-slug' found");
   });
 
   test("it suggests a slug", async function (assert) {
@@ -466,9 +462,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     await fillIn("[name=__typename]", "TableQuestion");
     await fillIn("[name=label]", "Label");
 
-    assert
-      .dom(".ember-power-select-trigger")
-      .hasText("t:caluma.form-builder.question.no-selection:()");
+    assert.dom(".ember-power-select-trigger").hasText("No selection");
     await click(".ember-power-select-trigger");
     const options = [
       ...document.querySelectorAll(".ember-power-select-option"),
@@ -547,9 +541,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     await fillIn("[name=__typename]", "FormQuestion");
     await fillIn("[name=label]", "Label");
 
-    assert
-      .dom(".ember-power-select-trigger")
-      .hasText("t:caluma.form-builder.question.no-selection:()");
+    assert.dom(".ember-power-select-trigger").hasText("No selection");
     await click(".ember-power-select-trigger");
     const options = [
       ...document.querySelectorAll(".ember-power-select-option"),
@@ -648,7 +640,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
 
     assert
       .dom("small.uk-text-danger")
-      .hasText("t:caluma.form-builder.validations.question.slug:()");
+      .hasText("A question with this slug already exists");
 
     await fillIn("input[name=slug]", "valid-slug");
     await blur("input[name=slug]");
@@ -660,7 +652,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
 
     assert
       .dom("small.uk-text-danger")
-      .hasText("t:caluma.form-builder.validations.question.slug:()");
+      .hasText("A question with this slug already exists");
   });
 
   test("it auto-suggests the slug if it has not been manually changed", async function (assert) {

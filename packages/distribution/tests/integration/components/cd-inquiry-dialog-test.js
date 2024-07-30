@@ -1,7 +1,6 @@
 import { click, render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
-import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import {
@@ -18,7 +17,6 @@ import confirm from "dummy/tests/helpers/confirm";
 module("Integration | Component | cd-inquiry-dialog", function (hooks) {
   setupRenderingTest(hooks);
   setupMirage(hooks);
-  setupIntl(hooks);
 
   hooks.beforeEach(function () {
     createBlueprint(this.server);
@@ -85,9 +83,7 @@ module("Integration | Component | cd-inquiry-dialog", function (hooks) {
     await click("[data-test-withdraw]");
     await confirm();
 
-    assert
-      .dom("[data-test-deadline]")
-      .containsText("t:caluma.distribution.withdraw.status:()");
+    assert.dom("[data-test-deadline]").containsText("Withdrawn");
 
     this.engine.lookup("service:router").transitionTo = (route) => {
       assert.strictEqual(route, "index");

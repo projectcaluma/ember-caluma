@@ -1,7 +1,6 @@
 import { waitFor, click, fillIn, render, scrollTo } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
-import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 import UIkit from "uikit";
 
@@ -10,7 +9,6 @@ import { setupRenderingTest } from "dummy/tests/helpers";
 
 module("Integration | Component | cf-field/input/table", function (hooks) {
   setupRenderingTest(hooks);
-  setupIntl(hooks);
 
   hooks.beforeEach(function () {
     this.field = {

@@ -3,7 +3,6 @@ import { tracked } from "@glimmer/tracking";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { restartableTask } from "ember-concurrency";
-import { setupIntl } from "ember-intl/test-support";
 import { Response } from "miragejs";
 import { module, test } from "qunit";
 import UIkit from "uikit";
@@ -15,7 +14,6 @@ module(
   function (hooks) {
     setupRenderingTest(hooks);
     setupMirage(hooks);
-    setupIntl(hooks);
 
     hooks.beforeEach(function (assert) {
       UIkit.container = this.owner.rootElement;
@@ -125,7 +123,9 @@ module(
 
       assert
         .dom(".uk-alert-danger")
-        .hasText("t:caluma.form.validation.error:() foo");
+        .hasText(
+          "The following questions have not yet been filled in correctly: foo",
+        );
     });
 
     test("does not validate if action is skip", async function (assert) {

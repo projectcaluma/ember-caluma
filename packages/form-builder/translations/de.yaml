@@ -30,7 +30,7 @@ caluma:
       empty: "Wir haben keine Formulare gefunden. Klicken Sie den Knopf im der rechten oberen Ecke um ein Formular zu erstellen!"
       loadMore: "Mehr Formulare laden"
 
-      not-found: "Kein Formular mit dem Slug '{slug}' gefunden"
+      not-found: "Kein Formular mit dem Slug ''{slug}'' gefunden"
 
     question-list:
       required:
@@ -131,7 +131,7 @@ caluma:
         hidden: "Versteckt"
         number-separator: "Zahlentrennzeichen"
 
-      not-found: "Keine Frage mit dem Slug '{slug}' gefunden"
+      not-found: "Keine Frage mit dem Slug ''{slug}'' gefunden"
 
       hideLabel: "Label verstecken"
 

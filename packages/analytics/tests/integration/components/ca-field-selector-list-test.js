@@ -1,6 +1,5 @@
 import { render, findAll } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
-import { setupIntl } from "ember-intl/test-support";
 import { reorder } from "ember-sortable/test-support";
 import { module, test } from "qunit";
 
@@ -8,7 +7,6 @@ import { setupRenderingTest } from "dummy/tests/helpers";
 
 module("Integration | Component | ca-field-selector-list", function (hooks) {
   setupRenderingTest(hooks);
-  setupIntl(hooks);
 
   hooks.beforeEach(function () {
     const edges = [

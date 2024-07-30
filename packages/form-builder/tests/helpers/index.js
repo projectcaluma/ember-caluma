@@ -21,7 +21,7 @@ function setApplicationInstance() {
 
 function setupApplicationTest(hooks, options) {
   upstreamSetupApplicationTest(hooks, options);
-  setupIntl(hooks);
+  setupIntl(hooks, "en");
 
   hooks.beforeEach(setApplicationInstance);
 
@@ -43,7 +43,7 @@ function setupApplicationTest(hooks, options) {
 
 function setupRenderingTest(hooks, options) {
   upstreamSetupRenderingTest(hooks, options);
-  setupIntl(hooks);
+  setupIntl(hooks, "en");
   setupEngine(hooks, "@projectcaluma/ember-form-builder");
 
   hooks.beforeEach(setApplicationInstance);
@@ -51,7 +51,7 @@ function setupRenderingTest(hooks, options) {
 
 function setupTest(hooks, options) {
   upstreamSetupTest(hooks, options);
-  setupIntl(hooks);
+  setupIntl(hooks, "en");
   setupEngine(hooks, "@projectcaluma/ember-form-builder");
 
   hooks.beforeEach(setApplicationInstance);

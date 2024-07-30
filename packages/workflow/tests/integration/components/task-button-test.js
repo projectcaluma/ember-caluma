@@ -1,14 +1,12 @@
 import { render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
-import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import { setupRenderingTest } from "dummy/tests/helpers";
 
 module("Integration | Component | task-button", function (hooks) {
   setupRenderingTest(hooks);
-  setupIntl(hooks);
   setupMirage(hooks);
 
   hooks.beforeEach(function () {
@@ -39,7 +37,7 @@ module("Integration | Component | task-button", function (hooks) {
   test("it renders default", async function (assert) {
     await render(hbs`<TaskButton @mutation="complete" @task="test" />`);
 
-    assert.dom("button").hasText("t:caluma.mutate-work-item.complete:()");
+    assert.dom("button").hasText("Complete");
   });
 
   test("it renders label", async function (assert) {

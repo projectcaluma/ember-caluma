@@ -2,7 +2,6 @@ import { render, click, fillIn } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setFlatpickrDate } from "ember-flatpickr/test-support/helpers";
-import { setupIntl } from "ember-intl/test-support";
 import { DateTime } from "luxon";
 import { module, test } from "qunit";
 
@@ -14,7 +13,6 @@ import { setupRenderingTest } from "dummy/tests/helpers";
 
 module("Integration | Component | cd-inquiry-new-form", function (hooks) {
   setupRenderingTest(hooks);
-  setupIntl(hooks);
   setupMirage(hooks);
 
   hooks.beforeEach(async function () {

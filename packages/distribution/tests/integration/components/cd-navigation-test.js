@@ -1,7 +1,6 @@
 import { render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
-import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import distribution from "@projectcaluma/ember-testing/scenarios/distribution";
@@ -10,7 +9,6 @@ import { setupRenderingTest } from "dummy/tests/helpers";
 module("Integration | Component | cd-navigation", function (hooks) {
   setupRenderingTest(hooks);
   setupMirage(hooks);
-  setupIntl(hooks);
 
   hooks.beforeEach(function () {
     const distributionCase = distribution(this.server, [
@@ -37,12 +35,12 @@ module("Integration | Component | cd-navigation", function (hooks) {
 
     assert
       .dom("ul:first-child > li:nth-of-type(2) > a")
-      .hasText("t:caluma.distribution.types.addressed:()");
+      .hasText("Own inquiries");
     assert
       .dom("ul:first-child > li:nth-of-type(3) > a")
-      .hasText("t:caluma.distribution.types.controlling:()");
+      .hasText("Requested inquiries");
     assert
       .dom("ul:first-child > li:nth-of-type(4) > a")
-      .hasText("t:caluma.distribution.types.more:()");
+      .hasText("More inquiries");
   });
 });

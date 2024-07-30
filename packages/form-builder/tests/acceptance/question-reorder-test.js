@@ -1,6 +1,5 @@
 import { visit, triggerEvent, find } from "@ember/test-helpers";
 import { setupMirage } from "ember-cli-mirage/test-support";
-import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import { setupApplicationTest } from "dummy/tests/helpers";
@@ -8,7 +7,6 @@ import { setupApplicationTest } from "dummy/tests/helpers";
 module("Acceptance | question reorder", function (hooks) {
   setupApplicationTest(hooks);
   setupMirage(hooks);
-  setupIntl(hooks);
 
   test("can reorder questions", async function (assert) {
     assert.expect(2);

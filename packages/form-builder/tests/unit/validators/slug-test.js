@@ -1,5 +1,4 @@
 import { setupMirage } from "ember-cli-mirage/test-support";
-import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import { SlugUniquenessValidator } from "@projectcaluma/ember-form-builder/validators/slug";
@@ -8,7 +7,6 @@ import { setupTest } from "dummy/tests/helpers";
 module("Unit | Validator | slug", function (hooks) {
   setupTest(hooks);
   setupMirage(hooks);
-  setupIntl(hooks);
 
   test("it validates uniqueness of form slugs", async function (assert) {
     const validator = new SlugUniquenessValidator("form");
@@ -18,7 +16,7 @@ module("Unit | Validator | slug", function (hooks) {
     // count is 1 -> invalid
     assert.strictEqual(
       await validator.validate(null, "slug", null, null, { id: undefined }),
-      "t:caluma.form-builder.validations.form.slug:()",
+      "A form with this slug already exists",
     );
 
     // id is given -> valid
@@ -44,7 +42,7 @@ module("Unit | Validator | slug", function (hooks) {
     // count is 1 -> invalid
     assert.strictEqual(
       await validator.validate(null, "slug", null, null, { id: undefined }),
-      "t:caluma.form-builder.validations.question.slug:()",
+      "A question with this slug already exists",
     );
 
     // id is given -> valid
@@ -87,7 +85,7 @@ module("Unit | Validator | slug", function (hooks) {
         id: undefined,
         question: "question-slug",
       }),
-      "t:caluma.form-builder.validations.option.slug:()",
+      "An option with this slug already exists",
     );
 
     // id is given -> valid

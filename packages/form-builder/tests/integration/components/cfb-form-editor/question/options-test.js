@@ -2,7 +2,6 @@ import { render, click } from "@ember/test-helpers";
 import Changeset from "ember-changeset";
 import lookupValidator from "ember-changeset-validations";
 import { hbs } from "ember-cli-htmlbars";
-import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import optionValidations from "@projectcaluma/ember-form-builder/validations/option";
@@ -27,7 +26,6 @@ module(
   "Integration | Component | cfb-form-editor/question/options",
   function (hooks) {
     setupRenderingTest(hooks);
-    setupIntl(hooks);
 
     hooks.beforeEach(function () {
       this.model = { slug: "prefix" };

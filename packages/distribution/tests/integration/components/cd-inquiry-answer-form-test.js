@@ -1,7 +1,6 @@
 import { click, fillIn, render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
-import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import {
@@ -14,7 +13,6 @@ import { setupRenderingTest } from "dummy/tests/helpers";
 module("Integration | Component | cd-inquiry-answer-form", function (hooks) {
   setupRenderingTest(hooks);
   setupMirage(hooks);
-  setupIntl(hooks);
 
   hooks.beforeEach(function (assert) {
     createBlueprint(this.server);
@@ -45,13 +43,9 @@ module("Integration | Component | cd-inquiry-answer-form", function (hooks) {
 
     assert
       .dom("[data-test-document-header]")
-      .containsText(
-        "Inquiry answer t:caluma.distribution.answer.buttons.compose.status:()",
-      );
+      .containsText("Inquiry answer In progress");
     assert.dom("form").exists();
-    assert
-      .dom("button.uk-button-primary")
-      .hasText("t:caluma.distribution.answer.buttons.compose.label:()");
+    assert.dom("button.uk-button-primary").hasText("Release for review");
   });
 
   test("it renders the configured buttons for work items and completes them on click", async function (assert) {

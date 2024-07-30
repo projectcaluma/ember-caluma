@@ -30,7 +30,7 @@ caluma:
       empty: "Nous n'avons trouvé aucun formulaire. Cliquez sur le bouton dans le coin supérieur droit pour créer un formulaire !"
       loadMore: "Télécharger plus de formulaires"
 
-      not-found: "Aucun formulaire trouvé avec le slug '{slug}'"
+      not-found: "Aucun formulaire trouvé avec le slug ''{slug}''"
 
     question-list:
       required:
@@ -131,7 +131,7 @@ caluma:
         hidden: "Caché"
         number-separator: "Séparateur de chiffres"
 
-      not-found: "Aucune question trouvée avec le slug '{slug}'"
+      not-found: "Aucune question trouvée avec le slug ''{slug}''"
 
       hideLabel: "Cacher l'étiquette"
 

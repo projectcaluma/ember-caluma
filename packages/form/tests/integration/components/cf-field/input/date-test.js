@@ -1,14 +1,13 @@
 import { fillIn, blur, render, waitFor } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setFlatpickrDate } from "ember-flatpickr/test-support/helpers";
-import { setupIntl, setLocale } from "ember-intl/test-support";
+import { setLocale } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import { setupRenderingTest } from "dummy/tests/helpers";
 
 module("Integration | Component | cf-field/input/date", function (hooks) {
   setupRenderingTest(hooks);
-  setupIntl(hooks);
 
   hooks.beforeEach(function () {
     this.owner.resolveRegistration("config:environment")["ember-caluma"] = {

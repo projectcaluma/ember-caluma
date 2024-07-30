@@ -2,14 +2,12 @@ import { render, click, settled } from "@ember/test-helpers";
 import { tracked } from "@glimmer/tracking";
 import { hbs } from "ember-cli-htmlbars";
 import { timeout } from "ember-concurrency";
-import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import { setupRenderingTest } from "dummy/tests/helpers";
 
 module("Integration | Component | cf-field/input/checkbox", function (hooks) {
   setupRenderingTest(hooks);
-  setupIntl(hooks);
 
   test("it renders", async function (assert) {
     assert.expect(12);
@@ -148,7 +146,7 @@ module("Integration | Component | cf-field/input/checkbox", function (hooks) {
     assert.dom("label input[type=checkbox]").isEnabled();
     assert
       .dom("label del.uk-text-muted")
-      .hasAttribute("title", "t:caluma.form.optionNotAvailable:()");
+      .hasAttribute("title", "This option is not available anymore");
 
     this.set("disabled", true);
 

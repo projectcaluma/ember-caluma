@@ -1,7 +1,6 @@
 import { setOwner } from "@ember/application";
 import { inject as service } from "@ember/service";
 import { tracked } from "@glimmer/tracking";
-import { setupIntl } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import config from "@projectcaluma/ember-distribution/config";
@@ -18,7 +17,6 @@ class MyClass {
 
 module("Unit | Utility | inquiry-answer-status", function (hooks) {
   setupTest(hooks);
-  setupIntl(hooks);
 
   test("it works", function (assert) {
     this.obj = new MyClass();
@@ -26,17 +24,11 @@ module("Unit | Utility | inquiry-answer-status", function (hooks) {
 
     setOwner(this.obj, this.owner);
 
-    assert.strictEqual(
-      this.obj.status,
-      "t:caluma.distribution.answer.buttons.confirm.status:()",
-    );
+    assert.strictEqual(this.obj.status, "In review");
 
     this.obj.inquiry.setReadyChildWorkItem("adjust-inquiry-answer");
 
-    assert.strictEqual(
-      this.obj.status,
-      "t:caluma.distribution.answer.buttons.adjust.status:()",
-    );
+    assert.strictEqual(this.obj.status, "In revision");
 
     this.obj.inquiry.setReadyChildWorkItem("some-other-task");
 

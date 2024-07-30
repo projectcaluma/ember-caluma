@@ -1,7 +1,7 @@
 import { render } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
-import { setLocale, setupIntl } from "ember-intl/test-support";
+import { setLocale } from "ember-intl/test-support";
 import { module, test } from "qunit";
 
 import { setupRenderingTest } from "dummy/tests/helpers";
@@ -9,7 +9,6 @@ import { setupRenderingTest } from "dummy/tests/helpers";
 module("Integration | Component | cf-field-value", function (hooks) {
   setupRenderingTest(hooks);
   setupMirage(hooks);
-  setupIntl(hooks);
 
   test("it renders multiple choice questions", async function (assert) {
     this.field = {
