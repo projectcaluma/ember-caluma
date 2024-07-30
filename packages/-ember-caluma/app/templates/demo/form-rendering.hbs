@@ -1,6 +1,7 @@
 {{#if @model}}
   <CfContent
     @documentId={{@model}}
+    @compareTo={{this.compareTo}}
     @context={{hash actionButtonOnSuccess=this.actionButtonOnSuccess}}
   />
 {{/if}}
