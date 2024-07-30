@@ -60,13 +60,13 @@
     "eslint-plugin-qunit": "8.1.1",
     "get-graphql-schema": "2.1.2",
     "glob": "11.0.0",
-    "graphql": "15.8.0",
+    "graphql": "15.9.0",
     "husky": "9.1.4",
     "lint-staged": "15.2.7",
     "node-fetch": "3.3.2",
     "prettier": "3.3.3",
     "semantic-release": "24.0.0",
-    "stylelint": "16.5.0",
+    "stylelint": "16.8.1",
     "stylelint-config-standard-scss": "13.1.0",
     "stylelint-prettier": "5.0.2",
     "stylelint-scss": "6.4.1"
@@ -78,7 +78,7 @@
         "typescript"
       ],
       "allowedVersions": {
-        "graphql": "^15.8.0",
+        "graphql": "^15.9.0",
         "ember-source": "^5.0.0",
         "ember-resources>ember-concurrency": "^4.0.0"
       }
