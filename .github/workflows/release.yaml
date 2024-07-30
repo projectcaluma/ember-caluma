@@ -10,6 +10,7 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/beta'
 
     steps:
       - uses: actions/checkout@v4
@@ -35,4 +36,8 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
       - name: Publish packages
+        if: github.ref == 'refs/heads/main'
         run: pnpm publish -r
+      - name: Publish packages (beta)
+        if: github.ref == 'refs/heads/beta'
+        run: pnpm publish -r --tag beta
