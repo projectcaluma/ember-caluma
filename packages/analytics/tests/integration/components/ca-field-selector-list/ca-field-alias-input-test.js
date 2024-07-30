@@ -25,6 +25,7 @@ module(
   @value={{this.alias}}
   @onInput={{this.onSave}}
 />`,
+        { owner: this.engine },
       );
       assert.dom("[data-test-field-alias-input]").hasValue(this.alias);
 

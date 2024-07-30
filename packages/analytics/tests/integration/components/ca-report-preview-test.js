@@ -10,7 +10,7 @@ module("Integration | Component | ca-report-preview", function (hooks) {
   setupIntl(hooks);
 
   test("it renders", async function (assert) {
-    await render(hbs`<CaReportPreview />`);
+    await render(hbs`<CaReportPreview />`, { owner: this.engine });
 
     assert.dom(this.element).hasText("t:caluma.analytics.preview.export:()");
     assert.dom(this.element.querySelector("#reports-table")).exists();
