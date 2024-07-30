@@ -17,7 +17,9 @@ module("Integration | Component | ca-field-select", function (hooks) {
   test.skip("it renders", async function (assert) {
     assert.expect(1);
 
-    await render(hbs`<CaFieldSelect @path="" @onSelect={{this.update}} />`);
+    await render(hbs`<CaFieldSelect @path="" @onSelect={{this.update}} />`, {
+      owner: this.engine,
+    });
 
     assert.dom(this.element).exists();
   });
@@ -27,6 +29,7 @@ module("Integration | Component | ca-field-select", function (hooks) {
 
     await render(
       hbs`<CaFieldSelect @path="" @child={{true}} @onSelect={{this.update}} />`,
+      { owner: this.engine },
     );
 
     assert.dom(this.element).exists();
@@ -40,6 +43,7 @@ module("Integration | Component | ca-field-select", function (hooks) {
 
     await render(
       hbs`<CaFieldSelect @selectedPath={{this.path}} @onSelect={{this.update}} />`,
+      { owner: this.engine },
     );
 
     assert
@@ -58,11 +62,14 @@ module("Integration | Component | ca-field-select", function (hooks) {
     assert.expect(6);
     this.set("path", "grandpa.father.son");
 
-    await render(hbs`<CaFieldSelect
+    await render(
+      hbs`<CaFieldSelect
   @selectedPath={{this.path}}
   @parentPath=""
   @onSelect={{this.update}}
-/>`);
+/>`,
+      { owner: this.engine },
+    );
 
     assert
       .dom("[data-test-field-select-primary-selector]")
@@ -97,6 +104,7 @@ module("Integration | Component | ca-field-select", function (hooks) {
 
       await render(
         hbs`<CaFieldSelect @selectedPath={{this.path}} @onSelect={{this.update}} />`,
+        { owner: this.engine },
       );
       selectChoose(".ember-power-select-trigger", "father");
 
