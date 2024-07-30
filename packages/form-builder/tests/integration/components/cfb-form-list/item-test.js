@@ -16,7 +16,9 @@ module("Integration | Component | cfb-form-list/item", function (hooks) {
       description: "Test",
     });
 
-    await render(hbs`<CfbFormList::Item @item={{this.form}} />`);
+    await render(hbs`<CfbFormList::Item @item={{this.form}} />`, {
+      owner: this.engine,
+    });
 
     assert.dom("li").exists();
     assert.dom("li > span:nth-child(1)").hasText("Test");
@@ -34,6 +36,7 @@ module("Integration | Component | cfb-form-list/item", function (hooks) {
 
     await render(
       hbs`<CfbFormList::Item @item={{this.form}} @onEditForm={{this.editForm}} />`,
+      { owner: this.engine },
     );
 
     await click("[data-test-edit-form]");

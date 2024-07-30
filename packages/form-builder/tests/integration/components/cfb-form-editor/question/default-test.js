@@ -17,12 +17,15 @@ module(
       });
       this.noop = () => {};
 
-      await render(hbs`<CfbFormEditor::Question::Default
+      await render(
+        hbs`<CfbFormEditor::Question::Default
   @name="test"
   @model={{this.changeset}}
   @update={{this.noop}}
   @setDirty={{this.noop}}
-/>`);
+/>`,
+        { owner: this.engine },
+      );
 
       assert.ok(this.element);
     });

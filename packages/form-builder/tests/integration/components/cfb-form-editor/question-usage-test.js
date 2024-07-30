@@ -27,6 +27,7 @@ module(
 
       await render(
         hbs`<CfbFormEditor::QuestionUsage @slug={{this.question.slug}} />`,
+        { owner: this.engine },
       );
 
       await waitFor("[data-test-show-question-usage-modal-link]");
@@ -50,6 +51,7 @@ module(
 
       await render(
         hbs`<CfbFormEditor::QuestionUsage @slug={{this.question.slug}} />`,
+        { owner: this.engine },
       );
 
       assert.dom("[data-test-show-question-usage-modal-link]").isNotVisible();

@@ -3,8 +3,8 @@ import { run } from "@ember/runloop";
 import Resolver from "ember-resolver";
 import { module, test } from "qunit";
 
+import { initialize } from "@projectcaluma/ember-form-builder/instance-initializers/application";
 import config from "dummy/config/environment";
-import { initialize } from "dummy/instance-initializers/application";
 
 module("Unit | Instance Initializer | application", function (hooks) {
   hooks.beforeEach(function () {

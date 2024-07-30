@@ -1,4 +1,5 @@
 import { importSync } from "@embroider/macros";
+import { setupEngine } from "ember-engines/test-support";
 import { setupIntl } from "ember-intl/test-support";
 import {
   setupApplicationTest as upstreamSetupApplicationTest,
@@ -43,6 +44,7 @@ function setupApplicationTest(hooks, options) {
 function setupRenderingTest(hooks, options) {
   upstreamSetupRenderingTest(hooks, options);
   setupIntl(hooks);
+  setupEngine(hooks, "@projectcaluma/ember-form-builder");
 
   hooks.beforeEach(setApplicationInstance);
 }
@@ -50,6 +52,7 @@ function setupRenderingTest(hooks, options) {
 function setupTest(hooks, options) {
   upstreamSetupTest(hooks, options);
   setupIntl(hooks);
+  setupEngine(hooks, "@projectcaluma/ember-form-builder");
 
   hooks.beforeEach(setApplicationInstance);
 }

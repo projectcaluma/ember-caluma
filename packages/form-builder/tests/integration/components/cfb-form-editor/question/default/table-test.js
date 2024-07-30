@@ -16,6 +16,7 @@ module(
 
       await render(
         hbs`<CfbFormEditor::Question::Default::Table @field={{this.field}} />`,
+        { owner: this.engine },
       );
 
       assert.dom(this.element).exists();

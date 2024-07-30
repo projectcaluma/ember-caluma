@@ -22,6 +22,7 @@ module("Integration | Component | cfb-form-list", function (hooks) {
 
     await render(
       hbs`<CfbFormList @onUpdateSearch={{this.noop}} @onUpdateCategory={{this.noop}} />`,
+      { owner: this.engine },
     );
 
     assert.dom("[data-test-form-list]").exists();
@@ -33,6 +34,7 @@ module("Integration | Component | cfb-form-list", function (hooks) {
 
     await render(
       hbs`<CfbFormList @onUpdateSearch={{this.noop}} @onUpdateCategory={{this.noop}} />`,
+      { owner: this.engine },
     );
 
     assert.dom("[data-test-form-list-empty]").exists();
@@ -45,11 +47,14 @@ module("Integration | Component | cfb-form-list", function (hooks) {
 
     this.set("onEditForm", () => assert.step("edit-form"));
 
-    await render(hbs`<CfbFormList
+    await render(
+      hbs`<CfbFormList
   @onUpdateSearch={{this.noop}}
   @onUpdateCategory={{this.noop}}
   @onEditForm={{this.onEditForm}}
-/>`);
+/>`,
+      { owner: this.engine },
+    );
 
     await click(`[data-test-form-list-item=form-1] [data-test-edit-form]`);
 
@@ -63,11 +68,14 @@ module("Integration | Component | cfb-form-list", function (hooks) {
 
     this.set("onNewForm", () => assert.step("new-form"));
 
-    await render(hbs`<CfbFormList
+    await render(
+      hbs`<CfbFormList
   @onUpdateSearch={{this.noop}}
   @onUpdateCategory={{this.noop}}
   @onNewForm={{this.onNewForm}}
-/>`);
+/>`,
+      { owner: this.engine },
+    );
 
     await click("[data-test-new-form]");
 
@@ -86,11 +94,14 @@ module("Integration | Component | cfb-form-list", function (hooks) {
       isArchived: true,
     });
 
-    await render(hbs`<CfbFormList
+    await render(
+      hbs`<CfbFormList
   @category={{this.category}}
   @onUpdateSearch={{this.noop}}
   @onUpdateCategory={{fn (mut this.category)}}
-/>`);
+/>`,
+      { owner: this.engine },
+    );
 
     assert.dom("[data-test-form-list-empty]").exists();
 

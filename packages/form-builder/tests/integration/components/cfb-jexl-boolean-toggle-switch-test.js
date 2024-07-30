@@ -16,11 +16,14 @@ module(
 
       this.set("value", "false");
 
-      await render(hbs`<CfbJexlBooleanToggleSwitch
+      await render(
+        hbs`<CfbJexlBooleanToggleSwitch
   @name="test"
   @value={{this.value}}
   @update={{fn (mut this.value)}}
-/>`);
+/>`,
+        { owner: this.engine },
+      );
 
       assert.dom("input[name=test]").isNotChecked();
 
@@ -42,11 +45,14 @@ module(
         this.set("value", value);
       });
 
-      await render(hbs`<CfbJexlBooleanToggleSwitch
+      await render(
+        hbs`<CfbJexlBooleanToggleSwitch
   @name="test"
   @value={{this.value}}
   @update={{this.update}}
-/>`);
+/>`,
+        { owner: this.engine },
+      );
 
       assert.dom("input[name=test]").isNotChecked();
 
