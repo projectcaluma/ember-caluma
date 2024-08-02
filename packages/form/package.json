@@ -23,7 +23,7 @@
     "ember-apollo-client": "~4.0.2",
     "ember-auto-import": "^2.7.4",
     "ember-autoresize-modifier": "^0.7.0",
-    "ember-basic-dropdown": "^8.1.0",
+    "ember-basic-dropdown": "^8.2.0",
     "ember-cli-babel": "^8.2.0",
     "ember-cli-htmlbars": "^6.3.0",
     "ember-cli-showdown": "^9.0.1",
