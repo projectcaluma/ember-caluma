@@ -22,7 +22,7 @@
     "@projectcaluma/ember-core": "workspace:^",
     "ember-apollo-client": "~4.0.2",
     "ember-auto-import": "^2.7.4",
-    "ember-basic-dropdown": "^8.1.0",
+    "ember-basic-dropdown": "^8.2.0",
     "ember-changeset": "^4.1.2",
     "ember-changeset-validations": "^4.1.1",
     "ember-cli-babel": "^8.2.0",
@@ -32,8 +32,8 @@
     "ember-engines-router-service": "^0.6.0",
     "ember-fetch": "^8.1.2",
     "ember-intl": "^7.0.4",
-    "ember-power-select": "^8.2.0",
-    "ember-sortable": "^5.1.1",
+    "ember-power-select": "^8.3.0",
+    "ember-sortable": "^5.1.2",
     "ember-uikit": "^9.1.2",
     "ember-validated-form": "^7.0.1",
     "graphql": "^15.9.0",
@@ -76,7 +76,7 @@
     "qunit": "2.21.1",
     "qunit-dom": "3.2.0",
     "sass": "1.77.8",
-    "uikit": "3.21.8",
+    "uikit": "3.21.9",
     "webpack": "5.93.0"
   },
   "peerDependency": {
