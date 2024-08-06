@@ -13,7 +13,7 @@
     "test:ember-compatibility": "ember try:each"
   },
   "dependencies": {
-    "@apollo/client": "^3.11.1",
+    "@apollo/client": "^3.11.3",
     "@babel/core": "^7.25.2",
     "@ember/string": "^4.0.0",
     "@embroider/macros": "^1.16.5",
@@ -61,7 +61,7 @@
     "loader.js": "4.7.0",
     "qunit": "2.21.1",
     "qunit-dom": "3.2.0",
-    "uikit": "3.21.8",
+    "uikit": "3.21.9",
     "webpack": "5.93.0"
   },
   "peerDependencies": {
