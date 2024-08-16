@@ -73,6 +73,7 @@ fragment SimpleQuestion on Question {
           slug
           label
           isArchived
+          isHidden
         }
       }
     }
@@ -90,6 +91,7 @@ fragment SimpleQuestion on Question {
           slug
           label
           isArchived
+          isHidden
         }
       }
     }

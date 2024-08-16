@@ -4,6 +4,7 @@ mutation SaveOption($input: SaveOptionInput!) {
       id
       label
       slug
+      isHidden
     }
   }
 }

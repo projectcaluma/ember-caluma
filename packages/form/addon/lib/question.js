@@ -141,11 +141,14 @@ export default class Question extends Base {
     const key = camelize(this.raw.__typename.replace(/Question$/, "Options"));
     const raw = this.isDynamic ? this[key] : this.raw[key];
 
-    return (raw?.edges || []).map(({ node: { label, slug, isArchived } }) => ({
-      label,
-      slug,
-      disabled: isArchived || false,
-    }));
+    return (raw?.edges || []).map(
+      ({ node: { label, slug, isArchived, isHidden } }) => ({
+        label,
+        slug,
+        disabled: isArchived || false,
+        isHidden,
+      }),
+    );
   }
 
   /**

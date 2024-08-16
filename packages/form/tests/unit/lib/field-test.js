@@ -391,7 +391,7 @@ module("Unit | Library | field", function (hooks) {
   });
 
   test("it can validate radio fields", async function (assert) {
-    assert.expect(1);
+    assert.expect(2);
 
     const field = this.addField({
       question: {
@@ -401,6 +401,7 @@ module("Unit | Library | field", function (hooks) {
               node: {
                 slug: "option-1",
                 label: "Option 1",
+                isHidden: "false",
               },
             },
             {
@@ -408,6 +409,14 @@ module("Unit | Library | field", function (hooks) {
                 slug: "invalid-option",
                 label: "Invalid Option",
                 isArchived: true,
+                isHidden: "false",
+              },
+            },
+            {
+              node: {
+                slug: "hidden-option",
+                label: "Hidden Option",
+                isHidden: "true",
               },
             },
           ],
@@ -428,10 +437,16 @@ module("Unit | Library | field", function (hooks) {
     assert.deepEqual(field.errors, [
       '"Invalid Option" is not a valid value for this field',
     ]);
+
+    field.answer.value = "hidden-option";
+    await field.validate.perform();
+    assert.deepEqual(field.errors, [
+      '"Hidden Option" is not a valid value for this field',
+    ]);
   });
 
   test("it can validate checkbox fields", async function (assert) {
-    assert.expect(2);
+    assert.expect(3);
 
     const field = this.addField({
       question: {
@@ -448,6 +463,13 @@ module("Unit | Library | field", function (hooks) {
                 slug: "invalid-option",
                 label: "Invalid Option",
                 isArchived: true,
+              },
+            },
+            {
+              node: {
+                slug: "hidden-option",
+                label: "Hidden Option",
+                isHidden: "true",
               },
             },
           ],
@@ -474,6 +496,12 @@ module("Unit | Library | field", function (hooks) {
     assert.deepEqual(field.errors, [
       '"Invalid Option" is not a valid value for this field',
       '"other-invalid-option" is not a valid value for this field',
+    ]);
+
+    field.answer.value = ["hidden-option"];
+    await field.validate.perform();
+    assert.deepEqual(field.errors, [
+      '"Hidden Option" is not a valid value for this field',
     ]);
   });
 

@@ -8,4 +8,5 @@ export default Factory.extend({
   label: (i) => `Option ${i + 1}`,
   meta: () => ({}),
   isArchived: false,
+  isHidden: "false",
 });

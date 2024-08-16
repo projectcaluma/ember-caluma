@@ -3239,6 +3239,7 @@ input SaveOptionInput {
   slug: String!
   label: String!
   isArchived: Boolean
+  isHidden: Boolean
   meta: JSONString
   clientMutationId: String
 }
