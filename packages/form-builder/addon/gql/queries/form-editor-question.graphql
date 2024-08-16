@@ -76,6 +76,7 @@ query FormEditorQuestion($slug: String!) {
                 label
                 slug
                 isArchived
+                isHidden
               }
             }
           }
@@ -93,6 +94,7 @@ query FormEditorQuestion($slug: String!) {
                 label
                 slug
                 isArchived
+                isHidden
               }
             }
           }

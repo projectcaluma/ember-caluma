@@ -144,6 +144,7 @@ caluma:
       delete: "Delete option"
       archive: "Archive (hide) option"
       restore: "Restore option"
+      show-jexl: "Show JEXL"
 
     notification:
       form:
