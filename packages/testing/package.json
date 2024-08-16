@@ -37,9 +37,9 @@
     "@embroider/test-setup": "4.0.0",
     "@glimmer/component": "1.1.2",
     "broccoli-asset-rev": "3.0.0",
-    "ember-cli": "5.10.0",
+    "ember-cli": "5.11.0",
     "ember-cli-clean-css": "3.0.0",
-    "ember-cli-code-coverage": "3.0.0",
+    "ember-cli-code-coverage": "3.0.1",
     "ember-cli-dependency-checker": "3.3.2",
     "ember-cli-inject-live-reload": "2.1.0",
     "ember-cli-sri": "2.1.1",
@@ -47,14 +47,14 @@
     "ember-load-initializers": "2.1.2",
     "ember-qunit": "8.1.0",
     "ember-resolver": "12.0.1",
-    "ember-source": "5.10.1",
+    "ember-source": "5.11.0",
     "ember-source-channel-url": "3.0.0",
     "ember-try": "3.0.0",
     "graphql-tag": "2.12.6",
     "loader.js": "4.7.0",
-    "qunit": "2.21.1",
+    "qunit": "2.22.0",
     "qunit-dom": "3.2.0",
-    "webpack": "5.93.0"
+    "webpack": "5.94.0"
   },
   "peerDependencies": {
     "ember-source": ">= 4.0.0"
