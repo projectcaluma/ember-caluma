@@ -37,7 +37,7 @@
     "ember-changeset": "4.1.2",
     "ember-changeset-validations": "4.1.1",
     "ember-cli": "5.10.0",
-    "ember-cli-addon-docs": "github:anehx/ember-cli-addon-docs#fix-string-dependency",
+    "ember-cli-addon-docs": "github:ember-learn/ember-cli-addon-docs#fd6c6b25d102a4383f56ff3b96bf959db74fff55",
     "ember-cli-babel": "8.2.0",
     "ember-cli-clean-css": "3.0.0",
     "ember-cli-dependency-checker": "3.3.2",
@@ -86,6 +86,7 @@
     "test:browserstack": "ember test --host=127.0.0.1 --test-port=7774 --config-file=testem.browserstack.js",
     "ember-cli-browserstack": "anehx/ember-cli-browserstack#fix-pid-file",
     "ember-cli-code-coverage": "1.0.3",
-    "testem-failure-only-reporter": "0.0.1"
+    "testem-failure-only-reporter": "0.0.1",
+    "ember-cli-addon-docs": "Should be 7.0.3 but waiting for release"
   }
 }
