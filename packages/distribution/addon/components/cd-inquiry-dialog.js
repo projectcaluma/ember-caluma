@@ -1,5 +1,4 @@
 import { inject as service } from "@ember/service";
-import { waitForPromise } from "@ember/test-waiters";
 import Component from "@glimmer/component";
 import { queryManager, getObservable } from "ember-apollo-client";
 import { dropTask } from "ember-concurrency";
@@ -85,7 +84,7 @@ export default class CdInquiryDialogComponent extends Component {
 
     yield this.distribution.createInquiry.perform([this.args.to]);
 
-    yield waitForPromise(getObservable(this._inquiries.value).refetch());
+    yield getObservable(this._inquiries.value).refetch();
 
     this.router.transitionTo(
       "inquiry.detail.index",
