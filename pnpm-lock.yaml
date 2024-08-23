@@ -190,7 +190,7 @@ importers:
         version: 5.10.0(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)
       ember-cli-addon-docs:
         specifier: github:ember-learn/ember-cli-addon-docs#fd6c6b25d102a4383f56ff3b96bf959db74fff55
-        version: https://codeload.github.com/ember-learn/ember-cli-addon-docs/tar.gz/fd6c6b25d102a4383f56ff3b96bf959db74fff55(@babel/core@7.25.2)(@ember/string@4.0.0)(@ember/test-helpers@3.3.1(@babel/core@7.25.2)(@glint/template@1.4.0)(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0))(webpack@5.93.0))(@glint/template@1.4.0)(ember-data@5.3.3(@babel/core@7.25.2)(@ember/string@4.0.0)(@glint/template@1.4.0)(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0)))(ember-fetch@8.1.2)(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0))(webpack@5.93.0)
+        version: git+https://git@github.com:ember-learn/ember-cli-addon-docs.git#fd6c6b25d102a4383f56ff3b96bf959db74fff55(@babel/core@7.25.2)(@ember/string@4.0.0)(@ember/test-helpers@3.3.1(@babel/core@7.25.2)(@glint/template@1.4.0)(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0))(webpack@5.93.0))(@glint/template@1.4.0)(ember-data@5.3.3(@babel/core@7.25.2)(@ember/string@4.0.0)(@glint/template@1.4.0)(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0)))(ember-fetch@8.1.2)(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0))(webpack@5.93.0)
       ember-cli-babel:
         specifier: 8.2.0
         version: 8.2.0(@babel/core@7.25.2)
@@ -252,8 +252,8 @@ importers:
         specifier: 8.1.2
         version: 8.1.2
       ember-flatpickr:
-        specifier: 8.0.0
-        version: 8.0.0(@babel/core@7.25.2)(@glint/template@1.4.0)(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0))(flatpickr@4.6.13)(webpack@5.93.0)
+        specifier: 8.0.1
+        version: 8.0.1(@babel/core@7.25.2)(@glint/template@1.4.0)(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0))(flatpickr@4.6.13)(webpack@5.93.0)
       ember-intl:
         specifier: 7.0.4
         version: 7.0.4(@glint/template@1.4.0)(typescript@5.5.4)(webpack@5.93.0)
@@ -697,8 +697,8 @@ importers:
         specifier: ^8.1.2
         version: 8.1.2
       ember-flatpickr:
-        specifier: ^8.0.0
-        version: 8.0.0(@babel/core@7.25.2)(@glint/template@1.4.0)(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0))(flatpickr@4.6.13)(webpack@5.93.0)
+        specifier: ^8.0.1
+        version: 8.0.1(@babel/core@7.25.2)(@glint/template@1.4.0)(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0))(flatpickr@4.6.13)(webpack@5.93.0)
       ember-intl:
         specifier: ^7.0.4
         version: 7.0.4(@glint/template@1.4.0)(typescript@5.5.4)(webpack@5.93.0)
@@ -884,8 +884,8 @@ importers:
         specifier: ^8.1.2
         version: 8.1.2
       ember-flatpickr:
-        specifier: ^8.0.0
-        version: 8.0.0(@babel/core@7.25.2)(@glint/template@1.4.0)(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0))(flatpickr@4.6.13)(webpack@5.93.0)
+        specifier: ^8.0.1
+        version: 8.0.1(@babel/core@7.25.2)(@glint/template@1.4.0)(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0))(flatpickr@4.6.13)(webpack@5.93.0)
       ember-in-viewport:
         specifier: ^4.1.0
         version: 4.1.0(@babel/core@7.25.2)(@glint/template@1.4.0)(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0))(webpack@5.93.0)
@@ -1093,8 +1093,8 @@ importers:
         specifier: ^8.1.2
         version: 8.1.2
       ember-flatpickr:
-        specifier: ^8.0.0
-        version: 8.0.0(@babel/core@7.25.2)(@glint/template@1.4.0)(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0))(flatpickr@4.6.13)(webpack@5.93.0)
+        specifier: ^8.0.1
+        version: 8.0.1(@babel/core@7.25.2)(@glint/template@1.4.0)(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0))(flatpickr@4.6.13)(webpack@5.93.0)
       ember-intl:
         specifier: ^7.0.4
         version: 7.0.4(@glint/template@1.4.0)(typescript@5.5.4)(webpack@5.93.0)
@@ -5552,8 +5552,8 @@ packages:
       ember-data:
         optional: true
 
-  ember-cli-addon-docs@https://codeload.github.com/ember-learn/ember-cli-addon-docs/tar.gz/fd6c6b25d102a4383f56ff3b96bf959db74fff55:
-    resolution: {tarball: https://codeload.github.com/ember-learn/ember-cli-addon-docs/tar.gz/fd6c6b25d102a4383f56ff3b96bf959db74fff55}
+  ember-cli-addon-docs@git+https://git@github.com:ember-learn/ember-cli-addon-docs.git#fd6c6b25d102a4383f56ff3b96bf959db74fff55:
+    resolution: {commit: fd6c6b25d102a4383f56ff3b96bf959db74fff55, repo: git@github.com:ember-learn/ember-cli-addon-docs.git, type: git}
     version: 7.0.1
     engines: {node: '>= 18'}
     peerDependencies:
@@ -5851,9 +5851,9 @@ packages:
     resolution: {integrity: sha512-TVx24/jrvDIuPL296DV0hBwp7BWLcSMf0I8464KGz01sPytAB+ZAePbc9ooBTJDkKZEGFgatJa4nj3yF1S9Bpw==}
     engines: {node: '>= 10'}
 
-  ember-flatpickr@8.0.0:
-    resolution: {integrity: sha512-zcbBMXJ8o1jr5WvnnL96Wrg+aMuODvzsEp6UPKS41fYGH6fjm7oXNeRVCns9byWgqmSEn6sRKBqK3CetLR6oYg==}
-    engines: {node: 18.* || >= 20, pnpm: ^8.14.1}
+  ember-flatpickr@8.0.1:
+    resolution: {integrity: sha512-Y2SJeg+wMcxG9FxRx8BiPldGCJ4AknnKPlLzVDxOWwmyeY2Ka5U42wP9lHewHWDSjyxEB1d43sjf1pft53Z/SA==}
+    engines: {node: 18.* || >= 20, pnpm: ^9.6.0}
     peerDependencies:
       ember-source: ^4.8.0 || ^5.0.0
       flatpickr: ^4.0.0
@@ -17006,7 +17006,7 @@ snapshots:
       - supports-color
       - webpack
 
-  ember-cli-addon-docs@https://codeload.github.com/ember-learn/ember-cli-addon-docs/tar.gz/fd6c6b25d102a4383f56ff3b96bf959db74fff55(@babel/core@7.25.2)(@ember/string@4.0.0)(@ember/test-helpers@3.3.1(@babel/core@7.25.2)(@glint/template@1.4.0)(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0))(webpack@5.93.0))(@glint/template@1.4.0)(ember-data@5.3.3(@babel/core@7.25.2)(@ember/string@4.0.0)(@glint/template@1.4.0)(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0)))(ember-fetch@8.1.2)(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0))(webpack@5.93.0):
+  ember-cli-addon-docs@git+https://git@github.com:ember-learn/ember-cli-addon-docs.git#fd6c6b25d102a4383f56ff3b96bf959db74fff55(@babel/core@7.25.2)(@ember/string@4.0.0)(@ember/test-helpers@3.3.1(@babel/core@7.25.2)(@glint/template@1.4.0)(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0))(webpack@5.93.0))(@glint/template@1.4.0)(ember-data@5.3.3(@babel/core@7.25.2)(@ember/string@4.0.0)(@glint/template@1.4.0)(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0)))(ember-fetch@8.1.2)(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0))(webpack@5.93.0):
     dependencies:
       '@csstools/postcss-sass': 5.1.1(postcss@8.4.41)
       '@ember/render-modifiers': 2.1.0(@babel/core@7.25.2)(@glint/template@1.4.0)(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0))
@@ -17948,10 +17948,11 @@ snapshots:
       - encoding
       - supports-color
 
-  ember-flatpickr@8.0.0(@babel/core@7.25.2)(@glint/template@1.4.0)(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0))(flatpickr@4.6.13)(webpack@5.93.0):
+  ember-flatpickr@8.0.1(@babel/core@7.25.2)(@glint/template@1.4.0)(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0))(flatpickr@4.6.13)(webpack@5.93.0):
     dependencies:
       '@ember/render-modifiers': 2.1.0(@babel/core@7.25.2)(@glint/template@1.4.0)(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0))
       '@ember/test-helpers': 3.3.1(@babel/core@7.25.2)(@glint/template@1.4.0)(ember-source@5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0))(webpack@5.93.0)
+      '@ember/test-waiters': 3.1.0
       '@embroider/addon-shim': 1.8.9
       ember-source: 5.10.1(@glimmer/component@1.1.2(@babel/core@7.25.2))(@glint/template@1.4.0)(rsvp@4.8.5)(webpack@5.93.0)
       flatpickr: 4.6.13

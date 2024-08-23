@@ -35,7 +35,7 @@
     "ember-concurrency": "^4.0.2",
     "ember-engines-router-service": "^0.6.0",
     "ember-fetch": "^8.1.2",
-    "ember-flatpickr": "^8.0.0",
+    "ember-flatpickr": "^8.0.1",
     "ember-intl": "^7.0.4",
     "ember-math-helpers": "^4.0.0",
     "ember-power-select": "^8.3.0",

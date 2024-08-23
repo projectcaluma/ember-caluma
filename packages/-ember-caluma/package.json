@@ -58,7 +58,7 @@
     "ember-engines": "0.11.0",
     "ember-engines-router-service": "0.6.0",
     "ember-fetch": "8.1.2",
-    "ember-flatpickr": "8.0.0",
+    "ember-flatpickr": "8.0.1",
     "ember-intl": "7.0.4",
     "ember-load-initializers": "2.1.2",
     "ember-math-helpers": "4.0.0",
