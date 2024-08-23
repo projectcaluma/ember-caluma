@@ -36,7 +36,7 @@
     "ember-can": "5.0.4",
     "ember-changeset": "4.1.2",
     "ember-changeset-validations": "4.1.1",
-    "ember-cli": "5.10.0",
+    "ember-cli": "5.11.0",
     "ember-cli-addon-docs": "github:ember-learn/ember-cli-addon-docs#fd6c6b25d102a4383f56ff3b96bf959db74fff55",
     "ember-cli-babel": "8.2.0",
     "ember-cli-clean-css": "3.0.0",
