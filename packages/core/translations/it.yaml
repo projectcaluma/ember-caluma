@@ -1,0 +1,15 @@
+caluma:
+  caluma-query:
+    work-item:
+      status:
+        READY: "In corso"
+        COMPLETED: "Evaso"
+        CANCELED: "Demolito"
+        SKIPPED: "Tralasciato"
+        SUSPENDED: "In sospeso"
+    case:
+      status:
+        RUNNING: "In elaborazione"
+        COMPLETED: "Concluso"
+        CANCELED: "Demolito"
+        SUSPENDED: "In sospeso"

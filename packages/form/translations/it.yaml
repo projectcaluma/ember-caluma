@@ -1,0 +1,58 @@
+caluma:
+  form:
+    optional: "Facoltativo"
+    save: "Salva"
+    delete: "Elimina"
+    edit: "Modifica"
+    cancel: "Annulla"
+    close: "Chiudi"
+    view: "Visualizza"
+    selectFile: "Cerca..."
+    deleteRow: "Cancellare davvero questa riga?"
+    addRow: "Aggiungi riga"
+    optionNotAvailable: "Questa opzione non è più disponibile"
+    info: "Ulteriori informazioni"
+
+    error:
+      details: "Dettagli tecnici:"
+      technical-error: "ops, qualcosa è andato storto! Non è stato possibile salvare la risposta."
+      offline: "Non è stato possibile salvare la risposta poiché manca la connessione a Internet. Verificare la connessione a Internet e riprovare."
+      invalid: "Non è stato possibile salvare la risposta poiché la convalida non è andata a buon fine. Verificare i dati inseriti e riprovare."
+
+    navigation:
+      next: "Avanti"
+      previous: "Indietro"
+      states:
+        untouched: "Non compilato"
+        unfinished: "Non compilato integralmente"
+        valid: "Compilato correttamente"
+        invalid: "Compilato in modo non corretto"
+
+    notification:
+      table:
+        add:
+          success: "Voce aggiunta con successo."
+          error: "Ops, nel tentativo di aggiungere la voce qualcosa è andato storto."
+
+    power-select:
+      placeholder-single: "Seleziona un'opzione"
+      placeholder-multiple: "Seleziona una o più opzioni"
+      options-loading: "Carica opzioni..."
+      options-empty: "Nessuna opzione disponibile"
+      search-placeholder: "Clicca qui per cercare"
+      search-empty: "Nessuna opzione trovata"
+      reset: "Ripristina"
+
+    validation:
+      blank: "Questo campo non può essere vuoto"
+      tooShort: "Questo campo deve contenere almeno {min} caratteri"
+      tooLong: "In questo campo sono ammessi al massimo {max} caratteri"
+      greaterThanOrEqualTo: "Il valore inserito in questo campo non può essere inferiore a {gte}"
+      lessThanOrEqualTo: "Il valore inserito in questo campo non può essere superiore a {lte}"
+      notAnInteger: "Inserisci una cifra intera"
+      inclusion: '"{label}" non è un valore valido per questo campo'
+      deleteFailed: "Errore durante l'eliminazione."
+      uploadFailed: "Errore durante il caricamento."
+      format: "{errorMsg}"
+      table: "Almeno una riga della tabella non è stata compilata correttamente."
+      error: "Le domande seguenti non sono state compilate in modo corretto:"

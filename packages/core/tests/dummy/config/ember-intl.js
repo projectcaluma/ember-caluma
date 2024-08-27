@@ -89,7 +89,7 @@ module.exports = function (/* environment */) {
      * @default "function(key,locale) { return true }"
      */
     requiresTranslation(key, locale) {
-      return ["en", "de", "fr"].includes(locale);
+      return ["en", "de", "fr", "it"].includes(locale);
     },
   };
 };

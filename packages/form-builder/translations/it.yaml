@@ -1,0 +1,197 @@
+caluma:
+  form-builder:
+    global:
+      save: "Salva"
+      loading: "Carica"
+      cancel: "Annulla"
+      search: "Cerca"
+      optional: "Facoltativo"
+
+      empty-search: "Nessun risultato trovato. Adegua la ricerca per ottenere risultati migliori."
+
+      not-found:
+        title: "Sembra si sia verificato un errore."
+        subtitle: "La pagina cercata non esiste!"
+        home: "Torna alla pagina principale"
+
+    form:
+      name: "Nome"
+      slug: "Slug"
+      description: "Descrizione"
+      isArchived: "Archiviato"
+      widgetOverride: "Widget personalizzato"
+      isPublished: "Pubblicato"
+      draft: "Bozza"
+      active: "Attivo"
+      all: "Tutti"
+
+      allForms: "Tutti i moduli"
+      new: "Nuovo modulo"
+      empty: "Non abbiamo trovato nessun modulo. Clicca sul pulsante in alto a destra per creare un modulo!"
+      loadMore: "Carica più moduli"
+
+      not-found: "Non è stato trovato un modulo con lo slug ''{slug}''"
+
+    question-list:
+      required:
+        label: "Obbligatorio (JEXL)"
+        not-required: "Facoltativo"
+        required: "Obbligatorio"
+        conditional: "Parzialmente obbligatorio"
+      hidden:
+        label: "Nascosto (JEXL)"
+        not-hidden: "Visibile"
+        hidden: "Nascosto"
+        conditional: "Parzialmente nascosto"
+
+    question:
+      label: "Etichetta"
+      slug: "Slug"
+      type: "Tipo"
+      isRequired: "Campo obbligatorio"
+      staticContent: "Contenuto statico"
+      infoText: "Testo informativo"
+      hintText: "Testo suggerimento"
+      confirmationText: "Testo di conferma"
+      placeholder: "Segnaposto"
+      isHidden: "Nascosto (JEXL)"
+      widgetOverride: "Tipo di widget"
+      isArchived: "Archiviato"
+      type-disabled: "Per evitare di avere dati corrotti non è più possibile modificare il tipo di domanda dopo aver creato una domanda."
+      supportsMarkdownPrefix: "Questo campo sostiene"
+      markdown: "Markdown"
+      dataSource: "Fonte dei dati"
+      formatValidators: "Convalida"
+      defaultValue: "Valore standard"
+      meta: "Metainformazioni"
+
+      general: "In generale"
+      options: "Opzioni"
+
+      min-value: "Valore minimo"
+      max-value: "Valore massimo"
+      min-length: "Lunghezza minima"
+      max-length: "Lunghezza massima"
+      rowForm: "Modulo per righe delle tabelle"
+      subForm: "Modulo per voci"
+      no-selection: "Nessuna selezione"
+      search-placeholder: "Clicca qui per cercare"
+      search-empty: "Nessun modulo trovato"
+      columnsToDisplay: "Colonne da visualizzare nel modulo"
+      calcExpression: "Formula di calcolo (JEXL)"
+
+      new: "Nuova domanda"
+
+      minor-info-title: "Importante!"
+      minor-info: "Per mantenere la coerenza dei dati, l'adeguamento di una domanda non può mai comportare la mutazione del significato della domanda."
+
+      remove: "Elimina domanda"
+      add: "Aggiungi nuova domanda o domanda esistente"
+      search: "Cerca una domanda (label o slug)"
+      create: "o crea una nuova domanda"
+      loadMore: "Carica più domande"
+
+      empty: "Non ha ancora aggiunto nessuna domanda. Clicchi sul pulsante in alto per farlo!"
+      advancedSettings: "Impostazioni avanzate"
+
+      types:
+        IntegerQuestion: "Numero intero"
+        FloatQuestion: "Numero in virgola mobile"
+        MultipleChoiceQuestion: "Selezione multipla"
+        ChoiceQuestion: "Selezione unica"
+        TextQuestion: "Testo"
+        TextareaQuestion: "Testo (più righe)"
+        TableQuestion: "Tabella"
+        FormQuestion: "Modulo"
+        FilesQuestion: "File"
+        StaticQuestion: "Contenuto non interattivo"
+        DateQuestion: "Data"
+        DynamicMultipleChoiceQuestion: "Selezione multipla dinamica"
+        DynamicChoiceQuestion: "Selezione unica dinamica"
+        CalculatedFloatQuestion: "Calcolo (numero in virgola mobile)"
+        ActionButtonQuestion: "Pulsante di operazione"
+
+      confirmText: "Testo di conferma"
+      action: "Operazione"
+      color: "Colore"
+      validateOnEnter: "Convalida quando si accede alla finestra"
+      showValidation: "Visualizza errore di convalida"
+
+      actions:
+        COMPLETE: "Concludi"
+        SKIP: "Tralascia"
+
+      colors:
+        PRIMARY: "Primario"
+        SECONDARY: "Secondario"
+        DEFAULT: "Standard"
+
+      widgetOverrides:
+        powerselect: "Power Select"
+        hidden: "Nascosto"
+        number-separator: "Separatore delle cifre"
+
+      not-found: "Non è stata trovata nessuna domanda con lo slug ''{slug}''"
+
+      hideLabel: "Nascondi etichetta"
+
+      usage:
+        title: "Questa domanda viene usata in {n,plural, =1 {<b>un</b> modulo} other {<b>#</b> moduli}}."
+        references-heading: "Tutti i riferimenti a questa domanda"
+        not-published: "non pubblicati"
+
+    options:
+      delete: "Elimina opzione"
+      archive: "Archivia (nascondi) opzione"
+      restore: "Ripristina opzione"
+
+    notification:
+      form:
+        save:
+          success: "Modulo salvato con successo!"
+          error: "Ops, nel tentativo di salvare il modulo qualcosa è andato storto..."
+
+        create:
+          success: "Modulo creato con successo!"
+          error: "Ops, nel tentativo di creare il modulo qualcosa è andato storto..."
+
+        reorder-questions:
+          success: "Le domande sono state riordinate con successo!"
+          error: "Ops, nel tentativo di riordinare le domande qualcosa è andato storto..."
+
+        reorder-options:
+          success: "Le opzioni sono state riordinate con successo!"
+          error: "Ops, nel tentativo di riordinare le opzioni qualcosa è andato storto..."
+
+        add-question:
+          success: "La domanda è stata aggiunta con successo al modulo!"
+          error: "Ops, nel tentativo di aggiungere la domanda qualcosa è andato storto..."
+
+        remove-question:
+          success: "La domanda è stata eliminata con successo dal modulo!"
+          error: "Ops, nel tentativo di eliminare la domanda qualcosa è andato storto..."
+
+      question:
+        save:
+          success: "La domanda è stata salvata con successo!"
+          error: "Ops, nel tentativo di salvare la domanda qualcosa è andato storto..."
+
+    copy-modal:
+      title: 'Copia "{form}"'
+      name:
+        label: "Nome"
+        hint: "Originale: {name}"
+      slug:
+        label: "Slug"
+        hint: "Originale: {slug}"
+      submit: "Copia"
+
+    validations:
+      form:
+        slug: "Esiste già un modulo con questo slug"
+
+      question:
+        slug: "Esiste già una domanda con questo slug"
+
+      option:
+        slug: "Esiste già un'opzione con questo slug"

@@ -1,0 +1,116 @@
+caluma:
+  distribution:
+    empty: "Non sono ancora state create richieste."
+    no-actions: "Non sono disponibili operazioni nello stato attuale."
+    start: "Avvia circolazione"
+    send: "Invia richieste in corso"
+    complete: "Concludi circolazione"
+    skip: "Tralascia circolazione"
+    reopen: "Riavvia circolazione"
+    check-inquiries: "Segna le prese di posizione come verificate"
+    send-confirm: "Inviare davvero <b>{count, plural, =1 {una richiesta in corso} other {{count} richieste in corso}}</b>?"
+    complete-confirm: "Nella circolazione attuale <b>{count, plural, =1 {vi è una richiesta in corso} other {vi sono {count} richieste in corso}}</b. Concludendo la circolazione vengono interrotte tutte le rimanenti richieste in corso. Desidera continuare?"
+    complete-confirm-empty: "Concludere davvero la circolazione?"
+    skip-confirm: "Desidera davvero tralasciare la circolazione?"
+    reopen-confirm: "Desidera davvero riaprire la circolazione?"
+    send-error: "Errore nel tentativo di inviare le richieste in corso"
+    complete-error: "Errore nel tentativo di concludere la circolazione"
+    skip-error: "Errore nel tentativo di tralasciare la circolazione"
+    reopen-error: "Errore nel tentativo di riaprire la circolazione"
+    check-inquiries-error: "Errore nel tentativo di segnare le prese di posizione come verificate"
+
+    attention-to: "{abbr, select, true {all'att.} other {all'attenzione}} {subject}"
+
+    more: "più"
+    less: "meno"
+
+    details: "Dettagli"
+    not-allowed-hint: "Ha tuttavia la possibilità di elaborare il modulo e i dati inseriti saranno salvati automaticamente."
+
+    inquiry:
+      sent-at: "Inviato in data"
+      closed-at: "Risposta in data"
+      deadline: "Scadenza"
+      assigned-user: "Persona responsabile"
+
+    edit:
+      link: "Modifica"
+      send: "Invia richiesta attuale"
+      send-error: "Errore nel tentativo di inviare la richiesta"
+      send-not-allowed: "Non dispone del diritto di inviare questa richiesta."
+      edit-sent: "<b>Attenzione:</b> sta elaborando una richiesta già inviata. In caso di modifiche essenziali dei dettagli, può essere che il servizio destinatario non se ne accorga poiché non viene informato."
+
+    answer:
+      link: "Rispondi"
+
+      complete-error: "Errore nel tentativo di concludere il compito"
+      complete-not-allowed: "Non dispone del diritto di inviare questa risposta."
+
+      buttons:
+        compose:
+          label: "Rilascia per il controllo"
+          status: "In elaborazione"
+        adjust:
+          label: "Rilasciare adeguamento per il controllo"
+          status: "In rielaborazione"
+        confirm:
+          label: "Conferma"
+          status: "In fase di verifica"
+        revise:
+          label: "Rielabora"
+
+      details:
+        show: "Visualizza dettagli"
+        hide: "Nascondi dettagli"
+
+    new:
+      title: "Nuova richiesta"
+      search: "Cerca..."
+      suggestions: "Raccomandazioni"
+      empty: "Non sono stati trovati servizi"
+      groups: "{count} {count, plural, =1 {servizio} other {servizi}}"
+      selected: "{count, plural, other {selezionati}}"
+      reset: "Ripristina"
+      create-draft: "Crea bozza"
+      continue: "Avanti"
+      back: "Indietro"
+      error: "Errore nel tentativo di creare {count, plural, =1 {le richieste} other {la richiesta}}"
+
+    reminder:
+      link: "Invia reminder"
+      confirm: "Inviare davvero un reminder per questa richiesta?"
+      title: "Reminder inviati"
+      no-reminders: "Per la presente richiesta non sono ancora stati inviati reminder."
+      success: "Il reminder è stato inviato con successo"
+      error: "Errore nel tentativo di inviare il reminder"
+
+    types:
+      controlling: "Prese di posizione richieste"
+      addressed: "Proprie prese di posizione"
+      more: "Altre prese di posizione"
+
+    status:
+      draft: "Bozza"
+      skipped: "Terminata prima del tempo"
+      sent: "Inviata"
+      in-progress: "In elaborazione"
+      positive: "Positiva"
+      negative: "Negativa"
+      needs-interaction: "Operazione necessaria"
+
+    notfound:
+      title: "404"
+      subtitle: "Pagina non trovata!"
+      back: "Torna alla"
+      link: "Pagina iniziale"
+
+    withdraw:
+      link: "Ritira"
+      confirm: "Ritirare davvero la richiesta?"
+      error: "Errore nel tentativo di ritirare la richiesta"
+      status: "Ritirate"
+
+    reopen-inquiry:
+      link: "Riaprire"
+      confirm: "Riaprire davvero la richiesta?"
+      error: "Errore nel tentativo di riaprire la richiesta"
