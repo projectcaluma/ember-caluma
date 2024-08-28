@@ -88,7 +88,7 @@
     "qunit": "2.21.1",
     "qunit-dom": "3.2.0",
     "sinon": "18.0.0",
-    "webpack": "5.93.0"
+    "webpack": "5.94.0"
   },
   "peerDependencies": {
     "ember-engines": "^0.11.0",
