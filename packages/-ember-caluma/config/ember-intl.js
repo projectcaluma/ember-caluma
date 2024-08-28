@@ -93,11 +93,16 @@ module.exports = function (/* environment */) {
         return false;
       }
 
-      const requiredLocales = ["en", "de", "it"];
+      let requiredLocales = ["en", "de", "it"];
 
-      // form builder is not yet supported in french
-      if (!key.startsWith("caluma.form-builder")) {
-        requiredLocales.push("fr");
+      // form builder is not translated to french
+      if (key.startsWith("caluma.form-builder")) {
+        requiredLocales = requiredLocales.filter((lang) => lang !== "fr");
+      }
+
+      // analytics is not translated to italian
+      if (key.startsWith("caluma.analytics")) {
+        requiredLocales = requiredLocales.filter((lang) => lang !== "it");
       }
 
       return requiredLocales.includes(locale);
