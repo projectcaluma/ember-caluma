@@ -5,6 +5,7 @@
         (and @disabled (has-question-type @field.question 'action-button'))
         'uk-hidden'
       }}"
+    hidden={{this.hasHiddenWidget}}
     data-question-slug={{@field.question.slug}}
     data-question-type={{@field.questionType}}
     {{did-insert this.registerComponent}}

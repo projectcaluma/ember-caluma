@@ -31,6 +31,13 @@ export default class CfFieldComponent extends Component {
     this.args.field._components.delete(this);
   }
 
+  get hasHiddenWidget() {
+    return (
+      this.args.field?.question.raw.meta.widgetOverride ===
+      "cf-field/input/hidden"
+    );
+  }
+
   get visible() {
     return (
       !this.args.field?.hidden &&
