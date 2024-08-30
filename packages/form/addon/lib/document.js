@@ -188,6 +188,17 @@ export default class Document extends Base {
     });
     documentJexl.addTransform("stringify", (input) => JSON.stringify(input));
     documentJexl.addTransform("flatten", flatten);
+    documentJexl.addTransform("length", (input) => {
+      if (input?.length !== undefined) {
+        // strings, arrays
+        return input.length;
+      } else if (input instanceof Object) {
+        // objects
+        return Object.keys(input).length;
+      }
+
+      return null;
+    });
 
     return documentJexl;
   }
