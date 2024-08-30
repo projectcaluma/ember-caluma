@@ -265,6 +265,25 @@ module("Unit | Library | document", function (hooks) {
     );
   });
 
+  test.each(
+    "it transforms correcty with count transform",
+    [
+      ["['test1', 'test2']|length", 2],
+      ["{key: 1}|length", 1],
+      ["'foobar'|length", 6],
+      ["1|length", null],
+      ["1.1|length", null],
+      ["null|length", null],
+    ],
+    async function (assert, [expression, expected]) {
+      assert.strictEqual(
+        await this.document.jexl.eval(expression),
+        expected,
+        `Expected expression "${expression}" to evaluate to "${expected}"`,
+      );
+    },
+  );
+
   test("computes the correct jexl context (task form)", async function (assert) {
     assert.expect(1);
 
