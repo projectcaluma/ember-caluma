@@ -34,6 +34,9 @@ module(
 
       assert.strictEqual(this.field.value, 1234);
       assert.dom("input").hasValue("1’234");
+
+      await fillIn("input", "0");
+      assert.dom("input").hasValue("0");
     });
 
     test("it converts floats to formatted strings and saves them properly", async function (assert) {
@@ -47,6 +50,9 @@ module(
 
       assert.strictEqual(this.field.value, 1234.123);
       assert.dom("input").hasValue("1’234.123");
+
+      await fillIn("input", "0");
+      assert.dom("input").hasValue("0");
     });
 
     test("it displays calculated floats properly", async function (assert) {

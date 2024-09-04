@@ -11,7 +11,7 @@ export default class CfFieldInputNumberSeparatorComponent extends Component {
   }
 
   get displayValue() {
-    if (!this.args.field.value) {
+    if (isNaN(parseFloat(this.args.field.value))) {
       return "";
     }
 
