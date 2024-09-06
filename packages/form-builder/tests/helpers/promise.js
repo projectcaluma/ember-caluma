@@ -1,5 +1,4 @@
 import { later } from "@ember/runloop";
-import { Promise } from "rsvp";
 
 export function resolveAfter(ms) {
   return new Promise((resolve, reject) => {

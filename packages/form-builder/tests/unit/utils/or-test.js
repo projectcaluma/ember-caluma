@@ -2,7 +2,6 @@
  * Copied and updated from nucleartide/ember-changeset-hofs
  */
 import { module, test } from "qunit";
-import { resolve } from "rsvp";
 
 import or from "@projectcaluma/ember-form-builder/utils/or";
 import { resolveAfter, rejectAfter } from "dummy/tests/helpers/promise";
@@ -173,9 +172,9 @@ module("Unit | Utility | or", function () {
 
     test("should return the last error if all validators return errors", async function (assert) {
       const validators = [
-        () => resolve("first error"),
-        () => resolve("second error"),
-        () => resolve("third error"),
+        () => Promise.resolve("first error"),
+        () => Promise.resolve("second error"),
+        () => Promise.resolve("third error"),
       ];
 
       const validationFn = or(...validators);
@@ -187,21 +186,21 @@ module("Unit | Utility | or", function () {
 
       {
         const validators1 = [
-          () => resolve("first error"),
-          () => resolve("second error"),
-          () => resolve("third error"),
+          () => Promise.resolve("first error"),
+          () => Promise.resolve("second error"),
+          () => Promise.resolve("third error"),
         ];
 
         const validators2 = [
-          () => resolve("fourth error"),
-          () => resolve("fifth error"),
-          () => resolve("sixth error"),
+          () => Promise.resolve("fourth error"),
+          () => Promise.resolve("fifth error"),
+          () => Promise.resolve("sixth error"),
         ];
 
         const validators3 = [
-          () => resolve("seventh error"),
-          () => resolve("eighth error"),
-          () => resolve("ninth error"),
+          () => Promise.resolve("seventh error"),
+          () => Promise.resolve("eighth error"),
+          () => Promise.resolve("ninth error"),
         ];
 
         const validationFn = or(
@@ -214,21 +213,21 @@ module("Unit | Utility | or", function () {
 
       {
         const validators1 = [
-          () => resolve("first error"),
-          () => resolve("second error"),
-          () => resolve("third error"),
+          () => Promise.resolve("first error"),
+          () => Promise.resolve("second error"),
+          () => Promise.resolve("third error"),
         ];
 
         const validators2 = [
-          () => resolve("fourth error"),
-          () => resolve(true), // derp
-          () => resolve("sixth error"),
+          () => Promise.resolve("fourth error"),
+          () => Promise.resolve(true), // derp
+          () => Promise.resolve("sixth error"),
         ];
 
         const validators3 = [
-          () => resolve("seventh error"),
-          () => resolve("eighth error"),
-          () => resolve("ninth error"),
+          () => Promise.resolve("seventh error"),
+          () => Promise.resolve("eighth error"),
+          () => Promise.resolve("ninth error"),
         ];
 
         const validationFn = or(
