@@ -2,7 +2,6 @@
  * Copied and updated from nucleartide/ember-changeset-hofs
  */
 import { module, test } from "qunit";
-import { resolve } from "rsvp";
 
 import and from "@projectcaluma/ember-form-builder/utils/and";
 import { resolveAfter, rejectAfter } from "dummy/tests/helpers/promise";
@@ -154,21 +153,21 @@ module("Unit | Utility | and", function () {
 
       {
         const validators1 = [
-          () => resolve("first error"),
-          () => resolve("second error"),
-          () => resolve("third error"),
+          () => Promise.resolve("first error"),
+          () => Promise.resolve("second error"),
+          () => Promise.resolve("third error"),
         ];
 
         const validators2 = [
-          () => resolve("fourth error"),
-          () => resolve("fifth error"),
-          () => resolve("sixth error"),
+          () => Promise.resolve("fourth error"),
+          () => Promise.resolve("fifth error"),
+          () => Promise.resolve("sixth error"),
         ];
 
         const validators3 = [
-          () => resolve("seventh error"),
-          () => resolve("eighth error"),
-          () => resolve("ninth error"),
+          () => Promise.resolve("seventh error"),
+          () => Promise.resolve("eighth error"),
+          () => Promise.resolve("ninth error"),
         ];
 
         const validationFn = and(
@@ -181,21 +180,21 @@ module("Unit | Utility | and", function () {
 
       {
         const validators1 = [
-          () => resolve(true),
-          () => resolve(true),
-          () => resolve(true),
+          () => Promise.resolve(true),
+          () => Promise.resolve(true),
+          () => Promise.resolve(true),
         ];
 
         const validators2 = [
-          () => resolve(true),
-          () => resolve("leeroy jenkins"),
-          () => resolve(true),
+          () => Promise.resolve(true),
+          () => Promise.resolve("leeroy jenkins"),
+          () => Promise.resolve(true),
         ];
 
         const validators3 = [
-          () => resolve(true),
-          () => resolve(true),
-          () => resolve(true),
+          () => Promise.resolve(true),
+          () => Promise.resolve(true),
+          () => Promise.resolve(true),
         ];
 
         const validationFn = and(
