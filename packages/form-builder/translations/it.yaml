@@ -119,7 +119,7 @@ caluma:
 
       actions:
         COMPLETE: "Concludi"
-        SKIP: "Tralascia"
+        SKIP: "Ignora"
 
       colors:
         PRIMARY: "Primario"

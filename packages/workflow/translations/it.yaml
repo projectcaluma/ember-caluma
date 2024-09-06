@@ -1,15 +1,15 @@
 caluma:
   mutate-work-item:
     complete: "Concludi"
-    skip: "Tralascia"
+    skip: "Ignora"
     cancel: "Annulla"
     success:
       complete: "Compito concluso con successo!"
-      skip: "Compito tralasciato con successo!"
+      skip: "Compito ignorato con successo!"
       cancel: "Compito annullato con successo!"
     error:
       complete: "Ops, nel tentativo di concludere il compito qualcosa è andato storto..."
-      skip: "Ops, nel tentativo di tralasciare il compito qualcosa è andato storto..."
+      skip: "Ops, nel tentativo di ignorare il compito qualcosa è andato storto..."
       cancel: "Ops, nel tentativo di annullare il compito qualcosa è andato storto..."
 
   task-button:
