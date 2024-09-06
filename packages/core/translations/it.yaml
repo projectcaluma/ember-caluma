@@ -5,7 +5,7 @@ caluma:
         READY: "In corso"
         COMPLETED: "Evaso"
         CANCELED: "Demolito"
-        SKIPPED: "Tralasciato"
+        SKIPPED: "Ignorato"
         SUSPENDED: "In sospeso"
     case:
       status:
