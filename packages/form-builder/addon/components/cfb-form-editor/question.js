@@ -363,11 +363,11 @@ export default class CfbFormEditorQuestion extends Component {
       (changeset.get("options") || [])
         .filter((option) => option.get("isDirty"))
         .map(async (option) => {
-          const { label, slug, isArchived } = option;
+          const { label, slug, isArchived, isHidden } = option;
 
           await this.apollo.mutate({
             mutation: saveOptionMutation,
-            variables: { input: { label, slug, isArchived } },
+            variables: { input: { label, slug, isArchived, isHidden } },
           });
         }),
     );

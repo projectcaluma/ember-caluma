@@ -8,80 +8,14 @@
     class="uk-list uk-list-divider uk-form-controls uk-margin-small-top"
   >
     {{#each @value as |row i|}}
-      <li class="cfb-option-row" data-test-row={{concat "option-" (add i 1)}}>
-        <ValidatedForm @model={{row}} as |f|>
-          <div
-            uk-grid
-            class="uk-grid-small uk-flex uk-flex-top"
-            id={{row.slug}}
-          >
-            <div class="uk-width-auto uk-flex uk-flex-middle">
-              {{#if this.canReorder}}
-                <span
-                  data-test-sort-handle
-                  uk-icon="menu"
-                  class="uk-sortable-handle uk-margin-small-right"
-                  role="button"
-                ></span>
-              {{/if}}
-              {{#if (is-empty row.id)}}
-                <button
-                  data-test-delete-row
-                  type="button"
-                  class="uk-icon-button"
-                  uk-icon="trash"
-                  title={{t "caluma.form-builder.options.delete"}}
-                  {{on "click" (fn this.deleteRow row)}}
-                >
-                </button>
-              {{else}}
-                <button
-                  data-test-archive-row
-                  type="button"
-                  class="uk-icon-button"
-                  uk-icon={{if row.isArchived "refresh" "close"}}
-                  title={{t
-                    (concat
-                      "caluma.form-builder.options."
-                      (if row.isArchived "restore" "archive")
-                    )
-                  }}
-                  {{on
-                    "click"
-                    (fn (changeset-set row "isArchived") (not row.isArchived))
-                  }}
-                >
-                </button>
-              {{/if}}
-            </div>
-            <div class="uk-width-expand">
-              <f.input
-                @name="label"
-                @inputName={{concat "option-" (add i 1) "-label"}}
-                @required={{true}}
-                @disabled={{row.isArchived}}
-                @submitted={{@submitted}}
-                @on-update={{this.updateLabel}}
-              />
-            </div>
-            <div class="uk-width-1-4">
-              <f.input
-                @name="slug"
-                @inputName={{concat "option-" (add i 1) "-slug"}}
-                @required={{true}}
-                @disabled={{not (is-empty row.id)}}
-                @submitted={{@submitted}}
-                @renderComponent={{component
-                  "cfb-slug-input"
-                  hidePrefix=true
-                  prefix=@model.slug
-                  onUnlink=(fn (mut row.slugUnlinked) true)
-                }}
-              />
-            </div>
-          </div>
-        </ValidatedForm>
-      </li>
+      <CfbFormEditor::QuestionOption
+        @i={{i}}
+        @row={{row}}
+        @model={{@model}}
+        @canReorder={{this.canReorder}}
+        @deleteRow={{fn this.deleteRow row}}
+        @updateLabel={{this.updateLabel}}
+      />
     {{/each}}
     <li class="uk-text-center">
       <button
