@@ -16,7 +16,7 @@
     "@apollo/client": "^3.11.4",
     "@babel/core": "^7.25.2",
     "@ember/string": "^4.0.0",
-    "@embroider/macros": "^1.16.5",
+    "@embroider/macros": "^1.16.6",
     "@glimmer/tracking": "^1.1.2",
     "ember-apollo-client": "~4.0.2",
     "ember-auto-import": "^2.7.4",
