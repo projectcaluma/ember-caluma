@@ -48,7 +48,7 @@
     "@semantic-release/git": "10.0.1",
     "@semantic-release/github": "10.3.3",
     "@semantic-release/release-notes-generator": "14.0.1",
-    "concurrently": "8.2.2",
+    "concurrently": "9.0.1",
     "ember-template-lint": "6.0.0",
     "ember-template-lint-plugin-prettier": "5.0.0",
     "eslint": "8.57.0",
