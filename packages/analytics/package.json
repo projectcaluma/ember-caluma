@@ -32,7 +32,7 @@
     "ember-engines-router-service": "^0.6.0",
     "ember-fetch": "^8.1.2",
     "ember-intl": "^7.0.5",
-    "ember-power-select": "^8.3.0",
+    "ember-power-select": "^8.3.1",
     "ember-sortable": "^5.1.2",
     "ember-uikit": "^9.1.2",
     "ember-validated-form": "^7.0.1",
