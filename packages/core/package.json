@@ -19,7 +19,7 @@
     "@embroider/macros": "^1.16.6",
     "@glimmer/tracking": "^1.1.2",
     "ember-apollo-client": "~4.0.2",
-    "ember-auto-import": "^2.7.4",
+    "ember-auto-import": "^2.8.0",
     "ember-cli-babel": "^8.2.0",
     "ember-cli-htmlbars": "^6.3.0",
     "ember-concurrency": "^4.0.2",
