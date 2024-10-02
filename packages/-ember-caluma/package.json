@@ -76,7 +76,7 @@
     "miragejs": "0.1.48",
     "sass": "1.79.4",
     "tracked-built-ins": "3.3.0",
-    "uikit": "3.21.10",
+    "uikit": "3.21.13",
     "webpack": "5.94.0"
   },
   "ember": {
