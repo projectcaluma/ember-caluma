@@ -300,8 +300,8 @@ importers:
         specifier: 0.1.48
         version: 0.1.48
       sass:
-        specifier: 1.79.2
-        version: 1.79.2
+        specifier: 1.79.4
+        version: 1.79.4
       tracked-built-ins:
         specifier: 3.3.0
         version: 3.3.0
@@ -475,8 +475,8 @@ importers:
         specifier: 3.2.0
         version: 3.2.0
       sass:
-        specifier: 1.79.2
-        version: 1.79.2
+        specifier: 1.79.4
+        version: 1.79.4
       uikit:
         specifier: 3.21.10
         version: 3.21.10
@@ -812,8 +812,8 @@ importers:
         specifier: 3.2.0
         version: 3.2.0
       sass:
-        specifier: 1.79.2
-        version: 1.79.2
+        specifier: 1.79.4
+        version: 1.79.4
       uikit:
         specifier: 3.21.10
         version: 3.21.10
@@ -1008,8 +1008,8 @@ importers:
         specifier: 3.2.0
         version: 3.2.0
       sass:
-        specifier: 1.79.2
-        version: 1.79.2
+        specifier: 1.79.4
+        version: 1.79.4
       uikit:
         specifier: 3.21.10
         version: 3.21.10
@@ -9787,8 +9787,8 @@ packages:
     engines: {node: 10.* || >= 12.*}
     hasBin: true
 
-  sass@1.79.2:
-    resolution: {integrity: sha512-YmT1aoF1MwHsZEu/eXhbAJNsPGAhNP4UixW9ckEwWCvPcVdVF0/C104OGDVEqtoctKq0N+wM20O/rj+sSPsWeg==}
+  sass@1.79.4:
+    resolution: {integrity: sha512-K0QDSNPXgyqO4GZq2HO5Q70TLxTH6cIT59RdoCHMivrC8rqzaTw5ab9prjz9KUN1El4FLXrBXJhik61JR4HcGg==}
     engines: {node: '>=14.0.0'}
     hasBin: true
 
@@ -12205,7 +12205,7 @@ snapshots:
     dependencies:
       '@csstools/sass-import-resolve': 1.0.0
       postcss: 8.4.41
-      sass: 1.79.2
+      sass: 1.79.4
       source-map: 0.7.4
 
   '@csstools/sass-import-resolve@1.0.0': {}
@@ -22208,7 +22208,7 @@ snapshots:
       minimist: 1.2.8
       walker: 1.0.8
 
-  sass@1.79.2:
+  sass@1.79.4:
     dependencies:
       chokidar: 4.0.0
       immutable: 4.3.7
