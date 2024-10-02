@@ -76,7 +76,7 @@
     "sass": "1.79.4",
     "uikit": "3.21.13",
     "uuid": "10.0.0",
-    "webpack": "5.94.0"
+    "webpack": "5.95.0"
   },
   "peerDependencies": {
     "@projectcaluma/ember-workflow": "workspace:^",
