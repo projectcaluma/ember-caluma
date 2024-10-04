@@ -48,7 +48,7 @@
   },
   "devDependencies": {
     "@ember/optional-features": "2.1.0",
-    "@ember/test-helpers": "3.3.1",
+    "@ember/test-helpers": "4.0.4",
     "@embroider/test-setup": "4.0.0",
     "@faker-js/faker": "9.0.3",
     "@projectcaluma/ember-testing": "workspace:*",
