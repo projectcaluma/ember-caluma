@@ -53,7 +53,7 @@
     "ember-try": "3.0.0",
     "loader.js": "4.7.0",
     "qunit": "2.22.0",
-    "qunit-dom": "3.2.0",
+    "qunit-dom": "3.2.1",
     "uikit": "3.21.13",
     "webpack": "5.95.0"
   },
