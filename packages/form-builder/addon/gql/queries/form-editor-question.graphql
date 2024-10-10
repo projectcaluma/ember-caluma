@@ -63,6 +63,8 @@ query FormEditorQuestion($slug: String!) {
         }
         ... on DateQuestion {
           hintText
+          minDate
+          maxDate
           defaultAnswer {
             id
             dateValue: value

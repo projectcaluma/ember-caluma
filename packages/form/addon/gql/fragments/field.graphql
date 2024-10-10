@@ -104,6 +104,8 @@ fragment SimpleQuestion on Question {
       value
     }
     hintText
+    minDate
+    maxDate
   }
   ... on StaticQuestion {
     staticContent
