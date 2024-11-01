@@ -82,6 +82,9 @@
         "ember-source": "^5.0.0",
         "ember-resources>ember-concurrency": "^4.0.0"
       }
+    },
+    "overrides": {
+      "ember-inflector": "5.0.2"
     }
   },
   "publishConfig": {
