@@ -89,4 +89,7 @@ export default class CaReportPreviewComponent extends Component {
     // Default to string
     return "s";
   }
+
+  // cleaning needed because excel does not support carriage returns
+  cleanValue = (value) => value?.replaceAll(/\r/g, "");
 }

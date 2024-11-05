@@ -30,7 +30,10 @@
         {{#each this.data.value.fields as |row|}}
           <tr>
             {{#each row as |entry|}}
-              <td data-t={{this.getXLSXType entry.value}}>
+              <td
+                data-t={{this.getXLSXType entry.value}}
+                data-v={{this.cleanValue entry.value}}
+              >
                 {{entry.value}}
               </td>
             {{/each}}
@@ -39,7 +42,10 @@
         {{#if this.data.value.summary}}
           <tr class="uk-text-bold">
             {{#each this.data.value.summary as |summary|}}
-              <td data-t={{this.getXLSXType summary.value}}>
+              <td
+                data-t={{this.getXLSXType summary.value}}
+                data-v={{this.cleanValue summary.value}}
+              >
                 {{summary.value}}
               </td>
             {{/each}}
