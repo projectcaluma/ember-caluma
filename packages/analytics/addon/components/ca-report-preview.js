@@ -90,6 +90,14 @@ export default class CaReportPreviewComponent extends Component {
     return "s";
   }
 
+  getCSSClass(value) {
+    if (value?.includes("\n")) {
+      return "multiline-data";
+    }
+
+    return "";
+  }
+
   // cleaning needed because excel does not support carriage returns
   cleanValue = (value) => value?.replaceAll(/\r/g, "");
 }

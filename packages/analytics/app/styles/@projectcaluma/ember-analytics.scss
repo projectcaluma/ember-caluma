@@ -4,3 +4,10 @@
 .sortable-item.is-dragging {
   z-index: 10;
 }
+
+.multiline-data {
+  white-space: pre-line;
+  line-height: normal;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
