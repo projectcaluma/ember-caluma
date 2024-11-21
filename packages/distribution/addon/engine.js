@@ -1,3 +1,4 @@
+import { extendResolver } from "ember-can";
 import Engine from "ember-engines/engine";
 import loadInitializers from "ember-load-initializers";
 import Resolver from "ember-resolver";
@@ -8,7 +9,7 @@ const { modulePrefix } = config;
 
 export default class DistributionEngine extends Engine {
   modulePrefix = modulePrefix;
-  Resolver = Resolver;
+  Resolver = extendResolver(Resolver);
 
   dependencies = {
     services: [
