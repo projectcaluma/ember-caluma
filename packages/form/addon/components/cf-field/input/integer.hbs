@@ -13,3 +13,8 @@
   readonly={{@disabled}}
   {{on "input" this.input}}
 />
+
+{{log @field.answer}}
+{{#if @field.answer.historicalValue}}
+  Geändert! War: {{@field.answer.historicalValue}}
+{{/if}}
