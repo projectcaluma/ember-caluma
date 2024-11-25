@@ -258,8 +258,8 @@ importers:
         specifier: 7.0.7
         version: 7.0.7(@ember/test-helpers@4.0.4(@babel/core@7.26.0)(@glint/template@1.5.0)(ember-source@5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1)))(@glint/template@1.5.0)(typescript@5.7.2)(webpack@5.96.1)
       ember-load-initializers:
-        specifier: 2.1.2
-        version: 2.1.2(@babel/core@7.26.0)
+        specifier: 3.0.1
+        version: 3.0.1(ember-source@5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1))
       ember-math-helpers:
         specifier: 4.0.0
         version: 4.0.0(ember-source@5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1))
@@ -445,8 +445,8 @@ importers:
         specifier: 0.11.0
         version: 0.11.0(@glint/template@1.5.0)(ember-engines-router-service@0.6.0(@glint/template@1.5.0)(ember-source@5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1)))(ember-source@5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1))
       ember-load-initializers:
-        specifier: 2.1.2
-        version: 2.1.2(@babel/core@7.26.0)
+        specifier: 3.0.1
+        version: 3.0.1(ember-source@5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1))
       ember-modifier:
         specifier: 4.2.0
         version: 4.2.0(@babel/core@7.26.0)(ember-source@5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1))
@@ -607,8 +607,8 @@ importers:
         specifier: 4.0.2
         version: 4.0.2
       ember-load-initializers:
-        specifier: 2.1.2
-        version: 2.1.2(@babel/core@7.26.0)
+        specifier: 3.0.1
+        version: 3.0.1(ember-source@5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1))
       ember-qunit:
         specifier: 8.1.1
         version: 8.1.1(@ember/test-helpers@4.0.4(@babel/core@7.26.0)(@glint/template@1.5.0)(ember-source@5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1)))(@glint/template@1.5.0)(ember-source@5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1))(qunit@2.22.0)
@@ -782,8 +782,8 @@ importers:
         specifier: 0.11.0
         version: 0.11.0(@glint/template@1.5.0)(ember-engines-router-service@0.6.0(@glint/template@1.5.0)(ember-source@5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1)))(ember-source@5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1))
       ember-load-initializers:
-        specifier: 2.1.2
-        version: 2.1.2(@babel/core@7.26.0)
+        specifier: 3.0.1
+        version: 3.0.1(ember-source@5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1))
       ember-qunit:
         specifier: 8.1.1
         version: 8.1.1(@ember/test-helpers@4.0.4(@babel/core@7.26.0)(@glint/template@1.5.0)(ember-source@5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1)))(@glint/template@1.5.0)(ember-source@5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1))(qunit@2.22.0)
@@ -978,8 +978,8 @@ importers:
         specifier: 4.0.2
         version: 4.0.2
       ember-load-initializers:
-        specifier: 2.1.2
-        version: 2.1.2(@babel/core@7.26.0)
+        specifier: 3.0.1
+        version: 3.0.1(ember-source@5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1))
       ember-qunit:
         specifier: 8.1.1
         version: 8.1.1(@ember/test-helpers@4.0.4(@babel/core@7.26.0)(@glint/template@1.5.0)(ember-source@5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1)))(@glint/template@1.5.0)(ember-source@5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1))(qunit@2.22.0)
@@ -1193,8 +1193,8 @@ importers:
         specifier: 0.11.0
         version: 0.11.0(@glint/template@1.5.0)(ember-engines-router-service@0.6.0(@glint/template@1.5.0)(ember-source@5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1)))(ember-source@5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1))
       ember-load-initializers:
-        specifier: 2.1.2
-        version: 2.1.2(@babel/core@7.26.0)
+        specifier: 3.0.1
+        version: 3.0.1(ember-source@5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1))
       ember-qunit:
         specifier: 8.1.1
         version: 8.1.1(@ember/test-helpers@4.0.4(@babel/core@7.26.0)(@glint/template@1.5.0)(ember-source@5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1)))(@glint/template@1.5.0)(ember-source@5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1))(qunit@2.22.0)
@@ -1330,8 +1330,8 @@ importers:
         specifier: 4.0.2
         version: 4.0.2
       ember-load-initializers:
-        specifier: 2.1.2
-        version: 2.1.2(@babel/core@7.26.0)
+        specifier: 3.0.1
+        version: 3.0.1(ember-source@5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1))
       ember-qunit:
         specifier: 8.1.1
         version: 8.1.1(@ember/test-helpers@4.0.4(@babel/core@7.26.0)(@glint/template@1.5.0)(ember-source@5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1)))(@glint/template@1.5.0)(ember-source@5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1))(qunit@2.22.0)
@@ -1457,8 +1457,8 @@ importers:
         specifier: 4.0.2
         version: 4.0.2
       ember-load-initializers:
-        specifier: 2.1.2
-        version: 2.1.2(@babel/core@7.26.0)
+        specifier: 3.0.1
+        version: 3.0.1(ember-source@5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1))
       ember-qunit:
         specifier: 8.1.1
         version: 8.1.1(@ember/test-helpers@4.0.4(@babel/core@7.26.0)(@glint/template@1.5.0)(ember-source@5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1)))(@glint/template@1.5.0)(ember-source@5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1))(qunit@2.22.0)
@@ -2057,11 +2057,6 @@ packages:
     peerDependencies:
       '@babel/core': ^7.0.0-0
 
-  '@babel/plugin-transform-typescript@7.4.5':
-    resolution: {integrity: sha512-RPB/YeGr4ZrFKNwfuQRlMf2lxoCUaU01MTw39/OFE/RiL8HDjtn68BwEPft1P7JN4akyEmjGWAMNldOV7o9V2g==}
-    peerDependencies:
-      '@babel/core': ^7.0.0-0
-
   '@babel/plugin-transform-typescript@7.5.5':
     resolution: {integrity: sha512-pehKf4m640myZu5B2ZviLaiBlxMCjSZ1qTEO459AXKX5GnPueyulJeCqZFs1nz/Ya2dDzXQ1NxZ/kKNWyD4h6w==}
     peerDependencies:
@@ -2311,7 +2306,7 @@ packages:
     resolution: {integrity: sha512-4qZNh2ZbmKBSwE2jUHYl8QNlfqU9f4ww+z3HO70aJLtFjmnwWrsENi1N9st0mWEpR201UlEiFvF3gmyjv2Hn4g==}
     engines: {node: '>= 18.20.4'}
     peerDependencies:
-      '@ember/string': 4.0.0
+      '@ember/string': ^3.1.1 || ^4.0.0
       '@warp-drive/core-types': 0.0.0-beta.12
       ember-inflector: ^4.0.2 || ^5.0.0
     peerDependenciesMeta:
@@ -5515,10 +5510,6 @@ packages:
   ember-cli-typescript-blueprint-polyfill@0.1.0:
     resolution: {integrity: sha512-g0weUTOnHmPGqVZzkQTl3Nbk9fzEdFkEXydCs5mT1qBjXh8eQ6VlmjjGD5/998UXKuA0pLSCVVMbSp/linLzGA==}
 
-  ember-cli-typescript@2.0.2:
-    resolution: {integrity: sha512-7I5azCTxOgRDN8aSSnJZIKSqr+MGnT+jLTUbBYqF8wu6ojs2DUnTePxUcQMcvNh3Q3B1ySv7Q/uZFSjdU9gSjA==}
-    engines: {node: 6.* || 8.* || >= 10.*}
-
   ember-cli-typescript@3.0.0:
     resolution: {integrity: sha512-lo5YArbJzJi5ssvaGqTt6+FnhTALnSvYVuxM7lfyL1UCMudyNJ94ovH5C7n5il7ATd6WsNiAPRUO/v+s5Jq/aA==}
     engines: {node: 8.* || >= 10.*}
@@ -5706,9 +5697,11 @@ packages:
       '@ember/test-helpers':
         optional: true
 
-  ember-load-initializers@2.1.2:
-    resolution: {integrity: sha512-CYR+U/wRxLbrfYN3dh+0Tb6mFaxJKfdyz+wNql6cqTrA0BBi9k6J3AaKXj273TqvEpyyXegQFFkZEiuZdYtgJw==}
-    engines: {node: 6.* || 8.* || >= 10.*}
+  ember-load-initializers@3.0.1:
+    resolution: {integrity: sha512-qV3vxJKw5+7TVDdtdLPy8PhVsh58MlK8jwzqh5xeOwJPNP7o0+BlhvwoIlLYTPzGaHdfjEIFCgVSyMRGd74E1g==}
+    engines: {node: '>= 18.*'}
+    peerDependencies:
+      ember-source: '>= 5'
 
   ember-math-helpers@4.0.0:
     resolution: {integrity: sha512-f83fUNp9/DbnPK6WWiYDLdxSePMC2YVxt7aZZPsDy3Zlwp75mhzUknbqd6wSCeKwJYJm+1xh0l/SygxzLvKgnw==}
@@ -11528,12 +11521,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@babel/plugin-transform-typescript@7.4.5(@babel/core@7.26.0)':
-    dependencies:
-      '@babel/core': 7.26.0
-      '@babel/helper-plugin-utils': 7.25.9
-      '@babel/plugin-syntax-typescript': 7.25.9(@babel/core@7.26.0)
-
   '@babel/plugin-transform-typescript@7.5.5(@babel/core@7.26.0)':
     dependencies:
       '@babel/core': 7.26.0
@@ -16547,24 +16534,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  ember-cli-typescript@2.0.2(@babel/core@7.26.0):
-    dependencies:
-      '@babel/plugin-proposal-class-properties': 7.18.6(@babel/core@7.26.0)
-      '@babel/plugin-transform-typescript': 7.4.5(@babel/core@7.26.0)
-      ansi-to-html: 0.6.15
-      debug: 4.3.7
-      ember-cli-babel-plugin-helpers: 1.1.1
-      execa: 1.0.0
-      fs-extra: 7.0.1
-      resolve: 1.22.8
-      rsvp: 4.8.5
-      semver: 6.3.1
-      stagehand: 1.0.1
-      walk-sync: 1.1.4
-    transitivePeerDependencies:
-      - '@babel/core'
-      - supports-color
-
   ember-cli-typescript@3.0.0(@babel/core@7.26.0):
     dependencies:
       '@babel/plugin-transform-typescript': 7.5.5(@babel/core@7.26.0)
@@ -17089,13 +17058,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  ember-load-initializers@2.1.2(@babel/core@7.26.0):
+  ember-load-initializers@3.0.1(ember-source@5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1)):
     dependencies:
-      ember-cli-babel: 7.26.11
-      ember-cli-typescript: 2.0.2(@babel/core@7.26.0)
-    transitivePeerDependencies:
-      - '@babel/core'
-      - supports-color
+      ember-source: 5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1)
 
   ember-math-helpers@4.0.0(ember-source@5.11.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.0)(rsvp@4.8.5)(webpack@5.96.1)):
     dependencies:
