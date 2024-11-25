@@ -17,7 +17,7 @@
     "@ember/string": "^3.1.1 || ^4.0.0",
     "@embroider/macros": "^1.16.9",
     "@embroider/util": "^1.13.2",
-    "@glimmer/component": "^1.1.2",
+    "@glimmer/component": "^2.0.0",
     "@glimmer/tracking": "^1.1.2",
     "@projectcaluma/ember-core": "workspace:^",
     "ember-apollo-client": "~4.0.2",
