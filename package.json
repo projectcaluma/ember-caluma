@@ -79,7 +79,7 @@
       ],
       "allowedVersions": {
         "graphql": "^15.9.0",
-        "ember-source": "^5.0.0",
+        "ember-source": "^6.0.0",
         "ember-resources>ember-concurrency": "^4.0.0"
       }
     }
