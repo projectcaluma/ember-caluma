@@ -106,11 +106,28 @@ module("Integration | Component | cf-field-value", function (hooks) {
       answer: {
         value: "foo",
       },
+      value: "foo",
     };
 
     await render(hbs`<CfFieldValue @field={{this.field}} />`);
 
     assert.dom(this.element).hasText("foo");
+  });
+
+  test("it renders calculated float questions", async function (assert) {
+    this.field = {
+      questionType: "CalculatedFloatQuestion",
+      question: {
+        raw: {
+          __typename: "CalculatedFloatQuestion",
+        },
+      },
+      value: 1111111.111111,
+    };
+
+    await render(hbs`<CfFieldValue @field={{this.field}} />`);
+
+    assert.dom(this.element).hasText("1111111.111111");
   });
 
   test("it renders file questions", async function (assert) {

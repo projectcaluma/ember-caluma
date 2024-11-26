@@ -23,6 +23,7 @@ module("Integration | Component | cf-field/input/table", function (hooks) {
                   slug: "first-name",
                 },
                 answer: { value: "Max" },
+                value: "Max",
               },
               {
                 question: {
@@ -30,6 +31,7 @@ module("Integration | Component | cf-field/input/table", function (hooks) {
                   slug: "last-name",
                 },
                 answer: { value: "Muster" },
+                value: "Muster",
               },
             ],
           },
