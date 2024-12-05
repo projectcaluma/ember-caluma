@@ -339,7 +339,10 @@ export default class Field extends Base {
    * - DynamicMultipleChoiceQuestion
    *
    * This will also return the disabled state of the option. An option can only
-   * be disabled, if it is an old value used in a dynamic question.
+   * be disabled in any of the following cases:
+   * - it is a dynamic option which is no longer available
+   * - the option has been removed from the form using the form builder
+   * - the option is no longer visible due to its JEXL
    *
    * @property {null|Object[]} options
    */
@@ -352,9 +355,39 @@ export default class Field extends Base {
     const selected =
       (this.question.isMultipleChoice ? this.value : [this.value]) || [];
 
-    const options = this.question.options.filter(
-      (option) => !option.disabled || selected.includes(option.slug),
-    );
+    const options = this.question.options
+      .filter((option) => !option.disabled || selected.includes(option.slug))
+      .map((option) => {
+        if (!option.isHidden) {
+          return option;
+        }
+
+        try {
+          const isHidden = this.document.jexl.evalSync(
+            option.isHidden,
+            this.jexlContext,
+          );
+
+          if (selected.includes(option.slug) && isHidden) {
+            return {
+              ...option,
+              _isHidden: isHidden,
+              disabled: true,
+            };
+          }
+          return {
+            ...option,
+            _isHidden: isHidden,
+          };
+        } catch (error) {
+          throw new Error(
+            `Error while evaluating \`isHidden\` expression on Option\`${option.slug}\`: ${error.message}`,
+          );
+        }
+      })
+      .filter(
+        ({ _isHidden, disabled }) => !_isHidden || (_isHidden && disabled),
+      );
 
     const hasUnknownValue = !selected.every((slug) =>
       options.find((option) => option.slug === slug),
