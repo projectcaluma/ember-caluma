@@ -1,14 +1,22 @@
 {{#unless this.showAllServices}}
   <div class="uk-margin-bottom uk-button-group" data-test-group-toggle-bar>
     {{#each-in this.config.new.types as |slug config|}}
-      {{#unless config.disabled}}
+      {{#if config.notAvailableText}}
         <UkButton
-          data-test-type={{slug}}
+          {{uk-tooltip config.notAvailableText pos="bottom" delay=200}}
           @label={{t config.label}}
-          @color={{if (includes slug @selectedTypes) "primary" "default"}}
-          @onClick={{fn this.updateSelectedTypes slug}}
+          disabled
         />
-      {{/unless}}
+      {{else}}
+        {{#unless config.disabled}}
+          <UkButton
+            data-test-type={{slug}}
+            @label={{t config.label}}
+            @color={{if (includes slug @selectedTypes) "primary" "default"}}
+            @onClick={{fn this.updateSelectedTypes slug}}
+          />
+        {{/unless}}
+      {{/if}}
     {{/each-in}}
   </div>
 {{/unless}}
