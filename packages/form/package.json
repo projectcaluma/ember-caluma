@@ -72,7 +72,7 @@
     "loader.js": "4.7.0",
     "miragejs": "0.1.48",
     "qunit": "2.22.0",
-    "qunit-dom": "3.3.0",
+    "qunit-dom": "3.4.0",
     "sass": "1.81.0",
     "uikit": "3.21.16",
     "uuid": "11.0.3",
