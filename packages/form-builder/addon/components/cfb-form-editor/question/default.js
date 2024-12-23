@@ -38,11 +38,16 @@ export default class CfbFormEditorQuestionDefault extends Component {
         raw.meta = { widgetOverride: "cf-field/input/powerselect" };
       }
 
-      const key = this.args.model.__typename
-        .replace(/^./, (match) => match.toLowerCase())
-        .replace("Question", "Options");
+      const key = camelize(
+        this.args.model.__typename.replace(/Question$/, "Options"),
+      );
 
-      raw[key] = raw.options;
+      // Format option changesets to match the raw format needed in lib.
+      raw[key] = {
+        edges: raw.options.map((node) => {
+          return { node };
+        }),
+      };
       delete raw.options;
     }
 
