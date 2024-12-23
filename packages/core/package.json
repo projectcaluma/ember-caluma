@@ -1,6 +1,6 @@
 {
   "name": "@projectcaluma/ember-core",
-  "version": "13.1.5",
+  "version": "13.1.6",
   "description": "Ember core addon for working with Caluma.",
   "keywords": [
     "ember-addon"
