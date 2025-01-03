@@ -12,6 +12,7 @@ caluma:
     addRow: "Ajouter une ligne"
     optionNotAvailable: "Cette option n'est plus disponible"
     info: "Plus d'informations"
+    mandatory: "Champ obligatoire"
 
     error:
       details: "Détails techniques :"

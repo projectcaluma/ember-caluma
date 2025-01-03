@@ -3,11 +3,18 @@
     {{@field.question.raw.label}}
   </span>
 
-  {{#if (and (not @field.question.isCalculated) @field.optional)}}
-    <span
-      class="uk-margin-small-left uk-text-muted uk-text-lowercase uk-text-normal"
-    >({{t "caluma.form.optional"}})</span>
-  {{/if}}
+  {{#unless @field.question.isCalculated}}
+    {{#if (and @field.optional (not @useMandatoryAsterisk))}}
+      <span
+        class="uk-margin-small-left uk-text-muted uk-text-lowercase uk-text-normal"
+      >({{t "caluma.form.optional"}})</span>
+    {{else if (and (not @field.optional) @useMandatoryAsterisk)}}
+      <span
+        title={{t "caluma.form.mandatory"}}
+        class="uk-text-muted uk-text-lowercase uk-text-normal mandatory-asterisk"
+      >* </span>
+    {{/if}}
+  {{/unless}}
 
   {{yield}}
 </label>

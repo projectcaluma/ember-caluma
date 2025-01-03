@@ -13,7 +13,10 @@
     {{in-viewport onEnter=this.refreshDynamicOptions}}
   >
     {{#if this.labelVisible}}
-      <CfField::Label @field={{@field}} />
+      <CfField::Label
+        @field={{@field}}
+        @useMandatoryAsterisk={{this.useMandatoryAsterisk}}
+      />
     {{/if}}
 
     <div class="uk-flex">
