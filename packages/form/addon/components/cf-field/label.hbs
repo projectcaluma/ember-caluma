@@ -4,11 +4,11 @@
   </span>
 
   {{#unless @field.question.isCalculated}}
-    {{#if (and @field.optional (not @useMandatoryAsterisk))}}
+    {{#if (and @field.optional (not this.useMandatoryAsterisk))}}
       <span
         class="uk-margin-small-left uk-text-muted uk-text-lowercase uk-text-normal"
       >({{t "caluma.form.optional"}})</span>
-    {{else if (and (not @field.optional) @useMandatoryAsterisk)}}
+    {{else if (and (not @field.optional) this.useMandatoryAsterisk)}}
       <span
         title={{t "caluma.form.mandatory"}}
         class="uk-text-muted uk-text-lowercase uk-text-normal mandatory-asterisk"

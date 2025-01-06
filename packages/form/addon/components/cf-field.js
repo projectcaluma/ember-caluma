@@ -1,4 +1,3 @@
-import { getOwner } from "@ember/application";
 import { action } from "@ember/object";
 import { service } from "@ember/service";
 import { macroCondition, isTesting } from "@embroider/macros";
@@ -79,17 +78,6 @@ export default class CfFieldComponent extends Component {
 
   get saveIndicatorVisible() {
     return !hasQuestionType(this.args.field?.question, "action-button");
-  }
-
-  get config() {
-    return getOwner(this).resolveRegistration("config:environment");
-  }
-
-  get useMandatoryAsterisk() {
-    const { USE_MANDATORY_ASTERISK = false } =
-      this.config["ember-caluma"] || {};
-
-    return USE_MANDATORY_ASTERISK;
   }
 
   /**
