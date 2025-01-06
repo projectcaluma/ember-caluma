@@ -15,8 +15,6 @@ export default class CfFieldLabelComponent extends Component {
     const { USE_MANDATORY_ASTERISK = false } =
       this.config["ember-caluma"] || {};
 
-    return [true, false].includes(this.args?.useMandatoryAsterisk)
-      ? this.args?.useMandatoryAsterisk
-      : USE_MANDATORY_ASTERISK;
+    return this.args?.useMandatoryAsterisk ?? USE_MANDATORY_ASTERISK;
   }
 }
