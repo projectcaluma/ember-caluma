@@ -63,9 +63,9 @@ module("Integration | Component | cf-field/label", function (hooks) {
 
     await render(
       hbs`<CfField::Label
-        @field={{this.field}}
-        @useMandatoryAsterisk={{this.useMandatoryAsterisk}}
-        />`,
+  @field={{this.field}}
+  @useMandatoryAsterisk={{this.useMandatoryAsterisk}}
+/>`,
     );
 
     this.set("field.question.raw.isRequired", "false");
