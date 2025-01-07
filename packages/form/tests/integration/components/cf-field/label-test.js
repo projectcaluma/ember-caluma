@@ -56,4 +56,35 @@ module("Integration | Component | cf-field/label", function (hooks) {
 
     assert.dom("label").hasText("Test (Optional)");
   });
+
+  test("it marks mandatory fields as such if useMandatoryAsterisk is configured in attribute", async function (assert) {
+    assert.expect(2);
+
+    await render(
+      hbs`<CfField::Label @field={{this.field}} @useMandatoryAsterisk={{true}} />`,
+    );
+
+    this.set("field.question.raw.isRequired", "false");
+    assert.dom("label").hasText("Test");
+
+    this.set("field.question.raw.isRequired", "true");
+    assert.dom("label").hasText("Test *");
+  });
+
+  test("it marks mandatory fields as such if useMandatoryAsterisk is globally configured", async function (assert) {
+    this.owner.resolveRegistration("config:environment")["ember-caluma"] = {
+      USE_MANDATORY_ASTERISK: true,
+    };
+
+    assert.expect(2);
+    this.set("useMandatoryAsterisk", true);
+
+    await render(hbs`<CfField::Label @field={{this.field}} />`);
+
+    this.set("field.question.raw.isRequired", "false");
+    assert.dom("label").hasText("Test");
+
+    this.set("field.question.raw.isRequired", "true");
+    assert.dom("label").hasText("Test *");
+  });
 });

@@ -12,6 +12,7 @@ caluma:
     addRow: "Add row"
     optionNotAvailable: "This option is not available anymore"
     info: "More information"
+    mandatory: "Mandatory field"
 
     error:
       details: "Technical details:"

@@ -12,6 +12,7 @@ caluma:
     addRow: "Aggiungi riga"
     optionNotAvailable: "Questa opzione non è più disponibile"
     info: "Ulteriori informazioni"
+    mandatory: "Campo obbligatorio"
 
     error:
       details: "Dettagli tecnici:"
