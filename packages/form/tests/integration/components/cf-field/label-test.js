@@ -59,12 +59,11 @@ module("Integration | Component | cf-field/label", function (hooks) {
 
   test("it marks mandatory fields as such if useMandatoryAsterisk is configured in attribute", async function (assert) {
     assert.expect(2);
-    this.set("useMandatoryAsterisk", true);
 
     await render(
       hbs`<CfField::Label
   @field={{this.field}}
-  @useMandatoryAsterisk={{this.useMandatoryAsterisk}}
+  @useMandatoryAsterisk={{true}}
 />`,
     );
 
