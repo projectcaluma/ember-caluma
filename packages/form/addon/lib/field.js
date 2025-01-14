@@ -274,10 +274,7 @@ export default class Field extends Base {
    */
   @cached
   get calculatedValue() {
-    if (
-      !this.question.isCalculated ||
-      !this.calculatedDependencies.every((field) => !field.hidden)
-    ) {
+    if (!this.question.isCalculated) {
       return null;
     }
 
