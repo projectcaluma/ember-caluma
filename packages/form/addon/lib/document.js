@@ -271,16 +271,25 @@ export default class Document extends Base {
   findAnswer(slug, defaultValue) {
     const field = this.findField(slug);
 
+    const hasDefault = !(defaultValue === undefined);
+
     if (!field) {
-      if (defaultValue === undefined) {
+      if (!hasDefault) {
         throw new Error(`Field for question \`${slug}\` could not be found`);
       }
 
       return defaultValue;
     }
 
-    if (field.hidden || [undefined, null].includes(field.value)) {
-      return (defaultValue ?? field.question.isMultipleChoice) ? [] : null;
+    const emptyValue =
+      field.question.isTable || field.question.isMultipleChoice ? [] : null;
+
+    if (field.hidden) {
+      return emptyValue;
+    }
+
+    if ([undefined, null].includes(field.value)) {
+      return hasDefault ? defaultValue : emptyValue;
     }
 
     if (field.question.isTable) {
