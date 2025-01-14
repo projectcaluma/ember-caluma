@@ -33,6 +33,7 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
           },
           a: { label: "label-a" },
           b: { label: "label-b" },
+          c: { label: "label-c" },
         },
       },
     };
@@ -51,6 +52,7 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
           { id: 4, name: "4" },
           { id: 5, name: "5" },
         ],
+        c: [],
       };
 
       return Object.entries(records).reduce((retval, [type, recs]) => {
@@ -79,7 +81,7 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
       { owner: this.engine },
     );
 
-    assert.dom("button[data-test-type]").exists({ count: 2 });
+    assert.dom("button[data-test-type]").exists({ count: 3 });
     assert.dom("tr[data-test-group]").exists({ count: 2 });
 
     await click("button[data-test-type=b]");
@@ -232,10 +234,11 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
       assert.dom("[data-test-group-toggle-bar]").isNotVisible();
     });
 
-    test("it shows all the enabled groups", async function (assert) {
+    test("it shows all the enabled groups with content", async function (assert) {
       assert.dom('[data-test-group-type="suggestions"]').isNotVisible();
       assert.dom('[data-test-group-type="label-a"]').isVisible();
       assert.dom('[data-test-group-type="label-b"]').isVisible();
+      assert.dom('[data-test-group-type="label-c"]').doesNotExist();
     });
 
     test("it allows the toggling of a group", async function (assert) {
