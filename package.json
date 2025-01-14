@@ -62,7 +62,7 @@
     "get-graphql-schema": "2.1.2",
     "glob": "11.0.1",
     "globals": "15.14.0",
-    "graphql": "15.9.0",
+    "graphql": "15.10.1",
     "husky": "9.1.7",
     "lint-staged": "15.3.0",
     "node-fetch": "3.3.2",
