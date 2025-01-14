@@ -1,5 +1,6 @@
 import { setApplication } from "@ember/test-helpers";
-import { start } from "ember-qunit";
+import { start, setupEmberOnerrorValidation } from "ember-qunit";
+import { loadTests } from "ember-qunit/test-loader";
 import * as QUnit from "qunit";
 import { setup } from "qunit-dom";
 
@@ -9,6 +10,8 @@ import setupUIkitHelpers from "dummy/tests/helpers/uikit";
 
 setApplication(Application.create(config.APP));
 
+setupEmberOnerrorValidation();
+loadTests();
 setup(QUnit.assert);
 setupUIkitHelpers(QUnit.assert);
 
