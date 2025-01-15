@@ -95,7 +95,7 @@ export class SlugUniquenessValidator {
       } else if (this.type === "option") {
         count = response.allQuestions.edges[0].node.options.totalCount;
       }
-    } catch (error) {
+    } catch {
       // do nothing, which will result in count being Infinity which will return
       // a validation error
     }

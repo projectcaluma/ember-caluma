@@ -105,7 +105,7 @@ export default class CdInquiryAnswerFormComponent extends Component {
       });
 
       yield this.router.transitionTo("inquiry.index");
-    } catch (error) {
+    } catch {
       this.notification.danger(
         this.intl.t("caluma.distribution.answer.complete-error"),
       );

@@ -93,7 +93,6 @@ export default class WorkItemButtonComponent extends Component {
       if (typeof this.args.onError === "function") {
         yield this.args.onError(e);
       } else {
-        // eslint-disable-next-line no-console
         console.error(e);
         this.notification.danger(
           this.intl.t(`caluma.mutate-work-item.error.${this.args.mutation}`),

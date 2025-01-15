@@ -111,7 +111,7 @@ export default class CfFieldInputTableComponent extends Component {
       this.documentToEditIsNew = false;
 
       yield this.close.perform();
-    } catch (e) {
+    } catch {
       this.notification.danger(
         this.intl.t("caluma.form.notification.table.add.error"),
       );

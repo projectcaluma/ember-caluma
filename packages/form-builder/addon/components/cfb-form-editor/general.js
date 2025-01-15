@@ -87,7 +87,7 @@ export default class CfbFormEditorGeneral extends Component {
       );
 
       this.args.onAfterSubmit?.(form);
-    } catch (e) {
+    } catch {
       this.notification.danger(
         this.intl.t(
           `caluma.form-builder.notification.form.${
