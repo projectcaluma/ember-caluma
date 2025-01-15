@@ -445,7 +445,6 @@ export default class CfbFormEditorQuestion extends Component {
 
       this.args.onAfterSubmit?.(question);
     } catch (e) {
-      // eslint-disable-next-line no-console
       console.error(e);
       this.notification.danger(
         this.intl.t("caluma.form-builder.notification.question.save.error"),

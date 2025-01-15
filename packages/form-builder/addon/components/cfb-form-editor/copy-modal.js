@@ -54,7 +54,7 @@ export default class CfbFormEditorCopyModal extends Component {
       );
 
       this.router.transitionTo("edit", changeset.slug);
-    } catch (e) {
+    } catch {
       this.notification.danger(
         this.intl.t("caluma.form-builder.notification.form.create.error"),
       );

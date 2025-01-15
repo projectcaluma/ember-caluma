@@ -6,7 +6,7 @@ export function formatGraphqlErrorObject(error) {
     const { line, column } = error.locations[error.locations.length - 1];
 
     return `${path}:${line}:${column}: ${error.message}`;
-  } catch (e) {
+  } catch {
     return null;
   }
 }

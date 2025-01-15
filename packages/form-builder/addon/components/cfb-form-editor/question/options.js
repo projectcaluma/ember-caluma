@@ -45,7 +45,7 @@ export default class CfbFormEditorQuestionOptions extends Component {
           "caluma.form-builder.notification.form.reorder-options.success",
         ),
       );
-    } catch (e) {
+    } catch {
       this.notification.danger(
         this.intl.t(
           "caluma.form-builder.notification.form.reorder-options.error",

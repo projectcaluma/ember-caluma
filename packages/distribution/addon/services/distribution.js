@@ -123,7 +123,7 @@ export default class DistributionService extends Service {
 
       // refetch navigation and controls data
       yield this.refetch();
-    } catch (e) {
+    } catch {
       this.notification.danger(
         this.intl.t("caluma.distribution.new.error", { count: groups.length }),
       );
@@ -205,7 +205,7 @@ export default class DistributionService extends Service {
       const mutation = gql`mutation SendInquiries {${mutations.join("\n")}}`;
 
       yield this.apollo.mutate({ mutation });
-    } catch (e) {
+    } catch {
       this.notification.danger(this.intl.t("caluma.distribution.send-error"));
     }
   }
