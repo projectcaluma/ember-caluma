@@ -62,7 +62,7 @@ export default class CdNavigationControlsComponent extends Component {
 
       yield this.distribution.refetch();
       this.router.transitionTo("index");
-    } catch (e) {
+    } catch {
       this.notification.danger(
         this.intl.t("caluma.distribution.complete-error"),
       );
@@ -88,7 +88,7 @@ export default class CdNavigationControlsComponent extends Component {
       });
 
       yield this.distribution.refetchControls();
-    } catch (e) {
+    } catch {
       this.notification.danger(this.intl.t("caluma.distribution.reopen-error"));
     }
   }
@@ -104,7 +104,7 @@ export default class CdNavigationControlsComponent extends Component {
           ),
         },
       });
-    } catch (e) {
+    } catch {
       this.notification.danger(
         this.intl.t("caluma.distribution.check-inquiries-error"),
       );

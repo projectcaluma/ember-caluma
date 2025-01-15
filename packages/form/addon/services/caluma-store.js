@@ -45,7 +45,7 @@ export default class CalumaStoreService extends Service {
     this._store.forEach((obj) => destroy(obj));
 
     // `this._store` is not an ember array but a native map
-    // eslint-disable-next-line ember/no-array-prototype-extensions
+
     this._store.clear();
   }
 }

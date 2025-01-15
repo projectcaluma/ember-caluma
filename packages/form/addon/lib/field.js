@@ -286,7 +286,7 @@ export default class Field extends Base {
         this.question.raw.calcExpression,
         this.jexlContext,
       );
-    } catch (error) {
+    } catch {
       return null;
     }
   }

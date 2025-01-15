@@ -56,7 +56,6 @@ export default class TaskButtonComponent extends Component {
 
       return response[0]?.node;
     } catch (e) {
-      // eslint-disable-next-line no-console
       console.error(e);
       this.notification.danger(this.intl.t("caluma.task-button.error"));
     }

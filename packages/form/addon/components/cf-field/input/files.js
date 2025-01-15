@@ -89,11 +89,10 @@ export default class CfFieldInputFilesComponent extends Component {
       await Promise.all(newFiles.map((file) => uploadFunction(file)));
 
       this.args.field.answer.value = savedAnswerValue;
-    } catch (error) {
+    } catch {
       await this.args.onSave([]);
       this.args.field._errors = [{ type: "uploadFailed" }];
     } finally {
-      // eslint-disable-next-line require-atomic-updates
       target.value = "";
     }
   }
@@ -106,7 +105,7 @@ export default class CfFieldInputFilesComponent extends Component {
 
     try {
       await this.args.onSave(remainingFiles);
-    } catch (error) {
+    } catch {
       this.args.field._errors = [{ type: "deleteFailed" }];
     }
   }
