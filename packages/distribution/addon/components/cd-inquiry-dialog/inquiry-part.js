@@ -97,7 +97,7 @@ export default class CdInquiryDialogInquiryPartComponent extends Component {
           workItem: decodeId(this.args.inquiry.id),
         },
       });
-    } catch (error) {
+    } catch {
       this.notification.danger(
         this.intl.t("caluma.distribution.withdraw.error"),
       );
@@ -126,7 +126,7 @@ export default class CdInquiryDialogInquiryPartComponent extends Component {
           buttonTasks: Object.keys(this.config.inquiry.answer.buttons),
         },
       });
-    } catch (error) {
+    } catch {
       this.notification.danger(
         this.intl.t("caluma.distribution.reopen-inquiry.error"),
       );
@@ -163,7 +163,7 @@ export default class CdInquiryDialogInquiryPartComponent extends Component {
           }),
         },
       });
-    } catch (error) {
+    } catch {
       this.notification.danger(
         this.intl.t("caluma.distribution.reminder.error"),
       );

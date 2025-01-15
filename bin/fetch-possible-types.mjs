@@ -29,7 +29,7 @@ fetch("http://localhost:8000/graphql", {
     result.data.__schema.types.forEach((supertype) => {
       if (supertype.possibleTypes) {
         possibleTypes[supertype.name] = supertype.possibleTypes.map(
-          (subtype) => subtype.name
+          (subtype) => subtype.name,
         );
       }
     });
@@ -44,6 +44,6 @@ fetch("http://localhost:8000/graphql", {
           // eslint-disable-next-line no-console
           console.log("Fragment types successfully extracted!");
         }
-      }
+      },
     );
   });

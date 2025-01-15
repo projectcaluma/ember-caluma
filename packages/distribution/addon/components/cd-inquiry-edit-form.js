@@ -48,7 +48,7 @@ export default class CdInquiryEditFormComponent extends Component {
       });
 
       yield this.router.transitionTo("inquiry.index");
-    } catch (error) {
+    } catch {
       this.notification.danger(
         this.intl.t("caluma.distribution.edit.send-error"),
       );

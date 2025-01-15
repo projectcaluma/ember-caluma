@@ -120,7 +120,7 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
           "caluma.form-builder.notification.form.reorder-questions.success",
         ),
       );
-    } catch (e) {
+    } catch {
       this.notification.danger(
         this.intl.t(
           "caluma.form-builder.notification.form.reorder-questions.error",
@@ -154,7 +154,7 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
       this.questionTask.perform();
 
       this.args.onAfterAddQuestion?.(question);
-    } catch (e) {
+    } catch {
       this.notification.danger(
         this.intl.t("caluma.form-builder.notification.form.add-question.error"),
       );
@@ -182,7 +182,7 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
       );
 
       this.args.onAfterRemoveQuestion?.(question);
-    } catch (e) {
+    } catch {
       this.notification.danger(
         this.intl.t(
           "caluma.form-builder.notification.form.remove-question.error",

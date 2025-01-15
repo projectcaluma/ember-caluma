@@ -22,7 +22,7 @@ export default class CfbFormEditorQuestionUsage extends Component {
   }
 
   get otherForms() {
-    return this.forms.value?.length - 1 ?? 0;
+    return (this.forms.value?.length ?? 1) - 1;
   }
 
   forms = trackedFunction(this, async () => {

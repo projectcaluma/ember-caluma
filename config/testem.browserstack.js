@@ -1,13 +1,12 @@
 "use strict";
 
-/* eslint-disable n/no-missing-require */
 const project = ["-p", require("./package.json").name];
 
 module.exports = {
   test_page: "tests/index.html?hidepassed&hideskipped&timeout=60000",
   disable_watching: true,
   parallel: 5,
-  // eslint-disable-next-line n/no-unpublished-require
+
   reporter: require("testem-failure-only-reporter/grouped-by-browser"),
   framework: "qunit",
   timeout: 600,

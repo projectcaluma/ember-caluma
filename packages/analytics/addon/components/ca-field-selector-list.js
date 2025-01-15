@@ -75,7 +75,7 @@ export default class CaFieldSelectorListComponent extends Component {
         this.intl.t("caluma.analytics.notification.reorder-success"),
       );
       this._fields = null;
-    } catch (e) {
+    } catch {
       this.notification.danger(
         this.intl.t("caluma.analytics.notification.reorder-error"),
       );
