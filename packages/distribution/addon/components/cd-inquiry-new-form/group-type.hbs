@@ -1,23 +1,25 @@
 {{! template-lint-disable require-presentational-children }}
-<tr
-  class="uk-background-muted uk-text-bold"
-  role="button"
-  {{on "click" (fn (mut this.isExpanded) (not this.isExpanded))}}
-  data-test-group-type={{@type.name}}
->
-  <td colspan="3" class="">
-    <div class="uk-flex uk-flex-between">
-      {{t @type.name}}
-      <UkIcon @icon={{if this.isExpanded "chevron-up" "chevron-down"}} />
-    </div>
-  </td>
-</tr>
-{{#if this.isExpanded}}
-  {{#each @type.groups as |group|}}
-    <CdInquiryNewForm::Group
-      @group={{group}}
-      @selectedGroups={{@selectedGroups}}
-      @updateSelectedGroups={{@updateSelectedGroups}}
-    />
-  {{/each}}
+{{#if @type.groups.length}}
+  <tr
+    class="uk-background-muted uk-text-bold"
+    role="button"
+    {{on "click" (fn (mut this.isExpanded) (not this.isExpanded))}}
+    data-test-group-type={{@type.name}}
+  >
+    <td colspan="3" class="">
+      <div class="uk-flex uk-flex-between">
+        {{t @type.name}}
+        <UkIcon @icon={{if this.isExpanded "chevron-up" "chevron-down"}} />
+      </div>
+    </td>
+  </tr>
+  {{#if this.isExpanded}}
+    {{#each @type.groups as |group|}}
+      <CdInquiryNewForm::Group
+        @group={{group}}
+        @selectedGroups={{@selectedGroups}}
+        @updateSelectedGroups={{@updateSelectedGroups}}
+      />
+    {{/each}}
+  {{/if}}
 {{/if}}
