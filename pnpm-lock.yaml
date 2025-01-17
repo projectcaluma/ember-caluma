@@ -141,8 +141,8 @@ importers:
         specifier: 1.16.10
         version: 1.16.10(@glint/template@1.5.1)
       '@faker-js/faker':
-        specifier: 9.3.0
-        version: 9.3.0
+        specifier: 9.4.0
+        version: 9.4.0
       '@glimmer/component':
         specifier: 1.1.2
         version: 1.1.2(@babel/core@7.26.0)
@@ -418,8 +418,8 @@ importers:
         specifier: 4.0.0
         version: 4.0.0
       '@faker-js/faker':
-        specifier: 9.3.0
-        version: 9.3.0
+        specifier: 9.4.0
+        version: 9.4.0
       '@projectcaluma/ember-testing':
         specifier: workspace:*
         version: link:../testing
@@ -583,8 +583,8 @@ importers:
         specifier: 1.13.2
         version: 1.13.2(@glint/template@1.5.1)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.1)(rsvp@4.8.5)(webpack@5.97.1))
       '@faker-js/faker':
-        specifier: 9.3.0
-        version: 9.3.0
+        specifier: 9.4.0
+        version: 9.4.0
       '@glimmer/component':
         specifier: 1.1.2
         version: 1.1.2(@babel/core@7.26.0)
@@ -764,8 +764,8 @@ importers:
         specifier: 4.0.0
         version: 4.0.0
       '@faker-js/faker':
-        specifier: 9.3.0
-        version: 9.3.0
+        specifier: 9.4.0
+        version: 9.4.0
       '@projectcaluma/ember-testing':
         specifier: workspace:*
         version: link:../testing
@@ -957,8 +957,8 @@ importers:
         specifier: 4.0.0
         version: 4.0.0
       '@faker-js/faker':
-        specifier: 9.3.0
-        version: 9.3.0
+        specifier: 9.4.0
+        version: 9.4.0
       '@projectcaluma/ember-testing':
         specifier: workspace:*
         version: link:../testing
@@ -1178,8 +1178,8 @@ importers:
         specifier: 4.0.0
         version: 4.0.0
       '@faker-js/faker':
-        specifier: 9.3.0
-        version: 9.3.0
+        specifier: 9.4.0
+        version: 9.4.0
       '@projectcaluma/ember-testing':
         specifier: workspace:*
         version: link:../testing
@@ -1269,8 +1269,8 @@ importers:
         specifier: ^3.1.1 || ^4.0.0
         version: 4.0.0
       '@faker-js/faker':
-        specifier: ^9.3.0
-        version: 9.3.0
+        specifier: ^9.4.0
+        version: 9.4.0
       broccoli-funnel:
         specifier: ^3.0.8
         version: 3.0.8
@@ -1448,8 +1448,8 @@ importers:
         specifier: 4.0.0
         version: 4.0.0
       '@faker-js/faker':
-        specifier: 9.3.0
-        version: 9.3.0
+        specifier: 9.4.0
+        version: 9.4.0
       '@glimmer/tracking':
         specifier: 1.1.2
         version: 1.1.2
@@ -2519,8 +2519,8 @@ packages:
     resolution: {integrity: sha512-fK6L7rxcq6/z+AaQMtiFTkvbHkBLNlwyRxHpKawP0x3u9+NC6MQTnFW+AdpwC6gfHTW0051cokQgtTN2FqlxQA==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
-  '@faker-js/faker@9.3.0':
-    resolution: {integrity: sha512-r0tJ3ZOkMd9xsu3VRfqlFR6cz0V/jFYRswAIpC+m/DIfAUXq7g8N7wTAlhSANySXYGKzGryfDXwtwsY8TxEIDw==}
+  '@faker-js/faker@9.4.0':
+    resolution: {integrity: sha512-85+k0AxaZSTowL0gXp8zYWDIrWclTbRPg/pm/V0dSFZ6W6D4lhcG3uuZl4zLsEKfEvs69xDbLN2cHQudwp95JA==}
     engines: {node: '>=18.0.0', npm: '>=9.0.0'}
 
   '@formatjs/ecma402-abstract@2.3.2':
@@ -12194,7 +12194,7 @@ snapshots:
 
   '@eslint/js@9.18.0': {}
 
-  '@faker-js/faker@9.3.0': {}
+  '@faker-js/faker@9.4.0': {}
 
   '@formatjs/ecma402-abstract@2.3.2':
     dependencies:
