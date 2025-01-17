@@ -75,7 +75,7 @@
     "loader.js": "4.7.0",
     "miragejs": "0.1.48",
     "sass": "1.83.4",
-    "tracked-built-ins": "3.4.0",
+    "tracked-built-ins": "4.0.0",
     "uikit": "3.22.0",
     "webpack": "5.97.1"
   },
