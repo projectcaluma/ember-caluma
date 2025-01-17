@@ -76,7 +76,7 @@
     "qunit": "2.23.1",
     "qunit-dom": "3.4.0",
     "sass": "1.83.4",
-    "uikit": "3.22.0",
+    "uikit": "3.22.2",
     "webpack": "5.97.1"
   },
   "peerDependency": {
