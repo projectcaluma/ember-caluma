@@ -97,6 +97,7 @@ export default class CfbFormEditorQuestion extends Component {
             integerMaxValue: null,
             floatMinValue: null,
             floatMaxValue: null,
+            floatStep: null,
             minLength: null,
             maxLength: null,
             defaultAnswer: null,
@@ -253,6 +254,7 @@ export default class CfbFormEditorQuestion extends Component {
     return {
       minValue: parseFloat(changeset.get("floatMinValue")),
       maxValue: parseFloat(changeset.get("floatMaxValue")),
+      step: parseFloat(changeset.get("floatStep")),
       placeholder: changeset.get("placeholder"),
       hintText: changeset.get("hintText"),
     };

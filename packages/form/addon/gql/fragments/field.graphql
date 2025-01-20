@@ -57,6 +57,7 @@ fragment SimpleQuestion on Question {
   ... on FloatQuestion {
     floatMinValue: minValue
     floatMaxValue: maxValue
+    floatStep: step
     floatDefaultAnswer: defaultAnswer {
       id
       value

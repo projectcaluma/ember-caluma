@@ -1,6 +1,6 @@
 <input
   type="number"
-  step="0.001"
+  step={{this.floatStep}}
   class="uk-input
     {{if @field.isInvalid 'uk-form-danger'}}
     {{if this.disabled 'uk-disabled'}}"

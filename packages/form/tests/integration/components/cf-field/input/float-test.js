@@ -16,6 +16,7 @@ module("Integration | Component | cf-field/input/float", function (hooks) {
           isCalculated: false,
           floatMinValue: 0.4,
           floatMaxValue: 1.4,
+          floatStep: 0.001,
         },
       },
     });

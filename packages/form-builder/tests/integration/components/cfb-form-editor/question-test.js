@@ -303,7 +303,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
   });
 
   test("it can create a float question", async function (assert) {
-    assert.expect(7);
+    assert.expect(8);
 
     this.server.create("form", { slug: "test-form" });
 
@@ -313,6 +313,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       assert.strictEqual(question.slug, "slug");
       assert.strictEqual(question.floatMinValue, -20);
       assert.strictEqual(question.floatMaxValue, 20);
+      assert.strictEqual(question.floatStep, 0.5);
 
       assert.step("after-submit");
     });
@@ -330,6 +331,7 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     await fillIn("[name=slug]", "slug");
     await fillIn("[name=floatMinValue]", -20);
     await fillIn("[name=floatMaxValue]", 20);
+    await fillIn("[name=floatStep]", 0.5);
 
     await click("button[type=submit]");
 

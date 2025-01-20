@@ -20,6 +20,7 @@ query FormEditorQuestion($slug: String!) {
         ... on FloatQuestion {
           floatMaxValue: maxValue
           floatMinValue: minValue
+          floatStep: step
           placeholder
           hintText
           defaultAnswer {

@@ -8,6 +8,7 @@ mutation SaveFloatQuestion($input: SaveFloatQuestionInput!) {
       ... on FloatQuestion {
         floatMinValue: minValue
         floatMaxValue: maxValue
+        floatStep: step
         hintText
       }
     }
