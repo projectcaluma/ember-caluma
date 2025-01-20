@@ -72,6 +72,7 @@ caluma:
       max-value: "Maximum value"
       min-length: "Minimum length"
       max-length: "Maximum length"
+      step: "Steps"
       rowForm: "Form to use for rows"
       subForm: "Form to use for entries"
       no-selection: "No selection"

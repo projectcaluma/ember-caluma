@@ -1559,6 +1559,7 @@ type FloatQuestion implements Question & Node {
   id: ID!
   minValue: Float
   maxValue: Float
+  step: Float
 }
 
 type Flow implements Node {
@@ -3153,6 +3154,7 @@ input SaveFloatQuestionInput {
   isArchived: Boolean
   minValue: Float
   maxValue: Float
+  step: Float
   placeholder: String
   hintText: String
   clientMutationId: String

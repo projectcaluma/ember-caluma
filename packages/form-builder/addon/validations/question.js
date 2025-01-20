@@ -53,6 +53,10 @@ export default {
       validateGtLt({ gt: "floatMinValue", allowNone: true }),
     ),
   ),
+  floatStep: or(
+    validateType("FloatQuestion", false),
+    validateNumber({ gt: 0, allowBlank: true }),
+  ),
 
   minLength: or(
     and(
