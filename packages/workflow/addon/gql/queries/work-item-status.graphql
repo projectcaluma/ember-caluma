@@ -1,0 +1,10 @@
+query WorkItemStatus($id: ID!) {
+  allWorkItems(filter: [{ id: $id }], first: 1) {
+    edges {
+      node {
+        id
+        status
+      }
+    }
+  }
+}

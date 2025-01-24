@@ -9,9 +9,14 @@ module("Integration | Component | work-item-button", function (hooks) {
   setupRenderingTest(hooks);
   setupMirage(hooks);
 
+  hooks.beforeEach(function () {
+    this.workItem = this.server.create("workItem", { status: "READY" });
+    this.id = this.workItem.id;
+  });
+
   test("it renders default", async function (assert) {
     await render(
-      hbs`<WorkItemButton @mutation="complete" @workItemId="test" />`,
+      hbs`<WorkItemButton @mutation="complete" @workItemId={{this.id}} />`,
     );
 
     assert.dom("button").hasText("Complete");
@@ -19,7 +24,11 @@ module("Integration | Component | work-item-button", function (hooks) {
 
   test("it renders label", async function (assert) {
     await render(
-      hbs`<WorkItemButton @mutation="complete" @workItemId="test" @label="Lorem Ipsum" />`,
+      hbs`<WorkItemButton
+  @mutation="complete"
+  @workItemId={{this.id}}
+  @label="Lorem Ipsum"
+/>`,
     );
 
     assert.dom("button").hasText("Lorem Ipsum");
@@ -27,7 +36,7 @@ module("Integration | Component | work-item-button", function (hooks) {
 
   test("it renders block", async function (assert) {
     await render(
-      hbs`<WorkItemButton @mutation="complete" @workItemId="test">Lorem Ipsum</WorkItemButton>`,
+      hbs`<WorkItemButton @mutation="complete" @workItemId={{this.id}}>Lorem Ipsum</WorkItemButton>`,
     );
 
     assert.dom("button").hasText("Lorem Ipsum");
@@ -38,6 +47,10 @@ module("Integration | Component | work-item-button", function (hooks) {
 
     let mutation = "complete";
     this.set("mutation", mutation);
+
+    await render(
+      hbs`<WorkItemButton @mutation={{this.mutation}} @workItemId={{this.id}} />`,
+    );
 
     this.server.post(
       "graphql",
@@ -51,10 +64,6 @@ module("Integration | Component | work-item-button", function (hooks) {
         return { data: { [`${mutation}WorkItem`]: null } };
       },
       200,
-    );
-
-    await render(
-      hbs`<WorkItemButton @mutation={{this.mutation}} @workItemId="test" />`,
     );
 
     await click("button");
@@ -79,7 +88,7 @@ module("Integration | Component | work-item-button", function (hooks) {
     await render(
       hbs`<WorkItemButton
   @mutation="complete"
-  @workItemId="test"
+  @workItemId={{this.id}}
   @beforeMutate={{this.beforeMutate}}
 />`,
     );
@@ -87,5 +96,24 @@ module("Integration | Component | work-item-button", function (hooks) {
     await click("button");
 
     assert.verifySteps(["beforeMutate"]);
+  });
+
+  test("it renders as disabled if the required work item status is not given", async function (assert) {
+    assert.expect(2);
+
+    await render(
+      hbs`<WorkItemButton @mutation="complete" @workItemId={{this.id}} />`,
+    );
+
+    assert.dom("button").isNotDisabled();
+
+    this.workItem.status = "COMPLETED";
+    this.workItem.save();
+
+    await render(
+      hbs`<WorkItemButton @mutation="complete" @workItemId={{this.id}} />`,
+    );
+
+    assert.dom("button").isDisabled();
   });
 });

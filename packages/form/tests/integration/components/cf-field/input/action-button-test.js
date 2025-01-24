@@ -57,6 +57,7 @@ module(
       this.field = {
         document: {
           workItemUuid: this.server.create("work-item", {
+            status: "READY",
             case: this.server.create("case"),
           }).id,
           fields: [validField],
@@ -66,6 +67,7 @@ module(
       this.invalidField = {
         document: {
           workItemUuid: this.server.create("work-item", {
+            status: "READY",
             case: this.server.create("case"),
           }).id,
           fields: [invalidField],
@@ -165,14 +167,14 @@ module(
     test("triggers the error callback", async function (assert) {
       assert.expect(3);
 
-      this.server.post("/graphql/", () => {
-        return new Response(500);
-      });
-
       await render(hbs`<CfField::Input::ActionButton
   @field={{this.field}}
   @context={{hash actionButtonOnError=this.error}}
 />`);
+
+      this.server.post("/graphql/", () => {
+        return new Response(500);
+      });
 
       await click("button.uk-button-secondary");
       await waitFor(".uk-modal.uk-open");
