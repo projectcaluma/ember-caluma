@@ -10,7 +10,7 @@ importers:
     devDependencies:
       '@adfinis/eslint-config':
         specifier: 2.1.1
-        version: 2.1.1(@babel/core@7.26.0)(@babel/eslint-parser@7.26.5(@babel/core@7.26.0)(eslint@8.57.1))(@babel/plugin-proposal-decorators@7.25.9(@babel/core@7.26.0))(eslint-config-prettier@10.0.1(eslint@8.57.1))(eslint-plugin-ember@12.3.3(@babel/core@7.26.0)(eslint@8.57.1))(eslint-plugin-import@2.31.0(eslint@8.57.1))(eslint-plugin-n@17.15.1(eslint@8.57.1))(eslint-plugin-prettier@5.2.1(@types/eslint@9.6.1)(eslint-config-prettier@10.0.1(eslint@8.57.1))(eslint@8.57.1)(prettier@3.4.2))(eslint-plugin-qunit@8.1.2(eslint@8.57.1))(eslint@8.57.1)(prettier@3.4.2)
+        version: 2.1.1(@babel/core@7.26.0)(@babel/eslint-parser@7.26.5(@babel/core@7.26.0)(eslint@8.57.1))(@babel/plugin-proposal-decorators@7.25.9(@babel/core@7.26.0))(eslint-config-prettier@10.0.1(eslint@8.57.1))(eslint-plugin-ember@12.3.3(@babel/core@7.26.0)(eslint@8.57.1))(eslint-plugin-import@2.31.0(eslint@8.57.1))(eslint-plugin-n@17.15.1(eslint@8.57.1))(eslint-plugin-prettier@5.2.3(@types/eslint@9.6.1)(eslint-config-prettier@10.0.1(eslint@8.57.1))(eslint@8.57.1)(prettier@3.4.2))(eslint-plugin-qunit@8.1.2(eslint@8.57.1))(eslint@8.57.1)(prettier@3.4.2)
       '@babel/core':
         specifier: 7.26.0
         version: 7.26.0
@@ -72,8 +72,8 @@ importers:
         specifier: 17.15.1
         version: 17.15.1(eslint@8.57.1)
       eslint-plugin-prettier:
-        specifier: 5.2.1
-        version: 5.2.1(@types/eslint@9.6.1)(eslint-config-prettier@10.0.1(eslint@8.57.1))(eslint@8.57.1)(prettier@3.4.2)
+        specifier: 5.2.3
+        version: 5.2.3(@types/eslint@9.6.1)(eslint-config-prettier@10.0.1(eslint@8.57.1))(eslint@8.57.1)(prettier@3.4.2)
       eslint-plugin-qunit:
         specifier: 8.1.2
         version: 8.1.2(eslint@8.57.1)
@@ -340,7 +340,7 @@ importers:
         version: 1.1.2
       '@projectcaluma/ember-core':
         specifier: workspace:^
-        version: link:../core
+        version: file:packages/core(rwfmu7poeesificlnfbz2z5bqe)
       ember-apollo-client:
         specifier: ~4.0.2
         version: 4.0.2(@glint/template@1.5.1)(graphql-ws@5.12.1(graphql@15.10.1))(graphql@15.10.1)(webpack@5.97.1)
@@ -677,7 +677,7 @@ importers:
         version: 1.1.2
       '@projectcaluma/ember-core':
         specifier: workspace:^
-        version: link:../core
+        version: file:packages/core(rwfmu7poeesificlnfbz2z5bqe)
       '@projectcaluma/ember-form':
         specifier: workspace:^
         version: link:../form
@@ -867,7 +867,7 @@ importers:
         version: 1.1.2
       '@projectcaluma/ember-core':
         specifier: workspace:^
-        version: link:../core
+        version: file:packages/core(rwfmu7poeesificlnfbz2z5bqe)
       ember-apollo-client:
         specifier: ~4.0.2
         version: 4.0.2(@glint/template@1.5.1)(graphql-ws@5.12.1(graphql@15.10.1))(graphql@15.10.1)(webpack@5.97.1)
@@ -1070,7 +1070,7 @@ importers:
         version: 1.1.2
       '@projectcaluma/ember-core':
         specifier: workspace:^
-        version: link:../core
+        version: file:packages/core(rwfmu7poeesificlnfbz2z5bqe)
       '@projectcaluma/ember-form':
         specifier: workspace:^
         version: link:../form
@@ -1397,7 +1397,7 @@ importers:
         version: 1.1.2(@babel/core@7.26.0)
       '@projectcaluma/ember-core':
         specifier: workspace:^
-        version: link:../core
+        version: file:packages/core(rwfmu7poeesificlnfbz2z5bqe)
       ember-apollo-client:
         specifier: ~4.0.2
         version: 4.0.2(@glint/template@1.5.1)(graphql-ws@5.12.1(graphql@15.10.1))(graphql@15.10.1)(webpack@5.97.1)
@@ -1555,6 +1555,24 @@ packages:
 
   '@apollo/client@3.12.5':
     resolution: {integrity: sha512-lOE2TlHx1el4rHs8vaTE4IroyIO9/PD2w598YYiDahF0XSMDdsXMrTpOVh+FuQ6tZ+DXT+hsaMlilZqcFRgu+A==}
+    peerDependencies:
+      graphql: ^15.0.0 || ^16.0.0
+      graphql-ws: ^5.5.5
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || >=19.0.0-rc
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || >=19.0.0-rc
+      subscriptions-transport-ws: ^0.9.0 || ^0.11.0
+    peerDependenciesMeta:
+      graphql-ws:
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
+      subscriptions-transport-ws:
+        optional: true
+
+  '@apollo/client@3.12.7':
+    resolution: {integrity: sha512-c0LSzS3tmJ06WSyNxsTHlfc4OLLYDnWtN+zkRjMQ80KCcp89sEpNgZP5ZCXdt2pUwUqOAvZFKJW7L8tolDzkrw==}
     peerDependencies:
       graphql: ^15.0.0 || ^16.0.0
       graphql-ws: ^5.5.5
@@ -2996,6 +3014,16 @@ packages:
     resolution: {integrity: sha512-7ls1R6//+GPYD9vof1XaL5psViv83CwpdwlS8oUkWldYgbPhzZ3WgxIQMWqGyBmWPmoBfQg8C7jj7KI/ZuDHhQ==}
     peerDependencies:
       prettier: ^3.0.0
+
+  '@projectcaluma/ember-core@file:packages/core':
+    resolution: {directory: packages/core, type: directory}
+    engines: {node: '>= 18'}
+    peerDependencies:
+      ember-data: '*'
+      ember-source: '>= 4.0.0'
+    peerDependenciesMeta:
+      ember-data:
+        optional: true
 
   '@repeaterjs/repeater@3.0.4':
     resolution: {integrity: sha512-AW8PKd6iX3vAZ0vA43nOUOnbq/X5ihgU+mSXXqunMkeQADGiqw/PY0JNeYtD5sr0PAy51YPgAPbDoeapv9r8WA==}
@@ -6158,8 +6186,8 @@ packages:
     peerDependencies:
       eslint: '>=8.23.0'
 
-  eslint-plugin-prettier@5.2.1:
-    resolution: {integrity: sha512-gH3iR3g4JfF+yYPaJYkN7jEl9QbweL/YfkoRlNnuIEHEz1vHVlCmWOS+eGGiRuzHQXdJFCOTxRgvju9b8VUmrw==}
+  eslint-plugin-prettier@5.2.3:
+    resolution: {integrity: sha512-qJ+y0FfCp/mQYQ/vWQ3s7eUlFEL4PyKfAJxsnYTJ4YT73nsJBWqmEpFryxV9OeUiqmsTsYJ5Y+KDNaeP31wrRw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     peerDependencies:
       '@types/eslint': '>=8.0.0'
@@ -7837,6 +7865,7 @@ packages:
 
   lodash.get@4.4.2:
     resolution: {integrity: sha512-z+Uw/vLuy6gQe8cfaFWD7p0wVv8fJl3mbzXh33RS+0oW2wvUqiRXiQ69gLWSLpgB5/6sU+r6BlQR0MBILadqTQ==}
+    deprecated: This package is deprecated. Use the optional chaining (?.) operator instead.
 
   lodash.isarguments@3.1.0:
     resolution: {integrity: sha512-chi4NHZlZqZD18a0imDHnZPrDeBbTtVN7GXMwuGdRH9qotxAjYs3aVLKc7zNOG9eddR5Ksd8rvFEBc9SsggPpg==}
@@ -7846,6 +7875,7 @@ packages:
 
   lodash.isequal@4.5.0:
     resolution: {integrity: sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==}
+    deprecated: This package is deprecated. Use require('node:util').isDeepStrictEqual instead.
 
   lodash.isplainobject@4.0.6:
     resolution: {integrity: sha512-oSXzaWypCMHkPC3NvBEaPHf0KsA5mvPrOPgQWDsbg8n7orZ290M0BmC/jgRZ4vcJ6DTAhjrsSYgdsW/F+MFOBA==}
@@ -7870,6 +7900,7 @@ packages:
 
   lodash.omit@4.5.0:
     resolution: {integrity: sha512-XeqSp49hNGmlkj2EJlfrQFIzQ6lXdNro9sddtQzcJY8QaoC2GO0DT7xaIokHeyM+mIT0mPMlPvkYzg2xCuHdZg==}
+    deprecated: This package is deprecated. Use destructuring assignment syntax instead.
 
   lodash.snakecase@4.1.1:
     resolution: {integrity: sha512-QZ1d4xoBHYUeuouhEq3lk3Uq7ldgyFXGBhg04+oRLnIz8o9T65Eh+8YdroUwn846zchkA9yDsDl5CVVaV2nqYw==}
@@ -7879,6 +7910,7 @@ packages:
 
   lodash.template@4.5.0:
     resolution: {integrity: sha512-84vYFxIkmidUiFxidA/KjjH9pAycqW+h980j7Fuz5qxRtO9pgB7MDFTdys1N7A5mcucRiDyEq4fusljItR1T/A==}
+    deprecated: This package is deprecated. Use https://socket.dev/npm/package/eta instead.
 
   lodash.templatesettings@4.2.0:
     resolution: {integrity: sha512-stgLz+i3Aa9mZgnjr/O+v9ruKZsPsndy7qPZOchbqk2cnTU1ZaldKK+v7m54WoKIyxiuMZTKT2H81F8BeAc3ZQ==}
@@ -9383,6 +9415,10 @@ packages:
     resolution: {integrity: sha512-7pCvicgdm0piq2LDNW+WhLtYvGwUb/dGmcY36jZjzE3iE4UnH5QaluBHkiVDOj6DqZTwSmUI+s9hn00+pbiLnA==}
     engines: {node: '>=0.8'}
 
+  response-iterator@0.2.19:
+    resolution: {integrity: sha512-9SNSciJRoDouZg4ClSfjGVw+nLNs0VD/XNxEUdQIMfNHrgIf2aBYwQicbroY4eg6KQiu2WMclH3kOBnxU3Thzw==}
+    engines: {node: '>=0.8'}
+
   responselike@1.0.2:
     resolution: {integrity: sha512-/Fpe5guzJk1gPqdJLJR5u7eG/gNY4nImjbRDaVWVMRhne55TCmj2i9Q+54PBRfatRC8v/rIiv9BN0pMd9OV5EQ==}
 
@@ -10859,7 +10895,7 @@ packages:
 
 snapshots:
 
-  '@adfinis/eslint-config@2.1.1(@babel/core@7.26.0)(@babel/eslint-parser@7.26.5(@babel/core@7.26.0)(eslint@8.57.1))(@babel/plugin-proposal-decorators@7.25.9(@babel/core@7.26.0))(eslint-config-prettier@10.0.1(eslint@8.57.1))(eslint-plugin-ember@12.3.3(@babel/core@7.26.0)(eslint@8.57.1))(eslint-plugin-import@2.31.0(eslint@8.57.1))(eslint-plugin-n@17.15.1(eslint@8.57.1))(eslint-plugin-prettier@5.2.1(@types/eslint@9.6.1)(eslint-config-prettier@10.0.1(eslint@8.57.1))(eslint@8.57.1)(prettier@3.4.2))(eslint-plugin-qunit@8.1.2(eslint@8.57.1))(eslint@8.57.1)(prettier@3.4.2)':
+  '@adfinis/eslint-config@2.1.1(@babel/core@7.26.0)(@babel/eslint-parser@7.26.5(@babel/core@7.26.0)(eslint@8.57.1))(@babel/plugin-proposal-decorators@7.25.9(@babel/core@7.26.0))(eslint-config-prettier@10.0.1(eslint@8.57.1))(eslint-plugin-ember@12.3.3(@babel/core@7.26.0)(eslint@8.57.1))(eslint-plugin-import@2.31.0(eslint@8.57.1))(eslint-plugin-n@17.15.1(eslint@8.57.1))(eslint-plugin-prettier@5.2.3(@types/eslint@9.6.1)(eslint-config-prettier@10.0.1(eslint@8.57.1))(eslint@8.57.1)(prettier@3.4.2))(eslint-plugin-qunit@8.1.2(eslint@8.57.1))(eslint@8.57.1)(prettier@3.4.2)':
     dependencies:
       '@babel/core': 7.26.0
       '@babel/eslint-parser': 7.26.5(@babel/core@7.26.0)(eslint@8.57.1)
@@ -10867,7 +10903,7 @@ snapshots:
       eslint: 8.57.1
       eslint-config-prettier: 10.0.1(eslint@8.57.1)
       eslint-plugin-import: 2.31.0(eslint@8.57.1)
-      eslint-plugin-prettier: 5.2.1(@types/eslint@9.6.1)(eslint-config-prettier@10.0.1(eslint@8.57.1))(eslint@8.57.1)(prettier@3.4.2)
+      eslint-plugin-prettier: 5.2.3(@types/eslint@9.6.1)(eslint-config-prettier@10.0.1(eslint@8.57.1))(eslint@8.57.1)(prettier@3.4.2)
       prettier: 3.4.2
     optionalDependencies:
       eslint-plugin-ember: 12.3.3(@babel/core@7.26.0)(eslint@8.57.1)
@@ -10892,6 +10928,28 @@ snapshots:
       prop-types: 15.8.1
       rehackt: 0.1.0
       response-iterator: 0.2.14
+      symbol-observable: 4.0.0
+      ts-invariant: 0.10.3
+      tslib: 2.8.1
+      zen-observable-ts: 1.2.5
+    optionalDependencies:
+      graphql-ws: 5.12.1(graphql@15.10.1)
+    transitivePeerDependencies:
+      - '@types/react'
+
+  '@apollo/client@3.12.7(graphql-ws@5.12.1(graphql@15.10.1))(graphql@15.10.1)':
+    dependencies:
+      '@graphql-typed-document-node/core': 3.2.0(graphql@15.10.1)
+      '@wry/caches': 1.0.1
+      '@wry/equality': 0.5.7
+      '@wry/trie': 0.5.0
+      graphql: 15.10.1
+      graphql-tag: 2.12.6(graphql@15.10.1)
+      hoist-non-react-statics: 3.3.2
+      optimism: 0.18.1
+      prop-types: 15.8.1
+      rehackt: 0.1.0
+      response-iterator: 0.2.19
       symbol-observable: 4.0.0
       ts-invariant: 0.10.3
       tslib: 2.8.1
@@ -12871,6 +12929,48 @@ snapshots:
   '@prettier/sync@0.2.1(prettier@3.4.2)':
     dependencies:
       prettier: 3.4.2
+
+  '@projectcaluma/ember-core@file:packages/core(rwfmu7poeesificlnfbz2z5bqe)':
+    dependencies:
+      '@apollo/client': 3.12.7(graphql-ws@5.12.1(graphql@15.10.1))(graphql@15.10.1)
+      '@babel/core': 7.26.0
+      '@ember/string': 4.0.0
+      '@embroider/macros': 1.16.10(@glint/template@1.5.1)
+      '@glimmer/tracking': 1.1.2
+      ember-apollo-client: 4.0.2(@glint/template@1.5.1)(graphql-ws@5.12.1(graphql@15.10.1))(graphql@15.10.1)(webpack@5.97.1)
+      ember-auto-import: 2.10.0(@glint/template@1.5.1)(webpack@5.97.1)
+      ember-cli-babel: 8.2.0(@babel/core@7.26.0)
+      ember-cli-htmlbars: 6.3.0
+      ember-concurrency: 4.0.2(@babel/core@7.26.0)(@glimmer/tracking@1.1.2)(@glint/template@1.5.1)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.1)(rsvp@4.8.5)(webpack@5.97.1))
+      ember-fetch: 8.1.2
+      ember-inflector: 5.0.2(@babel/core@7.26.0)
+      ember-intl: 7.1.1(@ember/test-helpers@4.0.4(@babel/core@7.26.0)(@glint/template@1.5.1)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.1)(rsvp@4.8.5)(webpack@5.97.1)))(@glint/template@1.5.1)(typescript@5.7.3)(webpack@5.97.1)
+      ember-modify-based-class-resource: 1.1.1(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glimmer/tracking@1.1.2)(@glint/template@1.5.1)(ember-resources@7.0.3(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glimmer/tracking@1.1.2)(@glint/template@1.5.1)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.1)(rsvp@4.8.5)(webpack@5.97.1)))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.1)(rsvp@4.8.5)(webpack@5.97.1))
+      ember-source: 6.1.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.1)(rsvp@4.8.5)(webpack@5.97.1)
+      ember-template-imports: 4.2.0
+      ember-uikit: 9.1.3(@glint/template@1.5.1)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.1)(rsvp@4.8.5)(webpack@5.97.1))(webpack@5.97.1)
+      graphql: 15.10.1
+      graphql-tag: 2.12.6(graphql@15.10.1)
+      jexl: 2.3.0
+      lodash.clonedeep: 4.5.0
+      slugify: 1.6.6
+    optionalDependencies:
+      ember-data: 5.3.9(@ember/string@4.0.0)(@ember/test-helpers@4.0.4(@babel/core@7.26.0)(@glint/template@1.5.1)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.1)(rsvp@4.8.5)(webpack@5.97.1)))(@ember/test-waiters@3.1.0)(@glint/template@1.5.1)(ember-inflector@5.0.2(@babel/core@7.26.0))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.1)(rsvp@4.8.5)(webpack@5.97.1))(qunit@2.23.1)
+    transitivePeerDependencies:
+      - '@ember/test-helpers'
+      - '@glimmer/component'
+      - '@glint/environment-ember-loose'
+      - '@glint/template'
+      - '@types/react'
+      - ember-resources
+      - encoding
+      - graphql-ws
+      - react
+      - react-dom
+      - subscriptions-transport-ws
+      - supports-color
+      - typescript
+      - webpack
 
   '@repeaterjs/repeater@3.0.4': {}
 
@@ -17765,7 +17865,7 @@ snapshots:
       minimatch: 9.0.5
       semver: 7.6.3
 
-  eslint-plugin-prettier@5.2.1(@types/eslint@9.6.1)(eslint-config-prettier@10.0.1(eslint@8.57.1))(eslint@8.57.1)(prettier@3.4.2):
+  eslint-plugin-prettier@5.2.3(@types/eslint@9.6.1)(eslint-config-prettier@10.0.1(eslint@8.57.1))(eslint@8.57.1)(prettier@3.4.2):
     dependencies:
       eslint: 8.57.1
       prettier: 3.4.2
@@ -21199,6 +21299,10 @@ snapshots:
       supports-preserve-symlinks-flag: 1.0.0
 
   response-iterator@0.2.14: {}
+
+  response-iterator@0.2.19:
+    dependencies:
+      readable-stream: 2.3.8
 
   responselike@1.0.2:
     dependencies:
