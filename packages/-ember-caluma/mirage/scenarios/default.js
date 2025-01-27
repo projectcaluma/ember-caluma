@@ -200,6 +200,7 @@ export default function (server) {
       workflowId: server.create("workflow").id,
       workItemIds: [
         server.create("work-item", {
+          status: "READY",
           taskId: server.create("task", {
             type: "COMPLETE_WORKFLOW_FORM",
           }).id,
