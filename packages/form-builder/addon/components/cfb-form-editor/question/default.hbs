@@ -1,6 +1,8 @@
 <div class="uk-margin">
   <@labelComponent />
 
+  {{! Default values for ChoiceQuestions and MultipleChoiceQuestion options are not updated
+  when a new one is added because the object returned by `this.field` is too nested to track properly. }}
   <div class="uk-form-controls">
     {{component
       (get-widget this.field.question)

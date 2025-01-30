@@ -45,7 +45,16 @@ export default class CfbFormEditorQuestionDefault extends Component {
       // Format option changesets to match the raw format needed in lib.
       raw[key] = {
         edges: raw.options.map((node) => {
-          return { node };
+          return {
+            node: {
+              ...node.get("data"),
+              ...node.get("change"),
+              // While we want the real value of the option, the option should never
+              // be hidden in the form-builder. We need to set a value here as no
+              // value will lead to a Jexl error.
+              isHidden: "false",
+            },
+          };
         }),
       };
       delete raw.options;
