@@ -473,6 +473,7 @@ export default class CfbFormEditorQuestion extends Component {
             label: "",
             slug: "",
             isArchived: false,
+            isHidden: "false",
             slugUnlinked: false,
             question: this.model.slug,
           },
