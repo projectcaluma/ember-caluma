@@ -17,7 +17,7 @@
             class="uk-icon-button"
             uk-icon="trash"
             title={{t "caluma.form-builder.options.delete"}}
-            {{on "click" (fn @deleteRow @row)}}
+            {{on "click" @deleteRow}}
           >
           </button>
         {{else}}
@@ -46,7 +46,6 @@
           @inputName={{concat "option-" (add @i 1) "-label"}}
           @required={{true}}
           @disabled={{@row.isArchived}}
-          @submitted={{@submitted}}
           @on-update={{@updateLabel}}
         />
       </div>
@@ -56,7 +55,6 @@
           @inputName={{concat "option-" (add @i 1) "-slug"}}
           @required={{true}}
           @disabled={{not (is-empty @row.id)}}
-          @submitted={{@submitted}}
           @renderComponent={{component
             "cfb-slug-input"
             hidePrefix=true

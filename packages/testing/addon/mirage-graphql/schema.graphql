@@ -3237,7 +3237,7 @@ input SaveOptionInput {
   slug: String!
   label: String!
   isArchived: Boolean
-  isHidden: Boolean
+  isHidden: QuestionJexl
   meta: JSONString
   clientMutationId: String
 }
