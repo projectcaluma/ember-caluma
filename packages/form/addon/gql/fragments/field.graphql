@@ -101,6 +101,12 @@ fragment SimpleQuestion on Question {
     }
     hintText
   }
+  ... on DynamicChoiceQuestion {
+    hintText
+  }
+  ... on DynamicMultipleChoiceQuestion {
+    hintText
+  }
   ... on DateQuestion {
     dateDefaultAnswer: defaultAnswer {
       id
