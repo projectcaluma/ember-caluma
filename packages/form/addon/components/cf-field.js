@@ -87,21 +87,16 @@ export default class CfFieldComponent extends Component {
    *
    * @method save
    * @param {String|Number|String[]} value The new value to save to the field
-   * @param {Boolean} bypassTimeout Whether to bypass the timeout
    */
   @restartableTask
-  *save(value, bypassTimeout = false) {
+  *save(value) {
     if (typeof this.args.onSave === "function") {
       return yield this.args.onSave(this.args.field, value);
     }
 
     /* istanbul ignore next */
-    if (macroCondition(isTesting())) {
-      // no timeout
-    } else {
-      if (!bypassTimeout) {
-        yield timeout(500);
-      }
+    if (macroCondition(!isTesting())) {
+      yield timeout(500);
     }
 
     if (this.args.field.answer) {
