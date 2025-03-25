@@ -15,7 +15,6 @@ updates:
       time: "12:00"
       timezone: "Europe/Zurich"
     open-pull-requests-limit: 10
-    versioning-strategy: increase
     ignore:
       # graphql-tools v5+ breaks generic mocking
       - dependency-name: graphql-tools
