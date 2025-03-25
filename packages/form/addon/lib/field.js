@@ -72,6 +72,7 @@ export default class Field extends Base {
     assert("`fieldset` must be passed as an argument", fieldset);
 
     super({ fieldset, ...args });
+    console.log("init field", args);
 
     this.fieldset = fieldset;
 
@@ -121,7 +122,12 @@ export default class Field extends Base {
     } else {
       answer =
         this.calumaStore.find(`Answer:${decodeId(this.raw.answer.id)}`) ||
-        new Answer({ raw: this.raw.answer, field: this, owner });
+        new Answer({
+          raw: this.raw.answer,
+          historical: this.raw.historicalAnswer,
+          field: this,
+          owner,
+        });
     }
 
     this.answer = associateDestroyableChild(this, answer);

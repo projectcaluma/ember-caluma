@@ -13,7 +13,7 @@ export default class DemoFormRenderingRoute extends Route {
         fetchPolicy: "network-only",
         query: gql`
           query {
-            allDocuments(filter: [{ form: "formular-1" }]) {
+            allDocuments(filter: [{ form: "demo-formular-1" }]) {
               edges {
                 node {
                   id
