@@ -2,9 +2,10 @@ import { action } from "@ember/object";
 import { guidFor } from "@ember/object/internals";
 import { service } from "@ember/service";
 import Component from "@glimmer/component";
-import jexl from "jexl";
 
 import { hasQuestionType } from "@projectcaluma/ember-core/helpers/has-question-type";
+
+const cleanJexl = (expr) => expr.replace(/\s/g, "");
 
 export default class CfbFormEditorQuestionListItem extends Component {
   @service router;
@@ -14,33 +15,31 @@ export default class CfbFormEditorQuestionListItem extends Component {
   }
 
   get required() {
-    try {
-      return jexl.evalSync(this.args.question?.isRequired);
-    } catch (error) {
-      return this.args.question?.isRequired;
-    }
+    return this.requiredType !== "not-required";
   }
 
   get requiredType() {
-    const required = this.required;
-    return required === true
+    const required = cleanJexl(this.args.question?.isRequired ?? "");
+
+    return required === "true"
       ? "required"
-      : required
-        ? "conditional"
-        : "not-required";
+      : required === "false"
+        ? "not-required"
+        : "conditional";
   }
 
   get hidden() {
-    try {
-      return jexl.evalSync(this.args.question?.isHidden);
-    } catch (error) {
-      return this.args.question?.isHidden;
-    }
+    return this.hiddenType !== "not-hidden";
   }
 
   get hiddenType() {
-    const hidden = this.hidden;
-    return hidden === true ? "hidden" : hidden ? "conditional" : "not-hidden";
+    const hidden = cleanJexl(this.args.question?.isHidden ?? "");
+
+    return hidden === "true"
+      ? "hidden"
+      : hidden === "false"
+        ? "not-hidden"
+        : "conditional";
   }
 
   get showFormLink() {
