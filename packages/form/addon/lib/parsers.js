@@ -3,15 +3,20 @@ import { assert } from "@ember/debug";
 export const parseDocument = (response) => {
   assert(
     "The passed document must be a GraphQL document",
-    response.__typename === "Document",
+    response.__typename.includes("Document"),
   );
   assert("The passed document must include a form", response.form);
-  assert("The passed document must include answers", response.answers);
+  assert(
+    "The passed document must include answers",
+    response.answers ?? response.historicalAnswers,
+  );
 
   return {
     ...response,
     rootForm: parseForm(response.form),
-    answers: response.answers.edges.map(({ node }) => parseAnswer(node)),
+    answers: (response.answers ?? response.historicalAnswers).edges.map(
+      ({ node }) => parseAnswer(node),
+    ),
     forms: parseFormTree(response.form),
   };
 };
