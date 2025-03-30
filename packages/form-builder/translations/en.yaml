@@ -70,6 +70,8 @@ caluma:
 
       min-value: "Minimum value"
       max-value: "Maximum value"
+      min-date: "Minimum date"
+      max-date: "Maximum date"
       min-length: "Minimum length"
       max-length: "Maximum length"
       step: "Steps"

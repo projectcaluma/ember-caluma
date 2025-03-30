@@ -94,4 +94,40 @@ module("Integration | Component | cf-field/input/date", function (hooks) {
     assert.dom(".ember-flatpickr-input.input").hasValue("25.03.2021");
     assert.dom(".ember-flatpickr-input.flatpickr-input").hasValue("2021-03-25");
   });
+
+  test("the date accept min date and max date", async function (assert) {
+    this.value = null;
+    this.field = {
+      question: {
+        raw: {
+          minDate: "2023-01-01",
+          maxDate: "2024-01-01",
+        },
+      },
+    };
+
+    await render(
+      hbs`<CfField::Input::Date @field={{this.field}} @onSave={{fn (mut this.value)}} />`,
+    );
+
+    await setLocale("en-us");
+    await setFlatpickrDate("input", new Date(2023, 6, 10)); // month is zero based
+    assert.strictEqual(this.value, "2023-07-10");
+    assert
+      .dom(".ember-flatpickr-input:not([type='hidden'])")
+      .hasValue("07/10/2023");
+    assert.dom(".ember-flatpickr-input[type='hidden']").hasValue("2023-07-10");
+
+    // the date here is less then the min dafined date
+    await setFlatpickrDate("input", new Date(2022, 6, 10)); // month is zero based
+    assert.strictEqual(this.value, null);
+    assert.dom(".ember-flatpickr-input:not([type='hidden'])").hasValue("");
+    assert.dom(".ember-flatpickr-input[type='hidden']").hasValue("");
+
+    // the date here is more then the max defined date
+    await setFlatpickrDate("input", new Date(2024, 6, 10)); // month is zero based
+    assert.strictEqual(this.value, null);
+    assert.dom(".ember-flatpickr-input:not([type='hidden'])").hasValue("");
+    assert.dom(".ember-flatpickr-input[type='hidden']").hasValue("");
+  });
 });
