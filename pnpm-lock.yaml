@@ -117,8 +117,8 @@ importers:
         specifier: 5.0.2
         version: 5.0.2(prettier@3.4.2)(stylelint@16.13.2(typescript@5.7.3))
       stylelint-scss:
-        specifier: 6.10.1
-        version: 6.10.1(stylelint@16.13.2(typescript@5.7.3))
+        specifier: 6.12.0
+        version: 6.12.0(stylelint@16.13.2(typescript@5.7.3))
 
   packages/-ember-caluma:
     devDependencies:
@@ -6989,6 +6989,7 @@ packages:
   graphql@14.7.0:
     resolution: {integrity: sha512-l0xWZpoPKpppFzMfvVyFmp9vLN7w/ZZJPefUicMCepfJeQ8sMcztloGYY9DfjVPo6tIUDzU5Hw3MUbIjj9AVVA==}
     engines: {node: '>= 6.x'}
+    deprecated: 'No longer supported; please update to a newer version. Details: https://github.com/graphql/graphql-js#version-support'
 
   graphql@15.10.1:
     resolution: {integrity: sha512-BL/Xd/T9baO6NFzoMpiMD7YUZ62R6viR5tp/MULVEnbYJXZA//kRNW7J0j1w/wXArgL0sCxhDfK5dczSKn3+cg==}
@@ -7799,6 +7800,9 @@ packages:
   known-css-properties@0.35.0:
     resolution: {integrity: sha512-a/RAk2BfKk+WFGhhOCAYqSiFLc34k8Mt/6NWRI4joER0EYUzXIcFivjjnoD3+XU1DggLn/tZc3DOAgke7l8a4A==}
 
+  known-css-properties@0.36.0:
+    resolution: {integrity: sha512-A+9jP+IUmuQsNdsLdcg6Yt7voiMF/D4K83ew0OpJtpu+l34ef7LaohWV0Rc6KNvzw6ZDizkqfyB5JznZnzuKQA==}
+
   language-subtag-registry@0.3.23:
     resolution: {integrity: sha512-0K65Lea881pHotoGEa5gDlMxt3pctLi2RplBb7Ezh4rRdLEOtgi7n4EwK9lamnUCkKBqaeKRVebTq6BAxSkpXQ==}
 
@@ -8126,8 +8130,8 @@ packages:
   mdn-data@2.12.2:
     resolution: {integrity: sha512-IEn+pegP1aManZuckezWCO+XZQDplx1366JoVhTpMpBB1sPey/SbveZQUosKiKiGYjg1wH4pMlNgXbCiYgihQA==}
 
-  mdn-data@2.14.0:
-    resolution: {integrity: sha512-QjcSiIvUHjmXp5wNLClRjQeU0Zp+I2Dag+AhtQto0nyKYZ3IF/pUzCuHe7Bv77EC92XE5t3EXeEiEv/to2Bwig==}
+  mdn-data@2.21.0:
+    resolution: {integrity: sha512-+ZKPQezM5vYJIkCxaC+4DTnRrVZR1CgsKLu5zsQERQx6Tea8Y+wMx5A24rq8A8NepCeatIQufVAekKNgiBMsGQ==}
 
   mdn-links@0.1.0:
     resolution: {integrity: sha512-m+gI2Hrgro1O0SwqHd9cFkqN8VGzP56eprB63gxu6z9EFQDMeaR083wcNqMVADIbgiMP/TOCCe0ZIXHLBv2tUg==}
@@ -8391,6 +8395,7 @@ packages:
   node-domexception@1.0.0:
     resolution: {integrity: sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==}
     engines: {node: '>=10.5.0'}
+    deprecated: Use your platform's native DOMException instead
 
   node-emoji@1.11.0:
     resolution: {integrity: sha512-wo2DpQkQp7Sjm2A0cq+sN7EHKO6Sl0ctXeBdFZrL9T9+UywORbufTcTZxom8YqpLQt/FqNMUkOpkZrJVYSKD3A==}
@@ -9055,6 +9060,10 @@ packages:
 
   postcss-selector-parser@7.0.0:
     resolution: {integrity: sha512-9RbEr1Y7FFfptd/1eEdntyjMwLeghW1bHX9GWjXo19vx4ytPQhANltvVxDggzJl7mnWM+dX28kb6cyS/4iQjlQ==}
+    engines: {node: '>=4'}
+
+  postcss-selector-parser@7.1.0:
+    resolution: {integrity: sha512-8sLjZwK0R+JlxlYcTuVnyT2v+htpdrjDOKuMcOVdYjt52Lh8hWRYpxBPoKx/Zg+bcjc3wx6fmQevMmUztS/ccA==}
     engines: {node: '>=4'}
 
   postcss-value-parser@3.3.1:
@@ -10116,8 +10125,8 @@ packages:
       prettier: '>=3.0.0'
       stylelint: '>=16.0.0'
 
-  stylelint-scss@6.10.1:
-    resolution: {integrity: sha512-CBqs0jecftIyhic6xba+4OvZUp4B0wNbX19w6Rq1fPo+lBDmTevk+olo8H7u/WQpTSDCDbBN4f3oocQurvXLTQ==}
+  stylelint-scss@6.12.0:
+    resolution: {integrity: sha512-U7CKhi1YNkM1pXUXl/GMUXi8xKdhl4Ayxdyceie1nZ1XNIdaUgMV6OArpooWcDzEggwgYD0HP/xIgVJo9a655w==}
     engines: {node: '>=18.12.0'}
     peerDependencies:
       stylelint: ^16.0.2
@@ -20306,6 +20315,8 @@ snapshots:
 
   known-css-properties@0.35.0: {}
 
+  known-css-properties@0.36.0: {}
+
   language-subtag-registry@0.3.23: {}
 
   language-tags@1.0.9:
@@ -20628,7 +20639,7 @@ snapshots:
 
   mdn-data@2.12.2: {}
 
-  mdn-data@2.14.0: {}
+  mdn-data@2.21.0: {}
 
   mdn-links@0.1.0: {}
 
@@ -21407,13 +21418,13 @@ snapshots:
     dependencies:
       icss-utils: 5.1.0(postcss@8.5.1)
       postcss: 8.5.1
-      postcss-selector-parser: 7.0.0
+      postcss-selector-parser: 7.1.0
       postcss-value-parser: 4.2.0
 
   postcss-modules-scope@3.2.1(postcss@8.5.1):
     dependencies:
       postcss: 8.5.1
-      postcss-selector-parser: 7.0.0
+      postcss-selector-parser: 7.1.0
 
   postcss-modules-values@4.0.0(postcss@8.5.1):
     dependencies:
@@ -21446,6 +21457,11 @@ snapshots:
       util-deprecate: 1.0.2
 
   postcss-selector-parser@7.0.0:
+    dependencies:
+      cssesc: 3.0.0
+      util-deprecate: 1.0.2
+
+  postcss-selector-parser@7.1.0:
     dependencies:
       cssesc: 3.0.0
       util-deprecate: 1.0.2
@@ -22617,7 +22633,7 @@ snapshots:
       postcss-scss: 4.0.9(postcss@8.5.1)
       stylelint: 16.13.2(typescript@5.7.3)
       stylelint-config-recommended: 14.0.1(stylelint@16.13.2(typescript@5.7.3))
-      stylelint-scss: 6.10.1(stylelint@16.13.2(typescript@5.7.3))
+      stylelint-scss: 6.12.0(stylelint@16.13.2(typescript@5.7.3))
     optionalDependencies:
       postcss: 8.5.1
 
@@ -22644,15 +22660,15 @@ snapshots:
       prettier-linter-helpers: 1.0.0
       stylelint: 16.13.2(typescript@5.7.3)
 
-  stylelint-scss@6.10.1(stylelint@16.13.2(typescript@5.7.3)):
+  stylelint-scss@6.12.0(stylelint@16.13.2(typescript@5.7.3)):
     dependencies:
       css-tree: 3.1.0
       is-plain-object: 5.0.0
-      known-css-properties: 0.35.0
-      mdn-data: 2.14.0
+      known-css-properties: 0.36.0
+      mdn-data: 2.21.0
       postcss-media-query-parser: 0.2.3
       postcss-resolve-nested-selector: 0.1.6
-      postcss-selector-parser: 7.0.0
+      postcss-selector-parser: 7.1.0
       postcss-value-parser: 4.2.0
       stylelint: 16.13.2(typescript@5.7.3)
 
