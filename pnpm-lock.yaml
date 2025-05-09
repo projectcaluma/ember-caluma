@@ -315,8 +315,8 @@ importers:
         specifier: 4.0.0
         version: 4.0.0(@babel/core@7.26.0)
       uikit:
-        specifier: 3.22.0
-        version: 3.22.0
+        specifier: 3.23.7
+        version: 3.23.7
       webpack:
         specifier: 5.97.1
         version: 5.97.1
@@ -487,8 +487,8 @@ importers:
         specifier: 1.83.4
         version: 1.83.4
       uikit:
-        specifier: 3.22.0
-        version: 3.22.0
+        specifier: 3.23.7
+        version: 3.23.7
       webpack:
         specifier: 5.97.1
         version: 5.97.1
@@ -646,8 +646,8 @@ importers:
         specifier: 3.4.0
         version: 3.4.0
       uikit:
-        specifier: 3.22.0
-        version: 3.22.0
+        specifier: 3.23.7
+        version: 3.23.7
       webpack:
         specifier: 5.97.1
         version: 5.97.1
@@ -830,8 +830,8 @@ importers:
         specifier: 1.83.4
         version: 1.83.4
       uikit:
-        specifier: 3.22.0
-        version: 3.22.0
+        specifier: 3.23.7
+        version: 3.23.7
       webpack:
         specifier: 5.97.1
         version: 5.97.1
@@ -1029,8 +1029,8 @@ importers:
         specifier: 1.83.4
         version: 1.83.4
       uikit:
-        specifier: 3.22.0
-        version: 3.22.0
+        specifier: 3.23.7
+        version: 3.23.7
       uuid:
         specifier: 11.0.5
         version: 11.0.5
@@ -1165,8 +1165,8 @@ importers:
         specifier: ^1.3.0
         version: 1.3.0(@babel/core@7.26.0)(@ember/test-waiters@3.1.0)(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glimmer/tracking@1.1.2)(@glint/template@1.5.1)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.1)(rsvp@4.8.5)(webpack@5.97.1))
       uikit:
-        specifier: ^3.22.0
-        version: 3.22.0
+        specifier: ^3.23.7
+        version: 3.23.7
     devDependencies:
       '@ember/optional-features':
         specifier: 2.2.0
@@ -1511,8 +1511,8 @@ importers:
         specifier: 3.4.0
         version: 3.4.0
       uikit:
-        specifier: 3.22.0
-        version: 3.22.0
+        specifier: 3.23.7
+        version: 3.23.7
       webpack:
         specifier: 5.97.1
         version: 5.97.1
@@ -6989,6 +6989,7 @@ packages:
   graphql@14.7.0:
     resolution: {integrity: sha512-l0xWZpoPKpppFzMfvVyFmp9vLN7w/ZZJPefUicMCepfJeQ8sMcztloGYY9DfjVPo6tIUDzU5Hw3MUbIjj9AVVA==}
     engines: {node: '>= 6.x'}
+    deprecated: 'No longer supported; please update to a newer version. Details: https://github.com/graphql/graphql-js#version-support'
 
   graphql@15.10.1:
     resolution: {integrity: sha512-BL/Xd/T9baO6NFzoMpiMD7YUZ62R6viR5tp/MULVEnbYJXZA//kRNW7J0j1w/wXArgL0sCxhDfK5dczSKn3+cg==}
@@ -8391,6 +8392,7 @@ packages:
   node-domexception@1.0.0:
     resolution: {integrity: sha512-/jKZoMpw0F8GRwl4/eLROPA3cfcXtLApP0QzLmUT/HuPCZWyB7IY9ZrMeKw2O/nFIqPQB3PVM9aYm0F312AXDQ==}
     engines: {node: '>=10.5.0'}
+    deprecated: Use your platform's native DOMException instead
 
   node-emoji@1.11.0:
     resolution: {integrity: sha512-wo2DpQkQp7Sjm2A0cq+sN7EHKO6Sl0ctXeBdFZrL9T9+UywORbufTcTZxom8YqpLQt/FqNMUkOpkZrJVYSKD3A==}
@@ -10502,8 +10504,8 @@ packages:
     engines: {node: '>=0.8.0'}
     hasBin: true
 
-  uikit@3.22.0:
-    resolution: {integrity: sha512-8eJCNIkuaNDSWFakhzlS+uvwhYpgQkzgz82Cjtj0edRfBhwSASbpm/cFjFTbralGGQv7U02Q3cxo6MoSuIbahw==}
+  uikit@3.23.7:
+    resolution: {integrity: sha512-DaTJDQxRwZMuVUIqkWDamAX9+DuVwdJpbhAqRz8zinLy8dzsh39EXoq6GJnLszu7IYSUe2BjoZLXEQjwQtMIhg==}
 
   unbox-primitive@1.1.0:
     resolution: {integrity: sha512-nWJ91DjeOkej/TA8pXQ3myruKpKEYgqvpw9lz4OPHj/NWFNluYrjbz9j01CJ8yKQd2g4jFoOkINCTW2I5LEEyw==}
@@ -18134,7 +18136,7 @@ snapshots:
       ember-source: 6.1.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.1)(rsvp@4.8.5)(webpack@5.97.1)
       ember-toggle: 9.0.3(@babel/core@7.26.0)(@glint/template@1.5.1)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.1)(rsvp@4.8.5)(webpack@5.97.1))
       ember-truth-helpers: 4.0.3(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.26.0))(@glint/template@1.5.1)(rsvp@4.8.5)(webpack@5.97.1))
-      uikit: 3.22.0
+      uikit: 3.23.7
     transitivePeerDependencies:
       - '@glint/environment-ember-loose'
       - '@glint/template'
@@ -23211,7 +23213,7 @@ snapshots:
   uglify-js@3.19.3:
     optional: true
 
-  uikit@3.22.0: {}
+  uikit@3.23.7: {}
 
   unbox-primitive@1.1.0:
     dependencies:
