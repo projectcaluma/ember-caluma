@@ -1,6 +1,7 @@
 import { assert } from "@ember/debug";
 import Service, { inject as service } from "@ember/service";
 import { tracked } from "@glimmer/tracking";
+import { DateTime } from "luxon";
 
 import slugify from "@projectcaluma/ember-core/utils/slugify";
 
@@ -89,6 +90,27 @@ export default class CalumaOptionsService extends Service {
    * @param {String} inquiryId
    */
   async sendReminderDistributionInquiry() {}
+
+  /**
+   * Calculate the default deadline for new inquiries in the distribution
+   * module. Per default, this will add the configured default lead time in days
+   * to the current date.
+   *
+   * This may be overwritten by the host app to define more complex logic to
+   * calculate said date. E.g. defining a different default deadline depending
+   * on which groups were selected.
+   *
+   * This function may return a promise.
+   *
+   * @method calculateDistributionDefaultDeadline
+   * @param {Number} defaultLeadTime
+   * @param {Array<String>} selectedGroups
+   * @returns {String} Deadline date formatted as ISO 8601 string
+   */
+  // eslint-disable-next-line no-unused-vars
+  calculateDistributionDefaultDeadline(defaultLeadTime, selectedGroups) {
+    return DateTime.now().plus({ days: defaultLeadTime }).toISODate();
+  }
 
   groupIdentifierProperty = "id";
   groupNameProperty = "name";

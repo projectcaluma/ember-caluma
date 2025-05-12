@@ -1,5 +1,6 @@
 import { inject as service } from "@ember/service";
 import fetch from "fetch";
+import { DateTime } from "luxon";
 
 import CalumaOptionsService from "@projectcaluma/ember-core/services/caluma-options";
 import DummyOneComponent from "ember-caluma/components/dummy-one";
@@ -103,5 +104,16 @@ export default class CustomCalumaOptionsService extends CalumaOptionsService {
     await fetch(`/${inquiryId}/send-reminder`, {
       method: "POST",
     });
+  }
+
+  calculateDistributionDefaultDeadline(defaultLeadTime, selectedGroups) {
+    return DateTime.now()
+      .plus({
+        // Add a day per selected group to the actual deadline. This only serves
+        // as demonstration of the possibilities of this function and is not
+        // meaningful at all
+        days: defaultLeadTime + selectedGroups.length,
+      })
+      .toISODate();
   }
 }
