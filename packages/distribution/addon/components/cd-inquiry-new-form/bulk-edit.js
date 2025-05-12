@@ -5,7 +5,6 @@ import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
 import { dropTask } from "ember-concurrency";
-import { DateTime } from "luxon";
 import { trackedFunction } from "reactiveweb/function";
 
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
@@ -16,6 +15,7 @@ import { parseDocument } from "@projectcaluma/ember-form/lib/parsers";
 export default class CdInquiryNewFormBulkEditComponent extends Component {
   @service router;
   @service distribution;
+  @service calumaOptions;
 
   @queryManager apollo;
 
@@ -38,9 +38,11 @@ export default class CdInquiryNewFormBulkEditComponent extends Component {
     // deadline that should be displayed in the form per default and add it to
     // the fake document data
     if (this.config.new.defaultDeadlineLeadTime) {
-      const deadline = DateTime.now()
-        .plus({ days: this.config.new.defaultDeadlineLeadTime })
-        .toISODate();
+      const deadline =
+        await this.calumaOptions.calculateDistributionDefaultDeadline(
+          this.config.new.defaultDeadlineLeadTime,
+          this.args.selectedGroups,
+        );
 
       answers.edges.push({
         node: {
