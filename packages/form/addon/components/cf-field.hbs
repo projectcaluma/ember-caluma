@@ -55,8 +55,12 @@
                   <p class="uk-text-meta uk-margin-small">
                     {{t "caluma.form.error.details"}}
                   </p>
-                  <pre class="uk-margin-remove">
-                    {{~format-graphql-error this.save.last.error~}}
+                  <pre
+                    class="uk-margin-remove"
+                  >
+                    {{~format-graphql-error
+                      this.save.last.error
+                    ~}}
                   </pre>
                 </div>
               {{/if}}
