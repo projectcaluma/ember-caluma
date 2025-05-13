@@ -46,16 +46,16 @@
     "ember-cli-sri": "2.1.1",
     "ember-cli-terser": "4.0.2",
     "ember-load-initializers": "3.0.1",
-    "ember-qunit": "9.0.1",
+    "ember-qunit": "9.0.2",
     "ember-resolver": "13.1.0",
     "ember-source": "6.1.0",
     "ember-source-channel-url": "3.0.0",
-    "ember-try": "3.0.0",
+    "ember-try": "4.0.0",
     "graphql-tag": "2.12.6",
     "loader.js": "4.7.0",
-    "qunit": "2.23.1",
+    "qunit": "2.24.1",
     "qunit-dom": "3.4.0",
-    "webpack": "5.97.1"
+    "webpack": "5.99.8"
   },
   "peerDependencies": {
     "ember-source": ">= 4.0.0"
