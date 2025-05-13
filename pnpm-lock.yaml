@@ -4,6 +4,9 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+overrides:
+  '@ember/test-waiters': 3.1.0
+
 importers:
 
   .:
@@ -2317,7 +2320,7 @@ packages:
       '@ember-data/request': 5.3.9
       '@ember-data/request-utils': 5.3.9
       '@ember-data/store': 5.3.9
-      '@ember/test-waiters': ^3.1.0
+      '@ember/test-waiters': 3.1.0
       '@warp-drive/core-types': 0.0.0-beta.12
     peerDependenciesMeta:
       '@ember-data/graph':
@@ -2428,10 +2431,6 @@ packages:
     resolution: {integrity: sha512-1mbOVyVEcLxYOGzBaeeaQkCrL1o9Av86QaHk/1RvrVBW24I6YUj1ILLEi2qLZT5PzcCy0TdfadHT3hKJwJ0GcQ==}
     peerDependencies:
       ember-source: '>= 4.0.0'
-
-  '@ember/test-waiters@3.0.2':
-    resolution: {integrity: sha512-H8Q3Xy9rlqhDKnQpwt2pzAYDouww4TZIGSI1pZJhM7mQIGufQKuB0ijzn/yugA6Z+bNdjYp1HioP8Y4hn2zazQ==}
-    engines: {node: 10.* || 12.* || >= 14.*}
 
   '@ember/test-waiters@3.1.0':
     resolution: {integrity: sha512-bb9h95ktG2wKY9+ja1sdsFBdOms2lB19VWs8wmNpzgHv1NCetonBoV5jHBV4DHt0uS1tg9z66cZqhUVlYs96KQ==}
@@ -5633,7 +5632,7 @@ packages:
     engines: {node: '>= 18.20.4'}
     peerDependencies:
       '@ember/test-helpers': ^3.3.0 || ^4.0.4
-      '@ember/test-waiters': ^3.1.0
+      '@ember/test-waiters': 3.1.0
       qunit: ^2.18.0
     peerDependenciesMeta:
       '@ember/test-helpers':
@@ -5872,7 +5871,7 @@ packages:
     engines: {node: 14.* || >= 16}
     peerDependencies:
       '@ember/test-helpers': ^2.6.0 || >= 3.0.0
-      '@ember/test-waiters': '>= 3.0.1'
+      '@ember/test-waiters': 3.1.0
       ember-modifier: ^3.2.0 || >= 4.0.0
       ember-source: ^3.28.0 || >= 4.0.0
 
@@ -9198,7 +9197,7 @@ packages:
   reactiveweb@1.3.0:
     resolution: {integrity: sha512-+HIF4nW2iiHrZYvMyaFJopL/ljEW8e8s9HS+I6kAtSeJqtJtox577qviywU8ffHRmHPZP4owTlSWg3F4nAj4Vg==}
     peerDependencies:
-      '@ember/test-waiters': '>= 3.1.0'
+      '@ember/test-waiters': 3.1.0
       ember-source: '>= 3.28.0'
 
   read-cache@1.0.0:
@@ -12195,15 +12194,6 @@ snapshots:
     transitivePeerDependencies:
       - '@babel/core'
       - '@glint/template'
-      - supports-color
-
-  '@ember/test-waiters@3.0.2':
-    dependencies:
-      calculate-cache-key-for-tree: 2.0.0
-      ember-cli-babel: 7.26.11
-      ember-cli-version-checker: 5.1.2
-      semver: 7.7.1
-    transitivePeerDependencies:
       - supports-color
 
   '@ember/test-waiters@3.1.0':
@@ -16143,7 +16133,7 @@ snapshots:
   ember-apollo-client@4.0.2(@glint/template@1.5.1)(graphql-ws@5.12.1(graphql@15.10.1))(graphql@15.10.1)(webpack@5.97.1):
     dependencies:
       '@apollo/client': 3.12.7(graphql-ws@5.12.1(graphql@15.10.1))(graphql@15.10.1)
-      '@ember/test-waiters': 3.0.2
+      '@ember/test-waiters': 3.1.0
       '@embroider/macros': 1.16.10(@glint/template@1.5.1)
       '@glimmer/tracking': 1.1.2
       broccoli-graphql-filter: 1.0.1(graphql@15.10.1)
