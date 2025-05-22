@@ -111,6 +111,6 @@ caluma:
       status: "Ritirate"
 
     reopen-inquiry:
-      link: "Riaprire"
-      confirm: "Riaprire davvero la richiesta?"
+      link: "Riapri"
+      confirm: "Riapri davvero la richiesta?"
       error: "Errore nel tentativo di riaprire la richiesta"
