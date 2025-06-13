@@ -3,6 +3,7 @@ import { waitUntil } from "@ember/test-helpers";
 import { tracked } from "@glimmer/tracking";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { module, test } from "qunit";
+import { spy } from "sinon";
 
 import { useCalumaQuery } from "@projectcaluma/ember-core/caluma-query";
 import { allWorkItems } from "@projectcaluma/ember-core/caluma-query/queries";
@@ -70,5 +71,18 @@ module("Unit | Caluma Query | resource", function (hooks) {
     await waitUntil(() => this.obj.workItems.value.length === 7);
 
     assert.strictEqual(this.obj.workItems.hasNextPage, false);
+  });
+
+  test("exposes a refresh method", async function (assert) {
+    await waitUntil(() => this.obj.workItems.value.length === 5);
+
+    const fetchSpy = spy(this.obj.workItems.query._fetch, "perform");
+
+    this.obj.workItems.refresh();
+
+    assert.strictEqual(fetchSpy.callCount, 1);
+    assert.deepEqual(fetchSpy.firstCall.args, [
+      { filter: [{ status: "READY" }], order: [] },
+    ]);
   });
 });
