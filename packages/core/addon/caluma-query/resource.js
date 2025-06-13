@@ -54,6 +54,15 @@ export default class CalumaQueryResource extends Resource {
     this.query.fetchMore();
   }
 
+  @action
+  refresh(event) {
+    if (event instanceof Event) {
+      event.preventDefault();
+    }
+
+    this.query.refresh();
+  }
+
   get value() {
     return this.query.value;
   }

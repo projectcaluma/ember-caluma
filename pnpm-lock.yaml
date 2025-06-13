@@ -627,6 +627,9 @@ importers:
       ember-resolver:
         specifier: 13.1.0
         version: 13.1.0(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.27.1))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.99.8))
+      ember-sinon-qunit:
+        specifier: 7.5.0
+        version: 7.5.0(@babel/core@7.27.1)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.27.1))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.99.8))(qunit@2.24.1)(sinon@20.0.0)
       ember-source:
         specifier: 6.1.0
         version: 6.1.0(@glimmer/component@1.1.2(@babel/core@7.27.1))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.99.8)
@@ -645,6 +648,9 @@ importers:
       qunit-dom:
         specifier: 3.4.0
         version: 3.4.0
+      sinon:
+        specifier: 20.0.0
+        version: 20.0.0
       uikit:
         specifier: 3.23.7
         version: 3.23.7

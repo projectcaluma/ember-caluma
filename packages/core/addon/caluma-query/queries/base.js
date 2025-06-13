@@ -87,6 +87,13 @@ export default class BaseQuery {
     return this._fetchMore.perform(...args);
   }
 
+  refresh() {
+    // This peforms the fetch task with the current arguments which will result
+    // in a refresh of the base query. `queryOptions` is explicitly not being
+    // passed as this is merged with `this.queryOptions` in the task anyways.
+    return this._fetch.perform({ filter: this.filter, order: this.order });
+  }
+
   @restartableTask
   *_fetch({ filter = [], order = [], queryOptions = {} } = {}) {
     yield this._fetchPage.cancelAll({ resetState: true });
