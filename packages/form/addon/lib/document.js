@@ -6,9 +6,9 @@ import { cached } from "tracked-toolbox";
 
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 import {
+  flatten,
   intersects,
   mapby,
-  flatten,
 } from "@projectcaluma/ember-core/utils/jexl";
 import Base from "@projectcaluma/ember-form/lib/base";
 
@@ -280,7 +280,7 @@ export default class Document extends Base {
     }
 
     if (field.hidden || [undefined, null].includes(field.value)) {
-      return (defaultValue ?? field.question.isMultipleChoice) ? [] : null;
+      return defaultValue ?? (field.question.isMultipleChoice ? [] : null);
     }
 
     if (field.question.isTable) {
