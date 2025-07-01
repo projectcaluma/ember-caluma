@@ -6,7 +6,7 @@ import { camelize } from "@ember/string";
 import { isEmpty } from "@ember/utils";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
-import { restartableTask, lastValue, dropTask } from "ember-concurrency";
+import { dropTask, lastValue, restartableTask } from "ember-concurrency";
 import { validate } from "ember-validators";
 import isEqual from "lodash.isequal";
 import { cached } from "tracked-toolbox";
@@ -50,12 +50,19 @@ const MUTATION_MAP = {
   TableAnswer: saveDocumentTableAnswerMutation,
 };
 
-const fieldIsHiddenOrEmpty = (field) => {
+const fieldIsHidden = (field) => {
+  return field.hidden;
+};
+
+const fieldIsEmpty = (field) => {
   return (
-    field.hidden ||
-    (!field.question.isTable &&
-      (field.answer.value === null || field.answer.value === undefined))
+    !field.question.isTable &&
+    (field.answer.value === null || field.answer.value === undefined)
   );
+};
+
+const fieldIsHiddenOrEmpty = (field) => {
+  return fieldIsHidden(field) || fieldIsEmpty(field);
 };
 
 /**
@@ -521,7 +528,7 @@ export default class Field extends Base {
     if (
       this.fieldset.field?.hidden ||
       (this.hiddenDependencies.length &&
-        this.hiddenDependencies.every(fieldIsHiddenOrEmpty))
+        this.hiddenDependencies.every(fieldIsHidden))
     ) {
       return true;
     }
