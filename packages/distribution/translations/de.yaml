@@ -8,6 +8,7 @@ caluma:
     skip: "Zirkulation überspringen"
     reopen: "Zirkulation wiedereröffnen"
     check-inquiries: "Stellungnahmen als geprüft markieren"
+    inquiry-state: "{completed} von {all} Stellungnahmen beantwortet"
     send-confirm:
       "Wollen Sie wirklich <b>{count, plural, =1 {eine offene Anfrage} other
       {{count} offene Anfragen}}</b> versenden?"

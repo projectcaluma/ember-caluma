@@ -6,6 +6,17 @@
       </span>
       {{#if this.expanded}}
         <UkIcon @icon="chevron-down" />
+        <div
+          class="inquiry-state"
+          {{uk-tooltip
+            (t
+              "caluma.distribution.inquiry-state"
+              completed=this.completedInquiries
+              all=this.inquiries.length
+            )
+          }}
+        >
+        </div>
       {{else}}
         <UkIcon @icon="chevron-right" />
       {{/if}}

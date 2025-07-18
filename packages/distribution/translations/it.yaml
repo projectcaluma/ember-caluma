@@ -8,6 +8,7 @@ caluma:
     skip: "Ignora circolazione"
     reopen: "Riavvia circolazione"
     check-inquiries: "Segna le prese di posizione come verificate"
+    inquiry-state: ""
     send-confirm: "Inviare davvero <b>{count, plural, =1 {una richiesta in corso} other {{count} richieste in corso}}</b>?"
     complete-confirm: "Nella circolazione attuale <b>{count, plural, =1 {vi è una richiesta in corso} other {vi sono {count} richieste in corso}}</b. Concludendo la circolazione vengono interrotte tutte le rimanenti richieste in corso. Desidera continuare?"
     complete-confirm-empty: "Concludere davvero la circolazione?"
