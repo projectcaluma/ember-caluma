@@ -528,7 +528,7 @@ export default class Field extends Base {
     if (
       this.fieldset.field?.hidden ||
       (this.hiddenDependencies.length &&
-        this.hiddenDependencies.every(fieldIsHidden))
+        this.hiddenDependencies.every(fieldIsHiddenOrEmpty))
     ) {
       return true;
     }
