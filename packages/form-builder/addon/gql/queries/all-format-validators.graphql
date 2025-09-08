@@ -4,6 +4,7 @@ query AllFormatValidators {
       node {
         slug
         name
+        allowedQuestionTypes
       }
     }
   }

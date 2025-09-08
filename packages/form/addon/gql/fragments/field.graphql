@@ -19,7 +19,6 @@ fragment SimpleQuestion on Question {
         node {
           slug
           regex
-          errorMsg
         }
       }
     }
@@ -38,7 +37,6 @@ fragment SimpleQuestion on Question {
         node {
           slug
           regex
-          errorMsg
         }
       }
     }

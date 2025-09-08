@@ -3,6 +3,7 @@ import Component from "@glimmer/component";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { selectChoose } from "ember-power-select/test-support";
+import { typeInSearch } from "ember-power-select/test-support/helpers";
 import { module, test } from "qunit";
 
 import { setupRenderingTest } from "dummy/tests/helpers";
@@ -434,8 +435,11 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     await fillIn("[name=__typename]", "TableQuestion");
     await fillIn("[name=label]", "Label");
     await fillIn("[name=slug]", "slug");
-    await click(".ember-power-select-trigger");
-    await click(".ember-power-select-option");
+    await selectChoose(
+      "[data-test-select-row-form]",
+      ".ember-power-select-option",
+      1,
+    );
 
     await click("button[type=submit]");
 
@@ -464,8 +468,8 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     await fillIn("[name=__typename]", "TableQuestion");
     await fillIn("[name=label]", "Label");
 
-    assert.dom(".ember-power-select-trigger").hasText("No selection");
-    await click(".ember-power-select-trigger");
+    assert.dom("[data-test-select-row-form]").hasText("No selection");
+    await click("[data-test-select-row-form]");
     const options = [
       ...document.querySelectorAll(".ember-power-select-option"),
     ];
@@ -475,13 +479,21 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       assert.dom(options[index]).containsText(form.name);
     });
 
-    await fillIn(".ember-power-select-search-input", forms[0].slug);
-    assert.dom(".ember-power-select-option").exists({ count: 1 });
-    assert.dom(".ember-power-select-option").containsText(forms[0].slug);
+    await typeInSearch(".select-row-form-dropdown", forms[0].slug);
+    assert
+      .dom(".select-row-form-dropdown .ember-power-select-option")
+      .exists({ count: 1 });
+    assert
+      .dom(".select-row-form-dropdown  .ember-power-select-option")
+      .containsText(forms[0].slug);
 
-    await click(".ember-power-select-option");
-    assert.dom(".ember-power-select-trigger").containsText(forms[0].slug);
-    assert.dom(".ember-power-select-trigger").containsText(forms[0].name);
+    await selectChoose(
+      "[data-test-select-row-form]",
+      ".ember-power-select-option",
+      1,
+    );
+    assert.dom("[data-test-select-row-form]").containsText(forms[0].slug);
+    assert.dom("[data-test-select-row-form]").containsText(forms[0].name);
 
     await click("button[type=submit]");
     assert.verifySteps(["after-submit"]);
@@ -513,8 +525,11 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     await fillIn("[name=__typename]", "FormQuestion");
     await fillIn("[name=label]", "Label");
     await fillIn("[name=slug]", "slug");
-    await click(".ember-power-select-trigger");
-    await click(".ember-power-select-option");
+    await selectChoose(
+      "[data-test-select-sub-form]",
+      ".ember-power-select-option",
+      1,
+    );
 
     await click("button[type=submit]");
 
@@ -543,8 +558,8 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
     await fillIn("[name=__typename]", "FormQuestion");
     await fillIn("[name=label]", "Label");
 
-    assert.dom(".ember-power-select-trigger").hasText("No selection");
-    await click(".ember-power-select-trigger");
+    assert.dom("[data-test-select-sub-form]").hasText("No selection");
+    await click("[data-test-select-sub-form]");
     const options = [
       ...document.querySelectorAll(".ember-power-select-option"),
     ];
@@ -554,13 +569,21 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
       assert.dom(options[index]).containsText(form.name);
     });
 
-    await fillIn(".ember-power-select-search-input", forms[0].slug);
-    assert.dom(".ember-power-select-option").exists({ count: 1 });
-    assert.dom(".ember-power-select-option").containsText(forms[0].slug);
+    await typeInSearch(".select-sub-form-dropdown", forms[0].slug);
+    assert
+      .dom(".select-sub-form-dropdown .ember-power-select-option")
+      .exists({ count: 1 });
+    assert
+      .dom(".select-sub-form-dropdown  .ember-power-select-option")
+      .containsText(forms[0].slug);
 
-    await click(".ember-power-select-option");
-    assert.dom(".ember-power-select-trigger").containsText(forms[0].slug);
-    assert.dom(".ember-power-select-trigger").containsText(forms[0].name);
+    await selectChoose(
+      "[data-test-select-sub-form]",
+      ".ember-power-select-option",
+      1,
+    );
+    assert.dom("[data-test-select-sub-form]").containsText(forms[0].slug);
+    assert.dom("[data-test-select-sub-form]").containsText(forms[0].name);
 
     await click("button[type=submit]");
     assert.verifySteps(["after-submit"]);
@@ -685,8 +708,9 @@ module("Integration | Component | cfb-form-editor/question", function (hooks) {
 
     await render(hbs`<CfbFormEditor::Question />`, { owner: this.engine });
     await selectChoose(
-      ".ember-power-select-trigger",
+      "[data-test-select-format-validators]",
       ".ember-power-select-option",
+      1,
     );
 
     assert.dom(".ember-power-select-multiple-option").exists();

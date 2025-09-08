@@ -3,7 +3,6 @@ import { assert } from "@ember/debug";
 import { associateDestroyableChild } from "@ember/destroyable";
 import { inject as service } from "@ember/service";
 import { camelize } from "@ember/string";
-import { isEmpty } from "@ember/utils";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
 import { dropTask, lastValue, restartableTask } from "ember-concurrency";
@@ -609,25 +608,45 @@ export default class Field extends Base {
       input.dataSourceContext = JSON.stringify(this.document.dataSourceContext);
     }
 
-    const response = yield this.apollo.mutate(
-      {
-        mutation: MUTATION_MAP[type],
-        variables: { input },
-      },
-      `saveDocument${type}.answer`,
-    );
+    try {
+      const response = yield this.apollo.mutate(
+        {
+          mutation: MUTATION_MAP[type],
+          variables: { input },
+        },
+        `saveDocument${type}.answer`,
+      );
 
-    const wasNew = this.isNew;
+      const wasNew = this.isNew;
 
-    Object.entries(response).forEach(([key, value]) => {
-      this.answer.raw[key] = value;
-    });
+      Object.entries(response).forEach(([key, value]) => {
+        this.answer.raw[key] = value;
+      });
 
-    if (wasNew) {
-      this.answer.pushIntoStore();
+      if (wasNew) {
+        this.answer.pushIntoStore();
+      }
+
+      return response;
+    } catch (e) {
+      const validationError = e.errors.find(
+        (err) => err.extensions?.code === "format_validation_failed",
+      );
+
+      if (validationError) {
+        this._errors = [
+          ...this._errors,
+          {
+            type: "format",
+            context: { errorMsg: validationError.message },
+            value,
+          },
+        ];
+      } else {
+        this._errors = [];
+        throw e;
+      }
     }
-
-    return response;
   }
 
   /**
@@ -705,35 +724,6 @@ export default class Field extends Base {
   }
 
   /**
-   * Validate the value against the regexes of the given format validators.
-   *
-   * @method _validateFormatValidators
-   * @return {Array<Boolean|Object>} An array of error objects or `true`
-   * @private
-   */
-  _validateFormatValidators() {
-    const validators =
-      this.question.raw.formatValidators?.edges.map((edge) => edge.node) ?? [];
-    const value = this.answer.value;
-
-    if (isEmpty(value)) {
-      // empty values should not be validated since they are handled by the
-      // requiredness validation
-      return validators.map(() => true);
-    }
-
-    return validators.map((validator) => {
-      return (
-        new RegExp(validator.regex).test(value) || {
-          type: "format",
-          context: { errorMsg: validator.errorMsg },
-          value,
-        }
-      );
-    });
-  }
-
-  /**
    * Method to validate if a question is required or not.
    *
    * @method _validateRequired
@@ -757,7 +747,6 @@ export default class Field extends Base {
    */
   _validateTextQuestion() {
     return [
-      ...this._validateFormatValidators(),
       validate("length", this.answer.value, {
         min: this.question.raw.textMinLength || 0,
         max: this.question.raw.textMaxLength || Number.POSITIVE_INFINITY,
@@ -775,7 +764,6 @@ export default class Field extends Base {
    */
   _validateTextareaQuestion() {
     return [
-      ...this._validateFormatValidators(),
       validate("length", this.answer.value, {
         min: this.question.raw.textareaMinLength || 0,
         max: this.question.raw.textareaMaxLength || Number.POSITIVE_INFINITY,

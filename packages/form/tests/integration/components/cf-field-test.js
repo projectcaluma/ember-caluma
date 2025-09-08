@@ -11,9 +11,7 @@ module("Integration | Component | cf-field", function (hooks) {
 
   hooks.beforeEach(function () {
     const formatValidator = this.server.create("format-validator", {
-      slug: "email",
-      regex: "@",
-      errorMsg: "Invalid email",
+      slug: "some-validator",
     });
     const form = this.server.create("form", { slug: "some-form" });
     const question = this.server.create("question", {
@@ -35,35 +33,12 @@ module("Integration | Component | cf-field", function (hooks) {
       formIds: [form.id],
       formatValidatorIds: [formatValidator.id],
     });
-    this.server.create("question", {
-      type: "TEXT",
-      slug: "question-3",
-      label: "Test3",
-      isRequired: "true",
-      isHidden: "false",
-      minLength: 10,
-      maxLength: 20,
-      formIds: [form.id],
-      formatValidatorIds: [formatValidator.id],
-    });
     const document = this.server.create("document", { formId: form.id });
     this.server.create("answer", {
       questionId: question.id,
       documentId: document.id,
       value: "Test",
     });
-
-    const formatValidators = {
-      edges: [
-        {
-          node: {
-            slug: "email",
-            regex: "@",
-            errorMsg: "Invalid email",
-          },
-        },
-      ],
-    };
 
     const rawForm = {
       __typename: "Form",
@@ -85,16 +60,15 @@ module("Integration | Component | cf-field", function (hooks) {
           isRequired: "true",
           isHidden: "false",
           meta: {},
-          formatValidators,
-          __typename: "TextQuestion",
-        },
-        {
-          slug: "question-3",
-          label: "Test3",
-          isRequired: "true",
-          isHidden: "false",
-          meta: {},
-          formatValidators,
+          formatValidators: {
+            edges: [
+              {
+                node: {
+                  slug: "some-validator",
+                },
+              },
+            ],
+          },
           __typename: "TextQuestion",
         },
       ],
@@ -123,7 +97,6 @@ module("Integration | Component | cf-field", function (hooks) {
 
     this.field = rawDocument.fields[0];
     this.errorField = rawDocument.fields[1];
-    this.emailField = rawDocument.fields[2];
   });
 
   test("it allows deleting existing input", async function (assert) {
@@ -178,23 +151,24 @@ module("Integration | Component | cf-field", function (hooks) {
     assert.dom("uk-text-bold").doesNotExist();
   });
 
-  test("it shows error message", async function (assert) {
+  test("it shows format validator error message raised by backend", async function (assert) {
     assert.expect(1);
+
+    this.server.post("/graphql/", () => {
+      return {
+        errors: [
+          {
+            message: "Backend says no",
+            extensions: { code: "format_validation_failed" },
+          },
+        ],
+      };
+    });
 
     await render(hbs`<CfField @field={{this.errorField}} />`);
 
     await fillIn("input", "Test");
 
-    assert.dom("span.validation-errors").hasText("Invalid email");
-  });
-
-  test("it saves the valid email address", async function (assert) {
-    assert.expect(1);
-
-    await render(hbs`<CfField @field={{this.emailField}} />`);
-
-    await fillIn("input", "test@test.com");
-
-    assert.dom("span.validation-errors").doesNotExist();
+    assert.dom("span.validation-errors").hasText("Backend says no");
   });
 });
