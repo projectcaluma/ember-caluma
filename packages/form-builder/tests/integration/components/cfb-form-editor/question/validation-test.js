@@ -13,14 +13,18 @@ module(
 
     hooks.beforeEach(function () {
       this.server.createList("format-validator", 5);
+      this.server.create("format-validator", {
+        allowedQuestionTypes: ["float"],
+      });
     });
 
     test("it renders all available validators", async function (assert) {
       assert.expect(2);
 
-      await render(hbs`<CfbFormEditor::Question::Validation />`, {
-        owner: this.engine,
-      });
+      await render(
+        hbs`<CfbFormEditor::Question::Validation @questionType="TextareaQuestion" />`,
+        { owner: this.engine },
+      );
 
       await click(".ember-power-select-trigger");
 

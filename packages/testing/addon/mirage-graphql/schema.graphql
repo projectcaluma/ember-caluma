@@ -1,9 +1,9 @@
 """
-Exposes a URL that specifies the behaviour of this scalar.
+Exposes a URL that specifies the behavior of this scalar.
 """
 directive @specifiedBy(
   """
-  The URL that specifies the behaviour of this scalar.
+  The URL that specifies the behavior of this scalar.
   """
   url: String!
 ) on SCALAR
@@ -1682,8 +1682,8 @@ type Form implements Node {
 type FormatValidator {
   slug: String!
   name: String!
-  regex: String!
-  errorMsg: String!
+  regex: String
+  allowedQuestionTypes: [String]
 }
 
 type FormatValidatorConnection {
@@ -2138,7 +2138,7 @@ type Option implements Node {
   modifiedByGroup: String
   slug: String!
   label: String!
-  isHidden: String!
+  isHidden: QuestionJexl!
   isArchived: Boolean!
   meta: GenericScalar
 
@@ -2760,6 +2760,7 @@ input SaveChoiceQuestionInput {
   isArchived: Boolean
   options: [ID]!
   hintText: String
+  formatValidators: [String]
   clientMutationId: String
 }
 
@@ -2860,6 +2861,7 @@ input SaveDateQuestionInput {
   meta: JSONString
   isArchived: Boolean
   hintText: String
+  formatValidators: [String]
   clientMutationId: String
 }
 
@@ -3096,6 +3098,7 @@ input SaveDynamicChoiceQuestionInput {
   isArchived: Boolean
   dataSource: String!
   hintText: String
+  formatValidators: [String]
   clientMutationId: String
 }
 
@@ -3114,6 +3117,7 @@ input SaveDynamicMultipleChoiceQuestionInput {
   isArchived: Boolean
   dataSource: String!
   hintText: String
+  formatValidators: [String]
   clientMutationId: String
 }
 
@@ -3136,6 +3140,7 @@ input SaveFilesQuestionInput {
   meta: JSONString
   isArchived: Boolean
   hintText: String
+  formatValidators: [String]
   clientMutationId: String
 }
 
@@ -3157,6 +3162,7 @@ input SaveFloatQuestionInput {
   step: Float
   placeholder: String
   hintText: String
+  formatValidators: [String]
   clientMutationId: String
 }
 
@@ -3209,6 +3215,7 @@ input SaveIntegerQuestionInput {
   maxValue: Int
   placeholder: String
   hintText: String
+  formatValidators: [String]
   clientMutationId: String
 }
 
@@ -3227,6 +3234,7 @@ input SaveMultipleChoiceQuestionInput {
   isArchived: Boolean
   options: [ID]!
   hintText: String
+  formatValidators: [String]
   clientMutationId: String
 }
 
@@ -3320,6 +3328,7 @@ input SaveTableQuestionInput {
   """
   rowForm: ID!
   hintText: String
+  formatValidators: [String]
   clientMutationId: String
 }
 
@@ -3890,6 +3899,7 @@ type TaskEdge {
 
 input TaskFilterSetType {
   slug: String
+  slugs: [String]
   name: String
   description: String
   type: Type

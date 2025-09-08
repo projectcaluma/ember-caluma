@@ -161,13 +161,24 @@
           @name="maxLength"
           @label={{t "caluma.form-builder.question.max-length"}}
         />
+      {{/if}}
 
+      {{#if
+        (not
+          (has-question-type
+            f.model "action-button" "calculated-float" "static" "form"
+          )
+        )
+      }}
         <f.input
           @name="formatValidators"
           @label={{t "caluma.form-builder.question.formatValidators"}}
           @placeholder={{t "caluma.form-builder.question.no-selection"}}
           @required={{false}}
-          @renderComponent={{component "cfb-form-editor/question/validation"}}
+          @renderComponent={{component
+            "cfb-form-editor/question/validation"
+            questionType=f.model.__typename
+          }}
           @on-update={{changeset-set f.model "formatValidators"}}
           @value={{changeset-get f.model "formatValidators"}}
         />
@@ -307,6 +318,8 @@
                 "caluma.form-builder.question.search-empty"
               }}
               @renderInPlace={{true}}
+              @dropdownClass="select-row-form-dropdown"
+              data-test-select-row-form
               as |form|
             >
               <span
@@ -359,6 +372,8 @@
             }}
             @noMatchesMessage={{t "caluma.form-builder.question.search-empty"}}
             @renderInPlace={{true}}
+            @dropdownClass="select-sub-form-dropdown"
+            data-test-select-sub-form
             as |form|
           >
             <span class="uk-width-auto uk-margin-small-right uk-text-truncate">
