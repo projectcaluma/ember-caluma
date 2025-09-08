@@ -147,14 +147,14 @@ module("Integration | Component | cf-field/input/table", function (hooks) {
         formIds: [this.tableForm.id],
       });
 
-      (this.rowAnswer = this.server.create("answer", {
+      this.rowAnswer = this.server.create("answer", {
         value: "Foo",
         questionId: this.rowQuestion.id,
-      }).id),
-        (this.rowDocument = this.server.create("document", {
-          formId: this.tableForm.id,
-          answerIds: [],
-        }));
+      }).id;
+      this.rowDocument = this.server.create("document", {
+        formId: this.tableForm.id,
+        answerIds: [],
+      });
       this.document = this.server.create("document", {
         formId: this.rootForm.id,
       });
