@@ -8,6 +8,7 @@ caluma:
     skip: "Sauter la procédure de circulation"
     reopen: "Réouvrir la procédure de circulation"
     check-inquiries: "Marquer les prises de position comme vérifiées"
+    inquiry-state: ""
     send-confirm:
       "Voulez-vous vraiment envoyer <b>{count, plural, =1 {une demande ouverte}
       other {{count} demandes ouvertes}}</b> ?"

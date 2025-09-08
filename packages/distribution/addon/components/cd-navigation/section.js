@@ -24,6 +24,11 @@ export default class CdNavigationSectionComponent extends Component {
     return this.distribution.inquiries?.[this.args.type] ?? [];
   }
 
+  get completedInquiries() {
+    return this.inquiries.filter((inquiry) => inquiry.status === "COMPLETED")
+      .length;
+  }
+
   @action
   toggle(e) {
     e.preventDefault();
