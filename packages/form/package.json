@@ -33,7 +33,7 @@
     "ember-flatpickr": "^8.0.1",
     "ember-in-viewport": "^4.1.0",
     "ember-intl": "^7.1.1",
-    "ember-math-helpers": "^4.2.1",
+    "ember-math-helpers": "^4.2.1 || ^5.0.0",
     "ember-power-select": "^8.6.2",
     "ember-template-imports": "^4.2.0",
     "ember-truth-helpers": "^4.0.3",
