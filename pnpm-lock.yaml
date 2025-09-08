@@ -267,8 +267,8 @@ importers:
         specifier: 3.0.1
         version: 3.0.1(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.101.3))
       ember-math-helpers:
-        specifier: 4.2.1
-        version: 4.2.1(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.101.3))
+        specifier: 5.0.0
+        version: 5.0.0(@babel/core@7.28.4)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.101.3))
       ember-modifier:
         specifier: 4.2.2
         version: 4.2.2(@babel/core@7.28.4)
@@ -914,8 +914,8 @@ importers:
         specifier: ^7.1.1
         version: 7.3.1(@ember/test-helpers@4.0.4(@babel/core@7.28.4)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.101.3)))(@glint/template@1.5.2)(typescript@5.9.2)(webpack@5.101.3)
       ember-math-helpers:
-        specifier: ^4.2.1
-        version: 4.2.1(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.101.3))
+        specifier: ^4.2.1 || ^5.0.0
+        version: 5.0.0(@babel/core@7.28.4)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.101.3))
       ember-power-select:
         specifier: ^8.6.2
         version: 8.8.0(@babel/core@7.28.4)(@ember/test-helpers@4.0.4(@babel/core@7.28.4)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.101.3)))(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(ember-basic-dropdown@8.6.2(@babel/core@7.28.4)(@ember/string@4.0.1)(@ember/test-helpers@4.0.4(@babel/core@7.28.4)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.101.3)))(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.101.3)))(ember-concurrency@4.0.6(@babel/core@7.28.4)(@glint/template@1.5.2))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.101.3))
@@ -1126,8 +1126,8 @@ importers:
         specifier: ^2.1.2 || ^3.0.1
         version: 3.0.1(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.101.3))
       ember-math-helpers:
-        specifier: ^4.2.1
-        version: 4.2.1(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.101.3))
+        specifier: ^4.2.1 || ^5.0.0
+        version: 5.0.0(@babel/core@7.28.4)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.101.3))
       ember-power-select:
         specifier: ^8.6.2
         version: 8.8.0(@babel/core@7.28.4)(@ember/test-helpers@4.0.4(@babel/core@7.28.4)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.101.3)))(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(ember-basic-dropdown@8.6.2(@babel/core@7.28.4)(@ember/string@4.0.1)(@ember/test-helpers@4.0.4(@babel/core@7.28.4)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.101.3)))(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.101.3)))(ember-concurrency@4.0.6(@babel/core@7.28.4)(@glint/template@1.5.2))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.101.3))
@@ -5587,11 +5587,11 @@ packages:
     peerDependencies:
       ember-source: '>= 5'
 
-  ember-math-helpers@4.2.1:
-    resolution: {integrity: sha512-/pOFz6tQ67mh0faiD7nzOCYRXHElg2d/SvQnYB8vdYoj7BLCkNHLjdo3F0oa5Qz/6J/+k3ie5ZGBjMumvlOeIw==}
+  ember-math-helpers@5.0.0:
+    resolution: {integrity: sha512-UKChQuu1Ki57NGMFF0V1mbRJ5LtkZ+EMIdCl5w+3nrwCOzn8GpePQDgtQqgdE3tFrm3TsHfLgHtfa38uNSSG6w==}
     engines: {node: '>= 18'}
     peerDependencies:
-      ember-source: '>= 4.0.0'
+      ember-source: '>= 4.12.0'
 
   ember-modal-dialog@4.1.5:
     resolution: {integrity: sha512-VioV8l0B5N7kvqmV/dupwWQBdAHMDNjmONzo/mW1kHkF4RXyGzgbUqzNHc5cTF9yuEeXKOLf0CBwWEMMM8A9AA==}
@@ -16428,11 +16428,13 @@ snapshots:
     dependencies:
       ember-source: 6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.101.3)
 
-  ember-math-helpers@4.2.1(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.101.3)):
+  ember-math-helpers@5.0.0(@babel/core@7.28.4)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.101.3)):
     dependencies:
       '@embroider/addon-shim': 1.10.0
+      decorator-transforms: 2.3.0(@babel/core@7.28.4)
       ember-source: 6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.101.3)
     transitivePeerDependencies:
+      - '@babel/core'
       - supports-color
 
   ember-modal-dialog@4.1.5(@ember/string@4.0.1)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.101.3))(ember-tether@3.1.0(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.101.3))(webpack@5.101.3)):
