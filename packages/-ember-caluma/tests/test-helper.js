@@ -1,12 +1,15 @@
 import { setApplication } from "@ember/test-helpers";
-import { start } from "ember-qunit";
-import Application from "my-app/app";
-import config from "my-app/config/environment";
+import { start, setupEmberOnerrorValidation } from "ember-qunit";
+import { loadTests } from "ember-qunit/test-loader";
 import * as QUnit from "qunit";
 import { setup } from "qunit-dom";
+
+import Application from "ember-caluma/app";
+import config from "ember-caluma/config/environment";
 
 setApplication(Application.create(config.APP));
 
 setup(QUnit.assert);
-
+setupEmberOnerrorValidation();
+loadTests();
 start();
