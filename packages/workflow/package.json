@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@babel/core": "^7.26.0",
-    "@glimmer/component": "^1.1.2",
+    "@glimmer/component": "^2.0.0",
     "@projectcaluma/ember-core": "workspace:^",
     "ember-apollo-client": "~4.0.2",
     "ember-auto-import": "^2.10.0",
@@ -22,7 +22,6 @@
     "ember-cli-htmlbars": "^6.3.0",
     "ember-composable-helpers": "^5.0.0",
     "ember-concurrency": "^4.0.2",
-    "ember-fetch": "^8.1.2",
     "ember-intl": "^7.1.1",
     "ember-template-imports": "^4.2.0",
     "ember-truth-helpers": "^4.0.3",
@@ -32,16 +31,18 @@
   },
   "devDependencies": {
     "@ember/optional-features": "2.2.0",
-    "@ember/test-helpers": "4.0.4",
+    "@ember/test-helpers": "5.2.2",
+    "@embroider/macros": "1.18.1",
     "@embroider/test-setup": "4.0.0",
     "@faker-js/faker": "10.0.0",
     "@glimmer/tracking": "1.1.2",
     "@projectcaluma/ember-testing": "workspace:*",
     "broccoli-asset-rev": "3.0.0",
-    "ember-cli": "6.1.0",
+    "ember-cli": "6.7.0",
     "ember-cli-clean-css": "3.0.0",
     "ember-cli-code-coverage": "3.1.0",
     "ember-cli-dependency-checker": "3.3.3",
+    "ember-cli-deprecation-workflow": "3.4.0",
     "ember-cli-inject-live-reload": "2.1.0",
     "ember-cli-mirage": "3.0.4",
     "ember-cli-sri": "2.1.1",
@@ -49,7 +50,7 @@
     "ember-load-initializers": "3.0.1",
     "ember-qunit": "9.0.3",
     "ember-resolver": "13.1.1",
-    "ember-source": "6.1.0",
+    "ember-source": "6.7.0",
     "ember-source-channel-url": "3.0.0",
     "ember-try": "4.0.0",
     "loader.js": "4.7.0",
@@ -70,7 +71,7 @@
     }
   },
   "engines": {
-    "node": ">= 18"
+    "node": ">= 20.11"
   },
   "ember": {
     "edition": "octane"
