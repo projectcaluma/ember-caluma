@@ -1,6 +1,6 @@
 {
   "name": "@projectcaluma/ember-testing",
-  "version": "14.4.0",
+  "version": "14.4.1",
   "description": "Ember addon for testing with Caluma addons.",
   "keywords": [
     "ember-addon"
