@@ -68,6 +68,13 @@ query FormEditorQuestion($slug: String!) {
             id
             dateValue: value
           }
+          formatValidators {
+            edges {
+              node {
+                slug
+              }
+            }
+          }
         }
         ... on MultipleChoiceQuestion {
           options {
@@ -85,6 +92,13 @@ query FormEditorQuestion($slug: String!) {
           defaultAnswer {
             id
             listValue: value
+          }
+          formatValidators {
+            edges {
+              node {
+                slug
+              }
+            }
           }
         }
         ... on ChoiceQuestion {
@@ -104,14 +118,35 @@ query FormEditorQuestion($slug: String!) {
             id
             stringValue: value
           }
+          formatValidators {
+            edges {
+              node {
+                slug
+              }
+            }
+          }
         }
         ... on DynamicMultipleChoiceQuestion {
           dataSource
           hintText
+          formatValidators {
+            edges {
+              node {
+                slug
+              }
+            }
+          }
         }
         ... on DynamicChoiceQuestion {
           dataSource
           hintText
+          formatValidators {
+            edges {
+              node {
+                slug
+              }
+            }
+          }
         }
         ... on TableQuestion {
           rowForm {
@@ -152,6 +187,13 @@ query FormEditorQuestion($slug: String!) {
               }
             }
           }
+          formatValidators {
+            edges {
+              node {
+                slug
+              }
+            }
+          }
         }
         ... on FormQuestion {
           subForm {
@@ -168,6 +210,13 @@ query FormEditorQuestion($slug: String!) {
         }
         ... on FilesQuestion {
           hintText
+          formatValidators {
+            edges {
+              node {
+                slug
+              }
+            }
+          }
         }
         ... on ActionButtonQuestion {
           action

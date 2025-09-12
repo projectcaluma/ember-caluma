@@ -72,6 +72,10 @@ const TYPES_ANSWER = {
   TableAnswer: saveDefaultTableAnswerMutation,
 };
 
+function serializeFormatValidators(changeset) {
+  return changeset.get("formatValidators")?.edges.map((edge) => edge.node.slug);
+}
+
 export default class CfbFormEditorQuestion extends Component {
   @service notification;
   @service intl;
@@ -246,6 +250,7 @@ export default class CfbFormEditorQuestion extends Component {
       minValue: parseInt(changeset.get("integerMinValue")),
       maxValue: parseInt(changeset.get("integerMaxValue")),
       placeholder: changeset.get("placeholder"),
+      formatValidators: serializeFormatValidators(changeset),
       hintText: changeset.get("hintText"),
     };
   }
@@ -256,6 +261,7 @@ export default class CfbFormEditorQuestion extends Component {
       maxValue: parseFloat(changeset.get("floatMaxValue")),
       step: parseFloat(changeset.get("floatStep")),
       placeholder: changeset.get("placeholder"),
+      formatValidators: serializeFormatValidators(changeset),
       hintText: changeset.get("hintText"),
     };
   }
@@ -265,9 +271,7 @@ export default class CfbFormEditorQuestion extends Component {
       minLength: parseInt(changeset.get("minLength")),
       maxLength: parseInt(changeset.get("maxLength")),
       placeholder: changeset.get("placeholder"),
-      formatValidators: changeset
-        .get("formatValidators")
-        ?.edges.map((edge) => edge.node.slug),
+      formatValidators: serializeFormatValidators(changeset),
       hintText: changeset.get("hintText"),
     };
   }
@@ -277,15 +281,14 @@ export default class CfbFormEditorQuestion extends Component {
       minLength: parseInt(changeset.get("minLength")),
       maxLength: parseInt(changeset.get("maxLength")),
       placeholder: changeset.get("placeholder"),
-      formatValidators: changeset
-        .get("formatValidators")
-        ?.edges.map((edge) => edge.node.slug),
+      formatValidators: serializeFormatValidators(changeset),
       hintText: changeset.get("hintText"),
     };
   }
 
   _getDateQuestionInput(changeset) {
     return {
+      formatValidators: serializeFormatValidators(changeset),
       hintText: changeset.get("hintText"),
     };
   }
@@ -293,6 +296,7 @@ export default class CfbFormEditorQuestion extends Component {
   _getMultipleChoiceQuestionInput(changeset) {
     return {
       options: changeset.get("options").map(({ slug }) => slug),
+      formatValidators: serializeFormatValidators(changeset),
       hintText: changeset.get("hintText"),
     };
   }
@@ -300,6 +304,7 @@ export default class CfbFormEditorQuestion extends Component {
   _getChoiceQuestionInput(changeset) {
     return {
       options: changeset.get("options").map(({ slug }) => slug),
+      formatValidators: serializeFormatValidators(changeset),
       hintText: changeset.get("hintText"),
     };
   }
@@ -314,6 +319,7 @@ export default class CfbFormEditorQuestion extends Component {
   _getDynamicChoiceQuestionInput(changeset) {
     return {
       dataSource: changeset.get("dataSource"),
+      formatValidators: serializeFormatValidators(changeset),
       hintText: changeset.get("hintText"),
     };
   }
@@ -321,6 +327,7 @@ export default class CfbFormEditorQuestion extends Component {
   _getTableQuestionInput(changeset) {
     return {
       rowForm: changeset.get("rowForm.slug"),
+      formatValidators: serializeFormatValidators(changeset),
       hintText: changeset.get("hintText"),
     };
   }
@@ -346,6 +353,7 @@ export default class CfbFormEditorQuestion extends Component {
 
   _getFilesQuestionInput(changeset) {
     return {
+      formatValidators: serializeFormatValidators(changeset),
       hintText: changeset.get("hintText"),
     };
   }

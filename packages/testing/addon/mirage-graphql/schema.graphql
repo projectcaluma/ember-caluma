@@ -709,6 +709,12 @@ type ChoiceQuestion implements Question & Node {
   hintText: String
   meta: GenericScalar!
   source: Question
+  formatValidators(
+    before: String
+    after: String
+    first: Int
+    last: Int
+  ): FormatValidatorConnection
   defaultAnswer: StringAnswer
   forms(
     offset: Int
@@ -1001,6 +1007,12 @@ type DateQuestion implements Question & Node {
   hintText: String
   meta: GenericScalar!
   source: Question
+  formatValidators(
+    before: String
+    after: String
+    first: Int
+    last: Int
+  ): FormatValidatorConnection
   defaultAnswer: DateAnswer
   forms(
     offset: Int
@@ -1285,6 +1297,12 @@ type DynamicChoiceQuestion implements Question & DynamicQuestion & Node {
   hintText: String
   meta: GenericScalar!
   source: Question
+  formatValidators(
+    before: String
+    after: String
+    first: Int
+    last: Int
+  ): FormatValidatorConnection
   forms(
     offset: Int
     before: String
@@ -1332,6 +1350,12 @@ type DynamicMultipleChoiceQuestion implements Question & DynamicQuestion & Node 
   hintText: String
   meta: GenericScalar!
   source: Question
+  formatValidators(
+    before: String
+    after: String
+    first: Int
+    last: Int
+  ): FormatValidatorConnection
   forms(
     offset: Int
     before: String
@@ -1488,6 +1512,12 @@ type FilesQuestion implements Question & Node {
   hintText: String
   meta: GenericScalar!
   source: Question
+  formatValidators(
+    before: String
+    after: String
+    first: Int
+    last: Int
+  ): FormatValidatorConnection
   forms(
     offset: Int
     before: String
@@ -1542,6 +1572,12 @@ type FloatQuestion implements Question & Node {
   hintText: String
   meta: GenericScalar!
   source: Question
+  formatValidators(
+    before: String
+    after: String
+    first: Int
+    last: Int
+  ): FormatValidatorConnection
   defaultAnswer: FloatAnswer
   forms(
     offset: Int
@@ -1877,6 +1913,12 @@ type IntegerQuestion implements Question & Node {
   hintText: String
   meta: GenericScalar!
   source: Question
+  formatValidators(
+    before: String
+    after: String
+    first: Int
+    last: Int
+  ): FormatValidatorConnection
   defaultAnswer: IntegerAnswer
   forms(
     offset: Int
@@ -1966,6 +2008,12 @@ type MultipleChoiceQuestion implements Question & Node {
   hintText: String
   meta: GenericScalar!
   source: Question
+  formatValidators(
+    before: String
+    after: String
+    first: Int
+    last: Int
+  ): FormatValidatorConnection
   defaultAnswer: ListAnswer
   forms(
     offset: Int
@@ -3830,6 +3878,12 @@ type TableQuestion implements Question & Node {
   hintText: String
   meta: GenericScalar!
   source: Question
+  formatValidators(
+    before: String
+    after: String
+    first: Int
+    last: Int
+  ): FormatValidatorConnection
   defaultAnswer: TableAnswer
   forms(
     offset: Int
