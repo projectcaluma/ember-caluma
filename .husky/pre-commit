@@ -2,4 +2,4 @@
 [ -n "$CI" ] && exit 0
 
 # lint staged files
-pnpm lint-staged
+corepack pnpm lint-staged
