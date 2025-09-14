@@ -10,10 +10,8 @@ import config from "dummy/config/environment";
 
 setApplication(Application.create(config.APP));
 
+setup(QUnit.assert);
+setupSinon();
 setupEmberOnerrorValidation();
 loadTests();
-setup(QUnit.assert);
-
-setupSinon();
-
 start();
