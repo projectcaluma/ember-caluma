@@ -1,3 +1,4 @@
+import { getOwner } from "@ember/application";
 import { A } from "@ember/array";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
@@ -8,6 +9,7 @@ import { queryManager } from "ember-apollo-client";
 import Changeset from "ember-changeset";
 import lookupValidator from "ember-changeset-validations";
 import { dropTask, restartableTask, task } from "ember-concurrency";
+import { DateTime } from "luxon";
 
 import { hasQuestionType } from "@projectcaluma/ember-core/helpers/has-question-type";
 import slugify from "@projectcaluma/ember-core/utils/slugify";
@@ -84,6 +86,9 @@ export default class CfbFormEditorQuestion extends Component {
   @queryManager apollo;
 
   @tracked changeset;
+
+  @tracked minDateFlatpickrRef = null;
+  @tracked maxDateFlatpickrRef = null;
 
   @restartableTask
   *data() {
@@ -165,6 +170,36 @@ export default class CfbFormEditorQuestion extends Component {
         __typename: undefined,
       };
     });
+  }
+
+  get locale() {
+    return this.intl.primaryLocale.split("-")[0];
+  }
+
+  get config() {
+    return getOwner(this).resolveRegistration("config:environment");
+  }
+
+  get dateFormat() {
+    const {
+      FLATPICKR_DATE_FORMAT = {
+        de: "d.m.Y",
+        fr: "d.m.Y",
+        en: "m/d/Y",
+      },
+      FLATPICKR_DATE_FORMAT_DEFAULT = "m/d/Y",
+    } = this.config["ember-caluma"] || {};
+
+    return FLATPICKR_DATE_FORMAT[this.locale] ?? FLATPICKR_DATE_FORMAT_DEFAULT;
+  }
+
+  @action
+  onDateMinMaxChange(key, [date]) {
+    // Change Javascript date to ISO string if not null.
+    this.changeset.set(
+      key,
+      date ? DateTime.fromJSDate(date).toISODate() : null,
+    );
   }
 
   get possibleTypes() {
@@ -290,6 +325,8 @@ export default class CfbFormEditorQuestion extends Component {
     return {
       formatValidators: serializeFormatValidators(changeset),
       hintText: changeset.get("hintText"),
+      maxDate: changeset.get("maxDate"),
+      minDate: changeset.get("minDate"),
     };
   }
 
@@ -543,5 +580,27 @@ export default class CfbFormEditorQuestion extends Component {
   @action
   updateRowForm(value, changeset) {
     changeset.set("rowForm.slug", value.slug);
+  }
+
+  @action
+  onMinDateReady(_selectedDates, _dateStr, flatpickrRef) {
+    this.minDateFlatpickrRef = flatpickrRef;
+  }
+
+  @action
+  onMaxDateReady(_selectedDates, _dateStr, flatpickrRef) {
+    this.maxDateFlatpickrRef = flatpickrRef;
+  }
+
+  @action
+  clearMinDateCalendar(e) {
+    e.stopPropagation();
+    this.minDateFlatpickrRef.clear();
+  }
+
+  @action
+  clearMaxDateCalendar(e) {
+    e.stopPropagation();
+    this.maxDateFlatpickrRef.clear();
   }
 }

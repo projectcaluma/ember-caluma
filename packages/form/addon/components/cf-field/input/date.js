@@ -10,6 +10,14 @@ export default class CfFieldInputDateComponent extends Component {
 
   @tracked flatpickrRef = null;
 
+  get maxDate() {
+    return this.args.field?.question?.raw?.maxDate || null;
+  }
+
+  get minDate() {
+    return this.args.field?.question?.raw?.minDate || null;
+  }
+
   get locale() {
     return this.intl.primaryLocale.split("-")[0];
   }

@@ -254,6 +254,63 @@
         </div>
       {{/if}}
 
+      {{#if (has-question-type f.model "date")}}
+        <div uk-grid class="uk-grid-small uk-child-width-1-2 uk-margin">
+          <div class="">
+            <label for="" class="uk-form-label">
+              {{t "caluma.form-builder.question.min-date"}}
+            </label>
+            <div class="uk-inline uk-width-1-1">
+              <a
+                class="uk-form-icon uk-form-icon-flip"
+                href="#"
+                {{uk-tooltip (t "caluma.form.delete")}}
+                {{on "click" this.clearMinDateCalendar}}
+              >
+                <UkIcon @icon="close" />
+              </a>
+              <EmberFlatpickr
+                @altFormat={{this.dateFormat}}
+                class="uk-input form-control input"
+                @date={{or (changeset-get f.model "minDate") null}}
+                @onChange={{fn this.onDateMinMaxChange "minDate"}}
+                @maxDate={{changeset-get f.model "maxDate"}}
+                @altInput={{true}}
+                @allowInput={{true}}
+                @locale={{this.locale}}
+                @onReady={{this.onMinDateReady}}
+              />
+            </div>
+          </div>
+          <div class="">
+            <label for="" class="uk-form-label">
+              {{t "caluma.form-builder.question.max-date"}}
+            </label>
+            <div class="uk-inline uk-width-1-1">
+              <a
+                class="uk-form-icon uk-form-icon-flip"
+                href="#"
+                {{uk-tooltip (t "caluma.form.delete")}}
+                {{on "click" this.clearMaxDateCalendar}}
+              >
+                <UkIcon @icon="close" />
+              </a>
+              <EmberFlatpickr
+                @altFormat={{this.dateFormat}}
+                class="uk-input form-control input"
+                @date={{or (changeset-get f.model "maxDate") null}}
+                @onChange={{fn this.onDateMinMaxChange "maxDate"}}
+                @minDate={{changeset-get f.model "minDate"}}
+                @altInput={{true}}
+                @allowInput={{true}}
+                @locale={{this.locale}}
+                @onReady={{this.onMaxDateReady}}
+              />
+            </div>
+          </div>
+        </div>
+      {{/if}}
+
       {{#if (has-question-type f.model "choice" "multiple-choice")}}
         <f.input
           @name="options"

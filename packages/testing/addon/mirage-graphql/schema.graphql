@@ -996,6 +996,8 @@ type DateQuestion implements Question & Node {
   modifiedByGroup: String
   slug: String!
   label: String!
+  minDate: Date
+  maxDate: Date
 
   """
   Required expression is only evaluated when question is not hidden.
@@ -2911,6 +2913,8 @@ input SaveDateQuestionInput {
   hintText: String
   formatValidators: [String]
   clientMutationId: String
+  minDate: Date
+  maxDate: Date
 }
 
 type SaveDateQuestionPayload {
