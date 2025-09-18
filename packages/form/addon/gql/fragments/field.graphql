@@ -15,12 +15,7 @@ fragment SimpleQuestion on Question {
     }
     placeholder
     formatValidators {
-      edges {
-        node {
-          slug
-          regex
-        }
-      }
+      totalCount
     }
     hintText
   }
@@ -33,12 +28,7 @@ fragment SimpleQuestion on Question {
     }
     placeholder
     formatValidators {
-      edges {
-        node {
-          slug
-          regex
-        }
-      }
+      totalCount
     }
     hintText
   }
@@ -50,6 +40,9 @@ fragment SimpleQuestion on Question {
       value
     }
     placeholder
+    formatValidators {
+      totalCount
+    }
     hintText
   }
   ... on FloatQuestion {
@@ -61,6 +54,9 @@ fragment SimpleQuestion on Question {
       value
     }
     placeholder
+    formatValidators {
+      totalCount
+    }
     hintText
   }
   ... on ChoiceQuestion {
@@ -78,6 +74,9 @@ fragment SimpleQuestion on Question {
     choiceDefaultAnswer: defaultAnswer {
       id
       value
+    }
+    formatValidators {
+      totalCount
     }
     hintText
   }
@@ -97,18 +96,30 @@ fragment SimpleQuestion on Question {
       id
       value
     }
+    formatValidators {
+      totalCount
+    }
     hintText
   }
   ... on DynamicChoiceQuestion {
+    formatValidators {
+      totalCount
+    }
     hintText
   }
   ... on DynamicMultipleChoiceQuestion {
+    formatValidators {
+      totalCount
+    }
     hintText
   }
   ... on DateQuestion {
     dateDefaultAnswer: defaultAnswer {
       id
       value
+    }
+    formatValidators {
+      totalCount
     }
     hintText
   }
@@ -120,6 +131,9 @@ fragment SimpleQuestion on Question {
     hintText
   }
   ... on FilesQuestion {
+    formatValidators {
+      totalCount
+    }
     hintText
   }
   ... on ActionButtonQuestion {
