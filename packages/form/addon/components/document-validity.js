@@ -54,6 +54,10 @@ export default class DocumentValidity extends Component {
 
     for (const field of this.args.document.fields) {
       yield field.validate.linked().perform();
+
+      if (field.question.hasFormatValidators) {
+        yield field.save.linked().perform();
+      }
     }
 
     if (this.isValid) {
