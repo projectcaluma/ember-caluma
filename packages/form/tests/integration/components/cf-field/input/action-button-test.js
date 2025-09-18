@@ -21,6 +21,8 @@ module(
       const validField = new (class {
         @tracked isValid = true;
 
+        question = { hasFormatValidators: false };
+
         @restartableTask
         *validate() {
           yield assert.step("validate");
@@ -35,7 +37,7 @@ module(
           return !this.isValid;
         }
 
-        question = { raw: { label: "foo" } };
+        question = { raw: { label: "foo" }, hasFormatValidators: false };
 
         @restartableTask
         validate() {

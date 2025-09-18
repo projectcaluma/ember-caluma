@@ -192,4 +192,8 @@ export default class Question extends Base {
         ].includes(this.raw.__typename))
     );
   }
+
+  get hasFormatValidators() {
+    return (this.raw.formatValidators?.totalCount ?? 0) > 0;
+  }
 }

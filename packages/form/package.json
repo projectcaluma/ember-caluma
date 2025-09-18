@@ -67,6 +67,7 @@
     "ember-load-initializers": "3.0.1",
     "ember-qunit": "9.0.4",
     "ember-resolver": "13.1.1",
+    "ember-sinon-qunit": "7.5.0",
     "ember-source": "6.1.0",
     "ember-source-channel-url": "3.0.0",
     "ember-try": "4.0.0",
@@ -75,6 +76,7 @@
     "qunit": "2.24.1",
     "qunit-dom": "3.5.0",
     "sass": "1.93.2",
+    "sinon": "21.0.0",
     "uikit": "3.23.13",
     "uuid": "13.0.0",
     "webpack": "5.101.3"
