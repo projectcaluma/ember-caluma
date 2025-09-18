@@ -39,6 +39,10 @@ export default class DocumentValidity extends Component {
       .every((f) => f.isValid);
   }
 
+  get isValidating() {
+    return this._validate.isRunning;
+  }
+
   @restartableTask
   *_validate() {
     const saveTasks = this.args.document.fields
@@ -52,13 +56,15 @@ export default class DocumentValidity extends Component {
     // itself are finished
     yield Promise.all(saveTasks);
 
-    for (const field of this.args.document.fields) {
-      yield field.validate.linked().perform();
+    yield Promise.all(
+      this.args.document.fields.map(async (field) => {
+        await field.validate.linked().perform();
 
-      if (field.question.hasFormatValidators) {
-        yield field.save.linked().perform();
-      }
-    }
+        if (field.question.hasFormatValidators) {
+          await field.save.linked().perform();
+        }
+      }),
+    );
 
     if (this.isValid) {
       this.args.onValid?.();

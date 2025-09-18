@@ -1,7 +1,7 @@
 {{#if @validateOnEnter}}
   <div {{in-viewport onEnter=this.validate}}>
-    {{yield this.isValid this.validate}}
+    {{yield this.isValid this.validate this.isValidating}}
   </div>
 {{else}}
-  {{yield this.isValid this.validate}}
+  {{yield this.isValid this.validate this.isValidating}}
 {{/if}}

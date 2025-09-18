@@ -40,8 +40,10 @@ module(
         question = { raw: { label: "foo" }, hasFormatValidators: false };
 
         @restartableTask
-        validate() {
+        *validate() {
           this.isValid = false;
+
+          yield;
         }
       })();
 
