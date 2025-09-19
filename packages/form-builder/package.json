@@ -39,7 +39,7 @@
     "ember-intl": "^7.1.1",
     "ember-load-initializers": "^2.1.2 || ^3.0.1",
     "ember-math-helpers": "^4.2.1 || ^5.0.0",
-    "ember-power-select": "^8.6.2",
+    "ember-power-select": "^8.9.0",
     "ember-resolver": "^12.0.1 || ^13.1.0",
     "ember-template-imports": "^4.2.0",
     "ember-test-selectors": "^7.0.0",
