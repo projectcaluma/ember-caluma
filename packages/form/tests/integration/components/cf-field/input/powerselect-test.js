@@ -184,5 +184,15 @@ module(
 
       assert.deepEqual(this.multipleChoiceField.answer.value, []);
     });
+
+    test("renders required aria attributes", async function (assert) {
+      await render(
+        hbs`<CfField::Input::Powerselect @field={{this.singleChoiceField}} />`,
+      );
+
+      assert
+        .dom(".ember-power-select-trigger")
+        .hasAttribute("aria-labelledby", this.singleChoiceField.labelId);
+    });
   },
 );
