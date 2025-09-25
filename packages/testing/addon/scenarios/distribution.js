@@ -27,6 +27,8 @@ export function createBlueprint(server) {
     label: "Deadline",
     isRequired: "true",
     formIds: [inquiryForm.id],
+    minDate: null,
+    maxDate: null,
     type: "DATE",
   });
 
