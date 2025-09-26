@@ -94,4 +94,17 @@ module("Integration | Component | cf-field/input/date", function (hooks) {
     assert.dom(".ember-flatpickr-input.input").hasValue("25.03.2021");
     assert.dom(".ember-flatpickr-input.flatpickr-input").hasValue("2021-03-25");
   });
+
+  test("it renders a11y relevant properties on the alt input field", async function (assert) {
+    this.field = { labelId: "field-1:label" };
+
+    await render(
+      hbs`<CfField::Input::Date @field={{this.field}} aria-label="Custom label" />`,
+    );
+
+    assert.dom("input[type=text]").hasAttribute("aria-label", "Custom label");
+    assert
+      .dom("input[type=text]")
+      .hasAttribute("aria-labelledby", "field-1:label");
+  });
 });

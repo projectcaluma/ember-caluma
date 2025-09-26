@@ -1,4 +1,9 @@
-<label class="uk-form-label" for={{@field.pk}} ...attributes>
+<label
+  class="uk-form-label"
+  for={{@field.pk}}
+  id={{@field.labelId}}
+  ...attributes
+>
   <span class="uk-text-bold">
     {{@field.question.raw.label}}
   </span>

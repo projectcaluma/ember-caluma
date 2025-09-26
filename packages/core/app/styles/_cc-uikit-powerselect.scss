@@ -20,6 +20,11 @@ $ember-power-select-multiple-selection-color: #fff !default;
   color: $ember-power-select-highlighted-color;
 }
 
+.ember-power-select-trigger-multiple-input {
+  text-indent: $form-padding-horizontal !important;
+  font-weight: inherit;
+}
+
 // Borders
 $ember-power-select-focus-outline: 0 !default;
 $ember-power-select-border-color: $global-border !default;

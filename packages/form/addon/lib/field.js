@@ -178,6 +178,15 @@ export default class Field extends Base {
   }
 
   /**
+   * The element ID used by the label component.
+   *
+   * @property {String} labelId
+   */
+  get labelId() {
+    return `${this.pk}:label`;
+  }
+
+  /**
    * Whether the field is valid.
    *
    * @property {Boolean} isValid
