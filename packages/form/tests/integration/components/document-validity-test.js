@@ -2,6 +2,7 @@ import { render, click, scrollTo, settled } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { module, test } from "qunit";
+import { stub } from "sinon";
 
 import { rawDocumentWithWorkItem } from "../../unit/lib/data";
 
@@ -99,5 +100,37 @@ module("Integration | Component | document-validity", function (hooks) {
     await this.makeValid();
     await click("button");
     await assert.verifySteps(["valid"]);
+  });
+
+  test("it can be triggered manually", async function (assert) {
+    stub(this.field.question, "hasFormatValidators").get(() => true);
+    stub(this.field.save, "linked").returnsThis();
+    stub(this.field.save, "perform").callsFake(() => {
+      this.field._errors = [
+        {
+          type: "format",
+          context: { errorMsg: "Error!" },
+          value: "test",
+        },
+      ];
+
+      assert.step("save");
+    });
+
+    await render(hbs`<DocumentValidity @document={{this.document}} as |isValid validate|>
+  <p>
+    {{#if isValid}}
+      Valid
+    {{else}}
+      Invalid
+    {{/if}}
+  </p>
+  <button type="button" {{on "click" validate}}>Validate!</button>
+</DocumentValidity>`);
+
+    assert.dom("p").hasText("Valid");
+    await click("button");
+    assert.dom("p").hasText("Invalid");
+    assert.verifySteps(["save"]);
   });
 });
