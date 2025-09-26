@@ -192,8 +192,8 @@ importers:
         specifier: 4.1.1
         version: 4.1.1(@glint/template@1.5.2)(webpack@5.101.3)
       ember-cli:
-        specifier: 6.1.0
-        version: 6.1.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)
+        specifier: 6.7.0
+        version: 6.7.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)
       ember-cli-addon-docs:
         specifier: 8.0.8
         version: 8.0.8(o7pwa3x2wr7sc42wl32bidikoi)
@@ -205,7 +205,7 @@ importers:
         version: 3.0.0
       ember-cli-dependency-checker:
         specifier: 3.3.3
-        version: 3.3.3(ember-cli@6.1.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7))
+        version: 3.3.3(ember-cli@6.7.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7))
       ember-cli-deploy:
         specifier: 2.0.0
         version: 2.0.0
@@ -427,8 +427,8 @@ importers:
         specifier: 3.0.0
         version: 3.0.0
       ember-cli:
-        specifier: 6.1.0
-        version: 6.1.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)
+        specifier: 6.7.0
+        version: 6.7.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)
       ember-cli-clean-css:
         specifier: 3.0.0
         version: 3.0.0
@@ -437,7 +437,7 @@ importers:
         version: 3.1.0
       ember-cli-dependency-checker:
         specifier: 3.3.3
-        version: 3.3.3(ember-cli@6.1.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7))
+        version: 3.3.3(ember-cli@6.7.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7))
       ember-cli-inject-live-reload:
         specifier: 2.1.0
         version: 2.1.0
@@ -595,8 +595,8 @@ importers:
         specifier: 3.0.0
         version: 3.0.0
       ember-cli:
-        specifier: 6.1.0
-        version: 6.1.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)
+        specifier: 6.7.0
+        version: 6.7.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)
       ember-cli-clean-css:
         specifier: 3.0.0
         version: 3.0.0
@@ -605,7 +605,7 @@ importers:
         version: 3.1.0
       ember-cli-dependency-checker:
         specifier: 3.3.3
-        version: 3.3.3(ember-cli@6.1.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7))
+        version: 3.3.3(ember-cli@6.7.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7))
       ember-cli-inject-live-reload:
         specifier: 2.1.0
         version: 2.1.0
@@ -779,8 +779,8 @@ importers:
         specifier: 3.0.0
         version: 3.0.0
       ember-cli:
-        specifier: 6.1.0
-        version: 6.1.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)
+        specifier: 6.7.0
+        version: 6.7.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)
       ember-cli-clean-css:
         specifier: 3.0.0
         version: 3.0.0
@@ -789,7 +789,7 @@ importers:
         version: 3.1.0
       ember-cli-dependency-checker:
         specifier: 3.3.3
-        version: 3.3.3(ember-cli@6.1.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7))
+        version: 3.3.3(ember-cli@6.7.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7))
       ember-cli-inject-live-reload:
         specifier: 2.1.0
         version: 2.1.0
@@ -975,8 +975,8 @@ importers:
         specifier: 3.0.0
         version: 3.0.0
       ember-cli:
-        specifier: 6.1.0
-        version: 6.1.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)
+        specifier: 6.7.0
+        version: 6.7.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)
       ember-cli-clean-css:
         specifier: 3.0.0
         version: 3.0.0
@@ -985,7 +985,7 @@ importers:
         version: 3.1.0
       ember-cli-dependency-checker:
         specifier: 3.3.3
-        version: 3.3.3(ember-cli@6.1.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7))
+        version: 3.3.3(ember-cli@6.7.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7))
       ember-cli-inject-live-reload:
         specifier: 2.1.0
         version: 2.1.0
@@ -1196,8 +1196,8 @@ importers:
         specifier: 0.8.0
         version: 0.8.0(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.101.3))(webpack@5.101.3)
       ember-cli:
-        specifier: 6.1.0
-        version: 6.1.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)
+        specifier: 6.7.0
+        version: 6.7.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)
       ember-cli-clean-css:
         specifier: 3.0.0
         version: 3.0.0
@@ -1206,7 +1206,7 @@ importers:
         version: 3.1.0
       ember-cli-dependency-checker:
         specifier: 3.3.3
-        version: 3.3.3(ember-cli@6.1.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7))
+        version: 3.3.3(ember-cli@6.7.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7))
       ember-cli-inject-live-reload:
         specifier: 2.1.0
         version: 2.1.0
@@ -1339,8 +1339,8 @@ importers:
         specifier: 3.0.0
         version: 3.0.0
       ember-cli:
-        specifier: 6.1.0
-        version: 6.1.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)
+        specifier: 6.7.0
+        version: 6.7.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)
       ember-cli-clean-css:
         specifier: 3.0.0
         version: 3.0.0
@@ -1349,7 +1349,7 @@ importers:
         version: 3.1.0
       ember-cli-dependency-checker:
         specifier: 3.3.3
-        version: 3.3.3(ember-cli@6.1.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7))
+        version: 3.3.3(ember-cli@6.7.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7))
       ember-cli-inject-live-reload:
         specifier: 2.1.0
         version: 2.1.0
@@ -1466,8 +1466,8 @@ importers:
         specifier: 3.0.0
         version: 3.0.0
       ember-cli:
-        specifier: 6.1.0
-        version: 6.1.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)
+        specifier: 6.7.0
+        version: 6.7.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)
       ember-cli-clean-css:
         specifier: 3.0.0
         version: 3.0.0
@@ -1476,7 +1476,7 @@ importers:
         version: 3.1.0
       ember-cli-dependency-checker:
         specifier: 3.3.3
-        version: 3.3.3(ember-cli@6.1.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7))
+        version: 3.3.3(ember-cli@6.7.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7))
       ember-cli-inject-live-reload:
         specifier: 2.1.0
         version: 2.1.0
@@ -2348,6 +2348,18 @@ packages:
     peerDependencies:
       '@ember/test-waiters': 3.1.0
 
+  '@ember-tooling/blueprint-blueprint@0.0.2':
+    resolution: {integrity: sha512-W0Ulvny2PT+80qy2X9wSlNTobgfobI3cNfxoDgIlEr1f5ifyUg6rydyErl9RUupPxfsvuya6ss9TV6y86+qOjA==}
+
+  '@ember-tooling/blueprint-model@0.0.2':
+    resolution: {integrity: sha512-mZ6GZQE3zNfldN0qpZ8qAwCKH2fog60af72yppQueraYqRgL1SSd46An7sxRb1ur60+xlCMZAlj3086Fk1cKuQ==}
+
+  '@ember-tooling/classic-build-addon-blueprint@6.7.0':
+    resolution: {integrity: sha512-wNWXdVWy6N9jNtN7dKeZe9IClOWoqJzuPjZSW6+7GTi1JSN8kMmKUQzhvJEAeBne5KStGUyVGlc3073kI7d3Cw==}
+
+  '@ember-tooling/classic-build-app-blueprint@6.7.0':
+    resolution: {integrity: sha512-Y6vaSlLOOfZtLBHUISZ0LWhiUyEpYaZLe8LHA7m5K7mJ0kkA3GO/YN1VGjrtlEd6yL2aWU4CYYT0tZjDH/UiAw==}
+
   '@ember/edition-utils@1.2.0':
     resolution: {integrity: sha512-VmVq/8saCaPdesQmftPqbFtxJWrzxNGSQ+e8x8LLe3Hjm36pJ04Q8LeORGZkAeOhldoUX9seLGmSaHeXkIqoog==}
 
@@ -2878,16 +2890,16 @@ packages:
     resolution: {integrity: sha512-htyl8TWnKL7K/ESFa1oW2UB5lVDxuF5DpM7tBi6Hu2LNL3mWkIzNLG6N4zoCUP1lCKNxWy/3iu8mS8MvToGd6w==}
     engines: {node: '>=12.22.0'}
 
-  '@pnpm/constants@10.0.0':
-    resolution: {integrity: sha512-dxIXcW1F1dxIGfye2JXE7Q8WVwYB0axVzdBOkvE1WKIVR4xjB8e6k/Dkjo7DpbyfW5Vu2k21p6dyM32YLSAWoQ==}
+  '@pnpm/constants@1001.3.1':
+    resolution: {integrity: sha512-2hf0s4pVrVEH8RvdJJ7YRKjQdiG8m0iAT26TTqXnCbK30kKwJW69VLmP5tED5zstmDRXcOeH5eRcrpkdwczQ9g==}
     engines: {node: '>=18.12'}
 
-  '@pnpm/error@6.0.3':
-    resolution: {integrity: sha512-OIYhG7HQh4zUFh2s8/6bp7glVRjNxms7bpzXVOLV7pyRa+rSYFmqJ8zDsBC64k58nuaxS85Ip+SCDjFxsFGeOg==}
+  '@pnpm/error@1000.0.5':
+    resolution: {integrity: sha512-GjH0TPjbVNrPnl/BAGoFuBLJ2sFfXNKbS33lll/Ehe9yw0fyc8Kdw7kO9if37yQqn6vaa4dAHKkPllum7f/IPQ==}
     engines: {node: '>=18.12'}
 
-  '@pnpm/find-workspace-dir@7.0.3':
-    resolution: {integrity: sha512-eGjkyHSufkHyZ66WpygWnslcRePB0U1lJg1dF3rgWqTChpregYoDyNGDzK7l9Gk+CHVgGZZS5aWp7uKKVmAAEg==}
+  '@pnpm/find-workspace-dir@1000.1.3':
+    resolution: {integrity: sha512-4rdu8GPY9TeQwsYp5D2My74dC3dSVS3tghAvisG80ybK4lqa0gvlrglaSTBxogJbxqHRw/NjI/liEtb3+SD+Bw==}
     engines: {node: '>=18.12'}
 
   '@pnpm/network.ca-file@1.0.2':
@@ -3083,9 +3095,6 @@ packages:
   '@types/fs-extra@8.1.5':
     resolution: {integrity: sha512-0dzKcwO+S8s2kuF5Z9oUWatQJj5Uq/iqphEtE3GQJVRRYm/tD1LglU2UnXi2A8jLq5umkGouOXOR9y0n613ZwQ==}
 
-  '@types/glob@7.2.0':
-    resolution: {integrity: sha512-ZUxbzKl0IfJILTS6t7ip5fQQM/J3TJYubDm3nMbgubNNYS62eXeUpoLUC8/7fJNiFYHTrGPQn7hspDUzIHX3UA==}
-
   '@types/glob@9.0.0':
     resolution: {integrity: sha512-00UxlRaIUvYm4R4W9WYkN8/J+kV8fmOQ7okeH6YFtGWFMt3odD45tpG5yA5wnL7HE6lLgjaTW5n14ju2hl2NNA==}
     deprecated: This is a stub types definition. glob provides its own type definitions, so you do not need this installed.
@@ -3110,10 +3119,6 @@ packages:
 
   '@types/minimatch@3.0.5':
     resolution: {integrity: sha512-Klz949h02Gz2uZCMGwDUSDS1YBlTdDDgbWHi+81l29tQALUtvz4rAYi5uoVhE5Lagoq6DeqAUlbrHvW/mXDgdQ==}
-
-  '@types/minimatch@6.0.0':
-    resolution: {integrity: sha512-zmPitbQ8+6zNutpwgcQuLcsEpn/Cj54Kbn7L5pX0Os5kdWplB7xPgEh/g+SWOB/qmows2gpuCaPyduq8ZZRnxA==}
-    deprecated: This is a stub types definition. minimatch provides its own type definitions, so you do not need this installed.
 
   '@types/node@24.5.2':
     resolution: {integrity: sha512-FYxk1I7wPv3K2XBaoyH2cTnocQEu8AOZ60hPbsyukMPLv5/5qr7V1i8PLHdl6Zf87I+xZXFvPCXYjiTFq+YSDQ==}
@@ -3978,10 +3983,6 @@ packages:
     resolution: {integrity: sha512-WvU6T6AJrtpFSScgyCVEFAajPAJTOYYIIpGvs/PbkSq9OUBvI3/IEUHg+Ipx376M/clGFwa7K9crEtpauqC66A==}
     engines: {node: '>= 6.0'}
 
-  broccoli-builder@0.18.14:
-    resolution: {integrity: sha512-YoUHeKnPi4xIGZ2XDVN9oHNA9k3xF5f5vlA+1wvrxIIDXqQU97gp2FxVAF503Zxdtt0C5CRB5n+47k2hlkaBzA==}
-    engines: {node: '>= 0.10.0'}
-
   broccoli-caching-writer@2.3.1:
     resolution: {integrity: sha512-lfoDx98VaU8tG4mUXCxKdKyw2Lr+iSIGUjCgV83KC2zRC07SzYTGuSsMqpXFiOQlOGuoJxG3NRoyniBa1BWOqA==}
 
@@ -4062,10 +4063,6 @@ packages:
 
   broccoli-node-api@1.7.0:
     resolution: {integrity: sha512-QIqLSVJWJUVOhclmkmypJJH9u9s/aWH4+FH6Q6Ju5l+Io4dtwqdPUNmDfw40o6sxhbZHhqGujDJuHTML1wG8Yw==}
-
-  broccoli-node-info@1.1.0:
-    resolution: {integrity: sha512-DUohSZCdfXli/3iN6SmxPbck1OVG8xCkrLx47R25his06xVc1ZmmrOsrThiM8BsCWirwyocODiYJqNP5W2Hg1A==}
-    engines: {node: '>= 0.10.0'}
 
   broccoli-node-info@2.2.0:
     resolution: {integrity: sha512-VabSGRpKIzpmC+r+tJueCE5h8k6vON7EIMMWu6d/FyPdtijwLQ7QvzShEw+m3mHoDzUaj/kiZsDYrS8X2adsBg==}
@@ -5046,27 +5043,23 @@ packages:
     resolution: {integrity: sha512-BDKtmHlOzwI7iRuEkhzsnPoi5ypEhWAJB5RvHWe1kMr06js3uK5B3734i3ui5Yd+wOJV1cpE4JnivPD283GU/A==}
     engines: {node: '>=0.10.0'}
 
-  detect-indent@6.1.0:
-    resolution: {integrity: sha512-reYkTUJAZb9gUuZ2RvVCNhVHdg62RHnJ7WJl8ftMi4diZ6NWlciOzQN88pUhSELEwflJht4oQDv0F0BMlwaYtA==}
-    engines: {node: '>=8'}
+  detect-indent@7.0.2:
+    resolution: {integrity: sha512-y+8xyqdGLL+6sh0tVeHcfP/QDd8gUgbasolJJpY7NgeQGSZ739bDtSiaiDgtoicy+mtYB81dKLxO9xRhCyIB3A==}
+    engines: {node: '>=12.20'}
 
   detect-libc@1.0.3:
     resolution: {integrity: sha512-pGjwhsmsp4kL2RTz08wcOlGN83otlqHeD/Z5T8GXZB+/YcpQ/dgo+lbU8ZsGxV0HIvqqxo9l7mqYwyYMD9bKDg==}
     engines: {node: '>=0.10'}
     hasBin: true
 
-  detect-newline@3.1.0:
-    resolution: {integrity: sha512-TLz+x/vEXm/Y7P7wn1EJFNLxYpUD4TgMosxY6fAVJUnJMbupHBOncxyWUG9OpTaH9EBD7uFI5LfEgmMOc54DsA==}
-    engines: {node: '>=8'}
+  detect-newline@4.0.1:
+    resolution: {integrity: sha512-qE3Veg1YXzGHQhlA6jzebZN2qVf6NX+A7m7qlhCGG30dJixrAQhYOsJjsnBjJkCSmuOPpCk30145fr8FV0bzog==}
+    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
 
   detective@5.2.1:
     resolution: {integrity: sha512-v9XE1zRnz1wRtgurGu0Bs8uHKFSTdteYZNbIPFVhUZ39L/S79ppMpdmVOZAnoz1jfEFodc48n6MX483Xo3t1yw==}
     engines: {node: '>=0.8.0'}
     hasBin: true
-
-  diff@5.2.0:
-    resolution: {integrity: sha512-uIFDxqpRZGZ6ThOk84hEfqWoHx2devRFvpTZcTHur85vImfaxUbTW9Ryh4CpCuDnToOP1CEtXKIgytHBPVff5A==}
-    engines: {node: '>=0.3.1'}
 
   diff@7.0.0:
     resolution: {integrity: sha512-PJWHUb1RFevKCwaFA9RlG5tCd+FO5iRh9A8HEtkmBH2Li03iJriB6m6JIN4rGz3K3JLawI7/veA1xzRKP6ISBw==}
@@ -5328,10 +5321,6 @@ packages:
   ember-cli-is-package-missing@1.0.0:
     resolution: {integrity: sha512-9hEoZj6Au5onlSDdcoBqYEPT8ehlYntZPxH8pBKV0GO7LNel88otSAQsCfXvbi2eKE+MaSeLG/gNaCI5UdWm9g==}
 
-  ember-cli-lodash-subset@2.0.1:
-    resolution: {integrity: sha512-QkLGcYv1WRK35g4MWu/uIeJ5Suk2eJXKtZ+8s+qE7C9INmpCPyPxzaqZABquYzcWNzIdw6kYwz3NWAFdKYFxwg==}
-    engines: {node: ^4.5 || 6.* || >= 7.*}
-
   ember-cli-mirage@3.0.4:
     resolution: {integrity: sha512-JpfZJIrvUAcwOVQ44aAzlYSbGiO4/nqnVAbzAKU4kztqgYvYGBa27FX5WxfpIGZMBdnt6OKh78rsimChWo6f/Q==}
     engines: {node: 16.* || >= 18}
@@ -5425,9 +5414,9 @@ packages:
     resolution: {integrity: sha512-rk7GY+FmLn/2e22HsZs0Ycrz8HQ1W3Fv+2TFOuEFW9optnDXDgkntPBIl6gact/LHsfBM5RKbM3dHsIIeLgl0Q==}
     engines: {node: 10.* || >= 12.*}
 
-  ember-cli@6.1.0:
-    resolution: {integrity: sha512-LpVtpf/QgHcmmzX3InToSUnn0wX9D8TEKVhxF4KPf2HpCzrTllUcwu+pfCsXDb3VziTjRKUnnh5ZnjER/pVyFQ==}
-    engines: {node: '>= 18'}
+  ember-cli@6.7.0:
+    resolution: {integrity: sha512-E+8WK/BMzSoJmE8FIokFiTuayCs5CgusZuhk+Mpha8zcoTh9s7+tahuSnaypifSR0/NiJh7oixxZXzPmw9iuEg==}
+    engines: {node: '>= 20.11'}
     hasBin: true
 
   ember-code-snippet@3.0.0:
@@ -5824,10 +5813,6 @@ packages:
 
   entities@2.2.0:
     resolution: {integrity: sha512-p92if5Nz619I0w+akJrLZH0MX0Pb5DX39XOwQTtXSdQQOaYH03S1uIQp4mhOZtAXrxq4ViO67YTiLBo2638o9A==}
-
-  entities@3.0.1:
-    resolution: {integrity: sha512-WiyBqoomrwMdFG1e0kqvASYfnlb0lp8M5o5Fw2OFq1hNZxxcNk8Ik0Xm7LxzBhuidnZB/UtBqVCgUz3kBOP51Q==}
-    engines: {node: '>=0.12'}
 
   entities@4.5.0:
     resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
@@ -6513,6 +6498,10 @@ packages:
     resolution: {integrity: sha512-sTSfBjoXBp89JvIKIefqw7U2CCebsc74kiY6awiGogKtoSGbgjYE/G/+l9sF3MWFPNc9IcoOC4ODfKHfxFmp0g==}
     engines: {node: '>= 0.4'}
 
+  get-stdin@9.0.0:
+    resolution: {integrity: sha512-dVKBjfWisLAicarI2Sf+JuBE/DghV4UzNAVe9yhEJuzeREd3JhOTE9cUaJTeSa77fsbQUK3pcOpJfM59+VKZaA==}
+    engines: {node: '>=12'}
+
   get-stream@3.0.0:
     resolution: {integrity: sha512-GlhdIUuVakc8SJ6kK0zAFbiGzRFzNnY4jUuEbV9UROo4Y+0Ny4fjvcZFVTeDA4odpFyOQzaw6hXukJSq/f28sQ==}
     engines: {node: '>=4'}
@@ -6556,8 +6545,8 @@ packages:
     resolution: {integrity: sha512-qc8h1KIQbJpp+241id3GuAtkdyJ+IK+LIVtkiFTRKRrmddDzs3SI9CvP1QYmWBFvm1I/PWRwj//of8bgAc0ltA==}
     engines: {node: '>=4'}
 
-  git-hooks-list@1.0.3:
-    resolution: {integrity: sha512-Y7wLWcrLUXwk2noSka166byGCvhMtDRpgHdzCno1UQv/n/Hegp++a2xBWJL1lJarnKD3SWaljD+0z1ztqxuKyQ==}
+  git-hooks-list@3.2.0:
+    resolution: {integrity: sha512-ZHG9a1gEhUMX1TvGrLdyWb9kDopCBbTnI8z4JgRMYxsijWipgjSEYoPWqBuIB0DnRnvqlQSEeVmzpeuPm7NdFQ==}
 
   git-log-parser@1.2.1:
     resolution: {integrity: sha512-PI+sPDvHXNPl5WNOErAK05s3j0lgwUzMN6o8cyQrDaKfT3qd7TmNJKeXX+SknI5I0QhG5fVPAEwSY4tRGDtYoQ==}
@@ -6650,10 +6639,6 @@ packages:
 
   globalyzer@0.1.0:
     resolution: {integrity: sha512-40oNTM9UfG6aBmuKxk/giHn5nQ8RVz/SS4Ir6zgzOv9/qC3kKZ9v4etGTcJbEl/NyVQH7FGU7d+X1egr57Md2Q==}
-
-  globby@10.0.0:
-    resolution: {integrity: sha512-3LifW9M4joGZasyYPz2A1U74zbC/45fvpXUvO/9KbSa+VV0aGZarWkfdgKyR9sExNP0t0x0ss/UMJpNpcaTspw==}
-    engines: {node: '>=8'}
 
   globby@11.1.0:
     resolution: {integrity: sha512-jhIXaOzy1sb8IyocaruWSn1TjmnBVs8Ayhcy83rmxNJ8q2uWKCAj3CnJY+KpGSXCueAPc0i05kVvVKtP1t9S3g==}
@@ -7182,10 +7167,6 @@ packages:
     resolution: {integrity: sha512-drqDG3cbczxxEJRoOXcOjtdp1J/lyp1mNn0xaznRs8+muBhgQcrnbspox5X5fOw0HnMnbfDzvnEMEtqDEJEo8w==}
     engines: {node: '>=8'}
 
-  is-plain-obj@2.1.0:
-    resolution: {integrity: sha512-YWnfyRwxL/+SsrWYfOpUtz5b3YD+nyfkHvjbcanzk8zgyO4ASD67uVMRt8k5bM4lLMDnXfriRhOpemw+NfT1eA==}
-    engines: {node: '>=8'}
-
   is-plain-obj@4.1.0:
     resolution: {integrity: sha512-+Pgi+vMuUNkJyExiMBt5IlFoMyKnr5zhJ4Uspz58WOhBF5QoIZkFyNHIbBAtHwzVAgk5RtndVNsDRN61/mmDqg==}
     engines: {node: '>=12'}
@@ -7519,8 +7500,8 @@ packages:
   linkify-it@1.2.4:
     resolution: {integrity: sha512-eGHwtlABkp1NOJSiKUNqBf3SYAS5jPHtvRXPAgNaQwTqmkTahjtiLH9NtxdR5IOPhNvwNMN/diswSfZKzUkhGg==}
 
-  linkify-it@4.0.1:
-    resolution: {integrity: sha512-C7bfi1UZmoj8+PQx22XyeXCuBlokoyWQL5pWSP+EI6nzRylyThouddufc2c1NDIcP9k5agmN9fLpA7VNJfIiqw==}
+  linkify-it@5.0.0:
+    resolution: {integrity: sha512-5aHCbzQRADcdP+ATqnDuhhJ/MRIqDkZX5pyjFHRRysS8vZ5AbqGEoFIb6pYHPZ+L/OC2Lc+xT8uHVVR5CAK/wQ==}
 
   lint-staged@16.2.1:
     resolution: {integrity: sha512-KMeYmH9wKvHsXdUp+z6w7HN3fHKHXwT1pSTQTYxB9kI6ekK1rlL3kLZEoXZCppRPXFK9PFW/wfQctV7XUqMrPQ==}
@@ -7752,8 +7733,8 @@ packages:
     peerDependencies:
       markdown-it: '>= 13.0.0'
 
-  markdown-it@13.0.2:
-    resolution: {integrity: sha512-FtwnEuuK+2yVU7goGn/MJ0WBZMM9ZPgU9spqlFs7/A/pDIUNSOQZhUgOqYCficIuR2QaFnrt8LHqBWsbTAoI5w==}
+  markdown-it@14.1.0:
+    resolution: {integrity: sha512-a54IwgWPaeBCAAsv13YgmALOF1elABB08FxO9i+r4VFk5Vl4pKokRPeX8u5TCgSsPi6ec1otfLjdOpVcgbpshg==}
     hasBin: true
 
   markdown-it@4.4.0:
@@ -7815,6 +7796,9 @@ packages:
 
   mdurl@1.0.1:
     resolution: {integrity: sha512-/sKlQJCBYVY9Ers9hqzKou4H6V5UWc/M59TH2dvkt+84itfnq7uFOMLpOiOS4ujvHP4etln18fmIxA5R5fll0g==}
+
+  mdurl@2.0.0:
+    resolution: {integrity: sha512-Lf+9+2r+Tdp5wXDXC4PcIBjTDtq4UKjCPMQhKIuzpJNW0b96kVqSwW0bT7FhRSfmAiFYgP+SCRvdrDozfh0U5w==}
 
   media-typer@0.3.0:
     resolution: {integrity: sha512-dq+qelQ9akHpcOl/gUVRTxVIOkAJ1wR3QAvb4RsVjS8oVoFjDGTc679wJYmUmknUF5HwMLOgb5O+a3KxfWapPQ==}
@@ -8832,6 +8816,10 @@ packages:
   pump@3.0.3:
     resolution: {integrity: sha512-todwxLMY7/heScKmntwQG8CXVkWUOdYxIvY2s0VWAAMh/nd8SoYiRaKjlr7+iCs984f2P8zvrfWcDDYVb73NfA==}
 
+  punycode.js@2.3.1:
+    resolution: {integrity: sha512-uxFIHU0YlHYhDQtV4R9J6a52SLx28BCjT+4ieh7IGbgwVJWO+km431c4yRlREUAsAmt/uMjQUyQHNEPf0M39CA==}
+    engines: {node: '>=6'}
+
   punycode@2.3.1:
     resolution: {integrity: sha512-vYt7UD1U9Wg6138shLtLOvdAu+8DsC/ilFtEVHcH+wydcSpNE20AfSOduf6MkRFahL5FY7X1oU7nKVZFtfq8Fg==}
     engines: {node: '>=6'}
@@ -9477,8 +9465,8 @@ packages:
   sort-object-keys@1.1.3:
     resolution: {integrity: sha512-855pvK+VkU7PaKYPc+Jjnmt4EzejQHyhhF33q31qG8x7maDzkeFhAAThdCYay11CISO+qAMwjOBP+fPZe0IPyg==}
 
-  sort-package-json@1.57.0:
-    resolution: {integrity: sha512-FYsjYn2dHTRb41wqnv+uEqCUvBpK3jZcTp9rbz2qDTmel7Pmdtf+i2rLaaPMRZeSVM60V3Se31GyWFpmKs4Q5Q==}
+  sort-package-json@2.15.1:
+    resolution: {integrity: sha512-9x9+o8krTT2saA9liI4BljNjwAbvUnWf11Wq+i/iZt8nl2UGYnf3TH5uBydE7VALmP7AGwlfszuEeL8BDyb0YA==}
     hasBin: true
 
   source-map-js@1.2.1:
@@ -10126,6 +10114,9 @@ packages:
   uc.micro@1.0.6:
     resolution: {integrity: sha512-8Y75pvTYkLJW2hWQHXxoqRgV7qb9B+9vFEtidML+7koHUFapnVJAZ6cKs+Qjz5Aw3aZWHMC6u0wJE3At+nSGwA==}
 
+  uc.micro@2.1.0:
+    resolution: {integrity: sha512-ARDJmphmdvUk6Glw7y9DQ2bFkKBHwQHLi2lsaH6PPmz/Ka9sFOBsBluozhDltWmnv9u/cF6Rt87znRTPV+yp/A==}
+
   uglify-js@3.19.3:
     resolution: {integrity: sha512-v3Xu+yuwBXisp6QYTcH4UbH+xYJXqnq2m/LtQVWKWzYc1iehYnLixoQDN9FH6/j9/oybfd6W9Ghwkl8+UMKTKQ==}
     engines: {node: '>=0.8.0'}
@@ -10418,6 +10409,9 @@ packages:
 
   workerpool@6.5.1:
     resolution: {integrity: sha512-Fs4dNYcsdpYSAfVxhnl1L5zTksjvOJxtC5hzMNl+1t9B8hTJTdKDyZ5ju7ztgPy+ft9tBFXoOlDNiOT9WUXZlA==}
+
+  workerpool@9.3.4:
+    resolution: {integrity: sha512-TmPRQYYSAnnDiEB0P/Ytip7bFGvqnSU6I2BcuSw7Hx+JSg/DsUi5ebYfc8GYaSdpuvOcEs6dXxPurOYpe9QFwg==}
 
   wrap-ansi@6.2.0:
     resolution: {integrity: sha512-r6lPcBGxZXlIcymEu7InxDMhdW0KDxpLgoFLcguasxCaJ/SOIZwINatK9KY/tf+ZrlywOKU0UDj3ATXUBfxJXA==}
@@ -11658,6 +11652,42 @@ snapshots:
       - '@glint/template'
       - supports-color
 
+  '@ember-tooling/blueprint-blueprint@0.0.2': {}
+
+  '@ember-tooling/blueprint-model@0.0.2':
+    dependencies:
+      chalk: 4.1.2
+      diff: 7.0.0
+      isbinaryfile: 5.0.6
+      lodash: 4.17.21
+      promise.hash.helper: 1.0.8
+      quick-temp: 0.1.8
+      silent-error: 1.1.1
+    transitivePeerDependencies:
+      - supports-color
+
+  '@ember-tooling/classic-build-addon-blueprint@6.7.0':
+    dependencies:
+      '@ember-tooling/blueprint-model': 0.0.2
+      chalk: 4.1.2
+      ember-cli-normalize-entity-name: 1.0.0
+      ember-cli-string-utils: 1.1.0
+      fs-extra: 11.3.2
+      lodash: 4.17.21
+      silent-error: 1.1.1
+      sort-package-json: 2.15.1
+      walk-sync: 3.0.0
+    transitivePeerDependencies:
+      - supports-color
+
+  '@ember-tooling/classic-build-app-blueprint@6.7.0':
+    dependencies:
+      '@ember-tooling/blueprint-model': 0.0.2
+      chalk: 4.1.2
+      ember-cli-string-utils: 1.1.0
+    transitivePeerDependencies:
+      - supports-color
+
   '@ember/edition-utils@1.2.0': {}
 
   '@ember/legacy-built-in-components@0.5.0(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.101.3))':
@@ -12371,15 +12401,15 @@ snapshots:
 
   '@pnpm/config.env-replace@1.1.0': {}
 
-  '@pnpm/constants@10.0.0': {}
+  '@pnpm/constants@1001.3.1': {}
 
-  '@pnpm/error@6.0.3':
+  '@pnpm/error@1000.0.5':
     dependencies:
-      '@pnpm/constants': 10.0.0
+      '@pnpm/constants': 1001.3.1
 
-  '@pnpm/find-workspace-dir@7.0.3':
+  '@pnpm/find-workspace-dir@1000.1.3':
     dependencies:
-      '@pnpm/error': 6.0.3
+      '@pnpm/error': 1000.0.5
       find-up: 5.0.0
 
   '@pnpm/network.ca-file@1.0.2':
@@ -12677,11 +12707,6 @@ snapshots:
     dependencies:
       '@types/node': 24.5.2
 
-  '@types/glob@7.2.0':
-    dependencies:
-      '@types/minimatch': 6.0.0
-      '@types/node': 24.5.2
-
   '@types/glob@9.0.0':
     dependencies:
       glob: 11.0.3
@@ -12703,10 +12728,6 @@ snapshots:
   '@types/mime@1.3.5': {}
 
   '@types/minimatch@3.0.5': {}
-
-  '@types/minimatch@6.0.0':
-    dependencies:
-      minimatch: 7.4.6
 
   '@types/node@24.5.2':
     dependencies:
@@ -13990,18 +14011,6 @@ snapshots:
       fs-extra: 7.0.1
       symlink-or-copy: 1.3.1
 
-  broccoli-builder@0.18.14:
-    dependencies:
-      broccoli-node-info: 1.1.0
-      heimdalljs: 0.2.6
-      promise-map-series: 0.2.3
-      quick-temp: 0.1.8
-      rimraf: 2.7.1
-      rsvp: 3.6.2
-      silent-error: 1.1.1
-    transitivePeerDependencies:
-      - supports-color
-
   broccoli-caching-writer@2.3.1:
     dependencies:
       broccoli-kitchen-sink-helpers: 0.2.9
@@ -14215,8 +14224,6 @@ snapshots:
       mime-types: 2.1.35
 
   broccoli-node-api@1.7.0: {}
-
-  broccoli-node-info@1.1.0: {}
 
   broccoli-node-info@2.2.0: {}
 
@@ -15229,20 +15236,18 @@ snapshots:
     dependencies:
       repeating: 2.0.1
 
-  detect-indent@6.1.0: {}
+  detect-indent@7.0.2: {}
 
   detect-libc@1.0.3:
     optional: true
 
-  detect-newline@3.1.0: {}
+  detect-newline@4.0.1: {}
 
   detective@5.2.1:
     dependencies:
       acorn-node: 1.8.2
       defined: 1.0.1
       minimist: 1.2.8
-
-  diff@5.2.0: {}
 
   diff@7.0.0: {}
 
@@ -15746,10 +15751,10 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  ember-cli-dependency-checker@3.3.3(ember-cli@6.1.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)):
+  ember-cli-dependency-checker@3.3.3(ember-cli@6.7.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)):
     dependencies:
       chalk: 2.4.2
-      ember-cli: 6.1.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)
+      ember-cli: 6.7.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)
       find-yarn-workspace-root: 2.0.0
       is-git-url: 1.0.0
       resolve: 1.22.10
@@ -15860,8 +15865,6 @@ snapshots:
       ember-cli-version-checker: 3.1.3
 
   ember-cli-is-package-missing@1.0.0: {}
-
-  ember-cli-lodash-subset@2.0.1: {}
 
   ember-cli-mirage@3.0.4(@ember-data/model@5.7.0(@glint/template@1.5.2))(@ember/test-helpers@4.0.4(@babel/core@7.28.4)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.101.3)))(@glint/template@1.5.2)(ember-data@5.7.0(@ember/test-helpers@4.0.4(@babel/core@7.28.4)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.101.3)))(@ember/test-waiters@3.1.0)(@glint/template@1.5.2)(ember-inflector@5.0.2(@babel/core@7.28.4))(qunit@2.24.1))(ember-qunit@9.0.4(@ember/test-helpers@4.0.4(@babel/core@7.28.4)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.101.3)))(@glint/template@1.5.2)(qunit@2.24.1))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.101.3))(miragejs@0.1.48)(webpack@5.101.3):
     dependencies:
@@ -16040,12 +16043,15 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  ember-cli@6.1.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7):
+  ember-cli@6.7.0(@types/node@24.5.2)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7):
     dependencies:
-      '@pnpm/find-workspace-dir': 7.0.3
+      '@ember-tooling/blueprint-blueprint': 0.0.2
+      '@ember-tooling/blueprint-model': 0.0.2
+      '@ember-tooling/classic-build-addon-blueprint': 6.7.0
+      '@ember-tooling/classic-build-app-blueprint': 6.7.0
+      '@pnpm/find-workspace-dir': 1000.1.3
       babel-remove-types: 1.0.1
       broccoli: 3.5.2
-      broccoli-builder: 0.18.14
       broccoli-concat: 4.2.5
       broccoli-config-loader: 1.0.1
       broccoli-config-replace: 1.1.2
@@ -16065,12 +16071,11 @@ snapshots:
       compression: 1.8.1
       configstore: 5.0.1
       console-ui: 3.1.2
-      content-tag: 2.0.3
+      content-tag: 3.1.3
       core-object: 3.1.5
       dag-map: 2.0.2
-      diff: 5.2.0
+      diff: 7.0.0
       ember-cli-is-package-missing: 1.0.0
-      ember-cli-lodash-subset: 2.0.1
       ember-cli-normalize-entity-name: 1.0.0
       ember-cli-preprocess-registry: 5.0.1
       ember-cli-string-utils: 1.1.0
@@ -16098,8 +16103,8 @@ snapshots:
       is-language-code: 3.1.0
       isbinaryfile: 5.0.6
       lodash: 4.17.21
-      markdown-it: 13.0.2
-      markdown-it-terminal: 0.4.0(markdown-it@13.0.2)
+      markdown-it: 14.1.0
+      markdown-it-terminal: 0.4.0(markdown-it@14.1.0)
       minimatch: 7.4.6
       morgan: 1.10.1
       nopt: 3.0.6
@@ -16116,7 +16121,7 @@ snapshots:
       sane: 5.0.1
       semver: 7.7.2
       silent-error: 1.1.1
-      sort-package-json: 1.57.0
+      sort-package-json: 2.15.1
       symlink-or-copy: 1.3.1
       temp: 0.9.4
       testem: 3.16.0(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)
@@ -16124,7 +16129,7 @@ snapshots:
       tree-sync: 2.1.0
       walk-sync: 3.0.0
       watch-detector: 1.0.2
-      workerpool: 6.5.1
+      workerpool: 9.3.4
       yam: 1.0.0
     transitivePeerDependencies:
       - '@types/node'
@@ -16960,8 +16965,6 @@ snapshots:
   entities@1.1.2: {}
 
   entities@2.2.0: {}
-
-  entities@3.0.1: {}
 
   entities@4.5.0: {}
 
@@ -17921,6 +17924,8 @@ snapshots:
       dunder-proto: 1.0.1
       es-object-atoms: 1.1.1
 
+  get-stdin@9.0.0: {}
+
   get-stream@3.0.0: {}
 
   get-stream@4.1.0:
@@ -17956,7 +17961,7 @@ snapshots:
 
   git-config-path@2.0.0: {}
 
-  git-hooks-list@1.0.3: {}
+  git-hooks-list@3.2.0: {}
 
   git-log-parser@1.2.1:
     dependencies:
@@ -18077,17 +18082,6 @@ snapshots:
       gopd: 1.2.0
 
   globalyzer@0.1.0: {}
-
-  globby@10.0.0:
-    dependencies:
-      '@types/glob': 7.2.0
-      array-union: 2.1.0
-      dir-glob: 3.0.1
-      fast-glob: 3.3.3
-      glob: 7.2.3
-      ignore: 5.3.2
-      merge2: 1.4.1
-      slash: 3.0.0
 
   globby@11.1.0:
     dependencies:
@@ -18641,8 +18635,6 @@ snapshots:
 
   is-obj@2.0.0: {}
 
-  is-plain-obj@2.1.0: {}
-
   is-plain-obj@4.1.0: {}
 
   is-plain-object@2.0.4:
@@ -18979,9 +18971,9 @@ snapshots:
     dependencies:
       uc.micro: 1.0.6
 
-  linkify-it@4.0.1:
+  linkify-it@5.0.0:
     dependencies:
-      uc.micro: 1.0.6
+      uc.micro: 2.1.0
 
   lint-staged@16.2.1:
     dependencies:
@@ -19198,21 +19190,22 @@ snapshots:
     dependencies:
       object-visit: 1.0.1
 
-  markdown-it-terminal@0.4.0(markdown-it@13.0.2):
+  markdown-it-terminal@0.4.0(markdown-it@14.1.0):
     dependencies:
       ansi-styles: 3.2.1
       cardinal: 1.0.0
       cli-table: 0.3.11
       lodash.merge: 4.6.2
-      markdown-it: 13.0.2
+      markdown-it: 14.1.0
 
-  markdown-it@13.0.2:
+  markdown-it@14.1.0:
     dependencies:
       argparse: 2.0.1
-      entities: 3.0.1
-      linkify-it: 4.0.1
-      mdurl: 1.0.1
-      uc.micro: 1.0.6
+      entities: 4.5.0
+      linkify-it: 5.0.0
+      mdurl: 2.0.0
+      punycode.js: 2.3.1
+      uc.micro: 2.1.0
 
   markdown-it@4.4.0:
     dependencies:
@@ -19267,6 +19260,8 @@ snapshots:
   mdn-links@0.1.0: {}
 
   mdurl@1.0.1: {}
+
+  mdurl@2.0.0: {}
 
   media-typer@0.3.0: {}
 
@@ -20173,6 +20168,8 @@ snapshots:
       end-of-stream: 1.4.5
       once: 1.4.0
 
+  punycode.js@2.3.1: {}
+
   punycode@2.3.1: {}
 
   purgecss@2.3.0:
@@ -20964,14 +20961,16 @@ snapshots:
 
   sort-object-keys@1.1.3: {}
 
-  sort-package-json@1.57.0:
+  sort-package-json@2.15.1:
     dependencies:
-      detect-indent: 6.1.0
-      detect-newline: 3.1.0
-      git-hooks-list: 1.0.3
-      globby: 10.0.0
-      is-plain-obj: 2.1.0
+      detect-indent: 7.0.2
+      detect-newline: 4.0.1
+      get-stdin: 9.0.0
+      git-hooks-list: 3.2.0
+      is-plain-obj: 4.1.0
+      semver: 7.7.2
       sort-object-keys: 1.1.3
+      tinyglobby: 0.2.15
 
   source-map-js@1.2.1: {}
 
@@ -21793,6 +21792,8 @@ snapshots:
 
   uc.micro@1.0.6: {}
 
+  uc.micro@2.1.0: {}
+
   uglify-js@3.19.3:
     optional: true
 
@@ -22115,6 +22116,8 @@ snapshots:
       - supports-color
 
   workerpool@6.5.1: {}
+
+  workerpool@9.3.4: {}
 
   wrap-ansi@6.2.0:
     dependencies:
