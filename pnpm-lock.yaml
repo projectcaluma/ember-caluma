@@ -174,8 +174,8 @@ importers:
         specifier: 3.0.0
         version: 3.0.0
       ember-apollo-client:
-        specifier: 4.0.2
-        version: 4.0.2(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.101.3)
+        specifier: 5.0.0
+        version: 5.0.0(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.101.3)
       ember-auto-import:
         specifier: 2.10.1
         version: 2.10.1(@glint/template@1.5.2)(webpack@5.101.3)
@@ -342,8 +342,8 @@ importers:
         specifier: workspace:^
         version: link:../core
       ember-apollo-client:
-        specifier: ~4.0.2
-        version: 4.0.2(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.101.3)
+        specifier: ~5.0.0
+        version: 5.0.0(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.101.3)
       ember-auto-import:
         specifier: ^2.10.0
         version: 2.10.1(@glint/template@1.5.2)(webpack@5.101.3)
@@ -516,8 +516,8 @@ importers:
         specifier: ^1.1.2
         version: 1.1.2
       ember-apollo-client:
-        specifier: ~4.0.2
-        version: 4.0.2(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.101.3)
+        specifier: ~5.0.0
+        version: 5.0.0(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.101.3)
       ember-auto-import:
         specifier: ^2.10.0
         version: 2.10.1(@glint/template@1.5.2)(webpack@5.101.3)
@@ -691,8 +691,8 @@ importers:
         specifier: workspace:^
         version: link:../workflow
       ember-apollo-client:
-        specifier: ~4.0.2
-        version: 4.0.2(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.101.3)
+        specifier: ~5.0.0
+        version: 5.0.0(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.101.3)
       ember-auto-import:
         specifier: ^2.10.0
         version: 2.10.1(@glint/template@1.5.2)(webpack@5.101.3)
@@ -875,8 +875,8 @@ importers:
         specifier: workspace:^
         version: link:../core
       ember-apollo-client:
-        specifier: ~4.0.2
-        version: 4.0.2(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.101.3)
+        specifier: ~5.0.0
+        version: 5.0.0(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.101.3)
       ember-auto-import:
         specifier: ^2.10.0
         version: 2.10.1(@glint/template@1.5.2)(webpack@5.101.3)
@@ -1084,8 +1084,8 @@ importers:
         specifier: ^4.2.0
         version: 4.2.0
       ember-apollo-client:
-        specifier: ~4.0.2
-        version: 4.0.2(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.101.3)
+        specifier: ~5.0.0
+        version: 5.0.0(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.101.3)
       ember-auto-import:
         specifier: ^2.10.0
         version: 2.10.1(@glint/template@1.5.2)(webpack@5.101.3)
@@ -1284,8 +1284,8 @@ importers:
         specifier: ^4.2.0
         version: 4.2.0
       ember-apollo-client:
-        specifier: ~4.0.2
-        version: 4.0.2(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.101.3)
+        specifier: ~5.0.0
+        version: 5.0.0(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.101.3)
       ember-auto-import:
         specifier: ^2.10.0
         version: 2.10.1(@glint/template@1.5.2)(webpack@5.101.3)
@@ -1405,8 +1405,8 @@ importers:
         specifier: workspace:^
         version: link:../core
       ember-apollo-client:
-        specifier: ~4.0.2
-        version: 4.0.2(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.101.3)
+        specifier: ~5.0.0
+        version: 5.0.0(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.101.3)
       ember-auto-import:
         specifier: ^2.10.0
         version: 2.10.1(@glint/template@1.5.2)(webpack@5.101.3)
@@ -2380,6 +2380,10 @@ packages:
     peerDependenciesMeta:
       '@glint/template':
         optional: true
+
+  '@ember/string@3.1.1':
+    resolution: {integrity: sha512-UbXJ+k3QOrYN4SRPHgXCqYIJ+yWWUg1+vr0H4DhdQPTy8LJfyqwZ2tc5uqpSSnEXE+/1KopHBE5J8GDagAg5cg==}
+    engines: {node: 12.* || 14.* || >= 16}
 
   '@ember/string@4.0.1':
     resolution: {integrity: sha512-VWeng8BSWrIsdPfffOQt/bKwNKJL7+37gPFh/6iZZ9bke+S83kKqkS30poo4bTGfRcMnvAE0ie7txom+iDu81Q==}
@@ -5142,9 +5146,9 @@ packages:
   electron-to-chromium@1.5.224:
     resolution: {integrity: sha512-kWAoUu/bwzvnhpdZSIc6KUyvkI1rbRXMT0Eq8pKReyOyaPZcctMli+EgvcN1PAvwVc7Tdo4Fxi2PsLNDU05mdg==}
 
-  ember-apollo-client@4.0.2:
-    resolution: {integrity: sha512-Rhp6Tx6pZPL8h2GFtq6rRGBbnmNUi/dpteDhzPgNNS40MqUb721xHcChX4Td2hb3LlkcRT3d/e5WYxmaG2mu5A==}
-    engines: {node: 12.* || 14.* || >= 16}
+  ember-apollo-client@5.0.0:
+    resolution: {integrity: sha512-wZgYJbmvnqahCfju7oVKPpwpJf3ihSnVFqqcKk8OLFbx4uacd4dljYkaq22rldFPATLD2nX/rPOWhf5dpGT2oQ==}
+    engines: {node: '>= 20'}
     peerDependencies:
       graphql: ^14.0.0 || ^15.0.0 || ^16.0.0
 
@@ -11706,6 +11710,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  '@ember/string@3.1.1':
+    dependencies:
+      ember-cli-babel: 7.26.11
+    transitivePeerDependencies:
+      - supports-color
+
   '@ember/string@4.0.1': {}
 
   '@ember/test-helpers@3.3.1(@babel/core@7.28.4)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.101.3))(webpack@5.101.3)':
@@ -12684,7 +12694,7 @@ snapshots:
 
   '@types/glob@9.0.0':
     dependencies:
-      glob: 11.0.3
+      glob: 8.1.0
 
   '@types/http-errors@2.0.5': {}
 
@@ -15322,9 +15332,10 @@ snapshots:
 
   electron-to-chromium@1.5.224: {}
 
-  ember-apollo-client@4.0.2(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.101.3):
+  ember-apollo-client@5.0.0(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.101.3):
     dependencies:
       '@apollo/client': 3.14.0(graphql@15.10.1)
+      '@ember/string': 3.1.1
       '@ember/test-waiters': 3.1.0
       '@embroider/macros': 1.18.2(@glint/template@1.5.2)
       '@glimmer/tracking': 1.1.2
