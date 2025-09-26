@@ -68,15 +68,15 @@
     "ember-data": "5.7.0",
     "ember-engines": "0.12.0",
     "ember-modifier": "4.2.2",
-    "ember-qunit": "9.0.3",
+    "ember-qunit": "9.0.4",
     "ember-source": "6.1.0",
     "ember-source-channel-url": "3.0.0",
     "ember-try": "4.0.0",
     "loader.js": "4.7.0",
     "qunit": "2.24.1",
     "qunit-dom": "3.5.0",
-    "sass": "1.92.1",
-    "uikit": "3.23.12",
+    "sass": "1.93.2",
+    "uikit": "3.23.13",
     "webpack": "5.101.3"
   },
   "peerDependency": {
