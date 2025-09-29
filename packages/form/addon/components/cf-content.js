@@ -81,6 +81,13 @@ export default class CfContentComponent extends Component {
    */
 
   /**
+   * Optional form slug to render the document with a different form.
+   * If not provided, the document's original form will be used.
+   *
+   * @argument {String} form
+   */
+
+  /**
    * The document to display
    *
    * @property {Document} document
@@ -125,7 +132,10 @@ export default class CfContentComponent extends Component {
     );
   }
 
-  data = trackedTask(this, this.fetchData, () => [this.args.documentId]);
+  data = trackedTask(this, this.fetchData, () => [
+    this.args.documentId,
+    this.args.form,
+  ]);
 
   @dropTask
   *fetchData() {
@@ -143,11 +153,13 @@ export default class CfContentComponent extends Component {
       "allDocuments.edges",
     )).map(({ node }) => node);
 
+    const formSlug = this.args.form || answerDocument.form.slug;
+
     const [form] = (yield this.apollo.query(
       {
         query: getDocumentFormsQuery,
         fetchPolicy: "cache-first",
-        variables: { slug: answerDocument.form.slug },
+        variables: { slug: formSlug },
       },
       "allForms.edges",
     )).map(({ node }) => node);
