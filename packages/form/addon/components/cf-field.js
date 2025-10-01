@@ -105,6 +105,12 @@ export default class CfFieldComponent extends Component {
 
     yield this.args.field.validate.perform();
 
+    if (this.args.field.isInvalid) {
+      // If the frontend validation fails, we don't need to try saving the value
+      // to the backend as the backend will throw an error as well.
+      return;
+    }
+
     return yield this.args.field.save.unlinked().perform();
   }
 

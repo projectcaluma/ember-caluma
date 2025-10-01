@@ -144,12 +144,14 @@ module("Integration | Component | cf-content", function (hooks) {
       formIds: [form.id],
       slug: "text-question",
       type: "TEXT",
+      minLength: null,
       maxLength: null,
     });
     this.server.create("question", {
       formIds: [form.id],
       slug: "textarea-question",
       type: "TEXTAREA",
+      minLength: null,
       maxLength: null,
     });
     this.server.create("question", {
@@ -185,6 +187,7 @@ module("Integration | Component | cf-content", function (hooks) {
       formIds: [form.id],
       slug: "files-question",
       type: "FILES",
+      isRequired: "false",
     });
 
     radioQuestion.options.models.forEach((option, i) => {
