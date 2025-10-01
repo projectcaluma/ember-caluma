@@ -636,6 +636,12 @@ export default class Field extends Base {
         this.answer.pushIntoStore();
       }
 
+      if (this._errors.filter(({ type }) => type === "format").length) {
+        // If we previously had a format validator error but now the request
+        // succeeded, we need to remove said error again.
+        this._errors = this._errors.filter(({ type }) => type !== "format");
+      }
+
       return response;
     } catch (e) {
       const validationError = e.errors.find(
@@ -652,7 +658,6 @@ export default class Field extends Base {
           },
         ];
       } else {
-        this._errors = [];
         throw e;
       }
     }
