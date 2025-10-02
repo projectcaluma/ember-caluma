@@ -11,13 +11,6 @@ export default class CdNavigationItemComponent extends Component {
     };
   }
 
-  get showPendingIndicator() {
-    return (
-      this.args.inquiry.totalCount > 1 &&
-      this.args.inquiry.totalCount !== this.args.inquiry.answeredCount
-    );
-  }
-
   get isActive() {
     return this.router.isActive("inquiry", this.model);
   }

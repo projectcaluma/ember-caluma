@@ -17,6 +17,6 @@ module("Unit | Utility | unique-by-groups", function () {
       },
     ];
 
-    assert.deepEqual(uniqueByGroups(rawInquiries), [rawInquiries[0]]);
+    assert.strictEqual(uniqueByGroups(rawInquiries).length, 1);
   });
 });

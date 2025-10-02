@@ -24,10 +24,6 @@
       </span>
     {{/if}}
 
-    {{#if this.showPendingIndicator}}
-       {{@inquiry.answeredCount}} of {{@inquiry.totalCount}} answered
-    {{/if}}
-
     <CdNavigation::StatusIndicator @inquiry={{@inquiry}} @type={{@type}} />
   </LinkTo>
 </li>
