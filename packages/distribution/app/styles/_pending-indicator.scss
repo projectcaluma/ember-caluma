@@ -1,0 +1,28 @@
+$hitbox-size: 12px;
+$indicator-size: 6px;
+
+.pending-indicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  width: $hitbox-size;
+  height: $hitbox-size;
+  transform: translate(
+    calc(-50% - #{$indicator-size / 2}),
+    calc(-50% - #{$indicator-size / 2})
+  );
+
+  &::before {
+    content: "";
+    position: absolute;
+    background-color: #c00;
+    display: block;
+    width: $indicator-size;
+    height: $indicator-size;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

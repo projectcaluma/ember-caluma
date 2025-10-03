@@ -19,4 +19,11 @@ export default class CdNavigationStatusIndicatorComponent extends Component {
       (this.deadline.isOverdue || this.deadline.isWarning)
     );
   }
+
+  get showPendingIndicator() {
+    return (
+      this.args.inquiry.totalCount > 1 &&
+      this.args.inquiry.totalCount !== this.args.inquiry.answeredCount
+    );
+  }
 }

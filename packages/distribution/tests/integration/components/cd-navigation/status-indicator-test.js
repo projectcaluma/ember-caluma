@@ -60,5 +60,37 @@ module(
         intl.formatDate(overdueDeadline.toJSDate()),
       );
     });
+
+    test("it renders the pending indicator if there are unanswered inquiries", async function (assert) {
+      this.inquiry.totalCount = 5;
+      this.inquiry.answeredCount = 3;
+
+      await render(
+        hbs`<CdNavigation::StatusIndicator @inquiry={{this.inquiry}} @type={{this.type}} />`,
+        { owner: this.engine },
+      );
+
+      assert.dom(".pending-indicator").exists();
+
+      this.inquiry.totalCount = 5;
+      this.inquiry.answeredCount = 5;
+
+      await render(
+        hbs`<CdNavigation::StatusIndicator @inquiry={{this.inquiry}} @type={{this.type}} />`,
+        { owner: this.engine },
+      );
+
+      assert.dom(".pending-indicator").doesNotExist();
+
+      this.inquiry.totalCount = 1;
+      this.inquiry.answeredCount = 0;
+
+      await render(
+        hbs`<CdNavigation::StatusIndicator @inquiry={{this.inquiry}} @type={{this.type}} />`,
+        { owner: this.engine },
+      );
+
+      assert.dom(".pending-indicator").doesNotExist();
+    });
   },
 );

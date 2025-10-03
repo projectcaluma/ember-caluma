@@ -8,6 +8,7 @@ caluma:
     skip: "Skip circulation"
     reopen: "Reopen circulation"
     check-inquiries: "Mark inquiries as checked"
+    pending-indicator: "{completed} of {all} inquiries were answered"
     send-confirm:
       "Do you really want to send <b>{count, plural, =1 {one pending inquiry}
       other {{count} pending inquiries}}</b>?"
