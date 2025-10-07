@@ -35,6 +35,8 @@ jobs:
         run: pnpm semantic-release
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      - name: Copy readme into packages
+        run: find packages/* -maxdepth 0 -exec cp README.md {} \;
       - name: Publish packages
         if: github.ref == 'refs/heads/main'
         run: pnpm publish -r
