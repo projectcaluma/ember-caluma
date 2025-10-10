@@ -56,7 +56,7 @@
     "@faker-js/faker": "10.0.0",
     "@projectcaluma/ember-testing": "workspace:*",
     "broccoli-asset-rev": "3.0.0",
-    "ember-cli": "6.1.0",
+    "ember-cli": "6.7.1",
     "ember-cli-clean-css": "3.0.0",
     "ember-cli-code-coverage": "3.1.0",
     "ember-cli-dependency-checker": "3.3.3",
