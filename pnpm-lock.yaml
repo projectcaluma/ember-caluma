@@ -570,6 +570,9 @@ importers:
       '@glimmer/tracking':
         specifier: 1.1.2
         version: 1.1.2
+      '@projectcaluma/ember-form':
+        specifier: workspace:*
+        version: link:../form
       '@projectcaluma/ember-testing':
         specifier: workspace:*
         version: link:../testing
@@ -640,6 +643,8 @@ importers:
         specifier: 5.101.3
         version: 5.101.3
     dependenciesMeta:
+      '@projectcaluma/ember-form':
+        injected: true
       '@projectcaluma/ember-testing':
         injected: true
 

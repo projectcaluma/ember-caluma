@@ -57,3 +57,12 @@ caluma:
       format: "{errorMsg}"
       table: "Mindestens eine Zeile der Tabelle wurde nicht korrekt ausgefüllt"
       error: "Folgende Fragen sind noch nicht korrekt ausgefüllt:"
+
+    compare:
+      note: "Geändert von {username} am {date}"
+      diff:
+        added: "Hinzugefügt"
+        removed: "Entfernt"
+        modified: "Geändert"
+      timeline:
+        current: "Aktueller Formularstand"
