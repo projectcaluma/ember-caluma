@@ -75,9 +75,6 @@
   },
   "packageManager": "pnpm@9.15.4",
   "pnpm": {
-    "overrides": {
-      "@ember/test-waiters": "3.1.0"
-    },
     "peerDependencyRules": {
       "ignoreMissing": [
         "typescript"
