@@ -9,6 +9,7 @@
         navigation=this.navigation
         useAsHeading=(or @useAsHeading false)
         headingBaseLevel=(or @headingBaseLevel 1)
+        context=@context
       )
       pagination=(component "cf-pagination" navigation=this.navigation)
       form=(component
@@ -28,6 +29,7 @@
       <div uk-grid>
         <div class="uk-width-1-1 uk-width-1-3@m"><content.navigation /></div>
         <div class="uk-width-1-1 uk-width-2-3@m">
+          {{yield to="formHeader"}}
           <content.form />
           <hr />
           <content.pagination />

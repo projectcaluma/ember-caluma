@@ -1,0 +1,20 @@
+<PowerSelect
+  class="uk-margin-bottom"
+  @selected={{@selected}}
+  @options={{@options}}
+  @searchEnabled={{false}}
+  @searchField="label"
+  @allowClear={{true}}
+  @onChange={{@onChange}}
+  as |option|
+>
+  {{#if (eq option.id "current")}}
+    {{t "caluma.form.compare.timeline.current"}}
+  {{else}}
+    {{option.label}}:
+    {{format-date option.startDate format="datetime"}}
+    {{#if option.endDate}}
+      -
+      {{format-date option.endDate format="datetime"}}{{/if}}
+  {{/if}}
+</PowerSelect>

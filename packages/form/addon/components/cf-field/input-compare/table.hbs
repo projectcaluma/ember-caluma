@@ -1,0 +1,101 @@
+<div class="uk-hidden">
+  {{yield}}
+</div>
+<table class="uk-table uk-table-divider uk-margin-remove-vertical">
+  <thead>
+    <tr>
+      <th></th>
+      {{#each this.columns as |column|}}
+        <th>{{column.label}}</th>
+      {{/each}}
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each @field.answer.value as |document|}}
+      <tr
+        class="{{if (eq document.raw.historyType '-') 'diff-removed'}}
+          {{if (eq document.raw.historyType '+') 'diff-added'}}
+          {{if (eq document.raw.historyType '~') 'diff-modified'}}"
+      >
+        <td>
+          {{#if (eq document.raw.historyType "+")}}
+            <UkIcon
+              @icon="plus-circle"
+              class="uk-text-success"
+              {{uk-tooltip (t "caluma.form.compare.diff.added")}}
+            />
+          {{else if (eq document.raw.historyType "-")}}
+            <UkIcon
+              @icon="minus-circle"
+              class="uk-text-danger"
+              {{uk-tooltip (t "caluma.form.compare.diff.removed")}}
+            />
+          {{else if (eq document.raw.historyType "~")}}
+            <UkIcon
+              @icon="pencil"
+              class="uk-text-warning"
+              {{uk-tooltip (t "caluma.form.compare.diff.modified")}}
+            />
+          {{/if}}
+        </td>
+        {{#each this.columns as |column|}}
+          <td>
+            <CfFieldValue
+              @field={{find-by "question.slug" column.slug document.fields}}
+            />
+          </td>
+        {{/each}}
+        <td class="uk-table-middle">
+          <div class="uk-flex uk-flex-middle uk-flex-right">
+            {{#if (includes false (map-by "isValid" document.fields))}}
+              <UkIcon
+                @icon="warning"
+                class="uk-animation-fade uk-text-danger"
+              />
+            {{/if}}
+            <UkButton
+              @color="link"
+              @onClick={{fn this.edit document}}
+              title={{t "caluma.form.view"}}
+              class="uk-flex-inline uk-margin-small-left table-controls"
+              data-test-edit-row
+            >
+              <UkIcon @icon="eye" />
+              <span hidden>{{t "caluma.form.view"}}</span>
+            </UkButton>
+          </div>
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+{{#if this.documentToEdit}}
+  <UkModal
+    @visible={{this.showAddModal}}
+    @onHide={{perform this.close}}
+    @bgClose={{false}}
+    as |modal|
+  >
+    <modal.body>
+      <CfFormWrapper
+        @document={{this.documentToEdit}}
+        @fieldset={{object-at 0 this.documentToEdit.fieldsets}}
+        @disabled={{true}}
+        @context={{@context}}
+      />
+    </modal.body>
+
+    <modal.footer class="uk-text-right">
+      <UkButton
+        @label={{t "caluma.form.close"}}
+        @color="primary"
+        @onClick={{perform this.close}}
+        @disabled={{this.close.isRunning}}
+        @loading={{this.close.isRunning}}
+        data-test-close
+      />
+    </modal.footer>
+  </UkModal>
+{{/if}}

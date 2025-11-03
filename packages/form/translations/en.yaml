@@ -57,3 +57,12 @@ caluma:
       format: "{errorMsg}"
       table: "At least one row of the table was not filled in correctly"
       error: "The following questions have not yet been filled in correctly:"
+
+    compare:
+      note: "Changed by {username} on {date}"
+      diff:
+        added: "Added"
+        removed: "Removed"
+        modified: "Modified"
+      timeline:
+        current: "Current form version"

@@ -57,3 +57,12 @@ caluma:
       format: "{errorMsg}"
       table: "Almeno una riga della tabella non è stata compilata correttamente."
       error: "Le domande seguenti non sono state compilate in modo corretto:"
+
+    compare:
+      note: "Modificato da {username} il {date}"
+      diff:
+        added: "Aggiunto"
+        removed: "Rimosso"
+        modified: "Modificato"
+      timeline:
+        current: "Versione attuale del modulo"

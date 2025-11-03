@@ -1,0 +1,11 @@
+<div
+  class="cf-compare-note uk-text-muted uk-text-small uk-flex uk-flex-middle uk-padding-small uk-padding-remove-left uk-padding-remove-bottom"
+>
+  {{t
+    "caluma.form.compare.note"
+    username=(user-name (or @historyUserId @field.answer.raw.historyUserId))
+    date=(format-date
+      (or @historyDate @field.answer.raw.historyDate) format="datetime"
+    )
+  }}
+</div>

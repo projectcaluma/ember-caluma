@@ -1,10 +1,10 @@
 import Helper from "@ember/component/helper";
-import { warn } from "@ember/debug";
 import { inject as service } from "@ember/service";
 import { ensureSafeComponent } from "@embroider/util";
 
 import InputComponent from "@projectcaluma/ember-form/components/cf-field/input";
 import FormComponent from "@projectcaluma/ember-form/components/cf-form";
+import { parseWidgetType } from "@projectcaluma/ember-form/lib/parsers";
 
 const DEFAULT_WIDGETS = {
   "cf-field/input": InputComponent,
@@ -33,38 +33,24 @@ const DEFAULT_WIDGETS = {
 export default class GetWidgetHelper extends Helper {
   @service calumaOptions;
 
-  compute(params, { default: defaultWidget = "cf-field/input" }) {
-    for (const obj of params) {
-      let widget = obj?.raw?.meta?.widgetOverride;
+  compute(params, options = {}) {
+    const { widget, override } = parseWidgetType(
+      this.calumaOptions,
+      params,
+      options,
+    );
 
-      if (obj?.useNumberSeparatorWidget) {
-        widget = "cf-field/input/number-separator";
-      }
+    if (override) {
+      const overrideWidget = this.calumaOptions
+        .getComponentOverrides()
+        .find(({ component }) => component === widget);
 
-      if (!widget) {
-        continue;
-      }
-
-      const override =
-        widget &&
-        this.calumaOptions
-          .getComponentOverrides()
-          .find(({ component }) => component === widget);
-
-      warn(
-        `Widget override "${widget}" is not registered. Please register it by calling \`calumaOptions.registerComponentOverride\``,
-        override,
-        { id: "ember-caluma.unregistered-override" },
+      return ensureSafeComponent(
+        overrideWidget.componentClass ?? overrideWidget.component,
+        this,
       );
-
-      if (override) {
-        return ensureSafeComponent(
-          override.componentClass ?? override.component,
-          this,
-        );
-      }
     }
 
-    return ensureSafeComponent(DEFAULT_WIDGETS[defaultWidget], this);
+    return ensureSafeComponent(DEFAULT_WIDGETS[widget], this);
   }
 }

@@ -22,14 +22,21 @@ const sum = (nums) => nums.reduce((num, base) => base + num, 0);
  * @class Document
  */
 export default class Document extends Base {
-  constructor({ raw, parentDocument, dataSourceContext, ...args }) {
+  constructor({
+    raw,
+    parentDocument,
+    dataSourceContext,
+    historicalDocument,
+    ...args
+  }) {
     assert(
       "A graphql document `raw` must be passed",
-      raw?.__typename === "Document",
+      raw?.__typename.includes("Document"),
     );
 
     super({ raw, ...args });
 
+    this.historicalDocument = historicalDocument;
     this.parentDocument = parentDocument;
     this.dataSourceContext =
       dataSourceContext ?? parentDocument?.dataSourceContext;
@@ -59,7 +66,11 @@ export default class Document extends Base {
         this,
         this.calumaStore.find(`${this.pk}:Form:${form.slug}`) ||
           new (owner.factoryFor("caluma-model:fieldset").class)({
-            raw: { form, answers: this.raw.answers },
+            raw: {
+              form,
+              answers: this.raw.answers,
+              historicalAnswers: this.historicalDocument?.answers,
+            },
             document: this,
             owner,
           }),
