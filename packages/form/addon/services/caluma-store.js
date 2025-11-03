@@ -16,6 +16,18 @@ export default class CalumaStoreService extends Service {
       obj.storeKey,
     );
 
+    // Do not use the store for historical objects, because in the diff
+    // view we switch between different versions of the same object
+    // with the same ID, which should not be retrieved from the store.
+    const historyRegex = new RegExp("^Historical");
+    if (
+      historyRegex.test(obj?.raw?.__typename) ||
+      historyRegex.test(obj?.raw?.answer?.__typename) ||
+      (obj?.raw?.answers || []).some((a) => historyRegex.test(a?.__typename))
+    ) {
+      return false;
+    }
+
     const existing = this._store.get(obj.storeKey);
 
     if (existing) {

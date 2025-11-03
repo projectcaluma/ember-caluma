@@ -1,0 +1,197 @@
+.cf-compare {
+  position: relative;
+
+  &:not(.cf-compare-manual) &::before {
+    content: "";
+    position: absolute;
+    inset: -3px auto -10px -15px;
+    pointer-events: none;
+    z-index: 1;
+    border-right: 2px dotted #{$global-primary-background};
+  }
+
+  // Default from/to version styling.
+  :not(.cf-compare-removed),
+  :not(.cf-compare-added) {
+    .uk-input {
+      overflow: visible;
+      text-wrap: wrap;
+      height: auto;
+    }
+
+    .diff-from-version,
+    .diff-to-version {
+      min-height: 22.5px;
+    }
+
+    .diff-from-version {
+      background: #{$global-danger-background}75;
+    }
+
+    .diff-to-version {
+      background: #{$global-success-background}75;
+    }
+
+    .diff-is-added {
+      background: #{$global-success-background}75;
+    }
+
+    .diff-is-modified {
+      background: #{$global-warning-background}75;
+    }
+
+    .diff-is-removed {
+      background: #{$global-danger-background}75;
+    }
+  }
+
+  // Specific styling for ember basic dropdowns.
+  &.cf-compare-ChoiceQuestion,
+  &.cf-compare-MultipleChoiceQuestion,
+  &.cf-compare-DynamicChoiceQuestion {
+    .from-version .ember-basic-dropdown-trigger {
+      background: #{$global-danger-background}75;
+    }
+
+    .to-version .ember-basic-dropdown-trigger {
+      background: #{$global-success-background}75;
+    }
+  }
+
+  // Specific styling for table questions.
+  &.cf-compare-TableQuestion {
+    .diff-removed {
+      background: #{$global-danger-background}35;
+    }
+
+    .diff-modified {
+      background: #{$global-warning-background}35;
+    }
+
+    .diff-added {
+      background: #{$global-success-background}35;
+    }
+  }
+
+  // Overrides for added documents.
+  &.cf-compare-added {
+    .diff-from-version {
+      display: none;
+    }
+
+    .diff-to-version {
+      background: #{$global-success-background}75;
+    }
+
+    &.cf-compare-TextQuestion,
+    &.cf-compare-DateQuestion,
+    &.cf-compare-IntegerQuestion,
+    &.cf-compare-FloatQuestion,
+    &.cf-compare-CalculatedFloatQuestion {
+      .from-version input {
+        display: none;
+      }
+
+      .to-version input {
+        background: #{$global-success-background}75;
+      }
+    }
+
+    &.cf-compare-TextareaQuestion {
+      .from-version {
+        display: none;
+      }
+
+      .to-version {
+        background: #{$global-success-background}75;
+      }
+    }
+
+    &.cf-compare-ChoiceQuestion,
+    &.cf-compare-MultipleChoiceQuestion,
+    &.cf-compare-DynamicChoiceQuestion {
+      .from-version .ember-basic-dropdown-trigger {
+        display: none;
+      }
+
+      .to-version .ember-basic-dropdown-trigger {
+        background: #{$global-success-background}75;
+      }
+    }
+  }
+
+  // Overrides for removed documents.
+  &.cf-compare-removed {
+    .diff-from-version {
+      display: none;
+    }
+
+    .diff-to-version {
+      background: #{$global-danger-background}75;
+    }
+
+    &.cf-compare-TextQuestion,
+    &.cf-compare-DateQuestion,
+    &.cf-compare-IntegerQuestion,
+    &.cf-compare-FloatQuestion,
+    &.cf-compare-CalculatedFloatQuestion {
+      .from-version input {
+        background: #{$global-danger-background}75;
+      }
+
+      .to-version input {
+        display: none;
+      }
+    }
+
+    &.cf-compare-TextareaQuestion {
+      .from-version {
+        background: #{$global-danger-background}75;
+      }
+
+      .to-version {
+        display: none;
+      }
+    }
+
+    &.cf-compare-ChoiceQuestion,
+    &.cf-compare-MultipleChoiceQuestion,
+    &.cf-compare-DynamicChoiceQuestion {
+      .from-version .ember-basic-dropdown-trigger {
+        display: none;
+      }
+
+      .to-version .ember-basic-dropdown-trigger {
+        background: #{$global-danger-background}75;
+      }
+    }
+  }
+
+  // Extra specific styling for textarea questions.
+  &.cf-compare-TextareaQuestion .uk-form-controls {
+    .uk-textarea {
+      padding: 0;
+      height: auto;
+    }
+
+    .diff-from-version,
+    .diff-to-version {
+      white-space: pre-line;
+      padding: 2px 4px;
+      min-height: 40px;
+    }
+  }
+
+  // Extra specific styling for choice questions.
+  &.cf-compare-ChoiceQuestion .uk-form-controls,
+  &.cf-compare-MultipleChoiceQuestion .uk-form-controls {
+    label {
+      display: block;
+      padding: 2px 4px 1px;
+    }
+
+    br {
+      display: none;
+    }
+  }
+}
