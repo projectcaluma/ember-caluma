@@ -14,7 +14,9 @@ export default function uniqueByGroups(workItems) {
       relevantWorkItems
         .map((workItem) => {
           const workItemsWithSameIdentifier = relevantWorkItems.filter(
-            (otherWorkItem) => otherWorkItem.identifier === workItem.identifier,
+            (otherWorkItem) =>
+              otherWorkItem.identifier === workItem.identifier &&
+              otherWorkItem.status !== "SUSPENDED",
           );
 
           return [
