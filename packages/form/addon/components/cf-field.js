@@ -1,8 +1,8 @@
 import { action } from "@ember/object";
 import { service } from "@ember/service";
-import { macroCondition, isTesting } from "@embroider/macros";
+import { isTesting, macroCondition } from "@embroider/macros";
 import Component from "@glimmer/component";
-import { timeout, task } from "ember-concurrency";
+import { task, timeout } from "ember-concurrency";
 
 import { hasQuestionType } from "@projectcaluma/ember-core/helpers/has-question-type";
 
@@ -29,6 +29,10 @@ export default class CfFieldComponent extends Component {
   @action
   unregisterComponent() {
     this.args.field._components.delete(this);
+  }
+
+  get isComparison() {
+    return this?.args?.context?.compare?.enabled ?? false;
   }
 
   get hasHiddenWidget() {
@@ -77,7 +81,10 @@ export default class CfFieldComponent extends Component {
   }
 
   get saveIndicatorVisible() {
-    return !hasQuestionType(this.args.field?.question, "action-button");
+    return (
+      !this.isComparison &&
+      !hasQuestionType(this.args.field?.question, "action-button")
+    );
   }
 
   /**
@@ -89,6 +96,11 @@ export default class CfFieldComponent extends Component {
    * @param {String|Number|String[]} value The new value to save to the field
    */
   save = task({ restartable: true }, async (value) => {
+    // Do not save when in comparison mode.
+    if (this.isComparison) {
+      return;
+    }
+
     if (typeof this.args.onSave === "function") {
       return await this.args.onSave(this.args.field, value);
     }
