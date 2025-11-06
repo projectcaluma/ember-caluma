@@ -323,12 +323,6 @@ importers:
       '@embroider/macros':
         specifier: ^1.16.10
         version: 1.18.2(@glint/template@1.5.2)
-      '@glimmer/component':
-        specifier: ^1.1.2
-        version: 1.1.2(@babel/core@7.28.4)
-      '@glimmer/tracking':
-        specifier: ^1.1.2
-        version: 1.1.2
       '@projectcaluma/ember-core':
         specifier: workspace:^
         version: link:../core
@@ -411,6 +405,12 @@ importers:
       '@faker-js/faker':
         specifier: 10.0.0
         version: 10.0.0
+      '@glimmer/component':
+        specifier: 1.1.2
+        version: 1.1.2(@babel/core@7.28.4)
+      '@glimmer/tracking':
+        specifier: 1.1.2
+        version: 1.1.2
       '@projectcaluma/ember-testing':
         specifier: workspace:*
         version: link:../testing
@@ -503,9 +503,6 @@ importers:
       '@embroider/macros':
         specifier: ^1.16.10
         version: 1.18.2(@glint/template@1.5.2)
-      '@glimmer/tracking':
-        specifier: ^1.1.2
-        version: 1.1.2
       ember-apollo-client:
         specifier: ^5.0.0
         version: 5.0.0(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.101.3)
@@ -579,6 +576,9 @@ importers:
       '@glimmer/component':
         specifier: 1.1.2
         version: 1.1.2(@babel/core@7.28.4)
+      '@glimmer/tracking':
+        specifier: 1.1.2
+        version: 1.1.2
       '@projectcaluma/ember-testing':
         specifier: workspace:*
         version: link:../testing
@@ -663,12 +663,6 @@ importers:
       '@embroider/macros':
         specifier: ^1.16.10
         version: 1.18.2(@glint/template@1.5.2)
-      '@glimmer/component':
-        specifier: ^1.1.2
-        version: 1.1.2(@babel/core@7.28.4)
-      '@glimmer/tracking':
-        specifier: ^1.1.2
-        version: 1.1.2
       '@projectcaluma/ember-core':
         specifier: workspace:^
         version: link:../core
@@ -760,6 +754,12 @@ importers:
       '@faker-js/faker':
         specifier: 10.0.0
         version: 10.0.0
+      '@glimmer/component':
+        specifier: 1.1.2
+        version: 1.1.2(@babel/core@7.28.4)
+      '@glimmer/tracking':
+        specifier: 1.1.2
+        version: 1.1.2
       '@projectcaluma/ember-testing':
         specifier: workspace:*
         version: link:../testing
@@ -853,12 +853,6 @@ importers:
       '@embroider/util':
         specifier: ^1.13.2
         version: 1.13.4(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.4))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.101.3))
-      '@glimmer/component':
-        specifier: ^1.1.2
-        version: 1.1.2(@babel/core@7.28.4)
-      '@glimmer/tracking':
-        specifier: ^1.1.2
-        version: 1.1.2
       '@projectcaluma/ember-core':
         specifier: workspace:^
         version: link:../core
@@ -953,6 +947,12 @@ importers:
       '@faker-js/faker':
         specifier: 10.0.0
         version: 10.0.0
+      '@glimmer/component':
+        specifier: 1.1.2
+        version: 1.1.2(@babel/core@7.28.4)
+      '@glimmer/tracking':
+        specifier: 1.1.2
+        version: 1.1.2
       '@projectcaluma/ember-testing':
         specifier: workspace:*
         version: link:../testing
@@ -1053,12 +1053,6 @@ importers:
       '@embroider/macros':
         specifier: ^1.16.10
         version: 1.18.2(@glint/template@1.5.2)
-      '@glimmer/component':
-        specifier: ^1.1.2
-        version: 1.1.2(@babel/core@7.28.4)
-      '@glimmer/tracking':
-        specifier: ^1.1.2
-        version: 1.1.2
       '@projectcaluma/ember-core':
         specifier: workspace:^
         version: link:../core
@@ -1171,6 +1165,12 @@ importers:
       '@faker-js/faker':
         specifier: 10.0.0
         version: 10.0.0
+      '@glimmer/component':
+        specifier: 1.1.2
+        version: 1.1.2(@babel/core@7.28.4)
+      '@glimmer/tracking':
+        specifier: 1.1.2
+        version: 1.1.2
       '@projectcaluma/ember-testing':
         specifier: workspace:*
         version: link:../testing
@@ -1383,9 +1383,6 @@ importers:
       '@babel/core':
         specifier: ^7.26.0
         version: 7.28.4
-      '@glimmer/component':
-        specifier: ^1.1.2
-        version: 1.1.2(@babel/core@7.28.4)
       '@projectcaluma/ember-core':
         specifier: workspace:^
         version: link:../core
@@ -1441,6 +1438,9 @@ importers:
       '@faker-js/faker':
         specifier: 10.0.0
         version: 10.0.0
+      '@glimmer/component':
+        specifier: 1.1.2
+        version: 1.1.2(@babel/core@7.28.4)
       '@glimmer/tracking':
         specifier: 1.1.2
         version: 1.1.2

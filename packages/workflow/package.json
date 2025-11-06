@@ -14,7 +14,6 @@
   },
   "dependencies": {
     "@babel/core": "^7.26.0",
-    "@glimmer/component": "^1.1.2",
     "@projectcaluma/ember-core": "workspace:^",
     "ember-apollo-client": "^5.0.0",
     "ember-auto-import": "^2.10.0",
@@ -35,6 +34,7 @@
     "@ember/test-helpers": "4.0.4",
     "@embroider/test-setup": "4.0.0",
     "@faker-js/faker": "10.0.0",
+    "@glimmer/component": "1.1.2",
     "@glimmer/tracking": "1.1.2",
     "@projectcaluma/ember-testing": "workspace:*",
     "broccoli-asset-rev": "3.0.0",
