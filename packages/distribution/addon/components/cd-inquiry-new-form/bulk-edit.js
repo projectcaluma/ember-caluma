@@ -1,6 +1,7 @@
 import { getOwner } from "@ember/application";
 import { action } from "@ember/object";
 import { guidFor } from "@ember/object/internals";
+import { next } from "@ember/runloop";
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
@@ -99,11 +100,13 @@ export default class CdInquiryNewFormBulkEditComponent extends Component {
       answers: this.answers,
     });
 
+    next(this, "transitionToFirstInquiryOfGroup", this.args.selectedGroups[0]);
+  }
+
+  transitionToFirstInquiryOfGroup(group) {
     const firstCreated = this.distribution.navigation.value.controlling.edges
       .map((edge) => edge.node)
-      .find((node) =>
-        node.addressedGroups.includes(String(this.args.selectedGroups[0])),
-      );
+      .find((node) => node.addressedGroups.includes(String(group)));
 
     // transition to inquiry addressed to the first selected group
     this.router.transitionTo(
