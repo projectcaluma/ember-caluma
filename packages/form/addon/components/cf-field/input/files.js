@@ -1,9 +1,9 @@
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
+import { waitForFetch } from "@ember/test-waiters";
 import { macroCondition, isTesting } from "@embroider/macros";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
-import fetch from "fetch";
 
 import getFilesAnswerInfoQuery from "@projectcaluma/ember-form/gql/queries/filesanswer-info.graphql";
 
@@ -75,10 +75,12 @@ export default class CfFieldInputFilesComponent extends Component {
       }));
 
       const uploadFunction = async (file) => {
-        const response = await fetch(file.uploadUrl, {
-          method: "PUT",
-          body: file.value,
-        });
+        const response = await waitForFetch(
+          fetch(file.uploadUrl, {
+            method: "PUT",
+            body: file.value,
+          }),
+        );
         if (!response.ok) {
           throw new Error();
         }

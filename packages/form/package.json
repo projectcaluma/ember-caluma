@@ -15,6 +15,7 @@
   "dependencies": {
     "@babel/core": "^7.26.0",
     "@ember/string": "^3.1.1 || ^4.0.0",
+    "@ember/test-waiters": "^4.1.1",
     "@embroider/macros": "^1.16.10",
     "@embroider/util": "^1.13.2",
     "@projectcaluma/ember-core": "workspace:^",
@@ -27,7 +28,6 @@
     "ember-cli-showdown": "^9.0.1",
     "ember-composable-helpers": "^5.0.0",
     "ember-concurrency": "^4.0.2",
-    "ember-fetch": "^8.1.2",
     "ember-flatpickr": "^8.0.1",
     "ember-in-viewport": "^4.1.0",
     "ember-intl": "^7.1.1",

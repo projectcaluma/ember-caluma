@@ -8,9 +8,6 @@ module.exports = function (defaults) {
     "ember-cli-addon-docs": {
       documentingAddonAt: "../form",
     },
-    "ember-fetch": {
-      nativePromise: true,
-    },
   });
 
   return app.toTree();

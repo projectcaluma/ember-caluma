@@ -1,5 +1,5 @@
 import { inject as service } from "@ember/service";
-import fetch from "fetch";
+import { waitForFetch } from "@ember/test-waiters";
 import { DateTime } from "luxon";
 
 import CalumaOptionsService from "@projectcaluma/ember-core/services/caluma-options";
@@ -101,9 +101,11 @@ export default class CustomCalumaOptionsService extends CalumaOptionsService {
   }
 
   async sendReminderDistributionInquiry(inquiryId) {
-    await fetch(`/${inquiryId}/send-reminder`, {
-      method: "POST",
-    });
+    await waitForFetch(
+      fetch(`/${inquiryId}/send-reminder`, {
+        method: "POST",
+      }),
+    );
   }
 
   calculateDistributionDefaultDeadline(defaultLeadTime, selectedGroups) {
