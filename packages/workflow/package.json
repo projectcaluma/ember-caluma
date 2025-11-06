@@ -21,7 +21,6 @@
     "ember-cli-htmlbars": "^6.3.0",
     "ember-composable-helpers": "^5.0.0",
     "ember-concurrency": "^4.0.2",
-    "ember-fetch": "^8.1.2",
     "ember-intl": "^7.1.1",
     "ember-template-imports": "^4.2.0",
     "ember-truth-helpers": "^4.0.3",
