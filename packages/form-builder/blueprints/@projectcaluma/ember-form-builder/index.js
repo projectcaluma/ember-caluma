@@ -12,7 +12,6 @@ module.exports = {
      */
     return this.addAddonsToProject({
       packages: [
-        { name: "@ember/legacy-built-in-components" },
         { name: "@projectcaluma/ember-core" },
         { name: "@projectcaluma/ember-form" },
         { name: "ember-changeset" },
