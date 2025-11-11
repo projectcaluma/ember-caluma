@@ -20,7 +20,7 @@
     "@embroider/macros": "^1.16.10",
     "@projectcaluma/ember-core": "workspace:^",
     "@projectcaluma/ember-form": "workspace:^",
-    "codejar": "~4.2.0",
+    "codejar": "^4.3.0",
     "ember-apollo-client": "^5.0.0",
     "ember-auto-import": "^2.10.0",
     "ember-basic-dropdown": "^8.4.0",
