@@ -22,7 +22,7 @@ jobs:
     timeout-minutes: 5
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: pnpm/action-setup@v4
       - name: Install Node
         uses: actions/setup-node@v6
@@ -53,7 +53,7 @@ jobs:
           - "@projectcaluma/ember-workflow"
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: pnpm/action-setup@v4
       - name: Install Node
         uses: actions/setup-node@v6
@@ -90,7 +90,7 @@ jobs:
           - "@projectcaluma/ember-workflow"
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: pnpm/action-setup@v4
       - name: Install Node
         uses: actions/setup-node@v6
@@ -115,7 +115,7 @@ jobs:
   #     BROWSERSTACK_ACCESS_KEY: ${{ secrets.BROWSERSTACK_ACCESS_KEY }}
 
   #   steps:
-  #     - uses: actions/checkout@v5
+  #     - uses: actions/checkout@v6
   #     - uses: pnpm/action-setup@v4
   #     - name: Install Node
   #       uses: actions/setup-node@v6
@@ -163,7 +163,7 @@ jobs:
           - "@projectcaluma/ember-workflow"
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - uses: pnpm/action-setup@v4
       - name: Install Node
         uses: actions/setup-node@v6
