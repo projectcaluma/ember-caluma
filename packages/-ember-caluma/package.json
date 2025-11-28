@@ -34,7 +34,7 @@
     "ember-can": "7.0.0",
     "ember-changeset": "4.1.2",
     "ember-changeset-validations": "4.1.1",
-    "ember-cli": "6.1.0",
+    "ember-cli": "6.8.0",
     "ember-cli-addon-docs": "10.0.0",
     "ember-cli-babel": "8.2.0",
     "ember-cli-clean-css": "3.0.0",
