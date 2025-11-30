@@ -7,6 +7,7 @@ import { dropTask } from "ember-concurrency";
 import { trackedTask } from "reactiveweb/ember-concurrency";
 
 import getDocumentAnswersQuery from "@projectcaluma/ember-form/gql/queries/document-answers.graphql";
+import getDocumentAnswersCompareQuery from "@projectcaluma/ember-form/gql/queries/document-answers-compare.graphql";
 import getDocumentFormsQuery from "@projectcaluma/ember-form/gql/queries/document-forms.graphql";
 import { parseDocument } from "@projectcaluma/ember-form/lib/parsers";
 
@@ -134,14 +135,30 @@ export default class CfContentComponent extends Component {
 
     if (!this.args.documentId) return;
 
-    const [answerDocument] = (yield this.apollo.query(
-      {
-        query: getDocumentAnswersQuery,
+    let answerDocument;
+    let historicalDocument;
+    if (this.args.compareTo) {
+      const response = yield this.apollo.query({
+        query: getDocumentAnswersCompareQuery,
         fetchPolicy: "network-only",
-        variables: { id: this.args.documentId },
-      },
-      "allDocuments.edges",
-    )).map(({ node }) => node);
+        variables: {
+          id: this.args.documentId,
+          from: this.args.compareTo,
+          to: new Date(),
+        },
+      });
+      answerDocument = response.toRevision;
+      historicalDocument = response.fromRevision;
+    } else {
+      [answerDocument] = (yield this.apollo.query(
+        {
+          query: getDocumentAnswersQuery,
+          fetchPolicy: "network-only",
+          variables: { id: this.args.documentId },
+        },
+        "allDocuments.edges",
+      )).map(({ node }) => node);
+    }
 
     const [form] = (yield this.apollo.query(
       {
@@ -161,6 +178,9 @@ export default class CfContentComponent extends Component {
     const document = new Document({
       raw,
       owner,
+      historicalDocument: historicalDocument
+        ? parseDocument({ ...historicalDocument, form })
+        : null,
       dataSourceContext: this.args.context,
     });
     const navigation = new Navigation({ document, owner });

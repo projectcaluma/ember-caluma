@@ -516,6 +516,86 @@ type CalculatedFloatQuestion implements Question & Node {
   id: ID!
 }
 
+"""
+An enumeration.
+"""
+enum CalumaFormHistoricalAnswerHistoryQuestionTypeChoices {
+  """
+  multiple_choice
+  """
+  MULTIPLE_CHOICE
+
+  """
+  integer
+  """
+  INTEGER
+
+  """
+  float
+  """
+  FLOAT
+
+  """
+  date
+  """
+  DATE
+
+  """
+  choice
+  """
+  CHOICE
+
+  """
+  textarea
+  """
+  TEXTAREA
+
+  """
+  text
+  """
+  TEXT
+
+  """
+  table
+  """
+  TABLE
+
+  """
+  form
+  """
+  FORM
+
+  """
+  files
+  """
+  FILES
+
+  """
+  dynamic_choice
+  """
+  DYNAMIC_CHOICE
+
+  """
+  dynamic_multiple_choice
+  """
+  DYNAMIC_MULTIPLE_CHOICE
+
+  """
+  static
+  """
+  STATIC
+
+  """
+  calculated_float
+  """
+  CALCULATED_FLOAT
+
+  """
+  action_button
+  """
+  ACTION_BUTTON
+}
+
 input CancelCaseInput {
   id: ID!
 
@@ -1875,6 +1955,265 @@ input HasAnswerFilterType {
   hierarchy: AnswerHierarchyMode
 }
 
+interface HistoricalAnswer {
+  id: ID
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+  createdByUser: String
+  createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
+  question: Question!
+  meta: GenericScalar!
+  historyDate: DateTime!
+  historyUserId: String
+  historyType: String
+}
+
+type HistoricalAnswerConnection {
+  """
+  Pagination data for this connection.
+  """
+  pageInfo: PageInfo!
+
+  """
+  Contains the nodes in this connection.
+  """
+  edges: [HistoricalAnswerEdge]!
+  totalCount: Int
+}
+
+"""
+A Relay edge containing a `HistoricalAnswer` and its cursor.
+"""
+type HistoricalAnswerEdge {
+  """
+  The item at the end of the edge
+  """
+  node: HistoricalAnswer
+
+  """
+  A cursor for use in pagination
+  """
+  cursor: String!
+}
+
+type HistoricalDateAnswer implements HistoricalAnswer & Node {
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+  createdByUser: String
+  createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
+  historyQuestionType: CalumaFormHistoricalAnswerHistoryQuestionTypeChoices!
+
+  """
+  The ID of the object
+  """
+  id: ID!
+  value: Date
+  meta: GenericScalar!
+  historyUserId: String
+  question: Question!
+  historyId: UUID!
+  historyDate: DateTime!
+  historyChangeReason: String
+  historyType: String
+  date: Date
+}
+
+type HistoricalDocument implements Node {
+  historyUserId: String
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+  createdByUser: String
+  createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
+
+  """
+  The ID of the object
+  """
+  id: ID!
+  meta: GenericScalar
+  form: Form
+
+  """
+  Reference this document has been copied from
+  """
+  source: Document
+  historyDate: DateTime!
+  historyType: String
+  historicalAnswers(
+    asOf: DateTime!
+    before: String
+    after: String
+    first: Int
+    last: Int
+  ): HistoricalAnswerConnection
+  documentId: UUID
+}
+
+type HistoricalFile implements Node {
+  """
+  The ID of the object
+  """
+  id: ID!
+  name: String!
+  downloadUrl: String
+  metadata: GenericScalar
+  historicalAnswer: HistoricalFilesAnswer
+  historyDate: DateTime!
+  historyUserId: String
+  historyType: String
+}
+
+type HistoricalFilesAnswer implements HistoricalAnswer & Node {
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+  createdByUser: String
+  createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
+  historyQuestionType: CalumaFormHistoricalAnswerHistoryQuestionTypeChoices!
+
+  """
+  The ID of the object
+  """
+  id: ID!
+  value(asOf: DateTime!): [HistoricalFile]
+  meta: GenericScalar!
+  historyUserId: String
+  question: Question!
+  historyId: UUID!
+  historyDate: DateTime!
+  historyChangeReason: String
+  historyType: String
+}
+
+type HistoricalFloatAnswer implements HistoricalAnswer & Node {
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+  createdByUser: String
+  createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
+  historyQuestionType: CalumaFormHistoricalAnswerHistoryQuestionTypeChoices!
+
+  """
+  The ID of the object
+  """
+  id: ID!
+  value: Float
+  meta: GenericScalar!
+  historyUserId: String
+  question: Question!
+  historyId: UUID!
+  historyDate: DateTime!
+  historyChangeReason: String
+  historyType: String
+}
+
+type HistoricalIntegerAnswer implements HistoricalAnswer & Node {
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+  createdByUser: String
+  createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
+  historyQuestionType: CalumaFormHistoricalAnswerHistoryQuestionTypeChoices!
+
+  """
+  The ID of the object
+  """
+  id: ID!
+  value: Int
+  meta: GenericScalar!
+  historyUserId: String
+  question: Question!
+  historyId: UUID!
+  historyDate: DateTime!
+  historyChangeReason: String
+  historyType: String
+}
+
+type HistoricalListAnswer implements HistoricalAnswer & Node {
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+  createdByUser: String
+  createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
+  historyQuestionType: CalumaFormHistoricalAnswerHistoryQuestionTypeChoices!
+
+  """
+  The ID of the object
+  """
+  id: ID!
+  value: [String]
+  meta: GenericScalar!
+  historyUserId: String
+  question: Question!
+  historyId: UUID!
+  historyDate: DateTime!
+  historyChangeReason: String
+  historyType: String
+  selectedOptions(
+    before: String
+    after: String
+    first: Int
+    last: Int
+  ): SelectedOptionConnection
+}
+
+type HistoricalStringAnswer implements HistoricalAnswer & Node {
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+  createdByUser: String
+  createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
+  historyQuestionType: CalumaFormHistoricalAnswerHistoryQuestionTypeChoices!
+
+  """
+  The ID of the object
+  """
+  id: ID!
+  value: String
+  meta: GenericScalar!
+  historyUserId: String
+  question: Question!
+  historyId: UUID!
+  historyDate: DateTime!
+  historyChangeReason: String
+  historyType: String
+  selectedOption: SelectedOption
+}
+
+type HistoricalTableAnswer implements HistoricalAnswer & Node {
+  createdAt: DateTime!
+  modifiedAt: DateTime!
+  createdByUser: String
+  createdByGroup: String
+  modifiedByUser: String
+  modifiedByGroup: String
+  historyQuestionType: CalumaFormHistoricalAnswerHistoryQuestionTypeChoices!
+
+  """
+  The ID of the object
+  """
+  id: ID!
+  value(asOf: DateTime!): [HistoricalDocument]
+  meta: GenericScalar!
+  historyUserId: String
+  question: Question!
+  historyId: UUID!
+  historyDate: DateTime!
+  historyChangeReason: String
+  historyType: String
+  document: Document
+}
+
 type IntegerAnswer implements Answer & Node {
   createdAt: DateTime!
   modifiedAt: DateTime!
@@ -2280,6 +2619,7 @@ type PageInfo {
 }
 
 type Query {
+  documentAsOf(id: ID!, asOf: DateTime!): HistoricalDocument
   allAnalyticsTables(
     offset: Int
     before: String
@@ -4089,6 +4429,12 @@ enum Type {
   """
   COMPLETE_TASK_FORM
 }
+
+"""
+Leverages the internal Python implementation of UUID (uuid.UUID) to provide native UUID objects
+in fields, resolvers and input.
+"""
+scalar UUID
 
 type ValidationEntry {
   slug: String!

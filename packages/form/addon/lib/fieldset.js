@@ -22,6 +22,7 @@ export default class Fieldset extends Base {
       "A collection of graphql answers `raw.answers` must be passed",
       raw?.answers?.every((answer) => /Answer$/.test(answer.__typename)),
     );
+    console.log("init fieldset", raw);
 
     super({ raw, ...args });
 
@@ -59,6 +60,9 @@ export default class Fieldset extends Base {
             raw: {
               question,
               answer: this.raw.answers.find(
+                (answer) => answer?.question?.slug === question.slug,
+              ),
+              historicalAnswer: this.raw.historicalAnswers?.find(
                 (answer) => answer?.question?.slug === question.slug,
               ),
             },

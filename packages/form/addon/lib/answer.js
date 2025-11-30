@@ -33,7 +33,7 @@ class DedupedTrackedObject {
  * @class Answer
  */
 export default class Answer extends Base {
-  constructor({ raw, field, ...args }) {
+  constructor({ raw, field, historical, ...args }) {
     assert("`field` must be passed as an argument", field);
 
     assert(
@@ -42,9 +42,11 @@ export default class Answer extends Base {
     );
 
     super({ raw, ...args });
+    console.log("init Answer", raw, historical);
 
     this.field = field;
     this.raw = new DedupedTrackedObject(raw);
+    this.historical = historical ? new DedupedTrackedObject(historical) : null;
 
     this.pushIntoStore();
   }
@@ -106,7 +108,11 @@ export default class Answer extends Base {
   get _valueKey() {
     return (
       this.raw.__typename &&
-      camelize(this.raw.__typename.replace(/Answer$/, "Value"))
+      camelize(
+        this.raw.__typename
+          .replace("Historical", "")
+          .replace(/Answer$/, "Value"),
+      )
     );
   }
 
@@ -143,6 +149,12 @@ export default class Answer extends Base {
     }
 
     return value;
+  }
+
+  @cached
+  get historicalValue() {
+    return this.historical?.[this._valueKey];
+    // TODO: support tables
   }
 
   set value(value) {
