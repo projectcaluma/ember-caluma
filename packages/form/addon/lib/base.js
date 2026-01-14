@@ -2,6 +2,7 @@ import { setOwner } from "@ember/application";
 import { assert } from "@ember/debug";
 import { registerDestructor } from "@ember/destroyable";
 import { inject as service } from "@ember/service";
+import { cached } from "tracked-toolbox";
 
 export default class Base {
   @service calumaStore;
@@ -18,8 +19,8 @@ export default class Base {
     }
 
     registerDestructor(this, () => {
-      if (this.pk) {
-        this.calumaStore.delete(this.pk);
+      if (this.storeKey) {
+        this.calumaStore.delete(this.storeKey);
       }
     });
   }
@@ -32,12 +33,33 @@ export default class Base {
   raw = {};
 
   /**
+   * The primary key of the lib class.
+   * Must be overridden in subclasses.
+   *
+   * @property {String} pk
+   */
+  @cached
+  get pk() {
+    throw new Error("pk getter must be implemented in subclass");
+  }
+
+  /**
+   * The caluma store key of the answer.
+   *
+   * @property {String} storeKey
+   */
+  @cached
+  get storeKey() {
+    return this.pk;
+  }
+
+  /**
    * Push the object into the caluma store
    *
    * @method pushIntoStore
    */
   pushIntoStore() {
-    if (this.pk) {
+    if (this.storeKey) {
       this.calumaStore.push(this);
     }
   }

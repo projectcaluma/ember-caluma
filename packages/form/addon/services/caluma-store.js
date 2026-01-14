@@ -13,14 +13,14 @@ export default class CalumaStoreService extends Service {
   push(obj) {
     assert(
       `Object must have an \`pk\` in order to be pushed into the store`,
-      obj.pk,
+      obj.storeKey,
     );
 
-    const existing = this._store.get(obj.pk);
+    const existing = this._store.get(obj.storeKey);
 
     if (existing) {
       debug(
-        `Object with the pk \`${obj.pk}\` already exists in the store. It will be updated.`,
+        `Object with the storeKey \`${obj.storeKey}\` already exists in the store. It will be updated.`,
       );
 
       set(existing, "raw", obj.raw);
@@ -28,17 +28,17 @@ export default class CalumaStoreService extends Service {
       return existing;
     }
 
-    this._store.set(obj.pk, obj);
+    this._store.set(obj.storeKey, obj);
 
     return obj;
   }
 
-  find(pk) {
-    return this._store.get(pk) || null;
+  find(storeKey) {
+    return this._store.get(storeKey) || null;
   }
 
-  delete(pk) {
-    this._store.delete(pk);
+  delete(storeKey) {
+    this._store.delete(storeKey);
   }
 
   clear() {
