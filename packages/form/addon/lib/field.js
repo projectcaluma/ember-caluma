@@ -178,6 +178,17 @@ export default class Field extends Base {
   }
 
   /**
+   * The caluma store key of the field.
+   * The form primary key is added for re-used fields in different forms.
+   *
+   * @property {String} storeKey
+   */
+  @cached
+  get storeKey() {
+    return `${this.fieldset.storeKey}:Question:${this.raw.question.slug}`;
+  }
+
+  /**
    * The element ID used by the label component.
    *
    * @property {String} labelId

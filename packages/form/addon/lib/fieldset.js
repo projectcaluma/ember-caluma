@@ -52,9 +52,7 @@ export default class Fieldset extends Base {
     const fields = this.raw.form.questions.map((question) => {
       return associateDestroyableChild(
         this,
-        this.calumaStore.find(
-          `${this.document.pk}:Question:${question.slug}`,
-        ) ||
+        this.calumaStore.find(`${this.pk}:Question:${question.slug}`) ||
           new (owner.factoryFor("caluma-model:field").class)({
             raw: {
               question,
