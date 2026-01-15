@@ -2,7 +2,7 @@ import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import { macroCondition, isTesting } from "@embroider/macros";
 import Component from "@glimmer/component";
-import { timeout, restartableTask } from "ember-concurrency";
+import { timeout, task } from "ember-concurrency";
 import { trackedTask } from "reactiveweb/ember-concurrency";
 
 import config from "@projectcaluma/ember-distribution/config";
@@ -37,14 +37,6 @@ export default class CdInquiryNewFormSelectComponent extends Component {
       }));
   }
 
-  groups = trackedTask(this, this.fetchGroups, () => [
-    // if we want to show all services we need to fetch all groups
-    this.showAllServices
-      ? Object.keys(this.config.new.types)
-      : this.args.selectedTypes,
-    this.args.search,
-  ]);
-
   @action
   updateSelectedTypes(type, e) {
     e.preventDefault();
@@ -59,26 +51,24 @@ export default class CdInquiryNewFormSelectComponent extends Component {
     );
   }
 
-  @restartableTask
-  *updateSearch(e) {
+  updateSearch = task({ restartable: true }, async (e) => {
     e.preventDefault();
 
     /* istanbul ignore next */
     if (macroCondition(isTesting())) {
       // no timeout
     } else {
-      yield timeout(500);
+      await timeout(500);
     }
 
     this.args.onChangeSearch(e.target.value);
-  }
+  });
 
-  @restartableTask
-  *fetchGroups(types, search) {
+  fetchGroups = task({ restartable: true }, async (types, search) => {
     // https://github.com/ember-cli/eslint-plugin-ember/issues/1413
-    yield Promise.resolve();
+    await Promise.resolve();
 
-    const typedGroups = yield this.calumaOptions.fetchTypedGroups(
+    const typedGroups = await this.calumaOptions.fetchTypedGroups(
       types,
       search,
     );
@@ -93,5 +83,13 @@ export default class CdInquiryNewFormSelectComponent extends Component {
         }));
       })
       .sort((a, b) => a.name.localeCompare(b.name));
-  }
+  });
+
+  groups = trackedTask(this, this.fetchGroups, () => [
+    // if we want to show all services we need to fetch all groups
+    this.showAllServices
+      ? Object.keys(this.config.new.types)
+      : this.args.selectedTypes,
+    this.args.search,
+  ]);
 }

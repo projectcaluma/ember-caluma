@@ -4,7 +4,7 @@ import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
 import { Changeset } from "ember-changeset";
 import lookupValidator from "ember-changeset-validations";
-import { dropTask } from "ember-concurrency";
+import { task } from "ember-concurrency";
 
 import slugify from "@projectcaluma/ember-core/utils/slugify";
 import saveChoiceQuestionMutation from "@projectcaluma/ember-form-builder/gql/mutations/save-choice-question.graphql";
@@ -26,10 +26,9 @@ export default class CfbFormEditorQuestionOptions extends Component {
     return this.args.value.every((row) => row.get("id") !== undefined);
   }
 
-  @dropTask
-  *reorderOptions(slugs) {
+  reorderOptions = task({ drop: true }, async (slugs) => {
     try {
-      yield this.apollo.mutate({
+      await this.apollo.mutate({
         mutation: TYPES[this.args.model.__typename],
         variables: {
           input: {
@@ -52,7 +51,7 @@ export default class CfbFormEditorQuestionOptions extends Component {
         ),
       );
     }
-  }
+  });
 
   @action
   addRow() {

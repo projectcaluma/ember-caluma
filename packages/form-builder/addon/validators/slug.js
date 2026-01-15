@@ -7,7 +7,7 @@ import {
   validateLength,
   validateFormat,
 } from "ember-changeset-validations/validators";
-import { timeout, restartableTask, didCancel } from "ember-concurrency";
+import { timeout, task, didCancel } from "ember-concurrency";
 
 import checkFormSlugQuery from "@projectcaluma/ember-form-builder/gql/queries/check-form-slug.graphql";
 import checkOptionSlugQuery from "@projectcaluma/ember-form-builder/gql/queries/check-option-slug.graphql";
@@ -68,19 +68,18 @@ export class SlugUniquenessValidator {
     );
   }
 
-  @restartableTask
-  *_validate(slug, context) {
+  _validate = task({ restartable: true }, async (slug, context) => {
     /* istanbul ignore next */
     if (macroCondition(isTesting())) {
       // no timeout
     } else {
-      yield timeout(500);
+      await timeout(500);
     }
 
     let count = Infinity;
 
     try {
-      const response = yield this.apollo.query({
+      const response = await this.apollo.query({
         query: this.queries[this.type],
         variables:
           this.type === "option"
@@ -105,7 +104,7 @@ export class SlugUniquenessValidator {
     this.cache[this.type][slug] = isUnique;
 
     return isUnique;
-  }
+  });
 }
 
 export default function slugValidation({ type, maxLength = 127 }) {

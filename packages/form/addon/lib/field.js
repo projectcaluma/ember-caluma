@@ -5,7 +5,7 @@ import { inject as service } from "@ember/service";
 import { camelize } from "@ember/string";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
-import { dropTask, lastValue, restartableTask } from "ember-concurrency";
+import { task } from "ember-concurrency";
 import { validate } from "ember-validators";
 import isEqual from "lodash.isequal";
 import { cached } from "tracked-toolbox";
@@ -325,11 +325,10 @@ export default class Field extends Base {
    * @return {Object[]} Formerly used dynamic options
    * @private
    */
-  @dropTask
-  *_fetchUsedDynamicOptions() {
+  _fetchUsedDynamicOptions = task({ drop: true }, async () => {
     if (!this.question.isDynamic) return null;
 
-    const edges = yield this.apollo.query(
+    const edges = await this.apollo.query(
       {
         query: getDocumentUsedDynamicOptionsQuery,
         fetchPolicy: "cache-first",
@@ -345,15 +344,16 @@ export default class Field extends Base {
       slug,
       label,
     }));
-  }
+  });
 
   /**
    * The formerly used dynamic options for this question.
    *
    * @property {Object[]} usedDynamicOptions
    */
-  @lastValue("_fetchUsedDynamicOptions")
-  usedDynamicOptions;
+  get usedDynamicOptions() {
+    return this._fetchUsedDynamicOptions.lastSuccessful?.value;
+  }
 
   /**
    * The available options for choice questions. This only works for the
@@ -606,8 +606,7 @@ export default class Field extends Base {
    * @method save
    * @return {Object} The response from the server
    */
-  @restartableTask
-  *save() {
+  save = task({ restartable: true }, async () => {
     if (this.question.isCalculated) {
       return;
     }
@@ -629,7 +628,7 @@ export default class Field extends Base {
     }
 
     try {
-      const response = yield this.apollo.mutate(
+      const response = await this.apollo.mutate(
         {
           mutation: MUTATION_MAP[type],
           variables: { input },
@@ -672,7 +671,7 @@ export default class Field extends Base {
         throw e;
       }
     }
-  }
+  });
 
   /**
    * The translated error messages
@@ -696,8 +695,7 @@ export default class Field extends Base {
    *
    * @method validate
    */
-  @restartableTask
-  *validate() {
+  validate = task({ restartable: true }, async () => {
     const specificValidation = this[`_validate${this.questionType}`];
 
     assert(
@@ -710,22 +708,23 @@ export default class Field extends Base {
       specificValidation,
     ];
 
-    const errors = (yield Promise.all(
-      validationFns.map(async (fn) => {
-        const res = await fn.call(this);
+    const errors = (
+      await Promise.all(
+        validationFns.map(async (fn) => {
+          const res = await fn.call(this);
 
-        return Array.isArray(res) ? res : [res];
-      }),
-    ))
+          return Array.isArray(res) ? res : [res];
+        }),
+      )
+    )
       .reduce((arr, e) => [...arr, ...e], []) // flatten the array
       .filter((e) => typeof e === "object");
 
     this._errors = errors;
-  }
+  });
 
-  @dropTask
-  *refreshAnswer() {
-    const response = yield this.apollo.query(
+  refreshAnswer = task({ drop: true }, async () => {
+    const response = await this.apollo.query(
       {
         query: refreshAnswerQuery,
         fetchPolicy: "network-only",
@@ -744,9 +743,9 @@ export default class Field extends Base {
         this.answer.raw[key] = value;
       });
 
-      yield this.validate.linked().perform();
+      await this.validate.linked().perform();
     }
-  }
+  });
 
   /**
    * Method to validate if a question is required or not.

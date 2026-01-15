@@ -2,12 +2,7 @@ import { getOwner, setOwner } from "@ember/application";
 import { assert } from "@ember/debug";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
-import {
-  enqueueTask,
-  lastValue,
-  restartableTask,
-  task,
-} from "ember-concurrency";
+import { task } from "ember-concurrency";
 import { gql } from "graphql-tag";
 import { TrackedArray } from "tracked-built-ins";
 
@@ -85,30 +80,33 @@ export default class BaseQuery {
     return this._fetch.perform({ filter: this.filter, order: this.order });
   }
 
-  @restartableTask
-  *_fetch({ filter = [], order = [], queryOptions = {} } = {}) {
-    yield this._fetchPage.cancelAll({ resetState: true });
+  _fetch = task(
+    { restartable: true },
+    async ({ filter = [], order = [], queryOptions = {} } = {}) => {
+      await this._fetchPage.cancelAll({ resetState: true });
 
-    this.items = new TrackedArray();
+      this.items = new TrackedArray();
 
-    this.filter = filter;
-    this.order = order;
-    this.queryOptions = { ...(this.queryOptions ?? {}), ...queryOptions };
+      this.filter = filter;
+      this.order = order;
+      this.queryOptions = { ...(this.queryOptions ?? {}), ...queryOptions };
 
-    return yield this._fetchPage.linked().perform();
-  }
+      return await this._fetchPage.linked().perform();
+    },
+  );
 
-  @enqueueTask
-  *_fetchMore() {
+  _fetchMore = task({ enqueue: true }, async () => {
     if (!this._data) return;
 
-    return yield this._fetchPage.linked().perform();
+    return await this._fetchPage.linked().perform();
+  });
+
+  get _data() {
+    return this._fetchPage.lastSuccessful?.value;
   }
 
-  @lastValue("_fetchPage") _data;
-  @task
-  *_fetchPage() {
-    const data = yield this.apollo.query({
+  _fetchPage = task(async () => {
+    const data = await this.apollo.query({
       query: gql`
         ${this.query}
       `,
@@ -124,10 +122,10 @@ export default class BaseQuery {
 
     const rawNewItems = data[this.dataKey].edges.map(({ node }) => node);
 
-    yield this.#parsePage(rawNewItems);
+    await this.#parsePage(rawNewItems);
 
     return data;
-  }
+  });
 
   #createModel(item) {
     const instance = new this.modelClass(item);

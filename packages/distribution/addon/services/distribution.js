@@ -1,7 +1,7 @@
 import Service, { inject as service } from "@ember/service";
 import { tracked } from "@glimmer/tracking";
 import { queryManager, getObservable } from "ember-apollo-client";
-import { dropTask } from "ember-concurrency";
+import { task } from "ember-concurrency";
 import { confirm } from "ember-uikit";
 import { gql } from "graphql-tag";
 import { trackedTask } from "reactiveweb/ember-concurrency";
@@ -35,9 +35,6 @@ export default class DistributionService extends Service {
     );
   }
 
-  controls = trackedTask(this, this.fetchControls, () => [this.caseId]);
-  navigation = trackedTask(this, this.fetchNavigation, () => [this.caseId]);
-
   async refetch() {
     await this.refetchControls();
     await this.refetchNavigation();
@@ -51,9 +48,8 @@ export default class DistributionService extends Service {
     await getObservable(this.controls.value)?.refetch();
   }
 
-  @dropTask
-  *fetchControls(caseId) {
-    return yield this.apollo.watchQuery({
+  fetchControls = task({ drop: true }, async (caseId) => {
+    return await this.apollo.watchQuery({
       query: controlsQuery,
       variables: {
         caseId,
@@ -64,11 +60,10 @@ export default class DistributionService extends Service {
         checkTask: this.config.controls.checkTask,
       },
     });
-  }
+  });
 
-  @dropTask
-  *fetchNavigation(caseId) {
-    const response = yield this.apollo.watchQuery({
+  fetchNavigation = task({ drop: true }, async (caseId) => {
+    const response = await this.apollo.watchQuery({
       query: navigationQuery,
       variables: {
         caseId,
@@ -101,16 +96,18 @@ export default class DistributionService extends Service {
     });
 
     return response;
-  }
+  });
 
-  @dropTask
-  *createInquiry(groups, context = {}) {
+  controls = trackedTask(this, this.fetchControls, () => [this.caseId]);
+  navigation = trackedTask(this, this.fetchNavigation, () => [this.caseId]);
+
+  createInquiry = task({ drop: true }, async (groups, context = {}) => {
     try {
       // get create inquiry work item to complete
       const createId = decodeId(this.controls.value?.create.edges[0].node.id);
 
       // create new inquiries
-      yield this.apollo.mutate({
+      await this.apollo.mutate({
         mutation: createInquiryMutation,
         variables: {
           id: createId,
@@ -122,13 +119,13 @@ export default class DistributionService extends Service {
       });
 
       // refetch navigation and controls data
-      yield this.refetch();
+      await this.refetch();
     } catch {
       this.notification.danger(
         this.intl.t("caluma.distribution.new.error", { count: groups.length }),
       );
     }
-  }
+  });
 
   @cached
   get inquiries() {
@@ -175,15 +172,14 @@ export default class DistributionService extends Service {
     );
   }
 
-  @dropTask
-  *sendAllInquiries() {
+  sendAllInquiries = task({ drop: true }, async () => {
     const ids = this.controls.value.send.edges
       .filter((edge) => edge.node.status === "SUSPENDED")
       .map((edge) => decodeId(edge.node.id));
 
     if (
       ids.length &&
-      !(yield confirm(
+      !(await confirm(
         this.intl.t("caluma.distribution.send-confirm", { count: ids.length }),
       ))
     ) {
@@ -204,9 +200,9 @@ export default class DistributionService extends Service {
 
       const mutation = gql`mutation SendInquiries {${mutations.join("\n")}}`;
 
-      yield this.apollo.mutate({ mutation });
+      await this.apollo.mutate({ mutation });
     } catch {
       this.notification.danger(this.intl.t("caluma.distribution.send-error"));
     }
-  }
+  });
 }

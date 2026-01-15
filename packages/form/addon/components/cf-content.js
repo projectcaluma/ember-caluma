@@ -3,7 +3,7 @@ import { destroy, registerDestructor } from "@ember/destroyable";
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
-import { dropTask } from "ember-concurrency";
+import { task } from "ember-concurrency";
 import { trackedTask } from "reactiveweb/ember-concurrency";
 
 import getDocumentAnswersQuery from "@projectcaluma/ember-form/gql/queries/document-answers.graphql";
@@ -125,32 +125,33 @@ export default class CfContentComponent extends Component {
     );
   }
 
-  data = trackedTask(this, this.fetchData, () => [this.args.documentId]);
-
-  @dropTask
-  *fetchData() {
+  fetchData = task({ drop: true }, async () => {
     if (this.document) destroy(this.document);
     if (this.navigation) destroy(this.navigation);
 
     if (!this.args.documentId) return;
 
-    const [answerDocument] = (yield this.apollo.query(
-      {
-        query: getDocumentAnswersQuery,
-        fetchPolicy: "network-only",
-        variables: { id: this.args.documentId },
-      },
-      "allDocuments.edges",
-    )).map(({ node }) => node);
+    const [answerDocument] = (
+      await this.apollo.query(
+        {
+          query: getDocumentAnswersQuery,
+          fetchPolicy: "network-only",
+          variables: { id: this.args.documentId },
+        },
+        "allDocuments.edges",
+      )
+    ).map(({ node }) => node);
 
-    const [form] = (yield this.apollo.query(
-      {
-        query: getDocumentFormsQuery,
-        fetchPolicy: "cache-first",
-        variables: { slug: answerDocument.form.slug },
-      },
-      "allForms.edges",
-    )).map(({ node }) => node);
+    const [form] = (
+      await this.apollo.query(
+        {
+          query: getDocumentFormsQuery,
+          fetchPolicy: "cache-first",
+          variables: { slug: answerDocument.form.slug },
+        },
+        "allForms.edges",
+      )
+    ).map(({ node }) => node);
 
     const owner = getOwner(this);
     const Document = owner.factoryFor("caluma-model:document").class;
@@ -171,5 +172,7 @@ export default class CfContentComponent extends Component {
     });
 
     return { document, navigation };
-  }
+  });
+
+  data = trackedTask(this, this.fetchData, () => [this.args.documentId]);
 }

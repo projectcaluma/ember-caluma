@@ -1,6 +1,5 @@
 import Controller from "@ember/controller";
 import { inject as service } from "@ember/service";
-import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
 import { task } from "ember-concurrency";
 import { trackedTask } from "reactiveweb/ember-concurrency";
@@ -12,6 +11,6 @@ export default class ReportsEditIndexController extends Controller {
   @service notification;
   @queryManager apollo;
 
-  @task getTable = getAnalyticsTable;
-  @tracked data = trackedTask(this, this.getTable, () => [this.model]);
+  getTable = task(async (slug) => getAnalyticsTable(slug));
+  data = trackedTask(this, this.getTable, () => [this.model]);
 }

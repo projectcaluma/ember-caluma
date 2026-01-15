@@ -1,6 +1,6 @@
 import { action } from "@ember/object";
 import Component from "@glimmer/component";
-import { restartableTask } from "ember-concurrency";
+import { task } from "ember-concurrency";
 import { cached } from "tracked-toolbox";
 
 /**
@@ -43,8 +43,7 @@ export default class DocumentValidity extends Component {
     return this._validate.isRunning;
   }
 
-  @restartableTask
-  *_validate() {
+  _validate = task({ restartable: true }, async () => {
     const saveTasks = this.args.document.fields
       .flatMap((field) => [
         ...[...(field._components ?? [])].map((c) => c.save.last),
@@ -54,9 +53,9 @@ export default class DocumentValidity extends Component {
 
     // Wait until all currently running save tasks in the UI and in the field
     // itself are finished
-    yield Promise.all(saveTasks);
+    await Promise.all(saveTasks);
 
-    yield Promise.all(
+    await Promise.all(
       this.args.document.fields.map(async (field) => {
         await field.validate.linked().perform();
 
@@ -73,7 +72,7 @@ export default class DocumentValidity extends Component {
     }
 
     return this.isValid;
-  }
+  });
 
   @action
   validate() {

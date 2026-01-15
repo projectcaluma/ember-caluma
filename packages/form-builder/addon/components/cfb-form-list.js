@@ -1,7 +1,7 @@
 import { inject as service } from "@ember/service";
 import { macroCondition, isTesting } from "@embroider/macros";
 import Component from "@glimmer/component";
-import { timeout, restartableTask } from "ember-concurrency";
+import { timeout, task } from "ember-concurrency";
 
 import { useCalumaQuery } from "@projectcaluma/ember-core/caluma-query";
 import { allForms } from "@projectcaluma/ember-core/caluma-query/queries";
@@ -57,15 +57,14 @@ export default class ComponentsCfbFormListComponent extends Component {
     return [isArchived, isPublished, search].filter(Boolean) || null;
   }
 
-  @restartableTask
-  *search(event) {
+  search = task({ restartable: true }, async (event) => {
     /* istanbul ignore next */
     if (macroCondition(isTesting())) {
       // no timeout
     } else {
-      yield timeout(500);
+      await timeout(500);
     }
 
     this.args.onUpdateSearch(event.target.value);
-  }
+  });
 }

@@ -1,8 +1,8 @@
 import getAnalyticsTableQuery from "@projectcaluma/ember-analytics/gql/queries/get-analytics-table.graphql";
 
-export default function* getAnalyticsTable(slug) {
+export default async function getAnalyticsTable(slug) {
   try {
-    return yield this.apollo.watchQuery(
+    return await this.apollo.watchQuery(
       {
         query: getAnalyticsTableQuery,
         fetchPolicy: "cache-and-network",

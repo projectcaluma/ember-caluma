@@ -2,7 +2,7 @@ import { action } from "@ember/object";
 import { service } from "@ember/service";
 import { macroCondition, isTesting } from "@embroider/macros";
 import Component from "@glimmer/component";
-import { timeout, restartableTask } from "ember-concurrency";
+import { timeout, task } from "ember-concurrency";
 
 import { hasQuestionType } from "@projectcaluma/ember-core/helpers/has-question-type";
 
@@ -88,22 +88,21 @@ export default class CfFieldComponent extends Component {
    * @method save
    * @param {String|Number|String[]} value The new value to save to the field
    */
-  @restartableTask
-  *save(value) {
+  save = task({ restartable: true }, async (value) => {
     if (typeof this.args.onSave === "function") {
-      return yield this.args.onSave(this.args.field, value);
+      return await this.args.onSave(this.args.field, value);
     }
 
     /* istanbul ignore next */
     if (macroCondition(!isTesting())) {
-      yield timeout(500);
+      await timeout(500);
     }
 
     if (this.args.field.answer) {
       this.args.field.answer.value = value;
     }
 
-    yield this.args.field.validate.perform();
+    await this.args.field.validate.perform();
 
     if (this.args.field.isInvalid) {
       // If the frontend validation fails, we don't need to try saving the value
@@ -111,8 +110,8 @@ export default class CfFieldComponent extends Component {
       return;
     }
 
-    return yield this.args.field.save.unlinked().perform();
-  }
+    return await this.args.field.save.unlinked().perform();
+  });
 
   @action
   refreshDynamicOptions() {

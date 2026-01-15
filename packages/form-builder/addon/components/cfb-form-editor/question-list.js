@@ -5,12 +5,7 @@ import { macroCondition, isTesting } from "@embroider/macros";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
-import {
-  timeout,
-  enqueueTask,
-  lastValue,
-  restartableTask,
-} from "ember-concurrency";
+import { timeout, task } from "ember-concurrency";
 import UIkit from "uikit";
 
 import addFormQuestionMutation from "@projectcaluma/ember-form-builder/gql/mutations/add-form-question.graphql";
@@ -48,9 +43,11 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
     this.questionTask.perform();
   }
 
-  @lastValue("questionTask") questionTaskValue = [];
-  @restartableTask
-  *questionTask(event) {
+  get questionTaskValue() {
+    return this.questionTask.lastSuccessful?.value ?? [];
+  }
+
+  questionTask = task({ restartable: true }, async (event) => {
     event?.preventDefault?.();
 
     const mode = this.mode;
@@ -61,12 +58,12 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
       // no timeout
     } else {
       if (search) {
-        yield timeout(500);
+        await timeout(500);
       }
     }
 
     if (mode === "add" && this.hasNextPage) {
-      const questions = yield this.apollo.watchQuery(
+      const questions = await this.apollo.watchQuery(
         {
           query: searchQuestionQuery,
           variables: {
@@ -88,7 +85,7 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
       return this.items;
     }
 
-    return yield this.apollo.watchQuery(
+    return await this.apollo.watchQuery(
       {
         query: searchFormQuestionQuery,
         variables: {
@@ -99,12 +96,11 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
       },
       "allForms.edges",
     );
-  }
+  });
 
-  @restartableTask
-  *reorderQuestions(slugs) {
+  reorderQuestions = task({ restartable: true }, async (slugs) => {
     try {
-      yield this.apollo.mutate({
+      await this.apollo.mutate({
         mutation: reorderFormQuestionsMutation,
         variables: {
           input: {
@@ -127,12 +123,11 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
         ),
       );
     }
-  }
+  });
 
-  @enqueueTask
-  *addQuestion(question) {
+  addQuestion = task({ enqueue: true }, async (question) => {
     try {
-      yield this.apollo.mutate({
+      await this.apollo.mutate({
         mutation: addFormQuestionMutation,
         variables: {
           input: {
@@ -159,12 +154,11 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
         this.intl.t("caluma.form-builder.notification.form.add-question.error"),
       );
     }
-  }
+  });
 
-  @enqueueTask
-  *removeQuestion(question) {
+  removeQuestion = task({ enqueue: true }, async (question) => {
     try {
-      yield this.apollo.mutate({
+      await this.apollo.mutate({
         mutation: removeFormQuestionMutation,
         variables: {
           input: {
@@ -189,7 +183,7 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
         ),
       );
     }
-  }
+  });
 
   _handleMoved({ detail: [sortable] }) {
     const children = [...sortable.$el.children];

@@ -1,16 +1,15 @@
 import { macroCondition, isTesting } from "@embroider/macros";
 import Component from "@glimmer/component";
-import { restartableTask, timeout } from "ember-concurrency";
+import { task, timeout } from "ember-concurrency";
 
 export default class CaFieldSelectorListCaFieldAliasInputComponent extends Component {
-  @restartableTask
-  *debounceInput(event) {
+  debounceInput = task({ restartable: true }, async (event) => {
     if (macroCondition(isTesting())) {
       // no timeout
     } else {
-      yield timeout(500);
+      await timeout(500);
     }
 
-    yield this.args.onInput(event.target.value);
-  }
+    await this.args.onInput(event.target.value);
+  });
 }

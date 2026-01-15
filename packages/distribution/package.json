@@ -25,7 +25,7 @@
     "ember-can": "^7.0.0",
     "ember-cli-babel": "^8.2.0",
     "ember-cli-htmlbars": "^6.3.0",
-    "ember-concurrency": "^4.0.2",
+    "ember-concurrency": "^4.0.2 || ^5.1.0",
     "ember-engines-router-service": "^0.6.0",
     "ember-flatpickr": "^8.0.1",
     "ember-intl": "^7.1.1",

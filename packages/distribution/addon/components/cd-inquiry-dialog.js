@@ -2,7 +2,7 @@ import { next } from "@ember/runloop";
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager, getObservable } from "ember-apollo-client";
-import { dropTask } from "ember-concurrency";
+import { task } from "ember-concurrency";
 import { trackedTask } from "reactiveweb/ember-concurrency";
 
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
@@ -33,16 +33,8 @@ export default class CdInquiryDialogComponent extends Component {
       );
   }
 
-  _inquiries = trackedTask(this, this.fetchDialog, () => [
-    this.args.from,
-    this.args.to,
-    this.distribution.caseId,
-    this.config,
-  ]);
-
-  @dropTask
-  *fetchDialog(from, to, caseId, config) {
-    const response = yield this.apollo.watchQuery({
+  fetchDialog = task({ drop: true }, async (from, to, caseId, config) => {
+    const response = await this.apollo.watchQuery({
       query: inquiryDialogQuery,
       fetchPolicy: "cache-and-network",
       variables: {
@@ -77,18 +69,24 @@ export default class CdInquiryDialogComponent extends Component {
     });
 
     return response;
-  }
+  });
 
-  @dropTask
-  *createInquiry(e) {
+  _inquiries = trackedTask(this, this.fetchDialog, () => [
+    this.args.from,
+    this.args.to,
+    this.distribution.caseId,
+    this.config,
+  ]);
+
+  createInquiry = task({ drop: true }, async (e) => {
     e.preventDefault();
 
-    yield this.distribution.createInquiry.perform([this.args.to]);
+    await this.distribution.createInquiry.perform([this.args.to]);
 
-    yield getObservable(this._inquiries.value).refetch();
+    await getObservable(this._inquiries.value).refetch();
 
     next(this, "transitionToLatestInquiry");
-  }
+  });
 
   transitionToLatestInquiry() {
     this.router.transitionTo(
