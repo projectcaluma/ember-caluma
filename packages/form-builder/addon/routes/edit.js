@@ -1,7 +1,7 @@
 import Route from "@ember/routing/route";
 import { inject as service } from "@ember/service";
 import { queryManager } from "ember-apollo-client";
-import { lastValue, dropTask } from "ember-concurrency";
+import { task } from "ember-concurrency";
 import { gql } from "graphql-tag";
 
 import { navigationTitle } from "@projectcaluma/ember-form-builder/decorators";
@@ -11,12 +11,12 @@ export default class EditRoute extends Route {
   @queryManager apollo;
 
   @navigationTitle
-  @lastValue("fetchName")
-  title;
+  get title() {
+    return this.fetchName.lastSuccessful?.value;
+  }
 
-  @dropTask
-  *fetchName(slug) {
-    const [form] = yield this.apollo.query(
+  fetchName = task({ drop: true }, async (slug) => {
+    const [form] = await this.apollo.query(
       {
         query: gql`
           query FormName($slug: String!) {
@@ -35,7 +35,7 @@ export default class EditRoute extends Route {
     );
 
     return form?.node.name;
-  }
+  });
 
   beforeModel() {
     const { form_slug: slug } = this.paramsFor(this.routeName);

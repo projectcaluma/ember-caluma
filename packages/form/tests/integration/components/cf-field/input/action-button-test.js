@@ -2,7 +2,7 @@ import { click, render, waitFor, scrollTo } from "@ember/test-helpers";
 import { tracked } from "@glimmer/tracking";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
-import { restartableTask } from "ember-concurrency";
+import { task } from "ember-concurrency";
 import { Response } from "miragejs";
 import { module, test } from "qunit";
 import UIkit from "uikit";
@@ -23,10 +23,9 @@ module(
 
         question = { hasFormatValidators: false };
 
-        @restartableTask
-        *validate() {
-          yield assert.step("validate");
-        }
+        validate = task({ restartable: true }, async () => {
+          await assert.step("validate");
+        });
       })();
 
       const invalidField = new (class {
@@ -39,12 +38,9 @@ module(
 
         question = { raw: { label: "foo" }, hasFormatValidators: false };
 
-        @restartableTask
-        *validate() {
+        validate = task({ restartable: true }, async () => {
           this.isValid = false;
-
-          yield;
-        }
+        });
       })();
 
       const question = {

@@ -2,7 +2,6 @@ import { action } from "@ember/object";
 import { next } from "@ember/runloop";
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
-import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
 import { task } from "ember-concurrency";
 import { trackedTask } from "reactiveweb/ember-concurrency";
@@ -15,13 +14,10 @@ export default class CaReportPreviewComponent extends Component {
   @service notification;
   @service intl;
 
-  @tracked data = trackedTask(this, this.fetchData, () => [this.args.slug]);
-
-  @task
-  *fetchData() {
+  fetchData = task(async () => {
     if (this.args.slug) {
       try {
-        const result = yield this.apollo.watchQuery(
+        const result = await this.apollo.watchQuery(
           {
             query: getAnalyticsResultsQuery,
             fetchPolicy: "no-cache",
@@ -60,7 +56,9 @@ export default class CaReportPreviewComponent extends Component {
       }
     }
     return null;
-  }
+  });
+
+  data = trackedTask(this, this.fetchData, () => [this.args.slug]);
 
   @action
   exportTable() {

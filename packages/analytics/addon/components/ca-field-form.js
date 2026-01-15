@@ -5,7 +5,7 @@ import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
 import { Changeset } from "ember-changeset";
 import lookupValidator from "ember-changeset-validations";
-import { enqueueTask } from "ember-concurrency";
+import { task } from "ember-concurrency";
 
 import CaToggleSwitchComponent from "@projectcaluma/ember-analytics/components/ca-toggle-switch";
 import saveAnalyticsField from "@projectcaluma/ember-analytics/tasks/save-analytics-field";
@@ -27,7 +27,9 @@ export default class CaFieldFormComponent extends Component {
   @tracked isValueField = false;
   @tracked showForm = false;
 
-  @enqueueTask saveField = saveAnalyticsField;
+  saveField = task({ enqueue: true }, async (input) =>
+    saveAnalyticsField(input),
+  );
 
   toggleComponent = CaToggleSwitchComponent;
 

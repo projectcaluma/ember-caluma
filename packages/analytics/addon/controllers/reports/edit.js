@@ -1,8 +1,7 @@
 import Controller from "@ember/controller";
 import { inject as service } from "@ember/service";
-import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
-import { dropTask, task } from "ember-concurrency";
+import { task } from "ember-concurrency";
 import { trackedTask } from "reactiveweb/ember-concurrency";
 
 import removeAnalyticsTableMutation from "@projectcaluma/ember-analytics/gql/mutations/remove-analytics-table.graphql";
@@ -14,17 +13,16 @@ export default class ReportsEditController extends Controller {
   @service router;
   @queryManager apollo;
 
-  @task getTable = getAnalyticsTable;
-  @tracked data = trackedTask(this, this.getTable, () => [this.model]);
+  getTable = task(async (slug) => getAnalyticsTable(slug));
+  data = trackedTask(this, this.getTable, () => [this.model]);
 
   get currentRoute() {
     return this.router.currentRouteName.split(".").pop();
   }
 
-  @dropTask
-  *deleteTable() {
+  deleteTable = task({ drop: true }, async () => {
     try {
-      yield this.apollo.mutate({
+      await this.apollo.mutate({
         mutation: removeAnalyticsTableMutation,
         fetchPolicy: "network-only",
         variables: {
@@ -40,5 +38,5 @@ export default class ReportsEditController extends Controller {
         this.intl.t(`caluma.analytics.notification.delete-error`),
       );
     }
-  }
+  });
 }

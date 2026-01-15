@@ -1,6 +1,5 @@
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
-import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
 import { task } from "ember-concurrency";
 import { trackedTask } from "reactiveweb/ember-concurrency";
@@ -12,19 +11,12 @@ export default class CaFieldSelectorListCaFieldFunctionSelectComponent extends C
   @service notification;
   @service intl;
 
-  @tracked aggregationFunctions = trackedTask(
-    this,
-    this.getAggregationFunctions,
-    () => [this.args.field, this.args.tableSlug],
-  );
-
-  @task
-  *getAggregationFunctions() {
+  getAggregationFunctions = task(async () => {
     try {
       // Get the base path without the field so we can fetch the necessary fields later on.
       const pathList = this.args.field.dataSource.split(".");
       const prefix = pathList.slice(0, -1).join(".");
-      const options = yield this.apollo.query(
+      const options = await this.apollo.query(
         {
           query: getAvailableFieldsForFieldQuery,
           variables: {
@@ -45,5 +37,10 @@ export default class CaFieldSelectorListCaFieldFunctionSelectComponent extends C
         this.intl.t("caluma.analytics.notification.fetch-error"),
       );
     }
-  }
+  });
+
+  aggregationFunctions = trackedTask(this, this.getAggregationFunctions, () => [
+    this.args.field,
+    this.args.tableSlug,
+  ]);
 }

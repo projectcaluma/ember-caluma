@@ -2,7 +2,7 @@ import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
-import { restartableTask, dropTask } from "ember-concurrency";
+import { task } from "ember-concurrency";
 import { trackedTask } from "reactiveweb/ember-concurrency";
 
 import FormValidations from "../../validations/form";
@@ -23,10 +23,7 @@ export default class CfbFormEditorGeneral extends Component {
     return this._data.value?.[0]?.node;
   }
 
-  _data = trackedTask(this, this.fetchData, () => [this.args.slug]);
-
-  @restartableTask
-  *fetchData() {
+  fetchData = task({ restartable: true }, async () => {
     if (!this.args.slug) {
       return [
         {
@@ -40,7 +37,7 @@ export default class CfbFormEditorGeneral extends Component {
       ];
     }
 
-    return yield this.apollo.watchQuery(
+    return await this.apollo.watchQuery(
       {
         query: formEditorGeneralQuery,
         variables: { slug: this.args.slug },
@@ -48,7 +45,9 @@ export default class CfbFormEditorGeneral extends Component {
       },
       "allForms.edges",
     );
-  }
+  });
+
+  _data = trackedTask(this, this.fetchData, () => [this.args.slug]);
 
   get prefix() {
     return this.calumaOptions.namespace
@@ -56,12 +55,11 @@ export default class CfbFormEditorGeneral extends Component {
       : "";
   }
 
-  @dropTask
-  *submit(changeset) {
+  submit = task({ drop: true }, async (changeset) => {
     const rawMeta = changeset.get("meta");
 
     try {
-      const form = yield this.apollo.mutate(
+      const form = await this.apollo.mutate(
         {
           mutation: saveFormMutation,
           variables: {
@@ -96,7 +94,7 @@ export default class CfbFormEditorGeneral extends Component {
         ),
       );
     }
-  }
+  });
 
   @action
   updateName(value, changeset) {

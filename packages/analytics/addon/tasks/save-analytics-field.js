@@ -1,8 +1,8 @@
 import saveAnalyticsFieldMutation from "@projectcaluma/ember-analytics/gql/mutations/save-analytics-field.graphql";
 
-export default function* (input) {
+export default async function (input) {
   try {
-    const mutation = yield this.apollo.mutate({
+    const mutation = await this.apollo.mutate({
       mutation: saveAnalyticsFieldMutation,
       variables: { input },
     });

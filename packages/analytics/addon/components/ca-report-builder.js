@@ -1,7 +1,7 @@
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
-import { dropTask } from "ember-concurrency";
+import { task } from "ember-concurrency";
 
 import saveAnalyticsTableMutation from "@projectcaluma/ember-analytics/gql/mutations/save-analytics-table.graphql";
 
@@ -29,8 +29,7 @@ export default class CaReportBuilderComponent extends Component {
     ];
   }
 
-  @dropTask
-  *createTable() {
+  createTable = task({ drop: true }, async () => {
     try {
       this.args.analyticsTable.execute();
       const data = this.args.analyticsTable.data;
@@ -39,7 +38,7 @@ export default class CaReportBuilderComponent extends Component {
         name: data.name,
         startingObject: data.startingObject,
       };
-      yield this.apollo.mutate(
+      await this.apollo.mutate(
         {
           mutation: saveAnalyticsTableMutation,
           fetchPolicy: "network-only",
@@ -49,7 +48,7 @@ export default class CaReportBuilderComponent extends Component {
         },
         "saveAnalyticsTable.analyticsTable",
       );
-      yield this.args.onAdd?.(
+      await this.args.onAdd?.(
         this.args.analyticsTable.slug,
         this.args.analyticsTable.startingObject,
       );
@@ -60,5 +59,5 @@ export default class CaReportBuilderComponent extends Component {
         this.intl.t(`caluma.analytics.notification.create-error`),
       );
     }
-  }
+  });
 }

@@ -5,7 +5,7 @@ import { next } from "@ember/runloop";
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
-import { dropTask } from "ember-concurrency";
+import { task } from "ember-concurrency";
 import { trackedFunction } from "reactiveweb/function";
 
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
@@ -90,18 +90,17 @@ export default class CdInquiryNewFormBulkEditComponent extends Component {
     this.answers[field.question.slug] = value;
   }
 
-  @dropTask
-  *submit(validate, e) {
+  submit = task({ drop: true }, async (validate, e) => {
     e.preventDefault();
 
-    if (!this.args.selectedGroups.length || !(yield validate())) return;
+    if (!this.args.selectedGroups.length || !(await validate())) return;
 
-    yield this.distribution.createInquiry.perform(this.args.selectedGroups, {
+    await this.distribution.createInquiry.perform(this.args.selectedGroups, {
       answers: this.answers,
     });
 
     next(this, "transitionToFirstInquiryOfGroup", this.args.selectedGroups[0]);
-  }
+  });
 
   transitionToFirstInquiryOfGroup(group) {
     const firstCreated = this.distribution.navigation.value.controlling.edges

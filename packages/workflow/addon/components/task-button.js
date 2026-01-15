@@ -1,7 +1,7 @@
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
-import { dropTask } from "ember-concurrency";
+import { task } from "ember-concurrency";
 import { trackedTask } from "reactiveweb/ember-concurrency";
 
 import allWorkItems from "@projectcaluma/ember-workflow/gql/queries/all-work-items.graphql";
@@ -35,15 +35,9 @@ export default class TaskButtonComponent extends Component {
   @service notification;
   @service intl;
 
-  workItem = trackedTask(this, this.fetchWorkItem, () => [
-    this.args.task,
-    this.args.filters,
-  ]);
-
-  @dropTask
-  *fetchWorkItem(task, filters) {
+  fetchWorkItem = task({ drop: true }, async (task, filters) => {
     try {
-      const response = yield this.apollo.query(
+      const response = await this.apollo.query(
         {
           query: allWorkItems,
           fetchPolicy: "network-only",
@@ -59,5 +53,10 @@ export default class TaskButtonComponent extends Component {
       console.error(e);
       this.notification.danger(this.intl.t("caluma.task-button.error"));
     }
-  }
+  });
+
+  workItem = trackedTask(this, this.fetchWorkItem, () => [
+    this.args.task,
+    this.args.filters,
+  ]);
 }

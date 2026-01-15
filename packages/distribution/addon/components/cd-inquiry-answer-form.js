@@ -3,7 +3,7 @@ import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
-import { dropTask } from "ember-concurrency";
+import { task } from "ember-concurrency";
 import { trackedTask } from "reactiveweb/ember-concurrency";
 
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
@@ -25,10 +25,6 @@ export default class CdInquiryAnswerFormComponent extends Component {
 
   @inquiryAnswerStatus({ inquiryProperty: "inquiry" }) answerStatus;
   @tracked isExpanded = !this.config.ui.small;
-
-  _inquiry = trackedTask(this, this.fetchInquiryAnswer, () => [
-    this.args.inquiry,
-  ]);
 
   get inquiry() {
     return this._inquiry.value?.[0]?.node;
@@ -68,9 +64,8 @@ export default class CdInquiryAnswerFormComponent extends Component {
     this.isExpanded = !this.isExpanded;
   }
 
-  @dropTask
-  *fetchInquiryAnswer(inquiry) {
-    return yield this.apollo.watchQuery(
+  fetchInquiryAnswer = task({ drop: true }, async (inquiry) => {
+    return await this.apollo.watchQuery(
       {
         query: inquiryAnswerQuery,
         variables: {
@@ -82,33 +77,39 @@ export default class CdInquiryAnswerFormComponent extends Component {
       },
       "allWorkItems.edges",
     );
-  }
+  });
 
-  @dropTask
-  *completeWorkItem(workItem, willCompleteInquiry, validate = () => true) {
-    try {
-      if (typeof validate === "function" && !(yield validate())) return;
+  _inquiry = trackedTask(this, this.fetchInquiryAnswer, () => [
+    this.args.inquiry,
+  ]);
 
-      yield this.apollo.mutate({
-        mutation: completeInquiryWorkItemMutation,
-        variables: {
-          workItem,
-          statusQuestion: this.config.inquiry.answer.statusQuestion,
-          buttonTasks: Object.keys(this.config.inquiry.answer.buttons),
-          checkTask: this.config.controls.checkTask,
-          createTask: this.config.controls.createTask,
-          inquiryTask: this.config.inquiry.task,
-          currentGroup: String(this.calumaOptions.currentGroupId),
-          answerInfoQuestions: this.config.inquiry.answer.infoQuestions,
-          willCompleteInquiry,
-        },
-      });
+  completeWorkItem = task(
+    { drop: true },
+    async (workItem, willCompleteInquiry, validate = () => true) => {
+      try {
+        if (typeof validate === "function" && !(await validate())) return;
 
-      yield this.router.transitionTo("inquiry.index");
-    } catch {
-      this.notification.danger(
-        this.intl.t("caluma.distribution.answer.complete-error"),
-      );
-    }
-  }
+        await this.apollo.mutate({
+          mutation: completeInquiryWorkItemMutation,
+          variables: {
+            workItem,
+            statusQuestion: this.config.inquiry.answer.statusQuestion,
+            buttonTasks: Object.keys(this.config.inquiry.answer.buttons),
+            checkTask: this.config.controls.checkTask,
+            createTask: this.config.controls.createTask,
+            inquiryTask: this.config.inquiry.task,
+            currentGroup: String(this.calumaOptions.currentGroupId),
+            answerInfoQuestions: this.config.inquiry.answer.infoQuestions,
+            willCompleteInquiry,
+          },
+        });
+
+        await this.router.transitionTo("inquiry.index");
+      } catch {
+        this.notification.danger(
+          this.intl.t("caluma.distribution.answer.complete-error"),
+        );
+      }
+    },
+  );
 }

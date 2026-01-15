@@ -1,7 +1,7 @@
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
-import { dropTask } from "ember-concurrency";
+import { task } from "ember-concurrency";
 import { confirm } from "ember-uikit";
 
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
@@ -19,13 +19,12 @@ export default class CdNavigationControlsComponent extends Component {
   @queryManager apollo;
   @config config;
 
-  @dropTask
-  *completeDistribution() {
+  completeDistribution = task({ drop: true }, async () => {
     try {
       let confirmText = this.intl.t("caluma.distribution.skip-confirm");
 
       if (this.distribution.hasInquiries) {
-        const incompleteInquiries = yield this.apollo.query(
+        const incompleteInquiries = await this.apollo.query(
           {
             query: incompleteInquiriesQuery,
             variables: {
@@ -44,35 +43,34 @@ export default class CdNavigationControlsComponent extends Component {
               });
       }
 
-      if (!(yield confirm(confirmText))) {
+      if (!(await confirm(confirmText))) {
         return;
       }
 
       const completeDistributionWorkItem =
         this.distribution.controls.value.complete.edges?.[0]?.node.id;
 
-      yield this.apollo.mutate({
+      await this.apollo.mutate({
         mutation: completeWorkItemMutation,
         variables: {
           workItem: completeDistributionWorkItem,
         },
       });
 
-      yield this.config.hooks.postCompleteDistribution?.();
+      await this.config.hooks.postCompleteDistribution?.();
 
-      yield this.distribution.refetch();
+      await this.distribution.refetch();
       this.router.transitionTo("index");
     } catch {
       this.notification.danger(
         this.intl.t("caluma.distribution.complete-error"),
       );
     }
-  }
+  });
 
-  @dropTask
-  *reopenDistribution() {
+  reopenDistribution = task({ drop: true }, async () => {
     try {
-      if (!(yield confirm(this.intl.t("caluma.distribution.reopen-confirm")))) {
+      if (!(await confirm(this.intl.t("caluma.distribution.reopen-confirm")))) {
         return;
       }
 
@@ -80,23 +78,22 @@ export default class CdNavigationControlsComponent extends Component {
         this.distribution.controls.value?.case.edges[0]?.node.parentWorkItem.id,
       );
 
-      yield this.apollo.mutate({
+      await this.apollo.mutate({
         mutation: reopenDistributionMutation,
         variables: {
           workItem: distributionWorkItemId,
         },
       });
 
-      yield this.distribution.refetchControls();
+      await this.distribution.refetchControls();
     } catch {
       this.notification.danger(this.intl.t("caluma.distribution.reopen-error"));
     }
-  }
+  });
 
-  @dropTask
-  *checkInquiries() {
+  checkInquiries = task({ drop: true }, async () => {
     try {
-      yield this.apollo.mutate({
+      await this.apollo.mutate({
         mutation: completeWorkItemMutation,
         variables: {
           workItem: decodeId(
@@ -109,5 +106,5 @@ export default class CdNavigationControlsComponent extends Component {
         this.intl.t("caluma.distribution.check-inquiries-error"),
       );
     }
-  }
+  });
 }

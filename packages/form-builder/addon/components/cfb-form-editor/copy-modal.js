@@ -5,7 +5,7 @@ import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
 import { Changeset } from "ember-changeset";
 import lookupValidator from "ember-changeset-validations";
-import { dropTask } from "ember-concurrency";
+import { task } from "ember-concurrency";
 
 import copyFormMutation from "@projectcaluma/ember-form-builder/gql/mutations/copy-form.graphql";
 import validations from "@projectcaluma/ember-form-builder/validations/form";
@@ -32,10 +32,9 @@ export default class CfbFormEditorCopyModal extends Component {
     this.visible = !this.visible;
   }
 
-  @dropTask
-  *submit(changeset) {
+  submit = task({ drop: true }, async (changeset) => {
     try {
-      yield this.apollo.mutate(
+      await this.apollo.mutate(
         {
           mutation: copyFormMutation,
           variables: {
@@ -59,5 +58,5 @@ export default class CfbFormEditorCopyModal extends Component {
         this.intl.t("caluma.form-builder.notification.form.create.error"),
       );
     }
-  }
+  });
 }

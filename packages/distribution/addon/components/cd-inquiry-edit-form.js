@@ -1,7 +1,7 @@
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
-import { dropTask } from "ember-concurrency";
+import { task } from "ember-concurrency";
 import { trackedTask } from "reactiveweb/ember-concurrency";
 
 import config from "@projectcaluma/ember-distribution/config";
@@ -18,40 +18,38 @@ export default class CdInquiryEditFormComponent extends Component {
 
   @queryManager apollo;
 
-  _inquiry = trackedTask(this, this.fetchInquiry, () => [this.args.inquiry]);
-
   get inquiry() {
     return this._inquiry.value?.[0]?.node;
   }
 
-  @dropTask
-  *fetchInquiry(inquiry) {
-    return yield this.apollo.watchQuery(
+  fetchInquiry = task({ drop: true }, async (inquiry) => {
+    return await this.apollo.watchQuery(
       {
         query: inquiryEditQuery,
         variables: { inquiry },
       },
       "allWorkItems.edges",
     );
-  }
+  });
 
-  @dropTask
-  *send(validate) {
+  _inquiry = trackedTask(this, this.fetchInquiry, () => [this.args.inquiry]);
+
+  send = task({ drop: true }, async (validate) => {
     try {
-      if (!(yield validate()) || this.distribution.sendAllInquiries.isRunning) {
+      if (!(await validate()) || this.distribution.sendAllInquiries.isRunning) {
         return;
       }
 
-      yield this.apollo.mutate({
+      await this.apollo.mutate({
         mutation: resumeWorkItemMutation,
         variables: { workItem: this.args.inquiry },
       });
 
-      yield this.router.transitionTo("inquiry.index");
+      await this.router.transitionTo("inquiry.index");
     } catch {
       this.notification.danger(
         this.intl.t("caluma.distribution.edit.send-error"),
       );
     }
-  }
+  });
 }

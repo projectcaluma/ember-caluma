@@ -3,7 +3,7 @@ import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager, getObservable } from "ember-apollo-client";
-import { enqueueTask, restartableTask } from "ember-concurrency";
+import { task } from "ember-concurrency";
 
 import removeAnalyticsFieldMutation from "@projectcaluma/ember-analytics/gql/mutations/remove-analytics-field.graphql";
 import reorderAnalyticsFieldsMutation from "@projectcaluma/ember-analytics/gql/mutations/reorder-analytics-fields.graphql";
@@ -14,7 +14,10 @@ export default class CaFieldSelectorListComponent extends Component {
   @service notification;
   @service intl;
 
-  @enqueueTask saveField = saveAnalyticsField;
+  saveField = task({ enqueue: true }, async (input) =>
+    saveAnalyticsField(input),
+  );
+
   @tracked _fields;
 
   get fields() {
@@ -40,28 +43,26 @@ export default class CaFieldSelectorListComponent extends Component {
     });
   }
 
-  @enqueueTask
-  *removeAnalyticsField(id) {
+  removeAnalyticsField = task({ enqueue: true }, async (id) => {
     try {
-      yield this.apollo.mutate({
+      await this.apollo.mutate({
         mutation: removeAnalyticsFieldMutation,
         variables: { input: { id } },
       });
       const observableQuery = getObservable(this.args.analyticsTable);
-      yield observableQuery.refetch();
+      await observableQuery.refetch();
     } catch (error) {
       console.error(error);
       this.notification.danger(
         this.intl.t("caluma.analytics.notification.delete-error"),
       );
     }
-  }
+  });
 
-  @restartableTask
-  *reorderFields(fields) {
+  reorderFields = task({ restartable: true }, async (fields) => {
     this._fields = fields;
     try {
-      yield this.apollo.mutate({
+      await this.apollo.mutate({
         mutation: reorderAnalyticsFieldsMutation,
         variables: {
           input: {
@@ -80,5 +81,5 @@ export default class CaFieldSelectorListComponent extends Component {
         this.intl.t("caluma.analytics.notification.reorder-error"),
       );
     }
-  }
+  });
 }

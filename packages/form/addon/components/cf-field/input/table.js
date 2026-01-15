@@ -4,7 +4,7 @@ import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
-import { dropTask } from "ember-concurrency";
+import { task } from "ember-concurrency";
 import { confirm } from "ember-uikit";
 
 import removeDocumentMutation from "@projectcaluma/ember-form/gql/mutations/remove-document.graphql";
@@ -44,9 +44,8 @@ export default class CfFieldInputTableComponent extends Component {
     return this.questions.slice(0, 4);
   }
 
-  @dropTask
-  *add() {
-    const raw = yield this.apollo.mutate(
+  add = task({ drop: true }, async () => {
+    const raw = await this.apollo.mutate(
       {
         mutation: saveDocumentMutation,
         variables: {
@@ -66,11 +65,10 @@ export default class CfFieldInputTableComponent extends Component {
     this.documentToEditIsNew = true;
     this.documentToEdit = newDocument;
     this.showAddModal = true;
-  }
+  });
 
-  @dropTask
-  *delete(document) {
-    if (!(yield confirm(this.intl.t("caluma.form.deleteRow")))) {
+  delete = task({ drop: true }, async (document) => {
+    if (!(await confirm(this.intl.t("caluma.form.deleteRow")))) {
       return;
     }
 
@@ -78,20 +76,19 @@ export default class CfFieldInputTableComponent extends Component {
       (doc) => doc.pk !== document.pk,
     );
 
-    yield this.args.onSave(remainingDocuments);
-    yield this.removeOrphan(document);
-  }
+    await this.args.onSave(remainingDocuments);
+    await this.removeOrphan(document);
+  });
 
-  @dropTask
-  *save(validate) {
+  save = task({ drop: true }, async (validate) => {
     try {
-      if (!(yield validate())) {
+      if (!(await validate())) {
         return;
       }
 
       const newDocument = this.documentToEdit;
 
-      yield Promise.all(newDocument.fields.map((f) => f.validate.perform()));
+      await Promise.all(newDocument.fields.map((f) => f.validate.perform()));
 
       if (newDocument.fields.some((field) => field.isInvalid)) {
         return;
@@ -101,7 +98,7 @@ export default class CfFieldInputTableComponent extends Component {
 
       if (!rows.find((doc) => doc.pk === newDocument.pk)) {
         // add document to table
-        yield this.args.onSave([...rows, newDocument]);
+        await this.args.onSave([...rows, newDocument]);
 
         this.notification.success(
           this.intl.t("caluma.form.notification.table.add.success"),
@@ -110,29 +107,28 @@ export default class CfFieldInputTableComponent extends Component {
 
       this.documentToEditIsNew = false;
 
-      yield this.close.perform();
+      await this.close.perform();
     } catch {
       this.notification.danger(
         this.intl.t("caluma.form.notification.table.add.error"),
       );
     }
-  }
+  });
 
-  @dropTask
-  *close() {
+  close = task({ drop: true }, async () => {
     if (this.documentToEditIsNew) {
-      yield this.removeOrphan(this.documentToEdit);
+      await this.removeOrphan(this.documentToEdit);
 
       this.documentToEditIsNew = false;
     }
 
     if (!this.args.disabled) {
-      yield this.args.field.validate.perform();
+      await this.args.field.validate.perform();
     }
 
     this.showAddModal = false;
     this.documentToEdit = null;
-  }
+  });
 
   async removeOrphan(calumaDocument) {
     // Remove orphaned document from database.

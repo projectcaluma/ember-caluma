@@ -4,7 +4,7 @@ import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
-import { restartableTask } from "ember-concurrency";
+import { task } from "ember-concurrency";
 
 import getAvailableFieldsForFieldQuery from "@projectcaluma/ember-analytics/gql/queries/get-available-fields-for-field.graphql";
 
@@ -71,14 +71,13 @@ export default class CaFieldSelectComponent extends Component {
     this.args.onSelect(this._selectedOption);
   }
 
-  @restartableTask
-  *fetchOptions() {
+  fetchOptions = task({ restartable: true }, async () => {
     try {
       if (
         !this.fetchedFor ||
         (!this.isRoot && this.fetchedFor !== this.args.parentPath)
       ) {
-        const options = yield this.apollo.query(
+        const options = await this.apollo.query(
           {
             query: getAvailableFieldsForFieldQuery,
             fetchPolicy: "no-cache",
@@ -98,7 +97,7 @@ export default class CaFieldSelectComponent extends Component {
         this.intl.t("caluma.analytics.notification.fetch-error"),
       );
     }
-  }
+  });
 
   firstSegment(path) {
     if (!path) return "";

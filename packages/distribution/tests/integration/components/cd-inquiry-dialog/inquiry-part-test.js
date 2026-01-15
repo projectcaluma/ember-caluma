@@ -1,4 +1,4 @@
-import { click, render } from "@ember/test-helpers";
+import { click, render, settled } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { DateTime } from "luxon";
@@ -65,6 +65,7 @@ module(
       assert.dom("[data-test-inquiry-request]").hasText("Question?");
 
       this.set("type", "answer");
+      await settled(); // wait for group-name helper to resolve
 
       assert.dom("[data-test-title]").containsText("addressed");
       assert

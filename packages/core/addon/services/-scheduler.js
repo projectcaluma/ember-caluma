@@ -9,15 +9,22 @@ import { pluralize } from "ember-inflector";
 
 const toArrayIsDeprecated = dependencySatisfies("ember-data", "^4.7.0");
 
-/**
- * Decorator to define a type resolver in the scheduler service.
- *
- * @function typeResolver
- * @param {"group"|"user"} type The type of the objects to resolve
- * @returns {Function} The decorator function that returns an enqueued task to resolve the requested objects
- */
-function typeResolver(type) {
-  return task(function* () {
+export default class PrivateSchedulerService extends Service {
+  @service calumaOptions;
+
+  @tracked groupCache = [];
+  @tracked userCache = [];
+
+  resolveGroup = task(
+    { enqueue: true },
+    async () => await this.#resolveType("group"),
+  );
+  resolveUser = task(
+    { enqueue: true },
+    async () => await this.#resolveType("user"),
+  );
+
+  async #resolveType(type) {
     const identifiers = [...(this[type]?.identifiers ?? [])];
     const callbacks = [...(this[type]?.callbacks ?? [])];
 
@@ -37,7 +44,7 @@ function typeResolver(type) {
 
     const methodName = camelize(`resolve-${pluralize(type)}`);
     const result = uncachedIdentifiers.length
-      ? yield this.calumaOptions[methodName]?.(uncachedIdentifiers)
+      ? await this.calumaOptions[methodName]?.(uncachedIdentifiers)
       : [];
 
     const allResults = toArrayIsDeprecated
@@ -48,20 +55,10 @@ function typeResolver(type) {
       this[`${type}Cache`] = allResults;
     }
 
-    yield Promise.all(callbacks.map((callback) => callback(allResults)));
+    await Promise.all(callbacks.map((callback) => callback(allResults)));
 
     return allResults;
-  }).enqueue();
-}
-
-export default class PrivateSchedulerService extends Service {
-  @service calumaOptions;
-
-  @tracked groupCache = [];
-  @tracked userCache = [];
-
-  @typeResolver("group") resolveGroup;
-  @typeResolver("user") resolveUser;
+  }
 
   /**
    * Resolve a certain object of a type only once in the runloop.

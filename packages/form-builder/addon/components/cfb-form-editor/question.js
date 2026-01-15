@@ -7,7 +7,7 @@ import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
 import Changeset from "ember-changeset";
 import lookupValidator from "ember-changeset-validations";
-import { dropTask, restartableTask, task } from "ember-concurrency";
+import { task } from "ember-concurrency";
 
 import { hasQuestionType } from "@projectcaluma/ember-core/helpers/has-question-type";
 import slugify from "@projectcaluma/ember-core/utils/slugify";
@@ -85,8 +85,7 @@ export default class CfbFormEditorQuestion extends Component {
 
   @tracked changeset;
 
-  @restartableTask
-  *data() {
+  data = task({ restartable: true }, async () => {
     if (!this.args.slug) {
       return A([
         {
@@ -122,7 +121,7 @@ export default class CfbFormEditorQuestion extends Component {
       ]);
     }
 
-    return yield this.apollo.watchQuery(
+    return await this.apollo.watchQuery(
       {
         query: formEditorQuestionQuery,
         variables: { slug: this.args.slug },
@@ -130,11 +129,10 @@ export default class CfbFormEditorQuestion extends Component {
       },
       "allQuestions.edges",
     );
-  }
+  });
 
-  @restartableTask
-  *availableForms() {
-    const forms = yield this.apollo.watchQuery(
+  availableForms = task({ restartable: true }, async () => {
+    const forms = await this.apollo.watchQuery(
       {
         query: formListQuery,
         variables: {
@@ -151,11 +149,10 @@ export default class CfbFormEditorQuestion extends Component {
     return forms
       .filter((edge) => edge.node.slug !== this.args.form)
       .map((edge) => edge.node);
-  }
+  });
 
-  @restartableTask
-  *availableDataSources() {
-    const dataSources = yield this.apollo.watchQuery(
+  availableDataSources = task({ restartable: true }, async () => {
+    const dataSources = await this.apollo.watchQuery(
       { query: allDataSourcesQuery, fetchPolicy: "cache-and-network" },
       "allDataSources.edges",
     );
@@ -165,7 +162,7 @@ export default class CfbFormEditorQuestion extends Component {
         __typename: undefined,
       };
     });
-  }
+  });
 
   get possibleTypes() {
     return Object.keys(TYPES).map((value) => ({
@@ -367,9 +364,8 @@ export default class CfbFormEditorQuestion extends Component {
     };
   }
 
-  @task
-  *saveOptions(changeset) {
-    yield Promise.all(
+  saveOptions = task(async (changeset) => {
+    await Promise.all(
       (changeset.get("options") || [])
         .filter((option) => option.get("isDirty"))
         .map(async (option) => {
@@ -381,10 +377,9 @@ export default class CfbFormEditorQuestion extends Component {
           });
         }),
     );
-  }
+  });
 
-  @task
-  *saveDefaultAnswer(question, changeset) {
+  saveDefaultAnswer = task(async (question, changeset) => {
     if (!changeset.get("defaultAnswer")) {
       return;
     }
@@ -413,17 +408,16 @@ export default class CfbFormEditorQuestion extends Component {
       input.value = value;
     }
 
-    yield this.apollo.mutate({ mutation, variables: { input } });
-  }
+    await this.apollo.mutate({ mutation, variables: { input } });
+  });
 
-  @dropTask
-  *submit(changeset) {
+  submit = task({ drop: true }, async (changeset) => {
     try {
-      yield this.saveOptions.perform(changeset);
+      await this.saveOptions.perform(changeset);
 
       const typename = changeset.get("__typename");
       const input = this.getInput(changeset);
-      const question = yield this.apollo.mutate(
+      const question = await this.apollo.mutate(
         {
           mutation: TYPES[typename],
           variables: { input },
@@ -431,11 +425,11 @@ export default class CfbFormEditorQuestion extends Component {
         `save${typename}.question`,
       );
 
-      yield this.saveDefaultAnswer.perform(question, changeset);
+      await this.saveDefaultAnswer.perform(question, changeset);
 
       if (!this.args.slug) {
         // This is a new question which must be added to the form after creating it
-        yield this.apollo.mutate({
+        await this.apollo.mutate({
           mutation: addFormQuestionMutation,
           variables: {
             input: {
@@ -458,7 +452,7 @@ export default class CfbFormEditorQuestion extends Component {
         this.intl.t("caluma.form-builder.notification.question.save.error"),
       );
     }
-  }
+  });
 
   @action
   async fetchData() {

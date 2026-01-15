@@ -1,7 +1,7 @@
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
-import { dropTask } from "ember-concurrency";
+import { task } from "ember-concurrency";
 import { trackedFunction } from "reactiveweb/function";
 
 import cancelWorkItem from "@projectcaluma/ember-workflow/gql/mutations/cancel-work-item.graphql";
@@ -68,22 +68,21 @@ export default class WorkItemButtonComponent extends Component {
     return this.requiredWorkItemStatus.includes(status);
   });
 
-  @dropTask
-  *mutate() {
+  mutate = task({ drop: true }, async () => {
     try {
       if (typeof this.args.beforeMutate === "function") {
-        const proceed = yield this.args.beforeMutate();
+        const proceed = await this.args.beforeMutate();
 
         if (proceed === false) return;
       }
 
-      yield this.apollo.mutate({
+      await this.apollo.mutate({
         mutation: this[`${this.args.mutation}WorkItemMutation`],
         variables: { id: this.args.workItemId },
       });
 
       if (typeof this.args.onSuccess === "function") {
-        yield this.args.onSuccess();
+        await this.args.onSuccess();
       } else {
         this.notification.success(
           this.intl.t(`caluma.mutate-work-item.success.${this.args.mutation}`),
@@ -91,7 +90,7 @@ export default class WorkItemButtonComponent extends Component {
       }
     } catch (e) {
       if (typeof this.args.onError === "function") {
-        yield this.args.onError(e);
+        await this.args.onError(e);
       } else {
         console.error(e);
         this.notification.danger(
@@ -99,5 +98,5 @@ export default class WorkItemButtonComponent extends Component {
         );
       }
     }
-  }
+  });
 }

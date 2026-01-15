@@ -2,7 +2,7 @@ import { inject as service } from "@ember/service";
 import { isEmpty } from "@ember/utils";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
-import { dropTask } from "ember-concurrency";
+import { task } from "ember-concurrency";
 import { confirm } from "ember-uikit";
 import { DateTime } from "luxon";
 
@@ -81,17 +81,16 @@ export default class CdInquiryDialogInquiryPartComponent extends Component {
       : null;
   }
 
-  @dropTask
-  *withdraw(e) {
+  withdraw = task({ drop: true }, async (e) => {
     e.preventDefault();
 
     /* istanbul ignore next */
-    if (!(yield confirm(this.intl.t("caluma.distribution.withdraw.confirm")))) {
+    if (!(await confirm(this.intl.t("caluma.distribution.withdraw.confirm")))) {
       return;
     }
 
     try {
-      yield this.apollo.mutate({
+      await this.apollo.mutate({
         mutation: withdrawInquiryMutation,
         variables: {
           workItem: decodeId(this.args.inquiry.id),
@@ -102,15 +101,14 @@ export default class CdInquiryDialogInquiryPartComponent extends Component {
         this.intl.t("caluma.distribution.withdraw.error"),
       );
     }
-  }
+  });
 
-  @dropTask
-  *reopen(e) {
+  reopen = task({ drop: true }, async (e) => {
     e.preventDefault();
 
     /* istanbul ignore next */
     if (
-      !(yield confirm(
+      !(await confirm(
         this.intl.t("caluma.distribution.reopen-inquiry.confirm"),
       ))
     ) {
@@ -118,7 +116,7 @@ export default class CdInquiryDialogInquiryPartComponent extends Component {
     }
 
     try {
-      yield this.apollo.mutate({
+      await this.apollo.mutate({
         mutation: reopenInquiryMutation,
         variables: {
           workItem: decodeId(this.args.inquiry.id),
@@ -131,18 +129,17 @@ export default class CdInquiryDialogInquiryPartComponent extends Component {
         this.intl.t("caluma.distribution.reopen-inquiry.error"),
       );
     }
-  }
+  });
 
-  @dropTask
-  *sendReminder(e) {
+  sendReminder = task({ drop: true }, async (e) => {
     e.preventDefault();
 
-    if (!(yield confirm(this.intl.t("caluma.distribution.reminder.confirm")))) {
+    if (!(await confirm(this.intl.t("caluma.distribution.reminder.confirm")))) {
       return;
     }
 
     try {
-      yield this.calumaOptions.sendReminderDistributionInquiry(
+      await this.calumaOptions.sendReminderDistributionInquiry(
         decodeId(this.args.inquiry.id),
       );
 
@@ -150,7 +147,7 @@ export default class CdInquiryDialogInquiryPartComponent extends Component {
         this.intl.t("caluma.distribution.reminder.success"),
       );
 
-      yield this.apollo.mutate({
+      await this.apollo.mutate({
         mutation: updateInquiryMetaMutation,
         variables: {
           inquiry: decodeId(this.args.inquiry.id),
@@ -168,5 +165,5 @@ export default class CdInquiryDialogInquiryPartComponent extends Component {
         this.intl.t("caluma.distribution.reminder.error"),
       );
     }
-  }
+  });
 }
