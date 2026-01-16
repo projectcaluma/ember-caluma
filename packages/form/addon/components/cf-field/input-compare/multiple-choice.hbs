@@ -1,6 +1,3 @@
-<div class="uk-hidden">
-  {{yield}}
-</div>
 <div class="uk-form-controls">
   {{#each @field.options as |option i|}}
     {{#if (and (gt i 0) (not @field.raw.question.meta.vertical))}}<br />{{/if}}
