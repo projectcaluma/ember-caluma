@@ -4,6 +4,8 @@ import { inject as service } from "@ember/service";
 import HiddenComponent from "@projectcaluma/ember-form/components/cf-field/input/hidden";
 import NumberSeparatorComponent from "@projectcaluma/ember-form/components/cf-field/input/number-separator";
 import PowerSelectComponent from "@projectcaluma/ember-form/components/cf-field/input/powerselect";
+import NumberSeparatorCompareComponent from "@projectcaluma/ember-form/components/cf-field/input-compare/number-separator";
+import PowerselectCompareComponent from "@projectcaluma/ember-form/components/cf-field/input-compare/powerselect";
 
 class HiddenOverride {
   @service intl;
@@ -33,6 +35,10 @@ class PowerSelectOverride {
     "DynamicChoiceQuestion",
     "DynamicMultipleChoiceQuestion",
   ];
+  compareOptions = {
+    component: PowerselectCompareComponent,
+    combined: false,
+  };
 }
 
 class NumberSeparatorOverride {
@@ -47,6 +53,10 @@ class NumberSeparatorOverride {
   component = "cf-field/input/number-separator";
   componentClass = NumberSeparatorComponent;
   types = ["IntegerQuestion", "FloatQuestion", "CalculatedFloatQuestion"];
+  compareOptions = {
+    component: NumberSeparatorCompareComponent,
+    combined: true,
+  };
 }
 
 export function initialize(appInstance) {
