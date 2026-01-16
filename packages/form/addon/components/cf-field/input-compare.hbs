@@ -13,20 +13,21 @@
       {{#if this.compareComponent}}
         {{#if this.compareOptions.combined}}
           <div class="combined-diff">
-            <this.compareComponent
-              @field={{@field}}
-              @disabled={{true}}
-              @context={{@context}}
-              @showHistorical={{true}}
-              @showCombinedDiff={{true}}
-            >
+            <div hidden>
               <FieldComponent
                 @field={{@field}}
                 @disabled={{true}}
                 @context={{@context}}
                 @onSave={{perform this.save}}
               />
-            </this.compareComponent>
+            </div>
+            <this.compareComponent
+              @field={{@field}}
+              @disabled={{true}}
+              @context={{@context}}
+              @showHistorical={{true}}
+              @showCombinedDiff={{true}}
+            />
           </div>
           {{#unless this.compareOptions.disableChangesNote}}
             <div class="changes-note">
