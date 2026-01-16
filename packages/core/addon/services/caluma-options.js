@@ -4,14 +4,6 @@ import { tracked } from "@glimmer/tracking";
 import { DateTime } from "luxon";
 
 import slugify from "@projectcaluma/ember-core/utils/slugify";
-import ChoiceCompareComponent from "@projectcaluma/ember-form/components/cf-field/input-compare/choice";
-import DateCompareComponent from "@projectcaluma/ember-form/components/cf-field/input-compare/date";
-import MultipleChoiceCompareComponent from "@projectcaluma/ember-form/components/cf-field/input-compare/multiple-choice";
-import NumberSeparatorCompareComponent from "@projectcaluma/ember-form/components/cf-field/input-compare/number-separator";
-import PowerselectCompareComponent from "@projectcaluma/ember-form/components/cf-field/input-compare/powerselect";
-import TableCompareComponent from "@projectcaluma/ember-form/components/cf-field/input-compare/table";
-import TextDiffCompareComponent from "@projectcaluma/ember-form/components/cf-field/input-compare/text-diff";
-import TextareaCompareComponent from "@projectcaluma/ember-form/components/cf-field/input-compare/textarea";
 
 /**
  * The options service is there to provide a means to share data
@@ -29,47 +21,6 @@ export default class CalumaOptionsService extends Service {
 
   _namespace = null;
   _overrides = {};
-  _compareInputs = {
-    // default core input components:
-    TextQuestion: {
-      component: TextDiffCompareComponent,
-      combined: true,
-    },
-    IntegerQuestion: {
-      component: TextDiffCompareComponent,
-      combined: true,
-    },
-    MultipleChoiceQuestion: {
-      component: MultipleChoiceCompareComponent,
-      combined: true,
-    },
-    ChoiceQuestion: {
-      component: ChoiceCompareComponent,
-      combined: true,
-    },
-    DateQuestion: {
-      component: DateCompareComponent,
-      combined: true,
-    },
-    TextareaQuestion: {
-      component: TextareaCompareComponent,
-      combined: true,
-    },
-    TableQuestion: {
-      component: TableCompareComponent,
-      combined: true,
-      disableChangesNote: true,
-    },
-    // default widget override components:
-    "cf-field/input/number-separator": {
-      component: NumberSeparatorCompareComponent,
-      combined: true,
-    },
-    "cf-field/input/powerselect": {
-      component: PowerselectCompareComponent,
-      combined: false,
-    },
-  };
 
   get namespace() {
     return this._namespace || null;
@@ -126,14 +77,6 @@ export default class CalumaOptionsService extends Service {
    */
   getComponentOverrides() {
     return Object.values(this._overrides);
-  }
-
-  registerCompareInput(typename, options) {
-    this._compareInputs[typename] = options.componentClass;
-  }
-
-  getCompareInput(typename) {
-    return this._compareInputs[typename];
   }
 
   /**

@@ -3,6 +3,12 @@ import { ensureSafeComponent } from "@embroider/util";
 import Component from "@glimmer/component";
 import { task } from "ember-concurrency";
 
+import ChoiceCompareComponent from "@projectcaluma/ember-form/components/cf-field/input-compare/choice";
+import DateCompareComponent from "@projectcaluma/ember-form/components/cf-field/input-compare/date";
+import MultipleChoiceCompareComponent from "@projectcaluma/ember-form/components/cf-field/input-compare/multiple-choice";
+import TableCompareComponent from "@projectcaluma/ember-form/components/cf-field/input-compare/table";
+import TextDiffCompareComponent from "@projectcaluma/ember-form/components/cf-field/input-compare/text-diff";
+import TextareaCompareComponent from "@projectcaluma/ember-form/components/cf-field/input-compare/textarea";
 import { parseWidgetType } from "@projectcaluma/ember-form/lib/parsers";
 
 /**
@@ -12,6 +18,41 @@ import { parseWidgetType } from "@projectcaluma/ember-form/lib/parsers";
  */
 export default class CfFieldInputCompareComponent extends Component {
   @service calumaOptions;
+
+  get coreCompareInputs() {
+    return {
+      // default core input components:
+      TextQuestion: {
+        component: TextDiffCompareComponent,
+        combined: true,
+      },
+      IntegerQuestion: {
+        component: TextDiffCompareComponent,
+        combined: true,
+      },
+      MultipleChoiceQuestion: {
+        component: MultipleChoiceCompareComponent,
+        combined: true,
+      },
+      ChoiceQuestion: {
+        component: ChoiceCompareComponent,
+        combined: true,
+      },
+      DateQuestion: {
+        component: DateCompareComponent,
+        combined: true,
+      },
+      TextareaQuestion: {
+        component: TextareaCompareComponent,
+        combined: true,
+      },
+      TableQuestion: {
+        component: TableCompareComponent,
+        combined: true,
+        disableChangesNote: true,
+      },
+    };
+  }
 
   /**
    * The compare input options.
@@ -24,11 +65,15 @@ export default class CfFieldInputCompareComponent extends Component {
       this.args.field.question,
     ]);
 
-    return this.calumaOptions.getCompareInput(
-      widget === "cf-field/input"
-        ? this.args.field.question.raw.__typename
-        : widget,
-    );
+    const override = this.calumaOptions
+      .getComponentOverrides()
+      .find(({ component }) => component === widget);
+
+    if (widget === "cf-field/input") {
+      return this.coreCompareInputs[this.args.field.question.raw.__typename];
+    }
+
+    return override?.compareOptions;
   }
 
   /**
