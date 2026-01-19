@@ -1,15 +1,22 @@
-<input
-  type="number"
-  step={{this.floatStep}}
-  class="uk-input
-    {{if @field.isInvalid 'uk-form-danger'}}
-    {{if this.disabled 'uk-disabled'}}"
-  readonly={{this.disabled}}
-  name={{@field.pk}}
-  id={{@field.pk}}
-  value={{@field.value}}
-  min={{@field.question.raw.floatMinValue}}
-  max={{@field.question.raw.floatMaxValue}}
-  placeholder={{@field.question.raw.placeholder}}
-  {{on "input" this.input}}
-/>
+{{#if @compare.enabled}}
+  <CfField::InputCompare::TextDiff
+    @currentValue={{@field.answer.value}}
+    @historicalValue={{@field.answer.historicalValue}}
+  />
+{{else}}
+  <input
+    type="number"
+    step={{this.floatStep}}
+    class="uk-input
+      {{if @field.isInvalid 'uk-form-danger'}}
+      {{if this.disabled 'uk-disabled'}}"
+    readonly={{this.disabled}}
+    name={{@field.pk}}
+    id={{@field.pk}}
+    value={{@field.value}}
+    min={{@field.question.raw.floatMinValue}}
+    max={{@field.question.raw.floatMaxValue}}
+    placeholder={{@field.question.raw.placeholder}}
+    {{on "input" this.input}}
+  />
+{{/if}}
