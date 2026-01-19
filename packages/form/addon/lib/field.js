@@ -117,10 +117,10 @@ export default class Field extends Base {
 
       // If comparison is enabled and there is no answer, add the required
       // historical raw answer data, and mark answer as not changed.
-      const rawHistorical = this.document.dataSourceContext?.compare?.enabled
+      const rawHistorical = this.fieldset?.document?.compare?.enabled
         ? {
             historyType: "=",
-            historyDate: this.document.dataSourceContext.compare.to,
+            historyDate: this.fieldset?.document?.compare?.to,
           }
         : {};
 

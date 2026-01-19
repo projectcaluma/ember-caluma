@@ -27,6 +27,7 @@ export default class Document extends Base {
     parentDocument,
     dataSourceContext,
     historicalDocument,
+    compare,
     ...args
   }) {
     assert(
@@ -40,6 +41,7 @@ export default class Document extends Base {
     this.parentDocument = parentDocument;
     this.dataSourceContext =
       dataSourceContext ?? parentDocument?.dataSourceContext;
+    this.compare = compare ?? parentDocument?.compare;
 
     this.pushIntoStore();
 

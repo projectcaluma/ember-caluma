@@ -15,19 +15,17 @@ import { parseDocument } from "@projectcaluma/ember-form/lib/parsers";
  *
  * This component can either be used the default way:
  * ```hbs
- * <CfContentCompare @documentId="some-id" @context={{hash
-          compare=(hash
-            enabled=true from="yyyy-mm-dd" to="yyyy-mm-dd"
-          )
-        }} />
+ * <CfContentCompare @documentId="some-id" @compare={{hash
+      from="yyyy-mm-dd"
+      to="yyyy-mm-dd"
+ * }} />
  * ```
  * Or it can be customized
  * ```hbs
- * <CfContentCompare @documentId="some-id"  @context={{hash
-          compare=(hash
-            enabled=true from="yyyy-mm-dd" to="yyyy-mm-dd"
-          )
-        }} as |content|}}
+ * <CfContentCompare @documentId="some-id" @compare={{hash
+      from="yyyy-mm-dd"
+      to="yyyy-mm-dd"
+    }} as |content|}}
  *   <div uk-grid>
  *     <div class="uk-width-1-2"><content.navigation /></div>
  *     <div class="uk-width-1-2">
@@ -68,16 +66,9 @@ export default class CfContentCompareComponent extends Component {
    */
 
   /**
-   * Can be used to pass "context" information from the outside through
-   * to custom overrides.
+   * Must be used to pass "compare" context information from the outside.
    *
-   * @argument {Object} context
-   */
-
-  /**
-   * Whether the form renders in disabled state
-   *
-   * @argument {Boolean} disabled
+   * @argument {Object} compare
    */
 
   /**
@@ -87,6 +78,10 @@ export default class CfContentCompareComponent extends Component {
    *
    * @argument {Boolean} loading
    */
+
+  get disabled() {
+    return true;
+  }
 
   /**
    * The document to display
@@ -150,7 +145,8 @@ export default class CfContentCompareComponent extends Component {
       return new Date(input);
     }
 
-    const { from, to } = this.args.context.compare;
+    const compareContext = { enabled: true, ...this.args.compare };
+    const { from, to } = compareContext;
 
     const data = yield this.apollo.query({
       query: getDocumentAnswersCompareQuery,
@@ -191,7 +187,7 @@ export default class CfContentCompareComponent extends Component {
       historicalDocument: historicalDocument
         ? parseDocument({ ...historicalDocument, form })
         : null,
-      dataSourceContext: this.args.context,
+      compare: compareContext,
     });
     const navigation = new Navigation({ document, owner });
 
