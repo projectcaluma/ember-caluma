@@ -119,39 +119,23 @@ export function flatTableMap(docs) {
 export function historicalTableValue(owner, field, value, historicalValue) {
   const Document = owner.factoryFor("caluma-model:document").class;
 
-  // Any document that was removed before the 'from' date should be dropped
-  // from the comparison, because it has no relevance to the current
-  // diff view.
-  const dropped = value
-    .map((document) => {
-      if ("-" === document.historyType) {
-        const parsedHistoryDate = new Date(Date.parse(document.historyDate));
-        if (
-          field?.question?.dataSourceContext?.compare?.from &&
-          parsedHistoryDate < field?.question?.dataSourceContext?.compare?.from
-        ) {
-          return decodeId(document.id);
-        }
-      }
-      return false;
-    })
-    .filter(Boolean);
-
   return (
     value
       .map((document) => {
         let historyType = document.historyType;
-        if (dropped.includes(decodeId(document.id))) {
-          return false;
-        }
 
-        // find corresponding historical document that is not dropped,
-        // to compare against the current document.
+        // find corresponding historical document to compare.
         const historicalDocument = historicalValue?.find(
           (histDoc) =>
-            !dropped.includes(decodeId(histDoc.id)) &&
-            decodeId(histDoc.id) === decodeId(document.id),
+            decodeId(histDoc.documentId) === decodeId(document.documentId),
         );
+
+        // if the document is marked as removed and there is no historical counterpart,
+        // we skip it from the diff view. (the original document does not
+        // include documents that were removed before the historical snapshot).
+        if (historyType === "-" && !historicalDocument) {
+          return false;
+        }
 
         if (historyType === "~") {
           if (!historicalDocument) {
@@ -162,7 +146,6 @@ export function historicalTableValue(owner, field, value, historicalValue) {
             // (when re-added the same with a different id)
             historyType = historicalValue?.find(
               (histDoc) =>
-                !dropped.includes(decodeId(histDoc.id)) &&
                 decodeId(histDoc.id) !== decodeId(document.id) &&
                 flatTableMap(histDoc) === flatTableMap(document),
             )
@@ -174,21 +157,6 @@ export function historicalTableValue(owner, field, value, historicalValue) {
             // If the modified document has identical flat table values
             // to the historical document, we treat it as identical.
             historyType = "=";
-          }
-        } else if (historyType === "-") {
-          // If a document is marked as deleted, but there is another document
-          // in the current set with identical flat table values, we discard it from
-          // the diff view (when re-added with different id but the same values, we only
-          // show one version).
-          if (
-            value.find(
-              (newDoc) =>
-                !dropped.includes(decodeId(newDoc.id)) &&
-                decodeId(newDoc.id) !== decodeId(document.id) &&
-                flatTableMap(newDoc) === flatTableMap(document),
-            )
-          ) {
-            return false;
           }
         }
 
