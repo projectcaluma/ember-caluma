@@ -103,17 +103,21 @@ query (
   $to: DateTime!
   $context: JSONString
 ) {
-  fromRevision: documentAsOf(id: $documentId, asOf: $from) {
+  fromRevision: documentAsOf(
+    id: $documentId
+    asOf: $from
+    excludeDeleted: true
+  ) {
     ...RevisionDocument
-    answers: historicalAnswers(asOf: $from) {
+    answers: historicalAnswers(asOf: $from, excludeDeleted: true) {
       edges {
         node {
           ...SimpleRevisionAnswer
           ... on HistoricalTableAnswer {
-            tableValue: value(asOf: $from) {
+            tableValue: value(asOf: $from, excludeDeleted: true) {
               ...HistoricalTableValue
 
-              answers: historicalAnswers(asOf: $from) {
+              answers: historicalAnswers(asOf: $from, excludeDeleted: true) {
                 edges {
                   node {
                     ...SimpleRevisionAnswer
