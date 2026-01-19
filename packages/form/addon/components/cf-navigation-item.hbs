@@ -17,7 +17,7 @@
         {{@item.label}}
       </span>
     {{/if}}
-    {{#if @context.compare.enabled}}
+    {{#if @compare}}
       {{#if (eq @item.compareState "modified")}}
         <UkIcon
           @icon="pencil"
@@ -39,6 +39,7 @@
           @item={{child}}
           @headingLevel={{add @headingLevel 1}}
           @context={{@context}}
+          @compare={{@compare}}
         />
       {{/each}}
     </ul>

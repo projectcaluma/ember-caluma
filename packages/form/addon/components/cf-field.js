@@ -32,7 +32,7 @@ export default class CfFieldComponent extends Component {
   }
 
   get isComparison() {
-    return this?.args?.context?.compare?.enabled ?? false;
+    return this?.args.field?.fieldset?.document?.compare?.enabled ?? false;
   }
 
   get hasHiddenWidget() {

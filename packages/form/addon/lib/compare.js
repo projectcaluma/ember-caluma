@@ -126,8 +126,7 @@ export function historicalTableValue(owner, field, value, historicalValue) {
 
         // find corresponding historical document to compare.
         const historicalDocument = historicalValue?.find(
-          (histDoc) =>
-            decodeId(histDoc.documentId) === decodeId(document.documentId),
+          (histDoc) => histDoc.documentId === document.documentId,
         );
 
         // if the document is marked as removed and there is no historical counterpart,
