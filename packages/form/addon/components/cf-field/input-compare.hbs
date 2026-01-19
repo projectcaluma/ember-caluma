@@ -10,64 +10,75 @@
         {{if (eq @field.answer.raw.historyType '~') 'cf-compare-modified' ''}}
         "
     >
-      {{#if this.compareComponent}}
-        {{#if this.compareOptions.combined}}
-          <div class="combined-diff">
-            <div hidden>
-              <FieldComponent
-                @field={{@field}}
-                @disabled={{true}}
-                @context={{@context}}
-                @onSave={{perform this.save}}
-              />
-            </div>
+      {{#if this.compareOptions.combined}}
+        <div class="combined-diff">
+          <div hidden>
+            <FieldComponent
+              @field={{@field}}
+              @disabled={{true}}
+              @context={{@context}}
+              @onSave={{perform this.save}}
+              @compare={{false}}
+            />
+          </div>
+          {{#if this.compareComponent}}
             <this.compareComponent
               @field={{@field}}
               @disabled={{true}}
               @context={{@context}}
               @showHistorical={{true}}
               @showCombinedDiff={{true}}
+              @compare={{@field.fieldset.document.compare}}
             />
-          </div>
-          {{#unless this.compareOptions.disableChangesNote}}
-            <div class="changes-note">
-              <CfField::InputCompare::ChangesNote @field={{@field}} />
-            </div>
-          {{/unless}}
-        {{else}}
-          <div class="from-version">
-            <this.compareComponent
-              @field={{@field}}
-              @disabled={{true}}
-              @context={{@context}}
-              @showHistorical={{true}}
-            />
-          </div>
-          <div class="to-version">
+          {{else}}
             <FieldComponent
               @field={{@field}}
               @disabled={{true}}
               @context={{@context}}
               @onSave={{perform this.save}}
+              @compare={{@field.fieldset.document.compare}}
             />
+          {{/if}}
+        </div>
+        {{#unless this.compareOptions.disableChangesNote}}
+          <div class="changes-note">
+            <CfField::InputCompare::ChangesNote @field={{@field}} />
           </div>
-          {{#unless this.compareOptions.disableChangesNote}}
-            <div class="changes-note">
-              <CfField::InputCompare::ChangesNote @field={{@field}} />
-            </div>
-          {{/unless}}
-        {{/if}}
+        {{/unless}}
       {{else}}
-        <div class="combined-diff">
+        <div class="from-version">
+          {{#if this.compareComponent}}
+            <this.compareComponent
+              @field={{@field}}
+              @disabled={{true}}
+              @context={{@context}}
+              @showHistorical={{true}}
+              @compare={{@field.fieldset.document.compare}}
+            />
+          {{else}}
+            <FieldComponent
+              @field={{@field}}
+              @disabled={{true}}
+              @context={{@context}}
+              @onSave={{perform this.save}}
+              @compare={{@field.fieldset.document.compare}}
+            />
+          {{/if}}
+        </div>
+        <div class="to-version">
           <FieldComponent
             @field={{@field}}
             @disabled={{true}}
             @context={{@context}}
+            @onSave={{perform this.save}}
+            @compare={{false}}
           />
         </div>
-        <div class="changes-note">
-          <CfField::InputCompare::ChangesNote @field={{@field}} />
-        </div>
+        {{#unless this.compareOptions.disableChangesNote}}
+          <div class="changes-note">
+            <CfField::InputCompare::ChangesNote @field={{@field}} />
+          </div>
+        {{/unless}}
       {{/if}}
     </div>
   {{else}}
