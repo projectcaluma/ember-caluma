@@ -1,7 +1,7 @@
 <table class="uk-table uk-table-divider uk-margin-remove-vertical">
   <thead>
     <tr>
-      {{#if @compare.enabled}}
+      {{#if @compare}}
         <th></th>
       {{/if}}
       {{#each this.columns as |column|}}
@@ -17,7 +17,7 @@
           {{if (eq document.raw.historyType '+') 'diff-added'}}
           {{if (eq document.raw.historyType '~') 'diff-modified'}}"
       >
-        {{#if @compare.enabled}}
+        {{#if @compare}}
           <td>
             {{#if (eq document.raw.historyType "+")}}
               <UkIcon
