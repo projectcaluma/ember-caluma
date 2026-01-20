@@ -21,24 +21,13 @@
               @compare={{false}}
             />
           </div>
-          {{#if this.compareComponent}}
-            <this.compareComponent
-              @field={{@field}}
-              @disabled={{true}}
-              @context={{@context}}
-              @showHistorical={{true}}
-              @showCombinedDiff={{true}}
-              @compare={{@field.fieldset.document.compare}}
-            />
-          {{else}}
-            <FieldComponent
-              @field={{@field}}
-              @disabled={{true}}
-              @context={{@context}}
-              @onSave={{perform this.save}}
-              @compare={{@field.fieldset.document.compare}}
-            />
-          {{/if}}
+          <FieldComponent
+            @field={{@field}}
+            @disabled={{true}}
+            @context={{@context}}
+            @onSave={{perform this.save}}
+            @compare={{@field.fieldset.document.compare}}
+          />
         </div>
         {{#unless this.compareOptions.disableChangesNote}}
           <div class="changes-note">
@@ -47,23 +36,13 @@
         {{/unless}}
       {{else}}
         <div class="from-version">
-          {{#if this.compareComponent}}
-            <this.compareComponent
-              @field={{@field}}
-              @disabled={{true}}
-              @context={{@context}}
-              @showHistorical={{true}}
-              @compare={{@field.fieldset.document.compare}}
-            />
-          {{else}}
-            <FieldComponent
-              @field={{@field}}
-              @disabled={{true}}
-              @context={{@context}}
-              @onSave={{perform this.save}}
-              @compare={{@field.fieldset.document.compare}}
-            />
-          {{/if}}
+          <FieldComponent
+            @field={{@field}}
+            @disabled={{true}}
+            @context={{@context}}
+            @onSave={{perform this.save}}
+            @compare={{@field.fieldset.document.compare}}
+          />
         </div>
         <div class="to-version">
           <FieldComponent
