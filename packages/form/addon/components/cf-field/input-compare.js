@@ -1,5 +1,4 @@
 import { service } from "@ember/service";
-import { ensureSafeComponent } from "@embroider/util";
 import Component from "@glimmer/component";
 import { task } from "ember-concurrency";
 
@@ -46,18 +45,6 @@ export default class CfFieldInputCompareComponent extends Component {
     }
 
     return override?.compareOptions;
-  }
-
-  /**
-   * The compare component registered for the input type.
-   *
-   * @property {Component} compareComponent
-   * @accessor
-   */
-  get compareComponent() {
-    return this.compareOptions
-      ? ensureSafeComponent(this.compareOptions.component, this)
-      : null;
   }
 
   /**
