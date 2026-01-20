@@ -129,7 +129,7 @@ export default class Answer extends Base {
     if (this._valueKey === "tableValue" && value) {
       // For a historical view for table values we map it differently to be able to
       // show the diff.
-      if (this.field?.fieldset?.document?.compare?.enabled) {
+      if (this.field?.fieldset?.document?.compare) {
         const owner = getOwner(this);
         const historicalValue = this.historical?.[this._valueKey] || [];
 

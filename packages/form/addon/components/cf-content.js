@@ -151,7 +151,6 @@ export default class CfContentComponent extends Component {
 
     let answerDocument = null;
     let historicalDocument = null;
-    let compareContext = null;
 
     if (!this.args.compare) {
       [answerDocument] = (await this.apollo.query(
@@ -163,8 +162,7 @@ export default class CfContentComponent extends Component {
         "allDocuments.edges",
       )).map(({ node }) => node);
     } else {
-      compareContext = { enabled: true, ...this.args.compare };
-      const { from, to } = compareContext;
+      const { from, to } = this.args.compare;
 
       function toDate(input) {
         if (input instanceof Date) {
@@ -203,7 +201,7 @@ export default class CfContentComponent extends Component {
       historicalDocument: historicalDocument
         ? parseDocument({ ...historicalDocument, form })
         : null,
-      compare: compareContext,
+      compare: this.args.compare,
     });
     const navigation = new Navigation({ document, owner });
 
