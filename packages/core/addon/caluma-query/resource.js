@@ -51,7 +51,7 @@ export default class CalumaQueryResource extends Resource {
       event.preventDefault();
     }
 
-    this.query.fetchMore();
+    return this.query.fetchMore();
   }
 
   @action
@@ -60,7 +60,7 @@ export default class CalumaQueryResource extends Resource {
       event.preventDefault();
     }
 
-    this.query.refresh();
+    return this.query.refresh();
   }
 
   get value() {
