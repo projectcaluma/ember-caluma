@@ -9,6 +9,7 @@ import {
   task,
 } from "ember-concurrency";
 import { gql } from "graphql-tag";
+import { TrackedArray } from "tracked-built-ins";
 
 export default class BaseQuery {
   @queryManager apollo;
@@ -66,17 +67,7 @@ export default class BaseQuery {
   }
 
   get value() {
-    const Model = getOwner(this).factoryFor(
-      `caluma-query-model:${this.modelName}`,
-    ).class;
-
-    return this.items.map((item) => {
-      const instance = new Model(item);
-
-      setOwner(instance, getOwner(this));
-
-      return instance;
-    });
+    return this.items;
   }
 
   fetch(...args) {
@@ -98,7 +89,7 @@ export default class BaseQuery {
   *_fetch({ filter = [], order = [], queryOptions = {} } = {}) {
     yield this._fetchPage.cancelAll({ resetState: true });
 
-    this.items = [];
+    this.items = new TrackedArray();
 
     this.filter = filter;
     this.order = order;
@@ -131,13 +122,39 @@ export default class BaseQuery {
       ...this.queryOptions,
     });
 
-    this.items = yield this.processAll([
-      ...this.items,
-      ...(yield this.processNew(
-        data[this.dataKey].edges.map(({ node }) => node),
-      )),
-    ]);
+    const rawNewItems = data[this.dataKey].edges.map(({ node }) => node);
+
+    yield this.#parsePage(rawNewItems);
 
     return data;
+  }
+
+  #createModel(item) {
+    const instance = new this.modelClass(item);
+    setOwner(instance, getOwner(this));
+    return instance;
+  }
+
+  async #parsePage(rawNewItems) {
+    const processedNewItems = await this.processNew(rawNewItems);
+    const rawExistingItems = this.items.map((model) => model.raw);
+
+    const allRawItems = [...processedNewItems, ...rawExistingItems];
+    const allProcessedItems = await this.processAll(allRawItems);
+
+    // Superficially check if `this.processAll` changed anything on the raw data
+    if (JSON.stringify(allRawItems) !== JSON.stringify(allProcessedItems)) {
+      // If so, we need to re-create the already existing models and reassign
+      // the `this.items` property in order to trigger a rerender for **all**
+      // items.
+      this.items = new TrackedArray(
+        allProcessedItems.map((i) => this.#createModel(i)),
+      );
+    } else {
+      // If not, only the newly added items need to be converted to models and
+      // added to the existing items in order to only trigger a partial rerender
+      // for the newly added items.
+      this.items.push(...processedNewItems.map((i) => this.#createModel(i)));
+    }
   }
 }
