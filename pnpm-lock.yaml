@@ -545,6 +545,9 @@ importers:
       slugify:
         specifier: ^1.6.6
         version: 1.6.6
+      tracked-built-ins:
+        specifier: ^3.4.0 || ^4.0.0
+        version: 4.0.0(@babel/core@7.28.4)
     devDependencies:
       '@ember/optional-features':
         specifier: 2.2.0
