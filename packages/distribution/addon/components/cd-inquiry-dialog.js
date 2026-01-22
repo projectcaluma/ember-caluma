@@ -1,3 +1,4 @@
+import { next } from "@ember/runloop";
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager, getObservable } from "ember-apollo-client";
@@ -86,6 +87,10 @@ export default class CdInquiryDialogComponent extends Component {
 
     yield getObservable(this._inquiries.value).refetch();
 
+    next(this, "transitionToLatestInquiry");
+  }
+
+  transitionToLatestInquiry() {
     this.router.transitionTo(
       "inquiry.detail.index",
       {
