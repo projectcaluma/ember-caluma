@@ -44,10 +44,10 @@
     "tracked-toolbox": "^2.0.0"
   },
   "devDependencies": {
-    "@ember/optional-features": "2.2.0",
+    "@ember/optional-features": "2.3.0",
     "@ember/test-helpers": "4.0.4",
     "@embroider/test-setup": "4.0.0",
-    "@faker-js/faker": "10.0.0",
+    "@faker-js/faker": "10.2.0",
     "@glimmer/component": "1.1.2",
     "@glimmer/tracking": "1.1.2",
     "@projectcaluma/ember-testing": "workspace:*",
@@ -68,11 +68,11 @@
     "ember-try": "4.0.0",
     "loader.js": "4.7.0",
     "miragejs": "0.1.48",
-    "qunit": "2.24.1",
+    "qunit": "2.25.0",
     "qunit-dom": "3.5.0",
-    "sass": "1.93.2",
-    "uikit": "3.23.13",
-    "webpack": "5.101.3"
+    "sass": "1.97.3",
+    "uikit": "3.25.6",
+    "webpack": "5.104.1"
   },
   "peerDependencies": {
     "ember-engines": "^0.11.0",
