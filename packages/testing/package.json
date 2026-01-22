@@ -32,7 +32,7 @@
     "miragejs": "^0.1.48"
   },
   "devDependencies": {
-    "@ember/optional-features": "2.2.0",
+    "@ember/optional-features": "2.3.0",
     "@ember/test-helpers": "4.0.4",
     "@embroider/test-setup": "4.0.0",
     "@glimmer/component": "1.1.2",
@@ -52,9 +52,9 @@
     "ember-try": "4.0.0",
     "graphql-tag": "2.12.6",
     "loader.js": "4.7.0",
-    "qunit": "2.24.1",
+    "qunit": "2.25.0",
     "qunit-dom": "3.5.0",
-    "webpack": "5.101.3"
+    "webpack": "5.104.1"
   },
   "peerDependencies": {
     "ember-source": ">= 4.0.0"

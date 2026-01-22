@@ -58,10 +58,10 @@
     "docs app) but not as direct dependency of the package."
   ],
   "devDependencies": {
-    "@ember/optional-features": "2.2.0",
+    "@ember/optional-features": "2.3.0",
     "@ember/test-helpers": "4.0.4",
     "@embroider/test-setup": "4.0.0",
-    "@faker-js/faker": "10.0.0",
+    "@faker-js/faker": "10.2.0",
     "@glimmer/component": "1.1.2",
     "@glimmer/tracking": "1.1.2",
     "@projectcaluma/ember-testing": "workspace:*",
@@ -84,10 +84,10 @@
     "ember-try": "4.0.0",
     "loader.js": "4.7.0",
     "miragejs": "0.1.48",
-    "qunit": "2.24.1",
+    "qunit": "2.25.0",
     "qunit-dom": "3.5.0",
-    "sinon": "21.0.0",
-    "webpack": "5.101.3"
+    "sinon": "21.0.1",
+    "webpack": "5.104.1"
   },
   "peerDependencies": {
     "ember-engines": "^0.11.0",
