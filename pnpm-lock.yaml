@@ -4,141 +4,641 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  dev-deps:
+    '@adfinis/eslint-config':
+      specifier: 3.0.2
+      version: 3.0.2
+    '@babel/eslint-parser':
+      specifier: 7.28.6
+      version: 7.28.6
+    '@babel/plugin-proposal-decorators':
+      specifier: 7.28.6
+      version: 7.28.6
+    '@commitlint/cli':
+      specifier: 20.3.1
+      version: 20.3.1
+    '@commitlint/config-conventional':
+      specifier: 20.3.1
+      version: 20.3.1
+    '@ember/optional-features':
+      specifier: 2.3.0
+      version: 2.3.0
+    '@ember/test-helpers':
+      specifier: 4.0.4
+      version: 4.0.4
+    '@embroider/test-setup':
+      specifier: 4.0.0
+      version: 4.0.0
+    '@eslint/js':
+      specifier: 9.39.2
+      version: 9.39.2
+    '@glimmer/component':
+      specifier: 1.1.2
+      version: 1.1.2
+    '@glimmer/tracking':
+      specifier: 1.1.2
+      version: 1.1.2
+    '@semantic-release/commit-analyzer':
+      specifier: 13.0.1
+      version: 13.0.1
+    '@semantic-release/exec':
+      specifier: 7.1.0
+      version: 7.1.0
+    '@semantic-release/git':
+      specifier: 10.0.1
+      version: 10.0.1
+    '@semantic-release/github':
+      specifier: 12.0.2
+      version: 12.0.2
+    '@semantic-release/release-notes-generator':
+      specifier: 14.1.0
+      version: 14.1.0
+    broccoli-asset-rev:
+      specifier: 3.0.0
+      version: 3.0.0
+    concurrently:
+      specifier: 9.2.1
+      version: 9.2.1
+    ember-cli:
+      specifier: 6.1.0
+      version: 6.1.0
+    ember-cli-addon-docs:
+      specifier: 10.1.0
+      version: 10.1.0
+    ember-cli-clean-css:
+      specifier: 3.0.0
+      version: 3.0.0
+    ember-cli-code-coverage:
+      specifier: 3.1.0
+      version: 3.1.0
+    ember-cli-dependency-checker:
+      specifier: 3.3.3
+      version: 3.3.3
+    ember-cli-deploy:
+      specifier: 2.0.0
+      version: 2.0.0
+    ember-cli-deploy-build:
+      specifier: 3.0.0
+      version: 3.0.0
+    ember-cli-deploy-git:
+      specifier: 1.3.4
+      version: 1.3.4
+    ember-cli-deploy-git-ci:
+      specifier: 1.0.1
+      version: 1.0.1
+    ember-cli-inject-live-reload:
+      specifier: 2.1.0
+      version: 2.1.0
+    ember-cli-sass:
+      specifier: 11.0.1
+      version: 11.0.1
+    ember-cli-sri:
+      specifier: 2.1.1
+      version: 2.1.1
+    ember-cli-terser:
+      specifier: 4.0.2
+      version: 4.0.2
+    ember-data:
+      specifier: 5.7.0
+      version: 5.7.0
+    ember-disable-prototype-extensions:
+      specifier: 1.1.3
+      version: 1.1.3
+    ember-engines:
+      specifier: 0.12.0
+      version: 0.12.0
+    ember-modifier:
+      specifier: 4.2.2
+      version: 4.2.2
+    ember-qunit:
+      specifier: 9.0.4
+      version: 9.0.4
+    ember-sinon-qunit:
+      specifier: 7.5.0
+      version: 7.5.0
+    ember-source:
+      specifier: 6.1.0
+      version: 6.1.0
+    ember-source-channel-url:
+      specifier: 3.0.0
+      version: 3.0.0
+    ember-template-lint:
+      specifier: 7.9.3
+      version: 7.9.3
+    ember-try:
+      specifier: 4.0.0
+      version: 4.0.0
+    eslint:
+      specifier: 9.39.2
+      version: 9.39.2
+    eslint-config-prettier:
+      specifier: 10.1.8
+      version: 10.1.8
+    eslint-plugin-ember:
+      specifier: 12.7.5
+      version: 12.7.5
+    eslint-plugin-import:
+      specifier: 2.32.0
+      version: 2.32.0
+    eslint-plugin-n:
+      specifier: 17.23.2
+      version: 17.23.2
+    eslint-plugin-prettier:
+      specifier: 5.5.5
+      version: 5.5.5
+    eslint-plugin-qunit:
+      specifier: 8.2.5
+      version: 8.2.5
+    get-graphql-schema:
+      specifier: 2.1.2
+      version: 2.1.2
+    glob:
+      specifier: 13.0.0
+      version: 13.0.0
+    globals:
+      specifier: 17.0.0
+      version: 17.0.0
+    husky:
+      specifier: 9.1.7
+      version: 9.1.7
+    lint-staged:
+      specifier: 16.2.7
+      version: 16.2.7
+    loader.js:
+      specifier: 4.7.0
+      version: 4.7.0
+    node-fetch:
+      specifier: 3.3.2
+      version: 3.3.2
+    prettier:
+      specifier: 3.8.1
+      version: 3.8.1
+    prettier-plugin-ember-template-tag:
+      specifier: 2.1.2
+      version: 2.1.2
+    qunit:
+      specifier: 2.25.0
+      version: 2.25.0
+    qunit-dom:
+      specifier: 3.5.0
+      version: 3.5.0
+    sass:
+      specifier: 1.97.3
+      version: 1.97.3
+    semantic-release:
+      specifier: 25.0.2
+      version: 25.0.2
+    sinon:
+      specifier: 21.0.1
+      version: 21.0.1
+    stylelint:
+      specifier: 17.0.0
+      version: 17.0.0
+    stylelint-config-standard-scss:
+      specifier: 17.0.0
+      version: 17.0.0
+    stylelint-prettier:
+      specifier: 5.0.3
+      version: 5.0.3
+    stylelint-scss:
+      specifier: 7.0.0
+      version: 7.0.0
+    uuid:
+      specifier: 13.0.0
+      version: 13.0.0
+    webpack:
+      specifier: 5.104.1
+      version: 5.104.1
+  prod-deps:
+    '@apollo/client':
+      specifier: ^3.12.5
+      version: 3.14.0
+    '@babel/core':
+      specifier: ^7.26.0
+      version: 7.28.6
+    '@ember/render-modifiers':
+      specifier: ^2.1.0 || ^3.0.0
+      version: 3.0.0
+    '@ember/string':
+      specifier: ^3.1.1 || ^4.0.0
+      version: 4.0.1
+    '@ember/test-waiters':
+      specifier: ^4.1.1
+      version: 4.1.1
+    '@embroider/macros':
+      specifier: ^1.16.10
+      version: 1.19.6
+    '@embroider/util':
+      specifier: ^1.13.2
+      version: 1.13.5
+    '@faker-js/faker':
+      specifier: ^9.4.0 || ^10.0.0
+      version: 10.2.0
+    broccoli-funnel:
+      specifier: ^3.0.8
+      version: 3.0.8
+    broccoli-merge-trees:
+      specifier: ^4.2.0
+      version: 4.2.0
+    codejar:
+      specifier: ^4.3.0
+      version: 4.3.0
+    ember-apollo-client:
+      specifier: ^5.0.0
+      version: 5.0.0
+    ember-auto-import:
+      specifier: ^2.10.0
+      version: 2.12.0
+    ember-autoresize-modifier:
+      specifier: ^0.7.0 || ^0.8.0
+      version: 0.8.0
+    ember-basic-dropdown:
+      specifier: ^8.4.0
+      version: 8.11.0
+    ember-can:
+      specifier: ^7.0.0
+      version: 7.0.0
+    ember-changeset:
+      specifier: ^4.1.2
+      version: 4.2.0
+    ember-changeset-validations:
+      specifier: ^4.1.1
+      version: 4.2.0
+    ember-cli-babel:
+      specifier: ^8.2.0
+      version: 8.2.0
+    ember-cli-htmlbars:
+      specifier: ^6.3.0
+      version: 6.3.0
+    ember-cli-mirage:
+      specifier: ^3.0.4
+      version: 3.0.4
+    ember-cli-showdown:
+      specifier: ^9.0.1
+      version: 9.0.2
+    ember-composable-helpers:
+      specifier: ^5.0.0
+      version: 5.0.0
+    ember-concurrency:
+      specifier: ^4.0.2 || ^5.1.0
+      version: 5.1.0
+    ember-engines-router-service:
+      specifier: ^0.6.0
+      version: 0.6.0
+    ember-flatpickr:
+      specifier: ^8.0.1
+      version: 8.0.1
+    ember-in-viewport:
+      specifier: ^4.1.0
+      version: 4.1.0
+    ember-inflector:
+      specifier: ^4.0.3 || ^5.0.1
+      version: 5.0.2
+    ember-intl:
+      specifier: ^7.1.1
+      version: 7.4.1
+    ember-load-initializers:
+      specifier: ^2.1.2 || ^3.0.1
+      version: 3.0.1
+    ember-math-helpers:
+      specifier: ^4.2.1 || ^5.0.0
+      version: 5.0.0
+    ember-modify-based-class-resource:
+      specifier: ^1.1.1
+      version: 1.1.2
+    ember-power-select:
+      specifier: ^8.6.2
+      version: 8.12.1
+    ember-resolver:
+      specifier: ^12.0.1 || ^13.1.0
+      version: 13.1.1
+    ember-sortable:
+      specifier: ^5.2.3
+      version: 5.3.3
+    ember-svg-jar:
+      specifier: ^2.6.0
+      version: 2.7.1
+    ember-template-imports:
+      specifier: ^4.2.0
+      version: 4.4.0
+    ember-test-selectors:
+      specifier: ^7.0.0
+      version: 7.1.0
+    ember-truth-helpers:
+      specifier: ^4.0.3
+      version: 4.0.3
+    ember-uikit:
+      specifier: ^9.1.3
+      version: 9.2.1
+    ember-validated-form:
+      specifier: ^7.0.1
+      version: 7.0.1
+    ember-validators:
+      specifier: ^4.1.2
+      version: 4.1.2
+    flatpickr:
+      specifier: ^4.6.13
+      version: 4.6.13
+    graphql:
+      specifier: ^15.10.1
+      version: 15.10.1
+    graphql-iso-date:
+      specifier: ^3.6.1
+      version: 3.6.1
+    graphql-tag:
+      specifier: ^2.12.6
+      version: 2.12.6
+    graphql-tools:
+      specifier: ^4.0.8
+      version: 4.0.8
+    highlight.js:
+      specifier: ^11.11.1
+      version: 11.11.1
+    highlightjs-jexl:
+      specifier: ^0.0.5
+      version: 0.0.5
+    jexl:
+      specifier: ^2.3.0
+      version: 2.3.0
+    lodash.clonedeep:
+      specifier: ^4.5.0
+      version: 4.5.0
+    lodash.isequal:
+      specifier: ^4.5.0
+      version: 4.5.0
+    lodash.merge:
+      specifier: ^4.6.2
+      version: 4.6.2
+    luxon:
+      specifier: ^3.5.0
+      version: 3.7.2
+    miragejs:
+      specifier: ^0.1.48
+      version: 0.1.48
+    reactiveweb:
+      specifier: ^1.3.0
+      version: 1.9.1
+    slugify:
+      specifier: ^1.6.6
+      version: 1.6.6
+    tracked-built-ins:
+      specifier: ^3.4.0 || ^4.0.0
+      version: 4.1.0
+    tracked-toolbox:
+      specifier: ^2.0.0
+      version: 2.2.0
+    uikit:
+      specifier: ^3.22.0
+      version: 3.25.6
+    xlsx:
+      specifier: https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz
+      version: 0.20.2
+  prod-deps-locked:
+    '@babel/core':
+      specifier: 7.28.6
+      version: 7.28.6
+    '@ember/render-modifiers':
+      specifier: 3.0.0
+      version: 3.0.0
+    '@ember/string':
+      specifier: 4.0.1
+      version: 4.0.1
+    '@embroider/macros':
+      specifier: 1.19.6
+      version: 1.19.6
+    '@embroider/util':
+      specifier: 1.13.5
+      version: 1.13.5
+    '@faker-js/faker':
+      specifier: 10.2.0
+      version: 10.2.0
+    ember-apollo-client:
+      specifier: 5.0.0
+      version: 5.0.0
+    ember-auto-import:
+      specifier: 2.12.0
+      version: 2.12.0
+    ember-autoresize-modifier:
+      specifier: 0.8.0
+      version: 0.8.0
+    ember-basic-dropdown:
+      specifier: 8.11.0
+      version: 8.11.0
+    ember-can:
+      specifier: 7.0.0
+      version: 7.0.0
+    ember-changeset:
+      specifier: 4.2.0
+      version: 4.2.0
+    ember-changeset-validations:
+      specifier: 4.2.0
+      version: 4.2.0
+    ember-cli-babel:
+      specifier: 8.2.0
+      version: 8.2.0
+    ember-cli-htmlbars:
+      specifier: 6.3.0
+      version: 6.3.0
+    ember-cli-mirage:
+      specifier: 3.0.4
+      version: 3.0.4
+    ember-cli-showdown:
+      specifier: 9.0.2
+      version: 9.0.2
+    ember-composable-helpers:
+      specifier: 5.0.0
+      version: 5.0.0
+    ember-engines-router-service:
+      specifier: 0.6.0
+      version: 0.6.0
+    ember-flatpickr:
+      specifier: 8.0.1
+      version: 8.0.1
+    ember-intl:
+      specifier: 7.4.1
+      version: 7.4.1
+    ember-load-initializers:
+      specifier: 3.0.1
+      version: 3.0.1
+    ember-math-helpers:
+      specifier: 5.0.0
+      version: 5.0.0
+    ember-power-select:
+      specifier: 8.12.1
+      version: 8.12.1
+    ember-resolver:
+      specifier: 13.1.1
+      version: 13.1.1
+    ember-sortable:
+      specifier: 5.3.3
+      version: 5.3.3
+    ember-template-imports:
+      specifier: 4.4.0
+      version: 4.4.0
+    ember-truth-helpers:
+      specifier: 4.0.3
+      version: 4.0.3
+    ember-uikit:
+      specifier: 9.2.1
+      version: 9.2.1
+    ember-validated-form:
+      specifier: 7.0.1
+      version: 7.0.1
+    flatpickr:
+      specifier: 4.6.13
+      version: 4.6.13
+    graphql:
+      specifier: 15.10.1
+      version: 15.10.1
+    graphql-tag:
+      specifier: 2.12.6
+      version: 2.12.6
+    miragejs:
+      specifier: 0.1.48
+      version: 0.1.48
+    tracked-built-ins:
+      specifier: 4.1.0
+      version: 4.1.0
+    uikit:
+      specifier: 3.25.6
+      version: 3.25.6
+
 importers:
 
   .:
     devDependencies:
       '@adfinis/eslint-config':
-        specifier: 3.0.2
+        specifier: catalog:dev-deps
         version: 3.0.2(@babel/core@7.28.6)(@babel/eslint-parser@7.28.6(@babel/core@7.28.6)(eslint@9.39.2(jiti@2.6.1)))(@babel/plugin-proposal-decorators@7.28.6(@babel/core@7.28.6))(eslint-config-prettier@10.1.8(eslint@9.39.2(jiti@2.6.1)))(eslint-plugin-ember@12.7.5(@babel/core@7.28.6)(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2))(eslint-plugin-import@2.32.0(eslint@9.39.2(jiti@2.6.1)))(eslint-plugin-n@17.23.2(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2))(eslint-plugin-prettier@5.5.5(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@9.39.2(jiti@2.6.1)))(eslint@9.39.2(jiti@2.6.1))(prettier@3.8.1))(eslint-plugin-qunit@8.2.5(eslint@9.39.2(jiti@2.6.1)))(eslint@9.39.2(jiti@2.6.1))(prettier@3.8.1)
       '@babel/core':
-        specifier: 7.28.6
+        specifier: catalog:prod-deps-locked
         version: 7.28.6
       '@babel/eslint-parser':
-        specifier: 7.28.6
+        specifier: catalog:dev-deps
         version: 7.28.6(@babel/core@7.28.6)(eslint@9.39.2(jiti@2.6.1))
       '@babel/plugin-proposal-decorators':
-        specifier: 7.28.6
+        specifier: catalog:dev-deps
         version: 7.28.6(@babel/core@7.28.6)
       '@commitlint/cli':
-        specifier: 20.3.1
+        specifier: catalog:dev-deps
         version: 20.3.1(@types/node@25.0.10)(typescript@5.9.2)
       '@commitlint/config-conventional':
-        specifier: 20.3.1
+        specifier: catalog:dev-deps
         version: 20.3.1
       '@eslint/js':
-        specifier: 9.39.2
+        specifier: catalog:dev-deps
         version: 9.39.2
       '@semantic-release/commit-analyzer':
-        specifier: 13.0.1
+        specifier: catalog:dev-deps
         version: 13.0.1(semantic-release@25.0.2(typescript@5.9.2))
       '@semantic-release/exec':
-        specifier: 7.1.0
+        specifier: catalog:dev-deps
         version: 7.1.0(semantic-release@25.0.2(typescript@5.9.2))
       '@semantic-release/git':
-        specifier: 10.0.1
+        specifier: catalog:dev-deps
         version: 10.0.1(semantic-release@25.0.2(typescript@5.9.2))
       '@semantic-release/github':
-        specifier: 12.0.2
+        specifier: catalog:dev-deps
         version: 12.0.2(semantic-release@25.0.2(typescript@5.9.2))
       '@semantic-release/release-notes-generator':
-        specifier: 14.1.0
+        specifier: catalog:dev-deps
         version: 14.1.0(semantic-release@25.0.2(typescript@5.9.2))
       concurrently:
-        specifier: 9.2.1
+        specifier: catalog:dev-deps
         version: 9.2.1
       ember-template-lint:
-        specifier: 7.9.3
+        specifier: catalog:dev-deps
         version: 7.9.3
       eslint:
-        specifier: 9.39.2
+        specifier: catalog:dev-deps
         version: 9.39.2(jiti@2.6.1)
       eslint-config-prettier:
-        specifier: 10.1.8
+        specifier: catalog:dev-deps
         version: 10.1.8(eslint@9.39.2(jiti@2.6.1))
       eslint-plugin-ember:
-        specifier: 12.7.5
+        specifier: catalog:dev-deps
         version: 12.7.5(@babel/core@7.28.6)(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2)
       eslint-plugin-import:
-        specifier: 2.32.0
+        specifier: catalog:dev-deps
         version: 2.32.0(eslint@9.39.2(jiti@2.6.1))
       eslint-plugin-n:
-        specifier: 17.23.2
+        specifier: catalog:dev-deps
         version: 17.23.2(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.2)
       eslint-plugin-prettier:
-        specifier: 5.5.5
+        specifier: catalog:dev-deps
         version: 5.5.5(@types/eslint@9.6.1)(eslint-config-prettier@10.1.8(eslint@9.39.2(jiti@2.6.1)))(eslint@9.39.2(jiti@2.6.1))(prettier@3.8.1)
       eslint-plugin-qunit:
-        specifier: 8.2.5
+        specifier: catalog:dev-deps
         version: 8.2.5(eslint@9.39.2(jiti@2.6.1))
       get-graphql-schema:
-        specifier: 2.1.2
+        specifier: catalog:dev-deps
         version: 2.1.2
       glob:
-        specifier: 13.0.0
+        specifier: catalog:dev-deps
         version: 13.0.0
       globals:
-        specifier: 17.0.0
+        specifier: catalog:dev-deps
         version: 17.0.0
       graphql:
-        specifier: 15.10.1
+        specifier: catalog:prod-deps-locked
         version: 15.10.1
       husky:
-        specifier: 9.1.7
+        specifier: catalog:dev-deps
         version: 9.1.7
       lint-staged:
-        specifier: 16.2.7
+        specifier: catalog:dev-deps
         version: 16.2.7
       node-fetch:
-        specifier: 3.3.2
+        specifier: catalog:dev-deps
         version: 3.3.2
       prettier:
-        specifier: 3.8.1
+        specifier: catalog:dev-deps
         version: 3.8.1
       prettier-plugin-ember-template-tag:
-        specifier: 2.1.2
+        specifier: catalog:dev-deps
         version: 2.1.2(prettier@3.8.1)
       semantic-release:
-        specifier: 25.0.2
+        specifier: catalog:dev-deps
         version: 25.0.2(typescript@5.9.2)
       stylelint:
-        specifier: 17.0.0
+        specifier: catalog:dev-deps
         version: 17.0.0(typescript@5.9.2)
       stylelint-config-standard-scss:
-        specifier: 17.0.0
+        specifier: catalog:dev-deps
         version: 17.0.0(postcss@8.5.6)(stylelint@17.0.0(typescript@5.9.2))
       stylelint-prettier:
-        specifier: 5.0.3
+        specifier: catalog:dev-deps
         version: 5.0.3(prettier@3.8.1)(stylelint@17.0.0(typescript@5.9.2))
       stylelint-scss:
-        specifier: 7.0.0
+        specifier: catalog:dev-deps
         version: 7.0.0(stylelint@17.0.0(typescript@5.9.2))
 
   packages/-ember-caluma:
     devDependencies:
       '@babel/core':
-        specifier: 7.28.6
+        specifier: catalog:prod-deps-locked
         version: 7.28.6
       '@ember/optional-features':
-        specifier: 2.3.0
+        specifier: catalog:dev-deps
         version: 2.3.0
       '@ember/string':
-        specifier: 4.0.1
+        specifier: catalog:prod-deps-locked
         version: 4.0.1
       '@ember/test-helpers':
-        specifier: 4.0.4
+        specifier: catalog:dev-deps
         version: 4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       '@embroider/macros':
-        specifier: 1.19.6
+        specifier: catalog:prod-deps-locked
         version: 1.19.6(@glint/template@1.5.2)
       '@faker-js/faker':
-        specifier: 10.2.0
+        specifier: catalog:prod-deps-locked
         version: 10.2.0
       '@glimmer/component':
-        specifier: 1.1.2
+        specifier: catalog:dev-deps
         version: 1.1.2(@babel/core@7.28.6)
       '@glimmer/tracking':
-        specifier: 1.1.2
+        specifier: catalog:dev-deps
         version: 1.1.2
       '@projectcaluma/ember-analytics':
         specifier: workspace:*
@@ -162,226 +662,226 @@ importers:
         specifier: workspace:*
         version: link:../workflow
       broccoli-asset-rev:
-        specifier: 3.0.0
+        specifier: catalog:dev-deps
         version: 3.0.0
       ember-apollo-client:
-        specifier: 5.0.0
+        specifier: catalog:prod-deps-locked
         version: 5.0.0(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.104.1)
       ember-auto-import:
-        specifier: 2.12.0
+        specifier: catalog:prod-deps-locked
         version: 2.12.0(@glint/template@1.5.2)(webpack@5.104.1)
       ember-basic-dropdown:
-        specifier: 8.11.0
+        specifier: catalog:prod-deps-locked
         version: 8.11.0(@babel/core@7.28.6)(@ember/string@4.0.1)(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-can:
-        specifier: 7.0.0
+        specifier: catalog:prod-deps-locked
         version: 7.0.0(@babel/core@7.28.6)(@ember/string@4.0.1)(ember-inflector@5.0.2(@babel/core@7.28.6))(ember-resolver@13.1.1)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-changeset:
-        specifier: 4.2.0
+        specifier: catalog:prod-deps-locked
         version: 4.2.0(@glint/template@1.5.2)(ember-data@5.7.0(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glint/template@1.5.2)(ember-inflector@5.0.2(@babel/core@7.28.6))(qunit@2.25.0))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(webpack@5.104.1)
       ember-changeset-validations:
-        specifier: 4.2.0
+        specifier: catalog:prod-deps-locked
         version: 4.2.0(@ember/string@4.0.1)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(webpack@5.104.1)
       ember-cli:
-        specifier: 6.1.0
+        specifier: catalog:dev-deps
         version: 6.1.0(@types/node@25.0.10)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)
       ember-cli-addon-docs:
-        specifier: 10.1.0
+        specifier: catalog:dev-deps
         version: 10.1.0(2ca661e3306c9716836a7d1a94914ad0)
       ember-cli-babel:
-        specifier: 8.2.0
+        specifier: catalog:prod-deps-locked
         version: 8.2.0(@babel/core@7.28.6)
       ember-cli-clean-css:
-        specifier: 3.0.0
+        specifier: catalog:dev-deps
         version: 3.0.0
       ember-cli-dependency-checker:
-        specifier: 3.3.3
+        specifier: catalog:dev-deps
         version: 3.3.3(ember-cli@6.1.0(@types/node@25.0.10)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7))
       ember-cli-deploy:
-        specifier: 2.0.0
+        specifier: catalog:dev-deps
         version: 2.0.0
       ember-cli-deploy-build:
-        specifier: 3.0.0
+        specifier: catalog:dev-deps
         version: 3.0.0(@babel/core@7.28.6)(eslint@9.39.2(jiti@2.6.1))
       ember-cli-deploy-git:
-        specifier: 1.3.4
+        specifier: catalog:dev-deps
         version: 1.3.4(@babel/core@7.28.6)
       ember-cli-deploy-git-ci:
-        specifier: 1.0.1
+        specifier: catalog:dev-deps
         version: 1.0.1
       ember-cli-htmlbars:
-        specifier: 6.3.0
+        specifier: catalog:prod-deps-locked
         version: 6.3.0
       ember-cli-inject-live-reload:
-        specifier: 2.1.0
+        specifier: catalog:dev-deps
         version: 2.1.0
       ember-cli-mirage:
-        specifier: 3.0.4
+        specifier: catalog:prod-deps-locked
         version: 3.0.4(@ember-data/model@5.7.0(@glint/template@1.5.2))(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glint/template@1.5.2)(ember-data@5.7.0(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glint/template@1.5.2)(ember-inflector@5.0.2(@babel/core@7.28.6))(qunit@2.25.0))(ember-qunit@9.0.4(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glint/template@1.5.2)(qunit@2.25.0))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(miragejs@0.1.48)(webpack@5.104.1)
       ember-cli-sass:
-        specifier: 11.0.1
+        specifier: catalog:dev-deps
         version: 11.0.1
       ember-cli-showdown:
-        specifier: 9.0.2
+        specifier: catalog:prod-deps-locked
         version: 9.0.2(@glint/template@1.5.2)(webpack@5.104.1)
       ember-cli-sri:
-        specifier: 2.1.1
+        specifier: catalog:dev-deps
         version: 2.1.1
       ember-cli-terser:
-        specifier: 4.0.2
+        specifier: catalog:dev-deps
         version: 4.0.2
       ember-composable-helpers:
-        specifier: 5.0.0
+        specifier: catalog:prod-deps-locked
         version: 5.0.0
       ember-data:
-        specifier: 5.7.0
+        specifier: catalog:dev-deps
         version: 5.7.0(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glint/template@1.5.2)(ember-inflector@5.0.2(@babel/core@7.28.6))(qunit@2.25.0)
       ember-disable-prototype-extensions:
-        specifier: 1.1.3
+        specifier: catalog:dev-deps
         version: 1.1.3
       ember-engines:
-        specifier: 0.12.0
+        specifier: catalog:dev-deps
         version: 0.12.0(@glint/template@1.5.2)(ember-engines-router-service@0.6.0(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-engines-router-service:
-        specifier: 0.6.0
+        specifier: catalog:prod-deps-locked
         version: 0.6.0(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-flatpickr:
-        specifier: 8.0.1
+        specifier: catalog:prod-deps-locked
         version: 8.0.1(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(flatpickr@4.6.13)(webpack@5.104.1)
       ember-intl:
-        specifier: 7.4.1
+        specifier: catalog:prod-deps-locked
         version: 7.4.1(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glint/template@1.5.2)(typescript@5.9.2)(webpack@5.104.1)
       ember-load-initializers:
-        specifier: 3.0.1
+        specifier: catalog:prod-deps-locked
         version: 3.0.1(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-math-helpers:
-        specifier: 5.0.0
+        specifier: catalog:prod-deps-locked
         version: 5.0.0(@babel/core@7.28.6)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-modifier:
-        specifier: 4.2.2
+        specifier: catalog:dev-deps
         version: 4.2.2(@babel/core@7.28.6)
       ember-power-select:
-        specifier: 8.12.1
+        specifier: catalog:prod-deps-locked
         version: 8.12.1(@babel/core@7.28.6)(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(ember-basic-dropdown@8.11.0(@babel/core@7.28.6)(@ember/string@4.0.1)(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(ember-concurrency@5.1.0(@babel/core@7.28.6)(@glint/template@1.5.2))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-resolver:
-        specifier: 13.1.1
+        specifier: catalog:prod-deps-locked
         version: 13.1.1
       ember-sortable:
-        specifier: 5.3.3
+        specifier: catalog:prod-deps-locked
         version: 5.3.3(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glint/template@1.5.2)(ember-modifier@4.2.2(@babel/core@7.28.6))
       ember-source:
-        specifier: 6.1.0
+        specifier: catalog:dev-deps
         version: 6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)
       ember-template-imports:
-        specifier: 4.4.0
+        specifier: catalog:prod-deps-locked
         version: 4.4.0
       ember-truth-helpers:
-        specifier: 4.0.3
+        specifier: catalog:prod-deps-locked
         version: 4.0.3(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-uikit:
-        specifier: 9.2.1
+        specifier: catalog:prod-deps-locked
         version: 9.2.1(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(webpack@5.104.1)
       ember-validated-form:
-        specifier: 7.0.1
+        specifier: catalog:prod-deps-locked
         version: 7.0.1(@ember/string@4.0.1)(@glint/template@1.5.2)(ember-data@5.7.0(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glint/template@1.5.2)(ember-inflector@5.0.2(@babel/core@7.28.6))(qunit@2.25.0))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(webpack@5.104.1)
       flatpickr:
-        specifier: 4.6.13
+        specifier: catalog:prod-deps-locked
         version: 4.6.13
       graphql:
-        specifier: 15.10.1
+        specifier: catalog:prod-deps-locked
         version: 15.10.1
       loader.js:
-        specifier: 4.7.0
+        specifier: catalog:dev-deps
         version: 4.7.0
       miragejs:
-        specifier: 0.1.48
+        specifier: catalog:prod-deps-locked
         version: 0.1.48
       sass:
-        specifier: 1.97.3
+        specifier: catalog:dev-deps
         version: 1.97.3
       tracked-built-ins:
-        specifier: 4.1.0
+        specifier: catalog:prod-deps-locked
         version: 4.1.0(@babel/core@7.28.6)
       uikit:
-        specifier: 3.25.6
+        specifier: catalog:prod-deps-locked
         version: 3.25.6
       webpack:
-        specifier: 5.104.1
+        specifier: catalog:dev-deps
         version: 5.104.1
 
   packages/analytics:
     dependencies:
       '@babel/core':
-        specifier: ^7.26.0
+        specifier: catalog:prod-deps
         version: 7.28.6
       '@embroider/macros':
-        specifier: ^1.16.10
+        specifier: catalog:prod-deps
         version: 1.19.6(@glint/template@1.5.2)
       '@projectcaluma/ember-core':
         specifier: workspace:^
         version: link:../core
       ember-apollo-client:
-        specifier: ^5.0.0
+        specifier: catalog:prod-deps
         version: 5.0.0(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.104.1)
       ember-auto-import:
-        specifier: ^2.10.0
+        specifier: catalog:prod-deps
         version: 2.12.0(@glint/template@1.5.2)(webpack@5.104.1)
       ember-basic-dropdown:
-        specifier: ^8.4.0
+        specifier: catalog:prod-deps
         version: 8.11.0(@babel/core@7.28.6)(@ember/string@4.0.1)(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-changeset:
-        specifier: ^4.1.2
+        specifier: catalog:prod-deps
         version: 4.2.0(@glint/template@1.5.2)(ember-data@5.7.0(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glint/template@1.5.2)(ember-inflector@5.0.2(@babel/core@7.28.6))(qunit@2.25.0))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(webpack@5.104.1)
       ember-changeset-validations:
-        specifier: ^4.1.1
+        specifier: catalog:prod-deps
         version: 4.2.0(@ember/string@4.0.1)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(webpack@5.104.1)
       ember-cli-babel:
-        specifier: ^8.2.0
+        specifier: catalog:prod-deps
         version: 8.2.0(@babel/core@7.28.6)
       ember-cli-htmlbars:
-        specifier: ^6.3.0
+        specifier: catalog:prod-deps
         version: 6.3.0
       ember-composable-helpers:
-        specifier: ^5.0.0
+        specifier: catalog:prod-deps
         version: 5.0.0
       ember-concurrency:
-        specifier: ^4.0.2 || ^5.1.0
+        specifier: catalog:prod-deps
         version: 5.1.0(@babel/core@7.28.6)(@glint/template@1.5.2)
       ember-engines-router-service:
-        specifier: ^0.6.0
+        specifier: catalog:prod-deps
         version: 0.6.0(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-intl:
-        specifier: ^7.1.1
+        specifier: catalog:prod-deps
         version: 7.4.1(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glint/template@1.5.2)(typescript@5.9.2)(webpack@5.104.1)
       ember-load-initializers:
-        specifier: ^2.1.2 || ^3.0.1
+        specifier: catalog:prod-deps
         version: 3.0.1(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-power-select:
-        specifier: ^8.6.2
+        specifier: catalog:prod-deps
         version: 8.12.1(@babel/core@7.28.6)(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(ember-basic-dropdown@8.11.0(@babel/core@7.28.6)(@ember/string@4.0.1)(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(ember-concurrency@5.1.0(@babel/core@7.28.6)(@glint/template@1.5.2))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-resolver:
-        specifier: ^12.0.1 || ^13.1.0
+        specifier: catalog:prod-deps
         version: 13.1.1
       ember-sortable:
-        specifier: ^5.2.3
+        specifier: catalog:prod-deps
         version: 5.3.3(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glint/template@1.5.2)(ember-modifier@4.2.2(@babel/core@7.28.6))
       ember-template-imports:
-        specifier: ^4.2.0
+        specifier: catalog:prod-deps
         version: 4.4.0
       ember-uikit:
-        specifier: ^9.1.3
+        specifier: catalog:prod-deps
         version: 9.2.1(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(webpack@5.104.1)
       ember-validated-form:
-        specifier: ^7.0.1
+        specifier: catalog:prod-deps
         version: 7.0.1(@ember/string@4.0.1)(@glint/template@1.5.2)(ember-data@5.7.0(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glint/template@1.5.2)(ember-inflector@5.0.2(@babel/core@7.28.6))(qunit@2.25.0))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(webpack@5.104.1)
       graphql:
-        specifier: ^15.10.1
+        specifier: catalog:prod-deps
         version: 15.10.1
       reactiveweb:
-        specifier: ^1.3.0
+        specifier: catalog:prod-deps
         version: 1.9.1(@babel/core@7.28.6)(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)
       xlsx:
-        specifier: https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz
+        specifier: catalog:prod-deps
         version: https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz
     dependenciesMeta:
       '@projectcaluma/ember-core':
@@ -390,269 +890,269 @@ importers:
         injected: true
     devDependencies:
       '@ember/optional-features':
-        specifier: 2.3.0
+        specifier: catalog:dev-deps
         version: 2.3.0
       '@ember/test-helpers':
-        specifier: 4.0.4
+        specifier: catalog:dev-deps
         version: 4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       '@embroider/test-setup':
-        specifier: 4.0.0
+        specifier: catalog:dev-deps
         version: 4.0.0
       '@faker-js/faker':
-        specifier: 10.2.0
+        specifier: catalog:prod-deps-locked
         version: 10.2.0
       '@glimmer/component':
-        specifier: 1.1.2
+        specifier: catalog:dev-deps
         version: 1.1.2(@babel/core@7.28.6)
       '@glimmer/tracking':
-        specifier: 1.1.2
+        specifier: catalog:dev-deps
         version: 1.1.2
       '@projectcaluma/ember-testing':
         specifier: workspace:*
         version: link:../testing
       broccoli-asset-rev:
-        specifier: 3.0.0
+        specifier: catalog:dev-deps
         version: 3.0.0
       ember-cli:
-        specifier: 6.1.0
+        specifier: catalog:dev-deps
         version: 6.1.0(@types/node@25.0.10)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)
       ember-cli-clean-css:
-        specifier: 3.0.0
+        specifier: catalog:dev-deps
         version: 3.0.0
       ember-cli-code-coverage:
-        specifier: 3.1.0
+        specifier: catalog:dev-deps
         version: 3.1.0
       ember-cli-dependency-checker:
-        specifier: 3.3.3
+        specifier: catalog:dev-deps
         version: 3.3.3(ember-cli@6.1.0(@types/node@25.0.10)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7))
       ember-cli-inject-live-reload:
-        specifier: 2.1.0
+        specifier: catalog:dev-deps
         version: 2.1.0
       ember-cli-mirage:
-        specifier: 3.0.4
+        specifier: catalog:prod-deps-locked
         version: 3.0.4(@ember-data/model@5.7.0(@glint/template@1.5.2))(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glint/template@1.5.2)(ember-data@5.7.0(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glint/template@1.5.2)(ember-inflector@5.0.2(@babel/core@7.28.6))(qunit@2.25.0))(ember-qunit@9.0.4(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glint/template@1.5.2)(qunit@2.25.0))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(miragejs@0.1.48)(webpack@5.104.1)
       ember-cli-sass:
-        specifier: 11.0.1
+        specifier: catalog:dev-deps
         version: 11.0.1
       ember-cli-sri:
-        specifier: 2.1.1
+        specifier: catalog:dev-deps
         version: 2.1.1
       ember-cli-terser:
-        specifier: 4.0.2
+        specifier: catalog:dev-deps
         version: 4.0.2
       ember-data:
-        specifier: 5.7.0
+        specifier: catalog:dev-deps
         version: 5.7.0(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glint/template@1.5.2)(ember-inflector@5.0.2(@babel/core@7.28.6))(qunit@2.25.0)
       ember-engines:
-        specifier: 0.12.0
+        specifier: catalog:dev-deps
         version: 0.12.0(@glint/template@1.5.2)(ember-engines-router-service@0.6.0(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-modifier:
-        specifier: 4.2.2
+        specifier: catalog:dev-deps
         version: 4.2.2(@babel/core@7.28.6)
       ember-qunit:
-        specifier: 9.0.4
+        specifier: catalog:dev-deps
         version: 9.0.4(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glint/template@1.5.2)(qunit@2.25.0)
       ember-source:
-        specifier: 6.1.0
+        specifier: catalog:dev-deps
         version: 6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)
       ember-source-channel-url:
-        specifier: 3.0.0
+        specifier: catalog:dev-deps
         version: 3.0.0
       ember-try:
-        specifier: 4.0.0
+        specifier: catalog:dev-deps
         version: 4.0.0
       loader.js:
-        specifier: 4.7.0
+        specifier: catalog:dev-deps
         version: 4.7.0
       qunit:
-        specifier: 2.25.0
+        specifier: catalog:dev-deps
         version: 2.25.0
       qunit-dom:
-        specifier: 3.5.0
+        specifier: catalog:dev-deps
         version: 3.5.0
       sass:
-        specifier: 1.97.3
+        specifier: catalog:dev-deps
         version: 1.97.3
       uikit:
-        specifier: 3.25.6
+        specifier: catalog:prod-deps-locked
         version: 3.25.6
       webpack:
-        specifier: 5.104.1
+        specifier: catalog:dev-deps
         version: 5.104.1
 
   packages/core:
     dependencies:
       '@apollo/client':
-        specifier: ^3.12.5
+        specifier: catalog:prod-deps
         version: 3.14.0(graphql@15.10.1)
       '@babel/core':
-        specifier: ^7.26.0
+        specifier: catalog:prod-deps
         version: 7.28.6
       '@ember/string':
-        specifier: ^3.1.1 || ^4.0.0
+        specifier: catalog:prod-deps
         version: 4.0.1
       '@embroider/macros':
-        specifier: ^1.16.10
+        specifier: catalog:prod-deps
         version: 1.19.6(@glint/template@1.5.2)
       ember-apollo-client:
-        specifier: ^5.0.0
+        specifier: catalog:prod-deps
         version: 5.0.0(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.104.1)
       ember-auto-import:
-        specifier: ^2.10.0
+        specifier: catalog:prod-deps
         version: 2.12.0(@glint/template@1.5.2)(webpack@5.104.1)
       ember-cli-babel:
-        specifier: ^8.2.0
+        specifier: catalog:prod-deps
         version: 8.2.0(@babel/core@7.28.6)
       ember-cli-htmlbars:
-        specifier: ^6.3.0
+        specifier: catalog:prod-deps
         version: 6.3.0
       ember-concurrency:
-        specifier: ^4.0.2 || ^5.1.0
+        specifier: catalog:prod-deps
         version: 5.1.0(@babel/core@7.28.6)(@glint/template@1.5.2)
       ember-data:
         specifier: '*'
         version: 5.7.0(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glint/template@1.5.2)(ember-inflector@5.0.2(@babel/core@7.28.6))(qunit@2.25.0)
       ember-inflector:
-        specifier: ^4.0.3 || ^5.0.1
+        specifier: catalog:prod-deps
         version: 5.0.2(@babel/core@7.28.6)
       ember-intl:
-        specifier: ^7.1.1
+        specifier: catalog:prod-deps
         version: 7.4.1(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glint/template@1.5.2)(typescript@5.9.2)(webpack@5.104.1)
       ember-modify-based-class-resource:
-        specifier: ^1.1.1
+        specifier: catalog:prod-deps
         version: 1.1.2(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(ember-resources@7.0.7(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2))
       ember-template-imports:
-        specifier: ^4.2.0
+        specifier: catalog:prod-deps
         version: 4.4.0
       ember-uikit:
-        specifier: ^9.1.3
+        specifier: catalog:prod-deps
         version: 9.2.1(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(webpack@5.104.1)
       graphql:
-        specifier: ^15.10.1
+        specifier: catalog:prod-deps
         version: 15.10.1
       graphql-tag:
-        specifier: ^2.12.6
+        specifier: catalog:prod-deps
         version: 2.12.6(graphql@15.10.1)
       jexl:
-        specifier: ^2.3.0
+        specifier: catalog:prod-deps
         version: 2.3.0
       lodash.clonedeep:
-        specifier: ^4.5.0
+        specifier: catalog:prod-deps
         version: 4.5.0
       slugify:
-        specifier: ^1.6.6
+        specifier: catalog:prod-deps
         version: 1.6.6
       tracked-built-ins:
-        specifier: ^3.4.0 || ^4.0.0
+        specifier: catalog:prod-deps
         version: 4.1.0(@babel/core@7.28.6)
     dependenciesMeta:
       '@projectcaluma/ember-testing':
         injected: true
     devDependencies:
       '@ember/optional-features':
-        specifier: 2.3.0
+        specifier: catalog:dev-deps
         version: 2.3.0
       '@ember/render-modifiers':
-        specifier: 3.0.0
+        specifier: catalog:prod-deps-locked
         version: 3.0.0(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       '@ember/test-helpers':
-        specifier: 4.0.4
+        specifier: catalog:dev-deps
         version: 4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       '@embroider/test-setup':
-        specifier: 4.0.0
+        specifier: catalog:dev-deps
         version: 4.0.0
       '@embroider/util':
-        specifier: 1.13.5
+        specifier: catalog:prod-deps-locked
         version: 1.13.5(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       '@faker-js/faker':
-        specifier: 10.2.0
+        specifier: catalog:prod-deps-locked
         version: 10.2.0
       '@glimmer/component':
-        specifier: 1.1.2
+        specifier: catalog:dev-deps
         version: 1.1.2(@babel/core@7.28.6)
       '@glimmer/tracking':
-        specifier: 1.1.2
+        specifier: catalog:dev-deps
         version: 1.1.2
       '@projectcaluma/ember-testing':
         specifier: workspace:*
         version: link:../testing
       broccoli-asset-rev:
-        specifier: 3.0.0
+        specifier: catalog:dev-deps
         version: 3.0.0
       ember-cli:
-        specifier: 6.1.0
+        specifier: catalog:dev-deps
         version: 6.1.0(@types/node@25.0.10)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)
       ember-cli-clean-css:
-        specifier: 3.0.0
+        specifier: catalog:dev-deps
         version: 3.0.0
       ember-cli-code-coverage:
-        specifier: 3.1.0
+        specifier: catalog:dev-deps
         version: 3.1.0
       ember-cli-dependency-checker:
-        specifier: 3.3.3
+        specifier: catalog:dev-deps
         version: 3.3.3(ember-cli@6.1.0(@types/node@25.0.10)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7))
       ember-cli-inject-live-reload:
-        specifier: 2.1.0
+        specifier: catalog:dev-deps
         version: 2.1.0
       ember-cli-mirage:
-        specifier: 3.0.4
+        specifier: catalog:prod-deps-locked
         version: 3.0.4(@ember-data/model@5.7.0(@glint/template@1.5.2))(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glint/template@1.5.2)(ember-data@5.7.0(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glint/template@1.5.2)(ember-inflector@5.0.2(@babel/core@7.28.6))(qunit@2.25.0))(ember-qunit@9.0.4(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glint/template@1.5.2)(qunit@2.25.0))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(miragejs@0.1.48)(webpack@5.104.1)
       ember-cli-sri:
-        specifier: 2.1.1
+        specifier: catalog:dev-deps
         version: 2.1.1
       ember-cli-terser:
-        specifier: 4.0.2
+        specifier: catalog:dev-deps
         version: 4.0.2
       ember-load-initializers:
-        specifier: 3.0.1
+        specifier: catalog:prod-deps-locked
         version: 3.0.1(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-qunit:
-        specifier: 9.0.4
+        specifier: catalog:dev-deps
         version: 9.0.4(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glint/template@1.5.2)(qunit@2.25.0)
       ember-resolver:
-        specifier: 13.1.1
+        specifier: catalog:prod-deps-locked
         version: 13.1.1
       ember-sinon-qunit:
-        specifier: 7.5.0
+        specifier: catalog:dev-deps
         version: 7.5.0(@babel/core@7.28.6)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(qunit@2.25.0)(sinon@21.0.1)
       ember-source:
-        specifier: 6.1.0
+        specifier: catalog:dev-deps
         version: 6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)
       ember-source-channel-url:
-        specifier: 3.0.0
+        specifier: catalog:dev-deps
         version: 3.0.0
       ember-try:
-        specifier: 4.0.0
+        specifier: catalog:dev-deps
         version: 4.0.0
       loader.js:
-        specifier: 4.7.0
+        specifier: catalog:dev-deps
         version: 4.7.0
       qunit:
-        specifier: 2.25.0
+        specifier: catalog:dev-deps
         version: 2.25.0
       qunit-dom:
-        specifier: 3.5.0
+        specifier: catalog:dev-deps
         version: 3.5.0
       sinon:
-        specifier: 21.0.1
+        specifier: catalog:dev-deps
         version: 21.0.1
       uikit:
-        specifier: 3.25.6
+        specifier: catalog:prod-deps-locked
         version: 3.25.6
       webpack:
-        specifier: 5.104.1
+        specifier: catalog:dev-deps
         version: 5.104.1
 
   packages/distribution:
     dependencies:
       '@babel/core':
-        specifier: ^7.26.0
+        specifier: catalog:prod-deps
         version: 7.28.6
       '@ember/string':
-        specifier: ^3.1.1 || ^4.0.0
+        specifier: catalog:prod-deps
         version: 4.0.1
       '@embroider/macros':
-        specifier: ^1.16.10
+        specifier: catalog:prod-deps
         version: 1.19.6(@glint/template@1.5.2)
       '@projectcaluma/ember-core':
         specifier: workspace:^
@@ -664,70 +1164,70 @@ importers:
         specifier: workspace:^
         version: link:../workflow
       ember-apollo-client:
-        specifier: ^5.0.0
+        specifier: catalog:prod-deps
         version: 5.0.0(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.104.1)
       ember-auto-import:
-        specifier: ^2.10.0
+        specifier: catalog:prod-deps
         version: 2.12.0(@glint/template@1.5.2)(webpack@5.104.1)
       ember-can:
-        specifier: ^7.0.0
+        specifier: catalog:prod-deps
         version: 7.0.0(@babel/core@7.28.6)(@ember/string@4.0.1)(ember-inflector@5.0.2(@babel/core@7.28.6))(ember-resolver@13.1.1)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-cli-babel:
-        specifier: ^8.2.0
+        specifier: catalog:prod-deps
         version: 8.2.0(@babel/core@7.28.6)
       ember-cli-htmlbars:
-        specifier: ^6.3.0
+        specifier: catalog:prod-deps
         version: 6.3.0
       ember-concurrency:
-        specifier: ^4.0.2 || ^5.1.0
+        specifier: catalog:prod-deps
         version: 5.1.0(@babel/core@7.28.6)(@glint/template@1.5.2)
       ember-engines-router-service:
-        specifier: ^0.6.0
+        specifier: catalog:prod-deps
         version: 0.6.0(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-flatpickr:
-        specifier: ^8.0.1
+        specifier: catalog:prod-deps
         version: 8.0.1(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(flatpickr@4.6.13)(webpack@5.104.1)
       ember-intl:
-        specifier: ^7.1.1
+        specifier: catalog:prod-deps
         version: 7.4.1(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glint/template@1.5.2)(typescript@5.9.2)(webpack@5.104.1)
       ember-load-initializers:
-        specifier: ^2.1.2 || ^3.0.1
+        specifier: catalog:prod-deps
         version: 3.0.1(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-resolver:
-        specifier: ^12.0.1 || ^13.1.0
+        specifier: catalog:prod-deps
         version: 13.1.1
       ember-svg-jar:
-        specifier: ^2.6.0
+        specifier: catalog:prod-deps
         version: 2.7.1(@glint/template@1.5.2)
       ember-template-imports:
-        specifier: ^4.2.0
+        specifier: catalog:prod-deps
         version: 4.4.0
       ember-test-selectors:
-        specifier: ^7.0.0
+        specifier: catalog:prod-deps
         version: 7.1.0
       ember-uikit:
-        specifier: ^9.1.3
+        specifier: catalog:prod-deps
         version: 9.2.1(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(webpack@5.104.1)
       flatpickr:
-        specifier: ^4.6.13
+        specifier: catalog:prod-deps
         version: 4.6.13
       graphql:
-        specifier: ^15.10.1
+        specifier: catalog:prod-deps
         version: 15.10.1
       graphql-tag:
-        specifier: ^2.12.6
+        specifier: catalog:prod-deps
         version: 2.12.6(graphql@15.10.1)
       lodash.merge:
-        specifier: ^4.6.2
+        specifier: catalog:prod-deps
         version: 4.6.2
       luxon:
-        specifier: ^3.5.0
+        specifier: catalog:prod-deps
         version: 3.7.2
       reactiveweb:
-        specifier: ^1.3.0
+        specifier: catalog:prod-deps
         version: 1.9.1(@babel/core@7.28.6)(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)
       tracked-toolbox:
-        specifier: ^2.0.0
+        specifier: catalog:prod-deps
         version: 2.2.0(@babel/core@7.28.6)
     dependenciesMeta:
       '@projectcaluma/ember-core':
@@ -740,187 +1240,187 @@ importers:
         injected: true
     devDependencies:
       '@ember/optional-features':
-        specifier: 2.3.0
+        specifier: catalog:dev-deps
         version: 2.3.0
       '@ember/test-helpers':
-        specifier: 4.0.4
+        specifier: catalog:dev-deps
         version: 4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       '@embroider/test-setup':
-        specifier: 4.0.0
+        specifier: catalog:dev-deps
         version: 4.0.0
       '@faker-js/faker':
-        specifier: 10.2.0
+        specifier: catalog:prod-deps-locked
         version: 10.2.0
       '@glimmer/component':
-        specifier: 1.1.2
+        specifier: catalog:dev-deps
         version: 1.1.2(@babel/core@7.28.6)
       '@glimmer/tracking':
-        specifier: 1.1.2
+        specifier: catalog:dev-deps
         version: 1.1.2
       '@projectcaluma/ember-testing':
         specifier: workspace:*
         version: link:../testing
       broccoli-asset-rev:
-        specifier: 3.0.0
+        specifier: catalog:dev-deps
         version: 3.0.0
       ember-cli:
-        specifier: 6.1.0
+        specifier: catalog:dev-deps
         version: 6.1.0(@types/node@25.0.10)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)
       ember-cli-clean-css:
-        specifier: 3.0.0
+        specifier: catalog:dev-deps
         version: 3.0.0
       ember-cli-code-coverage:
-        specifier: 3.1.0
+        specifier: catalog:dev-deps
         version: 3.1.0
       ember-cli-dependency-checker:
-        specifier: 3.3.3
+        specifier: catalog:dev-deps
         version: 3.3.3(ember-cli@6.1.0(@types/node@25.0.10)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7))
       ember-cli-inject-live-reload:
-        specifier: 2.1.0
+        specifier: catalog:dev-deps
         version: 2.1.0
       ember-cli-mirage:
-        specifier: 3.0.4
+        specifier: catalog:prod-deps-locked
         version: 3.0.4(@ember-data/model@5.7.0(@glint/template@1.5.2))(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glint/template@1.5.2)(ember-data@5.7.0(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glint/template@1.5.2)(ember-inflector@5.0.2(@babel/core@7.28.6))(qunit@2.25.0))(ember-qunit@9.0.4(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glint/template@1.5.2)(qunit@2.25.0))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(miragejs@0.1.48)(webpack@5.104.1)
       ember-cli-sass:
-        specifier: 11.0.1
+        specifier: catalog:dev-deps
         version: 11.0.1
       ember-cli-sri:
-        specifier: 2.1.1
+        specifier: catalog:dev-deps
         version: 2.1.1
       ember-cli-terser:
-        specifier: 4.0.2
+        specifier: catalog:dev-deps
         version: 4.0.2
       ember-engines:
-        specifier: 0.12.0
+        specifier: catalog:dev-deps
         version: 0.12.0(@glint/template@1.5.2)(ember-engines-router-service@0.6.0(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-qunit:
-        specifier: 9.0.4
+        specifier: catalog:dev-deps
         version: 9.0.4(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glint/template@1.5.2)(qunit@2.25.0)
       ember-source:
-        specifier: 6.1.0
+        specifier: catalog:dev-deps
         version: 6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)
       ember-source-channel-url:
-        specifier: 3.0.0
+        specifier: catalog:dev-deps
         version: 3.0.0
       ember-try:
-        specifier: 4.0.0
+        specifier: catalog:dev-deps
         version: 4.0.0
       loader.js:
-        specifier: 4.7.0
+        specifier: catalog:dev-deps
         version: 4.7.0
       miragejs:
-        specifier: 0.1.48
+        specifier: catalog:prod-deps-locked
         version: 0.1.48
       qunit:
-        specifier: 2.25.0
+        specifier: catalog:dev-deps
         version: 2.25.0
       qunit-dom:
-        specifier: 3.5.0
+        specifier: catalog:dev-deps
         version: 3.5.0
       sass:
-        specifier: 1.97.3
+        specifier: catalog:dev-deps
         version: 1.97.3
       uikit:
-        specifier: 3.25.6
+        specifier: catalog:prod-deps-locked
         version: 3.25.6
       webpack:
-        specifier: 5.104.1
+        specifier: catalog:dev-deps
         version: 5.104.1
 
   packages/form:
     dependencies:
       '@babel/core':
-        specifier: ^7.26.0
+        specifier: catalog:prod-deps
         version: 7.28.6
       '@ember/string':
-        specifier: ^3.1.1 || ^4.0.0
+        specifier: catalog:prod-deps
         version: 4.0.1
       '@ember/test-waiters':
-        specifier: ^4.1.1
+        specifier: catalog:prod-deps
         version: 4.1.1(@glint/template@1.5.2)
       '@embroider/macros':
-        specifier: ^1.16.10
+        specifier: catalog:prod-deps
         version: 1.19.6(@glint/template@1.5.2)
       '@embroider/util':
-        specifier: ^1.13.2
+        specifier: catalog:prod-deps
         version: 1.13.5(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       '@projectcaluma/ember-core':
         specifier: workspace:^
         version: link:../core
       ember-apollo-client:
-        specifier: ^5.0.0
+        specifier: catalog:prod-deps
         version: 5.0.0(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.104.1)
       ember-auto-import:
-        specifier: ^2.10.0
+        specifier: catalog:prod-deps
         version: 2.12.0(@glint/template@1.5.2)(webpack@5.104.1)
       ember-autoresize-modifier:
-        specifier: ^0.7.0 || ^0.8.0
+        specifier: catalog:prod-deps
         version: 0.8.0(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(webpack@5.104.1)
       ember-basic-dropdown:
-        specifier: ^8.4.0
+        specifier: catalog:prod-deps
         version: 8.11.0(@babel/core@7.28.6)(@ember/string@4.0.1)(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-cli-babel:
-        specifier: ^8.2.0
+        specifier: catalog:prod-deps
         version: 8.2.0(@babel/core@7.28.6)
       ember-cli-htmlbars:
-        specifier: ^6.3.0
+        specifier: catalog:prod-deps
         version: 6.3.0
       ember-cli-showdown:
-        specifier: ^9.0.1
+        specifier: catalog:prod-deps
         version: 9.0.2(@glint/template@1.5.2)(webpack@5.104.1)
       ember-composable-helpers:
-        specifier: ^5.0.0
+        specifier: catalog:prod-deps
         version: 5.0.0
       ember-concurrency:
-        specifier: ^4.0.2 || ^5.1.0
+        specifier: catalog:prod-deps
         version: 5.1.0(@babel/core@7.28.6)(@glint/template@1.5.2)
       ember-flatpickr:
-        specifier: ^8.0.1
+        specifier: catalog:prod-deps
         version: 8.0.1(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(flatpickr@4.6.13)(webpack@5.104.1)
       ember-in-viewport:
-        specifier: ^4.1.0
+        specifier: catalog:prod-deps
         version: 4.1.0(@babel/core@7.28.6)(@glint/template@1.5.2)(webpack@5.104.1)
       ember-intl:
-        specifier: ^7.1.1
+        specifier: catalog:prod-deps
         version: 7.4.1(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glint/template@1.5.2)(typescript@5.9.2)(webpack@5.104.1)
       ember-math-helpers:
-        specifier: ^4.2.1 || ^5.0.0
+        specifier: catalog:prod-deps
         version: 5.0.0(@babel/core@7.28.6)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-power-select:
-        specifier: ^8.6.2
+        specifier: catalog:prod-deps
         version: 8.12.1(@babel/core@7.28.6)(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(ember-basic-dropdown@8.11.0(@babel/core@7.28.6)(@ember/string@4.0.1)(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(ember-concurrency@5.1.0(@babel/core@7.28.6)(@glint/template@1.5.2))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-template-imports:
-        specifier: ^4.2.0
+        specifier: catalog:prod-deps
         version: 4.4.0
       ember-truth-helpers:
-        specifier: ^4.0.3
+        specifier: catalog:prod-deps
         version: 4.0.3(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-uikit:
-        specifier: ^9.1.3
+        specifier: catalog:prod-deps
         version: 9.2.1(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(webpack@5.104.1)
       ember-validators:
-        specifier: ^4.1.2
+        specifier: catalog:prod-deps
         version: 4.1.2(@glint/template@1.5.2)
       flatpickr:
-        specifier: ^4.6.13
+        specifier: catalog:prod-deps
         version: 4.6.13
       graphql:
-        specifier: ^15.10.1
+        specifier: catalog:prod-deps
         version: 15.10.1
       jexl:
-        specifier: ^2.3.0
+        specifier: catalog:prod-deps
         version: 2.3.0
       lodash.isequal:
-        specifier: ^4.5.0
+        specifier: catalog:prod-deps
         version: 4.5.0
       luxon:
-        specifier: ^3.5.0
+        specifier: catalog:prod-deps
         version: 3.7.2
       reactiveweb:
-        specifier: ^1.3.0
+        specifier: catalog:prod-deps
         version: 1.9.1(@babel/core@7.28.6)(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)
       tracked-toolbox:
-        specifier: ^2.0.0
+        specifier: catalog:prod-deps
         version: 2.2.0(@babel/core@7.28.6)
     dependenciesMeta:
       '@projectcaluma/ember-core':
@@ -931,22 +1431,22 @@ importers:
         injected: true
     devDependencies:
       '@ember/optional-features':
-        specifier: 2.3.0
+        specifier: catalog:dev-deps
         version: 2.3.0
       '@ember/test-helpers':
-        specifier: 4.0.4
+        specifier: catalog:dev-deps
         version: 4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       '@embroider/test-setup':
-        specifier: 4.0.0
+        specifier: catalog:dev-deps
         version: 4.0.0
       '@faker-js/faker':
-        specifier: 10.2.0
+        specifier: catalog:prod-deps-locked
         version: 10.2.0
       '@glimmer/component':
-        specifier: 1.1.2
+        specifier: catalog:dev-deps
         version: 1.1.2(@babel/core@7.28.6)
       '@glimmer/tracking':
-        specifier: 1.1.2
+        specifier: catalog:dev-deps
         version: 1.1.2
       '@projectcaluma/ember-testing':
         specifier: workspace:*
@@ -955,97 +1455,97 @@ importers:
         specifier: workspace:*
         version: link:../workflow
       broccoli-asset-rev:
-        specifier: 3.0.0
+        specifier: catalog:dev-deps
         version: 3.0.0
       ember-cli:
-        specifier: 6.1.0
+        specifier: catalog:dev-deps
         version: 6.1.0(@types/node@25.0.10)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)
       ember-cli-clean-css:
-        specifier: 3.0.0
+        specifier: catalog:dev-deps
         version: 3.0.0
       ember-cli-code-coverage:
-        specifier: 3.1.0
+        specifier: catalog:dev-deps
         version: 3.1.0
       ember-cli-dependency-checker:
-        specifier: 3.3.3
+        specifier: catalog:dev-deps
         version: 3.3.3(ember-cli@6.1.0(@types/node@25.0.10)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7))
       ember-cli-inject-live-reload:
-        specifier: 2.1.0
+        specifier: catalog:dev-deps
         version: 2.1.0
       ember-cli-mirage:
-        specifier: 3.0.4
+        specifier: catalog:prod-deps-locked
         version: 3.0.4(@ember-data/model@5.7.0(@glint/template@1.5.2))(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glint/template@1.5.2)(ember-data@5.7.0(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glint/template@1.5.2)(ember-inflector@5.0.2(@babel/core@7.28.6))(qunit@2.25.0))(ember-qunit@9.0.4(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glint/template@1.5.2)(qunit@2.25.0))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(miragejs@0.1.48)(webpack@5.104.1)
       ember-cli-sass:
-        specifier: 11.0.1
+        specifier: catalog:dev-deps
         version: 11.0.1
       ember-cli-sri:
-        specifier: 2.1.1
+        specifier: catalog:dev-deps
         version: 2.1.1
       ember-cli-terser:
-        specifier: 4.0.2
+        specifier: catalog:dev-deps
         version: 4.0.2
       ember-load-initializers:
-        specifier: 3.0.1
+        specifier: catalog:prod-deps-locked
         version: 3.0.1(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-qunit:
-        specifier: 9.0.4
+        specifier: catalog:dev-deps
         version: 9.0.4(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glint/template@1.5.2)(qunit@2.25.0)
       ember-resolver:
-        specifier: 13.1.1
+        specifier: catalog:prod-deps-locked
         version: 13.1.1
       ember-sinon-qunit:
-        specifier: 7.5.0
+        specifier: catalog:dev-deps
         version: 7.5.0(@babel/core@7.28.6)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(qunit@2.25.0)(sinon@21.0.1)
       ember-source:
-        specifier: 6.1.0
+        specifier: catalog:dev-deps
         version: 6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)
       ember-source-channel-url:
-        specifier: 3.0.0
+        specifier: catalog:dev-deps
         version: 3.0.0
       ember-try:
-        specifier: 4.0.0
+        specifier: catalog:dev-deps
         version: 4.0.0
       loader.js:
-        specifier: 4.7.0
+        specifier: catalog:dev-deps
         version: 4.7.0
       miragejs:
-        specifier: 0.1.48
+        specifier: catalog:prod-deps-locked
         version: 0.1.48
       qunit:
-        specifier: 2.25.0
+        specifier: catalog:dev-deps
         version: 2.25.0
       qunit-dom:
-        specifier: 3.5.0
+        specifier: catalog:dev-deps
         version: 3.5.0
       sass:
-        specifier: 1.97.3
+        specifier: catalog:dev-deps
         version: 1.97.3
       sinon:
-        specifier: 21.0.1
+        specifier: catalog:dev-deps
         version: 21.0.1
       uikit:
-        specifier: 3.25.6
+        specifier: catalog:prod-deps-locked
         version: 3.25.6
       uuid:
-        specifier: 13.0.0
+        specifier: catalog:dev-deps
         version: 13.0.0
       webpack:
-        specifier: 5.104.1
+        specifier: catalog:dev-deps
         version: 5.104.1
 
   packages/form-builder:
     dependencies:
       '@babel/core':
-        specifier: ^7.26.0
+        specifier: catalog:prod-deps
         version: 7.28.6
       '@ember/render-modifiers':
-        specifier: ^2.1.0 || ^3.0.0
+        specifier: catalog:prod-deps
         version: 3.0.0(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       '@ember/string':
-        specifier: ^3.1.1 || ^4.0.0
+        specifier: catalog:prod-deps
         version: 4.0.1
       '@embroider/macros':
-        specifier: ^1.16.10
+        specifier: catalog:prod-deps
         version: 1.19.6(@glint/template@1.5.2)
       '@projectcaluma/ember-core':
         specifier: workspace:^
@@ -1054,94 +1554,94 @@ importers:
         specifier: workspace:^
         version: link:../form
       codejar:
-        specifier: ^4.3.0
+        specifier: catalog:prod-deps
         version: 4.3.0
       ember-apollo-client:
-        specifier: ^5.0.0
+        specifier: catalog:prod-deps
         version: 5.0.0(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.104.1)
       ember-auto-import:
-        specifier: ^2.10.0
+        specifier: catalog:prod-deps
         version: 2.12.0(@glint/template@1.5.2)(webpack@5.104.1)
       ember-basic-dropdown:
-        specifier: ^8.4.0
+        specifier: catalog:prod-deps
         version: 8.11.0(@babel/core@7.28.6)(@ember/string@4.0.1)(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-changeset:
-        specifier: ^4.1.2
+        specifier: catalog:prod-deps
         version: 4.2.0(@glint/template@1.5.2)(ember-data@5.7.0(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glint/template@1.5.2)(ember-inflector@5.0.2(@babel/core@7.28.6))(qunit@2.25.0))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(webpack@5.104.1)
       ember-changeset-validations:
-        specifier: ^4.1.1
+        specifier: catalog:prod-deps
         version: 4.2.0(@ember/string@4.0.1)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(webpack@5.104.1)
       ember-cli-babel:
-        specifier: ^8.2.0
+        specifier: catalog:prod-deps
         version: 8.2.0(@babel/core@7.28.6)
       ember-cli-htmlbars:
-        specifier: ^6.3.0
+        specifier: catalog:prod-deps
         version: 6.3.0
       ember-composable-helpers:
-        specifier: ^5.0.0
+        specifier: catalog:prod-deps
         version: 5.0.0
       ember-concurrency:
-        specifier: ^4.0.2 || ^5.1.0
+        specifier: catalog:prod-deps
         version: 5.1.0(@babel/core@7.28.6)(@glint/template@1.5.2)
       ember-engines-router-service:
-        specifier: ^0.6.0
+        specifier: catalog:prod-deps
         version: 0.6.0(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-flatpickr:
-        specifier: ^8.0.1
+        specifier: catalog:prod-deps
         version: 8.0.1(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(flatpickr@4.6.13)(webpack@5.104.1)
       ember-intl:
-        specifier: ^7.1.1
+        specifier: catalog:prod-deps
         version: 7.4.1(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glint/template@1.5.2)(typescript@5.9.2)(webpack@5.104.1)
       ember-load-initializers:
-        specifier: ^2.1.2 || ^3.0.1
+        specifier: catalog:prod-deps
         version: 3.0.1(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-math-helpers:
-        specifier: ^4.2.1 || ^5.0.0
+        specifier: catalog:prod-deps
         version: 5.0.0(@babel/core@7.28.6)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-power-select:
-        specifier: ^8.6.2
+        specifier: catalog:prod-deps
         version: 8.12.1(@babel/core@7.28.6)(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(ember-basic-dropdown@8.11.0(@babel/core@7.28.6)(@ember/string@4.0.1)(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(ember-concurrency@5.1.0(@babel/core@7.28.6)(@glint/template@1.5.2))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-resolver:
-        specifier: ^12.0.1 || ^13.1.0
+        specifier: catalog:prod-deps
         version: 13.1.1
       ember-template-imports:
-        specifier: ^4.2.0
+        specifier: catalog:prod-deps
         version: 4.4.0
       ember-test-selectors:
-        specifier: ^7.0.0
+        specifier: catalog:prod-deps
         version: 7.1.0
       ember-uikit:
-        specifier: ^9.1.3
+        specifier: catalog:prod-deps
         version: 9.2.1(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(webpack@5.104.1)
       ember-validated-form:
-        specifier: ^7.0.1
+        specifier: catalog:prod-deps
         version: 7.0.1(@ember/string@4.0.1)(@glint/template@1.5.2)(ember-data@5.7.0(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glint/template@1.5.2)(ember-inflector@5.0.2(@babel/core@7.28.6))(qunit@2.25.0))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(webpack@5.104.1)
       flatpickr:
-        specifier: ^4.6.13
+        specifier: catalog:prod-deps
         version: 4.6.13
       graphql:
-        specifier: ^15.10.1
+        specifier: catalog:prod-deps
         version: 15.10.1
       graphql-tag:
-        specifier: ^2.12.6
+        specifier: catalog:prod-deps
         version: 2.12.6(graphql@15.10.1)
       highlight.js:
-        specifier: ^11.11.1
+        specifier: catalog:prod-deps
         version: 11.11.1
       highlightjs-jexl:
-        specifier: ^0.0.5
+        specifier: catalog:prod-deps
         version: 0.0.5
       jexl:
-        specifier: ^2.3.0
+        specifier: catalog:prod-deps
         version: 2.3.0
       lodash.isequal:
-        specifier: ^4.5.0
+        specifier: catalog:prod-deps
         version: 4.5.0
       reactiveweb:
-        specifier: ^1.3.0
+        specifier: catalog:prod-deps
         version: 1.9.1(@babel/core@7.28.6)(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)
       uikit:
-        specifier: ^3.22.0
+        specifier: catalog:prod-deps
         version: 3.25.6
     dependenciesMeta:
       '@projectcaluma/ember-core':
@@ -1152,263 +1652,263 @@ importers:
         injected: true
     devDependencies:
       '@ember/optional-features':
-        specifier: 2.3.0
+        specifier: catalog:dev-deps
         version: 2.3.0
       '@ember/test-helpers':
-        specifier: 4.0.4
+        specifier: catalog:dev-deps
         version: 4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       '@embroider/test-setup':
-        specifier: 4.0.0
+        specifier: catalog:dev-deps
         version: 4.0.0
       '@faker-js/faker':
-        specifier: 10.2.0
+        specifier: catalog:prod-deps-locked
         version: 10.2.0
       '@glimmer/component':
-        specifier: 1.1.2
+        specifier: catalog:dev-deps
         version: 1.1.2(@babel/core@7.28.6)
       '@glimmer/tracking':
-        specifier: 1.1.2
+        specifier: catalog:dev-deps
         version: 1.1.2
       '@projectcaluma/ember-testing':
         specifier: workspace:*
         version: link:../testing
       broccoli-asset-rev:
-        specifier: 3.0.0
+        specifier: catalog:dev-deps
         version: 3.0.0
       ember-autoresize-modifier:
-        specifier: 0.8.0
+        specifier: catalog:prod-deps-locked
         version: 0.8.0(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(webpack@5.104.1)
       ember-cli:
-        specifier: 6.1.0
+        specifier: catalog:dev-deps
         version: 6.1.0(@types/node@25.0.10)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)
       ember-cli-clean-css:
-        specifier: 3.0.0
+        specifier: catalog:dev-deps
         version: 3.0.0
       ember-cli-code-coverage:
-        specifier: 3.1.0
+        specifier: catalog:dev-deps
         version: 3.1.0
       ember-cli-dependency-checker:
-        specifier: 3.3.3
+        specifier: catalog:dev-deps
         version: 3.3.3(ember-cli@6.1.0(@types/node@25.0.10)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7))
       ember-cli-inject-live-reload:
-        specifier: 2.1.0
+        specifier: catalog:dev-deps
         version: 2.1.0
       ember-cli-mirage:
-        specifier: 3.0.4
+        specifier: catalog:prod-deps-locked
         version: 3.0.4(@ember-data/model@5.7.0(@glint/template@1.5.2))(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glint/template@1.5.2)(ember-data@5.7.0(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glint/template@1.5.2)(ember-inflector@5.0.2(@babel/core@7.28.6))(qunit@2.25.0))(ember-qunit@9.0.4(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glint/template@1.5.2)(qunit@2.25.0))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(miragejs@0.1.48)(webpack@5.104.1)
       ember-cli-sri:
-        specifier: 2.1.1
+        specifier: catalog:dev-deps
         version: 2.1.1
       ember-cli-terser:
-        specifier: 4.0.2
+        specifier: catalog:dev-deps
         version: 4.0.2
       ember-data:
-        specifier: 5.7.0
+        specifier: catalog:dev-deps
         version: 5.7.0(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glint/template@1.5.2)(ember-inflector@5.0.2(@babel/core@7.28.6))(qunit@2.25.0)
       ember-engines:
-        specifier: 0.12.0
+        specifier: catalog:dev-deps
         version: 0.12.0(@glint/template@1.5.2)(ember-engines-router-service@0.6.0(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-qunit:
-        specifier: 9.0.4
+        specifier: catalog:dev-deps
         version: 9.0.4(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glint/template@1.5.2)(qunit@2.25.0)
       ember-sinon-qunit:
-        specifier: 7.5.0
+        specifier: catalog:dev-deps
         version: 7.5.0(@babel/core@7.28.6)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(qunit@2.25.0)(sinon@21.0.1)
       ember-source:
-        specifier: 6.1.0
+        specifier: catalog:dev-deps
         version: 6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)
       ember-source-channel-url:
-        specifier: 3.0.0
+        specifier: catalog:dev-deps
         version: 3.0.0
       ember-try:
-        specifier: 4.0.0
+        specifier: catalog:dev-deps
         version: 4.0.0
       loader.js:
-        specifier: 4.7.0
+        specifier: catalog:dev-deps
         version: 4.7.0
       miragejs:
-        specifier: 0.1.48
+        specifier: catalog:prod-deps-locked
         version: 0.1.48
       qunit:
-        specifier: 2.25.0
+        specifier: catalog:dev-deps
         version: 2.25.0
       qunit-dom:
-        specifier: 3.5.0
+        specifier: catalog:dev-deps
         version: 3.5.0
       sinon:
-        specifier: 21.0.1
+        specifier: catalog:dev-deps
         version: 21.0.1
       webpack:
-        specifier: 5.104.1
+        specifier: catalog:dev-deps
         version: 5.104.1
 
   packages/testing:
     dependencies:
       '@babel/core':
-        specifier: ^7.26.0
+        specifier: catalog:prod-deps
         version: 7.28.6
       '@ember/string':
-        specifier: ^3.1.1 || ^4.0.0
+        specifier: catalog:prod-deps
         version: 4.0.1
       '@faker-js/faker':
-        specifier: ^9.4.0 || ^10.0.0
+        specifier: catalog:prod-deps
         version: 10.2.0
       broccoli-funnel:
-        specifier: ^3.0.8
+        specifier: catalog:prod-deps
         version: 3.0.8
       broccoli-merge-trees:
-        specifier: ^4.2.0
+        specifier: catalog:prod-deps
         version: 4.2.0
       ember-apollo-client:
-        specifier: ^5.0.0
+        specifier: catalog:prod-deps
         version: 5.0.0(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.104.1)
       ember-auto-import:
-        specifier: ^2.10.0
+        specifier: catalog:prod-deps
         version: 2.12.0(@glint/template@1.5.2)(webpack@5.104.1)
       ember-cli-babel:
-        specifier: ^8.2.0
+        specifier: catalog:prod-deps
         version: 8.2.0(@babel/core@7.28.6)
       ember-cli-htmlbars:
-        specifier: ^6.3.0
+        specifier: catalog:prod-deps
         version: 6.3.0
       ember-cli-mirage:
-        specifier: ^3.0.4
+        specifier: catalog:prod-deps
         version: 3.0.4(@ember-data/model@5.7.0(@glint/template@1.5.2))(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glint/template@1.5.2)(ember-data@5.7.0(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glint/template@1.5.2)(ember-inflector@5.0.2(@babel/core@7.28.6))(qunit@2.25.0))(ember-qunit@9.0.4(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glint/template@1.5.2)(qunit@2.25.0))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(miragejs@0.1.48)(webpack@5.104.1)
       ember-inflector:
-        specifier: ^4.0.3 || ^5.0.1
+        specifier: catalog:prod-deps
         version: 5.0.2(@babel/core@7.28.6)
       ember-template-imports:
-        specifier: ^4.2.0
+        specifier: catalog:prod-deps
         version: 4.4.0
       graphql:
-        specifier: ^15.10.1
+        specifier: catalog:prod-deps
         version: 15.10.1
       graphql-iso-date:
-        specifier: ^3.6.1
+        specifier: catalog:prod-deps
         version: 3.6.1(graphql@15.10.1)
       graphql-tools:
-        specifier: ^4.0.8
+        specifier: catalog:prod-deps
         version: 4.0.8(graphql@15.10.1)
       luxon:
-        specifier: ^3.5.0
+        specifier: catalog:prod-deps
         version: 3.7.2
       miragejs:
-        specifier: ^0.1.48
+        specifier: catalog:prod-deps
         version: 0.1.48
     devDependencies:
       '@ember/optional-features':
-        specifier: 2.3.0
+        specifier: catalog:dev-deps
         version: 2.3.0
       '@ember/test-helpers':
-        specifier: 4.0.4
+        specifier: catalog:dev-deps
         version: 4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       '@embroider/test-setup':
-        specifier: 4.0.0
+        specifier: catalog:dev-deps
         version: 4.0.0
       '@glimmer/component':
-        specifier: 1.1.2
+        specifier: catalog:dev-deps
         version: 1.1.2(@babel/core@7.28.6)
       broccoli-asset-rev:
-        specifier: 3.0.0
+        specifier: catalog:dev-deps
         version: 3.0.0
       ember-cli:
-        specifier: 6.1.0
+        specifier: catalog:dev-deps
         version: 6.1.0(@types/node@25.0.10)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)
       ember-cli-clean-css:
-        specifier: 3.0.0
+        specifier: catalog:dev-deps
         version: 3.0.0
       ember-cli-code-coverage:
-        specifier: 3.1.0
+        specifier: catalog:dev-deps
         version: 3.1.0
       ember-cli-dependency-checker:
-        specifier: 3.3.3
+        specifier: catalog:dev-deps
         version: 3.3.3(ember-cli@6.1.0(@types/node@25.0.10)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7))
       ember-cli-inject-live-reload:
-        specifier: 2.1.0
+        specifier: catalog:dev-deps
         version: 2.1.0
       ember-cli-sri:
-        specifier: 2.1.1
+        specifier: catalog:dev-deps
         version: 2.1.1
       ember-cli-terser:
-        specifier: 4.0.2
+        specifier: catalog:dev-deps
         version: 4.0.2
       ember-load-initializers:
-        specifier: 3.0.1
+        specifier: catalog:prod-deps-locked
         version: 3.0.1(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-qunit:
-        specifier: 9.0.4
+        specifier: catalog:dev-deps
         version: 9.0.4(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glint/template@1.5.2)(qunit@2.25.0)
       ember-resolver:
-        specifier: 13.1.1
+        specifier: catalog:prod-deps-locked
         version: 13.1.1
       ember-source:
-        specifier: 6.1.0
+        specifier: catalog:dev-deps
         version: 6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)
       ember-source-channel-url:
-        specifier: 3.0.0
+        specifier: catalog:dev-deps
         version: 3.0.0
       ember-try:
-        specifier: 4.0.0
+        specifier: catalog:dev-deps
         version: 4.0.0
       graphql-tag:
-        specifier: 2.12.6
+        specifier: catalog:prod-deps-locked
         version: 2.12.6(graphql@15.10.1)
       loader.js:
-        specifier: 4.7.0
+        specifier: catalog:dev-deps
         version: 4.7.0
       qunit:
-        specifier: 2.25.0
+        specifier: catalog:dev-deps
         version: 2.25.0
       qunit-dom:
-        specifier: 3.5.0
+        specifier: catalog:dev-deps
         version: 3.5.0
       webpack:
-        specifier: 5.104.1
+        specifier: catalog:dev-deps
         version: 5.104.1
 
   packages/workflow:
     dependencies:
       '@babel/core':
-        specifier: ^7.26.0
+        specifier: catalog:prod-deps
         version: 7.28.6
       '@projectcaluma/ember-core':
         specifier: workspace:^
         version: link:../core
       ember-apollo-client:
-        specifier: ^5.0.0
+        specifier: catalog:prod-deps
         version: 5.0.0(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.104.1)
       ember-auto-import:
-        specifier: ^2.10.0
+        specifier: catalog:prod-deps
         version: 2.12.0(@glint/template@1.5.2)(webpack@5.104.1)
       ember-cli-babel:
-        specifier: ^8.2.0
+        specifier: catalog:prod-deps
         version: 8.2.0(@babel/core@7.28.6)
       ember-cli-htmlbars:
-        specifier: ^6.3.0
+        specifier: catalog:prod-deps
         version: 6.3.0
       ember-composable-helpers:
-        specifier: ^5.0.0
+        specifier: catalog:prod-deps
         version: 5.0.0
       ember-concurrency:
-        specifier: ^4.0.2 || ^5.1.0
+        specifier: catalog:prod-deps
         version: 5.1.0(@babel/core@7.28.6)(@glint/template@1.5.2)
       ember-intl:
-        specifier: ^7.1.1
+        specifier: catalog:prod-deps
         version: 7.4.1(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glint/template@1.5.2)(typescript@5.9.2)(webpack@5.104.1)
       ember-template-imports:
-        specifier: ^4.2.0
+        specifier: catalog:prod-deps
         version: 4.4.0
       ember-truth-helpers:
-        specifier: ^4.0.3
+        specifier: catalog:prod-deps
         version: 4.0.3(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-uikit:
-        specifier: ^9.1.3
+        specifier: catalog:prod-deps
         version: 9.2.1(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(webpack@5.104.1)
       graphql:
-        specifier: ^15.10.1
+        specifier: catalog:prod-deps
         version: 15.10.1
       reactiveweb:
-        specifier: ^1.3.0
+        specifier: catalog:prod-deps
         version: 1.9.1(@babel/core@7.28.6)(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)
     dependenciesMeta:
       '@projectcaluma/ember-core':
@@ -1417,85 +1917,85 @@ importers:
         injected: true
     devDependencies:
       '@ember/optional-features':
-        specifier: 2.3.0
+        specifier: catalog:dev-deps
         version: 2.3.0
       '@ember/test-helpers':
-        specifier: 4.0.4
+        specifier: catalog:dev-deps
         version: 4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       '@embroider/test-setup':
-        specifier: 4.0.0
+        specifier: catalog:dev-deps
         version: 4.0.0
       '@faker-js/faker':
-        specifier: 10.2.0
+        specifier: catalog:prod-deps-locked
         version: 10.2.0
       '@glimmer/component':
-        specifier: 1.1.2
+        specifier: catalog:dev-deps
         version: 1.1.2(@babel/core@7.28.6)
       '@glimmer/tracking':
-        specifier: 1.1.2
+        specifier: catalog:dev-deps
         version: 1.1.2
       '@projectcaluma/ember-testing':
         specifier: workspace:*
         version: link:../testing
       broccoli-asset-rev:
-        specifier: 3.0.0
+        specifier: catalog:dev-deps
         version: 3.0.0
       ember-cli:
-        specifier: 6.1.0
+        specifier: catalog:dev-deps
         version: 6.1.0(@types/node@25.0.10)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7)
       ember-cli-clean-css:
-        specifier: 3.0.0
+        specifier: catalog:dev-deps
         version: 3.0.0
       ember-cli-code-coverage:
-        specifier: 3.1.0
+        specifier: catalog:dev-deps
         version: 3.1.0
       ember-cli-dependency-checker:
-        specifier: 3.3.3
+        specifier: catalog:dev-deps
         version: 3.3.3(ember-cli@6.1.0(@types/node@25.0.10)(babel-core@6.26.3)(handlebars@4.7.8)(underscore@1.13.7))
       ember-cli-inject-live-reload:
-        specifier: 2.1.0
+        specifier: catalog:dev-deps
         version: 2.1.0
       ember-cli-mirage:
-        specifier: 3.0.4
+        specifier: catalog:prod-deps-locked
         version: 3.0.4(@ember-data/model@5.7.0(@glint/template@1.5.2))(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glint/template@1.5.2)(ember-data@5.7.0(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glint/template@1.5.2)(ember-inflector@5.0.2(@babel/core@7.28.6))(qunit@2.25.0))(ember-qunit@9.0.4(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glint/template@1.5.2)(qunit@2.25.0))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(miragejs@0.1.48)(webpack@5.104.1)
       ember-cli-sri:
-        specifier: 2.1.1
+        specifier: catalog:dev-deps
         version: 2.1.1
       ember-cli-terser:
-        specifier: 4.0.2
+        specifier: catalog:dev-deps
         version: 4.0.2
       ember-load-initializers:
-        specifier: 3.0.1
+        specifier: catalog:prod-deps-locked
         version: 3.0.1(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       ember-qunit:
-        specifier: 9.0.4
+        specifier: catalog:dev-deps
         version: 9.0.4(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glint/template@1.5.2)(qunit@2.25.0)
       ember-resolver:
-        specifier: 13.1.1
+        specifier: catalog:prod-deps-locked
         version: 13.1.1
       ember-source:
-        specifier: 6.1.0
+        specifier: catalog:dev-deps
         version: 6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)
       ember-source-channel-url:
-        specifier: 3.0.0
+        specifier: catalog:dev-deps
         version: 3.0.0
       ember-try:
-        specifier: 4.0.0
+        specifier: catalog:dev-deps
         version: 4.0.0
       loader.js:
-        specifier: 4.7.0
+        specifier: catalog:dev-deps
         version: 4.7.0
       qunit:
-        specifier: 2.25.0
+        specifier: catalog:dev-deps
         version: 2.25.0
       qunit-dom:
-        specifier: 3.5.0
+        specifier: catalog:dev-deps
         version: 3.5.0
       uikit:
-        specifier: 3.25.6
+        specifier: catalog:prod-deps-locked
         version: 3.25.6
       webpack:
-        specifier: 5.104.1
+        specifier: catalog:dev-deps
         version: 5.104.1
 
 packages:
