@@ -24,9 +24,12 @@ export default [
       "import/internal-regex": "^(@projectcaluma|ember-caluma|dummy)/",
     },
     rules: {
-      // TODO: Migrate as suggested here:
       // https://github.com/ember-cli/eslint-plugin-ember/blob/master/docs/rules/no-runloop.md
-      "ember/no-runloop": "warn",
+      //
+      // We disable this rule as we don't have any problems with it right now
+      // and the suggested alternative `ember-lifeline` is not viable as it has
+      // not been maintained for a while.
+      "ember/no-runloop": "off",
     },
   },
   // Customization for workspace
