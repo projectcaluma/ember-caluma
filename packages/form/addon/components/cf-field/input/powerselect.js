@@ -15,6 +15,18 @@ import PowerSelectMultipleComponent from "ember-power-select/components/power-se
 export default class CfFieldInputPowerselectComponent extends Component {
   @service intl;
 
+  get selected() {
+    return this.args.compare
+      ? this.args.field.historicalSelected
+      : this.args.field.selected;
+  }
+
+  get triggerId() {
+    return this.args.compare
+      ? `${this.args.field.pk}-compare`
+      : this.args.field.pk;
+  }
+
   get multiple() {
     return this.args.field?.question.isMultipleChoice;
   }
