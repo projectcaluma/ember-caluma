@@ -31,8 +31,8 @@ export default class CfFieldComponent extends Component {
     this.args.field._components.delete(this);
   }
 
-  get isComparison() {
-    return this?.args.field?.fieldset?.document?.compare ?? false;
+  get compare() {
+    return this?.args?.field?.compare;
   }
 
   get hasHiddenWidget() {
@@ -82,7 +82,7 @@ export default class CfFieldComponent extends Component {
 
   get saveIndicatorVisible() {
     return (
-      !this.isComparison &&
+      !this.compare &&
       !hasQuestionType(this.args.field?.question, "action-button")
     );
   }
