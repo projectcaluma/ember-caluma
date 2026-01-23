@@ -67,6 +67,15 @@ export default class Answer extends Base {
   raw = {};
 
   /**
+   * Get the compare context via the field.
+   * @property {Object} compare
+   */
+  @cached
+  get compare() {
+    return this.field?.compare;
+  }
+
+  /**
    * The primary key of the answer.
    *
    * @property {String} pk
@@ -129,7 +138,7 @@ export default class Answer extends Base {
     if (this._valueKey === "tableValue" && value) {
       // For a historical view for table values we map it differently to be able to
       // show the diff.
-      if (this.field?.fieldset?.document?.compare) {
+      if (this.compare) {
         const owner = getOwner(this);
         const historicalValue = this.historical?.[this._valueKey] || [];
 

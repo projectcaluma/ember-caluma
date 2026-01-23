@@ -26,7 +26,7 @@
             @disabled={{true}}
             @context={{@context}}
             @onSave={{perform this.save}}
-            @compare={{@field.fieldset.document.compare}}
+            @compare={{@compare}}
           />
         </div>
         {{#unless this.compareOptions.disableChangesNote}}
@@ -41,7 +41,7 @@
             @disabled={{true}}
             @context={{@context}}
             @onSave={{perform this.save}}
-            @compare={{@field.fieldset.document.compare}}
+            @compare={{@compare}}
           />
         </div>
         <div class="to-version">

@@ -117,10 +117,10 @@ export default class Field extends Base {
 
       // If comparison is enabled and there is no answer, add the required
       // historical raw answer data, and mark answer as not changed.
-      const rawHistorical = this.fieldset?.document?.compare
+      const rawHistorical = this.compare
         ? {
             historyType: "=",
-            historyDate: this.fieldset?.document?.compare?.to,
+            historyDate: this.compare?.to,
           }
         : {};
 
@@ -182,6 +182,15 @@ export default class Field extends Base {
    * @private
    */
   _components = new Set();
+
+  /**
+   * Get the compare context via the fieldset.
+   * @property {Object} compare
+   */
+  @cached
+  get compare() {
+    return this.fieldset?.compare;
+  }
 
   /**
    * The primary key of the field. Consists of the document and question primary
