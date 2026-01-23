@@ -18,7 +18,7 @@
     "@ember/string": "catalog:prod-deps",
     "@embroider/macros": "catalog:prod-deps",
     "ember-apollo-client": "catalog:prod-deps",
-    "ember-auto-import": "catalog:prod-deps",
+    "ember-auto-import": "^2.10.0",
     "ember-cli-babel": "catalog:prod-deps",
     "ember-cli-htmlbars": "catalog:prod-deps",
     "ember-concurrency": "catalog:prod-deps",

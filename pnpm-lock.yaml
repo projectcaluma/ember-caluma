@@ -247,9 +247,6 @@ catalogs:
     ember-apollo-client:
       specifier: ^5.0.0
       version: 5.0.0
-    ember-auto-import:
-      specifier: ^2.10.0
-      version: 2.12.0
     ember-autoresize-modifier:
       specifier: ^0.7.0 || ^0.8.0
       version: 0.8.0
@@ -416,9 +413,6 @@ catalogs:
     ember-apollo-client:
       specifier: 5.0.0
       version: 5.0.0
-    ember-auto-import:
-      specifier: 2.12.0
-      version: 2.12.0
     ember-autoresize-modifier:
       specifier: 0.8.0
       version: 0.8.0
@@ -668,7 +662,7 @@ importers:
         specifier: catalog:prod-deps-locked
         version: 5.0.0(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.104.1)
       ember-auto-import:
-        specifier: catalog:prod-deps-locked
+        specifier: 2.12.0
         version: 2.12.0(@glint/template@1.5.2)(webpack@5.104.1)
       ember-basic-dropdown:
         specifier: catalog:prod-deps-locked
@@ -824,7 +818,7 @@ importers:
         specifier: catalog:prod-deps
         version: 5.0.0(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.104.1)
       ember-auto-import:
-        specifier: catalog:prod-deps
+        specifier: ^2.10.0
         version: 2.12.0(@glint/template@1.5.2)(webpack@5.104.1)
       ember-basic-dropdown:
         specifier: catalog:prod-deps
@@ -998,7 +992,7 @@ importers:
         specifier: catalog:prod-deps
         version: 5.0.0(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.104.1)
       ember-auto-import:
-        specifier: catalog:prod-deps
+        specifier: ^2.10.0
         version: 2.12.0(@glint/template@1.5.2)(webpack@5.104.1)
       ember-cli-babel:
         specifier: catalog:prod-deps
@@ -1167,7 +1161,7 @@ importers:
         specifier: catalog:prod-deps
         version: 5.0.0(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.104.1)
       ember-auto-import:
-        specifier: catalog:prod-deps
+        specifier: ^2.10.0
         version: 2.12.0(@glint/template@1.5.2)(webpack@5.104.1)
       ember-can:
         specifier: catalog:prod-deps
@@ -1351,7 +1345,7 @@ importers:
         specifier: catalog:prod-deps
         version: 5.0.0(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.104.1)
       ember-auto-import:
-        specifier: catalog:prod-deps
+        specifier: ^2.10.0
         version: 2.12.0(@glint/template@1.5.2)(webpack@5.104.1)
       ember-autoresize-modifier:
         specifier: catalog:prod-deps
@@ -1560,7 +1554,7 @@ importers:
         specifier: catalog:prod-deps
         version: 5.0.0(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.104.1)
       ember-auto-import:
-        specifier: catalog:prod-deps
+        specifier: ^2.10.0
         version: 2.12.0(@glint/template@1.5.2)(webpack@5.104.1)
       ember-basic-dropdown:
         specifier: catalog:prod-deps
@@ -1763,7 +1757,7 @@ importers:
         specifier: catalog:prod-deps
         version: 5.0.0(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.104.1)
       ember-auto-import:
-        specifier: catalog:prod-deps
+        specifier: ^2.10.0
         version: 2.12.0(@glint/template@1.5.2)(webpack@5.104.1)
       ember-cli-babel:
         specifier: catalog:prod-deps
@@ -1878,7 +1872,7 @@ importers:
         specifier: catalog:prod-deps
         version: 5.0.0(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.104.1)
       ember-auto-import:
-        specifier: catalog:prod-deps
+        specifier: ^2.10.0
         version: 2.12.0(@glint/template@1.5.2)(webpack@5.104.1)
       ember-cli-babel:
         specifier: catalog:prod-deps

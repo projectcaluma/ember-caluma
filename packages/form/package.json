@@ -20,7 +20,7 @@
     "@embroider/util": "catalog:prod-deps",
     "@projectcaluma/ember-core": "workspace:^",
     "ember-apollo-client": "catalog:prod-deps",
-    "ember-auto-import": "catalog:prod-deps",
+    "ember-auto-import": "^2.10.0",
     "ember-autoresize-modifier": "catalog:prod-deps",
     "ember-basic-dropdown": "catalog:prod-deps",
     "ember-cli-babel": "catalog:prod-deps",
