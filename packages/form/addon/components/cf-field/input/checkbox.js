@@ -11,6 +11,21 @@ import { localCopy } from "tracked-toolbox";
 export default class CfFieldInputCheckboxComponent extends Component {
   @localCopy("args.field.value") selected;
 
+  isAnswerRemoved = (option) => {
+    return (
+      this.args.field.compare &&
+      (this.args.field?.answer?.historicalValue ?? []).includes(option.slug) &&
+      !(this.args.field?.answer?.value ?? []).includes(option.slug)
+    );
+  };
+  isAnswerAdded = (option) => {
+    return (
+      this.args.field.compare &&
+      !(this.args.field?.answer?.historicalValue ?? []).includes(option.slug) &&
+      (this.args.field?.answer?.value ?? []).includes(option.slug)
+    );
+  };
+
   /**
    * Update the value of the field with the slugs of the currently checked
    * boxes.
