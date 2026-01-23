@@ -1,58 +1,28 @@
-{{#if @compare}}
-  <this.selectComponent
-    @options={{@field.options}}
-    @selected={{@field.historicalSelected}}
-    @disabled={{true}}
-    @allowClear={{false}}
-    @preventScroll={{true}}
-    @searchEnabled={{false}}
-    @searchField="label"
-    @triggerId={{concat @field.pk "-compare"}}
-    @renderInPlace={{true}}
-    @loadingMessage={{t "caluma.form.power-select.options-loading"}}
-    @searchMessage={{t "caluma.form.power-select.options-empty"}}
-    @searchPlaceholder={{t "caluma.form.power-select.search-placeholder"}}
-    @noMatchesMessage={{t "caluma.form.power-select.search-empty"}}
-    aria-labelledby={{@field.labelId}}
-    @onChange={{this.change}}
-    as |option|
-  >
-    {{#if (and option.disabled (not @disabled))}}
-      <del
-        class="uk-text-muted"
-        title={{t "caluma.form.optionNotAvailable"}}
-      >{{option.label}}</del>
-    {{else}}
-      {{option.label}}
-    {{/if}}
-  </this.selectComponent>
-{{else}}
-  <this.selectComponent
-    @options={{@field.options}}
-    @selected={{@field.selected}}
-    @disabled={{@disabled}}
-    @allowClear={{true}}
-    @preventScroll={{true}}
-    @searchEnabled={{this.searchEnabled}}
-    @searchField="label"
-    @triggerId={{@field.pk}}
-    @renderInPlace={{true}}
-    @placeholder={{this.placeholder}}
-    @loadingMessage={{t "caluma.form.power-select.options-loading"}}
-    @searchMessage={{t "caluma.form.power-select.options-empty"}}
-    @searchPlaceholder={{t "caluma.form.power-select.search-placeholder"}}
-    @noMatchesMessage={{t "caluma.form.power-select.search-empty"}}
-    @onChange={{this.change}}
-    aria-labelledby={{@field.labelId}}
-    as |option|
-  >
-    {{#if (and option.disabled (not @disabled))}}
-      <del
-        class="uk-text-muted"
-        title={{t "caluma.form.optionNotAvailable"}}
-      >{{option.label}}</del>
-    {{else}}
-      {{option.label}}
-    {{/if}}
-  </this.selectComponent>
-{{/if}}
+<this.selectComponent
+  @options={{@field.options}}
+  @selected={{this.selected}}
+  @disabled={{@disabled}}
+  @allowClear={{false}}
+  @preventScroll={{true}}
+  @searchEnabled={{this.searchEnabled}}
+  @searchField="label"
+  @triggerId={{this.triggerId}}
+  @renderInPlace={{true}}
+  @placeholder={{this.placeholder}}
+  @loadingMessage={{t "caluma.form.power-select.options-loading"}}
+  @searchMessage={{t "caluma.form.power-select.options-empty"}}
+  @searchPlaceholder={{t "caluma.form.power-select.search-placeholder"}}
+  @noMatchesMessage={{t "caluma.form.power-select.search-empty"}}
+  @onChange={{this.change}}
+  aria-labelledby={{@field.labelId}}
+  as |option|
+>
+  {{#if (and option.disabled (not @disabled))}}
+    <del
+      class="uk-text-muted"
+      title={{t "caluma.form.optionNotAvailable"}}
+    >{{option.label}}</del>
+  {{else}}
+    {{option.label}}
+  {{/if}}
+</this.selectComponent>
