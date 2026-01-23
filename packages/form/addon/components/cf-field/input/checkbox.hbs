@@ -3,20 +3,8 @@
   <label
     class="{{if @field.isInvalid 'uk-form-danger'}}
       {{if @field.raw.question.meta.vertical 'uk-margin-large-right'}}
-      {{if
-        (and
-          (includes option.slug @field.answer.historicalValue)
-          (not (includes option.slug @field.answer.value))
-        )
-        'diff-from-version'
-      }}
-      {{if
-        (and
-          (includes option.slug @field.answer.value)
-          (not (includes option.slug @field.answer.historicalValue))
-        )
-        'diff-to-version'
-      }}"
+      {{if (this.isAnswerRemoved option) 'diff-from-version'}}
+      {{if (this.isAnswerAdded option) 'diff-to-version'}}"
   >
     <input
       class="uk-checkbox uk-margin-small-right"

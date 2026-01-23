@@ -13,25 +13,25 @@
   <tbody>
     {{#each @field.answer.value as |document|}}
       <tr
-        class="{{if (eq document.raw.historyType '-') 'diff-removed'}}
-          {{if (eq document.raw.historyType '+') 'diff-added'}}
-          {{if (eq document.raw.historyType '~') 'diff-modified'}}"
+        class="{{if (this.isDocumentAdded document) 'diff-added'}}
+          {{if (this.isDocumentDeleted document) 'diff-removed'}}
+          {{if (this.isDocumentModified document) 'diff-modified'}}"
       >
         {{#if @compare}}
           <td>
-            {{#if (eq document.raw.historyType "+")}}
+            {{#if (this.isDocumentAdded document)}}
               <UkIcon
                 @icon="plus-circle"
                 class="uk-text-success"
                 {{uk-tooltip (t "caluma.form.compare.diff.added")}}
               />
-            {{else if (eq document.raw.historyType "-")}}
+            {{else if (this.isDocumentDeleted document)}}
               <UkIcon
                 @icon="minus-circle"
                 class="uk-text-danger"
                 {{uk-tooltip (t "caluma.form.compare.diff.removed")}}
               />
-            {{else if (eq document.raw.historyType "~")}}
+            {{else if (this.isDocumentModified document)}}
               <UkIcon
                 @icon="pencil"
                 class="uk-text-warning"
