@@ -29,7 +29,7 @@
     "@projectcaluma/ember-workflow": "workspace:*",
     "broccoli-asset-rev": "catalog:dev-deps",
     "ember-apollo-client": "catalog:prod-deps-locked",
-    "ember-auto-import": "catalog:prod-deps-locked",
+    "ember-auto-import": "2.12.0",
     "ember-basic-dropdown": "catalog:prod-deps-locked",
     "ember-can": "catalog:prod-deps-locked",
     "ember-changeset": "catalog:prod-deps-locked",
