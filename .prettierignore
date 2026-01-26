@@ -8,9 +8,8 @@
 **/coverage/
 !.*
 .*/
-
-# ember-try
-**/.node_modules.ember-try/
+ember-cli-update.json
+*.html
 
 # release-it
 CHANGELOG.md

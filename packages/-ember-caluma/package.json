@@ -43,6 +43,7 @@
     "ember-cli-deploy-build": "catalog:dev-deps",
     "ember-cli-deploy-git": "catalog:dev-deps",
     "ember-cli-deploy-git-ci": "catalog:dev-deps",
+    "ember-cli-deprecation-workflow": "catalog:dev-deps",
     "ember-cli-htmlbars": "catalog:prod-deps-locked",
     "ember-cli-inject-live-reload": "catalog:dev-deps",
     "ember-cli-mirage": "catalog:prod-deps-locked",

@@ -34,6 +34,7 @@
   "devDependencies": {
     "@ember/optional-features": "catalog:dev-deps",
     "@ember/test-helpers": "catalog:dev-deps",
+    "@embroider/macros": "catalog:prod-deps-locked",
     "@embroider/test-setup": "catalog:dev-deps",
     "@glimmer/component": "catalog:dev-deps",
     "broccoli-asset-rev": "catalog:dev-deps",
@@ -41,6 +42,7 @@
     "ember-cli-clean-css": "catalog:dev-deps",
     "ember-cli-code-coverage": "catalog:dev-deps",
     "ember-cli-dependency-checker": "catalog:dev-deps",
+    "ember-cli-deprecation-workflow": "catalog:dev-deps",
     "ember-cli-inject-live-reload": "catalog:dev-deps",
     "ember-cli-sri": "catalog:dev-deps",
     "ember-cli-terser": "catalog:dev-deps",
@@ -60,7 +62,7 @@
     "ember-source": ">= 4.0.0"
   },
   "engines": {
-    "node": ">= 18"
+    "node": ">= 20.19"
   },
   "ember": {
     "edition": "octane"

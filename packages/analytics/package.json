@@ -58,6 +58,7 @@
     "ember-cli-clean-css": "catalog:dev-deps",
     "ember-cli-code-coverage": "catalog:dev-deps",
     "ember-cli-dependency-checker": "catalog:dev-deps",
+    "ember-cli-deprecation-workflow": "catalog:dev-deps",
     "ember-cli-inject-live-reload": "catalog:dev-deps",
     "ember-cli-mirage": "catalog:prod-deps-locked",
     "ember-cli-sass": "catalog:dev-deps",
@@ -90,7 +91,7 @@
     }
   },
   "engines": {
-    "node": ">= 18"
+    "node": ">= 20.19"
   },
   "ember": {
     "edition": "octane"
