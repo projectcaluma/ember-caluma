@@ -153,14 +153,16 @@ export default class CfContentComponent extends Component {
     let historicalDocument = null;
 
     if (!this.args.compare) {
-      [answerDocument] = (await this.apollo.query(
-        {
-          query: getDocumentAnswersQuery,
-          fetchPolicy: "network-only",
-          variables: { id: this.args.documentId },
-        },
-        "allDocuments.edges",
-      )).map(({ node }) => node);
+      [answerDocument] = (
+        await this.apollo.query(
+          {
+            query: getDocumentAnswersQuery,
+            fetchPolicy: "network-only",
+            variables: { id: this.args.documentId },
+          },
+          "allDocuments.edges",
+        )
+      ).map(({ node }) => node);
     } else {
       const { from, to } = this.args.compare;
 
@@ -184,14 +186,16 @@ export default class CfContentComponent extends Component {
       answerDocument = data.toRevision;
     }
 
-    const [form] = (await this.apollo.query(
-      {
-        query: getDocumentFormsQuery,
-        fetchPolicy: "cache-first",
-        variables: { slug: answerDocument.form.slug },
-      },
-      "allForms.edges",
-    )).map(({ node }) => node);
+    const [form] = (
+      await this.apollo.query(
+        {
+          query: getDocumentFormsQuery,
+          fetchPolicy: "cache-first",
+          variables: { slug: answerDocument.form.slug },
+        },
+        "allForms.edges",
+      )
+    ).map(({ node }) => node);
 
     const raw = parseDocument({ ...answerDocument, form });
 
