@@ -43,6 +43,14 @@ export default class DocumentValidity extends Component {
     return this._validate.isRunning;
   }
 
+  _validateField = task(async (field) => {
+    await field.validate.linked().perform();
+
+    if (field.question.hasFormatValidators) {
+      await field.save.linked().perform();
+    }
+  });
+
   _validate = task({ restartable: true }, async () => {
     const saveTasks = this.args.document.fields
       .flatMap((field) => [
@@ -56,13 +64,9 @@ export default class DocumentValidity extends Component {
     await Promise.all(saveTasks);
 
     await Promise.all(
-      this.args.document.fields.map(async (field) => {
-        await field.validate.linked().perform();
-
-        if (field.question.hasFormatValidators) {
-          await field.save.linked().perform();
-        }
-      }),
+      this.args.document.fields.map((field) =>
+        this._validateField.perform(field),
+      ),
     );
 
     if (this.isValid) {
