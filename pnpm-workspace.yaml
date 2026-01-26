@@ -51,6 +51,7 @@ catalogs:
     eslint-plugin-ember: 12.7.5
     eslint-plugin-import: 2.32.0
     eslint-plugin-n: 17.23.2
+    eslint-plugin-pnpm: 1.5.0
     eslint-plugin-prettier: 5.5.5
     eslint-plugin-qunit: 8.2.5
     get-graphql-schema: 2.1.2
@@ -170,3 +171,10 @@ catalogs:
     miragejs: 0.1.48
     tracked-built-ins: 4.1.0
     uikit: 3.25.6
+
+peerDependencyRules:
+  allowedVersions:
+    ember-source: ^6.0.0
+    graphql: ^15.9.0
+  ignoreMissing:
+    - typescript
