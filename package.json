@@ -55,6 +55,7 @@
     "eslint-plugin-ember": "catalog:dev-deps",
     "eslint-plugin-import": "catalog:dev-deps",
     "eslint-plugin-n": "catalog:dev-deps",
+    "eslint-plugin-pnpm": "catalog:dev-deps",
     "eslint-plugin-prettier": "catalog:dev-deps",
     "eslint-plugin-qunit": "catalog:dev-deps",
     "get-graphql-schema": "catalog:dev-deps",
@@ -73,18 +74,6 @@
     "stylelint-scss": "catalog:dev-deps"
   },
   "packageManager": "pnpm@10.28.1",
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "typescript"
-      ],
-      "allowedVersions": {
-        "graphql": "^15.9.0",
-        "ember-source": "^6.0.0",
-        "ember-resources>ember-concurrency": "^4.0.0"
-      }
-    }
-  },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
