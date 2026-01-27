@@ -75,7 +75,7 @@ catalogs:
     uuid: 13.0.0
     webpack: 5.104.1
   prod-deps:
-    '@apollo/client': ^3.12.5
+    '@apollo/client': ^4.1.2
     '@babel/core': ^7.26.0
     '@ember/render-modifiers': ^2.1.0 || ^3.0.0
     '@ember/string': ^3.1.1 || ^4.0.0
