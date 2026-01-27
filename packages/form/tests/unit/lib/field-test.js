@@ -1,6 +1,7 @@
 import { settled } from "@ember/test-helpers";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { module, test } from "qunit";
+import { fake, stub } from "sinon";
 
 import { rawDocumentWithWorkItem } from "./data";
 
@@ -718,5 +719,59 @@ module("Unit | Library | field", function (hooks) {
       this.document.findField("question-1").answer.value = "hide-float";
       assert.strictEqual(this.calculated.value, null);
     });
+  });
+
+  module("hooks", function (hooks) {
+    hooks.beforeEach(function () {
+      this.field = this.document.findField("question-1");
+    });
+
+    test.each(
+      "can run save hooks with/without errors",
+      [true, false],
+      async function (assert, hasError) {
+        if (!hasError) {
+          stub(this.field.apollo, "mutate").resolves({
+            data: true,
+          });
+        } else {
+          stub(this.field.apollo, "mutate").rejects({
+            errors: [{ test: "error" }],
+          });
+        }
+
+        this.field.beforeSave = fake();
+        this.field.afterSave = fake();
+        this.field.onSaveError = fake();
+
+        const performSave = this.field.save.perform();
+        if (hasError) {
+          await assert.rejects(performSave);
+        } else {
+          await performSave;
+        }
+
+        // beforeSave is always called.
+        assert.ok(this.field.beforeSave.calledOnce);
+
+        if (hasError) {
+          // afterSave should not be called if there was an error.
+          assert.notOk(this.field.afterSave.called);
+          assert.ok(this.field.onSaveError.calledOnce);
+          // onSaveError receives the error thrown as an argument.
+          assert.deepEqual(this.field.onSaveError.firstCall.args[0], {
+            errors: [{ test: "error" }],
+          });
+        } else {
+          // onSaveError should not be called if there was no error.
+          assert.notOk(this.field.onSaveError.called);
+          assert.ok(this.field.afterSave.calledOnce);
+          // afterSave receives the response as an argument.
+          assert.deepEqual(this.field.afterSave.firstCall.args[0], {
+            data: true,
+          });
+        }
+      },
+    );
   });
 });

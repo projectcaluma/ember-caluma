@@ -627,6 +627,8 @@ export default class Field extends Base {
       input.dataSourceContext = JSON.stringify(this.document.dataSourceContext);
     }
 
+    await this.beforeSave();
+
     try {
       const response = await this.apollo.mutate(
         {
@@ -652,11 +654,15 @@ export default class Field extends Base {
         this._errors = this._errors.filter(({ type }) => type !== "format");
       }
 
+      await this.afterSave(response);
+
       return response;
     } catch (e) {
       const validationError = e.errors.find(
         (err) => err.extensions?.code === "format_validation_failed",
       );
+
+      await this.onSaveError(e);
 
       if (validationError) {
         this._errors = [
@@ -672,6 +678,31 @@ export default class Field extends Base {
       }
     }
   });
+
+  /**
+   * Hook method that can be overridden to add functionality before saving the field.
+   *
+   * @method beforeSave
+   */
+  async beforeSave() {}
+
+  /**
+   * Hook method that can be overridden to add functionality after saving the field.
+   *
+   * @method afterSave
+   * @param {Object} response The response from the server
+   */
+  // eslint-disable-next-line no-unused-vars
+  async afterSave(response) {}
+
+  /**
+   * Hook method that can be overridden to add functionality when saving the field fails.
+   *
+   * @method onSaveError
+   * @param {Object} error The error thrown during saving
+   */
+  // eslint-disable-next-line no-unused-vars
+  async onSaveError(error) {}
 
   /**
    * The translated error messages
