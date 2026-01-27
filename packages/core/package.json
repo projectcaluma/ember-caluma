@@ -74,9 +74,6 @@
   "dependenciesMeta": {
     "@projectcaluma/ember-testing": {
       "injected": true
-    },
-    "@projectcaluma/ember-form": {
-      "injected": true
     }
   },
   "peerDependenciesMeta": {
