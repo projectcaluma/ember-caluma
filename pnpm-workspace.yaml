@@ -42,7 +42,7 @@ catalogs:
     ember-modifier: 4.2.2
     ember-qunit: 9.0.4
     ember-sinon-qunit: 7.5.0
-    ember-source: 6.1.0
+    ember-source: 6.10.0
     ember-source-channel-url: 3.0.0
     ember-template-lint: 7.9.3
     ember-try: 4.0.0
