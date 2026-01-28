@@ -8,12 +8,12 @@
 **/coverage/
 !.*
 .*/
-
-# ember-try
-**/.node_modules.ember-try/
+ember-cli-update.json
+*.html
 
 # release-it
 CHANGELOG.md
 
 # pnpm
 pnpm-lock.yaml
+pnpm-workspace.yaml
