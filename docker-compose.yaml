@@ -20,6 +20,7 @@ services:
       - LANGUAGE_CODE=en
       - LANGUAGES=en
       - MINIO_STORAGE_ENDPOINT=localhost:9000
+      - ENABLE_HISTORICAL_API=true
 
   minio:
     image: minio/minio:latest
