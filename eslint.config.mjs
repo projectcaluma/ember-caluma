@@ -1,6 +1,7 @@
 import adfinisEmberAddonConfig from "@adfinis/eslint-config/ember-addon";
 import ember from "eslint-plugin-ember";
 import n from "eslint-plugin-n";
+import pnpm from "eslint-plugin-pnpm";
 import globals from "globals";
 
 export default [
@@ -60,6 +61,25 @@ export default [
     ],
     rules: {
       "ember/no-array-prototype-extensions": ["off"],
+    },
+  },
+  // PNPM
+  ...pnpm.configs.json,
+  ...pnpm.configs.yaml,
+  {
+    files: ["package.json", "**/package.json"],
+    rules: {
+      "pnpm/json-enforce-catalog": [
+        "error",
+        // https://github.com/embroider-build/ember-auto-import/issues/648
+        { ignores: ["ember-auto-import"] },
+      ],
+    },
+  },
+  {
+    files: ["pnpm-workspace.yaml"],
+    rules: {
+      "pnpm/yaml-no-duplicate-catalog-item": "off",
     },
   },
 ];
