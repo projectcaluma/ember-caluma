@@ -18,12 +18,12 @@
 
     <div class="uk-flex">
       <div class="uk-width-expand">
-        {{#if @field.compare}}
+        {{#if @compare}}
           <CfField::InputCompare
             @field={{@field}}
             @disabled={{true}}
             @context={{@context}}
-            @compare={{@field.compare}}
+            @compare={{@compare}}
           />
         {{else}}
           {{#let
