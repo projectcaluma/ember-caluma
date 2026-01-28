@@ -3,10 +3,7 @@ import { module, test } from "qunit";
 
 import { rawHistoricalDocumentWithCase } from "./data";
 
-import {
-  compareTableDocument,
-  flatTableMap,
-} from "@projectcaluma/ember-form/lib/compare";
+import { compareTableDocument } from "@projectcaluma/ember-form/lib/compare";
 import { setupTest } from "dummy/tests/helpers";
 
 module("Unit | Library | compare", function (hooks) {
@@ -25,14 +22,7 @@ module("Unit | Library | compare", function (hooks) {
   };
 
   test("compares table answers as flattened objects", async function (assert) {
-    assert.expect(18);
-
-    // flattened table values stringified.
-    // - the question object field is converted to a questionSlug string.
-    // - extra fields like historyType, historyDate, ... are ignored.
-    // - empty string answer value becomes null.
-    const beforeFlat =
-      '{"questionSlug":"table-form-question","stringValue":"show-multiple-choice"},{"questionSlug":"table-form-question-2","stringValue":"test"},{"questionSlug":"table-form-question","stringValue":"show-multiple-choice2"},{"questionSlug":"table-form-question-2","stringValue":null}';
+    assert.expect(8);
 
     const tableAnswersBefore = cloneObject(
       rawHistoricalDocumentWithCase.answers,
@@ -43,19 +33,11 @@ module("Unit | Library | compare", function (hooks) {
 
     let tableAnswersAfter = cloneObject(tableAnswersHistorical);
     assert.ok(
-      compareTableDocument(tableAnswersBefore[0], tableAnswersAfter[0], false),
+      compareTableDocument(tableAnswersBefore[0], tableAnswersAfter[0]),
     );
     assert.ok(
-      compareTableDocument(tableAnswersBefore[1], tableAnswersAfter[1], false),
+      compareTableDocument(tableAnswersBefore[1], tableAnswersAfter[1]),
     );
-    assert.ok(
-      compareTableDocument(tableAnswersBefore[0], tableAnswersAfter[0], true),
-    );
-    assert.ok(
-      compareTableDocument(tableAnswersBefore[1], tableAnswersAfter[1], true),
-    );
-    assert.strictEqual(flatTableMap(tableAnswersBefore), beforeFlat);
-    assert.strictEqual(flatTableMap(tableAnswersAfter), beforeFlat);
 
     // modify any ignored table value keys has no effect on comparison.
     tableAnswersAfter = cloneObject(tableAnswersHistorical);
@@ -78,27 +60,32 @@ module("Unit | Library | compare", function (hooks) {
         edge.node.stringValue = stringValue;
       });
     });
-    // flattend table values after modification don't match anymore.
     assert.ok(
-      compareTableDocument(tableAnswersBefore[0], tableAnswersAfter[0], false),
+      compareTableDocument(tableAnswersBefore[0], tableAnswersAfter[0]),
     );
     assert.ok(
-      compareTableDocument(tableAnswersBefore[1], tableAnswersAfter[1], false),
+      compareTableDocument(tableAnswersBefore[1], tableAnswersAfter[1]),
+    );
+
+    // ordering of table answers does not affect the comparison.
+    tableAnswersAfter = cloneObject(tableAnswersHistorical);
+    tableAnswersAfter[0].answers.edges = [
+      tableAnswersAfter[0].answers.edges[1],
+      tableAnswersAfter[0].answers.edges[0],
+    ];
+    tableAnswersAfter[1].answers.edges = [
+      tableAnswersAfter[1].answers.edges[1],
+      tableAnswersAfter[1].answers.edges[0],
+    ];
+    assert.ok(
+      compareTableDocument(tableAnswersBefore[0], tableAnswersAfter[0]),
     );
     assert.ok(
-      compareTableDocument(tableAnswersBefore[0], tableAnswersAfter[0], true),
+      compareTableDocument(tableAnswersBefore[1], tableAnswersAfter[1]),
     );
-    assert.ok(
-      compareTableDocument(tableAnswersBefore[1], tableAnswersAfter[1], true),
-    );
-    assert.strictEqual(flatTableMap(tableAnswersBefore), beforeFlat);
-    assert.strictEqual(flatTableMap(tableAnswersAfter), beforeFlat);
 
     // modify values to add " changed" to each table value answer.
     // and update the historyType and historyDate to simulate changes.
-    const afterFlat =
-      '{"questionSlug":"table-form-question","stringValue":"show-multiple-choice changed"},{"questionSlug":"table-form-question-2","stringValue":"test changed"},{"questionSlug":"table-form-question","stringValue":"show-multiple-choice2 changed"},{"questionSlug":"table-form-question-2","stringValue":" changed"}';
-
     tableAnswersAfter = cloneObject(tableAnswersHistorical);
     tableAnswersAfter.forEach((doc) => {
       doc.answers.edges.forEach((edge) => {
@@ -107,21 +94,12 @@ module("Unit | Library | compare", function (hooks) {
         edge.node.historyDate = new Date().toISOString();
       });
     });
-    // flattend table values after modification don't match anymore.
+    // table values after modification don't match anymore.
     assert.notOk(
-      compareTableDocument(tableAnswersBefore[0], tableAnswersAfter[0], false),
+      compareTableDocument(tableAnswersBefore[0], tableAnswersAfter[0]),
     );
     assert.notOk(
-      compareTableDocument(tableAnswersBefore[1], tableAnswersAfter[1], false),
+      compareTableDocument(tableAnswersBefore[1], tableAnswersAfter[1]),
     );
-    assert.notOk(
-      compareTableDocument(tableAnswersBefore[0], tableAnswersAfter[0], true),
-    );
-    assert.notOk(
-      compareTableDocument(tableAnswersBefore[1], tableAnswersAfter[1], true),
-    );
-    // assert changed values in the after table answers.
-    assert.strictEqual(flatTableMap(tableAnswersBefore), beforeFlat);
-    assert.strictEqual(flatTableMap(tableAnswersAfter), afterFlat);
   });
 });
