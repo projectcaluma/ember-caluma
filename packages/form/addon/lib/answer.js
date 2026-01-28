@@ -2,10 +2,11 @@ import { getOwner } from "@ember/application";
 import { assert } from "@ember/debug";
 import { camelize } from "@ember/string";
 import { isEmpty } from "@ember/utils";
-import { dedupeTracked, cached } from "tracked-toolbox";
+import { cached, dedupeTracked } from "tracked-toolbox";
 
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 import Base from "@projectcaluma/ember-form/lib/base";
+import { historicalTableValue } from "@projectcaluma/ember-form/lib/compare";
 import { parseDocument } from "@projectcaluma/ember-form/lib/parsers";
 
 /**
@@ -33,7 +34,7 @@ class DedupedTrackedObject {
  * @class Answer
  */
 export default class Answer extends Base {
-  constructor({ raw, field, ...args }) {
+  constructor({ raw, field, historical, ...args }) {
     assert("`field` must be passed as an argument", field);
 
     assert(
@@ -45,6 +46,7 @@ export default class Answer extends Base {
 
     this.field = field;
     this.raw = new DedupedTrackedObject(raw);
+    this.historical = historical ? new DedupedTrackedObject(historical) : null;
 
     this.pushIntoStore();
   }
@@ -63,6 +65,14 @@ export default class Answer extends Base {
    * @property {DedupedTrackedObject} raw
    */
   raw = {};
+
+  /**
+   * Get the compare context via the field.
+   * @property {Object} compare
+   */
+  get compare() {
+    return this.field.compare;
+  }
 
   /**
    * The primary key of the answer.
@@ -106,7 +116,11 @@ export default class Answer extends Base {
   get _valueKey() {
     return (
       this.raw.__typename &&
-      camelize(this.raw.__typename.replace(/Answer$/, "Value"))
+      camelize(
+        this.raw.__typename
+          .replace(/^Historical/, "")
+          .replace(/Answer$/, "Value"),
+      )
     );
   }
 
@@ -121,6 +135,15 @@ export default class Answer extends Base {
     const value = this.raw[this._valueKey];
 
     if (this._valueKey === "tableValue" && value) {
+      // For a historical view for table values we map it differently to be able to
+      // show the diff.
+      if (this.compare) {
+        const owner = getOwner(this);
+        const historicalValue = this.historical?.[this._valueKey] || [];
+
+        return historicalTableValue(owner, this.field, value, historicalValue);
+      }
+
       const owner = getOwner(this);
       const Document = owner.factoryFor("caluma-model:document").class;
 
@@ -143,6 +166,18 @@ export default class Answer extends Base {
     }
 
     return value;
+  }
+
+  get historicalValue() {
+    return this.historical?.[this._valueKey];
+  }
+
+  get historicalDate() {
+    return this.historical?.historyDate;
+  }
+
+  get historicalUser() {
+    return this.historical?.historyUserId;
   }
 
   set value(value) {

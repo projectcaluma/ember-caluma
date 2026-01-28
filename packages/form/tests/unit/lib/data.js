@@ -132,6 +132,35 @@ const form = {
   __typename: "Form",
 };
 
+const _case = {
+  id: id("Case"),
+  workflow: {
+    id: id("Workflow", "child-case-workflow"),
+    slug: "child-case-workflow",
+  },
+  document: {
+    id: id("Document"),
+    form: {
+      id: id("Form", "child-case-form"),
+      slug: "child-case-form",
+    },
+  },
+  family: {
+    id: id("Case"),
+    workflow: {
+      id: id("Workflow", "root-case-workflow"),
+      slug: "root-case-workflow",
+    },
+    document: {
+      id: id("Document"),
+      form: {
+        id: id("Form", "root-case-form"),
+        slug: "root-case-form",
+      },
+    },
+  },
+};
+
 const answers = {
   edges: [
     {
@@ -236,33 +265,189 @@ const answers = {
   ],
 };
 
-const _case = {
-  id: id("Case"),
-  workflow: {
-    id: id("Workflow", "child-case-workflow"),
-    slug: "child-case-workflow",
-  },
-  document: {
-    id: id("Document"),
-    form: {
-      id: id("Form", "child-case-form"),
-      slug: "child-case-form",
-    },
-  },
-  family: {
-    id: id("Case"),
-    workflow: {
-      id: id("Workflow", "root-case-workflow"),
-      slug: "root-case-workflow",
-    },
-    document: {
-      id: id("Document"),
-      form: {
-        id: id("Form", "root-case-form"),
-        slug: "root-case-form",
+const historicalAnswers = {
+  edges: [
+    {
+      node: {
+        id: id("StringAnswer"),
+        question: {
+          slug: "question-1",
+        },
+        stringValue: "test answer",
+        historyDate: "2024-01-01T00:00:00Z",
+        historyType: "=",
+        historyUserId: id("User"),
+        __typename: "HistoricalStringAnswer",
       },
     },
-  },
+    {
+      node: {
+        id: id("StringAnswer"),
+        question: {
+          slug: "question-2",
+        },
+        stringValue: "test answer 2",
+        historyDate: "2024-01-01T00:00:00Z",
+        historyType: "=",
+        historyUserId: id("User"),
+        __typename: "HistoricalStringAnswer",
+      },
+    },
+    {
+      node: {
+        id: id("FloatAnswer"),
+        question: { slug: "float" },
+        floatValue: 1.1,
+        historyDate: "2024-01-01T00:00:00Z",
+        historyType: "=",
+        historyUserId: id("User"),
+        __typename: "HistoricalFloatAnswer",
+      },
+    },
+    {
+      node: {
+        id: id("TableAnswer"),
+        question: {
+          slug: "table",
+        },
+        tableValue: [
+          {
+            id: id("Document"),
+            form: {
+              slug: "table-form",
+              meta: {
+                "is-top-form": false,
+                level: 1,
+              },
+              questions: {
+                edges: [
+                  {
+                    node: {
+                      slug: "table-form-question",
+                      label: "Question",
+                      isRequired: "true",
+                      isHidden: "false",
+                      meta: {},
+                      __typename: "HistoricalTextQuestion",
+                    },
+                  },
+                  {
+                    node: {
+                      slug: "table-form-question-2",
+                      label: "Question",
+                      isRequired: "false",
+                      isHidden: "false",
+                      meta: {},
+                      __typename: "HistoricalTextQuestion",
+                    },
+                  },
+                ],
+              },
+              __typename: "HistoricalForm",
+            },
+            answers: {
+              edges: [
+                {
+                  node: {
+                    id: id("StringAnswer"),
+                    question: {
+                      slug: "table-form-question",
+                    },
+                    stringValue: "show-multiple-choice",
+                    __typename: "HistoricalStringAnswer",
+                    historyDate: "2024-01-01T00:00:00Z",
+                    historyType: "=",
+                    historyUserId: id("User"),
+                  },
+                },
+                {
+                  node: {
+                    id: id("StringAnswer"),
+                    question: {
+                      slug: "table-form-question-2",
+                    },
+                    stringValue: "test",
+                    __typename: "HistoricalStringAnswer",
+                    historyDate: "2024-01-01T00:00:00Z",
+                    historyType: "=",
+                    historyUserId: id("User"),
+                  },
+                },
+              ],
+            },
+            __typename: "HistoricalDocument",
+          },
+          {
+            id: id("Document"),
+            form: {
+              slug: "table-form",
+              meta: {
+                "is-top-form": false,
+                level: 1,
+              },
+              questions: {
+                edges: [
+                  {
+                    node: {
+                      slug: "table-form-question",
+                      label: "Question",
+                      isRequired: "true",
+                      isHidden: "false",
+                      meta: {},
+                      __typename: "HistoricalTextQuestion",
+                    },
+                  },
+                  {
+                    node: {
+                      slug: "table-form-question-2",
+                      label: "Question",
+                      isRequired: "false",
+                      isHidden: "false",
+                      meta: {},
+                      __typename: "HistoricalTextQuestion",
+                    },
+                  },
+                ],
+              },
+              __typename: "HistoricalForm",
+            },
+            answers: {
+              edges: [
+                {
+                  node: {
+                    id: id("StringAnswer"),
+                    question: {
+                      slug: "table-form-question",
+                    },
+                    stringValue: "show-multiple-choice2",
+                    historyDate: "2024-01-01T00:00:00Z",
+                    historyType: "=",
+                    historyUserId: id("User"),
+                    __typename: "HistoricalStringAnswer",
+                  },
+                },
+                {
+                  node: {
+                    id: id("StringAnswer"),
+                    question: {
+                      slug: "table-form-question-2",
+                    },
+                    stringValue: "",
+                    historyDate: "2024-01-01T00:00:00Z",
+                    historyType: "=",
+                    historyUserId: id("User"),
+                    __typename: "HistoricalStringAnswer",
+                  },
+                },
+              ],
+            },
+            __typename: "HistoricalDocument",
+          },
+        ],
+        __typename: "HistoricalTableAnswer",
+      },
+    },
+  ],
 };
 
 const workItem = {
@@ -273,6 +458,15 @@ const workItem = {
 export const rawDocumentWithCase = {
   id: id("Document"),
   answers,
+  form,
+  case: _case,
+  __typename: "Document",
+};
+
+export const rawHistoricalDocumentWithCase = {
+  id: id("Document"),
+  answers: historicalAnswers,
+  historicalAnswers,
   form,
   case: _case,
   __typename: "Document",

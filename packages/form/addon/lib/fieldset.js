@@ -59,6 +59,9 @@ export default class Fieldset extends Base {
               answer: this.raw.answers.find(
                 (answer) => answer?.question?.slug === question.slug,
               ),
+              historicalAnswer: this.raw.historicalAnswers?.find(
+                (answer) => answer?.question?.slug === question.slug,
+              ),
             },
             fieldset: this,
             owner,
@@ -67,6 +70,14 @@ export default class Fieldset extends Base {
     });
 
     this.fields = fields;
+  }
+
+  /**
+   * Get the compare context via the document.
+   * @property {Object} compare
+   */
+  get compare() {
+    return this.document.compare;
   }
 
   /**

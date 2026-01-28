@@ -26,6 +26,16 @@ export default class CfFieldInputTableComponent extends Component {
     return parseDocument(raw);
   }
 
+  isDocumentAdded = (document) => {
+    return this.args.compare && document?.raw?.historyType === "+";
+  };
+  isDocumentDeleted = (document) => {
+    return this.args.compare && document?.raw?.historyType === "-";
+  };
+  isDocumentModified = (document) => {
+    return this.args.compare && document?.raw?.historyType === "~";
+  };
+
   get questions() {
     return this.args.field.question.raw.rowForm.questions.edges.map(
       (edge) => edge.node,

@@ -17,10 +17,19 @@
         {{@item.label}}
       </span>
     {{/if}}
-    <span
-      class="cf-navigation__item__icon cf-navigation__item__icon--{{@item.state}}
-        {{if @item.dirty 'cf-navigation__item__icon--dirty'}}"
-    ></span>
+    {{#if @compare}}
+      {{#if (eq @item.compareState "modified")}}
+        <UkIcon
+          @icon="pencil"
+          class="cf-navigation__item__icon cf-navigation__item__icon--compare-{{@item.compareState}}"
+        />
+      {{/if}}
+    {{else}}
+      <span
+        class="cf-navigation__item__icon cf-navigation__item__icon--{{@item.state}}
+          {{if @item.dirty 'cf-navigation__item__icon--dirty'}}"
+      ></span>
+    {{/if}}
   </LinkTo>
 
   {{#if @item.visibleChildren}}
@@ -29,6 +38,7 @@
         <CfNavigationItem
           @item={{child}}
           @headingLevel={{add @headingLevel 1}}
+          @compare={{@compare}}
         />
       {{/each}}
     </ul>

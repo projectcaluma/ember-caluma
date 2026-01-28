@@ -6,6 +6,7 @@ import { queryManager } from "ember-apollo-client";
 import { task } from "ember-concurrency";
 import { trackedTask } from "reactiveweb/ember-concurrency";
 
+import getDocumentAnswersCompareQuery from "@projectcaluma/ember-form/gql/queries/document-answers-compare.graphql";
 import getDocumentAnswersQuery from "@projectcaluma/ember-form/gql/queries/document-answers.graphql";
 import getDocumentFormsQuery from "@projectcaluma/ember-form/gql/queries/document-forms.graphql";
 import { parseDocument } from "@projectcaluma/ember-form/lib/parsers";
@@ -30,6 +31,12 @@ import { parseDocument } from "@projectcaluma/ember-form/lib/parsers";
  *   </div>
  * </CfContent>
  * ```
+ * To use this component for a comparison between two document revisions, pass @compare
+ *
+ * <CfContent @documentId="some-id" @compare={{hash
+      from=this.fromDate
+      to=this.toDate
+ * }} />
  *
  * If you're rendering multi-page forms, the component also expects a query
  * param `displayedForm`:
@@ -70,6 +77,13 @@ export default class CfContentComponent extends Component {
    * Whether the form renders in disabled state
    *
    * @argument {Boolean} disabled
+   */
+
+  /**
+   * Can be used to pass "compare" context information from the outside.
+   * Pass a hash with `from` and optional `to` date to compare documents.
+   *
+   * @argument {Object} compare
    */
 
   /**
@@ -131,16 +145,39 @@ export default class CfContentComponent extends Component {
 
     if (!this.args.documentId) return;
 
-    const [answerDocument] = (
-      await this.apollo.query(
-        {
-          query: getDocumentAnswersQuery,
-          fetchPolicy: "network-only",
-          variables: { id: this.args.documentId },
+    const owner = getOwner(this);
+    const Document = owner.factoryFor("caluma-model:document").class;
+    const Navigation = owner.factoryFor("caluma-model:navigation").class;
+
+    let answerDocument = null;
+    let historicalDocument = null;
+
+    if (!this.args.compare) {
+      [answerDocument] = (
+        await this.apollo.query(
+          {
+            query: getDocumentAnswersQuery,
+            fetchPolicy: "network-only",
+            variables: { id: this.args.documentId },
+          },
+          "allDocuments.edges",
+        )
+      ).map(({ node }) => node);
+    } else {
+      const { from, to } = this.args.compare;
+
+      const data = await this.apollo.query({
+        query: getDocumentAnswersCompareQuery,
+        fetchPolicy: "network-only",
+        variables: {
+          documentId: this.args.documentId,
+          from,
+          to: to ?? new Date(),
         },
-        "allDocuments.edges",
-      )
-    ).map(({ node }) => node);
+      });
+      historicalDocument = data.fromRevision;
+      answerDocument = data.toRevision;
+    }
 
     const [form] = (
       await this.apollo.query(
@@ -153,16 +190,15 @@ export default class CfContentComponent extends Component {
       )
     ).map(({ node }) => node);
 
-    const owner = getOwner(this);
-    const Document = owner.factoryFor("caluma-model:document").class;
-    const Navigation = owner.factoryFor("caluma-model:navigation").class;
-
     const raw = parseDocument({ ...answerDocument, form });
 
     const document = new Document({
       raw,
       owner,
-      dataSourceContext: this.args.context,
+      historicalDocument: historicalDocument
+        ? parseDocument({ ...historicalDocument, form })
+        : null,
+      compare: this.args.compare,
     });
     const navigation = new Navigation({ document, owner });
 
