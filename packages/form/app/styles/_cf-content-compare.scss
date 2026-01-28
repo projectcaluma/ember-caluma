@@ -1,15 +1,28 @@
 @use "sass:color";
 
+$diff-danger-background: color.adjust(
+  $global-danger-background,
+  $lightness: 25%
+);
+$diff-success-background: color.adjust(
+  $global-success-background,
+  $lightness: 30%
+);
+$diff-warning-background: color.adjust(
+  $global-warning-background,
+  $lightness: 25%
+);
+
 .cf-compare {
   position: relative;
 
-  &:not(.cf-compare-manual) &::before {
+  &:not(.cf-compare-manual) > ::before {
     content: "";
     position: absolute;
-    inset: -3px auto -10px -15px;
+    inset: 0 auto -#{$global-small-margin} -#{$global-small-margin};
     pointer-events: none;
     z-index: 1;
-    border-right: 2px dotted #{$global-primary-background};
+    border-right: 2px dotted $global-primary-background;
   }
 
   // Default from/to version styling.
@@ -21,29 +34,24 @@
       height: auto;
     }
 
-    .diff-from-version,
-    .diff-to-version {
-      min-height: 22.5px;
-    }
-
     .diff-from-version {
-      background: color.adjust($global-danger-background, $lightness: 25%);
+      background: $diff-danger-background;
     }
 
     .diff-to-version {
-      background: color.adjust($global-success-background, $lightness: 25%);
+      background: $diff-success-background;
     }
 
     .diff-is-added {
-      background: color.adjust($global-success-background, $lightness: 25%);
+      background: $diff-success-background;
     }
 
     .diff-is-modified {
-      background: color.adjust($global-warning-background, $lightness: 25%);
+      background: $diff-warning-background;
     }
 
     .diff-is-removed {
-      background: color.adjust($global-danger-background, $lightness: 25%);
+      background: $diff-danger-background;
     }
   }
 
@@ -52,26 +60,26 @@
   &.cf-compare-MultipleChoiceQuestion,
   &.cf-compare-DynamicChoiceQuestion {
     .from-version .ember-basic-dropdown-trigger {
-      background: color.adjust($global-danger-background, $lightness: 25%);
+      background: $diff-danger-background;
     }
 
     .to-version .ember-basic-dropdown-trigger {
-      background: color.adjust($global-success-background, $lightness: 25%);
+      background: $diff-success-background;
     }
   }
 
   // Specific styling for table questions.
   &.cf-compare-TableQuestion {
     .diff-removed {
-      background: #{$global-danger-background}35;
+      background: $diff-danger-background;
     }
 
     .diff-modified {
-      background: #{$global-warning-background}35;
+      background: $diff-warning-background;
     }
 
     .diff-added {
-      background: #{$global-success-background}35;
+      background: $diff-success-background;
     }
   }
 
@@ -82,7 +90,7 @@
     }
 
     .diff-to-version {
-      background: color.adjust($global-success-background, $lightness: 25%);
+      background: $diff-success-background;
     }
 
     &.cf-compare-TextQuestion,
@@ -95,7 +103,7 @@
       }
 
       .to-version input {
-        background: color.adjust($global-success-background, $lightness: 25%);
+        background: $diff-success-background;
       }
     }
 
@@ -105,7 +113,7 @@
       }
 
       .to-version {
-        background: color.adjust($global-success-background, $lightness: 25%);
+        background: $diff-success-background;
       }
     }
 
@@ -117,7 +125,7 @@
       }
 
       .to-version .ember-basic-dropdown-trigger {
-        background: color.adjust($global-success-background, $lightness: 25%);
+        background: $diff-success-background;
       }
     }
   }
@@ -129,7 +137,7 @@
     }
 
     .diff-to-version {
-      background: color.adjust($global-danger-background, $lightness: 25%);
+      background: $diff-danger-background;
     }
 
     &.cf-compare-TextQuestion,
@@ -138,7 +146,7 @@
     &.cf-compare-FloatQuestion,
     &.cf-compare-CalculatedFloatQuestion {
       .from-version input {
-        background: color.adjust($global-danger-background, $lightness: 25%);
+        background: $diff-danger-background;
       }
 
       .to-version input {
@@ -148,7 +156,7 @@
 
     &.cf-compare-TextareaQuestion {
       .from-version {
-        background: color.adjust($global-danger-background, $lightness: 25%);
+        background: $diff-danger-background;
       }
 
       .to-version {
@@ -164,7 +172,7 @@
       }
 
       .to-version .ember-basic-dropdown-trigger {
-        background: color.adjust($global-danger-background, $lightness: 25%);
+        background: $diff-danger-background;
       }
     }
   }
@@ -180,7 +188,7 @@
     .diff-to-version {
       white-space: pre-line;
       padding: 2px 4px;
-      min-height: 40px;
+      min-height: $global-medium-font-size;
     }
   }
 
@@ -189,7 +197,13 @@
   &.cf-compare-MultipleChoiceQuestion .uk-form-controls {
     label {
       display: block;
-      padding: 2px 4px 1px;
+      padding: 4px;
+      line-height: 1rem;
+
+      input {
+        margin: 0;
+        padding: 0;
+      }
     }
 
     br {
