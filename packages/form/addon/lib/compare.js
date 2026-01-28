@@ -1,3 +1,6 @@
+import { isEmpty } from "@ember/utils";
+import isEqual from "lodash.isequal";
+
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 import { parseDocument } from "@projectcaluma/ember-form/lib/parsers";
 
@@ -33,15 +36,18 @@ export function serializeObject(v) {
  */
 export function comparisonValue(v) {
   // ignore falsey differences.
-  if ([null, undefined, ""].includes(v)) {
+  if (isEmpty(v)) {
     return null;
   }
 
   // compare arrays as sorted serialized strings.
   if (Array.isArray(v)) {
-    return comparisonValue(
-      v.slice().map(comparisonValue).map(serializeObject).sort().toString(),
-    );
+    return v
+      .slice()
+      .map(comparisonValue)
+      .map(serializeObject)
+      .sort()
+      .toString();
   }
 
   return v;
@@ -55,11 +61,12 @@ export function comparisonValue(v) {
  * @returns {Object|null}
  */
 export function filterTableAnswer(answer) {
-  const v = { ...(answer?.node || {}) };
-  if (!v) {
+  const v = { ...answer.node };
+  if (isEmpty(v)) {
     return null;
   }
 
+  // drop question object, but keep the slug for comparison.
   v.questionSlug = v.question?.slug ?? "";
 
   // drop all non-relevant fields for value comparison.
@@ -70,6 +77,11 @@ export function filterTableAnswer(answer) {
   delete v.question;
   delete v.id;
   delete v.documentId;
+
+  // flatten all remaining keys as comparable values.
+  for (const key of Object.keys(v)) {
+    v[key] = comparisonValue(v[key]);
+  }
 
   return v;
 }
@@ -88,13 +100,9 @@ export function flatTableMap(docs) {
   }
 
   const mapped = docs.map((doc) =>
-    doc?.answers?.edges?.map(filterTableAnswer).sort((a, b) => {
+    doc.answers.edges.map(filterTableAnswer).sort((a, b) => {
       // sort by question slug if available for an ordered comparison.
-      if (
-        a?.questionSlug &&
-        b?.questionSlug &&
-        a.questionSlug !== b.questionSlug
-      ) {
+      if (a.questionSlug !== b.questionSlug) {
         return a.questionSlug.localeCompare(b.questionSlug);
       }
 
@@ -104,6 +112,57 @@ export function flatTableMap(docs) {
   );
 
   return mapped.map(comparisonValue).toString();
+}
+
+/**
+ * Old comparison method for table documents, using
+ * flatTableMap for comparison.
+ *
+ * @param {Array<Object>} docA
+ * @param {Array<Object>} docB
+ * @returns {Boolean}
+ */
+function oldCompareTableDocument(docA, docB) {
+  return flatTableMap(docA) === flatTableMap(docB);
+}
+
+/**
+ * Creates an object that is suitable for comparison, filtering out
+ * non-relevant fields and sorting answers by question slug.
+ *
+ * @param {Object} doc
+ * @returns {Object}
+ */
+function comparableDocument(doc) {
+  return {
+    id: doc.id,
+    answers: {
+      edges: doc.answers.edges
+        .map((answer) => ({
+          node: filterTableAnswer(answer),
+        }))
+        .sort((a, b) => {
+          return a.node.questionSlug.localeCompare(b.node.questionSlug);
+        }),
+    },
+  };
+}
+
+/**
+ * Compares two table documents for equality.
+ *
+ * @param {Object} docA
+ * @param {Object} docB
+ * @returns {Boolean}
+ */
+export function compareTableDocument(docA, docB, newVersion = true) {
+  const comparedOld = oldCompareTableDocument(docA, docB);
+  const comparedNew = isEqual(
+    comparableDocument(docA),
+    comparableDocument(docB),
+  );
+
+  return newVersion ? comparedNew : comparedOld;
 }
 
 /**
@@ -146,13 +205,11 @@ export function historicalTableValue(owner, field, value, historicalValue) {
             historyType = historicalValue?.find(
               (histDoc) =>
                 decodeId(histDoc.id) !== decodeId(document.id) &&
-                flatTableMap(histDoc) === flatTableMap(document),
+                compareTableDocument(histDoc, document),
             )
               ? "="
               : "+";
-          } else if (
-            flatTableMap(document) === flatTableMap(historicalDocument)
-          ) {
+          } else if (compareTableDocument(document, historicalDocument)) {
             // If the modified document has identical flat table values
             // to the historical document, we treat it as identical.
             historyType = "=";
