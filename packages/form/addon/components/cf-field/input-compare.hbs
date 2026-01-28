@@ -1,5 +1,11 @@
 {{#let
-  (component (ensure-safe-component (get-widget @field.question)))
+  (component
+    (ensure-safe-component (get-widget @field.question))
+    field=@field
+    disabled=true
+    context=@context
+    onSave=(perform this.save)
+  )
   as |FieldComponent|
 }}
   {{#if @field.isModified}}
@@ -13,21 +19,9 @@
       {{#if this.compareOptions.combined}}
         <div class="combined-diff">
           <div hidden>
-            <FieldComponent
-              @field={{@field}}
-              @disabled={{true}}
-              @context={{@context}}
-              @onSave={{perform this.save}}
-              @compare={{false}}
-            />
+            <FieldComponent @compare={{false}} />
           </div>
-          <FieldComponent
-            @field={{@field}}
-            @disabled={{true}}
-            @context={{@context}}
-            @onSave={{perform this.save}}
-            @compare={{@compare}}
-          />
+          <FieldComponent @compare={{@compare}} />
         </div>
         {{#unless this.compareOptions.disableChangesNote}}
           <div class="changes-note">
@@ -36,22 +30,10 @@
         {{/unless}}
       {{else}}
         <div class="from-version">
-          <FieldComponent
-            @field={{@field}}
-            @disabled={{true}}
-            @context={{@context}}
-            @onSave={{perform this.save}}
-            @compare={{@compare}}
-          />
+          <FieldComponent @compare={{@compare}} />
         </div>
         <div class="to-version">
-          <FieldComponent
-            @field={{@field}}
-            @disabled={{true}}
-            @context={{@context}}
-            @onSave={{perform this.save}}
-            @compare={{false}}
-          />
+          <FieldComponent @compare={{false}} />
         </div>
         {{#unless this.compareOptions.disableChangesNote}}
           <div class="changes-note">
@@ -61,11 +43,6 @@
       {{/if}}
     </div>
   {{else}}
-    <FieldComponent
-      @field={{@field}}
-      @disabled={{true}}
-      @context={{@context}}
-      @onSave={{perform this.save}}
-    />
+    <FieldComponent @compare={{false}} />
   {{/if}}
 {{/let}}

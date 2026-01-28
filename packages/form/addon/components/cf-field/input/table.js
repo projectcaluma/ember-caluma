@@ -27,13 +27,13 @@ export default class CfFieldInputTableComponent extends Component {
   }
 
   isDocumentAdded = (document) => {
-    return this.args.field.compare && document?.raw?.historyType === "+";
+    return this.args.compare && document?.raw?.historyType === "+";
   };
   isDocumentDeleted = (document) => {
-    return this.args.field.compare && document?.raw?.historyType === "-";
+    return this.args.compare && document?.raw?.historyType === "-";
   };
   isDocumentModified = (document) => {
-    return this.args.field.compare && document?.raw?.historyType === "~";
+    return this.args.compare && document?.raw?.historyType === "~";
   };
 
   get questions() {

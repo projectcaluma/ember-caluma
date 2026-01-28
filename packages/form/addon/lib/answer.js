@@ -118,7 +118,7 @@ export default class Answer extends Base {
       this.raw.__typename &&
       camelize(
         this.raw.__typename
-          .replace("Historical", "")
+          .replace(/^Historical/, "")
           .replace(/Answer$/, "Value"),
       )
     );
