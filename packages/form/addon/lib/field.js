@@ -120,7 +120,7 @@ export default class Field extends Base {
       const rawHistorical = this.compare
         ? {
             historyType: "=",
-            historyDate: this.compare?.to,
+            historyDate: this.compare.to,
           }
         : {};
 
@@ -187,9 +187,8 @@ export default class Field extends Base {
    * Get the compare context via the fieldset.
    * @property {Object} compare
    */
-  @cached
   get compare() {
-    return this.fieldset?.compare;
+    return this.fieldset.compare;
   }
 
   /**
@@ -231,7 +230,7 @@ export default class Field extends Base {
   get isModified() {
     // table answers are manually compared to check if values actually changed,
     // use the historyType attribute to check if changes were made.
-    if (this.question?.raw?.__typename === "TableQuestion") {
+    if (this.question.raw.__typename === "TableQuestion") {
       return (this.answer?.value ?? []).some((a) => {
         return a.raw.historyType !== "=";
       });

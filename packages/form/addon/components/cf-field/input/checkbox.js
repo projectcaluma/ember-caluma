@@ -14,15 +14,15 @@ export default class CfFieldInputCheckboxComponent extends Component {
   isAnswerRemoved = (option) => {
     return (
       this.args.field.compare &&
-      (this.args.field?.answer?.historicalValue ?? []).includes(option.slug) &&
-      !(this.args.field?.answer?.value ?? []).includes(option.slug)
+      (this.args.field.answer?.historicalValue ?? []).includes(option.slug) &&
+      !(this.args.field.answer?.value ?? []).includes(option.slug)
     );
   };
   isAnswerAdded = (option) => {
     return (
       this.args.field.compare &&
-      !(this.args.field?.answer?.historicalValue ?? []).includes(option.slug) &&
-      (this.args.field?.answer?.value ?? []).includes(option.slug)
+      !(this.args.field.answer?.historicalValue ?? []).includes(option.slug) &&
+      (this.args.field.answer?.value ?? []).includes(option.slug)
     );
   };
 

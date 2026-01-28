@@ -15,7 +15,7 @@ export default class CfFieldInputNumberSeparatorComponent extends Component {
   }
 
   get historicalDisplayValue() {
-    return this.formatValue(this.args.field?.answer?.historicalValue);
+    return this.formatValue(this.args.field.answer?.historicalValue);
   }
 
   formatValue(value) {

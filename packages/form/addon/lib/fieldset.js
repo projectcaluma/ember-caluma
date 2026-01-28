@@ -76,9 +76,8 @@ export default class Fieldset extends Base {
    * Get the compare context via the document.
    * @property {Object} compare
    */
-  @cached
   get compare() {
-    return this.document?.compare;
+    return this.document.compare;
   }
 
   /**

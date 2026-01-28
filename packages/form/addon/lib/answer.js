@@ -70,9 +70,8 @@ export default class Answer extends Base {
    * Get the compare context via the field.
    * @property {Object} compare
    */
-  @cached
   get compare() {
-    return this.field?.compare;
+    return this.field.compare;
   }
 
   /**
@@ -169,17 +168,14 @@ export default class Answer extends Base {
     return value;
   }
 
-  @cached
   get historicalValue() {
     return this.historical?.[this._valueKey];
   }
 
-  @cached
   get historicalDate() {
     return this.historical?.historyDate;
   }
 
-  @cached
   get historicalUser() {
     return this.historical?.historyUserId;
   }
