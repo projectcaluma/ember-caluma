@@ -12,10 +12,10 @@ export const parseDocument = (response) => {
     ...response,
     rootForm: parseForm(response.form),
     answers: response.answers.edges.map(({ node }) =>
-      parseAnswer(node, response?.historyType),
+      parseAnswer(node, response.historyType),
     ),
-    historicalAnswers: response?.historicalAnswers?.edges?.map(({ node }) =>
-      parseAnswer(node, response?.historyType),
+    historicalAnswers: response.historicalAnswers?.edges.map(({ node }) =>
+      parseAnswer(node, response.historyType),
     ),
     forms: parseFormTree(response.form),
   };
