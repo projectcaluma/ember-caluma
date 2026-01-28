@@ -32,7 +32,7 @@ export default class CfFieldComponent extends Component {
   }
 
   get compare() {
-    return this?.args?.field?.compare;
+    return this.args.compare;
   }
 
   get hasHiddenWidget() {
