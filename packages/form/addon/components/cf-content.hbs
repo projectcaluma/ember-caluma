@@ -10,7 +10,6 @@
           navigation=this.navigation
           useAsHeading=(or @useAsHeading false)
           headingBaseLevel=(or @headingBaseLevel 1)
-          context=@context
           compare=@compare
         )
         pagination=(component "cf-pagination" navigation=this.navigation)
@@ -19,6 +18,7 @@
           document=this.document
           fieldset=this.fieldset
           context=@context
+          compare=@compare
           disabled=@disabled
           onSave=@onSave
         )

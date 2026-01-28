@@ -97,10 +97,6 @@ export default class CfFieldComponent extends Component {
    */
   save = task({ restartable: true }, async (value) => {
     // Do not save when in comparison mode.
-    if (this.isComparison) {
-      return;
-    }
-
     if (typeof this.args.onSave === "function") {
       return await this.args.onSave(this.args.field, value);
     }

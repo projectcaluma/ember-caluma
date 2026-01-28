@@ -34,8 +34,8 @@ import { parseDocument } from "@projectcaluma/ember-form/lib/parsers";
  * To use this component for a comparison between two document revisions, pass @compare
  *
  * <CfContent @documentId="some-id" @compare={{hash
-      from="yyyy-mm-dd"
-      to="yyyy-mm-dd"
+      from=this.fromDate
+      to=this.toDate
  * }} />
  *
  * If you're rendering multi-page forms, the component also expects a query
@@ -166,20 +166,13 @@ export default class CfContentComponent extends Component {
     } else {
       const { from, to } = this.args.compare;
 
-      function toDate(input) {
-        if (input instanceof Date) {
-          return new Date(input.getTime());
-        }
-
-        return new Date(input);
-      }
       const data = await this.apollo.query({
         query: getDocumentAnswersCompareQuery,
         fetchPolicy: "network-only",
         variables: {
           documentId: this.args.documentId,
-          from: toDate(from),
-          to: toDate(to ?? new Date()),
+          from,
+          to: to ?? new Date(),
         },
       });
       historicalDocument = data.fromRevision;
