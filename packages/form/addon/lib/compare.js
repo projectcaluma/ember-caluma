@@ -5,29 +5,6 @@ import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 import { parseDocument } from "@projectcaluma/ember-form/lib/parsers";
 
 /**
- * Transform objects into sorted JSON strings for comparison.
- * If it is an array, serialize each item as object.
- * If it is not an object or array, return the value as is.
- *
- * @param {*} v
- * @returns {*}
- */
-export function serializeObject(v) {
-  if (v && typeof v === "object" && !Array.isArray(v)) {
-    const sortedKeys = Object.keys(v).sort();
-    const sortedObj = {};
-    for (const key of sortedKeys) {
-      sortedObj[key] = serializeObject(v[key]);
-    }
-    return JSON.stringify(sortedObj);
-  } else if (Array.isArray(v)) {
-    return v.map(serializeObject);
-  }
-
-  return v;
-}
-
-/**
  * Serializes a value into a comparable format, ignoring
  * falsey differences.
  *
@@ -42,12 +19,7 @@ export function comparisonValue(v) {
 
   // compare arrays as sorted serialized strings.
   if (Array.isArray(v)) {
-    return v
-      .slice()
-      .map(comparisonValue)
-      .map(serializeObject)
-      .sort()
-      .toString();
+    return v.slice().map(comparisonValue).sort().toString();
   }
 
   return v;
@@ -87,53 +59,13 @@ export function filterTableAnswer(answer) {
 }
 
 /**
- * Creates a flat comparable string representation of the table documents
- * for comparison.
- *
- * @param {Array<Object>} docs
- * @returns {Array<Object>}
- */
-export function flatTableMap(docs) {
-  // If a single document is passed, wrap it in an array and process it.
-  if (!Array.isArray(docs)) {
-    return flatTableMap([docs]);
-  }
-
-  const mapped = docs.map((doc) =>
-    doc.answers.edges.map(filterTableAnswer).sort((a, b) => {
-      // sort by question slug if available for an ordered comparison.
-      if (a.questionSlug !== b.questionSlug) {
-        return a.questionSlug.localeCompare(b.questionSlug);
-      }
-
-      // fallback to serialized object comparison.
-      return serializeObject(a).localeCompare(serializeObject(b));
-    }),
-  );
-
-  return mapped.map(comparisonValue).toString();
-}
-
-/**
- * Old comparison method for table documents, using
- * flatTableMap for comparison.
- *
- * @param {Array<Object>} docA
- * @param {Array<Object>} docB
- * @returns {Boolean}
- */
-function oldCompareTableDocument(docA, docB) {
-  return flatTableMap(docA) === flatTableMap(docB);
-}
-
-/**
  * Creates an object that is suitable for comparison, filtering out
  * non-relevant fields and sorting answers by question slug.
  *
  * @param {Object} doc
  * @returns {Object}
  */
-function comparableDocument(doc) {
+export function comparableDocument(doc) {
   return {
     id: doc.id,
     answers: {
@@ -155,14 +87,8 @@ function comparableDocument(doc) {
  * @param {Object} docB
  * @returns {Boolean}
  */
-export function compareTableDocument(docA, docB, newVersion = true) {
-  const comparedOld = oldCompareTableDocument(docA, docB);
-  const comparedNew = isEqual(
-    comparableDocument(docA),
-    comparableDocument(docB),
-  );
-
-  return newVersion ? comparedNew : comparedOld;
+export function compareTableDocument(docA, docB) {
+  return isEqual(comparableDocument(docA), comparableDocument(docB));
 }
 
 /**
