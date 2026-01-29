@@ -4,8 +4,6 @@
   {{t
     "caluma.form.compare.note"
     username=(user-name (or @historyUserId @field.answer.raw.historyUserId))
-    date=(format-date
-      (or @historyDate @field.answer.raw.historyDate) format="datetime"
-    )
+    date=(format-date (or @historyDate @field.answer.raw.historyDate))
   }}
 </div>

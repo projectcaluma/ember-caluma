@@ -21,7 +21,9 @@
           <div hidden>
             <FieldComponent @compare={{false}} />
           </div>
-          <FieldComponent @compare={{@compare}} />
+          <div class="diff-version">
+            <FieldComponent @compare={{@compare}} />
+          </div>
         </div>
         {{#unless this.compareOptions.disableChangesNote}}
           <div class="changes-note">
