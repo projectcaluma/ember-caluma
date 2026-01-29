@@ -55,6 +55,21 @@ export default function createGraphqlHandler(server) {
             __typename: "SelectedOption",
           };
         },
+        DocumentValidityConnection: (_, { id }) => {
+          const document = server.schema.documents.find(id);
+
+          return {
+            edges: () => [
+              {
+                node: () => ({
+                  id,
+                  isValid: document?.__isValid ?? true,
+                  errors: document?.__errors ?? [],
+                }),
+              },
+            ],
+          };
+        },
       },
       preserveResolvers: false,
     });

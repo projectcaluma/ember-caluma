@@ -2,10 +2,10 @@ import { render, click, scrollTo, settled } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { module, test } from "qunit";
-import { stub } from "sinon";
 
 import { rawDocumentWithWorkItem } from "../../unit/lib/data";
 
+import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 import { parseDocument } from "@projectcaluma/ember-form/lib/parsers";
 import { setupRenderingTest } from "dummy/tests/helpers";
 
@@ -17,6 +17,15 @@ module("Integration | Component | document-validity", function (hooks) {
     this.document = new (this.owner.factoryFor("caluma-model:document").class)({
       raw: parseDocument(rawDocumentWithWorkItem),
       owner: this.owner,
+    });
+
+    // Create a mirage document with two "private" attributes `__isValid` and
+    // `__errors` that will be used as return value for the `documentValidity`
+    // graph
+    this.mirageDocument = this.server.create("document", {
+      id: decodeId(rawDocumentWithWorkItem.id),
+      __isValid: true,
+      __errors: [],
     });
 
     this.field = this.document.fields[0];
@@ -103,18 +112,15 @@ module("Integration | Component | document-validity", function (hooks) {
   });
 
   test("it can be triggered manually", async function (assert) {
-    stub(this.field.question, "hasFormatValidators").get(() => true);
-    stub(this.field.save, "linked").returnsThis();
-    stub(this.field.save, "perform").callsFake(() => {
-      this.field._errors = [
+    this.mirageDocument.update({
+      __isValid: false,
+      __errors: [
         {
-          type: "format",
-          context: { errorMsg: "Error!" },
-          value: "test",
+          slug: this.field.question.slug,
+          errorMsg: "Error!",
+          errorCode: "format_validation_failed",
         },
-      ];
-
-      assert.step("save");
+      ],
     });
 
     await render(hbs`<DocumentValidity @document={{this.document}} as |isValid validate|>
@@ -129,8 +135,9 @@ module("Integration | Component | document-validity", function (hooks) {
 </DocumentValidity>`);
 
     assert.dom("p").hasText("Valid");
+    assert.false(this.field.isInvalid);
     await click("button");
     assert.dom("p").hasText("Invalid");
-    assert.verifySteps(["save"]);
+    assert.true(this.field.isInvalid);
   });
 });

@@ -1,7 +1,10 @@
 import { action } from "@ember/object";
 import Component from "@glimmer/component";
+import { queryManager } from "ember-apollo-client";
 import { task } from "ember-concurrency";
 import { cached } from "tracked-toolbox";
+
+import documentValidityQuery from "@projectcaluma/ember-form/gql/queries/document-validity.graphql";
 
 /**
  * Component to check the validity of a document
@@ -20,6 +23,8 @@ import { cached } from "tracked-toolbox";
  * @yield {Function} validate
  */
 export default class DocumentValidity extends Component {
+  @queryManager apollo;
+
   /**
    * The document to be validated
    *
@@ -43,39 +48,61 @@ export default class DocumentValidity extends Component {
     return this._validate.isRunning;
   }
 
-  _validateField = task(async (field) => {
-    await field.validate.linked().perform();
-
-    if (field.question.hasFormatValidators) {
-      await field.save.linked().perform();
-    }
-  });
-
   _validate = task({ restartable: true }, async () => {
-    const saveTasks = this.args.document.fields
-      .flatMap((field) => [
-        ...[...(field._components ?? [])].map((c) => c.save.last),
-        field.save?.last,
-      ])
-      .filter(Boolean);
+    try {
+      const saveTasks = this.args.document.fields
+        .flatMap((field) => [
+          ...[...(field._components ?? [])].map((c) => c.save.last),
+          field.save?.last,
+        ])
+        .filter(Boolean);
 
-    // Wait until all currently running save tasks in the UI and in the field
-    // itself are finished
-    await Promise.all(saveTasks);
+      // Wait until all currently running save tasks in the UI and in the field
+      // itself are finished
+      await Promise.all(saveTasks);
 
-    await Promise.all(
-      this.args.document.fields.map((field) =>
-        this._validateField.perform(field),
-      ),
-    );
+      await Promise.all(
+        this.args.document.fields.map((field) =>
+          field.validate.linked().perform(),
+        ),
+      );
 
-    if (this.isValid) {
-      this.args.onValid?.();
-    } else {
-      this.args.onInvalid?.();
+      const { isValid, errors } = await this.apollo.query(
+        {
+          query: documentValidityQuery,
+          fetchPolicy: "network-only",
+          variables: { id: this.args.document.uuid },
+        },
+        "documentValidity.edges.0.node",
+      );
+
+      if (!isValid) {
+        errors
+          .filter(({ errorCode }) => errorCode === "format_validation_failed")
+          .forEach(({ slug, errorMsg }) => {
+            const field = this.args.document.findField(slug);
+
+            field._errors = [
+              ...field._errors,
+              {
+                type: "format",
+                context: { errorMsg },
+                value: field.value,
+              },
+            ];
+          });
+      }
+
+      if (this.isValid) {
+        this.args.onValid?.();
+      } else {
+        this.args.onInvalid?.();
+      }
+
+      return this.isValid;
+    } catch {
+      return false;
     }
-
-    return this.isValid;
   });
 
   @action
