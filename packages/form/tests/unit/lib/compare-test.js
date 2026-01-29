@@ -1,4 +1,5 @@
 import { setupMirage } from "ember-cli-mirage/test-support";
+import cloneDeep from "lodash.clonedeep";
 import { module, test } from "qunit";
 
 import { rawHistoricalDocumentWithCase } from "./data";
@@ -10,28 +11,17 @@ module("Unit | Library | compare", function (hooks) {
   setupTest(hooks);
   setupMirage(hooks);
 
-  /**
-   * Clones an object by serializing and deserializing it, to prevent
-   * mutations during tests.
-   *
-   * @param {Object} obj
-   * @returns {Object}
-   */
-  const cloneObject = (obj) => {
-    return JSON.parse(JSON.stringify(obj));
-  };
-
-  test("compares table answers as flattened objects", async function (assert) {
+  test("compares table answers as differences", async function (assert) {
     assert.expect(8);
 
-    const tableAnswersBefore = cloneObject(
+    const tableAnswersBefore = cloneDeep(
       rawHistoricalDocumentWithCase.answers,
     ).edges.find(({ node }) => node.question.slug === "table").node.tableValue;
-    const tableAnswersHistorical = cloneObject(
+    const tableAnswersHistorical = cloneDeep(
       rawHistoricalDocumentWithCase.historicalAnswers,
     ).edges.find(({ node }) => node.question.slug === "table").node.tableValue;
 
-    let tableAnswersAfter = cloneObject(tableAnswersHistorical);
+    let tableAnswersAfter = cloneDeep(tableAnswersHistorical);
     assert.ok(
       compareTableDocument(tableAnswersBefore[0], tableAnswersAfter[0]),
     );
@@ -40,7 +30,7 @@ module("Unit | Library | compare", function (hooks) {
     );
 
     // modify any ignored table value keys has no effect on comparison.
-    tableAnswersAfter = cloneObject(tableAnswersHistorical);
+    tableAnswersAfter = cloneDeep(tableAnswersHistorical);
     tableAnswersAfter.forEach((doc) => {
       doc.answers.edges.forEach((edge) => {
         edge.node.historyType = "x";
@@ -68,7 +58,7 @@ module("Unit | Library | compare", function (hooks) {
     );
 
     // ordering of table answers does not affect the comparison.
-    tableAnswersAfter = cloneObject(tableAnswersHistorical);
+    tableAnswersAfter = cloneDeep(tableAnswersHistorical);
     tableAnswersAfter[0].answers.edges = [
       tableAnswersAfter[0].answers.edges[1],
       tableAnswersAfter[0].answers.edges[0],
@@ -86,7 +76,7 @@ module("Unit | Library | compare", function (hooks) {
 
     // modify values to add " changed" to each table value answer.
     // and update the historyType and historyDate to simulate changes.
-    tableAnswersAfter = cloneObject(tableAnswersHistorical);
+    tableAnswersAfter = cloneDeep(tableAnswersHistorical);
     tableAnswersAfter.forEach((doc) => {
       doc.answers.edges.forEach((edge) => {
         edge.node.stringValue += " changed";

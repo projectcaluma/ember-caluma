@@ -51,26 +51,31 @@ fragment SimpleRevisionAnswer on HistoricalAnswer {
     __typename
   }
   ... on HistoricalStringAnswer {
+    historyId
     stringValue: value
   }
   ... on HistoricalListAnswer {
+    historyId
     listValue: value
   }
   ... on HistoricalIntegerAnswer {
+    historyId
     integerValue: value
   }
   ... on HistoricalFloatAnswer {
+    historyId
     floatValue: value
   }
   ... on HistoricalDateAnswer {
+    historyId
     dateValue: value
   }
   __typename
 }
 
 fragment HistoricalTableValue on HistoricalDocument {
-  id
-  documentId
+  id: documentId
+  documentId: id
   historyDate
   historyType
   historyUserId

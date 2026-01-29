@@ -31,7 +31,7 @@ const form = {
           isRequired: "'question-1'|answer == 'require-question-2'",
           isHidden: "!('question-1'|answer == 'show-question-2')",
           meta: {},
-          __typename: "TextQuestion",
+          __typename: "TextareaQuestion",
         },
       },
       {
@@ -113,6 +113,14 @@ const form = {
           isHidden:
             "!('show-multiple-choice' in 'table'|answer|mapby('table-form-question'))",
           meta: {},
+          multipleChoiceOptions: {
+            edges: [
+              { node: { label: "Option A", slug: "checkbox-a" } },
+              { node: { label: "Option B", slug: "checkbox-b" } },
+              { node: { label: "Option C", slug: "checkbox-c" } },
+              { node: { label: "Option D", slug: "checkbox-d" } },
+            ],
+          },
           __typename: "MultipleChoiceQuestion",
         },
       },
@@ -125,6 +133,24 @@ const form = {
             "!('[\"test1\",\"test2\"]' in 'table'|answer|mapby('table-form-question', 'table-form-question-2')|stringify)",
           meta: {},
           __typename: "TextQuestion",
+        },
+      },
+      {
+        node: {
+          slug: "choice",
+          label: "Choice",
+          isRequired: "false",
+          isHidden: "false",
+          meta: {},
+          choiceOptions: {
+            edges: [
+              { node: { label: "Option A", slug: "radio-a" } },
+              { node: { label: "Option B", slug: "radio-b" } },
+              { node: { label: "Option C", slug: "radio-c" } },
+              { node: { label: "Option D", slug: "radio-d" } },
+            ],
+          },
+          __typename: "ChoiceQuestion",
         },
       },
     ],
@@ -180,7 +206,7 @@ const answers = {
           slug: "question-2",
         },
         stringValue: "test answer 2",
-        __typename: "StringAnswer",
+        __typename: "TextareaAnswer",
       },
     },
     {
@@ -269,7 +295,7 @@ const historicalAnswers = {
   edges: [
     {
       node: {
-        id: id("StringAnswer"),
+        id: id("HistoricalStringAnswer"),
         question: {
           slug: "question-1",
         },
@@ -282,7 +308,7 @@ const historicalAnswers = {
     },
     {
       node: {
-        id: id("StringAnswer"),
+        id: id("HistoricalStringAnswer"),
         question: {
           slug: "question-2",
         },
@@ -295,7 +321,18 @@ const historicalAnswers = {
     },
     {
       node: {
-        id: id("FloatAnswer"),
+        id: id("HistoricalIntegerAnswer"),
+        question: { slug: "integer" },
+        floatValue: 1,
+        historyDate: "2024-01-01T00:00:00Z",
+        historyType: "=",
+        historyUserId: id("User"),
+        __typename: "HistoricalIntegerAnswer",
+      },
+    },
+    {
+      node: {
+        id: id("HistoricalFloatAnswer"),
         question: { slug: "float" },
         floatValue: 1.1,
         historyDate: "2024-01-01T00:00:00Z",
@@ -306,7 +343,7 @@ const historicalAnswers = {
     },
     {
       node: {
-        id: id("TableAnswer"),
+        id: id("HistoricalTableAnswer"),
         question: {
           slug: "table",
         },
@@ -328,7 +365,7 @@ const historicalAnswers = {
                       isRequired: "true",
                       isHidden: "false",
                       meta: {},
-                      __typename: "HistoricalTextQuestion",
+                      __typename: "TextQuestion",
                     },
                   },
                   {
@@ -338,18 +375,18 @@ const historicalAnswers = {
                       isRequired: "false",
                       isHidden: "false",
                       meta: {},
-                      __typename: "HistoricalTextQuestion",
+                      __typename: "TextQuestion",
                     },
                   },
                 ],
               },
-              __typename: "HistoricalForm",
+              __typename: "Form",
             },
             answers: {
               edges: [
                 {
                   node: {
-                    id: id("StringAnswer"),
+                    id: id("HistoricalStringAnswer"),
                     question: {
                       slug: "table-form-question",
                     },
@@ -362,7 +399,7 @@ const historicalAnswers = {
                 },
                 {
                   node: {
-                    id: id("StringAnswer"),
+                    id: id("HistoricalStringAnswer"),
                     question: {
                       slug: "table-form-question-2",
                     },
@@ -378,7 +415,7 @@ const historicalAnswers = {
             __typename: "HistoricalDocument",
           },
           {
-            id: id("Document"),
+            id: id("HistoricalDocument"),
             form: {
               slug: "table-form",
               meta: {
@@ -394,7 +431,7 @@ const historicalAnswers = {
                       isRequired: "true",
                       isHidden: "false",
                       meta: {},
-                      __typename: "HistoricalTextQuestion",
+                      __typename: "TextQuestion",
                     },
                   },
                   {
@@ -404,18 +441,18 @@ const historicalAnswers = {
                       isRequired: "false",
                       isHidden: "false",
                       meta: {},
-                      __typename: "HistoricalTextQuestion",
+                      __typename: "TextQuestion",
                     },
                   },
                 ],
               },
-              __typename: "HistoricalForm",
+              __typename: "Form",
             },
             answers: {
               edges: [
                 {
                   node: {
-                    id: id("StringAnswer"),
+                    id: id("HistoricalStringAnswer"),
                     question: {
                       slug: "table-form-question",
                     },
@@ -428,7 +465,7 @@ const historicalAnswers = {
                 },
                 {
                   node: {
-                    id: id("StringAnswer"),
+                    id: id("HistoricalStringAnswer"),
                     question: {
                       slug: "table-form-question-2",
                     },
@@ -445,6 +482,39 @@ const historicalAnswers = {
           },
         ],
         __typename: "HistoricalTableAnswer",
+      },
+    },
+    {
+      node: {
+        id: id("HistoricalCalculatedFloatAnswer"),
+        question: { slug: "calculated" },
+        floatValue: 501.1,
+        historyDate: "2024-01-01T00:00:00Z",
+        historyType: "=",
+        historyUserId: id("User"),
+        __typename: "HistoricalCalculatedFloatAnswer",
+      },
+    },
+    {
+      node: {
+        id: id("HistoricalMultipleChoiceAnswer"),
+        question: { slug: "multiple-choice" },
+        multipleChoiceValue: ["checkbox-a", "checkbox-c"],
+        historyDate: "2024-01-01T00:00:00Z",
+        historyType: "=",
+        historyUserId: id("User"),
+        __typename: "HistoricalMultipleChoiceAnswer",
+      },
+    },
+    {
+      node: {
+        id: id("HistoricalChoiceAnswer"),
+        question: { slug: "choice" },
+        choiceValue: "radio-a",
+        historyDate: "2024-01-01T00:00:00Z",
+        historyType: "=",
+        historyUserId: id("User"),
+        __typename: "HistoricalChoiceAnswer",
       },
     },
   ],
