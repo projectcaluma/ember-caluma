@@ -1,0 +1,15 @@
+query DocumentValidity($id: ID!, $dataSourceContext: JSONString) {
+  documentValidity(id: $id, dataSourceContext: $dataSourceContext) {
+    edges {
+      node {
+        id
+        isValid
+        errors {
+          slug
+          errorMsg
+          errorCode
+        }
+      }
+    }
+  }
+}

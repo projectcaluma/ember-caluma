@@ -3,9 +3,10 @@ import { tracked } from "@glimmer/tracking";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { task } from "ember-concurrency";
-import { Response } from "miragejs";
 import { module, test } from "qunit";
+import { stub } from "sinon";
 import UIkit from "uikit";
+import { v4 } from "uuid";
 
 import { setupRenderingTest } from "dummy/tests/helpers";
 
@@ -56,6 +57,7 @@ module(
 
       this.field = {
         document: {
+          uuid: v4(),
           workItemUuid: this.server.create("work-item", {
             status: "READY",
             case: this.server.create("case"),
@@ -66,6 +68,7 @@ module(
       };
       this.invalidField = {
         document: {
+          uuid: v4(),
           workItemUuid: this.server.create("work-item", {
             status: "READY",
             case: this.server.create("case"),
@@ -172,9 +175,8 @@ module(
   @context={{hash actionButtonOnError=this.error}}
 />`);
 
-      this.server.post("/graphql/", () => {
-        return new Response(500);
-      });
+      const apollo = this.owner.lookup("service:apollo");
+      stub(apollo, "mutate").throws(new Error("Error!"));
 
       await click("button.uk-button-secondary");
       await waitFor(".uk-modal.uk-open");
