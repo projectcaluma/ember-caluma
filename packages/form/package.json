@@ -19,6 +19,7 @@
     "@embroider/macros": "^1.16.10",
     "@embroider/util": "^1.13.2",
     "@projectcaluma/ember-core": "workspace:^",
+    "dompurify": "^3.3.1",
     "ember-apollo-client": "^5.0.0",
     "ember-auto-import": "^2.10.0",
     "ember-autoresize-modifier": "^0.7.0 || ^0.8.0",
