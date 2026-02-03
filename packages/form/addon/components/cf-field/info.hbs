@@ -16,7 +16,11 @@
     as |modal|
   >
     <modal.body>
-      <MarkdownToHtml @markdown={{@text}} @openLinksInNewWindow={{true}} />
+      <MarkdownToHtml
+        @markdown={{@text}}
+        @openLinksInNewWindow={{true}}
+        @extensions="DOMPurify"
+      />
     </modal.body>
   </UkModal>
 </div>
