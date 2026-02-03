@@ -19,7 +19,8 @@ $diff-warning-background: color.adjust(
   &:not(.cf-compare-manual) > ::before {
     content: "";
     position: absolute;
-    inset: 0 auto -#{$global-small-margin} -#{$global-small-margin};
+    inset: 0 auto calc($global-small-margin * -1)
+      calc($global-small-margin * -1);
     pointer-events: none;
     z-index: 1;
     border-right: 2px dotted $global-primary-background;

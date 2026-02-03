@@ -19,7 +19,7 @@ export function comparisonValue(v) {
 
   // compare arrays as sorted serialized strings.
   if (Array.isArray(v)) {
-    return v.slice().map(comparisonValue).sort().toString();
+    return v.map(comparisonValue).toSorted().toString();
   }
 
   return v;
@@ -73,7 +73,7 @@ export function comparableDocument(doc) {
         .map((answer) => ({
           node: filterTableAnswer(answer),
         }))
-        .sort((a, b) => {
+        .toSorted((a, b) => {
           return a.node.questionSlug.localeCompare(b.node.questionSlug);
         }),
     },
