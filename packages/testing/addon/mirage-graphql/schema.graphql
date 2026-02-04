@@ -8,6 +8,11 @@ directive @specifiedBy(
   url: String!
 ) on SCALAR
 
+"""
+Indicates an Input Object is a OneOf Input Object.
+"""
+directive @oneOf on INPUT_OBJECT
+
 type ActionButtonQuestion implements Question & Node {
   createdAt: DateTime!
   modifiedAt: DateTime!
@@ -4094,9 +4099,17 @@ type ValidationEntry {
   slug: String!
   errorMsg: String!
   errorCode: String!
+
+  """
+  References the document ID. This may reference table rows.
+  """
+  documentId: ID!
 }
 
 type ValidationResult {
+  """
+  References the document ID
+  """
   id: ID
   isValid: Boolean
   errors: [ValidationEntry]

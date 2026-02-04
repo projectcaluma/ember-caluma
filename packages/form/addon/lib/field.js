@@ -665,14 +665,11 @@ export default class Field extends Base {
       await this.onSaveError(e);
 
       if (validationError) {
-        this._errors = [
-          ...this._errors,
-          {
-            type: "format",
-            context: { errorMsg: validationError.message },
-            value,
-          },
-        ];
+        this.addManualError(
+          "format",
+          { errorMsg: validationError.message },
+          value,
+        );
       } else {
         throw e;
       }
@@ -703,6 +700,18 @@ export default class Field extends Base {
    */
   // eslint-disable-next-line no-unused-vars
   async onSaveError(error) {}
+
+  /**
+   * Add manual validation error message
+   *
+   * @method addManualError
+   * @param {String} type The error type (e.g. "table" or "format")
+   * @param {Object} context The error context object - mostly consists of `errorMsg`
+   * @param {*} value The invalid value
+   */
+  addManualError(type, context = null, value = null) {
+    this._errors = [...this._errors, { type, context, value }];
+  }
 
   /**
    * The translated error messages

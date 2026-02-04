@@ -8,6 +8,7 @@ query DocumentValidity($id: ID!, $dataSourceContext: JSONString) {
           slug
           errorMsg
           errorCode
+          documentId
         }
       }
     }

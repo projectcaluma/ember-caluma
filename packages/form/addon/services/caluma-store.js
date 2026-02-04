@@ -37,6 +37,10 @@ export default class CalumaStoreService extends Service {
     return this._store.get(storeKey) || null;
   }
 
+  findByPk(pk) {
+    return this._store.values().find((item) => item.pk === pk);
+  }
+
   delete(storeKey) {
     this._store.delete(storeKey);
   }
