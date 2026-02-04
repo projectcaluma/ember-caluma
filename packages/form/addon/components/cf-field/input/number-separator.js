@@ -11,11 +11,19 @@ export default class CfFieldInputNumberSeparatorComponent extends Component {
   }
 
   get displayValue() {
-    if (isNaN(parseFloat(this.args.field.value))) {
+    return this.formatValue(this.args.field.value);
+  }
+
+  get historicalDisplayValue() {
+    return this.formatValue(this.args.field.answer?.historicalValue);
+  }
+
+  formatValue(value) {
+    if (isNaN(parseFloat(value))) {
       return "";
     }
 
-    return this.intl.formatNumber(this.args.field.value, {
+    return this.intl.formatNumber(value, {
       maximumFractionDigits: 20,
     });
   }

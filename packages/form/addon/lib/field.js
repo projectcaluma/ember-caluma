@@ -21,6 +21,7 @@ import saveDocumentTableAnswerMutation from "@projectcaluma/ember-form/gql/mutat
 import getDocumentUsedDynamicOptionsQuery from "@projectcaluma/ember-form/gql/queries/document-used-dynamic-options.graphql";
 import refreshAnswerQuery from "@projectcaluma/ember-form/gql/queries/refresh-answer.graphql";
 import Base from "@projectcaluma/ember-form/lib/base";
+import { comparisonValue } from "@projectcaluma/ember-form/lib/compare";
 import dependencies from "@projectcaluma/ember-form/lib/dependencies";
 
 export const TYPE_MAP = {
@@ -114,12 +115,23 @@ export default class Field extends Base {
         return;
       }
 
+      // If comparison is enabled and there is no answer, add the required
+      // historical raw answer data, and mark answer as not changed.
+      const rawHistorical = this.compare
+        ? {
+            historyType: "=",
+            historyDate: this.compare.to,
+          }
+        : {};
+
       answer = new Answer({
         raw: {
           id: null,
           __typename: answerType,
           question: { slug: this.raw.question.slug },
           [camelize(answerType.replace(/Answer$/, "Value"))]: null,
+          historical: null,
+          ...rawHistorical,
         },
         field: this,
         owner,
@@ -127,7 +139,12 @@ export default class Field extends Base {
     } else {
       answer =
         this.calumaStore.find(`Answer:${decodeId(this.raw.answer.id)}`) ||
-        new Answer({ raw: this.raw.answer, field: this, owner });
+        new Answer({
+          raw: this.raw.answer,
+          historical: this.raw.historicalAnswer,
+          field: this,
+          owner,
+        });
     }
 
     this.answer = associateDestroyableChild(this, answer);
@@ -167,6 +184,14 @@ export default class Field extends Base {
   _components = new Set();
 
   /**
+   * Get the compare context via the fieldset.
+   * @property {Object} compare
+   */
+  get compare() {
+    return this.fieldset.compare;
+  }
+
+  /**
    * The primary key of the field. Consists of the document and question primary
    * keys.
    *
@@ -195,6 +220,27 @@ export default class Field extends Base {
    */
   get labelId() {
     return `${this.pk}:label`;
+  }
+
+  /**
+   * Whether the field has been modified between two form timelines.
+   *
+   * @property {Boolean} isModified
+   */
+  get isModified() {
+    // table answers are manually compared to check if values actually changed,
+    // use the historyType attribute to check if changes were made.
+    if (this.question.raw.__typename === "TableQuestion") {
+      return (this.answer?.value ?? []).some((a) => {
+        return a.raw.historyType !== "=";
+      });
+    }
+
+    // other answer types can be compared directly, ignoring falsey differences.
+    return (
+      comparisonValue(this.answer?.value) !==
+      comparisonValue(this.answer?.historicalValue)
+    );
   }
 
   /**
@@ -291,6 +337,19 @@ export default class Field extends Base {
     }
 
     return this.answer?.value;
+  }
+
+  /**
+   * The historical value of the field
+   *
+   * @property {*} historicalValue
+   */
+  get historicalValue() {
+    if (this.question.isCalculated) {
+      return this.calculatedValue;
+    }
+
+    return this.answer?.historicalValue;
   }
 
   /**
@@ -460,6 +519,27 @@ export default class Field extends Base {
       this.question.isMultipleChoice
         ? (this.value || []).includes(slug)
         : this.value === slug,
+    );
+
+    return this.question.isMultipleChoice ? selected : selected[0];
+  }
+
+  /**
+   * The historically selected option. This property is only used for choice
+   * questions. It can either return null if no value is selected yet, an
+   * object for single choices or an array of objects for multiple choices.
+   *
+   * @property {null|Object|Object[]} selected
+   */
+  get historicalSelected() {
+    if (!this.question.isChoice && !this.question.isMultipleChoice) {
+      return null;
+    }
+
+    const selected = this.options.filter(({ slug }) =>
+      this.question.isMultipleChoice
+        ? (this.historicalValue || []).includes(slug)
+        : this.historicalValue === slug,
     );
 
     return this.question.isMultipleChoice ? selected : selected[0];

@@ -51,6 +51,7 @@ $icon-size: 0.8rem !default;
   }
 }
 
+.cf-navigation__item__icon--compare-modified,
 .cf-navigation__item__icon--in-progress.cf-navigation__item__icon--dirty {
   color: color.adjust($global-warning-background, $lightness: -20%);
   border-color: color.adjust($global-warning-background, $lightness: 10%);

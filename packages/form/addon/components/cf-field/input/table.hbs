@@ -1,6 +1,9 @@
 <table class="uk-table uk-table-divider uk-margin-remove-vertical">
   <thead>
     <tr>
+      {{#if @compare}}
+        <th></th>
+      {{/if}}
       {{#each this.columns as |column|}}
         <th>{{column.label}}</th>
       {{/each}}
@@ -9,7 +12,34 @@
   </thead>
   <tbody>
     {{#each @field.answer.value as |document|}}
-      <tr>
+      <tr
+        class="{{if (this.isDocumentAdded document) 'diff-added'}}
+          {{if (this.isDocumentDeleted document) 'diff-removed'}}
+          {{if (this.isDocumentModified document) 'diff-modified'}}"
+      >
+        {{#if @compare}}
+          <td>
+            {{#if (this.isDocumentAdded document)}}
+              <UkIcon
+                @icon="plus-circle"
+                class="uk-text-success"
+                {{uk-tooltip (t "caluma.form.compare.diff.added")}}
+              />
+            {{else if (this.isDocumentDeleted document)}}
+              <UkIcon
+                @icon="minus-circle"
+                class="uk-text-danger"
+                {{uk-tooltip (t "caluma.form.compare.diff.removed")}}
+              />
+            {{else if (this.isDocumentModified document)}}
+              <UkIcon
+                @icon="pencil"
+                class="uk-text-warning"
+                {{uk-tooltip (t "caluma.form.compare.diff.modified")}}
+              />
+            {{/if}}
+          </td>
+        {{/if}}
         {{#each this.columns as |column|}}
           <td>
             <CfFieldValue

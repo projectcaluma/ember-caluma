@@ -33,6 +33,9 @@ class PowerSelectOverride {
     "DynamicChoiceQuestion",
     "DynamicMultipleChoiceQuestion",
   ];
+  compareOptions = {
+    combined: false,
+  };
 }
 
 class NumberSeparatorOverride {
@@ -47,6 +50,9 @@ class NumberSeparatorOverride {
   component = "cf-field/input/number-separator";
   componentClass = NumberSeparatorComponent;
   types = ["IntegerQuestion", "FloatQuestion", "CalculatedFloatQuestion"];
+  compareOptions = {
+    combined: true,
+  };
 }
 
 export function initialize(appInstance) {

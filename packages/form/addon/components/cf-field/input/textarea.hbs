@@ -1,14 +1,21 @@
-<textarea
-  class="uk-textarea
-    {{if @field.isInvalid 'uk-form-danger'}}
-    {{if @disabled 'uk-disabled'}}"
-  name={{@field.pk}}
-  id={{@field.pk}}
-  placeholder={{@field.question.raw.placeholder}}
-  minlength={{@field.question.raw.textareaMinLength}}
-  maxlength={{@field.question.raw.textareaMaxLength}}
-  readonly={{@disabled}}
-  value={{@field.answer.value}}
-  {{on "input" this.input}}
-  {{autoresize mode="height"}}
->{{@field.answer.value}}</textarea>
+{{#if @compare}}
+  <CfField::InputCompare::TextareaDiff
+    @currentValue={{@field.answer.value}}
+    @historicalValue={{@field.answer.historicalValue}}
+  />
+{{else}}
+  <textarea
+    class="uk-textarea
+      {{if @field.isInvalid 'uk-form-danger'}}
+      {{if @disabled 'uk-disabled'}}"
+    name={{@field.pk}}
+    id={{@field.pk}}
+    placeholder={{@field.question.raw.placeholder}}
+    minlength={{@field.question.raw.textareaMinLength}}
+    maxlength={{@field.question.raw.textareaMaxLength}}
+    readonly={{@disabled}}
+    value={{@field.answer.value}}
+    {{on "input" this.input}}
+    {{autoresize mode="height"}}
+  >{{@field.answer.value}}</textarea>
+{{/if}}

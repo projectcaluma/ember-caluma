@@ -18,17 +18,26 @@
 
     <div class="uk-flex">
       <div class="uk-width-expand">
-        {{#let
-          (component (ensure-safe-component (get-widget @field.question)))
-          as |FieldComponent|
-        }}
-          <FieldComponent
+        {{#if @compare}}
+          <CfField::InputCompare
             @field={{@field}}
-            @disabled={{or @disabled @field.refreshAnswer.isRunning}}
+            @disabled={{true}}
             @context={{@context}}
-            @onSave={{perform this.save}}
+            @compare={{@compare}}
           />
-        {{/let}}
+        {{else}}
+          {{#let
+            (component (ensure-safe-component (get-widget @field.question)))
+            as |FieldComponent|
+          }}
+            <FieldComponent
+              @field={{@field}}
+              @disabled={{or @disabled @field.refreshAnswer.isRunning}}
+              @context={{@context}}
+              @onSave={{perform this.save}}
+            />
+          {{/let}}
+        {{/if}}
       </div>
 
       {{#if (and @field.question.raw.infoText this.infoTextVisible)}}

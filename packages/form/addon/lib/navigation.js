@@ -5,11 +5,16 @@ import {
   registerDestructor,
 } from "@ember/destroyable";
 import { action } from "@ember/object";
-import { next, cancel, once } from "@ember/runloop";
+import { cancel, next, once } from "@ember/runloop";
 import { inject as service } from "@ember/service";
 import { cached } from "tracked-toolbox";
 
 import Base from "@projectcaluma/ember-form/lib/base";
+
+const COMPARE_STATES = {
+  EQUAL: "equal",
+  MODIFIED: "modified",
+};
 
 const STATES = {
   EMPTY: "empty",
@@ -178,6 +183,28 @@ export class NavigationItem extends Base {
   }
 
   /**
+   * The current compare state consisting of the items and the childrens fieldset
+   * state.
+   *
+   * This can be one of 2 states:
+   * - `equal` if every fieldset is `equal`
+   * - `modified` if there are `modified` fieldsets
+   *
+   * @property {String} state
+   */
+  @cached
+  get compareState() {
+    const states = [
+      this.compareFieldsetState,
+      ...this.visibleChildren.map((child) => child.compareFieldsetState),
+    ].filter(Boolean);
+
+    return states.some((state) => state === COMPARE_STATES.MODIFIED)
+      ? COMPARE_STATES.MODIFIED
+      : COMPARE_STATES.EQUAL;
+  }
+
+  /**
    * The current state consisting of the items and the childrens fieldset
    * state.
    *
@@ -236,6 +263,29 @@ export class NavigationItem extends Base {
         !["FormQuestion", "StaticQuestion"].includes(f.questionType) &&
         !f.hidden,
     );
+  }
+
+  /**
+   * The current comparestate of the item's fieldset. This does not consider the state
+   * of children items.
+   *
+   * This can be one of 2 states:
+   * - `equal` if every field is equal
+   * - `modified` if there are modified fields
+   *
+   * @property {String} compareFieldsetState
+   */
+  @cached
+  get compareFieldsetState() {
+    if (!this.visibleFields.length) {
+      return null;
+    }
+
+    if (this.visibleFields.some((f) => f.isModified)) {
+      return COMPARE_STATES.MODIFIED;
+    }
+
+    return COMPARE_STATES.EQUAL;
   }
 
   /**

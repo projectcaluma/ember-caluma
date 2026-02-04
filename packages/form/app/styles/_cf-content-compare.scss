@@ -1,0 +1,214 @@
+@use "sass:color";
+
+$diff-danger-background: color.adjust(
+  $global-danger-background,
+  $lightness: 25%
+);
+$diff-success-background: color.adjust(
+  $global-success-background,
+  $lightness: 30%
+);
+$diff-warning-background: color.adjust(
+  $global-warning-background,
+  $lightness: 25%
+);
+
+.cf-compare {
+  position: relative;
+
+  &:not(.cf-compare-manual) > ::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto calc($global-small-margin * -1)
+      calc($global-small-margin * -1);
+    pointer-events: none;
+    z-index: 1;
+    border-right: 2px dotted $global-primary-background;
+  }
+
+  // Default from/to version styling.
+  :not(.cf-compare-removed),
+  :not(.cf-compare-added) {
+    .uk-input {
+      overflow: visible;
+      text-wrap: wrap;
+      height: auto;
+    }
+
+    .diff-from-version {
+      background: $diff-danger-background;
+    }
+
+    .diff-to-version {
+      background: $diff-success-background;
+    }
+
+    .diff-is-added {
+      background: $diff-success-background;
+    }
+
+    .diff-is-modified {
+      background: $diff-warning-background;
+    }
+
+    .diff-is-removed {
+      background: $diff-danger-background;
+    }
+  }
+
+  // Specific styling for ember basic dropdowns.
+  &.cf-compare-ChoiceQuestion,
+  &.cf-compare-MultipleChoiceQuestion,
+  &.cf-compare-DynamicChoiceQuestion {
+    .from-version .ember-basic-dropdown-trigger {
+      background: $diff-danger-background;
+    }
+
+    .to-version .ember-basic-dropdown-trigger {
+      background: $diff-success-background;
+    }
+  }
+
+  // Specific styling for table questions.
+  &.cf-compare-TableQuestion {
+    .diff-removed {
+      background: $diff-danger-background;
+    }
+
+    .diff-modified {
+      background: $diff-warning-background;
+    }
+
+    .diff-added {
+      background: $diff-success-background;
+    }
+  }
+
+  // Overrides for added documents.
+  &.cf-compare-added {
+    .diff-from-version {
+      display: none;
+    }
+
+    .diff-to-version {
+      background: $diff-success-background;
+    }
+
+    &.cf-compare-TextQuestion,
+    &.cf-compare-DateQuestion,
+    &.cf-compare-IntegerQuestion,
+    &.cf-compare-FloatQuestion,
+    &.cf-compare-CalculatedFloatQuestion {
+      .from-version input {
+        display: none;
+      }
+
+      .to-version input {
+        background: $diff-success-background;
+      }
+    }
+
+    &.cf-compare-TextareaQuestion {
+      .from-version {
+        display: none;
+      }
+
+      .to-version {
+        background: $diff-success-background;
+      }
+    }
+
+    &.cf-compare-ChoiceQuestion,
+    &.cf-compare-MultipleChoiceQuestion,
+    &.cf-compare-DynamicChoiceQuestion {
+      .from-version .ember-basic-dropdown-trigger {
+        display: none;
+      }
+
+      .to-version .ember-basic-dropdown-trigger {
+        background: $diff-success-background;
+      }
+    }
+  }
+
+  // Overrides for removed documents.
+  &.cf-compare-removed {
+    .diff-from-version {
+      display: none;
+    }
+
+    .diff-to-version {
+      background: $diff-danger-background;
+    }
+
+    &.cf-compare-TextQuestion,
+    &.cf-compare-DateQuestion,
+    &.cf-compare-IntegerQuestion,
+    &.cf-compare-FloatQuestion,
+    &.cf-compare-CalculatedFloatQuestion {
+      .from-version input {
+        background: $diff-danger-background;
+      }
+
+      .to-version input {
+        display: none;
+      }
+    }
+
+    &.cf-compare-TextareaQuestion {
+      .from-version {
+        background: $diff-danger-background;
+      }
+
+      .to-version {
+        display: none;
+      }
+    }
+
+    &.cf-compare-ChoiceQuestion,
+    &.cf-compare-MultipleChoiceQuestion,
+    &.cf-compare-DynamicChoiceQuestion {
+      .from-version .ember-basic-dropdown-trigger {
+        display: none;
+      }
+
+      .to-version .ember-basic-dropdown-trigger {
+        background: $diff-danger-background;
+      }
+    }
+  }
+
+  // Extra specific styling for textarea questions.
+  &.cf-compare-TextareaQuestion .uk-form-controls {
+    .uk-textarea {
+      padding: 0;
+      height: auto;
+    }
+
+    .diff-from-version,
+    .diff-to-version {
+      white-space: pre-line;
+      padding: 2px 4px;
+      min-height: $global-medium-font-size;
+    }
+  }
+
+  // Extra specific styling for choice questions.
+  &.cf-compare-ChoiceQuestion .uk-form-controls,
+  &.cf-compare-MultipleChoiceQuestion .uk-form-controls {
+    label {
+      display: block;
+      padding: 4px;
+      line-height: 1rem;
+
+      input {
+        margin: 0;
+        padding: 0;
+      }
+    }
+
+    br {
+      display: none;
+    }
+  }
+}
