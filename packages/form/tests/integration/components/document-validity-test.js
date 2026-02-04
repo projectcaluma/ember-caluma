@@ -28,7 +28,9 @@ module("Integration | Component | document-validity", function (hooks) {
       __errors: [],
     });
 
-    this.field = this.document.fields[0];
+    this.field = this.document.findField("question-1");
+    this.tableField = this.document.findField("table");
+    this.rowField = this.tableField.value[0].findField("table-form-question");
 
     this.makeInvalid = async () => {
       this.field.answer.value = "";
@@ -117,8 +119,15 @@ module("Integration | Component | document-validity", function (hooks) {
       __errors: [
         {
           slug: this.field.question.slug,
-          errorMsg: "Error!",
+          errorMsg: "Error 1!",
           errorCode: "format_validation_failed",
+          documentId: this.field.document.uuid,
+        },
+        {
+          slug: this.rowField.question.slug,
+          errorMsg: "Error 2!",
+          errorCode: "format_validation_failed",
+          documentId: this.rowField.document.uuid,
         },
       ],
     });
@@ -136,8 +145,14 @@ module("Integration | Component | document-validity", function (hooks) {
 
     assert.dom("p").hasText("Valid");
     assert.false(this.field.isInvalid);
+    assert.false(this.rowField.isInvalid);
+    assert.false(this.tableField.isInvalid);
+
     await click("button");
+
     assert.dom("p").hasText("Invalid");
     assert.true(this.field.isInvalid);
+    assert.true(this.rowField.isInvalid);
+    assert.true(this.tableField.isInvalid);
   });
 });

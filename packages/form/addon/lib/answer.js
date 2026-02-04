@@ -136,6 +136,7 @@ export default class Answer extends Base {
           new Document({
             raw: parseDocument(document),
             parentDocument: this.field.document,
+            parentField: this.field,
             owner,
           })
         );

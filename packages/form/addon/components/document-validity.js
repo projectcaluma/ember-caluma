@@ -1,4 +1,5 @@
 import { action } from "@ember/object";
+import { service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
 import { task } from "ember-concurrency";
@@ -24,6 +25,8 @@ import documentValidityQuery from "@projectcaluma/ember-form/gql/queries/documen
  */
 export default class DocumentValidity extends Component {
   @queryManager apollo;
+
+  @service calumaStore;
 
   /**
    * The document to be validated
@@ -79,17 +82,20 @@ export default class DocumentValidity extends Component {
       if (!isValid) {
         errors
           .filter(({ errorCode }) => errorCode === "format_validation_failed")
-          .forEach(({ slug, errorMsg }) => {
-            const field = this.args.document.findField(slug);
+          .forEach(({ slug, errorMsg, documentId }) => {
+            const pk = `Document:${documentId}:Question:${slug}`;
+            const field = this.calumaStore.findByPk(pk);
+            const parentField = field.document.parentField;
 
-            field._errors = [
-              ...field._errors,
-              {
-                type: "format",
-                context: { errorMsg },
-                value: field.value,
-              },
-            ];
+            // Add the error manually as the frontend does not validate format
+            // validators - only the backend.
+            field.addManualError("format", { errorMsg }, field.value);
+
+            if (parentField) {
+              // If the affected field is in a table row, we need to mark the
+              // table answer as invalid as well.
+              parentField.addManualError("table", {}, null);
+            }
           });
       }
 
