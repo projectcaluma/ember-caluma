@@ -1,6 +1,6 @@
 {
   "name": "@projectcaluma/ember-workflow",
-  "version": "14.8.1",
+  "version": "14.8.2",
   "description": "Ember addon for Caluma workflow tools.",
   "keywords": [
     "ember-addon"
