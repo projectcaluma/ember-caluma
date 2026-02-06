@@ -2,6 +2,7 @@ import { render, click, scrollTo, settled } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { module, test } from "qunit";
+import { spy } from "sinon";
 
 import { rawDocumentWithWorkItem } from "../../unit/lib/data";
 
@@ -132,6 +133,8 @@ module("Integration | Component | document-validity", function (hooks) {
       ],
     });
 
+    const querySpy = spy(this.owner.lookup("service:apollo"), "query");
+
     await render(hbs`<DocumentValidity @document={{this.document}} as |isValid validate|>
   <p>
     {{#if isValid}}
@@ -154,5 +157,28 @@ module("Integration | Component | document-validity", function (hooks) {
     assert.true(this.field.isInvalid);
     assert.true(this.rowField.isInvalid);
     assert.true(this.tableField.isInvalid);
+
+    assert.strictEqual(querySpy.callCount, 1);
+    assert.strictEqual(
+      querySpy.args[0][0].query.definitions[0].name.value,
+      "DocumentValidity",
+    );
+  });
+
+  test("backend validation can be skipped", async function (assert) {
+    const querySpy = spy(this.owner.lookup("service:apollo"), "query");
+
+    await render(hbs`
+    <DocumentValidity
+      @document={{this.document}}
+      @skipBackendValidation={{true}}
+    as |isValid validate|>
+      <button type="button" {{on "click" validate}}>Validate!</button>
+    </DocumentValidity>
+  `);
+
+    await click("button");
+
+    assert.strictEqual(querySpy.callCount, 0);
   });
 });

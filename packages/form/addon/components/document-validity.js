@@ -70,34 +70,7 @@ export default class DocumentValidity extends Component {
         ),
       );
 
-      const { isValid, errors } = await this.apollo.query(
-        {
-          query: documentValidityQuery,
-          fetchPolicy: "network-only",
-          variables: { id: this.args.document.uuid },
-        },
-        "documentValidity.edges.0.node",
-      );
-
-      if (!isValid) {
-        errors
-          .filter(({ errorCode }) => errorCode === "format_validation_failed")
-          .forEach(({ slug, errorMsg, documentId }) => {
-            const pk = `Document:${documentId}:Question:${slug}`;
-            const field = this.calumaStore.findByPk(pk);
-            const parentField = field.document.parentField;
-
-            // Add the error manually as the frontend does not validate format
-            // validators - only the backend.
-            field.addManualError("format", { errorMsg }, field.value);
-
-            if (parentField) {
-              // If the affected field is in a table row, we need to mark the
-              // table answer as invalid as well.
-              parentField.addManualError("table", {}, null);
-            }
-          });
-      }
+      await this.#runBackendValidation();
 
       if (this.isValid) {
         this.args.onValid?.();
@@ -110,6 +83,39 @@ export default class DocumentValidity extends Component {
       return false;
     }
   });
+
+  async #runBackendValidation() {
+    if (this.args.skipBackendValidation) return;
+
+    const { isValid, errors } = await this.apollo.query(
+      {
+        query: documentValidityQuery,
+        fetchPolicy: "network-only",
+        variables: { id: this.args.document.uuid },
+      },
+      "documentValidity.edges.0.node",
+    );
+
+    if (!isValid) {
+      errors
+        .filter(({ errorCode }) => errorCode === "format_validation_failed")
+        .forEach(({ slug, errorMsg, documentId }) => {
+          const pk = `Document:${documentId}:Question:${slug}`;
+          const field = this.calumaStore.findByPk(pk);
+          const parentField = field.document.parentField;
+
+          // Add the error manually as the frontend does not validate format
+          // validators - only the backend.
+          field.addManualError("format", { errorMsg }, field.value);
+
+          if (parentField) {
+            // If the affected field is in a table row, we need to mark the
+            // table answer as invalid as well.
+            parentField.addManualError("table", {}, null);
+          }
+        });
+    }
+  }
 
   @action
   validate() {
