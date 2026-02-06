@@ -118,6 +118,7 @@
         />
         <DocumentValidity
           @document={{this.documentToEdit}}
+          @skipBackendValidation={{true}}
           as |isValid validate|
         >
           <UkButton
