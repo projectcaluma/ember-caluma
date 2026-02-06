@@ -10,9 +10,8 @@ import setupUIkitHelpers from "dummy/tests/helpers/uikit";
 
 setApplication(Application.create(config.APP));
 
+setup(QUnit.assert);
 setupEmberOnerrorValidation();
 loadTests();
-setup(QUnit.assert);
 setupUIkitHelpers(QUnit.assert);
-
 start();
