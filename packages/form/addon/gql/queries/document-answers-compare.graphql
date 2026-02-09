@@ -1,0 +1,157 @@
+#import FieldQuestion, SimpleQuestion, FieldTableQuestion from '../fragments/field.graphql'
+
+fragment SimpleRevisionAnswer on HistoricalAnswer {
+  id
+  historyDate
+  historyUserId
+  historyType
+  question {
+    slug
+    label
+    ... on ChoiceQuestion {
+      choiceOptions: options {
+        edges {
+          node {
+            slug
+            label
+          }
+        }
+      }
+    }
+    ... on DynamicChoiceQuestion {
+      dynamicChoiceOptions: options(context: $context) {
+        edges {
+          node {
+            slug
+            label
+          }
+        }
+      }
+    }
+    ... on MultipleChoiceQuestion {
+      multipleChoiceOptions: options {
+        edges {
+          node {
+            slug
+            label
+          }
+        }
+      }
+    }
+    ... on DynamicMultipleChoiceQuestion {
+      dynamicMultipleChoiceOptions: options(context: $context) {
+        edges {
+          node {
+            slug
+            label
+          }
+        }
+      }
+    }
+    __typename
+  }
+  ... on HistoricalStringAnswer {
+    historyId
+    stringValue: value
+  }
+  ... on HistoricalListAnswer {
+    historyId
+    listValue: value
+  }
+  ... on HistoricalIntegerAnswer {
+    historyId
+    integerValue: value
+  }
+  ... on HistoricalFloatAnswer {
+    historyId
+    floatValue: value
+  }
+  ... on HistoricalDateAnswer {
+    historyId
+    dateValue: value
+  }
+  __typename
+}
+
+fragment HistoricalTableValue on HistoricalDocument {
+  id: documentId
+  documentId: id
+  historyDate
+  historyType
+  historyUserId
+  form {
+    id
+    slug
+    questions {
+      edges {
+        node {
+          ...FieldQuestion
+        }
+      }
+    }
+  }
+  __typename
+}
+
+fragment RevisionDocument on HistoricalDocument {
+  historicalDocumentId: id
+  id: documentId
+  form {
+    id
+    slug
+  }
+}
+
+query (
+  $documentId: ID!
+  $from: DateTime!
+  $to: DateTime!
+  $context: JSONString
+) {
+  fromRevision: documentAsOf(id: $documentId, asOf: $from) {
+    ...RevisionDocument
+    answers: historicalAnswers(asOf: $from, excludeDeleted: true) {
+      edges {
+        node {
+          ...SimpleRevisionAnswer
+          ... on HistoricalTableAnswer {
+            tableValue: value(asOf: $from, excludeDeleted: true) {
+              ...HistoricalTableValue
+
+              answers: historicalAnswers(asOf: $from, excludeDeleted: true) {
+                edges {
+                  node {
+                    ...SimpleRevisionAnswer
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  toRevision: documentAsOf(id: $documentId, asOf: $to) {
+    ...RevisionDocument
+    answers: historicalAnswers(asOf: $to) {
+      edges {
+        node {
+          ...SimpleRevisionAnswer
+          ... on HistoricalTableAnswer {
+            tableValue: value(asOf: $to) {
+              ...HistoricalTableValue
+
+              answers: historicalAnswers(asOf: $to) {
+                edges {
+                  node {
+                    ...SimpleRevisionAnswer
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

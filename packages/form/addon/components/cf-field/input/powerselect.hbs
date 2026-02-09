@@ -1,12 +1,12 @@
 <this.selectComponent
   @options={{@field.options}}
-  @selected={{@field.selected}}
+  @selected={{this.selected}}
   @disabled={{@disabled}}
   @allowClear={{true}}
   @preventScroll={{true}}
   @searchEnabled={{this.searchEnabled}}
   @searchField="label"
-  @triggerId={{@field.pk}}
+  @triggerId={{this.triggerId}}
   @renderInPlace={{true}}
   @placeholder={{this.placeholder}}
   @loadingMessage={{t "caluma.form.power-select.options-loading"}}

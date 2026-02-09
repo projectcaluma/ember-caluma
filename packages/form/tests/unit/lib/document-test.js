@@ -1,5 +1,5 @@
 import { settled } from "@ember/test-helpers";
-import { module, test, skip } from "qunit";
+import { module, skip, test } from "qunit";
 
 import {
   rawDocumentWithCase,
@@ -53,6 +53,7 @@ module("Unit | Library | document", function (hooks) {
       ["table", false],
       ["multiple-choice", false],
       ["json-dependency", true],
+      ["choice", false],
     ]);
   });
 
@@ -71,6 +72,7 @@ module("Unit | Library | document", function (hooks) {
       ["table", false],
       ["multiple-choice", false],
       ["json-dependency", true],
+      ["choice", false],
     ]);
   });
 
@@ -87,6 +89,7 @@ module("Unit | Library | document", function (hooks) {
       ["table", false],
       ["multiple-choice", false],
       ["json-dependency", true],
+      ["choice", false],
     ]);
     await this.setFieldValue("question-1", "foo");
 
@@ -100,6 +103,7 @@ module("Unit | Library | document", function (hooks) {
       ["table", false],
       ["multiple-choice", false],
       ["json-dependency", true],
+      ["choice", false],
     ]);
   });
 

@@ -1,0 +1,50 @@
+{{#let
+  (component
+    (ensure-safe-component (get-widget @field.question))
+    field=@field
+    disabled=true
+    context=@context
+    onSave=(perform this.save)
+  )
+  as |FieldComponent|
+}}
+  {{#if @field.isModified}}
+    <div
+      class="cf-compare cf-compare-{{@field.question.raw.__typename}}
+        {{if (eq @field.answer.raw.historyType '-') 'cf-compare-removed' ''}}
+        {{if (eq @field.answer.raw.historyType '+') 'cf-compare-added' ''}}
+        {{if (eq @field.answer.raw.historyType '~') 'cf-compare-modified' ''}}
+        "
+    >
+      {{#if this.compareOptions.combined}}
+        <div class="combined-diff">
+          <div hidden>
+            <FieldComponent @compare={{false}} />
+          </div>
+          <div class="diff-version">
+            <FieldComponent @compare={{@compare}} />
+          </div>
+        </div>
+        {{#unless this.compareOptions.disableChangesNote}}
+          <div class="changes-note">
+            <CfField::InputCompare::ChangesNote @field={{@field}} />
+          </div>
+        {{/unless}}
+      {{else}}
+        <div class="from-version">
+          <FieldComponent @compare={{@compare}} />
+        </div>
+        <div class="to-version">
+          <FieldComponent @compare={{false}} />
+        </div>
+        {{#unless this.compareOptions.disableChangesNote}}
+          <div class="changes-note">
+            <CfField::InputCompare::ChangesNote @field={{@field}} />
+          </div>
+        {{/unless}}
+      {{/if}}
+    </div>
+  {{else}}
+    <FieldComponent @compare={{false}} />
+  {{/if}}
+{{/let}}
