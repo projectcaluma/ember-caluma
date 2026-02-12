@@ -7,7 +7,11 @@
     @onSave={{this.saveField}}
     @context={{hash selectedGroups=@selectedGroups}}
   />
-  <DocumentValidity @document={{this.document.value}} as |isValid validate|>
+  <DocumentValidity
+    @document={{this.document.value}}
+    @skipBackendValidation={{true}}
+    as |isValid validate|
+  >
     <UkButton
       @color="primary"
       @label={{t "caluma.distribution.new.create-draft"}}
