@@ -195,6 +195,7 @@ export default class CfContentComponent extends Component {
     const document = new Document({
       raw,
       owner,
+      dataSourceContext: this.args.context,
       historicalDocument: historicalDocument
         ? parseDocument({ ...historicalDocument, form })
         : null,
