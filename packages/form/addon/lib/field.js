@@ -554,6 +554,7 @@ export default class Field extends Base {
    * - `info.formMeta`: The meta of the form this question is attached to.
    * - `info.parent.form`: The parent form if applicable.
    * - `info.parent.formMeta`: The parent form meta if applicable.
+   * - `info.parent.question`: The parent field question if applicable.
    * - `info.root.form`: The new property for the root form.
    * - `info.root.formMeta`: The new property for the root form meta.
    * - `info.case.form`: The cases' form (works for task forms and case forms).
@@ -564,7 +565,7 @@ export default class Field extends Base {
    * @property {Object} jexlContext
    */
   get jexlContext() {
-    const parent = this.fieldset.field?.fieldset.form;
+    const parentField = this.fieldset.field ?? this.document.parentField;
 
     return {
       ...this.document.jexlContext,
@@ -572,10 +573,11 @@ export default class Field extends Base {
         ...this.document.jexlContext.info,
         form: this.fieldset.form.slug,
         formMeta: this.fieldset.form.raw.meta,
-        parent: parent
+        parent: parentField
           ? {
-              form: parent.slug,
-              formMeta: parent.raw.meta,
+              form: parentField.fieldset.form.slug,
+              formMeta: parentField.fieldset.form.raw.meta,
+              question: parentField.question.slug,
             }
           : null,
       },

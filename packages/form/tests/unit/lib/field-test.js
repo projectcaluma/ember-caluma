@@ -145,7 +145,14 @@ module("Unit | Library | field", function (hooks) {
           "is-top-form": false,
           level: 1,
         },
-        parent: null,
+        parent: {
+          form: "form",
+          formMeta: {
+            "is-top-form": true,
+            level: 0,
+          },
+          question: "table",
+        },
         root: {
           form: "form",
           formMeta: {
