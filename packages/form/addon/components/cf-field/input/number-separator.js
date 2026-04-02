@@ -1,10 +1,13 @@
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
+import { tracked } from "@glimmer/tracking";
 import { cached } from "tracked-toolbox";
 
 export default class CfFieldInputNumberSeparatorComponent extends Component {
   @service intl;
+
+  @tracked rawInput = null;
 
   get disabled() {
     return this.args.disabled || this.args.field?.question.isCalculated;
@@ -29,26 +32,46 @@ export default class CfFieldInputNumberSeparatorComponent extends Component {
   }
 
   @cached
+  get numberParts() {
+    // Breaks the dummy number into an array of its exact pieces based on the user's active language
+    return new Intl.NumberFormat(this.intl.locale).formatToParts(11111.1);
+  }
+
+  @cached
   get thousandSeparator() {
-    return this.intl.formatNumber(11111).replace(/\p{Number}/gu, "");
+    // Search the array for the piece labeled 'group' (which represents the thousands separator)
+    const part = this.numberParts.find((p) => p.type === "group");
+    return part ? part.value : "";
   }
 
   @cached
   get decimalSeparator() {
-    return this.intl.formatNumber(1.1).replace(/\p{Number}/gu, "");
+    // Search the array for the piece labeled 'decimal'.
+    // If it exists, return its character. If not, default to a standard dot.
+    const part = this.numberParts.find((p) => p.type === "decimal");
+    return part ? part.value : ".";
   }
 
   @action
-  input({ target: { value } }) {
+  input(event) {
     // We need to remove the thousand separator and replace the decimal
     // separator with a dot in order to parse it into a number. Which character
     // those are is determined per locale in the getters above.
-    const serialized = parseFloat(
-      value
-        .replace(new RegExp(`\\${this.thousandSeparator}`, "g"), "")
-        .replace(new RegExp(`\\${this.decimalSeparator}`), "."),
-    );
 
+    const value = event.target.value.replace(/,/g, ".");
+    this.rawInput = value;
+    let cleaned = value;
+
+    if (this.thousandSeparator) {
+      // Remove all space variants, ensuring both user-typed regular spaces and the Intl non-breaking spaces.
+      if (/\s/.test(this.thousandSeparator)) {
+        cleaned = cleaned.replace(/\s/g, "");
+      } else {
+        cleaned = cleaned.split(this.thousandSeparator).join("");
+      }
+    }
+
+    const serialized = parseFloat(cleaned);
     this.args.onSave(isNaN(serialized) ? null : serialized);
   }
 }
