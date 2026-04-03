@@ -1,2 +1,181 @@
 packages:
-  - "packages/**"
+  - packages/**
+
+catalogMode: strict
+
+catalogs:
+  dev-deps:
+    '@adfinis/eslint-config': 3.0.2
+    '@babel/eslint-parser': 7.28.6
+    '@babel/plugin-proposal-decorators': 7.28.6
+    '@commitlint/cli': 20.3.1
+    '@commitlint/config-conventional': 20.3.1
+    '@ember/optional-features': 2.3.0
+    '@ember/test-helpers': 4.0.4
+    '@embroider/test-setup': 4.0.0
+    '@eslint/js': 9.39.2
+    '@glimmer/component': 1.1.2
+    '@glimmer/tracking': 1.1.2
+    '@semantic-release/commit-analyzer': 13.0.1
+    '@semantic-release/exec': 7.1.0
+    '@semantic-release/git': 10.0.1
+    '@semantic-release/github': 12.0.2
+    '@semantic-release/release-notes-generator': 14.1.0
+    broccoli-asset-rev: 3.0.0
+    concurrently: 9.2.1
+    ember-cli: 6.10.0
+    ember-cli-addon-docs: 10.1.0
+    ember-cli-clean-css: 3.0.0
+    ember-cli-code-coverage: 3.1.0
+    ember-cli-dependency-checker: 3.3.3
+    ember-cli-deploy: 2.0.0
+    ember-cli-deploy-build: 3.0.0
+    ember-cli-deploy-git: 1.3.4
+    ember-cli-deploy-git-ci: 1.0.1
+    ember-cli-deprecation-workflow: 3.4.0
+    ember-cli-inject-live-reload: 2.1.0
+    ember-cli-sass: 11.0.1
+    ember-cli-sri: 2.1.1
+    ember-cli-terser: 4.0.2
+    ember-data: 5.7.0
+    ember-disable-prototype-extensions: 1.1.3
+    ember-engines: 0.12.0
+    ember-modifier: 4.2.2
+    ember-qunit: 9.0.4
+    ember-sinon-qunit: 7.5.0
+    ember-source: 6.10.0
+    ember-source-channel-url: 3.0.0
+    ember-template-lint: 7.9.3
+    ember-try: 4.0.0
+    eslint: 9.39.2
+    eslint-config-prettier: 10.1.8
+    eslint-plugin-ember: 12.7.5
+    eslint-plugin-import: 2.32.0
+    eslint-plugin-n: 17.23.2
+    eslint-plugin-pnpm: 1.5.0
+    eslint-plugin-prettier: 5.5.5
+    eslint-plugin-qunit: 8.2.5
+    get-graphql-schema: 2.1.2
+    glob: 13.0.0
+    globals: 17.0.0
+    husky: 9.1.7
+    lint-staged: 16.2.7
+    loader.js: 4.7.0
+    node-fetch: 3.3.2
+    prettier: 3.8.1
+    prettier-plugin-ember-template-tag: 2.1.2
+    qunit: 2.25.0
+    qunit-dom: 3.5.0
+    sass: 1.97.3
+    semantic-release: 25.0.2
+    sinon: 21.0.1
+    stylelint: 17.0.0
+    stylelint-config-standard-scss: 17.0.0
+    stylelint-prettier: 5.0.3
+    stylelint-scss: 7.0.0
+    uuid: 13.0.0
+    webpack: 5.104.1
+  prod-deps:
+    '@apollo/client': ^3.12.5
+    '@babel/core': ^7.26.0
+    '@ember/render-modifiers': ^2.1.0 || ^3.0.0
+    '@ember/string': ^3.1.1 || ^4.0.0
+    '@ember/test-waiters': ^4.1.1
+    '@embroider/macros': ^1.16.10
+    '@embroider/util': ^1.13.2
+    '@faker-js/faker': ^9.4.0 || ^10.0.0
+    broccoli-funnel: ^3.0.8
+    broccoli-merge-trees: ^4.2.0
+    codejar: ^4.3.0
+    ember-apollo-client: ^5.0.0
+    ember-autoresize-modifier: ^0.7.0 || ^0.8.0
+    ember-basic-dropdown: ^8.4.0
+    ember-can: ^7.0.0
+    ember-changeset: ^4.1.2
+    ember-changeset-validations: ^4.1.1
+    ember-cli-babel: ^8.2.0
+    ember-cli-htmlbars: ^6.3.0
+    ember-cli-mirage: ^3.0.4
+    ember-cli-showdown: ^9.0.1
+    ember-composable-helpers: ^5.0.0
+    ember-concurrency: ^4.0.2 || ^5.1.0
+    ember-engines-router-service: ^0.6.0
+    ember-flatpickr: ^8.0.1
+    ember-in-viewport: ^4.1.0
+    ember-inflector: ^4.0.3 || ^5.0.1
+    ember-intl: ^7.1.1
+    ember-load-initializers: ^2.1.2 || ^3.0.1
+    ember-math-helpers: ^4.2.1 || ^5.0.0
+    ember-modify-based-class-resource: ^1.1.1
+    ember-power-select: ^8.6.2
+    ember-resolver: ^12.0.1 || ^13.1.0
+    ember-sortable: ^5.2.3
+    ember-svg-jar: ^2.6.0
+    ember-template-imports: ^4.2.0
+    ember-test-selectors: ^7.0.0
+    ember-truth-helpers: ^4.0.3
+    ember-uikit: ^9.1.3
+    ember-validated-form: ^7.0.1
+    ember-validators: ^4.1.2
+    flatpickr: ^4.6.13
+    graphql: ^15.10.1
+    graphql-iso-date: ^3.6.1
+    graphql-tag: ^2.12.6
+    graphql-tools: ^4.0.8
+    highlight.js: ^11.11.1
+    highlightjs-jexl: ^0.0.5
+    jexl: ^2.3.0
+    lodash.clonedeep: ^4.5.0
+    lodash.isequal: ^4.5.0
+    lodash.merge: ^4.6.2
+    luxon: ^3.5.0
+    miragejs: ^0.1.48
+    reactiveweb: ^1.3.0
+    slugify: ^1.6.6
+    tracked-built-ins: ^3.4.0 || ^4.0.0
+    tracked-toolbox: ^2.0.0
+    uikit: ^3.22.0
+    xlsx: https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz
+  prod-deps-locked:
+    '@babel/core': 7.28.6
+    '@ember/render-modifiers': 3.0.0
+    '@ember/string': 4.0.1
+    '@embroider/macros': 1.19.6
+    '@embroider/util': 1.13.5
+    '@faker-js/faker': 10.2.0
+    ember-apollo-client: 5.0.0
+    ember-autoresize-modifier: 0.8.0
+    ember-basic-dropdown: 8.11.0
+    ember-can: 7.0.0
+    ember-changeset: 4.2.0
+    ember-changeset-validations: 4.2.0
+    ember-cli-babel: 8.2.0
+    ember-cli-htmlbars: 6.3.0
+    ember-cli-mirage: 3.0.4
+    ember-cli-showdown: 9.0.2
+    ember-composable-helpers: 5.0.0
+    ember-engines-router-service: 0.6.0
+    ember-flatpickr: 8.0.1
+    ember-intl: 7.4.1
+    ember-load-initializers: 3.0.1
+    ember-math-helpers: 5.0.0
+    ember-power-select: 8.12.1
+    ember-resolver: 13.1.1
+    ember-sortable: 5.3.3
+    ember-template-imports: 4.4.0
+    ember-truth-helpers: 4.0.3
+    ember-uikit: 9.2.1
+    ember-validated-form: 7.0.1
+    flatpickr: 4.6.13
+    graphql: 15.10.1
+    graphql-tag: 2.12.6
+    miragejs: 0.1.48
+    tracked-built-ins: 4.1.0
+    uikit: 3.25.6
+
+peerDependencyRules:
+  allowedVersions:
+    ember-source: ^6.0.0
+    graphql: ^15.9.0
+  ignoreMissing:
+    - typescript

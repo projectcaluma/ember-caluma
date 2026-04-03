@@ -9,8 +9,7 @@ import config from "dummy/config/environment";
 
 setApplication(Application.create(config.APP));
 
+setup(QUnit.assert);
 setupEmberOnerrorValidation();
 loadTests();
-setup(QUnit.assert);
-
 start();
