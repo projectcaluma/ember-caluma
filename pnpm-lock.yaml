@@ -319,7 +319,7 @@ importers:
         version: 1.19.6(@glint/template@1.5.2)
       '@projectcaluma/ember-core':
         specifier: workspace:^
-        version: link:../core
+        version: file:packages/core(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(ember-data@5.7.0(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glint/template@1.5.2)(ember-inflector@5.0.2(@babel/core@7.28.6))(qunit@2.25.0))(ember-resources@7.0.7(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(typescript@5.9.2)(webpack@5.104.1)
       ember-apollo-client:
         specifier: ^5.0.0
         version: 5.0.0(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.104.1)
@@ -656,7 +656,7 @@ importers:
         version: 1.19.6(@glint/template@1.5.2)
       '@projectcaluma/ember-core':
         specifier: workspace:^
-        version: link:../core
+        version: file:packages/core(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(ember-data@5.7.0(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glint/template@1.5.2)(ember-inflector@5.0.2(@babel/core@7.28.6))(qunit@2.25.0))(ember-resources@7.0.7(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(typescript@5.9.2)(webpack@5.104.1)
       '@projectcaluma/ember-form':
         specifier: workspace:^
         version: link:../form
@@ -846,7 +846,7 @@ importers:
         version: 1.13.5(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))
       '@projectcaluma/ember-core':
         specifier: workspace:^
-        version: link:../core
+        version: file:packages/core(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(ember-data@5.7.0(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glint/template@1.5.2)(ember-inflector@5.0.2(@babel/core@7.28.6))(qunit@2.25.0))(ember-resources@7.0.7(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(typescript@5.9.2)(webpack@5.104.1)
       ember-apollo-client:
         specifier: ^5.0.0
         version: 5.0.0(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.104.1)
@@ -1027,8 +1027,8 @@ importers:
         specifier: 3.25.6
         version: 3.25.6
       uuid:
-        specifier: 13.0.0
-        version: 13.0.0
+        specifier: 14.0.0
+        version: 14.0.0
       webpack:
         specifier: 5.104.1
         version: 5.104.1
@@ -1049,7 +1049,7 @@ importers:
         version: 1.19.6(@glint/template@1.5.2)
       '@projectcaluma/ember-core':
         specifier: workspace:^
-        version: link:../core
+        version: file:packages/core(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(ember-data@5.7.0(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glint/template@1.5.2)(ember-inflector@5.0.2(@babel/core@7.28.6))(qunit@2.25.0))(ember-resources@7.0.7(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(typescript@5.9.2)(webpack@5.104.1)
       '@projectcaluma/ember-form':
         specifier: workspace:^
         version: link:../form
@@ -1373,7 +1373,7 @@ importers:
         version: 7.28.6
       '@projectcaluma/ember-core':
         specifier: workspace:^
-        version: link:../core
+        version: file:packages/core(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(ember-data@5.7.0(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glint/template@1.5.2)(ember-inflector@5.0.2(@babel/core@7.28.6))(qunit@2.25.0))(ember-resources@7.0.7(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(typescript@5.9.2)(webpack@5.104.1)
       ember-apollo-client:
         specifier: ^5.0.0
         version: 5.0.0(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.104.1)
@@ -1539,6 +1539,24 @@ packages:
 
   '@apollo/client@3.14.0':
     resolution: {integrity: sha512-0YQKKRIxiMlIou+SekQqdCo0ZTHxOcES+K8vKB53cIDpwABNR0P0yRzPgsbgcj3zRJniD93S/ontsnZsCLZrxQ==}
+    peerDependencies:
+      graphql: ^15.0.0 || ^16.0.0
+      graphql-ws: ^5.5.5 || ^6.0.3
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || >=19.0.0-rc
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || >=19.0.0-rc
+      subscriptions-transport-ws: ^0.9.0 || ^0.11.0
+    peerDependenciesMeta:
+      graphql-ws:
+        optional: true
+      react:
+        optional: true
+      react-dom:
+        optional: true
+      subscriptions-transport-ws:
+        optional: true
+
+  '@apollo/client@3.14.1':
+    resolution: {integrity: sha512-SgGX6E23JsZhUdG2anxiyHvEvvN6CUaI4ZfMsndZFeuHPXL3H0IsaiNAhLITSISbeyeYd+CBd9oERXQDdjXWZw==}
     peerDependencies:
       graphql: ^15.0.0 || ^16.0.0
       graphql-ws: ^5.5.5 || ^6.0.3
@@ -2904,6 +2922,16 @@ packages:
     resolution: {integrity: sha512-h104Kh26rR8tm+a3Qkc5S4VLYint3FE48as7+/5oCEcKR2idC/pF1G6AhIXKI+eHPJa/3J9i5z0Al47IeGHPkA==}
     engines: {node: '>=12'}
 
+  '@projectcaluma/ember-core@file:packages/core':
+    resolution: {directory: packages/core, type: directory}
+    engines: {node: '>= 18'}
+    peerDependencies:
+      ember-data: '*'
+      ember-source: '>= 4.0.0'
+    peerDependenciesMeta:
+      ember-data:
+        optional: true
+
   '@rtsao/scc@1.1.0':
     resolution: {integrity: sha512-zt6OdqaDoOnJ1ZYsCYGt9YmWzDXl4vQdKTyJev62gFhRGKdx7mcT54V9KIjg+d2wi9EXsPvAPKe7i7WjfVWB8g==}
 
@@ -3205,6 +3233,7 @@ packages:
   '@xmldom/xmldom@0.8.11':
     resolution: {integrity: sha512-cQzWCtO6C8TQiYl1ruKNn2U6Ao4o4WBBcbL61yJl84x+j5sOWWFU9X7DpND8XZG3daDppSsigMdfAIl2upQBRw==}
     engines: {node: '>=10.0.0'}
+    deprecated: this version has critical issues, please update to the latest version
 
   '@xtuc/ieee754@1.2.0':
     resolution: {integrity: sha512-DX8nKgqcGwsc0eJSqYt5lwP4DH5FlHnmuWWBRy7X0NcaGR0ZtuyeESgMwTYVEtxmsNGY+qit4QYT/MIYTOTPeA==}
@@ -6429,6 +6458,7 @@ packages:
   git-raw-commits@4.0.0:
     resolution: {integrity: sha512-ICsMM1Wk8xSGMowkOmPrzo2Fgmfo4bMHLNX6ytHjajRJUqvHOw/TFapQ+QG75c3X/tTDDhOSRPGC52dDbNM8FQ==}
     engines: {node: '>=16'}
+    deprecated: This package is no longer maintained. For the JavaScript API, please use @conventional-changelog/git-client instead.
     hasBin: true
 
   git-repo-info@2.1.1:
@@ -6448,6 +6478,7 @@ packages:
 
   glob@10.5.0:
     resolution: {integrity: sha512-DfXN8DfhJ7NH3Oe7cFmu3NCu1wKbkReJ8TorzSAFbSKrlNaQSKfIzqYqVY8zlbs2NLBbWpRiU52GX2PbaBVNkg==}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
     hasBin: true
 
   glob@13.0.0:
@@ -6456,20 +6487,21 @@ packages:
 
   glob@5.0.15:
     resolution: {integrity: sha512-c9IPMazfRITpmAAKi22dK1VKxGDX9ehhqfABDriL/lzO92xcUKEJPQHrVA/2YHSNFB4iFlykVmWvwo48nr3OxA==}
-    deprecated: Glob versions prior to v9 are no longer supported
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   glob@7.2.3:
     resolution: {integrity: sha512-nFR0zLpU2YCaRxwoCJvL6UvCH2JFyFVIvwTLsIf21AuHlMskA1hhTdk+LlYJtOlYt9v6dvszD2BGRqBL+iQK9Q==}
-    deprecated: Glob versions prior to v9 are no longer supported
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   glob@8.1.0:
     resolution: {integrity: sha512-r8hpEjiQEYlF2QU0df3dS+nxxSIreXQS1qRhMJM0Q5NDdR386C7jb7Hwwod8Fgiuex+k0GFjgft18yvxm5XoCQ==}
     engines: {node: '>=12'}
-    deprecated: Glob versions prior to v9 are no longer supported
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   glob@9.3.5:
     resolution: {integrity: sha512-e1LleDykUz2Iu+MTYdkSsuWX8lvAjAcs0Xef0lNIu0S2wOAzuTxCJtcd9S3cijlwYF18EsU3rzb8jPVobxDh9Q==}
     engines: {node: '>=16 || 14 >=14.17'}
+    deprecated: Old versions of glob are not supported, and contain widely publicized security vulnerabilities, which have been fixed in the current version. Please update. Support for old versions may be purchased (at exorbitant rates) by contacting i@izs.me
 
   global-directory@4.0.1:
     resolution: {integrity: sha512-wHTUcDUoZ1H5/0iVqEudYW4/kAlN5cZ3j/bXn0Dpbizl9iaUVeWSHqiOjsgk6OW2bkLclbBjzewBz6weQ1zA2Q==}
@@ -9194,6 +9226,11 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
+  semver@7.7.4:
+    resolution: {integrity: sha512-vFKC2IEtQnVhpT78h1Yp8wzwrf8CM+MzKMHGJZfBtzhZNycRFnXsHk6E5TxIkkMsgNS7mdX3AGB7x2QM2di4lA==}
+    engines: {node: '>=10'}
+    hasBin: true
+
   send@0.19.2:
     resolution: {integrity: sha512-VMbMxbDeehAxpOtWJXlcUS5E8iXh6QmN+BkRX1GARS3wRaXEEgzCcB10gTQazO42tpNIya8xIyNx8fll1OFPrg==}
     engines: {node: '>= 0.8.0'}
@@ -9325,6 +9362,10 @@ packages:
 
   slugify@1.6.6:
     resolution: {integrity: sha512-h+z7HKHYXj6wJU+AnS/+IH8Uh9fdcX1Lrhg1/VMdf9PwoBQXFcXiAdsy2tSK0P6gKwJLXp02r90ahUCqHk9rrw==}
+    engines: {node: '>=8.0.0'}
+
+  slugify@1.6.9:
+    resolution: {integrity: sha512-vZ7rfeehZui7wQs438JXBckYLkIIdfHOXsaVEUMyS5fHo1483l1bMdo0EDSWYclY0yZKFOipDy4KHuKs6ssvdg==}
     engines: {node: '>=8.0.0'}
 
   snake-case@3.0.4:
@@ -9901,6 +9942,9 @@ packages:
   tracked-built-ins@4.1.0:
     resolution: {integrity: sha512-v1+jca3sD3LgbAFVsontSONTv7HsZll3yeUB00L6KPwLilFRrY77gvgptDe35fTalk9ea7mmrM2wABD56pTvuw==}
 
+  tracked-built-ins@4.1.2:
+    resolution: {integrity: sha512-KiiV/Pzi7VNKTn9Fip6Ic54AjKgFfqows1Jq3L0WLVqZcvfswdhVxQ9yqqhTXsmgLhVzIgtdzNBH4ExqWf34BQ==}
+
   tracked-toolbox@2.2.0:
     resolution: {integrity: sha512-YknotXj74U0nCqBk9nh1Uv1IWTnVOgt8sXIecNkyEq4oFOU70niQUlozO4E3kMKx7ae/rNlOtoF+1ALcHYzCrQ==}
 
@@ -10169,8 +10213,8 @@ packages:
     resolution: {integrity: sha512-pMZTvIkT1d+TFGvDOqodOclx0QWkkgi6Tdoa8gC8ffGAAqz9pzPTZWAybbsHHoED/ztMtkv/VoYTYyShUn81hA==}
     engines: {node: '>= 0.4.0'}
 
-  uuid@13.0.0:
-    resolution: {integrity: sha512-XQegIaBTVUjSHliKqcnFqYypAd4S+WCYt5NIeRs6w/UAry7z8Y9j5ZwRRL4kzq9U3sD6v+85er9FvkEaBpji2w==}
+  uuid@14.0.0:
+    resolution: {integrity: sha512-Qo+uWgilfSmAhXCMav1uYFynlQO7fMFiMVZsQqZRMIXp0O7rR7qjkj+cPvBHLgBqi960QCoo/PH2/6ZtVqKvrg==}
     hasBin: true
 
   uuid@3.4.0:
@@ -10512,6 +10556,25 @@ snapshots:
       eslint-plugin-qunit: 8.2.5(eslint@9.39.2(jiti@2.6.1))
 
   '@apollo/client@3.14.0(graphql@15.10.1)':
+    dependencies:
+      '@graphql-typed-document-node/core': 3.2.0(graphql@15.10.1)
+      '@wry/caches': 1.0.1
+      '@wry/equality': 0.5.7
+      '@wry/trie': 0.5.0
+      graphql: 15.10.1
+      graphql-tag: 2.12.6(graphql@15.10.1)
+      hoist-non-react-statics: 3.3.2
+      optimism: 0.18.1
+      prop-types: 15.8.1
+      rehackt: 0.1.0
+      symbol-observable: 4.0.0
+      ts-invariant: 0.10.3
+      tslib: 2.8.1
+      zen-observable-ts: 1.2.5
+    transitivePeerDependencies:
+      - '@types/react'
+
+  '@apollo/client@3.14.1(graphql@15.10.1)':
     dependencies:
       '@graphql-typed-document-node/core': 3.2.0(graphql@15.10.1)
       '@wry/caches': 1.0.1
@@ -11700,7 +11763,7 @@ snapshots:
       '@embroider/shared-internals': 3.0.2
       broccoli-funnel: 3.0.8
       common-ancestor-path: 1.0.1
-      semver: 7.7.3
+      semver: 7.7.4
     transitivePeerDependencies:
       - supports-color
 
@@ -12353,6 +12416,46 @@ snapshots:
       '@pnpm/config.env-replace': 1.1.0
       '@pnpm/network.ca-file': 1.0.2
       config-chain: 1.1.13
+
+  '@projectcaluma/ember-core@file:packages/core(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(ember-data@5.7.0(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glint/template@1.5.2)(ember-inflector@5.0.2(@babel/core@7.28.6))(qunit@2.25.0))(ember-resources@7.0.7(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2))(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(typescript@5.9.2)(webpack@5.104.1)':
+    dependencies:
+      '@apollo/client': 3.14.1(graphql@15.10.1)
+      '@babel/core': 7.28.6
+      '@ember/string': 4.0.1
+      '@embroider/macros': 1.19.6(@glint/template@1.5.2)
+      ember-apollo-client: 5.0.0(@glint/template@1.5.2)(graphql@15.10.1)(webpack@5.104.1)
+      ember-auto-import: 2.12.0(@glint/template@1.5.2)(webpack@5.104.1)
+      ember-cli-babel: 8.2.0(@babel/core@7.28.6)
+      ember-cli-htmlbars: 6.3.0
+      ember-concurrency: 5.1.0(@babel/core@7.28.6)(@glint/template@1.5.2)
+      ember-inflector: 5.0.2(@babel/core@7.28.6)
+      ember-intl: 7.4.1(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@glint/template@1.5.2)(typescript@5.9.2)(webpack@5.104.1)
+      ember-modify-based-class-resource: 1.1.2(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(ember-resources@7.0.7(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2))
+      ember-source: 6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)
+      ember-template-imports: 4.4.0
+      ember-uikit: 9.2.1(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1))(webpack@5.104.1)
+      graphql: 15.10.1
+      graphql-tag: 2.12.6(graphql@15.10.1)
+      jexl: 2.3.0
+      lodash.clonedeep: 4.5.0
+      slugify: 1.6.9
+      tracked-built-ins: 4.1.2(@babel/core@7.28.6)
+    optionalDependencies:
+      ember-data: 5.7.0(@ember/test-helpers@4.0.4(@babel/core@7.28.6)(@glint/template@1.5.2)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.28.6))(@glint/template@1.5.2)(rsvp@4.8.5)(webpack@5.104.1)))(@ember/test-waiters@4.1.1(@glint/template@1.5.2))(@glint/template@1.5.2)(ember-inflector@5.0.2(@babel/core@7.28.6))(qunit@2.25.0)
+    transitivePeerDependencies:
+      - '@ember/test-helpers'
+      - '@glimmer/component'
+      - '@glint/environment-ember-loose'
+      - '@glint/template'
+      - '@types/react'
+      - ember-resources
+      - graphql-ws
+      - react
+      - react-dom
+      - subscriptions-transport-ws
+      - supports-color
+      - typescript
+      - webpack
 
   '@rtsao/scc@1.1.0': {}
 
@@ -19289,7 +19392,7 @@ snapshots:
   normalize-package-data@6.0.2:
     dependencies:
       hosted-git-info: 7.0.2
-      semver: 7.7.3
+      semver: 7.7.4
       validate-npm-package-license: 3.0.4
 
   normalize-package-data@8.0.0:
@@ -20468,6 +20571,8 @@ snapshots:
 
   semver@7.7.3: {}
 
+  semver@7.7.4: {}
+
   send@0.19.2:
     dependencies:
       debug: 2.6.9
@@ -20636,6 +20741,8 @@ snapshots:
       is-fullwidth-code-point: 5.1.0
 
   slugify@1.6.6: {}
+
+  slugify@1.6.9: {}
 
   snake-case@3.0.4:
     dependencies:
@@ -21410,6 +21517,14 @@ snapshots:
       - '@babel/core'
       - supports-color
 
+  tracked-built-ins@4.1.2(@babel/core@7.28.6):
+    dependencies:
+      '@embroider/addon-shim': 1.10.2
+      decorator-transforms: 2.3.1(@babel/core@7.28.6)
+    transitivePeerDependencies:
+      - '@babel/core'
+      - supports-color
+
   tracked-toolbox@2.2.0(@babel/core@7.28.6):
     dependencies:
       '@embroider/addon-shim': 1.10.2
@@ -21664,7 +21779,7 @@ snapshots:
 
   utils-merge@1.0.1: {}
 
-  uuid@13.0.0: {}
+  uuid@14.0.0: {}
 
   uuid@3.4.0: {}
 
