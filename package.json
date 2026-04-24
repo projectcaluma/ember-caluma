@@ -64,7 +64,7 @@
     "husky": "9.1.7",
     "lint-staged": "16.2.7",
     "node-fetch": "3.3.2",
-    "prettier": "3.8.1",
+    "prettier": "3.8.3",
     "prettier-plugin-ember-template-tag": "2.1.2",
     "semantic-release": "25.0.2",
     "stylelint": "17.0.0",
