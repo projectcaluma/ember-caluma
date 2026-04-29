@@ -14,6 +14,7 @@
     value={{this.displayValue}}
     placeholder={{@field.question.raw.placeholder}}
     readonly={{this.disabled}}
+    {{on "keydown" this.checkInput}}
     {{on "input" this.input}}
   />
 {{/if}}
