@@ -57,6 +57,7 @@ caluma:
       format: "{errorMsg}"
       table: "Au moins une ligne du tableau n'a pas été remplie correctement"
       error: "Les questions suivantes n'ont pas encore été correctement remplies :"
+      blockNotification: "Seuls les caractères suivants sont autorisés dans ce champ : {allowedChars}"
 
     compare:
       note: "Modifié par {username} le {date}"
