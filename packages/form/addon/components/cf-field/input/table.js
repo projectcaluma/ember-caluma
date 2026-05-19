@@ -66,9 +66,11 @@ export default class CfFieldInputTableComponent extends Component {
     );
 
     const owner = getOwner(this);
-    const newDocument = new (owner.factoryFor("caluma-model:document").class)({
+    const Document = owner.factoryFor("caluma-model:document").class;
+    const newDocument = new Document({
       raw: this.parseDocument(raw),
       parentDocument: this.args.field.document,
+      parentField: this.args.field,
       owner,
     });
 
