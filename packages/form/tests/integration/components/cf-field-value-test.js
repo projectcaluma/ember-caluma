@@ -165,6 +165,6 @@ module("Integration | Component | cf-field-value", function (hooks) {
 
     await render(hbs`<CfFieldValue @field={{this.field}} />`);
 
-    assert.dom(this.element).hasText("1’111’111.111111");
+    assert.dom(this.element).hasText("1'111'111.111111");
   });
 });

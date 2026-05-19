@@ -33,7 +33,7 @@ module(
       await fillIn("input", "1234");
 
       assert.strictEqual(this.field.value, 1234);
-      assert.dom("input").hasValue("1’234");
+      assert.dom("input").hasValue("1'234");
 
       await fillIn("input", "0");
       assert.dom("input").hasValue("0");
@@ -49,7 +49,7 @@ module(
       await fillIn("input", "1234.123");
 
       assert.strictEqual(this.field.value, 1234.123);
-      assert.dom("input").hasValue("1’234.123");
+      assert.dom("input").hasValue("1'234.123");
 
       await fillIn("input", "0");
       assert.dom("input").hasValue("0");
@@ -66,7 +66,7 @@ module(
 
       assert.dom("input").hasAttribute("readonly");
       assert.dom("input").hasClass("uk-disabled");
-      assert.dom("input").hasValue("1’234.123");
+      assert.dom("input").hasValue("1'234.123");
     });
 
     test("it works with other locales", async function (assert) {
