@@ -1,2 +1,5 @@
 packages:
   - "packages/**"
+
+overrides:
+  "ember-cli-htmlbars": "7.0.1"
