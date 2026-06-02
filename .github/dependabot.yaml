@@ -7,6 +7,8 @@ updates:
       day: "friday"
       time: "12:00"
       timezone: "Europe/Zurich"
+    cooldown:
+      default-days: 7
   - package-ecosystem: npm
     directory: "/"
     schedule:
@@ -24,3 +26,5 @@ updates:
       - dependency-name: graphql
         versions:
           - ">= 16"
+    cooldown:
+      default-days: 7
