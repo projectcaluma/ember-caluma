@@ -29,8 +29,8 @@
         {{yield content}}
       {{else if (gt this.document.fieldsets.length 1)}}
         <div uk-grid>
-          <div class="uk-width-1-1 uk-width-1-3@m"><content.navigation /></div>
-          <div class="uk-width-1-1 uk-width-2-3@m">
+          <div class={{this.navigationWidth}}><content.navigation /></div>
+          <div class="uk-width-expand">
             {{yield to="formHeader"}}
             <content.form ...attributes />
             <hr />

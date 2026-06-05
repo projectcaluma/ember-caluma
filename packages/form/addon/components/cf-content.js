@@ -139,6 +139,15 @@ export default class CfContentComponent extends Component {
     );
   }
 
+  get navigationWidth() {
+    const classes = this.args.navigationWidth ?? [
+      "uk-width-1",
+      "uk-width-1-3@m",
+    ];
+
+    return classes.join(" ");
+  }
+
   fetchData = task({ drop: true }, async () => {
     if (this.document) destroy(this.document);
     if (this.navigation) destroy(this.navigation);
