@@ -32,13 +32,13 @@
           <div class="uk-width-1-1 uk-width-1-3@m"><content.navigation /></div>
           <div class="uk-width-1-1 uk-width-2-3@m">
             {{yield to="formHeader"}}
-            <content.form />
+            <content.form ...attributes />
             <hr />
             <content.pagination />
           </div>
         </div>
       {{else}}
-        <content.form />
+        <content.form ...attributes />
       {{/if}}
     {{/let}}
   {{else}}
