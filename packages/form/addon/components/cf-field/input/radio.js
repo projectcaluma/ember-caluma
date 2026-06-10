@@ -1,7 +1,7 @@
 import { action } from "@ember/object";
 import Component from "@glimmer/component";
 
-export default class CfFieldInpuRadio extends Component {
+export default class CfFieldInputRadio extends Component {
   isAnswerRemoved = (option) => {
     return (
       this.args.compare &&
