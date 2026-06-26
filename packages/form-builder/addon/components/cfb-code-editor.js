@@ -1,8 +1,8 @@
 import { action } from "@ember/object";
-import { addObserver } from "@ember/object/observers";
 import Component from "@glimmer/component";
 import { CodeJar } from "codejar";
 import { task, timeout } from "ember-concurrency";
+import { modifier } from "ember-modifier";
 import hljs from "highlight.js/lib/core";
 import json from "highlight.js/lib/languages/json";
 import markdown from "highlight.js/lib/languages/markdown";
@@ -60,14 +60,18 @@ export default class CfbCodeEditorComponent extends Component {
     this.args.update(value);
   }
 
-  updateEditorContent = task({ restartable: true }, async () => {
+  updateEditorContent = modifier((_, [value]) => {
+    this.updateEditorContentTask.perform(value);
+  });
+
+  updateEditorContentTask = task({ restartable: true }, async (value) => {
     // This function is called everytime `this.args.value` changes. In order to
     // not trigger too many updates, we debounce it for 10ms.
     await timeout(10);
 
-    if (!this._didChange(this.args.value)) return;
+    if (!this._didChange(value)) return;
 
-    this._lastValue = simplify(this.args.value);
+    this._lastValue = simplify(value);
     this._editor.updateCode(this.stringValue, false);
   });
 
@@ -78,15 +82,8 @@ export default class CfbCodeEditorComponent extends Component {
       hljs.highlightElement(editor);
     });
 
-    // set initial value
-    this._editor.updateCode(this.stringValue, false);
-    this._lastValue = simplify(this.args.value);
-
     // register update method
     this._editor.onUpdate(this.onUpdate);
-
-    // eslint-disable-next-line ember/no-observers
-    addObserver(this.args, "value", this.updateEditorContent, "perform");
   }
 
   @action
