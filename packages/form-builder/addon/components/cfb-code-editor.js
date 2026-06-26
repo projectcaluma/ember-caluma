@@ -75,8 +75,7 @@ export default class CfbCodeEditorComponent extends Component {
     this._editor.updateCode(this.stringValue, false);
   });
 
-  @action
-  didInsertNode(element) {
+  initCodeEditor = modifier((element) => {
     this._editor = CodeJar(element, (editor) => {
       editor.removeAttribute("data-highlighted");
       hljs.highlightElement(editor);
@@ -84,10 +83,11 @@ export default class CfbCodeEditorComponent extends Component {
 
     // register update method
     this._editor.onUpdate(this.onUpdate);
-  }
 
-  @action
-  willDestroyNode() {
-    this._editor.destroy();
-  }
+    // Register destructor on component destroy to make sure
+    // CodeJar instance is destroyed as well
+    return () => {
+      this._editor.destroy();
+    };
+  });
 }

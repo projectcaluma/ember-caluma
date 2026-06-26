@@ -8,8 +8,7 @@
         {{concat 'language-' @language}}
         {{if @isValid 'uk-form-success'}}
         {{if @isInvalid 'uk-form-danger'}}"
-      {{did-insert this.didInsertNode}}
-      {{will-destroy this.willDestroyNode}}
+      {{this.initCodeEditor}}
       {{this.updateEditorContent @value}}
       {{autoresize mode="height"}}
       {{on "blur" @setDirty}}
