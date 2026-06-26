@@ -1,10 +1,10 @@
-{{#if this._data.isRunning}}
+{{#if this.data.isLoading}}
   <div class="uk-flex uk-flex-center uk-flex-middle uk-height-small">
     <UkSpinner ratio="2" />
   </div>
-{{else if this.data}}
+{{else if this.dataIsLoaded}}
   <ValidatedForm
-    @model={{changeset this.data this.Validations}}
+    @model={{changeset this.data.value this.Validations}}
     @on-submit={{perform this.submit}}
     as |f|
   >
@@ -58,7 +58,7 @@
     </CfbFormEditor::CfbAdvancedSettings>
 
     <div class="uk-text-right">
-      <CfbFormEditor::CopyModal @item={{this.data}} as |modal|>
+      <CfbFormEditor::CopyModal @item={{this.data.value}} as |modal|>
         <f.button
           @disabled={{f.loading}}
           @label={{t "caluma.form-builder.copy-modal.submit"}}
