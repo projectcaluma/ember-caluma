@@ -10,6 +10,7 @@
         {{if @isInvalid 'uk-form-danger'}}"
       {{did-insert this.didInsertNode}}
       {{will-destroy this.willDestroyNode}}
+      {{this.updateEditorContent @value}}
       {{autoresize mode="height"}}
       {{on "blur" @setDirty}}
     ></div>
