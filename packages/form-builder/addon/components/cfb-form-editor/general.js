@@ -3,7 +3,7 @@ import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { queryManager } from "ember-apollo-client";
 import { task } from "ember-concurrency";
-import { trackedTask } from "reactiveweb/ember-concurrency";
+import { trackedFunction } from "reactiveweb/function";
 
 import FormValidations from "../../validations/form";
 
@@ -19,22 +19,20 @@ export default class CfbFormEditorGeneral extends Component {
 
   Validations = FormValidations;
 
-  get data() {
-    return this._data.value?.[0]?.node;
+  get dataIsLoaded() {
+    // watchQuery returns an empty TrackedObject which is truthy
+    // so we need to check if the slug property exists in the object
+    return this.data.value && "slug" in this.data.value;
   }
 
-  fetchData = task({ restartable: true }, async () => {
+  data = trackedFunction(this, async () => {
     if (!this.args.slug) {
-      return [
-        {
-          node: {
-            name: "",
-            slug: "",
-            description: "",
-            isPublished: true,
-          },
-        },
-      ];
+      return {
+        name: "",
+        slug: "",
+        description: "",
+        isPublished: true,
+      };
     }
 
     return await this.apollo.watchQuery(
@@ -43,11 +41,9 @@ export default class CfbFormEditorGeneral extends Component {
         variables: { slug: this.args.slug },
         fetchPolicy: "cache-and-network",
       },
-      "allForms.edges",
+      "allForms.edges.0.node",
     );
   });
-
-  _data = trackedTask(this, this.fetchData, () => [this.args.slug]);
 
   get prefix() {
     return this.calumaOptions.namespace
