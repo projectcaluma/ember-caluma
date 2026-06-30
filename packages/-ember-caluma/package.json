@@ -12,7 +12,7 @@
     "start-proxy": "ember serve --proxy http://localhost:8000"
   },
   "devDependencies": {
-    "@babel/core": "7.28.6",
+    "@babel/core": "7.29.6",
     "@ember/optional-features": "2.3.0",
     "@ember/string": "4.0.1",
     "@ember/test-helpers": "4.0.4",
