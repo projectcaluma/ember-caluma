@@ -1,6 +1,7 @@
-import { getOwner } from "@ember/application";
 import { action } from "@ember/object";
 import Component from "@glimmer/component";
+
+import getConfig from "@projectcaluma/ember-core/utils/get-config";
 
 export default class CfFieldInputFloatComponent extends Component {
   get disabled() {
@@ -12,9 +13,7 @@ export default class CfFieldInputFloatComponent extends Component {
       return this.args.field.question.raw.floatStep;
     }
 
-    const config = getOwner(this).resolveRegistration("config:environment");
-    const { floatStep = 0.001 } = config["ember-caluma"] || {};
-    return floatStep;
+    return getConfig(this).floatStep;
   }
 
   /**

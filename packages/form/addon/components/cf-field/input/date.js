@@ -1,9 +1,10 @@
-import { getOwner } from "@ember/application";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { DateTime } from "luxon";
+
+import getConfig from "@projectcaluma/ember-core/utils/get-config";
 
 export default class CfFieldInputDateComponent extends Component {
   @service intl;
@@ -14,21 +15,13 @@ export default class CfFieldInputDateComponent extends Component {
     return this.intl.primaryLocale.split("-")[0];
   }
 
-  get config() {
-    return getOwner(this).resolveRegistration("config:environment");
-  }
-
   get dateFormat() {
-    const {
-      FLATPICKR_DATE_FORMAT = {
-        de: "d.m.Y",
-        fr: "d.m.Y",
-        en: "m/d/Y",
-      },
-      FLATPICKR_DATE_FORMAT_DEFAULT = "m/d/Y",
-    } = this.config["ember-caluma"] || {};
+    const config = getConfig(this);
 
-    return FLATPICKR_DATE_FORMAT[this.locale] ?? FLATPICKR_DATE_FORMAT_DEFAULT;
+    return (
+      config.FLATPICKR_DATE_FORMAT[this.locale] ??
+      config.FLATPICKR_DATE_FORMAT_DEFAULT
+    );
   }
 
   @action

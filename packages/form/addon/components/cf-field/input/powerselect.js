@@ -1,10 +1,11 @@
-import { getOwner } from "@ember/application";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import { ensureSafeComponent } from "@embroider/util";
 import Component from "@glimmer/component";
 import PowerSelectComponent from "ember-power-select/components/power-select";
 import PowerSelectMultipleComponent from "ember-power-select/components/power-select-multiple";
+
+import getConfig from "@projectcaluma/ember-core/utils/get-config";
 
 /**
  * Dropdown component for the single and multiple choice question type
@@ -39,10 +40,10 @@ export default class CfFieldInputPowerselectComponent extends Component {
   }
 
   get searchEnabled() {
-    const config = getOwner(this).resolveRegistration("config:environment");
-    const { powerSelectEnableSearchLimit = 10 } = config["ember-caluma"] || {};
-
-    return this.args.field?.options?.length > powerSelectEnableSearchLimit;
+    return (
+      this.args.field?.options?.length >
+      getConfig(this).powerSelectEnableSearchLimit
+    );
   }
 
   get placeholder() {
