@@ -1,5 +1,6 @@
-import { getOwner } from "@ember/application";
 import Component from "@glimmer/component";
+
+import getConfig from "@projectcaluma/ember-core/utils/get-config";
 
 /**
  * Label component of the CfField
@@ -7,14 +8,9 @@ import Component from "@glimmer/component";
  * @class CfFieldLabelComponent
  */
 export default class CfFieldLabelComponent extends Component {
-  get config() {
-    return getOwner(this).resolveRegistration("config:environment");
-  }
-
   get useMandatoryAsterisk() {
-    const { USE_MANDATORY_ASTERISK = false } =
-      this.config["ember-caluma"] || {};
-
-    return this.args.useMandatoryAsterisk ?? USE_MANDATORY_ASTERISK;
+    return (
+      this.args.useMandatoryAsterisk ?? getConfig(this).USE_MANDATORY_ASTERISK
+    );
   }
 }
