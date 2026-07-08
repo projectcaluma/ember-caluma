@@ -71,7 +71,7 @@
     {{#if this.questionTask.isRunning}}
       <li class="uk-text-center"><UkSpinner @ratio={{1.5}} /></li>
     {{else}}
-      {{#each this.questions as |item|}}
+      {{#each this.questions key="node.slug" as |item|}}
         <CfbFormEditor::QuestionList::Item
           data-test-question-list-item={{item.node.slug}}
           @mode={{this.mode}}
