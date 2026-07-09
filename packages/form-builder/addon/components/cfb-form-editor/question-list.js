@@ -1,12 +1,10 @@
 import { action } from "@ember/object";
-import { run } from "@ember/runloop";
 import { inject as service } from "@ember/service";
 import { macroCondition, isTesting } from "@embroider/macros";
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
 import { timeout, task } from "ember-concurrency";
-import UIkit from "uikit";
 
 import addFormQuestionMutation from "@projectcaluma/ember-form-builder/gql/mutations/add-form-question.graphql";
 import removeFormQuestionMutation from "@projectcaluma/ember-form-builder/gql/mutations/remove-form-question.graphql";
@@ -22,7 +20,6 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
 
   @tracked _search = "";
   @tracked mode = this.args.mode || "reorder";
-  @tracked _children = [];
   @tracked cursor = null;
   @tracked hasNextPage = true;
   @tracked items = [];
@@ -185,35 +182,14 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
     }
   });
 
-  _handleMoved({ detail: [sortable] }) {
-    const children = [...sortable.$el.children];
-
-    this.reorderQuestions.perform(
-      children.map((child) => this._children[child.id]),
-    );
-  }
+  _handleMoved = ({ detail: [sortable] }) => {
+    this.reorderQuestions.perform(sortable.items.map((item) => item.id));
+  };
 
   _resetParameters() {
     this.cursor = null;
     this.hasNextPage = true;
     this.items = [];
-  }
-
-  @action
-  setupUIkit() {
-    UIkit.util.on("#question-list", "moved", (...args) =>
-      run(this, this._handleMoved, ...args),
-    );
-  }
-
-  @action
-  registerChild(elementId, slug) {
-    this._children[elementId] = slug;
-  }
-
-  @action
-  unregisterChild(elementId) {
-    this._children[elementId] = undefined;
   }
 
   @action

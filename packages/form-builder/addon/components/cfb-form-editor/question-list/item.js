@@ -1,5 +1,4 @@
 import { action } from "@ember/object";
-import { guidFor } from "@ember/object/internals";
 import { service } from "@ember/service";
 import Component from "@glimmer/component";
 
@@ -9,10 +8,6 @@ const cleanJexl = (expr) => expr.replace(/\s/g, "");
 
 export default class CfbFormEditorQuestionListItem extends Component {
   @service router;
-
-  get elementId() {
-    return guidFor(this);
-  }
 
   get required() {
     return this.requiredType !== "not-required";
