@@ -1,11 +1,9 @@
 <li
-  id={{this.elementId}}
+  id={{@question.slug}}
   class={{if
     @question.isArchived
     "cfb-form-editor__question-list__item__archived"
   }}
-  {{did-insert (fn (optional @onRegister) this.elementId @question.slug)}}
-  {{will-destroy (fn (optional @onUnregister) this.elementId @question.slug)}}
   ...attributes
 >
   <div class="uk-flex uk-flex-middle">

@@ -125,7 +125,7 @@ module(
       const item = await find("[data-test-question-list-item=test]");
 
       // create a new array of children in which the chosen item is first instead of last
-      const children = [
+      const items = [
         item,
         ...[...list.children].filter(
           (c) => c.dataset.testQuestionListItem !== "test",
@@ -135,9 +135,7 @@ module(
       await triggerEvent(list, "moved", {
         detail: [
           {
-            $el: {
-              children,
-            },
+            items,
           },
         ],
       });
@@ -197,9 +195,7 @@ module(
       await triggerEvent("[data-test-question-list]", "moved", {
         detail: [
           {
-            $el: {
-              children: [],
-            },
+            items: [],
           },
         ],
       });
