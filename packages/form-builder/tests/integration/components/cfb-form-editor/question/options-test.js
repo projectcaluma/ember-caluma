@@ -49,7 +49,7 @@ module(
       );
 
       // one is the add row
-      assert.dom("li").exists({ count: 3 });
+      assert.dom("li").exists({ count: 2 });
       assert.dom("input[name=option-1-label]").hasValue("Option 1");
       assert.dom("input[name=option-1-slug]").hasValue("option-1"); // This must trim the prefix!
     });
@@ -71,11 +71,11 @@ module(
         { owner: this.engine },
       );
 
-      assert.dom("li").exists({ count: 2 });
+      assert.dom("li").exists({ count: 1 });
 
       await click("[data-test-add-row]");
 
-      assert.dom("li").exists({ count: 3 });
+      assert.dom("li").exists({ count: 2 });
     });
 
     test("it can delete unsaved row", async function (assert) {
@@ -96,12 +96,12 @@ module(
         { owner: this.engine },
       );
 
-      assert.dom("li").exists({ count: 3 });
+      assert.dom("li").exists({ count: 2 });
 
       await click("[data-test-add-row]");
       await click("[data-test-row=option-3] [data-test-delete-row]");
 
-      assert.dom("li").exists({ count: 3 });
+      assert.dom("li").exists({ count: 2 });
       assert.dom("[data-test-row=option-3]").doesNotExist();
     });
 
