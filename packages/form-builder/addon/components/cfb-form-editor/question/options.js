@@ -99,11 +99,10 @@ export default class CfbFormEditorQuestionOptions extends Component {
 
   @action
   _handleMoved({ detail: [sortable] }) {
-    // Remove last element as it is the add row button
-    const options = [...sortable.$el.children].slice(0, -1);
-
     this.reorderOptions.perform(
-      options.map((option) => option.firstElementChild.firstElementChild.id),
+      sortable.items.map(
+        (option) => option.firstElementChild.firstElementChild.id,
+      ),
     );
   }
 }

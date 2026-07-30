@@ -17,17 +17,17 @@
         @updateLabel={{this.updateLabel}}
       />
     {{/each}}
-    <li class="uk-text-center">
-      <button
-        data-test-add-row
-        type="button"
-        class="uk-icon-button"
-        uk-icon="plus"
-        {{on "click" this.addRow}}
-      >
-      </button>
-    </li>
   </UkSortable>
+  <div class="uk-text-center uk-margin-small-top">
+    <button
+      data-test-add-row
+      type="button"
+      class="uk-icon-button"
+      uk-icon="plus"
+      {{on "click" this.addRow}}
+    >
+    </button>
+  </div>
 
   <@hintComponent />
   <@errorComponent />
