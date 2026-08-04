@@ -244,14 +244,18 @@ export default class Document extends Base {
             form: this.rootForm.slug,
             formMeta: this.rootForm.raw.meta,
           },
-          case: {
-            form: _case?.document?.form.slug,
-            workflow: _case?.workflow.slug,
-            root: {
-              form: _case?.family.document?.form.slug,
-              workflow: _case?.family.workflow.slug,
-            },
-          },
+          case: _case
+            ? {
+                form: _case.document?.form.slug,
+                workflow: _case.workflow.slug,
+                meta: _case.meta,
+                root: {
+                  form: _case.family.document?.form.slug,
+                  workflow: _case.family.workflow.slug,
+                  meta: _case.family.meta,
+                },
+              }
+            : null,
         },
       }
     );
