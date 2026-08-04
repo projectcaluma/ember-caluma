@@ -160,6 +160,7 @@ const form = {
 
 const _case = {
   id: id("Case"),
+  meta: { "is-main-case": false },
   workflow: {
     id: id("Workflow", "child-case-workflow"),
     slug: "child-case-workflow",
@@ -173,6 +174,7 @@ const _case = {
   },
   family: {
     id: id("Case"),
+    meta: { "is-main-case": true },
     workflow: {
       id: id("Workflow", "root-case-workflow"),
       slug: "root-case-workflow",
@@ -522,6 +524,10 @@ const historicalAnswers = {
 
 const workItem = {
   id: id("WorkItem"),
+  meta: { "notify-on-completion": true },
+  task: {
+    slug: "some-task",
+  },
   case: _case,
 };
 

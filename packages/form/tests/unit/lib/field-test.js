@@ -163,10 +163,18 @@ module("Unit | Library | field", function (hooks) {
         case: {
           form: "child-case-form",
           workflow: "child-case-workflow",
+          meta: { "is-main-case": false },
           root: {
             form: "root-case-form",
             workflow: "root-case-workflow",
+            meta: { "is-main-case": true },
           },
+        },
+        workItem: {
+          meta: {
+            "notify-on-completion": true,
+          },
+          task: "some-task",
         },
       },
     });
