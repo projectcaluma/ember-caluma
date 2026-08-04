@@ -347,14 +347,7 @@ module("Unit | Library | document", function (hooks) {
       null: null,
       form: "form",
       info: {
-        case: {
-          form: undefined,
-          root: {
-            form: undefined,
-            workflow: undefined,
-          },
-          workflow: undefined,
-        },
+        case: null,
         root: { form: "form", formMeta: { "is-top-form": true, level: 0 } },
       },
     });
