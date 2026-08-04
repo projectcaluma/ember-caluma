@@ -12,6 +12,10 @@ query DocumentAnswers($id: ID!) {
         }
         workItem {
           id
+          meta
+          task {
+            slug
+          }
           case {
             ...CaseFormAndWorkflow
           }

@@ -297,11 +297,17 @@ module("Unit | Library | document", function (hooks) {
       info: {
         case: {
           form: "child-case-form",
+          meta: { "is-main-case": false },
           root: {
             form: "root-case-form",
             workflow: "root-case-workflow",
+            meta: { "is-main-case": true },
           },
           workflow: "child-case-workflow",
+        },
+        workItem: {
+          meta: { "notify-on-completion": true },
+          task: "some-task",
         },
         root: { form: "form", formMeta: { "is-top-form": true, level: 0 } },
       },
@@ -323,12 +329,15 @@ module("Unit | Library | document", function (hooks) {
       info: {
         case: {
           form: "child-case-form",
+          meta: { "is-main-case": false },
           root: {
             form: "root-case-form",
             workflow: "root-case-workflow",
+            meta: { "is-main-case": true },
           },
           workflow: "child-case-workflow",
         },
+        workItem: null,
         root: { form: "form", formMeta: { "is-top-form": true, level: 0 } },
       },
     });
@@ -348,6 +357,7 @@ module("Unit | Library | document", function (hooks) {
       form: "form",
       info: {
         case: null,
+        workItem: null,
         root: { form: "form", formMeta: { "is-top-form": true, level: 0 } },
       },
     });

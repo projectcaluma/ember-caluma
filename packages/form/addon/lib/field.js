@@ -554,13 +554,17 @@ export default class Field extends Base {
    * - `info.formMeta`: The meta of the form this question is attached to.
    * - `info.parent.form`: The parent form if applicable.
    * - `info.parent.formMeta`: The parent form meta if applicable.
-   * - `info.parent.question`: The parent field question if applicable.
+   * - `info.parent.question`: The parent question (table or form question)
    * - `info.root.form`: The new property for the root form.
    * - `info.root.formMeta`: The new property for the root form meta.
    * - `info.case.form`: The cases' form (works for task forms and case forms).
    * - `info.case.workflow`: The cases' workflow (works for task forms and case forms).
+   * - `info.case.meta`: The cases' meta (works for task forms and case forms).
    * - `info.case.root.form`: The _root_ cases' form (works for task forms and case forms).
    * - `info.case.root.workflow`: The _root_ cases' workflow (works for task forms and case forms).
+   * - `info.case.root.meta`: The _root_ cases' meta (works for task forms and case forms).
+   * - `info.workItem.task`: The task slug of the work item
+   * - `info.workItem.meta`: The meta of the work item
    *
    * @property {Object} jexlContext
    */
