@@ -2,7 +2,8 @@
   <@labelComponent />
 
   <div class="uk-form-controls">
-    <PowerSelectMultiple
+    <PowerSelect
+      @multiple={{true}}
       @selected={{this.selected}}
       @placeholder={{@placeholder}}
       @options={{this.validators}}
@@ -12,7 +13,7 @@
       as |item|
     >
       {{item.name}}
-    </PowerSelectMultiple>
+    </PowerSelect>
   </div>
 
   <@hintComponent />
