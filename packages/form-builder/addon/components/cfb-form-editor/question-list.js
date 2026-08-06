@@ -19,7 +19,7 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
 
   @queryManager apollo;
 
-  @tracked _search = "";
+  @tracked search = "";
   @tracked mode = this.args.mode || "reorder";
   @tracked cursor = null;
   @tracked hasNextPage = true;
@@ -27,26 +27,20 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
   nextCursor = null;
   items = [];
 
-  // Use built in input component when it works instead of this getter and setter
-  get search() {
-    return this._search;
-  }
-  set search(event) {
-    this._search = event.target.value;
-    this._resetParameters();
-  }
-
-  questionTask = task({ restartable: true }, async (mode, input, cursor) => {
-    const search = mode !== "reorder" ? input : "";
-
+  searchTask = task({ restartable: true }, async (event) => {
     /* istanbul ignore next */
     if (macroCondition(isTesting())) {
       // no timeout
     } else {
-      if (search) {
-        await timeout(500);
-      }
+      await timeout(500);
     }
+
+    this.search = event.target.value;
+    this._resetParameters();
+  });
+
+  questionTask = task({ restartable: true }, async (mode, input, cursor) => {
+    const search = mode !== "reorder" ? input : "";
 
     if (mode === "add") {
       const questions = await this.apollo.watchQuery(
