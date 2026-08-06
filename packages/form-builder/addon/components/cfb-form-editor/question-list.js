@@ -5,6 +5,7 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { queryManager } from "ember-apollo-client";
 import { timeout, task } from "ember-concurrency";
+import { trackedTask } from "reactiveweb/ember-concurrency";
 
 import addFormQuestionMutation from "@projectcaluma/ember-form-builder/gql/mutations/add-form-question.graphql";
 import removeFormQuestionMutation from "@projectcaluma/ember-form-builder/gql/mutations/remove-form-question.graphql";
@@ -22,13 +23,9 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
   @tracked mode = this.args.mode || "reorder";
   @tracked cursor = null;
   @tracked hasNextPage = true;
-  @tracked items = [];
 
-  get questions() {
-    return this.mode === "add"
-      ? this.questionTaskValue
-      : this.questionTaskValue[0]?.node.questions.edges;
-  }
+  nextCursor = null;
+  items = [];
 
   // Use built in input component when it works instead of this getter and setter
   get search() {
@@ -37,18 +34,10 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
   set search(event) {
     this._search = event.target.value;
     this._resetParameters();
-    this.questionTask.perform();
   }
 
-  get questionTaskValue() {
-    return this.questionTask.lastSuccessful?.value ?? [];
-  }
-
-  questionTask = task({ restartable: true }, async (event) => {
-    event?.preventDefault?.();
-
-    const mode = this.mode;
-    const search = mode !== "reorder" ? this.search : "";
+  questionTask = task({ restartable: true }, async (mode, input, cursor) => {
+    const search = mode !== "reorder" ? input : "";
 
     /* istanbul ignore next */
     if (macroCondition(isTesting())) {
@@ -59,7 +48,7 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
       }
     }
 
-    if (mode === "add" && this.hasNextPage) {
+    if (mode === "add") {
       const questions = await this.apollo.watchQuery(
         {
           query: searchQuestionQuery,
@@ -67,14 +56,14 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
             search,
             excludeForms: [this.args.form],
             pageSize: 20,
-            cursor: this.cursor,
+            cursor,
           },
           fetchPolicy: "network-only",
         },
         "allQuestions",
       );
 
-      this.cursor = questions.pageInfo.endCursor;
+      this.nextCursor = questions.pageInfo.endCursor;
       this.hasNextPage = questions.pageInfo.hasNextPage;
 
       this.items = [...this.items, ...questions.edges];
@@ -91,9 +80,15 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
         },
         fetchPolicy: "cache-and-network",
       },
-      "allForms.edges",
+      "allForms.edges.0.node.questions.edges",
     );
   });
+
+  questions = trackedTask(this, this.questionTask, () => [
+    this.mode,
+    this.search,
+    this.cursor,
+  ]);
 
   reorderQuestions = task({ restartable: true }, async (slugs) => {
     try {
@@ -143,8 +138,6 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
 
       this._resetParameters();
 
-      this.questionTask.perform();
-
       this.args.onAfterAddQuestion?.(question);
     } catch {
       this.notification.danger(
@@ -193,20 +186,19 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
   }
 
   @action
+  loadMore(e) {
+    e.preventDefault();
+
+    this.cursor = this.nextCursor;
+  }
+
+  @action
   setMode(mode) {
     this.mode = mode;
 
     if (mode === "add") {
       this._resetParameters();
     }
-
-    this.questionTask.perform();
-  }
-
-  @action
-  performSearch() {
-    this._resetParameters();
-    this.questionTask.perform();
   }
 
   @action
