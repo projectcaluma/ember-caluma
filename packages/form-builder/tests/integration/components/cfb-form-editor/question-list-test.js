@@ -155,9 +155,10 @@ module(
 
       assert.dom("[data-test-question-list-item=test]").exists();
       await click("[data-test-question-list-item=test] [data-test-add-item]");
-      assert.dom("[data-test-question-list-item=test]").doesNotExist();
       await click("[data-test-cancel]");
       assert.dom("[data-test-question-list-item=test]").exists();
+      await click("[data-test-add-question]");
+      assert.dom("[data-test-question-list-item=test]").doesNotExist();
     });
 
     test("it can remove questions", async function (assert) {

@@ -1,9 +1,4 @@
-<div
-  ...attributes
-  {{on "moved" this._handleMoved}}
-  {{did-insert (perform this.questionTask)}}
-  {{did-update (perform this.questionTask) @form}}
->
+<div ...attributes {{on "moved" this._handleMoved}}>
   <div class="uk-text-center uk-margin">
     {{#if (includes this.mode (array "remove" "add"))}}
       <button
@@ -69,10 +64,10 @@
         </a>
       </li>
     {{/if}}
-    {{#if this.questionTask.isRunning}}
+    {{#if this.questions.isRunning}}
       <li class="uk-text-center"><UkSpinner @ratio={{1.5}} /></li>
     {{else}}
-      {{#each this.questions key="node.slug" as |item|}}
+      {{#each this.questions.value key="node.slug" as |item|}}
         <CfbFormEditor::QuestionList::Item
           data-test-question-list-item={{item.node.slug}}
           @mode={{this.mode}}
@@ -100,7 +95,7 @@
       {{#if (and this.hasNextPage (eq this.mode "add"))}}
         <li class="uk-text-center cfb-pointer"><a
             href="#"
-            {{on "click" (perform this.questionTask)}}
+            {{on "click" this.loadMore}}
           >{{t "caluma.form-builder.question.loadMore"}}</a></li>
       {{/if}}
     {{/if}}
