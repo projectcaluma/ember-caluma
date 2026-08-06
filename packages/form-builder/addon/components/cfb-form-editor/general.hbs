@@ -5,7 +5,7 @@
 {{else if this.dataIsLoaded}}
   <ValidatedForm
     @model={{changeset this.data.value this.Validations}}
-    @on-submit={{perform this.submit}}
+    @on-submit={{this.submit.perform}}
     as |f|
   >
     <f.input

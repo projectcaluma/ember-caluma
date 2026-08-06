@@ -10,7 +10,7 @@
         class="uk-icon-button"
         {{uk-tooltip (t "caluma.distribution.new.title")}}
         data-test-new-inquiry
-        {{on "click" (perform this.createInquiry)}}
+        {{on "click" this.createInquiry.perform}}
       >
         {{#if this.createInquiry.isRunning}}
           <UkSpinner @ratio={{0.6}} />

@@ -6,7 +6,7 @@
   {{else if this.changeset}}
     <ValidatedForm
       @model={{this.changeset}}
-      @on-submit={{perform this.submit}}
+      @on-submit={{this.submit.perform}}
       as |f|
     >
       {{#if (and f.model.isDirty @slug)}}

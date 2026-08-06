@@ -16,7 +16,7 @@
     data-test-field-list
     class="uk-list"
     id="field-list"
-    {{sortable-group onChange=(perform this.reorderFields)}}
+    {{sortable-group onChange=this.reorderFields.perform}}
   >
     {{#each this.fields as |field|}}
       {{#let (fn this.updateField field) as |update|}}
@@ -76,7 +76,7 @@
               class="uk-icon-button"
               uk-icon="trash"
               name={{t "caluma.analytics.edit.delete-field"}}
-              {{on "click" (perform this.removeAnalyticsField field.id)}}
+              {{on "click" (fn this.removeAnalyticsField.perform field.id)}}
             >
               <span hidden>{{t "caluma.analytics.edit.delete-field"}}</span>
             </button>

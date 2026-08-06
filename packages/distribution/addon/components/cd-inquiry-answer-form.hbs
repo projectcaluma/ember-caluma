@@ -91,7 +91,7 @@
                   )
                 }}
                 @onClick={{fn
-                  (perform this.completeWorkItem)
+                  this.completeWorkItem.perform
                   buttonConfig.workItemId
                   buttonConfig.willCompleteInquiry
                   validate
@@ -115,7 +115,7 @@
                 )
               }}
               @onClick={{fn
-                (perform this.completeWorkItem)
+                this.completeWorkItem.perform
                 buttonConfig.workItemId
                 buttonConfig.willCompleteInquiry
                 null

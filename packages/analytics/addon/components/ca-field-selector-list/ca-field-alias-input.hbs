@@ -3,5 +3,5 @@
   aria-label={{t "caluma.analytics.edit.display-title"}}
   class="uk-input"
   value={{@value}}
-  {{on "input" (perform this.debounceInput)}}
+  {{on "input" this.debounceInput.perform}}
 />
