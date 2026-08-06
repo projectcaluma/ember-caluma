@@ -7,7 +7,7 @@
   @color={{or @color "default"}}
   @size={{@size}}
   @title={{@title}}
-  @onClick={{perform this.mutate}}
+  @onClick={{this.mutate.perform}}
 >
   {{#if (has-block)}}
     {{yield}}

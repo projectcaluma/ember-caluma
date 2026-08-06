@@ -34,7 +34,7 @@
               @field={{@field}}
               @disabled={{or @disabled @field.refreshAnswer.isRunning}}
               @context={{@context}}
-              @onSave={{perform this.save}}
+              @onSave={{this.save.perform}}
             />
           {{/let}}
         {{/if}}

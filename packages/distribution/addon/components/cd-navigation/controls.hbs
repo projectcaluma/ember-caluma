@@ -19,7 +19,7 @@
     {{/if}}
     {{#if (can "complete distribution")}}
       <UkButton
-        @onClick={{perform this.completeDistribution}}
+        @onClick={{this.completeDistribution.perform}}
         @label={{t "caluma.distribution.skip"}}
         @loading={{this.completeDistribution.isRunning}}
         @disabled={{this.completeDistribution.isRunning}}
@@ -28,7 +28,7 @@
     {{/if}}
     {{#if (can "reopen distribution")}}
       <UkButton
-        @onClick={{perform this.reopenDistribution}}
+        @onClick={{this.reopenDistribution.perform}}
         @label={{t "caluma.distribution.reopen"}}
         @loading={{this.reopenDistribution.isRunning}}
         @disabled={{this.reopenDistribution.isRunning}}
@@ -44,7 +44,7 @@
             class="uk-icon-button uk-button-primary"
             {{uk-tooltip (t "caluma.distribution.send")}}
             data-test-send-pending-inquiries
-            {{on "click" (perform this.distribution.sendAllInquiries)}}
+            {{on "click" this.distribution.sendAllInquiries.perform}}
           >
             {{#if this.distribution.sendAllInquiries.isRunning}}
               <UkSpinner @ratio={{0.6}} />
@@ -69,7 +69,7 @@
             class="uk-icon-button"
             {{uk-tooltip (t "caluma.distribution.check-inquiries")}}
             data-test-check-inquiries
-            {{on "click" (perform this.checkInquiries)}}
+            {{on "click" this.checkInquiries.perform}}
           >
             {{#if this.checkInquiries.isRunning}}
               <UkSpinner @ratio={{0.6}} />
@@ -84,7 +84,7 @@
             class="uk-icon-button"
             {{uk-tooltip (t "caluma.distribution.complete")}}
             data-test-complete-distribution
-            {{on "click" (perform this.completeDistribution)}}
+            {{on "click" this.completeDistribution.perform}}
           >
             {{#if this.completeDistribution.isRunning}}
               <UkSpinner @ratio={{0.6}} />
@@ -99,7 +99,7 @@
             class="uk-icon-button"
             {{uk-tooltip (t "caluma.distribution.reopen")}}
             data-test-reopen-distribution
-            {{on "click" (perform this.reopenDistribution)}}
+            {{on "click" this.reopenDistribution.perform}}
           >
             {{#if this.reopenDistribution.isRunning}}
               <UkSpinner @ratio={{0.6}} />

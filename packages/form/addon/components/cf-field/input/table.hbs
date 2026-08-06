@@ -79,7 +79,7 @@
               </UkButton>
               <UkButton
                 @color="link"
-                @onClick={{fn (perform this.delete) document}}
+                @onClick={{fn this.delete.perform document}}
                 title={{t "caluma.form.delete"}}
                 class="uk-flex-inline uk-margin-small-left table-controls"
                 data-test-delete-row
@@ -99,7 +99,7 @@
         <td colspan={{add this.columns.length 1}} class="uk-text-center">
           <UkButton
             @color="link"
-            @onClick={{perform this.add}}
+            @onClick={{this.add.perform}}
             title={{t "caluma.form.addRow"}}
             data-test-add-row
           >
@@ -115,7 +115,7 @@
 {{#if this.documentToEdit}}
   <UkModal
     @visible={{this.showAddModal}}
-    @onHide={{perform this.close}}
+    @onHide={{this.close.perform}}
     @bgClose={{false}}
     as |modal|
   >
@@ -134,7 +134,7 @@
         <UkButton
           @label={{t "caluma.form.close"}}
           @color="primary"
-          @onClick={{perform this.close}}
+          @onClick={{this.close.perform}}
           @disabled={{this.close.isRunning}}
           @loading={{this.close.isRunning}}
           data-test-close
@@ -142,7 +142,7 @@
       {{else}}
         <UkButton
           @label={{t "caluma.form.cancel"}}
-          @onClick={{perform this.close}}
+          @onClick={{this.close.perform}}
           @disabled={{this.close.isRunning}}
           @loading={{this.close.isRunning}}
           data-test-cancel
@@ -158,7 +158,7 @@
             @type="submit"
             @disabled={{or this.save.isRunning (not isValid)}}
             @loading={{this.save.isRunning}}
-            @onClick={{fn (perform this.save) validate}}
+            @onClick={{fn this.save.perform validate}}
             data-test-save
           />
         </DocumentValidity>

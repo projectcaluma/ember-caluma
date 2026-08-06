@@ -56,7 +56,7 @@
             <li>
               <a
                 href=""
-                {{on "click" (perform this.withdraw)}}
+                {{on "click" this.withdraw.perform}}
                 data-test-withdraw
               >
                 {{t "caluma.distribution.withdraw.link"}}
@@ -76,7 +76,7 @@
         {{/if}}
         {{#if (and (eq @type "answer") (can "reopen inquiry" @inquiry))}}
           <li>
-            <a href="" {{on "click" (perform this.reopen)}} data-test-reopen>
+            <a href="" {{on "click" this.reopen.perform}} data-test-reopen>
               {{t "caluma.distribution.reopen-inquiry.link"}}
             </a>
           </li>
@@ -86,7 +86,7 @@
             <a
               data-test-send-reminder
               href=""
-              {{on "click" (perform this.sendReminder)}}
+              {{on "click" this.sendReminder.perform}}
             >
               {{t "caluma.distribution.reminder.link"}}
             </a>

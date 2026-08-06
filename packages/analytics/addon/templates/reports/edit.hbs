@@ -28,7 +28,7 @@
         type="button"
         class="uk-icon-button"
         uk-icon="trash"
-        {{on "click" (perform this.deleteTable)}}
+        {{on "click" this.deleteTable.perform}}
         name={{t "caluma.analytics.report.delete"}}
       >
         <span hidden>{{t "caluma.analytics.report.delete"}}</span>

@@ -22,7 +22,7 @@
     type="search"
     value={{@search}}
     data-test-search
-    {{on "input" (perform this.updateSearch)}}
+    {{on "input" this.updateSearch.perform}}
   />
 </div>
 

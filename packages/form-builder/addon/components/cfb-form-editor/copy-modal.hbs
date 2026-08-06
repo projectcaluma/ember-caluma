@@ -7,7 +7,7 @@
   {{#if this.visible}}
     <ValidatedForm
       @model={{this.changeset}}
-      @on-submit={{perform this.submit}}
+      @on-submit={{this.submit.perform}}
       as |f|
     >
       <modal.header>

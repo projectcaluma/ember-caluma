@@ -27,7 +27,7 @@
     placeholder="{{t 'caluma.form-builder.global.search'}}..."
     aria-label="{{t 'caluma.form-builder.global.search'}}"
     value={{@search}}
-    {{on "input" (perform this.search)}}
+    {{on "input" this.search.perform}}
   />
 </div>
 
