@@ -116,6 +116,28 @@ export default class CalumaOptionsService extends Service {
     return DateTime.now().plus({ days: defaultLeadTime }).toISODate();
   }
 
+  /**
+   * The meta of the work item a new distribution inquiry will be created on.
+   *
+   * The inquiry work item doesn't exist yet while its form is being filled out,
+   * so its meta can't be fetched from the backend. It is part of the JEXL
+   * context though (`info.workItem.meta`), so expressions on the inquiry form
+   * may depend on it.
+   *
+   * This may be overwritten by the host app if it creates inquiry work items
+   * with a meta. It must match what the backend will store on the work item,
+   * otherwise expressions evaluate differently before and after creation.
+   *
+   * @async
+   * @method distributionInquiryWorkItemMeta
+   * @param {Array<String>} selectedGroups
+   * @returns {Promise<Object>} The meta of the inquiry work item to be created
+   */
+  // eslint-disable-next-line no-unused-vars
+  async distributionInquiryWorkItemMeta(selectedGroups) {
+    return {};
+  }
+
   groupIdentifierProperty = "id";
   groupNameProperty = "name";
   resolveGroups(identifiers) {

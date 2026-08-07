@@ -246,7 +246,7 @@ export function createCase(server, { group }) {
   const distributionWorkItem = server.create("work-item", {
     taskId: "distribution",
     status: "READY",
-    case: server.create("case"),
+    case: server.create("case", { workflowId: "distribution" }),
   });
 
   const distributionCase = server.create("case", {
