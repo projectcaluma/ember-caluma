@@ -18,13 +18,30 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
   hooks.beforeEach(async function () {
     createBlueprint(this.server);
 
+    // Only visible if the work item meta the host app provides makes it into
+    // the global JEXL context of the inquiry document. That document doesn't
+    // exist in the backend yet, so the context can't be fetched from there.
+    // See `#buildJexlContext` in `bulk-edit.js`
+    this.server.create("question", {
+      slug: "inquiry-context-check",
+      label: "Context check",
+      isRequired: "false",
+      isHidden: "info.workItem.meta.test != true",
+      maxLength: 9999,
+      minLength: 0,
+      formIds: ["inquiry"],
+      type: "TEXTAREA",
+    });
+
     this.case = createCase(this.server, { group: { id: "1" } });
 
     this.selectedTypes = ["a"];
     this.search = "";
 
-    this.owner.lookup("service:caluma-options").currentGroupId = 1;
-    this.owner.lookup("service:caluma-options").distribution = {
+    const options = this.owner.lookup("service:caluma-options");
+
+    options.currentGroupId = 1;
+    options.distribution = {
       new: {
         types: {
           suggestions: {
@@ -37,10 +54,7 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
         },
       },
     };
-    this.owner.lookup("service:caluma-options").fetchTypedGroups = (
-      types,
-      search,
-    ) => {
+    options.fetchTypedGroups = (types, search) => {
       const re = new RegExp(`.*${search}.*`, "i");
 
       const records = {
@@ -63,6 +77,7 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
         return { ...retval, [type]: recs.filter((rec) => re.test(rec.name)) };
       }, {});
     };
+    options.distributionInquiryWorkItemMeta = () => ({ test: true });
 
     const distribution = this.engine.lookup("service:distribution");
 
@@ -153,6 +168,9 @@ module("Integration | Component | cd-inquiry-new-form", function (hooks) {
     assert
       .dom(`[name$="Question:inquiry-deadline"] + input`)
       .hasValue(expectedDeadline);
+    assert
+      .dom(`[name$="Question:inquiry-context-check"]`)
+      .exists("question depending on the work item meta is visible");
 
     await fillIn('[name$="Question:inquiry-remark"]', "My remark");
     await setFlatpickrDate(

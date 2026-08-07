@@ -24,6 +24,50 @@ export default class CdInquiryNewFormBulkEditComponent extends Component {
 
   answers = {};
 
+  /**
+   * Build the global JEXL context of the inquiry document.
+   *
+   * Neither the document nor its work item exist in the backend while the form
+   * is being filled out, so `documentGlobalJexlContext` can't be used here. The
+   * case comes from the controls query, the work item is the one
+   * `createInquiry` is about to create.
+   *
+   * @async
+   * @private
+   * @method #buildJexlContext
+   * @returns {Promise<Object>} The "faked" JEXL context for the bulk edit form
+   */
+  async #buildJexlContext() {
+    await this.distribution.controls;
+
+    const _case = this.distribution.controls.value?.case.edges[0]?.node;
+    // A case without a family is its own root, same as in the backend
+    const root = _case?.family ?? _case;
+
+    return {
+      info: {
+        case: _case
+          ? {
+              form: _case.document?.form.slug ?? null,
+              workflow: _case.workflow.slug,
+              meta: _case.meta,
+              root: {
+                form: root.document?.form.slug ?? null,
+                workflow: root.workflow.slug,
+                meta: root.meta,
+              },
+            }
+          : null,
+        workItem: {
+          task: this.config.inquiry.task,
+          meta: await this.calumaOptions.distributionInquiryWorkItemMeta(
+            this.args.selectedGroups,
+          ),
+        },
+      },
+    };
+  }
+
   document = trackedFunction(this, async () => {
     // Fetch the full form (like in cf-content) of the inquiry task
     const response = await this.apollo.query({
@@ -34,6 +78,7 @@ export default class CdInquiryNewFormBulkEditComponent extends Component {
     });
     const form = response.allTasks.edges[0].node.form;
     const answers = { edges: [] };
+    const jexlContext = await this.#buildJexlContext();
 
     // If we configured a default deadline lead time, we need to calculate the
     // deadline that should be displayed in the form per default and add it to
@@ -69,6 +114,7 @@ export default class CdInquiryNewFormBulkEditComponent extends Component {
       __typename: "Document",
       answers,
       form,
+      jexlContext,
     });
 
     const owner = getOwner(this);

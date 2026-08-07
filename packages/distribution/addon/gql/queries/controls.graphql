@@ -76,6 +76,37 @@ query Controls(
           isRedoable
           addressedGroups
         }
+        # A new inquiry document doesn't exist in the backend yet, so its
+        # global JEXL context can't be fetched via `documentGlobalJexlContext`
+        # and has to be assembled from the case.
+        # See `#buildJexlContext` in `cd-inquiry-new-form/bulk-edit.js`
+        meta
+        workflow {
+          id
+          slug
+        }
+        document {
+          id
+          form {
+            id
+            slug
+          }
+        }
+        family {
+          id
+          meta
+          workflow {
+            id
+            slug
+          }
+          document {
+            id
+            form {
+              id
+              slug
+            }
+          }
+        }
       }
     }
   }
