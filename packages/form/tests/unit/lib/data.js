@@ -158,34 +158,28 @@ const form = {
   __typename: "Form",
 };
 
+export const completeWorkflowFormWorkItemUuid = id("WorkItem");
+
+// The case is only fetched to resolve the work item a case document is
+// indirectly attached to, see `workItemUuid` in `lib/document.js`. Everything
+// the JEXL context needs comes from `jexlContext` below.
 const _case = {
   id: id("Case"),
-  meta: { "is-main-case": false },
-  workflow: {
-    id: id("Workflow", "child-case-workflow"),
-    slug: "child-case-workflow",
-  },
-  document: {
-    id: id("Document"),
-    form: {
-      id: id("Form", "child-case-form"),
-      slug: "child-case-form",
-    },
-  },
-  family: {
-    id: id("Case"),
-    meta: { "is-main-case": true },
-    workflow: {
-      id: id("Workflow", "root-case-workflow"),
-      slug: "root-case-workflow",
-    },
-    document: {
-      id: id("Document"),
-      form: {
-        id: id("Form", "root-case-form"),
-        slug: "root-case-form",
+  workItems: {
+    edges: [
+      {
+        node: {
+          id: id("WorkItem"),
+          task: { __typename: "SimpleTask" },
+        },
       },
-    },
+      {
+        node: {
+          id: completeWorkflowFormWorkItemUuid,
+          task: { __typename: "CompleteWorkflowFormTask" },
+        },
+      },
+    ],
   },
 };
 
@@ -522,13 +516,27 @@ const historicalAnswers = {
   ],
 };
 
-const workItem = {
-  id: id("WorkItem"),
-  meta: { "notify-on-completion": true },
-  task: {
-    slug: "some-task",
+export const directWorkItemUuid = id("WorkItem", "some-task");
+
+// Like the case, the work item is only fetched to resolve `workItemUuid`
+const workItem = { id: directWorkItemUuid };
+
+// The global JEXL context as the backend returns it from
+// `documentGlobalJexlContext`
+const caseJexlContext = {
+  form: "child-case-form",
+  workflow: "child-case-workflow",
+  meta: { "is-main-case": false },
+  root: {
+    form: "root-case-form",
+    workflow: "root-case-workflow",
+    meta: { "is-main-case": true },
   },
-  case: _case,
+};
+
+const workItemJexlContext = {
+  task: "some-task",
+  meta: { "notify-on-completion": true },
 };
 
 export const rawDocumentWithCase = {
@@ -536,6 +544,7 @@ export const rawDocumentWithCase = {
   answers,
   form,
   case: _case,
+  jexlContext: { info: { case: caseJexlContext, workItem: null } },
   __typename: "Document",
 };
 
@@ -545,6 +554,7 @@ export const rawHistoricalDocumentWithCase = {
   historicalAnswers,
   form,
   case: _case,
+  jexlContext: { info: { case: caseJexlContext, workItem: null } },
   __typename: "Document",
 };
 
@@ -553,9 +563,14 @@ export const rawDocumentWithWorkItem = {
   answers,
   form,
   workItem,
+  jexlContext: {
+    info: { case: caseJexlContext, workItem: workItemJexlContext },
+  },
   __typename: "Document",
 };
 
+// Deliberately without a `jexlContext` - documents that are not fetched via the
+// document answers query don't have one.
 export const rawUnlinkedDocument = {
   id: id("Document"),
   answers,

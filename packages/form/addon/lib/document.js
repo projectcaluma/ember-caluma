@@ -232,38 +232,30 @@ export default class Document extends Base {
    * @property {Object} jexlContext
    */
   get jexlContext() {
-    const workItem = this.raw.workItem;
-    const _case = workItem?.case ?? this.raw.case;
+    const globalContext = this.raw.jexlContext ?? {
+      info: {
+        // Expressions rely on these being `null` rather than absent when the
+        // document is not attached to a case or work item.
+        case: null,
+        workItem: null,
+      },
+    };
 
     return (
       this.parentDocument?.jexlContext ?? {
+        ...globalContext,
         // JEXL interprets null in an expression as variable instead of a
         // primitive. This resolves that issue.
         null: null,
+        // The information about the root form needs to be constructed on the
+        // first document as it doesn't depend on the field.
         form: this.rootForm.slug,
         info: {
+          ...globalContext.info,
           root: {
             form: this.rootForm.slug,
             formMeta: this.rootForm.raw.meta,
           },
-          case: _case
-            ? {
-                form: _case.document?.form.slug,
-                workflow: _case.workflow.slug,
-                meta: _case.meta,
-                root: {
-                  form: _case.family.document?.form.slug,
-                  workflow: _case.family.workflow.slug,
-                  meta: _case.family.meta,
-                },
-              }
-            : null,
-          workItem: workItem
-            ? {
-                task: workItem.task.slug,
-                meta: workItem.meta,
-              }
-            : null,
         },
       }
     );

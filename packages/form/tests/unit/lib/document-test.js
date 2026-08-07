@@ -1,12 +1,14 @@
-import { settled } from "@ember/test-helpers";
 import { module, skip, test } from "qunit";
 
 import {
+  completeWorkflowFormWorkItemUuid,
+  directWorkItemUuid,
   rawDocumentWithCase,
   rawDocumentWithWorkItem,
   rawUnlinkedDocument,
 } from "./data";
 
+import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
 import { parseDocument } from "@projectcaluma/ember-form/lib/parsers";
 import { setupTest } from "dummy/tests/helpers";
 
@@ -14,25 +16,22 @@ module("Unit | Library | document", function (hooks) {
   setupTest(hooks);
 
   hooks.beforeEach(async function () {
-    this.set("setFieldValue", async (slug, value) => {
-      this.document.findField(slug).answer.value = value;
+    const Document = this.owner.factoryFor("caluma-model:document").class;
 
-      await settled();
-    });
-
-    this.set("getDocumentHiddenState", () =>
-      this.document.fields.map((field) => [field.question.slug, field.hidden]),
-    );
-
-    this.set(
-      "document",
-      new (this.owner.factoryFor("caluma-model:document").class)({
-        raw: parseDocument(rawDocumentWithWorkItem),
+    this.buildDocument = (raw) =>
+      new Document({
+        raw: parseDocument(raw),
         owner: this.owner,
-      }),
-    );
+      });
 
-    await settled();
+    this.document = this.buildDocument(rawDocumentWithWorkItem);
+
+    this.setFieldValue = async (slug, value) => {
+      this.document.findField(slug).answer.value = value;
+    };
+
+    this.getDocumentHiddenState = () =>
+      this.document.fields.map((field) => [field.question.slug, field.hidden]);
   });
 
   hooks.afterEach(async function () {
@@ -317,13 +316,7 @@ module("Unit | Library | document", function (hooks) {
   test("computes the correct jexl context (case form)", async function (assert) {
     assert.expect(1);
 
-    const documentWithCase = new (this.owner.factoryFor(
-      "caluma-model:document",
-    ).class)({
-      raw: parseDocument(rawDocumentWithCase),
-      owner: this.owner,
-    });
-    assert.deepEqual(documentWithCase.jexlContext, {
+    assert.deepEqual(this.buildDocument(rawDocumentWithCase).jexlContext, {
       null: null,
       form: "form",
       info: {
@@ -346,13 +339,7 @@ module("Unit | Library | document", function (hooks) {
   test("computes the correct jexl context (unlinked document)", async function (assert) {
     assert.expect(1);
 
-    const documentWithCase = new (this.owner.factoryFor(
-      "caluma-model:document",
-    ).class)({
-      raw: parseDocument(rawUnlinkedDocument),
-      owner: this.owner,
-    });
-    assert.deepEqual(documentWithCase.jexlContext, {
+    assert.deepEqual(this.buildDocument(rawUnlinkedDocument).jexlContext, {
       null: null,
       form: "form",
       info: {
@@ -361,6 +348,31 @@ module("Unit | Library | document", function (hooks) {
         root: { form: "form", formMeta: { "is-top-form": true, level: 0 } },
       },
     });
+  });
+
+  test("resolves the work item it is attached to", async function (assert) {
+    assert.expect(3);
+
+    // Directly attached via a CompleteTaskFormTask work item
+    assert.strictEqual(
+      this.document.workItemUuid,
+      decodeId(directWorkItemUuid),
+      "takes the document's own work item",
+    );
+
+    // Indirectly attached - the case document belongs to the case's
+    // CompleteWorkflowFormTask work item
+    assert.strictEqual(
+      this.buildDocument(rawDocumentWithCase).workItemUuid,
+      decodeId(completeWorkflowFormWorkItemUuid),
+      "falls back to the case's complete workflow form work item",
+    );
+
+    assert.strictEqual(
+      this.buildDocument(rawUnlinkedDocument).workItemUuid,
+      null,
+      "is null without a case or work item",
+    );
   });
 
   skip("it recomputes hidden on hidden change of parent fieldset", async function () {});

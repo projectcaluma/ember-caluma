@@ -2754,6 +2754,21 @@ type Query {
     first: Int
     last: Int
   ): DocumentValidityConnection
+  answerValidity(
+    id: ID!
+    dataSourceContext: JSONString
+    before: String
+    after: String
+    first: Int
+    last: Int
+  ): DocumentValidityConnection
+
+  """
+  The global context for JEXL evaluation in the frontend. Contains information
+  about the related case, work item, etc. This is the part of the JEXL context
+  that is the same for every field of a document.
+  """
+  documentGlobalJexlContext(id: ID!): GenericScalar
   node(
     """
     The ID of the object
@@ -4455,7 +4470,7 @@ type ValidationEntry {
 
 type ValidationResult {
   """
-  References the document ID
+  References the document or answer ID
   """
   id: ID
   isValid: Boolean
