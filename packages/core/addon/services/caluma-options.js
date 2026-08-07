@@ -86,10 +86,13 @@ export default class CalumaOptionsService extends Service {
    * history and perform any application-specific behavior
    * to send reminder notifications.
    *
+   * @async
    * @method sendReminderDistributionInquiry
    * @param {String} inquiryId
+   * @returns {Promise<Void>}
    */
-  async sendReminderDistributionInquiry() {}
+  // eslint-disable-next-line no-unused-vars
+  async sendReminderDistributionInquiry(inquiryId) {}
 
   /**
    * Calculate the default deadline for new inquiries in the distribution
@@ -102,13 +105,14 @@ export default class CalumaOptionsService extends Service {
    *
    * This function may return a promise.
    *
+   * @async
    * @method calculateDistributionDefaultDeadline
    * @param {Number} defaultLeadTime
    * @param {Array<String>} selectedGroups
-   * @returns {String} Deadline date formatted as ISO 8601 string
+   * @returns {Promise<String>} Deadline date formatted as ISO 8601 string
    */
   // eslint-disable-next-line no-unused-vars
-  calculateDistributionDefaultDeadline(defaultLeadTime, selectedGroups) {
+  async calculateDistributionDefaultDeadline(defaultLeadTime, selectedGroups) {
     return DateTime.now().plus({ days: defaultLeadTime }).toISODate();
   }
 
