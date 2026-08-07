@@ -1,4 +1,11 @@
-import { waitFor, click, fillIn, render, scrollTo } from "@ember/test-helpers";
+import {
+  waitFor,
+  click,
+  fillIn,
+  render,
+  scrollTo,
+  settled,
+} from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { module, test } from "qunit";
@@ -298,6 +305,31 @@ module("Integration | Component | cf-field/input/table", function (hooks) {
       await click("[data-test-save]");
 
       assert.verifySteps(["save"]);
+    });
+
+    test("it disables the row form while the new row is being attached", async function (assert) {
+      let resolveSave;
+      this.save = () => new Promise((resolve) => (resolveSave = resolve));
+
+      await render(
+        hbs`<CfField::Input::Table @field={{this.field}} @onSave={{this.save}} />`,
+      );
+
+      await click("[data-test-add-row]");
+
+      const input = `input[name$=":Question:${this.rowQuestion.slug}"]`;
+      await waitFor(input);
+
+      // The modal opens immediately, but the fields and the cancel button
+      // must be disabled until the row is attached to the table answer.
+      assert.dom(input).hasAttribute("readonly");
+      assert.dom("[data-test-cancel]").isDisabled();
+
+      resolveSave();
+      await settled();
+
+      assert.dom(input).doesNotHaveAttribute("readonly");
+      assert.dom("[data-test-cancel]").isEnabled();
     });
 
     test("it can edit a row", async function (assert) {

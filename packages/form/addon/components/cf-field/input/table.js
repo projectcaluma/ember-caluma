@@ -74,22 +74,68 @@ export default class CfFieldInputTableComponent extends Component {
       owner,
     });
 
+    // Open the modal immediately - attaching the row to the table (below) is
+    // debounced and would otherwise noticeably delay opening the modal. While
+    // this task runs, the row's fields and the cancel button are disabled in
+    // the modal, so no answer can be saved to (and validated by) the backend
+    // and the row cannot be removed again before it is attached to the table.
     this.documentToEditIsNew = true;
     this.documentToEdit = newDocument;
     this.showAddModal = true;
+
+    // Attach the row document to the table answer, so the backend has the
+    // full context to validate and evaluate the row's fields while editing.
+    // `documentToEditIsNew` marks the row as preliminary, so it will be
+    // removed again if the edit dialog is cancelled.
+    try {
+      const rows = this.args.field.answer.value ?? [];
+      await this.args.onSave([...rows, newDocument]);
+    } catch {
+      this.notification.danger(
+        this.intl.t("caluma.form.notification.table.add.error"),
+      );
+
+      // Attaching failed - remove the preliminary row and close the modal.
+      // `close` cannot be performed here, as it waits for this task to finish.
+      await this.deleteRow(this.documentToEdit);
+      this.documentToEditIsNew = false;
+      this.showAddModal = false;
+      this.documentToEdit = null;
+    }
   });
+
+  /**
+   * Delete row without asking. Remove from the table, then remove row document
+   *
+   * @async
+   * @method deleteRow
+   * @param {Document} document The row document to delete
+   * @return {Promise<Void>}
+   */
+  async deleteRow(document) {
+    const remainingDocuments = (this.args.field.answer.value ?? []).filter(
+      (doc) => doc.pk !== document.pk,
+    );
+
+    // remove row from table
+    await this.args.onSave(remainingDocuments);
+
+    // delete row document
+    await this.apollo.mutate({
+      mutation: removeDocumentMutation,
+      variables: { input: { document: document.uuid } },
+    });
+
+    // Remove orphaned document from Caluma store.
+    this.calumaStore.delete(document.pk);
+  }
 
   delete = task({ drop: true }, async (document) => {
     if (!(await confirm(this.intl.t("caluma.form.deleteRow")))) {
       return;
     }
 
-    const remainingDocuments = this.args.field.answer.value.filter(
-      (doc) => doc.pk !== document.pk,
-    );
-
-    await this.args.onSave(remainingDocuments);
-    await this.removeOrphan(document);
+    await this.deleteRow(document);
   });
 
   save = task({ drop: true }, async (validate) => {
@@ -106,18 +152,12 @@ export default class CfFieldInputTableComponent extends Component {
         return;
       }
 
-      const rows = this.args.field.answer.value ?? [];
-
-      if (!rows.find((doc) => doc.pk === newDocument.pk)) {
-        // add document to table
-        await this.args.onSave([...rows, newDocument]);
-
+      if (this.documentToEditIsNew) {
         this.notification.success(
           this.intl.t("caluma.form.notification.table.add.success"),
         );
+        this.documentToEditIsNew = false;
       }
-
-      this.documentToEditIsNew = false;
 
       await this.close.perform();
     } catch {
@@ -128,10 +168,20 @@ export default class CfFieldInputTableComponent extends Component {
   });
 
   close = task({ drop: true }, async () => {
-    if (this.documentToEditIsNew) {
-      await this.removeOrphan(this.documentToEdit);
+    // Wait for a pending "add" to finish attaching the new row to the table
+    // before closing - otherwise removing or validating the row would race
+    // with the debounced save of the table answer.
+    if (this.add.isRunning) {
+      await this.add.last;
+    }
 
+    if (this.documentToEditIsNew) {
+      await this.deleteRow(this.documentToEdit);
       this.documentToEditIsNew = false;
+      this.showAddModal = false;
+      this.documentToEdit = null;
+      // No validation for new documents that are deleted
+      return;
     }
 
     if (!this.args.disabled) {
@@ -141,17 +191,6 @@ export default class CfFieldInputTableComponent extends Component {
     this.showAddModal = false;
     this.documentToEdit = null;
   });
-
-  async removeOrphan(calumaDocument) {
-    // Remove orphaned document from database.
-    await this.apollo.mutate({
-      mutation: removeDocumentMutation,
-      variables: { input: { document: calumaDocument.uuid } },
-    });
-
-    // Remove orphaned document from Caluma store.
-    this.calumaStore.delete(calumaDocument.pk);
-  }
 
   @action
   edit(document) {

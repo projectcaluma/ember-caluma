@@ -70,6 +70,7 @@
               <UkButton
                 @color="link"
                 @onClick={{fn this.edit document}}
+                @disabled={{or this.add.isRunning this.delete.isRunning}}
                 title={{t "caluma.form.edit"}}
                 class="uk-flex-inline uk-margin-small-left table-controls"
                 data-test-edit-row
@@ -80,6 +81,7 @@
               <UkButton
                 @color="link"
                 @onClick={{fn this.delete.perform document}}
+                @disabled={{or this.add.isRunning this.delete.isRunning}}
                 title={{t "caluma.form.delete"}}
                 class="uk-flex-inline uk-margin-small-left table-controls"
                 data-test-delete-row
@@ -100,6 +102,8 @@
           <UkButton
             @color="link"
             @onClick={{this.add.perform}}
+            @disabled={{this.add.isRunning}}
+            @loading={{this.add.isRunning}}
             title={{t "caluma.form.addRow"}}
             data-test-add-row
           >
@@ -123,7 +127,7 @@
       <CfFormWrapper
         @document={{this.documentToEdit}}
         @fieldset={{object-at 0 this.documentToEdit.fieldsets}}
-        @disabled={{@disabled}}
+        @disabled={{or @disabled this.add.isRunning}}
         @context={{@context}}
         @compare={{@compare}}
       />
@@ -143,7 +147,7 @@
         <UkButton
           @label={{t "caluma.form.cancel"}}
           @onClick={{this.close.perform}}
-          @disabled={{this.close.isRunning}}
+          @disabled={{or this.close.isRunning this.add.isRunning}}
           @loading={{this.close.isRunning}}
           data-test-cancel
         />
