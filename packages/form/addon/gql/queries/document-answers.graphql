@@ -1,42 +1,50 @@
 #import * from '../fragments/field.graphql'
-#import * from '../fragments/case-form-and-workflow.graphql'
 
 query DocumentAnswers($id: ID!) {
+  # Global JEXL context (case & work item) for JEXL evaluations. This will be
+  # enriched with the document depending data in `lib/document.js` and
+  # `lib/field.js` before being passed into the JEXL evaluation
+  jexlContext: documentGlobalJexlContext(id: $id)
+
   allDocuments(filter: [{ id: $id }]) {
     edges {
       node {
         id
+
+        # Basic form information
         form {
           id
           slug
         }
-        workItem {
-          id
-          meta
-          task {
-            slug
-          }
-          case {
-            ...CaseFormAndWorkflow
-          }
-        }
-        case {
-          ...CaseFormAndWorkflow
-          workItems {
-            edges {
-              node {
-                id
-                task {
-                  id
-                }
-              }
-            }
-          }
-        }
+
+        # All answers of the document, up to three levels deep (top form -> sub
+        # form -> table form)
         answers {
           edges {
             node {
               ...FieldAnswer
+            }
+          }
+        }
+
+        # Work item and case work items to determine the actionable work item
+        # for action buttons. This is either the direct work item below or a
+        # case work item of the type complete workflow form.
+        # See `workItemUuid` in `lib/document.js`
+        workItem {
+          id
+        }
+        case {
+          workItems {
+            edges {
+              node {
+                id
+                # `__typename` is what identifies the complete workflow form
+                # work item, the `task` selection is only there to request it
+                task {
+                  id
+                }
+              }
             }
           }
         }

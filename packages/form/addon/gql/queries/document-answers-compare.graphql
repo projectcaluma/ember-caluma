@@ -108,6 +108,8 @@ query (
   $to: DateTime!
   $context: JSONString
 ) {
+  jexlContext: documentGlobalJexlContext(id: $documentId)
+
   fromRevision: documentAsOf(id: $documentId, asOf: $from) {
     ...RevisionDocument
     answers: historicalAnswers(asOf: $from, excludeDeleted: true) {
