@@ -1415,7 +1415,9 @@ type DynamicChoiceQuestion implements Question & DynamicQuestion & Node {
   id: ID!
 }
 
-type DynamicMultipleChoiceQuestion implements Question & DynamicQuestion & Node {
+type DynamicMultipleChoiceQuestion implements Question &
+  DynamicQuestion &
+  Node {
   createdAt: DateTime!
   modifiedAt: DateTime!
   createdByUser: String

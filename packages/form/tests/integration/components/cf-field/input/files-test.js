@@ -38,13 +38,13 @@ module("Integration | Component | cf-field/input/files", function (hooks) {
       })),
     });
 
-    const payload_good_1 = new File(["test"], "good-1.txt", {
+    const payloadGood1 = new File(["test"], "good-1.txt", {
       type: "text/plain",
     });
-    const payload_good_2 = new File(["test"], "good-2.txt", {
+    const payloadGood2 = new File(["test"], "good-2.txt", {
       type: "text/plain",
     });
-    const payload_fail = new File(["test"], "fail.txt", { type: "text/plain" });
+    const payloadFail = new File(["test"], "fail.txt", { type: "text/plain" });
 
     await render(
       hbs`<CfField::Input::Files @field={{this.field}} @onSave={{this.onSave}} />`,
@@ -54,7 +54,7 @@ module("Integration | Component | cf-field/input/files", function (hooks) {
     assert.strictEqual(this.field.answer.value, null);
     assert.deepEqual(this.field._errors, []);
 
-    await triggerEvent("input[type=file]", "change", { files: [payload_fail] });
+    await triggerEvent("input[type=file]", "change", { files: [payloadFail] });
     assert.strictEqual(this.field.answer.value, null);
     assert.deepEqual(this.field._errors, [{ type: "uploadFailed" }]);
 
@@ -62,13 +62,13 @@ module("Integration | Component | cf-field/input/files", function (hooks) {
     this.field._errors = [];
 
     await triggerEvent("input[type=file]", "change", {
-      files: [payload_good_1],
+      files: [payloadGood1],
     });
     assert.strictEqual(this.field.answer.value?.[0]?.name, "good-1.txt");
     assert.deepEqual(this.field._errors, []);
 
     await triggerEvent("input[type=file]", "change", {
-      files: [payload_good_1, payload_good_2],
+      files: [payloadGood1, payloadGood2],
     });
 
     assert.strictEqual(this.field.answer.value?.[0]?.name, "good-1.txt");
@@ -92,7 +92,7 @@ module("Integration | Component | cf-field/input/files", function (hooks) {
     };
 
     // Hijack window.open
-    const window_open = window.open;
+    const windowOpen = window.open;
     window.open = (url, target) => {
       assert.ok(url.startsWith("http"), "The URL is a HTTP address");
       assert.strictEqual(target, "_blank", "Target for new window is _blank");
@@ -107,7 +107,7 @@ module("Integration | Component | cf-field/input/files", function (hooks) {
 
     // Restore window.open
 
-    window.open = window_open;
+    window.open = windowOpen;
   });
 
   test("it disables all controls when field is disabled", async function (assert) {

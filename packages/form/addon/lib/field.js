@@ -467,6 +467,7 @@ export default class Field extends Base {
         } catch (error) {
           throw new Error(
             `Error while evaluating \`isHidden\` expression on Option\`${option.slug}\`: ${error.message}`,
+            { cause: error },
           );
         }
       })
@@ -646,6 +647,7 @@ export default class Field extends Base {
     } catch (error) {
       throw new Error(
         `Error while evaluating \`isHidden\` expression on field \`${this.pk}\`: ${error.message}`,
+        { cause: error },
       );
     }
   }
@@ -681,6 +683,7 @@ export default class Field extends Base {
     } catch (error) {
       throw new Error(
         `Error while evaluating \`isRequired\` expression on field \`${this.pk}\`: ${error.message}`,
+        { cause: error },
       );
     }
   }
