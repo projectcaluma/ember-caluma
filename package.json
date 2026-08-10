@@ -36,55 +36,43 @@
     "*.{graphql,json,md,yaml}": "prettier --write"
   },
   "devDependencies": {
-    "@adfinis/eslint-config": "3.0.2",
+    "@adfinis/eslint-config": "3.1.0",
     "@babel/core": "7.28.6",
-    "@babel/eslint-parser": "7.28.6",
+    "@babel/eslint-parser": "8.0.1",
     "@babel/plugin-proposal-decorators": "7.28.6",
-    "@commitlint/cli": "20.3.1",
-    "@commitlint/config-conventional": "20.3.1",
-    "@eslint/js": "9.39.2",
+    "@commitlint/cli": "21.2.1",
+    "@commitlint/config-conventional": "21.2.0",
+    "@eslint/js": "10.0.1",
     "@semantic-release/commit-analyzer": "13.0.1",
     "@semantic-release/exec": "7.1.0",
-    "@semantic-release/git": "10.0.1",
-    "@semantic-release/github": "12.0.2",
-    "@semantic-release/release-notes-generator": "14.1.0",
-    "concurrently": "9.2.1",
+    "@semantic-release/git": "11.0.1",
+    "@semantic-release/github": "12.0.9",
+    "@semantic-release/release-notes-generator": "14.1.1",
+    "concurrently": "10.0.4",
     "ember-template-lint": "7.9.3",
-    "eslint": "9.39.2",
+    "eslint": "10.8.1",
     "eslint-config-prettier": "10.1.8",
-    "eslint-plugin-ember": "12.7.5",
+    "eslint-plugin-ember": "13.5.0",
     "eslint-plugin-import": "2.32.0",
-    "eslint-plugin-n": "17.23.2",
-    "eslint-plugin-prettier": "5.5.5",
-    "eslint-plugin-qunit": "8.2.5",
+    "eslint-plugin-n": "18.3.0",
+    "eslint-plugin-prettier": "5.5.6",
+    "eslint-plugin-qunit": "8.2.6",
     "get-graphql-schema": "2.1.2",
-    "glob": "13.0.0",
-    "globals": "17.0.0",
+    "glob": "13.0.6",
+    "globals": "17.9.0",
     "graphql": "15.10.1",
     "husky": "9.1.7",
-    "lint-staged": "16.2.7",
+    "lint-staged": "17.3.0",
     "node-fetch": "3.3.2",
-    "prettier": "3.8.3",
-    "prettier-plugin-ember-template-tag": "2.1.2",
-    "semantic-release": "25.0.2",
-    "stylelint": "17.0.0",
+    "prettier": "3.9.6",
+    "prettier-plugin-ember-template-tag": "2.1.7",
+    "semantic-release": "25.0.9",
+    "stylelint": "17.14.1",
     "stylelint-config-standard-scss": "17.0.0",
     "stylelint-prettier": "5.0.3",
-    "stylelint-scss": "7.0.0"
+    "stylelint-scss": "7.2.0"
   },
   "packageManager": "pnpm@10.28.1",
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "typescript"
-      ],
-      "allowedVersions": {
-        "graphql": "^15.9.0",
-        "ember-source": "^6.0.0",
-        "ember-resources>ember-concurrency": "^4.0.0"
-      }
-    }
-  },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"

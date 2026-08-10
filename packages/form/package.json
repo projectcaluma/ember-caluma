@@ -46,7 +46,7 @@
     "tracked-toolbox": "^2.0.0"
   },
   "devDependencies": {
-    "@ember/optional-features": "2.3.0",
+    "@ember/optional-features": "3.0.0",
     "@ember/test-helpers": "4.0.4",
     "@embroider/test-setup": "4.0.0",
     "@faker-js/faker": "10.2.0",
@@ -65,7 +65,7 @@
     "ember-cli-sri": "2.1.1",
     "ember-cli-terser": "4.0.2",
     "ember-load-initializers": "3.0.1",
-    "ember-qunit": "9.0.4",
+    "ember-qunit": "9.1.0",
     "ember-resolver": "13.1.1",
     "ember-sinon-qunit": "7.5.0",
     "ember-source": "6.1.0",
@@ -73,13 +73,13 @@
     "ember-try": "4.0.0",
     "loader.js": "4.7.0",
     "miragejs": "0.1.48",
-    "qunit": "2.25.0",
-    "qunit-dom": "3.5.0",
-    "sass": "1.97.3",
-    "sinon": "21.0.1",
+    "qunit": "2.26.0",
+    "qunit-dom": "3.6.0",
+    "sass": "1.102.0",
+    "sinon": "22.1.0",
     "uikit": "3.25.6",
-    "uuid": "13.0.0",
-    "webpack": "5.104.1"
+    "uuid": "14.0.1",
+    "webpack": "5.109.2"
   },
   "peerDependencies": {
     "@projectcaluma/ember-workflow": "workspace:^",

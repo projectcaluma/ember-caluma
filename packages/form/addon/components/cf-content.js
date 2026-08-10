@@ -158,9 +158,9 @@ export default class CfContentComponent extends Component {
     const Document = owner.factoryFor("caluma-model:document").class;
     const Navigation = owner.factoryFor("caluma-model:navigation").class;
 
-    let answerDocument = null;
-    let historicalDocument = null;
-    let jexlContext = null;
+    let answerDocument;
+    let historicalDocument;
+    let jexlContext;
 
     if (!this.args.compare) {
       const data = await this.apollo.query({

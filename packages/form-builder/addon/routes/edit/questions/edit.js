@@ -44,9 +44,9 @@ export default class EditQuestionsEditRoute extends Route {
     return this.fetchLabel.perform(slug);
   }
 
-  model({ question_slug }) {
+  model({ question_slug: slug }) {
     return {
-      questionSlug: question_slug,
+      questionSlug: slug,
       formSlug: this.modelFor("edit"),
     };
   }

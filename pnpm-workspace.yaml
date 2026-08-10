@@ -1,2 +1,19 @@
 packages:
   - "packages/**"
+
+allowBuilds:
+  "@parcel/watcher": false
+  core-js: false
+  ember-modal-dialog: false
+
+# Avoid a duplicate `@ember/test-waiters` v3, which breaks the build
+overrides:
+  "@ember/test-waiters": ^4.1.2
+
+peerDependencyRules:
+  ignoreMissing:
+    - typescript
+  allowedVersions:
+    graphql: ^15.9.0
+    ember-source: ^6.0.0
+    ember-resources>ember-concurrency: ^4.0.0
