@@ -89,7 +89,8 @@ export default class CfFieldInputTableComponent extends Component {
     // removed again if the edit dialog is cancelled.
     try {
       const rows = this.args.field.answer.value ?? [];
-      await this.args.onSave([...rows, newDocument]);
+      this.args.field.answer.value = [...rows, newDocument];
+      await this.args.field.save.perform();
     } catch {
       this.notification.danger(
         this.intl.t("caluma.form.notification.table.add.error"),
