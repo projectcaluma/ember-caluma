@@ -63,8 +63,8 @@ module.exports = async function () {
           },
         },
       },
-      embroiderSafe({ allowedToFail: true }),
-      embroiderOptimized({ allowedToFail: true }),
+      embroiderSafe(),
+      embroiderOptimized(),
     ],
   };
 };
