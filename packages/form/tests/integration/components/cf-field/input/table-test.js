@@ -9,6 +9,7 @@ import {
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { module, test } from "qunit";
+import { fake, replace } from "sinon";
 import UIkit from "uikit";
 
 import { parseDocument } from "@projectcaluma/ember-form/lib/parsers";
@@ -281,10 +282,15 @@ module("Integration | Component | cf-field/input/table", function (hooks) {
     test("it can add a row", async function (assert) {
       assert.expect(5);
 
-      this.save = (value) => {
-        assert.strictEqual(value.length, 2);
-        assert.step("save");
-      };
+      this.save = () => {};
+      replace(
+        this.field.save,
+        "perform",
+        fake(() => {
+          assert.strictEqual(this.field.answer.value.length, 2);
+          assert.step("raw-save");
+        }),
+      );
 
       await render(
         hbs`<CfField::Input::Table @field={{this.field}} @onSave={{this.save}} />`,
@@ -304,12 +310,18 @@ module("Integration | Component | cf-field/input/table", function (hooks) {
 
       await click("[data-test-save]");
 
-      assert.verifySteps(["save"]);
+      assert.verifySteps(["raw-save"]);
     });
 
     test("it disables the row form while the new row is being attached", async function (assert) {
       let resolveSave;
-      this.save = () => new Promise((resolve) => (resolveSave = resolve));
+
+      this.save = () => {};
+      replace(
+        this.field.save,
+        "perform",
+        fake(() => new Promise((resolve) => (resolveSave = resolve))),
+      );
 
       await render(
         hbs`<CfField::Input::Table @field={{this.field}} @onSave={{this.save}} />`,
