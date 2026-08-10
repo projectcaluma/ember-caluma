@@ -18,7 +18,7 @@
     "@ember/test-helpers": "4.0.4",
     "@embroider/macros": "1.19.6",
     "@faker-js/faker": "10.2.0",
-    "@glimmer/component": "1.1.2",
+    "@glimmer/component": "2.1.1",
     "@glimmer/tracking": "1.1.2",
     "@projectcaluma/ember-analytics": "workspace:*",
     "@projectcaluma/ember-core": "workspace:*",
