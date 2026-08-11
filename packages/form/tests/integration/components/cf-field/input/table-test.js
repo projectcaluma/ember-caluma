@@ -313,7 +313,7 @@ module("Integration | Component | cf-field/input/table", function (hooks) {
       assert.verifySteps(["raw-save"]);
     });
 
-    test("it disables the row form while the new row is being attached", async function (assert) {
+    test("it shows a spinner instead of the row form while the new row is being attached", async function (assert) {
       let resolveSave;
 
       this.save = () => {};
@@ -330,16 +330,18 @@ module("Integration | Component | cf-field/input/table", function (hooks) {
       await click("[data-test-add-row]");
 
       const input = `input[name$=":Question:${this.rowQuestion.slug}"]`;
-      await waitFor(input);
 
-      // The modal opens immediately, but the fields and the cancel button
-      // must be disabled until the row is attached to the table answer.
-      assert.dom(input).hasAttribute("readonly");
+      // The modal opens immediately, but shows a spinner in place of the
+      // form until the row is attached to the table answer. The cancel
+      // button must be disabled until then as well.
+      await waitFor(".uk-modal [uk-spinner]");
+      assert.dom(input).doesNotExist();
       assert.dom("[data-test-cancel]").isDisabled();
 
       resolveSave();
       await settled();
 
+      assert.dom(input).exists();
       assert.dom(input).doesNotHaveAttribute("readonly");
       assert.dom("[data-test-cancel]").isEnabled();
     });

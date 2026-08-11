@@ -124,13 +124,19 @@
     as |modal|
   >
     <modal.body>
-      <CfFormWrapper
-        @document={{this.documentToEdit}}
-        @fieldset={{object-at 0 this.documentToEdit.fieldsets}}
-        @disabled={{or @disabled this.add.isRunning}}
-        @context={{@context}}
-        @compare={{@compare}}
-      />
+      {{#if this.add.isRunning}}
+        <div class="uk-text-center">
+          <UkSpinner class="uk-animation-fade" @ratio={{2}} />
+        </div>
+      {{else}}
+        <CfFormWrapper
+          @document={{this.documentToEdit}}
+          @fieldset={{object-at 0 this.documentToEdit.fieldsets}}
+          @disabled={{@disabled}}
+          @context={{@context}}
+          @compare={{@compare}}
+        />
+      {{/if}}
     </modal.body>
 
     <modal.footer class="uk-text-right">
