@@ -1,5 +1,10 @@
 {{#if @status.iconComponent}}
-  <@status.iconComponent @status={{@status}} @tooltipPos={{@tooltipPos}} />
+  <@status.iconComponent
+    @status={{@status}}
+    @tooltipPos={{@tooltipPos}}
+    class="uk-text-{{@status.color}}"
+    {{uk-tooltip @status.label pos=@tooltipPos}}
+  />
 {{else}}
   <UkIcon
     @icon={{@status.icon}}
