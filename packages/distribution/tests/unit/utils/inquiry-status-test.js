@@ -33,6 +33,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
     assert.deepEqual(this.obj.status, {
       color: "success",
       icon: "check",
+      iconComponent: null,
       label: "Positive",
       slug: "positive",
     });
@@ -45,6 +46,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
     assert.deepEqual(this.obj.status, {
       color: "danger",
       icon: "close",
+      iconComponent: null,
       label: "Negative",
       slug: "negative",
     });
@@ -57,6 +59,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
     assert.deepEqual(this.obj.status, {
       color: "warning",
       icon: "file-text",
+      iconComponent: null,
       label: "Needs interaction",
       slug: "needs-interaction",
     });
@@ -66,6 +69,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
     assert.deepEqual(this.obj.status, {
       color: "muted",
       icon: "commenting",
+      iconComponent: null,
       label: "Draft",
       slug: "draft",
     });
@@ -75,6 +79,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
     assert.deepEqual(this.obj.status, {
       color: "muted",
       icon: "lock",
+      iconComponent: null,
       label: "Aborted",
       slug: "skipped",
     });
@@ -87,6 +92,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
     assert.deepEqual(this.obj.status, {
       color: "emphasis",
       icon: "user",
+      iconComponent: null,
       label: "In review",
     });
 
@@ -95,6 +101,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
     assert.deepEqual(this.obj.status, {
       color: "muted",
       icon: "user",
+      iconComponent: null,
       label: "In review",
     });
 
@@ -103,6 +110,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
     assert.deepEqual(this.obj.status, {
       color: "emphasis",
       icon: "comment",
+      iconComponent: null,
       label: "Sent",
       slug: "sent",
     });
@@ -116,6 +124,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
     assert.deepEqual(this.obj.status, {
       color: "emphasis",
       icon: "comment",
+      iconComponent: null,
       label: "Sent",
       slug: "sent",
     });
@@ -125,6 +134,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
     assert.deepEqual(this.obj.status, {
       color: "muted",
       icon: "commenting",
+      iconComponent: null,
       label: "Draft",
       slug: "draft",
     });
@@ -134,6 +144,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
     assert.deepEqual(this.obj.status, {
       color: "emphasis",
       icon: "comment",
+      iconComponent: null,
       label: "Sent",
       slug: "sent",
     });
@@ -147,6 +158,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
     assert.deepEqual(this.obj.status, {
       color: "emphasis",
       icon: "file-edit",
+      iconComponent: null,
       label: "In Progress",
       slug: "in-progress",
     });
@@ -156,6 +168,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
     assert.deepEqual(this.obj.status, {
       color: "muted",
       icon: "file-edit",
+      iconComponent: null,
       label: "In Progress",
       slug: "in-progress",
     });
@@ -165,6 +178,7 @@ module("Unit | Utility | inquiry-status", function (hooks) {
     assert.deepEqual(this.obj.status, {
       color: "emphasis",
       icon: "comment",
+      iconComponent: null,
       label: "Sent",
       slug: "sent",
     });

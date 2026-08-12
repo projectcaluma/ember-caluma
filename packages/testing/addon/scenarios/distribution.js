@@ -49,6 +49,10 @@ export function createBlueprint(server) {
         slug: "inquiry-answer-status-needs-interaction",
         label: "Needs interaction",
       }),
+      server.create("option", {
+        slug: "inquiry-answer-status-custom",
+        label: "Custom!",
+      }),
     ],
   });
   server.create("question", {
@@ -320,6 +324,19 @@ export default function (server, groups) {
         { id: "88999388-daf2-4a18-b7e2-50373d082331" },
       ),
       status: "inquiry-answer-status-needs-interaction",
+    }),
+  });
+  confirm({
+    inquiry: answer({
+      inquiry: create(
+        {
+          from: g,
+          to: g4,
+          deadline: faker.date.past(),
+        },
+        { id: "7f926a70-d365-4e75-9890-6b4e3d86a107" },
+      ),
+      status: "inquiry-answer-status-custom",
     }),
   });
 

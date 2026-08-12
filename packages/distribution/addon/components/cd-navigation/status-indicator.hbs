@@ -10,10 +10,9 @@
 {{/if}}
 
 <div class="uk-position-relative uk-flex uk-flex-middle">
-  <UkIcon
-    @icon={{this.status.icon}}
-    class="uk-text-{{this.status.color}}"
-    {{uk-tooltip this.status.label pos=(if this.config.ui.stack "left" "top")}}
+  <CdInquiryStatusIcon
+    @status={{this.status}}
+    @tooltipPos={{if this.config.ui.stack "left" "top"}}
   />
   {{#if this.showPendingIndicator}}
     <span

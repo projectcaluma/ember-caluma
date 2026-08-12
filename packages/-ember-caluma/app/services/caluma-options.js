@@ -3,6 +3,7 @@ import { waitForFetch } from "@ember/test-waiters";
 import { DateTime } from "luxon";
 
 import CalumaOptionsService from "@projectcaluma/ember-core/services/caluma-options";
+import CustomStatusIconComponent from "ember-caluma/components/custom-status-icon";
 import DummyOneComponent from "ember-caluma/components/dummy-one";
 import DummyTwoComponent from "ember-caluma/components/dummy-two";
 
@@ -36,6 +37,13 @@ export default class CustomCalumaOptionsService extends CalumaOptionsService {
     inquiry: {
       answer: {
         infoQuestions: ["inquiry-answer-reason", "inquiry-answer-hint"],
+        statusMapping: {
+          "inquiry-answer-status-custom": {
+            slug: "inquiry-answer-status-custom",
+            color: "success",
+            iconComponent: CustomStatusIconComponent,
+          },
+        },
       },
     },
     ui: {
