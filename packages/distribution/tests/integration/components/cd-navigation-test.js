@@ -31,7 +31,7 @@ module("Integration | Component | cd-navigation", function (hooks) {
 
     assert.dom("ul:first-child").exists({ count: 1 });
     assert.dom("ul:first-child > li > ul").exists({ count: 3 });
-    assert.dom("ul:first-child > li > ul > li").exists({ count: 9 });
+    assert.dom("ul:first-child > li > ul > li").exists({ count: 10 });
 
     assert
       .dom("ul:first-child > li:nth-of-type(2) > a")

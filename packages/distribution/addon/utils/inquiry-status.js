@@ -51,6 +51,7 @@ function decorator(
                 }
 
                 return {
+                  iconComponent: null,
                   ...config,
                   label: this.intl.t(config.label),
                   color: config.color[inquiryType] ?? config.color,
@@ -74,6 +75,11 @@ function decorator(
               ? INQUIRY_STATUS.SENT
               : this.config.inquiry.answer.statusMapping[answer.value];
 
+      assert(
+        "The status config must contain either `icon` or `iconComponent`",
+        statusConfig.icon || statusConfig.iconComponent,
+      );
+
       return {
         slug: statusConfig.slug,
         label:
@@ -82,6 +88,7 @@ function decorator(
             : this.intl.t(`caluma.distribution.status.${statusConfig.slug}`),
         color: statusConfig.color[inquiryType] ?? statusConfig.color,
         icon: statusConfig.icon,
+        iconComponent: statusConfig.iconComponent ?? null,
       };
     },
   };
