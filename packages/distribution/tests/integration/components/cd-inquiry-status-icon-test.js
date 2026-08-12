@@ -54,7 +54,7 @@ module("Integration | Component | cd-inquiry-status-icon", function (hooks) {
     // eslint-disable-next-line ember/no-empty-glimmer-component-classes
     class CustomIconComponent extends Component {}
     setComponentTemplate(
-      hbs`<span class="custom-icon">✨</span>`,
+      hbs`<span class="custom-icon" ...attributes>✨</span>`,
       CustomIconComponent,
     );
 
@@ -71,5 +71,13 @@ module("Integration | Component | cd-inquiry-status-icon", function (hooks) {
 
     assert.dom("[uk-icon]").doesNotExist();
     assert.dom(".custom-icon").hasText("✨");
+
+    // color and tooltip are applied via `...attributes` of the custom component
+    assert.dom(".custom-icon").hasClass("uk-text-success");
+    assert.tooltipHasText(this.element, ".custom-icon", "Custom!");
+    assert.deepEqual(
+      UIkit.tooltip(this.element.querySelector(".custom-icon")).pos,
+      ["top", "center"], // UIkit adds "center" automatically
+    );
   });
 });
