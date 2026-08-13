@@ -5,7 +5,7 @@ settings:
   excludeLinksFromLockfile: false
 
 overrides:
-  '@ember/test-waiters': ^4.1.2
+  nth-check: 2.0.1
 
 importers:
 
@@ -839,7 +839,7 @@ importers:
         specifier: ^3.1.1 || ^4.0.0
         version: 4.0.1
       '@ember/test-waiters':
-        specifier: ^4.1.2
+        specifier: ^4.1.1
         version: 4.1.2
       '@embroider/macros':
         specifier: ^1.16.10
@@ -2374,7 +2374,7 @@ packages:
     resolution: {integrity: sha512-Kw5kbfHNFgOgIepEfmDIYLi5CNiLKjxtx0vQkNtXvHD1PCBPIpnoFZdiTs2NnnKP1obedgU59us6PTE1G+AOHg==}
     peerDependencies:
       '@ember-data/tracking': 5.7.0
-      '@ember/test-waiters': ^4.1.2
+      '@ember/test-waiters': ^3.1.0 || ^4.0.0
     peerDependenciesMeta:
       '@ember-data/tracking':
         optional: true
@@ -2385,7 +2385,7 @@ packages:
     resolution: {integrity: sha512-vXF/fMem8T08XVVlg3mXNYHyk4g+kYkzXMUNuxhqCOO/0w4RyASDpMfPdZCIAJLvRrW+C3pVnZXE87J1reH9WQ==}
     deprecated: Use @warp-drive/ember
     peerDependencies:
-      '@ember/test-waiters': ^4.1.2
+      '@ember/test-waiters': ^3.1.0 || ^4.0.0
 
   '@ember/edition-utils@1.2.0':
     resolution: {integrity: sha512-VmVq/8saCaPdesQmftPqbFtxJWrzxNGSQ+e8x8LLe3Hjm36pJ04Q8LeORGZkAeOhldoUX9seLGmSaHeXkIqoog==}
@@ -2431,6 +2431,10 @@ packages:
     resolution: {integrity: sha512-1mbOVyVEcLxYOGzBaeeaQkCrL1o9Av86QaHk/1RvrVBW24I6YUj1ILLEi2qLZT5PzcCy0TdfadHT3hKJwJ0GcQ==}
     peerDependencies:
       ember-source: '>= 4.0.0'
+
+  '@ember/test-waiters@3.1.0':
+    resolution: {integrity: sha512-bb9h95ktG2wKY9+ja1sdsFBdOms2lB19VWs8wmNpzgHv1NCetonBoV5jHBV4DHt0uS1tg9z66cZqhUVlYs96KQ==}
+    engines: {node: 10.* || 12.* || >= 14.*}
 
   '@ember/test-waiters@4.1.2':
     resolution: {integrity: sha512-zJwFaHLHjJn6mKoXYVM1SEyMT+U1JpaaSKg3JBmxHJwiIoJRI5djJ/CE33Z7N09mk5JfXd2xdhbd9LBWdlvAzg==}
@@ -3448,7 +3452,7 @@ packages:
   '@warp-drive/ember@5.7.0':
     resolution: {integrity: sha512-oCnEsphvDMEd9JfJzVTijg+qWQrQl5qNKEEzt5Mencp62pj3DSKFphsWsMRfSk7CedIN792NZDxxJHXqhwtBvA==}
     peerDependencies:
-      '@ember/test-waiters': ^4.1.2
+      '@ember/test-waiters': ^3.1.0 || ^4.0.0
       ember-provide-consume-context: ^0.8.0
     peerDependenciesMeta:
       ember-provide-consume-context:
@@ -5499,7 +5503,7 @@ packages:
     resolution: {integrity: sha512-ozTmr0e88Olsq6RCrAAyi6iVdXLKWAwY3azM14441jCuF592UC5edKaOkZxsQqwMzesARj06pLBPaVeRt23vmg==}
     engines: {node: '>= 22.21.1'}
     peerDependencies:
-      '@ember/test-waiters': ^4.1.2
+      '@ember/test-waiters': ^3.1.0 || ^4.0.0
       ember-cli-fastboot: '>= 4.0.0'
       ember-source: '>= 4.0.0'
       prember: '>= 2.0.0'
@@ -5726,7 +5730,7 @@ packages:
     resolution: {integrity: sha512-KPs+p5/F/YSIFsc0hYg+kaER8XoMhAzy+gOVAJhdtbFrhn3oftTogcAMTGo/glUpXnzwt8dSkN+GfNMWMPmSlw==}
     peerDependencies:
       '@ember/test-helpers': ^3.3.0 || ^4.0.4 || ^5.1.0
-      '@ember/test-waiters': ^4.1.2
+      '@ember/test-waiters': ^3.1.0 || ^4.0.0
       qunit: ^2.18.0
     peerDependenciesMeta:
       '@ember/test-helpers':
@@ -5925,7 +5929,7 @@ packages:
     engines: {node: 14.* || >= 16}
     peerDependencies:
       '@ember/test-helpers': ^2.6.0 || >= 3.0.0
-      '@ember/test-waiters': ^4.1.2
+      '@ember/test-waiters': '>= 3.0.1'
       ember-modifier: ^3.2.0 || >= 4.0.0
 
   ember-source-channel-url@3.0.0:
@@ -8548,11 +8552,8 @@ packages:
       - validate-npm-package-name
       - which
 
-  nth-check@1.0.2:
-    resolution: {integrity: sha512-WeBOdju8SnzPN5vTUJYxYUxLeXpCaVP5i5e0LF8fg7WORF2Wd7wFX/pk0tYZk7s8T+J7VLy0Da6J1+wCT0AtHg==}
-
-  nth-check@2.1.1:
-    resolution: {integrity: sha512-lqjrjmaOoAnWfMmBPL+XNnynZh2+swxiX3WUE0s4yEHI6m+AwrK2UZOimIRl3X/4QctVqS8AiZjFqyOGrMXb/w==}
+  nth-check@2.0.1:
+    resolution: {integrity: sha512-it1vE95zF6dTT9lBsYbxvqh0Soy4SPowchj0UBGj/V6cTPnXXtQOPUbhZ6CmGzAD/rW22LQK6E96pcdJXk4A4w==}
 
   num2fraction@1.2.2:
     resolution: {integrity: sha512-Y1wZESM7VUThYY+4W+X4ySH2maqcA+p7UR+w8VWNWVAd6lwuXXWz/w/Cz43J/dI2I+PS6wD5N+bJUF+gjWvIqg==}
@@ -9235,7 +9236,7 @@ packages:
   reactiveweb@1.9.3:
     resolution: {integrity: sha512-RG7UVwn8EcokVfHFMi4G/v8Zw/ny5Myy/gZ6ywDnChL7gH1wmNuLHxwhps/BHewYz4Rw89rEMUtY21ddipynhQ==}
     peerDependencies:
-      '@ember/test-waiters': ^4.1.2
+      '@ember/test-waiters': '>= 3.1.0'
 
   read-cache@1.0.0:
     resolution: {integrity: sha512-Owdv/Ft7IjOgm/i0xvNDZ1LrRANRfew4b2prF3OWMQLxLfu3bS8FVhCsrSCMK4lR56Y9ya+AThoTpDCTxCmpRA==}
@@ -12140,7 +12141,7 @@ snapshots:
 
   '@ember/test-helpers@3.3.1(@babel/core@7.29.7)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.109.2(postcss@8.5.26)))(webpack@5.109.2(postcss@8.5.26))':
     dependencies:
-      '@ember/test-waiters': 4.1.2
+      '@ember/test-waiters': 3.1.0
       '@embroider/macros': 1.19.6
       '@simple-dom/interface': 1.4.0
       broccoli-debug: 0.6.5
@@ -12158,7 +12159,7 @@ snapshots:
 
   '@ember/test-helpers@4.0.4(@babel/core@7.29.7)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.109.2(postcss@8.5.26)))':
     dependencies:
-      '@ember/test-waiters': 4.1.2
+      '@ember/test-waiters': 3.1.0
       '@embroider/addon-shim': 1.10.3
       '@embroider/macros': 1.19.6
       '@simple-dom/interface': 1.4.0
@@ -12168,6 +12169,15 @@ snapshots:
     transitivePeerDependencies:
       - '@babel/core'
       - '@glint/template'
+      - supports-color
+
+  '@ember/test-waiters@3.1.0':
+    dependencies:
+      calculate-cache-key-for-tree: 2.0.0
+      ember-cli-babel: 7.26.11
+      ember-cli-version-checker: 5.1.2
+      semver: 7.8.5
+    transitivePeerDependencies:
       - supports-color
 
   '@ember/test-waiters@4.1.2':
@@ -15661,7 +15671,7 @@ snapshots:
       boolbase: 1.0.0
       css-what: 3.4.2
       domutils: 1.7.0
-      nth-check: 1.0.2
+      nth-check: 2.0.1
 
   css-select@5.2.2:
     dependencies:
@@ -15669,7 +15679,7 @@ snapshots:
       css-what: 6.2.2
       domhandler: 5.0.3
       domutils: 3.2.2
-      nth-check: 2.1.1
+      nth-check: 2.0.1
 
   css-tree@1.0.0-alpha.29:
     dependencies:
@@ -16956,7 +16966,7 @@ snapshots:
     dependencies:
       '@ember/render-modifiers': 2.1.0(@babel/core@7.29.7)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.109.2(postcss@8.5.26)))
       '@ember/test-helpers': 3.3.1(@babel/core@7.29.7)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.109.2(postcss@8.5.26)))(webpack@5.109.2(postcss@8.5.26))
-      '@ember/test-waiters': 4.1.2
+      '@ember/test-waiters': 3.1.0
       '@embroider/addon-shim': 1.10.3
       ember-source: 6.1.0(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.109.2(postcss@8.5.26))
       flatpickr: 4.6.13
@@ -20294,11 +20304,7 @@ snapshots:
 
   npm@11.19.0: {}
 
-  nth-check@1.0.2:
-    dependencies:
-      boolbase: 1.0.0
-
-  nth-check@2.1.1:
+  nth-check@2.0.1:
     dependencies:
       boolbase: 1.0.0
 
