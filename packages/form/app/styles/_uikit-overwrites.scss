@@ -64,3 +64,10 @@
 .uk-disabled[readonly] {
   pointer-events: all;
 }
+
+@media print {
+  .uk-radio,
+  .uk-checkbox {
+    appearance: auto;
+  }
+}
