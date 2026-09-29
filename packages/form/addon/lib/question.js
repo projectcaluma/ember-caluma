@@ -2,7 +2,9 @@ import { assert } from "@ember/debug";
 import { inject as service } from "@ember/service";
 import { camelize } from "@ember/string";
 import { queryManager } from "ember-apollo-client";
+import { use } from "ember-resources";
 import { trackedFunction } from "reactiveweb/function";
+import { keepLatest } from "reactiveweb/keep-latest";
 import { cached } from "tracked-toolbox";
 
 import getDynamicOptions from "@projectcaluma/ember-form/gql/queries/dynamic-options.graphql";
@@ -76,12 +78,19 @@ export default class Question extends Base {
     );
   });
 
+  // Keep the previously resolved options while the dynamic options are being
+  // refetched to avoid flickering of the options in the UI
+  @use latestDynamicOptions = keepLatest({
+    when: () => this.dynamicOptions.isPending,
+    value: () => this.dynamicOptions.value,
+  });
+
   get dynamicChoiceOptions() {
-    return this.dynamicOptions.value ?? [];
+    return this.latestDynamicOptions ?? [];
   }
 
   get dynamicMultipleChoiceOptions() {
-    return this.dynamicOptions.value ?? [];
+    return this.latestDynamicOptions ?? [];
   }
 
   /**
