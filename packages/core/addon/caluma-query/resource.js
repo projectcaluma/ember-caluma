@@ -78,4 +78,8 @@ export default class CalumaQueryResource extends Resource {
   get isLoading() {
     return this.query.isLoading;
   }
+
+  get hasRan() {
+    return this.query.hasRan;
+  }
 }
