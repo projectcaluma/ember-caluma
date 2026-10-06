@@ -49,6 +49,10 @@ export default class BaseQuery {
     return this._fetch.isRunning || this._fetchMore.isRunning;
   }
 
+  get hasRan() {
+    return this._fetch.lastComplete !== null;
+  }
+
   get totalCount() {
     return this._data?.[this.dataKey].totalCount;
   }

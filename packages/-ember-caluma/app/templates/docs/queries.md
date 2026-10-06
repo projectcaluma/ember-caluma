@@ -59,6 +59,7 @@ public methods:
 | `hasNextPage` | `Boolean`  | Whether there is a next page. If `false`, `loadMore` won't do anything.                |
 | `totalCount`  | `Number`   | The total count of items without pagination                                            |
 | `isLoading`   | `Boolean`  | Whether the query is currently fetching data from the server or processing the data.   |
+| `hasRan`      | `Boolean`  | Whether a fetch has finished, including failed or cancelled fetches.                   |
 
 ### Queries
 

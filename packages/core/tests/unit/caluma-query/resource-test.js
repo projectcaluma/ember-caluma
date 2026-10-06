@@ -30,11 +30,13 @@ module("Unit | Caluma Query | resource", function (hooks) {
   });
 
   test("exposes the same properties as the decorator", async function (assert) {
+    assert.strictEqual(this.obj.workItems.hasRan, false);
     assert.deepEqual(this.obj.workItems.value, []);
 
     await waitUntil(() => this.obj.workItems.isLoading === false);
 
     assert.strictEqual(this.obj.workItems.isLoading, false);
+    assert.strictEqual(this.obj.workItems.hasRan, true);
     assert.strictEqual(this.obj.workItems.hasNextPage, true);
     assert.strictEqual(this.obj.workItems.totalCount, 7);
   });
@@ -75,6 +77,9 @@ module("Unit | Caluma Query | resource", function (hooks) {
 
   test("exposes a refresh method", async function (assert) {
     await waitUntil(() => this.obj.workItems.value.length === 5);
+
+    assert.strictEqual(this.obj.workItems.isLoading, false);
+    assert.strictEqual(this.obj.workItems.hasRan, true);
 
     const fetchSpy = spy(this.obj.workItems.query._fetch, "perform");
 
