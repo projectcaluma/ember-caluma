@@ -107,5 +107,10 @@
       ],
       "@semantic-release/github"
     ]
+  },
+  "pnpm": {
+    "overrides": {
+      "nth-check": "2.0.1"
+    }
   }
 }
