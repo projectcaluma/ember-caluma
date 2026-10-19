@@ -3,15 +3,15 @@
 $diff-danger-background: color.adjust(
   $global-danger-background,
   $lightness: 25%
-);
+) !default;
 $diff-success-background: color.adjust(
   $global-success-background,
   $lightness: 30%
-);
+) !default;
 $diff-warning-background: color.adjust(
   $global-warning-background,
   $lightness: 25%
-);
+) !default;
 
 .cf-compare {
   position: relative;
