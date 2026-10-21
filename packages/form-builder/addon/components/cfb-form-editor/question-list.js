@@ -169,7 +169,15 @@ export default class ComponentsCfbFormEditorQuestionList extends Component {
     }
   });
 
-  _handleMoved = ({ detail: [sortable] }) => {
+  _handleMoved = ({ detail: [sortable, element] }) => {
+    // Fix UIKit dropping the element outside of ember VM's expected area
+    // TODO: remove when https://github.com/uikit/uikit/pull/5290 gets merged
+    const index = sortable.items.indexOf(element);
+
+    if (index !== -1 && index === sortable.items.length - 1) {
+      element.previousElementSibling.after(element);
+    }
+
     this.reorderQuestions.perform(sortable.items.map((item) => item.id));
   };
 

@@ -137,6 +137,7 @@ module(
           {
             items,
           },
+          item,
         ],
       });
 
@@ -198,6 +199,7 @@ module(
           {
             items: [],
           },
+          undefined,
         ],
       });
 
