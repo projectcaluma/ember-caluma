@@ -1,4 +1,5 @@
 import Route from "@ember/routing/route";
+import { scheduleOnce } from "@ember/runloop";
 import { inject as service } from "@ember/service";
 
 export default class IndexRoute extends Route {
@@ -6,10 +7,7 @@ export default class IndexRoute extends Route {
   @service distribution;
   @service router;
 
-  async redirect() {
-    // trigger resource
-    this.distribution.navigation.value;
-
+  async redirectToFirstInquiry() {
     // wait for navigation request and group resolver
     await this.distribution.fetchNavigation.last;
     await this.scheduler.resolveGroup.last;
@@ -24,5 +22,9 @@ export default class IndexRoute extends Route {
         to: firstInquiry.addressedGroups[0],
       });
     }
+  }
+
+  afterModel() {
+    scheduleOnce("afterRender", this, "redirectToFirstInquiry");
   }
 }
