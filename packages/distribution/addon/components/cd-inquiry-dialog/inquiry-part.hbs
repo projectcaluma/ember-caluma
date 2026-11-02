@@ -101,8 +101,7 @@
                 <div class="uk-height-max-small uk-overflow-auto">
                   {{#each @inquiry.meta.reminders as |reminder|}}
                     <div class="uk-text-center uk-text-small uk-text-muted">
-                      {{format-date reminder}}
-                      {{format-time reminder hour="2-digit" minute="2-digit"}}
+                      {{format-date reminder format="datetime"}}
                     </div>
                   {{/each}}
                 </div>
@@ -132,19 +131,13 @@
       {{#if (eq @type "answer")}}
         <li {{uk-tooltip (t "caluma.distribution.inquiry.closed-at")}}>
           <span>
-            {{format-date @inquiry.closedAt}}
-            {{format-time @inquiry.closedAt hour="2-digit" minute="2-digit"}}
+            {{format-date @inquiry.closedAt format="datetime"}}
           </span>
         </li>
       {{else if (and (eq @type "request") @inquiry.childCase.createdAt)}}
         <li {{uk-tooltip (t "caluma.distribution.inquiry.sent-at")}}>
           <span>
-            {{format-date @inquiry.childCase.createdAt}}
-            {{format-time
-              @inquiry.childCase.createdAt
-              hour="2-digit"
-              minute="2-digit"
-            }}
+            {{format-date @inquiry.childCase.createdAt format="datetime"}}
           </span>
         </li>
       {{/if}}

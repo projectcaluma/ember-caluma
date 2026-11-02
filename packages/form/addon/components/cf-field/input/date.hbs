@@ -1,7 +1,7 @@
 {{#if @compare}}
   <CfField::InputCompare::TextDiff
-    @currentValue={{format-date @field.answer.value}}
-    @historicalValue={{format-date @field.answer.historicalValue}}
+    @currentValue={{format-date @field.answer.value format="date"}}
+    @historicalValue={{format-date @field.answer.historicalValue format="date"}}
   />
 {{else}}
   <div class="uk-inline uk-width-1-1">

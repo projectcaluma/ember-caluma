@@ -3,7 +3,7 @@
     @icon="clock"
     class="uk-margin-small-right uk-text-{{this.deadline.color}}"
     {{uk-tooltip
-      (format-date this.deadline.value)
+      (format-date this.deadline.value format="date")
       pos=(if this.config.ui.stack "left" "top")
     }}
   />

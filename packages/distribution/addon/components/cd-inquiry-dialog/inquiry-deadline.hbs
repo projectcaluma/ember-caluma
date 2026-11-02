@@ -11,7 +11,7 @@
     {{else if this.isSkipped}}
       {{t "caluma.distribution.status.skipped"}}
     {{else}}
-      {{format-date this.deadline.value}}
+      {{format-date this.deadline.value format="date"}}
     {{/if}}
   </div>
 {{/if}}
