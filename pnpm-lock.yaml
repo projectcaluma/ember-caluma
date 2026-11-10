@@ -131,6 +131,9 @@ importers:
       '@ember/test-helpers':
         specifier: 4.0.4
         version: 4.0.4(@babel/core@7.29.7)(ember-source@6.1.0(@glimmer/component@1.1.2(@babel/core@7.29.7))(rsvp@4.8.5)(webpack@5.109.2(postcss@8.5.26)))
+      '@embroider/broccoli-side-watch':
+        specifier: 1.1.0
+        version: 1.1.0
       '@embroider/macros':
         specifier: 1.19.6
         version: 1.19.6
@@ -2441,6 +2444,9 @@ packages:
   '@embroider/addon-shim@1.10.3':
     resolution: {integrity: sha512-GYbaiC1v9inbiwVg5s+Sd14Jc66NYxg23mEOocgWAZFCtOfhMnRLaLAA6SytW76myVVYImGHX5PFK4PVuH2yng==}
     engines: {node: 12.* || 14.* || >= 16}
+
+  '@embroider/broccoli-side-watch@1.1.0':
+    resolution: {integrity: sha512-ucka/GHYOLhB2LM53EpVqu2Rm9teEqxMxjw5lUeHvvTTqGktjTt1Wm9J7qPtuZpe6in5MGU3aZ2o038gVHJ++Q==}
 
   '@embroider/macros@1.19.6':
     resolution: {integrity: sha512-yPf8lD/gRZmcxms66CCKuZuvWMJ0g/hdCE6P8FZsyewR3So6pxgdgOFp0zk2w5d34jS1ejBtxLNREZbBTELpzw==}
@@ -12185,6 +12191,16 @@ snapshots:
       broccoli-funnel: 3.0.8
       common-ancestor-path: 1.0.1
       semver: 7.8.5
+    transitivePeerDependencies:
+      - supports-color
+
+  '@embroider/broccoli-side-watch@1.1.0':
+    dependencies:
+      '@embroider/shared-internals': 3.1.1
+      broccoli-merge-trees: 4.2.0
+      broccoli-plugin: 4.0.7
+      broccoli-source: 3.0.1
+      resolve-package-path: 4.0.3
     transitivePeerDependencies:
       - supports-color
 
