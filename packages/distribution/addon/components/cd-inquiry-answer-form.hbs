@@ -140,8 +140,7 @@
                 {{#if (not data.value)}}
                   -
                 {{else if (eq data.type "date")}}
-                  {{format-date data.value}}
-                  {{format-time data.value hour="2-digit" minute="2-digit"}}
+                  {{format-date data.value format="datetime"}}
                 {{else if (eq data.type "user")}}
                   {{user-name data.value}}
                 {{else}}

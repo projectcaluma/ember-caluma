@@ -11,9 +11,9 @@
     {{t "caluma.form.compare.timeline.current"}}
   {{else}}
     {{option.label}}:
-    {{format-date option.startDate}}
+    {{format-date option.startDate format="date"}}
     {{#if option.endDate}}
       -
-      {{format-date option.endDate}}{{/if}}
+      {{format-date option.endDate format="date"}}{{/if}}
   {{/if}}
 </PowerSelect>
