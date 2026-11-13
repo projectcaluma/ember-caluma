@@ -1,0 +1,17 @@
+# German starting text for Rumantsch Grischun; not yet translated.
+
+caluma:
+  caluma-query:
+    work-item:
+      status:
+        READY: "Offen"
+        COMPLETED: "Erledigt"
+        CANCELED: "Abgebrochen"
+        SKIPPED: "Übersprungen"
+        SUSPENDED: "Pausiert"
+    case:
+      status:
+        RUNNING: "In Bearbeitung"
+        COMPLETED: "Abgeschlossen"
+        CANCELED: "Abgebrochen"
+        SUSPENDED: "Pausiert"

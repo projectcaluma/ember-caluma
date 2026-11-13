@@ -1,0 +1,20 @@
+# German starting text for Rumantsch Grischun; not yet translated.
+
+dummy:
+  formBuilder: "Formularersteller"
+  form: "Formular"
+  usage: "Anwendung"
+  testing: "Testen"
+  migration: "Migration"
+  validation: "Validierung"
+  buttons: "Buttons"
+  queries:
+    title: "Queries"
+    load: "Laden"
+    loadMore: "Mehr laden"
+    getWorkItems: "getWorkItems"
+
+  types:
+    federal: "Bund"
+    private: "Privat"
+    others: "Andere"

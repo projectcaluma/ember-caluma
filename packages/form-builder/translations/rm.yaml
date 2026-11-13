@@ -1,0 +1,201 @@
+# German starting text for Rumantsch Grischun; not yet translated.
+
+caluma:
+  form-builder:
+    global:
+      save: "Speichern"
+      loading: "Laden"
+      cancel: "Abbrechen"
+      search: "Suchen"
+      optional: "Optional"
+
+      empty-search: "Keine Resultate gefunden. Passen Sie Ihre Suche an um bessere Resultate zu erhalten."
+
+      not-found:
+        title: "Sie sehen verloren aus"
+        subtitle: "Die angefrage Seite existiert nicht!"
+        home: "Zurück zum Start"
+
+    form:
+      name: "Name"
+      slug: "Slug"
+      description: "Beschreibung"
+      isArchived: "Archiviert"
+      widgetOverride: "Spezialelement"
+      isPublished: "Publiziert"
+      draft: "Entwurf"
+      active: "Aktiv"
+      all: "Alle"
+
+      allForms: "Alle Formulare"
+      new: "Neues Formular"
+      empty: "Wir haben keine Formulare gefunden. Klicken Sie den Knopf im der rechten oberen Ecke um ein Formular zu erstellen!"
+      loadMore: "Mehr Formulare laden"
+
+      not-found: "Kein Formular mit dem Slug ''{slug}'' gefunden"
+
+    question-list:
+      required:
+        label: "Erforderlich (JEXL)"
+        not-required: "Optional"
+        required: "Erforderlich"
+        conditional: "Bedingt erforderlich"
+      hidden:
+        label: "Versteckt (JEXL)"
+        not-hidden: "Sichtbar"
+        hidden: "Versteckt"
+        conditional: "Bedingt versteckt"
+
+    question:
+      label: "Label"
+      slug: "Slug"
+      type: "Typ"
+      isRequired: "Pflichtfeld"
+      staticContent: "Statischer Inhalt"
+      infoText: "Infotext"
+      hintText: "Hinweistext"
+      confirmationText: "Bestätigungstext"
+      placeholder: "Platzhalter"
+      isHidden: "Versteckt (JEXL)"
+      widgetOverride: "Anzeigetyp"
+      isArchived: "Archiviert"
+      type-disabled: "Der Fragetyp kann nach dem Erstellen einer Frage nicht mehr geändert werden, um korrupte Daten zu verhindern."
+      supportsMarkdownPrefix: "Dieses Feld unterstützt"
+      markdown: "Markdown"
+      dataSource: "Datenquelle"
+      formatValidators: "Validierung"
+      defaultValue: "Standardwert"
+      meta: "Metainformationen"
+
+      general: "Allgemein"
+      options: "Optionen"
+
+      min-value: "Minimaler Wert"
+      max-value: "Maximaler Wert"
+      min-length: "Minimale Länge"
+      max-length: "Maximale Länge"
+      step: "Schritte"
+      rowForm: "Formular für Tabelleneinträge"
+      subForm: "Formular für Einträge"
+      no-selection: "Keine Auswahl"
+      search-placeholder: "Hier tippen um zu suchen"
+      search-empty: "Keine Formulare gefunden"
+      columnsToDisplay: "Spalten zur Anzeige im Formular"
+      calcExpression: "Berechnungsformel (JEXL)"
+
+      new: "Neue Frage"
+
+      minor-info-title: "Wichtig!"
+      minor-info: "Das Anpassen einer Frage darf niemals die Bedeutung der Frage verändern, um die Daten konsistent zu halten."
+
+      remove: "Frage entfernen"
+      add: "Neue oder existierende Frage hinzufügen"
+      search: "Nach einer Frage (Label oder Slug) suchen,"
+      create: "oder eine neue Frage erstellen"
+      loadMore: "Mehr Fragen laden"
+
+      empty: "Sie haben noch keine Fragen hinzugefügt. Drücken Sie den obenstehenden Knopf um dies zu tun!"
+      advancedSettings: "Erweiterte Einstellungen"
+
+      types:
+        IntegerQuestion: "Ganze Zahl"
+        FloatQuestion: "Gleitkommazahl"
+        MultipleChoiceQuestion: "Mehrfachauswahl"
+        ChoiceQuestion: "Einzelauswahl"
+        TextQuestion: "Text"
+        TextareaQuestion: "Text (mehrzeilig)"
+        TableQuestion: "Tabelle"
+        FormQuestion: "Formular"
+        FilesQuestion: "Dateien"
+        StaticQuestion: "Nichtinteraktiver Inhalt"
+        DateQuestion: "Datum"
+        DynamicMultipleChoiceQuestion: "Dynamische Mehrfachauswahl"
+        DynamicChoiceQuestion: "Dynamische Einzelauswahl"
+        CalculatedFloatQuestion: "Berechnung (Gleitkommazahl)"
+        ActionButtonQuestion: "Aktionsbutton"
+
+      confirmText: "Bestätigungstext"
+      action: "Aktion"
+      color: "Farbe"
+      validateOnEnter: "Validierung beim Betreten des Fensters"
+      showValidation: "Validierungs-Fehler anzeigen"
+
+      actions:
+        COMPLETE: "Abschliessen"
+        SKIP: "Überspringen"
+
+      colors:
+        PRIMARY: "Primär"
+        SECONDARY: "Sekundär"
+        DEFAULT: "Standard"
+
+      widgetOverrides:
+        powerselect: "Power Select"
+        hidden: "Versteckt"
+        number-separator: "Zahlentrennzeichen"
+
+      not-found: "Keine Frage mit dem Slug ''{slug}'' gefunden"
+
+      hideLabel: "Label verstecken"
+
+      usage:
+        title: "Diese Frage wird in {n,plural, =1 {<b>einem</b> Formular} other {<b>#</b> Formularen}} verwendet."
+        references-heading: "Alle Verweise auf diese Frage"
+        not-published: "nicht publiziert"
+
+    options:
+      delete: "Option löschen"
+      archive: "Option archivieren (verstecken)"
+      restore: "Option wiederherstellen"
+      show-jexl: "JEXL anzeigen"
+
+    notification:
+      form:
+        save:
+          success: "Ihr Formular wurde erfolgreich gespeichert!"
+          error: "Hoppla, beim Speichern des Formulars ist etwas schief gelaufen..."
+
+        create:
+          success: "Ihr Formular wurde erfolgreich erstellt!"
+          error: "Hoppla, beim Erstellen des Formulars ist etwas schief gelaufen..."
+
+        reorder-questions:
+          success: "Ihre Fragen wurde erfolgreich sortiert!"
+          error: "Hoppla, beim Sortieren der Fragen ist etwas schief gelaufen..."
+
+        reorder-options:
+          success: "Ihre Optionen wurde erfolgreich sortiert!"
+          error: "Hoppla, beim Sortieren der Optionen ist etwas schief gelaufen..."
+
+        add-question:
+          success: "Die Frage wurde erfolgreich zu Ihrem Formular hinzugefügt!"
+          error: "Hoppla, beim Hinzufügen der Frage ist etwas schief gelaufen..."
+
+        remove-question:
+          success: "Die Frage wurde erfolgreich von Ihrem Formular entfernt!"
+          error: "Hoppla, beim Entfernen der Frage ist etwas schief gelaufen..."
+
+      question:
+        save:
+          success: "Ihre Frage wurde erfolgreich gespeichert!"
+          error: "Hoppla, beim Speichern der Frage ist etwas schief gelaufen..."
+
+    copy-modal:
+      title: '"{form}" kopieren'
+      name:
+        label: "Name"
+        hint: "Original: {name}"
+      slug:
+        label: "Slug"
+        hint: "Original: {slug}"
+      submit: "Kopieren"
+
+    validations:
+      form:
+        slug: "Ein Formular mit diesem Slug existiert bereits"
+
+      question:
+        slug: "Eine Frage mit diesem Slug existiert bereits"
+
+      option:
+        slug: "Eine Option mit diesem Slug existiert bereits"

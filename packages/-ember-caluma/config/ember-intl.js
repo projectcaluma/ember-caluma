@@ -93,7 +93,7 @@ module.exports = function (/* environment */) {
         return false;
       }
 
-      let requiredLocales = ["en", "de", "it"];
+      let requiredLocales = ["en", "de", "it", "rm"];
 
       // form builder is not translated to french
       if (key.startsWith("caluma.form-builder")) {

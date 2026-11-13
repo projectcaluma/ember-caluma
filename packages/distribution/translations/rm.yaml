@@ -1,0 +1,130 @@
+# German starting text for Rumantsch Grischun; not yet translated.
+
+caluma:
+  distribution:
+    empty: "Es wurden noch keine Anfragen erstellt."
+    no-actions: "Im aktuellen Zustand stehen keine Aktionen zur Verfügung."
+    start: "Zirkulation starten"
+    send: "Offene Anfragen versenden"
+    complete: "Zirkulation abschliessen"
+    skip: "Zirkulation überspringen"
+    reopen: "Zirkulation wiedereröffnen"
+    check-inquiries: "Stellungnahmen als geprüft markieren"
+    pending-indicator: "{completed} von {all} Stellungnahmen beantwortet"
+    send-confirm:
+      "Wollen Sie wirklich <b>{count, plural, =1 {eine offene Anfrage} other
+      {{count} offene Anfragen}}</b> versenden?"
+    complete-confirm:
+      "Es gibt noch <b>{count, plural, =1 {eine offene Anfrage} other {{count}
+      offene Anfragen}}</b> in der aktuellen Zirkulation. Wenn Sie die
+      Zirkulation abschliessen, werden alle verbleibenden offenen Anfragen
+      abgebrochen. Möchten Sie fortfahren?"
+    complete-confirm-empty: "Möchten Sie die Zirkulation wirklich abschliessen?"
+    skip-confirm: "Wollen Sie die Zirkulation wirklich überspringen?"
+    reopen-confirm: "Wollen Sie die Zirkulation wirklich wiedereröffnen?"
+    send-error: "Fehler beim Versenden der offenen Anfragen"
+    complete-error: "Fehler beim Abschliessen der Zirkulation"
+    skip-error: "Fehler beim Überspringen der Zirkulation"
+    reopen-error: "Fehler beim Wiedereröffnen der Zirkulation"
+    check-inquiries-error: "Fehler beim Markieren der Stellungnahmen als geprüft"
+
+    attention-to: "{abbr, select, true {z. H.} other {zu Handen}} {subject}"
+
+    more: "mehr"
+    less: "weniger"
+
+    details: "Details"
+    not-allowed-hint:
+      "Sie können jedoch das Formular bearbeiten und die Eingabedaten werden
+      automatisch gespeichert."
+
+    inquiry:
+      sent-at: "Versendet am"
+      closed-at: "Beantwortet am"
+      deadline: "Frist"
+      assigned-user: "Verantwortliche Person"
+
+    edit:
+      link: "Bearbeiten"
+      send: "Aktuelle Anfrage versenden"
+      send-error: "Fehler beim Senden der Anfrage"
+      send-not-allowed: "Sie sind nicht berechtigt diese Anfrage zu versenden."
+      edit-sent:
+        "<b>Achtung:</b> Sie bearbeiten eine Anfrage, die bereits versendet
+        wurde. Falls Sie die Details grundlegend ändern, kann es sein, dass die
+        adressierte Stelle dies nicht bemerkt, da sie nicht informiert wird."
+
+    answer:
+      link: "Beantworten"
+
+      complete-error: "Fehler beim Abschliessen der Aufgabe"
+      complete-not-allowed: "Sie sind nicht berechtigt diese Antwort zu versenden."
+
+      buttons:
+        compose:
+          label: "Zur Kontrolle freigeben"
+          status: "In Bearbeitung"
+        adjust:
+          label: "Anpassung zur Kontrolle freigeben"
+          status: "In Überarbeitung"
+        confirm:
+          label: "Bestätigen"
+          status: "In Prüfung"
+        revise:
+          label: "Überarbeiten"
+
+      details:
+        show: "Details anzeigen"
+        hide: "Details verstecken"
+
+    new:
+      title: "Neue Anfrage"
+      search: "Suchen..."
+      suggestions: "Empfehlungen"
+      empty: "Es wurden keine Stellen gefunden"
+      groups: "{count} {count, plural, =1 {Stelle} other {Stellen}}"
+      selected: "{count, plural, other {ausgewählt}}"
+      reset: "Zurücksetzen"
+      create-draft: "Entwurf erstellen"
+      continue: "Weiter"
+      back: "Zurück"
+      error: "Fehler beim Erstellen der {count, plural, =1 {Anfragen} other {Anfrage}}"
+
+    reminder:
+      link: "Erinnerung versenden"
+      confirm: "Wollen Sie wirklich eine Erinnerung für diese Anfrage versenden?"
+      title: "Versendete Erinnerungen"
+      no-reminders: "Es wurden noch keine Erinnerungen für diese Anfrage versendet."
+      success: "Die Erinnerung wurde erfolgreich versendet"
+      error: "Fehler beim Versenden der Erinnerung"
+
+    types:
+      controlling: "Angeforderte Stellungnahmen"
+      addressed: "Eigene Stellungnahmen"
+      more: "Weitere Stellungnahmen"
+
+    status:
+      draft: "Entwurf"
+      skipped: "Vorzeitig beendet"
+      sent: "Versendet"
+      in-progress: "In Bearbeitung"
+      positive: "Positiv"
+      negative: "Negativ"
+      needs-interaction: "Aktion erforderlich"
+
+    notfound:
+      title: "404"
+      subtitle: "Seite nicht gefunden!"
+      back: "Zurück zur"
+      link: "Startseite"
+
+    withdraw:
+      link: "Zurückziehen"
+      confirm: "Wollen Sie die Anfrage wirklich zurückziehen?"
+      error: "Fehler beim Zurückziehen der Anfrage"
+      status: "Zurückgezogen"
+
+    reopen-inquiry:
+      link: "Wiedereröffnen"
+      confirm: "Wollen Sie die Anfrage wirklich wiedereröffnen?"
+      error: "Fehler beim Wiedereröffnen der Anfrage"
