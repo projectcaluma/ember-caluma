@@ -1,0 +1,18 @@
+# German starting text for Rumantsch Grischun; not yet translated.
+
+caluma:
+  mutate-work-item:
+    complete: "Abschliessen"
+    skip: "Überspringen"
+    cancel: "Abbrechen"
+    success:
+      complete: "Die Aufgabe wurde erfolgreich abgeschlossen!"
+      skip: "Die Aufgabe wurde erfolgreich übersprungen!"
+      cancel: "Die Aufgabe wurde erfolgreich abgebrochen!"
+    error:
+      complete: "Hoppla, beim Abschliessen der Aufgabe ist etwas schief gelaufen..."
+      skip: "Hoppla, beim Überspringen der Aufgabe ist etwas schief gelaufen..."
+      cancel: "Hoppla, beim Abbrechen der Aufgabe ist etwas schief gelaufen..."
+
+  task-button:
+    error: "Fehler beim Laden der Aufgabe"

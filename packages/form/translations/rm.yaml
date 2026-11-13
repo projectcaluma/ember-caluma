@@ -1,0 +1,71 @@
+# German starting text for Rumantsch Grischun; not yet translated.
+
+caluma:
+  form:
+    optional: "Optional"
+    save: "Speichern"
+    delete: "Löschen"
+    edit: "Bearbeiten"
+    cancel: "Abbrechen"
+    close: "Schliessen"
+    view: "Anzeigen"
+    selectFile: "Durchsuchen..."
+    deleteRow: "Möchten Sie diese Zeile wirklich löschen?"
+    addRow: "Zeile hinzufügen"
+    optionNotAvailable: "Diese Option ist nicht mehr verfügbar"
+    info: "Mehr Informationen"
+    mandatory: "Pflichtfeld"
+
+    error:
+      details: "Technische Details:"
+      technical-error: "Oh nein, auf unserer Seite ist etwas schief gelaufen. Ihre Antwort konnte nicht gespeichert werden."
+      offline: "Ihre Antwort konnte nicht gespeichert werden, da Sie offline sind. Bitte überprüfen Sie Ihre Internetverbindung und versuchen Sie es erneut."
+      invalid: "Ihre Antwort konnte nicht gespeichert werden, weil die Validierung fehlgeschlagen ist. Bitte überprüfen Sie Ihre Eingaben und versuchen Sie es erneut."
+
+    navigation:
+      next: "Weiter"
+      previous: "Zurück"
+      states:
+        untouched: "Nicht ausgefüllt"
+        unfinished: "Nicht vollständig ausgefüllt"
+        valid: "Korrekt ausgefüllt"
+        invalid: "Inkorrekt ausgefüllt"
+
+    notification:
+      table:
+        add:
+          success: "Eintrag wurde erfolgreich hinzugefügt."
+          error: "Hoppla, beim Hinzufügen des Eintrags ist etwas schief gelaufen ..."
+
+    power-select:
+      placeholder-single: "Wählen Sie eine Option aus"
+      placeholder-multiple: "Wählen Sie eine oder mehrere Optionen aus"
+      options-loading: "Lade Optionen..."
+      options-empty: "Keine Optionen vorhanden"
+      search-placeholder: "Hier tippen um zu suchen"
+      search-empty: "Keine Optionen gefunden"
+      reset: "Zurücksetzen"
+
+    validation:
+      blank: "Dieses Feld darf nicht leer gelassen werden"
+      tooShort: "Dieses Feld muss mindestens {min} Zeichen enthalten"
+      tooLong: "In diesem Feld sind maximal {max} Zeichen erlaubt"
+      greaterThanOrEqualTo: "Die Eingabe in diesem Feld darf nicht kleiner als {gte} sein"
+      lessThanOrEqualTo: "Die Eingabe in diesem Feld darf nicht grösser als {lte} sein"
+      notAnInteger: "Bitte geben Sie eine ganze Zahl ein"
+      inclusion: '"{label}" ist kein gültiger Wert für dieses Feld'
+      deleteFailed: "Beim Löschen ist ein Fehler aufgetreten."
+      uploadFailed: "Beim Hochladen ist ein Fehler aufgetreten."
+      format: "{errorMsg}"
+      table: "Mindestens eine Zeile der Tabelle wurde nicht korrekt ausgefüllt"
+      error: "Folgende Fragen sind noch nicht korrekt ausgefüllt:"
+      blockNotification: "In diesem Feld sind nur folgende Zeichen erlaubt: {allowedChars}"
+
+    compare:
+      note: "Geändert von {username} am {date}"
+      diff:
+        added: "Hinzugefügt"
+        removed: "Entfernt"
+        modified: "Geändert"
+      timeline:
+        current: "Aktueller Formularstand"
