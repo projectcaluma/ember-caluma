@@ -281,7 +281,13 @@ export class NavigationItem extends Base {
       return null;
     }
 
-    if (this.visibleFields.some((f) => f.isModified)) {
+    if (
+      this.visibleFields.some(
+        (field) =>
+          field.question.raw.meta.widgetOverride !== "cf-field/input/hidden" &&
+          field.isModified,
+      )
+    ) {
       return COMPARE_STATES.MODIFIED;
     }
 

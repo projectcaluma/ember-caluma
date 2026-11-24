@@ -5,6 +5,7 @@ import cloneDeep from "lodash.clonedeep";
 import { module, test } from "qunit";
 
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
+import { NavigationItem } from "@projectcaluma/ember-form/lib/navigation";
 import { parseDocument } from "@projectcaluma/ember-form/lib/parsers";
 import { setupRenderingTest } from "dummy/tests/helpers";
 import { rawHistoricalDocumentWithCase } from "dummy/tests/unit/lib/data";
@@ -99,6 +100,27 @@ module("Integration | Component | compare", function (hooks) {
         (f) => f.raw.question.slug === questionSlug,
       );
     };
+  });
+
+  test("navigation ignores changes to hidden widgets", function (assert) {
+    const hidden = this.findField("question-1");
+    const visible = this.findField("float");
+    hidden.question.raw.meta.widgetOverride = "cf-field/input/hidden";
+    hidden.answer.value = "changed";
+    visible.answer.value = 2;
+
+    const item = (fields, pk) =>
+      new NavigationItem({
+        fieldset: { fields, pk },
+        navigation: {},
+        owner: this.owner,
+      });
+
+    assert.strictEqual(item([hidden], "hidden").compareFieldsetState, "equal");
+    assert.strictEqual(
+      item([hidden, visible], "visible").compareFieldsetState,
+      "modified",
+    );
   });
 
   test("cf-field renders a text widget compare diff", async function (assert) {
