@@ -134,16 +134,19 @@ export default class Answer extends Base {
   get value() {
     const value = this.raw[this._valueKey];
 
+    if (this._valueKey === "tableValue" && this.compare) {
+      const owner = getOwner(this);
+      const historicalValue = this.historical?.[this._valueKey] || [];
+
+      return historicalTableValue(
+        owner,
+        this.field,
+        value || [],
+        historicalValue,
+      );
+    }
+
     if (this._valueKey === "tableValue" && value) {
-      // For a historical view for table values we map it differently to be able to
-      // show the diff.
-      if (this.compare) {
-        const owner = getOwner(this);
-        const historicalValue = this.historical?.[this._valueKey] || [];
-
-        return historicalTableValue(owner, this.field, value, historicalValue);
-      }
-
       const owner = getOwner(this);
       const Document = owner.factoryFor("caluma-model:document").class;
 

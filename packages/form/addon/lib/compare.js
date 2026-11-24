@@ -104,8 +104,12 @@ export function compareTableDocument(docA, docB) {
 export function historicalTableValue(owner, field, value, historicalValue) {
   const Document = owner.factoryFor("caluma-model:document").class;
 
+  const removedDocuments = historicalValue
+    .filter((document) => !value.some((current) => current.id === document.id))
+    .map((document) => ({ ...document, historyType: "-" }));
+
   return (
-    value
+    [...value, ...removedDocuments]
       .map((document) => {
         let historyType = document.historyType;
 
