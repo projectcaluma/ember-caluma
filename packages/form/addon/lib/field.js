@@ -133,6 +133,7 @@ export default class Field extends Base {
           historical: null,
           ...rawHistorical,
         },
+        historical: this.raw.historicalAnswer,
         field: this,
         owner,
       });

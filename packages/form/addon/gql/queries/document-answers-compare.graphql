@@ -140,7 +140,7 @@ query (
         node {
           ...SimpleRevisionAnswer
           ... on HistoricalTableAnswer {
-            tableValue: value(asOf: $to) {
+            tableValue: value(asOf: $to, excludeDeleted: true) {
               ...HistoricalTableValue
 
               answers: historicalAnswers(asOf: $to) {

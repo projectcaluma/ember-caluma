@@ -1,10 +1,11 @@
-import { render } from "@ember/test-helpers";
+import { render, settled } from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import cloneDeep from "lodash.clonedeep";
 import { module, test } from "qunit";
 
 import { decodeId } from "@projectcaluma/ember-core/helpers/decode-id";
+import { NavigationItem } from "@projectcaluma/ember-form/lib/navigation";
 import { parseDocument } from "@projectcaluma/ember-form/lib/parsers";
 import { setupRenderingTest } from "dummy/tests/helpers";
 import { rawHistoricalDocumentWithCase } from "dummy/tests/unit/lib/data";
@@ -99,6 +100,27 @@ module("Integration | Component | compare", function (hooks) {
         (f) => f.raw.question.slug === questionSlug,
       );
     };
+  });
+
+  test("navigation ignores changes to hidden widgets", function (assert) {
+    const hidden = this.findField("question-1");
+    const visible = this.findField("float");
+    hidden.question.raw.meta.widgetOverride = "cf-field/input/hidden";
+    hidden.answer.value = "changed";
+    visible.answer.value = 2;
+
+    const item = (fields, pk) =>
+      new NavigationItem({
+        fieldset: { fields, pk },
+        navigation: {},
+        owner: this.owner,
+      });
+
+    assert.strictEqual(item([hidden], "hidden").compareFieldsetState, "equal");
+    assert.strictEqual(
+      item([hidden, visible], "visible").compareFieldsetState,
+      "modified",
+    );
   });
 
   test("cf-field renders a text widget compare diff", async function (assert) {
@@ -298,6 +320,29 @@ module("Integration | Component | compare", function (hooks) {
         `.diff-version .diff-to-version [name="${this.field.pk}"][value="checkbox-d"]`,
       )
       .isChecked();
+  });
+
+  test("marks rows missing from the later table as removed", async function (assert) {
+    this.field = this.findField("table");
+    const rows = cloneDeep(this.field.answer.historical.tableValue);
+    this.set("field.question.raw.rowForm", rows[0].form);
+    this.set("field.answer.raw.tableValue", [rows[0]]);
+
+    await render(
+      hbs`<CfField @field={{this.field}} @compare={{this.compare}}/>`,
+    );
+
+    assert.dom(".diff-version tbody tr").exists({ count: 2 });
+    assert.dom(".diff-version tbody tr.diff-removed").exists({ count: 1 });
+    assert.strictEqual(this.field.answer.value[1].raw.id, rows[1].id);
+
+    this.set("field.answer.raw.tableValue", []);
+    await settled();
+    assert.dom(".diff-version tbody tr.diff-removed").exists({ count: 2 });
+
+    this.set("field.answer.raw.tableValue", null);
+    await settled();
+    assert.dom(".diff-version tbody tr.diff-removed").exists({ count: 2 });
   });
 
   test("cf-field renders a table widget compare diff", async function (assert) {
