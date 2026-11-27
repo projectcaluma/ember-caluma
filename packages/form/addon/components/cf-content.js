@@ -11,6 +11,23 @@ import getDocumentAnswersQuery from "@projectcaluma/ember-form/gql/queries/docum
 import getDocumentFormsQuery from "@projectcaluma/ember-form/gql/queries/document-forms.graphql";
 import { parseDocument } from "@projectcaluma/ember-form/lib/parsers";
 
+function documentAnswersRequestContext(requestHeaders) {
+  if (!requestHeaders || Object.keys(requestHeaders).length === 0) return;
+
+  return {
+    headers: requestHeaders,
+    queryDeduplication: false,
+  };
+}
+
+function serializeRequestHeaders(requestHeaders) {
+  return JSON.stringify(
+    Object.entries(requestHeaders ?? {}).sort(([keyA], [keyB]) =>
+      keyA.localeCompare(keyB),
+    ),
+  );
+}
+
 /**
  * Component to render a form with navigation.
  *
@@ -59,11 +76,18 @@ export default class CfContentComponent extends Component {
   @service calumaStore;
 
   @queryManager apollo;
+  lastFetchKey;
 
   /**
    * The uuid of the document to display
    *
    * @argument {String} documentId
+   */
+
+  /**
+   * Optional HTTP headers for the document answers request
+   *
+   * @argument {Object} requestHeaders
    */
 
   /**
@@ -149,10 +173,32 @@ export default class CfContentComponent extends Component {
   }
 
   fetchData = task({ drop: true }, async () => {
+    const requestHeaders = this.args.requestHeaders;
+    const compare = this.args.compare;
+    const fetchKey = [
+      this.args.documentId,
+      compare ? undefined : serializeRequestHeaders(requestHeaders),
+      compare?.from,
+      compare?.to,
+      this.args.context,
+    ];
+
+    if (
+      this.lastFetchKey &&
+      fetchKey.every((value, index) => value === this.lastFetchKey[index])
+    ) {
+      return { document: this.document, navigation: this.navigation };
+    }
+
+    this.lastFetchKey = undefined;
+
     if (this.document) destroy(this.document);
     if (this.navigation) destroy(this.navigation);
 
-    if (!this.args.documentId) return;
+    if (!this.args.documentId) {
+      this.lastFetchKey = fetchKey;
+      return;
+    }
 
     const owner = getOwner(this);
     const Document = owner.factoryFor("caluma-model:document").class;
@@ -162,17 +208,19 @@ export default class CfContentComponent extends Component {
     let historicalDocument;
     let jexlContext;
 
-    if (!this.args.compare) {
+    if (!compare) {
+      const requestContext = documentAnswersRequestContext(requestHeaders);
       const data = await this.apollo.query({
         query: getDocumentAnswersQuery,
         fetchPolicy: "network-only",
         variables: { id: this.args.documentId },
+        ...(requestContext ? { context: requestContext } : {}),
       });
 
       answerDocument = data.allDocuments.edges[0].node;
       jexlContext = data.jexlContext;
     } else {
-      const { from, to } = this.args.compare;
+      const { from, to } = compare;
 
       const data = await this.apollo.query({
         query: getDocumentAnswersCompareQuery,
@@ -217,8 +265,13 @@ export default class CfContentComponent extends Component {
       destroy(navigation);
     });
 
+    this.lastFetchKey = fetchKey;
+
     return { document, navigation };
   });
 
-  data = trackedTask(this, this.fetchData, () => [this.args.documentId]);
+  data = trackedTask(this, this.fetchData, () => [
+    this.args.documentId,
+    serializeRequestHeaders(this.args.requestHeaders),
+  ]);
 }
