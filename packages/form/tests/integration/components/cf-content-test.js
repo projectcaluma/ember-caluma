@@ -1,4 +1,10 @@
-import { render, fillIn, click, triggerEvent } from "@ember/test-helpers";
+import {
+  render,
+  fillIn,
+  click,
+  triggerEvent,
+  settled,
+} from "@ember/test-helpers";
 import { hbs } from "ember-cli-htmlbars";
 import { setupMirage } from "ember-cli-mirage/test-support";
 import { setFlatpickrDate } from "ember-flatpickr/test-support/helpers";
@@ -6,6 +12,27 @@ import { module, test } from "qunit";
 
 import DummyOneComponent from "dummy/components/dummy-one";
 import { setupRenderingTest } from "dummy/tests/helpers";
+
+function getDocumentAnswersRequests(server) {
+  return server.pretender.handledRequests.filter(
+    ({ requestBody }) =>
+      JSON.parse(requestBody).operationName === "DocumentAnswers",
+  );
+}
+
+function trackHandledRequests(server) {
+  server.pretender.handledRequests = [];
+}
+
+function getOperationName({ requestBody }) {
+  return JSON.parse(requestBody).operationName;
+}
+
+function getRequestHeader({ requestHeaders }, headerName) {
+  return Object.entries(requestHeaders).find(
+    ([name]) => name.toLowerCase() === headerName.toLowerCase(),
+  )?.[1];
+}
 
 module("Integration | Component | cf-content", function (hooks) {
   setupRenderingTest(hooks);
@@ -63,6 +90,125 @@ module("Integration | Component | cf-content", function (hooks) {
 
     this.set("questions", questions);
     this.set("document", document);
+  });
+
+  test("it does not add custom headers by default", async function (assert) {
+    trackHandledRequests(this.server);
+
+    await render(hbs`<CfContent @documentId={{this.document.id}} />`);
+
+    const requests = this.server.pretender.handledRequests;
+    const answersRequest = getDocumentAnswersRequests(this.server)[0];
+    const formRequest = requests.find(
+      (request) => getOperationName(request) !== "DocumentAnswers",
+    );
+
+    assert.ok(answersRequest);
+    assert.notOk(getRequestHeader(answersRequest, "x-camac-filters"));
+    assert.ok(formRequest);
+    assert.notOk(getRequestHeader(formRequest, "x-camac-filters"));
+  });
+
+  test("it scopes request headers to the document answers request", async function (assert) {
+    trackHandledRequests(this.server);
+    this.set("requestHeaders", { "x-camac-filters": "instance_id=2958" });
+
+    await render(
+      hbs`<CfContent @documentId={{this.document.id}} @requestHeaders={{this.requestHeaders}} />`,
+    );
+
+    const requests = this.server.pretender.handledRequests;
+    const answersRequest = getDocumentAnswersRequests(this.server)[0];
+    const formRequest = requests.find(
+      (request) => getOperationName(request) !== "DocumentAnswers",
+    );
+
+    assert.strictEqual(
+      getRequestHeader(answersRequest, "x-camac-filters"),
+      "instance_id=2958",
+    );
+    assert.strictEqual(getRequestHeader(answersRequest, "language"), "en");
+    assert.strictEqual(
+      getRequestHeader(answersRequest, "accept-language"),
+      "en",
+    );
+    assert.notOk(getRequestHeader(formRequest, "x-camac-filters"));
+  });
+
+  test("it refetches when request header values change", async function (assert) {
+    trackHandledRequests(this.server);
+    this.set("requestHeaders", {
+      "x-camac-filters": "instance_id=2958",
+      "x-extra-header": "value",
+    });
+
+    await render(
+      hbs`<CfContent @documentId={{this.document.id}} @requestHeaders={{this.requestHeaders}} />`,
+    );
+
+    assert.strictEqual(getDocumentAnswersRequests(this.server).length, 1);
+
+    this.set("requestHeaders", {
+      "x-extra-header": "value",
+      "x-camac-filters": "instance_id=2958",
+    });
+    await settled();
+
+    assert.strictEqual(getDocumentAnswersRequests(this.server).length, 1);
+
+    this.set("requestHeaders", {
+      "x-extra-header": "value",
+      "x-camac-filters": "instance_id=2959",
+    });
+    await settled();
+
+    const updatedRequests = getDocumentAnswersRequests(this.server);
+    assert.strictEqual(updatedRequests.length, 2);
+    assert.strictEqual(
+      getRequestHeader(updatedRequests[1], "x-camac-filters"),
+      "instance_id=2959",
+    );
+
+    this.set("requestHeaders", undefined);
+    await settled();
+
+    const requestsWithoutHeaders = getDocumentAnswersRequests(this.server);
+    assert.strictEqual(requestsWithoutHeaders.length, 3);
+    assert.notOk(
+      getRequestHeader(requestsWithoutHeaders[2], "x-camac-filters"),
+    );
+  });
+
+  test("it does not deduplicate requests with different headers", async function (assert) {
+    trackHandledRequests(this.server);
+    this.set("firstRequestHeaders", {
+      "x-camac-filters": "instance_id=2958",
+    });
+    this.set("secondRequestHeaders", {
+      "x-camac-filters": "instance_id=2959",
+    });
+
+    await render(hbs`
+      <div>
+        <CfContent
+          @documentId={{this.document.id}}
+          @requestHeaders={{this.firstRequestHeaders}}
+        />
+        <CfContent
+          @documentId={{this.document.id}}
+          @requestHeaders={{this.secondRequestHeaders}}
+        />
+      </div>
+    `);
+
+    const requests = getDocumentAnswersRequests(this.server);
+    assert.strictEqual(requests.length, 2);
+    assert.deepEqual(
+      requests
+        .map((request) => getRequestHeader(request, "x-camac-filters"))
+        .sort(),
+      ["instance_id=2958", "instance_id=2959"],
+    );
   });
 
   test("it renders", async function (assert) {
